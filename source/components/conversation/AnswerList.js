@@ -25,6 +25,7 @@ const AnswerList = ({
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>
+			{emoji('📋 ')}
 			<Trans>Mes réponses</Trans>
 			<small css="margin-left: 2em; img {font-size: .8em}">
 				{emoji('🗑')}{' '}
@@ -40,6 +41,7 @@ const AnswerList = ({
 		</h2>
 		<StepsTable {...{ rules: folded, onClose, goToQuestion }} />
 		<h2>
+			{emoji('🔮 ')}
 			<Trans>Prochaines questions</Trans>
 		</h2>
 		<StepsTable {...{ rules: next, onClose, goToQuestion }} />
