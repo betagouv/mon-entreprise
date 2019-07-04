@@ -47,7 +47,7 @@ module.exports = {
 			description:
 				'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 			filename: 'infrance.html',
-			logo: 'https://mon-entreprise.fr/images/logo-mycompany.png'
+			logo: 'https://mon-entreprise.fr/images/logo-mycompany-share.png'
 		}),
 		new HTMLPlugin({
 			...HTMLPluginCommonParams,
@@ -57,7 +57,7 @@ module.exports = {
 			description:
 				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 			filename: 'mon-entreprise.html',
-			logo: 'https://mon-entreprise.fr/images/logo.png'
+			logo: 'https://mon-entreprise.fr/images/logo-share.png'
 		}),
 
 		new CopyPlugin([
