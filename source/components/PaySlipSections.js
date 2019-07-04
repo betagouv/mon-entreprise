@@ -20,7 +20,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
 			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
 			<RuleLink className="payslip__brut" {...salaireBrut} />
-			<Value className="payslip__brut" {...salaireBrut} />
+			<Value className="payslip__brut" {...salaireBrut} unit="€" />
 		</div>
 	)
 }
@@ -28,7 +28,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 export let Line = ({ rule, negative }) => (
 	<>
 		<RuleLink {...rule} />
-		<Value {...rule} negative={negative} />
+		<Value {...rule} unit="€" negative={negative} />
 	</>
 )
 

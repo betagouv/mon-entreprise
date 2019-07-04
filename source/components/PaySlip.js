@@ -85,11 +85,13 @@ export default compose(
 										/>
 										<Value
 											nilValueSymbol="—"
+											unit="€"
 											style={{ backgroundColor: lightestColour }}>
 											{cotisation.montant.partPatronale}
 										</Value>
 										<Value
 											nilValueSymbol="—"
+											unit="€"
 											style={{ backgroundColor: lightestColour }}>
 											{cotisation.montant.partSalariale}
 										</Value>
@@ -105,7 +107,9 @@ export default compose(
 						negative
 						rule={getRule('contrat salarié . réductions de cotisations')}
 					/>
-					<Value nilValueSymbol="—">{0}</Value>
+					<Value unit="€" nilValueSymbol="—">
+						{0}
+					</Value>
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
@@ -113,16 +117,20 @@ export default compose(
 					<Value
 						nilValueSymbol="—"
 						{...getRule('contrat salarié . cotisations . patronales à payer')}
+						unit="€"
 						className="payslip__total"
 					/>
 					<Value
 						nilValueSymbol="—"
 						{...getRule('contrat salarié . cotisations . salariales')}
+						unit="€"
 						className="payslip__total"
 					/>
 					{/* Salaire chargé */}
 					<Line rule={getRule('contrat salarié . rémunération . total')} />
-					<Value nilValueSymbol="—">{0}</Value>
+					<Value nilValueSymbol="—" unit="€">
+						{0}
+					</Value>
 				</div>
 				{/* Section salaire net */}
 				<SalaireNetSection getRule={getRule} />
