@@ -1,16 +1,16 @@
 - titre: Location meublée
   icônes: 🏠 🛋
-  explication: Vous avez loué un logement meublé pour de courtes durées
-  plateformes: 
+  explication: Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile.
+  plateformes:
     - Airbnb
     - Abritel
     - chambre d'hôte
     - tourisme classé
-  activités: 
+  activités:
     - titre: Location meublée
       icônes: 🏠 🛋
-      explication: Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile. Ce n'est pas une chambre d’hôte ni un meublé de tourisme
-      plateformes: 
+      explication: Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors chambre d’hôte ou meublé de tourisme)
+      plateformes:
         - Airbnb
         - Abritel
         - Booking
@@ -18,15 +18,15 @@
       seuil régime général: 82800
       exonérations:
         # https://www.pap.fr/bailleur/impots-taxes/location-meublee-quelle-fiscalite/a1787/location-meublee-les-exonerations
-      - titre: Il s'agit d'une pièce dans ma résidence principale
-        explication: | 
-          Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
-          > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
+        - titre: Il s'agit d'une pièce dans ma résidence principale
+          explication: |
+            Vous donnez en location une ou plusieurs pièces de votre habitation principale : vous êtes exonéré d'impôt sous réserve que la ou les pièces louée(s) constituent la résidence principale du locataire ou sa résidence temporaire. Pour bénéficier de cette dernière condition, le locataire doit pouvoir justifier d'un contrat de travail saisonnier ou d'un CDD d'usage. Le prix de la location doit être fixé dans des limites raisonnables. Pour les baux conclus en 2019, le loyer ne doit pas dépasser 187 € par an et par mètre carré en Île-de-France et 138 € par mètre carré et par an dans les autres régions. Ces plafonds sont relevés au 1er janvier de chaque année.
+            > Vous louez à Paris, dans votre résidence principale, une chambre de 18 m² à un étudiant. Pour être exonéré d'impôt, le loyer mensuel hors charges ne doit pas dépasser en 2019 (187 x 18) / 12 = 280 €.
 
     - titre: Location meublée de tourisme classé
       explication: Le bien doit avoir préalablement fait l’objet d’une déclaration auprès de la commune où il est situé. A l’issue de cette procédure, un numéro de déclaration (13 caractères) est délivré. Tout changement fait l'objet d'une nouvelle déclaration.
       icônes: 🏠 ⭐
-      plateformes: 
+      plateformes:
         - Airbnb
         - Abritel
         - Booking
@@ -34,7 +34,7 @@
       seuil régime général: 82800
     - titre: Location de chambre d'hôtes
       explication: Vous êtes loueur de chambres d’hôtes et remplissez les conditions prévues par le code du tourisme
-      plateformes: 
+      plateformes:
         - Gîtes de France
       icônes: 🏠 🧑
       seuil pro: 5268
@@ -45,12 +45,12 @@
   explication: Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...
   seuil pro: 8105
   seuil régime général: 82800
-  plateformes: 
+  plateformes:
     - Drivy
     - outils de jardinage, bricolage...
 - titre: Services
   icônes: 🚴 🚕 👩‍💻 🍼
-  plateformes: 
+  plateformes:
     - Deliveroo
     - Uber
     - création de sites internet
@@ -63,15 +63,15 @@
 
 - titre: Vente de biens
   icônes: 📦 🧶
-  plateformes: 
+  plateformes:
     - Leboncoin
     - eBay
     - Etsy...
   seuil pro: 0
   exonérations:
-  - titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
-    explication: | 
-      Si à l'inverse, il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), votre activité est alors à caractère professionnel et elle doit être déclarée.
+    - titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
+      explication: |
+        Si à l'inverse, il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), votre activité est alors à caractère professionnel et elle doit être déclarée.
 
 - titre: Co-consommation
   icônes: 👥 🚗
@@ -79,10 +79,10 @@
   explication: |
     La co-consommation, c'est par exemple partager votre voiture (co-voiturage), des repas, ou encore des sorties.
 
-  plateformes: 
+  plateformes:
     - Blablacar
 
-  exonérations: 
+  exonérations:
     - titre: Vous profitez du service proposé
       explication: |
         Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous bénéficiez également de la prestation de service proposée au même titre que les personnes avec lesquelles les frais sont partagés ;
@@ -92,6 +92,3 @@
     - titre: Si co-voiturage, attention au barème kilométrique
       explication: |
         Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.<Paste>
-
-
-

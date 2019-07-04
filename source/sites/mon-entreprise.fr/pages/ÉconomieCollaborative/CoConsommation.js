@@ -59,7 +59,7 @@ export default withSitePaths(function CoConsommation({ sitePaths }) {
 			<p className="ui__ answer-group">
 				<button className="ui__ simple button">Ce n'est pas le cas</button>
 				<Link
-					to={sitePaths.économieCollaborative.activités.locationMeublée}
+					to={sitePaths.économieCollaborative.locationMeublée}
 					className={classnames('ui__ plain button', {
 						disabled: checklist.filter(Boolean).length !== 2
 					})}>

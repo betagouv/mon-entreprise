@@ -1,21 +1,20 @@
-import { all } from 'ramda'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
-import React, { useState, useContext } from 'react'
+import { createMarkdownDiv } from 'Engine/marked'
+import { all } from 'ramda'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import { flatActivités } from './reducers'
-import { createMarkdownDiv } from 'Engine/marked'
-import { StoreContext } from './StoreContext'
-import { NextButton } from './ActivitésSelection'
+import { MultiItemSelection, NextButton } from './ActivitésSelection'
 import Exonérations from './Exonérations'
-import { MultiItemSelection } from './ActivitésSelection'
+import { flatActivités } from './reducers'
+import { StoreContext } from './StoreContext'
 
 export let allTrue = list => list && all(item => item === true)(list)
 
 export let BackToSelection = withSitePaths(({ sitePaths }) => (
-	<Link to={sitePaths.économieCollaborative.activités.index}>
+	<Link to={sitePaths.économieCollaborative.index}>
 		Revenir à la sélection des activités
 	</Link>
 ))
@@ -33,27 +32,30 @@ export default withSitePaths(function LocationMeublée({
 
 	if (data.activités) {
 		return (
-			<>
+			<Animate.fromBottom>
 				<h1>{data.titre}</h1>
-				<p>Sélectionnez une ou plusieurs activités.</p>
-				<MultiItemSelection
-					{...{
-						items: data.activités,
-						selectedActivities,
-						activityAnswers,
-						dispatch,
-						buttonAttributes: {
-							currentActivité: title,
-							action: () =>
-								dispatch({
-									type: 'UPDATE_ACTIVITY',
-									title,
-									data: { completed: true }
-								})
-						}
-					}}
-				/>
-			</>
+				<p>{data.explication}</p>
+				<p>Quels sont plus précisément les types d'activités exercées ? </p>
+				<section className="ui__ full-width choice-group">
+					<MultiItemSelection
+						{...{
+							items: data.activités,
+							selectedActivities,
+							activityAnswers,
+							dispatch,
+							buttonAttributes: {
+								currentActivité: title,
+								action: () =>
+									dispatch({
+										type: 'UPDATE_ACTIVITY',
+										title,
+										data: { completed: true }
+									})
+							}
+						}}
+					/>
+				</section>
+			</Animate.fromBottom>
 		)
 	}
 

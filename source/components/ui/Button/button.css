@@ -207,7 +207,6 @@
 	display: flex;
 	align-items: baseline;
 	flex-wrap: wrap;
-
 	padding: 1rem;
 	background: white;
 	color: var(--darkColour);
@@ -256,6 +255,10 @@
 	transform: scale(1.5) translateY(0.1em);
 }
 
+.ui__.button-choice.block img {
+	margin: 1rem !important;
+}
+
 .ui__.button-choice:hover,
 .ui__.button-choice:focus {
 	opacity: 1 !important;
@@ -264,7 +267,7 @@
 		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 }
 @media (min-width: 600px) {
-	.ui__.button-choice:not(.button-choice--soon)::after {
+	.ui__.button-choice:not(.button-choice--soon):not(.block)::after {
 		content: '›';
 		position: absolute;
 		right: 20px;

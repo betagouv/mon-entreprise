@@ -6,8 +6,10 @@
 	user-select: none;
 	font-size: 75%;
 	width: 2.8ex;
+	line-height: initial;
 	border-radius: 50%;
 	margin-right: 0.2em;
+	margin-bottom: 0.5em;
 	padding: 1px;
 	text-align: center;
 	text-decoration: none;
@@ -17,6 +19,7 @@
 }
 .info-bulle__text {
 	text-align: left;
+
 	position: absolute;
 	z-index: -1;
 	border: 1px solid var(--colour);

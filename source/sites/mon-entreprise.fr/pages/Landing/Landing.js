@@ -96,7 +96,7 @@ export default compose(
 			</div>
 		</section>
 		<section className="ui__ container">
-			<h2> ?</h2>
+			<h2>Le saviez-vous ?</h2>
 			<p>
 				Location meublée, covoiturage, etc : les revenus des plateformes
 				collaboratives doivent souvent être déclarées. Pour être sûr de ne rien

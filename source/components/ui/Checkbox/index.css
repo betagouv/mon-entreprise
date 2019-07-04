@@ -1,7 +1,7 @@
 .ui__.checkbox {
 	cursor: pointer;
 	position: relative;
-	margin: auto;
+	margin: 0;
 	width: 18px;
 	line-height: 18px;
 	height: 18px;
@@ -12,7 +12,7 @@
 .ui__.checkbox:before {
 	content: '';
 	position: absolute;
-	top: -11px;
+	top: -6.5px;
 	left: -11px;
 	width: 40px;
 	height: 40px;

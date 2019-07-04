@@ -1,13 +1,11 @@
 import withSitePaths from 'Components/utils/withSitePaths'
 import React from 'react'
 import { Route } from 'react-router'
-import ActivitésSelection from './ActivitésSelection'
-import CoConsommation from './CoConsommation'
-import Home from './Home'
-import LocationMeublée from './LocationMeublée'
-import VotreSituation from './VotreSituation'
-import { StoreProvider } from './StoreContext'
 import Activité from './Activité'
+import ActivitésSelection from './ActivitésSelection'
+import LocationMeublée from './LocationMeublée'
+import { StoreProvider } from './StoreContext'
+import VotreSituation from './VotreSituation'
 
 export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 	return (
@@ -16,20 +14,15 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 				<Route
 					exact
 					path={sitePaths.économieCollaborative.index}
-					component={Home}
-				/>
-				<Route
-					exact
-					path={sitePaths.économieCollaborative.activités.index}
 					component={ActivitésSelection}
 				/>
 				<Route
-					path={sitePaths.économieCollaborative.activités.index + '/:title'}
+					path={sitePaths.économieCollaborative.index + '/:title'}
 					component={Activité}
 				/>
 				<Route
 					exact
-					path={sitePaths.économieCollaborative.activités.locationMeublée}
+					path={sitePaths.économieCollaborative.locationMeublée}
 					component={LocationMeublée}
 				/>
 				<Route
