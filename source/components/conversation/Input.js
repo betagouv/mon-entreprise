@@ -25,15 +25,14 @@ export default compose(
 					input,
 					dottedName,
 					submit,
-					valueType,
 					meta: { dirty, error },
 					t,
 					colours,
 					rulePeriod,
-					period
+					period,
+					unit
 				} = this.props,
-				answerSuffix = valueType.suffix,
-				suffixed = answerSuffix != null,
+				suffixed = unit != null,
 				inputError = dirty && error,
 				submitDisabled = !dirty || inputError
 			return (
@@ -56,7 +55,7 @@ export default compose(
 						/>
 						{suffixed && (
 							<label className="suffix" htmlFor={'step-' + dottedName}>
-								{answerSuffix}
+								{unit}
 								{rulePeriod && (
 									<span>
 										{' '}

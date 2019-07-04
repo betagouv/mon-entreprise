@@ -25,7 +25,6 @@ let booleanTranslations = {
 
 let style = `
 		font-family: 'Courier New', Courier, monospace;
-
 `
 
 export default withLanguage(

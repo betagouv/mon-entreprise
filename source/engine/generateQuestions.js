@@ -1,4 +1,3 @@
-import valueFormats from 'Engine/valueFormats'
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
@@ -119,7 +118,7 @@ export let getInputComponent = rules => dottedName => {
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
-	if (rule.format == null)
+	if (rule.unit == null)
 		return (
 			<Question
 				{...{
@@ -137,7 +136,6 @@ export let getInputComponent = rules => dottedName => {
 			<SelectAtmp
 				{...{
 					...commonProps,
-					valueType: valueFormats[rule.format],
 					suggestions: rule.suggestions
 				}}
 			/>
@@ -149,7 +147,7 @@ export let getInputComponent = rules => dottedName => {
 		<Input
 			{...{
 				...commonProps,
-				valueType: valueFormats[rule.format],
+				unit: rule.unit,
 				suggestions: rule.suggestions,
 				rulePeriod: rule.période
 			}}

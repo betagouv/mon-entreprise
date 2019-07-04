@@ -13,10 +13,10 @@ export let serialiseUnit = ({ numerators, denominators }) => {
 	let n = !isEmpty(numerators)
 	let d = !isEmpty(denominators)
 	return n && !d
-		? numerators
+		? numerators.join('')
 		: !n && d
-		? `/${denominators}`
-		: `${numerators} / ${denominators}`
+		? `/${denominators.join('')}`
+		: `${numerators.join('')} / ${denominators.join('')}`
 }
 
 let noUnit = { numerators: [], denominators: [] }

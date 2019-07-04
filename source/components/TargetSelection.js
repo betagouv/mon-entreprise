@@ -22,6 +22,7 @@ import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
+import { serialiseUnit } from 'Engine/units'
 
 export default compose(
 	withTranslation(),
@@ -291,8 +292,8 @@ let TargetInputOrValue = withLanguage(
 						name={target.dottedName}
 						onBlur={event => event.preventDefault()}
 						component={
-							{ euros: CurrencyField, pourcentage: DebouncedPercentageField }[
-								target.format
+							{ '€': CurrencyField, '%': DebouncedPercentageField }[
+								serialiseUnit(target.unit)
 							]
 						}
 						{...(inputIsActive ? { autoFocus: true } : {})}

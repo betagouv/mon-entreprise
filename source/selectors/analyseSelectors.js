@@ -306,7 +306,6 @@ export let nextStepsSelector = createSelector(
 			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
 		}
 
-		console.log(nextSteps)
 		return nextSteps
 	}
 )

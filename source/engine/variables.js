@@ -30,7 +30,10 @@ export let getSituationValue = (situationGate, variableName, rule) => {
 
 	if (rule.API) return typeof value == 'string' ? JSON.parse(value) : value
 
-	if (rule.unit != null) return value
+	if (rule.unit != null) {
+		return value == undefined ? null : +value
+	}
+
 	// a leaf variable with an unit attribute is not boolean
 	if (formatBooleanValue[value] !== undefined) return formatBooleanValue[value]
 	if (rule.formule && rule.formule['une possibilité'])
