@@ -22,7 +22,7 @@
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
-  format: euros
+  unité: €
   période: année
   applicable si: active
   formule:
@@ -617,7 +617,7 @@
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
-  format: mois
+  unité: mois
   suggestions:
     18 mois: 18
     1 an: 12
@@ -632,7 +632,7 @@
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  format: jours
+  unité: jours
   suggestions:
     3: 3
     10: 10
@@ -745,7 +745,7 @@
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
   période: flexible
-  format: euros
+  unité: €
   suggestions:
     salaire médian: 2300
     SMIC: 1522
@@ -787,7 +787,7 @@
   titre: Salaire brut équivalent temps plein
   résumé: Le salaire si l'embauche se faisait à temps plein
   question: Quel est le salaire en équivalent temps plein ?
-  format: euros
+  unité: €
   formule: brut de base / quotité de travail
   période: flexible
   suggestions:
@@ -799,7 +799,7 @@
   titre: Salaire brut
   description: >
     Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
-  format: euros
+  unité: €
   période: flexible
   formule:
     somme:
@@ -809,7 +809,7 @@
 - espace: contrat salarié . rémunération
   nom: brut
   titre: Rémunération brute
-  format: euros
+  unité: €
   période: flexible
   formule:
     somme:
@@ -821,7 +821,7 @@
   description: >
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
     Ils sont soumis à l'impôt sur le revenu.
-  format: euros
+  unité: €
   période: flexible
   formule:
     somme:
@@ -850,7 +850,6 @@
       - nourriture . montant
       - ntic . montant
       - autres . montant
-  format: euros
 
 - espace: contrat salarié . avantages en nature
   nom: ntic
@@ -879,12 +878,12 @@
   par défaut: 0
   suggestions:
     🚗 véhicule: 260
-  format: euros
+  unité: €
 
 - espace: contrat salarié . avantages en nature . ntic
   nom: montant
   titre: outils NTIC
-  format: euros
+  unité: €
   période: année
   description: |
     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
@@ -907,7 +906,7 @@
   nom: coût appareils
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
-  format: euros
+  unité: €
   période: aucune
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
@@ -920,7 +919,7 @@
 - espace: contrat salarié . avantages en nature . ntic
   nom: abonnements
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
-  format: euros
+  unité: €
   période: mois
   par défaut: 20
   suggestions:
@@ -941,7 +940,7 @@
   nom: montant
   titre: nourriture
   période: flexible
-  format: euros
+  unité: €
   formule:
     multiplication:
       assiette: montant forfaitaire d'un repas
@@ -950,7 +949,7 @@
 - espace: contrat salarié . avantages en nature . nourriture
   nom: montant forfaitaire d'un repas
   période: aucune
-  format: euros
+  unité: € / repas
   formule:
     variations:
       - si: dans la restauration
@@ -965,7 +964,7 @@
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
-  format: nombre
+  unité: repas / mois
   suggestions:
     1 par jour: 21
     2 par jour: 42
@@ -985,13 +984,13 @@
 
 #   période: flexible
 
-#   format: euros
+#   unité: €
 #   par défaut: 0
 
 - espace: contrat salarié
   nom: indemnités salarié
   période: flexible
-  format: euros
+  unité: €
   formule:
     somme:
       - CDD . indemnités salarié CDD
@@ -1033,7 +1032,7 @@
 
 - nom: SMIC horaire
   formule: 10.03
-  format: euros
+  unité: €
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -1046,7 +1045,7 @@
 - espace: contrat salarié . cotisations
   nom: salariales
   titre: cotisations salariales
-  format: euros
+  unité: €
   période: flexible
   formule:
     somme:
@@ -1064,7 +1063,7 @@
   nom: patronales
   titre: cotisations patronales
   période: flexible
-  format: euros
+  unité: €
   formule:
     somme:
       - maladie [employeur]
@@ -1099,7 +1098,7 @@
   nom: net de cotisations
   titre: Rémunération nette de cotisations
   type: rémunération
-  format: euros
+  unité: €
   période: flexible
   formule: rémunération . brut - cotisations . salariales
 
@@ -1107,7 +1106,7 @@
   nom: net imposable
   titre: Salaire net imposable
   type: salaire
-  format: euros
+  unité: €
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   période: flexible
@@ -1136,7 +1135,7 @@
   description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
   applicable si: régime des impatriés
   période: flexible
-  format: euros
+  unité: €
   formule:
     multiplication:
       assiette: rémunération . net imposable . base
@@ -1148,7 +1147,7 @@
   nom: net
   titre: Salaire net
   type: salaire
-  format: euros
+  unité: €
   question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
   description: |
@@ -1166,7 +1165,7 @@
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
-  format: euros
+  unité: €
   période: flexible
   description: |
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
@@ -1447,7 +1446,7 @@
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  format: euros
+  unité: €
   période: flexible
   formule:
     variations:
@@ -1497,7 +1496,7 @@
   période: flexible
   description: |
   formule: rémunération . total - aides employeur
-  format: euros
+  unité: €
 
 - espace: contrat salarié . rémunération
   nom: total
@@ -1505,7 +1504,7 @@
   question: Quel est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
-  format: euros
+  unité: €
   période: flexible
   description: |
     C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
@@ -1521,7 +1520,7 @@
 - espace: contrat salarié
   nom: réductions de cotisations
   période: flexible
-  format: euros
+  unité: €
   formule:
     somme:
       - réduction générale
@@ -1532,7 +1531,7 @@
 - espace: contrat salarié . cotisations
   nom: patronales à payer
   période: flexible
-  format: euros
+  unité: €
   formule: patronales - réductions de cotisations
 
 - espace: contrat salarié
@@ -1595,7 +1594,7 @@
 
     D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail assez de valeur pour te payer ce montant.
 
-  format: euros
+  unité: €
   période: flexible
   type: salaire
   formule: rémunération . total - aides employeur
@@ -1650,7 +1649,7 @@
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
-  format: nombre
+  unité: _ 
   suggestions:
     1: 1
     20: 20
@@ -1668,7 +1667,7 @@
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
-  format: pourcentage
+  unité: '%'
   suggestions:
     1: 1
     5: 5
@@ -1697,7 +1696,6 @@
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   question: Dans quelle commune l'établissement est-il implanté ?
-  format: objet
   API: géo
   par défaut:
     code: 29019
@@ -1708,7 +1706,6 @@
 
 - espace: établissement . localisation
   nom: code commune
-  format: nombre
   formule:
     synchronisation:
       API: localisation
@@ -1719,7 +1716,6 @@
   description: |
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
-  format: texte
   formule:
     synchronisation:
       API: localisation
@@ -1727,7 +1723,6 @@
 
 - espace: établissement
   nom: taux du versement transport
-  format: nombre
   formule:
     synchronisation:
       API: localisation
@@ -1735,7 +1730,6 @@
 
 - espace: établissement . localisation
   nom: département
-  format: texte
   formule:
     synchronisation:
       API: localisation
@@ -1753,7 +1747,7 @@
 - espace: contrat salarié . temps partiel
   nom: heures par semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
-  format: nombre
+  unité: heures / semaine
   # contrôle : le code du travail définit la borne inférieure de 24h par semaine. Sauf qu'en réalité, la loi permet très souvent des dérogations.
   par défaut: 35
   contrôles:
@@ -2155,7 +2149,7 @@
   nom: part employeur
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
   question: Quel est la part de la complémentaire santé payée par l'employeur ?
-  format: pourcentage
+  unité: '%'
   suggestions:
     50%: 50
     100%: 100
@@ -2168,7 +2162,7 @@
 - espace: contrat salarié . complémentaire santé
   nom: part salarié
   description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
-  format: pourcentage
+  unité: '%'
   formule: 100 - part employeur
 
 - espace: contrat salarié . complémentaire santé
@@ -2200,7 +2194,7 @@
   références:
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
   période: mois
-  format: euros
+  unité: €
   par défaut: 30
   suggestions:
     basique: 30
@@ -2211,7 +2205,7 @@
   titre: forfait complémentaire santé en France
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   période: mois
-  format: euros
+  unité: €
   par défaut: 40
   suggestions:
     basique: 40
@@ -2925,7 +2919,7 @@
       - auto entrepreneur . revenu net de cotisations
 
 - nom: revenu net après impôt
-  format: euros
+  unité: €
   résumé: Versé sur le compte bancaire
   période: flexible
   question: Quel revenu voulez-vous toucher ?
@@ -2968,7 +2962,7 @@
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
   période: flexible
-  format: euros
+  unité: €
   formule: rémunération totale du dirigeant + charges
 
 - espace: entreprise
@@ -2976,7 +2970,7 @@
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   période: flexible
   question: Quel est votre chiffre d'affaires minimum envisagé ?
-  format: euros
+  unité: €
   formule: chiffre d'affaires
 
 - espace: entreprise
@@ -2992,7 +2986,7 @@
   description: |
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  format: pourcentage
+  unité: '%'
   par défaut: 1
 
 - espace: entreprise
@@ -3032,7 +3026,7 @@
   nom: rémunération totale du dirigeant
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
-  format: euros
+  unité: €
   description:
     C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
@@ -3079,7 +3073,7 @@
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   période: flexible
   par défaut: 0
-  format: euros
+  unité: €
 
 - espace: indépendant . cotisations et contributions
   nom: réduction ACRE
@@ -3110,7 +3104,7 @@
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  format: euros
+  unité: €
 
 - espace: indépendant
   nom: revenu professionnel
@@ -3124,7 +3118,7 @@
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
 
   période: flexible
-  format: euros
+  unité: €
   formule:
     inversion numérique:
       avec:
@@ -3357,7 +3351,7 @@
       - cotisations à payer
       - CSG et CRDS
       - formation professionnelle
-  format: euros
+  unité: €
   période: flexible
 
 - espace: entreprise
@@ -3556,7 +3550,7 @@
 - espace: indépendant . cotisations et contributions . cotisations
   nom: retraite complémentaire
   période: année
-  format: euros
+  unité: €
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
@@ -3725,7 +3719,7 @@
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule: entreprise . rémunération totale du dirigeant - cotisations et contributions
   période: flexible
-  format: euros
+  unité: €
 
 - espace: auto entrepreneur
   nom: cotisations et contributions
@@ -3819,7 +3813,7 @@
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: retraite complémentaire
   description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
-  format: euros
+  unité: €
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
   période: flexible
@@ -3957,7 +3951,7 @@
     INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
   non applicable si: entreprise . rattachement libéral règlementé
 
-  format: euros
+  unité: €
   période: flexible
   formule:
     somme:
@@ -3980,7 +3974,7 @@
 - nom: base
   espace: protection sociale . retraite
   titre: pension de retraite de base
-  format: euros
+  unité: €
   période: flexible
   non applicable si: contrat salarié . régime des impatriés
   formule:
@@ -4008,7 +4002,6 @@
 - espace: protection sociale . retraite
   nom: trimestres validés par an
   période: aucune
-  format: nombre
   formule:
     le minimum de:
       - somme:
@@ -4020,14 +4013,12 @@
 - nom: trimestres salarié
   période: aucune
   applicable si: contrat salarié
-  format: nombre
   espace: protection sociale . retraite . trimestres validés par an
   formule: barème trimestres générique
 
 - nom: trimestres indépendant
   période: aucune
   applicable si: indépendant
-  format: nombre
   espace: protection sociale . retraite . trimestres validés par an
   formule:
     variations:
@@ -4040,7 +4031,6 @@
 
 - nom: barème trimestres générique
   espace: protection sociale . retraite . trimestres validés par an
-  format: nombre
   période: aucune
   formule:
     variations:
@@ -4069,7 +4059,6 @@
 - nom: trimestres auto entrepreneur
   applicable si: auto entrepreneur
   espace: protection sociale . retraite . trimestres validés par an
-  format: nombre
   période: aucune
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
@@ -4137,7 +4126,7 @@
   nom: revenu moyen
   description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
   notes: Normalement, on prends le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
-  format: euros
+  unité: €
   période: année
   formule:
     le maximum de:
@@ -4149,7 +4138,7 @@
   nom: mois cotisés
   formule: 172 * 3
   notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
-  format: euros
+  unité: €
 
 - espace: protection sociale . retraite
   nom: complémentaire salarié
@@ -4162,7 +4151,7 @@
   nom: valeur du point
   formule: 1.2588
   période: année
-  format: euros
+  unité: €
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -4183,7 +4172,7 @@
   nom: prix d'achat du point
   formule: 16.7226
   période: mois
-  format: euros
+  unité: €
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
@@ -4198,7 +4187,7 @@
   nom: valeur du point
   formule: 1.187
   période: année
-  format: euros
+  unité: €
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
@@ -4222,7 +4211,7 @@
   nom: prix d'achat du point
   formule: 17.456
   période: mois
-  format: euros
+  unité: €
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
@@ -4257,7 +4246,7 @@
     brut et versées tous les 14 jours en moyenne.
   # TODO : période : jour
   période: aucune
-  format: euros
+  unité: €
   formule:
     somme:
       - indemnités journalières . auto entrepreneur
@@ -4268,7 +4257,7 @@
   nom: auto entrepreneur
   applicable si: auto entrepreneur
   période: aucune
-  format: euros
+  unité: €
   formule:
     variations:
       - si: revenu moyen [annuel] < 3919.20
@@ -4286,7 +4275,7 @@
   nom: indépendant
   applicable si: indépendant
   période: aucune
-  format: euros
+  unité: €
   formule:
     le maximum de:
       - 21
@@ -4301,7 +4290,7 @@
 - espace: protection sociale . santé . indemnités journalières
   nom: salarié
   période: aucune
-  format: euros
+  unité: €
   notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestrielle, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
@@ -4378,7 +4367,7 @@
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
 
   période: mois
-  format: euros
+  unité: €
   applicable si: contrat salarié
   formule:
     le minimum de:
