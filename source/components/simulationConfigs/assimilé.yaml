@@ -24,7 +24,6 @@ questions:
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
-    - contrat salarié . régime des impatriés
   non prioritaires:
     - entreprise . établissement bancaire
     - contrat salarié . complémentaire santé . part employeur
