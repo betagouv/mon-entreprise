@@ -23,8 +23,8 @@ let runExamples = (examples, rule) =>
 				exampleValue === goal
 					? true
 					: typeof goal === 'number'
-						? Math.abs((exampleValue - goal) / goal) < 0.001
-						: goal === null && exampleValue === 0
+					? Math.abs((exampleValue - goal) / goal) < 0.001
+					: goal === null && exampleValue === 0
 
 		return merge(ex, {
 			ok,
@@ -34,7 +34,7 @@ let runExamples = (examples, rule) =>
 
 let parsedRules = parseAll(rules)
 describe('Tests des règles de notre base de règles', () =>
-	parsedRules.map(rule => {
+	Object.values(parsedRules).map(rule => {
 		if (!rule.exemples) return null
 		describe(rule.dottedName, () => {
 			let examples = runExamples(rule.exemples, rule)

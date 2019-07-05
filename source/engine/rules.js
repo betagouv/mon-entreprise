@@ -5,13 +5,11 @@ import {
 	find,
 	fromPairs,
 	has,
-	identity,
 	is,
 	isNil,
 	join,
 	last,
 	map,
-	mapObjIndexed,
 	path,
 	pipe,
 	propEq,
@@ -24,9 +22,7 @@ import {
 	take,
 	toPairs,
 	trim,
-	when,
-	groupBy,
-	dissoc
+	when
 } from 'ramda'
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
@@ -43,7 +39,7 @@ export let enrichRule = rule => {
 	try {
 		let unit = rule.unité && parseUnit(rule.unité)
 		return {
-			...dissoc('contrôles', rule),
+			...rule,
 			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
 			name: rule['nom'],
 			title: capitalise0(rule['titre'] || rule['nom']),

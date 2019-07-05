@@ -9,7 +9,7 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { compose, isEmpty, isNil } from 'ramda'
+import { compose, isEmpty } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
@@ -56,8 +56,7 @@ export default compose(
 					valuesToShow,
 					sitePaths,
 					analysedExample,
-					analysedRule,
-					language
+					analysedRule
 				} = this.props,
 				flatRule = findRuleByDottedName(flatRules, dottedName)
 			let { type, name, title, description, question, ns, icon } = flatRule,

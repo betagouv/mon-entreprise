@@ -3,9 +3,12 @@
 import { expect } from 'chai'
 // $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import FicheDePaieSelectors, {
+import {
+	analysisToCotisationsSelector,
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { getRuleFromAnalysis } from 'Engine/rules'
 
 let state = {
 	form: {
@@ -24,25 +27,27 @@ let state = {
 	}
 }
 
-let paySlip = null
+let cotisations = null,
+	analysis
 
 describe('pay slip selector', function() {
 	beforeEach(() => {
 		// $FlowFixMe
-		paySlip = FicheDePaieSelectors(state)
+		cotisations = analysisToCotisationsSelector(state)
+		analysis = analysisWithDefaultsSelector(state)
 
-		expect(paySlip).not.to.eq(null)
+		expect(cotisations).not.to.eq(null)
 	})
 	it('should have cotisations grouped by branches in the proper ordering', function() {
 		// $FlowFixMe
-		let branches = paySlip.cotisations.map(([branche]) => branche)
-		expect(branches.map(({ id }) => id)).to.eql(COTISATION_BRANCHE_ORDER)
+		let branches = cotisations.map(([branche]) => branche)
+		expect(branches).to.eql(COTISATION_BRANCHE_ORDER)
 	})
 
 	it('should collect all cotisations in a branche', function() {
 		// $FlowFixMe
-		let cotisationsSanté = (paySlip.cotisations.find(
-			([branche]) => branche.nom === 'santé'
+		let cotisationsSanté = (cotisations.find(([branche]) =>
+			branche.includes('santé')
 		) || [])[1].map(cotisation => cotisation.nom)
 		expect(cotisationsSanté).to.have.lengthOf(3)
 		expect(cotisationsSanté).to.include('maladie')
@@ -51,17 +56,20 @@ describe('pay slip selector', function() {
 	})
 
 	it('should sum all cotisations', function() {
-		// $FlowFixMe
-		const montantTotalCotisations = paySlip.totalCotisations
-		expect(montantTotalCotisations.partPatronale).to.be.closeTo(840.4, 5)
-		expect(montantTotalCotisations.partSalariale).to.be.closeTo(498, 5)
+		let pat = getRuleFromAnalysis(analysis)(
+				'contrat salarié . cotisations . patronales à payer'
+			),
+			sal = getRuleFromAnalysis(analysis)(
+				'contrat salarié . cotisations . salariales'
+			)
+		expect(pat.nodeValue).to.be.closeTo(840.4, 5)
+		expect(sal.nodeValue).to.be.closeTo(498, 5)
 	})
 
 	it('should have value for "salarié" and "employeur" for a cotisation', function() {
 		// $FlowFixMe
-		let cotisationATMP = (paySlip.cotisations.find(
-			([branche]) =>
-				branche.nom === 'accidents du travail et maladies professionnelles'
+		let cotisationATMP = (cotisations.find(([branche]) =>
+			branche.includes('accidents du travail et maladies professionnelles')
 		) || [])[1][0]
 		expect(cotisationATMP.montant.partSalariale).to.be.closeTo(0, 0.1)
 		let defaultATMPRate = 2.22 / 100

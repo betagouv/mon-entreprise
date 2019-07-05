@@ -97,7 +97,7 @@ export default (rules, rule, parsedRules) => {
 			let testExpression = parse(rules, rule, parsedRules)(control.si)
 			if (
 				!testExpression.explanation &&
-				!(testExpression.category === 'variable')
+				!(testExpression.category === 'reference')
 			)
 				throw new Error(
 					'Ce contrôle ne semble pas être compris :' + control['si']
