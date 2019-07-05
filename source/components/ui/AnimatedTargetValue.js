@@ -16,7 +16,10 @@ export default withLanguage(
 		state = { difference: 0 }
 
 		componentDidUpdate(prevProps) {
-			if (prevProps.value === this.props.value) {
+			if (
+				prevProps.value === this.props.value ||
+				Number.isNaN(this.props.value)
+			) {
 				return
 			}
 			this.setState({

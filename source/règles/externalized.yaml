@@ -2001,7 +2001,7 @@ entreprise . charges:
 
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
-    (excepté pour les auto entrepreneurs en franchise de TVA)
+    (excepté pour les auto-entrepreneurs en franchise de TVA)
 
 
     Par exemple, les charges peuvent être :
@@ -2346,7 +2346,7 @@ entreprise . rattachement libéral règlementé:
   description.fr: >
     Les entreprises libérales non règlementées créées étaient rattachées aux
     règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
-    plus le cas pour les auto-entrepreneur (2019 pour les entreprise
+    plus le cas pour les auto-entrepreneurs (2019 pour les entreprise
     individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
     donc dépendent de la sécurité sociale des indépendants.
   titre.en: linked with regulated liberal

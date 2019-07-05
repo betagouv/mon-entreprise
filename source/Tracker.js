@@ -1,91 +1,25 @@
-export default class Piwik {
-	constructor(opts) {
-		const options = opts
+/* @flow */
+import { debounce } from './utils'
+import type { BrowserHistory } from 'history/createBrowserHistory'
 
-		options.enableLinkTracking =
-			options.enableLinkTracking !== undefined
-				? options.enableLinkTracking
-				: true
-		options.trackDocumentTitle =
-			options.trackDocumentTitle !== undefined
-				? options.trackDocumentTitle
-				: true
+type PushType = (
+	| ['trackPageView']
+	| ['trackEvent', string, string]
+	| ['trackEvent', string, string, string]
+	| ['trackEvent', string, string, string, number]
+) => void
 
-		this.options = options
+export default class Tracker {
+	push: PushType
+	unlistenFromHistory: () => void
+	previousPath: string
 
-		if (this.options.url === undefined || this.options.siteId === undefined) {
-			throw new Error(
-				'PiwikTracker cannot be initialized! SiteId and url are mandatory.'
-			)
-		}
-
-		this.initPiwik()
+	constructor(pushFunction: PushType = args => window._paq.push(args)) {
+		window._paq = window._paq || []
+		this.push = debounce(200, pushFunction)
 	}
 
-	initPiwik() {
-		let url = this.options.url
-
-		if (url.indexOf('http://') !== -1 || url.indexOf('https://') !== -1) {
-			url = `${url}/`
-		} else {
-			url =
-				document.location.protocol === 'https:'
-					? `https://${url}/`
-					: `http://${url}/`
-		}
-
-		window._paq = window._paq || [] // eslint-disable-line  no-underscore-dangle
-
-		// DPRG Compliant Piwik
-		// See https://www.cnil.fr/sites/default/files/typo/document/Configuration_piwik.pdf
-		Piwik.push([
-			function() {
-				var self = this
-				function getOriginalVisitorCookieTimeout() {
-					var now = new Date(),
-						nowTs = Math.round(now.getTime() / 1000),
-						visitorInfo = self.getVisitorInfo()
-					var createTs = parseInt(visitorInfo[2])
-					var cookieTimeout = 33696000 // 13 mois en secondes
-					var originalTimeout = createTs + cookieTimeout - nowTs
-					return originalTimeout
-				}
-				this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout())
-			}
-		])
-		Piwik.push(['setSiteId', this.options.siteId])
-		Piwik.push(['setTrackerUrl', `${url}piwik.php`])
-
-		if (this.options.enableLinkTracking) {
-			Piwik.push(['enableLinkTracking'])
-		}
-
-		const scriptElement = document.createElement('script')
-		const refElement = document.getElementsByTagName('script')[0]
-
-		scriptElement.type = 'text/javascript'
-		scriptElement.defer = true
-		scriptElement.async = true
-		scriptElement.src = `${url}piwik.js`
-		refElement.parentNode.insertBefore(scriptElement, refElement)
-
-		return {
-			push: this.push,
-			track: this.track,
-			connectToHistory: this.connectToHistory,
-			disconnectFromHistory: this.disconnectFromHistory
-		}
-	}
-
-	static push(args) {
-		window._paq.push(args) // eslint-disable-line  no-underscore-dangle
-	}
-
-	push(args) {
-		Piwik.push(args)
-	}
-
-	connectToHistory(history) {
+	connectToHistory(history: BrowserHistory) {
 		this.unlistenFromHistory = history.listen(loc => {
 			this.track(loc)
 		})
@@ -99,25 +33,20 @@ export default class Piwik {
 
 			return true
 		}
-
 		return false
 	}
 
-	track(loc) {
-		const currentPath =
-			loc.path || loc.pathname + loc.search /*.replace(/^\//, '')*/
+	track(loc: Location) {
+		const currentPath = loc.pathname + loc.search
 
 		if (this.previousPath === currentPath) {
 			return
 		}
-
-		if (this.options.trackDocumentTitle) {
-			Piwik.push(['setDocumentTitle', document.title])
-		}
-
-		Piwik.push(['setCustomUrl', currentPath])
-		Piwik.push(['trackPageView'])
-
+		this.push(['trackPageView'])
 		this.previousPath = currentPath
 	}
 }
+
+export const devTracker = new Tracker(
+	(console && console.log && console.log.bind(console)) || (() => {}) // eslint-disable-line no-console
+)

@@ -47,7 +47,7 @@
 
     Pour bénéficier de l'indemnité de 200€ retenue dans ce calcul, le salarié doit faire 4km (aller-retour) de vélo pour se rendre au travail chaque jour travaillé.
 
-    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il sagit d'un trajet à vélo de rabattement vers une station de transport.
+    Cette indemnité est cumulable avec le remboursement des frais de transport en commun s'il s'agit d'un trajet à vélo de rabattement vers une station de transport.
 
     Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
   par défaut: non
@@ -185,7 +185,7 @@
     Fiche service-public.gouv.fr: https://www.service-public.fr/particuliers/vosdroits/F2931
     Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
-    assiette de l'indemnité, circulaire drt 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
+    assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: proportion congés non pris
@@ -236,7 +236,7 @@
       - événement . poursuite du CDD en CDI
       - événement . refus CDI avantageux
 
-      # Rupture TODO regrouper celà dans une nouvelle variante
+      # Rupture TODO regrouper cela dans une nouvelle variante
       - événement . rupture anticipée salarié
       - événement . rupture pour faute grave ou force majeure
       - événement . rupture pendant période essai
@@ -683,11 +683,11 @@
   nom: CDD
   question: Est-ce un contrat à durée déterminée (CDD) ?
   description: |
-    Par défaut, faire travailler quelqu'un en France établit auutomatiquement un CDI à temps plein.
+    Par défaut, faire travailler quelqu'un en France établit automatiquement un CDI à temps plein.
     Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
 
   par défaut: non
-  # TODO: règle de type : il faut q'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
+  # TODO: règle de type : il faut qu'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
   #   implique:
   #     - emploi temporaire
   #     - motif de recours
@@ -991,7 +991,7 @@
 - espace: contrat salarié . statut cadre
   nom: choix statut cadre
   question: Le salarié a-t-il le statut cadre ?
-  description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caise de retraite de base spécifique
+  description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caisse de retraite de base spécifique
   par défaut: non
 
 - nom: plafond sécurité sociale temps plein
@@ -2751,7 +2751,7 @@
     multiplication:
       assiette: forfait social . assiette taux huit
       taux: 8%
-    # Les cotisations au taux de 20% ne sont pas encore dans le modèle (interessement, plans d'épargne, indémnités de rupture conventionelles...)
+    # Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
 
 - espace: contrat salarié . forfait social
   nom: assiette taux huit
@@ -3039,7 +3039,7 @@
 
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto entrepreneurs en franchise de TVA)
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
 
     Par exemple, les charges peuvent être :
 
@@ -3339,7 +3339,7 @@
 - espace: entreprise
   nom: rattachement libéral règlementé
   description: |
-    Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneur (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
+    Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   formule:
@@ -3430,7 +3430,7 @@
 
     > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
 
-    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nou avons retenue.
+    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
 - espace: indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
   nom: taux variable
@@ -3832,7 +3832,7 @@
   nom: ACCRE obtenu
   question: Avez-vous obtenu l'ACCRE lors de votre création d'entreprise ?
   description: |
-    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appellait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
+    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appelait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
   par défaut: non
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations

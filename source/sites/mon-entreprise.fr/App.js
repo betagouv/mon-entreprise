@@ -1,7 +1,5 @@
 import Route404 from 'Components/Route404'
-import TrackPageView from 'Components/utils/TrackPageView'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { defaultTracker } from 'Components/utils/withTracker'
 import 'iframe-resizer'
 import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
@@ -20,7 +18,7 @@ import {
 	persistSimulation,
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
-import ReactPiwik from '../../Tracker'
+import Tracker, { devTracker } from '../../Tracker'
 import { inIframe, setToSessionStorage } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
@@ -44,13 +42,9 @@ if (process.env.NODE_ENV === 'production') {
 	).install()
 }
 
-let tracker = defaultTracker
+let tracker = devTracker
 if (process.env.NODE_ENV === 'production') {
-	tracker = new ReactPiwik({
-		url: 'stats.data.gouv.fr',
-		siteId: 39,
-		trackErrors: true
-	})
+	tracker = new Tracker()
 }
 
 const middlewares = [
@@ -79,7 +73,6 @@ class InFranceRoute extends Component {
 					...retrievePersistedState(),
 					previousSimulation: retrievePersistedSimulation()
 				}}>
-				<TrackPageView />
 				<div id="content">
 					<RouterSwitch />
 				</div>
