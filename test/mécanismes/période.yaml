@@ -3,7 +3,7 @@
 - nom: nombre de douches
   période: mois
   question: Combien prenez-vous de douches par mois ?
-  format: nombre
+  unité: _
   suggestions:
    - 30
 
@@ -30,7 +30,7 @@
 
 - nom: assiette mensuelle
   période: mois
-  format: €
+  unité: €
 
 - test: Périodes, barème annuel assiette mensuelle
   période: année
@@ -59,7 +59,7 @@
 
 - nom: assiette annuelle
   période: année
-  format: €
+  unité: €
 
 - test: Périodes, barème mensuel assiette annuelle
   période: mois
@@ -87,7 +87,7 @@
 
 - nom: assiette
   période: flexible
-  format: €
+  unité: €
 
 - test: Périodes, période dans la situation
   période: année
@@ -116,7 +116,7 @@
 
 - nom: assiette deux
   période: mois
-  format: €
+  unité: €
 
 - test: Périodes, variable neutre appelant variable mensuelle
   période: flexible
@@ -133,7 +133,7 @@
 
 - nom: assiette trois
   période: année
-  format: €
+  unité: €
 
 - test: Périodes, variable neutre appelant variable annuelle
   période: flexible

@@ -138,6 +138,7 @@
       - directeur majoritaire
 
 - nom: nombre d'associés
-  format: nombre
+  unité: _ 
 
 - nom: responsabilité limitée
+

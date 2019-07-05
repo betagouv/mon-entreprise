@@ -42,7 +42,7 @@ describe('bug-analyse-many', function() {
 
 
       - nom: brut
-        format: euro
+        unité: €
         formule:
           inversion numérique:
             avec:

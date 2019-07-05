@@ -13,7 +13,7 @@ describe('controls', function() {
 			{ nom: 'résident en France', formule: 'oui' },
 			{
 				nom: 'brut',
-				format: 'euro',
+				unité: '€',
 				question: 'Quel est le salaire brut ?',
 				contrôles: [
 					{

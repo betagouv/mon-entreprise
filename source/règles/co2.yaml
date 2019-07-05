@@ -18,7 +18,7 @@
   nom: nombre
   période: flexible
   question: Combien prenez-vous de douches ?
-  format: nombre
+  unité: _
   par défaut: 30
   suggestions:
     Une par jour: 30
@@ -129,7 +129,7 @@
 - espace: douche
   nom: durée de la douche
   question: Combien de temps dure votre douche en général ?
-  format: nombre
+  unité: _
   par défaut: 5
   suggestions:
     expresse: 5

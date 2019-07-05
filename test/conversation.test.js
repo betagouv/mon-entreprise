@@ -97,7 +97,7 @@ describe('conversation', function() {
 				{
 					nom: 'brut',
 					question: 'Quel est le salaire brut ?',
-					format: 'euro'
+					unité: '€'
 				},
 				{
 					nom: 'cotisation',

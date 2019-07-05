@@ -1,9 +1,9 @@
 - nom: base
-  format: nombre
+  unité: _
   formule: 300
 
 - nom: assiette
-  format: nombre
+  unité: _
 
 - test: Simple
   formule:
@@ -39,12 +39,11 @@
         
         
 - nom: base deux
-  format: nombre
+  unité: _
   formule: 300
 
 - nom: assiette deux
-  format: nombre
-
+  unité: _
 - test: Retour de taux, pas d'assiette
   formule:
     barème continu:

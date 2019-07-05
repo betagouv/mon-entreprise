@@ -34,7 +34,7 @@
 
 
 - nom: montant caution
-  format: €
+  unité: €
 
 - test: Imbrication d'aiguillages numériques
   formule:

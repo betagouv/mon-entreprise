@@ -1,5 +1,5 @@
 - nom: assiette
-  format: €
+  unité: €
 
 - test: Barème linéaire en taux
   formule:

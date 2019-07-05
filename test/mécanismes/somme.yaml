@@ -1,8 +1,8 @@
 - nom: farine
-  format: kg
+  unité: kg
 
 - nom: sucre
-  format: kg
+  unité: kg
 
 - nom: poids total
   test: Somme
