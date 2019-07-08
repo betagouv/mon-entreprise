@@ -95,22 +95,24 @@ export default compose(
 				</Link> */}
 			</div>
 		</section>
-		<section className="ui__ container">
-			<h2>Le saviez-vous ?</h2>
-			<p>
-				Location meublée, covoiturage, etc : les revenus des plateformes
-				collaboratives doivent souvent être déclarées. Pour être sûr de ne rien
-				oublier :
-			</p>
-			<div css="text-align: center">
-				<Link
-					className="ui__ simple button"
-					to={sitePaths.économieCollaborative.index}>
-					{emoji('📱 ')} Suivez le guide
-					<T />
-				</Link>
-			</div>
-		</section>
+		{!process.env.MASTER && (
+			<section className="ui__ container">
+				<h2>Le saviez-vous ?</h2>
+				<p>
+					Location meublée, covoiturage, etc : les revenus des plateformes
+					collaboratives doivent souvent être déclarées. Pour être sûr de ne
+					rien oublier :
+				</p>
+				<div css="text-align: center">
+					<Link
+						className="ui__ simple button"
+						to={sitePaths.économieCollaborative.index}>
+						{emoji('📱 ')} Suivez le guide
+						<T />
+					</Link>
+				</div>
+			</section>
+		)}
 		<Footer />
 	</div>
 ))

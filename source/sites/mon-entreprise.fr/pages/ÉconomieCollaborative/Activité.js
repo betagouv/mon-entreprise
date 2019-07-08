@@ -19,7 +19,6 @@ export let BackToSelection = withSitePaths(({ sitePaths }) => (
 	</Link>
 ))
 export default withSitePaths(function LocationMeublée({
-	sitePaths,
 	match: {
 		params: { title }
 	}
