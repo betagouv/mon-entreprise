@@ -262,6 +262,7 @@
 					this.setVisitorCookieTimeout(getOriginalVisitorCookieTimeout())
 				}
 			])
+
 			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
 			_paq.push(['setDocumentTitle', document.domain + '/' + document.title])
 			_paq.push([
@@ -272,8 +273,8 @@
 			_paq.push(['enableHeartBeatTimer', 30])
 			_paq.push(['enableLinkTracking'])
 			;(function() {
-				var u = '//stats.data.gouv.fr/'
-				_paq.push(['setTrackerUrl', u + 'matomo.php'])
+				var u = 'https://stats.data.gouv.fr/'
+				_paq.push(['setTrackerUrl', u + 'piwik.php'])
 				_paq.push(['setSiteId', '39'])
 				var d = document,
 					g = d.createElement('script'),
@@ -281,7 +282,7 @@
 				g.type = 'text/javascript'
 				g.async = true
 				g.defer = true
-				g.src = u + 'matomo.js'
+				g.src = u + 'piwik.js'
 				s.parentNode.insertBefore(g, s)
 			})()
 		</script>
