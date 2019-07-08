@@ -1,6 +1,6 @@
 import { React, T } from 'Components'
-import { memoizeWith } from 'ramda'
 import { serialiseUnit } from 'Engine/units'
+import { memoizeWith } from 'ramda'
 import withLanguage from './utils/withLanguage'
 
 const NumberFormat = memoizeWith(

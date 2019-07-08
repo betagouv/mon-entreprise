@@ -108,10 +108,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		},
 		économieCollaborative: {
 			index: t('path.économieCollaborative.index', '/économie-collaborative'),
-			locationMeublée: t(
-				'path.économieCollaborative.locationMeublée',
-				'/location-meublée'
-			),
 			votreSituation: t(
 				'path.économieCollaborative.votreSituation',
 				'/votre-situation'

@@ -2,135 +2,118 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import checklistSvg from './images/checklist.svg'
+import { ActivitéCard } from './ActivitésSelection'
+import {
+	activitésEffectuéesSelector,
+	déclarationsSelector,
+	nextActivitéSelector,
+	régimeGénéralNonDisponibleSelector
+} from './selectors'
 import { StoreContext } from './StoreContext'
-import { BackToSelection, allTrue } from './Activité'
-import { getActivité } from './reducers'
 
-let nothingToDo = activityAnswers => a => {
-	let answers = activityAnswers[a]
+export default withSitePaths(function VotreSituation({ sitePaths }) {
+	const { state } = useContext(StoreContext)
 
-	return (
-		answers.déclaration === false ||
-		(answers.exonérations && allTrue(answers.exonérations))
-	)
-}
-let declarationNeeded = activityAnswers => a => {
-	return (
-		!nothingToDo(activityAnswers)(a) && !entrepriseNeeded(activityAnswers)(a)
-	)
-}
+	if (!activitésEffectuéesSelector(state).length) {
+		return <Redirect to={sitePaths.économieCollaborative.index} />
+	}
 
-let entrepriseNeeded = activityAnswers => a => {
-	let answers = activityAnswers[a],
-		data = getActivité(a)
+	const nextActivité = nextActivitéSelector(state)
+	if (nextActivité) {
+		return (
+			<Redirect
+				to={sitePaths.économieCollaborative.index + '/' + nextActivité}
+			/>
+		)
+	}
 
-	return (
-		!nothingToDo(activityAnswers)(a) && (data['seuil pro'] === 0 || answers.pro)
-	)
-}
-
-let régimeGénéralDisponible = activityAnswers => a => {
-	let answers = activityAnswers[a],
-		data = getActivité(a)
-
-	return (
-		data['seuil régime général'] &&
-		entrepriseNeeded(activityAnswers)(a) &&
-		!answers.régimeGénéralDépassé
-	)
-}
-
-let makeListItem = a => {
-	let { titre } = getActivité(a)
-	return <li key={titre}>{titre}</li>
-}
-
-export default withSitePaths(function CoConsommation({ sitePaths }) {
-	let {
-			state: { selectedActivities, activityAnswers },
-			dispatch
-		} = useContext(StoreContext),
-		selected = selectedActivities.filter(a => !getActivité(a).activités)
-
-	let A = selected.filter(nothingToDo(activityAnswers)).map(makeListItem),
-		B = selected.filter(declarationNeeded(activityAnswers)).map(makeListItem),
-		C = selected.filter(entrepriseNeeded(activityAnswers)).map(makeListItem),
-		D = selected
-			.filter(régimeGénéralDisponible(activityAnswers))
-			.map(makeListItem)
+	const déclarations = déclarationsSelector(state)
+	const régimeGénéralNonDisponible = régimeGénéralNonDisponibleSelector(state)
 
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
-			<BackToSelection />
 			<h1>
-				Que dois-je déclarer ? <br />
-				<small css="font-size: 70% !important" className="ui__ notice">
-					Le point sur votre situation
-				</small>
+				Que dois-je faire pour être en règle ? <br />
 			</h1>
-			<img
-				css="max-width: 100%; height: 200px; margin: 2rem auto;display:block;"
-				src={checklistSvg}
-			/>
-			<section css="ul {margin-left: 2em}">
-				{selectedActivities.length === 0 && (
-					<Link to={sitePaths.économieCollaborative.activités.index}>
-						Renseigner ma situation
-					</Link>
-				)}
-				{A.length > 0 && (
+			<section>
+				{déclarations.IMPOSITION.length > 0 && (
 					<>
-						<h2>{emoji('🌞 ')} Rien à déclarer !</h2>
-						<p>Pour ces activités, vous n'avez rien à faire :</p>
-						<ul>{A}</ul>
-					</>
-				)}
-				{B.length > 0 && (
-					<>
-						<h2>{emoji('📝')} Déclarer simplement aux impôts</h2>
+						<h2>{emoji('📝')} Déclarer aux impôts</h2>
+						<ActivitéList activités={déclarations.IMPOSITION} />
 						<p>
-							Pour ces activités, vous devez simplement déclarer vos revenus sur
-							votre feuille d'imposition :
+							Vous avez seulement besoin de déclarer vos revenus sur votre
+							feuille d'imposition. Pour savoir plus, rendez-vous sur le site
+							impots.gouv.fr
 						</p>
-						<ul>{B}</ul>
 					</>
 				)}
 
-				{C.length > 0 && (
+				{déclarations.PRO.length > 0 && (
 					<>
 						<h2>{emoji('💼')} Créer une activité professionnelle</h2>
-						<p>Pour ces activités, vous devez créer une entreprise :</p>
-						<ul>{C}</ul>
-						<div className="ui__ answer-group">
-							<Link
-								to={sitePaths.entreprise.trouver}
-								className="ui__ simple button">
-								J'ai déjà une entreprise
-							</Link>
-							<Link
-								to={sitePaths.entreprise.index}
-								className="ui__ plain button">
-								Créer une entreprise
-							</Link>
+						<ActivitéList activités={déclarations.PRO} />
+
+						<p>
+							Vos revenus sont considérées comme revenus professionnels, ils
+							sont soumis aux cotisations sociale. En contrepartie, ils donnent
+							droits à des prestations sociales (retraite, assurance maladie,
+							indemnités, etc.).
+						</p>
+						{!régimeGénéralNonDisponible && (
+							<>
+								<h3>Régime général disponible</h3>
+								<p>
+									Si vous n'avez pas d'entreprise et ne souhaitez pas en créer
+									une, vous pouvez simplement déclarer vos revenus sur le site
+									de l'Urssaf.
+								</p>
+							</>
+						)}
+
+						<div className="ui__ choice-group full-width">
+							<div className="ui__ container">
+								<h3>Déclarer mes revenus</h3>
+								{!régimeGénéralNonDisponible && (
+									<a
+										href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie/vous-optez-pour-le-regime-genera.html"
+										className="ui__  button-choice">
+										Déclarer au régime général
+									</a>
+								)}
+								<Link
+									to={sitePaths.entreprise.trouver}
+									className="ui__  button-choice">
+									Déclarer avec une entreprise existante
+								</Link>
+								<Link
+									to={sitePaths.entreprise.index}
+									className="ui__ button-choice">
+									Déclarer avec une nouvelle entreprise
+								</Link>
+							</div>
 						</div>
 					</>
 				)}
-				{D.length > 0 && (
+				{déclarations.AUCUN.length > 0 && (
 					<>
-						<h2>{emoji('👋')} Régime général disponible</h2>
-						<p>
-							Pour ces activités, pour{' '}
-							<strong>éviter de créer une entreprise</strong>, vous pouvez
-							simplement déclarer l'activité au régime général :
-						</p>
-						<ul>{D}</ul>
+						<h2>{emoji('🌞 ')} Rien à déclarer !</h2>
+						<ActivitéList activités={déclarations.AUCUN} />
 					</>
 				)}
 			</section>
 		</Animate.fromBottom>
 	)
 })
+
+const ActivitéList = ({ activités }) => (
+	<div
+		className="ui__"
+		css="display: flex; flex-wrap: wrap; margin: -1rem -1rem 0rem">
+		{activités.map(title => (
+			<ActivitéCard key={title} title={title} answered />
+		))}
+	</div>
+)

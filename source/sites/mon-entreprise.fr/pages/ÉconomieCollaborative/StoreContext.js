@@ -1,11 +1,17 @@
-import React, { createContext, useReducer, useEffect } from 'react'
-import { reducer, initialState } from './reducers'
+import { getInitialState, persistState } from 'Components/utils/persistState'
+import React, { createContext, useCallback, useReducer } from 'react'
 
-const StoreContext = createContext(initialState)
+const StoreContext = createContext()
 
-const StoreProvider = ({ children }) => {
-	// Set up reducer with useReducer and our defined reducer, initialState from reducers.js
-	const [state, dispatch] = useReducer(reducer, initialState)
+const StoreProvider = ({ children, reducer, localStorageKey }) => {
+	const computeInitialState = useCallback(
+		() => reducer(getInitialState(localStorageKey), { type: '@@INIT_STATE' }),
+		[reducer]
+	)
+
+	const [state, dispatch] = (localStorageKey
+		? persistState(localStorageKey)
+		: x => x)(useReducer(reducer, undefined, computeInitialState))
 
 	return (
 		<StoreContext.Provider value={{ state, dispatch }}>
