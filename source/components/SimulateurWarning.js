@@ -1,5 +1,5 @@
 import { T } from 'Components'
-import usePersistingState from 'Components/utils/usePersistingState'
+import { usePersistingState } from 'Components/utils/persistState'
 import withLanguage from 'Components/utils/withLanguage'
 import React from 'react'
 import emoji from 'react-easy-emoji'

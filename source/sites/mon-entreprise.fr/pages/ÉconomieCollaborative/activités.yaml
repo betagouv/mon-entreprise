@@ -7,7 +7,7 @@
     - chambre d'hôte
     - tourisme classé
   activités:
-    - titre: Location meublée
+    - titre: Location meublée standard
       icônes: 🏠 🛋
       explication: Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors chambre d’hôte ou meublé de tourisme)
       plateformes:
@@ -49,7 +49,7 @@
     - Drivy
     - outils de jardinage, bricolage...
 - titre: Services
-  icônes: 🚴 🚕 👩‍💻 🍼
+  icônes: 🚴 👩‍🔧 👨‍💻 💇
   plateformes:
     - Deliveroo
     - Uber

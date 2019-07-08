@@ -3,7 +3,7 @@
 import { T } from 'Components'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
-import usePersistingState from 'Components/utils/usePersistingState'
+import { usePersistingState } from 'Components/utils/persistState'
 import withSitePaths from 'Components/utils/withSitePaths'
 import withTracker from 'Components/utils/withTracker'
 import { compose, lensPath, view } from 'ramda'

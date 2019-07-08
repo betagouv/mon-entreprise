@@ -1,206 +1,146 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { all } from 'ramda'
+import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
-import { MultiItemSelection, NextButton } from './ActivitésSelection'
-import Exonérations from './Exonérations'
-import { flatActivités } from './reducers'
+import { selectSeuilRevenus } from './actions'
+import { getActivité } from './activitésData'
+import { ActivitéSelection, NextButton } from './ActivitésSelection'
 import { StoreContext } from './StoreContext'
 
-export let allTrue = list => list && all(item => item === true)(list)
-
-export let BackToSelection = withSitePaths(({ sitePaths }) => (
-	<Link to={sitePaths.économieCollaborative.index}>
-		Revenir à la sélection des activités
-	</Link>
-))
-export default withSitePaths(function LocationMeublée({
+export default withSitePaths(function Activité({
+	sitePaths,
 	match: {
 		params: { title }
 	}
 }) {
-	let {
-			state: { selectedActivities, activityAnswers },
-			dispatch
-		} = useContext(StoreContext),
-		data = flatActivités.find(({ titre }) => titre === title)
+	const { state, dispatch } = useContext(StoreContext)
+	const activité = getActivité(title)
+	if (!(title in state)) {
+		return <Redirect to={sitePaths.économieCollaborative.index} />
+	}
 
-	if (data.activités) {
+	if (activité.activités) {
 		return (
 			<Animate.fromBottom>
-				<h1>{data.titre}</h1>
-				<p>{data.explication}</p>
+				<ScrollToTop />
+				<h1>{activité.titre}</h1>
+				<p>{activité.explication}</p>
 				<p>Quels sont plus précisément les types d'activités exercées ? </p>
 				<section className="ui__ full-width choice-group">
-					<MultiItemSelection
-						{...{
-							items: data.activités,
-							selectedActivities,
-							activityAnswers,
-							dispatch,
-							buttonAttributes: {
-								currentActivité: title,
-								action: () =>
-									dispatch({
-										type: 'UPDATE_ACTIVITY',
-										title,
-										data: { completed: true }
-									})
-							}
-						}}
+					<ActivitéSelection
+						currentActivité={title}
+						activités={activité.activités.map(({ titre }) => titre)}
 					/>
 				</section>
 			</Animate.fromBottom>
 		)
 	}
 
-	let answers = activityAnswers[title] || {}
+	const seuilRevenus = state[title].déclaration
 
 	return (
 		<section>
-			<BackToSelection />
+			<ScrollToTop />
 			<Animate.fromBottom>
-				<ScrollToTop />
 				<h1>
-					{emoji(data.icônes)} {data.titre}
+					{emoji(activité.icônes)} {activité.titre}
 				</h1>
-				<Markdown source={data.explication} />
-				{data.plateformes && (
+				<Markdown source={activité.explication} />
+				{activité.plateformes && (
 					<p>
 						{emoji('📱 ')}
-						Exemples de plateformes : {data.plateformes.join(', ')}
+						Exemples de plateformes : {activité.plateformes.join(', ')}
 					</p>
 				)}
-				<h2>Votre situation</h2>
-				<Exonérations
-					{...{ exonérations: data.exonérations, answers, dispatch, title }}
-				/>
-				{answers.exonérations && allTrue(answers.exonérations) ? (
-					<p>
-						{emoji('😌 ')}
-						En ce qui concerne les revenus de cette activité, vous n'avez pas
-						besoin de les déclarer aux impôts, ni d'en faire une activité
-						professionnelle.
-					</p>
-				) : data['seuil pro'] === 0 ? (
-					<p>
-						Les revenus de cette activité sont considérés comme des{' '}
-						<strong>revenus professionnels dès le 1er euro gagné</strong>.
-					</p>
+
+				{activité['seuil pro'] === 0 ? (
+					<>
+						<h2>Il s'agit d'une activité professionnelle</h2>
+						<p>
+							Les revenus de cette activité sont considérés comme des{' '}
+							<strong>revenus professionnels dès le 1er euro gagné</strong>.
+						</p>
+					</>
 				) : (
 					<>
+						<h2>Revenus annuels</h2>
 						<p>Vos revenus annuels pour cette activité sont :</p>
-						<form
-							css={`
-								label {
-									display: block;
-									margin: 0.6rem 0;
-								}
-							`}>
-							{data['seuil déclaration'] && (
+						<ul
+							key={title}
+							css="
+								list-style: none;
+								padding-left: 0;
+							"
+							onChange={e => {
+								dispatch(selectSeuilRevenus(title, e.target.value))
+							}}>
+							{activité['seuil déclaration'] && (
+								<li>
+									<label>
+										<input
+											type="radio"
+											name={title + '.seuilRevenus'}
+											value="AUCUN"
+											defaultChecked={seuilRevenus === 'AUCUN'}
+										/>{' '}
+										inférieurs à{' '}
+										<Value numFractionDigits={0}>
+											{activité['seuil déclaration']}
+										</Value>
+									</label>
+								</li>
+							)}
+							<li>
 								<label>
 									<input
 										type="radio"
-										name="seuil-déclaration"
-										value="déclaration"
-										checked={answers.déclaration === false}
-										onChange={() =>
-											dispatch({
-												type: 'UPDATE_ACTIVITY',
-												title,
-												data: { ...answers, pro: false, déclaration: false }
-											})
-										}
+										name={title + '.seuilRevenus'}
+										value="IMPOSITION"
+										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
-									inférieurs à {data['seuil déclaration']} €
+									inférieurs à{' '}
+									<Value numFractionDigits={0}>{activité['seuil pro']}</Value>
 								</label>
-							)}
-							<label>
-								<input
-									type="radio"
-									name="seuil-pro"
-									value="non-pro"
-									checked={
-										answers.pro === false && answers.déclaration !== false
-									}
-									onChange={() =>
-										dispatch({
-											type: 'UPDATE_ACTIVITY',
-											title,
-											data: { ...answers, pro: false }
-										})
-									}
-								/>{' '}
-								inférieurs à {data['seuil pro']} €
-							</label>
-							<label>
-								<input
-									type="radio"
-									name="seuil-pro"
-									value="pro"
-									checked={
-										answers.pro === true && !answers.régimeGénéralDépassé
-									}
-									onChange={() =>
-										dispatch({
-											type: 'UPDATE_ACTIVITY',
-											title,
-											data: { ...answers, pro: true }
-										})
-									}
-								/>{' '}
-								supérieurs à {data['seuil pro']} €
-							</label>
-							{data['seuil régime général'] && (
+							</li>
+							<li>
 								<label>
 									<input
 										type="radio"
-										name="seuil-régime-général"
-										value="régime-général"
-										checked={answers.régimeGénéralDépassé === true}
-										onChange={() =>
-											dispatch({
-												type: 'UPDATE_ACTIVITY',
-												title,
-												data: {
-													...answers,
-													pro: true,
-													régimeGénéralDépassé: true
-												}
-											})
-										}
+										name={title + '.seuilRevenus'}
+										value="PRO"
+										defaultChecked={seuilRevenus === 'PRO'}
 									/>{' '}
-									supérieurs à {data['seuil régime général']} €
+									supérieurs à{' '}
+									<Value numFractionDigits={0}>{activité['seuil pro']}</Value>
 								</label>
+							</li>
+							{activité['seuil régime général'] && (
+								<li>
+									<label>
+										<input
+											type="radio"
+											name={title + '.seuilRevenus'}
+											value="RÉGIME_GÉNÉRAL_NON_DISPONIBLE"
+											defaultChecked={
+												seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
+											}
+										/>{' '}
+										supérieurs à{' '}
+										<Value numFractionDigits={0}>
+											{activité['seuil régime général']}
+										</Value>
+									</label>
+								</li>
 							)}
-						</form>
+						</ul>
 					</>
 				)}
-				<NextButton
-					{...{
-						activityAnswers,
-						selectedActivities,
-						disabled: incompleteActivity(data, answers),
-						currentActivité: title,
-						action: () =>
-							dispatch({
-								type: 'UPDATE_ACTIVITY',
-								title,
-								data: { ...answers, completed: true }
-							})
-					}}
-				/>
+				<NextButton disabled={!seuilRevenus} />
 			</Animate.fromBottom>
 		</section>
 	)
 })
-
-export let incompleteActivity = (data, answers) =>
-	(data['seuil pro'] > 0 &&
-		!allTrue(answers.exonérations) &&
-		answers.pro == null) ||
-	(data['exonérations'] && answers.exonérations == null)
