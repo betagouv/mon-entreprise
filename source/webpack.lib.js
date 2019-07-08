@@ -1,6 +1,9 @@
-const common = require('./webpack.common.js')
 const path = require('path')
-const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
+const {
+	default: common,
+	commonLoaders,
+	styleLoader
+} = require('./webpack.common')
 
 module.exports = {
 	resolve: common.resolve,

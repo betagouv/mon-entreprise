@@ -830,9 +830,9 @@
 
   formule:
     somme:
-      - autres
       - nourriture . montant
       - ntic . montant
+      - autres . montant
   format: euros
 
 - espace: contrat salarié . avantages en nature
@@ -2606,7 +2606,7 @@
       message: |
         Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
         - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
-        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de leur prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
 
         [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   références:

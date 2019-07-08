@@ -1,6 +1,9 @@
-var webpack = require('webpack'),
-	common = require('./webpack.common.js'),
-	{ commonLoaders, styleLoader } = require('./webpack.commonLoaders')
+const webpack = require('webpack')
+const {
+	default: common,
+	commonLoaders,
+	styleLoader
+} = require('./webpack.common')
 
 module.exports = {
 	...common,

@@ -1,6 +1,11 @@
 const { map } = require('ramda')
 const prod = require('./webpack.prod.js')
-const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
+const {
+	commonLoaders,
+	styleLoader,
+	HTMLPlugins
+} = require('./webpack.common.js')
+
 const { EnvironmentPlugin } = require('webpack')
 
 module.exports = {
@@ -13,6 +18,7 @@ module.exports = {
 		rules: [...commonLoaders({ legacy: true }), styleLoader('style-loader')]
 	},
 	plugins: [
+		...HTMLPlugins({ injectTrackingScript: true }),
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}'
