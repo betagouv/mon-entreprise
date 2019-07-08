@@ -1,4 +1,4 @@
-import { without, map, pipe, mergeAll, unnest } from 'ramda'
+import { map, mergeAll, pipe, unnest, without } from 'ramda'
 import activités from './activités.yaml'
 export let flatActivités = pipe(
 	map(a => (a.activités ? [a, ...a.activités] : [a])),
@@ -21,6 +21,7 @@ let initialState = {
 let reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'SELECT_ACTIVITY':
+			// eslint-disable-next-line
 			let titre = action.titre,
 				selectedActivities = state.selectedActivities,
 				selected = selectedActivities.includes(titre)
