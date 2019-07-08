@@ -243,9 +243,8 @@
 				</h3>
 			</div>
 		</div>
-
 		<!-- Matomo : track only production code-->
-		<% if (htmlWebpackPlugin.production) { %>
+		<% if (htmlWebpackPlugin.options.injectTrackingScript) { %>
 		<script type="text/javascript">
 			var _paq = window._paq || []
 			_paq.push([
