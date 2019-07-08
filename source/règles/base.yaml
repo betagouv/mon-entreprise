@@ -830,9 +830,9 @@
 
   formule:
     somme:
-      - autres
       - nourriture . montant
       - ntic . montant
+      - autres . montant
   format: euros
 
 - espace: contrat salarié . avantages en nature
