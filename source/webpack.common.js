@@ -4,13 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
-const HTMLPluginCommonParams = {
-	template: 'index.html',
-	inject: false,
-	production: process.env.NODE_ENV === 'production'
-}
-
-module.exports = {
+module.exports.default = {
 	resolve: {
 		alias: {
 			Engine: path.resolve('source/engine/'),
@@ -39,26 +33,6 @@ module.exports = {
 			FR_SITE: '/mon-entreprise${path}',
 			MASTER: false
 		}),
-		new HTMLPlugin({
-			...HTMLPluginCommonParams,
-			chunks: ['infrance'],
-			title:
-				'My company in France: A step-by-step guide to start a business in France',
-			description:
-				'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
-			filename: 'infrance.html',
-			logo: 'https://mon-entreprise.fr/images/logo-mycompany-share.png'
-		}),
-		new HTMLPlugin({
-			...HTMLPluginCommonParams,
-			chunks: ['mon-entreprise'],
-			title:
-				"Mon-entreprise.fr : L'assistant officiel du créateur d'entreprise",
-			description:
-				'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-			filename: 'mon-entreprise.html',
-			logo: 'https://mon-entreprise.fr/images/logo-share.png'
-		}),
 
 		new CopyPlugin([
 			'./manifest.webmanifest',
@@ -85,3 +59,94 @@ module.exports = {
 		])
 	]
 }
+
+module.exports.styleLoader = styleLoader => ({
+	test: /\.css$/,
+	use: [
+		{ loader: styleLoader },
+		{
+			loader: 'css-loader',
+			options: {
+				sourceMap: true,
+				importLoaders: 1
+			}
+		},
+		{
+			loader: 'postcss-loader'
+		}
+	]
+})
+
+module.exports.commonLoaders = ({ legacy = false } = {}) => {
+	const babelLoader = {
+		loader: 'babel-loader',
+		options: {
+			presets: [
+				[
+					'@babel/preset-env',
+					{
+						targets: !legacy
+							? {
+									esmodules: true
+							  }
+							: {
+									esmodules: false,
+									browsers: ['ie 11']
+							  },
+						useBuiltIns: 'entry'
+					}
+				]
+			]
+		}
+	}
+
+	return [
+		{ test: /\.js$/, loader: babelLoader, exclude: /node_modules|dist/ },
+		{
+			test: /\.(jpe?g|png|svg)$/,
+			use: {
+				loader: 'file-loader',
+				options: {
+					name: 'images/[name].[ext]'
+				}
+			}
+		},
+		{
+			test: /\.yaml$/,
+			use: ['json-loader', 'yaml-loader']
+		},
+
+		{
+			test: /\.ne$/,
+			use: [babelLoader, 'nearley-loader']
+		}
+	]
+}
+
+module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
+	new HTMLPlugin({
+		template: 'index.html',
+		inject: false,
+		injectTrackingScript,
+		// mycompanyinfrance.fr :
+		chunks: ['infrance'],
+		title:
+			'My company in France: A step-by-step guide to start a business in France',
+		description:
+			'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
+		filename: 'infrance.html',
+		logo: 'https://mon-entreprise.fr/images/logo-mycompany-share.png'
+	}),
+	new HTMLPlugin({
+		template: 'index.html',
+		inject: false,
+		injectTrackingScript,
+		// mon-entreprise.fr :
+		chunks: ['mon-entreprise'],
+		title: "Mon-entreprise.fr : L'assistant officiel du créateur d'entreprise",
+		description:
+			'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
+		filename: 'mon-entreprise.html',
+		logo: 'https://mon-entreprise.fr/images/logo-share.png'
+	})
+]

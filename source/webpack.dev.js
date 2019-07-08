@@ -1,7 +1,11 @@
 const { map } = require('ramda')
 const webpack = require('webpack')
-const common = require('./webpack.common.js')
-const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
+const {
+	commonLoaders,
+	styleLoader,
+	HTMLPlugins,
+	default: common
+} = require('./webpack.common.js')
 
 module.exports = {
 	...common,
@@ -12,6 +16,7 @@ module.exports = {
 	entry: map(entry => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
 		...common.plugins,
+		...HTMLPlugins(),
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.HotModuleReplacementPlugin()
 	]

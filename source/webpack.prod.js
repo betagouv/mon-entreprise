@@ -1,4 +1,10 @@
-const common = require('./webpack.common.js')
+const {
+	commonLoaders,
+	styleLoader,
+	HTMLPlugins,
+	default: common
+} = require('./webpack.common.js')
+
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
@@ -6,7 +12,6 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const path = require('path')
 const cheerio = require('cheerio')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { commonLoaders, styleLoader } = require('./webpack.commonLoaders')
 
 const prerenderConfig = () => ({
 	staticDir: path.resolve('dist'),
@@ -57,6 +62,7 @@ module.exports = {
 	devtool: 'source-map',
 	plugins: [
 		...common.plugins,
+		...HTMLPlugins({ injectTrackingScript: true }),
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
