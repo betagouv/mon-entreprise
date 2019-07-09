@@ -28,7 +28,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 export let Line = ({ rule, negative }) => (
 	<>
 		<RuleLink {...rule} />
-		<Value {...rule} unit="€" negative={negative} />
+		<Value {...rule} unit="€" nilValueSymbol="—" negative={negative} />
 	</>
 )
 
