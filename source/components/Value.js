@@ -39,6 +39,17 @@ export default withLanguage(
 	}) => {
 		/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
 		let nodeValue = value === undefined ? children : value
+
+		if (
+			(nilValueSymbol !== undefined && nodeValue === 0) ||
+			Number.isNaN(nodeValue) ||
+			nodeValue === null
+		)
+			return (
+				<span css={style} className="value">
+					-
+				</span>
+			)
 		let valueType = typeof nodeValue,
 			unitText =
 				unit !== null && (typeof unit == 'object' ? serialiseUnit(unit) : unit),
@@ -58,16 +69,6 @@ export default withLanguage(
 						{unitText}
 					</>
 				)
-
-		if (
-			(nilValueSymbol !== undefined && nodeValue === 0) ||
-			Number.isNaN(nodeValue)
-		)
-			return (
-				<span css={style} className="value">
-					-
-				</span>
-			)
 
 		return nodeValue == undefined ? null : (
 			<span css={style} className="value">
