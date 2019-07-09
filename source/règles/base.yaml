@@ -907,7 +907,7 @@
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
   unité: €
-  période: aucune
+  période: année
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
