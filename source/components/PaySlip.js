@@ -53,8 +53,7 @@ export default compose(
 					<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
 					<span className="montant">
 						{Math.round(
-							getRule('contrat salarié . temps partiel . heures par semaine')
-								.nodeValue * 4.33
+							getRule('contrat salarié . heures par semaine').nodeValue * 4.33
 						)}
 					</span>
 				</div>

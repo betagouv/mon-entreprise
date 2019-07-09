@@ -1746,10 +1746,9 @@
 
 - espace: contrat salarié . temps partiel
   nom: heures par semaine
-  question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
+  par défaut: 32
   unité: heures / semaine
-  # contrôle : le code du travail définit la borne inférieure de 24h par semaine. Sauf qu'en réalité, la loi permet très souvent des dérogations.
-  par défaut: 35
+  question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
     - si: heures par semaine < 24
       niveau: avertissement
@@ -1759,13 +1758,24 @@
       message: Le simulateur ne gère pas encore les heures supplémentaires.
 
 - espace: contrat salarié
+  nom: heures par semaine
+  unité: heures / semaine
+  formule: 
+    variations: 
+      - si: temps partiel 
+        alors: temps partiel . heures par semaine
+      - sinon: base légale
+
+- espace: contrat salarié . heures par semaine
+  nom: base légale
+  formule: 35
+  unité: heures / semaine
+
+
+- espace: contrat salarié
   nom: quotité de travail
   description: Temps de travail en proportion du temps complet légal.
-  formule:
-    variations:
-      - si: temps partiel
-        alors: temps partiel . heures par semaine / 35
-      - sinon: 1
+  formule: heures par semaine / heures par semaine . base légale
 
 - espace: contrat salarié
   nom: statut JEI
