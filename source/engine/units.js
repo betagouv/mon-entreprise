@@ -12,7 +12,9 @@ export let parseUnit = string => {
 export let serialiseUnit = ({ numerators, denominators }) => {
 	let n = !isEmpty(numerators)
 	let d = !isEmpty(denominators)
-	return n && !d
+	return !n && !d
+		? ''
+		: n && !d
 		? numerators.join('')
 		: !n && d
 		? `/${denominators.join('')}`
