@@ -129,7 +129,7 @@ export const Leaf = compose(
 
 export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
 	return (
-		<Link to={encodeRuleName(dottedName)}>
+		<Link to={'/documentation/' + encodeRuleName(dottedName)}>
 			<span className="name">{title || capitalise0(name)}</span>
 		</Link>
 	)

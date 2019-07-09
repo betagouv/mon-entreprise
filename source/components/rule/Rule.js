@@ -105,7 +105,11 @@ export default compose(
 									</div>
 									{displayedRule.defaultValue != null && (
 										<div id="ruleDefault">
-											Valeur par défaut : {displayedRule.defaultValue}
+											Valeur par défaut :{' '}
+											<Value
+												{...displayedRule}
+												nodeValue={displayedRule.defaultValue}
+											/>
 										</div>
 									)}
 									{!valuesToShow && (
