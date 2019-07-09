@@ -329,7 +329,7 @@ const SchemeComparaison = ({
 					)}
 				</div>
 				{conversationStarted &&
-					!!getRule('assimilé', 'revenu net après impôt') && (
+					!!getRule('assimilé', 'revenu net après impôt')?.nodeValue && (
 						<>
 							<T k="comparaisonRégimes.revenuNetApresImpot">
 								<h3 className="legend">Revenu net après impôt</h3>
@@ -629,8 +629,9 @@ const RuleValueLink = compose(
 					numFractionDigits={0}
 					{...rule}
 					unit={
-							/* //TODO the unit should be integrated in the leaf rules of base.yaml and infered by mecanisms. Will be done in a future release*/
-							unit !== undefined ? unit : '€'}
+						/* //TODO the unit should be integrated in the leaf rules of base.yaml and infered by mecanisms. Will be done in a future release*/
+						unit !== undefined ? unit : '€'
+					}
 				/>
 				{appendText && <> {appendText}</>}
 			</Link>
