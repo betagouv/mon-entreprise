@@ -1,6 +1,6 @@
 ![La loi papier sur la page de droite du dessin de l'énorme livre de droit, sera (page de droite) augmentée par du code interprétable](https://raw.githubusercontent.com/betagouv/syso/master/source/sites/embauche.gouv.fr/images/logo.png)
 
-This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [embauche.beta.gouv.fr](https://embauche.beta.gouv.fr).
+This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [mon-entreprise.fr](https://mon-entreprise.fr).
 
 It's a React, Redux, Webpack website hosted on Netlify with no backend.
 
@@ -12,20 +12,9 @@ Developed by the french public startup incubator, [beta.gouv.fr](https://beta.go
 
 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/betagouv/syso/issues/new) if you are interested and do not speak French.
 
-## Run it
+## Contribute
 
-```
-# Clone this repo on your computer
-git clone --depth 100 git@github.com:betagouv/syso.git && cd syso
-
-# Install the Javscript dependencies through Yarn
-yarn install
-
-# Run the server
-yarn start
-```
-
-The app runs on https://localhost:8080/mon-entreprise. The english version deployed on mycompanyinfrance.fr is at http://localhost:8080/infrance.
+If you want to contribute to this application, please check out [CONTRIBUTION.md](./CONTRIBUTION.md).
 
 ## Supported browsers
 
