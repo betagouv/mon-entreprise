@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"flowtype.flow-for-vscode",
+		"esbenp.prettier-vscode",
+		"ban.spellright",
+		"jpoissonnier.vscode-styled-components"
+	]
+}
