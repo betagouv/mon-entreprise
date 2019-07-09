@@ -8,7 +8,7 @@ import {
 	findParentDependency,
 	findRuleByDottedName
 } from './rules'
-import { getSituationValue } from './variables'
+import { getSituationValue } from './getSituationValue'
 import parseRule from 'Engine/parseRule'
 
 export let parseReference = (rules, rule, parsedRules, filter) => ({
