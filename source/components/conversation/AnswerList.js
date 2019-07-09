@@ -15,6 +15,7 @@ import {
 import Value from 'Components/Value'
 
 import { getRuleFromAnalysis } from 'Engine/rules'
+import { softCatch } from '../../utils'
 
 const AnswerList = ({
 	folded,
@@ -98,8 +99,12 @@ const stepsToRules = createSelector(
 	nextStepsSelector,
 	analysisWithDefaultsSelector,
 	(folded, nextSteps, analysis) => ({
-		folded: folded.map(getRuleFromAnalysis(analysis)),
-		next: nextSteps.map(getRuleFromAnalysis(analysis))
+		folded: folded
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean),
+		next: nextSteps
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean)
 	})
 )
 
