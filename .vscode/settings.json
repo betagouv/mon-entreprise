@@ -1,0 +1,5 @@
+{
+	"editor.formatOnSave": true,
+	"spellright.language": ["fr"],
+	"spellright.documentTypes": ["yaml"]
+}
