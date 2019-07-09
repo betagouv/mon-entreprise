@@ -1,6 +1,6 @@
+import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { createMarkdownDiv } from 'Engine/marked'
 import { all } from 'ramda'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -68,7 +68,7 @@ export default withSitePaths(function LocationMeublée({
 				<h1>
 					{emoji(data.icônes)} {data.titre}
 				</h1>
-				{createMarkdownDiv(data.explication)}
+				<Markdown source={data.explication} />
 				{data.plateformes && (
 					<p>
 						{emoji('📱 ')}

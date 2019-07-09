@@ -1,11 +1,11 @@
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
-import { createMarkdownDiv } from 'Engine/marked'
 import { path } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { capitalise0 } from '../../utils'
+import { Markdown } from '../utils/markdown'
 import Destinataire from './Destinataire'
 import './Header.css'
 import Namespace from './Namespace'
@@ -38,7 +38,7 @@ let RuleHeader = withColours(
 			</header>
 			<div id="ruleHeader__content">
 				<div id="ruleHeader__description">
-					{createMarkdownDiv(description || question)}
+					<Markdown source={description || question} />
 				</div>
 				{(type || flatRule['période']) && (
 					<div id="ruleHeader__infobox">

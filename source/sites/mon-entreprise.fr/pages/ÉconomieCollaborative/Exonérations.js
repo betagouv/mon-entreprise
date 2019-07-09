@@ -1,7 +1,7 @@
-import React from 'react'
-import { createMarkdownDiv } from 'Engine/marked'
-import { CheckItem } from 'Ui/Checklist'
+import { Markdown } from 'Components/utils/markdown'
 import { update } from 'ramda'
+import React from 'react'
+import { CheckItem } from 'Ui/Checklist'
 
 export default ({ exonérations, dispatch, answers, title }) => {
 	if (!exonérations) return null
@@ -17,7 +17,7 @@ export default ({ exonérations, dispatch, answers, title }) => {
 				<CheckItem
 					name={titre}
 					title={titre}
-					explanations={createMarkdownDiv(explication)}
+					explanations={<Markdown source={explication} />}
 					onChange={checked => {
 						let action = {
 							type: 'UPDATE_ACTIVITY',

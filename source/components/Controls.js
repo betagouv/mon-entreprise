@@ -1,6 +1,5 @@
 import { goToQuestion, hideControl } from 'Actions/actions'
 import { makeJsx } from 'Engine/evaluation'
-import { createMarkdownDiv } from 'Engine/marked'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -9,6 +8,7 @@ import { connect } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
 import './Controls.css'
+import { Markdown } from './utils/markdown'
 import withColours from './utils/withColours'
 
 function Controls({
@@ -50,7 +50,7 @@ function Controls({
 									{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
 									<div className="controlText ui__ card">
 										{message ? (
-											createMarkdownDiv(message)
+											<Markdown source={message} />
 										) : (
 											<span id="controlExplanation">{makeJsx(evaluated)}</span>
 										)}
