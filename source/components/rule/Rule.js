@@ -101,11 +101,18 @@ export default compose(
 
 								<section id="rule-content">
 									<div id="ruleValue">
-										<Value {...displayedRule} />
+										<Value
+											{...displayedRule}
+											nilValueSymbol={
+												displayedRule.parentDependency?.nodeValue == false
+													? '-'
+													: null
+											}
+										/>
 									</div>
 									{displayedRule.defaultValue != null && (
 										<div id="ruleDefault">
-											Valeur par défaut :{' '}
+											par défaut :{' '}
 											<Value
 												{...displayedRule}
 												nodeValue={displayedRule.defaultValue}

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { makeJsx } from 'Engine/evaluation'
 import { any, compose, identity, path } from 'ramda'
-import React from 'react'
+import { React, T } from 'Components'
 import { Trans, withTranslation } from 'react-i18next'
 import './Algorithm.css'
 // The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
@@ -14,7 +14,12 @@ let Conditions = ({
 }) => {
 	let listElements = [
 		parentDependency?.nodeValue === false && (
-			<li key="parentDependency">Désactivée car {makeJsx(parentDependency)}</li>
+			<li key="parentDependency">
+				<span css="background: yellow">
+					<T>Désactivée</T>
+				</span>{' '}
+				<T>car dépend de</T> {makeJsx(parentDependency)}
+			</li>
 		),
 		applicable && <li key="applicable">{makeJsx(applicable)}</li>,
 		notApplicable && <li key="non applicable">{makeJsx(notApplicable)}</li>
