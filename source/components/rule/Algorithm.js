@@ -43,7 +43,6 @@ export default compose(withTranslation())(
 					!path(['formule', 'explanation', 'une possibilité'], rule) &&
 					formula.explanation?.category !== 'number'
 
-			console.log(formula)
 			return (
 				<div id="algorithm">
 					<section id="rule-rules" className={classNames({ showValues })}>

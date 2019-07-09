@@ -114,7 +114,9 @@ export const Leaf = compose(
 								}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
-									<NodeValuePointer data={value} unit={unit} />
+									{!isNil(value) && (
+										<NodeValuePointer data={value} unit={unit} />
+									)}
 								</span>
 							</Link>
 						</span>
