@@ -2,8 +2,8 @@ import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
+import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import { createMarkdownDiv } from 'Engine/marked'
 import {
 	encodeRuleName,
 	findRuleByDottedName,
@@ -24,12 +24,12 @@ import {
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import { AttachDictionary } from '../AttachDictionary'
+import { Markdown } from '../utils/markdown'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import Value from 'Components/Value'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -145,7 +145,7 @@ export default compose(
 									{flatRule.note && (
 										<section id="notes">
 											<h3>Note: </h3>
-											{createMarkdownDiv(flatRule.note)}
+											<Markdown source={flatRule.note} />
 										</section>
 									)}
 									<Examples

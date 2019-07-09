@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { change, Field } from 'redux-form'
+import { Markdown } from '../utils/markdown'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -37,7 +38,7 @@ export var FormDecorator = formType => RenderField =>
 			render() {
 				let {
 					stepAction,
-					subquestion,
+					subquestionMarkdown,
 					valueType,
 					defaultValue,
 					fieldName,
@@ -61,10 +62,9 @@ export var FormDecorator = formType => RenderField =>
 									{this.props.question}{' '}
 									{!inversion && <Explicable dottedName={fieldName} />}
 								</h3>
-								<div
-									className="step-subquestion"
-									dangerouslySetInnerHTML={{ __html: subquestion }}
-								/>
+								<div className="step-subquestion">
+									<Markdown source={subquestionMarkdown} />
+								</div>
 							</div>
 						</div>
 

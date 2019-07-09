@@ -1,4 +1,4 @@
-import marked from 'Engine/marked'
+import { Markdown } from 'Components/utils/markdown'
 import { path } from 'ramda'
 import React, { Component } from 'react'
 import './Dictionary.css'
@@ -18,9 +18,6 @@ export let AttachDictionary = dictionary => Decorated =>
 			if (!term) return null
 			this.setState({ explanation, term })
 		}
-		renderExplanationMarkdown(explanation, term) {
-			return marked(`### Mécanisme : ${term}\n\n${explanation}`)
-		}
 		render() {
 			let { explanation, term } = this.state
 			return (
@@ -29,11 +26,11 @@ export let AttachDictionary = dictionary => Decorated =>
 					{explanation && (
 						<Overlay
 							onClose={() => this.setState({ term: null, explanation: null })}>
-							<div
-								id="dictionaryPanel"
-								dangerouslySetInnerHTML={{
-									__html: this.renderExplanationMarkdown(explanation, term)
-								}}
+							<div id="dictionaryPanel">
+								<Markdown
+									source={`### Mécanisme : ${term}\n\n${explanation}`}
+								/>
+							</div>
 							/>
 						</Overlay>
 					)}

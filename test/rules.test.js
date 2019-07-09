@@ -1,12 +1,12 @@
-import { map } from 'ramda'
 import { expect } from 'chai'
+import { map } from 'ramda'
 import {
-	rules,
 	disambiguateRuleReference,
-	ruleParents,
 	enrichRule,
-	translateAll,
-	nestedSituationToPathMap
+	nestedSituationToPathMap,
+	ruleParents,
+	rules,
+	translateAll
 } from '../source/engine/rules'
 
 describe('enrichRule', function() {
@@ -21,14 +21,6 @@ describe('enrichRule', function() {
 		expect(enrichRule(rule)).to.have.property(
 			'dottedName',
 			'contrat salarié . CDD'
-		)
-	})
-
-	it('should render Markdown in sub-questions', function() {
-		let rule = { nom: 'quoi', 'sous-question': '**wut**' }
-		expect(enrichRule(rule)).to.have.property(
-			'subquestion',
-			'<p><strong>wut</strong></p>\n'
 		)
 	})
 })
