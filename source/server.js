@@ -12,6 +12,12 @@ const rewrite = basename => ({
 	to: `/${basename}.html`
 })
 
+app.get('/', function(req, res) {
+	res.send(`This website is available in 2 languages :
+	<ul><li><a href="/mon-entreprise">mon-entreprise [fr]</a></li>
+	<li><a href="/infrance">infrance [en]</a></li></ul>`)
+})
+
 app.use(
 	history({
 		rewrites: ['infrance', 'mon-entreprise'].map(rewrite)
@@ -30,5 +36,5 @@ app.use(
 app.use(require('webpack-hot-middleware')(compiler))
 
 app.listen(8080, function() {
-	console.log('Example app listening on port 8080!\n')
+	console.log('Mon-entreprise listening on port 8080!\n')
 })
