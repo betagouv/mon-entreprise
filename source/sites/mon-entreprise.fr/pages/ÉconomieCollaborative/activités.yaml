@@ -53,25 +53,40 @@
   plateformes:
     - Deliveroo
     - Uber
-    - création de sites internet
-    - nounous...
+    - Academia
+    - plateformes de jobbing (Youpijob, Frizbiz)
   seuil pro: 0
   explication: |
-    Lorsque vous proposez contre rémunération, via une plateforme d’économie collaborative, un service pour une entreprise ou un particulier (exemple : création de site internet, travaux de rédaction ou de relecture…) ou réalisez des prestations de conseil (coaching…),  cette activité présente nécessairement un caractère professionnel.
+    Vous proposez contre rémunération un service pour une entreprise ou un particulier (exemple : livraison à vélo, création de site, petits travaux, garde d'enfants, cours à domicile, ménage, coaching, jardinage, garde d'animaux, coiffure, déménagement, massages)
 
-    > Lorsqu’il s’agit de services à la personne, de tâches familiales… ces activités relèvent soit du Cesu (chèque emploi service universel, pour les particuliers employeurs) soit de Pajemploi (prestations de garde d’enfants).
-
+  # > Lorsqu’il s’agit de services à la personne, de tâches familiales… ces activités relèvent soit du Cesu (chèque emploi service universel, pour les particuliers employeurs) soit de Pajemploi (prestations de garde d’enfants).
 - titre: Vente de biens
-  icônes: 📦 🧶
+  explication: Vous vendez des biens matériels, d'occasion ou neuf, fabriqués ou récupérés.
+  icônes: 📦 🧶 🕹 🧳
   plateformes:
     - Leboncoin
     - eBay
     - Etsy...
-  seuil pro: 0
-  exonérations:
-    - titre: Vous vendez de façon occasionnelle des biens qui vous ont servi en premier lieu
-      explication: |
-        Si à l'inverse, il s’agit de biens que vous avez achetés ou que vous avez fabriqués en vue de les revendre (exemple : vous réalisez des bijoux, des objets de décoration…), votre activité est alors à caractère professionnel et elle doit être déclarée.
+  activités:
+    - titre: Vente de vos biens occasionnels
+      icônes: 🧳 🕹 🧸 📺
+      plateformes:
+        - Leboncoin
+        - eBay
+      explication: Vous vendez de façon occasionnel des biens que vous ne souhaitez plus conserver, dans le cadre de la gestion de votre patrimoine privé.
+      seuil déclaration: 0
+      exonérés sauf si:
+        - titre: Vous vendez des métaux précieux (pièces en or, argent, lingots)
+          explication: Pour la cession de métaux précieux, vous êtes soumis à la taxe forfaitaire sur les métaux précieux dont vous devez vous acquitter dans le mois de la cession.
+
+    - titre: Vente de biens professionnelle
+      icônes: 📦 🧶 🛍️ 🧴
+      seuil pro: 0
+      explication: >
+        Lorsque vous vendez des biens que vous avez achetés ou que vous avez fabriqués **en vue de les revendre** (exemple: vous réalisez des bijoux, des objets de décoration…).
+      plateformes:
+        - Etsy
+        - Amazon
 
 - titre: Co-consommation
   icônes: 👥 🚗
@@ -82,13 +97,15 @@
   plateformes:
     - Blablacar
 
-  exonérations:
-    - titre: Vous profitez du service proposé
+  exonéré sauf si:
+    - titre: Les revenus perçus sont supérieurs à vos frais (vous gagnez de l'argent)
       explication: |
-        Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous bénéficiez également de la prestation de service proposée au même titre que les personnes avec lesquelles les frais sont partagés ;
-    - titre: Les revenus ne font que couvrir vos frais
+        Les revenus perçus ne doivent pas excéder le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
+    - titre: Vous n'incluez pas votre part pour établir le partage des frais
       explication: |
-        Les revenus perçus n’excèdent pas le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
-    - titre: Si co-voiturage, attention au barème kilométrique
+        Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous devez bénéficier également de la prestation de service proposée et que vous devez supporter votre quote-part, au même titre que les personnes avec lesquelles les frais sont partagés.
+
+        Par exemple, si un déplacement en voiture coûte 40€ en essence et péage, et que vous avez 3 passagers co-voitureur, vous devez répartir équitablement le partage des frais, 10€ remboursé par chaque passager, et 10€ payé de votre poche.
+    - titre: Si co-voiturage, vous êtes en dessous du barème kilométrique
       explication: |
-        Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.<Paste>
+        Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.
