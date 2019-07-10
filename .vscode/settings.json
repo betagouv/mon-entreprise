@@ -1,5 +1,8 @@
 {
 	"editor.formatOnSave": true,
 	"spellright.language": ["fr"],
-	"spellright.documentTypes": ["yaml"]
+	"spellright.documentTypes": ["yaml"],
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true
+	}
 }
