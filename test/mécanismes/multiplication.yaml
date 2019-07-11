@@ -6,6 +6,7 @@
     multiplication:
       assiette: mon assiette
       taux: 3%
+  unité attendue: €
 
   exemples:
     - nom: entier

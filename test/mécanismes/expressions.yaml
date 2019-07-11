@@ -133,7 +133,7 @@
     - valeur attendue: true
 
 - test: négation
-  formule: ≠ CDD . poursuivi en CDI
+  formule: CDD . poursuivi en CDI != oui
   exemples:
     - situation:
         CDD . poursuivi en CDI: oui

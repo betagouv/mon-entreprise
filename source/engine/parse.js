@@ -47,7 +47,6 @@ import {
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
 import {
-	parseNegatedReference,
 	parseReference,
 	parseReferenceTransforms
 } from './parseReference'
@@ -152,10 +151,6 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			variations: mecanismVariations,
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
-			'≠': () =>
-				parseNegatedReference(
-					parseReference(rules, rule, parsedRules)(v.explanation)
-				),
 			filter: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({
 					filter: v.filter,

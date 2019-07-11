@@ -753,7 +753,7 @@
     - si:
         toutes ces conditions:
           - brut de base [mensuel] < SMIC [mensuel]
-          - ≠ assimilé salarié
+          - assimilé salarié != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
@@ -2038,8 +2038,8 @@
           - si:
               toutes ces conditions:
                 - cotisations . assiette < plafond de réduction
-                - ≠ statut JEI
-                - ≠ assimilé salarié
+                - statut JEI != oui
+                - assimilé salarié != oui
             alors: 3.45%
           - sinon: 5.25%
   références:
@@ -2403,8 +2403,8 @@
               - si:
                   toutes ces conditions:
                     - cotisations . assiette < plafond de réduction employeur
-                    - ≠ statut JEI
-                    - ≠ assimilé salarié
+                    - statut JEI != oui
+                    - assimilé salarié != oui
                 alors: 7%
               - sinon: 13%
         - attributs:
@@ -3327,7 +3327,7 @@
   formule:
     toutes ces conditions:
       - entreprise . catégorie d'activité . libérale règlementée
-      - ≠ rattachée à la CIPAV
+      - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
 - nom: indépendant
@@ -3372,7 +3372,7 @@
   formule:
     une de ces conditions:
       - toutes ces conditions:
-          - ≠ contrat salarié
+          - contrat salarié != oui
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - entreprise . année d'activité
@@ -3547,7 +3547,7 @@
   titre: assiette retraite de base
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
+      - si: situation personnelle . RSA != oui
         alors:
           le maximum de:
             - 11.5% * plafond sécurité sociale temps plein
@@ -3619,7 +3619,7 @@
   titre: assiette invalidité et décès
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
+      - si: situation personnelle . RSA != oui
         alors:
           le maximum de:
             - 11.5% * plafond sécurité sociale temps plein

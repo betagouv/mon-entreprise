@@ -32,10 +32,7 @@ Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 NonNumericTerminal ->  
 	Boolean  {% id %} 
 	| String  {% id %}
-	| NegatedVariable  {% id %}
 
-
-NegatedVariable -> "≠" _ Variable {% ([,,{variable}]) => ({'≠': {explanation: variable} }) %}
 
 FilteredVariable -> Variable _ Filter {% filteredVariable %}
 
