@@ -3,6 +3,8 @@
 // TODO import them automatically
 // TODO convert the legacy functions to new files
 import barème from 'Engine/mecanisms/barème.js'
+import barèmeContinu from 'Engine/mecanisms/barème-continu.js'
+import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire.js'
 import { Parser } from 'nearley'
 import {
 	add,
@@ -30,10 +32,8 @@ import Grammar from './grammar.ne'
 import {
 	mecanismAllOf,
 	mecanismComplement,
-	mecanismContinuousScale,
 	mecanismError,
 	mecanismInversion,
-	mecanismLinearScale,
 	mecanismMax,
 	mecanismMin,
 	mecanismNumericalSwitch,
@@ -46,10 +46,7 @@ import {
 	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
-import {
-	parseReference,
-	parseReferenceTransforms
-} from './parseReference'
+import { parseReferenceTransforms } from './parseReference'
 import { inferUnit } from 'Engine/units'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
@@ -140,8 +137,8 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
 			barème,
-			'barème linéaire': mecanismLinearScale,
-			'barème continu': mecanismContinuousScale,
+			'barème linéaire': barèmeLinéaire,
+			'barème continu': barèmeContinu,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,

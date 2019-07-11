@@ -77,6 +77,7 @@ export default withLanguage(
 
 		return nodeValue == undefined ? null : (
 			<span css={style(customCSS)} className="value">
+				unit: {unitText}
 				{negative ? '-' : ''}
 				{formattedValue}
 			</span>

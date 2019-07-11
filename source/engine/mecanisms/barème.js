@@ -4,6 +4,7 @@ import { decompose } from 'Engine/mecanisms/utils'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
 import { evolve, has, pluck, sum } from 'ramda'
+import { inferUnit, parseUnit } from 'Engine/units'
 
 export let desugarScale = recurse => tranches =>
 	tranches
@@ -85,6 +86,7 @@ export default (recurse, k, v) => {
 		jsx: Barème('marginal'),
 		category: 'mecanism',
 		name: 'barème',
-		barème: 'marginal'
+		barème: 'marginal',
+		unit: inferUnit('*', [explanation.assiette.unit, parseUnit('%')])
 	}
 }

@@ -14,6 +14,7 @@
         taux: 10%
       - au-dessus de: 2000
         taux: 15%
+  unité attendue: €
 
   exemples:
     - nom: "petite assiette"
@@ -51,6 +52,7 @@
       - au-dessus de: 2000
         montant: 400
 
+  unité attendue: €
   exemples:
     - nom: "petite assiette"
       situation:

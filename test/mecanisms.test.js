@@ -54,6 +54,7 @@ describe('Mécanismes', () =>
 								}
 
 								if (unit) {
+									expect(target.unit).not.to.be.equal(undefined)
 									expect(serialiseUnit(target.unit)).to.eql(unit)
 								}
 							})

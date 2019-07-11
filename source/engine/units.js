@@ -23,6 +23,7 @@ export let serialiseUnit = rawUnit => {
 			? `/${denominators.join('')}`
 			: `${numerators.join('')} / ${denominators.join('')}`
 
+	// the unit '%' is only displayed when it is the only unit
 	if (string.length > 1) return string.replace(/%/g, '')
 	return string
 }
