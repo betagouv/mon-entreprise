@@ -19,7 +19,7 @@ describe('Units', () => {
 	it('should work with simple use case *', () => {
 		let unit1 = { numerators: ['m'], denominators: ['s'] }
 		let unit2 = { numerators: ['s'], denominators: [] }
-		let unit = inferUnit('*', unit1, unit2)
+		let unit = inferUnit('*', [unit1, unit2])
 
 		expect(unit).to.deep.equal({
 			numerators: ['m'],
@@ -29,7 +29,7 @@ describe('Units', () => {
 	it('should work with simple use case / ', () => {
 		let unit1 = { numerators: ['m'], denominators: ['s'] }
 		let unit2 = { numerators: ['m'], denominators: [] }
-		let unit = inferUnit('/', unit1, unit2)
+		let unit = inferUnit('/', [unit1, unit2])
 
 		expect(unit).to.deep.equal({
 			numerators: [],
@@ -39,7 +39,7 @@ describe('Units', () => {
 	it('should work with advanced use case /', () => {
 		let unit1 = { numerators: ['a', 'b', 'a', 'z'], denominators: ['c'] }
 		let unit2 = { numerators: ['a', 'e', 'f'], denominators: ['z', 'c'] }
-		let unit = inferUnit('/', unit1, unit2)
+		let unit = inferUnit('/', [unit1, unit2])
 
 		expect(unit).to.deep.equal({
 			numerators: ['b', 'a', 'z', 'z'],

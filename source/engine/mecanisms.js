@@ -58,6 +58,7 @@ import Variations from './mecanismViews/Variations'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
+import { inferUnit } from 'Engine/units'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -502,7 +503,8 @@ export let mecanismSum = (recurse, k, v) => {
 		explanation,
 		category: 'mecanism',
 		name: 'somme',
-		type: 'numeric'
+		type: 'numeric',
+		unit: inferUnit('+', explanation.map(r => r.unit))
 	}
 }
 
@@ -608,7 +610,12 @@ export let mecanismProduct = (recurse, k, v) => {
 		explanation,
 		category: 'mecanism',
 		name: 'multiplication',
-		type: 'numeric'
+		type: 'numeric',
+		unit: inferUnit('*', [
+			explanation.assiette,
+			explanation.taux,
+			explanation.facteur
+		])
 	}
 }
 

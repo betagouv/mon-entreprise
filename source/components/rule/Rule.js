@@ -63,6 +63,7 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
+
 			return (
 				<>
 					{this.state.viewSource ? (

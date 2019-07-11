@@ -202,11 +202,7 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 
 	let explanation = v.explanation.map(recurse)
 
-	let unit = inferUnit(
-		k,
-		explanation[0].unit || undefined,
-		explanation[1].unit || undefined
-	)
+	let unit = inferUnit(k, [explanation[0].unit, explanation[1].unit])
 
 	let jsx = (nodeValue, explanation) => (
 		<Node

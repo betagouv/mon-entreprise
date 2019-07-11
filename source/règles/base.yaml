@@ -990,7 +990,6 @@
 - espace: contrat salarié
   nom: indemnités salarié
   période: flexible
-  unité: €
   formule:
     somme:
       - CDD . indemnités salarié CDD
