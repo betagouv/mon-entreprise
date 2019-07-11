@@ -7,7 +7,8 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { makeJsx } from '../evaluation'
 import './Barème.css'
-import { formatNumber, Node, NodeValuePointer } from './common'
+import { Node, NodeValuePointer } from './common'
+import { numberFormatter } from 'Components/Value'
 
 export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	<>
@@ -96,12 +97,13 @@ let Component = withLanguage(function Barème({
 										<b>
 											<Trans>Taux final</Trans> :{' '}
 										</b>
-										{formatNumber(
-											(nodeValue /
-												lazyEval(explanation['assiette']).nodeValue) *
-												100,
-											language
-										)}{' '}
+										<NodeValuePointer
+											data={
+												(nodeValue /
+													lazyEval(explanation['assiette']).nodeValue) *
+												100
+											}
+										/>
 										%
 									</>
 								)}
@@ -112,6 +114,8 @@ let Component = withLanguage(function Barème({
 		</ShowValuesConsumer>
 	)
 })
+
+let number = numberFormatter(undefined, 0)
 
 let Tranche = ({
 	tranche: {
@@ -132,16 +136,16 @@ let Tranche = ({
 			<td key="tranche">
 				{maxOnly ? (
 					<>
-						<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
+						<Trans>En-dessous de</Trans> {number(maxOnly, language)}
 					</>
 				) : minOnly ? (
 					<>
-						<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
+						<Trans>Au-dessus de</Trans> {number(minOnly, language)}
 					</>
 				) : (
 					<>
-						<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
-						{formatNumber(max, language)}
+						<Trans>De</Trans> {number(min, language)} <Trans>à</Trans>{' '}
+						{number(max, language)}
 					</>
 				)}
 			</td>

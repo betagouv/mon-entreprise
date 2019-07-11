@@ -8,7 +8,10 @@ const NumberFormat = memoizeWith(
 	Intl.NumberFormat
 )
 
-let numberFormatter = (style, numFractionDigits = 2) => (value, language) =>
+export let numberFormatter = (style, numFractionDigits = 2) => (
+	value,
+	language
+) =>
 	NumberFormat(language, {
 		style,
 		currency: 'EUR',

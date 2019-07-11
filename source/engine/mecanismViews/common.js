@@ -13,12 +13,6 @@ import mecanismColours from './colours'
 import classnames from 'classnames'
 import Value from 'Components/Value'
 
-//TODO remove this one, it should reside in 'Value.js'
-export let formatNumber = (data, language) =>
-	!isNaN(data)
-		? Intl.NumberFormat(language, { maximumFractionDigits: 4 }).format(data)
-		: data
-
 export let NodeValuePointer = ({ data, unit }) => (
 	<span
 		className={classnames('situationValue', {
