@@ -23,7 +23,18 @@ export let NodeValuePointer = ({ data, unit }) => (
 	<span
 		className={classnames('situationValue', {
 			boolean: typeof data == 'boolean'
-		})}>
+		})}
+		css={`
+			background: white;
+			border-bottom: 0 !important;
+			padding: 0 0.2rem;
+			text-decoration: none !important;
+			margin: 0 0.3rem;
+			font-size: 80%;
+			box-shadow: 2px 2px 4px 1px #d9d9d9, 0 0 0 1px #d9d9d9;
+			line-height: 1.6em;
+			border-radius: 0.2rem;
+		`}>
 		<Value nodeValue={data} unit={unit} />
 	</span>
 )
@@ -114,11 +125,9 @@ export const Leaf = compose(
 								}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
-									{!isNil(value) && (
-										<NodeValuePointer data={value} unit={unit} />
-									)}
 								</span>
 							</Link>
+							{!isNil(value) && <NodeValuePointer data={value} unit={unit} />}
 						</span>
 					)}
 				</span>
