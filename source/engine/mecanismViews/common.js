@@ -29,7 +29,6 @@ export let NodeValuePointer = ({ data, unit }) => (
 			border-bottom: 0 !important;
 			padding: 0 0.2rem;
 			text-decoration: none !important;
-			margin: 0 0.3rem;
 			font-size: 80%;
 			box-shadow: 2px 2px 4px 1px #d9d9d9, 0 0 0 1px #d9d9d9;
 			line-height: 1.6em;
@@ -127,7 +126,14 @@ export const Leaf = compose(
 									{rule.title || capitalise0(name)} {filter}
 								</span>
 							</Link>
-							{!isNil(value) && <NodeValuePointer data={value} unit={unit} />}
+							{!isNil(value) && (
+								<span
+									css={`
+										margin: 0 0.3rem;
+									`}>
+									<NodeValuePointer data={value} unit={unit} />
+								</span>
+							)}
 						</span>
 					)}
 				</span>

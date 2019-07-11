@@ -166,13 +166,8 @@
 .mecanism-result {
 	position: absolute;
 	display: none;
-	bottom: 0;
+	top: -4px;
 	right: 0;
-	border-top: 1px solid;
-	border-left: 1px solid;
-	border-top-left-radius: 0.3rem;
-	border-color: inherit;
-	padding: 0.1rem 0.6rem;
 }
 #rule-rules.showValues .mecanism-result {
 	display: initial;
