@@ -9,16 +9,22 @@ export let parseUnit = string => {
 	return result
 }
 
-export let serialiseUnit = ({ numerators = [], denominators = [] }) => {
+export let serialiseUnit = rawUnit => {
+	let unit = simplify(rawUnit),
+		{ numerators = [], denominators = [] } = unit
 	let n = !isEmpty(numerators)
 	let d = !isEmpty(denominators)
-	return !n && !d
-		? ''
-		: n && !d
-		? numerators.join('')
-		: !n && d
-		? `/${denominators.join('')}`
-		: `${numerators.join('')} / ${denominators.join('')}`
+	let string =
+		!n && !d
+			? ''
+			: n && !d
+			? numerators.join('')
+			: !n && d
+			? `/${denominators.join('')}`
+			: `${numerators.join('')} / ${denominators.join('')}`
+
+	if (string.length > 1) return string.replace(/%/g, '')
+	return string
 }
 
 let noUnit = { numerators: [], denominators: [] }

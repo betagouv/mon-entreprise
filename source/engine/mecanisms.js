@@ -611,11 +611,12 @@ export let mecanismProduct = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'multiplication',
 		type: 'numeric',
-		unit: inferUnit('*', [
-			explanation.assiette,
-			explanation.taux,
-			explanation.facteur
-		])
+		unit: inferUnit(
+			'*',
+			[explanation.assiette, explanation.taux, explanation.facteur].map(
+				el => el.unit
+			)
+		)
 	}
 }
 

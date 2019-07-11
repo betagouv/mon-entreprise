@@ -171,6 +171,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			constant: () => ({
 				type: v.type,
 				nodeValue: v.nodeValue,
+				unit: v.unit,
 				// eslint-disable-next-line
 				jsx: () => <span className={v.type}>{v.rawNode}</span>
 			})
