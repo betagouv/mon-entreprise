@@ -27,7 +27,7 @@ import {
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
-import { capitalise0 } from '../utils'
+import { capitalise0, coerceArray } from '../utils'
 import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 import { parseUnit } from 'Engine/units'
@@ -246,9 +246,13 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
-	let rule =
-		analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
-		analysis.targets.find(propEq('dottedName', dottedName))
+	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
+		.map(
+			analysis =>
+				analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
+				analysis.targets.find(propEq('dottedName', dottedName))
+		)
+		.filter(Boolean)[0]
 
 	if (!rule) {
 		throw new Error(
