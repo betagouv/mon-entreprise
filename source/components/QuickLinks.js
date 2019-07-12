@@ -3,7 +3,7 @@ import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose, contains, reject, toPairs } from 'ramda'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { currentQuestionSelector } from 'Selectors/analyseSelectors'
@@ -36,15 +36,14 @@ const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
 					<T k="quicklinks.autres">Autres questions :</T>
 				</small>{' '}
 				{links.map(([label, dottedName]) => (
-					<>
+					<Fragment key={dottedName}>
 						<button
-							key={dottedName}
 							className="ui__ link-button"
 							onClick={() => goToQuestion(dottedName)}>
 							<T k={'quicklinks.' + label}>{label}</T>
 						</button>{' '}
 						/{' '}
-					</>
+					</Fragment>
 				))}{' '}
 				{/* <button className="ui__ link-button">Voir la liste</button> */}
 			</span>

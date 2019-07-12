@@ -35,7 +35,7 @@ export default compose(
 		}
 		close = () => this.setState({ visible: false })
 		render() {
-			let { flatRules } = this.props
+			let { flatRules, invisibleButton } = this.props
 			return this.state.visible ? (
 				<Overlay onClose={this.close}>
 					<h2>
@@ -47,7 +47,7 @@ export default compose(
 						rules={flatRules}
 					/>
 				</Overlay>
-			) : (
+			) : invisibleButton ? null : (
 				<button
 					className="ui__ simple small button"
 					onClick={() => this.setState({ visible: true })}>

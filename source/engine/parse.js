@@ -18,7 +18,11 @@ import {
 	map,
 	multiply,
 	propOr,
-	subtract
+	subtract,
+	fromPairs,
+	is,
+	cond,
+	T
 } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
@@ -42,26 +46,42 @@ import {
 	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
-import { treat } from './traverse'
 import {
-	treatNegatedVariable,
-	treatVariable,
-	treatVariableTransforms
-} from './treatVariable'
+	parseNegatedReference,
+	parseReference,
+	parseReferenceTransforms
+} from './parseReference'
+import { inferUnit } from 'Engine/units'
+
+export let parse = (rules, rule, parsedRules) => rawNode => {
+	let onNodeType = cond([
+		[is(String), parseString(rules, rule, parsedRules)],
+		[is(Number), parseNumber],
+		[is(Object), parseObject(rules, rule, parsedRules)],
+		[T, parseOther]
+	])
+
+	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
+	let parsedNode = onNodeType(rawNode)
+
+	return parsedNode.evaluate
+		? parsedNode
+		: { ...parsedNode, evaluate: defaultEvaluate }
+}
 
 export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
 
-export let treatString = (rules, rule) => rawNode => {
+export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 
 	let [parseResult] = nearley().feed(rawNode).results
 
-	return treatObject(rules, rule)(parseResult)
+	return parseObject(rules, rule, parsedRules)(parseResult)
 }
 
-export let treatNumber = rawNode => ({
+export let parseNumber = rawNode => ({
 	text: '' + rawNode,
 	category: 'number',
 	nodeValue: rawNode,
@@ -69,13 +89,13 @@ export let treatNumber = rawNode => ({
 	jsx: <span className="number">{rawNode}</span>
 })
 
-export let treatOther = rawNode => {
+export let parseOther = rawNode => {
 	throw new Error(
 		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
 	)
 }
 
-export let treatObject = (rules, rule, treatOptions) => rawNode => {
+export let parseObject = (rules, rule, parsedRules) => rawNode => {
 	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
@@ -90,7 +110,7 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet (au-delà des attributs descriptifs tels que "description", "commentaire", etc.)
 			Objet YAML : ${JSON.stringify(rawNode)}
 			Cette liste doit avoir un et un seul élément.
-			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de treat.js
+			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de parse.js
 		`)
 	let k = relevantAttributes[0],
 		v = rawNode[k]
@@ -107,9 +127,11 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			'=': [equals],
 			'!=': [(a, b) => !equals(a, b), '≠']
 		},
-		operationDispatch = map(
-			([f, symbol]) => mecanismOperation(f, symbol || k),
-			knownOperations
+		operationDispatch = fromPairs(
+			Object.entries(knownOperations).map(([k, [f, symbol]]) => [
+				k,
+				mecanismOperation(k, f, symbol)
+			])
 		)
 
 	let dispatch = {
@@ -131,15 +153,18 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			'≠': () =>
-				treatNegatedVariable(treatVariable(rules, rule)(v.explanation)),
+				parseNegatedReference(
+					parseReference(rules, rule, parsedRules)(v.explanation)
+				),
 			filter: () =>
-				treatVariableTransforms(rules, rule)({
+				parseReferenceTransforms(rules, rule, parsedRules)({
 					filter: v.filter,
 					variable: v.explanation
 				}),
-			variable: () => treatVariableTransforms(rules, rule)({ variable: v }),
+			variable: () =>
+				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
 			temporalTransform: () =>
-				treatVariableTransforms(rules, rule)({
+				parseReferenceTransforms(rules, rule, parsedRules)({
 					variable: v.explanation,
 					temporalTransform: v.temporalTransform
 				}),
@@ -152,10 +177,10 @@ export let treatObject = (rules, rule, treatOptions) => rawNode => {
 		},
 		action = propOr(mecanismError, k, dispatch)
 
-	return action(treat(rules, rule, treatOptions), k, v)
+	return action(parse(rules, rule, parsedRules), k, v)
 }
 
-let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
+let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let explanation = map(
 				curry(evaluateNode)(cache, situation, parsedRules),
@@ -177,6 +202,12 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 
 	let explanation = v.explanation.map(recurse)
 
+	let unit = inferUnit(
+		k,
+		explanation[0].unit || undefined,
+		explanation[1].unit || undefined
+	)
+
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes={'inlineExpression ' + k}
@@ -185,7 +216,8 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 				<span className="nodeContent">
 					<span className="fa fa" />
 					{makeJsx(explanation[0])}
-					<span className="operator">{symbol}</span>
+					<span className="operator">{symbol || k}</span>
+
 					{makeJsx(explanation[1])}
 				</span>
 			}
@@ -193,10 +225,12 @@ let mecanismOperation = (operatorFunction, symbol) => (recurse, k, v) => {
 	)
 
 	return {
+		...v,
 		evaluate,
 		jsx,
-		operator: symbol,
+		operator: symbol || k,
 		// is this useful ?		text: rawNode,
-		explanation
+		explanation,
+		unit
 	}
 }

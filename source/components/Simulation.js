@@ -11,6 +11,7 @@ import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import { simulationProgressSelector } from 'Selectors/progressSelectors'
 import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
+import SearchButton from 'Components/SearchButton'
 
 export default connect(state => ({
 	firstStepCompleted: firstStepCompletedSelector(state),
@@ -24,6 +25,7 @@ export default connect(state => ({
 	return (
 		<>
 			<TargetSelection />
+			<SearchButton invisibleButton />
 			{firstStepCompleted && (
 				<>
 					<Animate.fromTop>

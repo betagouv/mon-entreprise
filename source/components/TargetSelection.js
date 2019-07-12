@@ -22,6 +22,7 @@ import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
+import { serialiseUnit } from 'Engine/units'
 
 export default compose(
 	withTranslation(),
@@ -37,7 +38,9 @@ export default compose(
 			analysis: analysisWithDefaultsSelector(state),
 			flatRules: flatRulesSelector(state),
 			activeInput: state.activeTargetInput,
-			objectifs: state.simulation?.config.objectifs || []
+			objectifs: state.simulation?.config.objectifs || [],
+			secondaryObjectives:
+				state.simulation?.config['objectifs secondaires'] || []
 		}),
 		dispatch => ({
 			setFormValue: (field, name) =>
@@ -51,9 +54,16 @@ export default compose(
 		state = {
 			initialRender: true
 		}
+		getTargets() {
+			let { secondaryObjectives, analysis } = this.props
+			if (!analysis) return []
+			return analysis.targets.filter(
+				t => !secondaryObjectives.includes(t.dottedName)
+			)
+		}
 		componentDidMount() {
 			const props = this.props
-			const targets = props.analysis ? props.analysis.targets : []
+			let targets = this.getTargets()
 			// Initialize defaultValue for target that can't be computed
 			targets
 				.filter(
@@ -80,19 +90,18 @@ export default compose(
 		render() {
 			let {
 					colours,
-					analysis,
 					activeInput,
 					setActiveInput,
 					setFormValue,
 					objectifs
 				} = this.props,
-				targets = analysis?.targets || []
+				targets = this.getTargets()
 
 			return (
 				<div id="targetSelection">
 					{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
 						({ icône, objectifs: groupTargets, nom }, index) => (
-							<React.Fragment key={nom}>
+							<React.Fragment key={nom || '0'}>
 								<div style={{ display: 'flex', alignItems: 'end' }}>
 									<div style={{ flex: 1 }}>
 										{nom && (
@@ -283,8 +292,8 @@ let TargetInputOrValue = withLanguage(
 						name={target.dottedName}
 						onBlur={event => event.preventDefault()}
 						component={
-							{ euros: CurrencyField, pourcentage: DebouncedPercentageField }[
-								target.format
+							{ '€': CurrencyField, '%': DebouncedPercentageField }[
+								serialiseUnit(target.unit)
 							]
 						}
 						{...(inputIsActive ? { autoFocus: true } : {})}

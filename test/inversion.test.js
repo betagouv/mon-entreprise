@@ -18,7 +18,7 @@ describe('inversions', () => {
               taux: 77%
 
         - nom: brut
-          format: euro
+          unité: €
       `,
 			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
 			analysis = analyse(rules, 'net')(stateSelector)
@@ -38,7 +38,7 @@ describe('inversions', () => {
               taux: 77%
 
         - nom: brut
-          format: euro
+          unité: €
           formule:
             inversion numérique:
               avec:
@@ -67,7 +67,7 @@ describe('inversions', () => {
                     taux: 70%
 
         - nom: brut
-          format: euro
+          unité: €
           formule:
             inversion numérique:
               avec:
@@ -100,7 +100,7 @@ describe('inversions', () => {
                     taux: 70%
 
         - nom: brut
-          format: euro
+          unité: €
           formule:
             inversion numérique:
               avec:
@@ -156,7 +156,7 @@ describe('inversions', () => {
               taux: 150%
 
         - nom: brut
-          format: euro
+          unité: €
           formule:
             inversion numérique:
               avec:
@@ -201,7 +201,7 @@ describe('inversions', () => {
         formule: cotisation [employeur] + cotisation [salarié]
 
       - nom: brut
-        format: euro
+        unité: €
         formule:
           inversion numérique:
             avec:

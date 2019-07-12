@@ -1,99 +1,116 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
-import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import { règleAvecValeurSelector } from 'Selectors/regleSelectors'
-import Montant from 'Ui/Montant'
-import { softCatch } from '../../utils'
 import './AnswerList.css'
+import {
+	analysisWithDefaultsSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
+import Value from 'Components/Value'
 
-const formatAnswer = (answer, language) => {
-	if (answer.type === 'boolean')
-		return (
-			<span style={{ textTransform: 'capitalize' }}>
-				<Trans>{answer.valeur ? 'oui' : 'non'}</Trans>{' '}
-			</span>
-		)
-	if (answer.type === 'euros') return <Montant>{answer.valeur}</Montant>
-	if (answer.type === 'number') return
-	{
-		Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(
-			answer.valeur
-		)
-	}
-	if (answer.type === 'string') return <Trans>{answer.valeur}</Trans>
-	return answer.valeur
-}
+import { getRuleFromAnalysis } from 'Engine/rules'
+import { softCatch } from '../../utils'
 
 const AnswerList = ({
-	answers,
+	folded,
+	next,
 	onClose,
-	language,
-	colours,
 	goToQuestion,
 	resetSimulation
 }) => (
 	<Overlay onClose={onClose} className="answer-list">
 		<h2>
+			{emoji('📋 ')}
 			<Trans>Mes réponses</Trans>
+			<small css="margin-left: 2em; img {font-size: .8em}">
+				{emoji('🗑')}{' '}
+				<button
+					className="ui__ simple small button"
+					onClick={() => {
+						resetSimulation()
+						onClose()
+					}}>
+					<Trans>Tout effacer</Trans>
+				</button>
+			</small>
 		</h2>
-		<p style={{ textAlign: 'center' }}>
-			{emoji('🗑')}{' '}
-			<button
-				className="ui__ simple small button"
-				onClick={() => {
-					resetSimulation()
-					onClose()
-				}}>
-				<Trans>Tout effacer</Trans>
-			</button>
-		</p>
-		<table>
-			<tbody>
-				{answers.map(answer => (
-					<tr key={answer.id} style={{ background: colours.lightestColour }}>
-						<td>
-							<RuleLink {...answer} />
-						</td>
-						<td>
-							<button
-								className="answer"
-								onClick={() => {
-									goToQuestion(answer.id)
-									onClose()
-								}}>
-								<span
-									className="answerContent"
-									style={{ borderBottomColor: colours.textColourOnWhite }}>
-									{formatAnswer(answer, language)}
-								</span>
-							</button>{' '}
-						</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+		<StepsTable {...{ rules: folded, onClose, goToQuestion }} />
+		<h2>
+			{emoji('🔮 ')}
+			<Trans>Prochaines questions</Trans>
+		</h2>
+		<StepsTable {...{ rules: next, onClose, goToQuestion }} />
 	</Overlay>
 )
 
-const answerWithValueSelector = createSelector(
+let StepsTable = ({ rules, onClose, goToQuestion }) => (
+	<table>
+		<tbody>
+			{rules.map(rule => (
+				<tr
+					key={rule.dottedName}
+					css={`
+						background: var(--lightestColour);
+					`}>
+					<td>
+						<RuleLink {...rule} />
+					</td>
+					<td>
+						<button
+							className="answer"
+							css={`
+								display: inline-block;
+								padding: 0.6rem;
+								color: inherit;
+								font-size: inherit;
+								width: 100%;
+								text-align: start;
+								font-weight: 500;
+								> span {
+									border-bottom: 1px dashed blue;
+									border-bottom-color: var(--textColourOnWhite);
+									padding: 0.05em 0em;
+									display: inline-block;
+								}
+							`}
+							onClick={() => {
+								goToQuestion(rule.dottedName)
+								onClose()
+							}}>
+							<span className="answerContent">
+								<Value {...rule} />
+							</span>
+						</button>{' '}
+					</td>
+				</tr>
+			))}
+		</tbody>
+	</table>
+)
+
+const stepsToRules = createSelector(
 	state => state.conversationSteps.foldedSteps,
-	règleAvecValeurSelector,
-	(answers, getRègle) => answers.map(softCatch(getRègle)).filter(Boolean)
+	nextStepsSelector,
+	analysisWithDefaultsSelector,
+	(folded, nextSteps, analysis) => ({
+		folded: folded
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean),
+		next: nextSteps
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean)
+	})
 )
 
 export default compose(
-	withLanguage,
-	withColours,
 	connect(
-		state => ({ answers: answerWithValueSelector(state) }),
+		state => stepsToRules(state),
 		{
 			resetSimulation,
 			goToQuestion

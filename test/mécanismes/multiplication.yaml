@@ -1,5 +1,5 @@
 - nom: mon assiette
-  format: €
+  unité: €
 
 - test: Multiplication simple
   formule:
@@ -29,7 +29,7 @@
 
 
 - nom: mon plafond
-  format: €
+  unité: €
 
 - test: Multiplication plafonnée
   formule:
@@ -51,7 +51,7 @@
       valeur attendue: 1.5
 
 - nom: mon facteur
-  format: nombre
+  unité: _
 
 - test: Multiplication à facteur
   formule:

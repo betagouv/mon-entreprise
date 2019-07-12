@@ -1,8 +1,8 @@
 - nom: montant 
-  format: €
+  unité: €
 
 - test: montant franchisé
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -19,7 +19,7 @@
 
 
 - test: montant décoté
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -32,7 +32,7 @@
       valeur attendue: 0
 
 - test: montant franchisé et décoté
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -56,7 +56,7 @@
 
 
 - test: montant abattu
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -71,7 +71,7 @@
 
 
 - test: montant abattu en pourcentage
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -85,7 +85,7 @@
       valeur attendue: 68000
 
 - test: montant abattu avec plafond numérique
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant
@@ -100,7 +100,7 @@
       valeur attendue: 88000 # 85000 s'il n'y avait pas de plafond à la somme abattue
 
 - test: montant franchisé, décote, abattu
-  format: €
+  unité: €
   formule: 
     allègement: 
       assiette: montant

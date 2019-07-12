@@ -80,7 +80,7 @@ describe('library', function() {
 		let règles = `
 - nom:  revenu imposable
   question: Quel est votre revenu imposable ?
-  format: euros
+  unité: €
 
 - nom: revenu abattu
   formule:

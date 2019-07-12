@@ -9,7 +9,7 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { compose, isEmpty, isNil } from 'ramda'
+import { compose, isEmpty } from 'ramda'
 import React, { Component, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
@@ -23,13 +23,13 @@ import {
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
-import Montant from 'Ui/Montant'
 import { AttachDictionary } from '../AttachDictionary'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import Value from 'Components/Value'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -63,7 +63,6 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-			let ruleFormat = displayedRule.format || displayedRule.explanation?.format
 			return (
 				<>
 					{this.state.viewSource ? (
@@ -101,31 +100,25 @@ export default compose(
 								/>
 
 								<section id="rule-content">
-									{!isNil(displayedRule.nodeValue) && (
-										<div id="ruleValue">
-											{['euros', 'pourcentage'].includes(ruleFormat) ||
-											displayedRule.formule ? (
-												<Montant
-													type={
-														ruleFormat === 'euros'
-															? 'currency'
-															: ruleFormat === 'pourcentage'
-															? 'percent'
-															: 'decimal'
-													}>
-													{displayedRule.nodeValue}
-												</Montant>
-											) : typeof displayedRule.nodeValue !== 'object' ? (
-												displayedRule.nodeValue
-											) : null}
+									<div id="ruleValue">
+										<Value
+											{...displayedRule}
+											nilValueSymbol={
+												displayedRule.parentDependency?.nodeValue == false
+													? '-'
+													: null
+											}
+										/>
+									</div>
+									{displayedRule.defaultValue != null && (
+										<div id="ruleDefault">
+											par défaut :{' '}
+											<Value
+												{...displayedRule}
+												nodeValue={displayedRule.defaultValue}
+											/>
 										</div>
 									)}
-									{displayedRule.defaultValue != null &&
-									typeof displayedRule.defaultValue !== 'object' ? (
-										<div id="ruleDefault">
-											Valeur par défaut : {displayedRule.defaultValue}
-										</div>
-									) : null}
 									{!valuesToShow && (
 										<div style={{ textAlign: 'center', marginTop: '1em' }}>
 											<Link

@@ -1,7 +1,6 @@
 import { expect } from 'chai'
 import { enrichRule } from '../source/engine/rules'
 import { analyseMany, parseAll } from '../source/engine/traverse'
-import { chain, values, prop } from 'ramda'
 
 describe('controls', function() {
 	let rawRules = [
@@ -13,7 +12,7 @@ describe('controls', function() {
 			{ nom: 'résident en France', formule: 'oui' },
 			{
 				nom: 'brut',
-				format: 'euro',
+				unité: '€',
 				question: 'Quel est le salaire brut ?',
 				contrôles: [
 					{
@@ -51,7 +50,7 @@ describe('controls', function() {
 		parsedRules = parseAll(rules)
 
 	it('Should parse blocking controls', function() {
-		let controls = parsedRules.find(r => r.contrôles).contrôles
+		let controls = Object.values(parsedRules).find(r => r.contrôles).contrôles
 		expect(
 			controls.filter(({ level }) => level == 'bloquant')
 		).to.have.lengthOf(2)

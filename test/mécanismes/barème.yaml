@@ -1,8 +1,8 @@
 - nom: assiette
-  format: €
+  unité: €
 
 - nom: base
-  format: €
+  unité: €
 
 - test: Barème en taux marginaux
   formule:

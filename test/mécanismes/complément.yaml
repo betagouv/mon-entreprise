@@ -1,5 +1,5 @@
 - nom: ma cotisation
-  format: €
+  unité: €
 
 - test: Complément
   formule:
@@ -14,7 +14,7 @@
       valeur attendue: 67
 
 - nom: autre cotisation
-  format: €
+  unité: €
 
 - test: Complément à composantes
   formule:

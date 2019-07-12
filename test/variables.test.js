@@ -1,9 +1,9 @@
 import { expect } from 'chai'
-import { evaluateBottomUp, getSituationValue } from '../source/engine/variables'
+import { evaluateBottomUp, getSituationValue } from '../source/engine/getSituationValue'
 
 describe('getSituationValue', function() {
 	it('should directly return the value of any rule that specifies a format (i.e currency, duration)', function() {
-		let rule = { format: 'euros' },
+		let rule = { unité: '€' },
 			state = { salaire: '2300' },
 			situationGate = name => state[name]
 

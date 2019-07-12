@@ -6,7 +6,6 @@ import {
 	collectDefaults,
 	disambiguateExampleSituation,
 	findRuleByDottedName,
-	formatInputs,
 	nestedSituationToPathMap,
 	rules as baseRulesEn,
 	rulesFr as baseRulesFr
@@ -15,6 +14,7 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
 	defaultTo,
+	propEq,
 	difference,
 	dissoc,
 	equals,
@@ -76,7 +76,10 @@ export let targetNamesSelector = state => {
 		)
 	)
 
-	return targetNames
+	const secondaryTargetNames =
+		state.simulation?.config['objectifs secondaires'] || []
+
+	return [...targetNames, ...secondaryTargetNames]
 }
 
 export let situationSelector = createDeepEqualSelector(
@@ -85,8 +88,8 @@ export let situationSelector = createDeepEqualSelector(
 )
 
 export let formattedSituationSelector = createSelector(
-	[flatRulesSelector, situationSelector],
-	(rules, situation) => formatInputs(rules, nestedSituationToPathMap(situation))
+	[situationSelector],
+	situation => nestedSituationToPathMap(situation)
 )
 
 export let noUserInputSelector = createSelector(
@@ -302,6 +305,7 @@ export let nextStepsSelector = createSelector(
 		if (notPriority) {
 			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
 		}
+
 		return nextSteps
 	}
 )

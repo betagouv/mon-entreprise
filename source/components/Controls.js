@@ -44,7 +44,7 @@ function Controls({
 			<ul style={{ margin: 0, padding: 0 }}>
 				{messages.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<animate.fromTop>
+						<animate.fromTop key={test}>
 							<li key={test}>
 								<div className="control">
 									{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}

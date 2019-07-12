@@ -36,7 +36,7 @@ let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
 								to={
 									sitePaths.documentation.index + '/' + encodeRuleName(ruleName)
 								}>
-								{rule.icon && <span>{emoji(rule.icon)} </span>}
+								{rule.icons && <span>{emoji(rule.icons)} </span>}
 								{ruleText}
 							</Link>
 							{' › '}

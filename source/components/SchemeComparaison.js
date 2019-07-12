@@ -14,23 +14,20 @@ import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirig
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import withSitePaths from 'Components/utils/withSitePaths'
 import revenusSVG from 'Images/revenus.svg'
-import { compose, tryCatch } from 'ramda'
+import { compose } from 'ramda'
 import React, { useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import {
-	règleAvecMontantSelector,
-	règleAvecValeurSelector
-} from 'Selectors/regleSelectors'
+	branchAnalyseSelector,
+	analysisWithDefaultsSelector
+} from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
-import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import InfoBulle from 'Ui/InfoBulle'
-import Montant from 'Ui/Montant'
+import Value from 'Components/Value'
 import './SchemeComparaison.css'
-
-import type { RègleAvecMontant, RègleAvecValeur } from 'Types/RegleTypes'
+import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
 
 type OwnProps = {
 	hideAutoEntrepreneur?: boolean,
@@ -38,9 +35,6 @@ type OwnProps = {
 }
 
 type Props = OwnProps & {
-	assimiléSalarié: SimulationResult,
-	indépendant: SimulationResult,
-	autoEntrepreneur: SimulationResult,
 	setSituationBranch: number => void,
 	defineDirectorStatus: string => void,
 	sitePaths: any,
@@ -48,14 +42,11 @@ type Props = OwnProps & {
 	plafondAutoEntrepreneurDépassé: boolean
 }
 
-type SimulationResult = {
-	retraite: RègleAvecMontant,
-	trimestreValidés: RègleAvecValeur,
-	indemnitésJournalières: RègleAvecMontant,
-	indemnitésJournalièresATMP?: RègleAvecMontant,
-	revenuNetDeCotisations: RègleAvecMontant,
-	revenuNetAprèsImpôt: RègleAvecMontant,
-	plafondDépassé?: boolean
+let getBranchIndex = branch =>
+	({ assimilé: 0, indépendant: 1, 'auto entrepreneur': 2 }[branch])
+let getRuleFrom = analyses => (branch, dottedName) => {
+	let i = getBranchIndex(branch)
+	return getRuleFromAnalysis(analyses[i])(dottedName)
 }
 
 const SchemeComparaison = ({
@@ -63,21 +54,21 @@ const SchemeComparaison = ({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false,
 	/* Injected Props */
-	assimiléSalarié,
-	indépendant,
-	autoEntrepreneur,
 
+	plafondAutoEntrepreneurDépassé,
 	defineDirectorStatus,
 	isAutoentrepreneur,
-	setSituationBranch
+	analyses
 }: Props) => {
+	let getRule = getRuleFrom(analyses)
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
-		!!assimiléSalarié.revenuNetAprèsImpôt.montant
+		!!getRule('assimilé', 'revenu net après impôt')?.nodeValue
 	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
 		setConversationStarted
 	])
+
 	return (
 		<>
 			<div
@@ -337,220 +328,229 @@ const SchemeComparaison = ({
 						</div>
 					)}
 				</div>
-				{conversationStarted && !!assimiléSalarié.revenuNetAprèsImpôt.montant && (
-					<>
-						<T k="comparaisonRégimes.revenuNetApresImpot">
-							<h3 className="legend">Revenu net après impôt</h3>
-						</T>
-						<div className="AS">
-							<Animate.appear className="ui__ plain card">
+				{conversationStarted &&
+					!!getRule('assimilé', 'revenu net après impôt')?.nodeValue && (
+						<>
+							<T k="comparaisonRégimes.revenuNetApresImpot">
+								<h3 className="legend">Revenu net après impôt</h3>
+							</T>
+							<div className="AS">
+								<Animate.appear className="ui__ plain card">
+									<RuleValueLink
+										branch="assimilé"
+										rule="revenu net après impôt"
+									/>
+								</Animate.appear>
+							</div>
+							<div className="indep">
+								<Animate.appear className="ui__ plain card">
+									<RuleValueLink
+										branch="indépendant"
+										rule="revenu net après impôt"
+									/>
+								</Animate.appear>
+							</div>
+							<div className="auto">
+								<Animate.appear
+									className={classnames(
+										'ui__ plain card',
+										plafondAutoEntrepreneurDépassé && 'disabled'
+									)}>
+									{plafondAutoEntrepreneurDépassé ? (
+										'Plafond de CA dépassé'
+									) : (
+										<RuleValueLink
+											branch="auto entrepreneur"
+											rule="revenu net après impôt"
+										/>
+									)}
+								</Animate.appear>
+							</div>
+							<T k="comparaisonRégimes.revenuNetAvantImpot">
+								<h3 className="legend">
+									Revenu net de cotisations <small>(avant impôts)</small>
+								</h3>
+							</T>
+							<div className="AS">
 								<RuleValueLink
-									onClick={() => setSituationBranch(0)}
-									{...assimiléSalarié.revenuNetAprèsImpôt}
+									branch="assimilé"
+									rule="contrat salarié . salaire . net"
 								/>
-							</Animate.appear>
-						</div>
-						<div className="indep">
-							<Animate.appear className="ui__ plain card">
+							</div>
+							<div className="indep">
 								<RuleValueLink
-									onClick={() => setSituationBranch(1)}
-									{...indépendant.revenuNetAprèsImpôt}
+									branch="indépendant"
+									rule="indépendant . revenu net de cotisations"
 								/>
-							</Animate.appear>
-						</div>
-						<div className="auto">
-							<Animate.appear
-								className={classnames(
-									'ui__ plain card',
-									autoEntrepreneur.plafondDépassé && 'disabled'
-								)}>
-								{autoEntrepreneur.plafondDépassé ? (
-									'Plafond de CA dépassé'
+							</div>
+							<div className="auto">
+								{plafondAutoEntrepreneurDépassé ? (
+									'—'
 								) : (
 									<RuleValueLink
-										onClick={() => setSituationBranch(2)}
-										{...autoEntrepreneur.revenuNetAprèsImpôt}
+										branch="auto entrepreneur"
+										rule="auto entrepreneur . revenu net de cotisations"
 									/>
 								)}
-							</Animate.appear>
-						</div>
-						<T k="comparaisonRégimes.revenuNetAvantImpot">
+							</div>
 							<h3 className="legend">
-								Revenu net de cotisations <small>(avant impôts)</small>
+								<T k="comparaisonRégimes.retraiteEstimation.legend">
+									<span>Pension de retraite</span>
+									<small>(avant impôts)</small>
+								</T>
 							</h3>
-						</T>
-						<div className="AS">
-							<RuleValueLink
-								onClick={() => setSituationBranch(0)}
-								{...assimiléSalarié.revenuNetDeCotisations}
-							/>
-						</div>
-						<div className="indep">
-							<RuleValueLink
-								onClick={() => setSituationBranch(1)}
-								{...indépendant.revenuNetDeCotisations}
-							/>
-						</div>
-						<div className="auto">
-							{autoEntrepreneur.plafondDépassé ? (
-								'—'
-							) : (
-								<RuleValueLink
-									onClick={() => setSituationBranch(2)}
-									{...autoEntrepreneur.revenuNetDeCotisations}
-								/>
-							)}
-						</div>
-						<h3 className="legend">
-							<T k="comparaisonRégimes.retraiteEstimation.legend">
-								<span>Pension de retraite</span>
-								<small>(avant impôts)</small>
+							<div className="AS">
+								<span>
+									<RuleValueLink
+										branch="assimilé"
+										rule="protection sociale . retraite"
+									/>{' '}
+									<InfoBulle>
+										<T k="comparaisonRégimes.retraiteEstimation.infobulles.AS">
+											Pension calculée pour 172 trimestres cotisés au régime
+											général sans variations de revenus.
+										</T>
+									</InfoBulle>
+								</span>
+							</div>
+							<div className="indep">
+								{getRule('indépendant', 'protection sociale . retraite')
+									.applicable !== false ? (
+									<span>
+										<RuleValueLink
+											branch="indépendant"
+											rule="protection sociale . retraite"
+										/>{' '}
+										<InfoBulle>
+											<T k="comparaisonRégimes.retraiteEstimation.infobulles.indep">
+												Pension calculée pour 172 trimestres cotisés au régime
+												des indépendants sans variations de revenus.
+											</T>
+										</InfoBulle>
+									</span>
+								) : (
+									<span className="ui__ notice">
+										<T>Pas implémenté</T>
+									</span>
+								)}
+							</div>
+							<div className="auto">
+								{plafondAutoEntrepreneurDépassé ? (
+									'—'
+								) : getRule(
+										'auto entrepreneur',
+										'protection sociale . retraite'
+								  ).applicable !== false ? (
+									<span>
+										<RuleValueLink
+											branch="auto entrepreneur"
+											rule="protection sociale . retraite"
+										/>{' '}
+										<InfoBulle>
+											<T k="comparaisonRégimes.retraiteEstimation.infobulles.auto">
+												Pension calculée pour 172 trimestres cotisés en
+												auto-entrepreneur sans variations de revenus.
+											</T>
+										</InfoBulle>
+									</span>
+								) : (
+									<span className="ui__ notice">
+										<T>Pas implémenté</T>
+									</span>
+								)}
+							</div>
+							<T k="comparaisonRégimes.trimestreValidés">
+								<h3 className="legend">
+									Nombre de trimestres validés <small>(pour la retraite)</small>
+								</h3>
 							</T>
-						</h3>
-						<div className="AS">
-							<span>
+							<div className="AS">
 								<RuleValueLink
-									onClick={() => setSituationBranch(0)}
-									{...assimiléSalarié.retraite}
-								/>{' '}
-								<InfoBulle>
-									<T k="comparaisonRégimes.retraiteEstimation.infobulles.AS">
-										Pension calculée pour 172 trimestres cotisés au régime
-										général sans variations de revenus.
-									</T>
-								</InfoBulle>
-							</span>
-						</div>
-						<div className="indep">
-							{indépendant.retraite.applicable !== false ? (
-								<span>
-									<RuleValueLink
-										onClick={() => setSituationBranch(1)}
-										{...indépendant.retraite}
-									/>{' '}
-									<InfoBulle>
-										<T k="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-											Pension calculée pour 172 trimestres cotisés au régime des
-											indépendants sans variations de revenus.
-										</T>
-									</InfoBulle>
-								</span>
-							) : (
-								<span className="ui__ notice">
-									<T>Pas implémenté</T>
-								</span>
-							)}
-						</div>
-						<div className="auto">
-							{autoEntrepreneur.plafondDépassé ? (
-								'—'
-							) : autoEntrepreneur.retraite.applicable !== false ? (
-								<span>
-									<RuleValueLink
-										onClick={() => setSituationBranch(2)}
-										{...autoEntrepreneur.retraite}
-									/>{' '}
-									<InfoBulle>
-										<T k="comparaisonRégimes.retraiteEstimation.infobulles.auto">
-											Pension calculée pour 172 trimestres cotisés en
-											auto-entrepreneur sans variations de revenus.
-										</T>
-									</InfoBulle>
-								</span>
-							) : (
-								<span className="ui__ notice">
-									<T>Pas implémenté</T>
-								</span>
-							)}
-						</div>
-						<T k="comparaisonRégimes.trimestreValidés">
-							<h3 className="legend">
-								Nombre de trimestres validés <small>(pour la retraite)</small>
-							</h3>
-						</T>
-						<div className="AS">
-							<RuleValueLink
-								onClick={() => setSituationBranch(0)}
-								appendText={<T>trimestres</T>}
-								{...assimiléSalarié.trimestreValidés}
-							/>
-						</div>
-						<div className="indep">
-							<RuleValueLink
-								onClick={() => setSituationBranch(1)}
-								appendText={<T>trimestres</T>}
-								{...indépendant.trimestreValidés}
-							/>
-						</div>
-						<div className="auto">
-							{autoEntrepreneur.plafondDépassé ? (
-								'—'
-							) : (
-								<RuleValueLink
-									onClick={() => setSituationBranch(2)}
+									branch="assimilé"
+									rule="protection sociale . retraite . trimestres validés par an"
 									appendText={<T>trimestres</T>}
-									{...autoEntrepreneur.trimestreValidés}
+									unit={null}
 								/>
-							)}
-						</div>
-						<T k="comparaisonRégimes.indemnités">
-							<h3 className="legend">
-								Indemnités journalières <small>(en cas d'arrêt maladie)</small>
-							</h3>
-						</T>
-						<div className="AS">
-							<span>
+							</div>
+							<div className="indep">
 								<RuleValueLink
-									onClick={() => setSituationBranch(0)}
-									appendText={
-										<>
-											/ <T>jour</T>
-										</>
-									}
-									{...assimiléSalarié.indemnitésJournalières}
+									branch="indépendant"
+									rule="protection sociale . retraite . trimestres validés par an"
+									appendText={<T>trimestres</T>}
+									unit={null}
 								/>
-							</span>
-							<small>
-								(
-								<RuleValueLink
-									onClick={() => setSituationBranch(0)}
-									{...assimiléSalarié.indemnitésJournalièresATMP}
-								/>{' '}
-								<T>pour les accidents de trajet/travail et maladie pro</T>)
-							</small>
-						</div>
-						<div className="indep">
-							<span>
-								<RuleValueLink
-									onClick={() => setSituationBranch(1)}
-									appendText={
-										<>
-											/ <T>jour</T>
-										</>
-									}
-									{...indépendant.indemnitésJournalières}
-								/>
-							</span>
-						</div>
-						<div className="auto">
-							{autoEntrepreneur.plafondDépassé ? (
-								'—'
-							) : (
+							</div>
+							<div className="auto">
+								{plafondAutoEntrepreneurDépassé ? (
+									'—'
+								) : (
+									<RuleValueLink
+										branch="auto entrepreneur"
+										rule="protection sociale . retraite . trimestres validés par an"
+										appendText={<T>trimestres</T>}
+										unit={null}
+									/>
+								)}
+							</div>
+							<T k="comparaisonRégimes.indemnités">
+								<h3 className="legend">
+									Indemnités journalières{' '}
+									<small>(en cas d'arrêt maladie)</small>
+								</h3>
+							</T>
+							<div className="AS">
 								<span>
 									<RuleValueLink
-										onClick={() => setSituationBranch(2)}
+										branch="assimilé"
 										appendText={
 											<>
 												/ <T>jour</T>
 											</>
 										}
-										{...autoEntrepreneur.indemnitésJournalières}
+										rule="protection sociale . santé . indemnités journalières"
 									/>
 								</span>
-							)}
-						</div>
-					</>
-				)}
+								<small>
+									(
+									<RuleValueLink
+										branch="assimilé"
+										rule="protection sociale . accidents du travail et maladies professionnelles"
+									/>{' '}
+									<T>pour les accidents de trajet/travail et maladie pro</T>)
+								</small>
+							</div>
+							<div className="indep">
+								<span>
+									<RuleValueLink
+										appendText={
+											<>
+												/ <T>jour</T>
+											</>
+										}
+										branch="indépendant"
+										rule="protection sociale . santé . indemnités journalières"
+									/>
+								</span>
+							</div>
+							<div className="auto">
+								{plafondAutoEntrepreneurDépassé ? (
+									'—'
+								) : (
+									<span>
+										<RuleValueLink
+											branch="auto entrepreneur"
+											rule="protection sociale . santé . indemnités journalières"
+											appendText={
+												<>
+													/ <T>jour</T>
+												</>
+											}
+										/>
+									</span>
+								)}
+							</div>
+						</>
+					)}
 			</div>
 			<div className="ui__ container">
 				<br />
@@ -598,92 +598,59 @@ const SchemeComparaison = ({
 	)
 }
 
-const RuleValueLink = withSitePaths(
-	({ lien, montant, valeur, sitePaths, onClick, appendText }) => (
-		<Link onClick={onClick} to={sitePaths.documentation.index + '/' + lien}>
-			{montant != undefined && <AnimatedTargetValue value={montant} />}
-			{valeur != undefined && (
-				<Montant numFractionDigit={0} type="decimal">
-					{valeur}
-				</Montant>
-			)}
-			{appendText && <> {appendText}</>}
-		</Link>
+const RuleValueLink = compose(
+	withSitePaths,
+	connect(
+		state => ({
+			analyses: analysisWithDefaultsSelector(state)
+		}),
+		{
+			setSituationBranch
+		}
 	)
+)(
+	({
+		analyses,
+		branch,
+		rule: dottedName,
+		sitePaths,
+		appendText,
+		setSituationBranch,
+		unit
+	}) => {
+		let rule = getRuleFrom(analyses)(branch, dottedName)
+		return !rule ? null : (
+			<Link
+				onClick={() => setSituationBranch(getBranchIndex(branch))}
+				to={
+					sitePaths.documentation.index + '/' + encodeRuleName(rule.dottedName)
+				}>
+				<Value
+					numFractionDigits={0}
+					{...rule}
+					unit={
+						/* //TODO the unit should be integrated in the leaf rules of base.yaml and infered by mecanisms. Will be done in a future release*/
+						unit !== undefined ? unit : '€'
+					}
+				/>
+				{appendText && <> {appendText}</>}
+			</Link>
+		)
+	}
 )
 
 export default (compose(
 	withSimulationConfig(ComparaisonConfig),
 	connect(
-		tryCatch(
-			state => ({
-				autoEntrepreneur: {
-					retraite: règleAvecMontantSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					})('protection sociale . retraite'),
-					trimestreValidés: règleAvecValeurSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					})('protection sociale . retraite . trimestres validés par an'),
-					indemnitésJournalières: règleAvecMontantSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					})('protection sociale . santé . indemnités journalières'),
-					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					})('revenu net après impôt'),
-					revenuNetDeCotisations: règleAvecMontantSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					})('auto entrepreneur . revenu net de cotisations'),
-					// $FlowFixMe
-					plafondDépassé: branchAnalyseSelector(state, {
-						situationBranchName: 'Auto-entrepreneur'
-					}).controls?.find(
-						({ test }) =>
-							test.includes && test.includes('base des cotisations > plafond')
-					)
-				},
-				indépendant: {
-					retraite: règleAvecMontantSelector(state, {
-						situationBranchName: 'Indépendant'
-					})('protection sociale . retraite'),
-					trimestreValidés: règleAvecValeurSelector(state, {
-						situationBranchName: 'Indépendant'
-					})('protection sociale . retraite . trimestres validés par an'),
-					indemnitésJournalières: règleAvecMontantSelector(state, {
-						situationBranchName: 'Indépendant'
-					})('protection sociale . santé . indemnités journalières'),
-					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
-						situationBranchName: 'Indépendant'
-					})('revenu net après impôt'),
-					revenuNetDeCotisations: règleAvecMontantSelector(state, {
-						situationBranchName: 'Indépendant'
-					})('indépendant . revenu net de cotisations')
-				},
-				assimiléSalarié: {
-					retraite: règleAvecMontantSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})('protection sociale . retraite'),
-					trimestreValidés: règleAvecValeurSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})('protection sociale . retraite . trimestres validés par an'),
-					indemnitésJournalières: règleAvecMontantSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})('protection sociale . santé . indemnités journalières'),
-					indemnitésJournalièresATMP: règleAvecMontantSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})(
-						'protection sociale . accidents du travail et maladies professionnelles'
-					),
-					revenuNetAprèsImpôt: règleAvecMontantSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})('revenu net après impôt'),
-					revenuNetDeCotisations: règleAvecMontantSelector(state, {
-						situationBranchName: 'Assimilé salarié'
-					})('contrat salarié . salaire . net')
-				}
-			}),
-			e => console.log(e) || {}
-		),
-
+		state => ({
+			analyses: analysisWithDefaultsSelector(state),
+			plafondAutoEntrepreneurDépassé: branchAnalyseSelector(state, {
+				situationBranchName: 'Auto-entrepreneur'
+			}).controls?.find(
+				({ test }) =>
+					test.includes && test.includes('base des cotisations > plafond')
+			)
+		}),
 		{
 			defineDirectorStatus,
 			isAutoentrepreneur,

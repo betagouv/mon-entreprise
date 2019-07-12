@@ -93,7 +93,7 @@ describe('fold', function() {
           formule: brut - cotisation
 
         - nom: brut
-          format: euro
+          unité: €
 
         - nom: cotisation
           formule:

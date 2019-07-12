@@ -2,12 +2,12 @@
 
 - nom: chiffre affaires
   période: flexible
-  format: euros
+  unité: €
 
 - nom: charges
   période: flexible
   par défaut: 0
-  format: euros
+  unité: €
 
 - nom: répartition salaire sur dividendes
   par défaut: 0.5

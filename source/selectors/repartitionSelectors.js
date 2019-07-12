@@ -14,23 +14,24 @@ import {
 	pipe,
 	reduce,
 	sort,
+	propEq,
 	without
 } from 'ramda'
 import { createSelector } from 'reselect'
-import FicheDePaieSelectors, {
+import {
 	BLANK_COTISATION,
-	mergeCotisations
+	mergeCotisations,
+	analysisToCotisations
 } from './ficheDePaieSelectors'
-import { règleLocaliséeSelector } from './regleSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { getRuleFromAnalysis } from 'Engine/rules'
 
 import type {
 	Cotisation,
 	MontantPartagé,
 	Branche,
-	FicheDePaie,
 	Répartition
 } from 'Types/ResultViewTypes'
-import type { RègleAvecMontant, Règle } from 'Types/RegleTypes'
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
@@ -80,7 +81,7 @@ const brancheConcernéeParLaRéduction = [
 	'famille'
 ].map(branche => 'protection sociale . ' + branche)
 function applyReduction(
-	réduction: RègleAvecMontant,
+	réduction,
 	répartitionMap: { [Branche]: MontantPartagé }
 ): { [Branche]: MontantPartagé } {
 	const totalPatronal = pipe(
@@ -93,7 +94,7 @@ function applyReduction(
 	return mapObjIndexed(
 		({ partPatronale, partSalariale }, branche) => ({
 			partPatronale: brancheConcernéeParLaRéduction.find(equals(branche))
-				? partPatronale - (partPatronale / totalPatronal) * réduction.montant
+				? partPatronale - (partPatronale / totalPatronal) * réduction.nodeValue
 				: partPatronale,
 			partSalariale
 		}),
@@ -102,25 +103,22 @@ function applyReduction(
 	)
 }
 
-const répartition = (
-	ficheDePaie: ?FicheDePaie,
-	règle: string => Règle
-): ?Répartition => {
-	if (!ficheDePaie) {
-		return null
-	}
+const répartition = (analysis): ?Répartition => {
 	// $FlowFixMe
-	const cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
-		map(
-			([brancheRègle, cotisations]) => [brancheRègle.id, cotisations],
-			ficheDePaie.cotisations
-		)
+	let cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
+		analysisToCotisations(analysis)
 	)
-	const { salaireNet, salaireChargé, réductionsDeCotisations } = ficheDePaie
+
+	const getRule = getRuleFromAnalysis(analysis),
+		salaireNet = getRule('contrat salarié . salaire . net'),
+		salaireChargé = getRule('contrat salarié . rémunération . total'),
+		réductionsDeCotisations = getRule(
+			'contrat salarié . réductions de cotisations'
+		)
 	let CSG
 	const autresCotisations = cotisations['protection sociale . autres']
 	if (autresCotisations) {
-		CSG = autresCotisations.find(({ id }) => id === 'contrat salarié . CSG')
+		CSG = autresCotisations.find(propEq('dottedName', 'contrat salarié . CSG'))
 		if (!CSG)
 			throw new Error('[répartition selector]: expect CSG not to be null')
 		cotisations['protection sociale . autres'] = without(
@@ -143,7 +141,6 @@ const répartition = (
 		// $FlowFixMe
 		répartition: compose(
 			sort(byMontantTotal),
-			map(([id, cotisation]) => [règle(id), cotisation]),
 			Object.entries,
 			filter(
 				({ partPatronale, partSalariale }) =>
@@ -168,7 +165,6 @@ const répartition = (
 
 // $FlowFixMe
 export default createSelector(
-	FicheDePaieSelectors,
-	règleLocaliséeSelector,
+	[analysisWithDefaultsSelector],
 	répartition
 )

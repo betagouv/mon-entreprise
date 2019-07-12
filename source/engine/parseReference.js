@@ -1,3 +1,4 @@
+// Reference to a variable
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
@@ -7,9 +8,19 @@ import {
 	findParentDependency,
 	findRuleByDottedName
 } from './rules'
-import { getSituationValue } from './variables'
+import { getSituationValue } from './getSituationValue'
+import parseRule from 'Engine/parseRule'
 
-export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
+export let parseReference = (rules, rule, parsedRules, filter) => ({
+	fragments
+}) => {
+	let partialReference = fragments.join(' . '),
+		dottedName = disambiguateRuleReference(rules, rule, partialReference)
+
+	let parsedRule =
+		parsedRules[dottedName] ||
+		parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules)
+
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
 			// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -18,7 +29,9 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			cached = cache[cacheName]
 
 		if (cached) return cached
-		let variable = findRuleByDottedName(parsedRules, dottedName),
+
+		let variable =
+				typeof parsedRule === 'object' ? parsedRule : parsedRules[dottedName],
 			variableHasFormula = variable.formule != null,
 			variableHasCond =
 				variable['applicable si'] != null ||
@@ -28,17 +41,15 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 			needsEvaluation =
 				situationValue == null && (variableHasCond || variableHasFormula)
 
-		//		if (dottedName.includes('jeune va')) debugger
-
 		let explanation = needsEvaluation
 			? evaluateNode(cache, situation, parsedRules, variable)
 			: variable
 
-		let cacheAndNode = (nodeValue, missingVariables) => {
+		let cacheAndNode = (nodeValue, missingVariables, customExplanation) => {
 			cache[cacheName] = rewriteNode(
 				node,
 				nodeValue,
-				explanation,
+				customExplanation || explanation,
 				missingVariables
 			)
 			return cache[cacheName]
@@ -46,7 +57,13 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		const variableScore = variable.defaultValue ? 1 : 2
 
 		// SITUATION 1 : La variable est directement renseignée
-		if (situationValue != null) return cacheAndNode(situationValue, {})
+		if (situationValue != null) {
+			return cacheAndNode(
+				situationValue,
+				{},
+				{ ...explanation, nodeValue: situationValue }
+			)
+		}
 
 		// SITUATION 2 : La variable est calculée
 		if (situationValue == null && variableHasFormula)
@@ -72,9 +89,6 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 		}
 	}
 
-	let variablePartialName = fragments.join(' . '),
-		dottedName = disambiguateRuleReference(rules, rule, variablePartialName)
-
 	return {
 		evaluate,
 		//eslint-disable-next-line react/display-name
@@ -85,13 +99,15 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 				name={fragments.join(' . ')}
 				dottedName={dottedName}
 				value={nodeValue}
+				unit={parsedRule.unit}
 			/>
 		),
 
-		name: variablePartialName,
-		category: 'variable',
+		name: partialReference,
+		category: 'reference',
 		fragments,
-		dottedName
+		dottedName,
+		unit: parsedRule.unit
 	}
 }
 
@@ -100,9 +116,11 @@ export let treatVariable = (rules, rule, filter) => ({ fragments }) => {
 // See the période.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-// TODO - the implementations of filters is really bad. It injects a hack in the situation to make the composante mecanism compute only one of its branch. It is then stored in the cache under a new key, dottedName.filter. This mecanism should just query the variable tree to get the active composante's value...
-//
-export let treatVariableTransforms = (rules, rule) => parseResult => {
+export let parseReferenceTransforms = (
+	rules,
+	rule,
+	parsedRules
+) => parseResult => {
 	let evaluateTransforms = originalEval => (
 		cache,
 		situation,
@@ -180,7 +198,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 
 		return result
 	}
-	let node = treatVariable(rules, rule, parseResult.filter)(
+	let node = parseReference(rules, rule, parsedRules, parseResult.filter)(
 		parseResult.variable
 	)
 
@@ -200,7 +218,7 @@ export let treatVariableTransforms = (rules, rule) => parseResult => {
 	}
 }
 
-export let treatNegatedVariable = variable => {
+export let parseNegatedReference = variable => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let explanation = evaluateNode(
 				cache,

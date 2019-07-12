@@ -60,7 +60,7 @@
 
 
 - nom: base
-  format: euros
+  unité: €
 
 - test: variations avec cas défaut calculé
   formule:
@@ -83,10 +83,10 @@
       variables manquantes: []
 
 - nom: effectif
-  format: nombre
+  unité: _
 
 - nom: effectif plafond
-  format: nombre
+  unité: _
 
 - test: plusieurs variations et un cas défaut
   formule: 

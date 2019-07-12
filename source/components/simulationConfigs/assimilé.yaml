@@ -13,6 +13,10 @@ objectifs:
       - entreprise . charges
       - entreprise . chiffre d'affaires minimum
 
+objectifs secondaires: 
+  - contrat salarié . heures par semaine
+  - contrat salarié . cotisations . patronales à payer
+
 questions:
   à l'affiche:
     ACRE: entreprise . année d'activité

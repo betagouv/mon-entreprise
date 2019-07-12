@@ -1,21 +1,63 @@
-import { desugarScale } from 'Engine/mecanisms/barème';
-import { decompose, devariateExplanation } from 'Engine/mecanisms/utils';
-import { add, any, aperture, curry, equals, evolve, filter, find, head, is, isEmpty, isNil, keys, last, map, max, mergeWith, min, path, pipe, pluck, prop, propEq, reduce, reduced, reject, sort, subtract, toPairs } from 'ramda';
-import React from 'react';
-import { Trans } from 'react-i18next';
-import 'react-virtualized/styles.css';
-import { bonus, collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, mergeMissing, parseObject, rewriteNode } from './evaluation';
-import Allègement from './mecanismViews/Allègement';
-import Barème from './mecanismViews/Barème';
-import BarèmeContinu from './mecanismViews/BarèmeContinu';
-import { Node, SimpleRuleLink } from './mecanismViews/common';
-import InversionNumérique from './mecanismViews/InversionNumérique';
-import Product from './mecanismViews/Product';
-import Somme from './mecanismViews/Somme';
-import Variations from './mecanismViews/Variations';
-import { disambiguateRuleReference, findRuleByDottedName } from './rules';
-import { anyNull, val } from './traverse-common-functions';
-import uniroot from './uniroot';
+import { desugarScale } from 'Engine/mecanisms/barème'
+import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
+import {
+	add,
+	any,
+	aperture,
+	curry,
+	equals,
+	evolve,
+	filter,
+	find,
+	head,
+	is,
+	isEmpty,
+	isNil,
+	keys,
+	last,
+	map,
+	max,
+	mergeWith,
+	min,
+	path,
+	pipe,
+	pluck,
+	prop,
+	propEq,
+	reduce,
+	reduced,
+	reject,
+	sort,
+	subtract,
+	toPairs
+} from 'ramda'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import 'react-virtualized/styles.css'
+import {
+	bonus,
+	collectNodeMissing,
+	defaultNode,
+	evaluateArray,
+	evaluateNode,
+	evaluateObject,
+	makeJsx,
+	mergeAllMissing,
+	mergeMissing,
+	parseObject,
+	rewriteNode
+} from './evaluation'
+import Allègement from './mecanismViews/Allègement'
+import Barème from './mecanismViews/Barème'
+import BarèmeContinu from './mecanismViews/BarèmeContinu'
+import { Node, SimpleRuleLink } from './mecanismViews/common'
+import InversionNumérique from './mecanismViews/InversionNumérique'
+import Product from './mecanismViews/Product'
+import Somme from './mecanismViews/Somme'
+import Variations from './mecanismViews/Variations'
+import { disambiguateRuleReference, findRuleByDottedName } from './rules'
+import { anyNull, val } from './traverse-common-functions'
+import uniroot from './uniroot'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export let mecanismVariations = (recurse, k, v, devariate) => {
@@ -324,30 +366,19 @@ export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	let candidates = inversions
 			.map(i =>
 				disambiguateRuleReference(
-					parsedRules,
-					parsedRules.find(propEq('dottedName', dottedName)),
+					Object.values(parsedRules),
+					parsedRules[dottedName],
 					i
 				)
 			)
 			.map(name => {
 				let userInput = situationGate(name) != undefined
 				let rule = findRuleByDottedName(parsedRules, name)
-				/* When the fixedObjectiveValue is null, the inversion can't be done : the user needs to set the target's value
-				 * But the objectiveRule can also have an 'alternative' property,
-				 * which must point to a rule whose value either is set by the user,
-				 * or is calculated according to a formula that does not depend on the rule being inversed.
-				 * This alternative's value will be used as a target.
-				 * */
-				let alternativeRule =
-					!userInput &&
-					rule.alternative &&
-					findRuleByDottedName(parsedRules, rule.alternative)
-				if (!userInput && !alternativeRule) return null
+				if (!userInput) return null
 				return {
 					fixedObjectiveRule: rule,
 					userInput,
-					fixedObjectiveValue: situationGate(name),
-					alternativeRule
+					fixedObjectiveValue: situationGate(name)
 				}
 			}),
 		candidateWithUserInput = candidates.find(c => c && c.userInput)
@@ -365,20 +396,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			missingVariables: { [dottedName]: 1 },
 			nodeValue: null
 		}
-	let { fixedObjectiveValue, fixedObjectiveRule, alternativeRule } = inversion
-
-	let evaluatedAlternative =
-		alternativeRule &&
-		evaluateNode(oldCache, situationGate, parsedRules, alternativeRule)
-	if (evaluatedAlternative && evaluatedAlternative.nodeValue == null)
-		return {
-			missingVariables: evaluatedAlternative.missingVariables,
-			nodeValue: null
-		}
-
-	let objectiveValue = evaluatedAlternative
-		? evaluatedAlternative.nodeValue
-		: fixedObjectiveValue
+	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 
 	let inversionCache = {}
 	let fx = x => {
@@ -411,7 +429,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		nodeValue = uniroot(
 			x => {
 				let y = fx(x)
-				return y.nodeValue - objectiveValue
+				return y.nodeValue - fixedObjectiveValue
 			},
 			0.1,
 			1000000000,
@@ -450,10 +468,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 		let evaluatedNode = rewriteNode(
 			node,
 			nodeValue,
-			{
-				...evolve({ avec: map(recurse) }, v),
-				inversedWith: inversion?.inversedWith
-			},
+			{ ...node.explanation, inversedWith: inversion?.inversedWith },
 			missingVariables
 		)
 		// TODO - we need this so that ResultsGrid will work, but it's
@@ -526,7 +541,8 @@ export let mecanismReduction = (recurse, k, v) => {
 				: abattement.type === 'percentage'
 				? max(
 						0,
-						montantFranchiséDécoté - min(val(plafond), val(abattement) * montantFranchiséDécoté)
+						montantFranchiséDécoté -
+							min(val(plafond), val(abattement) * montantFranchiséDécoté)
 				  )
 				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
 			: montantFranchiséDécoté
@@ -625,7 +641,9 @@ export let mecanismLinearScale = (recurse, k, v) => {
 		let roundedAssiette = Math.round(val(assiette))
 
 		let matchedTranche = tranches.find(
-			({ de: min, à: max }) => roundedAssiette >= (val(multiplicateur) * min) && roundedAssiette <= (max * val(multiplicateur))
+			({ de: min, à: max }) =>
+				roundedAssiette >= val(multiplicateur) * min &&
+				roundedAssiette <= max * val(multiplicateur)
 		)
 
 		if (!matchedTranche) return 0
@@ -769,7 +787,8 @@ export let mecanismMin = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le minimum de'
+		name: 'le minimum de',
+		unit: explanation[0].unit
 	}
 }
 

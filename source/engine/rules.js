@@ -1,5 +1,3 @@
-// Séparation artificielle, temporaire, entre ces deux types de règles
-import formValueTypes from 'Components/conversation/formValueTypes'
 import {
 	assoc,
 	chain,
@@ -7,13 +5,11 @@ import {
 	find,
 	fromPairs,
 	has,
-	identity,
 	is,
 	isNil,
 	join,
 	last,
 	map,
-	mapObjIndexed,
 	path,
 	pipe,
 	propEq,
@@ -31,42 +27,30 @@ import {
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
-import { capitalise0 } from '../utils'
+import { capitalise0, coerceArray } from '../utils'
 import marked from './marked'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
+import { parseUnit } from 'Engine/units'
 
-// console.log('rawRules', rawRules.map(({espace, nom}) => espace + nom))
 /***********************************
- Méthodes agissant sur une règle */
+Functions working on one rule */
 
-// Enrichissement de la règle avec des informations évidentes pour un lecteur humain
 export let enrichRule = rule => {
 	try {
-		let type = possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
-			name = rule['nom'],
-			title = capitalise0(rule['titre'] || name),
-			ns = rule['espace'],
-			dottedName = buildDottedName(rule),
-			subquestionMarkdown = rule['sous-question'],
-			subquestion = subquestionMarkdown && marked(subquestionMarkdown),
-			defaultValue = rule['par défaut'],
-			examples = rule['exemples'],
-			icon = rule['icônes'],
-			summary = rule['résumé']
-
+		let unit = rule.unité && parseUnit(rule.unité)
 		return {
 			...rule,
-			type,
-			name,
-			title,
-			ns,
-			dottedName,
-			subquestion,
-			defaultValue,
-			raw: rule,
-			examples,
-			icon,
-			summary
+			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
+			name: rule['nom'],
+			title: capitalise0(rule['titre'] || rule['nom']),
+			ns: rule['espace'],
+			dottedName: buildDottedName(rule),
+			subquestion: rule['sous-question'] && marked(rule['sous-question']),
+			defaultValue: rule['par défaut'],
+			examples: rule['exemples'],
+			icons: rule['icônes'],
+			summary: rule['résumé'],
+			unit
 		}
 	} catch (e) {
 		console.log(e)
@@ -156,26 +140,19 @@ export let collectDefaults = pipe(
  Méthodes de recherche d'une règle */
 
 export let findRuleByName = (allRules, query) =>
-	allRules.find(({ name }) => name === query)
+	(Array.isArray(allRules) ? allRules : Object.values(allRules)).find(
+		({ name }) => name === query
+	)
 
 export let findRulesByName = (allRules, query) =>
-	allRules.filter(({ name }) => name === query)
+	(Array.isArray(allRules) ? allRules : Object.values(allRules)).filter(
+		({ name }) => name === query
+	)
 
-export let searchRules = searchInput =>
-	rules
-		.filter(
-			rule =>
-				rule &&
-				hasKnownRuleType(rule) &&
-				JSON.stringify(rule)
-					.toLowerCase()
-					.indexOf(searchInput) > -1
-		)
-		.map(enrichRule)
-
-export let findRuleByDottedName = (allRules, dottedName) => {
-	return allRules.find(rule => rule.dottedName == dottedName)
-}
+export let findRuleByDottedName = (allRules, dottedName) =>
+	Array.isArray(allRules)
+		? allRules.find(rule => rule.dottedName == dottedName)
+		: allRules[dottedName]
 
 export let findRule = (rules, nameOrDottedName) =>
 	nameOrDottedName.includes(' . ')
@@ -201,19 +178,6 @@ export let nestedSituationToPathMap = situation => {
 
 	return fromPairs(rec(situation, []))
 }
-
-export let formatInputs = (flatRules, pathValueMap) =>
-	mapObjIndexed((value, path) => {
-		// Our situationGate retrieves data from the "conversation" form
-		// The search below is to apply input conversions such as replacing "," with "."
-		if (name.startsWith('sys.')) return null
-
-		let rule = findRuleByDottedName(flatRules, path),
-			format = rule ? formValueTypes[rule.format] : null,
-			pre = format && format.validator.pre ? format.validator.pre : identity
-
-		return pre(value)
-	}, pathValueMap)
 
 /* Traduction */
 
@@ -260,6 +224,7 @@ export let translateAll = (translations, flatRules) => {
 export let rules = translateAll(translations, rawRules).map(rule =>
 	enrichRule(rule)
 )
+
 export let rulesFr = rawRules.map(rule => enrichRule(rule))
 
 export let findParentDependency = (rules, rule) => {
@@ -272,7 +237,28 @@ export let findParentDependency = (rules, rule) => {
 		reject(isNil),
 		find(
 			//Find the first "calculable" parent
-			({ question, format, formule }) => question && !format && !formule //implicitly, the format is boolean
+			({ question, unit, formule }) => question && !unit && !formule //implicitly, the format is boolean
 		)
 	)(parentDependencies)
+}
+
+export let getRuleFromAnalysis = analysis => dottedName => {
+	if (!analysis) {
+		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
+	}
+	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
+		.map(
+			analysis =>
+				analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
+				analysis.targets.find(propEq('dottedName', dottedName))
+		)
+		.filter(Boolean)[0]
+
+	if (!rule) {
+		throw new Error(
+			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
+		)
+	}
+
+	return rule
 }

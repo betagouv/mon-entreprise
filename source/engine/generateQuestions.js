@@ -1,4 +1,3 @@
-import formValueTypes from 'Components/conversation/formValueTypes'
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
@@ -26,6 +25,7 @@ import {
 } from 'ramda'
 import React from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
+import {serialiseUnit} from 'Engine/units'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -71,13 +71,13 @@ export let getNextSteps = missingVariablesByTarget => {
 export let collectMissingVariables = targets =>
 	getNextSteps(collectMissingVariablesByTarget(targets))
 
-let isVariant = rule => queryRule(rule.raw)('formule . une possibilité')
+let getVariant = rule => queryRule(rule)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path)
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
-		let variant = isVariant(node),
+		let variant = getVariant(node),
 			variants = variant && unless(is(Array), prop('possibilités'))(variant),
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
 			canGiveUp = variant && !variant['choix obligatoire']
@@ -106,7 +106,7 @@ export let getInputComponent = rules => dottedName => {
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
 
-	if (isVariant(rule))
+	if (getVariant(rule))
 		return (
 			<Question
 				{...{
@@ -119,7 +119,7 @@ export let getInputComponent = rules => dottedName => {
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
-	if (rule.format == null)
+	if (rule.unit == null)
 		return (
 			<Question
 				{...{
@@ -137,7 +137,6 @@ export let getInputComponent = rules => dottedName => {
 			<SelectAtmp
 				{...{
 					...commonProps,
-					valueType: formValueTypes[rule.format],
 					suggestions: rule.suggestions
 				}}
 			/>
@@ -149,7 +148,7 @@ export let getInputComponent = rules => dottedName => {
 		<Input
 			{...{
 				...commonProps,
-				valueType: formValueTypes[rule.format],
+				unit: serialiseUnit(rule.unit),
 				suggestions: rule.suggestions,
 				rulePeriod: rule.période
 			}}

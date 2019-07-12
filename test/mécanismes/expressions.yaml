@@ -178,7 +178,7 @@
 
 - nom: revenu
   période: mois
-  format: €
+  unité: €
 
 - test: variable modifiée temporellement
   formule: revenu [annuel]
