@@ -85,13 +85,13 @@ export default compose(
 										<Value
 											nilValueSymbol="—"
 											unit="€"
-											style={{ backgroundColor: lightestColour }}>
+											customCSS="background-color: var(--lightestColour)">
 											{cotisation.montant.partPatronale}
 										</Value>
 										<Value
 											nilValueSymbol="—"
 											unit="€"
-											style={{ backgroundColor: lightestColour }}>
+											customCSS="background-color: var(--lightestColour)">
 											{cotisation.montant.partSalariale}
 										</Value>
 									</Fragment>

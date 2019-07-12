@@ -23,8 +23,10 @@ let booleanTranslations = {
 	en: { true: 'Yes', false: 'No' }
 }
 
-let style = `
+let style = customStyle => `
 		font-family: 'Courier New', Courier, monospace;
+
+		${customStyle}
 `
 
 export default withLanguage(
@@ -35,7 +37,8 @@ export default withLanguage(
 		numFractionDigits,
 		children,
 		negative,
-		language
+		language,
+		customCSS = ''
 	}) => {
 		/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
 		let nodeValue = value === undefined ? children : value
@@ -46,7 +49,7 @@ export default withLanguage(
 			nodeValue === null
 		)
 			return (
-				<span css={style} className="value">
+				<span css={style(customCSS)} className="value">
 					-
 				</span>
 			)
@@ -71,7 +74,7 @@ export default withLanguage(
 				)
 
 		return nodeValue == undefined ? null : (
-			<span css={style} className="value">
+			<span css={style(customCSS)} className="value">
 				{negative ? '-' : ''}
 				{formattedValue}
 			</span>
