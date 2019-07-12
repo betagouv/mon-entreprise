@@ -8,7 +8,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 		),
 		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
 		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
-		salaireBrut = getRule('contrat salarié . salaire . brut')
+		rémunérationBrute = getRule('contrat salarié . rémunération . brut')
 
 	return (
 		<div className="payslip__salarySection">
@@ -19,8 +19,8 @@ export let SalaireBrutSection = ({ getRule }) => {
 				indemnitésSalarié.nodeValue !== 0) && <Line rule={salaireDeBase} />}
 			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
 			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
-			<RuleLink className="payslip__brut" {...salaireBrut} />
-			<Value className="payslip__brut" {...salaireBrut} unit="€" />
+			<RuleLink className="payslip__brut" {...rémunérationBrute} />
+			<Value className="payslip__brut" {...rémunérationBrute} unit="€" />
 		</div>
 	)
 }
