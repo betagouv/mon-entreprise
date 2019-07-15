@@ -2,50 +2,55 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
 import {
 	flatActivités,
+	getActivité,
 	getMinimumDéclaration,
 	getSousActivités
 } from './activitésData'
 
-const activitéReducer = activité =>
+const activitéReducer = reducerActivité =>
 	combineReducers({
-		effectuée: (state = false, action) =>
-			action.type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' &&
-			action.activité === activité
+		effectuée: (state = false, { type, activité }) =>
+			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
 				? !state
 				: state,
-		répondue: (state = false, action) => {
-			switch (action.type) {
-				case 'SELECT_SEUIL_REVENUS_ATTEINT':
-					return action.activité === activité || state
-				case 'TOGGLE_ACTIVITÉ_EFFECTUÉE':
-					return activité === action.activitéParente || state
-				default:
-					return state
+		vue: (state = false, { type, activité }) =>
+			(type === 'ACTIVITÉ_VUE' && reducerActivité === activité) || state,
+		seuilRevenus: (
+			state = getMinimumDéclaration(reducerActivité),
+			{ type, activité, seuilAtteint }
+		) =>
+			type === 'SELECT_SEUIL_REVENUS_ATTEINT' && reducerActivité === activité
+				? seuilAtteint
+				: state,
+		critèresExonération: (
+			state = new Array(
+				(getActivité(reducerActivité)['exonérée sauf si'] || []).length
+			).fill(true),
+			{ activité, type, index, estRespecté }
+		) => {
+			if (
+				type === 'CHANGE_CRITÈRE_EXONÉRATION' &&
+				reducerActivité === activité
+			) {
+				state[index] = estRespecté
+				return [...state]
 			}
-		},
-		déclaration: (state = getMinimumDéclaration(activité), action) =>
-			action.type !== 'SELECT_SEUIL_REVENUS_ATTEINT' ||
-			action.activité !== activité
-				? state
-				: action.seuilAtteint
+			return state
+		}
 	})
 
 let reducer = reduceReducers(
-	(state, action) => console.group(action, state) || state,
 	(state, { type, activité }) => {
-		if (
-			type !== 'TOGGLE_ACTIVITÉ_EFFECTUÉE' ||
-			state[activité].effectuée === true
-		) {
-			return state
+		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
+			return getSousActivités(activité).reduce(
+				(newState, sousActivité) => ({
+					...newState,
+					[sousActivité]: { ...state[sousActivité], effectuée: false }
+				}),
+				state
+			)
 		}
-		return getSousActivités(activité).reduce(
-			(newState, sousActivité) => ({
-				...state,
-				[sousActivité]: { ...state[sousActivité], effectuée: false }
-			}),
-			state
-		)
+		return state
 	},
 	combineReducers(
 		flatActivités.reduce(

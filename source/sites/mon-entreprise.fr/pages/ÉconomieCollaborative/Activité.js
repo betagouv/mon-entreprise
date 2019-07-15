@@ -8,7 +8,10 @@ import { Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { selectSeuilRevenus } from './actions'
 import { getActivité } from './activitésData'
-import { ActivitéSelection, NextButton } from './ActivitésSelection'
+import { ActivitéSelection } from './ActivitésSelection'
+import ExceptionsExonération from './ExceptionsExonération'
+import NextButton from './NextButton'
+import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
 
 export default withSitePaths(function Activité({
@@ -40,10 +43,10 @@ export default withSitePaths(function Activité({
 		)
 	}
 
-	const seuilRevenus = state[title].déclaration
-
+	const seuilRevenus = state[title].seuilRevenus
+	const estExonérée = estExonéréeSelector(title)(state)
 	return (
-		<section>
+		<section key={title}>
 			<ScrollToTop />
 			<Animate.fromBottom>
 				<h1>
@@ -56,14 +59,23 @@ export default withSitePaths(function Activité({
 						Exemples de plateformes : {activité.plateformes.join(', ')}
 					</p>
 				)}
+				<ExceptionsExonération
+					activité={title}
+					exceptionsExonération={activité['exonérée sauf si']}
+				/>
 
-				{activité['seuil pro'] === 0 ? (
+				{estExonérée ? null : activité['seuil pro'] === 0 ? (
 					<>
 						<h2>Il s'agit d'une activité professionnelle</h2>
 						<p>
 							Les revenus de cette activité sont considérés comme des{' '}
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
 						</p>
+					</>
+				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
+					<>
+						<h2>Vous devez déclarez vos revenus aux impôts</h2>
+						<p>Les revenus de cette activité sont imposables.</p>
 					</>
 				) : (
 					<>
@@ -78,22 +90,23 @@ export default withSitePaths(function Activité({
 							onChange={e => {
 								dispatch(selectSeuilRevenus(title, e.target.value))
 							}}>
-							{activité['seuil déclaration'] && (
-								<li>
-									<label>
-										<input
-											type="radio"
-											name={title + '.seuilRevenus'}
-											value="AUCUN"
-											defaultChecked={seuilRevenus === 'AUCUN'}
-										/>{' '}
-										inférieurs à{' '}
-										<Value numFractionDigits={0}>
-											{activité['seuil déclaration']}
-										</Value>
-									</label>
-								</li>
-							)}
+							{activité['seuil déclaration'] &&
+								activité['seuil déclaration'] !== 0 && (
+									<li>
+										<label>
+											<input
+												type="radio"
+												name={title + '.seuilRevenus'}
+												value="AUCUN"
+												defaultChecked={seuilRevenus === 'AUCUN'}
+											/>{' '}
+											inférieurs à{' '}
+											<Value numFractionDigits={0} unit="€">
+												{activité['seuil déclaration']}
+											</Value>
+										</label>
+									</li>
+								)}
 							<li>
 								<label>
 									<input
@@ -102,8 +115,10 @@ export default withSitePaths(function Activité({
 										value="IMPOSITION"
 										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
-									inférieurs à{' '}
-									<Value numFractionDigits={0}>{activité['seuil pro']}</Value>
+									inférieurs à :{' '}
+									<Value numFractionDigits={0} unit="€">
+										{activité['seuil pro']}
+									</Value>
 								</label>
 							</li>
 							<li>
@@ -114,8 +129,10 @@ export default withSitePaths(function Activité({
 										value="PRO"
 										defaultChecked={seuilRevenus === 'PRO'}
 									/>{' '}
-									supérieurs à{' '}
-									<Value numFractionDigits={0}>{activité['seuil pro']}</Value>
+									supérieurs à :{' '}
+									<Value numFractionDigits={0} unit="€">
+										{activité['seuil pro']}
+									</Value>
 								</label>
 							</li>
 							{activité['seuil régime général'] && (
@@ -129,8 +146,8 @@ export default withSitePaths(function Activité({
 												seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
 											}
 										/>{' '}
-										supérieurs à{' '}
-										<Value numFractionDigits={0}>
+										supérieurs à :{' '}
+										<Value numFractionDigits={0} unit="€">
 											{activité['seuil régime général']}
 										</Value>
 									</label>
@@ -139,7 +156,7 @@ export default withSitePaths(function Activité({
 						</ul>
 					</>
 				)}
-				<NextButton disabled={!seuilRevenus} />
+				<NextButton disabled={!seuilRevenus} activité={title} />
 			</Animate.fromBottom>
 		</section>
 	)

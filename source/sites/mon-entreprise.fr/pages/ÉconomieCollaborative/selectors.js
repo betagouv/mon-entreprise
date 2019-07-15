@@ -8,23 +8,37 @@ const filterActivités = (filter = () => true) => state =>
 		)
 		.map(([activité]) => activité)
 
-export const nextActivitéSelector = state =>
+export const nextActivitéSelector = (state, currentActivité) =>
 	filterActivités(
-		({ répondue }, activitéTitle) => hasConditions(activitéTitle) && !répondue
+		({ vue }, activitéTitle) => !vue && activitéTitle !== currentActivité
 	)(state)[0]
 
+const estExonérée = critèresExonération =>
+	!!critèresExonération.length && critèresExonération.every(Boolean)
+
+export const estExonéréeSelector = activité => state =>
+	estExonérée(state[activité].critèresExonération)
+
 export const activitésEffectuéesSelector = filterActivités()
+export const activitésRéponduesSelector = filterActivités(
+	({ vue }, activité) => vue && hasConditions(activité)
+)
 export const déclarationsSelector = state => ({
-	PRO: filterActivités(({ déclaration }) =>
-		['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'PRO'].includes(déclaration)
+	PRO: filterActivités(
+		({ seuilRevenus, critèresExonération }) =>
+			['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'PRO'].includes(seuilRevenus) &&
+			!estExonérée(critèresExonération)
 	)(state),
-	AUCUN: filterActivités(({ déclaration }) => déclaration === 'AUCUN')(state),
+	AUCUN: filterActivités(
+		({ seuilRevenus, critèresExonération }) =>
+			seuilRevenus === 'AUCUN' || estExonérée(critèresExonération)
+	)(state),
 	IMPOSITION: filterActivités(
-		({ déclaration }) => déclaration === 'IMPOSITION'
+		({ seuilRevenus, critèresExonération }) =>
+			seuilRevenus === 'IMPOSITION' && !estExonérée(critèresExonération)
 	)(state)
 })
 
-export const régimeGénéralNonDisponibleSelector = state =>
-	Object.values(state).some(
-		({ déclaration }) => déclaration === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
-	)
+export const régimeGénéralDisponibleSelector = (state, activité) =>
+	state[activité].seuilRevenus === 'PRO' &&
+	!estExonérée(state[activité].critèresExonération)

@@ -48,6 +48,7 @@
   plateformes:
     - Drivy
     - outils de jardinage, bricolage...
+
 - titre: Services
   icônes: 🚴 👩‍🔧 👨‍💻 💇
   plateformes:
@@ -74,11 +75,11 @@
         - Leboncoin
         - eBay
       explication: Vous vendez de façon occasionnel des biens que vous ne souhaitez plus conserver, dans le cadre de la gestion de votre patrimoine privé.
+
       seuil déclaration: 0
-      exonérés sauf si:
+      exonérée sauf si:
         - titre: Vous vendez des métaux précieux (pièces en or, argent, lingots)
           explication: Pour la cession de métaux précieux, vous êtes soumis à la taxe forfaitaire sur les métaux précieux dont vous devez vous acquitter dans le mois de la cession.
-
     - titre: Vente de biens professionnelle
       icônes: 📦 🧶 🛍️ 🧴
       seuil pro: 0
@@ -92,13 +93,11 @@
   icônes: 👥 🚗
   seuil pro: 0
   explication: |
-    La co-consommation, c'est par exemple partager votre voiture (co-voiturage), des repas, ou encore des sorties.
-
+    La co-consommation, c'est par exemple partager les frais de trajet (co-voiturage), de repas, ou encore de sorties.
   plateformes:
     - Blablacar
-
-  exonéré sauf si:
-    - titre: Les revenus perçus sont supérieurs à vos frais (vous gagnez de l'argent)
+  exonérée sauf si:
+    - titre: Les revenus perçus sont supérieurs aux frais (vous gagnez de l'argent)
       explication: |
         Les revenus perçus ne doivent pas excéder le montant des coûts directs engagés à l’occasion de la prestation. Ils ne doivent couvrir que les frais supportés à l’occasion du service rendu (hors frais liés à l’acquisition, l’entretien ou l’utilisation personnelle du bien partagé).
     - titre: Vous n'incluez pas votre part pour établir le partage des frais
@@ -106,6 +105,6 @@
         Les revenus que vous réalisez au titre du partage des frais sont perçus dans le cadre d’une « co-consommation », ce qui signifie que vous devez bénéficier également de la prestation de service proposée et que vous devez supporter votre quote-part, au même titre que les personnes avec lesquelles les frais sont partagés.
 
         Par exemple, si un déplacement en voiture coûte 40€ en essence et péage, et que vous avez 3 passagers co-voitureur, vous devez répartir équitablement le partage des frais, 10€ remboursé par chaque passager, et 10€ payé de votre poche.
-    - titre: Si co-voiturage, vous êtes en dessous du barème kilométrique
+    - titre: Vous dépassez la limite du barème kilométrique (pour les co-voiturages)
       explication: |
         Lorsqu’il s’agit de co-voiturage, il existe une troisième condition : le tarif complet ne doit pas excéder le barème kilométrique en vigueur et doit être divisé par le nombre de personnes transportées, le propriétaire de la voiture inclus.
