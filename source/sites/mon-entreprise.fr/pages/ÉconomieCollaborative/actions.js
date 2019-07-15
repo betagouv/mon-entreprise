@@ -4,15 +4,19 @@ export const selectSeuilRevenus = (activité, seuilAtteint) => ({
 	seuilAtteint
 })
 
-export const toggleActivité = (activité, activitéParente) => ({
+export const toggleActivité = activité => ({
 	type: 'TOGGLE_ACTIVITÉ_EFFECTUÉE',
-	activité,
-	activitéParente
+	activité
 })
 
-export const changeCritèreÉxonération = (activité, critère, estRespecté) => ({
-	type: 'CHANGE_CRITÈRE_ÉXONÉRATION',
+export const activitéVue = activité => ({
+	type: 'ACTIVITÉ_VUE',
+	activité
+})
+
+export const changeCritèreExonération = (activité, index, estRespecté) => ({
+	type: 'CHANGE_CRITÈRE_EXONÉRATION',
 	activité,
-	critère,
+	index,
 	estRespecté
 })

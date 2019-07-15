@@ -11,23 +11,24 @@ export const getActivité = a => flatActivités.find(item => item.titre === a)
 
 export const getMinimumDéclaration = a => {
 	const activité = getActivité(a)
-	if (activité.activités) {
-		return null
+	if (activité['seuil pro'] === 0 && !activité['seuil régime général']) {
+		return 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
 	}
 	if (activité['seuil pro'] === 0) {
 		return 'PRO'
 	}
+	if (activité['seuil déclaration'] === 0) {
+		return 'IMPOSITION'
+	}
 	if (activité['seuil déclaration']) {
 		return 'AUCUN'
 	}
-	if (activité['seuil pro']) {
-		return 'IMPOSITION'
-	}
-	return 'AUCUN'
+	return null
 }
 export const hasConditions = a => {
 	const activité = getActivité(a)
 	return !!(
+		activité['exonérée sauf si'] ||
 		(activité['seuil pro'] && activité['seuil pro'] !== 0) ||
 		activité['seuil déclaration'] ||
 		activité['seuil pro'] ||
@@ -35,5 +36,5 @@ export const hasConditions = a => {
 	)
 }
 
-export const getSousActivités = activité =>
-	(getActivité(activité).activités || []).map(({ titre }) => titre)
+export const getSousActivités = a =>
+	(getActivité(a).activités || []).map(({ titre }) => titre)

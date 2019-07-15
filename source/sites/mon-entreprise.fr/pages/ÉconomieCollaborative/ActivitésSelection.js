@@ -2,15 +2,20 @@ import classnames from 'classnames'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { intersection } from 'ramda'
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import Checkbox from 'Ui/Checkbox'
 import InfoBulle from 'Ui/InfoBulle'
+import { debounce } from '../../../../utils'
 import { toggleActivité } from './actions'
 import { activités, getActivité } from './activitésData'
-import { activitésEffectuéesSelector, nextActivitéSelector } from './selectors'
+import NextButton from './NextButton'
+import {
+	activitésEffectuéesSelector,
+	activitésRéponduesSelector
+} from './selectors'
 import { StoreContext } from './StoreContext'
 
 export default (function ActivitésSelection() {
@@ -46,9 +51,8 @@ export default (function ActivitésSelection() {
 
 export const ActivitéSelection = withSitePaths(
 	({ activités, currentActivité }) => {
-		const { state, dispatch } = useContext(StoreContext)
-		const onActivitéToggle = activité =>
-			dispatch(toggleActivité(activité, currentActivité))
+		const { state } = useContext(StoreContext)
+		const activitéRépondue = activitésRéponduesSelector(state)
 		const nextButtonDisabled = !intersection(
 			activitésEffectuéesSelector(state),
 			activités
@@ -59,68 +63,82 @@ export const ActivitéSelection = withSitePaths(
 				<div css="display: flex; flex-wrap: wrap; justify-content: center">
 					{activités.map(title => {
 						const selected = state[title].effectuée
-						const answered = state[title].répondue
+						const answered = activitéRépondue.includes(title)
 						return (
 							<ActivitéCard
 								key={title}
 								title={title}
 								selected={selected}
 								answered={answered}
-								onClick={onActivitéToggle}
 							/>
 						)
 					})}
 				</div>
-				<NextButton disabled={nextButtonDisabled} />
+				<NextButton disabled={nextButtonDisabled} activité={currentActivité} />
 			</>
 		)
 	}
 )
 
 export const ActivitéCard = withSitePaths(
-	({ title, onClick = () => {}, selected, answered, sitePaths }) => (
-		<button
-			className={classnames('ui__ button-choice block', { selected })}
-			key={title}
-			tabIndex={-1}
-			css="width: 16rem; justify-content: center; margin: 1rem !important"
-			onClick={() => onClick(title)}>
-			<div css="display: flex; flex-direction: column; height: 100%; ">
-				{selected !== undefined && (
-					<div css="transform: scale(1.5) translateY(5px)">
-						<Checkbox
-							name={title}
-							id={title}
-							checked={selected}
-							onChange={() => onClick(title)}
-						/>
-					</div>
-				)}
-				<ActivitéContent {...getActivité(title)} />
-				{answered && (
-					<Link
-						onClick={e => e.stopPropagation()}
-						className="ui__ small simple button"
-						to={sitePaths.économieCollaborative.index + '/' + title}>
-						Modifier
-					</Link>
-				)}
-			</div>
-		</button>
-	)
+	({ title, selected, answered, sitePaths, label }) => {
+		const { dispatch } = useContext(StoreContext)
+		const toggle = useCallback(
+			selected !== undefined
+				? // debounce to avoid double onClick call when clicking on checkbox
+				  debounce(1, () => dispatch(toggleActivité(title)))
+				: () => {},
+			[dispatch, selected]
+		)
+
+		return (
+			<button
+				className={classnames('ui__ button-choice block', { selected })}
+				key={title}
+				tabIndex={-1}
+				css="width: 15rem; justify-content: center; margin: 1rem !important; font-size: initial! important"
+				onClick={toggle}>
+				<div css="display: flex; flex-direction: column; height: 100%; ">
+					{selected !== undefined && (
+						<div css="transform: scale(1.5) translateY(5px)">
+							<Checkbox name={title} id={title} checked={selected} readOnly />
+						</div>
+					)}
+					<ActivitéContent {...getActivité(title)} label={label} />
+					{answered && (
+						<Link
+							readOnly
+							onClick={e => e.stopPropagation()}
+							className="ui__ small simple button"
+							to={sitePaths.économieCollaborative.index + '/' + title}>
+							Modifier
+						</Link>
+					)}
+				</div>
+			</button>
+		)
+	}
 )
 
-const ActivitéContent = ({ titre, explication, plateformes, icônes }) => (
+const ActivitéContent = ({
+	titre,
+	explication,
+	plateformes,
+	icônes,
+	label
+}) => (
 	<>
-		<h3 className="title">
+		<h4 className="title">
 			{titre}{' '}
 			<InfoBulle>
 				<div css="line-height: initial">{explication}</div>
 			</InfoBulle>
-		</h3>
+		</h4>
+
 		<p css="flex: 1" className="ui__ notice">
 			{plateformes.join(', ')}
 		</p>
+		{label && <div className="ui__ button-choice-label"> {label}</div>}
 		<div
 			css="img {
 	margin: 1rem !important;
@@ -130,28 +148,3 @@ const ActivitéContent = ({ titre, explication, plateformes, icônes }) => (
 		</div>
 	</>
 )
-
-export const NextButton = withSitePaths(({ disabled, sitePaths }) => {
-	const { state } = useContext(StoreContext)
-	const nextActivité = nextActivitéSelector(state)
-	return (
-		<p css="text-align: center">
-			<Link
-				className={classnames('ui__ cta plain button', {
-					disabled
-				})}
-				onClick={e => {
-					if (disabled) {
-						e.preventDefault()
-					}
-				}}
-				to={
-					nextActivité
-						? sitePaths.économieCollaborative.index + '/' + nextActivité
-						: sitePaths.économieCollaborative.votreSituation
-				}>
-				Continuer
-			</Link>
-		</p>
-	)
-})
