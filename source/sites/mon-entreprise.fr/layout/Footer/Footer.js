@@ -82,18 +82,18 @@ const Footer = ({ tracker, t, sitePaths }) => {
 								</p>
 
 								<form
-									className="footer__registerContainer"
 									action="https://gouv.us13.list-manage.com/subscribe/post?u=732a4d1b0d2e8a1a1fd3d01db&amp;id=f146678e48"
 									method="post"
 									onSubmit={onSubmit}
+									className="footer__registerContainer"
 									id="mc-embedded-subscribe-form"
 									name="mc-embedded-subscribe-form"
 									target="_blank">
-									<div>
+									<div className="ui__ input-group">
 										<label htmlFor="mce-EMAIL">
 											<T>Votre adresse e-mail</T>
 										</label>
-										<div className="footer__registerField">
+										<div>
 											<input type="email" name="EMAIL" id="mce-EMAIL" />
 											<input
 												className="ui__ plain small button"

@@ -2,6 +2,7 @@
 @import './Typography.css';
 @import './Card.css';
 @import './Toggle.css';
+@import './InputGroup.css';
 @import './reset.css';
 
 :root {
@@ -74,12 +75,4 @@ section.ui__:not(:first-of-type) {
 
 .ui__ .colored-bg {
 	background: var(--lightestColour);
-}
-ul.ui__.no-bullet {
-	list-style: none;
-}
-span.ui__.enumeration:not(:last-of-type)::after {
-	content: '·';
-	margin: 0 0.3rem;
-	display: inline-block;
 }

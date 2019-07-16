@@ -1,5 +1,6 @@
 ul.ui__.checklist {
 	padding-left: 0.3rem;
+	list-style: none;
 }
 
 .ui__.checklist-button {

@@ -4,12 +4,13 @@ import {
 	initializeCompanyCreationChecklist
 } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { React, T } from 'Components'
+import { T } from 'Components'
 import Route404 from 'Components/Route404'
 import Scroll from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
+import React, { useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
@@ -474,6 +475,7 @@ const CreateCompany = ({
 			</p>
 			{language === 'fr' && (
 				<>
+					<UrssafIntegration />
 					<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
 					<p>
 						Accédez gratuitement au guide complet de la création entreprise en
@@ -495,6 +497,66 @@ const CreateCompany = ({
 		</Animate.fromBottom>
 	)
 }
+
+const codePostalBénéficiaire = codePostal => ('' + codePostal).startsWith(31)
+const UrssafIntegration = () => {
+	const [codePostal, setCodePostal] = useState()
+	const handleSubmit = useCallback(e => {
+		e.preventDefault()
+		setCodePostal(e.target.querySelectorAll('#codePostal')[0].value)
+	}, [])
+	return (
+		<>
+			<h2>{emoji('💁')} Besoin d'accompagnement ?</h2>
+			<p>
+				Certains centre Urssaf ont mis en place des programmes d'accompagnement
+				pour créateur d'entreprise. Découvrez si vous pouvez en bénéficier :
+			</p>
+			<form
+				className="ui__ input-group"
+				onSubmit={handleSubmit}
+				target="_blank">
+				<label htmlFor="codePostal">Votre code postal</label>
+				<div>
+					<input
+						type="tel"
+						name="Code postal"
+						id="codePostal"
+						onChange={() => setCodePostal(null)}
+					/>
+					<input
+						className="ui__ small button"
+						type="submit"
+						value="Vérifier"
+						name="subscribe"
+					/>
+				</div>
+			</form>
+			{codePostal && (
+				<Animate.fromTop>
+					<p>
+						{codePostalBénéficiaire(codePostal) ? (
+							<>
+								{emoji('🎉 ')}Votre Urssaf peut vous accompagner.{' '}
+								<a
+									href="https://www.urssaf.fr/portail/home/votre-urssaf/urssaf-midi-pyrenees.html"
+									className="ui__ simple small button">
+									En savoir plus
+								</a>
+							</>
+						) : (
+							<>
+								{emoji('❌ ')}Votre Urssaf ne propose pas encore
+								d'accompagnement personnalisé
+							</>
+						)}
+					</p>
+				</Animate.fromTop>
+			)}
+		</>
+	)
+}
+
 export default compose(
 	withTranslation(),
 	withSitePaths,

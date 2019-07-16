@@ -1,0 +1,31 @@
+.ui__.input-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.ui__.input-group label {
+	text-transform: uppercase;
+	font-size: 85%;
+	color: var(--darkColour);
+	font-weight: 500;
+}
+.ui__.input-group > div {
+	display: flex;
+	margin: 0.3rem 0;
+	background: white;
+	border: 1px solid var(--lightColour);
+	overflow: hidden;
+	border-radius: 0.3rem;
+}
+
+.ui__.input-group > div > input[type='submit'] {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	margin: -1px !important;
+}
+.ui__.input-group > div > input:not([type='submit']) {
+	width: 15rem;
+	padding: 0.3rem 0.6rem;
+	font-family: inherit;
+	border: none;
+}

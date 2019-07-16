@@ -120,7 +120,7 @@ export class Checklist extends Component<ChecklistProps> {
 	}
 	render() {
 		return (
-			<ul className="ui__ no-bullet checklist">
+			<ul className="ui__ checklist">
 				{this.checklist.map(checkItem => (
 					// $FlowFixMe
 					<li key={checkItem.props.name}>{checkItem}</li>

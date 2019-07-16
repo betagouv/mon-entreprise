@@ -18,6 +18,13 @@
 
 	justify-content: center;
 }
+
+.footer__separator {
+	margin: 2rem 0;
+	border-top: 1px solid var(--lighterColour);
+	border-bottom: none;
+}
+
 @media (max-width: 800px) {
 	.footer__newsletterContainer {
 		flex-wrap: wrap;
@@ -31,35 +38,4 @@
 .footer__registerContainer {
 	display: flex;
 	margin-left: 1rem;
-}
-.footer__registerContainer label {
-	text-transform: uppercase;
-	font-size: 85%;
-	color: var(--darkColour);
-	font-weight: 500;
-}
-.footer__registerField {
-	display: flex;
-	margin: 0.3rem 0;
-	background: white;
-	border: 1px solid var(--lightColour);
-	overflow: hidden;
-	border-radius: 0.3rem;
-	align-self: center;
-}
-.footer__separator {
-	margin: 2rem 0;
-	border-top: 1px solid var(--lighterColour);
-	border-bottom: none;
-}
-.footer__registerField > input[type='submit'] {
-	border-top-left-radius: 0 !important;
-	border-bottom-left-radius: 0 !important;
-	margin: -1px !important;
-}
-.footer__registerField > input[type='email'] {
-	width: 15rem;
-	padding: 0.3rem 0.6rem;
-	font-family: inherit;
-	border: none;
 }
