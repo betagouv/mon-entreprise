@@ -206,6 +206,7 @@
 }
 .ui__.button-choice {
 	display: flex;
+	user-select: text;
 	align-items: baseline;
 	flex-wrap: wrap;
 	padding: 1rem;
@@ -257,7 +258,7 @@
 }
 
 .ui__.button-choice.block img {
-	margin: 1rem !important;
+	margin: 0.8rem !important;
 }
 
 .ui__.button-choice:hover,

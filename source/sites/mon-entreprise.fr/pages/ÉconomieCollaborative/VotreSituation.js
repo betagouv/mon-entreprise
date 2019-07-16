@@ -126,7 +126,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 const ActivitéList = ({ activités }) => {
 	const { state } = useContext(StoreContext)
 	return (
-		<div css="display: flex; flex-wrap: wrap;">
+		<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
 			{activités.map(title => (
 				<ActivitéCard
 					key={title}

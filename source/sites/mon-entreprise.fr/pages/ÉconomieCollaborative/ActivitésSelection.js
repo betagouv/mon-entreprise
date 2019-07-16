@@ -85,7 +85,7 @@ export const ActivitéSelection = withSitePaths(
 )
 
 const activitéCardCss = `
-	width: 15rem;
+	width: 14rem;
 	justify-content: center;
 	margin: 1rem !important;
 	font-size: initial! important;
