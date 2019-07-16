@@ -30,7 +30,7 @@ let resolved = rules
 	.map(rule => ({
 		[buildDottedName(rule)]: R.mergeAll(
 			R.toPairs(rule)
-				.filter(([_, v]) => !!v)
+				.filter(([, v]) => !!v)
 				.map(([k, v]) => {
 					let attrToTranslate = attributesToExternalize.find(R.equals(k))
 					if (!attrToTranslate) return {}
