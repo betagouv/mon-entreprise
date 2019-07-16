@@ -6,6 +6,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, withTranslation } from 'react-i18next'
 import screenfull from 'screenfull'
 import { isIE } from '../../../../utils'
+import { Link } from 'react-router-dom'
 
 export default withTranslation()(
 	class IframeFooter extends Component {
@@ -61,6 +62,9 @@ export default withTranslation()(
 							{emoji('🖨')}
 							<Trans>Imprimer</Trans>
 						</button>
+						<Link to="/vie-privée" target="_top">
+							<Trans>Vie privée</Trans>
+						</Link>
 					</div>
 				</>
 			)

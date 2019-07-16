@@ -523,6 +523,8 @@ path:
     index: '/hiring-process'
   documentation:
     exemples: '/examples'
+  privacy:
+    index: '/privacy'
   économieCollaborative:
     index: '/sharing-economy'
 

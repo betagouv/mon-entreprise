@@ -120,6 +120,9 @@ export const constructLocalizedSitePath = (language: string) => {
 		documentation: {
 			exemples: t('path.documentation.exemples', '/exemples'),
 			index: t('path.documentation.index', '/documentation')
+		},
+		privacy: {
+			index: t('path.privacy.index', '/vie-privée')
 		}
 	})
 }
