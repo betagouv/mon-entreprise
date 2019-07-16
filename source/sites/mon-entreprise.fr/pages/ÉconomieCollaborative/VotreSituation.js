@@ -99,8 +99,12 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 						<h2>Déclarer vos revenus aux impôts</h2>
 						<p>
 							Pour ces activités, vous avez uniquement besoin de déclarer vos
-							revenus sur votre feuille d'imposition. Pour en savoir plus,
-							rendez-vous sur le site impots.gouv.fr.
+							revenus sur votre feuille d'imposition. Pour en savoir plus, vous
+							pouvez consulter la{' '}
+							<a href="https://www.impots.gouv.fr/portail/particulier/questions/comment-declarer-mes-revenus-dactivites-annexes-telles-que-le-co-voiturage-la">
+								page dédiée sur impots.gouv.fr
+							</a>
+							.
 						</p>
 						<h3>Quelles activités sont concernées ?</h3>
 						<ActivitéList activités={déclarations.IMPOSITION} />
