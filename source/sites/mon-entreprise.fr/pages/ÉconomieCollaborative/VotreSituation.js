@@ -48,42 +48,45 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 					<>
 						<h2>Créer une activité professionnelle</h2>
 						<p>
-							Vos revenus sont considérées comme revenus professionnels, ils
-							sont soumis aux cotisations sociale. En contrepartie, ils donnent
-							droits à des prestations sociales (retraite, assurance maladie,
-							indemnités, etc.).
+							Vos revenus sont considérés comme revenus professionnels, ils sont
+							soumis aux cotisations sociales. En contrepartie, ils donnent
+							droit à des prestations sociales (retraite, assurance maladie,
+							etc.).
 						</p>
 						{régimeGénéralDisponible && (
 							<>
 								<h3>Régime général disponible</h3>
 								<p>
-									Si vous n'avez pas d'entreprise et ne souhaitez pas en créer
-									une, vous pouvez simplement déclarer vos revenus sur le site
-									de l'Urssaf. Vous devrez dans tous les cas les déclarer aussi
-									aux impôts.
+									Pour certaines activités, si vous n'avez pas d'entreprise et
+									ne souhaitez pas en créer une, vous pouvez simplement déclarer
+									vos revenus sur le site de l'Urssaf. Vous devrez dans tous les
+									cas les déclarer aussi aux impôts.
 								</p>
 							</>
 						)}
 						<h3>Mes options</h3>
 						<p
 							className="ui__ answer-group"
-							css="justify-content: start !important">
+							css="justify-content: start !important; flex-wrap: wrap;">
 							{régimeGénéralDisponible && (
 								<a
-									href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie/vous-optez-pour-le-regime-genera.html"
-									className="ui__  small  button">
-									Déclarer sans créer d'entreprise
+									href="https://ats.declaration.urssaf.fr/Application-ECOLAB-Inscription/"
+									css="flex: 1"
+									className="ui__ small   button">
+									Déclarer au régime général
 								</a>
 							)}
 							<Link
-								to={sitePaths.entreprise.trouver}
-								className="ui__  small  button">
-								Déclarer avec mon entreprise
+								to={sitePaths.entreprise.index}
+								css="flex: 1"
+								className="ui__  small button">
+								Déclarer avec une nouvelle entreprise
 							</Link>
 							<Link
-								to={sitePaths.entreprise.index}
-								className="ui__ small  button">
-								Créer une entreprise
+								to={sitePaths.entreprise.trouver}
+								css="flex: 1"
+								className="ui__   small button">
+								Déclarer avec une entreprise existante
 							</Link>
 						</p>
 

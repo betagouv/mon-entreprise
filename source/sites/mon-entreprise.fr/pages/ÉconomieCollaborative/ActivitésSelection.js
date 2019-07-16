@@ -33,6 +33,10 @@ export default (function ActivitésSelection() {
 				<p>
 					Suivez ce guide pour savoir en quelques clics comment être en règle.
 				</p>
+				<p className="ui__ notice">
+					À partir de 2020, ces revenus seront communiqués automatiquement par
+					les plateformes à l’administration fiscale et à l’Urssaf.
+				</p>
 			</section>
 
 			<section className="ui__ full-width choice-group">
@@ -80,6 +84,15 @@ export const ActivitéSelection = withSitePaths(
 	}
 )
 
+const activitéCardCss = `
+	width: 15rem;
+	justify-content: center;
+	margin: 1rem !important;
+	font-size: initial! important;
+	@media(max-width: 500px) {
+		width: 100%
+	}
+`
 export const ActivitéCard = withSitePaths(
 	({ title, selected, answered, sitePaths, label }) => {
 		const { dispatch } = useContext(StoreContext)
@@ -96,7 +109,7 @@ export const ActivitéCard = withSitePaths(
 				className={classnames('ui__ button-choice block', { selected })}
 				key={title}
 				tabIndex={-1}
-				css="width: 15rem; justify-content: center; margin: 1rem !important; font-size: initial! important"
+				css={activitéCardCss}
 				onClick={toggle}>
 				<div css="display: flex; flex-direction: column; height: 100%; ">
 					{selected !== undefined && (
