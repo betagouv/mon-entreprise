@@ -36,6 +36,7 @@ import Landing from './pages/Landing/Landing.js'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
+import { PrivacyContent } from './layout/Footer/Privacy'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -124,6 +125,7 @@ const App = compose(
 						path={sitePaths.documentation.index}
 						component={Documentation}
 					/>
+					<Route path={sitePaths.privacy.index} component={PrivacyContent} />
 					<Route exact path="/dev/sitemap" component={Sitemap} />
 					<Route
 						exact
