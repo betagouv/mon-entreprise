@@ -17,7 +17,6 @@ let attributesToExternalize = [
 	'titre',
 	'description',
 	'question',
-	'sous-question',
 	'résumé',
 	'suggestions',
 	'contrôles'

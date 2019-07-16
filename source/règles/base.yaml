@@ -613,7 +613,7 @@
   icônes: ⏳
   titre: durée du contrat
   question: Quelle est la durée du contrat ?
-  sous-question: |
+  description: |
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211

@@ -80,16 +80,14 @@ describe('translateAll', function() {
 				nom: 'bar',
 				titre: 'Titre',
 				description: 'Description',
-				question: 'Question',
-				'sous-question': 'Sous Question'
+				question: 'Question'
 			}
 		]
 		let translations = {
 			'foo . bar': {
 				'titre.en': 'TITRE',
 				'description.en': 'DESC',
-				'question.en': 'QUEST',
-				'sous-question.en': 'SOUSQ'
+				'question.en': 'QUEST'
 			}
 		}
 
@@ -98,7 +96,6 @@ describe('translateAll', function() {
 		expect(result[0]).to.have.property('titre', 'TITRE')
 		expect(result[0]).to.have.property('description', 'DESC')
 		expect(result[0]).to.have.property('question', 'QUEST')
-		expect(result[0]).to.have.property('sous-question', 'SOUSQ')
 	})
 })
 describe('misc', function() {
