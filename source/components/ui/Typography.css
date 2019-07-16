@@ -105,6 +105,10 @@ a {
 	color: var(--colour);
 }
 
+p img {
+	max-width: 100%;
+}
+
 a:not(:disabled):not(.button):not(.inverted-button):hover {
 	opacity: 0.8;
 }
