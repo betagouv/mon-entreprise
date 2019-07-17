@@ -24,10 +24,11 @@ export const activitésRéponduesSelector = filterActivités(
 	({ vue }, activité) => vue && hasConditions(activité)
 )
 export const déclarationsSelector = state => ({
-	PRO: filterActivités(
+	RÉGIME_GÉNÉRAL_DISPONIBLE: filterActivités(
 		({ seuilRevenus, critèresExonération }) =>
-			['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'PRO'].includes(seuilRevenus) &&
-			!estExonérée(critèresExonération)
+			['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'RÉGIME_GÉNÉRAL_DISPONIBLE'].includes(
+				seuilRevenus
+			) && !estExonérée(critèresExonération)
 	)(state),
 	AUCUN: filterActivités(
 		({ seuilRevenus, critèresExonération }) =>
@@ -40,5 +41,5 @@ export const déclarationsSelector = state => ({
 })
 
 export const régimeGénéralDisponibleSelector = (state, activité) =>
-	state[activité].seuilRevenus === 'PRO' &&
+	state[activité].seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE' &&
 	!estExonérée(state[activité].critèresExonération)

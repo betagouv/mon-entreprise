@@ -44,7 +44,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 				<img css="height: 200px" src={illustration} />
 			</div>
 			<section>
-				{déclarations.PRO.length > 0 && (
+				{déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE.length > 0 && (
 					<>
 						<h2>Créer une activité professionnelle</h2>
 						<p>
@@ -91,7 +91,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 						</p>
 
 						<h3>Quelles activités sont concernées ?</h3>
-						<ActivitéList activités={déclarations.PRO} />
+						<ActivitéList activités={déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE} />
 					</>
 				)}
 				{déclarations.IMPOSITION.length > 0 && (

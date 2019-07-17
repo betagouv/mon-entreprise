@@ -15,7 +15,7 @@ export const getMinimumDéclaration = a => {
 		return 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
 	}
 	if (activité['seuil pro'] === 0) {
-		return 'PRO'
+		return 'RÉGIME_GÉNÉRAL_DISPONIBLE'
 	}
 	if (activité['seuil déclaration'] === 0) {
 		return 'IMPOSITION'

@@ -121,38 +121,41 @@ export default withSitePaths(function Activité({
 									</Value>
 								</label>
 							</li>
-							<li>
-								<label>
-									<input
-										type="radio"
-										name={title + '.seuilRevenus'}
-										value="PRO"
-										defaultChecked={seuilRevenus === 'PRO'}
-									/>{' '}
-									supérieurs à :{' '}
-									<Value numFractionDigits={0} unit="€">
-										{activité['seuil pro']}
-									</Value>
-								</label>
-							</li>
 							{activité['seuil régime général'] && (
 								<li>
 									<label>
 										<input
 											type="radio"
 											name={title + '.seuilRevenus'}
-											value="RÉGIME_GÉNÉRAL_NON_DISPONIBLE"
+											value="RÉGIME_GÉNÉRAL_DISPONIBLE"
 											defaultChecked={
-												seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
+												seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE'
 											}
 										/>{' '}
 										supérieurs à :{' '}
 										<Value numFractionDigits={0} unit="€">
-											{activité['seuil régime général']}
+											{activité['seuil pro']}
 										</Value>
 									</label>
 								</li>
 							)}
+
+							<li>
+								<label>
+									<input
+										type="radio"
+										name={title + '.seuilRevenus'}
+										value="RÉGIME_GÉNÉRAL_NON_DISPONIBLE"
+										defaultChecked={
+											seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
+										}
+									/>{' '}
+									supérieurs à :{' '}
+									<Value numFractionDigits={0} unit="€">
+										{activité['seuil régime général'] || activité['seuil pro']}
+									</Value>
+								</label>
+							</li>
 						</ul>
 					</>
 				)}
