@@ -509,7 +509,7 @@ const UrssafIntegration = () => {
 		<>
 			<h2>{emoji('💁')} Besoin d'accompagnement ?</h2>
 			<p>
-				Certains centre Urssaf ont mis en place des programmes d'accompagnement
+				Certains centres Urssaf ont mis en place des programmes d'accompagnement
 				pour créateur d'entreprise. Découvrez si vous pouvez en bénéficier :
 			</p>
 			<form
