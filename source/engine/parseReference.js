@@ -17,9 +17,13 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 	let partialReference = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, partialReference)
 
+	let inInversionFormula = rule.formule?.['inversion numérique']
+
 	let parsedRule =
 		parsedRules[dottedName] ||
-		parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules)
+				// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
+		(!inInversionFormula &&
+			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
 
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
@@ -155,11 +159,7 @@ export let parseReferenceTransforms = (
 		if (!rule.période && !inlinePeriodTransform) {
 			if (supportedPeriods.includes(ruleToTransform.période))
 				throw new Error(
-					`Attention, une variable sans période, ${
-						rule.dottedName
-					}, qui appelle une variable à période, ${
-						ruleToTransform.dottedName
-					}, c'est suspect !
+					`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
 
 					Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
 				`
