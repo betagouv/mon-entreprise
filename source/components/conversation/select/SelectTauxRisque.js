@@ -14,7 +14,7 @@ class ReactSelectWrapper extends Component {
 			submit,
 			options,
 			submitOnChange = option => {
-				option.text = option['Taux net'].replace(',', '.')
+				option.text = +option['Taux net'].replace(',', '.') / 100
 				onChange(option.text)
 				submit()
 			},
