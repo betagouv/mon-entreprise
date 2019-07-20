@@ -8,12 +8,17 @@ const NumberFormat = memoizeWith(
 	Intl.NumberFormat
 )
 
-export let numberFormatter = (style, numFractionDigits) => (value, language) =>
+export let numberFormatter = ({
+	style,
+	maximumFractionDigits,
+	minimumFractionDigits = 0,
+	language
+}) => value =>
 	NumberFormat(language, {
 		style,
 		currency: 'EUR',
-		maximumFractionDigits: numFractionDigits,
-		minimumFractionDigits: numFractionDigits
+		maximumFractionDigits,
+		minimumFractionDigits
 	}).format(value)
 
 // let booleanTranslations = { true: '✅', false: '❌' }
@@ -34,7 +39,8 @@ export default withLanguage(
 		nodeValue: value,
 		unit,
 		nilValueSymbol,
-		numFractionDigits = 2,
+		maximumFractionDigits,
+		minimumFractionDigits,
 		children,
 		negative,
 		language,
@@ -64,12 +70,23 @@ export default withLanguage(
 				) : valueType === 'boolean' ? (
 					booleanTranslations[language][nodeValue]
 				) : unitText === '€' ? (
-					numberFormatter('currency', numFractionDigits)(nodeValue, language)
+					numberFormatter({
+						style: 'currency',
+						maximumFractionDigits,
+						minimumFractionDigits,
+						language
+					})(nodeValue)
 				) : unitText === '%' ? (
-					numberFormatter('percent')(nodeValue)
+					numberFormatter({ style: 'percent', maximumFractionDigits: 3 })(
+						nodeValue
+					)
 				) : (
 					<>
-						{numberFormatter('decimal', numFractionDigits)(nodeValue)}
+						{numberFormatter({
+							style: 'decimal',
+							minimumFractionDigits,
+							maximumFractionDigits
+						})(nodeValue)}
 						&nbsp;
 						{unitText}
 					</>
@@ -77,7 +94,6 @@ export default withLanguage(
 
 		return nodeValue == undefined ? null : (
 			<span css={style(customCSS)} className="value">
-				unit: {unitText}
 				{negative ? '-' : ''}
 				{formattedValue}
 			</span>

@@ -113,17 +113,17 @@ class Distribution extends Component<Props, State> {
 				<div className="distribution-chart__total">
 					<span />
 					<RuleLink {...salaireNet} />
-					<Value {...salaireNet} unit="€" numFractionDigits={0} />
+					<Value {...salaireNet} unit="€" maximumFractionDigits={0} />
 					<span>+</span>
 					<Trans>Cotisations</Trans>
-					<Value numFractionDigits={0} unit="€">
+					<Value maximumFractionDigits={0} unit="€">
 						{total.partPatronale + total.partSalariale}
 					</Value>
 					<span />
 					<div className="distribution-chart__total-border" />
 					<span>=</span>
 					<RuleLink {...salaireChargé} />
-					<Value {...salaireChargé} unit="€" numFractionDigits={0} />
+					<Value {...salaireChargé} unit="€" maximumFractionDigits={0} />
 				</div>
 			</>
 		)
@@ -154,7 +154,7 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 				margin-left: 1em;
 				color: var(--textColourOnWhite);
 			`}>
-			<Value numFractionDigits={0} unit="€">
+			<Value maximumFractionDigits={0} unit="€">
 				{montant}
 			</Value>
 		</div>

@@ -115,8 +115,6 @@ let Component = withLanguage(function Barème({
 	)
 })
 
-let number = numberFormatter(undefined, 0)
-
 let Tranche = ({
 	tranche: {
 		'en-dessous de': maxOnly,
@@ -136,16 +134,17 @@ let Tranche = ({
 			<td key="tranche">
 				{maxOnly ? (
 					<>
-						<Trans>En-dessous de</Trans> {number(maxOnly, language)}
+						<Trans>En-dessous de</Trans>{' '}
+						{numberFormatter({ language })(maxOnly)}
 					</>
 				) : minOnly ? (
 					<>
-						<Trans>Au-dessus de</Trans> {number(minOnly, language)}
+						<Trans>Au-dessus de</Trans> {numberFormatter({ language })(minOnly)}
 					</>
 				) : (
 					<>
-						<Trans>De</Trans> {number(min, language)} <Trans>à</Trans>{' '}
-						{number(max, language)}
+						<Trans>De</Trans> {numberFormatter({ language })(min)}{' '}
+						<Trans>à</Trans> {numberFormatter({ language })(max)}
 					</>
 				)}
 			</td>
