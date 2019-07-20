@@ -138,7 +138,8 @@ export let mecanismVariations = (recurse, k, v, devariate) => {
 		jsx: Variations,
 		category: 'mecanism',
 		name: 'variations',
-		type: 'numeric'
+		type: 'numeric',
+		unit: inferUnit('+', explanation.map(r => r.consequence.unit))
 	}
 }
 
@@ -497,8 +498,8 @@ export let mecanismSum = (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<Somme nodeValue={nodeValue} explanation={explanation} />
+		jsx: (nodeValue, explanation, _, unit) => (
+			<Somme nodeValue={nodeValue} explanation={explanation} unit={unit} />
 		),
 		explanation,
 		category: 'mecanism',
@@ -619,7 +620,6 @@ export let mecanismProduct = (recurse, k, v) => {
 		)
 	}
 }
-
 
 export let mecanismContinuousScale = (recurse, k, v) => {
 	let objectShape = {

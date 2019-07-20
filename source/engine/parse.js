@@ -201,6 +201,7 @@ let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
 		<Node
 			classes={'inlineExpression ' + k}
 			value={nodeValue}
+			unit={unit}
 			child={
 				<span className="nodeContent">
 					<span className="fa fa" />

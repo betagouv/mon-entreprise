@@ -21,7 +21,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 
 	let parsedRule =
 		parsedRules[dottedName] ||
-				// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
+		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula &&
 			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
 
@@ -97,14 +97,16 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 		evaluate,
 		//eslint-disable-next-line react/display-name
 		jsx: nodeValue => (
-			<Leaf
-				classes="variable filtered"
-				filter={filter}
-				name={fragments.join(' . ')}
-				dottedName={dottedName}
-				value={nodeValue}
-				unit={parsedRule.unit}
-			/>
+			<>
+				<Leaf
+					classes="variable filtered"
+					filter={filter}
+					name={fragments.join(' . ')}
+					dottedName={dottedName}
+					nodeValue={nodeValue}
+					unit={parsedRule.unit}
+				/>
+			</>
 		),
 
 		name: partialReference,

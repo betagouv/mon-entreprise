@@ -10,7 +10,8 @@ import withLanguage from 'Components/utils/withLanguage'
 let Comp = withLanguage(function Composantes({
 	language,
 	nodeValue,
-	explanation
+	explanation,
+	unit
 }) {
 	return (
 		<Node
@@ -18,6 +19,7 @@ let Comp = withLanguage(function Composantes({
 			name="composantes"
 			inline
 			value={nodeValue}
+			unit={unit}
 			child={
 				<>
 					<p>
@@ -51,6 +53,6 @@ let Comp = withLanguage(function Composantes({
 })
 
 // eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default (nodeValue, explanation, _, unit) => (
+	<Comp {...{ nodeValue, explanation, unit }} />
 )

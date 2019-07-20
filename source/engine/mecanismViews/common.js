@@ -35,7 +35,7 @@ export let NodeValuePointer = ({ data, unit }) => (
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export class Node extends Component {
 	render() {
-		let { classes, name, value, child, inline } = this.props,
+		let { classes, name, value, child, inline, unit } = this.props,
 			termDefinition = contains('mecanism', classes) && name
 
 		return (
@@ -58,7 +58,7 @@ export class Node extends Component {
 				{name ? (
 					!isNil(value) && (
 						<div className="mecanism-result">
-							<NodeValuePointer data={value} />
+							<NodeValuePointer data={value} unit={unit} />
 						</div>
 					)
 				) : (
@@ -66,7 +66,7 @@ export class Node extends Component {
 						{value !== true && value !== false && !isNil(value) && (
 							<span className="operator"> = </span>
 						)}
-						<NodeValuePointer data={value} />
+						<NodeValuePointer data={value} unit={unit} />
 					</>
 				)}
 			</div>
@@ -98,7 +98,7 @@ export const Leaf = compose(
 					classes,
 					dottedName,
 					name,
-					value,
+					nodeValue,
 					flatRules,
 					filter,
 					sitePaths,
@@ -120,12 +120,12 @@ export const Leaf = compose(
 									{rule.title || capitalise0(name)} {filter}
 								</span>
 							</Link>
-							{!isNil(value) && (
+							{!isNil(nodeValue) && (
 								<span
 									css={`
 										margin: 0 0.3rem;
 									`}>
-									<NodeValuePointer data={value} unit={unit} />
+									<NodeValuePointer data={nodeValue} unit={unit} />
 								</span>
 							)}
 						</span>

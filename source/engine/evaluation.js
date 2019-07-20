@@ -16,7 +16,7 @@ import {
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
-		? node.jsx(node.nodeValue, node.explanation, node.lazyEval)
+		? node.jsx(node.nodeValue, node.explanation, node.lazyEval, node.unit)
 		: node.jsx
 
 export let collectNodeMissing = node => node.missingVariables || {}
