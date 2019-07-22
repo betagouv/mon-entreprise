@@ -2,10 +2,12 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
-import barème from 'Engine/mecanisms/barème.js'
-import barèmeContinu from 'Engine/mecanisms/barème-continu.js'
-import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire.js'
+import barème from 'Engine/mecanisms/barème'
+import barèmeContinu from 'Engine/mecanisms/barème-continu'
+import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
+import variations from 'Engine/mecanisms/variations'
 import { Parser } from 'nearley'
+
 import {
 	add,
 	curry,
@@ -42,7 +44,6 @@ import {
 	mecanismReduction,
 	mecanismSum,
 	mecanismSynchronisation,
-	mecanismVariations,
 	mecanismOnePossibility
 } from './mecanisms'
 import { Node } from './mecanismViews/common'
@@ -145,7 +146,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			'une possibilité': mecanismOnePossibility(rule.dottedName),
 			'inversion numérique': mecanismInversion(rule.dottedName),
 			allègement: mecanismReduction,
-			variations: mecanismVariations,
+			variations,
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			filter: () =>

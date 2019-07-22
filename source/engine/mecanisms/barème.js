@@ -1,5 +1,5 @@
 import { defaultNode, E, rewriteNode } from 'Engine/evaluation'
-import { mecanismVariations } from 'Engine/mecanisms'
+import variations from 'Engine/mecanisms/variations'
 import { decompose } from 'Engine/mecanisms/utils'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
@@ -39,7 +39,7 @@ export default (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return variations(recurse, k, v, true)
 	}
 
 	let { assiette, multiplicateur } = v,

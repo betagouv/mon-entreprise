@@ -1,6 +1,6 @@
 import { defaultNode, evaluateObject } from 'Engine/evaluation'
 import Barème from 'Engine/mecanismViews/Barème'
-import { mecanismVariations } from 'Engine/mecanisms'
+import variations from 'Engine/mecanisms/variations'
 import { decompose } from 'Engine/mecanisms/utils'
 import { val } from 'Engine/traverse-common-functions'
 import { inferUnit, parseUnit } from 'Engine/units'
@@ -21,7 +21,7 @@ export default (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return variations(recurse, k, v, true)
 	}
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
@@ -51,8 +51,6 @@ export default (recurse, k, v) => {
 			tranches
 		},
 		evaluate = evaluateObject(objectShape, effect)
-
-	console.log('explanation', explanation)
 
 	return {
 		evaluate,

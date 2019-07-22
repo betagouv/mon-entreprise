@@ -1,9 +1,7 @@
-import { desugarScale } from 'Engine/mecanisms/barème'
-import { decompose, devariateExplanation } from 'Engine/mecanisms/utils'
+import { decompose } from 'Engine/mecanisms/utils'
 import {
 	add,
 	any,
-	aperture,
 	curry,
 	equals,
 	evolve,
@@ -12,9 +10,7 @@ import {
 	head,
 	is,
 	isEmpty,
-	isNil,
 	keys,
-	last,
 	map,
 	max,
 	mergeWith,
@@ -23,11 +19,7 @@ import {
 	pipe,
 	pluck,
 	prop,
-	propEq,
 	reduce,
-	reduced,
-	reject,
-	sort,
 	subtract,
 	toPairs
 } from 'ramda'
@@ -48,100 +40,15 @@ import {
 	rewriteNode
 } from './evaluation'
 import Allègement from './mecanismViews/Allègement'
-import Barème from './mecanismViews/Barème'
-import BarèmeContinu from './mecanismViews/BarèmeContinu'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
 import Somme from './mecanismViews/Somme'
-import Variations from './mecanismViews/Variations'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
 import { inferUnit } from 'Engine/units'
-
-/* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
-export let mecanismVariations = (recurse, k, v, devariate) => {
-	let explanation = devariate
-		? devariateExplanation(recurse, k, v)
-		: v.map(({ si, alors, sinon }) =>
-				sinon !== undefined
-					? { consequence: recurse(sinon), condition: undefined }
-					: { consequence: recurse(alors), condition: recurse(si) }
-		  )
-
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateVariationProp = prop =>
-				prop === undefined
-					? undefined
-					: evaluateNode(cache, situationGate, parsedRules, prop),
-			// mark the satisfied variation if any in the explanation
-			[, resolvedExplanation] = reduce(
-				([resolved, result], variation) => {
-					if (resolved) return [true, [...result, variation]]
-
-					// evaluate the condition
-					let evaluatedCondition = evaluateVariationProp(variation.condition)
-
-					if (evaluatedCondition == undefined) {
-						// We've reached the eventual defaut case
-						let evaluatedVariation = {
-							consequence: evaluateVariationProp(variation.consequence),
-							satisfied: true
-						}
-						return [true, [...result, evaluatedVariation]]
-					}
-
-					if (evaluatedCondition.nodeValue === null)
-						// one case has missing variables => we can't go further
-						return [true, [...result, { condition: evaluatedCondition }]]
-
-					if (evaluatedCondition.nodeValue === true) {
-						let evaluatedVariation = {
-							condition: evaluatedCondition,
-							consequence: evaluateVariationProp(variation.consequence),
-							satisfied: true
-						}
-						return [true, [...result, evaluatedVariation]]
-					}
-					return [false, [...result, variation]]
-				},
-				[false, []]
-			)(node.explanation),
-			satisfiedVariation = resolvedExplanation.find(v => v.satisfied),
-			nodeValue = satisfiedVariation
-				? satisfiedVariation.consequence.nodeValue
-				: null
-
-		let leftMissing = mergeAllMissing(
-				reject(isNil, pluck('condition', resolvedExplanation))
-			),
-			candidateVariations = filter(
-				node => !node.condition || node.condition.nodeValue !== false,
-				resolvedExplanation
-			),
-			rightMissing = mergeAllMissing(
-				reject(isNil, pluck('consequence', candidateVariations))
-			),
-			missingVariables = satisfiedVariation
-				? collectNodeMissing(satisfiedVariation.consequence)
-				: mergeMissing(bonus(leftMissing), rightMissing)
-
-		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
-	}
-
-	// TODO - find an appropriate representation
-
-	return {
-		explanation,
-		evaluate,
-		jsx: Variations,
-		category: 'mecanism',
-		name: 'variations',
-		type: 'numeric',
-		unit: inferUnit('+', explanation.map(r => r.consequence.unit))
-	}
-}
+import variations from 'Engine/mecanisms/variations'
 
 export let mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
@@ -576,7 +483,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return variations(recurse, k, v, true)
 	}
 
 	let objectShape = {
@@ -618,62 +525,6 @@ export let mecanismProduct = (recurse, k, v) => {
 				el => el.unit
 			)
 		)
-	}
-}
-
-export let mecanismContinuousScale = (recurse, k, v) => {
-	let objectShape = {
-		assiette: false,
-		multiplicateur: defaultNode(1)
-	}
-
-	let returnRate = v['retourne seulement le taux'] === 'oui'
-	let effect = ({ assiette, multiplicateur, points }) => {
-		if (anyNull([assiette, multiplicateur])) return null
-		//We'll build a linear function given the two constraints that must be respected
-		let result = pipe(
-			toPairs,
-			// we don't rely on the sorting of objects
-			sort(([k1], [k2]) => k1 - k2),
-			points => [...points, [Infinity, last(points)[1]]],
-			aperture(2),
-			reduce((_, [[lowerLimit, lowerRate], [upperLimit, upperRate]]) => {
-				let x1 = val(multiplicateur) * lowerLimit,
-					x2 = val(multiplicateur) * upperLimit,
-					y1 = val(assiette) * val(recurse(lowerRate)),
-					y2 = val(assiette) * val(recurse(upperRate))
-				if (val(assiette) > x1 && val(assiette) <= x2) {
-					// Outside of these 2 limits, it's a linear function a * x + b
-					let a = (y2 - y1) / (x2 - x1),
-						b = y1 - x1 * a,
-						nodeValue = a * val(assiette) + b,
-						taux = nodeValue / val(assiette)
-					return reduced({
-						nodeValue: returnRate ? taux : nodeValue,
-						additionalExplanation: {
-							seuil: val(assiette) / val(multiplicateur),
-							taux
-						}
-					})
-				}
-			}, 0)
-		)(points)
-
-		return result
-	}
-	let explanation = {
-			...parseObject(recurse, objectShape, v),
-			points: v.points,
-			returnRate
-		},
-		evaluate = evaluateObject(objectShape, effect)
-	return {
-		evaluate,
-		jsx: BarèmeContinu,
-		explanation,
-		category: 'mecanism',
-		name: 'barème continu',
-		type: 'numeric'
 	}
 }
 

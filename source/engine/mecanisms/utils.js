@@ -34,17 +34,3 @@ export let decompose = (recurse, k, v) => {
 	}
 }
 
-export let devariateExplanation = (recurse, mecanismKey, v) => {
-	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(({ si, alors, sinon }) => ({
-			consequence: recurse({
-				[mecanismKey]: {
-					...fixedProps,
-					...(sinon || alors)
-				}
-			}),
-			condition: sinon ? undefined : recurse(si)
-		}))
-
-	return explanation
-}
