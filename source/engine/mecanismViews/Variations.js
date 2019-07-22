@@ -46,7 +46,7 @@ let Comp = withLanguage(function Variations({
 										}}>
 										{!satisfied && showValues && (
 											<>
-												non applicable{' '}
+												<em>non applicable </em>
 												{expandedVariation !== i ? (
 													<button
 														className="ui__ link-button"

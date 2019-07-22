@@ -255,7 +255,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 
 	// la conséquence peut être un 'string' ou un autre aiguillage numérique
 	let parseCondition = ([condition, consequence]) => {
-		let conditionNode = recurse(condition), // can be a 'comparison', a 'variable', TODO a 'negation'
+		let conditionNode = recurse(condition), // can be a 'comparison', a 'variable'
 			consequenceNode = mecanismNumericalSwitch(recurse, condition, consequence)
 
 		let evaluate = (cache, situationGate, parsedRules, node) => {

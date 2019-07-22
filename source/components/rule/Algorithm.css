@@ -23,24 +23,22 @@
 	display: inline-block;
 }
 
-.node.inlineExpression:not(.comparison):not(.negation) {
+.node.inlineExpression:not(.comparison) {
 	padding-left: 0;
 	display: flex;
 	align-items: baseline;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: space-between;
 }
 .nodeContent {
 	margin-right: 0.3em;
 }
-#rule-rules
-	.inlineExpression:not(.comparison):not(.negation)
-	> .situationValue {
+#rule-rules .inlineExpression:not(.comparison) > .situationValue {
 	margin-left: 0.3em;
 	margin-bottom: 0.6em;
 	margin-top: 0.3em;
 	align-items: flex-end;
-	flex: 1;
 	text-align: right;
 }
 
@@ -210,8 +208,7 @@
 
 .mecanism.cond *:not(.nodeContent) > .variable .name,
 .mecanism.variations *:not(.nodeContent) > .variable .name,
-.inlineExpression.comparison,
-.inlineExpression.negation {
+.inlineExpression.comparison {
 	display: flex;
 	align-items: baseline;
 }
@@ -223,8 +220,7 @@
 	> .variable
 	.name
 	.situationValue,
-.inlineExpression.comparison > .situationValue,
-.inlineExpression.negation > .situationValue {
+.inlineExpression.comparison > .situationValue {
 	order: -1;
 }
 
