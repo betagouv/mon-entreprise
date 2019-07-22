@@ -2398,23 +2398,11 @@
         - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: employeur
-          taux:
-            variations:
-              - si:
-                  toutes ces conditions:
-                    - cotisations . assiette < plafond de réduction employeur
-                    - statut JEI != oui
-                    - assimilé salarié != oui
-                alors: 7%
-              - sinon: 13%
+          taux: taux employeur
         - attributs:
             composante: maladie, maternité, invalidité, décès
             dû par: salarié
-          taux:
-            variations:
-              - si: régime alsace moselle
-                alors: 1.5%
-              - sinon: 0%
+          taux: taux salarié
         - attributs:
             composante: Contribution Solidarité Autonomie
             abbréviation: CSA
@@ -2423,6 +2411,30 @@
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
           taux: 0.3%
+
+
+- espace: contrat salarié . maladie
+  nom: taux employeur
+  période: aucune
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - cotisations . assiette < plafond de réduction employeur
+            - statut JEI != oui
+            - assimilé salarié != oui
+        alors: 7%
+      - sinon: 13%
+
+- espace: contrat salarié . maladie
+  nom: taux salarié
+  période: aucune
+  formule:
+    variations:
+      - si: régime alsace moselle
+        alors: 1.5%
+      - sinon: 0%
+
 
 - espace: contrat salarié . maladie
   nom: plafond de réduction employeur
