@@ -112,13 +112,6 @@
 	margin-right: 0.6em;
 }
 
-.maximum .description,
-.composanteName {
-	font-weight: 500;
-	margin-bottom: 0.4em;
-	margin-left: 1em;
-}
-
 .leaf .situationValue {
 	text-align: center;
 }
@@ -143,10 +136,6 @@
 
 .mecanism.inversion li {
 	margin-top: 0.6em;
-}
-
-.composantes .composanteName::first-letter {
-	text-transform: capitalize;
 }
 
 .mecanism {

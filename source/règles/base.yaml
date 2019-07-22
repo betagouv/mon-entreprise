@@ -2100,11 +2100,11 @@
 
       composantes:
         - attributs:
-            composante: base
+            nom: base
           taux: 4%
 
         - attributs:
-            composante: contribution exceptionnelle temporaire
+            nom: contribution exceptionnelle temporaire
           description: |
             Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
           taux: 0.05%
@@ -2396,15 +2396,15 @@
       assiette: cotisations . assiette
       composantes:
         - attributs:
-            composante: maladie, maternité, invalidité, décès
+            nom: maladie, maternité, invalidité, décès
             dû par: employeur
           taux: taux employeur
         - attributs:
-            composante: maladie, maternité, invalidité, décès
+            nom: maladie, maternité, invalidité, décès
             dû par: salarié
           taux: taux salarié
         - attributs:
-            composante: Contribution Solidarité Autonomie
+            nom: Contribution Solidarité Autonomie
             abbréviation: CSA
             dû par: employeur
           références:

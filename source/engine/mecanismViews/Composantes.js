@@ -6,6 +6,7 @@ import { Trans } from 'react-i18next'
 import { toPairs } from 'ramda'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import withLanguage from 'Components/utils/withLanguage'
+import colours from 'Engine/mecanismViews/colours'
 
 let Comp = withLanguage(function Composantes({
 	language,
@@ -29,11 +30,25 @@ let Comp = withLanguage(function Composantes({
 					</p>
 					<ol>
 						{explanation.map(c => [
-							<li className="composante" key={JSON.stringify(c.composante)}>
-								<ul className="composanteAttributes">
+							<li
+								className="composante"
+								css={`
+									margin-bottom: 1em;
+								`}
+								key={JSON.stringify(c.composante)}>
+								<ul
+									className="composanteAttributes"
+									css={`
+										border-left: 4px solid ${colours('composantes')};
+										li > span:first-child {
+										}
+									`}>
 									{toPairs(c.composante).map(([k, v]) => (
 										<li key={k} className="composanteName">
-											<span>
+											<span
+												css={`
+													color: ${colours('composantes')};
+												`}>
 												<Trans>{k}</Trans>:{' '}
 											</span>
 											<span>
