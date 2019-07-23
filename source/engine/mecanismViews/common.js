@@ -13,7 +13,7 @@ import mecanismColours from './colours'
 import classnames from 'classnames'
 import Value from 'Components/Value'
 
-export let NodeValuePointer = ({ data, unit, equalSign }) => (
+export let NodeValuePointer = ({ data, unit }) => (
 	<span
 		className={classnames('situationValue', {
 			boolean: typeof data == 'boolean'
@@ -28,7 +28,6 @@ export let NodeValuePointer = ({ data, unit, equalSign }) => (
 			line-height: 1.6em;
 			border-radius: 0.2rem;
 		`}>
-		{equalSign && <span>=&nbsp;</span>}
 		<Value nodeValue={data} unit={unit} />
 	</span>
 )
@@ -59,7 +58,8 @@ export class Node extends Component {
 				{name ? (
 					!isNil(value) && (
 						<div className="mecanism-result">
-							<NodeValuePointer equalSign data={value} unit={unit} />
+							<span css="font-size: 90%; margin: 0 .6em">=</span>
+							<NodeValuePointer data={value} unit={unit} />
 						</div>
 					)
 				) : (
