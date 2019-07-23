@@ -43,7 +43,7 @@ export class Node extends Component {
 				className={classNames(classes, 'node', { inline })}
 				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
 				{name && !inline && (
-					<span className="nodeHead">
+					<div className="nodeHead" css="margin-bottom: 1em">
 						<LinkButton
 							className="name"
 							style={
@@ -52,7 +52,7 @@ export class Node extends Component {
 							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
 						</LinkButton>
-					</span>
+					</div>
 				)}
 				{child}{' '}
 				{name ? (

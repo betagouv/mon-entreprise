@@ -180,7 +180,6 @@
 }
 
 .variable,
-.nodeHead,
 .operator {
 	display: inline-block;
 }
