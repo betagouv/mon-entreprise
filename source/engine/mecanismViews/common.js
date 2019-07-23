@@ -63,12 +63,18 @@ export class Node extends Component {
 						</div>
 					)
 				) : (
-					<>
+					<span
+						css={`
+							@media (max-width: 1200px) {
+								width: 100%;
+								text-align: right;
+							}
+						`}>
 						{value !== true && value !== false && !isNil(value) && (
-							<span className="operator"> = </span>
+							<span className="operator"> =&nbsp;</span>
 						)}
 						<NodeValuePointer data={value} unit={unit} />
-					</>
+					</span>
 				)}
 			</div>
 		)
