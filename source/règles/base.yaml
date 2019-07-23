@@ -1649,7 +1649,7 @@
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
-  unité: _ 
+  unité: employés
   suggestions:
     1: 1
     20: 20
@@ -4158,9 +4158,9 @@
 
 - espace: protection sociale . retraite
   nom: mois cotisés
+  unité: mois
   formule: 172 * 3
   notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
-  unité: €
 
 - espace: protection sociale . retraite
   nom: complémentaire salarié
@@ -4182,12 +4182,14 @@
   nom: points acquis
   formule: points acquis par mois * mois cotisés
   période: aucune
+  unité: points
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 - espace: protection sociale . retraite . complémentaire salarié
   nom: points acquis par mois
   période: mois
+  unité: points/mois
   formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire salarié
