@@ -204,7 +204,7 @@ let NamespaceRulesList = compose(
 	return (
 		<section>
 			<h2>
-				<Trans>Règles associées</Trans>
+				<Trans>Pages associées</Trans>
 			</h2>
 			<ul>
 				{namespaceRules.map(r => (
