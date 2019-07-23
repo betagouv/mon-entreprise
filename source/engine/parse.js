@@ -6,11 +6,11 @@ import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
 import variations from 'Engine/mecanisms/variations'
+import operation from 'Engine/mecanisms/operation'
 import { Parser } from 'nearley'
 
 import {
 	add,
-	curry,
 	divide,
 	equals,
 	gt,
@@ -19,7 +19,6 @@ import {
 	without,
 	lt,
 	lte,
-	map,
 	multiply,
 	propOr,
 	subtract,
@@ -29,7 +28,6 @@ import {
 	T
 } from 'ramda'
 import React from 'react'
-import { evaluateNode, makeJsx, mergeMissing, rewriteNode } from './evaluation'
 import Grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -46,9 +44,7 @@ import {
 	mecanismSynchronisation,
 	mecanismOnePossibility
 } from './mecanisms'
-import { Node } from './mecanismViews/common'
 import { parseReferenceTransforms } from './parseReference'
-import { inferUnit } from 'Engine/units'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
@@ -127,7 +123,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 		operationDispatch = fromPairs(
 			Object.entries(knownOperations).map(([k, [f, symbol]]) => [
 				k,
-				mecanismOperation(k, f, symbol)
+				operation(k, f, symbol)
 			])
 		)
 
@@ -172,56 +168,4 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 		action = propOr(mecanismError, k, dispatch)
 
 	return action(parse(rules, rule, parsedRules), k, v)
-}
-
-let mecanismOperation = (k, operatorFunction, symbol) => (recurse, k, v) => {
-	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = map(
-				curry(evaluateNode)(cache, situation, parsedRules),
-				node.explanation
-			),
-			value1 = explanation[0].nodeValue,
-			value2 = explanation[1].nodeValue,
-			nodeValue =
-				value1 == null || value2 == null
-					? null
-					: operatorFunction(value1, value2),
-			missingVariables = mergeMissing(
-				explanation[0].missingVariables,
-				explanation[1].missingVariables
-			)
-
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let explanation = v.explanation.map(recurse)
-
-	let unit = inferUnit(k, [explanation[0].unit, explanation[1].unit])
-
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes={'inlineExpression ' + k}
-			value={nodeValue}
-			unit={unit}
-			child={
-				<span className="nodeContent">
-					<span className="fa fa" />
-					{makeJsx(explanation[0])}
-					<span className="operator">{symbol || k}</span>
-
-					{makeJsx(explanation[1])}
-				</span>
-			}
-		/>
-	)
-
-	return {
-		...v,
-		evaluate,
-		jsx,
-		operator: symbol || k,
-		// is this useful ?		text: rawNode,
-		explanation,
-		unit
-	}
 }
