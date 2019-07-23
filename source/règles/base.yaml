@@ -1667,10 +1667,10 @@
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
-  unité: '%'
+  unité: (%)
   suggestions:
-    1: 1
-    5: 5
+    1%: 1
+    5%: 5
   par défaut: 0
 
 - espace: entreprise
@@ -2159,7 +2159,7 @@
   nom: part employeur
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
   question: Quel est la part de la complémentaire santé payée par l'employeur ?
-  unité: '%'
+  unité: (%)
   suggestions:
     50%: 50
     100%: 100
@@ -2172,7 +2172,7 @@
 - espace: contrat salarié . complémentaire santé
   nom: part salarié
   description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
-  unité: '%'
+  unité: (%)
   formule: 100 - part employeur
 
 - espace: contrat salarié . complémentaire santé

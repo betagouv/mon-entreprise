@@ -76,7 +76,7 @@
       plafond: mon plafond
       taux: 0.5%
 
-  unité attendue: €patates
+  unité attendue: €-patates
   exemples:
     - nom:
       situation:

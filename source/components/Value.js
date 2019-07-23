@@ -80,6 +80,10 @@ export default withLanguage(
 					numberFormatter({ style: 'percent', maximumFractionDigits: 3 })(
 						nodeValue
 					)
+				) : unitText === '(%)' ? (
+					numberFormatter({ style: 'percent', maximumFractionDigits: 3 })(
+						nodeValue / 100
+					)
 				) : (
 					<>
 						{numberFormatter({

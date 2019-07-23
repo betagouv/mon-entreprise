@@ -1,5 +1,6 @@
 import { remove, isEmpty, unnest } from 'ramda'
 
+//TODO this function does not handle complex units like passenger-kilometer/flight
 export let parseUnit = string => {
 	let [a, b = ''] = string.split('/'),
 		result = {
@@ -9,22 +10,27 @@ export let parseUnit = string => {
 	return result
 }
 
+let printUnits = units => units.filter(unit => unit !== '%').join('-')
+
 export let serialiseUnit = rawUnit => {
 	let unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
+
+	// the unit '%' is only displayed when it is the only unit
+	let merge = [...numerators, ...denominators]
+	if (merge.length === 1 && merge[0] === '%') return '%'
+
 	let n = !isEmpty(numerators)
 	let d = !isEmpty(denominators)
 	let string =
 		!n && !d
 			? ''
 			: n && !d
-			? numerators.join('')
+			? printUnits(numerators)
 			: !n && d
-			? `/${denominators.join('')}`
-			: `${numerators.join('')} / ${denominators.join('')}`
+			? `/${printUnits(denominators)}`
+			: `${printUnits(numerators)} / ${printUnits(denominators)}`
 
-	// the unit '%' is only displayed when it is the only unit
-	if (string.length > 1) return string.replace(/%/g, '')
 	return string
 }
 

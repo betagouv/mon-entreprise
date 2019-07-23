@@ -55,7 +55,7 @@ export default compose(
 						/>
 						{suffixed && (
 							<label className="suffix" htmlFor={'step-' + dottedName}>
-								{unit}
+								{unit === '(%)' ? '%' : unit}
 								{rulePeriod && (
 									<span>
 										{' '}

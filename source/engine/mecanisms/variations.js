@@ -77,7 +77,6 @@ export default (recurse, k, v, devariate) => {
 			missingVariables = satisfiedVariation
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
-		console.log(resolvedExplanation)
 
 		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
 	}
