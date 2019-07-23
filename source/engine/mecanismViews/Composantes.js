@@ -23,8 +23,8 @@ let Comp = withLanguage(function Composantes({
 			unit={unit}
 			child={
 				<>
-					<p>
-						<Trans>Cette règle est la somme de</Trans>{' '}
+					<p css="margin-bottom: 1em">
+						<Trans>La somme de</Trans>{' '}
 						{writtenNumbers[language][explanation.length]}{' '}
 						<InlineMecanism name="composantes" /> :
 					</p>

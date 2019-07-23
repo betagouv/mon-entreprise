@@ -28,9 +28,8 @@ let Comp = withLanguage(function Variations({
 					value={nodeValue}
 					child={
 						<>
-							<p>
-								<Trans>Cette règle présente</Trans>{' '}
-								{writtenNumbers[language][explanation.length]}{' '}
+							<p css="text-transform: capitalize">
+									<Trans >{writtenNumbers[language][explanation.length]}{' '}</Trans>
 								<InlineMecanism name="variations" /> :
 							</p>
 							<ol>
