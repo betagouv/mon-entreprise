@@ -22,9 +22,7 @@ export default (recurse, k, v, devariate) => {
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let evaluateVariationProp = prop =>
-				prop === undefined
-					? undefined
-					: evaluateNode(cache, situationGate, parsedRules, prop),
+				prop && evaluateNode(cache, situationGate, parsedRules, prop),
 			// mark the satisfied variation if any in the explanation
 			[, resolvedExplanation] = reduce(
 				([resolved, result], variation) => {
@@ -34,7 +32,7 @@ export default (recurse, k, v, devariate) => {
 					let evaluatedCondition = evaluateVariationProp(variation.condition)
 
 					if (evaluatedCondition == undefined) {
-						// We've reached the eventual defaut case
+						// No condition : we've reached the eventual defaut case
 						let evaluatedVariation = {
 							consequence: evaluateVariationProp(variation.consequence),
 							satisfied: true
@@ -43,8 +41,11 @@ export default (recurse, k, v, devariate) => {
 					}
 
 					if (evaluatedCondition.nodeValue === null)
-						// one case has missing variables => we can't go further
-						return [true, [...result, { condition: evaluatedCondition }]]
+						// the current variation case has missing variables => we can't go further
+						return [
+							true,
+							[...result, { ...variation, condition: evaluatedCondition }]
+						]
 
 					if (evaluatedCondition.nodeValue === true) {
 						let evaluatedVariation = {
@@ -76,6 +77,7 @@ export default (recurse, k, v, devariate) => {
 			missingVariables = satisfiedVariation
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
+		console.log(resolvedExplanation)
 
 		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
 	}
