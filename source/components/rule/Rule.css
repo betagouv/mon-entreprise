@@ -20,12 +20,6 @@ h2 small {
 	font-size: 75%;
 }
 
-#rule #ruleValue {
-	text-align: center;
-	font-size: 200%;
-	margin-bottom: 0.6em;
-	margin-top: 0.4em;
-}
 
 #rule #ruleDefault {
 	text-align: center;

@@ -52,8 +52,8 @@ export default compose(
 		return
 	})
 	return (
-		<div id="PeriodSwitch">
-			<div className="base ui__ small toggle">
+		<span id="PeriodSwitch">
+			<span className="base ui__ small toggle">
 				<label>
 					<Field
 						name="période"
@@ -82,8 +82,8 @@ export default compose(
 						<Trans>mois</Trans>
 					</span>
 				</label>
-			</div>
-		</div>
+			</span>
+		</span>
 	)
 })
 

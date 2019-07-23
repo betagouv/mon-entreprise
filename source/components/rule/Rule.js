@@ -30,6 +30,7 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
+import PeriodSwitch from 'Components/PeriodSwitch'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -63,8 +64,6 @@ export default compose(
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
 
 			let displayedRule = analysedExample || analysedRule
-
-			console.log(displayedRule)
 
 			return (
 				<>
@@ -103,7 +102,23 @@ export default compose(
 								/>
 
 								<section id="rule-content">
-									<div id="ruleValue">
+									<div
+										id="ruleValue"
+										css={`
+											display: flex;
+											justify-content: center;
+											flex-wrap: wrap;
+											align-items: center;
+
+											> .value {
+												font-size: 220%;
+											}
+
+											margin: 0.6em 0;
+											> * {
+												margin: 0 0.6em;
+											}
+										`}>
 										<Value
 											{...displayedRule}
 											nilValueSymbol={
@@ -111,6 +126,10 @@ export default compose(
 													? '-'
 													: null
 											}
+										/>
+										<Period
+											period={flatRule['période']}
+											valuesToShow={valuesToShow}
 										/>
 									</div>
 									{displayedRule.defaultValue != null && (
@@ -227,3 +246,19 @@ let NamespaceRulesList = compose(
 		</section>
 	)
 })
+
+let Period = ({ period, valuesToShow }) =>
+	period ? (
+		valuesToShow && period === 'flexible' ? (
+			<PeriodSwitch />
+		) : (
+			<span className="inlineMecanism">
+				<span
+					className="name"
+					data-term-definition="période"
+					style={{ background: '#8e44ad' }}>
+					{period}
+				</span>
+			</span>
+		)
+	) : null
