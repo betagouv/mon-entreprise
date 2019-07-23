@@ -29,19 +29,15 @@ let Comp = withLanguage(function Composantes({
 						<InlineMecanism name="composantes" /> :
 					</p>
 					<ol>
-						{explanation.map(c => [
+						{explanation.map((c, i) => [
 							<li
 								className="composante"
-								css={`
-									margin-bottom: 1em;
-								`}
+								css={``}
 								key={JSON.stringify(c.composante)}>
 								<ul
 									className="composanteAttributes"
 									css={`
 										border-left: 4px solid ${colours('composantes')};
-										li > span:first-child {
-										}
 									`}>
 									{toPairs(c.composante).map(([k, v]) => (
 										<li key={k} className="composanteName">
@@ -58,6 +54,15 @@ let Comp = withLanguage(function Composantes({
 									))}
 								</ul>
 								<div className="content">{makeJsx(c)}</div>
+								<div
+									css={`
+										text-align: center;
+										width: 100%;
+										font-size: 2.6rem;
+										margin: 0.4em 0 0.2em;
+									`}>
+									{i === explanation.length - 1 ? null : '+'}
+								</div>
 							</li>
 						])}
 					</ol>
