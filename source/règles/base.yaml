@@ -692,6 +692,13 @@
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   par défaut: non
+  désactive:
+    - chômage
+    - réduction générale
+    - AGS
+    - APEC
+    - contribution au dialogue social
+    - statut JEI
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
@@ -1754,6 +1761,10 @@
   description: L'entreprise est une association non lucrative
   question: S'agit-il d'une association à but non lucratif ?
   par défaut: non
+  # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+  # -> pas de taxe ni contribution d'apprentissage
+  désactive:
+    - contrat salarié . taxe d'apprentissage
 
 - espace: entreprise
   nom: établissement bancaire
@@ -1953,6 +1964,8 @@
   description: |
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
   par défaut: non
+  désactive:
+    - contrat salarié . réduction générale
 
 - espace: contrat salarié
   nom: exonération JEI
@@ -1967,7 +1980,6 @@
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
 
   applicable si: statut JEI
-  non applicable si: assimilé salarié
   période: mois
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
@@ -1992,15 +2004,8 @@
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-
-  non applicable si:
-    une de ces conditions:
-      - assimilé salarié
-      - cotisations . assiette > plafond de l'assiette
-      - statut JEI
-
+  applicable si: cotisations . assiette <= plafond de l'assiette
   période: flexible
-
   formule:
     le minimum de:
       - assiette
@@ -2137,7 +2142,6 @@
 
 - espace: contrat salarié
   nom: retraite complémentaire
-  non applicable si: régime des impatriés
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -2186,7 +2190,6 @@
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
-  non applicable si: assimilé salarié
   période: flexible
   formule:
     multiplication:
@@ -2223,7 +2226,6 @@
 
 - espace: contrat salarié
   nom: APEC
-  non applicable si: assimilé salarié
   cotisation:
     branche: assurance chômage
     type de retraite: complémentaire
@@ -2261,7 +2263,6 @@
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
 
-  non applicable si: assimilé salarié
   période: flexible
   formule:
     multiplication:
@@ -2418,7 +2419,6 @@
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
   période: flexible
-  non applicable si: assimilé salarié
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2708,10 +2708,6 @@
     csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
 
   note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
-
-  non applicable si: entreprise . association non lucrative
-  # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
-  # -> pas de taxe ni contribution d'apprentissage
   période: flexible
   formule:
     somme:
@@ -2733,10 +2729,10 @@
 - espace: contrat salarié
   nom: contribution supplémentaire à l'apprentissage
 
-  non applicable si:
-    une de ces conditions:
-      - entreprise . effectif < 250
-      - entreprise . ratio alternants >= 5%
+  applicable si:
+    toutes ces conditions:
+      - entreprise . effectif > 250
+      - entreprise . ratio alternants < 5%
 
   période: flexible
   formule:
@@ -2833,6 +2829,10 @@
     Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
 
   note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
+  désactive:
+    - vieillesse
+    - retraite complémentaire
+    - protection sociale . retraite . base
   contrôles:
     - si: contrat salarié . régime des impatriés
       niveau: information
@@ -2908,7 +2908,7 @@
 - espace: contrat salarié
   nom: versement transport
   description: Contribution sur les salaires destinée au financement des transports publics.
-  non applicable si: entreprise . effectif < 11
+  applicable si: entreprise . effectif > 10
   cotisation:
     branche: transport
     dû par: employeur
@@ -2928,7 +2928,6 @@
     collecteur: URSSAF
     destinataire: CNAV
     # CTP: 100
-  non applicable si: régime des impatriés
   description: Cotisation au régime de retraite de base des salariés.
   période: flexible
   formule:
@@ -2991,7 +2990,7 @@
   titre: Assiette du forfait social au taux de 8%
   références:
     Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
-  non applicable si: entreprise . effectif < 11
+  applicable si: entreprise . effectif > 10
   période: flexible
   formule:
     somme:
@@ -4245,7 +4244,6 @@
   titre: pension de retraite de base
   unité: €
   période: flexible
-  non applicable si: contrat salarié . régime des impatriés
   formule:
     multiplication:
       plafond: plafond sécurité sociale temps plein
@@ -4401,7 +4399,7 @@
 - espace: protection sociale
   nom: revenu moyen
   description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
-  notes: Normalement, on prends le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
+  notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
   unité: €
   période: année
   formule:
@@ -4414,7 +4412,7 @@
   nom: mois cotisés
   unité: mois
   formule: 172 * 3
-  notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
+  notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
 
 - espace: protection sociale . retraite
   nom: complémentaire salarié

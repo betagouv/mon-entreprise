@@ -1,15 +1,15 @@
 // Reference to a variable
+import parseRule from 'Engine/parseRule'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
+import { getSituationValue } from './getSituationValue'
 import { Leaf, Node } from './mecanismViews/common'
 import {
 	disambiguateRuleReference,
 	findParentDependency,
 	findRuleByDottedName
 } from './rules'
-import { getSituationValue } from './getSituationValue'
-import parseRule from 'Engine/parseRule'
 
 export let parseReference = (rules, rule, parsedRules, filter) => ({
 	fragments

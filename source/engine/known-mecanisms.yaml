@@ -113,6 +113,12 @@ non applicable si:
 
     Peut être accompagnée du mécanisme 'applicable si'.
 
+désactive:
+  description: |
+    Permet de désactiver certaines règles pour la situation saisie.
+
+    > Ce mécanisme est utile pour encoder les régimes d'exceptions (par exemple le [régime des impatriés]()) sans avoir à modifier la définition des règles de base.
+
 barème:
   type: numeric
   description: |

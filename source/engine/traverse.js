@@ -1,12 +1,13 @@
 import { evaluateControls } from 'Engine/controls'
-import { chain, map, path } from 'ramda'
+import parseRule from 'Engine/parseRule'
+import { chain, path } from 'ramda'
 import { evaluateNode } from './evaluation'
+import { parseReference } from './parseReference'
 import {
 	disambiguateRuleReference,
 	findRule,
 	findRuleByDottedName
 } from './rules'
-import parseRule from 'Engine/parseRule'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -48,8 +49,27 @@ export let parseAll = flatRules => {
 	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
 
 	let parsedRules = {}
-	let parseOne = rule => parseRule(flatRules, rule, parsedRules)
-	map(parseOne, flatRules)
+	let disabledMapping = {}
+	flatRules.forEach(rule => {
+		const parsed = parseRule(flatRules, rule, parsedRules)
+		if (parsed['désactive']) {
+			disabledMapping[rule.dottedName] = parsed['désactive'].map(
+				referenceName => {
+					return disambiguateRuleReference(flatRules, rule, referenceName)
+				}
+			)
+		}
+	})
+
+	Object.entries(disabledMapping).forEach(([a, b]) => {
+		b.forEach(ruleName => {
+			parsedRules[ruleName].isDisabledBy.push(
+				parseReference(flatRules, parsedRules[ruleName], parsedRules)({
+					fragments: [a]
+				})
+			)
+		})
+	})
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
 		A = B * C
 		B = D / E

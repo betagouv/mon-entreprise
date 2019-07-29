@@ -1,8 +1,11 @@
 import classNames from 'classnames'
-import { makeJsx } from 'Engine/evaluation'
-import { any, compose, identity, path } from 'ramda'
 import { React, T } from 'Components'
+import withSitePaths from 'Components/utils/withSitePaths'
+import { makeJsx } from 'Engine/evaluation'
+import { encodeRuleName } from 'Engine/rules'
+import { any, compose, identity, path } from 'ramda'
 import { Trans, withTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import './Algorithm.css'
 // The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
 import { ShowValuesProvider } from './ShowValuesContext'
@@ -35,6 +38,32 @@ let Conditions = ({
 	) : null
 }
 
+let DisabledBy = withSitePaths(({ isDisabledBy, sitePaths }) => {
+	return (
+		isDisabledBy.length > 0 && (
+			<>
+				<h3>Exception : </h3>
+				<p>
+					Cette règle ne s'applique pas pour le{' '}
+					{isDisabledBy.map(r => (
+						<Link
+							style={{
+								textDecoration: 'underline'
+							}}
+							to={
+								sitePaths.documentation.index +
+								'/' +
+								encodeRuleName(r.dottedName)
+							}>
+							{r.title || r.name}
+						</Link>
+					))}
+				</p>
+			</>
+		)
+	)
+})
+
 export default compose(withTranslation())(
 	class Algorithm extends React.Component {
 		render() {
@@ -64,6 +93,7 @@ export default compose(withTranslation())(
 								</section>
 							)}
 						</ShowValuesProvider>
+						<DisabledBy {...rule} />
 					</section>
 				</div>
 			)
