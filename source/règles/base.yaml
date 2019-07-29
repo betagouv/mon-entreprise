@@ -1566,7 +1566,7 @@
   formule:
     somme:
       - réduction générale
-      - exonération JEI
+      - statut JEI . exonération de cotisations
       - réduction ACRE
       - déduction heures supplémentaires
 
@@ -1967,8 +1967,9 @@
   désactive:
     - contrat salarié . réduction générale
 
-- espace: contrat salarié
-  nom: exonération JEI
+- espace: contrat salarié . statut JEI
+  nom: exonération de cotisations
+  titre: Exonération JEI
   aide:
     type: réduction de cotisations
     démarches: non
@@ -1979,7 +1980,6 @@
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
 
-  applicable si: statut JEI
   période: mois
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
