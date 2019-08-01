@@ -1657,20 +1657,17 @@
     1000: 1000
   par défaut: 1
 
-- espace: entreprise
-  nom: ratio alternants
-  formule: ratio alternants saisi / 100
 
 - espace: entreprise
-  nom: ratio alternants saisi
+  nom: ratio alternants
   question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
-  unité: (%)
+  unité: '%'
   suggestions:
-    1%: 1
-    5%: 5
+    1%: 0.1
+    5%: 0.5
   par défaut: 0
 
 - espace: entreprise
@@ -2140,10 +2137,10 @@
         # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
         - attributs:
             dû par: employeur
-          taux: part employeur / 100
+          taux: part employeur
         - attributs:
             dû par: salarié
-          taux: part salarié / 100
+          taux: part salarié
   exemples:
     - nom: forfait à 40€
       situation:
@@ -2152,28 +2149,28 @@
     - nom: forfait à 100€ payé par l'employeur
       situation:
         forfait: 100
-        part employeur: 100
+        part employeur: 1
       valeur attendue: 100
 
 - espace: contrat salarié . complémentaire santé
   nom: part employeur
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
   question: Quel est la part de la complémentaire santé payée par l'employeur ?
-  unité: (%)
+  unité: '%'
   suggestions:
-    50%: 50
-    100%: 100
-  par défaut: 50
+    50%: 0.50
+    100%: 1
+  par défaut: 0.50
   contrôles:
-    - si: part employeur < 50
+    - si: part employeur < 50%
       niveau: avertissement
       message: La part employeur de la complémentaire santé doit être de 50% au minimum
 
 - espace: contrat salarié . complémentaire santé
   nom: part salarié
   description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
-  unité: (%)
-  formule: 100 - part employeur
+  unité: '%'
+  formule: 100% - part employeur
 
 - espace: contrat salarié . complémentaire santé
   nom: forfait
