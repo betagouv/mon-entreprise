@@ -8,7 +8,7 @@ import type {
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
 // $FlowFixMe
-import { clearFields, reset } from 'redux-form'
+import { change, reset } from 'redux-form'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
 import type { Thunk } from 'Types/ActionsTypes'
 
@@ -25,14 +25,15 @@ export const goToQuestion = (question: string): StepAction => ({
 	name: 'unfold',
 	step: question
 })
-export const skipQuestion = (
-	question: string
+export const validateStepWithValue = (
+	dottedName,
+	value: any
 ): Thunk<StepAction> => dispatch => {
-	dispatch(clearFields('conversation', false, false, question))
+	dispatch(change('conversation', dottedName, value))
 	dispatch({
 		type: 'STEP_ACTION',
 		name: 'fold',
-		step: question
+		step: dottedName
 	})
 }
 
