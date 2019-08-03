@@ -1,5 +1,6 @@
 /* Those are postprocessor functions for the Nearley grammar.ne. 
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
+import { parseUnit } from 'Engine/units'
 
 export let operation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {
@@ -41,6 +42,7 @@ export let percentage = d => ({
 	constant: {
 		rawNode: d,
 		type: 'percentage',
+		unit: parseUnit('%'),
 		nodeValue:
 			parseFloat(d[0].join('') + (d[1] ? d[1][0] + d[1][1].join('') : '')) / 100
 	}

@@ -35,12 +35,25 @@ export var FormDecorator = formType => RenderField =>
 				helpVisible: false
 			}
 			render() {
-				let { stepAction, fieldName, inversion, setFormValue } = this.props
+				let {
+					stepAction,
+					fieldName,
+					inversion,
+					setFormValue,
+					unit
+				} = this.props
 				let submit = cause => stepAction('fold', fieldName, cause),
 					stepProps = {
 						...this.props,
 						submit,
-						setFormValue: (value, name = fieldName) => setFormValue(name, value)
+						setFormValue: (value, name = fieldName) =>
+							setFormValue(name, value),
+						...(unit === '%'
+							? {
+									format: x => (x == null ? null : x * 100),
+									normalize: x => (x == null ? null : x / 100)
+							  }
+							: {})
 					}
 
 				return (

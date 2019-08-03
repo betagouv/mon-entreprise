@@ -8,12 +8,17 @@ const NumberFormat = memoizeWith(
 	Intl.NumberFormat
 )
 
-let numberFormatter = (style, numFractionDigits = 2) => (value, language) =>
+export let numberFormatter = ({
+	style,
+	maximumFractionDigits,
+	minimumFractionDigits = 0,
+	language
+}) => value =>
 	NumberFormat(language, {
 		style,
 		currency: 'EUR',
-		maximumFractionDigits: numFractionDigits,
-		minimumFractionDigits: numFractionDigits
+		maximumFractionDigits,
+		minimumFractionDigits
 	}).format(value)
 
 // let booleanTranslations = { true: '✅', false: '❌' }
@@ -34,7 +39,8 @@ export default withLanguage(
 		nodeValue: value,
 		unit,
 		nilValueSymbol,
-		numFractionDigits,
+		maximumFractionDigits,
+		minimumFractionDigits,
 		children,
 		negative,
 		language,
@@ -63,11 +69,24 @@ export default withLanguage(
 					nodeValue.nom
 				) : valueType === 'boolean' ? (
 					booleanTranslations[language][nodeValue]
-				) : unit === '€' ? (
-					numberFormatter('currency', numFractionDigits)(nodeValue, language)
+				) : unitText === '€' ? (
+					numberFormatter({
+						style: 'currency',
+						maximumFractionDigits,
+						minimumFractionDigits,
+						language
+					})(nodeValue)
+				) : unitText === '%' ? (
+					numberFormatter({ style: 'percent', maximumFractionDigits: 3 })(
+						nodeValue
+					)
 				) : (
 					<>
-						{numberFormatter('decimal', numFractionDigits)(nodeValue)}
+						{numberFormatter({
+							style: 'decimal',
+							minimumFractionDigits,
+							maximumFractionDigits
+						})(nodeValue)}
 						&nbsp;
 						{unitText}
 					</>

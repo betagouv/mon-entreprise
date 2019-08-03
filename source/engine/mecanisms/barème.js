@@ -1,9 +1,10 @@
 import { defaultNode, E, rewriteNode } from 'Engine/evaluation'
-import { mecanismVariations } from 'Engine/mecanisms'
+import variations from 'Engine/mecanisms/variations'
 import { decompose } from 'Engine/mecanisms/utils'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
 import { evolve, has, pluck, sum } from 'ramda'
+import { inferUnit, parseUnit } from 'Engine/units'
 
 export let desugarScale = recurse => tranches =>
 	tranches
@@ -38,7 +39,7 @@ export default (recurse, k, v) => {
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
-		return mecanismVariations(recurse, k, v, true)
+		return variations(recurse, k, v, true)
 	}
 
 	let { assiette, multiplicateur } = v,
@@ -85,6 +86,7 @@ export default (recurse, k, v) => {
 		jsx: Barème('marginal'),
 		category: 'mecanism',
 		name: 'barème',
-		barème: 'marginal'
+		barème: 'marginal',
+		unit: inferUnit('*', [explanation.assiette.unit, parseUnit('%')])
 	}
 }

@@ -17,9 +17,13 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 	let partialReference = fragments.join(' . '),
 		dottedName = disambiguateRuleReference(rules, rule, partialReference)
 
+	let inInversionFormula = rule.formule?.['inversion numérique']
+
 	let parsedRule =
 		parsedRules[dottedName] ||
-		parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules)
+		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
+		(!inInversionFormula &&
+			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
 
 	let evaluate = (cache, situation, parsedRules, node) => {
 		let dottedName = node.dottedName,
@@ -93,14 +97,16 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 		evaluate,
 		//eslint-disable-next-line react/display-name
 		jsx: nodeValue => (
-			<Leaf
-				classes="variable filtered"
-				filter={filter}
-				name={fragments.join(' . ')}
-				dottedName={dottedName}
-				value={nodeValue}
-				unit={parsedRule.unit}
-			/>
+			<>
+				<Leaf
+					classes="variable filtered"
+					filter={filter}
+					name={fragments.join(' . ')}
+					dottedName={dottedName}
+					nodeValue={nodeValue}
+					unit={parsedRule.unit}
+				/>
+			</>
 		),
 
 		name: partialReference,
@@ -155,11 +161,7 @@ export let parseReferenceTransforms = (
 		if (!rule.période && !inlinePeriodTransform) {
 			if (supportedPeriods.includes(ruleToTransform.période))
 				throw new Error(
-					`Attention, une variable sans période, ${
-						rule.dottedName
-					}, qui appelle une variable à période, ${
-						ruleToTransform.dottedName
-					}, c'est suspect !
+					`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
 
 					Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
 				`
@@ -215,42 +217,5 @@ export let parseReferenceTransforms = (
 			  }
 			: {}),
 		evaluate: evaluateTransforms(node.evaluate)
-	}
-}
-
-export let parseNegatedReference = variable => {
-	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = evaluateNode(
-				cache,
-				situation,
-				parsedRules,
-				node.explanation
-			),
-			nodeValue = explanation.nodeValue == null ? null : !explanation.nodeValue,
-			missingVariables = explanation.missingVariables
-
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
-	}
-
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="inlineExpression negation"
-			value={nodeValue}
-			child={
-				<span className="nodeContent">
-					<Trans i18nKey="inlineExpressionNegation">Non</Trans>{' '}
-					{makeJsx(explanation)}
-				</span>
-			}
-		/>
-	)
-
-	return {
-		evaluate,
-		jsx,
-		category: 'mecanism',
-		name: 'négation',
-		type: 'boolean',
-		explanation: variable
 	}
 }

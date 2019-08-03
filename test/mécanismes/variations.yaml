@@ -21,7 +21,7 @@
     variations:
       - si: statut cadre
         alors: 2300
-      - si: ≠ statut cadre
+      - si: statut cadre != oui
         alors: 2100
 
   exemples:
@@ -143,7 +143,7 @@
         - si: statut cadre
           alors: 
             taux: 8%
-        - si: ≠ statut cadre
+        - si: statut cadre != oui
           alors:
             taux: 5%
 

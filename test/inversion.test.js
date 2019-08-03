@@ -145,7 +145,7 @@ describe('inversions', () => {
                 - si: cadre
                   alors:
                     taux: 80%
-                - si: ≠ cadre
+                - si: cadre != oui
                   alors:
                     taux: 70%
 

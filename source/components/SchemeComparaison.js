@@ -626,7 +626,7 @@ const RuleValueLink = compose(
 					sitePaths.documentation.index + '/' + encodeRuleName(rule.dottedName)
 				}>
 				<Value
-					numFractionDigits={0}
+					maximumFractionDigits={0}
 					{...rule}
 					unit={
 						/* //TODO the unit should be integrated in the leaf rules of base.yaml and infered by mecanisms. Will be done in a future release*/

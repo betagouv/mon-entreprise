@@ -1,9 +1,7 @@
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import { path } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
 import { capitalise0 } from '../../utils'
 import { Markdown } from '../utils/markdown'
 import Destinataire from './Destinataire'
@@ -21,8 +19,7 @@ let RuleHeader = withColours(
 		name,
 		title,
 		icon,
-		colours,
-		valuesToShow
+		colours
 	}) => (
 		<section id="ruleHeader">
 			<header className="ui__ plain card">
@@ -40,39 +37,14 @@ let RuleHeader = withColours(
 				<div id="ruleHeader__description">
 					<Markdown source={description || question} />
 				</div>
-				{(type || flatRule['période']) && (
-					<div id="ruleHeader__infobox">
-						{type && (
-							<div className="infobox__item">
-								<h4>Type&nbsp;:</h4>
-								<Trans>{capitalise0(type)}</Trans>
-							</div>
-						)}
-						{do {
-							let period = flatRule['période']
-							period && (
-								<div className="infobox__item">
-									<h4>Période :</h4>
-									{valuesToShow && period === 'flexible' ? (
-										<PeriodSwitch />
-									) : (
-										<div className="inlineMecanism">
-											<span
-												className="name"
-												data-term-definition="période"
-												style={{ background: '#8e44ad' }}>
-												{period}
-											</span>
-										</div>
-									)}
-								</div>
-							)
-						}}
-						<Destinataire
-							destinataire={path([type, 'destinataire'])(flatRule)}
-						/>
-					</div>
-				)}
+				{do {
+					let destinataire = path([type, 'destinataire'])(flatRule)
+					destinataire && (
+						<div id="ruleHeader__infobox">
+							<Destinataire destinataire={destinataire} />
+						</div>
+					)
+				}}
 			</div>
 		</section>
 	)

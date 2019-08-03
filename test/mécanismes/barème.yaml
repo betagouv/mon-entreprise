@@ -17,7 +17,7 @@
           taux: 3%
         - au-dessus de: 3
           taux: 1%
-
+  unité attendue: €
   exemples:
     - nom: 'petite assiette'
       situation:
@@ -51,6 +51,7 @@
               taux: 9%
             - au-dessus de: 2
               taux: 29%
+  unité attendue: €
 
   exemples:
     - nom:
@@ -61,12 +62,14 @@
 
 - nom: ma condition
 
-- nom: taux variable
+- test: taux variable
   formule:
     variations:
       - si: ma condition
         alors: 29%
       - sinon: 56%
+  unité attendue: '%'
+  exemples: []
 
 - nom: deuxième barème
   test: Barème à taux variable
@@ -79,6 +82,7 @@
         taux: taux variable
       - au-dessus de: 1
         taux: 90%
+  unité attendue: €
 
   exemples:
    - nom: taux faible

@@ -1,9 +1,9 @@
 - nom: base
-  unité: _
+  unité: £ 
   formule: 300
 
 - nom: assiette
-  unité: _
+  unité: £
 
 - test: Simple
   formule:
@@ -14,7 +14,7 @@
         0: 0%
         0.4: 3.16%
         1.1: 6.35%
-      
+  unité attendue: £
   exemples: 
     - nom: Premier point
       situation: 
@@ -39,11 +39,12 @@
         
         
 - nom: base deux
-  unité: _
+  unité: µ
   formule: 300
 
 - nom: assiette deux
-  unité: _
+  unité: µ
+
 - test: Retour de taux, pas d'assiette
   formule:
     barème continu:
@@ -54,6 +55,7 @@
         0.75: 100%
         1: 0%
       retourne seulement le taux: oui
+  unité attendue: '%'
   exemples: 
     - nom: Premier point
       situation: 

@@ -12,7 +12,8 @@ import './Variations.css'
 let Comp = withLanguage(function Variations({
 	language,
 	nodeValue,
-	explanation
+	explanation,
+	unit
 }) {
 	let [expandedVariation, toggleVariation] = useState(null)
 
@@ -23,12 +24,12 @@ let Comp = withLanguage(function Variations({
 					classes="mecanism variations"
 					name="variations"
 					inline
+					unit={unit}
 					value={nodeValue}
 					child={
 						<>
-							<p>
-								<Trans>Cette règle présente</Trans>{' '}
-								{writtenNumbers[language][explanation.length]}{' '}
+							<p css="text-transform: capitalize">
+									<Trans >{writtenNumbers[language][explanation.length]}{' '}</Trans>
 								<InlineMecanism name="variations" /> :
 							</p>
 							<ol>
@@ -44,7 +45,7 @@ let Comp = withLanguage(function Variations({
 										}}>
 										{!satisfied && showValues && (
 											<>
-												non applicable{' '}
+												<em>non applicable </em>
 												{expandedVariation !== i ? (
 													<button
 														className="ui__ link-button"
@@ -111,6 +112,6 @@ let Comp = withLanguage(function Variations({
 	)
 })
 // eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default (nodeValue, explanation, _, unit) => (
+	<Comp {...{ nodeValue, explanation, unit }} />
 )

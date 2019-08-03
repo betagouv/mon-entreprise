@@ -580,7 +580,7 @@ contrat salarié . salaire . brut de base:
     - si:
         toutes ces conditions:
           - 'brut de base [mensuel] < SMIC [mensuel]'
-          - ≠ assimilé salarié
+          - assimilé salarié != oui
       niveau: avertissement
       message: |
         The wage entered is lower than the minimum wage.
@@ -599,7 +599,7 @@ contrat salarié . salaire . brut de base:
     - si:
         toutes ces conditions:
           - 'brut de base [mensuel] < SMIC [mensuel]'
-          - ≠ assimilé salarié
+          - assimilé salarié != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.

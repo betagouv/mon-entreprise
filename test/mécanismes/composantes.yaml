@@ -1,12 +1,17 @@
 - test: Composantes
   formule:
     multiplication:
-      assiette: 100
+      assiette: richesse
       composantes:
         - taux: 8%
         - taux: 2%
 
+  unité attendue: crédits
   exemples:
     - nom:
       situation:
       valeur attendue: 10
+
+- nom: richesse
+  unité: crédits
+  formule: 100

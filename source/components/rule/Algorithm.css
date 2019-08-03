@@ -23,24 +23,22 @@
 	display: inline-block;
 }
 
-.node.inlineExpression:not(.comparison):not(.negation) {
+.node.inlineExpression:not(.comparison) {
 	padding-left: 0;
 	display: flex;
 	align-items: baseline;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: space-between
 }
 .nodeContent {
 	margin-right: 0.3em;
 }
-#rule-rules
-	.inlineExpression:not(.comparison):not(.negation)
-	> .situationValue {
+#rule-rules .inlineExpression:not(.comparison) > .situationValue {
 	margin-left: 0.3em;
 	margin-bottom: 0.6em;
 	margin-top: 0.3em;
 	align-items: flex-end;
-	flex: 1;
 	text-align: right;
 }
 
@@ -114,13 +112,6 @@
 	margin-right: 0.6em;
 }
 
-.maximum .description,
-.composanteName {
-	font-weight: 500;
-	margin-bottom: 0.4em;
-	margin-left: 1em;
-}
-
 .leaf .situationValue {
 	text-align: center;
 }
@@ -147,10 +138,6 @@
 	margin-top: 0.6em;
 }
 
-.composantes .composanteName::first-letter {
-	text-transform: capitalize;
-}
-
 .mecanism {
 	border: 1px solid;
 	max-width: 100%;
@@ -166,13 +153,8 @@
 .mecanism-result {
 	position: absolute;
 	display: none;
-	bottom: 0;
+	bottom: 0px;
 	right: 0;
-	border-top: 1px solid;
-	border-left: 1px solid;
-	border-top-left-radius: 0.3rem;
-	border-color: inherit;
-	padding: 0.1rem 0.6rem;
 }
 #rule-rules.showValues .mecanism-result {
 	display: initial;
@@ -198,7 +180,6 @@
 }
 
 .variable,
-.nodeHead,
 .operator {
 	display: inline-block;
 }
@@ -215,8 +196,7 @@
 
 .mecanism.cond *:not(.nodeContent) > .variable .name,
 .mecanism.variations *:not(.nodeContent) > .variable .name,
-.inlineExpression.comparison,
-.inlineExpression.negation {
+.inlineExpression.comparison {
 	display: flex;
 	align-items: baseline;
 }
@@ -228,8 +208,7 @@
 	> .variable
 	.name
 	.situationValue,
-.inlineExpression.comparison > .situationValue,
-.inlineExpression.negation > .situationValue {
+.inlineExpression.comparison > .situationValue {
 	order: -1;
 }
 

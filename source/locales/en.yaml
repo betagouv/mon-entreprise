@@ -28,7 +28,6 @@ radio_Non: No
 radio_Aucun: None
 oui: yes
 non: no
-inlineExpressionNegation: Not
 déplier: show more
 replier: show less
 Salaire brut: Gross salary
@@ -42,7 +41,7 @@ Quel est le salaire mensuel ?: What is the monthly salary?
 back: Back to your simulation
 ambiguous: More than one rule with this name found. Which one are you looking for ?
 Références: Relevant legal information (fr)
-Règles du groupe: Rules of the group
+Pages associées: Related pages
 Pas de sources officielles: No official information
 Votre avis nous intéresse !: Your opinion matters!
 afficher les sources complémentaires: display additional information sources
@@ -63,7 +62,6 @@ satisfaction-mailto: click here to directly write an email
 Votre adresse e-mail: Your email address
 envoyer: send
 Rechercher: Search
-Règle non applicable: Not applicable
 Situation incomplète: More information needed
 Destinataire: Levied by
 cotisation: contribution
@@ -178,8 +176,7 @@ legalNotice:
         contact@mon-entreprise.beta.gouv.fr
       </0>
 
-Cette règle est la somme de: This rule is the sum of
-Cette règle présente: This rule has
+La somme de: This rule is the sum of
 Si: If
 Sinon: Else
 Alors: Then

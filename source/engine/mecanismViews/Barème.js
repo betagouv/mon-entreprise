@@ -7,7 +7,8 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { makeJsx } from '../evaluation'
 import './Barème.css'
-import { formatNumber, Node, NodeValuePointer } from './common'
+import { Node, NodeValuePointer } from './common'
+import { numberFormatter } from 'Components/Value'
 
 export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	<>
@@ -36,7 +37,8 @@ let Component = withLanguage(function Barème({
 	nodeValue,
 	explanation,
 	barèmeType,
-	lazyEval
+	lazyEval,
+	unit
 }) {
 	return (
 		<ShowValuesConsumer>
@@ -45,6 +47,7 @@ let Component = withLanguage(function Barème({
 					classes="mecanism barème"
 					name={barèmeType === 'marginal' ? 'barème' : 'barème linéaire'}
 					value={nodeValue}
+					unit={unit}
 					child={
 						<ul className="properties">
 							<BarèmeAttributes explanation={explanation} lazyEval={lazyEval} />
@@ -96,12 +99,13 @@ let Component = withLanguage(function Barème({
 										<b>
 											<Trans>Taux final</Trans> :{' '}
 										</b>
-										{formatNumber(
-											(nodeValue /
-												lazyEval(explanation['assiette']).nodeValue) *
-												100,
-											language
-										)}{' '}
+										<NodeValuePointer
+											data={
+												(nodeValue /
+													lazyEval(explanation['assiette']).nodeValue) *
+												100
+											}
+										/>
 										%
 									</>
 								)}
@@ -132,16 +136,17 @@ let Tranche = ({
 			<td key="tranche">
 				{maxOnly ? (
 					<>
-						<Trans>En-dessous de</Trans> {formatNumber(maxOnly, language)}
+						<Trans>En-dessous de</Trans>{' '}
+						{numberFormatter({ language })(maxOnly)}
 					</>
 				) : minOnly ? (
 					<>
-						<Trans>Au-dessus de</Trans> {formatNumber(minOnly, language)}
+						<Trans>Au-dessus de</Trans> {numberFormatter({ language })(minOnly)}
 					</>
 				) : (
 					<>
-						<Trans>De</Trans> {formatNumber(min, language)} <Trans>à</Trans>{' '}
-						{formatNumber(max, language)}
+						<Trans>De</Trans> {numberFormatter({ language })(min)}{' '}
+						<Trans>à</Trans> {numberFormatter({ language })(max)}
 					</>
 				)}
 			</td>
@@ -156,6 +161,9 @@ let Tranche = ({
 }
 
 //eslint-disable-next-line
-export default barèmeType => (nodeValue, explanation, lazyEval = identity) => (
-	<Component {...{ nodeValue, explanation, barèmeType, lazyEval }} />
-)
+export default barèmeType => (
+	nodeValue,
+	explanation,
+	lazyEval = identity,
+	unit
+) => <Component {...{ nodeValue, explanation, barèmeType, lazyEval, unit }} />

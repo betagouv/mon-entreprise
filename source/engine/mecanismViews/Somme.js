@@ -4,21 +4,22 @@ import { makeJsx } from '../evaluation'
 import './Somme.css'
 import { Node, NodeValuePointer } from './common'
 
-const SommeNode = ({ explanation, nodeValue }) => (
+const SommeNode = ({ explanation, nodeValue, unit }) => (
 	<Node
 		classes="mecanism somme"
 		name="somme"
 		value={nodeValue}
-		child={<Table explanation={explanation} />}
+		unit={unit}
+		child={<Table explanation={explanation} unit={unit} />}
 	/>
 )
 export default SommeNode
 
-let Table = ({ explanation }) => (
+let Table = ({ explanation, unit }) => (
 	<div className="mecanism-somme__table">
 		<div>
 			{explanation.map((v, i) => (
-				<Row key={i} {...{ v, i }} />
+				<Row key={i} {...{ v, i }} unit={unit} />
 			))}
 		</div>
 	</div>
@@ -30,7 +31,7 @@ class Row extends Component {
 		folded: true
 	}
 	render() {
-		let { v, i } = this.props,
+		let { v, i, unit } = this.props,
 			rowFormula = path(['explanation', 'formule', 'explanation'], v),
 			isSomme = rowFormula && rowFormula.name == 'somme'
 
@@ -50,13 +51,13 @@ class Row extends Component {
 					)}
 				</div>
 				<div className="situationValue value">
-					<NodeValuePointer data={v.nodeValue} />
+					<NodeValuePointer data={v.nodeValue} unit={unit} />
 				</div>
 			</div>,
 			...(isSomme && !this.state.folded
 				? [
 						<div className="nested" key={v.name + '-nest'}>
-							<Table explanation={rowFormula.explanation} />
+							<Table explanation={rowFormula.explanation} unit={unit} />
 						</div>
 				  ]
 				: [])

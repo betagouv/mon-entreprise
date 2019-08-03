@@ -29,10 +29,13 @@
     - valeur attendue: 29
 
 - nom: salaire de base
+  unité: $
+
 - nom: contrat . salaire de base
 
 - test: multiplication
   formule: salaire de base * 3
+  unité attendue: $
   exemples:
     - situation:
         salaire de base: 1000
@@ -46,9 +49,11 @@
       valeur attendue: 3000
 
 - nom: taux
+  unité: '%'
 
 - test: soustraction
   formule: 1 - taux
+  unité attendue: '%'
   exemples:
     - situation:
         taux: 0.89
@@ -56,6 +61,7 @@
 
 - test: addition
   formule: salaire de base + 2000
+  unité attendue: $
   exemples:
     - situation:
         salaire de base: 3000
@@ -77,6 +83,27 @@
     - situation:
         salaire de base: 3000
       valeur attendue: 1000
+
+- test: division deux
+  formule: 2000 / salaire de base
+  unité attendue: /$
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: 0.66667
+
+- nom: nombre de personnes
+  unité: personne
+
+- test: division trois
+  formule: salaire de base / nombre de personnes
+  unité attendue: $ / personne
+  exemples:
+    - situation:
+        salaire de base: 3000
+        nombre de personnes: 10
+      valeur attendue: 300
+
 
 - test: comparaison stricte
   formule: salaire de base < 3001
@@ -133,7 +160,7 @@
     - valeur attendue: true
 
 - test: négation
-  formule: ≠ CDD . poursuivi en CDI
+  formule: CDD . poursuivi en CDI != oui
   exemples:
     - situation:
         CDD . poursuivi en CDI: oui
@@ -150,6 +177,7 @@
 
 - test: multiplication et pourcentage
   formule: 38.1% * salaire de base
+  unité attendue: $
   exemples:
     - situation:
         salaire de base: 1000

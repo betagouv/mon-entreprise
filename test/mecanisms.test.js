@@ -11,11 +11,12 @@ import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import * as R from 'ramda'
 import { isNumeric } from '../source/utils'
+import { serialiseUnit } from 'Engine/units'
 
 describe('Mécanismes', () =>
 	testSuites.map(([suiteName, suite]) =>
 		suite.map(
-			({ exemples, test }) =>
+			({ exemples, test, 'unité attendue': unit }) =>
 				exemples &&
 				describe(`Suite ${suiteName}, test : ${test ||
 					'Nom de test (propriété "test") manquant dans la variable contenant ces "exemples"'}`, () =>
@@ -50,6 +51,11 @@ describe('Mécanismes', () =>
 
 								if (expectedMissing) {
 									expect(missing).to.eql(expectedMissing)
+								}
+
+								if (unit) {
+									expect(target.unit).not.to.be.equal(undefined)
+									expect(serialiseUnit(target.unit)).to.eql(unit)
 								}
 							})
 					))

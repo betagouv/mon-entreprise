@@ -6,7 +6,7 @@
     multiplication:
       assiette: mon assiette
       taux: 3%
-
+  unité attendue: €
   exemples:
     - nom: entier
       situation:
@@ -51,9 +51,10 @@
       valeur attendue: 1.5
 
 - nom: mon facteur
-  unité: _
+  unité: patates
 
 - test: Multiplication à facteur
+  unité attendue: patates
   formule:
     multiplication:
       assiette: 100
@@ -75,6 +76,7 @@
       plafond: mon plafond
       taux: 0.5%
 
+  unité attendue: €-patates
   exemples:
     - nom:
       situation:

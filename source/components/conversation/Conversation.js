@@ -1,4 +1,8 @@
-import { goToQuestion, resetSimulation, skipQuestion } from 'Actions/actions'
+import {
+	goToQuestion,
+	resetSimulation,
+	validateStepWithValue
+} from 'Actions/actions'
 import { T } from 'Components'
 import QuickLinks from 'Components/QuickLinks'
 import { getInputComponent } from 'Engine/generateQuestions'
@@ -15,6 +19,7 @@ import {
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
+import { findRuleByDottedName } from 'Engine/rules'
 
 export default compose(
 	reduxForm({
@@ -28,7 +33,7 @@ export default compose(
 			previousAnswers: state.conversationSteps.foldedSteps,
 			nextSteps: nextStepsSelector(state)
 		}),
-		{ resetSimulation, skipQuestion, goToQuestion }
+		{ resetSimulation, validateStepWithValue, goToQuestion }
 	)
 )(function Conversation({
 	nextSteps,
@@ -37,14 +42,18 @@ export default compose(
 	customEndMessages,
 	flatRules,
 	resetSimulation,
-	skipQuestion,
-	goToQuestion
+	goToQuestion,
+	validateStepWithValue
 }) {
-	const goToNext = () => skipQuestion(nextSteps[0])
+	const setDefault = () =>
+		validateStepWithValue(
+			currentQuestion,
+			findRuleByDottedName(flatRules, currentQuestion).defaultValue
+		)
 	const goToPrevious = () => goToQuestion(previousAnswers.slice(-1)[0])
 	const handleKeyDown = ({ key }) => {
 		if (['Escape'].includes(key)) {
-			goToNext()
+			setDefault()
 		}
 	}
 	return nextSteps.length ? (
@@ -67,7 +76,7 @@ export default compose(
 								</>
 							)}
 							<button
-								onClick={goToNext}
+								onClick={setDefault}
 								className="ui__ simple small skip button right">
 								Passer →
 							</button>

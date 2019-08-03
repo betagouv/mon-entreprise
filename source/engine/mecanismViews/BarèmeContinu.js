@@ -7,7 +7,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import { BarèmeAttributes } from './Barème'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
 
-let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
+let Comp = withLanguage(function Barème({ nodeValue, explanation, unit }) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
@@ -15,6 +15,7 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 					classes="mecanism barème"
 					name="barème continu"
 					value={nodeValue}
+					unit={unit}
 					child={
 						<ul className="properties">
 							<BarèmeAttributes explanation={explanation} />
@@ -60,6 +61,6 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation }) {
 })
 
 //eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
+export default (nodeValue, explanation, _, unit) => (
+	<Comp {...{ nodeValue, explanation, unit }} />
 )

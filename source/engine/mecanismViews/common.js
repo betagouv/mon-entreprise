@@ -13,17 +13,21 @@ import mecanismColours from './colours'
 import classnames from 'classnames'
 import Value from 'Components/Value'
 
-//TODO remove this one, it should reside in 'Value.js'
-export let formatNumber = (data, language) =>
-	!isNaN(data)
-		? Intl.NumberFormat(language, { maximumFractionDigits: 4 }).format(data)
-		: data
-
 export let NodeValuePointer = ({ data, unit }) => (
 	<span
 		className={classnames('situationValue', {
 			boolean: typeof data == 'boolean'
-		})}>
+		})}
+		css={`
+			background: white;
+			border-bottom: 0 !important;
+			padding: 0 0.2rem;
+			text-decoration: none !important;
+			font-size: 80%;
+			box-shadow: 2px 2px 4px 1px #d9d9d9, 0 0 0 1px #d9d9d9;
+			line-height: 1.6em;
+			border-radius: 0.2rem;
+		`}>
 		<Value nodeValue={data} unit={unit} />
 	</span>
 )
@@ -31,7 +35,7 @@ export let NodeValuePointer = ({ data, unit }) => (
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export class Node extends Component {
 	render() {
-		let { classes, name, value, child, inline } = this.props,
+		let { classes, name, value, child, inline, unit } = this.props,
 			termDefinition = contains('mecanism', classes) && name
 
 		return (
@@ -39,7 +43,7 @@ export class Node extends Component {
 				className={classNames(classes, 'node', { inline })}
 				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
 				{name && !inline && (
-					<span className="nodeHead">
+					<div className="nodeHead" css="margin-bottom: 1em">
 						<LinkButton
 							className="name"
 							style={
@@ -48,22 +52,29 @@ export class Node extends Component {
 							data-term-definition={termDefinition}>
 							<Trans>{name}</Trans>
 						</LinkButton>
-					</span>
+					</div>
 				)}
 				{child}{' '}
 				{name ? (
 					!isNil(value) && (
 						<div className="mecanism-result">
-							<NodeValuePointer data={value} />
+							<span css="font-size: 90%; margin: 0 .6em">=</span>
+							<NodeValuePointer data={value} unit={unit} />
 						</div>
 					)
 				) : (
-					<>
+					<span
+						css={`
+							@media (max-width: 1200px) {
+								width: 100%;
+								text-align: right;
+							}
+						`}>
 						{value !== true && value !== false && !isNil(value) && (
-							<span className="operator"> = </span>
+							<span className="operator"> =&nbsp;</span>
 						)}
-						<NodeValuePointer data={value} />
-					</>
+						<NodeValuePointer data={value} unit={unit} />
+					</span>
 				)}
 			</div>
 		)
@@ -94,7 +105,7 @@ export const Leaf = compose(
 					classes,
 					dottedName,
 					name,
-					value,
+					nodeValue,
 					flatRules,
 					filter,
 					sitePaths,
@@ -114,11 +125,16 @@ export const Leaf = compose(
 								}>
 								<span className="name">
 									{rule.title || capitalise0(name)} {filter}
-									{!isNil(value) && (
-										<NodeValuePointer data={value} unit={unit} />
-									)}
 								</span>
 							</Link>
+							{!isNil(nodeValue) && (
+								<span
+									css={`
+										margin: 0 0.3rem;
+									`}>
+									<NodeValuePointer data={nodeValue} unit={unit} />
+								</span>
+							)}
 						</span>
 					)}
 				</span>

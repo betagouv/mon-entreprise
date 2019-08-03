@@ -1,6 +1,7 @@
 import Composantes from 'Engine/mecanismViews/Composantes'
 import { add, dissoc, objOf } from 'ramda'
 import { evaluateArrayWithFilter } from 'Engine/evaluation'
+import { inferUnit } from 'Engine/units'
 
 export let decompose = (recurse, k, v) => {
 	let subProps = dissoc('composantes')(v),
@@ -28,21 +29,8 @@ export let decompose = (recurse, k, v) => {
 		evaluate: evaluateArrayWithFilter(filter, add, 0),
 		category: 'mecanism',
 		name: 'composantes',
-		type: 'numeric'
+		type: 'numeric',
+		unit: inferUnit('+', explanation.map(e => e.unit))
 	}
 }
 
-export let devariateExplanation = (recurse, mecanismKey, v) => {
-	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(({ si, alors, sinon }) => ({
-			consequence: recurse({
-				[mecanismKey]: {
-					...fixedProps,
-					...(sinon || alors)
-				}
-			}),
-			condition: sinon ? undefined : recurse(si)
-		}))
-
-	return explanation
-}

@@ -753,7 +753,7 @@
     - si:
         toutes ces conditions:
           - brut de base [mensuel] < SMIC [mensuel]
-          - ≠ assimilé salarié
+          - assimilé salarié != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
@@ -990,7 +990,6 @@
 - espace: contrat salarié
   nom: indemnités salarié
   période: flexible
-  unité: €
   formule:
     somme:
       - CDD . indemnités salarié CDD
@@ -1014,6 +1013,7 @@
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
   formule: 3377
+  unité: €
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
@@ -1649,7 +1649,7 @@
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
-  unité: _ 
+  unité: employés
   suggestions:
     1: 1
     20: 20
@@ -1657,20 +1657,17 @@
     1000: 1000
   par défaut: 1
 
-- espace: entreprise
-  nom: ratio alternants
-  formule: ratio alternants saisi / 100
 
 - espace: entreprise
-  nom: ratio alternants saisi
+  nom: ratio alternants
   question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   unité: '%'
   suggestions:
-    1: 1
-    5: 5
+    1%: 0.1
+    5%: 0.5
   par défaut: 0
 
 - espace: entreprise
@@ -2039,8 +2036,8 @@
           - si:
               toutes ces conditions:
                 - cotisations . assiette < plafond de réduction
-                - ≠ statut JEI
-                - ≠ assimilé salarié
+                - statut JEI != oui
+                - assimilé salarié != oui
             alors: 3.45%
           - sinon: 5.25%
   références:
@@ -2101,11 +2098,11 @@
 
       composantes:
         - attributs:
-            composante: base
+            nom: base
           taux: 4%
 
         - attributs:
-            composante: contribution exceptionnelle temporaire
+            nom: contribution exceptionnelle temporaire
           description: |
             Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
           taux: 0.05%
@@ -2140,10 +2137,10 @@
         # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
         - attributs:
             dû par: employeur
-          taux: part employeur / 100
+          taux: part employeur
         - attributs:
             dû par: salarié
-          taux: part salarié / 100
+          taux: part salarié
   exemples:
     - nom: forfait à 40€
       situation:
@@ -2152,7 +2149,7 @@
     - nom: forfait à 100€ payé par l'employeur
       situation:
         forfait: 100
-        part employeur: 100
+        part employeur: 1
       valeur attendue: 100
 
 - espace: contrat salarié . complémentaire santé
@@ -2161,11 +2158,11 @@
   question: Quel est la part de la complémentaire santé payée par l'employeur ?
   unité: '%'
   suggestions:
-    50%: 50
-    100%: 100
-  par défaut: 50
+    50%: 0.50
+    100%: 1
+  par défaut: 0.50
   contrôles:
-    - si: part employeur < 50
+    - si: part employeur < 50%
       niveau: avertissement
       message: La part employeur de la complémentaire santé doit être de 50% au minimum
 
@@ -2173,7 +2170,7 @@
   nom: part salarié
   description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
   unité: '%'
-  formule: 100 - part employeur
+  formule: 100% - part employeur
 
 - espace: contrat salarié . complémentaire santé
   nom: forfait
@@ -2397,33 +2394,45 @@
       assiette: cotisations . assiette
       composantes:
         - attributs:
-            composante: maladie, maternité, invalidité, décès
+            nom: maladie, maternité, invalidité, décès
             dû par: employeur
-          taux:
-            variations:
-              - si:
-                  toutes ces conditions:
-                    - cotisations . assiette < plafond de réduction employeur
-                    - ≠ statut JEI
-                    - ≠ assimilé salarié
-                alors: 7%
-              - sinon: 13%
+          taux: taux employeur
         - attributs:
-            composante: maladie, maternité, invalidité, décès
+            nom: maladie, maternité, invalidité, décès
             dû par: salarié
-          taux:
-            variations:
-              - si: régime alsace moselle
-                alors: 1.5%
-              - sinon: 0%
+          taux: taux salarié
         - attributs:
-            composante: Contribution Solidarité Autonomie
+            nom: Contribution Solidarité Autonomie
             abbréviation: CSA
             dû par: employeur
           références:
             - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
             - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
           taux: 0.3%
+
+
+- espace: contrat salarié . maladie
+  nom: taux employeur
+  période: aucune
+  formule:
+    variations:
+      - si:
+          toutes ces conditions:
+            - cotisations . assiette < plafond de réduction employeur
+            - statut JEI != oui
+            - assimilé salarié != oui
+        alors: 7%
+      - sinon: 13%
+
+- espace: contrat salarié . maladie
+  nom: taux salarié
+  période: aucune
+  formule:
+    variations:
+      - si: régime alsace moselle
+        alors: 1.5%
+      - sinon: 0%
+
 
 - espace: contrat salarié . maladie
   nom: plafond de réduction employeur
@@ -3328,7 +3337,7 @@
   formule:
     toutes ces conditions:
       - entreprise . catégorie d'activité . libérale règlementée
-      - ≠ rattachée à la CIPAV
+      - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
 - nom: indépendant
@@ -3373,7 +3382,7 @@
   formule:
     une de ces conditions:
       - toutes ces conditions:
-          - ≠ contrat salarié
+          - contrat salarié != oui
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - entreprise . année d'activité
@@ -3548,7 +3557,7 @@
   titre: assiette retraite de base
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
+      - si: situation personnelle . RSA != oui
         alors:
           le maximum de:
             - 11.5% * plafond sécurité sociale temps plein
@@ -3620,7 +3629,7 @@
   titre: assiette invalidité et décès
   formule:
     variations:
-      - si: ≠ situation personnelle . RSA
+      - si: situation personnelle . RSA != oui
         alors:
           le maximum de:
             - 11.5% * plafond sécurité sociale temps plein
@@ -3648,7 +3657,6 @@
 
 - espace: indépendant . cotisations et contributions . CSG et CRDS
   nom: assiette
-  note: Il faut vérifier que l'assiette de la CSG et CRDS est correcte. Pourquoi les cotisations sont-elles dans l'assiette ? La retraite complémentaire doit l'être aussi ?
   période: flexible
   formule:
     somme:
@@ -4146,9 +4154,9 @@
 
 - espace: protection sociale . retraite
   nom: mois cotisés
+  unité: mois
   formule: 172 * 3
   notes: On prends l'hypotèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
-  unité: €
 
 - espace: protection sociale . retraite
   nom: complémentaire salarié
@@ -4170,12 +4178,14 @@
   nom: points acquis
   formule: points acquis par mois * mois cotisés
   période: aucune
+  unité: points
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 - espace: protection sociale . retraite . complémentaire salarié
   nom: points acquis par mois
   période: mois
+  unité: points/mois
   formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire salarié
