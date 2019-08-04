@@ -1666,8 +1666,8 @@
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   unité: '%'
   suggestions:
-    1%: 0.1
-    5%: 0.5
+    1%: 0.01
+    5%: 0.05
   par défaut: 0
 
 - espace: entreprise
