@@ -949,7 +949,7 @@
 - espace: contrat salarié . avantages en nature . nourriture
   nom: montant forfaitaire d'un repas
   période: aucune
-  unité: € / repas
+  unité: €/repas
   formule:
     variations:
       - si: dans la restauration
@@ -964,7 +964,7 @@
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
-  unité: repas / mois
+  unité: repas
   suggestions:
     1 par jour: 21
     2 par jour: 42
@@ -1666,8 +1666,8 @@
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   unité: '%'
   suggestions:
-    1%: 0.1
-    5%: 0.5
+    1%: 0.01
+    5%: 0.05
   par défaut: 0
 
 - espace: entreprise
