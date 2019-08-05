@@ -27,9 +27,9 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 						{rule.title}
 					</h1>
 					<Simulation
-						showTargetsAnyway
-						targetsTriggerConversation={false}
 						noFeedback
+						noProgressMessage
+						showConversation
 						targets={
 							<>
 								<ImpactCard />

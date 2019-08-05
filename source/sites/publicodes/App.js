@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import Route404 from 'Components/Route404'
-import RulesList from '../embauche.gouv.fr/pages/RulesList'
+import RulesList from '../mon-entreprise.fr/pages/Documentation/RulesList'
 import sitePaths from './sitePaths'
 import Landing from './Landing'
 import Simulateur from './Simulateur'
@@ -50,9 +50,9 @@ class App extends Component {
 }
 
 let devMode = process.env.NODE_ENV !== 'production'
-export default (devMode
+export default devMode
 	? do {
 			let { hot } = require('react-hot-loader')
 			hot(module)(App)
 	  }
-	: App)
+	: App

@@ -175,7 +175,7 @@ export default compose(
 												: dottedName.includes('indépendant')
 												? sitePaths.sécuritéSociale.indépendant
 												: // otherwise
-												  sitePaths.sécuritéSociale.index
+												  sitePaths?.sécuritéSociale?.index
 										}>
 										<T>Faire une simulation</T>
 									</Link>

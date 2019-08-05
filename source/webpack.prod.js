@@ -7,7 +7,6 @@ const {
 
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
-const webpack = require('webpack')
 
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const path = require('path')
@@ -62,7 +61,7 @@ module.exports = {
 	mode: 'production',
 	devtool: 'source-map',
 	plugins: [
-		...common.plugins,
+		...common.plugins || [],
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
@@ -120,5 +119,6 @@ module.exports = {
 				'/iframes/simulateur-embauche'
 			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
+		})
 	]
 }

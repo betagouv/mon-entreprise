@@ -15,7 +15,7 @@ module.exports = {
 	mode: 'development',
 	entry: map(entry => ['webpack-hot-middleware/client', entry], common.entry),
 	plugins: [
-		...common.plugins,
+		...(common.plugins || []),
 		...HTMLPlugins(),
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.HotModuleReplacementPlugin()
