@@ -9,7 +9,9 @@ export default () => {
 	const [input, setInput] = useState('')
 	return (
 		<div>
-			<h1 css="margin-top: 1rem">Quel est l'impact de ...</h1>
+			<h1 css="margin-top: 1rem; font-size: 140%; line-height: 1.2em">
+				Chacun geste a un impact, découvre-le&nbsp;!
+			</h1>
 			<Search {...{ input, setInput }} />
 			<Suggestions {...{ input }} />
 			<ContributionButton {...{ input }} />

@@ -36,10 +36,9 @@ export default withRouter(({ location }) => {
 			</Link>
 			{displayIntro && (
 				<p id="intro" css="max-width: 28rem; line-height: 1.4rem">
-					La <strong>catastrophe climatique</strong> n'est plus une menace
-					lointaine, c'est une <strong>actualité</strong>. Que faire ? Chacun de
-					nos gestes a un impact, découvrez-le !{' '}
-					<Link to="/à-propos">En savoir plus</Link>.{' '}
+					La catastrophe climatique n'est plus une menace lointaine, c'est une
+					actualité.&nbsp;
+					<Link to="/à-propos">En savoir plus</Link>. Alors que faire ?
 				</p>
 			)}
 			{displayIntro && (
