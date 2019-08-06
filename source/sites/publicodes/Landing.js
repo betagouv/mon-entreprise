@@ -10,7 +10,7 @@ export default () => {
 	return (
 		<div>
 			<h1 css="margin-top: 1rem; font-size: 140%; line-height: 1.2em">
-				Chacun geste a un impact, découvre-le&nbsp;!
+				Découvre l'impact de chaque geste du quotidien !
 			</h1>
 			<Search {...{ input, setInput }} />
 			<Suggestions {...{ input }} />

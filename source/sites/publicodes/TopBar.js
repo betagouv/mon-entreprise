@@ -25,9 +25,9 @@ export default withRouter(({ location }) => {
 			<Link to="/">
 				<img
 					css={`
-						width: ${displayIntro ? '6rem' : '5em'};
-						@media (min-width: 800px) {
-							width: ${displayIntro ? '8em' : '5em'};
+						width: ${displayIntro ? '8em' : '5em'};
+						@media (max-width: 800px) {
+							${displayIntro ? 'display: none;' : ''}
 						}
 						margin-right: 1em;
 					`}
@@ -35,10 +35,12 @@ export default withRouter(({ location }) => {
 				/>
 			</Link>
 			{displayIntro && (
-				<p id="intro" css="max-width: 28rem; line-height: 1.4rem">
+				<p
+					id="intro"
+					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em">
 					La catastrophe climatique n'est plus une menace lointaine, c'est une
 					actualité.&nbsp;
-					<Link to="/à-propos">En savoir plus</Link>. Alors que faire ?
+					<Link to="/à-propos">En savoir plus</Link>.
 				</p>
 			)}
 			{displayIntro && (
@@ -50,37 +52,37 @@ export default withRouter(({ location }) => {
 						top: 0;
 						background: yellow;
 						text-align: center;
-						font-size: 90%;
+						font-size: 80%;
 						padding: 0.2em 0;
+						line-height: 1.1em;
 					`}>
 					{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
 					que les données ne sont pas encore validées
 				</div>
 			)}
-			{!displayIntro && (
+			<div
+				className="ui__ card"
+				css={`
+					text-align: center;
+					padding: 0.6rem 1rem !important;
+					margin-right: 0.6rem;
+					background: var(--colour);
+					color: white;
+					a {
+						color: inherit;
+					}
+				`}>
+				Votre futur :
 				<div
-					className="ui__ card"
 					css={`
-						text-align: center;
-						padding: 0.6rem 1rem !important;
-						background: var(--colour);
-						color: white;
-						a {
-							color: inherit;
+						img {
+							font-size: 250%;
 						}
 					`}>
-					Votre futur :
-					<div
-						css={`
-							img {
-								font-size: 250%;
-							}
-						`}>
-						{emoji(scenario.icône)}
-					</div>
-					<Link to="/scénarios">changer</Link>
+					{emoji(scenario.icône)}
 				</div>
-			)}
+				<Link to="/scénarios">changer</Link>
+			</div>
 		</section>
 	)
 })
