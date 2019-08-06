@@ -35,7 +35,7 @@ export default compose(
 	withSitePaths
 )(({ analysis: { targets }, sitePaths }) => {
 	let { state } = useContext(StoreContext)
-	let { nodeValue, dottedName } = targets[0]
+	let { nodeValue, dottedName, formule, description } = targets[0]
 
 	let [value, unit] = humanWeightValue(nodeValue)
 	let limitPerPeriod = mapObjIndexed(
@@ -55,6 +55,8 @@ export default compose(
 		closestPeriodLabel = closestPeriod.startsWith('demi')
 			? closestPeriod.replace('demi', 'demi-')
 			: closestPeriod
+
+	let interestingFormula = formule && formule.explanation.text !== '0'
 	return (
 		<div
 			css={`
@@ -101,13 +103,18 @@ export default compose(
 				`}>
 				<div>
 					Soit <strong>{value}</strong> {unit}
-					&nbsp;
-					<Link
-						to={
-							sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
-						}>
-						explication
-					</Link>
+					{interestingFormula && (
+						<div>
+							<Link
+								to={
+									sitePaths.documentation.index +
+									'/' +
+									encodeRuleName(dottedName)
+								}>
+								comprendre le calcul
+							</Link>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

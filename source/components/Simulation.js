@@ -19,6 +19,7 @@ export default connect(state => ({
 	firstStepCompleted,
 	explanations,
 	customEndMessages,
+		customEnd,
 	progress,
 	targets,
 	showConversation,
@@ -54,7 +55,7 @@ export default connect(state => ({
 						<div className="ui__ full-width choice-group">
 							<div className="ui__ container">
 								<Controls />
-								<Conversation customEndMessages={customEndMessages} />
+								<Conversation customEnd={customEnd} customEndMessages={customEndMessages} />
 							</div>
 						</div>
 						{progress < 1 && (

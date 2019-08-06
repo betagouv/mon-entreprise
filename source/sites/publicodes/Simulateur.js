@@ -8,46 +8,55 @@ import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import ShareButton from 'Components/ShareButton'
+import { Markdown } from 'Components/utils/markdown'
+import { EndingCongratulations } from 'Components/conversation/Conversation'
 
-export default connect(state => ({ rules: flatRulesSelector(state) }))(
-	props => {
-		let objectif = props.match.params.name,
-			decoded = decodeRuleName(objectif),
-			rule = findRuleByDottedName(props.rules, decoded),
-			Simulateur = withSimulationConfig({
-				objectifs: [decoded]
-			})(() => (
-				<div className="ui__ container">
-					<Helmet>
-						<title>{rule.title}</title>
-						<meta name="description" content="DESCRIPTION" />
-					</Helmet>
-					<h1>
-						{rule.icônes && emoji(rule.icônes + ' ')}
-						{rule.title}
-					</h1>
-					<Simulation
-						noFeedback
-						noProgressMessage
-						showConversation
-						targets={
-							<>
-								<ImpactCard />
-								{rule.period === 'flexible' && <PeriodBlock />}
-							</>
-						}
-					/>
-					<ShareButton
-						text="Mesure ton impact sur Futur.eco !"
-						url={'https://' + window.location.hostname + props.match.url}
-						title={rule.title}
-					/>
-				</div>
-			))
+export default connect(state => ({
+	rules: flatRulesSelector(state)
+}))(props => {
+	let objectif = props.match.params.name,
+		decoded = decodeRuleName(objectif),
+		rule = findRuleByDottedName(props.rules, decoded),
+		Simulateur = withSimulationConfig({
+			objectifs: [decoded]
+		})(() => (
+			<div className="ui__ container">
+				<Helmet>
+					<title>{rule.title}</title>
+					<meta name="description" content="DESCRIPTION" />
+				</Helmet>
+				<h1>
+					{rule.icônes && emoji(rule.icônes + ' ')}
+					{rule.title}
+				</h1>
+				<Simulation
+					noFeedback
+					noProgressMessage
+					showConversation
+					customEnd={
+						rule.description ? (
+							<Markdown source={rule.description} />
+						) : (
+							<EndingCongratulations />
+						)
+					}
+					targets={
+						<>
+							<ImpactCard />
+							{rule.period === 'flexible' && <PeriodBlock />}
+						</>
+					}
+				/>
+				<ShareButton
+					text="Mesure ton impact sur Futur.eco !"
+					url={'https://' + window.location.hostname + props.match.url}
+					title={rule.title}
+				/>
+			</div>
+		))
 
-		return <Simulateur />
-	}
-)
+	return <Simulateur />
+})
 
 let PeriodBlock = () => (
 	<div css="display: flex; justify-content: center">

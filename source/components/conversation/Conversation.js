@@ -36,6 +36,7 @@ export default compose(
 	previousAnswers,
 	currentQuestion,
 	customEndMessages,
+	customEnd,
 	flatRules,
 	goToQuestion,
 	validateStepWithValue
@@ -83,19 +84,33 @@ export default compose(
 		</>
 	) : (
 		<div style={{ textAlign: 'center' }}>
-			<h3>
-				{emoji('🌟')}{' '}
-				<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
-			</h3>
-			<p>
-				{customEndMessages ? (
-					customEndMessages
-				) : (
-					<T k="simulation-end.text">
-						Vous avez maintenant accès à l'estimation la plus précise possible.
-					</T>
-				)}
-			</p>
+			{customEnd || (
+				<>
+					<EndingCongratulations />
+					<p>
+						{customEndMessages ? (
+							customEndMessages
+						) : (
+							<T k="simulation-end.text">
+								Vous avez maintenant accès à l'estimation la plus précise
+								possible.
+							</T>
+						)}
+					</p>
+					<button
+						className="ui__ small simple  button "
+						onClick={resetSimulation}>
+						<T>Recommencer</T>
+					</button>
+				</>
+			)}
 		</div>
 	)
 })
+
+export let EndingCongratulations = () => (
+	<h3>
+		{emoji('🌟')}{' '}
+		<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
+	</h3>
+)
