@@ -37,7 +37,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 					<p>Rien trouvé {emoji('😶')}. </p>
 				)}
 				{filteredRules && (
-					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
 						{filteredRules.map(({ dottedName }) => (
 							<Suggestion
 								key={dottedName}
@@ -57,14 +57,18 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 	return (
 		<Link
 			to={hasFormule ? '/simulateur/' + encodeRuleName(dottedName) : '#'}
-			css=":hover {opacity: 1 !important}">
+			css={`
+				text-decoration: none !important;
+				:hover {
+					opacity: 1 !important;
+				}
+			`}>
 			<li
 				key={dottedName}
 				css={`
-					font-size: 100%;
+					font-size: 120%;
 					list-style-type: none;
-					border-radius: 1rem;
-					padding: 0.6rem;
+					padding: 1rem;
 					margin: 0.6rem;
 					width: 10rem;
 					min-height: 7em;
@@ -77,27 +81,27 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 					line-height: 1.2em;
 					${hasFormule ? '' : 'filter: grayscale(70%); opacity: 0.6;'}
 
-					background: var(--colour);
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+				    background-color: var(--lightestColour);
+					color: var(--darkColour);
+					margin: 1rem 0;
+					position: relative;
+					border-radius: 0.3rem;
+					text-decoration: none;
+					box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
+						0 1px 2px rgba(41, 117, 209, 0.24);
+					transition: box-shadow 0.2s;
 
-					color: var(--textColour);
-					background: linear-gradient(
-						180deg,
-						var(--lightColour) 0%,
-						var(--darkColour) 100%
-					);
-					box-shadow: 0 2px 6px rgba(32, 33, 36, 0.5);
 					:hover {
-						box-shadow: 0 4px 10px rgba(32, 33, 36, 0.5);
+					    opacity: 1 !important;
+						box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2), 0px 4px 5px 0px rgba(41, 117, 209, 0.14), 0px 1px 10px 0px rgba(41, 117, 209, 0.12);
+}
 					}
-					a {
-						color: white;
-						text-decoration: none;
-					}
-					:hover a {
-						text-decoration: underline;
-					}
+
 				`}>
-				<div css="width: 100%; img { font-size: 180%}}">
+				<div css="width: 100%; img { font-size: 150%}}">
 					{icônes && emoji(icônes + ' ')}
 				</div>
 				<span css="width: 100%">{title}</span>
@@ -107,8 +111,8 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 						<div
 							css={`
 								position: absolute;
-								border-bottom-left-radius: 1.2rem;
-								border-bottom-right-radius: 1.2rem;
+								border-bottom-left-radius: 0.3rem;
+								border-bottom-right-radius: 0.3rem;
 								bottom: 0;
 								left: 0;
 								width: 100%;
@@ -116,7 +120,7 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 								color: white;
 								font-size: 80%;
 							`}>
-							Prochainement !
+							prochainement !
 						</div>
 					</>
 				)}

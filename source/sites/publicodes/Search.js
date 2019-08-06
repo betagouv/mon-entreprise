@@ -13,7 +13,7 @@ export default ({ setInput, input }) => (
 			css={`
 				display: inline-block;
 				width: 80%;
-				border: 1px solid #ddd;
+				border: 1px solid rgba(41, 117, 209, 0.12);
 				font-size: 200%;
 				border-radius: 1rem;
 				padding: 0 0.6rem;
