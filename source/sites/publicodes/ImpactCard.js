@@ -9,6 +9,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import * as chrono from './chrono'
 import { StoreContext } from './StoreContext'
 import scenarios from './scenarios.yaml'
+import { encodeRuleName } from 'Engine/rules'
 
 let humanWeightValue = possiblyNegativeValue => {
 	let unitSuffix = "d'équivalent CO₂",
@@ -101,7 +102,10 @@ export default compose(
 				<div>
 					Soit <strong>{value}</strong> {unit}
 					&nbsp;
-					<Link to={sitePaths.documentation.index + '/' + dottedName}>
+					<Link
+						to={
+							sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
+						}>
 						explication
 					</Link>
 				</div>
