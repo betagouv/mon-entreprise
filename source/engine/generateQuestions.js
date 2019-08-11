@@ -2,6 +2,7 @@ import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
+import SelectTwoAirports from 'Components/conversation/select/SelectTwoAirports'
 import {
 	add,
 	countBy,
@@ -25,7 +26,7 @@ import {
 } from 'ramda'
 import React from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
-import {serialiseUnit} from 'Engine/units'
+import { serialiseUnit } from 'Engine/units'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -105,6 +106,8 @@ export let getInputComponent = rules => dottedName => {
 		fieldName: dottedName,
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
+	if (rule.dottedName === 'transport . avion . distance de vol aller')
+		return <SelectTwoAirports />
 
 	if (getVariant(rule))
 		return (

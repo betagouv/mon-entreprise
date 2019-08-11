@@ -86,6 +86,15 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 		{
 			test: /\.ne$/,
 			use: [babelLoader, 'nearley-loader']
+		},
+		{
+			test: /\.csv$/,
+			loader: 'csv-loader',
+			options: {
+				dynamicTyping: true,
+				header: true,
+				skipEmptyLines: true
+			}
 		}
 	]
 }
