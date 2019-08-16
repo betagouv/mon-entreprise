@@ -3,6 +3,7 @@ import { pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
 import airports from './airports.csv'
+import GreatCircle from 'great-circle'
 
 let searchWeights = [
 	{
@@ -24,9 +25,12 @@ class SearchBar extends React.Component {
 		this.inputElement?.focus()
 	}
 	UNSAFE_componentWillMount() {
-		this.fuse = new Fuse(airports.map(pick(['ville', 'nom', 'pays'])), {
-			keys: searchWeights
-		})
+		this.fuse = new Fuse(
+			airports.map(pick(['ville', 'nom', 'pays', 'latitude', 'longitude'])),
+			{
+				keys: searchWeights
+			}
+		)
 	}
 	state = {
 		depuis: {},
@@ -79,6 +83,17 @@ class SearchBar extends React.Component {
 					</label>
 					{vers.result && this.renderOption(vers)}
 				</div>
+				{depuis.result &&
+					vers.result &&
+					Math.round(
+						GreatCircle.distance(
+							depuis.result.latitude,
+							depuis.result.longitude,
+							vers.result.latitude,
+							vers.result.longitude,
+							'KM'
+						)
+					) + ' km'}
 			</div>
 		)
 	}

@@ -4582,6 +4582,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.1.tgz#1c1f0c364882c868f5bff6512146328336a11b1d"
   integrity sha512-b9usnbDGnD928gJB3LrCmxoibr3VE4U2SMo5PBuBnokWyDADTqDPXg4YpwKF1trpH+UbGp7QLicO3+aWEy0+mw==
 
+great-circle@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/great-circle/-/great-circle-0.2.8.tgz#0efaaafa2b38f7a3096ee65e57320636982fbc63"
+  integrity sha1-Dvqq+is496MJbuZeVzIGNpgvvGM=
+
 growl@1.10.5:
   version "1.10.5"
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.5.tgz#f2735dc2283674fa67478b10181059355c369e5e"
