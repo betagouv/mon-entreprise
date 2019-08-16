@@ -105,7 +105,7 @@ export let getInputComponent = rules => dottedName => {
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
 	if (rule.dottedName === 'transport . avion . distance de vol aller')
-		return <SelectTwoAirports />
+		return <SelectTwoAirports {...{ ...commonProps }} />
 
 	if (getVariant(rule))
 		return (
