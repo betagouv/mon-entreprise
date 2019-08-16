@@ -7,7 +7,6 @@ import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
 import searchWeights from './searchWeights'
 

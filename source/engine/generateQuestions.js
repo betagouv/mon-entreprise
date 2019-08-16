@@ -1,7 +1,5 @@
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
-import SelectGéo from 'Components/conversation/select/SelectGéo'
-import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import SelectTwoAirports from 'Components/conversation/select/SelectTwoAirports'
 import {
 	add,
@@ -118,8 +116,6 @@ export let getInputComponent = rules => dottedName => {
 				}}
 			/>
 		)
-	if (rule.API && rule.API === 'géo')
-		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
 	if (rule.unit == null)
@@ -131,16 +127,6 @@ export let getInputComponent = rules => dottedName => {
 						{ value: 'non', label: 'Non' },
 						{ value: 'oui', label: 'Oui' }
 					]
-				}}
-			/>
-		)
-
-	if (rule.suggestions == 'atmp-2017')
-		return (
-			<SelectAtmp
-				{...{
-					...commonProps,
-					suggestions: rule.suggestions
 				}}
 			/>
 		)

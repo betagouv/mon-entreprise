@@ -2,8 +2,6 @@ import Fuse from 'fuse.js'
 import { pick } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 import airports from './airports.csv'
 
 let searchWeights = [
@@ -23,7 +21,7 @@ let searchWeights = [
 
 class SearchBar extends React.Component {
 	componentDidMount() {
-		this.inputElement.focus()
+		this.inputElement?.focus()
 	}
 	UNSAFE_componentWillMount() {
 		this.fuse = new Fuse(airports.map(pick(['ville', 'nom', 'pays'])), {
@@ -31,21 +29,15 @@ class SearchBar extends React.Component {
 		})
 	}
 	state = {
-		selectedOption: null,
-		inputValue: null
+		depuis: {},
+		vers: {}
 	}
-	handleChange = selectedOption => {
-		this.setState({ selectedOption })
-	}
-	renderOption = ({ nom, ville, pays }) => (
+	renderOption = ({ result: { nom, ville, pays }, inputValue }) => (
 		<span>
-			<Highlighter
-				searchWords={[this.state.inputValue]}
-				textToHighlight={nom}
-			/>
+			<Highlighter searchWords={[inputValue]} textToHighlight={nom} />
 			<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
 				<Highlighter
-					searchWords={[this.state.inputValue]}
+					searchWords={[inputValue]}
 					textToHighlight={ville + ' - ' + pays}
 				/>
 			</span>
@@ -53,28 +45,41 @@ class SearchBar extends React.Component {
 	)
 	filterOptions = (options, filter) => this.fuse.search(filter)
 	render() {
-		let { selectedOption } = this.state
+		let { depuis, vers } = this.state
 
-		if (selectedOption != null) {
-			return <div>yo</div>
-		}
 		return (
-			<>
-				<Select
-					value={selectedOption}
-					onChange={this.handleChange}
-					onInputChange={inputValue => this.setState({ inputValue })}
-					labelKey="0"
-					options={airports}
-					filterOptions={this.filterOptions}
-					optionRenderer={this.renderOption}
-					placeholder={'hihi'}
-					noResultsText={'nonono'}
-					ref={el => {
-						this.inputElement = el
-					}}
-				/>
-			</>
+			<div>
+				<div>
+					<label>
+						Depuis :
+						<input
+							type="text"
+							value={depuis.inputValue}
+							onChange={e => {
+								let v = e.target.value
+								let results = this.fuse.search(v)
+								this.setState({ depuis: { inputValue: v, result: results[0] } })
+							}}
+						/>
+					</label>
+					{depuis.result && this.renderOption(depuis)}
+				</div>
+				<div>
+					<label>
+						Vers :
+						<input
+							type="text"
+							value={vers.inputValue}
+							onChange={e => {
+								let v = e.target.value
+								let results = this.fuse.search(v)
+								this.setState({ vers: { inputValue: v, result: results[0] } })
+							}}
+						/>
+					</label>
+					{vers.result && this.renderOption(vers)}
+				</div>
+			</div>
 		)
 	}
 }

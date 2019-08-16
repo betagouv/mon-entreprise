@@ -1,7 +1,6 @@
 import { React, T } from 'Components'
 import SearchBar from 'Components/SearchBar'
 import { connect } from 'react-redux'
-import 'react-select/dist/react-select.css'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import './RulesList.css'
 
