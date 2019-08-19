@@ -2,14 +2,14 @@ A:
   titre: On ne change rien
   icône: 😱
   description: |
-    On fonce tête baissée vers la catastrophe : famines, guerres, migrations de masse et génocides, pandémies... Les effets d'emballement, déjà identifiés mais imprévisibles (fonte de l'arctique et du permafrost, incendies monstres, acidification des océans, exctinction des espèces) font craindre le pire.
+    Nous fonçons tête baissée vers la catastrophe : famines, guerres, migrations de masse et génocides, pandémies... Les effets d'emballement, déjà identifiés mais imprévisibles (fonte de l'arctique et du permafrost, incendies monstres, acidification des océans, exctinction des espèces) font craindre le pire.
   crédit carbone par personne: 10
   réchauffement: + 4-5°
 B:
   icône: 😟
   titre: On s'y met
   crédit carbone par personne: 2
-  description: On a une chance de rester sous les 2 degrés. Les conséquences seront terribles, même si beaucoup d'endroits resteront vivables. Nous ne sommes pas à l'abri des effets d'emballement qui pourraient faire tout basculer vers le scénario 4-5°.
+  description: Nous avons une chance de rester sous les 2 degrés. Les conséquences seront terribles, même si beaucoup d'endroits resteront vivables. Nous ne sommes pas à l'abri des effets d'emballement qui pourraient faire tout basculer vers le scénario 4-5°.
   réchauffement: + 2°
   futur:
 C:
@@ -17,5 +17,5 @@ C:
   titre: Effort de guerre
   crédit carbone par personne: 0.5
   description: |
-    Grâce à une prise de conscience générale et un effort historique, nous limitons le réchauffement à 1.5°, voir mieux : chaque dixième de degré compte. La sobriété énergétique est devenu un idéal de vie. A quelques conflits près, le monde reste organisé. De nouvelles technologies nous laissent entrevoir un retour à la normale du climat à l'horizon du siècle.
+    Grâce à une prise de conscience générale et un effort historique, nous limitons le réchauffement à 1.5°, voir mieux : chaque dixième de degré compte. La sobriété énergétique est devenue un idéal de vie. À quelques conflits près, le monde reste organisé. De nouvelles technologies nous laissent entrevoir un retour à la normale du climat à l'horizon du siècle.
   réchauffement: + 1.5°
