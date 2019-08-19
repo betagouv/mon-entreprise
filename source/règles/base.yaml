@@ -692,7 +692,7 @@
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   par défaut: non
-  désactive:
+  rend non applicable:
     - chômage
     - réduction générale
     - AGS
@@ -1763,7 +1763,7 @@
   par défaut: non
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
   # -> pas de taxe ni contribution d'apprentissage
-  désactive:
+  rend non applicable:
     - contrat salarié . taxe d'apprentissage
 
 - espace: entreprise
@@ -1964,7 +1964,7 @@
   description: |
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
   par défaut: non
-  désactive:
+  rend non applicable:
     - contrat salarié . réduction générale
 
 - espace: contrat salarié . statut JEI
@@ -2731,7 +2731,7 @@
 
   applicable si:
     toutes ces conditions:
-      - entreprise . effectif > 250
+      - entreprise . effectif >= 250
       - entreprise . ratio alternants < 5%
 
   période: flexible
@@ -2829,7 +2829,7 @@
     Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
 
   note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
-  désactive:
+  rend non applicable:
     - vieillesse
     - retraite complémentaire
     - protection sociale . retraite . base

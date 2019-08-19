@@ -11,7 +11,7 @@ export default (cache, situationGate, parsedRules, node) => {
 				'parentDependency',
 				'non applicable si',
 				'applicable si',
-				'désactivé'
+				'rendu non applicable'
 			]),
 			map(value => evaluateNode(cache, situationGate, parsedRules, value))
 		)(node),
@@ -19,7 +19,7 @@ export default (cache, situationGate, parsedRules, node) => {
 			parentDependency,
 			'non applicable si': notApplicable,
 			'applicable si': applicable,
-			désactivé: disabled
+			'rendu non applicable': disabled
 		} = evaluatedAttributes,
 		isApplicable =
 			val(parentDependency) === false ||

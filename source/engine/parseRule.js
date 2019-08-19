@@ -1,11 +1,12 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import RuleLink from 'Components/RuleLink'
 import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
 import { Node } from './mecanismViews/common'
-import { findParentDependency } from './rules'
+import { disambiguateRuleReference, findParentDependency } from './rules'
 
 export default (rules, rule, parsedRules) => {
 	//	if (rule.dottedName.includes('distance journalière'))
@@ -64,6 +65,10 @@ export default (rules, rule, parsedRules) => {
 			parsedRules
 		),
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
+		'rend non applicable': nonApplicableRules =>
+			nonApplicableRules.map(referenceName => {
+				return disambiguateRuleReference(rules, rule, referenceName)
+			}),
 		// formule de calcul
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -117,14 +122,13 @@ export default (rules, rule, parsedRules) => {
 	parsedRules[rule.dottedName] = {
 		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
-		désactivé,
 		evaluate,
 		parsed: true,
 		isDisabledBy: [],
 		unit: rule.unit || parsedRoot.formule?.explanation?.unit
 	}
 
-	const désactivé = {
+	parsedRules[rule.dottedName]['rendu non applicable'] = {
 		evaluate: (cache, situation, parsedRules, node) => {
 			const nodeValue = node.explanation.isDisabledBy
 				.map(disablerNode =>
@@ -133,15 +137,30 @@ export default (rules, rule, parsedRules) => {
 				.some(x => x.nodeValue === true)
 			return rewriteNode(node, nodeValue, node.explanation, {})
 		},
-		jsx: (nodeValue, explanation) => <ShowValuesConsumer></ShowValuesConsumer>,
+		jsx: (nodeValue, { isDisabledBy }) => {
+			return (
+				isDisabledBy.length > 0 && (
+					<>
+						<h3>Exception{isDisabledBy.length > 1 && 's'}</h3>
+						<p>
+							Cette règle ne s'applique pas pour :{' '}
+							{isDisabledBy.map((rule, i) => (
+								<>
+									{i > 0 && ', '}
+									<RuleLink dottedName={rule.dottedName} />
+								</>
+							))}
+						</p>
+					</>
+				)
+			)
+		},
 		category: 'ruleProp',
 		rulePropType: 'cond',
-		name: 'désactivé',
+		name: 'rendu non applicable',
 		type: 'boolean',
 		explanation: parsedRules[rule.dottedName]
 	}
-
-	parsedRules[rule.dottedName]['désactivé'] = désactivé
 
 	return parsedRules[rule.dottedName]
 }

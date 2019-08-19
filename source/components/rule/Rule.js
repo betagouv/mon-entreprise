@@ -24,6 +24,7 @@ import {
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import { AttachDictionary } from '../AttachDictionary'
+import RuleLink from '../RuleLink'
 import { Markdown } from '../utils/markdown'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
@@ -62,7 +63,6 @@ export default compose(
 				flatRule = findRuleByDottedName(flatRules, dottedName)
 			let { type, name, title, description, question, ns, icon } = flatRule,
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
-
 			let displayedRule = analysedExample || analysedRule
 
 			return (
@@ -164,9 +164,21 @@ export default compose(
 										rule={displayedRule}
 										showValues={valuesToShow || currentExample}
 									/>
+									{displayedRule['rend non applicable'] && (
+										<section id="non-applicable">
+											<h3>Rend non applicable : </h3>
+											<ul>
+												{displayedRule['rend non applicable'].map(ruleName => (
+													<li key={ruleName}>
+														<RuleLink dottedName={ruleName} />
+													</li>
+												))}
+											</ul>
+										</section>
+									)}
 									{flatRule.note && (
 										<section id="notes">
-											<h3>Note: </h3>
+											<h3>Note : </h3>
 											<Markdown source={flatRule.note} />
 										</section>
 									)}

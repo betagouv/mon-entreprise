@@ -1,13 +1,9 @@
-import { evaluateControls } from 'Engine/controls'
-import parseRule from 'Engine/parseRule'
-import { chain, path } from 'ramda'
-import { evaluateNode } from './evaluation'
-import { parseReference } from './parseReference'
-import {
-	disambiguateRuleReference,
-	findRule,
-	findRuleByDottedName
-} from './rules'
+import { evaluateControls } from 'Engine/controls';
+import parseRule from 'Engine/parseRule';
+import { chain, path } from 'ramda';
+import { evaluateNode } from './evaluation';
+import { parseReference } from './parseReference';
+import { findRule, findRuleByDottedName, disambiguateRuleReference } from './rules';
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -49,19 +45,18 @@ export let parseAll = flatRules => {
 	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
 
 	let parsedRules = {}
-	let disabledMapping = {}
+
+	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B` in the definition of `A`.
+	We need to map these exonerations to be able to retreive them from `B` */
+	let nonApplicableMapping = {}
 	flatRules.forEach(rule => {
 		const parsed = parseRule(flatRules, rule, parsedRules)
-		if (parsed['désactive']) {
-			disabledMapping[rule.dottedName] = parsed['désactive'].map(
-				referenceName => {
-					return disambiguateRuleReference(flatRules, rule, referenceName)
-				}
-			)
+		if (parsed['rend non applicable']) {
+			nonApplicableMapping[rule.dottedName] = parsed['rend non applicable']
 		}
 	})
 
-	Object.entries(disabledMapping).forEach(([a, b]) => {
+	Object.entries(nonApplicableMapping).forEach(([a, b]) => {
 		b.forEach(ruleName => {
 			parsedRules[ruleName].isDisabledBy.push(
 				parseReference(flatRules, parsedRules[ruleName], parsedRules)({

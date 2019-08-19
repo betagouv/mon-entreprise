@@ -1,0 +1,15 @@
+- nom: impôt
+  formule: 1000
+
+- nom: exilé fiscal
+  rend non applicable:
+    - impôt
+
+- nom: contribution
+  formule: impôt
+  test: règle désactivé
+  exemples:
+    - nom: evasion fiscale
+      situation:
+        exilé fiscal: oui
+      valeur attendue: 0
