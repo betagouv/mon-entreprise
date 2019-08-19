@@ -14,7 +14,6 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
 	defaultTo,
-	propEq,
 	difference,
 	dissoc,
 	equals,
@@ -95,6 +94,18 @@ export let formattedSituationSelector = createSelector(
 export let noUserInputSelector = createSelector(
 	[formattedSituationSelector],
 	situation => !situation || isEmpty(dissoc('période', situation))
+)
+
+export let inputPrecisionSelector = createSelector(
+	[formattedSituationSelector, state => state.form?.conversation?.active],
+	(situation, currentActiveField) => {
+		const currentValue = situation[currentActiveField] || ''
+		if (currentValue.includes('.')) {
+			return 'cents'
+		} else {
+			return 'unit'
+		}
+	}
 )
 
 export let firstStepCompletedSelector = createSelector(

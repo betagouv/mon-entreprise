@@ -1,7 +1,10 @@
 /* @flow */
 import withLanguage from 'Components/utils/withLanguage'
+import { compose } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { connect } from 'react-redux'
+import { inputPrecisionSelector } from 'Selectors/analyseSelectors'
 import './AnimatedTargetValue.css'
 
 type Props = {
@@ -11,7 +14,12 @@ type Props = {
 type State = {
 	difference: number
 }
-export default withLanguage(
+export default compose(
+	withLanguage,
+	connect(state => ({
+		precision: inputPrecisionSelector(state)
+	}))
+)(
 	class AnimatedTargetValue extends Component<Props, State> {
 		state = { difference: 0 }
 
@@ -27,13 +35,14 @@ export default withLanguage(
 			})
 		}
 		format = value => {
+			const fractionDigits = this.props.precision === 'cents' ? 2 : 0
 			return value == null
 				? ''
 				: Intl.NumberFormat(this.props.language, {
 						style: 'currency',
 						currency: 'EUR',
-						maximumFractionDigits: 0,
-						minimumFractionDigits: 0
+						maximumFractionDigits: fractionDigits,
+						minimumFractionDigits: fractionDigits
 				  }).format(value)
 		}
 		render() {

@@ -7,6 +7,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
+import { serialiseUnit } from 'Engine/units'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import emoji from 'react-easy-emoji'
@@ -16,13 +17,13 @@ import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
-	flatRulesSelector
+	flatRulesSelector,
+	inputPrecisionSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
-import { serialiseUnit } from 'Engine/units'
 
 export default compose(
 	withTranslation(),
@@ -317,7 +318,8 @@ let TargetInputOrValue = withLanguage(
 
 const TargetValue = connect(
 	state => ({
-		blurValue: analysisWithDefaultsSelector(state)?.cache.inversionFail
+		blurValue: analysisWithDefaultsSelector(state)?.cache.inversionFail,
+		precision: inputPrecisionSelector(state)
 	}),
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
@@ -349,8 +351,15 @@ const TargetValue = connect(
 			let { target, setFormValue, activeInput, setActiveInput } = this.props
 			return () => {
 				if (!target.question) return
-				if (value != null && !Number.isNaN(value))
-					setFormValue(target.dottedName, Math.round(value) + '')
+
+				if (value != null && !Number.isNaN(value)) {
+					const digitsAfterDecimalPoint =
+						this.props.precision === 'cents' ? 2 : 0
+					setFormValue(
+						target.dottedName,
+						value.toFixed(digitsAfterDecimalPoint)
+					)
+				}
 
 				if (activeInput) setFormValue(activeInput, '')
 				setActiveInput(target.dottedName)
