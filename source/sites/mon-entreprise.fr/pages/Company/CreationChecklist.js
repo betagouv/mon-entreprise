@@ -513,9 +513,18 @@ export default compose(
 	)
 )(CreateCompany)
 
-let StatutsExample = ({ companyStatus }) => (
-	<a href="http://media.apce.com/file/72/3/statuts_sarl_(aout_2014).37032.72723.doc">
-		<T k="entreprise.tâches.statuts.exemple">Exemple de statuts pour votre</T>
-		{companyStatus}
-	</a>
-)
+let StatutsExample = ({ companyStatus }) => {
+	const links = {
+		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
+		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'
+	}
+
+	if (Object.keys(links).indexOf(companyStatus) === -1) return null
+
+	return (
+		<a target="_blank" href={links[companyStatus]}>
+			<T k="entreprise.tâches.statuts.exemple">Exemple de statuts pour votre</T>{' '}
+			{companyStatus}
+		</a>
+	)
+}
