@@ -19,7 +19,7 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 			</Link>
 			<StoreProvider
 				reducer={reducer}
-				localStorageKey="app::économie-collaborative:v0">
+				localStorageKey="app::économie-collaborative:v1">
 				<Switch>
 					<Route
 						exact
