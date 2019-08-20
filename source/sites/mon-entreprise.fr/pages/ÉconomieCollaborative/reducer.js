@@ -13,8 +13,18 @@ const activitéReducer = reducerActivité =>
 			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
 				? !state
 				: state,
-		vue: (state = false, { type, activité }) =>
-			(type === 'ACTIVITÉ_VUE' && reducerActivité === activité) || state,
+		vue: (state = false, { type, activité }) => {
+			if (type === 'ACTIVITÉ_VUE' && reducerActivité === activité) {
+				return true
+			}
+			if (
+				type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' &&
+				reducerActivité === activité
+			) {
+				return false
+			}
+			return state
+		},
 		seuilRevenus: (
 			state = getMinimumDéclaration(reducerActivité),
 			{ type, activité, seuilAtteint }
@@ -45,7 +55,11 @@ let reducer = reduceReducers(
 			return getSousActivités(activité).reduce(
 				(newState, sousActivité) => ({
 					...newState,
-					[sousActivité]: { ...state[sousActivité], effectuée: false }
+					[sousActivité]: {
+						...state[sousActivité],
+						effectuée: false,
+						vue: false
+					}
 				}),
 				state
 			)
