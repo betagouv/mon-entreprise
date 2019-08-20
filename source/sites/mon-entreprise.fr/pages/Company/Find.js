@@ -56,7 +56,7 @@ async function getOptions(input: string) {
 		} else {
 			/* Full text search */
 			const response = await fetch(
-				`https://sirene.entreprise.api.gouv.fr/v1/full_text/${input}`
+				`https://entreprise.data.gouv.fr/api/sirene/v1/full_text/${input}`
 			)
 			if (!response.ok) {
 				return
