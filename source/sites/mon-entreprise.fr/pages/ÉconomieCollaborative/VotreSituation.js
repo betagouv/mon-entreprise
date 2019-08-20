@@ -71,7 +71,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 							css="justify-content: start !important; flex-wrap: wrap;">
 							{régimeGénéralDisponible && (
 								<a
-									href="https://ats.declaration.urssaf.fr/Application-ECOLAB-Inscription/"
+									href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie/vous-optez-pour-le-regime-genera/comment-simmatriculer.html"
 									css="flex: 1"
 									className="ui__ small   button">
 									Déclarer au régime général
