@@ -24,6 +24,7 @@
 		"@researchgate/react-intersection-observer": "^0.7.3",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
+		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",
 		"fuse.js": "^3.4.2",
 		"i18next": "^14.1.1",
@@ -58,6 +59,7 @@
 		"redux-batched-actions": "^0.4.1",
 		"redux-form": "^8.2.0",
 		"redux-thunk": "^2.3.0",
+		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
 		"screenfull": "^3.3.2",
 		"whatwg-fetch": "^3.0.0"
