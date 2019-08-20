@@ -87,6 +87,7 @@ export const ActivitéSelection = withSitePaths(
 const activitéCardCss = `
 	width: 14rem;
 	justify-content: center;
+	flex-direction: column;
 	margin: 1rem !important;
 	font-size: initial! important;
 	@media(max-width: 500px) {
@@ -111,9 +112,9 @@ export const ActivitéCard = withSitePaths(
 				tabIndex={-1}
 				css={activitéCardCss}
 				onClick={toggle}>
-				<div css="display: flex; flex-direction: column; height: 100%; ">
+				<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
 					{selected !== undefined && (
-						<div css="transform: scale(1.5) translateY(5px)">
+						<div css="font-size: 1.5rem;">
 							<Checkbox name={title} id={title} checked={selected} readOnly />
 						</div>
 					)}

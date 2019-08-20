@@ -1,10 +1,11 @@
 .ui__.checkbox {
 	cursor: pointer;
+	display: inline-block;
 	position: relative;
 	margin: 0;
-	width: 18px;
-	line-height: 18px;
-	height: 18px;
+	width: 1em;
+	line-height: 1em;
+	height: 1em;
 	-webkit-tap-highlight-color: transparent;
 	transform: translate3d(0, 0, 0);
 	outline: none !important;
@@ -12,10 +13,10 @@
 .ui__.checkbox:before {
 	content: '';
 	position: absolute;
-	top: -6.5px;
-	left: -11px;
-	width: 40px;
-	height: 40px;
+	top: -0.6em;
+	left: -0.6em;
+	width: 2.2em;
+	height: 2.2em;
 	border-radius: 50%;
 	background: rgba(34, 50, 84, 0.03);
 	opacity: 0;
@@ -29,7 +30,7 @@
 	stroke-linejoin: round;
 	stroke: #c8ccd4;
 	stroke: var(--colour);
-	stroke-width: 1.5;
+	stroke-width: 1.5px;
 	transform: translate3d(0, 0, 0);
 	transition: all 0.2s ease;
 }
