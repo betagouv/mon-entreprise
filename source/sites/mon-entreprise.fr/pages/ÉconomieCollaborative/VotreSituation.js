@@ -49,18 +49,19 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 						<h2>Créer une activité professionnelle</h2>
 						<p>
 							Vos revenus sont considérés comme revenus professionnels, ils sont
-							soumis aux cotisations sociales. En contrepartie, ils donnent
+							soumis aux cotisations sociales. En contrepartie, ils ouvrent vos
 							droit à des prestations sociales (retraite, assurance maladie,
-							etc.).
+							maternité, etc.).
 						</p>
 						{régimeGénéralDisponible && (
 							<>
 								<h3>Régime général disponible</h3>
 								<p>
-									Pour certaines activités, si vous n'avez pas d'entreprise et
-									ne souhaitez pas en créer une, vous pouvez simplement déclarer
-									vos revenus sur le site de l'Urssaf. Vous devrez dans tous les
-									cas les déclarer aussi aux impôts.
+									Vous pouvez déclarer les revenus issus de ces activités
+									directement sur le site de l'Urssaf.C'est une option
+									intéressante si vous ne souhaitez pas créer d'entreprise ou
+									modifier une entreprise existante. Vous devrez dans tous les
+									cas déclarer ces revenus aux impôts.
 								</p>
 							</>
 						)}
