@@ -519,7 +519,7 @@ let StatutsExample = ({ companyStatus }) => {
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'
 	}
 
-	if (Object.keys(links).indexOf(companyStatus) === -1) return null
+	if (!(companyStatus in links)) return null
 
 	return (
 		<a target="_blank" href={links[companyStatus]}>
