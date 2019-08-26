@@ -794,6 +794,7 @@
     SMIC: 1522
 
 - espace: contrat salarié . salaire . brut de base
+  titre: brut horaire
   nom: horaire
   période: aucune
   unité: € / heures
@@ -830,7 +831,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: temps de travail . heures supplémentaires . nombre effectuées
+      assiette: temps de travail . heures supplémentaires
       facteur: salaire . brut de base . horaire
       taux: temps de travail . heures supplémentaires . taux majoré
 
@@ -1080,11 +1081,14 @@
 
 - espace: contrat salarié . cotisations . salariales
   nom: réduction heures supplémentaires
+  cotisation:
+    branche: retraite
   aide:
     type: réduction de cotisations
   unité: €
   période: flexible
-  formule: 0 - rémunération . heures supplémentaires * taux des cotisations réduites
+  formule:
+    0 - rémunération . heures supplémentaires * taux des cotisations réduites
     # multiplication:
     #   assiette: rémunération . heures supplémentaires
     #   taux: taux des cotisations réduites
@@ -1573,6 +1577,21 @@
       - réduction générale
       - exonération JEI
       - réduction ACRE
+      - déduction heures supplémentaires
+
+- espace: contrat salarié . cotisations . patronales . réductions de cotisations
+  nom: déduction heures supplémentaires
+  période: flexible
+  applicable si: entreprise . effectif < 20
+  titre: déduction forfaitaire pour heures supplémentaires
+  unité: €
+  formule:
+    multiplication:
+      assiette: temps de travail . heures supplémentaires
+      facteur: 1.50
+  note: La deduction ne s’applique pas aux heures complémentaires
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
 
 - espace: contrat salarié . cotisations . patronales
   nom: à payer
@@ -1783,7 +1802,7 @@
   formule:
     somme:
       - temps contractuel
-      - heures supplémentaires . nombre effectuées
+      - heures supplémentaires
   période: flexible
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existante permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
@@ -1842,22 +1861,17 @@
       - 100%
   unité: '%'
 
-- espace: contrat salarié . temps de travail
-  nom: heures supplémentaires
-  question: Le salarié effectue-t'il des heures supplémentaires rémunérées ?
-  par défaut: non
-  description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
 
-- espace: contrat salarié . temps de travail . heures supplémentaires
-  nom: nombre effectuées
-  titre: Nombre heures supplémentaires
+- espace: contrat salarié . temps de travail
+  description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
+  nom: heures supplémentaires
+  titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires rémunérées sont effectuées par mois ?
-  par défaut: 12
+  par défaut: 0
   unité: heures
   période: mois
   suggestions:
+    aucune: 0
     39h / semaine: 17.33
     42h / semaine: 30.33
   références:
@@ -1872,7 +1886,7 @@
     - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
     - 50 % pour les heures suivantes.
   note: pour l'instant, il n'est pas possible de faire varier ce taux, ni d'en rajouter d'autres
-  formule: 25%
+  formule: 125%
 
 - espace: contrat salarié
   nom: statut JEI
