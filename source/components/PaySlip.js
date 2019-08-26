@@ -37,14 +37,14 @@ export default compose(
 		parsedRules
 	}: ConnectedPropTypes) => {
 		let getRule = getRuleFromAnalysis(analysis)
-		console.log(
-			getRule(
-				'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
-			),
-			analysis.cache[
-				'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
-			]
+
+		const heuresSupplémentaires = getRule(
+			'contrat salarié . temps de travail . heures supplémentaires'
 		)
+		const réductionHeuresSupplémentaires = getRule(
+			'contrat salarié . cotisations . salariales . réduction heures supplémentaires'
+		)
+		console.log(réductionHeuresSupplémentaires)
 
 		return (
 			<div
@@ -60,13 +60,13 @@ export default compose(
 				<div className="payslip__salarySection">
 					<Line
 						rule={getRule('contrat salarié . temps de travail')}
-						maximumFractionDigits={0}
+						maximumFractionDigits={1}
 					/>
 					<Line
 						rule={getRule(
 							'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
 						)}
-						maximumFractionDigits={0}
+						maximumFractionDigits={1}
 					/>
 				</div>
 
@@ -117,18 +117,26 @@ export default compose(
 					</h5>
 					<Line
 						negative
-						rule={getRule('contrat salarié . réductions de cotisations')}
+						rule={getRule(
+							'contrat salarié . cotisations . patronales . réductions de cotisations'
+						)}
 					/>
-					<Value unit="€" nilValueSymbol="—">
-						{0}
-					</Value>
+					<span />
+
+					{heuresSupplémentaires.nodeValue && (
+						<>
+							<RuleLink {...réductionHeuresSupplémentaires} />
+							<span />
+							<Value {...réductionHeuresSupplémentaires} />
+						</>
+					)}
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
 					</div>
 					<Value
 						nilValueSymbol="—"
-						{...getRule('contrat salarié . cotisations . patronales à payer')}
+						{...getRule('contrat salarié . cotisations . patronales . à payer')}
 						unit="€"
 						className="payslip__total"
 					/>
@@ -140,9 +148,7 @@ export default compose(
 					/>
 					{/* Salaire chargé */}
 					<Line rule={getRule('contrat salarié . rémunération . total')} />
-					<Value nilValueSymbol="—" unit="€">
-						{0}
-					</Value>
+					<span />
 				</div>
 				{/* Section salaire net */}
 				<SalaireNetSection getRule={getRule} />

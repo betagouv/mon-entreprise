@@ -15,10 +15,7 @@ import {
 	values
 } from 'ramda'
 import { createSelector } from 'reselect'
-import {
-	getRuleFromAnalysis,
-	analysisWithDefaultsSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 import type { Analysis } from 'Types/Analysis'
 import type {
@@ -28,7 +25,6 @@ import type {
 	Branche,
 	FicheDePaie
 } from 'Types/ResultViewTypes'
-import { findRuleByDottedName } from 'Engine/rules'
 
 import type { Règle } from 'Types/RegleTypes'
 
@@ -123,6 +119,11 @@ export let analysisToCotisations = analysis => {
 		.map(name => analysis.cache[name])
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
 		.reduce(concat, [])
+		.filter(
+			({ dottedName }) =>
+				dottedName !==
+				'contrat salarié . cotisations . salariales . réduction heures supplémentaires'
+		)
 
 	const cotisations = pipe(
 		groupBy(prop('dottedName')),

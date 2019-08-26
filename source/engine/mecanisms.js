@@ -1,4 +1,6 @@
 import { decompose } from 'Engine/mecanisms/utils'
+import variations from 'Engine/mecanisms/variations'
+import { inferUnit } from 'Engine/units'
 import {
 	add,
 	any,
@@ -47,8 +49,6 @@ import Somme from './mecanismViews/Somme'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
-import { inferUnit } from 'Engine/units'
-import variations from 'Engine/mecanisms/variations'
 
 export let mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
