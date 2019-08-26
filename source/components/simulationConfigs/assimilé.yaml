@@ -13,8 +13,8 @@ objectifs:
       - entreprise . charges
       - entreprise . chiffre d'affaires minimum
 
-objectifs secondaires: 
-  - contrat salarié . heures par semaine
+objectifs secondaires:
+  - contrat salarié . temps de travail
   - contrat salarié . cotisations . patronales à payer
 
 questions:

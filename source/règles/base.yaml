@@ -782,12 +782,12 @@
 
 - espace: contrat salarié . salaire . brut de base
   nom: équivalent temps plein
-  applicable si: temps partiel
+  applicable si: temps de travail . temps partiel
   titre: Salaire brut équivalent temps plein
   résumé: Le salaire si l'embauche se faisait à temps plein
   question: Quel est le salaire en équivalent temps plein ?
   unité: €
-  formule: brut de base / quotité de travail
+  formule: brut de base / temps de travail . quotité de travail
   période: flexible
   suggestions:
     salaire médian: 2300
@@ -802,7 +802,7 @@
   période: flexible
   formule:
     somme:
-      - salaire . brut de base
+      - brut de base
       - indemnités salarié
 
 - espace: contrat salarié . rémunération
@@ -1020,7 +1020,7 @@
 - espace: contrat salarié
   nom: plafond sécurité sociale
   période: flexible
-  formule: plafond sécurité sociale temps plein * quotité de travail
+  formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 - espace: contrat salarié
   nom: SMIC temps plein
@@ -1039,7 +1039,7 @@
 - espace: contrat salarié
   nom: SMIC
   période: flexible
-  formule: SMIC temps plein * quotité de travail
+  formule: SMIC temps plein * temps de travail . quotité de travail
 
 - espace: contrat salarié . cotisations
   nom: salariales
@@ -1728,6 +1728,21 @@
       chemin: departement . nom
 
 - espace: contrat salarié
+  nom: temps de travail
+  unité: heures / semaine
+  formule:
+    variations:
+      - si: temps partiel
+        alors: temps partiel . heures par semaine
+      - sinon: base légale
+  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existante permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+- espace: contrat salarié . temps de travail
+  nom: base légale
+  formule: 35
+  unité: heures / semaine
+
+- espace: contrat salarié . temps de travail
   nom: temps partiel
   question: Le contrat est-il à temps partiel ?
   description: |
@@ -1736,7 +1751,7 @@
     Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
   par défaut: non
 
-- espace: contrat salarié . temps partiel
+- espace: contrat salarié . temps de travail . temps partiel
   nom: heures par semaine
   par défaut: 32
   unité: heures / semaine
@@ -1749,24 +1764,42 @@
       niveau: avertissement
       message: Le simulateur ne gère pas encore les heures supplémentaires.
 
-- espace: contrat salarié
-  nom: heures par semaine
-  unité: heures / semaine
-  formule:
-    variations:
-      - si: temps partiel
-        alors: temps partiel . heures par semaine
-      - sinon: base légale
-
-- espace: contrat salarié . heures par semaine
-  nom: base légale
-  formule: 35
-  unité: heures / semaine
-
-- espace: contrat salarié
+- espace: contrat salarié . temps de travail
   nom: quotité de travail
   description: Temps de travail en proportion du temps complet légal.
-  formule: heures par semaine / heures par semaine . base légale
+  formule: temps de travail / base légale
+  unité: '%'
+
+- espace: contrat salarié . temps de travail
+  nom: heures supplémentaires
+  question: Le salarié effectue-t'il des heures supplémentaires rémunérées ?
+  par défaut: non
+  description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
+
+- espace: contrat salarié . temps de travail . heures supplémentaires
+  nom: nombre effectuées
+  titre: Nombre d'heures supplémentaires effectuées
+  question: Combien d'heures supplémentaires rémunérées sont effectuées par mois ?
+  par défaut: 12
+  unité: heures / mois
+  suggestion:
+    39h / semaine: 4 * 4.33
+    42h / semaine: 7 * 4.33
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
+
+- espace: contrat salarié . temps de travail . heures supplémentaires
+  nom: taux majoré
+  description: >
+    La rémunération des heures supplémentaires fait l'objet d'un ou plusieurs taux de majoration, fixés par convention ou accord collectif d'entreprise ou d'établissement (ou, à défaut, par convention ou accord de branche).
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
+    - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
+    - 50 % pour les heures suivantes.
+  note: pour l'instant, il n'est pas possible de faire varier ce taux, ni d'en rajouter d'autres
+  formule: 25%
 
 - espace: contrat salarié
   nom: statut JEI

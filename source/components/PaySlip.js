@@ -2,20 +2,20 @@
 import type { FicheDePaie } from 'Types/ResultViewTypes'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import Value from 'Components/Value'
+import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 import { compose } from 'ramda'
 import React, { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import {
 	analysisWithDefaultsSelector,
 	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
-import Value from 'Components/Value'
+import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import './PaySlip.css'
+import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 import RuleLink from './RuleLink'
-import { Line, SalaireNetSection, SalaireBrutSection } from './PaySlipSections'
-import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 
 type ConnectedPropTypes = ?FicheDePaie & {
 	colours: { lightestColour: string }
@@ -53,7 +53,7 @@ export default compose(
 					<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
 					<span className="montant">
 						{Math.round(
-							getRule('contrat salarié . heures par semaine').nodeValue * 4.33
+							getRule('contrat salarié . temps de travail').nodeValue * 4.33
 						)}
 					</span>
 				</div>

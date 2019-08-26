@@ -5,15 +5,15 @@ objectifs:
   - contrat salarié . salaire . net
   - contrat salarié . salaire . net après impôt
 
-objectifs secondaires: 
-  - contrat salarié . heures par semaine
+objectifs secondaires:
+  - contrat salarié . temps de travail
   - contrat salarié . cotisations . patronales à payer
 
 questions:
   à l'affiche:
     Cadre: contrat salarié . statut cadre . choix statut cadre
     CDD: contrat salarié . CDD
-    Temps partiel: contrat salarié . temps partiel
+    Temps partiel: contrat salarié . temps de travail . temps partiel
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
     Association: entreprise . association non lucrative
