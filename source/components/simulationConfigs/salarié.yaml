@@ -6,11 +6,7 @@ objectifs:
   - contrat salarié . salaire . net après impôt
 
 objectifs secondaires:
-<<<<<<< HEAD
-  - contrat salarié . heures par semaine
-=======
   - contrat salarié . temps de travail
->>>>>>> :hammer: ajoute une règle sur les heures supplémentaires
   - contrat salarié . cotisations . patronales à payer
 
 questions:
