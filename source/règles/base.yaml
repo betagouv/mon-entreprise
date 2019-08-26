@@ -735,8 +735,8 @@
 
 - espace: contrat salarié . salaire
   nom: brut de base
-  titre: Salaire brut de base
-  résumé: Inscrit dans le contrat de travail
+  titre: Salaire brut
+  résumé: Brut de base inscrit dans le contrat de travail
   type: salaire
   question: Quel est le salaire de base ?
   description: |
@@ -751,7 +751,7 @@
   contrôles:
     - si:
         toutes ces conditions:
-          - brut de base [mensuel] < SMIC [mensuel]
+          - assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
           - assimilé salarié != oui
       niveau: avertissement
       message: |
@@ -794,26 +794,27 @@
     SMIC: 1522
 
 - espace: contrat salarié . salaire
-  nom: brut
-  titre: Salaire brut
+  nom: assiette de vérification du SMIC
   description: >
-    Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
+    C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
   unité: €
   période: flexible
   formule:
     somme:
       - brut de base
-      - indemnités salarié
+      - avantages en nature . montant
 
 - espace: contrat salarié . rémunération
   nom: brut
+  description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
   unité: €
   période: flexible
   formule:
     somme:
-      - salaire . brut
+      - salaire . brut de base
       - avantages en nature . montant
+      - indemnités salarié
 
 - espace: contrat salarié
   nom: avantages sociaux
