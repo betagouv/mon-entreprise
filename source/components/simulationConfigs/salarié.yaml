@@ -6,15 +6,20 @@ objectifs:
   - contrat salarié . salaire . net après impôt
 
 objectifs secondaires:
+<<<<<<< HEAD
   - contrat salarié . heures par semaine
+=======
+  - contrat salarié . temps de travail
+>>>>>>> :hammer: ajoute une règle sur les heures supplémentaires
   - contrat salarié . cotisations . patronales à payer
 
 questions:
   à l'affiche:
     Cadre: contrat salarié . statut cadre . choix statut cadre
     CDD: contrat salarié . CDD
-    Temps partiel: contrat salarié . temps partiel
     Impôt: impôt . méthode de calcul
+    Temps partiel: contrat salarié . temps de travail . temps partiel
+
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
     Association: entreprise . association non lucrative
