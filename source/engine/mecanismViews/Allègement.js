@@ -1,7 +1,7 @@
+import { map, mapObjIndexed, values } from 'ramda'
 import React from 'react'
-import { Node } from './common'
 import { makeJsx } from '../evaluation'
-import { mapObjIndexed, map, values } from 'ramda'
+import { Node } from './common'
 
 export default function Allègement(nodeValue, rawExplanation) {
 	// properties with a nodeValue of 0 are not interesting to display
