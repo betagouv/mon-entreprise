@@ -1,4 +1,5 @@
 import { T } from 'Components'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -31,7 +32,6 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import PeriodSwitch from 'Components/PeriodSwitch'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -166,7 +166,9 @@ export default compose(
 									/>
 									{displayedRule['rend non applicable'] && (
 										<section id="non-applicable">
-											<h3>Rend non applicable : </h3>
+											<h3>
+												<T>Rend non applicable les règles suivantes</T> :{' '}
+											</h3>
 											<ul>
 												{displayedRule['rend non applicable'].map(ruleName => (
 													<li key={ruleName}>

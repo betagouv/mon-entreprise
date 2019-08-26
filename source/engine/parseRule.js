@@ -1,3 +1,4 @@
+import { T } from 'Components'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
 import evaluate from 'Engine/evaluateRule'
@@ -130,12 +131,12 @@ export default (rules, rule, parsedRules) => {
 
 	parsedRules[rule.dottedName]['rendu non applicable'] = {
 		evaluate: (cache, situation, parsedRules, node) => {
-			const nodeValue = node.explanation.isDisabledBy
-				.map(disablerNode =>
-					evaluateNode(cache, situation, parsedRules, disablerNode)
-				)
-				.some(x => x.nodeValue === true)
-			return rewriteNode(node, nodeValue, node.explanation, {})
+			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
+				evaluateNode(cache, situation, parsedRules, disablerNode)
+			)
+			const nodeValue = isDisabledBy.some(x => x.nodeValue === true)
+			const explanation = { ...node.explanation, isDisabledBy }
+			return { ...node, explanation, nodeValue }
 		},
 		jsx: (nodeValue, { isDisabledBy }) => {
 			return (
@@ -143,12 +144,12 @@ export default (rules, rule, parsedRules) => {
 					<>
 						<h3>Exception{isDisabledBy.length > 1 && 's'}</h3>
 						<p>
-							Cette règle ne s'applique pas pour :{' '}
+							<T>Cette règle ne s'applique pas pour</T> :{' '}
 							{isDisabledBy.map((rule, i) => (
-								<>
+								<React.Fragment key={i}>
 									{i > 0 && ', '}
 									<RuleLink dottedName={rule.dottedName} />
-								</>
+								</React.Fragment>
 							))}
 						</p>
 					</>

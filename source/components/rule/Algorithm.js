@@ -8,18 +8,20 @@ import './Algorithm.css'
 import { ShowValuesProvider } from './ShowValuesContext'
 
 let Conditions = ({
+	'rendu non applicable': disabledBy,
 	parentDependency,
 	'applicable si': applicable,
 	'non applicable si': notApplicable
 }) => {
 	let listElements = [
 		parentDependency?.nodeValue === false && (
-			<li key="parentDependency">
-				<span css="background: yellow">
-					<T>Désactivée</T>
-				</span>{' '}
-				<T>car dépend de</T> {makeJsx(parentDependency)}
-			</li>
+			<ShowIfDisabled dependency={parentDependency} key="parent dependency" />
+		),
+		...disabledBy?.explanation?.isDisabledBy?.map(
+			(dependency, i) =>
+				dependency?.nodeValue === true && (
+					<ShowIfDisabled dependency={dependency} key={`dependency ${i}`} />
+				)
 		),
 		applicable && <li key="applicable">{makeJsx(applicable)}</li>,
 		notApplicable && <li key="non applicable">{makeJsx(notApplicable)}</li>
@@ -33,6 +35,17 @@ let Conditions = ({
 			<ul>{listElements}</ul>
 		</section>
 	) : null
+}
+
+function ShowIfDisabled({ dependency }) {
+	return (
+		<li>
+			<span css="background: yellow">
+				<T>Désactivée</T>
+			</span>{' '}
+			<T>car dépend de</T> {makeJsx(dependency)}
+		</li>
+	)
 }
 
 export default compose(withTranslation())(

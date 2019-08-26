@@ -7,7 +7,7 @@
 
 - nom: contribution
   formule: impôt
-  test: règle désactivé
+  test: règle désactivée
   exemples:
     - nom: evasion fiscale
       situation:

@@ -117,7 +117,7 @@ rend non applicable:
   description: |
     Permet de désactiver l'application de certaines règles pour la situation saisie.
 
-    > Ce mécanisme est utile pour encoder les régimes d'exceptions (par exemple le [régime des impatriés]()) sans avoir à modifier la définition des règles de base.
+    > Ce mécanisme est utile pour encoder les régimes d'exceptions (par exemple le [régime des impatriés](/documentation/contrat-salarié/régime-des-impatriés)) sans avoir à modifier la définition des règles de base.
 
 barème:
   type: numeric
