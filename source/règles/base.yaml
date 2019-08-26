@@ -793,6 +793,12 @@
     salaire médian: 2300
     SMIC: 1522
 
+- espace: contrat salarié . salaire . brut de base
+  nom: horaire
+  période: aucune
+  unité: € / heures
+  formule: brut de base / temps de travail
+
 - espace: contrat salarié . salaire
   nom: assiette de vérification du SMIC
   description: >
@@ -815,6 +821,18 @@
       - salaire . brut de base
       - avantages en nature . montant
       - indemnités salarié
+      - heures supplémentaires
+
+- espace: contrat salarié . rémunération
+  nom: heures supplémentaires
+  description: La rémunération relative aux heures supplémentaires
+  unité: €
+  période: flexible
+  formule:
+    multiplication:
+      assiette: temps de travail . heures supplémentaires . nombre effectuées
+      facteur: salaire . brut de base . horaire
+      taux: temps de travail . heures supplémentaires . taux majoré
 
 - espace: contrat salarié
   nom: avantages sociaux
@@ -1730,13 +1748,31 @@
 
 - espace: contrat salarié
   nom: temps de travail
+  unité: heures
+  formule:
+    somme:
+      - temps contractuel
+      - heures supplémentaires . nombre effectuées
+  période: flexible
+  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existante permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+- espace: contrat salarié . temps de travail
+  nom: temps contractuel
+  unité: heures
+  période: mois
+  formule:
+    multiplication:
+      assiette: temps hebdomadaire
+      facteur: 52 / 12
+
+- espace: contrat salarié . temps de travail . temps contractuel
+  nom: temps hebdomadaire
   unité: heures / semaine
   formule:
     variations:
       - si: temps partiel
         alors: temps partiel . heures par semaine
       - sinon: base légale
-  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existante permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 - espace: contrat salarié . temps de travail
   nom: base légale
@@ -1761,14 +1797,18 @@
     - si: heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine > 35
+    - si: heures par semaine >= 35
       niveau: avertissement
-      message: Le simulateur ne gère pas encore les heures supplémentaires.
+      message: Un temps partiel doit être en dessous de la durée de travail légale (35h)
 
 - espace: contrat salarié . temps de travail
   nom: quotité de travail
   description: Temps de travail en proportion du temps complet légal.
-  formule: temps de travail / base légale
+  période: aucune
+  formule:
+    le minimum de:
+      - temps de travail [mensuel] / (base légale * 4.33)
+      - 100%
   unité: '%'
 
 - espace: contrat salarié . temps de travail
@@ -1781,13 +1821,14 @@
 
 - espace: contrat salarié . temps de travail . heures supplémentaires
   nom: nombre effectuées
-  titre: Nombre d'heures supplémentaires effectuées
+  titre: Nombre heures supplémentaires
   question: Combien d'heures supplémentaires rémunérées sont effectuées par mois ?
   par défaut: 12
-  unité: heures / mois
-  suggestion:
-    39h / semaine: 4 * 4.33
-    42h / semaine: 7 * 4.33
+  unité: heures
+  période: mois
+  suggestions:
+    39h / semaine: 17.33
+    42h / semaine: 30.33
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
 

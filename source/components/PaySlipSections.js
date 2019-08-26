@@ -1,12 +1,15 @@
 import { React, T } from 'Components'
-import RuleLink from './RuleLink'
 import Value from 'Components/Value'
+import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
 			'contrat salarié . avantages en nature . montant'
 		),
 		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
+		heuresSupplémentaires = getRule(
+			'contrat salarié . rémunération . heures supplémentaires'
+		),
 		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
 		rémunérationBrute = getRule('contrat salarié . rémunération . brut')
 
@@ -15,20 +18,23 @@ export let SalaireBrutSection = ({ getRule }) => {
 			<h4 className="payslip__salaryTitle">
 				<T>Salaire</T>
 			</h4>
-			{(avantagesEnNature.nodeValue !== 0 ||
-				indemnitésSalarié.nodeValue !== 0) && <Line rule={salaireDeBase} />}
+			<Line rule={salaireDeBase} />
 			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
 			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
-			<RuleLink className="payslip__brut" {...rémunérationBrute} />
-			<Value className="payslip__brut" {...rémunérationBrute} unit="€" />
+			{heuresSupplémentaires.nodeValue !== 0 && (
+				<Line rule={heuresSupplémentaires} />
+			)}
+			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
+				<Line rule={rémunérationBrute} />
+			)}
 		</div>
 	)
 }
 
-export let Line = ({ rule, negative }) => (
+export let Line = ({ rule, ...props }) => (
 	<>
 		<RuleLink {...rule} />
-		<Value {...rule} unit="€" nilValueSymbol="—" negative={negative} />
+		<Value {...rule} nilValueSymbol="—" {...props} />
 	</>
 )
 

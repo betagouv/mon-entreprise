@@ -37,6 +37,14 @@ export default compose(
 		parsedRules
 	}: ConnectedPropTypes) => {
 		let getRule = getRuleFromAnalysis(analysis)
+		console.log(
+			getRule(
+				'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
+			),
+			analysis.cache[
+				'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
+			]
+		)
 
 		return (
 			<div
@@ -49,14 +57,19 @@ export default compose(
 						padding-right: 0.2em;
 					}
 				`}>
-				<div className="payslip__hourSection">
-					<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
-					<span className="montant">
-						{Math.round(
-							getRule('contrat salarié . temps de travail').nodeValue * 4.33
+				<div className="payslip__salarySection">
+					<Line
+						rule={getRule('contrat salarié . temps de travail')}
+						maximumFractionDigits={0}
+					/>
+					<Line
+						rule={getRule(
+							'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
 						)}
-					</span>
+						maximumFractionDigits={0}
+					/>
 				</div>
+
 				<SalaireBrutSection getRule={getRule} />
 				{/* Section cotisations */}
 				<div className="payslip__cotisationsSection">
