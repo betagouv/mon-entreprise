@@ -41,11 +41,6 @@ export default compose(
 		const heuresSupplémentaires = getRule(
 			'contrat salarié . temps de travail . heures supplémentaires'
 		)
-		const réductionHeuresSupplémentaires = getRule(
-			'contrat salarié . cotisations . salariales . réduction heures supplémentaires'
-		)
-		console.log(réductionHeuresSupplémentaires)
-
 		return (
 			<div
 				className="payslip__container"
@@ -64,7 +59,7 @@ export default compose(
 					/>
 					<Line
 						rule={getRule(
-							'contrat salarié . temps de travail . heures supplémentaires . nombre effectuées'
+							'contrat salarié . temps de travail . heures supplémentaires'
 						)}
 						maximumFractionDigits={1}
 					/>
@@ -112,9 +107,7 @@ export default compose(
 							</Fragment>
 						)
 					})}
-					<h5 className="payslip__cotisationTitle">
-						<Trans>Réductions</Trans>
-					</h5>
+
 					<Line
 						negative
 						rule={getRule(
@@ -123,13 +116,6 @@ export default compose(
 					/>
 					<span />
 
-					{heuresSupplémentaires.nodeValue && (
-						<>
-							<RuleLink {...réductionHeuresSupplémentaires} />
-							<span />
-							<Value {...réductionHeuresSupplémentaires} />
-						</>
-					)}
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>

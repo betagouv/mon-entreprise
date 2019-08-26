@@ -119,11 +119,6 @@ export let analysisToCotisations = analysis => {
 		.map(name => analysis.cache[name])
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
 		.reduce(concat, [])
-		.filter(
-			({ dottedName }) =>
-				dottedName !==
-				'contrat salarié . cotisations . salariales . réduction heures supplémentaires'
-		)
 
 	const cotisations = pipe(
 		groupBy(prop('dottedName')),
