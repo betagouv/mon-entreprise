@@ -1,8 +1,8 @@
 // Page listing the engine's currently implemented mecanisms and their tests
+import { React, T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { analyseMany } from 'Engine/traverse'
 import { compose } from 'ramda'
-import { React, T } from 'Components'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import examples from 'Règles/cas-types.yaml'
@@ -53,7 +53,7 @@ const Example = compose(
 				figures = [
 					total,
 					do {
-						let dottedName = 'contrat salarié . salaire . brut de base'
+						let dottedName = 'contrat salarié . rémunération . brut de base'
 						;({
 							dottedName,
 							nodeValue: situation[dottedName],

@@ -179,7 +179,7 @@
   exemples:
     - nom: pas de congés non pris
       situation:
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
@@ -187,7 +187,7 @@
     - nom: 10 jours non pris
       situation:
         CDD: oui
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 10
         durée contrat: 12
@@ -195,7 +195,7 @@
     - nom: 3 jours non pris
       situation:
         CDD: oui
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 3
         durée contrat: 6
@@ -235,7 +235,7 @@
 - espace: contrat salarié . CDD . compensation pour congés non pris
   période: mois
   nom: assiette mensuelle
-  formule: salaire . brut de base + prime de fin de contrat
+  formule: rémunération . brut de base + prime de fin de contrat
 
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: salaire journalier
@@ -279,21 +279,21 @@
   # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
-      assiette: salaire . brut de base
+      assiette: rémunération . brut de base
       taux: 10%
 
   exemples:
     - nom: salaire médian
       situation:
         CDD: oui
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         motif: classique . accroissement activité
       valeur attendue: 230
 
     - nom: CDD d'usage -> non applicable
       situation:
         motif: classique . usage
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
       valeur attendue: null
 
   références:
@@ -730,10 +730,7 @@
   période: flexible
   formule: rémunération . brut - indemnité kilométrique vélo
 
-- espace: contrat salarié
-  nom: salaire
-
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: brut de base
   titre: Salaire brut
   résumé: Brut de base inscrit dans le contrat de travail
@@ -751,7 +748,7 @@
   contrôles:
     - si:
         toutes ces conditions:
-          - assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
+          - rémunération . assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
           - assimilé salarié != oui
       niveau: avertissement
       message: |
@@ -770,8 +767,8 @@
       titre: salaire
       avec:
         - rémunération . total
-        - salaire . net
-        - salaire . net après impôt
+        - rémunération . net
+        - rémunération . net après impôt
         - équivalent temps plein
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
@@ -780,7 +777,7 @@
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
 
-- espace: contrat salarié . salaire . brut de base
+- espace: contrat salarié . rémunération . brut de base
   nom: équivalent temps plein
   applicable si: temps de travail . temps partiel
   titre: Salaire brut équivalent temps plein
@@ -793,14 +790,14 @@
     salaire médian: 2300
     SMIC: 1522
 
-- espace: contrat salarié . salaire . brut de base
+- espace: contrat salarié . rémunération . brut de base
   titre: brut horaire
   nom: horaire
   période: aucune
   unité: € / heures
-  formule: brut de base / temps de travail
+  formule: rémunération . assiette de vérification du SMIC / temps de travail
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: assiette de vérification du SMIC
   description: >
     C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
@@ -808,7 +805,7 @@
   période: flexible
   formule:
     somme:
-      - brut de base
+      - rémunération . brut de base
       - avantages en nature . montant
 
 - espace: contrat salarié . rémunération
@@ -819,20 +816,21 @@
   période: flexible
   formule:
     somme:
-      - salaire . brut de base
+      - rémunération . brut de base
       - avantages en nature . montant
       - indemnités salarié
       - heures supplémentaires
 
 - espace: contrat salarié . rémunération
   nom: heures supplémentaires
+  titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
   unité: €
   période: flexible
   formule:
     multiplication:
       assiette: temps de travail . heures supplémentaires
-      facteur: salaire . brut de base . horaire
+      facteur: rémunération . brut de base . horaire
       taux: temps de travail . heures supplémentaires . taux majoré
 
 - espace: contrat salarié
@@ -1079,38 +1077,6 @@
       - complémentaire santé [salarié]
       - réduction heures supplémentaires
 
-- espace: contrat salarié . cotisations . salariales
-  nom: réduction heures supplémentaires
-  cotisation:
-    branche: retraite
-  aide:
-    type: réduction de cotisations
-  unité: €
-  période: flexible
-  formule:
-    0 - rémunération . heures supplémentaires * taux des cotisations réduites
-    # multiplication:
-    #   assiette: rémunération . heures supplémentaires
-    #   taux: taux des cotisations réduites
-  références:
-    Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
-    urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
-
-- espace: contrat salarié . cotisations . salariales . réduction heures supplémentaires
-  nom: taux des cotisations réduites
-  période: aucune
-  unité: '%'
-  description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
-  formule:
-    le minimum de:
-      - 11.31%
-      - multiplication:
-          assiette:
-            somme:
-              - vieillesse [salarié]
-              - retraite complémentaire [salarié]
-              - contribution d'équilibre général [salarié]
-          facteur: 1 / assiette
 
 - espace: contrat salarié . cotisations
   nom: patronales
@@ -1149,7 +1115,7 @@
 
 - espace: contrat salarié . rémunération
   nom: net de cotisations
-  titre: Rémunération nette de cotisations
+  titre: Salaire net de cotisations
   type: rémunération
   unité: €
   période: flexible
@@ -1170,6 +1136,29 @@
         somme:
           - indemnité kilométrique vélo
           - prime d'impatriation
+          - heures supplémentaires défiscalisées
+          - cotisations . salariales . réduction heures supplémentaires
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+- espace: contrat salarié . rémunération . net imposable
+  nom: heures supplémentaires défiscalisées
+  période: flexible
+  unité: €
+  formule:
+    le minimum de:
+      - plafond brut
+      - heures supplémentaires
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+- espace: contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
+  nom: plafond brut
+  unité: €
+  période: année
+  formule: 5358
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 - espace: contrat salarié . rémunération . net imposable
   nom: base
@@ -1194,7 +1183,7 @@
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: net
   titre: Salaire net
   type: salaire
@@ -1210,7 +1199,7 @@
   période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
 
-- espace: contrat salarié . salaire
+- espace: contrat salarié . rémunération
   nom: net après impôt
   titre: Salaire net après impôt
   résumé: Versé sur le compte bancaire
@@ -1614,6 +1603,40 @@
         1: 0%
       retourne seulement le taux: oui
 
+- espace: contrat salarié . cotisations . salariales
+  nom: réduction heures supplémentaires
+  cotisation:
+    branche: retraite
+  aide:
+    type: réduction de cotisations
+  unité: €
+  période: flexible
+  formule:
+    0 - rémunération . heures supplémentaires * taux des cotisations réduites
+    # multiplication:
+    #   assiette: rémunération . heures supplémentaires
+    #   taux: taux des cotisations réduites
+  références:
+    Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
+    urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
+    Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
+
+- espace: contrat salarié . cotisations . salariales . réduction heures supplémentaires
+  nom: taux des cotisations réduites
+  période: aucune
+  unité: '%'
+  description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
+  formule:
+    le minimum de:
+      - 11.31%
+      - multiplication:
+          assiette:
+            somme:
+              - vieillesse [salarié]
+              - retraite complémentaire [salarié]
+              - contribution d'équilibre général [salarié]
+          facteur: 1 / assiette
+
 - espace: contrat salarié . rémunération
   nom: total sans réduction
   période: flexible
@@ -1846,7 +1869,6 @@
       - 100%
   unité: '%'
 
-
 - espace: contrat salarié . temps de travail
   description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
   nom: heures supplémentaires
@@ -1859,6 +1881,11 @@
     aucune: 0
     39h / semaine: 17.33
     42h / semaine: 30.33
+  contrôles:
+    - si: heures supplémentaires > 190.66
+      niveau: avertissement
+      message: La durée hebdomadaire moyenne de travail en France ne peut pas dépasser 44h / semaine
+
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
 
@@ -2353,19 +2380,20 @@
 
 - espace: contrat salarié
   note: Cette assiette est complexe, cette version n'est qu'une simplification.
-  nom: assiette CSG
+  nom: assiette CSG et CRDS
   période: flexible
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
+    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
   formule:
     somme:
-      - assiette CSG abattue
+      - assiette abattue
       - prévoyance obligatoire cadre
       - complémentaire santé [employeur]
 
-- espace: contrat salarié
-  nom: assiette CSG abattue
+- espace: contrat salarié . assiette CSG et CRDS
+  nom: assiette abattue
   période: flexible
   formule:
     barème:
@@ -2378,6 +2406,22 @@
         - au-dessus de: 4
           taux: 100%
 
+- espace: contrat salarié . CSG
+  nom: assiette heures supplémentaires défiscalisées
+  période: flexible
+  formule:
+    multiplication:
+      assiette: rémunération . net imposable . heures supplémentaires défiscalisées
+      taux: 98.25%
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+- espace: contrat salarié . CSG
+  nom: assiette CSG déductible
+  période: flexible
+  unité: €
+  formule: assiette CSG et CRDS - assiette heures supplémentaires défiscalisées
+
 - espace: contrat salarié
   nom: CSG
   cotisation:
@@ -2389,15 +2433,21 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette CSG
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
+          assiette: assiette CSG et CRDS
           taux: 2.4%
-
         - attributs:
             impôt sur le revenu: déductible
+          assiette: assiette CSG déductible
           taux: 6.8%
+        - attributs:
+            nom: heures supplémentaires défiscalisées
+            impôt sur le revenu: non déductible
+          assiette: assiette heures supplémentaires défiscalisées
+          taux: 6.8%
+
   exemples:
     - nom: 'CSG cadre'
       situation:
@@ -2410,6 +2460,8 @@
         cotisations . assiette: 1500
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
+  références:
+    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 - espace: contrat salarié
   nom: CRDS
@@ -2420,8 +2472,9 @@
   période: flexible
   formule:
     multiplication:
-      assiette: assiette CSG
+      assiette: assiette CSG et CRDS
       taux: 0.5%
+
 - espace: contrat salarié
   nom: FNAL
   titre: Contribution au Fonds National d’Aide au Logement
@@ -2787,18 +2840,18 @@
   exemples:
     - nom: non applicable par défaut
       situation:
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
       valeur attendue: 0
     - nom: association non lucrative unipersonnelle
       situation:
         entreprise . association non lucrative: oui
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         entreprise . effectif: 1
       valeur attendue: 0
     - nom: association non lucrative
       situation:
         entreprise . association non lucrative: oui
-        salaire . brut de base: 2300
+        rémunération . brut de base: 2300
         entreprise . effectif: 10
         complémentaire santé . forfait: 0
       valeur attendue: 48.1
@@ -3084,7 +3137,7 @@
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule:
     somme:
-      - contrat salarié . salaire . net
+      - contrat salarié . rémunération . net
       - indépendant . revenu net de cotisations
       - auto entrepreneur . revenu net de cotisations
 

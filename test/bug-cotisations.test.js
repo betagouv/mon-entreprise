@@ -1,9 +1,9 @@
 import { expect } from 'chai'
+import dedent from 'dedent-js'
 import { enrichRule } from 'Engine/rules'
+import { safeLoad } from 'js-yaml'
 import { rules as realRules } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
-import dedent from 'dedent-js'
-import { safeLoad } from 'js-yaml'
 
 describe('bug-analyse-many', function() {
 	it('complex inversion with composantes', () => {
@@ -11,8 +11,8 @@ describe('bug-analyse-many', function() {
       - nom: net
         formule: brut - cotisations
       - nom: cotisations
-        formule: 
-          somme: 
+        formule:
+          somme:
             - cotisation a [salarié]
             - cotisation b
 
@@ -27,7 +27,7 @@ describe('bug-analyse-many', function() {
               - attributs:
                   dû par: salarié
                 taux: 10%
-	  
+
       - nom: cotisation b
         formule:
           multiplication:
@@ -79,7 +79,7 @@ describe('bug-analyse-many', function() {
 			}[dottedName])
 		const rules = parseAll(realRules.map(enrichRule))
 		const targets = [
-			'contrat salarié . salaire . brut de base',
+			'contrat salarié . rémunération . brut de base',
 			'contrat salarié . cotisations . salariales'
 		]
 		const analyseManyValue = analyseMany(rules, targets)(situationSelector)

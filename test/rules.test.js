@@ -107,7 +107,7 @@ describe('misc', function() {
 		let pathMap = nestedSituationToPathMap(values)
 
 		expect(pathMap).to.have.property(
-			'contrat salarié . salaire . brut de base',
+			'contrat salarié . rémunération . brut de base',
 			'2300'
 		)
 	})

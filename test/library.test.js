@@ -5,7 +5,7 @@ import sasuRules from '../source/règles/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
-		let target = 'contrat salarié . salaire . net'
+		let target = 'contrat salarié . rémunération . net'
 		let value = Syso.evaluate(target, {
 			'contrat salarié': { salaire: { 'brut de base': 2300 } }
 		})
@@ -33,13 +33,13 @@ describe('library', function() {
   formule: 1
 - nom: ya
   période: flexible
-  formule:  contrat salarié . salaire . net + yo
+  formule:  contrat salarié . rémunération . net + yo
 `
 
 		let value = Syso.evaluate(
 			'ya',
 			{
-				'contrat salarié . salaire . brut de base': 2300
+				'contrat salarié . rémunération . brut de base': 2300
 			},
 			{ extra: rules }
 		)
@@ -57,7 +57,7 @@ describe('library', function() {
 		)
 
 		let salaireNetAprèsImpôt = Syso.evaluate(
-			'contrat salarié . salaire . net après impôt',
+			'contrat salarié . rémunération . net après impôt',
 			{
 				'contrat salarié': { rémunération: { total: salaireTotal } }
 			}
@@ -66,7 +66,7 @@ describe('library', function() {
 		let [revenuDisponible, dividendes] = Syso.evaluate(
 			['revenu net après impôt', 'dividendes . net'],
 			{
-				'contrat salarié . salaire . net après impôt': salaireNetAprèsImpôt,
+				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
 				'chiffre affaires': CA
 			},
 			{ extra: sasuRules }

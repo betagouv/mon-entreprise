@@ -4,9 +4,9 @@ objectifs:
     objectifs:
       - contrat salarié . rémunération . total
       - contrat salarié . cotisations
-      - contrat salarié . salaire . net
+      - contrat salarié . rémunération . net
       - impôt
-      - contrat salarié . salaire . net après impôt
+      - contrat salarié . rémunération . net après impôt
   - icône: 🏢
     nom: Mon entreprise
     objectifs:
