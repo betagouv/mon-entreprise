@@ -1,6 +1,8 @@
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
-import SelectTwoAirports from 'Components/conversation/select/SelectTwoAirports'
+let SelectTwoAirports = React.lazy(() =>
+	import('Components/conversation/select/SelectTwoAirports')
+)
 import {
 	add,
 	countBy,
@@ -22,7 +24,7 @@ import {
 	unless,
 	values
 } from 'ramda'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
 import { serialiseUnit } from 'Engine/units'
 
@@ -105,7 +107,11 @@ export let getInputComponent = rules => dottedName => {
 		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
 	}
 	if (rule.dottedName === 'transport . avion . distance de vol aller')
-		return <SelectTwoAirports {...{ ...commonProps }} />
+		return (
+			<Suspense fallback={<div>Chargement des aéroports ...</div>}>
+				<SelectTwoAirports {...{ ...commonProps }} />
+			</Suspense>
+		)
 
 	if (getVariant(rule))
 		return (

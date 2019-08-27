@@ -1,5 +1,4 @@
 import airports from './airports.csv'
-import { pick } from 'ramda'
 import Fuse from 'fuse.js'
 
 let searchWeights = [
@@ -14,7 +13,7 @@ let searchWeights = [
 ]
 
 let fuse = new Fuse(
-	airports.map(pick(['ville', 'nom', 'pays', 'latitude', 'longitude'])),
+	airports,
 	{
 		keys: searchWeights
 	}
