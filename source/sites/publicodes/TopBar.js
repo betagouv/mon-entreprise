@@ -43,23 +43,6 @@ export default withRouter(({ location }) => {
 					<Link to="/à-propos">En savoir plus</Link>. Que faire ?
 				</p>
 			)}
-			{displayIntro && (
-				<div
-					css={`
-						position: fixed;
-						width: 100%;
-						left: 0;
-						top: 0;
-						background: yellow;
-						text-align: center;
-						font-size: 80%;
-						padding: 0.2em 0;
-						line-height: 1.1em;
-					`}>
-					{emoji('')} Version beta : n'hésitez pas à tester ce site, mais sachez
-					que les données ne sont pas encore validées
-				</div>
-			)}
 			<div
 				className="ui__ card"
 				css={`
