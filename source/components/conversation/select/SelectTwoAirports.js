@@ -1,10 +1,12 @@
-import { pick, take } from 'ramda'
+import { take } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
 import GreatCircle from 'great-circle'
 import { FormDecorator } from '../FormDecorator'
 import Worker from 'worker-loader!./SearchAirports.js'
 import emoji from 'react-easy-emoji'
+import SendButton from '../SendButton'
+import { ScrollToTop } from 'Components/utils/Scroll'
 
 const worker = new Worker()
 
@@ -16,11 +18,15 @@ export default FormDecorator('select')(
 		}
 		state = {
 			depuis: { inputValue: '' },
-			vers: { inputValue: '' }
+			vers: { inputValue: '' },
+			validated: false
 		}
-		renderOptions = (whichInput, { results = [], inputValue }) => (
-			<ul>{take(5, results.map(this.renderOption(whichInput)(inputValue)))}</ul>
-		)
+		renderOptions = (whichInput, { results = [], inputValue }) =>
+			!this.state.validated && (
+				<ul>
+					{take(5, results.map(this.renderOption(whichInput)(inputValue)))}
+				</ul>
+			)
 
 		renderOption = whichInput => inputValue => option => {
 			let { nom, ville, pays } = option,
@@ -102,7 +108,8 @@ export default FormDecorator('select')(
 									onChange={e => {
 										let v = e.target.value
 										this.setState({
-											depuis: { ...this.state.depuis, inputValue: v }
+											depuis: { ...this.state.depuis, inputValue: v },
+											validated: false
 										})
 										if (v.length > 2)
 											worker.postMessage({ input: v, which: 'depuis' })
@@ -121,7 +128,8 @@ export default FormDecorator('select')(
 									onChange={e => {
 										let v = e.target.value
 										this.setState({
-											vers: { ...this.state.vers, inputValue: v }
+											vers: { ...this.state.vers, inputValue: v },
+											validated: false
 										})
 										if (v.length > 2)
 											worker.postMessage({ input: v, which: 'vers' })
@@ -134,10 +142,15 @@ export default FormDecorator('select')(
 					{distance && (
 						<div
 							css={`
-								text-align: right;
+								margin: 1rem 0;
 							`}>
 							Distance {emoji('📏')} : &nbsp;<strong>{distance + ' km'}</strong>
 						</div>
+					)}
+					{distance && !this.state.validated && (
+						<SendButton
+							{...{ submit: () => this.setState({ validated: true }) }}
+						/>
 					)}
 				</>
 			)
