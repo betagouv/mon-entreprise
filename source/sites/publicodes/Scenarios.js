@@ -21,8 +21,8 @@ export default () => {
 				<em>
 					Si un voyage en avion en émet 500 kg et que la limite acceptable par
 					personne et par an est de 6 tonnes, alors ce vol consomme un douzième
-					de notre crédit à l'année : sur 2 petites heures de vol, j'ai grillé 1
-					mois de mon crédit annuel !
+					de crédit annuel : en 2 heures de vol, j'ai grillé un mois de mon
+					crédit carbone !
 				</em>
 			</p>
 			<p>
