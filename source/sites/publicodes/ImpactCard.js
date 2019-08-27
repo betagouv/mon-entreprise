@@ -12,7 +12,7 @@ import scenarios from './scenarios.yaml'
 import { encodeRuleName } from 'Engine/rules'
 
 let humanWeightValue = possiblyNegativeValue => {
-	let unitSuffix = "d'équivalent CO₂",
+	let unitSuffix = 'de CO₂- éq',
 		v = Math.abs(possiblyNegativeValue),
 		[raw, unit] =
 			v === 0
