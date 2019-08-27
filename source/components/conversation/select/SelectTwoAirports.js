@@ -1,38 +1,21 @@
-import Fuse from 'fuse.js'
 import { pick, take } from 'ramda'
 import React from 'react'
 import Highlighter from 'react-highlight-words'
-import airports from './airports.csv'
 import GreatCircle from 'great-circle'
 import { FormDecorator } from '../FormDecorator'
+import Worker from 'worker-loader!./SearchAirports.js'
 
-let searchWeights = [
-	{
-		name: 'ville',
-		weight: 0.5
-	},
-	{
-		name: 'nom',
-		weight: 0.5
-	}
-]
+const worker = new Worker()
 
 export default FormDecorator('select')(
 	class SelectTwoAirports extends React.Component {
 		componentDidMount() {
-			this.inputElement?.focus()
-		}
-		UNSAFE_componentWillMount() {
-			this.fuse = new Fuse(
-				airports.map(pick(['ville', 'nom', 'pays', 'latitude', 'longitude'])),
-				{
-					keys: searchWeights
-				}
-			)
+			worker.onmessage = ({ data: { results, which } }) =>
+				this.setState({ [which]: { ...this.state[which], results } })
 		}
 		state = {
-			depuis: {},
-			vers: {}
+			depuis: { inputValue: '' },
+			vers: { inputValue: '' }
 		}
 		renderOptions = (whichInput, { results = [], inputValue }) => (
 			<ul>{take(5, results.map(this.renderOption(whichInput)(inputValue)))}</ul>
@@ -80,7 +63,6 @@ export default FormDecorator('select')(
 			)
 		}
 
-		filterOptions = (options, filter) => this.fuse.search(filter)
 		render() {
 			let { depuis, vers } = this.state
 			let placeholder = 'Aéroport ou ville '
@@ -110,12 +92,11 @@ export default FormDecorator('select')(
 									placeholder={placeholder}
 									onChange={e => {
 										let v = e.target.value
-										if (v.length < 4)
-											return this.setState({
-												depuis: { inputValue: v, results: [] }
-											})
-										let results = this.fuse.search(v)
-										this.setState({ depuis: { inputValue: v, results } })
+										this.setState({
+											depuis: { ...this.state.depuis, inputValue: v }
+										})
+										if (v.length > 3)
+											worker.postMessage({ input: v, which: 'depuis' })
 									}}
 								/>
 							</label>
@@ -130,12 +111,11 @@ export default FormDecorator('select')(
 									placeholder={placeholder}
 									onChange={e => {
 										let v = e.target.value
-										if (v.length < 4)
-											return this.setState({
-												vers: { inputValue: v, results: [] }
-											})
-										let results = this.fuse.search(v)
-										this.setState({ vers: { inputValue: v, results } })
+										this.setState({
+											vers: { ...this.state.vers, inputValue: v }
+										})
+										if (v.length > 3)
+											worker.postMessage({ input: v, which: 'vers' })
 									}}
 								/>
 							</label>

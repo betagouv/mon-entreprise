@@ -22,7 +22,8 @@ module.exports.default = {
 		publicodes: './source/sites/publicodes/entry.js'
 	},
 	output: {
-		path: path.resolve('./dist/')
+		path: path.resolve('./dist/'),
+		globalObject: 'self'
 	}
 }
 
