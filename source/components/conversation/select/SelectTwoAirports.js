@@ -4,6 +4,7 @@ import Highlighter from 'react-highlight-words'
 import GreatCircle from 'great-circle'
 import { FormDecorator } from '../FormDecorator'
 import Worker from 'worker-loader!./SearchAirports.js'
+import emoji from 'react-easy-emoji'
 
 const worker = new Worker()
 
@@ -73,19 +74,27 @@ export default FormDecorator('select')(
 					<div
 						css={`
 							label {
-								display: inline-block;
+								display: flex;
+								justify-content: space-around;
+								align-items: center;
 								margin: 1em;
+							}
+							input {
+								width: 9em !important;
+								font-size: 130% !important;
 							}
 							label > span {
 								display: inline-block;
+								margin-right: 0.3rem;
 							}
 							ul {
 								border-left: 1px solid #333;
+								max-width: 30em;
 							}
 						`}>
 						<div>
 							<label>
-								<span>Depuis : &nbsp;</span>
+								<span>Départ {emoji('🛫')}</span>
 								<input
 									type="text"
 									value={depuis.inputValue}
@@ -95,7 +104,7 @@ export default FormDecorator('select')(
 										this.setState({
 											depuis: { ...this.state.depuis, inputValue: v }
 										})
-										if (v.length > 3)
+										if (v.length > 2)
 											worker.postMessage({ input: v, which: 'depuis' })
 									}}
 								/>
@@ -104,7 +113,7 @@ export default FormDecorator('select')(
 						</div>
 						<div>
 							<label>
-								<span>Vers : &nbsp;</span>
+								<span>Arrivée {emoji('🛬')}</span>
 								<input
 									type="text"
 									value={vers.inputValue}
@@ -114,7 +123,7 @@ export default FormDecorator('select')(
 										this.setState({
 											vers: { ...this.state.vers, inputValue: v }
 										})
-										if (v.length > 3)
+										if (v.length > 2)
 											worker.postMessage({ input: v, which: 'vers' })
 									}}
 								/>
@@ -123,8 +132,11 @@ export default FormDecorator('select')(
 						</div>
 					</div>
 					{distance && (
-						<div>
-							Distance : &nbsp;<strong>{distance + ' km'}</strong>
+						<div
+							css={`
+								text-align: right;
+							`}>
+							Distance {emoji('📏')} : &nbsp;<strong>{distance + ' km'}</strong>
 						</div>
 					)}
 				</>
