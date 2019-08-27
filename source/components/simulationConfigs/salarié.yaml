@@ -1,9 +1,9 @@
 objectifs:
   - contrat salarié . rémunération . total
-  - contrat salarié . salaire . brut de base . équivalent temps plein
-  - contrat salarié . salaire . brut de base
-  - contrat salarié . salaire . net
-  - contrat salarié . salaire . net après impôt
+  - contrat salarié . rémunération . brut de base . équivalent temps plein
+  - contrat salarié . rémunération . brut de base
+  - contrat salarié . rémunération . net
+  - contrat salarié . rémunération . net après impôt
 
 objectifs secondaires:
   - contrat salarié . cotisations . patronales . à payer

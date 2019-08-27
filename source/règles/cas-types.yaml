@@ -1,33 +1,33 @@
 - nom: CDI au salaire médian
-  situation: 
-    contrat salarié . salaire . brut de base: 2300
+  situation:
+    contrat salarié . rémunération . brut de base: 2300
 
 - nom: CDI au SMIC
-  situation: 
-    contrat salarié . salaire . brut de base: 1500
+  situation:
+    contrat salarié . rémunération . brut de base: 1500
 
 
 - nom: CDI au SMIC temps partiel 24h / semaine
-  situation: 
-    contrat salarié . salaire . brut de base: 1030
+  situation:
+    contrat salarié . rémunération . brut de base: 1030
     contrat salarié . temps partiel: oui
     contrat salarié . temps partiel . heures par semaine: 24
 
 - nom: CDI cadre salaire cadre médian
-  situation: 
-    contrat salarié . salaire . brut de base: 3600
+  situation:
+    contrat salarié . rémunération . brut de base: 3600
     contrat salarié . statut cadre: oui
 
 - nom: CDD usage de 2 mois
-  situation: 
-    contrat salarié . salaire . brut de base: 2300
+  situation:
+    contrat salarié . rémunération . brut de base: 2300
     contrat salarié . type de contrat: CDD
     contrat salarié . CDD . motif: 'classique . usage'
     contrat salarié . CDD . durée: 2
 
 - nom: CDD accroissement d'activité de 1 an
-  situation: 
-    contrat salarié . salaire . brut de base: 2300
+  situation:
+    contrat salarié . rémunération . brut de base: 2300
     contrat salarié . type de contrat: CDD
     contrat salarié . CDD . motif: 'classique . accroissement activité'
     contrat salarié . CDD . durée: 12

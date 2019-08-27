@@ -218,11 +218,11 @@ describe('inversions', () => {
 	})
 	it('should collect missing variables not too slowly', function() {
 		let stateSelector = name =>
-			({ 'contrat salarié . salaire . net': '2300' }[name])
+			({ 'contrat salarié . rémunération . net': '2300' }[name])
 
 		let rules = parseAll(realRules.map(enrichRule)),
 			analysis = analyseMany(rules, [
-				'contrat salarié . salaire . brut',
+				'contrat salarié . rémunération . brut',
 				'contrat salarié . rémunération . total'
 			])(stateSelector)
 

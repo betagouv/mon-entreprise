@@ -10,7 +10,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 		heuresSupplémentaires = getRule(
 			'contrat salarié . rémunération . heures supplémentaires'
 		),
-		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
+		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
 		rémunérationBrute = getRule('contrat salarié . rémunération . brut')
 
 	return (
@@ -48,19 +48,19 @@ export let SalaireNetSection = ({ getRule }) => {
 				<T>Salaire net</T>
 			</h4>
 			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
-			<Line
-				rule={getRule('contrat salarié . rémunération . net de cotisations')}
-			/>
+			<Line rule={getRule('contrat salarié . rémunération . net')} />
 			{avantagesEnNature.nodeValue !== 0 ? (
 				<>
 					{/* Avantages en nature */}
 					<Line negative rule={avantagesEnNature} />
 					{/* Salaire net */}
-					<Line rule={getRule('contrat salarié . salaire . net')} />
+					<Line rule={getRule('contrat salarié . rémunération . net')} />
 				</>
 			) : null}
 			<Line negative rule={getRule('impôt . neutre')} />
-			<Line rule={getRule('contrat salarié . salaire . net après impôt')} />
+			<Line
+				rule={getRule('contrat salarié . rémunération . net après impôt')}
+			/>
 		</div>
 	)
 }

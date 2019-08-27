@@ -110,7 +110,7 @@ const répartition = (analysis): ?Répartition => {
 	)
 
 	const getRule = getRuleFromAnalysis(analysis),
-		salaireNet = getRule('contrat salarié . salaire . net'),
+		salaireNet = getRule('contrat salarié . rémunération . net'),
 		salaireChargé = getRule('contrat salarié . rémunération . total'),
 		réductionsDeCotisations = getRule(
 			'contrat salarié . cotisations . patronales . réductions de cotisations'

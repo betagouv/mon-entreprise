@@ -384,11 +384,11 @@ describe('nextSteps', function() {
 			({
 				'contrat salarié': 'oui',
 				'contrat salarié . CDD': 'oui',
-				'contrat salarié . salaire . brut de base': '2300'
+				'contrat salarié . rémunération . brut de base': '2300'
 			}[name])
 
 		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'contrat salarié . salaire . net')(
+			analysis = analyse(rules, 'contrat salarié . rémunération . net')(
 				stateSelector
 			),
 			result = collectMissingVariables(analysis.targets)

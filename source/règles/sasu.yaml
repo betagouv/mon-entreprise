@@ -60,4 +60,4 @@
 
 - nom: revenu net après impôt
   période: flexible
-  formule: contrat salarié . salaire . net après impôt + dividendes . net
+  formule: contrat salarié . rémunération . net après impôt + dividendes . net

@@ -547,7 +547,7 @@ contrat salarié . cotisations . assiette:
 contrat salarié . salaire:
   titre.en: salary
   titre.fr: salaire
-contrat salarié . salaire . brut de base:
+contrat salarié . rémunération . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut de base
   résumé.en: Written in the employment contract
@@ -611,7 +611,7 @@ contrat salarié . salaire . brut de base:
       message: >
         Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
         période de calcul ?
-contrat salarié . salaire . brut de base . équivalent temps plein:
+contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
   résumé.en: Salary if hired on a full-time basis
@@ -624,7 +624,7 @@ contrat salarié . salaire . brut de base . équivalent temps plein:
   suggestions.fr:
     salaire médian: 2300
     SMIC: 1522
-contrat salarié . salaire . brut:
+contrat salarié . rémunération . brut:
   titre.en: gross salary with benefits
   titre.fr: Salaire brut
   description.en: >
@@ -633,9 +633,6 @@ contrat salarié . salaire . brut:
   description.fr: >
     Toutes les sommes versées au salarié sous forme monétaire en échange de son
     travail.
-contrat salarié . rémunération . brut:
-  titre.en: Gross remuneration
-  titre.fr: Rémunération brute
 contrat salarié . avantages sociaux:
   description.en: >-
     These are the benefits paid by the employer. They are specific to the
@@ -902,7 +899,7 @@ contrat salarié . prime d'impatriation:
     sur le revenu.
   titre.en: impatriation bonus
   titre.fr: prime d'impatriation
-contrat salarié . salaire . net:
+contrat salarié . rémunération . net:
   titre.en: Net salary
   titre.fr: Salaire net
   question.en: What is the net salary?
@@ -927,7 +924,7 @@ contrat salarié . salaire . net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel (pour
     le changer, il faut signer un avenant au contrat).
-contrat salarié . salaire . net après impôt:
+contrat salarié . rémunération . net après impôt:
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
   résumé.en: Transfered on the bank account
