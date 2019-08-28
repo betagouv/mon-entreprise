@@ -14,8 +14,7 @@ export default class Tracker {
 	unlistenFromHistory: () => void
 	previousPath: string
 
-	constructor(pushFunction: PushType = args => window._paq.push(args)) {
-		window._paq = window._paq || []
+	constructor(pushFunction: PushType = args => {}) {
 		this.push = debounce(200, pushFunction)
 	}
 

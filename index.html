@@ -273,16 +273,16 @@
 			_paq.push(['enableHeartBeatTimer', 30])
 			_paq.push(['enableLinkTracking'])
 			;(function() {
-				var u = 'https://stats.data.gouv.fr/'
-				_paq.push(['setTrackerUrl', u + 'piwik.php'])
-				_paq.push(['setSiteId', '39'])
+				var u = 'https://raw.githubusercontent.com/matomo-org/matomo/master/js/'
+				// _paq.push(['setTrackerUrl', u + 'piwik.php'])
+				// _paq.push(['setSiteId', '39'])
 				var d = document,
 					g = d.createElement('script'),
 					s = d.getElementsByTagName('script')[0]
 				g.type = 'text/javascript'
 				g.async = true
 				g.defer = true
-				g.src = u + 'piwik.js'
+				g.src = u + 'piwik.min.js'
 				s.parentNode.insertBefore(g, s)
 			})()
 		</script>
