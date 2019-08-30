@@ -1884,7 +1884,7 @@
   description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
   nom: heures supplémentaires
   titre: Nombre d'heures supplémentaires
-  question: Combien d'heures supplémentaires rémunérées sont effectuées par mois ?
+  question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
   unité: heures
   période: mois
