@@ -1,11 +1,8 @@
-import {
-	goToQuestion,
-	resetSimulation,
-	validateStepWithValue
-} from 'Actions/actions'
+import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import { T } from 'Components'
 import QuickLinks from 'Components/QuickLinks'
 import { getInputComponent } from 'Engine/generateQuestions'
+import { findRuleByDottedName } from 'Engine/rules'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -19,7 +16,6 @@ import {
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
-import { findRuleByDottedName } from 'Engine/rules'
 
 export default compose(
 	reduxForm({
@@ -33,7 +29,7 @@ export default compose(
 			previousAnswers: state.conversationSteps.foldedSteps,
 			nextSteps: nextStepsSelector(state)
 		}),
-		{ resetSimulation, validateStepWithValue, goToQuestion }
+		{ validateStepWithValue, goToQuestion }
 	)
 )(function Conversation({
 	nextSteps,
@@ -41,7 +37,6 @@ export default compose(
 	currentQuestion,
 	customEndMessages,
 	flatRules,
-	resetSimulation,
 	goToQuestion,
 	validateStepWithValue
 }) {
@@ -101,9 +96,6 @@ export default compose(
 					</T>
 				)}
 			</p>
-			<button className="ui__ small simple  button " onClick={resetSimulation}>
-				<T>Recommencer</T>
-			</button>
 		</div>
 	)
 })
