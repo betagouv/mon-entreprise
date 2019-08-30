@@ -544,9 +544,6 @@ contrat salarié . cotisations . assiette:
     de cotisations sur le travail salarié. Elle comprend notamment les
     rémunérations en espèces (salaire de base, indemnité, primes...) et les
     avantages en nature (logement, véhicule...).
-contrat salarié . salaire:
-  titre.en: salary
-  titre.fr: salaire
 contrat salarié . rémunération . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut de base
