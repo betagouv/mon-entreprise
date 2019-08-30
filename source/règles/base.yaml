@@ -970,7 +970,7 @@
   unité: €/repas
   formule:
     variations:
-      - si: dans la restauration
+      - si: entreprise . hôtel café restaurant
         alors: 3.62
       - sinon: 4.85
   références:
@@ -987,10 +987,10 @@
     1 par jour: 21
     2 par jour: 42
 
-- espace: contrat salarié . avantages en nature . nourriture
-  nom: dans la restauration
+- espace: entreprise
+  nom: hôtel café restaurant
   par défaut: non
-  question: Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et assimilés ?
+  question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilés ?
 
 # - espace: contrat salarié . avantages en nature
 #   nom: montant
@@ -1908,18 +1908,41 @@
 
 - espace: contrat salarié . temps de travail . heures supplémentaires
   nom: majoration
+  description: |
+    La rémunération des heures supplémentaires fait l'objet d'un ou plusieurs taux de majoration, fixés par convention ou accord collectif d'entreprise ou d'établissement (ou, à défaut, par convention ou accord de branche). Chaque taux est au minimum fixé à 10%.
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
+    - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
+    - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
+  note: Pour l'instant, nous implémentons uniquement les taux standard et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
   période: mois
   unité: heures
   formule:
-    barème:
-      assiette: heures supplémentaires
-      multiplicateur: 4.33
-      tranches:
-        - en-dessous de: 8
-          taux: 25%
-        - au-dessus de: 8
-          taux: 50%
+    variations:
+      - si: entreprise . hôtel café restaurant
+        alors:
+          barème:
+            assiette: heures supplémentaires
+            multiplicateur: 4.33
+            tranches:
+              - en-dessous de: 4
+                taux: 10%
+              - de: 4
+                à: 8
+                taux: 20%
+              - au-dessus de: 8
+                taux: 50%
+      - sinon:
+          barème:
+            assiette: heures supplémentaires
+            multiplicateur: 4.33
+            tranches:
+              - en-dessous de: 8
+                taux: 25%
+              - au-dessus de: 8
+                taux: 50%
+
 
 - espace: contrat salarié
   nom: statut JEI
