@@ -12,13 +12,13 @@ objectifs secondaires:
 questions:
   à l'affiche:
     Cadre: contrat salarié . statut cadre . choix statut cadre
+    Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     CDD: contrat salarié . CDD
     Impôt: impôt . méthode de calcul
     Temps partiel: contrat salarié . temps de travail . temps partiel
 
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
-    Association: entreprise . association non lucrative
     Avantages: contrat salarié . avantages en nature
   non prioritaires:
     - contrat salarié . indemnité kilométrique vélo . active
