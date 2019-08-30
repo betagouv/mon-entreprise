@@ -50,7 +50,7 @@ export let SalaireNetSection = ({ getRule }) => {
 					{/* Avantages en nature */}
 					<Line negative rule={avantagesEnNature} />
 					{/* Salaire net */}
-					<Line negative rule={getRule('contrat salarié . salaire . net')} />
+					<Line rule={getRule('contrat salarié . salaire . net')} />
 				</>
 			) : null}
 			<Line negative rule={getRule('impôt . neutre')} />

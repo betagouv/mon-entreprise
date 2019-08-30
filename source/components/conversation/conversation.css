@@ -98,10 +98,18 @@
 
 .step fieldset {
 	margin: 0.8em 0;
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	align-items: baseline;
 }
 
 .step fieldset ul {
 	list-style-type: none;
+}
+
+.step fieldset > ul:not(.binaryQuestionList) {
+	width: 100%;
 }
 
 .step.question .variant {
@@ -325,6 +333,9 @@
 	margin-left: 0.3em;
 }
 
+.select-answer.commune {
+	flex: 1;
+}
 .select-answer.commune .Select {
 	width: 50%;
 }
