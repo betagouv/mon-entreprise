@@ -14,7 +14,7 @@ let state = {
 	form: {
 		conversation: {
 			values: {
-				'contrat salarié': { salaire: { 'brut de base': '2300' } },
+				'contrat salarié': { rémunération: { 'brut de base': '2300' } },
 				entreprise: { effectif: '50' }
 			}
 		}

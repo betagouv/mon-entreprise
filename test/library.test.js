@@ -7,7 +7,7 @@ describe('library', function() {
 	it('should evaluate one target with no input data', function() {
 		let target = 'contrat salarié . rémunération . net'
 		let value = Syso.evaluate(target, {
-			'contrat salarié': { salaire: { 'brut de base': 2300 } }
+			'contrat salarié': { rémunération: { 'brut de base': 2300 } }
 		})
 		expect(value).to.be.within(1798, 1800)
 	})

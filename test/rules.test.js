@@ -101,7 +101,7 @@ describe('translateAll', function() {
 describe('misc', function() {
 	it('should unnest nested form values', function() {
 		let values = {
-			'contrat salarié': { salaire: { 'brut de base': '2300' } }
+			'contrat salarié': { rémunération: { 'brut de base': '2300' } }
 		}
 
 		let pathMap = nestedSituationToPathMap(values)
