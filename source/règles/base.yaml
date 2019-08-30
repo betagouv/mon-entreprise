@@ -1885,6 +1885,7 @@
   nom: heures supplémentaires
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
+  non applicable si: assimilé salarié
   par défaut: 0
   unité: heures
   période: mois
