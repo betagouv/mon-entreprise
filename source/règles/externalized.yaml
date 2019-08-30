@@ -957,16 +957,14 @@ contrat salarié . salaire . net après impôt:
 
     Pour une simulation plus complète, rendez-vous sur
     [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
-impôt . neutre . barème Guadeloupe Réunion Martinique:
+impôt . taux neutre . barème Guadeloupe Réunion Martinique:
   titre.en: Guadeloupe/Reunion Island/Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
-impôt . neutre . barème Guyane Mayotte:
+impôt . taux neutre . barème Guyane Mayotte:
   titre.en: Guyana/Mayotte scale
   titre.fr: barème Guyane Mayotte
-impôt . neutre . barème métropolitain:
-  titre.en: metropolitan scale
-  titre.fr: barème métropolitain
-impôt . neutre:
+
+impôt . taux neutre:
   titre.en: neutral income tax
   titre.fr: Impôt sur le revenu au taux neutre
   description.en: >-

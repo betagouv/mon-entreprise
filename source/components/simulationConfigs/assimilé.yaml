@@ -5,7 +5,7 @@ objectifs:
       - contrat salarié . rémunération . total
       - contrat salarié . cotisations
       - contrat salarié . salaire . net
-      - impôt . neutre
+      - impôt
       - contrat salarié . salaire . net après impôt
   - icône: 🏢
     nom: Mon entreprise
@@ -13,7 +13,7 @@ objectifs:
       - entreprise . charges
       - entreprise . chiffre d'affaires minimum
 
-objectifs secondaires: 
+objectifs secondaires:
   - contrat salarié . heures par semaine
   - contrat salarié . cotisations . patronales à payer
 
@@ -21,6 +21,7 @@ questions:
   à l'affiche:
     ACRE: entreprise . année d'activité
     Commune: établissement . localisation
+    Impôt sur le revenu: impôt . méthode de calcul
     Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
     Effectif: entreprise . effectif
   liste noire:
