@@ -8,7 +8,7 @@ import { withRouter } from 'react-router'
 import backSvg from './back.svg'
 import mobileMenuSvg from './mobile-menu.svg'
 import './SideBar.css'
-import type { Tracker } from 'Components/utils/withTracker'
+import type Tracker from '../../../../Tracker'
 import type { Location } from 'react-router-dom'
 
 type OwnProps = {|
@@ -79,10 +79,10 @@ class SideBar extends React.Component<Props, State> {
 	render() {
 		return (
 			<div
-				className={classnames(
-					'sidebar__container',
-					this.state.opened && 'opened'
-				)}
+				css="transform: translate(-100%)" // prevent FOUC effect
+				className={classnames('sidebar__container', {
+					opened: this.state.opened
+				})}
 				ref={ref => (this.ref = ref)}>
 				<div className="sidebar">{this.props.children}</div>
 				<button

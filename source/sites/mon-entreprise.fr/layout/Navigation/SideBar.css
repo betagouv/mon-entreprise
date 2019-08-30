@@ -3,17 +3,17 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	transform: translate(-100%);
 	/* let the browser know we plan to animate
 	   each view in and out */
 	will-change: transform;
 	transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-	transform: translate(-100%);
 	z-index: 1;
 }
-
 .sidebar__container.opened {
-	transform: translateX(0);
+	transform: translate(0%);
 }
+
 .sidebar__container + * {
 	will-change: transform;
 	transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);

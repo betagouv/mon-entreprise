@@ -66,8 +66,8 @@ export default class Provider extends PureComponent {
 		css.type = 'text/css'
 		css.innerHTML = `
 #js {
-	opacity: 1 !important;
-	transform: translateY(0px) !important;
+	animation: appear 0.5s;
+	opacity: 1;
 }
 #loading {
 	display: none !important;
