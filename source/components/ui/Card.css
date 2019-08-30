@@ -20,6 +20,16 @@
 		var(--colour) 100%
 	);
 }
+.ui__.card.plain h1,
+.ui__.card.plain h2,
+.ui__.card.plain h3,
+.ui__.card.plain h4,
+.ui__.card.plain h5,
+.ui__.card.plain h6 {
+	color: white;
+	color: var(--textColour);
+}
+
 .ui__.card.disabled img {
 	filter: saturate(0);
 }
