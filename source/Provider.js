@@ -69,7 +69,7 @@ export default class Provider extends PureComponent {
 	opacity: 1 !important;
 	transform: translateY(0px) !important;
 }
-#lds-ellipsis {
+#loading {
 	display: none !important;
 }`
 		document.body.appendChild(css)

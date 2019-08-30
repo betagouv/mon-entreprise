@@ -32,7 +32,7 @@ const prerenderConfig = () => ({
 					opacity: 1;
 					transform: translateY(0px);
 				}
-				#lds-ellipsis {
+				#loading {
 					display: none;
 				}
 			</style>

@@ -81,10 +81,10 @@
 				display: block !important;
 			}
 
-			html[data-useragent*='MSIE'] #lds-ellipsis,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #lds-ellipsis,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #lds-ellipsis,
-			html[data-useragent*='Trident'] #lds-ellipsis {
+			html[data-useragent*='MSIE'] #loading,
+			html[data-useragent*='Safari'][data-useragent*='Version/8'] #loading,
+			html[data-useragent*='Safari'][data-useragent*='Version/7'] #loading,
+			html[data-useragent*='Trident'] #loading {
 				display: none !important;
 			}
 
@@ -104,16 +104,18 @@
 
 			/* CSS Loader */
 
-			#lds-ellipsis {
-				display: block;
-				position: relative;
+			#loading {
 				animation: appear 0.6s;
-				transform: translateY(40vh);
-				width: 64px;
-				height: 64px;
-				margin: auto;
+				transform: translateY(35vh);
+				width: 100%;
 			}
-
+			#lds-ellipsis {
+				margin: auto;
+				position: relative;
+				width: 64px;
+				animation: appear 1.5s;
+				height: 64px;
+			}
 			#lds-ellipsis div {
 				position: absolute;
 				top: 27px;
@@ -148,7 +150,7 @@
 				from {
 					opacity: 0;
 				}
-				60% {
+				80% {
 					opacity: 0;
 				}
 				100% {
@@ -187,11 +189,18 @@
 	</head>
 
 	<body>
-		<div id="lds-ellipsis">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+		<div id="loading">
+			<img
+				src="images/logo.svg"
+				alt="Un service de l'État français"
+				style="width: 300px; margin: auto; margin-bottom: 0.6rem; display:block"
+			/>
+			<div id="lds-ellipsis">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
 
 		<!-- USER AGENT DATA ATTRIBUTE  -->
