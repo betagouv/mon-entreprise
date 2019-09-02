@@ -28,7 +28,7 @@
 		"focus-trap-react": "^3.1.2",
 		"fuse.js": "^3.4.2",
 		"i18next": "^14.1.1",
-		"iframe-resizer": "^3.6.2",
+		"iframe-resizer": "^4.1.1",
 		"js-yaml": "^3.13.1",
 		"nearley": "^2.16.0",
 		"ramda": "^0.25.0",
