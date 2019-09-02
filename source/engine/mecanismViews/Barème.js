@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
+import { numberFormatter } from 'Components/Value'
 import { trancheValue } from 'Engine/mecanisms/barème'
 import { identity } from 'ramda'
 import React from 'react'
@@ -8,7 +9,6 @@ import { Trans } from 'react-i18next'
 import { makeJsx } from '../evaluation'
 import './Barème.css'
 import { Node, NodeValuePointer } from './common'
-import { numberFormatter } from 'Components/Value'
 
 export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	<>
@@ -58,11 +58,13 @@ let Component = withLanguage(function Barème({
 											<Trans>Tranche de l&apos;assiette</Trans>
 										</th>
 										<th>
-											<Trans>
-												{explanation.tranches[0].taux != null
-													? 'Taux'
-													: 'Montant'}
-											</Trans>
+											{unit || (
+												<Trans>
+													{explanation.tranches[0].taux != null
+														? 'Taux'
+														: 'Montant'}
+												</Trans>
+											)}
 										</th>
 										{showValues && explanation.tranches[0].taux != null && (
 											<th>
