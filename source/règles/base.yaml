@@ -793,7 +793,6 @@
 - espace: contrat salarié . rémunération
   nom: brut horaire
   période: aucune
-  unité: € / heures
   formule: rémunération . assiette de vérification du SMIC / temps de travail
 
 - espace: contrat salarié . rémunération
@@ -1563,7 +1562,7 @@
     multiplication:
       assiette: temps de travail . heures supplémentaires
       facteur: 1.50
-  note: La deduction ne s’applique pas aux heures complémentaires
+  note: La déduction ne s’applique pas aux heures complémentaires
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
 
@@ -1808,7 +1807,7 @@
       - temps contractuel
       - heures supplémentaires
   période: flexible
-  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existante permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 - espace: contrat salarié . temps de travail
   nom: temps contractuel
@@ -1901,7 +1900,7 @@
     - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
-  note: Pour l'instant, nous implémentons uniquement les taux standard et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
+  note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
   période: mois
   unité: heures
   formule:
