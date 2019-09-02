@@ -155,7 +155,7 @@
 		"style-loader": "^0.23.1",
 		"styled-components": "^4.2.0",
 		"url-loader": "^1.0.1",
-		"webpack": "^4.26.0",
+		"webpack": "^4.39.3",
 		"webpack-cli": "^3.1.2",
 		"webpack-dev-middleware": "^3.4.0",
 		"webpack-hot-middleware": "^2.24.2",
