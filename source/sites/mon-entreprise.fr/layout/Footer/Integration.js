@@ -8,6 +8,7 @@ import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
 import './Integration.css'
+import { IntegrationCode } from '../../pages/Dev/IntegrationTest'
 
 export default function Integration() {
 	const [opened, setOpened] = useState(false)
@@ -23,21 +24,7 @@ export default function Integration() {
 						<div>
 							<h1>Intégrez le module Web</h1>
 							<p>En ajoutant une ligne à votre page Web :</p>
-							<code>
-								<span>{'<'}</span>
-								<em>
-									script
-									<br />
-									id
-								</em>
-								="script-simulateur-embauche" <em>data-couleur</em>="
-								<span id="scriptColor">#2975D1</span>" <em>src</em>
-								="https://mon-entreprise.fr/simulateur-iframe-integration.js">
-								<span>{'<'}</span>
-								<span>/</span>
-								<em>script</em>
-								<span>></span>
-							</code>
+							<IntegrationCode />
 							<p>
 								Vous pouvez{' '}
 								<strong>choisir la couleur principale du module</strong> pour le
