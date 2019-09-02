@@ -8757,10 +8757,10 @@ serve-handler@6.1.0:
     path-to-regexp "2.2.1"
     range-parser "1.2.0"
 
-serve-handler@^5.0.5:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/serve-handler/-/serve-handler-5.0.8.tgz#790dbe340dabf1d61bdbaa02ea37dcab372377a8"
-  integrity sha512-pqk0SChbBLLHfMIxQ55czjdiW7tj2cFy53svvP8e5VqEN/uB/QpfiTJ8k1uIYeFTDVoi+FGi5aqXScuu88bymg==
+serve-handler@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/serve-handler/-/serve-handler-6.1.1.tgz#e4470ba9f4294c970012f5b5428c6582225106f6"
+  integrity sha512-LQPvxGia2TYqyMkHKH4jW9jx6jlQUMcWz6gJavZ3+4vsnB+SaWbYTncb9YsK5YBR6SlvyumREZJAzLw8VaFAUQ==
   dependencies:
     bytes "3.0.0"
     content-disposition "0.5.2"
@@ -8781,7 +8781,7 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
-serve@^11.0.0:
+serve@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/serve/-/serve-11.1.0.tgz#1bfe2f4a08d0130cbf44711cdb7996cb742172e0"
   integrity sha512-+4wpDtOSS+4ZLyDWMxThutA3iOTawX2+yDovOI8cjOUOmemyvNlHyFAsezBlSgbZKTYChI3tzA1Mh0z6XZ62qA==
