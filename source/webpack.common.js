@@ -93,7 +93,8 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 									esmodules: false,
 									browsers: ['ie 11']
 							  },
-						useBuiltIns: 'entry'
+						useBuiltIns: 'entry',
+						corejs: '3'
 					}
 				]
 			]
