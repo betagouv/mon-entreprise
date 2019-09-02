@@ -4045,28 +4045,28 @@
 - nom: barème trimestres générique
   espace: protection sociale . retraite . trimestres validés par an
   période: aucune
-  unité: trimestres
   formule:
     variations:
       - si: oui
         alors:
           barème linéaire:
+            unité: trimestres
             assiette: revenu moyen [annuel]
             multiplicateur: SMIC horaire
             tranches:
               - en-dessous de: 150
-                montant: 0 trimestres
+                montant: 0
               - de: 150
                 à: 300
-                montant: 1 trimestres
+                montant: 1
               - de: 300
                 à: 450
-                montant: 2 trimestres
+                montant: 2
               - de: 450
                 à: 600
-                montant: 3 trimestres
+                montant: 3
               - au-dessus de: 600
-                montant: 4 trimestres
+                montant: 4
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
@@ -4080,59 +4080,62 @@
       - si: entreprise . catégorie d'activité = 'libérale'
         alors:
           barème linéaire:
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2880
-                montant: 0 trimestres
+                montant: 0
               - de: 2880
                 à: 5062
-                montant: 1 trimestres
+                montant: 1
               - de: 5062
                 à: 7266
-                montant: 2 trimestres
+                montant: 2
               - de: 7266
                 à: 9675
-                montant: 3 trimestres
+                montant: 3
               - au-dessus de: 9675
-                montant: 4 trimestres
+                montant: 4
       - si:
           une de ces conditions:
             - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
           barème linéaire:
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 4137
-                montant: 0 trimestres
+                montant: 0
               - de: 4137
                 à: 7286
-                montant: 1 trimestres
+                montant: 1
               - de: 7286
                 à: 10426
-                montant: 2 trimestres
+                montant: 2
               - de: 10426
                 à: 20740
-                montant: 3 trimestres
+                montant: 3
               - au-dessus de: 20740
-                montant: 4 trimestres
+                montant: 4
       - sinon:
           barème linéaire:
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2412
-                montant: 0 trimestres
+                montant: 0
               - de: 2412
                 à: 4239
-                montant: 1 trimestres
+                montant: 1
               - de: 4239
                 à: 6071
-                montant: 2 trimestres
+                montant: 2
               - de: 6071
                 à: 12030
-                montant: 3 trimestres
+                montant: 3
               - au-dessus de: 12030
-                montant: 4 trimestres
+                montant: 4
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
 

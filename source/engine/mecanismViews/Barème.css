@@ -21,6 +21,9 @@
 .barème table th {
 	font-weight: 500;
 }
+.barème table th:first-letter {
+	text-transform: uppercase;
+}
 .barème .tranche:nth-child(2n) {
 	background: #f1f1f1;
 }
