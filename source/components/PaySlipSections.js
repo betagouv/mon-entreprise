@@ -4,10 +4,13 @@ import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-			'contrat salarié . avantages en nature . montant'
+			'contrat salarié . rémunération . avantages en nature . montant'
 		),
 		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
-		salaireDeBase = getRule('contrat salarié . salaire . brut de base'),
+		heuresSupplémentaires = getRule(
+			'contrat salarié . rémunération . heures supplémentaires'
+		),
+		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
 		rémunérationBrute = getRule('contrat salarié . rémunération . brut')
 
 	return (
@@ -15,26 +18,29 @@ export let SalaireBrutSection = ({ getRule }) => {
 			<h4 className="payslip__salaryTitle">
 				<T>Salaire</T>
 			</h4>
-			{(avantagesEnNature.nodeValue !== 0 ||
-				indemnitésSalarié.nodeValue !== 0) && <Line rule={salaireDeBase} />}
+			<Line rule={salaireDeBase} />
 			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
 			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
-			<RuleLink className="payslip__brut" {...rémunérationBrute} />
-			<Value className="payslip__brut" {...rémunérationBrute} unit="€" />
+			{heuresSupplémentaires.nodeValue !== 0 && (
+				<Line rule={heuresSupplémentaires} />
+			)}
+			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
+				<Line rule={rémunérationBrute} />
+			)}
 		</div>
 	)
 }
 
-export let Line = ({ rule, negative }) => (
+export let Line = ({ rule, ...props }) => (
 	<>
 		<RuleLink {...rule} />
-		<Value {...rule} unit="€" nilValueSymbol="—" negative={negative} />
+		<Value {...rule} nilValueSymbol="—" {...props} />
 	</>
 )
 
 export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-		'contrat salarié . avantages en nature . montant'
+		'contrat salarié . rémunération . avantages en nature . montant'
 	)
 	return (
 		<div className="payslip__salarySection">
@@ -42,19 +48,20 @@ export let SalaireNetSection = ({ getRule }) => {
 				<T>Salaire net</T>
 			</h4>
 			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
-			<Line
-				rule={getRule('contrat salarié . rémunération . net de cotisations')}
-			/>
+			<Line rule={getRule('contrat salarié . rémunération . net')} />
 			{avantagesEnNature.nodeValue !== 0 ? (
 				<>
 					{/* Avantages en nature */}
 					<Line negative rule={avantagesEnNature} />
 					{/* Salaire net */}
-					<Line rule={getRule('contrat salarié . salaire . net')} />
+					<Line rule={getRule('contrat salarié . rémunération . net')} />
 				</>
 			) : null}
+
 			<Line negative rule={getRule('impôt')} />
-			<Line rule={getRule('contrat salarié . salaire . net après impôt')} />
+			<Line
+				rule={getRule('contrat salarié . rémunération . net après impôt')}
+			/>
 		</div>
 	)
 }

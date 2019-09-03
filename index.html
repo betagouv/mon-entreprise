@@ -56,7 +56,10 @@
 			content="<%= htmlWebpackPlugin.options.description %>"
 		/>
 
-		<meta property="og:image" content="<%= htmlWebpackPlugin.options.logo %>" />
+		<meta
+			property="og:image"
+			content="<%= htmlWebpackPlugin.options.shareImage %>"
+		/>
 		<!-- data-helmet pour que React Helmet puisse écraser ce meta par défaut -->
 		<link
 			href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,600|Montserrat:400,600"
@@ -189,7 +192,7 @@
 	<body>
 		<div id="loading">
 			<img
-				src="images/logo.svg"
+				src="<%= htmlWebpackPlugin.options.logo %>"
 				alt="Un service de l'État français"
 				style="width: 300px; margin: auto; margin-bottom: 0.6rem; display:block"
 			/>

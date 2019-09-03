@@ -3,18 +3,18 @@
 import { expect } from 'chai'
 // $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
+import { getRuleFromAnalysis } from 'Engine/rules'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import {
 	analysisToCotisationsSelector,
 	COTISATION_BRANCHE_ORDER
 } from 'Selectors/ficheDePaieSelectors'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { getRuleFromAnalysis } from 'Engine/rules'
 
 let state = {
 	form: {
 		conversation: {
 			values: {
-				'contrat salarié': { salaire: { 'brut de base': '2300' } },
+				'contrat salarié': { rémunération: { 'brut de base': '2300' } },
 				entreprise: { effectif: '50' }
 			}
 		}
@@ -57,7 +57,7 @@ describe('pay slip selector', function() {
 
 	it('should sum all cotisations', function() {
 		let pat = getRuleFromAnalysis(analysis)(
-				'contrat salarié . cotisations . patronales à payer'
+				'contrat salarié . cotisations . patronales . à payer'
 			),
 			sal = getRuleFromAnalysis(analysis)(
 				'contrat salarié . cotisations . salariales'

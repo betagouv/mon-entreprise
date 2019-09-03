@@ -2,20 +2,20 @@
 import type { FicheDePaie } from 'Types/ResultViewTypes'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
+import Value from 'Components/Value'
+import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 import { compose } from 'ramda'
 import React, { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import {
 	analysisWithDefaultsSelector,
 	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
-import Value from 'Components/Value'
+import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
 import './PaySlip.css'
+import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 import RuleLink from './RuleLink'
-import { Line, SalaireNetSection, SalaireBrutSection } from './PaySlipSections'
-import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 
 type ConnectedPropTypes = ?FicheDePaie & {
 	colours: { lightestColour: string }
@@ -38,6 +38,9 @@ export default compose(
 	}: ConnectedPropTypes) => {
 		let getRule = getRuleFromAnalysis(analysis)
 
+		const heuresSupplémentaires = getRule(
+			'contrat salarié . temps de travail . heures supplémentaires'
+		)
 		return (
 			<div
 				className="payslip__container"
@@ -49,14 +52,16 @@ export default compose(
 						padding-right: 0.2em;
 					}
 				`}>
-				<div className="payslip__hourSection">
-					<Trans i18nKey="payslip.heures">Heures travaillées par mois : </Trans>
-					<span className="montant">
-						{Math.round(
-							getRule('contrat salarié . heures par semaine').nodeValue * 4.33
-						)}
-					</span>
+				<div className="payslip__salarySection">
+					<Line
+						rule={getRule('contrat salarié . temps de travail')}
+						maximumFractionDigits={1}
+					/>
+					{heuresSupplémentaires.nodeValue > 0 && (
+						<Line rule={heuresSupplémentaires} maximumFractionDigits={1} />
+					)}
 				</div>
+
 				<SalaireBrutSection getRule={getRule} />
 				{/* Section cotisations */}
 				<div className="payslip__cotisationsSection">
@@ -99,23 +104,22 @@ export default compose(
 							</Fragment>
 						)
 					})}
-					<h5 className="payslip__cotisationTitle">
-						<Trans>Réductions</Trans>
-					</h5>
+
 					<Line
 						negative
-						rule={getRule('contrat salarié . réductions de cotisations')}
+						rule={getRule(
+							'contrat salarié . cotisations . patronales . réductions de cotisations'
+						)}
 					/>
-					<Value unit="€" nilValueSymbol="—">
-						{0}
-					</Value>
+					<span />
+
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
 					</div>
 					<Value
 						nilValueSymbol="—"
-						{...getRule('contrat salarié . cotisations . patronales à payer')}
+						{...getRule('contrat salarié . cotisations . patronales . à payer')}
 						unit="€"
 						className="payslip__total"
 					/>
@@ -127,9 +131,7 @@ export default compose(
 					/>
 					{/* Salaire chargé */}
 					<Line rule={getRule('contrat salarié . rémunération . total')} />
-					<Value nilValueSymbol="—" unit="€">
-						{0}
-					</Value>
+					<span />
 				</div>
 				{/* Section salaire net */}
 				<SalaireNetSection getRule={getRule} />

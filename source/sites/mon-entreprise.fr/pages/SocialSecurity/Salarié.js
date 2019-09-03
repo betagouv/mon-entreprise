@@ -44,12 +44,12 @@ export default compose(
 			</h1>
 			<div style={{ margin: '2rem' }} />
 			{language === 'fr' && (
-				<Banner icon="✨">
-					Le simulateur d'embauche évolue et devient{' '}
-					<strong>mon-entreprise.fr !</strong>{' '}
-					<a href="https://blog.beta.gouv.fr/dinsic/2019/06/11/embauche-beta-gouv-fr-devient-mon-entreprise-fr/">
-						Lire nos explications
-					</a>
+				<Banner icon="⏰  ">
+					<strong>
+						Nouveau ! Vous pouvez renseigner des heures supplémentaires :
+					</strong>{' '}
+					les dispositifs rattachés sont pris en compte dans le calcul
+					(réduction vieillesse, défiscalisation, déduction forfaitaire)
 				</Banner>
 			)}
 			<SalarySimulation />

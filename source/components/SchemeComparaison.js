@@ -13,6 +13,8 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import withSitePaths from 'Components/utils/withSitePaths'
+import Value from 'Components/Value'
+import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
 import revenusSVG from 'Images/revenus.svg'
 import { compose } from 'ramda'
 import React, { useCallback, useState } from 'react'
@@ -20,14 +22,12 @@ import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-	branchAnalyseSelector,
-	analysisWithDefaultsSelector
+	analysisWithDefaultsSelector,
+	branchAnalyseSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
-import Value from 'Components/Value'
 import './SchemeComparaison.css'
-import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
 
 type OwnProps = {
 	hideAutoEntrepreneur?: boolean,
@@ -374,7 +374,7 @@ const SchemeComparaison = ({
 							<div className="AS">
 								<RuleValueLink
 									branch="assimilé"
-									rule="contrat salarié . salaire . net"
+									rule="contrat salarié . rémunération . net"
 								/>
 							</div>
 							<div className="indep">

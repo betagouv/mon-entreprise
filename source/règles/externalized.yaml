@@ -1,6 +1,34 @@
 période:
   titre.en: period
   titre.fr: période
+contrat salarié:
+  question.en: Employed activity ?
+  question.fr: Activité salariée ?
+  description.en: >
+    The contract that binds a company (via its establishment) to an individual,
+    who is then his employee.
+
+    The contract is actually not necessary in French law. The CDI, permanent
+    contract, is considered the default form of the employment relationship
+    between an employee and an employer (Article L1221-2 of the Labor Code)."
+  description.fr: >
+    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
+    est alors son salarié.
+
+
+    Le contrat n'est en fait pas nécessaire dans le droit français, il est
+    possible d'employer quelqu'un sans contrat par exemple dans les cas
+    suivants:
+
+    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4
+    semaines consécutives dans l'année.
+
+    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans
+    certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
+    considéré comme la forme normale et générale de la relation de travail entre
+    un salarié et un employeur (Art. L1221-2 du Code du travail).
+  titre.en: employment contract
+  titre.fr: contrat salarié
 contrat salarié . indemnité kilométrique vélo:
   description.en: >-
     Employer's incitation to the use of bicycles for commuting. This financial
@@ -19,13 +47,26 @@ contrat salarié . indemnité kilométrique vélo:
     part au-dessus de 200€ devient une prime classique.
   titre.en: kilometric bicycle allowance
   titre.fr: indemnité kilométrique vélo
+contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
+  titre.en: exemption cap
+  titre.fr: plafond d'exonération
+contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
+  titre.en: kilometre allowance
+  titre.fr: indemnité kilométrique
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  description.en: A low estimate of the distance an employee bikes to work.
+  titre.en: annual distance
+  titre.fr: distance annuelle
+contrat salarié . indemnité kilométrique vélo . distance journalière:
+  description.en: >-
+    A low estimate of the distance an employee bikes to work.
   description.fr: >-
     Une estimation basse de la distance parcourue à vélo par un salarié pour se
     rendre à son travail.
-  titre.en: annual distance
-  titre.fr: distance annuelle
+  titre.en: daily distance
+  titre.fr: distance journalière
+contrat salarié . indemnité kilométrique vélo . jours travaillés:
+  titre.en: days worked
+  titre.fr: jours travaillés
 contrat salarié . indemnité kilométrique vélo . active:
   titre.en: active bicycle allowance
   titre.fr: indemnité vélo active
@@ -66,7 +107,7 @@ contrat salarié . indemnité kilométrique vélo . active:
 
 
     Cette indemnité est cumulable avec le remboursement des frais de transport
-    en commun s'il sagit d'un trajet à vélo de rabattement vers une station de
+    en commun s'il s'agit d'un trajet à vélo de rabattement vers une station de
     transport.
 
 
@@ -459,34 +500,6 @@ contrat salarié . CDD . surcoût:
 
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire
     mensuel; elles sont ici ramenées à leur coût mensuel.
-contrat salarié:
-  question.en: Employed activity ?
-  question.fr: Activité salariée ?
-  description.en: >
-    The contract that binds a company (via its establishment) to an individual,
-    who is then his employee.
-
-    The contract is actually not necessary in French law. The CDI, permanent
-    contract, is considered the default form of the employment relationship
-    between an employee and an employer (Article L1221-2 of the Labor Code)."
-  description.fr: >
-    Le contrat qui lie une entreprise (via son établissement) à un individu, qui
-    est alors son salarié.
-
-
-    Le contrat n'est en fait pas nécessaire dans le droit français, il est
-    possible d'employer quelqu'un sans contrat par exemple dans les cas
-    suivants:
-
-    - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4
-    semaines consécutives dans l'année.
-
-    - CDI : La signature d’un contrat de travail n’est pas obligatoire dans
-    certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
-    considéré comme la forme normale et générale de la relation de travail entre
-    un salarié et un employeur (Art. L1221-2 du Code du travail).
-  titre.en: employment contract
-  titre.fr: contrat salarié
 contrat salarié . assimilé salarié:
   description.en: >
     Some company managers (this is particularly the case for SASUs) are
@@ -509,7 +522,7 @@ contrat salarié . CDD:
   question.fr: Est-ce un contrat à durée déterminée (CDD) ?
   description.en: The employment contract explicitly provides for an end date.
   description.fr: >
-    Par défaut, faire travailler quelqu'un en France établit auutomatiquement un
+    Par défaut, faire travailler quelqu'un en France établit automatiquement un
     CDI à temps plein.
 
     Certaines situations exceptionnelles permettent aux employeurs de prévoir
@@ -544,14 +557,11 @@ contrat salarié . cotisations . assiette:
     de cotisations sur le travail salarié. Elle comprend notamment les
     rémunérations en espèces (salaire de base, indemnité, primes...) et les
     avantages en nature (logement, véhicule...).
-contrat salarié . salaire:
-  titre.en: salary
-  titre.fr: salaire
-contrat salarié . salaire . brut de base:
+contrat salarié . rémunération . brut de base:
   titre.en: Gross salary
-  titre.fr: Salaire brut de base
+  titre.fr: Salaire brut
   résumé.en: Written in the employment contract
-  résumé.fr: Inscrit dans le contrat de travail
+  résumé.fr: Brut de base inscrit dans le contrat de travail
   question.en: What is the monthly gross salary?
   question.fr: Quel est le salaire de base ?
   description.en: >-
@@ -598,7 +608,9 @@ contrat salarié . salaire . brut de base:
   contrôles.fr:
     - si:
         toutes ces conditions:
-          - 'brut de base [mensuel] < SMIC [mensuel]'
+          - >-
+            rémunération . assiette de vérification du SMIC [mensuel] < SMIC
+            [mensuel]
           - assimilé salarié != oui
       niveau: avertissement
       message: |
@@ -611,7 +623,7 @@ contrat salarié . salaire . brut de base:
       message: >
         Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
         période de calcul ?
-contrat salarié . salaire . brut de base . équivalent temps plein:
+contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
   résumé.en: Salary if hired on a full-time basis
@@ -624,18 +636,35 @@ contrat salarié . salaire . brut de base . équivalent temps plein:
   suggestions.fr:
     salaire médian: 2300
     SMIC: 1522
-contrat salarié . salaire . brut:
-  titre.en: gross salary with benefits
-  titre.fr: Salaire brut
+contrat salarié . rémunération . heures supplémentaires . taux horaire:
+  description.en: >-
+    The hourly rate used to calculate overtime compensation. It includes benefits in kind.
+  description.fr: >-
+    Le taux horaire utilisé pour calculer la rémunération liée au heures
+    supplémentaires. Il intègre les avantages en nature.
+  titre.en: hourly rate
+  titre.fr: taux horaire
+contrat salarié . rémunération . assiette de vérification du SMIC:
+  description.en: |
+    This is the salary taken into account to verify that the minimum wage is reached.
+  description.fr: |
+    C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
+  titre.en: minimum wage verification base
+  titre.fr: assiette de vérification du SMIC
+contrat salarié . rémunération . brut:
   description.en: >
     This is the effective base salary, including all benefits, for the purpose
     of computing social costs.
-  description.fr: >
+  description.fr: >-
     Toutes les sommes versées au salarié sous forme monétaire en échange de son
     travail.
-contrat salarié . rémunération . brut:
-  titre.en: Gross remuneration
+  titre.en: gross salary with benefits
   titre.fr: Rémunération brute
+contrat salarié . rémunération . heures supplémentaires:
+  titre.en: overtime compensation
+  titre.fr: rémunération heures supplémentaires
+  description.en:
+  description.fr: La rémunération relative aux heures supplémentaires
 contrat salarié . avantages sociaux:
   description.en: >-
     These are the benefits paid by the employer. They are specific to the
@@ -647,7 +676,7 @@ contrat salarié . avantages sociaux:
     assurance...). Ils sont soumis à l'impôt sur le revenu.
   titre.en: employee benefits
   titre.fr: avantages sociaux
-contrat salarié . avantages en nature:
+contrat salarié . rémunération . avantages en nature:
   titre.en: Benefits in kind
   titre.fr: Avantages en nature
   description.en: >
@@ -664,7 +693,7 @@ contrat salarié . avantages en nature:
   question.fr: >-
     Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone,
     réductions, logement...) ?
-contrat salarié . avantages en nature . montant:
+contrat salarié . rémunération . avantages en nature . montant:
   titre.en: Benefits in kind (amount)
   titre.fr: Avantages en nature (montant)
   description.en: >
@@ -674,7 +703,7 @@ contrat salarié . avantages en nature . montant:
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
     revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
     atteint.
-contrat salarié . avantages en nature . ntic:
+contrat salarié . rémunération . avantages en nature . ntic:
   description.en: >
     The private use of the NICT tools made available as part of the permanent
     professional activity constitutes an advantage in kind.
@@ -707,14 +736,14 @@ contrat salarié . avantages en nature . ntic:
     téléphone, tablette, etc.) ?
   titre.en: nict
   titre.fr: ntic
-contrat salarié . avantages en nature . autres:
+contrat salarié . rémunération . avantages en nature . autres:
   question.en: |
     Are there any other advantages in kind (housing, vehicle, discount...)?
   question.fr: |
     Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
   titre.en: others
   titre.fr: autres
-contrat salarié . avantages en nature . autres . montant:
+contrat salarié . rémunération . avantages en nature . autres . montant:
   question.en: |
     How much is the amount of these other benefits?
   question.fr: |
@@ -725,7 +754,7 @@ contrat salarié . avantages en nature . autres . montant:
     "\U0001F697 véhicule": 260
   titre.en: amount
   titre.fr: montant
-contrat salarié . avantages en nature . ntic . montant:
+contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre.en: NICTs tools
   titre.fr: outils NTIC
   description.en: >
@@ -755,7 +784,7 @@ contrat salarié . avantages en nature . ntic . montant:
 
     ```
      soit 10,08€
-contrat salarié . avantages en nature . ntic . coût appareils:
+contrat salarié . rémunération . avantages en nature . ntic . coût appareils:
   question.en: |
     What is the total new cost of the equipment provided?
   question.fr: |
@@ -772,7 +801,7 @@ contrat salarié . avantages en nature . ntic . coût appareils:
     "\U0001F4BB + \U0001F4F1✨": 2050
   titre.en: devices cost
   titre.fr: coût appareils
-contrat salarié . avantages en nature . ntic . abonnements:
+contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question.en: What is the cost of the subscription price charged by the employer?
   question.fr: >-
     Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par
@@ -787,7 +816,7 @@ contrat salarié . avantages en nature . ntic . abonnements:
     international: 40
   titre.en: subscription
   titre.fr: abonnements
-contrat salarié . avantages en nature . nourriture:
+contrat salarié . rémunération . avantages en nature . nourriture:
   question.en: |
     Does the employer provide free meals?
   question.fr: |
@@ -800,14 +829,14 @@ contrat salarié . avantages en nature . nourriture:
     mais comme un remboursement de frais.
   titre.en: food
   titre.fr: nourriture
-contrat salarié . avantages en nature . nourriture . montant:
+contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-? contrat salarié . avantages en nature . nourriture . montant forfaitaire d'un repas
+? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
 : titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
-contrat salarié . avantages en nature . nourriture . repas par mois:
-  question.en: |
+? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
+: question.en: |
     How many meals per month are paid for by the employer?
   question.fr: |
     Combien de repas par mois sont payés par l'employeur ?
@@ -819,13 +848,11 @@ contrat salarié . avantages en nature . nourriture . repas par mois:
     2 par jour: 42
   titre.en: meal per month
   titre.fr: repas par mois
-contrat salarié . avantages en nature . nourriture . dans la restauration:
-  question.en: 'Is it for an employee working in a hotel, café, restaurant and similar?'
-  question.fr: >-
-    Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et
-    assimilés ?
-  titre.en: in the catering business
-  titre.fr: dans la restauration
+entreprise . hôtel café restaurant:
+  question.en: Is the company a hotel, café, restaurant or similar?
+  question.fr: "Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?"
+  titre.en: hotel café restaurant
+  titre.fr: hôtel café restaurant
 contrat salarié . indemnités salarié:
   titre.en: Employee benefits
   titre.fr: indemnités salarié
@@ -840,7 +867,7 @@ contrat salarié . statut cadre . choix statut cadre:
     determining membership of a specific basic pension fund.
   description.fr: >-
     Notion mal définie mais reconnue par les conventions collectives et
-    déterminant l'appartenance à une caise de retraite de base spécifique
+    déterminant l'appartenance à une caisse de retraite de base spécifique
   titre.en: cadre status choice
   titre.fr: choix statut cadre
 plafond sécurité sociale temps plein:
@@ -883,7 +910,7 @@ contrat salarié . rémunération:
   titre.fr: rémunération
 contrat salarié . rémunération . net de cotisations:
   titre.en: Remuneration after contributions
-  titre.fr: Rémunération nette de cotisations
+  titre.fr: Salaire net de cotisations
 contrat salarié . rémunération . net imposable:
   titre.en: Net taxable salary
   titre.fr: Salaire net imposable
@@ -892,6 +919,12 @@ contrat salarié . rémunération . net imposable:
     social benefits. It's the basis used to compute income tax.
   description.fr: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
+: titre.en: tax-free overtime hours
+  titre.fr: heures supplémentaires défiscalisées
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
+: titre.en:
+  titre.fr: gross cap
 contrat salarié . rémunération . net imposable . base:
   titre.en: base
   titre.fr: base
@@ -902,7 +935,7 @@ contrat salarié . prime d'impatriation:
     sur le revenu.
   titre.en: impatriation bonus
   titre.fr: prime d'impatriation
-contrat salarié . salaire . net:
+contrat salarié . rémunération . net:
   titre.en: Net salary
   titre.fr: Salaire net
   question.en: What is the net salary?
@@ -927,7 +960,7 @@ contrat salarié . salaire . net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel (pour
     le changer, il faut signer un avenant au contrat).
-contrat salarié . salaire . net après impôt:
+contrat salarié . rémunération . net après impôt:
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
   résumé.en: Transfered on the bank account
@@ -1007,19 +1040,38 @@ contrat salarié . rémunération . total:
 
     Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer
     ce montant.
-contrat salarié . réductions de cotisations:
+contrat salarié . cotisations . patronales . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
+? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
+: titre.en: flat-rate deduction for overtime
+  titre.fr: déduction forfaitaire pour heures supplémentaires
+contrat salarié . cotisations . patronales . à payer:
+  titre.en: to be paid
+  titre.fr: à payer
 contrat salarié . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE
 contrat salarié . réduction ACRE . taux:
   titre.en: ACRE rate
   titre.fr: taux ACRE
+contrat salarié . cotisations . salariales . réduction heures supplémentaires:
+  titre.en: reduction for overtime hours
+  titre.fr: réduction heures supplémentaires
+? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
+: description.en: >-
+    the effective rate of the employee's pension contributions
+  description.fr: >-
+    le taux effectif des cotisations d'assurance vieillesse à la charge du
+    salarié
+  titre.en: reduced contribution rates
+  titre.fr: taux des cotisations réduites
 contrat salarié . rémunération . total sans réduction:
   titre.en: total salary without reduction
   titre.fr: Rémunération totale sans réduction
 contrat salarié . cotisations:
+  description.en: Total employer and employee contributions
+  description.fr: Total des cotisation patronales et salariales
   titre.en: social contributions
   titre.fr: cotisations
 contrat salarié . coût d'embauche:
@@ -1105,26 +1157,21 @@ entreprise . effectif:
   titre.en: workforce
   titre.fr: effectif
 entreprise . ratio alternants:
-  titre.en: work-study employees ratio
-  titre.fr: ratio alternants
-entreprise . ratio alternants saisi:
   question.en: >-
-    What is the fraction of work-study contracts in the average workforce of the
-    company?
+    What is the proportion of work-study contracts in the average workforce of the company?
   question.fr: >-
     Quelle est la fraction de contrats d'alternance dans l'effectif moyen de
     l'entreprise ?
-  titre.en: Fraction of alternants
+  titre.en: work-study employees ratio
   titre.fr: Fraction d'alternants
-  description.en: >-
-    This fraction determines the additional contribution for apprenticeship for
-    the companies concerned.
+  description.en: >
+    This fraction determines the additional contribution for learning for the companies concerned.
   description.fr: >
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage
     pour les entreprises concernées.
   suggestions.fr:
-    '1': 1
-    '5': 5
+    1%: 0.01
+    5%: 0.05
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -1187,15 +1234,33 @@ entreprise . établissement bancaire:
 établissement . localisation . département:
   titre.en: department
   titre.fr: département
-contrat salarié . temps partiel:
+contrat salarié . temps de travail:
+  description.en: >-
+    In France, the legal basis for work is 35 hours/week. But a large number of existing provisions make it possible to vary this number. You can find them on the dedicated page [service-public.fr (french)](https://www.service-public.fr/particuliers/vosdroits/N458).
+  description.fr: >-
+    En France, la base légale du travail est de 35h/semaine. Mais un grand
+    nombre de dispositions existantes permettent de faire varier ce nombre. Vous
+    pouvez les retrouver sur la page
+    [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458)
+    dédiée.
+  titre.en: working time
+  titre.fr: temps de travail
+contrat salarié . temps de travail . temps contractuel:
+  titre.en: contractual time
+  titre.fr: temps contractuel
+contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
+  titre.en: weekly time
+  titre.fr: temps hebdomadaire
+contrat salarié . temps de travail . base légale:
+  titre.en: legal base
+  titre.fr: base légale
+contrat salarié . temps de travail . temps partiel:
   question.en: Is the contract part-time?
   question.fr: Le contrat est-il à temps partiel ?
-  description.en: >-
-    Two contracts with the same salary, with one being part-time, can lead to
-    slightly different social contribution amounts.
+  description.en: >
+    Two contracts at the same salary, one part-time and the other full-time, may give rise to different contribution amounts.
 
-    For example, capped contributions or exemptions depending on the legal
-    minimum wage.
+    For example, for capped contributions or exemptions depending on the minimum wage.
   description.fr: >
     Deux contrats au même salaire, l'un à temps partiel, l'autre à temps
     complet, peuvent donner lieu à des montants de cotisation différents.
@@ -1203,23 +1268,23 @@ contrat salarié . temps partiel:
 
     Par exemple pour les cotisations plafonnées ou les exonérations dépendant du
     SMIC.
-  titre.en: Part-time
+  titre.en: part-time
   titre.fr: temps partiel
-contrat salarié . temps partiel . heures par semaine:
-  question.en: What is the number of hours worked per week as part of the time partial?
+contrat salarié . temps de travail . temps partiel . heures par semaine:
+  question.en: >-
+    What is the number of hours worked per week as part of part-time work?
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
   contrôles.en:
     - si: heures par semaine < 24
       niveau: avertissement
-      message: >-
-        The minimum number of hours per week is 24 and it is possible to go
-        lower in some cases only. [More
-        info](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine > 35
+      message: >
+        The minimum number of hours per week is 24 and it is only possible to go lower in some cases. [More info](https://www.service-public.fr/particuliers/vosdroits/F32428).
+    - si: heures par semaine >= 35
       niveau: avertissement
-      message: The simulator does not yet manage overtime.
+      message: >-
+        Part-time work must be below the legal working time (35 hours)
   contrôles.fr:
     - si: heures par semaine < 24
       niveau: avertissement
@@ -1227,16 +1292,97 @@ contrat salarié . temps partiel . heures par semaine:
         Le nombre minimum d'heures par semaine est 24. Il est possible de
         descendre plus bas dans certains cas seulement. [Plus
         d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine > 35
+    - si: heures par semaine >= 35
       niveau: avertissement
-      message: Le simulateur ne gère pas encore les heures supplémentaires.
-  titre.en: hours per week
+      message: >-
+        Un temps partiel doit être en dessous de la durée de travail légale
+        (35h)
+  titre.en: 'hours per week'
   titre.fr: heures par semaine
-contrat salarié . quotité de travail:
-  description.en: Time worked in proportion of the legal full-time quantity.
+contrat salarié . temps de travail . quotité de travail:
+  description.en: 'Working time as a proportion of legal full time.'
   description.fr: Temps de travail en proportion du temps complet légal.
-  titre.en: work rate
+  titre.en: work share
   titre.fr: quotité de travail
+contrat salarié . temps de travail . heures supplémentaires:
+  description.en: >-
+    Any hour of work performed, at the employer's request, beyond the legal 35-hour limit (or equivalent) is considered overtime. Overtime work entitles the employee to more favourable remuneration (higher hourly rate).
+  description.fr: >-
+    Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la
+    durée légale de 35 heures (ou de la durée équivalente) est une heure
+    supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération
+    plus favorable (taux horaire majoré) au salarié.
+  titre.en: Number of overtime hours
+  titre.fr: Nombre d'heures supplémentaires
+  question.en: >-
+    How many overtime hours (not recovered in rest) are worked per month?
+  question.fr: >-
+    Combien d'heures supplémentaires (non récupérées en repos) sont effectuées
+    par mois ?
+  suggestions.en:
+    aucune: none
+    39h / semaine: 39h / week
+    42h / semaine: 42h / week
+  suggestions.fr:
+    aucune: 0
+    39h / semaine: 17.33
+    42h / semaine: 30.33
+
+  contrôles.en:
+    - si:
+        toutes ces conditions:
+          - heures supplémentaires > 9 * 4.33
+          - heures supplémentaires <= 13 * 4.33
+      niveau: info
+      message: The average weekly working time may not exceed 44 hours
+    - si: heures supplémentaires > 13 * 4.33
+      niveau: avertissement
+      message: The maximum weekly working time may not exceed 48 hours
+  contrôles.fr:
+    - si:
+        toutes ces conditions:
+          - heures supplémentaires > 9 * 4.33
+          - heures supplémentaires <= 13 * 4.33
+      niveau: info
+      message: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+    - si: heures supplémentaires > 13 * 4.33
+      niveau: avertissement
+      message: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+    - si:
+        toutes ces conditions:
+          - temps partiel
+          - heures supplémentaires > 0
+      niveau: info
+      message: >-
+        Le simulateur ne prends pas encore en compte les heures complémentaires
+        pour les temps partiels. Si cette fonctionnalité vous manque,
+        envoyez-nous un mail à contact@mon-entreprise.beta.gouv.fr
+contrat salarié . temps de travail . heures supplémentaires . majoration:
+  description.en: >-
+    Overtime pay is subject to one or more increase rates, fixed by collective agreement or agreement of the company or establishment (or, failing that, by branch agreement or agreement). Each rate is at least set at 10%.
+
+    In the absence of an agreement or convention, the hourly increase rates are set at :
+
+    - 25% for the first 8 hours of overtime worked in the same week (36th to 43rd hours),
+
+    - 50% for the following hours.
+
+  description.fr: >
+    La rémunération des heures supplémentaires fait l'objet d'un ou plusieurs
+    taux de majoration, fixés par convention ou accord collectif d'entreprise ou
+    d'établissement (ou, à défaut, par convention ou accord de branche). Chaque
+    taux est au minimum fixé à 10%.
+
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont
+    fixés à :
+
+    - 25 % pour les 8 premières heures supplémentaires travaillées dans la même
+    semaine (de la 36e à la 43e heure),
+
+    - 50 % pour les heures suivantes.
+  titre.en: overtime increase
+  titre.fr: majoration heures supplémentaires
 contrat salarié . statut JEI:
   titre.en: JEI status
   titre.fr: Statut JEI
@@ -1380,17 +1526,18 @@ contrat salarié . complémentaire santé . part employeur:
     minimum
   question.en: What is the part of the complementary health insurance paid by the employer?
   question.fr: Quel est la part de la complémentaire santé payée par l'employeur ?
+
   suggestions.fr:
-    50%: 50
-    100%: 100
+    50%: 0.5
+    100%: 1
   contrôles.en:
-    - si: part employeur < 50
+    - si: part employeur < 50%
       niveau: avertissement
       message: >-
         The employer's share of complementary health insurance must be at least
         50%.
   contrôles.fr:
-    - si: part employeur < 50
+    - si: part employeur < 50%
       niveau: avertissement
       message: La part employeur de la complémentaire santé doit être de 50% au minimum
   titre.en: employer share
@@ -1514,12 +1661,18 @@ contrat salarié . contribution au dialogue social:
     syndicales'
   titre.en: Contribution to social dialogue
   titre.fr: contribution au dialogue social
-contrat salarié . assiette CSG:
-  titre.en: CSG base
-  titre.fr: assiette CSG
-contrat salarié . assiette CSG abattue:
-  titre.en: Abated CSG base
-  titre.fr: assiette CSG abattue
+contrat salarié . assiette CSG et CRDS:
+  titre.en: CSG and CRDS base
+  titre.fr: assiette CSG et CRDS
+contrat salarié . assiette CSG et CRDS . assiette abattue:
+  titre.en: reduced base
+  titre.fr: assiette abattue
+contrat salarié . CSG . assiette heures supplémentaires défiscalisées:
+  titre.en: tax-free overtime hours base
+  titre.fr: assiette heures supplémentaires défiscalisées
+contrat salarié . CSG . assiette CSG déductible:
+  titre.en: deductible CSG base
+  titre.fr: assiette CSG déductible
 contrat salarié . CSG:
   description.en: |-
     Generalized social contribution.
@@ -1558,6 +1711,12 @@ contrat salarié . maladie:
   description.fr: Cotisations de la branche maladie
   titre.en: health insurance
   titre.fr: maladie
+contrat salarié . maladie . taux employeur:
+  titre.en: employer rate
+  titre.fr: taux employeur
+contrat salarié . maladie . taux salarié:
+  titre.en: employee rate
+  titre.fr: taux salarié
 contrat salarié . maladie . plafond de réduction employeur:
   titre.en: employer reduction limit
   titre.fr: plafond de réduction employeur
@@ -1652,21 +1811,18 @@ contrat salarié . régime des impatriés:
     - si: contrat salarié . régime des impatriés
       niveau: information
       message: >
-        To benefit from the exemption from pension contributions, you must
-        meet the following conditions:
+        To benefit from the exemption from pension contributions, you must meet
+        the following conditions:
 
-        - Be able to justify a minimum contribution paid elsewhere for a
-        pension
+        - Be able to justify a minimum contribution paid elsewhere for a pension
 
-        - Not have been affiliated, during the five calendar years preceding
-        the start of employment, to a compulsory French scheme
-        pension insurance, except for ancillary activities,
-        seasonal activities or for studies.
+        - Not have been affiliated, during the five calendar years preceding the
+        start of employment, to a compulsory French scheme pension insurance,
+        except for ancillary activities, seasonal activities or for studies.
 
 
         [Read the text of
         law](https://www.legifrance.gouv.fr/affichCode.do;?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
-
   contrôles.fr:
     - si: contrat salarié . régime des impatriés
       niveau: information
@@ -1678,7 +1834,7 @@ contrat salarié . régime des impatriés:
         assurance vieillesse
 
         - Ne pas avoir été affilié, au cours des cinq années civiles précédant
-        celle de leur prise de fonctions, à un régime français obligatoire
+        celle de la prise de fonctions, à un régime français obligatoire
         d'assurance vieillesse, sauf pour des activités accessoires, de
         caractère saisonnier ou pour les études.
 
@@ -1812,6 +1968,7 @@ impôt . revenu fiscal de référence:
   titre.en: reference taxable income
   titre.fr: revenu fiscal de référence
 impôt . CEHR:
+  titre.en: CEHR
   titre.fr: CEHR
 impôt . impôt sur le revenu à payer:
   titre.en: income tax
@@ -1889,7 +2046,8 @@ entreprise . chiffre d'affaires:
   résumé.fr: Le montant des ventes réalisées
 entreprise . chiffre d'affaires minimum:
   description.en: >-
-    The minimum amount of sales (excluding tax) to be achieved to reach the break-even point.
+    The minimum amount of sales (excluding tax) to be achieved to reach the
+    break-even point.
   description.fr: >-
     Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de
     rentabilité.
@@ -2544,7 +2702,7 @@ entreprise . ACCRE obtenu:
     employment centre and make the request.
   description.fr: >
     Pour les entreprises créées avant 2019, la réduction de cotisation ACRE
-    s'appellait ACCRE et n'était pas automatique : il fallait notamment être
+    s'appelait ACCRE et n'était pas automatique : il fallait notamment être
     indemnisé par pôle-emploi et faire la demande.
   titre.en: ACCRE obtained
   titre.fr: ACCRE obtenu

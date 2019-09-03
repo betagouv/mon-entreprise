@@ -1,27 +1,28 @@
 objectifs:
   - contrat salarié . rémunération . total
-  - contrat salarié . salaire . brut de base . équivalent temps plein
-  - contrat salarié . salaire . brut de base
-  - contrat salarié . salaire . net
-  - contrat salarié . salaire . net après impôt
+  - contrat salarié . rémunération . brut de base . équivalent temps plein
+  - contrat salarié . rémunération . brut de base
+  - contrat salarié . rémunération . net
+  - contrat salarié . rémunération . net après impôt
 
 objectifs secondaires:
-  - contrat salarié . heures par semaine
-  - contrat salarié . cotisations . patronales à payer
+  - contrat salarié . temps de travail
+  - contrat salarié . cotisations . patronales . à payer
 
 questions:
   à l'affiche:
     Cadre: contrat salarié . statut cadre . choix statut cadre
+    Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     CDD: contrat salarié . CDD
-    Temps partiel: contrat salarié . temps partiel
     Impôt: impôt . méthode de calcul
+    Temps partiel: contrat salarié . temps de travail . temps partiel
+
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
-    Association: entreprise . association non lucrative
-    Avantages: contrat salarié . avantages en nature
+    Avantages: contrat salarié . rémunération . avantages en nature
   non prioritaires:
     - contrat salarié . indemnité kilométrique vélo . active
-    - contrat salarié . avantages en nature
+    - contrat salarié . rémunération . avantages en nature
     - entreprise . établissement bancaire
     - entreprise . association non lucrative
     - contrat salarié . statut JEI

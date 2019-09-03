@@ -1,5 +1,6 @@
 /* @flow */
 
+import { getRuleFromAnalysis } from 'Engine/rules'
 import {
 	add,
 	compose,
@@ -12,19 +13,18 @@ import {
 	mergeWith,
 	pick,
 	pipe,
+	propEq,
 	reduce,
 	sort,
-	propEq,
 	without
 } from 'ramda'
 import { createSelector } from 'reselect'
-import {
-	BLANK_COTISATION,
-	mergeCotisations,
-	analysisToCotisations
-} from './ficheDePaieSelectors'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import {
+	analysisToCotisations,
+	BLANK_COTISATION,
+	mergeCotisations
+} from './ficheDePaieSelectors'
 
 import type {
 	Cotisation,
@@ -110,10 +110,10 @@ const répartition = (analysis): ?Répartition => {
 	)
 
 	const getRule = getRuleFromAnalysis(analysis),
-		salaireNet = getRule('contrat salarié . salaire . net'),
+		salaireNet = getRule('contrat salarié . rémunération . net'),
 		salaireChargé = getRule('contrat salarié . rémunération . total'),
 		réductionsDeCotisations = getRule(
-			'contrat salarié . réductions de cotisations'
+			'contrat salarié . cotisations . patronales . réductions de cotisations'
 		)
 	let CSG
 	const autresCotisations = cotisations['protection sociale . autres']

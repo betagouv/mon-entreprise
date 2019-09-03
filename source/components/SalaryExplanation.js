@@ -1,3 +1,4 @@
+import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import withTracker from 'Components/utils/withTracker'
@@ -50,7 +51,7 @@ export default compose(
 										block: 'start'
 									})
 								}>
-								{emoji('📊')} Voir la répartition des cotisations
+								{emoji('📊')} <T>Voir la répartition des cotisations</T>
 							</button>
 						</div>
 						<PaySlipSection />

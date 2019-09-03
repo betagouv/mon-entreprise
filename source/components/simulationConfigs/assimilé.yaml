@@ -4,9 +4,9 @@ objectifs:
     objectifs:
       - contrat salarié . rémunération . total
       - contrat salarié . cotisations
-      - contrat salarié . salaire . net
+      - contrat salarié . rémunération . net
       - impôt
-      - contrat salarié . salaire . net après impôt
+      - contrat salarié . rémunération . net après impôt
   - icône: 🏢
     nom: Mon entreprise
     objectifs:
@@ -14,8 +14,8 @@ objectifs:
       - entreprise . chiffre d'affaires minimum
 
 objectifs secondaires:
-  - contrat salarié . heures par semaine
-  - contrat salarié . cotisations . patronales à payer
+  - contrat salarié . temps de travail
+  - contrat salarié . cotisations . patronales . à payer
 
 questions:
   à l'affiche:
@@ -25,7 +25,7 @@ questions:
     Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
     Effectif: entreprise . effectif
   liste noire:
-    - contrat salarié . avantages en nature
+    - contrat salarié . rémunération . avantages en nature
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
