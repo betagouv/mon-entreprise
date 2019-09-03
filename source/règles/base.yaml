@@ -792,14 +792,14 @@
 
 - espace: contrat salarié . rémunération . heures supplémentaires
   nom: taux horaire
-  description: Le taux horaire utilisé pour calculer la rémunération liée au heures supplémentaires. Il intègre le
+  description: Le taux horaire utilisé pour calculer la rémunération liée au heures supplémentaires. Il intègre les avantages en nature.
   période: aucune
   formule:
     multiplication:
       assiette:
         somme:
-          - brut de base
-          - avantages en nature
+          - brut de base [mensuel]
+          - avantages en nature . montant [mensuel]
       facteur: 1 / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
@@ -1000,7 +1000,7 @@
 - espace: entreprise
   nom: hôtel café restaurant
   par défaut: non
-  question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilés ?
+  question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?
 
 # - espace: contrat salarié . rémunération . avantages en nature
 #   nom: montant
@@ -1644,7 +1644,6 @@
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
 
-
 - espace: contrat salarié . rémunération
   nom: total sans réduction
   période: flexible
@@ -1847,6 +1846,7 @@
 
 - espace: contrat salarié . temps de travail
   nom: temps partiel
+  période: aucune
   question: Le contrat est-il à temps partiel ?
   description: |
     Deux contrats au même salaire, l'un à temps partiel, l'autre à temps complet, peuvent donner lieu à des montants de cotisation différents.
@@ -1882,7 +1882,6 @@
   nom: heures supplémentaires
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
-  non applicable si: assimilé salarié
   par défaut: 0
   unité: heures
   période: mois
@@ -1900,6 +1899,12 @@
     - si: heures supplémentaires > 13 * 4.33
       niveau: avertissement
       message: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+    - si:
+        toutes ces conditions:
+          - temps partiel
+          - heures supplémentaires > 0
+      niveau: info
+      message: Le simulateur ne prends pas encore en compte les heures complémentaires pour les temps partiels. Si cette fonctionnalité vous manque, envoyez-nous un mail à contact@mon-entreprise.beta.gouv.fr
 
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
@@ -1940,7 +1945,6 @@
                 taux: 25%
               - au-dessus de: 8
                 taux: 50%
-
 
 - espace: contrat salarié
   nom: statut JEI
