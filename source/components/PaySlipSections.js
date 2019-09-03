@@ -57,15 +57,11 @@ export let SalaireNetSection = ({ getRule }) => {
 					<Line rule={getRule('contrat salarié . rémunération . net')} />
 				</>
 			) : null}
-<<<<<<< HEAD
+
 			<Line negative rule={getRule('impôt')} />
-			<Line rule={getRule('contrat salarié . salaire . net après impôt')} />
-=======
-			<Line negative rule={getRule('impôt . neutre')} />
 			<Line
 				rule={getRule('contrat salarié . rémunération . net après impôt')}
 			/>
->>>>>>> :hammer: ajoute la défiscalisation des heures supplémentaires
 		</div>
 	)
 }
