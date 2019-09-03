@@ -4,7 +4,7 @@ import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-			'contrat salarié . avantages en nature . montant'
+			'contrat salarié . rémunération . avantages en nature . montant'
 		),
 		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
 		heuresSupplémentaires = getRule(
@@ -40,7 +40,7 @@ export let Line = ({ rule, ...props }) => (
 
 export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-		'contrat salarié . avantages en nature . montant'
+		'contrat salarié . rémunération . avantages en nature . montant'
 	)
 	return (
 		<div className="payslip__salarySection">

@@ -19,10 +19,10 @@ questions:
 
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
-    Avantages: contrat salarié . avantages en nature
+    Avantages: contrat salarié . rémunération . avantages en nature
   non prioritaires:
     - contrat salarié . indemnité kilométrique vélo . active
-    - contrat salarié . avantages en nature
+    - contrat salarié . rémunération . avantages en nature
     - entreprise . établissement bancaire
     - entreprise . association non lucrative
     - contrat salarié . statut JEI

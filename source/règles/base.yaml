@@ -790,10 +790,21 @@
     salaire médian: 2300
     SMIC: 1522
 
-- espace: contrat salarié . rémunération
-  nom: brut horaire
+- espace: contrat salarié . rémunération . heures supplémentaires
+  nom: taux horaire
+  description: Le taux horaire utilisé pour calculer la rémunération liée au heures supplémentaires. Il intègre le
   période: aucune
-  formule: rémunération . assiette de vérification du SMIC / temps de travail . temps contractuel
+  formule:
+    multiplication:
+      assiette:
+        somme:
+          - brut de base
+          - avantages en nature
+      facteur: 1 / temps de travail . temps contractuel
+  références:
+    e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
+    rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
+    legisocial: https://www.legisocial.fr/actualites-sociales/1074-avantage-en-nature-et-heures-supplementaires-les-consequences-sur-le-bulletin-de-paie.html
 
 - espace: contrat salarié . rémunération
   nom: assiette de vérification du SMIC
@@ -827,7 +838,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: brut horaire
+      assiette: taux horaire
       facteur:
         somme:
           - temps de travail . heures supplémentaires
@@ -845,7 +856,7 @@
       - prévoyance obligatoire cadre
       - complémentaire santé [employeur]
 
-- espace: contrat salarié
+- espace: contrat salarié . rémunération
   nom: avantages en nature
   icônes: 🛏️🚗🥗📱
   titre: Avantages en nature
@@ -855,7 +866,7 @@
   question: Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
   par défaut: non
 
-- espace: contrat salarié . avantages en nature
+- espace: contrat salarié . rémunération . avantages en nature
   nom: montant
   titre: Avantages en nature (montant)
   période: flexible
@@ -868,7 +879,7 @@
       - ntic . montant
       - autres . montant
 
-- espace: contrat salarié . avantages en nature
+- espace: contrat salarié . rémunération . avantages en nature
   nom: ntic
   icônes: 💻📱
   description: >
@@ -881,13 +892,13 @@
     L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
   par défaut: oui
 
-- espace: contrat salarié . avantages en nature
+- espace: contrat salarié . rémunération . avantages en nature
   nom: autres
   question: >
     Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
   par défaut: non
 
-- espace: contrat salarié . avantages en nature . autres
+- espace: contrat salarié . rémunération . avantages en nature . autres
   nom: montant
   période: flexible
   question: >
@@ -897,7 +908,7 @@
     🚗 véhicule: 260
   unité: €
 
-- espace: contrat salarié . avantages en nature . ntic
+- espace: contrat salarié . rémunération . avantages en nature . ntic
   nom: montant
   titre: outils NTIC
   unité: €
@@ -919,7 +930,7 @@
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
 
-- espace: contrat salarié . avantages en nature . ntic
+- espace: contrat salarié . rémunération . avantages en nature . ntic
   nom: coût appareils
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
@@ -933,7 +944,7 @@
     💻: 1200
     💻 + 📱✨: 2050
 
-- espace: contrat salarié . avantages en nature . ntic
+- espace: contrat salarié . rémunération . avantages en nature . ntic
   nom: abonnements
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
   unité: €
@@ -944,7 +955,7 @@
     standard: 20
     international: 40
 
-- espace: contrat salarié . avantages en nature
+- espace: contrat salarié . rémunération . avantages en nature
   nom: nourriture
   icônes: 🍝
   question: >
@@ -953,7 +964,7 @@
   description: >
     Les tickets restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
-- espace: contrat salarié . avantages en nature . nourriture
+- espace: contrat salarié . rémunération . avantages en nature . nourriture
   nom: montant
   titre: nourriture
   période: flexible
@@ -963,7 +974,7 @@
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
-- espace: contrat salarié . avantages en nature . nourriture
+- espace: contrat salarié . rémunération . avantages en nature . nourriture
   nom: montant forfaitaire d'un repas
   période: aucune
   unité: €/repas
@@ -975,7 +986,7 @@
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
-- espace: contrat salarié . avantages en nature . nourriture
+- espace: contrat salarié . rémunération . avantages en nature . nourriture
   nom: repas par mois
   période: mois
   question: >
@@ -991,7 +1002,7 @@
   par défaut: non
   question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilés ?
 
-# - espace: contrat salarié . avantages en nature
+# - espace: contrat salarié . rémunération . avantages en nature
 #   nom: montant
 #   titre: Avantages en nature (montant)
 #   description: >

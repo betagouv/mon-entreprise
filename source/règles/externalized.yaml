@@ -641,7 +641,7 @@ contrat salarié . avantages sociaux:
     assurance...). Ils sont soumis à l'impôt sur le revenu.
   titre.en: employee benefits
   titre.fr: avantages sociaux
-contrat salarié . avantages en nature:
+contrat salarié . rémunération . avantages en nature:
   titre.en: Benefits in kind
   titre.fr: Avantages en nature
   description.en: >
@@ -658,7 +658,7 @@ contrat salarié . avantages en nature:
   question.fr: >-
     Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone,
     réductions, logement...) ?
-contrat salarié . avantages en nature . montant:
+contrat salarié . rémunération . avantages en nature . montant:
   titre.en: Benefits in kind (amount)
   titre.fr: Avantages en nature (montant)
   description.en: >
@@ -668,7 +668,7 @@ contrat salarié . avantages en nature . montant:
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
     revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
     atteint.
-contrat salarié . avantages en nature . ntic:
+contrat salarié . rémunération . avantages en nature . ntic:
   description.en: >
     The private use of the NICT tools made available as part of the permanent
     professional activity constitutes an advantage in kind.
@@ -701,14 +701,14 @@ contrat salarié . avantages en nature . ntic:
     téléphone, tablette, etc.) ?
   titre.en: nict
   titre.fr: ntic
-contrat salarié . avantages en nature . autres:
+contrat salarié . rémunération . avantages en nature . autres:
   question.en: |
     Are there any other advantages in kind (housing, vehicle, discount...)?
   question.fr: |
     Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
   titre.en: others
   titre.fr: autres
-contrat salarié . avantages en nature . autres . montant:
+contrat salarié . rémunération . avantages en nature . autres . montant:
   question.en: |
     How much is the amount of these other benefits?
   question.fr: |
@@ -719,7 +719,7 @@ contrat salarié . avantages en nature . autres . montant:
     "\U0001F697 véhicule": 260
   titre.en: amount
   titre.fr: montant
-contrat salarié . avantages en nature . ntic . montant:
+contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre.en: NICTs tools
   titre.fr: outils NTIC
   description.en: >
@@ -749,7 +749,7 @@ contrat salarié . avantages en nature . ntic . montant:
 
     ```
      soit 10,08€
-contrat salarié . avantages en nature . ntic . coût appareils:
+contrat salarié . rémunération . avantages en nature . ntic . coût appareils:
   question.en: |
     What is the total new cost of the equipment provided?
   question.fr: |
@@ -766,7 +766,7 @@ contrat salarié . avantages en nature . ntic . coût appareils:
     "\U0001F4BB + \U0001F4F1✨": 2050
   titre.en: devices cost
   titre.fr: coût appareils
-contrat salarié . avantages en nature . ntic . abonnements:
+contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question.en: What is the cost of the subscription price charged by the employer?
   question.fr: >-
     Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par
@@ -781,7 +781,7 @@ contrat salarié . avantages en nature . ntic . abonnements:
     international: 40
   titre.en: subscription
   titre.fr: abonnements
-contrat salarié . avantages en nature . nourriture:
+contrat salarié . rémunération . avantages en nature . nourriture:
   question.en: |
     Does the employer provide free meals?
   question.fr: |
@@ -794,13 +794,13 @@ contrat salarié . avantages en nature . nourriture:
     mais comme un remboursement de frais.
   titre.en: food
   titre.fr: nourriture
-contrat salarié . avantages en nature . nourriture . montant:
+contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-? contrat salarié . avantages en nature . nourriture . montant forfaitaire d'un repas
+? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
 : titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
-contrat salarié . avantages en nature . nourriture . repas par mois:
+contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
   question.en: |
     How many meals per month are paid for by the employer?
   question.fr: |
@@ -813,7 +813,7 @@ contrat salarié . avantages en nature . nourriture . repas par mois:
     2 par jour: 42
   titre.en: meal per month
   titre.fr: repas par mois
-contrat salarié . avantages en nature . nourriture . dans la restauration:
+contrat salarié . rémunération . avantages en nature . nourriture . dans la restauration:
   question.en: 'Is it for an employee working in a hotel, café, restaurant and similar?'
   question.fr: >-
     Est-ce pour un salarié travaillant dans un hôtel, café, restaurant et
