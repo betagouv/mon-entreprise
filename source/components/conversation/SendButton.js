@@ -26,18 +26,19 @@ export default compose(withTranslation())(
 			return (
 				<span
 					css={`
+						margin-left: 1rem;
 						.keyIcon {
 							opacity: 0;
 						}
 						${!disabled &&
 							`
 							@media (hover) {
-							
+
 							:hover .keyIcon {
 							opacity: 1
 							}
-							
-							
+
+
 							}`}
 					`}
 					className="sendWrapper">
@@ -46,7 +47,7 @@ export default compose(withTranslation())(
 						disabled={disabled}
 						onClick={() => this.getAction()('accept')}>
 						<span className="text">
-							<Trans>valider</Trans> ✓
+							<Trans>Suivant →</Trans>
 						</span>
 					</button>
 					<span className="keyIcon">

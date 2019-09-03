@@ -14,7 +14,7 @@ export default connect(state => ({
 				<button
 					className="ui__ small simple  button "
 					onClick={() => setShowAnswerModal(true)}>
-					<T>Voir mes réponses</T>
+					<T>Modifier mes réponses</T>
 				</button>
 			)}
 			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}

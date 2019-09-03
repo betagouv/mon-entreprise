@@ -5,8 +5,7 @@ previousSimulationBanner:
 Première estimation: First estimate
 Commencer la simulation: Start simulation
 selectMany: You may pick more than one
-Valider: Accept
-valider: accept
+Suivant: Next
 votre réponse: answer here
 reset: Start over
 resetAll: Discard answers
@@ -127,7 +126,7 @@ quicklinks:
   Autres questions: Other questions
 Mes réponses: My answers
 Prochaines questions: Next questions
-Voir mes réponses: See my answers
+Modifier mes réponses: Change my answers
 simulation-end:
   title: No more questions left!
   text: You have reached the most accurate estimate.
