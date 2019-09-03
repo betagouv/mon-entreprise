@@ -1175,15 +1175,16 @@
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
 
-  formule: net - impôt . neutre
+  formule: net - impôt
 
-- espace: impôt . neutre
+- espace: impôt . impôt sur le revenu au taux neutre
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
   période: mois
   formule:
     barème linéaire:
-      assiette: contrat salarié . rémunération . net imposable
+      assiette: revenu imposable
+      retourne seulement le taux: oui
       tranches:
         - de: 0
           à: 1609
@@ -1264,13 +1265,14 @@
         - au-dessus de: 52300
           taux: 43%
 
-- espace: impôt . neutre
+- espace: impôt . impôt sur le revenu au taux neutre
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
   période: mois
   formule:
     barème linéaire:
-      assiette: contrat salarié . rémunération . net imposable
+      assiette: revenu imposable
+      retourne seulement le taux: oui
       tranches:
         - de: 0
           à: 1723
@@ -1351,100 +1353,13 @@
         - au-dessus de: 55260
           taux: 43%
 
-- espace: impôt . neutre
-  nom: barème métropolitain
-  période: mois
-  formule:
-    barème linéaire:
-      assiette: contrat salarié . rémunération . net imposable
-      tranches:
-        - de: 0
-          à: 1403
-          taux: 0%
-
-        - de: 1404
-          à: 1456
-          taux: 0.5%
-
-        - de: 1457
-          à: 1550
-          taux: 1.5%
-
-        - de: 1551
-          à: 1655
-          taux: 2.5%
-
-        - de: 1656
-          à: 1768
-          taux: 3.5%
-
-        - de: 1769
-          à: 1863
-          taux: 4.5%
-
-        - de: 1864
-          à: 1987
-          taux: 6%
-
-        - de: 1988
-          à: 2577
-          taux: 7.5%
-
-        - de: 2578
-          à: 2796
-          taux: 9%
-
-        - de: 2797
-          à: 3066
-          taux: 10.5%
-
-        - de: 3067
-          à: 3451
-          taux: 12%
-
-        - de: 3452
-          à: 4028
-          taux: 14%
-
-        - de: 4029
-          à: 4829
-          taux: 16%
-
-        - de: 4830
-          à: 6042
-          taux: 18%
-
-        - de: 6043
-          à: 7779
-          taux: 20%
-
-        - de: 7780
-          à: 10561
-          taux: 24%
-
-        - de: 10562
-          à: 14794
-          taux: 28%
-
-        - de: 14795
-          à: 22619
-          taux: 33%
-
-        - de: 22620
-          à: 47716
-          taux: 38%
-
-        - au-dessus de: 47717
-          taux: 43%
-
 - espace: impôt
-  nom: neutre
-  titre: Impôt sur le revenu au taux neutre
+  nom: impôt sur le revenu au taux neutre
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
   unité: €
-  période: flexible
+  période: mois
   formule:
     variations:
       - si:
@@ -1459,34 +1374,104 @@
             - établissement . localisation . département = 'Guyane'
             - établissement . localisation . département = 'Mayotte'
         alors: barème Guyane Mayotte
-      - sinon: barème métropolitain
-  exemples:
-    - nom: Très haut salaire
-      situation:
-        contrat salarié . rémunération . net imposable: 50000
-      valeur attendue: 21500
-    - nom: Salaire ~ médian
-      situation:
-        contrat salarié . rémunération . net imposable: 1700
-      valeur attendue: 59.5
-    - nom: Bas salaire
-      situation:
-        contrat salarié . rémunération . net imposable: 1000
-      valeur attendue: 0
-    - nom: Guadeloupe
-      situation:
-        établissement . localisation . département: Guadeloupe
-        contrat salarié . rémunération . net imposable: 1800
-      valeur attendue: 27
-    - nom: Guyane
-      situation:
-        établissement . localisation . département: Guyane
-        contrat salarié . rémunération . net imposable: 1800
-      valeur attendue: 9
+      - sinon:
+          barème linéaire:
+            assiette: revenu imposable
+            retourne seulement le taux: oui
+            tranches:
+              - de: 0
+                à: 1403
+                taux: 0%
+
+              - de: 1404
+                à: 1456
+                taux: 0.5%
+
+              - de: 1457
+                à: 1550
+                taux: 1.5%
+
+              - de: 1551
+                à: 1655
+                taux: 2.5%
+
+              - de: 1656
+                à: 1768
+                taux: 3.5%
+
+              - de: 1769
+                à: 1863
+                taux: 4.5%
+
+              - de: 1864
+                à: 1987
+                taux: 6%
+
+              - de: 1988
+                à: 2577
+                taux: 7.5%
+
+              - de: 2578
+                à: 2796
+                taux: 9%
+
+              - de: 2797
+                à: 3066
+                taux: 10.5%
+
+              - de: 3067
+                à: 3451
+                taux: 12%
+
+              - de: 3452
+                à: 4028
+                taux: 14%
+
+              - de: 4029
+                à: 4829
+                taux: 16%
+
+              - de: 4830
+                à: 6042
+                taux: 18%
+
+              - de: 6043
+                à: 7779
+                taux: 20%
+
+              - de: 7780
+                à: 10561
+                taux: 24%
+
+              - de: 10562
+                à: 14794
+                taux: 28%
+
+              - de: 14795
+                à: 22619
+                taux: 33%
+
+              - de: 22620
+                à: 47716
+                taux: 38%
+
+              - au-dessus de: 47717
+                taux: 43%
 
   références:
     Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
     BOFIP: http://bofip.impots.gouv.fr/bofip/11255-PGP.html
+
+- espace: impôt
+  nom: taux personnalisé
+  question: Quel est votre taux de prélèvement à la source ?
+  par défaut: 0.1
+  description: |
+    Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d'imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  unité: '%'
 
 - espace: contrat salarié
   nom: coût du travail
@@ -2451,7 +2436,7 @@
 - espace: contrat salarié
   nom: participation effort de construction
   titre: Participation à l'effort de construction
-  alias: Dispositif du 1 % logement
+  alias: Dispositif du 1% logement
   acronyme: PEEC
   description: Participation des employeurs à l'effort de construction
   cotisation:
@@ -2461,7 +2446,7 @@
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
   note: |
-    L'employeur a le choix entre verser cet impôt à un "organisme du 1 % patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
+    L'employeur a le choix entre verser cet impôt à un "organisme du 1% patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
   applicable si: entreprise . effectif >= 20
   période: flexible
@@ -2801,7 +2786,68 @@
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre: impôt sur le revenu
   période: flexible
-  formule: impôt sur le revenu après décote
+  unité: €
+  formule:
+    somme:
+      - variations:
+          - si: méthode de calcul . barème standard
+            alors: impôt sur le revenu à payer
+          - si: méthode de calcul . taux neutre
+            alors: impôt sur le revenu au taux neutre
+          - si: méthode de calcul . taux personnalisé
+            alors:
+              multiplication:
+                assiette: revenu imposable
+                taux: taux personnalisé
+      - CEHR
+
+- espace: impôt
+  nom: méthode de calcul
+  description: |
+    Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+    - *Le taux neutre* : pour un célibataire sans enfants
+    - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
+  question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  par défaut: barème standard
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - taux neutre
+        - taux personnalisé
+        - barème standard
+  références:
+    différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
+    calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+
+- espace: impôt . méthode de calcul
+  nom: taux neutre
+  description: Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez connaître votre impôt à la source dans le cas où vous avez choisi de ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre correspond à une imposition pour un célibataire sans enfants et sans autres revenus / charges.
+  formule: impôt . méthode de calcul = 'taux neutre'
+
+- espace: impôt . méthode de calcul
+  nom: taux personnalisé
+  description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscal pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
+  formule: impôt . méthode de calcul = 'taux personnalisé'
+
+- espace: impôt . méthode de calcul
+  nom: barème standard
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décôte.
+  formule: impôt . méthode de calcul = 'barème standard'
+
+- espace: impôt
+  nom: revenu imposable
+  description: |
+    C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
+  période: flexible
+  formule:
+    somme:
+      - contrat salarié . rémunération . net imposable
+      - indépendant . revenu professionnel
+      - auto entrepreneur . impôt . revenu abattu
 
 - espace: impôt
   nom: revenu abattu
@@ -2863,7 +2909,7 @@
   références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
 
-- nom: impôt sur le revenu après décote
+- nom: impôt sur le revenu à payer
   espace: impôt
   description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
   période: année
@@ -2909,13 +2955,6 @@
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
-
-- nom: impôt sur le revenu à payer
-  espace: impôt
-  titre: impôt sur le revenu
-  description:
-  période: flexible
-  formule: impôt sur le revenu après décote + CEHR
 
 - nom: revenu net de cotisations
   résumé: Avant impôt
@@ -3733,6 +3772,7 @@
 
 - espace: auto entrepreneur
   nom: cotisations et contributions
+  unité: €
   formule:
     somme:
       - cotisations

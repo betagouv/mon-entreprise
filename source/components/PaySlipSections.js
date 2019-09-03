@@ -1,6 +1,6 @@
 import { React, T } from 'Components'
-import RuleLink from './RuleLink'
 import Value from 'Components/Value'
+import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
@@ -53,7 +53,7 @@ export let SalaireNetSection = ({ getRule }) => {
 					<Line rule={getRule('contrat salarié . salaire . net')} />
 				</>
 			) : null}
-			<Line negative rule={getRule('impôt . neutre')} />
+			<Line negative rule={getRule('impôt')} />
 			<Line rule={getRule('contrat salarié . salaire . net après impôt')} />
 		</div>
 	)
