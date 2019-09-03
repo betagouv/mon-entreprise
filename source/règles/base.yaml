@@ -1613,8 +1613,6 @@
   formule: 0 - rémunération . heures supplémentaires * taux des cotisations réduites
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
-    urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
-    Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
 
 - espace: contrat salarié . cotisations . salariales . réduction heures supplémentaires
   nom: taux des cotisations réduites
@@ -1631,6 +1629,10 @@
               - retraite complémentaire [salarié]
               - contribution d'équilibre général [salarié]
           facteur: 1 / assiette
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
+    Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
+
 
 - espace: contrat salarié . rémunération
   nom: total sans réduction
