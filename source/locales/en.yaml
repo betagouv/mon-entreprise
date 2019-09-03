@@ -5,7 +5,6 @@ previousSimulationBanner:
 Première estimation: First estimate
 Commencer la simulation: Start simulation
 selectMany: You may pick more than one
-Suivant: Next
 votre réponse: answer here
 reset: Start over
 resetAll: Discard answers
@@ -113,17 +112,19 @@ Simulation personnalisée: Custom simulation
 Faire une simulation personnalisée: Do a customized simulation
 custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
 Effacer: Reset
-Continuer: Continue
+Suivant: Next
 quicklinks:
   CDI: Permanent
   Commune: Town
   JEI: Innovating company (JEI)
   CDD: Fixed-term
+  Heures supplémentaires: Overtime
   Cadre: '"Cadre" status'
+  Avantages: Benefits
   Temps partiel: Part time
   Type d'activité: Activity type
   Charges: Expenses
-  Autres questions: Other questions
+  autres: 'Other questions:'
 Mes réponses: My answers
 Prochaines questions: Next questions
 Modifier mes réponses: Change my answers

@@ -66,14 +66,14 @@ export default compose(
 									<button
 										onClick={goToPrevious}
 										className="ui__ simple small skip button left">
-										← Précédent
+										← <T>Précédent</T>
 									</button>
 								</>
 							)}
 							<button
 								onClick={setDefault}
 								className="ui__ simple small skip button right">
-								Passer →
+								<T>Passer</T> →
 							</button>
 						</div>
 					</React.Fragment>

@@ -57,12 +57,9 @@ export default compose(
 						rule={getRule('contrat salarié . temps de travail')}
 						maximumFractionDigits={1}
 					/>
-					<Line
-						rule={getRule(
-							'contrat salarié . temps de travail . heures supplémentaires'
-						)}
-						maximumFractionDigits={1}
-					/>
+					{heuresSupplémentaires.nodeValue > 0 && (
+						<Line rule={heuresSupplémentaires} maximumFractionDigits={1} />
+					)}
 				</div>
 
 				<SalaireBrutSection getRule={getRule} />

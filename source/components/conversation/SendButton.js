@@ -47,7 +47,7 @@ export default compose(withTranslation())(
 						disabled={disabled}
 						onClick={() => this.getAction()('accept')}>
 						<span className="text">
-							<Trans>Suivant →</Trans>
+							<Trans>Suivant</Trans> →
 						</span>
 					</button>
 					<span className="keyIcon">
