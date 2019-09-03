@@ -24,7 +24,7 @@ questions:
     Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
     Effectif: entreprise . effectif
   liste noire:
-    - contrat salarié . avantages en nature
+    - contrat salarié . rémunération . avantages en nature
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative

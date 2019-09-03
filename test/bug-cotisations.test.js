@@ -69,7 +69,7 @@ describe('bug-analyse-many', function() {
 				'contrat salarié . CDD': 'non',
 				'contrat salarié . indemnité kilométrique vélo . indemnité vélo active':
 					'non',
-				'contrat salarié . avantages en nature . montant': 0,
+				'contrat salarié . rémunération . avantages en nature . montant': 0,
 				'contrat salarié . temps partiel': 'non',
 				'établissement . localisation': {},
 				'contrat salarié . complémentaire santé . part employeur': 50,
