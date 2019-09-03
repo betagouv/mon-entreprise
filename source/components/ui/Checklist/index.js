@@ -1,14 +1,14 @@
 /* @flow */
 import classnames from 'classnames'
+import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'
-import marked from 'marked'
 import React, { Component } from 'react'
 import Animate from 'Ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
 
-import type { Tracker } from 'Components/utils/withTracker'
+import type Tracker from '../../../Tracker'
 import type { ChildrenArray, Node, Element } from 'react'
 
 type CheckItemProps = {
@@ -71,11 +71,10 @@ class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
 				</div>
 				{this.state.displayExplanations && this.props.explanations && (
 					<Animate.appear>
-						<div
+						<Markdown
 							className="ui__ checklist-explanation"
-							dangerouslySetInnerHTML={{
-								__html: marked(this.props.explanations)
-							}}></div>
+							source={this.props.explanations}
+						/>
 					</Animate.appear>
 				)}
 			</ScrollToElement>
