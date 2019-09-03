@@ -24,7 +24,7 @@ export default compose(withTranslation())(
 		render() {
 			let { disabled } = this.props
 			return (
-				<span
+				<div
 					css={`
 						margin-left: 1rem;
 						.keyIcon {
@@ -53,7 +53,7 @@ export default compose(withTranslation())(
 					<span className="keyIcon">
 						<Trans>Entrée</Trans>↵
 					</span>
-				</span>
+				</div>
 			)
 		}
 	}
