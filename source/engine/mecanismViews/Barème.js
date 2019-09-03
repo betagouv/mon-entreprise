@@ -3,6 +3,7 @@ import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import withLanguage from 'Components/utils/withLanguage'
 import { numberFormatter } from 'Components/Value'
 import { trancheValue } from 'Engine/mecanisms/barème'
+import { inferUnit, serialiseUnit } from 'Engine/units'
 import { identity } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -58,7 +59,9 @@ let Component = withLanguage(function Barème({
 											<Trans>Tranche de l&apos;assiette</Trans>
 										</th>
 										<th>
-											{unit || (
+											{typeof unit === 'string' ? (
+												unit
+											) : (
 												<Trans>
 													{explanation.tranches[0].taux != null
 														? 'Taux'
@@ -81,6 +84,10 @@ let Component = withLanguage(function Barème({
 												language,
 												tranche,
 												showValues,
+												tranchesUnit: inferUnit('/', [
+													explanation.assiette.unit,
+													explanation.multiplicateur?.unit
+												]),
 												trancheValue:
 													barèmeType === 'marginal'
 														? tranche.value
@@ -128,27 +135,31 @@ let Tranche = ({
 		taux,
 		montant
 	},
+	tranchesUnit,
 	trancheValue,
 	showValues,
 	language
 }) => {
+	const trancheFormatter = numberFormatter({
+		language,
+		style: serialiseUnit(tranchesUnit) === '€' ? 'currency' : undefined
+	})
 	let activated = trancheValue > 0
 	return (
 		<tr className={classNames('tranche', { activated })}>
 			<td key="tranche">
 				{maxOnly ? (
 					<>
-						<Trans>En-dessous de</Trans>{' '}
-						{numberFormatter({ language })(maxOnly)}
+						<Trans>En-dessous de</Trans> {trancheFormatter(maxOnly)}
 					</>
 				) : minOnly ? (
 					<>
-						<Trans>Au-dessus de</Trans> {numberFormatter({ language })(minOnly)}
+						<Trans>Au-dessus de</Trans> {trancheFormatter(minOnly)}
 					</>
 				) : (
 					<>
-						<Trans>De</Trans> {numberFormatter({ language })(min)}{' '}
-						<Trans>à</Trans> {numberFormatter({ language })(max)}
+						<Trans>De</Trans> {trancheFormatter(min)} <Trans>à</Trans>{' '}
+						{trancheFormatter(max)}
 					</>
 				)}
 			</td>
