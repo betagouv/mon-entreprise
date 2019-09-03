@@ -1,0 +1,32 @@
+objectifs:
+  - contrat salarié . rémunération . brut de base
+
+objectifs secondaires:
+  - contrat salarié . rémunération . heures supplémentaires
+  - contrat salarié . rémunération . net après impôt
+
+questions:
+  non prioritaires:
+    - contrat salarié . indemnité kilométrique vélo . active
+    - contrat salarié . rémunération . avantages en nature
+    - entreprise . établissement bancaire
+    - entreprise . association non lucrative
+    - contrat salarié . statut JEI
+    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . régime des impatriés
+
+situation:
+  contrat salarié: oui
+  contrat salarié . assimilé salarié: non
+  contrat salarié . temps de travail . temps partiel: non
+  indépendant: non
+  auto entrepreneur: non
+  période: mois
+
+branches:
+  - nom: Avec heures sup
+    situation:
+
+  - nom: Sans heures sup
+    situation:
+      - contrat salarié . temps de travail . heures supplémentaires: 0

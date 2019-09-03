@@ -3,10 +3,10 @@ import { omit } from 'ramda'
 import React, { Component } from 'react'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
-import './CurrencyInput.css'
+import './ValueInput.css'
 
 let currencyFormat = language => ({
-	isCurrencyPrefixed: !!Intl.NumberFormat(language, {
+	isUnitPrefixed: !!Intl.NumberFormat(language, {
 		style: 'currency',
 		currency: 'EUR'
 	})
@@ -22,7 +22,14 @@ let currencyFormat = language => ({
 		.charAt(1)
 })
 
-class CurrencyInput extends Component {
+let defaultFormat = language => ({
+	...currencyFormat(language),
+	isUnitPrefixed: false
+})
+
+const formatter = unit => (unit === '€' ? currencyFormat : defaultFormat)
+
+class ValueInput extends Component {
 	state = {
 		value: this.props.value,
 		initialValue: this.props.value
@@ -63,12 +70,10 @@ class CurrencyInput extends Component {
 			['onChange', 'defaultValue', 'language', 'className', 'value'],
 			this.props
 		)
-
-		const {
-			isCurrencyPrefixed,
-			thousandSeparator,
-			decimalSeparator
-		} = currencyFormat(this.props.language)
+		const unit = this.props.unit
+		const { isUnitPrefixed, thousandSeparator, decimalSeparator } = formatter(
+			unit
+		)(this.props.language)
 
 		// We display negative numbers iff this was the provided value (but we allow the user to enter them)
 		const valueHasChanged = this.state.value !== this.state.initialValue
@@ -78,17 +83,17 @@ class CurrencyInput extends Component {
 
 		return (
 			<div
-				className={classnames(this.props.className, 'currencyInput__container')}
+				className={classnames(this.props.className, 'valueInput__container')}
 				{...(valueLength > 5
 					? { style: { width: `${5 + (valueLength - 5) * 0.75}em` } }
 					: {})}>
-				{isCurrencyPrefixed && '€'}
+				{isUnitPrefixed && unit}
 				<NumberFormat
 					{...forwardedProps}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowNegative={!valueHasChanged}
-					className="currencyInput__input"
+					className="valueInput__input"
 					inputMode="numeric"
 					onValueChange={({ value }) => {
 						this.setState({ value })
@@ -100,10 +105,10 @@ class CurrencyInput extends Component {
 						.toString()
 						.replace('.', decimalSeparator)}
 				/>
-				{!isCurrencyPrefixed && <>&nbsp;€</>}
+				{!isUnitPrefixed && <>&nbsp;{unit}</>}
 			</div>
 		)
 	}
 }
 
-export default CurrencyInput
+export default ValueInput

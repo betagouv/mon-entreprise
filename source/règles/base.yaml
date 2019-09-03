@@ -735,7 +735,7 @@
   titre: Salaire brut
   résumé: Brut de base inscrit dans le contrat de travail
   type: salaire
-  question: Quel est le salaire de base ?
+  question: Quel est le salaire brut de base ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 

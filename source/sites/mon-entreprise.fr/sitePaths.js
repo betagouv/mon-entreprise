@@ -101,7 +101,13 @@ export const constructLocalizedSitePath = (language: string) => {
 				'/comparaison-régimes-sociaux'
 			),
 			selection: t('path.sécuritéSociale.selection', '/sélection-du-régime'),
-			salarié: t('path.sécuritéSociale.salarié', '/salarié')
+			salarié: {
+				index: t('path.sécuritéSociale.salarié', '/salarié'),
+				heuresSupplémentaires: t(
+					'path.sécuritéSociale.salarié.heuresSupplémentaires',
+					'/heures-supplémentaires'
+				)
+			}
 		},
 		démarcheEmbauche: {
 			index: t('path.démarcheEmbauche.index', '/démarches-embauche')

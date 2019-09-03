@@ -6,7 +6,7 @@ import AssimiléSalarié from './AssimiléSalarié'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
 import Indépendant from './Indépendant'
-import Salarié from './Salarié'
+import Salarié from './Salarié/index'
 import SchemeComparaison from './SchemeComparaison'
 import SchemeSelection from './SchemeSelection'
 
@@ -15,7 +15,10 @@ const SocialSecurityRoutes = ({ sitePaths }) => (
 		<ScrollToTop />
 		<Switch>
 			<Route exact path={sitePaths.sécuritéSociale.index} component={Home} />
-			<Route path={sitePaths.sécuritéSociale.salarié} component={Salarié} />
+			<Route
+				path={sitePaths.sécuritéSociale.salarié.index}
+				component={Salarié}
+			/>
 			<Route
 				path={sitePaths.sécuritéSociale.comparaison}
 				component={SchemeComparaison}

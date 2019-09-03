@@ -7,6 +7,7 @@ import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
+import { serialiseUnit } from 'Engine/units'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import emoji from 'react-easy-emoji'
@@ -20,9 +21,8 @@ import {
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
-import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
-import { serialiseUnit } from 'Engine/units'
+import ValueInput from './ValueInput/ValueInput'
 
 export default compose(
 	withTranslation(),
@@ -256,9 +256,9 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 	)
 })
 
-let CurrencyField = withColours(props => {
+let ValueField = withColours(props => {
 	return (
-		<CurrencyInput
+		<ValueInput
 			style={{
 				color: props.colours.textColour,
 				borderColor: props.colours.textColour
@@ -271,6 +271,7 @@ let CurrencyField = withColours(props => {
 		/>
 	)
 })
+
 let DebouncedPercentageField = props => (
 	<PercentageField debounce={600} {...props} />
 )
@@ -292,10 +293,13 @@ let TargetInputOrValue = withLanguage(
 						name={target.dottedName}
 						onBlur={event => event.preventDefault()}
 						component={
-							{ '€': CurrencyField, '%': DebouncedPercentageField }[
-								serialiseUnit(target.unit)
-							]
+							{
+								'€': ValueField,
+								'%': DebouncedPercentageField,
+								heures: ValueField
+							}[serialiseUnit(target.unit)]
 						}
+						unit={serialiseUnit(target.unit)}
 						{...(inputIsActive ? { autoFocus: true } : {})}
 						language={language}
 					/>

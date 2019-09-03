@@ -1,10 +1,10 @@
-.currencyInput__container {
+.valueInput__container {
 	display: flex !important;
 	align-items: center;
 	justify-content: flex-end;
 }
 
-.currencyInput__input {
+.valueInput__input {
 	height: inherit;
 	max-height: inherit;
 	border: none;
@@ -21,6 +21,6 @@
 	font-size: inherit;
 }
 
-.currencyInput__input::-ms-clear {
+.valueInput__input::-ms-clear {
 	display: none;
 }

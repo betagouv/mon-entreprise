@@ -1,4 +1,5 @@
 import { T } from 'Components'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -30,7 +31,6 @@ import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import PeriodSwitch from 'Components/PeriodSwitch'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -148,7 +148,7 @@ export default compose(
 												target="_parent"
 												to={
 													dottedName.includes('contrat salarié')
-														? sitePaths.sécuritéSociale.salarié
+														? sitePaths.sécuritéSociale.salarié.index
 														: dottedName.includes('auto entrepreneur')
 														? sitePaths.sécuritéSociale['auto-entrepreneur']
 														: dottedName.includes('indépendant')

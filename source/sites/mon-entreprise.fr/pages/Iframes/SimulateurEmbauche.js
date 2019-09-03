@@ -4,7 +4,7 @@ import { compose } from 'ramda'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
-import { SalarySimulation } from '../SocialSecurity/Salarié'
+import { SalarySimulation } from '../SocialSecurity/Salarié/Salarié'
 
 export default compose(
 	withSitePaths,
@@ -15,7 +15,7 @@ export default compose(
 	return (
 		<>
 			<Helmet>
-				<link rel="canonical" href={sitePaths.sécuritéSociale.salarié} />
+				<link rel="canonical" href={sitePaths.sécuritéSociale.salarié.index} />
 			</Helmet>
 			{showMonEntrepriseLink && (
 				<Banner icon="✨">

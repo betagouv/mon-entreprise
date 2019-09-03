@@ -127,7 +127,7 @@ class SocialSecurity extends Component<Props, {}> {
 										</Link>
 										<Link
 											className="ui__ button-choice "
-											to={sitePaths.sécuritéSociale.salarié}>
+											to={sitePaths.sécuritéSociale.salarié.index}>
 											{emoji('👥')}{' '}
 											<T k="sécu.choix.employé">Le salaire d'un employé</T>
 										</Link>

@@ -238,7 +238,7 @@ const StepsHeader = ({ t, sitePaths, companyStatusChoice }: Props) => (
 									</NavOpener>
 								</li>
 								<li>
-									<NavLink exact to={sitePaths.sécuritéSociale.salarié}>
+									<NavLink exact to={sitePaths.sécuritéSociale.salarié.index}>
 										<T>Simulateur de salaire</T>
 									</NavLink>
 								</li>
