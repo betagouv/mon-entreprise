@@ -793,7 +793,7 @@
 - espace: contrat salarié . rémunération
   nom: brut horaire
   période: aucune
-  formule: rémunération . assiette de vérification du SMIC / temps de travail
+  formule: rémunération . assiette de vérification du SMIC / temps de travail . temps contractuel
 
 - espace: contrat salarié . rémunération
   nom: assiette de vérification du SMIC
