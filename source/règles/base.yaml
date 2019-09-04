@@ -1846,6 +1846,7 @@
 
 - espace: contrat salarié . temps de travail
   nom: temps partiel
+  non applicable si: assimilé salarié
   période: aucune
   question: Le contrat est-il à temps partiel ?
   description: |
