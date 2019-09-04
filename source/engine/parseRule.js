@@ -1,11 +1,13 @@
+import { T } from 'Components'
+import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import RuleLink from 'Components/RuleLink'
 import evaluate from 'Engine/evaluateRule'
-import { findParentDependency } from './rules'
+import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
-import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import { Node } from './mecanismViews/common'
 import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
-import { parse } from 'Engine/parse'
+import { Node } from './mecanismViews/common'
+import { disambiguateRuleReference, findParentDependency } from './rules'
 
 export default (rules, rule, parsedRules) => {
 	//	if (rule.dottedName.includes('distance journalière'))
@@ -64,6 +66,10 @@ export default (rules, rule, parsedRules) => {
 			parsedRules
 		),
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
+		'rend non applicable': nonApplicableRules =>
+			nonApplicableRules.map(referenceName => {
+				return disambiguateRuleReference(rules, rule, referenceName)
+			}),
 		// formule de calcul
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -119,8 +125,44 @@ export default (rules, rule, parsedRules) => {
 		...parsedRoot,
 		evaluate,
 		parsed: true,
+		isDisabledBy: [],
 		unit: rule.unit || parsedRoot.formule?.explanation?.unit
 	}
+
+	parsedRules[rule.dottedName]['rendu non applicable'] = {
+		evaluate: (cache, situation, parsedRules, node) => {
+			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
+				evaluateNode(cache, situation, parsedRules, disablerNode)
+			)
+			const nodeValue = isDisabledBy.some(x => x.nodeValue === true)
+			const explanation = { ...node.explanation, isDisabledBy }
+			return { ...node, explanation, nodeValue }
+		},
+		jsx: (nodeValue, { isDisabledBy }) => {
+			return (
+				isDisabledBy.length > 0 && (
+					<>
+						<h3>Exception{isDisabledBy.length > 1 && 's'}</h3>
+						<p>
+							<T>Cette règle ne s'applique pas pour</T> :{' '}
+							{isDisabledBy.map((rule, i) => (
+								<React.Fragment key={i}>
+									{i > 0 && ', '}
+									<RuleLink dottedName={rule.dottedName} />
+								</React.Fragment>
+							))}
+						</p>
+					</>
+				)
+			)
+		},
+		category: 'ruleProp',
+		rulePropType: 'cond',
+		name: 'rendu non applicable',
+		type: 'boolean',
+		explanation: parsedRules[rule.dottedName]
+	}
+
 	return parsedRules[rule.dottedName]
 }
 
@@ -134,6 +176,7 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 			),
 			nodeValue = explanation.nodeValue,
 			missingVariables = explanation.missingVariables
+
 		return rewriteNode(node, nodeValue, explanation, missingVariables)
 	}
 

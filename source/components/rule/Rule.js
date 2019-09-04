@@ -1,4 +1,5 @@
 import { T } from 'Components'
+import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -24,13 +25,13 @@ import {
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import { AttachDictionary } from '../AttachDictionary'
+import RuleLink from '../RuleLink'
 import { Markdown } from '../utils/markdown'
 import Algorithm from './Algorithm'
 import Examples from './Examples'
 import RuleHeader from './Header'
 import References from './References'
 import './Rule.css'
-import PeriodSwitch from 'Components/PeriodSwitch'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
@@ -62,7 +63,6 @@ export default compose(
 				flatRule = findRuleByDottedName(flatRules, dottedName)
 			let { type, name, title, description, question, ns, icon } = flatRule,
 				namespaceRules = findRuleByNamespace(flatRules, dottedName)
-
 			let displayedRule = analysedExample || analysedRule
 
 			return (
@@ -164,9 +164,23 @@ export default compose(
 										rule={displayedRule}
 										showValues={valuesToShow || currentExample}
 									/>
+									{displayedRule['rend non applicable'] && (
+										<section id="non-applicable">
+											<h3>
+												<T>Rend non applicable les règles suivantes</T> :{' '}
+											</h3>
+											<ul>
+												{displayedRule['rend non applicable'].map(ruleName => (
+													<li key={ruleName}>
+														<RuleLink dottedName={ruleName} />
+													</li>
+												))}
+											</ul>
+										</section>
+									)}
 									{flatRule.note && (
 										<section id="notes">
-											<h3>Note: </h3>
+											<h3>Note : </h3>
 											<Markdown source={flatRule.note} />
 										</section>
 									)}

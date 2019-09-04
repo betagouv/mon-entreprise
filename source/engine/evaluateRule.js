@@ -1,5 +1,5 @@
-import { mergeAll, keys, map, pick, pipe } from 'ramda'
-import { bonus, mergeMissing, evaluateNode } from 'Engine/evaluation'
+import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
+import { keys, map, mergeAll, pick, pipe } from 'ramda'
 import { anyNull, undefOrTrue, val } from './traverse-common-functions'
 
 export default (cache, situationGate, parsedRules, node) => {
@@ -7,20 +7,25 @@ export default (cache, situationGate, parsedRules, node) => {
 	cache.parseLevel++
 
 	let evaluatedAttributes = pipe(
-			pick(['parentDependency', 'non applicable si', 'applicable si']),
+			pick([
+				'parentDependency',
+				'non applicable si',
+				'applicable si',
+				'rendu non applicable'
+			]),
 			map(value => evaluateNode(cache, situationGate, parsedRules, value))
 		)(node),
 		{
 			parentDependency,
 			'non applicable si': notApplicable,
-			'applicable si': applicable
+			'applicable si': applicable,
+			'rendu non applicable': disabled
 		} = evaluatedAttributes,
 		isApplicable =
-			val(parentDependency) === false
-				? false
-				: val(notApplicable) === true
-				? false
-				: val(applicable) === false
+			val(parentDependency) === false ||
+			val(notApplicable) === true ||
+			val(applicable) === false ||
+			val(disabled) === true
 				? false
 				: anyNull([notApplicable, applicable, parentDependency])
 				? null
@@ -66,7 +71,6 @@ export default (cache, situationGate, parsedRules, node) => {
 			bonus(condMissing, hasCondition),
 			formulaMissingVariables
 		)
-
 	cache.parseLevel--
 	//		if (keys(condMissing).length) console.log("".padStart(cache.parseLevel-1),{conditions:condMissing, formule:formMissing})
 	//		else console.log("".padStart(cache.parseLevel-1),{formule:formMissing})
