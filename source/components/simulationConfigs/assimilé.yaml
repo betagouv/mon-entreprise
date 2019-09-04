@@ -29,8 +29,10 @@ questions:
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
+    - entreprise . hôtel café restaurant
   non prioritaires:
     - entreprise . établissement bancaire
+    - contrat salarié . indemnité kilométrique vélo . active
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
 
