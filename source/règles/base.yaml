@@ -1884,6 +1884,7 @@
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
   unité: heures
+  non applicable si: assimilé salarié
   période: mois
   suggestions:
     aucune: 0
