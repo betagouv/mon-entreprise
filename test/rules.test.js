@@ -33,7 +33,8 @@ describe('rule checks', function() {
 				!r.simulateur &&
 				(!r.formule || r.formule['une possibilité']) &&
 				r.defaultValue == null &&
-				r.question
+				r.question &&
+				!['impôt . taux personnalisé'].includes(r.dottedName)
 		)
 
 		rulesNeedingDefault.map(r =>
