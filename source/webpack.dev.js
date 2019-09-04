@@ -1,5 +1,6 @@
 const { map } = require('ramda')
 const webpack = require('webpack')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const {
 	commonLoaders,
 	styleLoader,
@@ -18,6 +19,7 @@ module.exports = {
 		...(common.plugins || []),
 		...HTMLPlugins(),
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new MonacoWebpackPlugin({ languages: ['yaml'] })
 	]
 }
