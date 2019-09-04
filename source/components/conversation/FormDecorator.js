@@ -50,7 +50,7 @@ export var FormDecorator = formType => RenderField =>
 							setFormValue(name, value),
 						...(unit === '%'
 							? {
-									format: x => (x == null ? null : x * 100),
+									format: x => (x == null ? null : +(x * 100).toFixed(2)),
 									normalize: x => (x == null ? null : x / 100)
 							  }
 							: {})
