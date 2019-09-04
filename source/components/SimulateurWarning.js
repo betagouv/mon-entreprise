@@ -30,8 +30,8 @@ export default withLanguage(function SimulateurWarning({
 			<div className={`content ${folded ? '' : 'ui__ card'}`}>
 				{!folded && (
 					<ul style={{ marginLeft: '1em' }}>
-						<li>
-							{simulateur == 'auto-entreprise' && language === 'fr' && (
+						{simulateur == 'auto-entreprise' && language === 'fr' && (
+							<li>
 								<T k="simulateurs.warning.impôt">
 									<>
 										Impôt sur le revenu : l'abattement forfaitaire pour les
@@ -39,8 +39,8 @@ export default withLanguage(function SimulateurWarning({
 										le versement libératoire n'est pas encore présente.
 									</>
 								</T>
-							)}
-						</li>
+							</li>
+						)}
 						<li>
 							<T k="simulateurs.warning.urssaf">
 								Les calculs sont indicatifs et ne se substituent pas aux
