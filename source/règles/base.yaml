@@ -1525,7 +1525,6 @@
 - espace: impôt
   nom: taux personnalisé
   question: Quel est votre taux de prélèvement à la source ?
-  par défaut: 0.1
   description: |
     Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
@@ -3045,16 +3044,19 @@
 
 - espace: impôt . méthode de calcul
   nom: taux neutre
+  titre: avec le taux neutre
   description: Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez connaître votre impôt à la source dans le cas où vous avez choisi de ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre correspond à une imposition pour un célibataire sans enfants et sans autres revenus / charges.
   formule: impôt . méthode de calcul = 'taux neutre'
 
 - espace: impôt . méthode de calcul
   nom: taux personnalisé
+  titre: avec votre taux personnalisé
   description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscal pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
   formule: impôt . méthode de calcul = 'taux personnalisé'
 
 - espace: impôt . méthode de calcul
   nom: barème standard
+  titre: avec le barème standard
   description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décôte.
   formule: impôt . méthode de calcul = 'barème standard'
 

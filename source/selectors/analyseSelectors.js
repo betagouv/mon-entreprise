@@ -14,7 +14,6 @@ import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
 	defaultTo,
-	propEq,
 	difference,
 	dissoc,
 	equals,
@@ -269,7 +268,7 @@ let currentMissingVariablesByTargetSelector = createSelector(
 	}
 )
 
-const similarity = rule1 => rule2 =>
+const similarity = (rule1, rule2) =>
 	pipe(
 		map(defaultTo('')),
 		map(split(' . ')),
@@ -301,10 +300,11 @@ export let nextStepsSelector = createSelector(
 			nextSteps = difference(nextSteps, blacklist)
 		}
 
-		nextSteps = sortBy(similarity(last(foldedSteps)), nextSteps)
-		if (notPriority) {
-			nextSteps = sortBy(question => notPriority.indexOf(question), nextSteps)
-		}
+		nextSteps = sortBy(
+			question =>
+				similarity(question, last(foldedSteps)) + notPriority.indexOf(question),
+			nextSteps
+		)
 
 		return nextSteps
 	}
