@@ -30,14 +30,17 @@ export default withLanguage(function SimulateurWarning({
 			<div className={`content ${folded ? '' : 'ui__ card'}`}>
 				{!folded && (
 					<ul style={{ marginLeft: '1em' }}>
-						{simulateur == 'auto-entreprise' && language === 'fr' && (
+						{simulateur == 'auto-entreprise' && (
 							<li>
-								<T k="simulateurs.warning.impôt">
-									<>
-										Impôt sur le revenu : l'abattement forfaitaire pour les
-										auto-entrepreneurs est intégré. En revanche, l'option pour
-										le versement libératoire n'est pas encore présente.
-									</>
+								<T k="simulateurs.warning.cfe">
+									Le simulateur n'intègre pas la cotisation foncière des
+									entreprise (CFE) et la taxe sur la valeur ajoutée (CVAE), qui
+									sont dûes dès la deuxième année d'exercice. Leurs montants
+									varient fortement en fonction de vos revenus et de la
+									domiciliation de l'entreprise.
+									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
+										Plus d'infos.
+									</a>
 								</T>
 							</li>
 						)}

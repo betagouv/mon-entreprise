@@ -3019,6 +3019,7 @@
                 assiette: revenu imposable
                 taux: taux personnalisé
       - CEHR
+      - auto entrepreneur . impôt . versement libératoire . montant
 
 - espace: impôt
   nom: méthode de calcul
@@ -3030,7 +3031,9 @@
 
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  période: aucune
   par défaut: barème standard
+  applicable si: revenu imposable > 0
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -3041,6 +3044,7 @@
   références:
     différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
     calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+
 
 - espace: impôt . méthode de calcul
   nom: taux neutre
@@ -3069,7 +3073,7 @@
     somme:
       - contrat salarié . rémunération . net imposable
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu
@@ -3080,7 +3084,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu par défaut
@@ -3153,7 +3157,8 @@
   description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
   formule:
     somme:
-      - revenu abattu
+      - revenu abattu par défaut
+      - auto entrepreneur . impôt . revenu abattu
       - contrat salarié . prime d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
@@ -4157,13 +4162,19 @@
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
+- espace: auto entrepreneur
+  nom: impôt
+
 - espace: auto entrepreneur . impôt
   nom: abattement
   période: flexible
+  unité: '€'
   formule:
-    multiplication:
-      assiette: base des cotisations
-      taux: taux
+    le maximum de:
+      - multiplication:
+          assiette: base des cotisations
+          taux: taux
+      - 305
 
 - espace: auto entrepreneur . impôt . abattement
   nom: taux inversé
@@ -4184,14 +4195,63 @@
         alors: 71%
       - sinon: 50%
 
-- espace: auto entrepreneur
-  nom: impôt
+
+- espace: auto entrepreneur . impôt
+  nom: versement libératoire
+  description: >
+    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (au mois ou au trimestre) avec application d’un taux spécifique en fonction de votre activité.
+    Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
+  question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
+  par défaut: non
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - impôt . revenu fiscal de référence [annuel] > 27086
+          - versement libératoire
+      message: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
+      niveau: info
+  période: aucune
+
+- espace: auto entrepreneur . impôt . versement libératoire
+  nom: montant
+  titre: versement libératoire auto entrepreneur
+  description: |
+    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (au mois ou au trimestre) avec application d’un taux spécifique en fonction de votre activité :
+
+    - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la prestation d’hébergement (BIC)
+    - 1,7% si l’activité est une activité de services relevant des bénéfices industriels et commerciaux (BIC)
+    - 2,2%% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
+  unité: €
+  période: flexible
+
+  formule:
+    multiplication:
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si: entreprise . catégorie d'activité . service ou vente = 'service'
+            alors: 1.7%
+          - si: entreprise . catégorie d'activité = 'libérale'
+            alors: 2.2%
+          - sinon: 1%
+
+
+
+- espace: auto entrepreneur . impôt
+  nom: revenu imposable
+  non applicable si: versement libératoire
+  période: flexible
+  formule: revenu abattu
 
 - espace: auto entrepreneur . impôt
   nom: revenu abattu
   titre: revenu abattu auto-entrepreneur
   période: flexible
-  formule: base des cotisations - abattement
+  formule:
+    allègement:
+      assiette: base des cotisations
+      abattement: abattement
+
 - nom: protection sociale
   description: >
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents
@@ -4409,7 +4469,7 @@
   formule:
     le maximum de:
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
       - contrat salarié . rémunération . brut
 
 - espace: protection sociale . retraite

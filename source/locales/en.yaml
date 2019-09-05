@@ -615,7 +615,6 @@ simulateurs:
   warning:
     titre: Before starting...
     plus: Read explanations
-    impôt: Income tax is calculated for a single person without children and without other income.
     urssaf: The figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
     auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from their turnover. Therefore, all costs related to the business must be deducted on a net basis to obtain the actual income received.
   précision:
