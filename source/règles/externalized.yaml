@@ -565,6 +565,21 @@ contrat salarié . assimilé salarié:
   question.fr: Le salarié est-il considéré comme "assimilé salarié" ?
   titre.en: Assimilated salaried
   titre.fr: assimilé salarié
+contrat salarié . apprentissage:
+  description.en: >
+    An apprenticeship contract is a written employment contract of limited
+    duration (CDD) or indefinite duration (CDI) between an employee and an
+    employer. It allows the apprentice to follow a work-study program in a
+    company under the responsibility of an apprentice master and in an
+    apprenticeship training centre (CFA) for 1 to 3 years.
+  description.fr: >
+    Le contrat d'apprentissage est un contrat de travail écrit à durée limitée
+    (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il
+    permet à l'apprenti de suivre une formation en alternance en entreprise sous
+    la responsabilité d'un maître d'apprentissage et en centre de formation des
+    apprentis (CFA) pendant 1 à 3 ans.
+  titre.en: apprenticeship
+  titre.fr: apprentissage
 contrat salarié . stage:
   description.en: >
     An employer who employs an intern must pay a minimum bonus to the intern.
@@ -577,15 +592,15 @@ contrat salarié . stage:
 contrat salarié . stage . gratification minimale:
   titre.en: minimum bonus
   titre.fr: gratification minimale
-contrat salarié . stage . gratification exonérée d'impôt:
+contrat salarié . exonération d'impôt des stagiaires et apprentis:
   description.en: >
-    Les salaires versés aux apprentis ainsi que les gratifications de stages
-    sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
+    Wages paid to apprentices and internship bonuses are exempt from income tax
+    up to an annual minimum wage.
   description.fr: >
     Les salaires versés aux apprentis ainsi que les gratifications de stages
     sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
-  titre.en: tax-exempt bonus
-  titre.fr: gratification exonérée d'impôt
+  titre.en: tax exemption for interns and apprentices
+  titre.fr: exonération d'impôt des stagiaires et apprentis
 contrat salarié . CDD:
   description.en: The employment contract explicitly provides for an end date.
   description.fr: >
@@ -609,6 +624,15 @@ contrat salarié . cotisations . assiette:
     de cotisations sur le travail salarié. Elle comprend notamment les
     rémunérations en espèces (salaire de base, indemnité, primes...) et les
     avantages en nature (logement, véhicule...).
+contrat salarié . cotisations . assiette . salariale:
+  titre.en: base for the social contributions
+  titre.fr: Assiette des cotisations sociales
+  description.en: >
+    Apprentices are exempt from social security contributions up to 79% of the
+    minimum wage (SMIC).
+  description.fr: >
+    Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à
+    79% du SMIC.
 contrat salarié . rémunération . brut de base:
   titre.en: Gross salary
   titre.fr: Salaire brut
@@ -665,6 +689,7 @@ contrat salarié . rémunération . brut de base:
             [mensuel]
           - assimilé salarié != oui
           - stage != oui
+          - apprentissage != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
@@ -2063,7 +2088,7 @@ impôt . méthode de calcul . barème standard:
   description.fr: >-
     Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se
     base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
-    compte que l'abattement 10%, le barème et la décôte.
+    compte que l'abattement 10%, le barème et la décote.
   titre.en: '!!barème standard'
   titre.fr: barème standard
 impôt . revenu imposable:

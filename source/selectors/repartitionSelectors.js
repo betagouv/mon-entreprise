@@ -119,8 +119,6 @@ const répartition = (analysis): ?Répartition => {
 	const autresCotisations = cotisations['protection sociale . autres']
 	if (autresCotisations) {
 		CSG = autresCotisations.find(propEq('dottedName', 'contrat salarié . CSG'))
-		if (!CSG)
-			throw new Error('[répartition selector]: expect CSG not to be null')
 		cotisations['protection sociale . autres'] = without(
 			[CSG],
 			autresCotisations
