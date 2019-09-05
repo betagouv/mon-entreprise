@@ -25,6 +25,7 @@
       possibilités:
         - CDI
         - CDD
+        - apprentissage
         - stage
   par défaut: CDI
   description: |
@@ -741,6 +742,15 @@
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
 - espace: contrat salarié
+  nom: apprentissage
+  description: |
+    Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
+  formule: contrat salarié = 'apprentissage'
+  rend non applicable:
+    - CSG
+    - CRDS
+
+- espace: contrat salarié
   nom: stage
   description: |
     Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
@@ -763,13 +773,16 @@
   références:
     Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
 
-- espace: contrat salarié . stage
-  nom: gratification exonérée d'impôt
+- espace: contrat salarié
+  nom: exonération d'impôt des stagiaires et apprentis
   description: |
     Les salaires versés aux apprentis ainsi que les gratifications de stages sont exonérés d'impôt sur le revenu dans la limite d'un SMIC annuel.
   références:
     Article 81 bis du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029236245&cidTexte=LEGITEXT000006069577
-  applicable si: stage
+  applicable si:
+    une de ces conditions:
+      - apprentissage
+      - stage
   période: flexible
   formule: SMIC
 
@@ -803,6 +816,23 @@
       assiette: rémunération . brut
       abattement: indemnité kilométrique vélo + stage . gratification minimale
 
+- espace: contrat salarié . cotisations . assiette
+  nom: salariale
+  titre: Assiette des cotisations sociales
+  description: |
+    Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
+  références:
+    URSSAF: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+  période: flexible
+  formule:
+    variations:
+      - si: apprentissage
+        alors:
+          allègement:
+            assiette: cotisations . assiette
+            abattement: 79% * SMIC
+      - sinon: cotisations . assiette
+
 - espace: contrat salarié . rémunération
   nom: brut de base
   titre: Salaire brut
@@ -824,6 +854,7 @@
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
           - assimilé salarié != oui
           - stage != oui
+          - apprentissage != oui
       niveau: avertissement
       message: |
         Le salaire saisi est inférieur au SMIC.
@@ -1231,7 +1262,7 @@
         somme:
           - indemnité kilométrique vélo
           - prime d'impatriation
-          - stage . gratification exonérée d'impôt
+          - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -2184,6 +2215,7 @@
 
         - attributs:
             dû par: salarié
+          assiette: cotisations . assiette . salariale
           tranches:
             - en-dessous de: 1
               taux: 0.86%
@@ -2245,6 +2277,7 @@
 
         - attributs:
             dû par: salarié
+          assiette: cotisations . assiette . salariale
           tranches:
             - en-dessous de: 1
               taux: 3.15%
@@ -3012,6 +3045,7 @@
       composantes:
         - attributs:
             dû par: salarié
+          assiette: cotisations . assiette . salariale
           composantes:
             - nom: non plafonnée
               taux: 0.4%
@@ -3137,7 +3171,7 @@
 - espace: impôt . méthode de calcul
   nom: barème standard
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décôte.
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
   formule: impôt . méthode de calcul = 'barème standard'
 
 - espace: impôt
