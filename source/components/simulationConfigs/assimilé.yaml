@@ -19,7 +19,7 @@ objectifs secondaires:
 
 questions:
   à l'affiche:
-    ACRE: entreprise . année d'activité
+    ACRE: entreprise . ACRE
     Commune: établissement . localisation
     Impôt sur le revenu: impôt . méthode de calcul
     Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active

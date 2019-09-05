@@ -10,7 +10,7 @@ questions:
     Type d'activité: entreprise . catégorie d'activité
     Versement libératoire: impôt . méthode de calcul
     Impôt sur le revenu: impôt . méthode de calcul
-    ACRE: entreprise . année d'activité
+    ACRE: entreprise . ACRE
   liste noire:
     - entreprise . charges
 

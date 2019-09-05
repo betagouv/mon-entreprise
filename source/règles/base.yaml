@@ -3,7 +3,6 @@
   une possibilité:
     - mois
     - année
-
 - nom: contrat salarié
   icônes: 📄
   question: Activité salariée ?
@@ -443,7 +442,7 @@
   # formule:
   #   une possibilité:
   #   - embauche en CDI suivant le CDD
-  #   - CDD requalifié en CDI # quand ça arrive ?
+  #   - CDD requalifié en CDI # quand ça arrive ? - espace: contrat salarié . CDD . événement
 - espace: contrat salarié . CDD . événement
   nom: refus CDI avantageux
   titre: Refus d'un CDI avantageux
@@ -1594,7 +1593,7 @@
   applicable si:
     toutes ces conditions:
       - assimilé salarié
-      - entreprise . année d'activité = 'première année'
+      - entreprise . ACRE
   période: flexible
   formule:
     multiplication:
@@ -3045,7 +3044,6 @@
     différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
     calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
 
-
 - espace: impôt . méthode de calcul
   nom: taux neutre
   titre: avec le taux neutre
@@ -3206,32 +3204,29 @@
   formule: revenu net de cotisations - impôt
 
 - espace: entreprise
-  nom: année d'activité
-  question: Quel est l'âge de l'entreprise en année d'activité ?
-  description: |
-    Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
-
-    Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise à un associé, et donc pour une auto-entreprise.
-
-    Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
+  nom: date de création
+  question: Quand avez-vous crée votre entreprise ?
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - première année
-        - deuxième année
-        - troisième année
-        - régime de croisière
-  par défaut: non
+        - avant 2018
+        - avant 2019
+        - après 2019
+  par défaut: après 2019
 
-- espace: entreprise . année d'activité
-  nom: première année
-- espace: entreprise . année d'activité
-  nom: deuxième année
-- espace: entreprise . année d'activité
-  nom: troisième année
-- espace: entreprise . année d'activité
-  nom: régime de croisière
+- espace: entreprise . date de création
+  nom: avant 2018
+  titre: avant le 1er janvier 2018
+
+- espace: entreprise . date de création
+  nom: avant 2019
+  titre: avant le 1er janvier 2019
+
+- espace: entreprise . date de création
+  nom: après 2019
+  titre: après le 1er janvier 2019
+
 
 - espace: entreprise
   nom: chiffre d'affaires
@@ -3354,7 +3349,7 @@
 
 - espace: indépendant . cotisations et contributions
   nom: réduction ACRE
-  applicable si: entreprise . année d'activité = 'première année'
+  applicable si: entreprise . ACRE
   période: flexible
   formule:
     multiplication:
@@ -3643,16 +3638,13 @@
           - contrat salarié != oui
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - entreprise . année d'activité
-          - entreprise . année d'activité != 'première année'
-          - entreprise . catégorie d'activité = 'libérale'
           - indépendant
-      - toutes ces conditions:
-          - entreprise . année d'activité
-          - entreprise . année d'activité != 'première année'
-          - entreprise . année d'activité != 'deuxième année'
+          - entreprise . date de création = 'avant 2019'
           - entreprise . catégorie d'activité = 'libérale'
+      - toutes ces conditions:
           - auto entrepreneur
+          - entreprise . date de création = 'avant 2018'
+          - entreprise . catégorie d'activité = 'libérale'
 
   période: aucune
 
@@ -4124,11 +4116,40 @@
       - sinon: 22%
 
 - espace: entreprise
-  nom: ACCRE obtenu
-  question: Avez-vous obtenu l'ACCRE lors de votre création d'entreprise ?
+  nom: ACRE
   description: |
-    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appelait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
+    *Durée*:
+    - 12 mois pour les sociétés et entreprise individuelle
+    - 3 ans pour les auto-entreprise
+
+    *Conditions d'obtention*:
+    - Pour les entreprises créées après 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois ans auparavant
+    - Pour les entreprises créées avant 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+  question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
+
+- espace: entreprise . ACRE
+  nom: année
+  applicable si: auto entrepreneur
+  question: Quel est l'âge de l'entreprise ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins d'un an
+        - moins de deux ans
+        - moins de trois ans
+  par défaut: moins d'un an
+
+- espace: entreprise . ACRE . année
+  nom: moins d'un an
+
+- espace: entreprise . ACRE . année
+  nom: moins de deux ans
+
+- espace: entreprise . ACRE . année
+  nom: moins de trois ans
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
@@ -4138,24 +4159,20 @@
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: réduction ACRE
   titre: réduction ACRE
-  applicable si:
-    une de ces conditions:
-      - entreprise . année d'activité = 'première année'
-      - entreprise . ACCRE obtenu
+  applicable si: entreprise . ACRE
   période: flexible
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
-      - si: entreprise . année d'activité = 'première année'
+      - si: entreprise . ACRE . année = 'moins d'un an'
         alors: 75%
-      - si: entreprise . année d'activité = 'deuxième année'
+      - si: entreprise . ACRE . année = 'moins de deux ans'
         alors: 50%
-      - si: entreprise . année d'activité = 'troisième année'
+      - si: entreprise . ACRE . année = 'moins de trois ans'
         alors: 25%
-      - sinon: 0%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
-
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: plafond ACRE
 
@@ -4195,7 +4212,6 @@
         alors: 71%
       - sinon: 50%
 
-
 - espace: auto entrepreneur . impôt
   nom: versement libératoire
   description: >
@@ -4234,8 +4250,6 @@
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
           - sinon: 1%
-
-
 
 - espace: auto entrepreneur . impôt
   nom: revenu imposable

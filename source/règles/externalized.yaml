@@ -1999,44 +1999,7 @@ revenu net après impôt:
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
   titre.en: Net income after tax
   titre.fr: revenu net après impôt
-entreprise . année d'activité:
-  question.en: How old is the company in years of activity?
-  question.fr: Quel est l'âge de l'entreprise en année d'activité ?
-  description.en: >
-    During the first year of activity, the entrepreneur can benefit from
-    reductions in social security contributions on his remuneration, it is ACRE.
 
-    To do this, he must control his company. This is the case for a company to a
-    partner, and therefore for an auto-enterprise.
-
-    For self-employed companies, this reduction is even extended for a period of
-    one year. total of 3 years, on a sliding scale.
-  description.fr: >
-    Pendant la première année d'activité, le créateur d'entreprise peut
-    bénéficier de réductions de cotisations sociales sur sa rémunération, c'est
-    l'ACRE.
-
-
-    Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise
-    à un associé, et donc pour une auto-entreprise.
-
-
-    Pour les auto-entreprises, cette réduction est même prolongée pendant un
-    total de 3 ans, de façon dégressive.
-  titre.en: year of activity
-  titre.fr: année d'activité
-entreprise . année d'activité . première année:
-  titre.en: first year
-  titre.fr: première année
-entreprise . année d'activité . deuxième année:
-  titre.en: second year
-  titre.fr: deuxième année
-entreprise . année d'activité . troisième année:
-  titre.en: third year
-  titre.fr: troisième année
-entreprise . année d'activité . régime de croisière:
-  titre.en: fourth year or more
-  titre.fr: régime de croisière
 entreprise . chiffre d'affaires:
   titre.en: Turnover
   titre.fr: chiffre d'affaires (H.T.)

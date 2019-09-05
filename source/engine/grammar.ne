@@ -1,10 +1,10 @@
 # This grammar is inspired by the "fancier grammar" tab of the nearley playground : https://omrelli.ug/nearley-playground
 
-# Look for the PEMDAS system : Parentheses, Exponents (omitted here), Multiplication, and you should guess the rest :) 
+# Look for the PEMDAS system : Parentheses, Exponents (omitted here), Multiplication, and you should guess the rest :)
 
 @preprocessor esmodule
 
-@{% 
+@{%
 import {string, filteredVariable, variable, temporalVariable,  operation, boolean, number, percentage } from './grammarFunctions'
 %}
 
@@ -29,8 +29,8 @@ Comparison -> Comparable _ ComparisonOperator _ Comparable {% operation('compari
 
 Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 
-NonNumericTerminal ->  
-	Boolean  {% id %} 
+NonNumericTerminal ->
+	Boolean  {% id %}
 	| String  {% id %}
 
 
@@ -50,7 +50,7 @@ Temporality -> "annuel" | "mensuel" {% id %}
 AdditionSubstraction -> AdditionSubstraction _ AdditionSubstractionOperator _ MultiplicationDivision  {%  operation('calculation') %}
     | MultiplicationDivision            {% id %}
 
-	 
+
 AdditionSubstractionOperator	-> "+" {% id %}
 	| "-" {% id %}
 
@@ -61,15 +61,15 @@ MultiplicationDivisionOperator	-> "*" {% id %}
 MultiplicationDivision -> MultiplicationDivision _ MultiplicationDivisionOperator _ Parentheses  {% operation('calculation') %}
     | Parentheses             {% id %}
 
-Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):* 
+Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):*
 {% variable %}
 
-String -> "'" [ .'a-zA-Z\-\u00C0-\u017F ]:+ "'" {% string %}
+String -> "'" [ .'a-zA-Z\-\u00C0-\u017F0-9 ]:+ "'" {% string %}
 
-VariableFragment -> VariableWord (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
+VariableFragment -> VariableWordWithoutNumber (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
 
-
-VariableWord -> [a-zA-Z\u00C0-\u017F] [\-'a-zA-Z\u00C0-\u017F]:*     {% d => d[0] + d[1].join('') %}
+VariableWordWithoutNumber -> [a-zA-Z\u00C0-\u017F] [\-'a-zA-Z\u00C0-\u017F]:*     {% d => d[0] + d[1].join('') %}
+VariableWord -> [a-zA-Z\u00C0-\u017F0-9] [\-'a-zA-Z\u00C0-\u017F0-9]:*     {% d => d[0] + d[1].join('') %}
 
 Dot -> [\.] {% d => null %}
 
@@ -83,4 +83,3 @@ percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% percentage %}
 Boolean -> (
 	"oui"
  | 	"non" ) {% boolean %}
-
