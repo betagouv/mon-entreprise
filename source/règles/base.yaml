@@ -3007,18 +3007,25 @@
   unité: €
   formule:
     somme:
-      - variations:
-          - si: méthode de calcul . barème standard
-            alors: impôt sur le revenu à payer
-          - si: méthode de calcul . taux neutre
-            alors: impôt sur le revenu au taux neutre
-          - si: méthode de calcul . taux personnalisé
-            alors:
-              multiplication:
-                assiette: revenu imposable
-                taux: taux personnalisé
+      - base
       - CEHR
       - auto entrepreneur . impôt . versement libératoire . montant
+
+- espace: impôt
+  nom: base
+  période: flexible
+  unité: €
+  formule:
+    variations:
+      - si: méthode de calcul . barème standard
+        alors: impôt sur le revenu à payer
+      - si: méthode de calcul . taux neutre
+        alors: impôt sur le revenu au taux neutre
+      - si: méthode de calcul . taux personnalisé
+        alors:
+          multiplication:
+            assiette: revenu imposable
+            taux: taux personnalisé
 
 - espace: impôt
   nom: méthode de calcul
@@ -3032,7 +3039,6 @@
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   période: aucune
   par défaut: barème standard
-  applicable si: revenu imposable > 0
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -3226,7 +3232,6 @@
 - espace: entreprise . date de création
   nom: après 2019
   titre: après le 1er janvier 2019
-
 
 - espace: entreprise
   nom: chiffre d'affaires

@@ -42,11 +42,5 @@ describe('Simulateurs test', function() {
 			}
 		)
 		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
-		cy.contains(fr ? "Type d'activité" : 'Activity type').click()
-		cy.contains(
-			fr
-				? "Quelle est votre catégorie d'activité"
-				: 'What is your category of activity'
-		)
 	})
 })

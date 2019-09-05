@@ -9,7 +9,7 @@ export default withLanguage(function SimulateurWarning({
 	language
 }) {
 	let [folded, fold] = usePersistingState(
-		'app::simulateurs:warning-folded',
+		'app::simulateurs:warning-folded:v1:' + simulateur,
 		false
 	)
 	return (
