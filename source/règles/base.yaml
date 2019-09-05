@@ -4000,7 +4000,7 @@
   formule:
     somme:
       - cotisations
-      - taxe pour frais de chambre
+      - TFC
       - contribution formation professionnelle
       - entreprise . prélèvements obligatoires
   références:
@@ -4008,7 +4008,9 @@
   période: flexible
 
 - espace: auto entrepreneur . cotisations et contributions
-  nom: taxe pour frais de chambre
+  nom: TFC
+  titre: Taxes pour frais de chambre
+  unité: €
   période: flexible
   note: |
     Nous n'avons pas intégré les exceptions suivantes :
@@ -4018,32 +4020,47 @@
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
   formule:
+    somme:
+      - commerce
+      - métiers
+
+- espace: auto entrepreneur . cotisations et contributions . TFC
+  nom: commerce
+  titre: taxe pour frais de chambre de commerce
+  période: flexible
+  unité: €
+  applicable si: entreprise . catégorie d'activité = 'commerciale ou industrielle'
+  formule:
     multiplication:
       assiette: base des cotisations
       taux:
         variations:
           - si:
-              toutes ces conditions:
-                - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . service ou vente = 'prestation de service'
-            alors: 0.48%
-          - si:
-              toutes ces conditions:
-                - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-            alors: 0.22%
-          - si:
               une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
-          - si: entreprise . catégorie d'activité . libérale règlementée
-            alors: 0.2%
-          - sinon: 0.44%
+          - sinon: 0.044%
+
+- espace: auto entrepreneur . cotisations et contributions . TFC
+  nom: métiers
+  période: flexible
+  unité: €
+  titre: taxe pour frais de chambre des métiers
+  applicable si: entreprise . catégorie d'activité = 'artisanale'
+  formule:
+    multiplication:
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si: entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            alors: 0.22%
+          - sinon: 0.48%
 
 - espace: auto entrepreneur . cotisations et contributions
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
+  unité: €
   période: flexible
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
@@ -4072,6 +4089,7 @@
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   période: flexible
+  unité: €
   formule:
     barème:
       assiette: base des cotisations
