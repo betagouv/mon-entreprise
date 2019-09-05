@@ -1,99 +1,130 @@
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules.js'
-import Fuse from 'fuse.js'
-import { compose, pick, sortBy } from 'ramda'
-import React, { useRef, useState } from 'react'
+import { encodeRuleName, parentName } from 'Engine/rules.js'
+import { compose, pick, take, sortBy } from 'ramda'
+import React from 'react'
 import Highlighter from 'react-highlight-words'
-import { useTranslation } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
-import Select from 'react-select'
 import { capitalise0 } from '../utils'
-import searchWeights from './searchWeights'
+import Worker from 'worker-loader!./SearchBar.worker.js'
 
-function SearchBar({
-	rules,
-	showDefaultList,
-	finally: finallyCallback,
-	sitePaths
-}) {
-	const [inputValue, setInputValue] = useState(null)
-	const [selectedOption, setSelectedOption] = useState(null)
-	const inputElementRef = useRef()
-	const fuse = useRef()
-	const { i18n } = useTranslation()
+const worker = new Worker()
 
-	const options = {
-		keys: searchWeights
+class SearchBar extends React.Component {
+	state = {
+		selectedOption: null,
+		input: '',
+		results: []
 	}
-	if (!fuse.current) {
-		// This operation is expensive, we don't want to do it everytime we re-render, so we cache its result in a reference
-		fuse.current = new Fuse(
-			rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
-			options
-		)
-	}
+	componentDidMount() {
+		worker.postMessage({
+			rules: this.props.rules.map(
+				pick(['title', 'espace', 'description', 'name', 'dottedName'])
+			)
+		})
 
-	const handleChange = selectedOption => {
-		setSelectedOption(selectedOption)
+		worker.onmessage = ({ data: results }) => this.setState({ results })
 	}
-	const renderOption = ({ title, dottedName }) => (
-		<span>
-			<Highlighter searchWords={[inputValue]} textToHighlight={title} />
-			<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
-				<Highlighter searchWords={[inputValue]} textToHighlight={dottedName} />
-			</span>
-		</span>
-	)
-	const filterOptions = (options, filter) => fuse.current.search(filter)
-
-	if (selectedOption != null) {
-		finallyCallback && finallyCallback()
+	renderOptions = rules => {
+		let options =
+			(rules && sortBy(rule => rule.dottedName, rules)) ||
+			take(5)(this.state.results)
+		return <ul>{options.map(option => this.renderOption(option))}</ul>
+	}
+	renderOption = option => {
+		let { title, dottedName, name } = option
 		return (
-			<Redirect
-				to={
-					sitePaths.documentation.index +
-					'/' +
-					encodeRuleName(selectedOption.dottedName)
-				}
-			/>
+			<li
+				key={dottedName}
+				css={`
+					padding: 0.4rem;
+					border-radius: 0.3rem;
+					:hover {
+						background: var(--colour);
+						color: var(--textColour);
+					}
+					:hover a {
+						color: var(--textColour);
+					}
+				`}
+				onClick={() => this.setState({ selectedOption: option })}>
+				<div
+					style={{
+						fontWeight: '300',
+						fontSize: '85%',
+						lineHeight: '.9em'
+					}}>
+					<Highlighter
+						searchWords={[this.state.input]}
+						textToHighlight={
+							parentName(dottedName)
+								? parentName(dottedName)
+										.split(' . ')
+										.map(capitalise0)
+										.join(' - ')
+								: ''
+						}
+					/>
+				</div>
+				<Link
+					to={
+						this.props.sitePaths.documentation.index +
+						'/' +
+						encodeRuleName(dottedName)
+					}>
+					<Highlighter
+						searchWords={[this.state.input]}
+						textToHighlight={title || capitalise0(name)}
+					/>
+				</Link>
+			</li>
 		)
 	}
+	render() {
+		let { i18n, rules } = this.props,
+			{ selectedOption, input, results } = this.state
 
-	return (
-		<>
-			<Select
-				value={selectedOption && selectedOption.dottedName}
-				onChange={handleChange}
-				onInputChange={inputValue => setInputValue(inputValue)}
-				valueKey="dottedName"
-				labelKey="title"
-				options={rules}
-				filterOptions={filterOptions}
-				optionRenderer={renderOption}
-				placeholder={i18n.t('Entrez des mots clefs ici')}
-				noResultsText={i18n.t('noresults', {
-					defaultValue: "Nous n'avons rien trouvé…"
-				})}
-				ref={inputElementRef}
-			/>
-			{showDefaultList && !inputValue && (
-				<ul>
-					{sortBy(rule => rule.title, rules).map(rule => (
-						<li key={rule.dottedName}>
-							<Link
-								to={
-									sitePaths.documentation.index +
-									'/' +
-									encodeRuleName(rule.name)
-								}>
-								{rule.title || capitalise0(rule.name)}
-							</Link>
-						</li>
-					))}
-				</ul>
-			)}
-		</>
-	)
+		if (selectedOption != null) {
+			this.props.finallyCallback && this.props.finallyCallback()
+			return (
+				<Redirect
+					to={
+						this.props.sitePaths.documentation.index +
+						'/' +
+						encodeRuleName(selectedOption.dottedName)
+					}
+				/>
+			)
+		}
+
+		return (
+			<>
+				<input
+					type="text"
+					value={input}
+					placeholder={i18n.t('Entrez des mots clefs ici')}
+					onChange={e => {
+						let input = e.target.value
+						this.setState({
+							input
+						})
+						if (input.length > 2) worker.postMessage({ input })
+					}}
+				/>
+				{input.length > 2 &&
+					!results.length &&
+					i18n.t('noresults', {
+						defaultValue: "Nous n'avons rien trouvé…"
+					})}
+				{this.props.showDefaultList && !this.state.input
+					? this.renderOptions(rules)
+					: this.renderOptions()}
+			</>
+		)
+	}
 }
 
-export default compose(withSitePaths)(SearchBar)
+export default compose(
+	withSitePaths,
+	withTranslation()
+)(SearchBar)

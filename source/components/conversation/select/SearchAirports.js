@@ -9,15 +9,12 @@ let searchWeights = [
 	{
 		name: 'nom',
 		weight: 0.2
-	},
+	}
 ]
 
-let fuse = new Fuse(
-	airports,
-	{
-		keys: searchWeights
-	}
-)
+let fuse = new Fuse(airports, {
+	keys: searchWeights
+})
 
 onmessage = function(event) {
 	var results = fuse.search(event.data.input)

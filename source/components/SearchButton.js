@@ -36,7 +36,11 @@ export default compose(
 			<h2>
 				<Trans>Chercher dans la documentation</Trans>
 			</h2>
-			<SearchBar showDefaultList={false} finally={close} rules={flatRules} />
+			<SearchBar
+				showDefaultList={false}
+				finallyCallback={close}
+				rules={flatRules}
+			/>
 		</Overlay>
 	) : invisibleButton ? null : (
 		<button
