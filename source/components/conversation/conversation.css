@@ -48,21 +48,6 @@
 	opacity: 1;
 }
 
-.step-question h1::before {
-	content: '›';
-}
-@media (min-width: 500px) {
-	.step-question h1::before {
-		position: absolute;
-		left: -1.1rem;
-	}
-}
-
-.step-question h1 {
-	font-size: 1.3rem;
-	line-height: 2.2rem;
-}
-
 .unfoldedHeader {
 	display: flex;
 	justify-content: space-between;
@@ -97,7 +82,6 @@
 }
 
 .step fieldset {
-	margin: 0.8em 0;
 	display: flex;
 	justify-content: flex-end;
 	flex-wrap: wrap;
@@ -128,12 +112,6 @@
 	padding-right: 0.6em;
 	font-weight: 600;
 	text-align: right;
-}
-
-.step.question fieldset > div {
-	display: flex;
-	justify-content: flex-end;
-	flex-wrap: wrap;
 }
 
 .step.question fieldset span {
@@ -208,10 +186,10 @@
 }
 
 .step input.suffixed {
-	padding: 0.1em 1em 0;
+	width: 5rem;
+	color: var(--colour);
 	margin: 0.6rem 0;
 	border-radius: 0.2em;
-	font-size: 120%;
 }
 
 .step input:not(.suffixed) {
@@ -219,11 +197,9 @@
 }
 
 .step label.suffix {
-	font-size: 110%;
 	vertical-align: baseline;
 	transition: color 0.1s;
-	margin: 0 0.6em;
-	color: rgba(0, 0, 0, 0.8);
+	margin-left: 0.6rem;
 }
 .step input .step input[type='text']:focus,
 .step input[type='number']:focus {
@@ -287,6 +263,7 @@
 }
 
 .answer {
+	margin-top: 0.6rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;

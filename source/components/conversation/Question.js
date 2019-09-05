@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
 import React, { Component } from 'react'
@@ -6,7 +7,6 @@ import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
 import SendButton from './SendButton'
-import classnames from 'classnames'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -43,7 +43,7 @@ export default compose(
 				? this.renderBinaryQuestion()
 				: this.renderChildren(choices)
 			return (
-				<>
+				<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
 					{choiceElements}
 					<SendButton
 						{...{
@@ -53,7 +53,7 @@ export default compose(
 							submit
 						}}
 					/>
-				</>
+				</div>
 			)
 		}
 		renderBinaryQuestion() {
@@ -66,14 +66,14 @@ export default compose(
 			} = this.props
 
 			return (
-				<ul className="binaryQuestionList">
+				<div className="binaryQuestionList">
 					{choices.map(({ value, label }) => (
 						<RadioLabel
 							key={value}
 							{...{ value, label, input, submit, colours, setFormValue }}
 						/>
 					))}
-				</ul>
+				</div>
 			)
 		}
 		renderChildren(choices) {
@@ -90,7 +90,7 @@ export default compose(
 					radioDottedName.split(name + ' . ')[1]
 
 			return (
-				<ul>
+				<ul css="width: 100%">
 					{choices.canGiveUp && (
 						<li key="aucun" className="variantLeaf aucun">
 							<RadioLabel

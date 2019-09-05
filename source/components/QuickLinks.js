@@ -34,15 +34,15 @@ const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
 			<span>
 				<small>
 					<T k="quicklinks.autres">Autres questions :</T>
-				</small>{' '}
+				</small>
 				{links.map(([label, dottedName]) => (
 					<Fragment key={dottedName}>
 						<button
 							className="ui__ link-button"
+							css="margin: 0 0.4rem !important"
 							onClick={() => goToQuestion(dottedName)}>
 							<T k={'quicklinks.' + label}>{label}</T>
-						</button>{' '}
-						/{' '}
+						</button>
 					</Fragment>
 				))}{' '}
 				{/* <button className="ui__ link-button">Voir la liste</button> */}

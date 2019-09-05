@@ -59,13 +59,10 @@ export var FormDecorator = formType => RenderField =>
 				return (
 					<div className={classNames('step', formType)}>
 						<div className="unfoldedHeader">
-							<div className="step-question">
-								<h3>
-									{' '}
-									{this.props.question}{' '}
-									{!inversion && <Explicable dottedName={fieldName} />}
-								</h3>
-							</div>
+							<h3>
+								{this.props.question}{' '}
+								{!inversion && <Explicable dottedName={fieldName} />}
+							</h3>
 						</div>
 
 						<fieldset>

@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
-import './InputSuggestions.css'
 
 export default compose(
 	withColours,
@@ -20,8 +19,6 @@ export default compose(
 				suggestions,
 				onSecondClick,
 				onFirstClick,
-				colouredBackground,
-				colours,
 				t,
 				rulePeriod,
 				period
@@ -30,36 +27,31 @@ export default compose(
 			if (!suggestions) return null
 
 			return (
-				<div className="inputSuggestions">
-					suggestions:
-					<ul>
-						{toPairs(suggestions).map(([text, value]) => {
-							// TODO : ce serait mieux de déplacer cette logique dans le moteur
-							const adjustedValue =
-								rulePeriod === 'flexible' && period === 'année'
-									? value * 12
-									: value
-							return (
-								<li
-									key={value}
-									onClick={() => {
-										onFirstClick(adjustedValue)
-										if (this.state.suggestion !== adjustedValue)
-											this.setState({ suggestion: adjustedValue })
-										else onSecondClick && onSecondClick(adjustedValue)
-									}}
-									style={{
-										color: colouredBackground
-											? colours.textColour
-											: colours.textColourOnWhite
-									}}>
-									<span title={t('cliquez pour insérer cette suggestion')}>
-										{text}
-									</span>
-								</li>
-							)
-						})}
-					</ul>
+				<div css="display: flex; align-items: baseline; justify-content: flex-end;">
+					<small>Suggestions :</small>
+
+					{toPairs(suggestions).map(([text, value]) => {
+						// TODO : ce serait mieux de déplacer cette logique dans le moteur
+						const adjustedValue =
+							rulePeriod === 'flexible' && period === 'année'
+								? value * 12
+								: value
+						return (
+							<button
+								className="ui__ link-button"
+								key={value}
+								css="margin: 0 0.4rem !important"
+								onClick={() => {
+									onFirstClick(adjustedValue)
+									if (this.state.suggestion !== adjustedValue)
+										this.setState({ suggestion: adjustedValue })
+									else onSecondClick && onSecondClick(adjustedValue)
+								}}
+								title={t('cliquez pour insérer cette suggestion')}>
+								{text}
+							</button>
+						)
+					})}
 				</div>
 			)
 		}

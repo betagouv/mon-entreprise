@@ -78,8 +78,8 @@ export default compose(
 						</div>
 					</React.Fragment>
 				)}
-				<QuickLinks />
 			</div>
+			<QuickLinks />
 		</>
 	) : (
 		<div style={{ textAlign: 'center' }}>
