@@ -122,7 +122,7 @@
 	padding-right: 0.6em;
 	padding-top: 0.6em;
 	padding-left: 2em;
-	margin-left: 1em;
+	margin-left: 1rem;
 }
 .step.question .variant > div {
 	padding-right: 0.6em;
@@ -154,12 +154,9 @@
 	text-decoration: underline;
 }
 
-.step.question .sendWrapper {
-	float: right;
-}
 .step label.radio {
 	text-align: center;
-	margin-left: 1em;
+	margin-left: 1rem;
 	/* margin-top: 1em; */
 	cursor: pointer;
 	background: none;
@@ -263,10 +260,6 @@
 .close-text .icon {
 	font-size: 150%;
 	vertical-align: middle;
-}
-
-.sendWrapper {
-	position: relative;
 }
 
 .step .send {
@@ -392,25 +385,6 @@ for the appearing element to appear without stacking up below the first one */
 
 .foldedQuestion:last-of-type .borderWrapper {
 	border-bottom: none;
-}
-
-.keyIcon {
-	position: absolute;
-	font-size: 80%;
-	text-align: center;
-	font-weight: bold;
-	background: #ddd;
-	color: white;
-	margin-left: 0.6em;
-	padding: 0.5em 0.4em;
-	border-radius: 0.2em;
-	transition: 0.2s opacity;
-}
-
-@media screen and (max-width: 860px) {
-	.keyIcon {
-		display: none;
-	}
 }
 
 .conversationContainer {
