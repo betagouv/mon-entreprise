@@ -31,10 +31,9 @@ export default withLanguage(function SimulateurWarning({ simulateur }) {
 							<li>
 								<T k="simulateurs.warning.cfe">
 									Le simulateur n'intègre pas la cotisation foncière des
-									entreprise (CFE) et la taxe sur la valeur ajoutée (CVAE), qui
-									sont dûes dès la deuxième année d'exercice. Leurs montants
-									varient fortement en fonction de vos revenus et de la
-									domiciliation de l'entreprise.{' '}
+									entreprise (CFE) qui est dûe dès la deuxième année d'exercice.
+									Son montant varie fortement en fonction du chiffre d'affaire
+									et de la domiciliation de l'entreprise.{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
 										Plus d'infos.
 									</a>
