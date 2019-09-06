@@ -1622,6 +1622,7 @@
   nom: réduction heures supplémentaires
   cotisation:
     branche: retraite
+    dû par: salarié
   aide:
     type: réduction de cotisations
   unité: €
