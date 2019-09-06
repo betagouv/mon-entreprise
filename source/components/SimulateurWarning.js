@@ -4,10 +4,7 @@ import withLanguage from 'Components/utils/withLanguage'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 
-export default withLanguage(function SimulateurWarning({
-	simulateur,
-	language
-}) {
+export default withLanguage(function SimulateurWarning({ simulateur }) {
 	let [folded, fold] = usePersistingState(
 		'app::simulateurs:warning-folded:v1:' + simulateur,
 		false
@@ -37,7 +34,7 @@ export default withLanguage(function SimulateurWarning({
 									entreprise (CFE) et la taxe sur la valeur ajoutée (CVAE), qui
 									sont dûes dès la deuxième année d'exercice. Leurs montants
 									varient fortement en fonction de vos revenus et de la
-									domiciliation de l'entreprise.
+									domiciliation de l'entreprise.{' '}
 									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
 										Plus d'infos.
 									</a>
@@ -54,7 +51,7 @@ export default withLanguage(function SimulateurWarning({
 							<li>
 								<T k="simulateurs.warning.auto-entrepreneur">
 									{' '}
-									les auto-entrepreneurs ne peuvent pas déduire leurs charges de
+									Les auto-entrepreneurs ne peuvent pas déduire leurs charges de
 									leur chiffre d'affaires. Il faut donc retrancher au net tous
 									les coûts liés à l'entreprise pour obtenir le revenu
 									réellement perçu.

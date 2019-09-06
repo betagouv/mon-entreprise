@@ -4139,12 +4139,13 @@
   nom: ACRE
   description: |
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
+
     *Durée*:
-    - 12 mois pour les sociétés et entreprise individuelle
-    - 3 ans pour les auto-entreprise
+    - **12 mois** pour les sociétés et entreprises individuelles
+    - **3 ans** pour les auto-entreprises
 
     *Conditions d'obtention*:
-    - Pour les entreprises créées après 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois ans auparavant
+    - Pour les entreprises créées après 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
     - Pour les entreprises créées avant 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
   question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
@@ -4235,7 +4236,7 @@
 - espace: auto entrepreneur . impôt
   nom: versement libératoire
   description: >
-    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (au mois ou au trimestre) avec application d’un taux spécifique en fonction de votre activité.
+    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
     Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
   question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   par défaut: non
@@ -4252,11 +4253,11 @@
   nom: montant
   titre: versement libératoire auto entrepreneur
   description: |
-    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (au mois ou au trimestre) avec application d’un taux spécifique en fonction de votre activité :
+    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité :
 
     - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la prestation d’hébergement (BIC)
     - 1,7% si l’activité est une activité de services relevant des bénéfices industriels et commerciaux (BIC)
-    - 2,2%% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
+    - 2,2% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
   unité: €
   période: flexible
 
