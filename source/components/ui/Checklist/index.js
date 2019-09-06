@@ -71,10 +71,14 @@ class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
 				</div>
 				{this.state.displayExplanations && this.props.explanations && (
 					<Animate.appear>
-						<Markdown
-							className="ui__ checklist-explanation"
-							source={this.props.explanations}
-						/>
+						{typeof this.props.explanations === 'string' ? (
+							<Markdown
+								className="ui__ checklist-explanation"
+								source={this.props.explanations}
+							/>
+						) : (
+							this.props.explanations
+						)}
 					</Animate.appear>
 				)}
 			</ScrollToElement>
