@@ -473,7 +473,8 @@ export let mecanismReduction = (recurse, k, v) => {
 		explanation,
 		category: 'mecanism',
 		name: 'allègement',
-		type: 'numeric'
+		type: 'numeric',
+		unit: explanation?.assiette?.unit
 	}
 }
 
