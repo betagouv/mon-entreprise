@@ -3,7 +3,6 @@
   une possibilité:
     - mois
     - année
-
 - nom: contrat salarié
   icônes: 📄
   question: Activité salariée ?
@@ -443,7 +442,7 @@
   # formule:
   #   une possibilité:
   #   - embauche en CDI suivant le CDD
-  #   - CDD requalifié en CDI # quand ça arrive ?
+  #   - CDD requalifié en CDI # quand ça arrive ? - espace: contrat salarié . CDD . événement
 - espace: contrat salarié . CDD . événement
   nom: refus CDI avantageux
   titre: Refus d'un CDI avantageux
@@ -1594,7 +1593,7 @@
   applicable si:
     toutes ces conditions:
       - assimilé salarié
-      - entreprise . année d'activité = 'première année'
+      - entreprise . ACRE
   période: flexible
   formule:
     multiplication:
@@ -1623,6 +1622,7 @@
   nom: réduction heures supplémentaires
   cotisation:
     branche: retraite
+    dû par: salarié
   aide:
     type: réduction de cotisations
   unité: €
@@ -3009,16 +3009,17 @@
   formule:
     somme:
       - variations:
-          - si: méthode de calcul . barème standard
-            alors: impôt sur le revenu à payer
-          - si: méthode de calcul . taux neutre
-            alors: impôt sur le revenu au taux neutre
-          - si: méthode de calcul . taux personnalisé
-            alors:
-              multiplication:
-                assiette: revenu imposable
-                taux: taux personnalisé
+        - si: méthode de calcul . barème standard
+          alors: impôt sur le revenu à payer
+        - si: méthode de calcul . taux neutre
+          alors: impôt sur le revenu au taux neutre
+        - si: méthode de calcul . taux personnalisé
+          alors:
+            multiplication:
+              assiette: revenu imposable
+              taux: taux personnalisé
       - CEHR
+      - auto entrepreneur . impôt . versement libératoire . montant
 
 - espace: impôt
   nom: méthode de calcul
@@ -3030,6 +3031,10 @@
 
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  # applicable si: revenu imposable > 0
+  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
+  non applicable si: auto entrepreneur . impôt . versement libératoire
+  période: aucune
   par défaut: barème standard
   formule:
     une possibilité:
@@ -3069,7 +3074,7 @@
     somme:
       - contrat salarié . rémunération . net imposable
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu
@@ -3080,7 +3085,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu par défaut
@@ -3153,7 +3158,8 @@
   description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
   formule:
     somme:
-      - revenu abattu
+      - revenu abattu par défaut
+      - auto entrepreneur . impôt . revenu abattu
       - contrat salarié . prime d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
@@ -3201,32 +3207,28 @@
   formule: revenu net de cotisations - impôt
 
 - espace: entreprise
-  nom: année d'activité
-  question: Quel est l'âge de l'entreprise en année d'activité ?
-  description: |
-    Pendant la première année d'activité, le créateur d'entreprise peut bénéficier de réductions de cotisations sociales sur sa rémunération, c'est l'ACRE.
-
-    Il doit pour cela contrôler son entreprise. C'est le cas pour une entreprise à un associé, et donc pour une auto-entreprise.
-
-    Pour les auto-entreprises, cette réduction est même prolongée pendant un total de 3 ans, de façon dégressive.
+  nom: date de création
+  question: Quand avez-vous crée votre entreprise ?
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - première année
-        - deuxième année
-        - troisième année
-        - régime de croisière
-  par défaut: non
+        - avant 2018
+        - avant 2019
+        - après 2019
+  par défaut: après 2019
 
-- espace: entreprise . année d'activité
-  nom: première année
-- espace: entreprise . année d'activité
-  nom: deuxième année
-- espace: entreprise . année d'activité
-  nom: troisième année
-- espace: entreprise . année d'activité
-  nom: régime de croisière
+- espace: entreprise . date de création
+  nom: avant 2018
+  titre: avant le 1er janvier 2018
+
+- espace: entreprise . date de création
+  nom: avant 2019
+  titre: avant le 1er janvier 2019
+
+- espace: entreprise . date de création
+  nom: après 2019
+  titre: après le 1er janvier 2019
 
 - espace: entreprise
   nom: chiffre d'affaires
@@ -3349,7 +3351,7 @@
 
 - espace: indépendant . cotisations et contributions
   nom: réduction ACRE
-  applicable si: entreprise . année d'activité = 'première année'
+  applicable si: entreprise . ACRE
   période: flexible
   formule:
     multiplication:
@@ -3638,16 +3640,13 @@
           - contrat salarié != oui
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - entreprise . année d'activité
-          - entreprise . année d'activité != 'première année'
-          - entreprise . catégorie d'activité = 'libérale'
           - indépendant
-      - toutes ces conditions:
-          - entreprise . année d'activité
-          - entreprise . année d'activité != 'première année'
-          - entreprise . année d'activité != 'deuxième année'
+          - entreprise . date de création = 'avant 2019'
           - entreprise . catégorie d'activité = 'libérale'
+      - toutes ces conditions:
           - auto entrepreneur
+          - entreprise . date de création = 'avant 2018'
+          - entreprise . catégorie d'activité = 'libérale'
 
   période: aucune
 
@@ -3998,7 +3997,7 @@
   formule:
     somme:
       - cotisations
-      - taxe pour frais de chambre
+      - TFC
       - contribution formation professionnelle
       - entreprise . prélèvements obligatoires
   références:
@@ -4006,7 +4005,9 @@
   période: flexible
 
 - espace: auto entrepreneur . cotisations et contributions
-  nom: taxe pour frais de chambre
+  nom: TFC
+  titre: Taxes pour frais de chambre
+  unité: €
   période: flexible
   note: |
     Nous n'avons pas intégré les exceptions suivantes :
@@ -4016,32 +4017,47 @@
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
   formule:
+    somme:
+      - commerce
+      - métiers
+
+- espace: auto entrepreneur . cotisations et contributions . TFC
+  nom: commerce
+  titre: taxe pour frais de chambre de commerce
+  période: flexible
+  unité: €
+  applicable si: entreprise . catégorie d'activité = 'commerciale ou industrielle'
+  formule:
     multiplication:
       assiette: base des cotisations
       taux:
         variations:
           - si:
-              toutes ces conditions:
-                - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . service ou vente = 'prestation de service'
-            alors: 0.48%
-          - si:
-              toutes ces conditions:
-                - entreprise . catégorie d'activité = 'artisanale'
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
-            alors: 0.22%
-          - si:
               une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
-          - si: entreprise . catégorie d'activité . libérale règlementée
-            alors: 0.2%
-          - sinon: 0.44%
+          - sinon: 0.044%
+
+- espace: auto entrepreneur . cotisations et contributions . TFC
+  nom: métiers
+  période: flexible
+  unité: €
+  titre: taxe pour frais de chambre des métiers
+  applicable si: entreprise . catégorie d'activité = 'artisanale'
+  formule:
+    multiplication:
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si: entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            alors: 0.22%
+          - sinon: 0.48%
 
 - espace: auto entrepreneur . cotisations et contributions
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
+  unité: €
   période: flexible
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
@@ -4070,6 +4086,7 @@
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   période: flexible
+  unité: €
   formule:
     barème:
       assiette: base des cotisations
@@ -4119,11 +4136,41 @@
       - sinon: 22%
 
 - espace: entreprise
-  nom: ACCRE obtenu
-  question: Avez-vous obtenu l'ACCRE lors de votre création d'entreprise ?
+  nom: ACRE
   description: |
-    Pour les entreprises créées avant 2019, la réduction de cotisation ACRE s'appelait ACCRE et n'était pas automatique : il fallait notamment être indemnisé par pôle-emploi et faire la demande.
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
+
+    *Durée*:
+    - **12 mois** pour les sociétés et entreprises individuelles
+    - **3 ans** pour les auto-entreprises
+
+    *Conditions d'obtention*:
+    - Pour les entreprises créées après 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
+    - Pour les entreprises créées avant 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+  question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
+
+- espace: entreprise . ACRE
+  nom: année
+  applicable si: auto entrepreneur
+  question: Quel est l'âge de l'entreprise ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins d'un an
+        - moins de deux ans
+        - moins de trois ans
+  par défaut: moins d'un an
+
+- espace: entreprise . ACRE . année
+  nom: moins d'un an
+
+- espace: entreprise . ACRE . année
+  nom: moins de deux ans
+
+- espace: entreprise . ACRE . année
+  nom: moins de trois ans
 
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
@@ -4133,37 +4180,39 @@
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: réduction ACRE
   titre: réduction ACRE
-  applicable si:
-    une de ces conditions:
-      - entreprise . année d'activité = 'première année'
-      - entreprise . ACCRE obtenu
+  applicable si: entreprise . ACRE
   période: flexible
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
-      - si: entreprise . année d'activité = 'première année'
+      - si: entreprise . ACRE . année = 'moins d'un an'
         alors: 75%
-      - si: entreprise . année d'activité = 'deuxième année'
+      - si: entreprise . ACRE . année = 'moins de deux ans'
         alors: 50%
-      - si: entreprise . année d'activité = 'troisième année'
+      - si: entreprise . ACRE . année = 'moins de trois ans'
         alors: 25%
-      - sinon: 0%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
-
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 - espace: auto entrepreneur . cotisations et contributions . cotisations
   nom: plafond ACRE
 
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
+- espace: auto entrepreneur
+  nom: impôt
+
 - espace: auto entrepreneur . impôt
   nom: abattement
   période: flexible
+  unité: '€'
   formule:
-    multiplication:
-      assiette: base des cotisations
-      taux: taux
+    le maximum de:
+      - multiplication:
+          assiette: base des cotisations
+          taux: taux
+      - 305
 
 - espace: auto entrepreneur . impôt . abattement
   nom: taux inversé
@@ -4184,14 +4233,64 @@
         alors: 71%
       - sinon: 50%
 
-- espace: auto entrepreneur
-  nom: impôt
+- espace: auto entrepreneur . impôt
+  nom: versement libératoire
+  description: >
+    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
+    Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
+  question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
+  par défaut: non
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - impôt . revenu fiscal de référence [annuel] > 27086
+          - versement libératoire
+      message: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
+      niveau: info
+  période: aucune
+
+- espace: auto entrepreneur . impôt . versement libératoire
+  nom: montant
+  titre: versement libératoire auto entrepreneur
+  description: |
+    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité :
+
+    - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la prestation d’hébergement (BIC)
+    - 1,7% si l’activité est une activité de services relevant des bénéfices industriels et commerciaux (BIC)
+    - 2,2% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
+  unité: €
+  période: flexible
+
+  formule:
+    multiplication:
+      assiette: base des cotisations
+      taux:
+        variations:
+          - si:
+              une de ces conditions:
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . restauration ou hébergement
+            alors: 1%
+          - si: entreprise . catégorie d'activité . service ou vente = 'service'
+            alors: 1.7%
+          - si: entreprise . catégorie d'activité = 'libérale'
+            alors: 2.2%
+
+- espace: auto entrepreneur . impôt
+  nom: revenu imposable
+  non applicable si: versement libératoire
+  période: flexible
+  formule: revenu abattu
 
 - espace: auto entrepreneur . impôt
   nom: revenu abattu
   titre: revenu abattu auto-entrepreneur
   période: flexible
-  formule: base des cotisations - abattement
+  formule:
+    allègement:
+      assiette: base des cotisations
+      abattement: abattement
+
 - nom: protection sociale
   description: >
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents
@@ -4409,7 +4508,7 @@
   formule:
     le maximum de:
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu abattu
+      - auto entrepreneur . impôt . revenu imposable
       - contrat salarié . rémunération . brut
 
 - espace: protection sociale . retraite

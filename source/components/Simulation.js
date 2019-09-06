@@ -1,9 +1,9 @@
 import { T } from 'Components'
 import Controls from 'Components/Controls'
 import Conversation from 'Components/conversation/Conversation'
-import ResultReliability from 'Components/conversation/ResultReliability'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
+import SearchButton from 'Components/SearchButton'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -11,7 +11,6 @@ import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import { simulationProgressSelector } from 'Selectors/progressSelectors'
 import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
-import SearchButton from 'Components/SearchButton'
 
 export default connect(state => ({
 	firstStepCompleted: firstStepCompletedSelector(state),
@@ -35,9 +34,17 @@ export default connect(state => ({
 								justifyContent: 'space-between',
 								marginTop: '1.2rem',
 								marginBottom: '0.6rem',
-								alignItems: 'flex-end'
+								alignItems: 'baseline'
 							}}>
-							<ResultReliability progress={progress} />
+							{progress < 1 ? (
+								<small css="padding: 0.4rem 0">
+									<T k="simulateurs.précision.défaut">
+										Affinez la simulation en répondant aux questions :
+									</T>
+								</small>
+							) : (
+								<span />
+							)}
 							<SeeAnswersButton />
 						</div>
 						<div className="ui__ full-width choice-group">

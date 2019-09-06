@@ -74,7 +74,7 @@ describe('library', function() {
 
 		expect(revenuDisponible).to.be.closeTo(2309, 1)
 		expect(dividendes).to.be.closeTo(2507, 1)
-	})
+	}).timeout(5000)
 
 	it('should let the user define a simplified revenue tax system', function() {
 		let règles = `

@@ -48,15 +48,19 @@ export let SalaireNetSection = ({ getRule }) => {
 				<T>Salaire net</T>
 			</h4>
 			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
-			<Line rule={getRule('contrat salarié . rémunération . net')} />
 			{avantagesEnNature.nodeValue !== 0 ? (
 				<>
+					{/* Salaire net de cotisations */}
+					<Line
+						rule={getRule(
+							'contrat salarié . rémunération . net de cotisations'
+						)}
+					/>
 					{/* Avantages en nature */}
 					<Line negative rule={avantagesEnNature} />
-					{/* Salaire net */}
-					<Line rule={getRule('contrat salarié . rémunération . net')} />
 				</>
 			) : null}
+			<Line rule={getRule('contrat salarié . rémunération . net')} />
 
 			<Line negative rule={getRule('impôt')} />
 			<Line

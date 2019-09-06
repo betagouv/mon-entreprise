@@ -101,7 +101,7 @@ const groupByBranche = flatRules => (
 	const cotisationsMap = cotisations.reduce(
 		(acc, cotisation) => ({
 			...acc,
-			[cotisation.branche]: [cotisation, ...(acc[cotisation.branche] || [])]
+			[cotisation.branche]: [...(acc[cotisation.branche] || []), cotisation]
 		}),
 		{}
 	)

@@ -141,3 +141,9 @@ status = 200
 [context."migration-embauche".environment]
   EN_SITE = "https://deploy-preview-520--syso.netlify.com${path}?s=m"
   FR_SITE = "https://deploy-preview-520--syso.netlify.com${path}"
+
+# Redirect for google SEO. See also _redirects file
+[[redirects]]
+from = "/documentation/salaire/*"
+to = "/documentation/rémunération/:splat"
+status = 302

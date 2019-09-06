@@ -8,9 +8,9 @@ objectifs:
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité
+    Versement libératoire: auto entrepreneur . impôt . versement libératoire
     Impôt sur le revenu: impôt . méthode de calcul
-    ACRE: entreprise . année d'activité
-    Charges: entreprise . charges
+    ACRE: entreprise . ACRE
   liste noire:
     - entreprise . charges
 

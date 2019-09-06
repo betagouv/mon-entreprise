@@ -2,22 +2,22 @@
 
 import Observer from '@researchgate/react-intersection-observer'
 import withColours from 'Components/utils/withColours'
+import Value from 'Components/Value'
+import { findRuleByDottedName } from 'Engine/rules'
 import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
-import répartitionSelector from 'Selectors/repartitionSelectors'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import Value from 'Components/Value'
+import répartitionSelector from 'Selectors/repartitionSelectors'
 import { isIE } from '../utils'
 import './Distribution.css'
 import './PaySlip'
 import RuleLink from './RuleLink'
 import type { ThemeColours } from 'Components/utils/withColours'
 import type { Répartition } from 'Types/ResultViewTypes.js'
-import { findRuleByDottedName } from 'Engine/rules'
 
 type Props = ?Répartition & {
 	colours: ThemeColours
@@ -151,7 +151,7 @@ let ChartItemBar = ({ styles, colour, montant, total }) => (
 		<div
 			css={`
 				font-weight: bold;
-				margin-left: 1em;
+				margin-left: 1rem;
 				color: var(--textColourOnWhite);
 			`}>
 			<Value maximumFractionDigits={0} unit="€">

@@ -19,11 +19,10 @@ objectifs secondaires:
 
 questions:
   à l'affiche:
-    ACRE: entreprise . année d'activité
+    ACRE: entreprise . ACRE
     Commune: établissement . localisation
     Impôt sur le revenu: impôt . méthode de calcul
     Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
-    Effectif: entreprise . effectif
   liste noire:
     - contrat salarié . rémunération . avantages en nature
     - entreprise . charges
@@ -32,6 +31,9 @@ questions:
     - entreprise . hôtel café restaurant
   non prioritaires:
     - entreprise . établissement bancaire
+    - entreprise . effectif
+    - établissement . localisation
+    - entreprise . ratio alternants
     - contrat salarié . indemnité kilométrique vélo . active
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés

@@ -136,6 +136,7 @@
 }
 .ui__.link-button {
 	text-decoration: underline;
+	text-underline-offset: 4px;
 	color: rgb(41, 117, 209);
 	color: var(--colour);
 }

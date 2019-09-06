@@ -36,7 +36,16 @@ export default compose(
 				inputError = dirty && error,
 				submitDisabled = !dirty || inputError
 			return (
-				<span>
+				<>
+					<div css="width: 100%">
+						<InputSuggestions
+							suggestions={this.props.suggestions}
+							onFirstClick={value => this.props.setFormValue('' + value)}
+							onSecondClick={() => this.props.submit('suggestion')}
+							rulePeriod={this.props.rulePeriod}
+						/>
+					</div>
+
 					<div className="answer">
 						<input
 							type="text"
@@ -50,7 +59,6 @@ export default compose(
 							className={classnames({ suffixed })}
 							id={'step-' + dottedName}
 							inputMode="numeric"
-							placeholder={t('votre réponse')}
 							style={{ border: `1px solid ${colours.textColourOnWhite}` }}
 						/>
 						{suffixed && (
@@ -73,14 +81,9 @@ export default compose(
 						)}
 						<SendButton {...{ disabled: submitDisabled, error, submit }} />
 					</div>
-					<InputSuggestions
-						suggestions={this.props.suggestions}
-						onFirstClick={value => this.props.setFormValue('' + value)}
-						onSecondClick={() => this.props.submit('suggestion')}
-						rulePeriod={this.props.rulePeriod}
-					/>
+
 					{inputError && <span className="step-input-error">{error}</span>}
-				</span>
+				</>
 			)
 		}
 	}

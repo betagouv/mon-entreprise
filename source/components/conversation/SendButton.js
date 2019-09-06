@@ -24,36 +24,15 @@ export default compose(withTranslation())(
 		render() {
 			let { disabled } = this.props
 			return (
-				<div
-					css={`
-						margin-left: 1rem;
-						.keyIcon {
-							opacity: 0;
-						}
-						${!disabled &&
-							`
-							@media (hover) {
-
-							:hover .keyIcon {
-							opacity: 1
-							}
-
-
-							}`}
-					`}
-					className="sendWrapper">
-					<button
-						className="ui__ button plain"
-						disabled={disabled}
-						onClick={() => this.getAction()('accept')}>
-						<span className="text">
-							<Trans>Suivant</Trans> →
-						</span>
-					</button>
-					<span className="keyIcon">
-						<Trans>Entrée</Trans>↵
+				<button
+					className="ui__ button plain"
+					css="margin-left: 1.2rem"
+					disabled={disabled}
+					onClick={() => this.getAction()('accept')}>
+					<span className="text">
+						<Trans>Suivant</Trans> →
 					</span>
-				</div>
+				</button>
 			)
 		}
 	}

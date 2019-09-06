@@ -48,21 +48,6 @@
 	opacity: 1;
 }
 
-.step-question h1::before {
-	content: '›';
-}
-@media (min-width: 500px) {
-	.step-question h1::before {
-		position: absolute;
-		left: -1.1rem;
-	}
-}
-
-.step-question h1 {
-	font-size: 1.3rem;
-	line-height: 2.2rem;
-}
-
 .unfoldedHeader {
 	display: flex;
 	justify-content: space-between;
@@ -97,7 +82,6 @@
 }
 
 .step fieldset {
-	margin: 0.8em 0;
 	display: flex;
 	justify-content: flex-end;
 	flex-wrap: wrap;
@@ -122,18 +106,12 @@
 	padding-right: 0.6em;
 	padding-top: 0.6em;
 	padding-left: 2em;
-	margin-left: 1em;
+	margin-left: 1rem;
 }
 .step.question .variant > div {
 	padding-right: 0.6em;
 	font-weight: 600;
 	text-align: right;
-}
-
-.step.question fieldset > div {
-	display: flex;
-	justify-content: flex-end;
-	flex-wrap: wrap;
 }
 
 .step.question fieldset span {
@@ -154,12 +132,9 @@
 	text-decoration: underline;
 }
 
-.step.question .sendWrapper {
-	float: right;
-}
 .step label.radio {
 	text-align: center;
-	margin-left: 1em;
+	margin-left: 1rem;
 	/* margin-top: 1em; */
 	cursor: pointer;
 	background: none;
@@ -211,10 +186,10 @@
 }
 
 .step input.suffixed {
-	padding: 0.1em 1em 0;
+	width: 5rem;
+	color: var(--colour);
 	margin: 0.6rem 0;
 	border-radius: 0.2em;
-	font-size: 120%;
 }
 
 .step input:not(.suffixed) {
@@ -222,11 +197,9 @@
 }
 
 .step label.suffix {
-	font-size: 110%;
 	vertical-align: baseline;
 	transition: color 0.1s;
-	margin: 0 0.6em;
-	color: rgba(0, 0, 0, 0.8);
+	margin-left: 0.6rem;
 }
 .step input .step input[type='text']:focus,
 .step input[type='number']:focus {
@@ -265,10 +238,6 @@
 	vertical-align: middle;
 }
 
-.sendWrapper {
-	position: relative;
-}
-
 .step .send {
 	padding: 0.1em 0.4em 0em 1em;
 	background: none;
@@ -294,6 +263,7 @@
 }
 
 .answer {
+	margin-top: 0.6rem;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
@@ -392,25 +362,6 @@ for the appearing element to appear without stacking up below the first one */
 
 .foldedQuestion:last-of-type .borderWrapper {
 	border-bottom: none;
-}
-
-.keyIcon {
-	position: absolute;
-	font-size: 80%;
-	text-align: center;
-	font-weight: bold;
-	background: #ddd;
-	color: white;
-	margin-left: 0.6em;
-	padding: 0.5em 0.4em;
-	border-radius: 0.2em;
-	transition: 0.2s opacity;
-}
-
-@media screen and (max-width: 860px) {
-	.keyIcon {
-		display: none;
-	}
 }
 
 .conversationContainer {
