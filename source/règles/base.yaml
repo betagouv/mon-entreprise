@@ -3032,7 +3032,7 @@
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
-  # bizarrement, cette condition ne semble pas marcher, on se résoud donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
+  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: auto entrepreneur . impôt . versement libératoire
   période: aucune
   par défaut: barème standard
@@ -4265,11 +4265,15 @@
       assiette: base des cotisations
       taux:
         variations:
+          - si:
+              une de ces conditions:
+                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . restauration ou hébergement
+            alors: 1%
           - si: entreprise . catégorie d'activité . service ou vente = 'service'
             alors: 1.7%
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
-          - sinon: 1%
 
 - espace: auto entrepreneur . impôt
   nom: revenu imposable
