@@ -3008,25 +3008,18 @@
   unité: €
   formule:
     somme:
-      - base
+      - variations:
+        - si: méthode de calcul . barème standard
+          alors: impôt sur le revenu à payer
+        - si: méthode de calcul . taux neutre
+          alors: impôt sur le revenu au taux neutre
+        - si: méthode de calcul . taux personnalisé
+          alors:
+            multiplication:
+              assiette: revenu imposable
+              taux: taux personnalisé
       - CEHR
       - auto entrepreneur . impôt . versement libératoire . montant
-
-- espace: impôt
-  nom: base
-  période: flexible
-  unité: €
-  formule:
-    variations:
-      - si: méthode de calcul . barème standard
-        alors: impôt sur le revenu à payer
-      - si: méthode de calcul . taux neutre
-        alors: impôt sur le revenu au taux neutre
-      - si: méthode de calcul . taux personnalisé
-        alors:
-          multiplication:
-            assiette: revenu imposable
-            taux: taux personnalisé
 
 - espace: impôt
   nom: méthode de calcul
@@ -3038,6 +3031,9 @@
 
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  # applicable si: revenu imposable > 0
+  # bizarrement, cette condition ne semble pas marcher, on se résoud donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
+  non applicable si: auto entrepreneur . impôt . versement libératoire
   période: aucune
   par défaut: barème standard
   formule:
