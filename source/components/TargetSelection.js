@@ -3,15 +3,18 @@ import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
+import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
+import { serialiseUnit } from 'Engine/units'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { Component, PureComponent } from 'react'
 import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
@@ -22,7 +25,6 @@ import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
-import { serialiseUnit } from 'Engine/units'
 
 export default compose(
 	withTranslation(),
@@ -58,7 +60,9 @@ export default compose(
 			let { secondaryObjectives, analysis } = this.props
 			if (!analysis) return []
 			return analysis.targets.filter(
-				t => !secondaryObjectives.includes(t.dottedName)
+				t =>
+					!secondaryObjectives.includes(t.dottedName) &&
+					t.dottedName !== 'contrat salarié . aides employeur'
 			)
 		}
 		componentDidMount() {
@@ -310,6 +314,7 @@ let TargetInputOrValue = withLanguage(
 						}}
 					/>
 				)}
+				{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 			</span>
 		)
 	}
@@ -358,3 +363,26 @@ const TargetValue = connect(
 		}
 	}
 )
+
+const AidesGlimpse = compose(
+	withRouter,
+	connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
+)(({ analysis: { targets }, colours }) => {
+	const aides = targets?.find(
+		t => t.dottedName === 'contrat salarié . aides employeur'
+	)
+	if (!aides || !aides.nodeValue) return null
+	return (
+		<Animate.appear>
+			<div className="aidesGlimpse">
+				<RuleLink {...aides}>
+					-{' '}
+					<strong>
+						<AnimatedTargetValue value={aides.nodeValue} />
+					</strong>{' '}
+					<T>d'aides</T> {emoji(aides.icons)}
+				</RuleLink>
+			</div>
+		</Animate.appear>
+	)
+})

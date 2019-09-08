@@ -756,6 +756,61 @@
     - statut JEI
     - régime des impatriés
 
+- espace: contrat salarié . apprentissage
+  nom: diplôme préparé
+  question: Quel type de diplôme l'apprenti prépare-t-il ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - niveau bac ou moins
+        - niveau supérieur au bac
+
+- espace: contrat salarié . apprentissage . diplôme préparé
+  nom: niveau bac ou moins
+  titre: Diplôme d'un niveau inférieur ou égal au bac
+  formule: diplôme préparé = 'niveau bac ou moins'
+  description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV (Bac Pro, BP, BTM)
+
+- espace: contrat salarié . apprentissage . diplôme préparé
+  nom: niveau supérieur au bac
+  titre: Diplôme d'un niveau supérieur au bac
+  formule: diplôme préparé = 'niveau supérieur au bac'
+  description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
+
+- espace: contrat salarié . apprentissage
+  nom: ancienneté
+  question: Depuis combien de temps l'apprenti est-il employé ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins d'un an
+        - moins de deux ans
+        - moins de trois ans
+        - moins de quatre ans
+  par défaut: moins d'un an
+  contrôles:
+    - si: moins de quatre ans
+      niveau: information
+      message: La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de travailleur handicapé est reconnue à l'apprenti.
+
+- espace: contrat salarié . apprentissage . ancienneté
+  nom: moins d'un an
+  formule: ancienneté = 'moins d'un an'
+
+- espace: contrat salarié . apprentissage . ancienneté
+  nom: moins de deux ans
+  formule: ancienneté = 'moins de deux ans'
+
+- espace: contrat salarié . apprentissage . ancienneté
+  nom: moins de trois ans
+  formule: ancienneté = 'moins de trois ans'
+
+- espace: contrat salarié . apprentissage . ancienneté
+  nom: moins de quatre ans
+  formule: ancienneté = 'moins de quatre ans'
+
 - espace: contrat salarié
   nom: stage
   description: |
@@ -1176,7 +1231,7 @@
 - espace: contrat salarié
   nom: SMIC temps plein
   période: mois
-  formule: 
+  formule:
     multiplication:
       assiette: temps de travail . base légale * période . semaines par mois
       facteur: SMIC horaire
@@ -1812,9 +1867,34 @@
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
 
-    Le simulateur n'intègre pas les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
-  formule: 0
+    Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
+  formule:
+    somme:
+      - aide à l'embauche d'apprentis
   note:
+
+- espace: contrat salarié . aides employeur
+  nom: aide à l'embauche d'apprentis
+  description: |
+    Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
+
+    Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . effectif < 250
+      - apprentissage
+      - contrat salarié . apprentissage . diplôme préparé . niveau bac ou moins
+  période: année
+  unité: €
+  formule:
+    variations:
+      - si: apprentissage . ancienneté = 'moins d'un an'
+        alors: 4125
+      - si: apprentissage . ancienneté = 'moins de deux ans'
+        alors: 2000
+      - sinon: 1200
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
 - espace: contrat salarié
   nom: salaire
@@ -3173,15 +3253,15 @@
   formule:
     somme:
       - variations:
-        - si: méthode de calcul . barème standard
-          alors: impôt sur le revenu à payer
-        - si: méthode de calcul . taux neutre
-          alors: impôt sur le revenu au taux neutre
-        - si: méthode de calcul . taux personnalisé
-          alors:
-            multiplication:
-              assiette: revenu imposable
-              taux: taux personnalisé
+          - si: méthode de calcul . barème standard
+            alors: impôt sur le revenu à payer
+          - si: méthode de calcul . taux neutre
+            alors: impôt sur le revenu au taux neutre
+          - si: méthode de calcul . taux personnalisé
+            alors:
+              multiplication:
+                assiette: revenu imposable
+                taux: taux personnalisé
       - CEHR
       - auto entrepreneur . impôt . versement libératoire . montant
 
