@@ -140,6 +140,9 @@
 	color: rgb(41, 117, 209);
 	color: var(--colour);
 }
+.ui__.link-button.active {
+	font-weight: bold;
+}
 
 .ui__.dashed-button::before {
 	padding: 0.8rem 0;

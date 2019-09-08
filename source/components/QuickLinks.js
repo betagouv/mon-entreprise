@@ -3,7 +3,7 @@ import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
 import { compose, contains, filter, reject, toPairs } from 'ramda'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import {
@@ -18,6 +18,7 @@ type OwnProps = {
 type Props = OwnProps & {
 	goToQuestion: string => void,
 	location: Location,
+	currentQuestion: string,
 	nextSteps: Array<string>,
 	quickLinksToHide: Array<string>,
 	show: boolean
@@ -25,6 +26,7 @@ type Props = OwnProps & {
 
 const QuickLinks = ({
 	goToQuestion,
+	currentQuestion,
 	nextSteps,
 	quickLinks,
 	quickLinksToHide
@@ -41,18 +43,17 @@ const QuickLinks = ({
 	return (
 		!!links.length && (
 			<span>
-				<small>
-					<T k="quicklinks.autres">Autres questions :</T>
-				</small>
+				<small>Questions :</small>
 				{links.map(([label, dottedName]) => (
-					<Fragment key={dottedName}>
-						<button
-							className="ui__ link-button"
-							css="margin: 0 0.4rem !important"
-							onClick={() => goToQuestion(dottedName)}>
-							<T k={'quicklinks.' + label}>{label}</T>
-						</button>
-					</Fragment>
+					<button
+						key={dottedName}
+						className={`ui__ link-button ${
+							dottedName === currentQuestion ? 'active' : ''
+						}`}
+						css="margin: 0 0.4rem !important"
+						onClick={() => goToQuestion(dottedName)}>
+						<T k={'quicklinks.' + label}>{label}</T>
+					</button>
 				))}{' '}
 				{/* <button className="ui__ link-button">Voir la liste</button> */}
 			</span>
@@ -66,12 +67,10 @@ export default (compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
+			currentQuestion: currentQuestionSelector(state),
 			nextSteps: nextStepsSelector(state),
 			quickLinks: state.simulation?.config.questions?.["à l'affiche"],
-			quickLinksToHide: [
-				...state.conversationSteps.foldedSteps,
-				currentQuestionSelector(state)
-			]
+			quickLinksToHide: state.conversationSteps.foldedSteps
 		}),
 		{
 			goToQuestion
