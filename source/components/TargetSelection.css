@@ -67,7 +67,7 @@
 	text-decoration: none;
 }
 #targetSelection .optionTitle a:hover,
-#targetSelection #aidesGlimpse a:hover {
+#targetSelection .aidesGlimpse a:hover {
 	text-decoration: underline;
 }
 
@@ -91,6 +91,19 @@
 	font-size: 125%;
 	margin-left: 0.6rem;
 	text-align: right;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+#targetSelection .aidesGlimpse {
+	font-size: 70%;
+	display: flex;
+}
+#targetSelection .aidesGlimpse a {
+	display: inline-block;
+	margin: -0.25rem 0;
+	text-decoration: none;
 }
 
 #targetSelection .editable:not(.attractClick) {

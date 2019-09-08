@@ -19,7 +19,8 @@ const RuleLink = ({
 	title,
 	colours: { colour },
 	style,
-	sitePaths
+	sitePaths,
+	children
 }: Props) => {
 	const newPath =
 		sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
@@ -29,7 +30,7 @@ const RuleLink = ({
 			to={newPath}
 			className="rule-link"
 			style={{ color: colour, ...style }}>
-			{title || nameLeaf(dottedName)}
+			{children || title || nameLeaf(dottedName)}
 		</Link>
 	)
 }

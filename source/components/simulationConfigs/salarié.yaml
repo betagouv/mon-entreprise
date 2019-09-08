@@ -1,5 +1,6 @@
 objectifs:
   - contrat salarié . rémunération . total
+  - contrat salarié . aides employeur
   - contrat salarié . rémunération . brut de base . équivalent temps plein
   - contrat salarié . rémunération . brut de base
   - contrat salarié . rémunération . net
@@ -16,7 +17,6 @@ questions:
     Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     Impôt: impôt . méthode de calcul
     Temps partiel: contrat salarié . temps de travail . temps partiel
-
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
     Avantages: contrat salarié . rémunération . avantages en nature
