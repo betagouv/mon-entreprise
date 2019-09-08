@@ -732,6 +732,7 @@
     - contrat salarié
     - chômage
     - réduction générale
+    - allocations familiales . taux réduit
     - AGS
     - APEC
     - contribution au dialogue social
@@ -764,6 +765,7 @@
     - statut cadre
     - statut JEI
     - réduction générale
+    - allocations familiales . taux réduit
     - contribution d'équilibre général
     - retraite complémentaire
     - chômage
@@ -2081,7 +2083,8 @@
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
   par défaut: non
   rend non applicable:
-    - contrat salarié . réduction générale
+    - réduction générale
+    - allocations familiales . taux réduit
 
 - espace: contrat salarié . statut JEI
   nom: exonération de cotisations
@@ -2325,17 +2328,18 @@
       assiette: cotisations . assiette
       taux:
         variations:
-          - si:
-              toutes ces conditions:
-                - cotisations . assiette < plafond de réduction
-                - statut JEI != oui
-                - assimilé salarié != oui
+          - si: taux réduit
             alors: 3.45%
           - sinon: 5.25%
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
 
 - espace: contrat salarié . allocations familiales
+  nom: taux réduit
+  période: flexible
+  formule: cotisations . assiette < plafond de réduction
+
+- espace: contrat salarié . allocations familiales . taux réduit
   nom: plafond de réduction
   titre: Plafond de la réduction des allocations familiales
   période: flexible
