@@ -39,6 +39,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 			variableHasCond =
 				variable['applicable si'] != null ||
 				variable['non applicable si'] != null ||
+				variable.isDisabledBy.length > 1 ||
 				findParentDependency(parsedRules, variable),
 			situationValue = getSituationValue(situation, dottedName, variable),
 			needsEvaluation =

@@ -2,12 +2,14 @@
 import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import withLanguage from 'Components/utils/withLanguage'
-import { compose, contains, reject, toPairs } from 'ramda'
+import { compose, contains, filter, reject, toPairs } from 'ramda'
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { currentQuestionSelector } from 'Selectors/analyseSelectors'
-
+import {
+	currentQuestionSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
 import type { Location } from 'react-router'
 
 type OwnProps = {
@@ -16,16 +18,23 @@ type OwnProps = {
 type Props = OwnProps & {
 	goToQuestion: string => void,
 	location: Location,
+	nextSteps: Array<string>,
 	quickLinksToHide: Array<string>,
 	show: boolean
 }
 
-const QuickLinks = ({ goToQuestion, quickLinks, quickLinksToHide }: Props) => {
+const QuickLinks = ({
+	goToQuestion,
+	nextSteps,
+	quickLinks,
+	quickLinksToHide
+}: Props) => {
 	if (!quickLinks) {
 		return null
 	}
 	const links = compose(
 		toPairs,
+		filter(dottedName => contains(dottedName, nextSteps)),
 		reject(dottedName => contains(dottedName, quickLinksToHide))
 	)(quickLinks)
 
@@ -57,6 +66,7 @@ export default (compose(
 	connect(
 		(state, props) => ({
 			key: props.language,
+			nextSteps: nextStepsSelector(state),
 			quickLinks: state.simulation?.config.questions?.["à l'affiche"],
 			quickLinksToHide: [
 				...state.conversationSteps.foldedSteps,
