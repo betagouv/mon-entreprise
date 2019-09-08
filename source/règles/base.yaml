@@ -738,6 +738,8 @@
     - temps de travail . temps partiel
     - temps de travail . heures supplémentaires
     - statut JEI
+    - régime des impatriés
+    - entreprise . association non lucrative
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
@@ -749,6 +751,9 @@
   rend non applicable:
     - CSG
     - CRDS
+    - statut cadre
+    - statut JEI
+    - régime des impatriés
 
 - espace: contrat salarié
   nom: stage
@@ -756,6 +761,7 @@
     Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
   formule: contrat salarié = 'stage'
   rend non applicable:
+    - statut cadre
     - statut JEI
     - réduction générale
     - contribution d'équilibre général
@@ -764,10 +770,11 @@
     - complémentaire santé
     - contribution au dialogue social
     - temps de travail . temps partiel
+    - temps de travail . heures supplémentaires
+    - régime des impatriés
 
 - espace: contrat salarié . stage
   nom: gratification minimale
-  applicable si: stage
   période: flexible
   formule: 15% * plafond sécurité sociale temps plein
   références:
