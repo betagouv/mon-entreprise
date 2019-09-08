@@ -1940,6 +1940,16 @@
       API: localisation
       chemin: departement . nom
 
+- espace: établissement . localisation
+  nom: outre-mer
+  applicable si:
+    une de ces conditions:
+      - établissement . localisation . département = 'Guadeloupe'
+      - établissement . localisation . département = 'Martinique'
+      - établissement . localisation . département = 'Guyane'
+      - établissement . localisation . département = 'La Réunion'
+      - établissement . localisation . département = 'Mayotte'
+
 - espace: contrat salarié
   nom: temps de travail
   unité: heures
@@ -2674,17 +2684,27 @@
   nom: formation professionnelle
   cotisation:
     dû par: employeur
-    collecteur: OPCA
+    collecteur: OPCO
     branche: formation
     # TODO majoration pour les entreprises de travail temporaire
     #
-  description: Cette contribution obligatoire est à verser à l'OPCA désigné par la branche conventionnelle de l'entreprise, ou à défaut à un OPCA interprofessionnel.
+  description: Cette contribution obligatoire est collectée par l'OPCO (opérateurs de compétences) désigné par la branche conventionnelle de l'entreprise, ou à défaut à un OPCO interprofessionnel.
   note: |
     Une part supplémentaire peut-être obligatoire en fonction des accords collectifs d'une entreprise.
 
     > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
 
+    Le taux est porté à 1,3 % pour les entreprises de travail temporaire. Par ailleurs en cas de franchissement du seuil d'effectifs de 10 salariés, des taux spécifiques s'appliquent afin de limiter la hausse de la contribution à la formation professionnelle :
+
+    - taux de **0,55 %** pour le franchissement en année **N, N+1 et N+2**
+    - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour les entreprises de travail temporaire)
+    - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les entreprises de travail temporaire)
+    - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
   période: flexible
+  non applicable si:
+    toutes ces conditions:
+      - entreprise . effectif < 11
+      - apprentissage
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2696,6 +2716,8 @@
             taux: 1%
   références:
     fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
+    Bercy infos: https://www.economie.gouv.fr/entreprises/contribution-formation-professionnelle
+    Taux réduit: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037387044&cidTexte=LEGITEXT000006072050&dateTexte=20190101
 
 - espace: contrat salarié
   nom: maladie
@@ -2818,11 +2840,14 @@
 - espace: contrat salarié
   nom: taxe d'apprentissage
   cotisation:
-    destinataire: Organisme Collecteur de Taxe d'Apprentissage (OCTA)
+    destinataire: Opérateurs de compétences (OPCO)
     branche: formation
     dû par: employeur
   description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
-
+  non applicable si:
+    toutes ces conditions:
+      - entreprise . effectif < 11
+      - apprentissage
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
     csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
@@ -2831,23 +2856,42 @@
   période: flexible
   formule:
     somme:
-      - taxe d'apprentissage de base
-      - contribution supplémentaire à l'apprentissage
+      - base
+      - contribution supplémentaire
 
-- espace: contrat salarié
-  nom: taxe d'apprentissage de base
+- espace: contrat salarié . taxe d'apprentissage
+  nom: assiette
+  titre: assiette de la taxe d'apprentissage
+  période: flexible
+  description: Le salaire des apprentis est partiellement exonéré dans la base de calcul de la taxe d'apprentissage.
+  formule:
+    variations:
+      - si: apprentissage
+        alors:
+          allègement:
+            assiette: cotisations . assiette
+            abattement:
+              variations:
+                - si: établissement . localisation . outre-mer
+                  alors: 20% * SMIC
+                - sinon: 11% * SMIC
+      - sinon: cotisations . assiette
+
+- espace: contrat salarié . taxe d'apprentissage
+  nom: base
+  titre: taxe d'apprentissage de base
   période: flexible
   formule:
     multiplication:
-      assiette: cotisations . assiette
+      assiette: assiette
       taux:
         variations:
           - si: régime alsace moselle
             alors: 0.44%
           - sinon: 0.68%
 
-- espace: contrat salarié
-  nom: contribution supplémentaire à l'apprentissage
+- espace: contrat salarié . taxe d'apprentissage
+  nom: contribution supplémentaire
 
   applicable si:
     toutes ces conditions:
@@ -2857,7 +2901,7 @@
   période: flexible
   formule:
     multiplication:
-      assiette: cotisations . assiette
+      assiette: assiette
 
       # exception:
       #   si: régime géographique = Alsace-Moselle
