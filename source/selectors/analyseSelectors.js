@@ -282,7 +282,8 @@ export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
 		state => state.simulation?.config.questions,
-		state => state.conversationSteps.foldedSteps
+		state => state.conversationSteps.foldedSteps,
+		formattedSituationSelector
 	],
 	(
 		mv,
@@ -291,7 +292,8 @@ export let nextStepsSelector = createSelector(
 			uniquement: only,
 			'liste noire': blacklist = []
 		} = {},
-		foldedSteps = []
+		foldedSteps = [],
+		situation
 	) => {
 		let nextSteps = difference(getNextSteps(mv), foldedSteps)
 
@@ -300,9 +302,16 @@ export let nextStepsSelector = createSelector(
 			nextSteps = difference(nextSteps, blacklist)
 		}
 
+		// L'ajout de la réponse permet de traiter les questions dont la réponse est "une possibilité", exemple "contrat salarié . cdd"
+		let lastStep = last(foldedSteps),
+			lastStepWithAnswer = situation[lastStep]
+				? [lastStep, situation[lastStep]].join(' . ')
+				: lastStep
+
 		nextSteps = sortBy(
 			question =>
-				similarity(question, last(foldedSteps)) + notPriority.indexOf(question),
+				similarity(question, lastStepWithAnswer) +
+				notPriority.indexOf(question),
 			nextSteps
 		)
 
