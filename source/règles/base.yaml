@@ -3,6 +3,14 @@
   une possibilité:
     - mois
     - année
+
+- espace: période
+  nom: jours ouvrés moyen par mois
+  période: mois
+  unité: jours
+  formule: 21
+  note: On retient 21 comme nombre de jours ouvrés moyen par mois
+
 - nom: contrat salarié
   icônes: 📄
   question: Activité salariée ?
@@ -145,6 +153,7 @@
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
   période: mois
+  unité: €
 
   non applicable si:
     une de ces conditions:
@@ -215,16 +224,16 @@
 
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: proportion congés non pris
+  unité: '%'
   formule: congés non pris / congés dus en jours ouvrés
 
 - espace: contrat salarié . CDD
   nom: congés dus en jours ouvrés
-  unité: jours ouvré
   formule: contrat salarié . congés dus par mois * durée contrat
 
 - espace: contrat salarié
   nom: congés dus par mois
-  unité: jours ouvré
+  unité: jours/mois
   formule: 25 / 12
 
 - espace: contrat salarié . CDD . compensation pour congés non pris
@@ -238,10 +247,8 @@
 
 - espace: contrat salarié . CDD . compensation pour congés non pris
   nom: salaire journalier
-  unité: jour ouvré
   période: aucune
-  formule: assiette mensuelle / 21
-  note: On retient 21 comme nombre de jours ouvrés moyens par mois
+  formule: assiette mensuelle / période . jours ouvrés moyen par mois
 
 - espace: contrat salarié . CDD
   nom: prime de fin de contrat
