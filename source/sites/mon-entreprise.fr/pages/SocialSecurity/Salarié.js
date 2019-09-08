@@ -71,7 +71,7 @@ Vous pouvez utiliser notre simulateur pour convertir le **salaire brut en net** 
 
 ![Salaire net et brut](${urlIllustrationNetBrut})
 
-Par ailleurs depuis 2019, l'[impôt sur le revenu](/documentation/impôt/impôt-sur-le-revenu) est prélevé à la source. Pour ce faire, la direction générale des finances publiques (DGFiP) transmet à l'employeur le taux d'imposition calculé à partir de la déclaration de revenu du salarié. Si ce taux est inconnu, par exemple lors d'une première année d'activité, l'employeur utilise le [taux neutre](/documentation/impôt/neutre). C'est aussi le taux neutre que nous utilisons dans le simulateur pour calculer le « net après impôt » qui est versé sur le compte bancaire du salarié.
+Par ailleurs depuis 2019, l'[impôt sur le revenu](/documentation/impôt/impôt-sur-le-revenu) est prélevé à la source. Pour ce faire, la direction générale des finances publiques (DGFiP) transmet à l'employeur le taux d'imposition calculé à partir de la déclaration de revenu du salarié. Si ce taux est inconnu, par exemple lors d'une première année d'activité, l'employeur utilise le [taux neutre](documentation/impôt/impôt-sur-le-revenu-au-taux-neutre). C'est aussi le taux neutre que nous utilisons dans le simulateur pour calculer le « net après impôt » qui est versé sur le compte bancaire du salarié.
 
 Attention : L'impôt sur le revenu est calculé à partir du [salaire net imposable](/documentation/contrat-salarié/rémunération/net-imposable) qui inclut certaines cotisations non déductibles et les avantages en nature en plus du salaire net.
 
