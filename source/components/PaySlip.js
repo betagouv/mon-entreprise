@@ -72,7 +72,7 @@ export default compose(
 						<Trans>Part employeur</Trans>
 					</h4>
 					<h4>
-						<Trans>Part salariale</Trans>
+						<Trans>Part salarié</Trans>
 					</h4>
 					{cotisations.map(([brancheDottedName, cotisationList]) => {
 						let branche = findRuleByDottedName(parsedRules, brancheDottedName)
