@@ -1278,7 +1278,7 @@ contrat salarié . aides employeur:
     exemple sous forme de crédit d'impôt.
 
 
-    Le simulateur n'intègre pas tous les innombrables aides disponibles en
+    Le simulateur n'intègre pas toutes les innombrables aides disponibles en
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   titre.en: deferred employer aids
@@ -1724,7 +1724,9 @@ contrat salarié . complémentaire santé . part employeur:
     minimum
   question.en: What is the part of the complementary health insurance paid by the employer?
   question.fr: Quel est la part de la complémentaire santé payée par l'employeur ?
-  suggestions.en: '!![object Object]'
+  suggestions.en:
+    50%: 0.5
+    100%: 1
   suggestions.fr:
     50%: 0.5
     100%: 1
@@ -3080,7 +3082,15 @@ auto entrepreneur . impôt . versement libératoire:
     2018
   question.en: '!!Bénéficiez-vous du versement libératoire de l''impôt sur le revenu ?'
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
-  contrôles.en: '!![object Object]'
+  contrôles.en:
+    - si:
+        toutes ces conditions:
+          - 'impôt . revenu fiscal de référence [annuel] > 27086'
+          - versement libératoire
+      message: >-
+        !!Le versement libératoire n'est pas disponible si les revenus de votre
+        ménage sont supérieurs à 27 086 € par part en 2018
+      niveau: info
   contrôles.fr:
     - si:
         toutes ces conditions:

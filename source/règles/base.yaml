@@ -765,6 +765,7 @@
       possibilités:
         - niveau bac ou moins
         - niveau supérieur au bac
+  par défaut: niveau supérieur au bac
 
 - espace: contrat salarié . apprentissage . diplôme préparé
   nom: niveau bac ou moins
