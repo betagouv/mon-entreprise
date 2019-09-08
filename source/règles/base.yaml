@@ -11,6 +11,11 @@
   formule: 21
   note: On retient 21 comme nombre de jours ouvrés moyen par mois
 
+- espace: période
+  nom: semaines par mois
+  unité: semaine
+  formule: 52 / 12
+
 - nom: contrat salarié
   icônes: 📄
   question: Activité salariée ?
@@ -1067,13 +1072,16 @@
 - espace: contrat salarié
   nom: SMIC temps plein
   période: mois
-  formule: 1521.22
+  formule: 
+    multiplication:
+      assiette: temps de travail . base légale * période . semaines par mois
+      facteur: SMIC horaire
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
 - nom: SMIC horaire
   formule: 10.03
-  unité: €
+  unité: €/heures
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -1844,11 +1852,11 @@
   formule:
     multiplication:
       assiette: temps hebdomadaire
-      facteur: 52 / 12
+      facteur: période . semaines par mois
 
 - espace: contrat salarié . temps de travail . temps contractuel
   nom: temps hebdomadaire
-  unité: heures / semaine
+  unité: heures/semaine
   formule:
     variations:
       - si: temps partiel
@@ -1858,7 +1866,7 @@
 - espace: contrat salarié . temps de travail
   nom: base légale
   formule: 35
-  unité: heures / semaine
+  unité: heures/semaine
 
 - espace: contrat salarié . temps de travail
   nom: temps partiel
