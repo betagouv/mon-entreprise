@@ -57,7 +57,7 @@
 	background-image: linear-gradient(
 		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
-		var(--colour) 50%,
+		rgb(41, 117, 209) 50%,
 		rgba(41, 117, 209, 0.9) 55%
 	);
 	background-image: linear-gradient(
