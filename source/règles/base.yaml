@@ -1885,6 +1885,10 @@
       - entreprise . effectif < 250
       - apprentissage
       - contrat salarié . apprentissage . diplôme préparé . niveau bac ou moins
+      
+      # HACK: "apprentissage . ancienneté" n'est pas détecté par le moteur dans les dépendances ("missingVariables") de cette aide.
+      # On l'ajoute ici uniquement pour faire remonter la question au bon niveau, mais ça ne devrait pas être nécessaire.
+      - apprentissage . ancienneté
   période: année
   unité: €
   formule:
