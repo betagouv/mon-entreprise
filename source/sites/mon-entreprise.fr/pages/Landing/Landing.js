@@ -95,27 +95,27 @@ export default compose(
 				</Link> */}
 			</div>
 		</section>
-		{!process.env.MASTER && (
-			<section className="ui__ container card">
-				<div className="ui__ container">
-					<h2>Vos activités sur les plateformes d’économie collaborative</h2>
-					<p>
-						Location meublée, covoiturage, etc : les revenus des plateformes
-						collaboratives doivent souvent être déclarées et dans certains cas
-						nécessitent la création d’une entreprise. Pour être sûr de ne rien
-						oublier :
-					</p>
-					<p css="text-align: center">
-						<Link
-							className="ui__ simple button"
-							to={sitePaths.économieCollaborative.index}>
-							{emoji('📱 ')} Suivez le guide
-							<T />
-						</Link>
-					</p>
-				</div>
-			</section>
-		)}
+
+		<section className="ui__ container card">
+			<div className="ui__ container">
+				<h2>Vos activités sur les plateformes d’économie collaborative</h2>
+				<p>
+					Location meublée, covoiturage, etc : les revenus des plateformes
+					collaboratives doivent souvent être déclarées et dans certains cas
+					nécessitent la création d’une entreprise. Pour être sûr de ne rien
+					oublier :
+				</p>
+				<p css="text-align: center">
+					<Link
+						className="ui__ simple button"
+						to={sitePaths.économieCollaborative.index}>
+						{emoji('📱 ')} Suivez le guide
+						<T />
+					</Link>
+				</p>
+			</div>
+		</section>
+
 		<Footer />
 	</div>
 ))
