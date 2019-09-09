@@ -996,7 +996,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
   titre.fr: repas par mois
 entreprise . hôtel café restaurant:
   question.en: 'Is the company a hotel, café, restaurant or similar?'
-  question.fr: 'Est-ce que l''entreprise est un hôtel, café, restaurant ou assimilé ?'
+  question.fr: "Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?"
   titre.en: hotel café restaurant
   titre.fr: hôtel café restaurant
 contrat salarié . indemnités salarié:
@@ -1068,8 +1068,8 @@ contrat salarié . rémunération . net imposable:
 contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
   titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires défiscalisées
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
-  titre.en: '!!plafond brut'
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
+: titre.en: gross cap
   titre.fr: plafond brut
 contrat salarié . rémunération . net imposable . base:
   titre.en: base
@@ -1136,40 +1136,36 @@ contrat salarié . rémunération . net après impôt:
 
     Pour une simulation plus complète, rendez-vous sur
     [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
-impôt . impôt sur le revenu au taux neutre . barème Guadeloupe Réunion Martinique:
-  titre.en: '!!barème Guadeloupe Réunion Martinique'
+? impôt . impôt sur le revenu au taux neutre . barème Guadeloupe Réunion Martinique
+: titre.en: Guadeloupe / Reunion Island / Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
 impôt . impôt sur le revenu au taux neutre . barème Guyane Mayotte:
-  titre.en: '!!barème Guyane Mayotte'
+  titre.en: Guyana Mayotte scale
   titre.fr: barème Guyane Mayotte
 impôt . impôt sur le revenu au taux neutre:
   description.en: >
-    !!C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
-    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
-    revenus du patrimoine importants).
+    This is the scale to be applied on the taxable monthly salary to obtain the monthly tax payable for employees who do not want to disclose their tax rate to their company (this rate may reveal, for example, significant income from assets).
   description.fr: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
     l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
     leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
-  titre.en: '!!impôt sur le revenu au taux neutre'
+  titre.en: income tax at neutral rate
   titre.fr: impôt sur le revenu au taux neutre
 impôt . taux personnalisé:
-  question.en: '!!Quel est votre taux de prélèvement à la source ?'
+  question.en: What is your withholding tax rate?
   question.fr: Quel est votre taux de prélèvement à la source ?
   description.en: >
-    !!Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur
-    :
-      - une fiche de paie
-      - un avis d'imposition
-      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+    Your personalized average tax rate, which you can find:
+      - a pay slip
+      - a tax notice
+      - your personal space [impots.gouv.fr](https://impots.gouv.fr)
   description.fr: |
     Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
       - un avis d'imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
-  titre.en: '!!taux personnalisé'
+  titre.en: personalized rate
   titre.fr: taux personnalisé
 contrat salarié . coût du travail:
   titre.en: labor cost
@@ -2108,22 +2104,17 @@ impôt:
   titre.fr: impôt sur le revenu
 impôt . méthode de calcul:
   description.en: >
-    !!Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+    We have implemented three ways to calculate income tax:
 
-    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+    - *The personalized rate*: indicated on your tax notice
 
-    - *Le taux neutre* : pour un célibataire sans enfants
+    - *The neutral rate*: for a single person without children
 
-    - *Le barème standard * : la formule "officielle" utilisée par
-    l'administration fiscale pour obtenir le taux d'imposition
+    - *The standard scale * : the "official" formula used by
+    tax authorities to obtain the tax rate
 
+    By filling in your personalized rate, you will be as close as possible to your real situation. The neutral rate can be interesting if you have not sent your personalized rate to the employer and you want to compare the results of the simulator with your pay slip. The standard scale gives you a more accurate result than the neutral rate for a single man without children.
 
-    En remplissant votre taux personnalisé, vous serez au plus proche de votre
-    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
-    n'avez pas transmis votre taux personnalisé à l'employeur et que vous
-    souhaitez comparer les résultats du simulateur à votre fiche de paie. Le
-    barème standard vous donne un résultat plus précis que le taux neutre pour
-    un célibataire sans enfant.
   description.fr: >
     Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
 
@@ -2141,19 +2132,15 @@ impôt . méthode de calcul:
     souhaitez comparer les résultats du simulateur à votre fiche de paie. Le
     barème standard vous donne un résultat plus précis que le taux neutre pour
     un célibataire sans enfant.
-  question.en: '!!Comment souhaitez-vous calculer l''impôt sur le revenu ?'
+  question.en: How do you want to calculate income tax?
   question.fr: Comment souhaitez-vous calculer l'impôt sur le revenu ?
-  titre.en: '!!méthode de calcul'
+  titre.en: calculation method
   titre.fr: méthode de calcul
 impôt . méthode de calcul . taux neutre:
-  titre.en: '!!taux neutre'
+  titre.en: with the neutral rate
   titre.fr: avec le taux neutre
   description.en: >-
-    !!Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez
-    connaître votre impôt à la source dans le cas où vous avez choisi de ne pas
-    communiquer à votre taux à l'employeur, le calcul au taux neutre correspond
-    à une imposition pour un célibataire sans enfants et sans autres revenus /
-    charges.
+    If you do not know your personalized rate, or if you want to know your withholding tax if you have chosen not to communicate at your rate to the employer, the calculation at the neutral rate corresponds to a tax for a single person without children and without other income/charges.
   description.fr: >-
     Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez
     connaître votre impôt à la source dans le cas où vous avez choisi de ne pas
@@ -2161,37 +2148,31 @@ impôt . méthode de calcul . taux neutre:
     à une imposition pour un célibataire sans enfants et sans autres revenus /
     charges.
 impôt . méthode de calcul . taux personnalisé:
-  titre.en: '!!taux personnalisé'
+  titre.en: with the personalized rate
   titre.fr: avec votre taux personnalisé
   description.en: >-
-    !!Vous pouvez utiliser directement le taux personnalisé communiqué par
-    l'administration fiscal pour calculer votre impôt. Pour le connaître, vous
-    pouvez-vous rendre sur votre [espace fiscal
-    personnel](https://impots.gouv.fr).
+    You can use the personalized rate provided by the tax authorities directly to calculate your tax. To find out, go to your [personal tax space](https://impots.gouv.fr).
   description.fr: >-
     Vous pouvez utiliser directement le taux personnalisé communiqué par
     l'administration fiscal pour calculer votre impôt. Pour le connaître, vous
     pouvez-vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
 impôt . méthode de calcul . barème standard:
-  titre.en: '!!barème standard'
+  titre.en: with the standard scale
   titre.fr: avec le barème standard
   description.en: >-
-    !!Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal
-    se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
-    compte que l'abattement 10%, le barème et la décôte.
+    The "official" tax calculation, the one on which the tax authorities base their calculation of your tax rate. For the moment, only takes into account the 10% discount, the scale and the discount.
   description.fr: >-
     Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se
     base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
-    compte que l'abattement 10%, le barème et la décote.
+    compte que l'abattement 10%, le barème et la décôte.
 impôt . revenu imposable:
   description.en: >
-    !!C'est le revenu à prendre en compte pour calculer l'impôt avec un taux
-    moyen d'imposition (neutre ou personnalisé).
+    This is the income to be taken into account when calculating tax with an average tax rate (neutral or personalized).
   description.fr: >
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen
     d'imposition (neutre ou personnalisé).
-  titre.en: '!!revenu imposable'
+  titre.en: taxable income
   titre.fr: revenu imposable
 impôt . revenu abattu:
   description.en: >
@@ -2246,8 +2227,7 @@ impôt . impôt sur le revenu:
   titre.fr: impôt sur le revenu
 impôt . impôt sur le revenu à payer:
   description.en: >-
-    !!Une décote est appliquée après le barème de l'impôt sur le revenu, pour
-    réduire l'impôt des bas revenus.
+    A discount is applied after the income tax rate, to reduce the tax on low incomes.
   description.fr: >-
     Une décote est appliquée après le barème de l'impôt sur le revenu, pour
     réduire l'impôt des bas revenus.
@@ -2294,18 +2274,18 @@ revenu net après impôt:
   titre.en: Net income after tax
   titre.fr: revenu net après impôt
 entreprise . date de création:
-  question.en: '!!Quand avez-vous crée votre entreprise ?'
+  question.en: When did you create your company?
   question.fr: Quand avez-vous crée votre entreprise ?
-  titre.en: '!!date de création'
+  titre.en: Creation date
   titre.fr: date de création
 entreprise . date de création . avant 2018:
-  titre.en: '!!avant le 1er janvier 2018'
+  titre.en: before January 1, 2018
   titre.fr: avant le 1er janvier 2018
 entreprise . date de création . avant 2019:
-  titre.en: '!!avant le 1er janvier 2019'
+  titre.en: before January 1, 2019
   titre.fr: avant le 1er janvier 2019
 entreprise . date de création . après 2019:
-  titre.en: '!!après le 1er janvier 2019'
+  titre.en: after January 1, 2019
   titre.fr: après le 1er janvier 2019
 entreprise . chiffre d'affaires:
   titre.en: Turnover
@@ -2911,16 +2891,16 @@ auto entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
 auto entrepreneur . cotisations et contributions . TFC:
-  titre.en: '!!Taxes pour frais de chambre'
+  titre.en: Chamber taxes
   titre.fr: Taxes pour frais de chambre
 auto entrepreneur . cotisations et contributions . TFC . commerce:
-  titre.en: '!!taxe pour frais de chambre de commerce'
+  titre.en: Chamber of Trades taxes
   titre.fr: taxe pour frais de chambre de commerce
 auto entrepreneur . cotisations et contributions . TFC . métiers:
-  titre.en: '!!taxe pour frais de chambre des métiers'
+  titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
-auto entrepreneur . cotisations et contributions . contribution formation professionnelle:
-  titre.en: Contribution to vocational training
+? auto entrepreneur . cotisations et contributions . contribution formation professionnelle
+: titre.en: Contribution to vocational training
   titre.fr: Contribution à la formation professionnelle
 auto entrepreneur . cotisations et contributions . cotisations:
   description.en: >
@@ -2971,26 +2951,18 @@ auto entrepreneur . cotisations et contributions . cotisations . taux de cotisat
   titre.fr: taux de cotisation
 entreprise . ACRE:
   description.en: >
-    !!L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en
-    une exonération partielle de charges sociales, dite exonération de début
-    d'activité.
+    The aid for the creation or takeover of a company (Acre) consists of a partial exemption from social security contributions, known as the start-up exemption.
 
+    *Duration*:
 
-    *Durée*:
+    - 12 months** for companies and sole proprietorships
+    - 3 years** for self-employed companies
 
-    - **12 mois** pour les sociétés et entreprises individuelles
+    *Conditions for obtaining*:
 
-    - **3 ans** pour les auto-entreprises
+    - For companies created after 2019, the reduction is automatic, unless you have already obtained the ACCRE in the previous three years
+    - For companies created before 2019, the contribution reduction was called ACCRE was subject to conditions and was not automatic: it you should have asked for it.
 
-
-    *Conditions d'obtention*:
-
-    - Pour les entreprises créées après 2019, la réduction est automatique, sauf
-    si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
-
-    - Pour les entreprises créées avant 2019, la réduction de cotisation
-    s'appelait ACCRE était soumise à conditions et n'était pas automatique : il
-    fallait en faire la demande.
   description.fr: >
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
@@ -3012,23 +2984,23 @@ entreprise . ACRE:
     - Pour les entreprises créées avant 2019, la réduction de cotisation
     s'appelait ACCRE était soumise à conditions et n'était pas automatique : il
     fallait en faire la demande.
-  question.en: '!!Votre entreprise bénéficie-t''elle de l''ACRE (anciennement ACCRE) ?'
+  question.en: Does your company benefit from ACRE (formerly ACCRE)?
   question.fr: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
-  titre.en: '!!ACRE'
+  titre.en: ACRE
   titre.fr: ACRE
 entreprise . ACRE . année:
-  question.en: '!!Quel est l''âge de l''entreprise ?'
+  question.en: How old is your company
   question.fr: Quel est l'âge de l'entreprise ?
-  titre.en: '!!année'
+  titre.en: years old
   titre.fr: année
 entreprise . ACRE . année . moins d'un an:
-  titre.en: '!!moins d''un an'
+  titre.en: less than one year
   titre.fr: moins d'un an
 entreprise . ACRE . année . moins de deux ans:
-  titre.en: '!!moins de deux ans'
+  titre.en: less than two years
   titre.fr: moins de deux ans
 entreprise . ACRE . année . moins de trois ans:
-  titre.en: '!!moins de trois ans'
+  titre.en: less than three years
   titre.fr: moins de trois ans
 auto entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre.en: |
@@ -3069,18 +3041,14 @@ auto entrepreneur . impôt . abattement . taux:
   titre.fr: taux d'abattement de l'impôt
 auto entrepreneur . impôt . versement libératoire:
   description.en: >
-    !!Avec l'option pour le versement libératoire, l’impôt sur le revenu est
-    payé en même temps que vos cotisations (par mois ou par trimestre) avec
-    application d’un taux spécifique en fonction de votre activité. Pour en
-    bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
-    2018
+    With the option for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with the application of a specific rate according to your activity. To benefit from it, your reference tax income must not exceed €27,086 in 2018
   description.fr: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité. Pour en
     bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
     2018
-  question.en: '!!Bénéficiez-vous du versement libératoire de l''impôt sur le revenu ?'
+  question.en: Do you benefit from the discharge payment of income tax?
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   contrôles.en:
     - si:
@@ -3088,8 +3056,7 @@ auto entrepreneur . impôt . versement libératoire:
           - 'impôt . revenu fiscal de référence [annuel] > 27086'
           - versement libératoire
       message: >-
-        !!Le versement libératoire n'est pas disponible si les revenus de votre
-        ménage sont supérieurs à 27 086 € par part en 2018
+        The discharge payment is not available if your household income exceeds €27,086 per share in 2018
       niveau: info
   contrôles.fr:
     - si:
@@ -3100,25 +3067,19 @@ auto entrepreneur . impôt . versement libératoire:
         Le versement libératoire n'est pas disponible si les revenus de votre
         ménage sont supérieurs à 27 086 € par part en 2018
       niveau: info
-  titre.en: '!!versement libératoire'
+  titre.en: discharge payment
   titre.fr: versement libératoire
 auto entrepreneur . impôt . versement libératoire . montant:
-  titre.en: '!!versement libératoire auto entrepreneur'
+  titre.en: discharge payment for auto entrepreneur
   titre.fr: versement libératoire auto entrepreneur
-  description.en: >
-    !!Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
-    payé en même temps que vos cotisations (par mois ou par trimestre) avec
-    application d’un taux spécifique en fonction de votre activité :
+  description.en: |
+    If you have opted for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with application of a specific rate according to your activity:
 
+    - 1% if the activity is purchase/resale, on-trade sale and hosting service (BIC)
+    - 1.7% if the activity is a profit-making service activity
+    industrial and commercial (BIC)
+    - 2.2% for other services covered by non-earnings Commercial (BNC)
 
-    - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la
-    prestation d’hébergement (BIC)
-
-    - 1,7% si l’activité est une activité de services relevant des bénéfices
-    industriels et commerciaux (BIC)
-
-    - 2,2% pour les autres prestations de services relevants des bénéfices non
-    commerciaux (BNC)
   description.fr: >
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
     payé en même temps que vos cotisations (par mois ou par trimestre) avec
@@ -3134,7 +3095,7 @@ auto entrepreneur . impôt . versement libératoire . montant:
     - 2,2% pour les autres prestations de services relevants des bénéfices non
     commerciaux (BNC)
 auto entrepreneur . impôt . revenu imposable:
-  titre.en: '!!revenu imposable'
+  titre.en: taxable income
   titre.fr: revenu imposable
 auto entrepreneur . impôt . revenu abattu:
   titre.en: reduced income
