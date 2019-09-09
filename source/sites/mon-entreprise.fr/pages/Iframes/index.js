@@ -10,6 +10,10 @@ import SimulateurEmbauche from './SimulateurEmbauche'
 export default function Iframes() {
 	return (
 		<IsEmbeddedContext.Provider value={true}>
+			{/** Open external links in the parent frame.
+			This behavior can be configured on individual link, eg <a target="_blank" />.
+			Our own link are handled in-app by the router, and aren't affected by this directive. */}
+			<base target="_parent" />
 			<div className="ui__ container">
 				<Route
 					path="/iframes/simulateur-embauche"
