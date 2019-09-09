@@ -22,12 +22,14 @@ import Tracker, { devTracker } from '../../Tracker'
 import { inIframe, setToSessionStorage } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
+import { PrivacyContent } from './layout/Footer/Privacy'
 import Header from './layout/Header/Header'
 import Navigation from './layout/Navigation/Navigation'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
+import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
@@ -36,7 +38,6 @@ import Landing from './pages/Landing/Landing.js'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
-import { PrivacyContent } from './layout/Footer/Privacy'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -133,6 +134,7 @@ const App = compose(
 						component={IntegrationTest}
 					/>
 					<Route exact path="/dev/couleur" component={Couleur} />
+					<Route exact path="/dev/personas" component={Personas} />
 
 					<Route component={Route404} />
 				</Switch>
