@@ -31,7 +31,6 @@ export let AttachDictionary = dictionary => Decorated =>
 									source={`### Mécanisme : ${term}\n\n${explanation}`}
 								/>
 							</div>
-							/>
 						</Overlay>
 					)}
 				</div>
