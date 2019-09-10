@@ -46,7 +46,6 @@ export let evaluateArray = (reducer, start) => (
 			: reduce(reducer, start, values),
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-	//	console.log("".padStart(cache.parseLevel), missingVariables)
 	return { ...node, nodeValue, explanation, missingVariables }
 }
 
@@ -109,7 +108,6 @@ export let evaluateObject = (objectShape, effect) => (
 			: automaticExplanation,
 		nodeValue = is(Object, evaluated) ? evaluated.nodeValue : evaluated,
 		missingVariables = mergeAllMissing(values(explanation))
-	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
 	return { ...node, nodeValue, explanation, missingVariables }
 }
 

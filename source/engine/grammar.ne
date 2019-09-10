@@ -6,80 +6,90 @@
 
 @{%
 import {string, filteredVariable, variable, temporalVariable,  operation, boolean, number, percentage } from './grammarFunctions'
+
+const moo = require("moo");
+
+const letter = '[a-zA-Z\u00C0-\u017F]';
+const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
+const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
+const words = `${word}(?: ${word}|${letterOrNumber}*)*`
+const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?';
+const percentageRegExp = numberRegExp + '\\%'
+
+const lexer = moo.compile({
+  percentage: new RegExp(percentageRegExp),
+  number: new RegExp(numberRegExp),
+  '(': '(',
+  ')': ')',
+  '[': '[',
+  ']': ']',
+  comparisonOperator: ['>','<','>=','<=','=','!='],
+  additionSubstractionOperator: /[\+-]/,
+  multiplicationDivisionOperator: ['*','/'],
+  temporality: ['annuel' , 'mensuel'],
+  words: new RegExp(words),
+  string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
+  dot: ' . ',
+  _: { match: /[\s]/, lineBreaks: true }
+});
 %}
 
+@lexer lexer
+
 main ->
-		  AdditionSubstraction {% id %}
-		| Comparison {% id %}
-		| NonNumericTerminal {% id %}
+    AdditionSubstraction {% id %}
+  | Comparison {% id %}
+  | NonNumericTerminal {% id %}
 
 NumericTerminal ->
-		Variable {% id %}
-		| TemporalVariable {% id %}
-		| FilteredVariable {% id %}
-		| percentage {% id %}
-		| number {% id %}
+	 	Variable {% id %}
+  | TemporalVariable {% id %}
+  | FilteredVariable {% id %}
+  | number {% id %}
 
-Parentheses -> "(" AdditionSubstraction ")" {% ([,e]) => e %}
-    | NumericTerminal           {% id %}
+Parentheses ->
+    "(" AdditionSubstraction ")"  {% ([,e]) => e %}
+  |  NumericTerminal               {% id %}
 
-ComparisonOperator -> ">" | "<" | ">=" | "<=" | "=" | "!="
-
-Comparison -> Comparable _ ComparisonOperator _ Comparable {% operation('comparison')%}
+Comparison -> Comparable %_ %comparisonOperator %_ Comparable {% operation('comparison')%}
 
 Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 
 NonNumericTerminal ->
-	Boolean  {% id %}
-	| String  {% id %}
+	  boolean  {% id %}
+	| string   {% id %}
 
 
-FilteredVariable -> Variable _ Filter {% filteredVariable %}
 
-Filter -> "[" VariableFragment "]" {% ([,filter]) => filter %}
-
-TemporalVariable -> Variable _ TemporalTransform {% temporalVariable %}
-
-TemporalTransform -> "[" Temporality "]" {% d =>d[1] %}
-
-Temporality -> "annuel" | "mensuel" {% id %}
-#-----
-
-
-# Addition and subtraction
-AdditionSubstraction -> AdditionSubstraction _ AdditionSubstractionOperator _ MultiplicationDivision  {%  operation('calculation') %}
-    | MultiplicationDivision            {% id %}
-
-
-AdditionSubstractionOperator	-> "+" {% id %}
-	| "-" {% id %}
-
-MultiplicationDivisionOperator	-> "*" {% id %}
-	| "/" {% id %}
-
-# Multiplication and division
-MultiplicationDivision -> MultiplicationDivision _ MultiplicationDivisionOperator _ Parentheses  {% operation('calculation') %}
-    | Parentheses             {% id %}
-
-Variable -> VariableFragment (_ Dot _ VariableFragment {% ([,,,fragment]) => fragment %}):*
+Variable -> %words (%dot %words {% ([,words]) => words %}):*
 {% variable %}
 
-String -> "'" [ .'a-zA-Z\-\u00C0-\u017F0-9 ]:+ "'" {% string %}
 
-VariableFragment -> VariableWordWithoutNumber (_ VariableWord {% d=> ' ' + d[1] %}):* {% d => d[0] + d[1].join('') %}
+Filter -> "[" %words "]" {% ([,filter]) => filter %}
+FilteredVariable -> Variable %_ Filter {% filteredVariable %}
 
-VariableWordWithoutNumber -> [a-zA-Z\u00C0-\u017F] [\-'a-zA-Z\u00C0-\u017F]:*     {% d => d[0] + d[1].join('') %}
-VariableWord -> [a-zA-Z\u00C0-\u017F0-9] [\-'a-zA-Z\u00C0-\u017F0-9]:*     {% d => d[0] + d[1].join('') %}
+TemporalTransform -> "[" %temporality "]" {% ([,temporality]) => temporality %}
+TemporalVariable -> Variable %_ TemporalTransform {% temporalVariable %}
 
-Dot -> [\.] {% d => null %}
+#-----
 
-_ -> [\s]     {% d => null %}
+# Addition and subtraction
+AdditionSubstraction ->
+    AdditionSubstraction %_ %additionSubstractionOperator %_ MultiplicationDivision  {%  operation('calculation') %}
+  | MultiplicationDivision  {% id %}
 
 
-number -> [0-9]:+ ([\.] [0-9]:+):?        {% number %}
+# Multiplication and division
+MultiplicationDivision ->
+    MultiplicationDivision %_ %multiplicationDivisionOperator %_ Parentheses  {% operation('calculation') %}
+  | Parentheses   {% id %}
 
-percentage -> [0-9]:+ ([\.] [0-9]:+):? [\%]        {% percentage %}
 
-Boolean -> (
-	"oui"
- | 	"non" ) {% boolean %}
+boolean ->
+    "oui" {% boolean(true) %}
+  | "non" {% boolean(false) %}
+
+number ->
+    %number {% number %}
+  | %percentage {% percentage %}
+string -> %string {% string %}

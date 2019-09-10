@@ -38,7 +38,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 					<span className="fa fa" />
 					{makeJsx(explanation[0])}
 					<span className="operator">{symbol || k}</span>
-
 					{makeJsx(explanation[1])}
 				</span>
 			}
@@ -50,7 +49,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 		evaluate,
 		jsx,
 		operator: symbol || k,
-		// is this useful ?		text: rawNode,
 		explanation,
 		unit
 	}

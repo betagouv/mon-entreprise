@@ -5,30 +5,29 @@
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
-import variations from 'Engine/mecanisms/variations'
 import operation from 'Engine/mecanisms/operation'
-import { Parser } from 'nearley'
-
+import variations from 'Engine/mecanisms/variations'
+import { Grammar, Parser } from 'nearley'
 import {
 	add,
+	cond,
 	divide,
 	equals,
+	fromPairs,
 	gt,
 	gte,
+	is,
 	keys,
-	without,
 	lt,
 	lte,
 	multiply,
 	propOr,
 	subtract,
-	fromPairs,
-	is,
-	cond,
-	T
+	T,
+	without
 } from 'ramda'
 import React from 'react'
-import Grammar from './grammar.ne'
+import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
 	mecanismComplement,
@@ -38,11 +37,11 @@ import {
 	mecanismMin,
 	mecanismNumericalSwitch,
 	mecanismOneOf,
+	mecanismOnePossibility,
 	mecanismProduct,
 	mecanismReduction,
 	mecanismSum,
-	mecanismSynchronisation,
-	mecanismOnePossibility
+	mecanismSynchronisation
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
 
@@ -62,15 +61,13 @@ export let parse = (rules, rule, parsedRules) => rawNode => {
 		: { ...parsedNode, evaluate: defaultEvaluate }
 }
 
-export let nearley = () => new Parser(Grammar.ParserRules, Grammar.ParserStart)
+const compiledGrammar = Grammar.fromCompiled(grammar)
 
 export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
-
-	let [parseResult] = nearley().feed(rawNode).results
-
+	let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
 	return parseObject(rules, rule, parsedRules)(parseResult)
 }
 
@@ -93,7 +90,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
 
 	if (mecanisms.length != 1) {
-	} 
+	}
 	*/
 
 	let attributes = keys(rawNode),
@@ -162,7 +159,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 				nodeValue: v.nodeValue,
 				unit: v.unit,
 				// eslint-disable-next-line
-				jsx: () => <span className={v.type}>{v.rawNode}</span>
+				jsx: () => <span className={v.type}>{v.nodeValue}</span>
 			})
 		},
 		action = propOr(mecanismError, k, dispatch)

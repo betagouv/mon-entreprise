@@ -86,7 +86,6 @@ export default (recurse, k, v, devariate) => {
 	}
 
 	// TODO - find an appropriate representation
-
 	return {
 		explanation,
 		evaluate,

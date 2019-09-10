@@ -189,7 +189,7 @@ export let parseReferenceTransforms = (
 
 		let result = {
 			...filteredNode,
-			periodTransform: periodTransform,
+			periodTransform,
 			...(periodTransform ? { originPeriodValue: nodeValue } : {}),
 			nodeValue: transformedNodeValue,
 			explanation: filteredNode.explanation,

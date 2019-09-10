@@ -80,6 +80,7 @@ export let parseAll = flatRules => {
 	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
 	 *
 	 * */
+
 	return parsedRules
 }
 
