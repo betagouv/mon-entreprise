@@ -1,5 +1,5 @@
 import RulePage from 'Components/RulePage'
-import React, { Component } from 'react'
+import React, { Suspense, Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -14,7 +14,8 @@ import Contribution from './Contribution'
 import TopBar from './TopBar'
 import Scenarios from './Scenarios'
 import { StoreProvider } from './StoreContext'
-import Studio from './Studio'
+
+let Studio = React.lazy(() => import('./Studio'))
 
 class App extends Component {
 	render() {
@@ -41,7 +42,14 @@ class App extends Component {
 							<Route path="/contribuer/:input?" component={Contribution} />
 							<Route path="/scénarios" component={Scenarios} />
 							<Route path="/à-propos" component={About} />
-							<Route path="/studio" component={Studio} />
+							<Route
+								path="/studio"
+								component={() => (
+									<Suspense fallback={<div>Chargement de l'éditeur ...</div>}>
+										<Studio />
+									</Suspense>
+								)}
+							/>
 							<Route component={Route404} />
 						</Switch>
 					</div>
