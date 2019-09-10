@@ -1,8 +1,6 @@
 import React from 'react'
 import emoji from 'react-easy-emoji'
 
-let jsonBinUrl = 'https://api.jsonbin.io/b/5c93d3257726fe2562cd71bd'
-
 export default ({ setInput, input }) => (
 	<div
 		css={`
@@ -22,7 +20,6 @@ export default ({ setInput, input }) => (
 			value={input}
 			onChange={event => {
 				let value = event.target.value
-				value !== '' && collectUserQuestions(event.target.value)
 				setInput(event.target.value)
 			}}
 		/>
@@ -38,30 +35,3 @@ export default ({ setInput, input }) => (
 		</span>
 	</div>
 )
-
-let collectUserQuestions = debounced(1000, input => {
-	fetch(jsonBinUrl + '/latest', {
-		method: 'GET'
-	}).then(res =>
-		res.json().then(pastBin =>
-			fetch(jsonBinUrl, {
-				method: 'PUT',
-				body: JSON.stringify([...pastBin, input]),
-				headers: { 'Content-type': 'application/json' }
-			})
-		)
-	)
-})
-
-function debounced(delay, fn) {
-	let timerId
-	return function(...args) {
-		if (timerId) {
-			clearTimeout(timerId)
-		}
-		timerId = setTimeout(() => {
-			fn(...args)
-			timerId = null
-		}, delay)
-	}
-}
