@@ -1,14 +1,13 @@
-import { inferUnit } from 'Engine/units'
 import {
 	bonus,
 	collectNodeMissing,
 	evaluateNode,
 	mergeAllMissing,
-	mergeMissing,
-	rewriteNode
+	mergeMissing
 } from 'Engine/evaluation'
-import { reject, pluck, isNil, filter, dissoc, reduce } from 'ramda'
 import Variations from 'Engine/mecanismViews/Variations'
+import { inferUnit } from 'Engine/units'
+import { dissoc, filter, isNil, pluck, reduce, reject } from 'ramda'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export default (recurse, k, v, devariate) => {
@@ -78,7 +77,12 @@ export default (recurse, k, v, devariate) => {
 				? collectNodeMissing(satisfiedVariation.consequence)
 				: mergeMissing(bonus(leftMissing), rightMissing)
 
-		return rewriteNode(node, nodeValue, resolvedExplanation, missingVariables)
+		return {
+			...node,
+			nodeValue,
+			explanation: resolvedExplanation,
+			missingVariables
+		}
 	}
 
 	// TODO - find an appropriate representation

@@ -1,9 +1,13 @@
-import { evaluateControls } from 'Engine/controls';
-import parseRule from 'Engine/parseRule';
-import { chain, path } from 'ramda';
-import { evaluateNode } from './evaluation';
-import { parseReference } from './parseReference';
-import { findRule, findRuleByDottedName, disambiguateRuleReference } from './rules';
+import { evaluateControls } from 'Engine/controls'
+import parseRule from 'Engine/parseRule'
+import { chain, path } from 'ramda'
+import { evaluateNode } from './evaluation'
+import { parseReference } from './parseReference'
+import {
+	disambiguateRuleReference,
+	findRule,
+	findRuleByDottedName
+} from './rules'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -65,7 +69,7 @@ export let parseAll = flatRules => {
 			)
 		})
 	})
-	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example : 
+	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
 		A = B * C
 		B = D / E
 
@@ -76,7 +80,6 @@ export let parseAll = flatRules => {
 	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
 	 *
 	 * */
-
 	return parsedRules
 }
 

@@ -38,8 +38,7 @@ import {
 	makeJsx,
 	mergeAllMissing,
 	mergeMissing,
-	parseObject,
-	rewriteNode
+	parseObject
 } from './evaluation'
 import Allègement from './mecanismViews/Allègement'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
@@ -88,7 +87,7 @@ export let mecanismOneOf = (recurse, k, v) => {
 					? reduce(mergeWith(max), {}, map(collectNodeMissing, explanation))
 					: {}
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -133,7 +132,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 				: true,
 			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	return {
@@ -231,7 +230,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				? choice.missingVariables
 				: mergeAllMissing(explanation)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let explanation = map(parseCondition, terms)
@@ -374,12 +373,15 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				given: inversion.inversedWith.rule.dottedName,
 				estimated: dottedName
 			}
-		let evaluatedNode = rewriteNode(
-			node,
+		let evaluatedNode = {
+			...node,
 			nodeValue,
-			{ ...node.explanation, inversedWith: inversion?.inversedWith },
+			explanation: {
+				...node.explanation,
+				inversedWith: inversion?.inversedWith
+			},
 			missingVariables
-		)
+		}
 		// TODO - we need this so that ResultsGrid will work, but it's
 		// just not right
 		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
@@ -665,7 +667,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		let missingVariables =
 			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
 		let explanation = { ...v, API: APIExplanation }
-		return rewriteNode(node, safeNodeValue, explanation, missingVariables)
+		return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
 	}
 
 	return {
