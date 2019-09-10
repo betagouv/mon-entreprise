@@ -27,15 +27,17 @@ export default connect(
 		render() {
 			const code = this.state.code
 			const options = {
-				selectOnLineNumbers: true
+				selectOnLineNumbers: true,
+				autoIndent: true,
+				formatOnPaste: true,
+				formatOnType: true,
+				tabSize: 2
 			}
 			return (
-				<section className="ui__ container" id="about">
+				<section className="" id="about">
 					<p>Fais-toi plaiz</p>
-					{code}
-					{JSON.stringify(this.props.rules[this.props.rules.length - 1])}
 					<MonacoEditor
-						width="800"
+						width="100%"
 						height="600"
 						language="yaml"
 						theme="vs-dark"
