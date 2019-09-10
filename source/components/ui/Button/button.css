@@ -212,7 +212,6 @@
 	display: flex;
 	user-select: text;
 	align-items: baseline;
-	flex-wrap: wrap;
 	padding: 1rem;
 	background: white;
 	color: var(--darkColour);

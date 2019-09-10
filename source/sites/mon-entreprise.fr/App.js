@@ -75,9 +75,7 @@ function InFranceRoute({ basename, language }) {
 				...retrievePersistedState(),
 				previousSimulation: retrievePersistedSimulation()
 			}}>
-			<div id="content">
-				<RouterSwitch />
-			</div>
+			<RouterSwitch />
 		</Provider>
 	)
 }

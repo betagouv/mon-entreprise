@@ -1310,7 +1310,7 @@
   type: rémunération
   unité: €
   période: flexible
-  formule: rémunération . brut - cotisations . salariales
+  formule: brut - cotisations . salariales
 
 - espace: contrat salarié . rémunération
   nom: net imposable
