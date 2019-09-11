@@ -4225,6 +4225,7 @@
     Fiche sevice-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
 
   période: année
+  unité: €
   formule:
     variations:
       - si:
