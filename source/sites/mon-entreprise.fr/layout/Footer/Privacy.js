@@ -1,17 +1,20 @@
 import { T } from 'Components'
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-export default withLanguage(function Privacy({ language }) {
+export default function Privacy() {
 	const [opened, setOpened] = useState(false)
+	const { i18n } = useTranslation()
+
 	const handleClose = () => {
 		setOpened(false)
 	}
 	const handleOpen = () => {
 		setOpened(true)
 	}
+
 	return (
 		<>
 			<button onClick={handleOpen} className="ui__ link-button">
@@ -20,12 +23,12 @@ export default withLanguage(function Privacy({ language }) {
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
 					<ScrollToTop />
-					<PrivacyContent language={language} />
+					<PrivacyContent language={i18n.language} />
 				</Overlay>
 			)}
 		</>
 	)
-})
+}
 
 export let PrivacyContent = ({ language }) => (
 	<>

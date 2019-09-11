@@ -1,9 +1,9 @@
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useState } from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
-export const LegalNoticeContent = withTranslation()(() => (
+export const LegalNoticeContent = () => (
 	<>
 		<h1>
 			<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
@@ -60,7 +60,7 @@ export const LegalNoticeContent = withTranslation()(() => (
 			</Trans>
 		</p>
 	</>
-))
+)
 
 export default function LegalNotice() {
 	const [opened, setOpened] = useState(false)

@@ -2,12 +2,11 @@
 
 import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { régimeSelector } from 'Selectors/companyStatusSelectors'
@@ -20,21 +19,19 @@ import type { TFunction } from 'react-i18next'
 type Props = {
 	match: Match,
 	location: Location,
-	t: TFunction,
 	showFindYourCompanyLink: boolean,
 	legalStatus: string,
 	régime: 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null,
-	sitePaths: Object,
-	language: string
+	sitePaths: Object
 }
 function SocialSecurity({
-	t,
 	match,
 	régime,
 	sitePaths,
 	showFindYourCompanyLink,
 	legalStatus
 }: Props) {
+	const { t } = useTranslation()
 	return (
 		<>
 			<Helmet>
@@ -143,8 +140,6 @@ function SocialSecurity({
 }
 
 export default compose(
-	withTranslation(),
-	withLanguage,
 	withSitePaths,
 	connect(state => ({
 		régime: régimeSelector(state),

@@ -1,7 +1,9 @@
-import withLanguage from 'Components/utils/withLanguage'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
-export default withLanguage(function Video({ language }) {
+export default function Video() {
+	const { i18n } = useTranslation()
+
 	return (
 		<div
 			style={{
@@ -18,7 +20,7 @@ export default withLanguage(function Video({ language }) {
 					height: '100%'
 				}}
 				src={`https://www.youtube-nocookie.com/embed/${
-					language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
+					i18n.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
 				}?rel=0&amp;showinfo=0`}
 				frameBorder="0"
 				allow="autoplay; encrypted-media"
@@ -26,4 +28,4 @@ export default withLanguage(function Video({ language }) {
 			/>
 		</div>
 	)
-})
+}

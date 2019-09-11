@@ -2,9 +2,10 @@ import { T } from 'Components'
 import SchemeComparaison from 'Components/SchemeComparaison'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-export default withTranslation()(function SchemeComparaisonPage({ t }) {
+export default function SchemeComparaisonPage() {
+	const { t } = useTranslation()
 	return (
 		<>
 			<Helmet>
@@ -43,4 +44,4 @@ export default withTranslation()(function SchemeComparaisonPage({ t }) {
 			</div>
 		</>
 	)
-})
+}

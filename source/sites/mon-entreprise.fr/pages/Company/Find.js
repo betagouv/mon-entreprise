@@ -5,7 +5,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -74,8 +74,9 @@ async function getOptions(input: string) {
 	}
 }
 
-function Search({ t, sitePaths, onCompanyDetailsConfirmation }) {
+function Search({ sitePaths, onCompanyDetailsConfirmation }) {
 	const [input, setInput] = useState(input)
+	const { t } = useTranslation()
 
 	const handleChange = input => {
 		setInput(input)
@@ -168,6 +169,5 @@ export default (compose(
 		{
 			onCompanyDetailsConfirmation: saveExistingCompanyDetails
 		}
-	),
-	withTranslation()
+	)
 )(Search): React$ComponentType<OwnProps>)

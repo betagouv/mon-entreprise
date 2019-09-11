@@ -3,7 +3,7 @@ import { makeJsx } from 'Engine/evaluation'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
@@ -17,9 +17,9 @@ function Controls({
 	hideControl,
 	foldedSteps,
 	hiddenControls,
-	t,
 	inversionFail
 }) {
+	const { t } = useTranslation()
 	if (!controls) {
 		return null
 	}
@@ -95,6 +95,5 @@ export default compose(
 			hideControl
 		}
 	),
-	withColours,
-	withTranslation()
+	withColours
 )(Controls)

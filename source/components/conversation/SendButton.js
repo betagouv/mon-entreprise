@@ -1,11 +1,7 @@
-import { compose } from 'ramda'
 import React, { useEffect } from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
-export default compose(withTranslation())(function SendButton({
-	disabled,
-	submit
-}) {
+export default function SendButton({ disabled, submit }) {
 	useEffect(() => {
 		window.addEventListener('keydown', handleKeyDown)
 		return () => {
@@ -32,4 +28,4 @@ export default compose(withTranslation())(function SendButton({
 			</span>
 		</button>
 	)
-})
+}

@@ -3,21 +3,19 @@ import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
-import type { TFunction } from 'react-i18next'
 
 type OwnProps = {}
 type Props = {
 	companyStatusChoice: string,
-	sitePaths: Object,
-	t: TFunction
+	sitePaths: Object
 } & OwnProps
 
-const AfterRegistration = ({ t, companyStatusChoice, sitePaths }: Props) => {
+const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
+	const { t } = useTranslation()
 	const isAutoentrepreneur = [
 		'auto-entrepreneur',
 		'auto-entrepreneur-EIRL'
@@ -134,6 +132,5 @@ export default (compose(
 	connect(state => ({
 		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
-	withTranslation(),
 	withSitePaths
 )(AfterRegistration): React$ComponentType<OwnProps>)

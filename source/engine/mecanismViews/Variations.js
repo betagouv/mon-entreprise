@@ -1,21 +1,16 @@
 import classnames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import withLanguage from 'Components/utils/withLanguage'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import { makeJsx } from '../evaluation'
 import { InlineMecanism, Node } from './common'
 import './Variations.css'
 
-let Comp = withLanguage(function Variations({
-	language,
-	nodeValue,
-	explanation,
-	unit
-}) {
+let Comp = function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
+	const { i18n } = useTranslation()
 
 	return (
 		<ShowValuesConsumer>
@@ -29,7 +24,9 @@ let Comp = withLanguage(function Variations({
 					child={
 						<>
 							<p css="text-transform: capitalize">
-									<Trans >{writtenNumbers[language][explanation.length]}{' '}</Trans>
+								<Trans>
+									{writtenNumbers[i18n.language][explanation.length]}{' '}
+								</Trans>
 								<InlineMecanism name="variations" /> :
 							</p>
 							<ol>
@@ -110,7 +107,7 @@ let Comp = withLanguage(function Variations({
 			)}
 		</ShowValuesConsumer>
 	)
-})
+}
 // eslint-disable-next-line
 export default (nodeValue, explanation, _, unit) => (
 	<Comp {...{ nodeValue, explanation, unit }} />

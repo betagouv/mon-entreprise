@@ -1,11 +1,10 @@
 /* @flow */
 import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, filter } from 'ramda'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
@@ -20,21 +19,13 @@ type Props = {
 	goBackToPreviousQuestion: () => void,
 	sitePaths: Object,
 	setMainStatus: LegalStatus => void,
-	language: string,
-	t: TFunction
+	language: string
 }
 
 const StatusButton = withSitePaths(
-	withTranslation()(
-		({
-			status,
-			t,
-			sitePaths
-		}: {
-			status: LegalStatus,
-			t: TFunction,
-			sitePaths: Object
-		}) => (
+	({ status, sitePaths }: { status: LegalStatus, sitePaths: Object }) => {
+		const { t } = useTranslation()
+		return (
 			<div className="ui__ answer-group">
 				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
 					{status.includes('auto-entrepreneur') ? (
@@ -46,7 +37,7 @@ const StatusButton = withSitePaths(
 				</Link>
 			</div>
 		)
-	)
+	}
 )
 const StatusTitle = ({ status, language }) =>
 	status === 'EI' ? (
@@ -99,10 +90,9 @@ const SetMainStatus = ({
 	history,
 	possibleStatus,
 	goBackToPreviousQuestion,
-	sitePaths,
-	t,
-	language
+	sitePaths
 }: Props) => {
+	const { t, i18n } = useTranslation()
 	return (
 		<>
 			<Helmet>
@@ -121,7 +111,7 @@ const SetMainStatus = ({
 				{Object.keys(filter(Boolean, possibleStatus)).map(status => (
 					<li key={status}>
 						<strong>
-							<StatusTitle status={status} language={language} />
+							<StatusTitle status={status} language={i18n.language} />
 						</strong>{' '}
 						<p>
 							<StatusDescription status={status} />
@@ -147,9 +137,7 @@ const SetMainStatus = ({
 }
 
 export default compose(
-	withTranslation(),
 	withSitePaths,
-	withLanguage,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),
 		{ goBackToPreviousQuestion }

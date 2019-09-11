@@ -10,7 +10,7 @@ import { compose, lensPath, view } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
@@ -29,11 +29,13 @@ const feedbackBlacklist = [
 	['sécuritéSociale', 'salarié']
 ].map(lensPath)
 
-const Footer = ({ tracker, t, sitePaths }) => {
+const Footer = ({ tracker, sitePaths }) => {
 	const [registered, setUserRegistered] = usePersistingState(
 		'app::newsletter::registered',
 		false
 	)
+	const { t } = useTranslation()
+
 	const onSubmit = () => {
 		tracker.push(['trackEvent', 'Newsletter', 'registered'])
 		setTimeout(() => setUserRegistered(true), 0)
@@ -172,6 +174,5 @@ const Footer = ({ tracker, t, sitePaths }) => {
 }
 export default (compose(
 	withTracker,
-	withTranslation(),
 	withSitePaths
 )(Footer): React$ComponentType<OwnProps>)

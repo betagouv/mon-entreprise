@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
 import React from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -28,7 +28,6 @@ import SendButton from './SendButton'
 // dont Question est un example
 export default compose(
 	FormDecorator('question'),
-	withTranslation(),
 	withColours
 )(function Question(props) {
 	let {
@@ -141,10 +140,12 @@ let RadioLabel = props => (
 	</>
 )
 
-const RadioLabelContent = compose(
-	withTranslation(),
-	withColours
-)(function RadioLabelContent({ value, label, input, submit }) {
+const RadioLabelContent = compose(withColours)(function RadioLabelContent({
+	value,
+	label,
+	input,
+	submit
+}) {
 	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
 		selected = value === input.value
 

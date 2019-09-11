@@ -1,10 +1,9 @@
 import { toPairs } from 'ramda'
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import { capitalise0 } from '../../utils'
 import './References.css'
 
-export default withTranslation()(function References({ refs }) {
+export default function References({ refs }) {
 	const renderRef = ([name, link]) => {
 		let refKey = findRefKey(link),
 			refData = (refKey && references[refKey]) || {},
@@ -37,4 +36,4 @@ export default withTranslation()(function References({ refs }) {
 
 	let references = toPairs(refs)
 	return <ul className="references">{references.map(renderRef)}</ul>
-})
+}

@@ -2,7 +2,7 @@ import { setExample } from 'Actions/actions'
 import classNames from 'classnames'
 import { compose } from 'ramda'
 import React from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 
 export default compose(
@@ -17,8 +17,7 @@ export default compose(
 				setExample
 			)
 		})
-	),
-	withTranslation()
+	)
 )(function Examples({
 	situationExists,
 	rule,

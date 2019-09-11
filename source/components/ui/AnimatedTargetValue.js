@@ -1,18 +1,14 @@
 /* @flow */
-import withLanguage from 'Components/utils/withLanguage'
 import React, { useEffect, useState } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { useTranslation } from 'react-i18next'
 import './AnimatedTargetValue.css'
 
 type Props = {
-	value: ?number,
-	language: string
+	value: ?number
 }
 
-export default withLanguage(function AnimatedTargetValue({
-	value,
-	language
-}: Props) {
+export default function AnimatedTargetValue({ value }: Props) {
 	const [difference, setDifference] = useState(0)
 	const [previousValue, setPreviousValue] = useState()
 	useEffect(() => {
@@ -22,11 +18,12 @@ export default withLanguage(function AnimatedTargetValue({
 		setDifference((value || 0) - (previousValue || 0))
 		setPreviousValue(value)
 	}, [value])
+	const { i18n } = useTranslation()
 
 	const format = value => {
 		return value == null
 			? ''
-			: Intl.NumberFormat(language, {
+			: Intl.NumberFormat(i18n.language, {
 					style: 'currency',
 					currency: 'EUR',
 					maximumFractionDigits: 0,
@@ -52,7 +49,7 @@ export default withLanguage(function AnimatedTargetValue({
 			</span>
 		</>
 	)
-})
+}
 
 const Evaporate = React.memo(
 	({ children, style }: { children: string, style: Object }) => (
