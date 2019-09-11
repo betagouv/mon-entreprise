@@ -104,7 +104,6 @@
         nombre de personnes: 10
       valeur attendue: 300
 
-
 - test: comparaison stricte
   formule: salaire de base < 3001
   exemples:
@@ -215,16 +214,23 @@
     - situation:
         revenu: 1000
       valeur attendue: 12000
-##############
-# Hors limite aujourd'hui
 
-#- test: opérations multiples
-#  formule: 4 * plafond sécurité sociale * 12
-#
-#- test: comparaison et opération
-#  formule: salaire de base < 4 * plafond sécurité sociale
-#  exemples:
-#    - situation:
-#        salaire de base: 1000
-#        plafond sécurité sociale: 3500
-#      valeur attendue: true
+- test: opérations multiples
+  formule: 4 * plafond sécurité sociale * 10%
+  exemples:
+    - situation:
+        plafond sécurité sociale: 1000
+      valeur attendue: 400
+
+- test: comparaison et opération
+  formule: salaire de base < 4 * plafond sécurité sociale
+  exemples:
+    - situation:
+        salaire de base: 1000
+        plafond sécurité sociale: 3500
+      valeur attendue: true
+
+- test: nombres négatifs
+  formule: -5 * -10
+  exemples:
+    - valeur attendue: 50

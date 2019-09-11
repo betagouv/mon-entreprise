@@ -61,8 +61,7 @@ NonNumericTerminal ->
 
 
 
-Variable -> %words (%dot %words {% ([,words]) => words %}):*
-{% variable %}
+Variable -> %words (%dot %words {% ([,words]) => words %}):* {% variable %}
 
 
 Filter -> "[" %words "]" {% ([,filter]) => filter %}
