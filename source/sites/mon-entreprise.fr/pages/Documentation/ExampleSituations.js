@@ -36,64 +36,47 @@ const Example = compose(
 		parsedRules: parsedRulesSelector(state)
 	})),
 	withColours
-)(
-	class Example extends React.Component {
-		render() {
-			let {
-					ex: { nom, situation },
-					parsedRules,
-					defaults,
-					colours
-				} = this.props,
-				[total, net, netAprèsImpôts] = analyseMany(parsedRules, [
-					'total',
-					'net',
-					'net après impôt'
-				])(dottedName => ({ ...defaults, ...situation }[dottedName])).targets,
-				figures = [
-					total,
-					do {
-						let dottedName = 'contrat salarié . rémunération . brut de base'
-						;({
-							dottedName,
-							nodeValue: situation[dottedName],
-							title: 'Salaire brut'
-						})
-					},
-					net,
-					{ ...netAprèsImpôts, title: 'Après impôt' }
-				]
+)(function Example({ ex: { nom, situation }, parsedRules, defaults, colours }) {
+	let [total, net, netAprèsImpôts] = analyseMany(parsedRules, [
+			'total',
+			'net',
+			'net après impôt'
+		])(dottedName => ({ ...defaults, ...situation }[dottedName])).targets,
+		figures = [
+			total,
+			{
+				dottedName: 'contrat salarié . rémunération . brut de base',
+				nodeValue: situation['contrat salarié . rémunération . brut de base'],
+				title: 'Salaire brut'
+			},
+			net,
+			{ ...netAprèsImpôts, title: 'Après impôt' }
+		],
+		de = figures[0].nodeValue,
+		à = figures[3].nodeValue,
+		percentage = Math.round(((de - à) / de) * 100)
 
-			return (
-				<li className="example">
-					<h2>{nom}</h2>
-					<ul>
-						{figures.map(t => (
-							<li key={t.dottedName}>
-								<h3>{t.title}</h3>
-								<span
-									style={{ color: colours.textColourOnWhite }}
-									className="figure">
-									{Math.round(t.nodeValue)} €
-								</span>
-							</li>
-						))}{' '}
-						<li key="%">
-							<h3>Prélèvements</h3>
-							<span
-								style={{ color: colours.textColourOnWhite }}
-								className="figure">
-								{do {
-									let de = figures[0].nodeValue,
-										à = figures[3].nodeValue
-									Math.round(((de - à) / de) * 100)
-								}}{' '}
-								%
-							</span>
-						</li>
-					</ul>
+	return (
+		<li className="example">
+			<h2>{nom}</h2>
+			<ul>
+				{figures.map(t => (
+					<li key={t.dottedName}>
+						<h3>{t.title}</h3>
+						<span
+							style={{ color: colours.textColourOnWhite }}
+							className="figure">
+							{Math.round(t.nodeValue)} €
+						</span>
+					</li>
+				))}{' '}
+				<li key="%">
+					<h3>Prélèvements</h3>
+					<span style={{ color: colours.textColourOnWhite }} className="figure">
+						{percentage} %
+					</span>
 				</li>
-			)
-		}
-	}
-)
+			</ul>
+		</li>
+	)
+})

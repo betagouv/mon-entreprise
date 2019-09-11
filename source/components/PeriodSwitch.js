@@ -103,9 +103,9 @@ let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
 							? value * 12
 							: situation.période === 'année' && toPeriod === 'mois'
 							? value / 12
-							: do {
+							: (function() {
 									throw new Error('Oups, changement de période invalide')
-							  }
+							  })()
 					) + ''
 				),
 			needConvertion

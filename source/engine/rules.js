@@ -107,24 +107,22 @@ export let disambiguateRuleReference = (
 			splitName(dottedName) // the rule's own namespace
 		],
 		found = reduce(
-			(res, path) =>
-				when(is(Object), reduced)(
-					do {
-						let dottedNameToCheck = [...path, partialName].join(' . ')
-						findRuleByDottedName(allRules, dottedNameToCheck)
-					}
-				),
+			(res, path) => {
+				let dottedNameToCheck = [...path, partialName].join(' . ')
+				return when(is(Object), reduced)(
+					findRuleByDottedName(allRules, dottedNameToCheck)
+				)
+			},
 			null,
 			pathPossibilities
 		)
 
-	return (
-		(found && found.dottedName) ||
-		do {
-			throw new Error(
-				`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
-			)
-		}
+	if (found?.dottedName) {
+		return found.dottedName
+	}
+
+	throw new Error(
+		`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
 	)
 }
 

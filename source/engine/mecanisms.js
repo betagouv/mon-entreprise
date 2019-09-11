@@ -433,14 +433,14 @@ export let mecanismReduction = (recurse, k, v) => {
 			val(franchise) && v_assiette < val(franchise)
 				? 0
 				: décote
-				? do {
+				? (function() {
 						let plafondDécote = val(décote.plafond),
 							taux = val(décote.taux)
 
-						v_assiette > plafondDécote
+						return v_assiette > plafondDécote
 							? v_assiette
 							: max(0, (1 + taux) * v_assiette - taux * plafondDécote)
-				  }
+				  })()
 				: v_assiette
 
 		return abattement

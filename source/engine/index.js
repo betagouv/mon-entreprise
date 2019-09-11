@@ -16,13 +16,10 @@ let enrichRules = input =>
 export default {
 	evaluate: (targetInput, nestedSituation, config) => {
 		let rules = config
-			? do {
-					let { base, extra } = config
-					;[
-						...(base ? enrichRules(base) : rulesFr),
-						...(extra ? enrichRules(extra) : [])
-					]
-			  }
+			? [
+					...(config.base ? enrichRules(config.base) : rulesFr),
+					...(config.extra ? enrichRules(config.extra) : [])
+			  ]
 			: rulesFr
 
 		let evaluation = analyseMany(
