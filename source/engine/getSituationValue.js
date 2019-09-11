@@ -5,19 +5,19 @@ let evaluateBottomUp = situationGate => startingFragments => {
 	let rec = (parentFragments, childFragments = []) =>
 		parentFragments.length == 0
 			? null
-			: do {
+			: (function() {
 					let query = joinName(parentFragments),
 						expectedResult = isEmpty(childFragments)
 							? 'oui'
 							: joinName(childFragments)
 
-					situationGate(query) == null
+					return situationGate(query) == null
 						? rec(dropLast(1)(parentFragments), [
 								last(parentFragments),
 								...childFragments
 						  ])
 						: situationGate(query) == expectedResult
-			  }
+			  })()
 
 	return rec(startingFragments)
 }
