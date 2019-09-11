@@ -21,19 +21,20 @@ let currencyFormat = language => ({
 		.charAt(1)
 })
 
-function CurrencyInput({
-	value,
+export default function CurrencyInput({
+	value: valueArg,
 	debounce: debounceTimeout,
 	onChange,
 	language,
 	className,
 	...forwardedProps
 }) {
-	const [currentValue, setCurrentValue] = useState(value)
-	const [initialValue] = useState(value)
+	const [currentValue, setCurrentValue] = useState(valueArg)
+	const [initialValue] = useState(valueArg)
+	// When the component is rendered with a new "value" argument, we update our local state
 	useEffect(() => {
-		setCurrentValue(value)
-	}, [value])
+		setCurrentValue(valueArg)
+	}, [valueArg])
 	const nextValue = useRef(null)
 	const onChangeDebounced = useRef(
 		debounceTimeout ? debounce(debounceTimeout, onChange) : onChange
@@ -62,10 +63,10 @@ function CurrencyInput({
 	} = currencyFormat(language)
 
 	// We display negative numbers iff this was the provided value (but we allow the user to enter them)
-	const valueHasChanged = value !== initialValue
+	const valueHasChanged = currentValue !== initialValue
 
 	// Autogrow the input
-	const valueLength = (value || '').toString().length
+	const valueLength = (currentValue || '').toString().length
 
 	return (
 		<div
@@ -92,5 +93,3 @@ function CurrencyInput({
 		</div>
 	)
 }
-
-export default CurrencyInput
