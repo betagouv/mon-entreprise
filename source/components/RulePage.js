@@ -7,7 +7,7 @@ import {
 	findRulesByName
 } from 'Engine/rules.js'
 import { compose, head } from 'ramda'
-import React from 'react'
+import React, { createContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -23,17 +23,20 @@ import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
 
+export const SkipTrivialRuleContext = createContext(false)
+
 export default compose(
 	connect(state => ({
 		valuesToShow: !noUserInputSelector(state),
 		flatRules: flatRulesSelector(state),
 		brancheName: situationBranchNameSelector(state)
 	}))
-)(function RulePage({ flatRules, match, valuesToShow, brancheName }) {
+)(function RulePage({ flatRules, match, location, valuesToShow, brancheName }) {
 	let name = match?.params?.name,
 		decodedRuleName = decodeRuleName(name)
 
 	const renderRule = dottedName => {
+		const skipTrivialRule = Boolean(location?.state?.skipTrivialRule)
 		return (
 			<div id="RulePage">
 				<ScrollToTop key={brancheName + dottedName} />
@@ -42,7 +45,9 @@ export default compose(
 					{brancheName && <span id="situationBranch">{brancheName}</span>}
 					<SearchButton />
 				</div>
-				<Rule dottedName={dottedName} />
+				<SkipTrivialRuleContext.Provider value={skipTrivialRule}>
+					<Rule dottedName={dottedName} />
+				</SkipTrivialRuleContext.Provider>
 			</div>
 		)
 	}

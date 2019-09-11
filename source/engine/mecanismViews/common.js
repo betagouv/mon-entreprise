@@ -2,7 +2,7 @@ import { default as classNames, default as classnames } from 'classnames'
 import withSitePaths from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import { compose, contains, isNil, pipe, sort, toPairs } from 'ramda'
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -31,47 +31,54 @@ export let NodeValuePointer = ({ data, unit }) => (
 	</span>
 )
 
+export const NodeTreeDepthContext = createContext(0)
+
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export function Node({ classes, name, value, child, inline, unit }) {
-	let termDefinition = contains('mecanism', classes) && name
+	let termDefinition = contains('mecanism', classes) && name,
+		nodeTreeDepth = useContext(NodeTreeDepthContext)
 
 	return (
-		<div
-			className={classNames(classes, 'node', { inline })}
-			style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
-			{name && !inline && (
-				<div className="nodeHead" css="margin-bottom: 1em">
-					<LinkButton
-						className="name"
-						style={termDefinition ? { background: mecanismColours(name) } : {}}
-						data-term-definition={termDefinition}>
-						<Trans>{name}</Trans>
-					</LinkButton>
-				</div>
-			)}
-			{child}{' '}
-			{name ? (
-				!isNil(value) && (
-					<div className="mecanism-result">
-						<span css="font-size: 90%; margin: 0 .6em">=</span>
-						<NodeValuePointer data={value} unit={unit} />
+		<NodeTreeDepthContext.Provider value={nodeTreeDepth + 1}>
+			<div
+				className={classNames(classes, 'node', { inline })}
+				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
+				{name && !inline && (
+					<div className="nodeHead" css="margin-bottom: 1em">
+						<LinkButton
+							className="name"
+							style={
+								termDefinition ? { background: mecanismColours(name) } : {}
+							}
+							data-term-definition={termDefinition}>
+							<Trans>{name}</Trans>
+						</LinkButton>
 					</div>
-				)
-			) : (
-				<span
-					css={`
-						@media (max-width: 1200px) {
-							width: 100%;
-							text-align: right;
-						}
-					`}>
-					{value !== true && value !== false && !isNil(value) && (
-						<span className="operator"> =&nbsp;</span>
-					)}
-					<NodeValuePointer data={value} unit={unit} />
-				</span>
-			)}
-		</div>
+				)}
+				{child}{' '}
+				{name ? (
+					!isNil(value) && (
+						<div className="mecanism-result">
+							<span css="font-size: 90%; margin: 0 .6em">=</span>
+							<NodeValuePointer data={value} unit={unit} />
+						</div>
+					)
+				) : (
+					<span
+						css={`
+							@media (max-width: 1200px) {
+								width: 100%;
+								text-align: right;
+							}
+						`}>
+						{value !== true && value !== false && !isNil(value) && (
+							<span className="operator"> =&nbsp;</span>
+						)}
+						<NodeValuePointer data={value} unit={unit} />
+					</span>
+				)}
+			</div>
+		</NodeTreeDepthContext.Provider>
 	)
 }
 

@@ -19,6 +19,7 @@ const RuleLink = ({
 	title,
 	colours: { colour },
 	style,
+	skipTrivialRule = true,
 	sitePaths,
 	children
 }: Props) => {
@@ -27,7 +28,7 @@ const RuleLink = ({
 
 	return (
 		<Link
-			to={newPath}
+			to={{ pathname: newPath, state: { skipTrivialRule } }}
 			className="rule-link"
 			style={{ color: colour, ...style }}>
 			{children || title || nameLeaf(dottedName)}
