@@ -1885,7 +1885,7 @@
       - entreprise . effectif < 250
       - apprentissage
       - contrat salarié . apprentissage . diplôme préparé . niveau bac ou moins
-      
+
       # HACK: "apprentissage . ancienneté" n'est pas détecté par le moteur dans les dépendances ("missingVariables") de cette aide.
       # On l'ajoute ici uniquement pour faire remonter la question au bon niveau, mais ça ne devrait pas être nécessaire.
       - apprentissage . ancienneté
@@ -4659,27 +4659,24 @@
   espace: protection sociale . retraite . trimestres validés par an
   période: aucune
   formule:
-    variations:
-      - si: oui
-        alors:
-          barème linéaire:
-            unité: trimestres
-            assiette: revenu moyen [annuel]
-            multiplicateur: SMIC horaire
-            tranches:
-              - en-dessous de: 150
-                montant: 0
-              - de: 150
-                à: 300
-                montant: 1
-              - de: 300
-                à: 450
-                montant: 2
-              - de: 450
-                à: 600
-                montant: 3
-              - au-dessus de: 600
-                montant: 4
+    barème linéaire:
+      unité: trimestres
+      assiette: revenu moyen [annuel]
+      multiplicateur: SMIC horaire
+      tranches:
+        - en-dessous de: 150
+          montant: 0
+        - de: 150
+          à: 300
+          montant: 1
+        - de: 300
+          à: 450
+          montant: 2
+        - de: 450
+          à: 600
+          montant: 3
+        - au-dessus de: 600
+          montant: 4
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
