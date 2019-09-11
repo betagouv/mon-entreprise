@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
 import { compose } from 'ramda'
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { change, Field } from 'redux-form'
 
@@ -27,8 +26,7 @@ export var FormDecorator = formType => RenderField =>
 				setFormValue: (field, value) =>
 					dispatch(change('conversation', field, value))
 			})
-		),
-		withTranslation()
+		)
 	)(function(props) {
 		let { stepAction, fieldName, inversion, setFormValue, unit } = props,
 			submit = cause => stepAction('fold', fieldName, cause),

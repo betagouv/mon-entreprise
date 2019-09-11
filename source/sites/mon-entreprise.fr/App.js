@@ -6,7 +6,7 @@ import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
@@ -82,7 +82,7 @@ function InFranceRoute({ basename, language }) {
 	)
 }
 
-let RouterSwitch = compose(withTranslation())(() => {
+let RouterSwitch = () => {
 	return (
 		<>
 			{!inIframe() && <Navigation location={location} />}
@@ -93,55 +93,55 @@ let RouterSwitch = compose(withTranslation())(() => {
 			</Switch>
 		</>
 	)
-})
+}
 
-const App = compose(
-	withSitePaths,
-	withTranslation()
-)(({ sitePaths, t }) => (
-	<div className="app-container">
-		<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
-		{/* Passing location down to prevent update blocking */}
+const App = compose(withSitePaths)(({ sitePaths }) => {
+	const { t } = useTranslation()
+	return (
+		<div className="app-container">
+			<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
+			{/* Passing location down to prevent update blocking */}
 
-		<div className="app-content">
-			{!inIframe() && <Header />}
-			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
-				<Switch>
-					<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
-					<Route
-						path={sitePaths.sécuritéSociale.index}
-						component={SocialSecurity}
-					/>
-					<Route
-						path={sitePaths.démarcheEmbauche.index}
-						component={HiringProcess}
-					/>
-					<Route
-						path={sitePaths.économieCollaborative.index}
-						component={ÉconomieCollaborative}
-					/>
-					<Route
-						path={sitePaths.documentation.index}
-						component={Documentation}
-					/>
-					<Route path={sitePaths.privacy.index} component={PrivacyContent} />
-					<Route exact path="/dev/sitemap" component={Sitemap} />
-					<Route
-						exact
-						path="/dev/integration-test"
-						component={IntegrationTest}
-					/>
-					<Route exact path="/dev/couleur" component={Couleur} />
-					<Route exact path="/dev/personas" component={Personas} />
+			<div className="app-content">
+				{!inIframe() && <Header />}
+				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
+					<Switch>
+						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
+						<Route
+							path={sitePaths.sécuritéSociale.index}
+							component={SocialSecurity}
+						/>
+						<Route
+							path={sitePaths.démarcheEmbauche.index}
+							component={HiringProcess}
+						/>
+						<Route
+							path={sitePaths.économieCollaborative.index}
+							component={ÉconomieCollaborative}
+						/>
+						<Route
+							path={sitePaths.documentation.index}
+							component={Documentation}
+						/>
+						<Route path={sitePaths.privacy.index} component={PrivacyContent} />
+						<Route exact path="/dev/sitemap" component={Sitemap} />
+						<Route
+							exact
+							path="/dev/integration-test"
+							component={IntegrationTest}
+						/>
+						<Route exact path="/dev/couleur" component={Couleur} />
+						<Route exact path="/dev/personas" component={Personas} />
 
-					<Route component={Route404} />
-				</Switch>
+						<Route component={Route404} />
+					</Switch>
+				</div>
+
+				{!inIframe() && <Footer />}
 			</div>
-
-			{!inIframe() && <Footer />}
 		</div>
-	</div>
-))
+	)
+})
 
 let ExportedApp = InFranceRoute
 

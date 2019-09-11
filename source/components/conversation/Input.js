@@ -2,7 +2,6 @@ import classnames from 'classnames'
 import { React, T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { formValueSelector } from 'redux-form'
 import { debounce } from '../../utils'
@@ -12,7 +11,6 @@ import SendButton from './SendButton'
 
 export default compose(
 	FormDecorator('input'),
-	withTranslation(),
 	withColours,
 	connect(state => ({
 		period: formValueSelector('conversation')(state, 'période')

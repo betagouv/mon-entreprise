@@ -5,7 +5,7 @@ import {
 } from 'Actions/actions'
 import { compose } from 'ramda'
 import React from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
@@ -42,7 +42,6 @@ const PreviousSimulationBanner = ({
 )
 
 export default compose(
-	withTranslation(),
 	connect(
 		state => ({
 			previousSimulation: state.previousSimulation,

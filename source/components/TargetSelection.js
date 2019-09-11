@@ -5,14 +5,13 @@ import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
 import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { serialiseUnit } from 'Engine/units'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { memo, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -27,7 +26,6 @@ import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
 export default compose(
-	withTranslation(),
 	withColours,
 	reduxForm({
 		form: 'conversation',
@@ -277,46 +275,46 @@ let DebouncedPercentageField = props => (
 	<PercentageField debounce={600} {...props} />
 )
 
-let TargetInputOrValue = withLanguage(
-	({
-		target,
-		targets,
-		activeInput,
-		setActiveInput,
-		language,
-		firstStepCompleted
-	}) => {
-		let inputIsActive = activeInput === target.dottedName
-		return (
-			<span className="targetInputOrValue">
-				{inputIsActive || !target.formule || isEmpty(target.formule) ? (
-					<Field
-						name={target.dottedName}
-						onBlur={event => event.preventDefault()}
-						component={
-							{ '€': CurrencyField, '%': DebouncedPercentageField }[
-								serialiseUnit(target.unit)
-							]
-						}
-						{...(inputIsActive ? { autoFocus: true } : {})}
-						language={language}
-					/>
-				) : (
-					<TargetValue
-						{...{
-							targets,
-							target,
-							activeInput,
-							setActiveInput,
-							firstStepCompleted
-						}}
-					/>
-				)}
-				{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
-			</span>
-		)
-	}
-)
+let TargetInputOrValue = ({
+	target,
+	targets,
+	activeInput,
+	setActiveInput,
+	firstStepCompleted
+}) => {
+	const {
+		i18n: { language }
+	} = useTranslation()
+	let inputIsActive = activeInput === target.dottedName
+	return (
+		<span className="targetInputOrValue">
+			{inputIsActive || !target.formule || isEmpty(target.formule) ? (
+				<Field
+					name={target.dottedName}
+					onBlur={event => event.preventDefault()}
+					component={
+						{ '€': CurrencyField, '%': DebouncedPercentageField }[
+							serialiseUnit(target.unit)
+						]
+					}
+					{...(inputIsActive ? { autoFocus: true } : {})}
+					language={language}
+				/>
+			) : (
+				<TargetValue
+					{...{
+						targets,
+						target,
+						activeInput,
+						setActiveInput,
+						firstStepCompleted
+					}}
+				/>
+			)}
+			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
+		</span>
+	)
+}
 
 const TargetValue = connect(
 	state => ({

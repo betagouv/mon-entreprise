@@ -1,17 +1,11 @@
-import React from 'react'
-import { Node } from './common'
-import { Trans } from 'react-i18next'
-import './InversionNumérique.css'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import withLanguage from 'Components/utils/withLanguage'
-import { toPairs } from 'ramda'
 import { makeJsx } from 'Engine/evaluation'
 import { Leaf } from 'Engine/mecanismViews/common'
+import React from 'react'
+import { Node } from './common'
+import './InversionNumérique.css'
 
-let Comp = withLanguage(function InversionNumérique({
-	nodeValue,
-	explanation
-}) {
+let Comp = function InversionNumérique({ nodeValue, explanation }) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
@@ -52,7 +46,7 @@ let Comp = withLanguage(function InversionNumérique({
 			)}
 		</ShowValuesConsumer>
 	)
-})
+}
 
 //eslint-disable-next-line
 export default (nodeValue, explanation) => (

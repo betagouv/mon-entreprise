@@ -6,7 +6,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
@@ -32,7 +32,6 @@ const CreateMyCompany = ({
 	nextQuestionUrl,
 	guideAlreadyStarted,
 	resetCompanyStatusChoice,
-	t,
 	location
 }: Props) => {
 	useEffect(() => {
@@ -44,6 +43,7 @@ const CreateMyCompany = ({
 			return
 		}
 	})
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -116,6 +116,5 @@ export default (compose(
 				.length
 		}),
 		{ resetCompanyStatusChoice }
-	),
-	withTranslation()
+	)
 )(CreateMyCompany): React$ComponentType<OwnProps>)

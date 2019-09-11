@@ -7,7 +7,6 @@ import companySvg from 'Images/company.svg'
 import estimateSvg from 'Images/estimate.svg'
 import hiringSvg from 'Images/hiring.svg'
 import { compose } from 'ramda'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
@@ -71,6 +70,5 @@ export default (compose(
 		state => ({ showHiring: régimeSelector(state) !== 'auto-entrepreneur' }),
 		{}
 	),
-	withTranslation(),
 	withSitePaths
 )(StepsHeader): React$ComponentType<OwnProps>)

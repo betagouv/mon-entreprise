@@ -7,20 +7,17 @@ import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-export default compose(
-	withTranslation(),
-	withLanguage
-)(function Salarié({ t, language }) {
+export default function Salarié() {
+	const { t, i18n } = useTranslation()
 	const isEmbedded = React.useContext(IsEmbeddedContext)
 	return (
 		<>
@@ -43,7 +40,7 @@ export default compose(
 				<T k="simulateurs.salarié.titre">Simulateur de revenus pour salarié</T>
 			</h1>
 			<div style={{ margin: '2rem' }} />
-			{language === 'fr' && (
+			{i18n.language === 'fr' && (
 				<Banner icon="⏰  ">
 					<strong>
 						Nouveau ! Vous pouvez renseigner des heures supplémentaires :
@@ -55,12 +52,12 @@ export default compose(
 			<SalarySimulation />
 			{!isEmbedded && (
 				<Markdown
-					source={language === 'fr' ? seoExplanations : seoExplanationsEn}
+					source={i18n.language === 'fr' ? seoExplanations : seoExplanationsEn}
 				/>
 			)}
 		</>
 	)
-})
+}
 
 const seoExplanations = `
 ## Calculer son salaire net

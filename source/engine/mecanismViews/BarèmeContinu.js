@@ -1,13 +1,12 @@
-import React from 'react'
-import { Node } from './common'
-import { Trans } from 'react-i18next'
-import './Barème.css'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import withLanguage from 'Components/utils/withLanguage'
-import { BarèmeAttributes } from './Barème'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { BarèmeAttributes } from './Barème'
+import './Barème.css'
+import { Node } from './common'
 
-let Comp = withLanguage(function Barème({ nodeValue, explanation, unit }) {
+let Comp = function Barème({ nodeValue, explanation, unit }) {
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
@@ -58,7 +57,7 @@ let Comp = withLanguage(function Barème({ nodeValue, explanation, unit }) {
 			)}
 		</ShowValuesConsumer>
 	)
-})
+}
 
 //eslint-disable-next-line
 export default (nodeValue, explanation, _, unit) => (

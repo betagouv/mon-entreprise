@@ -1,10 +1,9 @@
 /* @flow */
 
 import { React, T } from 'Components'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, toPairs } from 'ramda'
-import { withTranslation } from 'react-i18next'
+import { useTranslation, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import type { ResetExistingCompanyDetailsAction } from 'Types/companyTypes'
@@ -25,41 +24,38 @@ const YYYYMMDDToDate = (date: string): Date =>
 
 type LocaleDateProps = {
 	date: Date,
-	options?: { [string]: string },
-	language: string
+	options?: { [string]: string }
 }
-const LocaleDate = withLanguage(
-	({ date, options, language }: LocaleDateProps) =>
-		new Intl.DateTimeFormat(language, {
-			month: 'short',
-			day: 'numeric',
-			year: 'numeric',
-			...options
-		}).format(date)
+const LocaleDate = withTranslation(({ date, options, i18n }: LocaleDateProps) =>
+	new Intl.DateTimeFormat(i18n.language, {
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		...options
+	}).format(date)
 )
 
-export const CompanyDetails = withTranslation()(
-	({ t, ...data }: { t: TFunction, [string]: string }) => {
-		const localizedCompanyDataSelection = companyDataSelection(t)
-		return (
-			<ul>
-				{toPairs(data).map(([key, value]) =>
-					localizedCompanyDataSelection[key] != null ? (
-						<li key={key}>
-							<strong>{localizedCompanyDataSelection[key]}</strong>
-							<br />
-							{key === 'date_creation' ? (
-								<LocaleDate date={YYYYMMDDToDate(value)} />
-							) : (
-								value
-							)}
-						</li>
-					) : null
-				)}
-			</ul>
-		)
-	}
-)
+export const CompanyDetails = (data: { [string]: string }) => {
+	const { t } = useTranslation()
+	const localizedCompanyDataSelection = companyDataSelection(t)
+	return (
+		<ul>
+			{toPairs(data).map(([key, value]) =>
+				localizedCompanyDataSelection[key] != null ? (
+					<li key={key}>
+						<strong>{localizedCompanyDataSelection[key]}</strong>
+						<br />
+						{key === 'date_creation' ? (
+							<LocaleDate date={YYYYMMDDToDate(value)} />
+						) : (
+							value
+						)}
+					</li>
+				) : null
+			)}
+		</ul>
+	)
+}
 
 const YourCompany = ({ companyDetails, resetCompanyDetails, sitePaths }) => (
 	<>

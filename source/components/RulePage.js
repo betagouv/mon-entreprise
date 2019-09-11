@@ -9,9 +9,8 @@ import {
 import { compose, head } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Link, Redirect } from 'react-router-dom'
 import {
 	flatRulesSelector,
@@ -29,9 +28,7 @@ export default compose(
 		valuesToShow: !noUserInputSelector(state),
 		flatRules: flatRulesSelector(state),
 		brancheName: situationBranchNameSelector(state)
-	})),
-
-	withTranslation()
+	}))
 )(function RulePage({ flatRules, match, valuesToShow, brancheName }) {
 	let name = match?.params?.name,
 		decodedRuleName = decodeRuleName(name)
@@ -72,9 +69,7 @@ const BackToSimulation = compose(
 	connect(
 		null,
 		{ goBackToSimulation }
-	),
-	withRouter,
-	withTranslation()
+	)
 )(
 	// Triggers rerender when the language changes
 	function BackToSimulation({ goBackToSimulation }) {

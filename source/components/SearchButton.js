@@ -1,7 +1,7 @@
 import { compose } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import Overlay from './Overlay'
@@ -10,8 +10,7 @@ import SearchBar from './SearchBar'
 export default compose(
 	connect(state => ({
 		flatRules: flatRulesSelector(state)
-	})),
-	withTranslation()
+	}))
 )(function SearchButton({ flatRules, invisibleButton }) {
 	const [visible, setVisible] = useState(false)
 	useEffect(() => {

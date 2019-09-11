@@ -1,7 +1,6 @@
 /* @flow */
 import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
-import withLanguage from 'Components/utils/withLanguage'
 import { compose, contains, filter, reject, toPairs } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
@@ -62,7 +61,6 @@ const QuickLinks = ({
 }
 
 export default (compose(
-	withLanguage,
 	withRouter,
 	connect(
 		(state, props) => ({

@@ -4,14 +4,13 @@ import Fuse from 'fuse.js'
 import { compose, pick, sortBy } from 'ramda'
 import React, { useRef, useState } from 'react'
 import Highlighter from 'react-highlight-words'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import { capitalise0 } from '../utils'
 
 function SearchBar({
-	i18n,
 	rules,
 	showDefaultList,
 	finally: finallyCallback,
@@ -21,6 +20,7 @@ function SearchBar({
 	const [selectedOption, setSelectedOption] = useState(null)
 	const inputElementRef = useRef()
 	const fuse = useRef()
+	const { i18n } = useTranslation()
 
 	const options = {
 		keys: [
@@ -101,7 +101,4 @@ function SearchBar({
 	)
 }
 
-export default compose(
-	withSitePaths,
-	withTranslation()
-)(SearchBar)
+export default compose(withSitePaths)(SearchBar)

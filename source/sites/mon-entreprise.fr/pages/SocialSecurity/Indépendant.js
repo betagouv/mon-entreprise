@@ -6,46 +6,46 @@ import withSimulationConfig from 'Components/simulationConfigs/withSimulationCon
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-export default compose(
-	withTranslation(),
-	withSimulationConfig(indépendantConfig)
-)(function Indépendant({ t }) {
-	return (
-		<>
-			<Helmet>
-				<title>
-					{t(
-						'simulateurs.indépendant.page.titre',
-						'Indépendant : simulateur officiel de revenus et de cotisations'
-					)}
-				</title>
-				<meta
-					name="description"
-					content={t(
-						'simulateurs.indépendant.page.description',
-						"Estimez vos revenus en tant qu'indépendant à partir de votre chiffre d'affaire (pour les EI et les gérants EURL et SARL majoritaires). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
-					)}
+export default compose(withSimulationConfig(indépendantConfig))(
+	function Indépendant() {
+		const { t } = useTranslation()
+		return (
+			<>
+				<Helmet>
+					<title>
+						{t(
+							'simulateurs.indépendant.page.titre',
+							'Indépendant : simulateur officiel de revenus et de cotisations'
+						)}
+					</title>
+					<meta
+						name="description"
+						content={t(
+							'simulateurs.indépendant.page.description',
+							"Estimez vos revenus en tant qu'indépendant à partir de votre chiffre d'affaire (pour les EI et les gérants EURL et SARL majoritaires). Prise en compte de toutes les cotisations et de l'impôt sur le revenu. Simulateur officiel de l'Urssaf"
+						)}
+					/>
+				</Helmet>
+				<h1>
+					<T k="simulateurs.indépendant.titre">
+						Simulateur de revenus pour indépendants
+					</T>
+				</h1>
+				<Warning />
+				<Simulation
+					explanation={
+						<>
+							<AvertissementForfaitIndépendants />
+							<AvertissementProtectionSocialeIndépendants />
+						</>
+					}
 				/>
-			</Helmet>
-			<h1>
-				<T k="simulateurs.indépendant.titre">
-					Simulateur de revenus pour indépendants
-				</T>
-			</h1>
-			<Warning />
-			<Simulation
-				explanation={
-					<>
-						<AvertissementForfaitIndépendants />
-						<AvertissementProtectionSocialeIndépendants />
-					</>
-				}
-			/>
-		</>
-	)
-})
+			</>
+		)
+	}
+)
 
 let AvertissementForfaitIndépendants = () => (
 	<p className="ui__ notice">

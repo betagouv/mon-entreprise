@@ -3,12 +3,12 @@ import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { isIE } from '../../../../utils'
 
-export default withTranslation()(function IframeFooter() {
+export default function IframeFooter() {
 	useEffect(() => {
 		screenfull.enabled && screenfull.onchange(() => this.forceUpdate())
 	}, [])
@@ -64,4 +64,4 @@ export default withTranslation()(function IframeFooter() {
 			</div>
 		</>
 	)
-})
+}

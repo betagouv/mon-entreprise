@@ -1,10 +1,9 @@
 import { T } from 'Components'
 import { usePersistingState } from 'Components/utils/persistState'
-import withLanguage from 'Components/utils/withLanguage'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 
-export default withLanguage(function SimulateurWarning({ simulateur }) {
+export default function SimulateurWarning({ simulateur }) {
 	let [folded, fold] = usePersistingState(
 		'app::simulateurs:warning-folded:v1:' + simulateur,
 		false
@@ -72,4 +71,4 @@ export default withLanguage(function SimulateurWarning({ simulateur }) {
 			</div>
 		</div>
 	)
-})
+}

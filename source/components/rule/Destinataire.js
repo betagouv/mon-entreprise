@@ -1,9 +1,9 @@
 import React from 'react'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import './Destinataire.css'
 
-export default withTranslation()(function Rule({ destinataire }) {
+export default function Rule({ destinataire }) {
 	let destinataireData = possiblesDestinataires[destinataire]
 
 	return destinataire && destinataireData ? (
@@ -30,4 +30,4 @@ export default withTranslation()(function Rule({ destinataire }) {
 			</div>
 		</div>
 	) : null
-})
+}

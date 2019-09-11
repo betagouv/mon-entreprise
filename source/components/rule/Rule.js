@@ -1,7 +1,6 @@
 import { T } from 'Components'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
@@ -14,7 +13,7 @@ import { compose, isEmpty } from 'ramda'
 import React, { Suspense, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { Trans, withTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -44,12 +43,9 @@ export default compose(
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
 	AttachDictionary(knownMecanisms),
-	withTranslation(),
-	withSitePaths,
-	withLanguage
+	withSitePaths
 )(function Rule({
 	dottedName,
-	t,
 	currentExample,
 	flatRules,
 	valuesToShow,
@@ -58,6 +54,8 @@ export default compose(
 	analysedRule
 }) {
 	const [viewSource, setViewSource] = useState(false)
+	const { t } = useTranslation()
+
 	let flatRule = findRuleByDottedName(flatRules, dottedName)
 	let { type, name, title, description, question, ns, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)

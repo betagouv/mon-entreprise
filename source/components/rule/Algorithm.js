@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { React, T } from 'Components'
 import { makeJsx } from 'Engine/evaluation'
-import { any, compose, identity, path } from 'ramda'
-import { Trans, withTranslation } from 'react-i18next'
+import { any, identity, path } from 'ramda'
+import { Trans } from 'react-i18next'
 import './Algorithm.css'
 // The showValues prop is passed as a context. It used to be delt in CSS (not(.showValues) display: none), both coexist right now
 import { ShowValuesProvider } from './ShowValuesContext'
@@ -48,10 +48,7 @@ function ShowIfDisabled({ dependency }) {
 	)
 }
 
-export default compose(withTranslation())(function Algorithm({
-	rule,
-	showValues
-}) {
+export default function Algorithm({ rule, showValues }) {
 	let formula =
 			rule['formule'] ||
 			(rule.category === 'variable' && rule.explanation.formule),
@@ -81,4 +78,4 @@ export default compose(withTranslation())(function Algorithm({
 			</section>
 		</div>
 	)
-})
+}

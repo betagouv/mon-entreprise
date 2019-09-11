@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import withLanguage from 'Components/utils/withLanguage'
 import { numberFormatter } from 'Components/Value'
 import { trancheValue } from 'Engine/mecanisms/barème'
 import { inferUnit, serialiseUnit } from 'Engine/units'
@@ -33,7 +32,7 @@ export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
 	</>
 )
 
-let Component = withLanguage(function Barème({
+let Component = function Barème({
 	language,
 	nodeValue,
 	explanation,
@@ -124,7 +123,7 @@ let Component = withLanguage(function Barème({
 			)}
 		</ShowValuesConsumer>
 	)
-})
+}
 
 let Tranche = ({
 	tranche: {

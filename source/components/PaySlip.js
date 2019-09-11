@@ -1,7 +1,6 @@
 /* @flow */
 import type { FicheDePaie } from 'Types/ResultViewTypes'
 import withColours from 'Components/utils/withColours'
-import withLanguage from 'Components/utils/withLanguage'
 import Value from 'Components/Value'
 import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 import { compose } from 'ramda'
@@ -27,8 +26,7 @@ export default compose(
 		cotisations: analysisToCotisationsSelector(state),
 		analysis: analysisWithDefaultsSelector(state),
 		parsedRules: parsedRulesSelector(state)
-	})),
-	withLanguage
+	}))
 )(
 	({
 		colours: { lightestColour },

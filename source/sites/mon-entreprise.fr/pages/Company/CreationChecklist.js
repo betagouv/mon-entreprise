@@ -7,12 +7,11 @@ import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import Route404 from 'Components/Route404'
 import Scroll from 'Components/utils/Scroll'
-import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
@@ -26,7 +25,6 @@ type Props = {
 	statusChooserCompleted: boolean,
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
-	language: string,
 	onStatusChange: () => void,
 	sitePaths: Object,
 	onItemCheck: (name: string, checked: boolean) => void,
@@ -38,13 +36,12 @@ const CreateCompany = ({
 	match,
 	statusChooserCompleted,
 	onChecklistInitialization,
-	language,
 	onItemCheck,
 	sitePaths,
 	companyCreationChecklist,
-	onStatusChange,
-	t
+	onStatusChange
 }: Props) => {
+	const { t, i18n } = useTranslation()
 	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
 		status => t(status) === match.params.status
 	)
@@ -472,7 +469,7 @@ const CreateCompany = ({
 					<T k="entreprise.tâches.ensuite">Après la création</T> →
 				</Link>
 			</p>
-			{language === 'fr' && (
+			{i18n.language === 'fr' && (
 				<>
 					<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
 					<p>
@@ -496,9 +493,7 @@ const CreateCompany = ({
 	)
 }
 export default compose(
-	withTranslation(),
 	withSitePaths,
-	withLanguage,
 	connect(
 		state => ({
 			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,

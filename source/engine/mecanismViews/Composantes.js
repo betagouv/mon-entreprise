@@ -1,19 +1,15 @@
-import React from 'react'
-import { Node, InlineMecanism } from './common'
-import { makeJsx } from '../evaluation'
-import './Composantes.css'
-import { Trans } from 'react-i18next'
-import { toPairs } from 'ramda'
-import writtenNumbers from '../../locales/writtenNumbers.yaml'
-import withLanguage from 'Components/utils/withLanguage'
 import colours from 'Engine/mecanismViews/colours'
+import { toPairs } from 'ramda'
+import React from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import writtenNumbers from '../../locales/writtenNumbers.yaml'
+import { makeJsx } from '../evaluation'
+import { InlineMecanism, Node } from './common'
+import './Composantes.css'
 
-let Comp = withLanguage(function Composantes({
-	language,
-	nodeValue,
-	explanation,
-	unit
-}) {
+let Comp = function Composantes({ nodeValue, explanation, unit }) {
+	const { i18n } = useTranslation()
+
 	return (
 		<Node
 			classes="mecanism composantes"
@@ -25,7 +21,7 @@ let Comp = withLanguage(function Composantes({
 				<>
 					<p css="margin-bottom: 1em">
 						<Trans>La somme de</Trans>{' '}
-						{writtenNumbers[language][explanation.length]}{' '}
+						{writtenNumbers[i18n.language][explanation.length]}{' '}
 						<InlineMecanism name="composantes" /> :
 					</p>
 					<ol>
@@ -70,7 +66,7 @@ let Comp = withLanguage(function Composantes({
 			}
 		/>
 	)
-})
+}
 
 // eslint-disable-next-line
 export default (nodeValue, explanation, _, unit) => (
