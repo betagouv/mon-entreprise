@@ -1,7 +1,6 @@
 import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
-import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import React, { useRef } from 'react'
 import emoji from 'react-easy-emoji'
@@ -26,7 +25,6 @@ class ErrorBoundary extends React.Component {
 }
 
 export default compose(
-	withTracker,
 	connect(state => ({
 		showDistributionFirst: !state.conversationSteps.foldedSteps.length
 	}))

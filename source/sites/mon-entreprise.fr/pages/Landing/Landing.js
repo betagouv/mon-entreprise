@@ -6,7 +6,6 @@ import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
-import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +18,7 @@ import type { SitePaths } from 'Components/utils/withSitePaths'
 type Props = {
 	sitePaths: SitePaths
 }
-export default compose(withSitePaths)(({ sitePaths }: Props) => {
+export default withSitePaths(({ sitePaths }: Props) => {
 	const {
 		i18n: { language }
 	} = useTranslation()

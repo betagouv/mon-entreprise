@@ -53,36 +53,34 @@ export default (function ActivitésSelection() {
 	)
 })
 
-export const ActivitéSelection = withSitePaths(
-	({ activités, currentActivité }) => {
-		const { state } = useContext(StoreContext)
-		const activitéRépondue = activitésRéponduesSelector(state)
-		const nextButtonDisabled = !intersection(
-			activitésEffectuéesSelector(state),
-			activités
-		).length
+export const ActivitéSelection = ({ activités, currentActivité }) => {
+	const { state } = useContext(StoreContext)
+	const activitéRépondue = activitésRéponduesSelector(state)
+	const nextButtonDisabled = !intersection(
+		activitésEffectuéesSelector(state),
+		activités
+	).length
 
-		return (
-			<>
-				<div css="display: flex; flex-wrap: wrap; justify-content: center">
-					{activités.map(title => {
-						const selected = state[title].effectuée
-						const answered = activitéRépondue.includes(title)
-						return (
-							<ActivitéCard
-								key={title}
-								title={title}
-								selected={selected}
-								answered={answered}
-							/>
-						)
-					})}
-				</div>
-				<NextButton disabled={nextButtonDisabled} activité={currentActivité} />
-			</>
-		)
-	}
-)
+	return (
+		<>
+			<div css="display: flex; flex-wrap: wrap; justify-content: center">
+				{activités.map(title => {
+					const selected = state[title].effectuée
+					const answered = activitéRépondue.includes(title)
+					return (
+						<ActivitéCard
+							key={title}
+							title={title}
+							selected={selected}
+							answered={answered}
+						/>
+					)
+				})}
+			</div>
+			<NextButton disabled={nextButtonDisabled} activité={currentActivité} />
+		</>
+	)
+}
 
 const activitéCardCss = `
 	width: 14rem;

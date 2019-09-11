@@ -9,7 +9,6 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
 import './Controls.css'
 import { Markdown } from './utils/markdown'
-import withColours from './utils/withColours'
 
 function Controls({
 	controls,
@@ -94,6 +93,5 @@ export default compose(
 			goToQuestion,
 			hideControl
 		}
-	),
-	withColours
+	)
 )(Controls)
