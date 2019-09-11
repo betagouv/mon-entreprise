@@ -3267,7 +3267,7 @@
                 assiette: revenu imposable
                 taux: taux personnalisé
       - CEHR
-      - auto entrepreneur . impôt . versement libératoire . montant
+      - auto-entrepreneur . impôt . versement libératoire . montant
 
 - espace: impôt
   nom: méthode de calcul
@@ -3281,7 +3281,7 @@
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
-  non applicable si: auto entrepreneur . impôt . versement libératoire
+  non applicable si: auto-entrepreneur . impôt . versement libératoire
   période: aucune
   par défaut: barème standard
   formule:
@@ -3322,7 +3322,7 @@
     somme:
       - contrat salarié . rémunération . net imposable
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu imposable
+      - auto-entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu
@@ -3333,7 +3333,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - auto entrepreneur . impôt . revenu imposable
+      - auto-entrepreneur . impôt . revenu imposable
 
 - espace: impôt
   nom: revenu abattu par défaut
@@ -3407,7 +3407,7 @@
   formule:
     somme:
       - revenu abattu par défaut
-      - auto entrepreneur . impôt . revenu abattu
+      - auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . prime d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
@@ -3442,7 +3442,7 @@
     somme:
       - contrat salarié . rémunération . net
       - indépendant . revenu net de cotisations
-      - auto entrepreneur . revenu net de cotisations
+      - auto-entrepreneur . revenu net de cotisations
 
 - nom: revenu net après impôt
   unité: €
@@ -3559,11 +3559,11 @@
     variations:
       - si: indépendant
         alors: revenu net de cotisations + indépendant . cotisations et contributions
-      - si: auto entrepreneur
+      - si: auto-entrepreneur
         alors:
           inversion numérique:
             avec:
-              - auto entrepreneur . revenu net de cotisations
+              - auto-entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
@@ -3577,7 +3577,7 @@
   question: Quelles sont les charges de l'entreprise ?
   description: |
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
 
@@ -3894,7 +3894,7 @@
           - entreprise . date de création = 'avant 2019'
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
-          - auto entrepreneur
+          - auto-entrepreneur
           - entreprise . date de création = 'avant 2018'
           - entreprise . catégorie d'activité = 'libérale'
 
@@ -4196,7 +4196,7 @@
         1.1: 0%
         1.4: 3.1%
 
-- nom: auto entrepreneur
+- nom: auto-entrepreneur
   icônes: 🚶
   par défaut: non
   question: L'activité est-elle exercée en auto-entreprise ?
@@ -4205,7 +4205,7 @@
   rend non applicable:
     - contrat salarié
 
-- espace: auto entrepreneur
+- espace: auto-entrepreneur
   nom: base des cotisations
   formule: entreprise . chiffre d'affaires
   période: flexible
@@ -4214,7 +4214,7 @@
       message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
 
-- espace: auto entrepreneur
+- espace: auto-entrepreneur
   nom: plafond
   description: |
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un certain seuil, qui dépend de sa catégorie d'activité.
@@ -4237,7 +4237,7 @@
         alors: 170000
       - sinon: 70000
 
-- espace: auto entrepreneur
+- espace: auto-entrepreneur
   nom: revenu net de cotisations
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -4246,7 +4246,7 @@
   période: flexible
   unité: €
 
-- espace: auto entrepreneur
+- espace: auto-entrepreneur
   nom: cotisations et contributions
   unité: €
   formule:
@@ -4259,7 +4259,7 @@
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
-- espace: auto entrepreneur . cotisations et contributions
+- espace: auto-entrepreneur . cotisations et contributions
   nom: TFC
   titre: Taxes pour frais de chambre
   unité: €
@@ -4276,7 +4276,7 @@
       - commerce
       - métiers
 
-- espace: auto entrepreneur . cotisations et contributions . TFC
+- espace: auto-entrepreneur . cotisations et contributions . TFC
   nom: commerce
   titre: taxe pour frais de chambre de commerce
   période: flexible
@@ -4294,7 +4294,7 @@
             alors: 0.015%
           - sinon: 0.044%
 
-- espace: auto entrepreneur . cotisations et contributions . TFC
+- espace: auto-entrepreneur . cotisations et contributions . TFC
   nom: métiers
   période: flexible
   unité: €
@@ -4309,7 +4309,7 @@
             alors: 0.22%
           - sinon: 0.48%
 
-- espace: auto entrepreneur . cotisations et contributions
+- espace: auto-entrepreneur . cotisations et contributions
   nom: contribution formation professionnelle
   titre: Contribution à la formation professionnelle
   unité: €
@@ -4332,7 +4332,7 @@
             alors: 0.1%
           - sinon: 0
 
-- espace: auto entrepreneur . cotisations et contributions
+- espace: auto-entrepreneur . cotisations et contributions
   nom: cotisations
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
@@ -4354,7 +4354,7 @@
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
-- espace: auto entrepreneur . cotisations et contributions . cotisations
+- espace: auto-entrepreneur . cotisations et contributions . cotisations
   nom: retraite complémentaire
   description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
   unité: €
@@ -4377,7 +4377,7 @@
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
 
-- espace: auto entrepreneur . cotisations et contributions . cotisations
+- espace: auto-entrepreneur . cotisations et contributions . cotisations
   nom: taux de cotisation
   description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
@@ -4407,7 +4407,7 @@
 
 - espace: entreprise . ACRE
   nom: année
-  applicable si: auto entrepreneur
+  applicable si: auto-entrepreneur
   question: Quel est l'âge de l'entreprise ?
   formule:
     une possibilité:
@@ -4427,12 +4427,12 @@
 - espace: entreprise . ACRE . année
   nom: moins de trois ans
 
-- espace: auto entrepreneur . cotisations et contributions . cotisations
+- espace: auto-entrepreneur . cotisations et contributions . cotisations
   nom: taux ACRE
   période: flexible
   formule: 100% - réduction ACRE
 
-- espace: auto entrepreneur . cotisations et contributions . cotisations
+- espace: auto-entrepreneur . cotisations et contributions . cotisations
   nom: réduction ACRE
   titre: réduction ACRE
   applicable si: entreprise . ACRE
@@ -4449,16 +4449,16 @@
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
-- espace: auto entrepreneur . cotisations et contributions . cotisations
+- espace: auto-entrepreneur . cotisations et contributions . cotisations
   nom: plafond ACRE
 
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
-- espace: auto entrepreneur
+- espace: auto-entrepreneur
   nom: impôt
 
-- espace: auto entrepreneur . impôt
+- espace: auto-entrepreneur . impôt
   nom: abattement
   période: flexible
   unité: '€'
@@ -4469,12 +4469,12 @@
           taux: taux
       - 305
 
-- espace: auto entrepreneur . impôt . abattement
+- espace: auto-entrepreneur . impôt . abattement
   nom: taux inversé
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
   formule: 1 - taux
 
-- espace: auto entrepreneur . impôt . abattement
+- espace: auto-entrepreneur . impôt . abattement
   nom: taux
   titre: taux d'abattement de l'impôt
   formule:
@@ -4488,7 +4488,7 @@
         alors: 71%
       - sinon: 50%
 
-- espace: auto entrepreneur . impôt
+- espace: auto-entrepreneur . impôt
   nom: versement libératoire
   description: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
@@ -4504,9 +4504,9 @@
       niveau: info
   période: aucune
 
-- espace: auto entrepreneur . impôt . versement libératoire
+- espace: auto-entrepreneur . impôt . versement libératoire
   nom: montant
-  titre: versement libératoire auto entrepreneur
+  titre: versement libératoire auto-entrepreneur
   description: |
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité :
 
@@ -4531,13 +4531,13 @@
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
 
-- espace: auto entrepreneur . impôt
+- espace: auto-entrepreneur . impôt
   nom: revenu imposable
   non applicable si: versement libératoire
   période: flexible
   formule: revenu abattu
 
-- espace: auto entrepreneur . impôt
+- espace: auto-entrepreneur . impôt
   nom: revenu abattu
   titre: revenu abattu auto-entrepreneur
   période: flexible
@@ -4632,7 +4632,7 @@
       - somme:
           - trimestres salarié
           - trimestres indépendant
-          - trimestres auto entrepreneur
+          - trimestres auto-entrepreneur
       - 4
 
 - nom: trimestres salarié
@@ -4681,11 +4681,11 @@
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
-- nom: trimestres auto entrepreneur
-  applicable si: auto entrepreneur
+- nom: trimestres auto-entrepreneur
+  applicable si: auto-entrepreneur
   espace: protection sociale . retraite . trimestres validés par an
   période: aucune
-  description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
+  description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'libérale'
@@ -4759,7 +4759,7 @@
   formule:
     le maximum de:
       - indépendant . revenu professionnel
-      - auto entrepreneur . impôt . revenu imposable
+      - auto-entrepreneur . impôt . revenu imposable
       - contrat salarié . rémunération . brut
 
 - espace: protection sociale . retraite
@@ -4834,7 +4834,7 @@
       assiette:
         somme:
           - indépendant . cotisations et contributions . cotisations . retraite complémentaire
-          - auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          - auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
 - espace: protection sociale . retraite . complémentaire sécurité des indépendants
@@ -4879,13 +4879,13 @@
   unité: €
   formule:
     somme:
-      - indemnités journalières . auto entrepreneur
+      - indemnités journalières . auto-entrepreneur
       - indemnités journalières . indépendant
       - indemnités journalières . salarié
 
 - espace: protection sociale . santé . indemnités journalières
-  nom: auto entrepreneur
-  applicable si: auto entrepreneur
+  nom: auto-entrepreneur
+  applicable si: auto-entrepreneur
   période: aucune
   unité: €
   formule:

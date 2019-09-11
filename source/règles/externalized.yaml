@@ -2369,7 +2369,7 @@ entreprise . charges:
   description.en: >
     These are the company's expenses incurred in the company's interest,
     excluding executive compensation. For companies and businesses excluding
-    auto entrepreneur, these expenses are said to be deductible from the result:
+    auto-entrepreneur, these expenses are said to be deductible from the result:
     the company will not pay any contributions or taxes on it. For the
     self-entrepreneur, they are not deductible: the contractor pays them with
     his salary staff net of contributions and income.
@@ -2402,7 +2402,7 @@ entreprise . charges:
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci,
     hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto
     entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise
-    ne paiera pas de cotisations ou impôt dessus. Pour l'auto entrepreneur,
+    ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur,
     elles ne sont pas déductibles du chiffre d'affaire encaissé.
 
 
@@ -2823,7 +2823,7 @@ indépendant . cotisations et contributions . formation professionnelle:
 indépendant . cotisations et contributions . cotisations . allocations familiales:
   titre.en: family allowances
   titre.fr: allocations familiales
-auto entrepreneur:
+auto-entrepreneur:
   question.en: Is the activity carried out in a auto-enterprise?
   question.fr: L'activité est-elle exercée en auto-entreprise ?
   description.en: |
@@ -2837,9 +2837,9 @@ auto entrepreneur:
     micro-entrepreneur » est un régime de travailleur indépendant créé pour
     simplifier la gestion administrative, notamment en remplaçant toutes les
     cotisations sociales par un prélèvement unique mensuel.
-  titre.en: auto entrepreneur
-  titre.fr: auto entrepreneur
-auto entrepreneur . base des cotisations:
+  titre.en: auto-entrepreneur
+  titre.fr: auto-entrepreneur
+auto-entrepreneur . base des cotisations:
   contrôles.en:
     - si: base des cotisations > plafond
       message: >-
@@ -2854,7 +2854,7 @@ auto entrepreneur . base des cotisations:
       niveau: avertissement
   titre.en: contribution basis
   titre.fr: base des cotisations
-auto entrepreneur . plafond:
+auto-entrepreneur . plafond:
   description.en: >
     The status of microentrepreneur applies as long as the annual turnover
     (actually collected during the calendar year) does not exceed a certain
@@ -2874,7 +2874,7 @@ auto entrepreneur . plafond:
     individuelle](/sécurité-sociale/indépendant).
   titre.en: upper limit
   titre.fr: plafond
-auto entrepreneur . revenu net de cotisations:
+auto-entrepreneur . revenu net de cotisations:
   résumé.en: Before taxes
   résumé.fr: Avant impôt
   question.en: What pre-tax income do you want to receive?
@@ -2887,22 +2887,22 @@ auto entrepreneur . revenu net de cotisations:
     l'impôt sur le revenu.
   titre.en: Net contribution income
   titre.fr: revenu net de cotisations
-auto entrepreneur . cotisations et contributions:
+auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
-auto entrepreneur . cotisations et contributions . TFC:
+auto-entrepreneur . cotisations et contributions . TFC:
   titre.en: Chamber taxes
   titre.fr: Taxes pour frais de chambre
-auto entrepreneur . cotisations et contributions . TFC . commerce:
+auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre.en: Chamber of Trades taxes
   titre.fr: taxe pour frais de chambre de commerce
-auto entrepreneur . cotisations et contributions . TFC . métiers:
+auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
-? auto entrepreneur . cotisations et contributions . contribution formation professionnelle
+? auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
 : titre.en: Contribution to vocational training
   titre.fr: Contribution à la formation professionnelle
-auto entrepreneur . cotisations et contributions . cotisations:
+auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
     Social security contributions give the self-employed entrepreneur access to
     a minimum social protection: a pension, health care, social security, social
@@ -2931,7 +2931,7 @@ auto entrepreneur . cotisations et contributions . cotisations:
     l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   titre.en: contributions
   titre.fr: cotisations
-auto entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
+auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
   description.en: >-
     The total amount that is allocated to the supplementary pension, useful to
     estimate the total amount of the retirement pension for auto-entrepreneurs
@@ -2940,7 +2940,7 @@ auto entrepreneur . cotisations et contributions . cotisations . retraite compl�
     estimer le montant total de la pension de retraite des auto-entrepreneurs
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-auto entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
+auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
   description.en: >
     The social contributions of the self-employed are simplified: there is no
     than a single line whose rate depends on the category of activity.
@@ -3002,11 +3002,11 @@ entreprise . ACRE . année . moins de deux ans:
 entreprise . ACRE . année . moins de trois ans:
   titre.en: less than three years
   titre.fr: moins de trois ans
-auto entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE
-auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
+auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre.en: |
     "ACRE" reduction
   titre.fr: réduction ACRE
@@ -3017,16 +3017,16 @@ auto entrepreneur . cotisations et contributions . cotisations . réduction ACRE
   description.fr: >-
     Ce taux peut dans certains cas réduire le montant des cotisations sociales
     de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
-auto entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
+auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   titre.en: ACRE upper limit
   titre.fr: plafond ACRE
-auto entrepreneur . impôt:
+auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
-auto entrepreneur . impôt . abattement:
+auto-entrepreneur . impôt . abattement:
   titre.en: allowance
   titre.fr: abattement
-auto entrepreneur . impôt . abattement . taux inversé:
+auto-entrepreneur . impôt . abattement . taux inversé:
   description.en: >-
     This is the rate to be applied to determine what remains after the
     application of
@@ -3036,10 +3036,10 @@ auto entrepreneur . impôt . abattement . taux inversé:
     l'abattement
   titre.en: inverted rate
   titre.fr: taux inversé
-auto entrepreneur . impôt . abattement . taux:
+auto-entrepreneur . impôt . abattement . taux:
   titre.en: tax allowance rate
   titre.fr: taux d'abattement de l'impôt
-auto entrepreneur . impôt . versement libératoire:
+auto-entrepreneur . impôt . versement libératoire:
   description.en: >
     With the option for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with the application of a specific rate according to your activity. To benefit from it, your reference tax income must not exceed €27,086 in 2018
   description.fr: >
@@ -3069,9 +3069,9 @@ auto entrepreneur . impôt . versement libératoire:
       niveau: info
   titre.en: discharge payment
   titre.fr: versement libératoire
-auto entrepreneur . impôt . versement libératoire . montant:
-  titre.en: discharge payment for auto entrepreneur
-  titre.fr: versement libératoire auto entrepreneur
+auto-entrepreneur . impôt . versement libératoire . montant:
+  titre.en: discharge payment for auto-entrepreneur
+  titre.fr: versement libératoire auto-entrepreneur
   description.en: |
     If you have opted for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with application of a specific rate according to your activity:
 
@@ -3094,10 +3094,10 @@ auto entrepreneur . impôt . versement libératoire . montant:
 
     - 2,2% pour les autres prestations de services relevants des bénéfices non
     commerciaux (BNC)
-auto entrepreneur . impôt . revenu imposable:
+auto-entrepreneur . impôt . revenu imposable:
   titre.en: taxable income
   titre.fr: revenu imposable
-auto entrepreneur . impôt . revenu abattu:
+auto-entrepreneur . impôt . revenu abattu:
   titre.en: reduced income
   titre.fr: revenu abattu auto-entrepreneur
 protection sociale:
@@ -3146,17 +3146,17 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
 protection sociale . retraite . trimestres validés par an . barème trimestres générique:
   titre.en: generic quarters scale
   titre.fr: barème trimestres générique
-protection sociale . retraite . trimestres validés par an . trimestres auto entrepreneur:
+protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
   description.en: >-
     Minimum turnover thresholds for the validation of quarters for retirement as
     a self-employed entrepreneur. Below the minimum amount, you will only have
     access to the solidarity allowance.
   description.fr: >-
     Les seuils de chiffre d'affaires minimum pour la validation des trimestres
-    pour la retraite en auto entrepreneur. En-dessous du montant minimum, vous
+    pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous
     n'aurez accès qu'à l'allocation de solidarité.
   titre.en: auto-entrepreneur quarters
-  titre.fr: trimestres auto entrepreneur
+  titre.fr: trimestres auto-entrepreneur
 protection sociale . revenu moyen:
   description.en: >-
     The income used to calculate the amount of retirement pensions and daily
@@ -3221,9 +3221,9 @@ protection sociale . santé . indemnités journalières:
     partir de votre revenu brut et versées tous les 14 jours en moyenne.
   titre.en: Daily allowances
   titre.fr: indemnités journalières
-protection sociale . santé . indemnités journalières . auto entrepreneur:
-  titre.en: auto entrepreneur
-  titre.fr: auto entrepreneur
+protection sociale . santé . indemnités journalières . auto-entrepreneur:
+  titre.en: auto-entrepreneur
+  titre.fr: auto-entrepreneur
 protection sociale . santé . indemnités journalières . indépendant:
   titre.en: self employed
   titre.fr: indépendant

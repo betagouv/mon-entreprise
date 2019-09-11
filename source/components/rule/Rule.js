@@ -170,7 +170,7 @@ export default compose(
 										to={
 											dottedName.includes('contrat salarié')
 												? sitePaths.sécuritéSociale.salarié
-												: dottedName.includes('auto entrepreneur')
+												: dottedName.includes('auto-entrepreneur')
 												? sitePaths.sécuritéSociale['auto-entrepreneur']
 												: dottedName.includes('indépendant')
 												? sitePaths.sécuritéSociale.indépendant

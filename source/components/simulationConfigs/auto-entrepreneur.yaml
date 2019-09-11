@@ -1,21 +1,21 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - auto entrepreneur . cotisations et contributions
-  - auto entrepreneur . revenu net de cotisations
+  - auto-entrepreneur . cotisations et contributions
+  - auto-entrepreneur . revenu net de cotisations
   - impôt
   - revenu net après impôt
 
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité
-    Versement libératoire: auto entrepreneur . impôt . versement libératoire
+    Versement libératoire: auto-entrepreneur . impôt . versement libératoire
     Impôt sur le revenu: impôt . méthode de calcul
     ACRE: entreprise . ACRE
   liste noire:
     - entreprise . charges
 
 situation:
-  auto entrepreneur: oui
+  auto-entrepreneur: oui
   indépendant: non
   contrat salarié: non
   période: année

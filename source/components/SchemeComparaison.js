@@ -43,7 +43,7 @@ type Props = OwnProps & {
 }
 
 let getBranchIndex = branch =>
-	({ assimilé: 0, indépendant: 1, 'auto entrepreneur': 2 }[branch])
+	({ assimilé: 0, indépendant: 1, 'auto-entrepreneur': 2 }[branch])
 let getRuleFrom = analyses => (branch, dottedName) => {
 	let i = getBranchIndex(branch)
 	return getRuleFromAnalysis(analyses[i])(dottedName)
@@ -360,7 +360,7 @@ const SchemeComparaison = ({
 										'Plafond de CA dépassé'
 									) : (
 										<RuleValueLink
-											branch="auto entrepreneur"
+											branch="auto-entrepreneur"
 											rule="revenu net après impôt"
 										/>
 									)}
@@ -388,8 +388,8 @@ const SchemeComparaison = ({
 									'—'
 								) : (
 									<RuleValueLink
-										branch="auto entrepreneur"
-										rule="auto entrepreneur . revenu net de cotisations"
+										branch="auto-entrepreneur"
+										rule="auto-entrepreneur . revenu net de cotisations"
 									/>
 								)}
 							</div>
@@ -438,12 +438,12 @@ const SchemeComparaison = ({
 								{plafondAutoEntrepreneurDépassé ? (
 									'—'
 								) : getRule(
-										'auto entrepreneur',
+										'auto-entrepreneur',
 										'protection sociale . retraite'
 								  ).applicable !== false ? (
 									<span>
 										<RuleValueLink
-											branch="auto entrepreneur"
+											branch="auto-entrepreneur"
 											rule="protection sociale . retraite"
 										/>{' '}
 										<InfoBulle>
@@ -485,7 +485,7 @@ const SchemeComparaison = ({
 									'—'
 								) : (
 									<RuleValueLink
-										branch="auto entrepreneur"
+										branch="auto-entrepreneur"
 										rule="protection sociale . retraite . trimestres validés par an"
 										appendText={<T>trimestres</T>}
 										unit={null}
@@ -538,7 +538,7 @@ const SchemeComparaison = ({
 								) : (
 									<span>
 										<RuleValueLink
-											branch="auto entrepreneur"
+											branch="auto-entrepreneur"
 											rule="protection sociale . santé . indemnités journalières"
 											appendText={
 												<>

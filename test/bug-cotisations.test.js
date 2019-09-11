@@ -62,7 +62,7 @@ describe('bug-analyse-many', function() {
 		const situationSelector = dottedName =>
 			({
 				'contrat salarié . rémunération . net de cotisations': 3500,
-				'auto entrepreneur': 'non',
+				'auto-entrepreneur': 'non',
 				'contrat salarié': 'oui',
 				'contrat salarié . assimilé salarié': 'oui',
 				'contrat salarié . ATMP . taux réduit': 'oui',

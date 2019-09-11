@@ -39,7 +39,7 @@ questions:
     - contrat salarié . régime des impatriés
 
 situation:
-  auto entrepreneur: non
+  auto-entrepreneur: non
   indépendant: non
   contrat salarié . assimilé salarié: oui
   contrat salarié . temps partiel: non
