@@ -1,7 +1,7 @@
 import { setExample } from 'Actions/actions'
 import classNames from 'classnames'
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import React from 'react'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 
@@ -19,50 +19,43 @@ export default compose(
 		})
 	),
 	withTranslation()
-)(
-	class Examples extends Component {
-		render() {
-			let {
-					situationExists,
-					rule,
-					themeColours,
-					setExample,
-					currentExample
-				} = this.props,
-				{ examples } = rule
+)(function Examples({
+	situationExists,
+	rule,
+	themeColours,
+	setExample,
+	currentExample
+}) {
+	let { examples } = rule
 
-			if (!examples) return null
-			return (
-				<>
-					<h2>
-						<Trans i18nKey="examples">Exemples</Trans>{' '}
-						<small>
-							<Trans i18nKey="clickexample">
-								Cliquez sur un exemple pour le tester
-							</Trans>
-						</small>
-					</h2>
-					<ul>
-						{examples.map(ex => (
-							<Example
-								key={ex.nom}
-								{...{ ex, rule, currentExample, setExample, themeColours }}
-							/>
-						))}
-					</ul>
+	if (!examples) return null
+	return (
+		<>
+			<h2>
+				<Trans i18nKey="examples">Exemples</Trans>{' '}
+				<small>
+					<Trans i18nKey="clickexample">
+						Cliquez sur un exemple pour le tester
+					</Trans>
+				</small>
+			</h2>
+			<ul>
+				{examples.map(ex => (
+					<Example
+						key={ex.nom}
+						{...{ ex, rule, currentExample, setExample, themeColours }}
+					/>
+				))}
+			</ul>
 
-					{situationExists && currentExample && (
-						<button
-							className="ui__ button small"
-							onClick={() => setExample(null)}>
-							<Trans i18nKey="cancelExample">Revenir à votre situation</Trans>
-						</button>
-					)}
-				</>
-			)
-		}
-	}
-)
+			{situationExists && currentExample && (
+				<button className="ui__ button small" onClick={() => setExample(null)}>
+					<Trans i18nKey="cancelExample">Revenir à votre situation</Trans>
+				</button>
+			)}
+		</>
+	)
+})
 
 let Example = ({
 	ex: { nom, situation },

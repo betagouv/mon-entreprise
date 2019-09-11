@@ -12,34 +12,24 @@ export default compose(
 	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours,
 	withSitePaths
-)(
-	class Targets extends React.Component {
-		render() {
-			let {
-				nodeValue,
-				unité: unit,
-				dottedName
-			} = this.props.analysis.targets[0]
-			return (
-				<div id="targets">
-					<span className="icon">→</span>
-					<span
-						className="content"
-						style={{ color: this.props.colours.textColour }}>
-						<span className="figure">
-							<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
-							<span className="unit">{unit}</span>
-						</span>
-						<Link
-							title="Quel est calcul ?"
-							style={{ color: this.props.colours.colour }}
-							to={this.props.sitePaths.documentation.index + '/' + dottedName}
-							className="explanation">
-							{emoji('📖')}
-						</Link>
-					</span>
-				</div>
-			)
-		}
-	}
-)
+)(function Targets({ analysis, colours, sitePaths }) {
+	let { nodeValue, unité: unit, dottedName } = analysis.targets[0]
+	return (
+		<div id="targets">
+			<span className="icon">→</span>
+			<span className="content" style={{ color: colours.textColour }}>
+				<span className="figure">
+					<span className="value">{nodeValue?.toFixed(1)}</span>{' '}
+					<span className="unit">{unit}</span>
+				</span>
+				<Link
+					title="Quel est calcul ?"
+					style={{ color: colours.colour }}
+					to={sitePaths.documentation.index + '/' + dottedName}
+					className="explanation">
+					{emoji('📖')}
+				</Link>
+			</span>
+		</div>
+	)
+})

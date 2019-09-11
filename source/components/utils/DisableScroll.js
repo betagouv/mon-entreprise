@@ -1,13 +1,11 @@
-import { Component } from 'react'
+import { useEffect } from 'react'
 
-export default class DisableScroll extends Component {
-	componentDidMount() {
+export default function DisableScroll() {
+	useEffect(() => {
 		document.documentElement.style.overflow = 'hidden'
-	}
-	componentWillUnmount() {
-		document.documentElement.style.overflow = ''
-	}
-	render() {
-		return null
-	}
+		return () => {
+			document.documentElement.style.overflow = ''
+		}
+	}, [])
+	return null
 }

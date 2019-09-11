@@ -18,20 +18,13 @@ export default config => SimulationComponent =>
 			}
 		),
 		withRouter
-	)(
-		class DecoratedSimulation extends React.Component {
-			constructor(props) {
-				super(props)
-				if (config !== props.config) {
-					props.setSimulationConfig(config)
-					if (props.config) {
-						props.resetSimulation()
-					}
-				}
-			}
-			render() {
-				if (!this.props.config) return null
-				return <SimulationComponent {...this.props} />
+	)(function DecoratedSimulation(props) {
+		if (config !== props.config) {
+			props.setSimulationConfig(config)
+			if (props.config) {
+				props.resetSimulation()
 			}
 		}
-	)
+		if (!config) return null
+		return <SimulationComponent {...props} />
+	})

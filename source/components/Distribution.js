@@ -4,7 +4,7 @@ import Observer from '@researchgate/react-intersection-observer'
 import withColours from 'Components/utils/withColours'
 import Value from 'Components/Value'
 import { findRuleByDottedName } from 'Engine/rules'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -22,112 +22,103 @@ import type { Répartition } from 'Types/ResultViewTypes.js'
 type Props = ?Répartition & {
 	colours: ThemeColours
 }
-type State = {
-	branchesInViewport: Array<string>
-}
 
 const ANIMATION_SPRING = config.gentle
-class Distribution extends Component<Props, State> {
-	elementRef = null
-	state = {
-		branchesInViewport: []
-	}
-	handleBrancheInViewport = branche => (event, unobserve) => {
+function Distribution({
+	colours: { colour },
+	rules,
+	// $FlowFixMe
+	...distribution
+}: Props) {
+	const [branchesInViewport, setBranchesInViewport] = useState([])
+
+	const handleBrancheInViewport = branche => (event, unobserve) => {
 		if (!event.isIntersecting) {
 			return
 		}
 		unobserve()
-		this.setState(({ branchesInViewport }) => ({
-			branchesInViewport: [branche, ...branchesInViewport]
-		}))
+		setBranchesInViewport(branchesInViewport => [
+			branche,
+			...branchesInViewport
+		])
 	}
 
-	render() {
-		const {
-			colours: { colour },
-			rules,
-			// $FlowFixMe
-			...distribution
-		} = this.props
-		if (!Object.values(distribution).length) {
-			return null
-		}
-		const {
-			répartition,
-			cotisationMaximum,
-			total,
-			salaireChargé,
-			salaireNet
-		} = distribution
-		return (
-			<>
-				<div className="distribution-chart__container">
-					{répartition.map(
-						([brancheDottedName, { partPatronale, partSalariale }]) => {
-							const branche = findRuleByDottedName(rules, brancheDottedName),
-								brancheInViewport =
-									this.state.branchesInViewport.indexOf(brancheDottedName) !==
-									-1
-							const montant = brancheInViewport
-								? partPatronale + partSalariale
-								: 0
+	if (!Object.values(distribution).length) {
+		return null
+	}
 
-							return (
-								<Observer
-									key={brancheDottedName}
-									threshold={[0.5]}
-									onChange={this.handleBrancheInViewport(brancheDottedName)}>
-									<Spring
-										config={ANIMATION_SPRING}
-										to={{
-											flex: montant / cotisationMaximum,
-											opacity: montant ? 1 : 0
-										}}>
-										{styles => (
-											<div
-												className="distribution-chart__item"
-												style={{
-													opacity: styles.opacity
-												}}>
-												<BranchIcône icône={branche.icons} />
-												<div className="distribution-chart__item-content">
-													<p className="distribution-chart__counterparts">
-														<span className="distribution-chart__branche-name">
-															<RuleLink {...branche} />
-														</span>
-														<br />
-														<small>{branche.summary}</small>
-													</p>
-													<ChartItemBar
-														{...{ styles, colour, montant, total }}
-													/>
-												</div>
+	const {
+		répartition,
+		cotisationMaximum,
+		total,
+		salaireChargé,
+		salaireNet
+	} = distribution
+	return (
+		<>
+			<div className="distribution-chart__container">
+				{répartition.map(
+					([brancheDottedName, { partPatronale, partSalariale }]) => {
+						const branche = findRuleByDottedName(rules, brancheDottedName),
+							brancheInViewport =
+								branchesInViewport.indexOf(brancheDottedName) !== -1
+						const montant = brancheInViewport
+							? partPatronale + partSalariale
+							: 0
+
+						return (
+							<Observer
+								key={brancheDottedName}
+								threshold={[0.5]}
+								onChange={handleBrancheInViewport(brancheDottedName)}>
+								<Spring
+									config={ANIMATION_SPRING}
+									to={{
+										flex: montant / cotisationMaximum,
+										opacity: montant ? 1 : 0
+									}}>
+									{styles => (
+										<div
+											className="distribution-chart__item"
+											style={{
+												opacity: styles.opacity
+											}}>
+											<BranchIcône icône={branche.icons} />
+											<div className="distribution-chart__item-content">
+												<p className="distribution-chart__counterparts">
+													<span className="distribution-chart__branche-name">
+														<RuleLink {...branche} />
+													</span>
+													<br />
+													<small>{branche.summary}</small>
+												</p>
+												<ChartItemBar {...{ styles, colour, montant, total }} />
 											</div>
-										)}
-									</Spring>
-								</Observer>
-							)
-						}
-					)}
-				</div>
-				<div className="distribution-chart__total">
-					<span />
-					<RuleLink {...salaireNet} />
-					<Value {...salaireNet} unit="€" maximumFractionDigits={0} />
-					<span>+</span>
-					<Trans>Cotisations</Trans>
-					<Value maximumFractionDigits={0} unit="€">
-						{total.partPatronale + total.partSalariale}
-					</Value>
-					<span />
-					<div className="distribution-chart__total-border" />
-					<span>=</span>
-					<RuleLink {...salaireChargé} />
-					<Value {...salaireChargé} unit="€" maximumFractionDigits={0} />
-				</div>
-			</>
-		)
-	}
+										</div>
+									)}
+								</Spring>
+							</Observer>
+						)
+					}
+				)}
+			</div>
+			<div className="distribution-chart__total">
+				<span />
+				<RuleLink {...salaireNet} />
+				<Value {...salaireNet} unit="€" maximumFractionDigits={0} />
+				<span>+</span>
+				<Trans>Cotisations</Trans>
+				<Value maximumFractionDigits={0} unit="€">
+					{total.partPatronale + total.partSalariale}
+				</Value>
+				<span />
+				<div className="distribution-chart__total-border" />
+				<span>=</span>
+				<RuleLink {...salaireChargé} />
+				<Value {...salaireChargé} unit="€" maximumFractionDigits={0} />
+			</div>
+		</>
+	)
 }
 export default compose(
 	withColours,

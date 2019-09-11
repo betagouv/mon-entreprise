@@ -4,7 +4,7 @@ import 'iframe-resizer'
 import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
@@ -55,33 +55,31 @@ const middlewares = [
 	trackSimulatorActions(tracker)
 ]
 
-class InFranceRoute extends Component {
-	componentDidMount() {
-		setToSessionStorage('lang', this.props.language)
-	}
-	render() {
-		const paths = constructLocalizedSitePath(this.props.language)
-		return (
-			<Provider
-				basename={this.props.basename}
-				language={this.props.language}
-				tracker={tracker}
-				sitePaths={paths}
-				reduxMiddlewares={middlewares}
-				onStoreCreated={store => {
-					persistEverything()(store)
-					persistSimulation(store)
-				}}
-				initialStore={{
-					...retrievePersistedState(),
-					previousSimulation: retrievePersistedSimulation()
-				}}>
-				<div id="content">
-					<RouterSwitch />
-				</div>
-			</Provider>
-		)
-	}
+function InFranceRoute({ basename, language }) {
+	useEffect(() => {
+		setToSessionStorage('lang', language)
+	}, [])
+	const paths = constructLocalizedSitePath(language)
+	return (
+		<Provider
+			basename={basename}
+			language={language}
+			tracker={tracker}
+			sitePaths={paths}
+			reduxMiddlewares={middlewares}
+			onStoreCreated={store => {
+				persistEverything()(store)
+				persistSimulation(store)
+			}}
+			initialStore={{
+				...retrievePersistedState(),
+				previousSimulation: retrievePersistedSimulation()
+			}}>
+			<div id="content">
+				<RouterSwitch />
+			</div>
+		</Provider>
+	)
 }
 
 let RouterSwitch = compose(withTranslation())(() => {

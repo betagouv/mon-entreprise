@@ -1,6 +1,5 @@
 import classnames from 'classnames'
-import { omit } from 'ramda'
-import React, { Component } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
@@ -22,88 +21,76 @@ let currencyFormat = language => ({
 		.charAt(1)
 })
 
-class CurrencyInput extends Component {
-	state = {
-		value: this.props.value,
-		initialValue: this.props.value
-	}
+function CurrencyInput({
+	value,
+	debounce: debounceTimeout,
+	onChange,
+	language,
+	className,
+	...forwardedProps
+}) {
+	const [currentValue, setCurrentValue] = useState(value)
+	const [initialValue] = useState(value)
+	useEffect(() => {
+		setCurrentValue(value)
+	}, [value])
+	const nextValue = useRef(null)
+	const onChangeDebounced = useRef(
+		debounceTimeout ? debounce(debounceTimeout, onChange) : onChange
+	)
 
-	onChange = this.props.debounce
-		? debounce(this.props.debounce, this.props.onChange)
-		: this.props.onChange
-
-	handleNextChange = false
-	value = undefined
-	handleChange = event => {
+	const handleChange = event => {
 		// Only trigger the `onChange` event if the value has changed -- and not
 		// only its formating, we don't want to call it when a dot is added in `12.`
 		// for instance
-		if (!this.handleNextChange || !this.onChange) {
+		if (!nextValue.current) {
 			return
 		}
-		this.handleNextChange = false
 		event.persist()
 		event.target = {
 			...event.target,
-			value: this.value
+			value: nextValue.current
 		}
-		this.onChange(event)
+		nextValue.current = null
+		onChangeDebounced.current(event)
 	}
 
-	// See https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#alternative-1-reset-uncontrolled-component-with-an-id-prop
-	static getDerivedStateFromProps({ value }, { initialValue }) {
-		if (value !== initialValue) {
-			return { value, initialValue: value }
-		}
-		return null
-	}
+	const {
+		isCurrencyPrefixed,
+		thousandSeparator,
+		decimalSeparator
+	} = currencyFormat(language)
 
-	render() {
-		let forwardedProps = omit(
-			['onChange', 'defaultValue', 'language', 'className', 'value'],
-			this.props
-		)
+	// We display negative numbers iff this was the provided value (but we allow the user to enter them)
+	const valueHasChanged = value !== initialValue
 
-		const {
-			isCurrencyPrefixed,
-			thousandSeparator,
-			decimalSeparator
-		} = currencyFormat(this.props.language)
+	// Autogrow the input
+	const valueLength = (value || '').toString().length
 
-		// We display negative numbers iff this was the provided value (but we allow the user to enter them)
-		const valueHasChanged = this.state.value !== this.state.initialValue
-
-		// Autogrow the input
-		const valueLength = (this.state.value || '').toString().length
-
-		return (
-			<div
-				className={classnames(this.props.className, 'currencyInput__container')}
-				{...(valueLength > 5
-					? { style: { width: `${5 + (valueLength - 5) * 0.75}em` } }
-					: {})}>
-				{isCurrencyPrefixed && '€'}
-				<NumberFormat
-					{...forwardedProps}
-					thousandSeparator={thousandSeparator}
-					decimalSeparator={decimalSeparator}
-					allowNegative={!valueHasChanged}
-					className="currencyInput__input"
-					inputMode="numeric"
-					onValueChange={({ value }) => {
-						this.setState({ value })
-						this.value = value.toString().replace(/^\-/, '')
-						this.handleNextChange = true
-					}}
-					onChange={this.handleChange}
-					value={(this.state.value || '')
-						.toString()
-						.replace('.', decimalSeparator)}
-				/>
-				{!isCurrencyPrefixed && <>&nbsp;€</>}
-			</div>
-		)
-	}
+	return (
+		<div
+			className={classnames(className, 'currencyInput__container')}
+			{...(valueLength > 5
+				? { style: { width: `${5 + (valueLength - 5) * 0.75}em` } }
+				: {})}>
+			{isCurrencyPrefixed && '€'}
+			<NumberFormat
+				{...forwardedProps}
+				thousandSeparator={thousandSeparator}
+				decimalSeparator={decimalSeparator}
+				allowNegative={!valueHasChanged}
+				className="currencyInput__input"
+				inputMode="numeric"
+				onValueChange={({ value }) => {
+					setCurrentValue(value)
+					nextValue.current = value.toString().replace(/^\-/, '')
+				}}
+				onChange={handleChange}
+				value={(currentValue || '').toString().replace('.', decimalSeparator)}
+			/>
+			{!isCurrencyPrefixed && <>&nbsp;€</>}
+		</div>
+	)
 }
 
 export default CurrencyInput

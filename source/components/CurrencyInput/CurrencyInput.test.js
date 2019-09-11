@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { shallow, mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import React from 'react'
 import { match, spy, useFakeTimers } from 'sinon'
 import CurrencyInput from './CurrencyInput'
@@ -106,14 +106,14 @@ describe('CurrencyInput', () => {
 	})
 
 	it('should initialize with value of the value prop', () => {
-		const wrapper = shallow(<CurrencyInput value={1} />)
-		expect(wrapper.state('value')).to.eq(1)
+		const input = getInput(<CurrencyInput value={1} />)
+		expect(input.instance().value).to.equal('1')
 	})
 
 	it('should update its value if the value prop changes', () => {
-		const wrapper = shallow(<CurrencyInput value={1} />)
-		wrapper.setProps({ value: 2 })
-		expect(wrapper.state('value')).to.equal(2)
+		const component = mount(<CurrencyInput value={1} />)
+		component.setProps({ value: 2 })
+		expect(component.find('input').instance().value).to.equal('2')
 	})
 
 	it('should not call onChange the value is the same as the current input value', () => {

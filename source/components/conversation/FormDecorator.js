@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import React from 'react'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { change, Field } from 'redux-form'
@@ -29,47 +29,33 @@ export var FormDecorator = formType => RenderField =>
 			})
 		),
 		withTranslation()
-	)(
-		class extends Component {
-			state = {
-				helpVisible: false
+	)(function(props) {
+		let { stepAction, fieldName, inversion, setFormValue, unit } = props,
+			submit = cause => stepAction('fold', fieldName, cause),
+			stepProps = {
+				...props,
+				submit,
+				setFormValue: (value, name = fieldName) => setFormValue(name, value),
+				...(unit === '%'
+					? {
+							format: x => (x == null ? null : +(x * 100).toFixed(2)),
+							normalize: x => (x == null ? null : x / 100)
+					  }
+					: {})
 			}
-			render() {
-				let {
-					stepAction,
-					fieldName,
-					inversion,
-					setFormValue,
-					unit
-				} = this.props
-				let submit = cause => stepAction('fold', fieldName, cause),
-					stepProps = {
-						...this.props,
-						submit,
-						setFormValue: (value, name = fieldName) =>
-							setFormValue(name, value),
-						...(unit === '%'
-							? {
-									format: x => (x == null ? null : +(x * 100).toFixed(2)),
-									normalize: x => (x == null ? null : x / 100)
-							  }
-							: {})
-					}
 
-				return (
-					<div className={classNames('step', formType)}>
-						<div className="unfoldedHeader">
-							<h3>
-								{this.props.question}{' '}
-								{!inversion && <Explicable dottedName={fieldName} />}
-							</h3>
-						</div>
+		return (
+			<div className={classNames('step', formType)}>
+				<div className="unfoldedHeader">
+					<h3>
+						{props.question}{' '}
+						{!inversion && <Explicable dottedName={fieldName} />}
+					</h3>
+				</div>
 
-						<fieldset>
-							<Field component={RenderField} name={fieldName} {...stepProps} />
-						</fieldset>
-					</div>
-				)
-			}
-		}
-	)
+				<fieldset>
+					<Field component={RenderField} name={fieldName} {...stepProps} />
+				</fieldset>
+			</div>
+		)
+	})

@@ -6,8 +6,8 @@ import {
 	findRuleByDottedName,
 	findRulesByName
 } from 'Engine/rules.js'
-import { compose, head, path } from 'ramda'
-import React, { Component } from 'react'
+import { compose, head } from 'ramda'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -32,51 +32,41 @@ export default compose(
 	})),
 
 	withTranslation()
-)(
-	class RulePage extends Component {
-		render() {
-			let { flatRules } = this.props,
-				name = path(['match', 'params', 'name'], this.props),
-				decodedRuleName = decodeRuleName(name)
+)(function RulePage({ flatRules, match, valuesToShow, brancheName }) {
+	let name = match?.params?.name,
+		decodedRuleName = decodeRuleName(name)
 
-			if (decodedRuleName.includes(' . ')) {
-				if (!findRuleByDottedName(flatRules, decodedRuleName))
-					return <Redirect to="/404" />
-
-				return this.renderRule(decodedRuleName)
-			}
-
-			let rules = findRulesByName(flatRules, decodedRuleName)
-			if (!rules.length) return <Redirect to="/404" />
-			if (rules.find(({ ns }) => ns == null))
-				return this.renderRule(decodedRuleName)
-			if (rules.length > 1)
-				return (
-					<DisambiguateRuleQuery
-						rules={rules}
-						flatRules={flatRules}
-						name={name}
-					/>
-				)
-			let dottedName = head(rules).dottedName
-			return this.renderRule(dottedName)
-		}
-		renderRule(dottedName) {
-			let { brancheName } = this.props
-			return (
-				<div id="RulePage">
-					<ScrollToTop key={brancheName + dottedName} />
-					<div className="rule-page__header">
-						{this.props.valuesToShow ? <BackToSimulation /> : <span />}
-						{brancheName && <span id="situationBranch">{brancheName}</span>}
-						<SearchButton />
-					</div>
-					<Rule dottedName={dottedName} />
+	const renderRule = dottedName => {
+		return (
+			<div id="RulePage">
+				<ScrollToTop key={brancheName + dottedName} />
+				<div className="rule-page__header">
+					{valuesToShow ? <BackToSimulation /> : <span />}
+					{brancheName && <span id="situationBranch">{brancheName}</span>}
+					<SearchButton />
 				</div>
-			)
-		}
+				<Rule dottedName={dottedName} />
+			</div>
+		)
 	}
-)
+
+	if (decodedRuleName.includes(' . ')) {
+		if (!findRuleByDottedName(flatRules, decodedRuleName))
+			return <Redirect to="/404" />
+
+		return renderRule(decodedRuleName)
+	}
+
+	let rules = findRulesByName(flatRules, decodedRuleName)
+	if (!rules.length) return <Redirect to="/404" />
+	if (rules.find(({ ns }) => ns == null)) return renderRule(decodedRuleName)
+	if (rules.length > 1)
+		return (
+			<DisambiguateRuleQuery rules={rules} flatRules={flatRules} name={name} />
+		)
+	let dottedName = head(rules).dottedName
+	return renderRule(dottedName)
+})
 
 const BackToSimulation = compose(
 	connect(
@@ -87,17 +77,12 @@ const BackToSimulation = compose(
 	withTranslation()
 )(
 	// Triggers rerender when the language changes
-	class BackToSimulation extends Component {
-		render() {
-			let { goBackToSimulation } = this.props
-			return (
-				<button
-					className="ui__ simple small button"
-					onClick={goBackToSimulation}>
-					{emoji('⬅️')} <Trans i18nKey="back">Reprendre la simulation</Trans>
-				</button>
-			)
-		}
+	function BackToSimulation({ goBackToSimulation }) {
+		return (
+			<button className="ui__ simple small button" onClick={goBackToSimulation}>
+				{emoji('⬅️')} <Trans i18nKey="back">Reprendre la simulation</Trans>
+			</button>
+		)
 	}
 )
 

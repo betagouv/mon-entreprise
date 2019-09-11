@@ -1,7 +1,8 @@
-import classNames from 'classnames'
+import { default as classNames, default as classnames } from 'classnames'
 import withSitePaths from 'Components/utils/withSitePaths'
+import Value from 'Components/Value'
 import { compose, contains, isNil, pipe, sort, toPairs } from 'ramda'
-import React, { Component } from 'react'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -10,8 +11,6 @@ import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 import mecanismColours from './colours'
-import classnames from 'classnames'
-import Value from 'Components/Value'
 
 export let NodeValuePointer = ({ data, unit }) => (
 	<span
@@ -33,52 +32,47 @@ export let NodeValuePointer = ({ data, unit }) => (
 )
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export class Node extends Component {
-	render() {
-		let { classes, name, value, child, inline, unit } = this.props,
-			termDefinition = contains('mecanism', classes) && name
+export function Node({ classes, name, value, child, inline, unit }) {
+	let termDefinition = contains('mecanism', classes) && name
 
-		return (
-			<div
-				className={classNames(classes, 'node', { inline })}
-				style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
-				{name && !inline && (
-					<div className="nodeHead" css="margin-bottom: 1em">
-						<LinkButton
-							className="name"
-							style={
-								termDefinition ? { background: mecanismColours(name) } : {}
-							}
-							data-term-definition={termDefinition}>
-							<Trans>{name}</Trans>
-						</LinkButton>
-					</div>
-				)}
-				{child}{' '}
-				{name ? (
-					!isNil(value) && (
-						<div className="mecanism-result">
-							<span css="font-size: 90%; margin: 0 .6em">=</span>
-							<NodeValuePointer data={value} unit={unit} />
-						</div>
-					)
-				) : (
-					<span
-						css={`
-							@media (max-width: 1200px) {
-								width: 100%;
-								text-align: right;
-							}
-						`}>
-						{value !== true && value !== false && !isNil(value) && (
-							<span className="operator"> =&nbsp;</span>
-						)}
+	return (
+		<div
+			className={classNames(classes, 'node', { inline })}
+			style={termDefinition ? { borderColor: mecanismColours(name) } : {}}>
+			{name && !inline && (
+				<div className="nodeHead" css="margin-bottom: 1em">
+					<LinkButton
+						className="name"
+						style={termDefinition ? { background: mecanismColours(name) } : {}}
+						data-term-definition={termDefinition}>
+						<Trans>{name}</Trans>
+					</LinkButton>
+				</div>
+			)}
+			{child}{' '}
+			{name ? (
+				!isNil(value) && (
+					<div className="mecanism-result">
+						<span css="font-size: 90%; margin: 0 .6em">=</span>
 						<NodeValuePointer data={value} unit={unit} />
-					</span>
-				)}
-			</div>
-		)
-	}
+					</div>
+				)
+			) : (
+				<span
+					css={`
+						@media (max-width: 1200px) {
+							width: 100%;
+							text-align: right;
+						}
+					`}>
+					{value !== true && value !== false && !isNil(value) && (
+						<span className="operator"> =&nbsp;</span>
+					)}
+					<NodeValuePointer data={value} unit={unit} />
+				</span>
+			)}
+		</div>
+	)
 }
 
 export function InlineMecanism({ name }) {
@@ -98,50 +92,43 @@ export function InlineMecanism({ name }) {
 export const Leaf = compose(
 	withSitePaths,
 	connect(state => ({ flatRules: flatRulesSelector(state) }))
-)(
-	class Leaf extends Component {
-		render() {
-			let {
-					classes,
-					dottedName,
-					name,
-					nodeValue,
-					flatRules,
-					filter,
-					sitePaths,
-					unit
-				} = this.props,
-				rule = findRuleByDottedName(flatRules, dottedName)
+)(function Leaf({
+	classes,
+	dottedName,
+	name,
+	nodeValue,
+	flatRules,
+	filter,
+	sitePaths,
+	unit
+}) {
+	let rule = findRuleByDottedName(flatRules, dottedName)
 
-			return (
-				<span className={classNames(classes, 'leaf')}>
-					{dottedName && (
-						<span className="nodeHead">
-							<Link
-								to={
-									sitePaths.documentation.index +
-									'/' +
-									encodeRuleName(dottedName)
-								}>
-								<span className="name">
-									{rule.title || capitalise0(name)} {filter}
-								</span>
-							</Link>
-							{!isNil(nodeValue) && (
-								<span
-									css={`
-										margin: 0 0.3rem;
-									`}>
-									<NodeValuePointer data={nodeValue} unit={unit} />
-								</span>
-							)}
+	return (
+		<span className={classNames(classes, 'leaf')}>
+			{dottedName && (
+				<span className="nodeHead">
+					<Link
+						to={
+							sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
+						}>
+						<span className="name">
+							{rule.title || capitalise0(name)} {filter}
+						</span>
+					</Link>
+					{!isNil(nodeValue) && (
+						<span
+							css={`
+								margin: 0 0.3rem;
+							`}>
+							<NodeValuePointer data={nodeValue} unit={unit} />
 						</span>
 					)}
 				</span>
-			)
-		}
-	}
-)
+			)}
+		</span>
+	)
+})
 
 export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
 	return (

@@ -11,7 +11,7 @@ import {
 	findRuleByNamespace
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
-import React, { Component, Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, withTranslation } from 'react-i18next'
@@ -47,188 +47,183 @@ export default compose(
 	withTranslation(),
 	withSitePaths,
 	withLanguage
-)(
-	class Rule extends Component {
-		state = { viewSource: false }
-		render() {
-			let {
-					dottedName,
-					currentExample,
-					flatRules,
-					valuesToShow,
-					sitePaths,
-					analysedExample,
-					analysedRule
-				} = this.props,
-				flatRule = findRuleByDottedName(flatRules, dottedName)
-			let { type, name, title, description, question, ns, icon } = flatRule,
-				namespaceRules = findRuleByNamespace(flatRules, dottedName)
-			let displayedRule = analysedExample || analysedRule
+)(function Rule({
+	dottedName,
+	t,
+	currentExample,
+	flatRules,
+	valuesToShow,
+	sitePaths,
+	analysedExample,
+	analysedRule
+}) {
+	const [viewSource, setViewSource] = useState(false)
+	let flatRule = findRuleByDottedName(flatRules, dottedName)
+	let { type, name, title, description, question, ns, icon } = flatRule,
+		namespaceRules = findRuleByNamespace(flatRules, dottedName)
+	let displayedRule = analysedExample || analysedRule
 
-			return (
-				<>
-					{this.state.viewSource ? (
-						<>
-							{this.renderToggleSourceButton()}
-							<Suspense fallback={<div>Chargement du code source...</div>}>
-								<LazySource dottedName={dottedName} />
-							</Suspense>
-						</>
-					) : (
-						<div id="rule">
-							<Animate.fromBottom>
-								<Helmet
-									title={title}
-									meta={[
-										{
-											name: 'description',
-											content: description
-										}
-									]}
-								/>
-								<RuleHeader
-									{...{
-										ns,
-										type,
-										description,
-										question,
-										flatRule,
-										flatRules,
-										name,
-										title,
-										icon,
-										valuesToShow
-									}}
-								/>
-
-								<section id="rule-content">
-									<div
-										id="ruleValue"
-										css={`
-											display: flex;
-											justify-content: center;
-											flex-wrap: wrap;
-											align-items: center;
-
-											> .value {
-												font-size: 220%;
-											}
-
-											margin: 0.6em 0;
-											> * {
-												margin: 0 0.6em;
-											}
-										`}>
-										<Value
-											{...displayedRule}
-											nilValueSymbol={
-												displayedRule.parentDependency?.nodeValue == false
-													? '-'
-													: null
-											}
-										/>
-										<Period
-											period={flatRule['période']}
-											valuesToShow={valuesToShow}
-										/>
-									</div>
-									{displayedRule.defaultValue != null && (
-										<div id="ruleDefault">
-											par défaut :{' '}
-											<Value
-												{...displayedRule}
-												nodeValue={displayedRule.defaultValue}
-											/>
-										</div>
-									)}
-									{!valuesToShow && (
-										<div style={{ textAlign: 'center', marginTop: '1em' }}>
-											<Link
-												className="ui__ cta plain button"
-												target="_parent"
-												to={
-													dottedName.includes('contrat salarié')
-														? sitePaths.sécuritéSociale.salarié
-														: dottedName.includes('auto entrepreneur')
-														? sitePaths.sécuritéSociale['auto-entrepreneur']
-														: dottedName.includes('indépendant')
-														? sitePaths.sécuritéSociale.indépendant
-														: // otherwise
-														  sitePaths.sécuritéSociale.index
-												}>
-												<T>Faire une simulation</T>
-											</Link>
-										</div>
-									)}
-									<Algorithm
-										rule={displayedRule}
-										showValues={valuesToShow || currentExample}
-									/>
-									{displayedRule['rend non applicable'] && (
-										<section id="non-applicable">
-											<h3>
-												<T>Rend non applicable les règles suivantes</T> :{' '}
-											</h3>
-											<ul>
-												{displayedRule['rend non applicable'].map(ruleName => (
-													<li key={ruleName}>
-														<RuleLink dottedName={ruleName} />
-													</li>
-												))}
-											</ul>
-										</section>
-									)}
-									{flatRule.note && (
-										<section id="notes">
-											<h3>Note : </h3>
-											<Markdown source={flatRule.note} />
-										</section>
-									)}
-									<Examples
-										currentExample={currentExample}
-										situationExists={valuesToShow}
-										rule={displayedRule}
-									/>
-									{!isEmpty(namespaceRules) && (
-										<NamespaceRulesList {...{ namespaceRules }} />
-									)}
-									{this.renderReferences(flatRule)}
-								</section>
-								{this.renderToggleSourceButton()}
-							</Animate.fromBottom>
-						</div>
-					)}
-				</>
-			)
-		}
-
-		renderToggleSourceButton() {
-			let { viewSource } = this.state
-			let { t } = this.props
-			return (
-				<button
-					id="toggleRuleSource"
-					className="ui__ link-button"
-					onClick={() => this.setState({ viewSource: !viewSource })}>
-					{emoji(
-						viewSource
-							? `📖 ${t('Revenir à la documentation')}`
-							: `✍️ ${t('Voir le code source')}`
-					)}
-				</button>
-			)
-		}
-		renderReferences = ({ références: refs }) =>
-			refs ? (
-				<div>
-					<h2>
-						<Trans>Références</Trans>
-					</h2>
-					<References refs={refs} />
-				</div>
-			) : null
+	const renderToggleSourceButton = () => {
+		return (
+			<button
+				id="toggleRuleSource"
+				className="ui__ link-button"
+				onClick={() => setViewSource(!viewSource)}>
+				{emoji(
+					viewSource
+						? `📖 ${t('Revenir à la documentation')}`
+						: `✍️ ${t('Voir le code source')}`
+				)}
+			</button>
+		)
 	}
-)
+
+	const renderReferences = ({ références: refs }) =>
+		refs ? (
+			<div>
+				<h2>
+					<Trans>Références</Trans>
+				</h2>
+				<References refs={refs} />
+			</div>
+		) : null
+
+	return (
+		<>
+			{viewSource ? (
+				<>
+					{renderToggleSourceButton()}
+					<Suspense fallback={<div>Chargement du code source...</div>}>
+						<LazySource dottedName={dottedName} />
+					</Suspense>
+				</>
+			) : (
+				<div id="rule">
+					<Animate.fromBottom>
+						<Helmet
+							title={title}
+							meta={[
+								{
+									name: 'description',
+									content: description
+								}
+							]}
+						/>
+						<RuleHeader
+							{...{
+								ns,
+								type,
+								description,
+								question,
+								flatRule,
+								flatRules,
+								name,
+								title,
+								icon,
+								valuesToShow
+							}}
+						/>
+
+						<section id="rule-content">
+							<div
+								id="ruleValue"
+								css={`
+									display: flex;
+									justify-content: center;
+									flex-wrap: wrap;
+									align-items: center;
+
+									> .value {
+										font-size: 220%;
+									}
+
+									margin: 0.6em 0;
+									> * {
+										margin: 0 0.6em;
+									}
+								`}>
+								<Value
+									{...displayedRule}
+									nilValueSymbol={
+										displayedRule.parentDependency?.nodeValue == false
+											? '-'
+											: null
+									}
+								/>
+								<Period
+									period={flatRule['période']}
+									valuesToShow={valuesToShow}
+								/>
+							</div>
+							{displayedRule.defaultValue != null && (
+								<div id="ruleDefault">
+									par défaut :{' '}
+									<Value
+										{...displayedRule}
+										nodeValue={displayedRule.defaultValue}
+									/>
+								</div>
+							)}
+							{!valuesToShow && (
+								<div style={{ textAlign: 'center', marginTop: '1em' }}>
+									<Link
+										className="ui__ cta plain button"
+										target="_parent"
+										to={
+											dottedName.includes('contrat salarié')
+												? sitePaths.sécuritéSociale.salarié
+												: dottedName.includes('auto entrepreneur')
+												? sitePaths.sécuritéSociale['auto-entrepreneur']
+												: dottedName.includes('indépendant')
+												? sitePaths.sécuritéSociale.indépendant
+												: // otherwise
+												  sitePaths.sécuritéSociale.index
+										}>
+										<T>Faire une simulation</T>
+									</Link>
+								</div>
+							)}
+							<Algorithm
+								rule={displayedRule}
+								showValues={valuesToShow || currentExample}
+							/>
+							{displayedRule['rend non applicable'] && (
+								<section id="non-applicable">
+									<h3>
+										<T>Rend non applicable les règles suivantes</T> :{' '}
+									</h3>
+									<ul>
+										{displayedRule['rend non applicable'].map(ruleName => (
+											<li key={ruleName}>
+												<RuleLink dottedName={ruleName} />
+											</li>
+										))}
+									</ul>
+								</section>
+							)}
+							{flatRule.note && (
+								<section id="notes">
+									<h3>Note : </h3>
+									<Markdown source={flatRule.note} />
+								</section>
+							)}
+							<Examples
+								currentExample={currentExample}
+								situationExists={valuesToShow}
+								rule={displayedRule}
+							/>
+							{!isEmpty(namespaceRules) && (
+								<NamespaceRulesList {...{ namespaceRules }} />
+							)}
+							{renderReferences(flatRule)}
+						</section>
+						{renderToggleSourceButton()}
+					</Animate.fromBottom>
+				</div>
+			)}
+		</>
+	)
+})
 
 let NamespaceRulesList = compose(
 	withColours,

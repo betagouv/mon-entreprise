@@ -48,39 +48,37 @@ function ShowIfDisabled({ dependency }) {
 	)
 }
 
-export default compose(withTranslation())(
-	class Algorithm extends React.Component {
-		render() {
-			let { rule, showValues } = this.props
-			let formula =
-					rule['formule'] ||
-					(rule.category === 'variable' && rule.explanation.formule),
-				displayFormula =
-					formula &&
-					!!Object.keys(formula).length &&
-					!path(['formule', 'explanation', 'une possibilité'], rule) &&
-					formula.explanation?.category !== 'number'
+export default compose(withTranslation())(function Algorithm({
+	rule,
+	showValues
+}) {
+	let formula =
+			rule['formule'] ||
+			(rule.category === 'variable' && rule.explanation.formule),
+		displayFormula =
+			formula &&
+			!!Object.keys(formula).length &&
+			!path(['formule', 'explanation', 'une possibilité'], rule) &&
+			formula.explanation?.category !== 'number'
 
-			return (
-				<div id="algorithm">
-					<section id="rule-rules" className={classNames({ showValues })}>
-						<ShowValuesProvider value={showValues}>
-							<Conditions {...rule} />
-							{displayFormula && (
-								<section id="formule">
-									<h2>
-										<Trans>Calcul</Trans>
-									</h2>
-									<div style={{ display: 'flex', justifyContent: 'center' }}>
-										{makeJsx(formula)}
-									</div>
-								</section>
-							)}
-						</ShowValuesProvider>
-						{makeJsx(rule['rendu non applicable'])}
-					</section>
-				</div>
-			)
-		}
-	}
-)
+	return (
+		<div id="algorithm">
+			<section id="rule-rules" className={classNames({ showValues })}>
+				<ShowValuesProvider value={showValues}>
+					<Conditions {...rule} />
+					{displayFormula && (
+						<section id="formule">
+							<h2>
+								<Trans>Calcul</Trans>
+							</h2>
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								{makeJsx(formula)}
+							</div>
+						</section>
+					)}
+				</ShowValuesProvider>
+				{makeJsx(rule['rendu non applicable'])}
+			</section>
+		</div>
+	)
+})

@@ -10,7 +10,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { serialiseUnit } from 'Engine/units'
 import { compose, isEmpty, isNil, propEq } from 'ramda'
-import React, { Component, PureComponent } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -50,103 +50,101 @@ export default compose(
 			setActiveInput: name =>
 				dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 		})
-	)
-)(
-	class TargetSelection extends PureComponent {
-		state = {
-			initialRender: true
-		}
-		getTargets() {
-			let { secondaryObjectives, analysis } = this.props
-			if (!analysis) return []
-			return analysis.targets.filter(
-				t =>
-					!secondaryObjectives.includes(t.dottedName) &&
-					t.dottedName !== 'contrat salarié . aides employeur'
+	),
+	memo
+)(function TargetSelection({
+	secondaryObjectives,
+	analysis,
+	getTargetValue,
+	setFormValue,
+	colours,
+	activeInput,
+	setActiveInput,
+	objectifs
+}) {
+	const [initialRender, setInitialRender] = useState(true)
+
+	useEffect(() => {
+		let targets = getTargets()
+		// Initialize defaultValue for target that can't be computed
+		targets
+			.filter(
+				target =>
+					(!target.formule || isEmpty(target.formule)) &&
+					(!isNil(target.defaultValue) ||
+						!isNil(target.explanation?.defaultValue)) &&
+					!getTargetValue(target.dottedName)
 			)
-		}
-		componentDidMount() {
-			const props = this.props
-			let targets = this.getTargets()
-			// Initialize defaultValue for target that can't be computed
-			targets
-				.filter(
-					target =>
-						(!target.formule || isEmpty(target.formule)) &&
-						(!isNil(target.defaultValue) ||
-							!isNil(target.explanation?.defaultValue)) &&
-						!props.getTargetValue(target.dottedName)
+
+			.forEach(target => {
+				setFormValue(
+					target.dottedName,
+					!isNil(target.defaultValue)
+						? target.defaultValue
+						: target.explanation?.defaultValue
 				)
+			})
 
-				.forEach(target => {
-					props.setFormValue(
-						target.dottedName,
-						!isNil(target.defaultValue)
-							? target.defaultValue
-							: target.explanation?.defaultValue
-					)
-				})
-
-			if (this.state.initialRender) {
-				this.setState({ initialRender: false })
-			}
+		if (initialRender) {
+			setInitialRender(false)
 		}
-		render() {
-			let {
-					colours,
-					activeInput,
-					setActiveInput,
-					setFormValue,
-					objectifs
-				} = this.props,
-				targets = this.getTargets()
+	}, [])
 
-			return (
-				<div id="targetSelection">
-					{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
-						({ icône, objectifs: groupTargets, nom }, index) => (
-							<React.Fragment key={nom || '0'}>
-								<div style={{ display: 'flex', alignItems: 'end' }}>
-									<div style={{ flex: 1 }}>
-										{nom && (
-											<h2 style={{ marginBottom: 0 }}>
-												{emoji(icône)} <T>{nom}</T>
-											</h2>
-										)}
-									</div>
-									{index === 0 && <PeriodSwitch />}
-								</div>
-								<section
-									className="ui__ plain card"
-									style={{
-										marginTop: '.6em',
-										color: colours.textColour,
-										background: `linear-gradient(
+	const getTargets = () => {
+		if (!analysis) return []
+		return analysis.targets.filter(
+			t =>
+				!secondaryObjectives.includes(t.dottedName) &&
+				t.dottedName !== 'contrat salarié . aides employeur'
+		)
+	}
+
+	let targets = getTargets()
+
+	return (
+		<div id="targetSelection">
+			{(typeof objectifs[0] === 'string' ? [{ objectifs }] : objectifs).map(
+				({ icône, objectifs: groupTargets, nom }, index) => (
+					<React.Fragment key={nom || '0'}>
+						<div style={{ display: 'flex', alignItems: 'end' }}>
+							<div style={{ flex: 1 }}>
+								{nom && (
+									<h2 style={{ marginBottom: 0 }}>
+										{emoji(icône)} <T>{nom}</T>
+									</h2>
+								)}
+							</div>
+							{index === 0 && <PeriodSwitch />}
+						</div>
+						<section
+							className="ui__ plain card"
+							style={{
+								marginTop: '.6em',
+								color: colours.textColour,
+								background: `linear-gradient(
 								60deg,
 								${colours.darkColour} 0%,
 								${colours.colour} 100%
 								)`
-									}}>
-									<Targets
-										{...{
-											activeInput,
-											setActiveInput,
-											setFormValue,
-											targets: targets.filter(({ dottedName }) =>
-												groupTargets.includes(dottedName)
-											),
-											initialRender: this.state.initialRender
-										}}
-									/>
-								</section>
-							</React.Fragment>
-						)
-					)}
-				</div>
-			)
-		}
-	}
-)
+							}}>
+							<Targets
+								{...{
+									activeInput,
+									setActiveInput,
+									setFormValue,
+									targets: targets.filter(({ dottedName }) =>
+										groupTargets.includes(dottedName)
+									),
+									initialRender
+								}}
+							/>
+						</section>
+					</React.Fragment>
+				)
+			)}
+		</div>
+	)
+})
 
 let Targets = ({
 	activeInput,
@@ -327,42 +325,40 @@ const TargetValue = connect(
 	dispatch => ({
 		setFormValue: (field, name) => dispatch(change('conversation', field, name))
 	})
-)(
-	class TargetValue extends Component {
-		render() {
-			let { targets, target, blurValue } = this.props
+)(function TargetValue({
+	targets,
+	target,
+	blurValue,
+	setFormValue,
+	activeInput,
+	setActiveInput
+}) {
+	let targetWithValue = targets?.find(propEq('dottedName', target.dottedName)),
+		value = targetWithValue && targetWithValue.nodeValue
 
-			let targetWithValue =
-					targets && targets.find(propEq('dottedName', target.dottedName)),
-				value = targetWithValue && targetWithValue.nodeValue
+	const showField = value => () => {
+		if (!target.question) return
+		if (value != null && !Number.isNaN(value))
+			setFormValue(target.dottedName, Math.round(value) + '')
 
-			return (
-				<div
-					className={classNames({
-						editable: target.question,
-						attractClick: target.question && isNil(target.nodeValue)
-					})}
-					style={blurValue ? { filter: 'blur(3px)' } : {}}
-					{...(target.question ? { tabIndex: 0 } : {})}
-					onClick={this.showField(value)}
-					onFocus={this.showField(value)}>
-					<AnimatedTargetValue value={value} />
-				</div>
-			)
-		}
-		showField(value) {
-			let { target, setFormValue, activeInput, setActiveInput } = this.props
-			return () => {
-				if (!target.question) return
-				if (value != null && !Number.isNaN(value))
-					setFormValue(target.dottedName, Math.round(value) + '')
-
-				if (activeInput) setFormValue(activeInput, '')
-				setActiveInput(target.dottedName)
-			}
-		}
+		if (activeInput) setFormValue(activeInput, '')
+		setActiveInput(target.dottedName)
 	}
-)
+
+	return (
+		<div
+			className={classNames({
+				editable: target.question,
+				attractClick: target.question && isNil(target.nodeValue)
+			})}
+			style={blurValue ? { filter: 'blur(3px)' } : {}}
+			{...(target.question ? { tabIndex: 0 } : {})}
+			onClick={showField(value)}
+			onFocus={showField(value)}>
+			<AnimatedTargetValue value={value} />
+		</div>
+	)
+})
 
 const AidesGlimpse = compose(
 	withRouter,

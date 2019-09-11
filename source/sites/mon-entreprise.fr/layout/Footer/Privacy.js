@@ -2,36 +2,30 @@ import { T } from 'Components'
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-export default withLanguage(
-	class Privacy extends Component {
-		state = {
-			opened: false
-		}
-		handleClose = () => {
-			this.setState({ opened: false })
-		}
-		handleOpen = () => {
-			this.setState({ opened: true })
-		}
-		render() {
-			return (
-				<>
-					<button onClick={this.handleOpen} className="ui__ link-button">
-						<T>Vie privée</T>
-					</button>
-					{this.state.opened && (
-						<Overlay onClose={this.handleClose} style={{ textAlign: 'left' }}>
-							<ScrollToTop />
-							<PrivacyContent language={this.props.language} />
-						</Overlay>
-					)}
-				</>
-			)
-		}
+export default withLanguage(function Privacy({ language }) {
+	const [opened, setOpened] = useState(false)
+	const handleClose = () => {
+		setOpened(false)
 	}
-)
+	const handleOpen = () => {
+		setOpened(true)
+	}
+	return (
+		<>
+			<button onClick={handleOpen} className="ui__ link-button">
+				<T>Vie privée</T>
+			</button>
+			{opened && (
+				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
+					<ScrollToTop />
+					<PrivacyContent language={language} />
+				</Overlay>
+			)}
+		</>
+	)
+})
 
 export let PrivacyContent = ({ language }) => (
 	<>

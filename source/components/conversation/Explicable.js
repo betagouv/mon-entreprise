@@ -21,37 +21,31 @@ export default compose(
 		})
 	),
 	withTracker
-)(
-	class Explicable extends React.Component {
-		render() {
-			let { flatRules, dottedName, explain, explained, tracker } = this.props
+)(function Explicable({ flatRules, dottedName, explain, explained, tracker }) {
+	// Rien à expliquer ici, ce n'est pas une règle
+	if (dottedName == null) return null
 
-			// Rien à expliquer ici, ce n'est pas une règle
-			if (dottedName == null) return null
+	let rule = findRuleByDottedName(flatRules, dottedName)
 
-			let rule = findRuleByDottedName(flatRules, dottedName)
+	if (rule.description == null) return null
 
-			if (rule.description == null) return null
+	//TODO montrer les variables de type 'une possibilité'
 
-			//TODO montrer les variables de type 'une possibilité'
-
-			return dottedName === explained ? null : (
-				<span
-					className={classNames('explicable', {
-						explained: dottedName === explained
-					})}>
-					<span
-						className="icon"
-						onClick={e => {
-							tracker.push(['trackEvent', 'help', dottedName])
-							explain(dottedName)
-							e.preventDefault()
-							e.stopPropagation()
-						}}>
-						{emoji('ℹ️')}
-					</span>
-				</span>
-			)
-		}
-	}
-)
+	return dottedName === explained ? null : (
+		<span
+			className={classNames('explicable', {
+				explained: dottedName === explained
+			})}>
+			<span
+				className="icon"
+				onClick={e => {
+					tracker.push(['trackEvent', 'help', dottedName])
+					explain(dottedName)
+					e.preventDefault()
+					e.stopPropagation()
+				}}>
+				{emoji('ℹ️')}
+			</span>
+		</span>
+	)
+})

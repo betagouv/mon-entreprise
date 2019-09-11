@@ -20,33 +20,33 @@ let RuleHeader = withColours(
 		title,
 		icon,
 		colours
-	}) => (
-		<section id="ruleHeader">
-			<header className="ui__ plain card">
-				<div>
-					{ns && (
-						<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
-					)}
-					<h1 style={{ color: colours.textColour }}>
-						{title || capitalise0(name)}
-					</h1>
-				</div>
-				{icon && <span id="ruleHeader__icon"> {emoji(icon)}</span>}
-			</header>
-			<div id="ruleHeader__content">
-				<div id="ruleHeader__description">
-					<Markdown source={description || question} />
-				</div>
-				{do {
-					let destinataire = path([type, 'destinataire'])(flatRule)
-					destinataire && (
+	}) => {
+		let destinataire = path([type, 'destinataire'])(flatRule)
+		return (
+			<section id="ruleHeader">
+				<header className="ui__ plain card">
+					<div>
+						{ns && (
+							<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
+						)}
+						<h1 style={{ color: colours.textColour }}>
+							{title || capitalise0(name)}
+						</h1>
+					</div>
+					{icon && <span id="ruleHeader__icon"> {emoji(icon)}</span>}
+				</header>
+				<div id="ruleHeader__content">
+					<div id="ruleHeader__description">
+						<Markdown source={description || question} />
+					</div>
+					{destinataire && (
 						<div id="ruleHeader__infobox">
 							<Destinataire destinataire={destinataire} />
 						</div>
-					)
-				}}
-			</div>
-		</section>
-	)
+					)}
+				</div>
+			</section>
+		)
+	}
 )
 export default RuleHeader
