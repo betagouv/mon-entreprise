@@ -1,6 +1,6 @@
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Trans, withTranslation } from 'react-i18next'
 
 export const LegalNoticeContent = withTranslation()(() => (
@@ -62,29 +62,26 @@ export const LegalNoticeContent = withTranslation()(() => (
 	</>
 ))
 
-export default class LegalNotice extends Component {
-	state = {
-		opened: false
+export default function LegalNotice() {
+	const [opened, setOpened] = useState(false)
+	const handleClose = () => {
+		setOpened(false)
 	}
-	handleClose = () => {
-		this.setState({ opened: false })
+	const handleOpen = () => {
+		setOpened(true)
 	}
-	handleOpen = () => {
-		this.setState({ opened: true })
-	}
-	render() {
-		return (
-			<>
-				<button onClick={this.handleOpen} className="ui__ link-button">
-					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
-				</button>
-				{this.state.opened && (
-					<Overlay onClose={this.handleClose} style={{ textAlign: 'left' }}>
-						<ScrollToTop />
-						<LegalNoticeContent />
-					</Overlay>
-				)}
-			</>
-		)
-	}
+
+	return (
+		<>
+			<button onClick={handleOpen} className="ui__ link-button">
+				<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
+			</button>
+			{opened && (
+				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
+					<ScrollToTop />
+					<LegalNoticeContent />
+				</Overlay>
+			)}
+		</>
+	)
 }

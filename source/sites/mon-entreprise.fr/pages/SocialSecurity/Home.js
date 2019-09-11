@@ -1,6 +1,6 @@
 /* @flow */
 
-import { Component, React, T } from 'Components'
+import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withLanguage from 'Components/utils/withLanguage'
 import withSitePaths from 'Components/utils/withSitePaths'
@@ -27,122 +27,119 @@ type Props = {
 	sitePaths: Object,
 	language: string
 }
-class SocialSecurity extends Component<Props, {}> {
-	render() {
-		const {
-			t,
-			match,
-			régime,
-			sitePaths,
-			showFindYourCompanyLink,
-			legalStatus
-		} = this.props
-		return (
-			<>
-				<Helmet>
-					<title>
-						{t('sécu.page.titre', "Sécurité sociale et coût d'embauche")}
-					</title>
-					<meta name="description" content={t('sécu.page.description')} />
-				</Helmet>
-				<ScrollToTop />
+function SocialSecurity({
+	t,
+	match,
+	régime,
+	sitePaths,
+	showFindYourCompanyLink,
+	legalStatus
+}: Props) {
+	return (
+		<>
+			<Helmet>
+				<title>
+					{t('sécu.page.titre', "Sécurité sociale et coût d'embauche")}
+				</title>
+				<meta name="description" content={t('sécu.page.description')} />
+			</Helmet>
+			<ScrollToTop />
 
-				{match.isExact && (
-					<Animate.fromBottom>
-						<T k="sécu.content">
-							<h1>Protection sociale </h1>
+			{match.isExact && (
+				<Animate.fromBottom>
+					<T k="sécu.content">
+						<h1>Protection sociale </h1>
+						<p>
+							En France, tous les travailleurs bénéficient d'une protection
+							sociale de qualité. Ce système obligatoire repose sur la
+							solidarité et vise à assurer le{' '}
+							<strong>bien-être général de la population</strong>.
+						</p>
+						<p>
+							En contrepartie du paiement de{' '}
+							<strong>contributions sociales</strong>, le cotisant est couvert
+							sur la maladie, les accidents du travail, chômage ou encore la
+							retraite.
+						</p>
+					</T>
+					{showFindYourCompanyLink && (
+						<>
+							<h2>
+								<T>Simulations personnalisées</T>
+							</h2>
 							<p>
-								En France, tous les travailleurs bénéficient d'une protection
-								sociale de qualité. Ce système obligatoire repose sur la
-								solidarité et vise à assurer le{' '}
-								<strong>bien-être général de la population</strong>.
+								<T k="sécu.entrepriseCrée">
+									Si vous possédez déjà une entreprise, nous pouvons{' '}
+									<strong>automatiquement personnaliser</strong> vos simulations
+									à votre situation.
+								</T>
 							</p>
-							<p>
-								En contrepartie du paiement de{' '}
-								<strong>contributions sociales</strong>, le cotisant est couvert
-								sur la maladie, les accidents du travail, chômage ou encore la
-								retraite.
-							</p>
-						</T>
-						{showFindYourCompanyLink && (
-							<>
-								<h2>
-									<T>Simulations personnalisées</T>
-								</h2>
-								<p>
-									<T k="sécu.entrepriseCrée">
-										Si vous possédez déjà une entreprise, nous pouvons{' '}
-										<strong>automatiquement personnaliser</strong> vos
-										simulations à votre situation.
+							<div style={{ textAlign: 'center' }}>
+								<Link
+									to={sitePaths.entreprise.trouver}
+									className="ui__ button plain">
+									<T>Renseigner mon entreprise</T>
+								</Link>
+							</div>
+						</>
+					)}
+
+					<section
+						style={{ marginTop: '2rem' }}
+						className="ui__ full-width choice-group">
+						<div className="ui__ container">
+							{régime === 'auto-entrepreneur' ? (
+								<Link
+									className="ui__ button-choice "
+									to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
+									{emoji('🚶')}{' '}
+									<T k="sécu.choix.auto-entrepreneur">
+										Estimer ma rémunération en tant qu'auto-entrepreneur
 									</T>
-								</p>
-								<div style={{ textAlign: 'center' }}>
-									<Link
-										to={sitePaths.entreprise.trouver}
-										className="ui__ button plain">
-										<T>Renseigner mon entreprise</T>
-									</Link>
-								</div>
-							</>
-						)}
-
-						<section
-							style={{ marginTop: '2rem' }}
-							className="ui__ full-width choice-group">
-							<div className="ui__ container">
-								{régime === 'auto-entrepreneur' ? (
+								</Link>
+							) : (
+								<>
+									<h2>
+										<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
+									</h2>
 									<Link
 										className="ui__ button-choice "
-										to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
-										{emoji('🚶')}{' '}
-										<T k="sécu.choix.auto-entrepreneur">
-											Estimer ma rémunération en tant qu'auto-entrepreneur
-										</T>
+										to={
+											régime
+												? sitePaths.sécuritéSociale[régime]
+												: sitePaths.sécuritéSociale.selection
+										}>
+										{emoji('💰')}{' '}
+										{legalStatus
+											? t(
+													[
+														'sécu.choix.dirigeant1',
+														`Mon revenu en tant que dirigeant de {{legalStatus}}`
+													],
+													{ legalStatus: t(legalStatus) }
+											  )
+											: t(
+													'sécu.choix.dirigeant2',
+													`Mon revenu en tant que chef d'entreprise`
+											  )}
 									</Link>
-								) : (
-									<>
-										<h2>
-											<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
-										</h2>
-										<Link
-											className="ui__ button-choice "
-											to={
-												régime
-													? sitePaths.sécuritéSociale[régime]
-													: sitePaths.sécuritéSociale.selection
-											}>
-											{emoji('💰')}{' '}
-											{legalStatus
-												? t(
-														[
-															'sécu.choix.dirigeant1',
-															`Mon revenu en tant que dirigeant de {{legalStatus}}`
-														],
-														{ legalStatus: t(legalStatus) }
-												  )
-												: t(
-														'sécu.choix.dirigeant2',
-														`Mon revenu en tant que chef d'entreprise`
-												  )}
-										</Link>
-										<Link
-											className="ui__ button-choice "
-											to={sitePaths.sécuritéSociale.salarié}>
-											{emoji('👥')}{' '}
-											<T k="sécu.choix.employé">Le salaire d'un employé</T>
-										</Link>
-									</>
-								)}
-							</div>
-						</section>
-						<section style={{ marginTop: '2rem' }}>
-							<Video />
-						</section>
-					</Animate.fromBottom>
-				)}
-			</>
-		)
-	}
+									<Link
+										className="ui__ button-choice "
+										to={sitePaths.sécuritéSociale.salarié}>
+										{emoji('👥')}{' '}
+										<T k="sécu.choix.employé">Le salaire d'un employé</T>
+									</Link>
+								</>
+							)}
+						</div>
+					</section>
+					<section style={{ marginTop: '2rem' }}>
+						<Video />
+					</section>
+				</Animate.fromBottom>
+			)}
+		</>
+	)
 }
 
 export default compose(

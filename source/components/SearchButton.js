@@ -1,5 +1,5 @@
 import { compose } from 'ramda'
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -12,48 +12,38 @@ export default compose(
 		flatRules: flatRulesSelector(state)
 	})),
 	withTranslation()
-)(
-	class SearchButton extends Component {
-		componentDidMount() {
-			// removeEventListener will need the exact same function instance
-			this.boundHandleKeyDown = this.handleKeyDown.bind(this)
+)(function SearchButton({ flatRules, invisibleButton }) {
+	const [visible, setVisible] = useState(false)
+	useEffect(() => {
+		window.addEventListener('keydown', handleKeyDown)
 
-			window.addEventListener('keydown', this.boundHandleKeyDown)
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown)
 		}
-		handleKeyDown(e) {
-			if (!(e.ctrlKey && e.key === 'k')) return
-			this.setState({ visible: true })
-			e.preventDefault()
-			e.stopPropagation()
-			return false
-		}
-		componentWillUnmount() {
-			window.removeEventListener('keydown', this.boundHandleKeyDown)
-		}
-		state = {
-			visible: false
-		}
-		close = () => this.setState({ visible: false })
-		render() {
-			let { flatRules, invisibleButton } = this.props
-			return this.state.visible ? (
-				<Overlay onClose={this.close}>
-					<h2>
-						<Trans>Chercher dans la documentation</Trans>
-					</h2>
-					<SearchBar
-						showDefaultList={false}
-						finally={this.close}
-						rules={flatRules}
-					/>
-				</Overlay>
-			) : invisibleButton ? null : (
-				<button
-					className="ui__ simple small button"
-					onClick={() => this.setState({ visible: true })}>
-					{emoji('🔍')} <Trans>Rechercher</Trans>
-				</button>
-			)
-		}
+	}, [])
+
+	const handleKeyDown = e => {
+		if (!(e.ctrlKey && e.key === 'k')) return
+		setVisible(true)
+		e.preventDefault()
+		e.stopPropagation()
+		return false
 	}
-)
+
+	const close = () => setVisible(false)
+
+	return visible ? (
+		<Overlay onClose={close}>
+			<h2>
+				<Trans>Chercher dans la documentation</Trans>
+			</h2>
+			<SearchBar showDefaultList={false} finally={close} rules={flatRules} />
+		</Overlay>
+	) : invisibleButton ? null : (
+		<button
+			className="ui__ simple small button"
+			onClick={() => setVisible(true)}>
+			{emoji('🔍')} <Trans>Rechercher</Trans>
+		</button>
+	)
+})

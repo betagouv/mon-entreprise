@@ -1,8 +1,8 @@
 import { path } from 'ramda'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { makeJsx } from '../evaluation'
-import './Somme.css'
 import { Node, NodeValuePointer } from './common'
+import './Somme.css'
 
 const SommeNode = ({ explanation, nodeValue, unit }) => (
 	<Node
@@ -26,41 +26,36 @@ let Table = ({ explanation, unit }) => (
 )
 
 /* La colonne peut au clic afficher une nouvelle colonne qui sera une autre somme imbriquée */
-class Row extends Component {
-	state = {
-		folded: true
-	}
-	render() {
-		let { v, i, unit } = this.props,
-			rowFormula = path(['explanation', 'formule', 'explanation'], v),
-			isSomme = rowFormula && rowFormula.name == 'somme'
+function Row({ v, i, unit }) {
+	let [folded, setFolded] = useState(true),
+		rowFormula = path(['explanation', 'formule', 'explanation'], v),
+		isSomme = rowFormula && rowFormula.name == 'somme'
 
-		return [
-			<div
-				className="mecanism-somme__row"
-				key={v.name}
-				// className={isSomme ? '' : 'noNest'}
-				onClick={() => this.setState({ folded: !this.state.folded })}>
-				<div className="operator blank">{i != 0 && '+'}</div>
-				<div className="element">
-					{makeJsx(v)}
-					{isSomme && (
-						<button className="unfoldIndication unstyledButton">
-							{this.state.folded ? 'déplier' : 'replier'}
-						</button>
-					)}
-				</div>
-				<div className="situationValue value">
-					<NodeValuePointer data={v.nodeValue} unit={unit} />
-				</div>
-			</div>,
-			...(isSomme && !this.state.folded
-				? [
-						<div className="nested" key={v.name + '-nest'}>
-							<Table explanation={rowFormula.explanation} unit={unit} />
-						</div>
-				  ]
-				: [])
-		]
-	}
+	return [
+		<div
+			className="mecanism-somme__row"
+			key={v.name}
+			// className={isSomme ? '' : 'noNest'}
+			onClick={() => setFolded(!folded)}>
+			<div className="operator blank">{i != 0 && '+'}</div>
+			<div className="element">
+				{makeJsx(v)}
+				{isSomme && (
+					<button className="unfoldIndication unstyledButton">
+						{folded ? 'déplier' : 'replier'}
+					</button>
+				)}
+			</div>
+			<div className="situationValue value">
+				<NodeValuePointer data={v.nodeValue} unit={unit} />
+			</div>
+		</div>,
+		...(isSomme && !folded
+			? [
+					<div className="nested" key={v.name + '-nest'}>
+						<Table explanation={rowFormula.explanation} unit={unit} />
+					</div>
+			  ]
+			: [])
+	]
 }

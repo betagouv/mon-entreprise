@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
-import React, { Component } from 'react'
+import React from 'react'
 import { Trans, withTranslation } from 'react-i18next'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
@@ -30,110 +30,109 @@ export default compose(
 	FormDecorator('question'),
 	withTranslation(),
 	withColours
-)(
-	class Question extends Component {
-		render() {
-			let {
-				choices,
-				submit,
-				colours,
-				meta: { pristine }
-			} = this.props
-			let choiceElements = is(Array)(choices)
-				? this.renderBinaryQuestion()
-				: this.renderChildren(choices)
-			return (
-				<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-					{choiceElements}
-					<SendButton
-						{...{
-							disabled: pristine,
-							colours,
-							error: false,
-							submit
-						}}
+)(function Question(props) {
+	let {
+		choices,
+		submit,
+		colours,
+		meta: { pristine }
+	} = props
+
+	const renderBinaryQuestion = () => {
+		let {
+			input, // vient de redux-form
+			submit,
+			choices,
+			setFormValue,
+			colours
+		} = props
+
+		return (
+			<div className="binaryQuestionList">
+				{choices.map(({ value, label }) => (
+					<RadioLabel
+						key={value}
+						{...{ value, label, input, submit, colours, setFormValue }}
 					/>
-				</div>
-			)
-		}
-		renderBinaryQuestion() {
-			let {
+				))}
+			</div>
+		)
+	}
+	const renderChildren = choices => {
+		let {
 				input, // vient de redux-form
 				submit,
-				choices,
 				setFormValue,
 				colours
-			} = this.props
+			} = props,
+			{ name } = input,
+			// seront stockées ainsi dans le state :
+			// [parent object path]: dotted name relative to parent
+			relativeDottedName = radioDottedName =>
+				radioDottedName.split(name + ' . ')[1]
 
-			return (
-				<div className="binaryQuestionList">
-					{choices.map(({ value, label }) => (
+		return (
+			<ul css="width: 100%">
+				{choices.canGiveUp && (
+					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
-							key={value}
-							{...{ value, label, input, submit, colours, setFormValue }}
+							{...{
+								value: 'non',
+								label: 'Aucun',
+								input,
+								submit,
+								colours,
+								dottedName: null,
+								setFormValue
+							}}
 						/>
-					))}
-				</div>
-			)
-		}
-		renderChildren(choices) {
-			let {
-					input, // vient de redux-form
-					submit,
-					setFormValue,
-					colours
-				} = this.props,
-				{ name } = input,
-				// seront stockées ainsi dans le state :
-				// [parent object path]: dotted name relative to parent
-				relativeDottedName = radioDottedName =>
-					radioDottedName.split(name + ' . ')[1]
-
-			return (
-				<ul css="width: 100%">
-					{choices.canGiveUp && (
-						<li key="aucun" className="variantLeaf aucun">
-							<RadioLabel
-								{...{
-									value: 'non',
-									label: 'Aucun',
-									input,
-									submit,
-									colours,
-									dottedName: null,
-									setFormValue
-								}}
-							/>
-						</li>
+					</li>
+				)}
+				{choices.children &&
+					choices.children.map(({ name, title, dottedName, children }) =>
+						children ? (
+							<li key={name} className="variant">
+								<div>{title}</div>
+								{renderChildren({ children })}
+							</li>
+						) : (
+							<li key={name} className="variantLeaf">
+								<RadioLabel
+									{...{
+										value: relativeDottedName(dottedName),
+										label: title,
+										dottedName,
+										input,
+										submit,
+										colours,
+										setFormValue
+									}}
+								/>
+							</li>
+						)
 					)}
-					{choices.children &&
-						choices.children.map(({ name, title, dottedName, children }) =>
-							children ? (
-								<li key={name} className="variant">
-									<div>{title}</div>
-									{this.renderChildren({ children })}
-								</li>
-							) : (
-								<li key={name} className="variantLeaf">
-									<RadioLabel
-										{...{
-											value: relativeDottedName(dottedName),
-											label: title,
-											dottedName,
-											input,
-											submit,
-											colours,
-											setFormValue
-										}}
-									/>
-								</li>
-							)
-						)}
-				</ul>
-			)
-		}
+			</ul>
+		)
 	}
-)
+
+	let choiceElements = is(Array)(choices)
+		? renderBinaryQuestion()
+		: renderChildren(choices)
+
+	return (
+		<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
+			{choiceElements}
+			<SendButton
+				{...{
+					disabled: pristine,
+					colours,
+					error: false,
+					submit
+				}}
+			/>
+		</div>
+	)
+})
 
 let RadioLabel = props => (
 	<>
@@ -145,31 +144,27 @@ let RadioLabel = props => (
 const RadioLabelContent = compose(
 	withTranslation(),
 	withColours
-)(
-	class RadioLabelContent extends Component {
-		click = value => () => {
-			if (this.props.input.value == value) this.props.submit('dblClick')
-		}
-		render() {
-			let { value, label, input, hover, colours } = this.props,
-				labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
-				selected = value === input.value
+)(function RadioLabelContent({ value, label, input, submit }) {
+	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
+		selected = value === input.value
 
-			return (
-				<label
-					key={value}
-					style={labelStyle}
-					className={classnames('radio', 'userAnswerButton', { selected })}>
-					<Trans i18nKey={`radio_${label}`}>{label}</Trans>
-					<input
-						type="radio"
-						{...input}
-						onClick={this.click(value)}
-						value={value}
-						checked={value === input.value ? 'checked' : ''}
-					/>
-				</label>
-			)
-		}
+	const click = value => () => {
+		if (input.value == value) submit('dblClick')
 	}
-)
+
+	return (
+		<label
+			key={value}
+			style={labelStyle}
+			className={classnames('radio', 'userAnswerButton', { selected })}>
+			<Trans i18nKey={`radio_${label}`}>{label}</Trans>
+			<input
+				type="radio"
+				{...input}
+				onClick={click(value)}
+				value={value}
+				checked={value === input.value ? 'checked' : ''}
+			/>
+		</label>
+	)
+})

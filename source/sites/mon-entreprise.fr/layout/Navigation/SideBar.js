@@ -3,7 +3,7 @@
 import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { withRouter } from 'react-router'
 import backSvg from './back.svg'
 import mobileMenuSvg from './mobile-menu.svg'
@@ -35,64 +35,61 @@ const isParent = (parentNode, children) => {
 	return isParent(parentNode, children.parentNode)
 }
 
-class SideBar extends React.Component<Props, State> {
-	state = {
-		opened: false,
-		sticky: bigScreen.matches
-	}
-	ref = null
-	componentDidMount() {
-		window.addEventListener('click', this.handleClick)
-		bigScreen.addListener(this.handleMediaQueryChange)
-	}
-	componentWillUnmount() {
-		window.removeEventListener('click', this.handleClick)
-		bigScreen.removeListener(this.handleMediaQueryChange)
-	}
-	handleClick = event => {
-		if (
-			!this.state.sticky &&
-			!isParent(this.ref, event.target) &&
-			this.state.opened
-		) {
-			this.handleClose()
+function SideBar({ location, tracker, children }) {
+	const [opened, setOpened] = useState(false)
+	const [sticky, setSticky] = useState(bigScreen.matches)
+	const [previousLocation, setPreviousLocation] = useState(location)
+	const ref = useRef()
+
+	useEffect(() => {
+		window.addEventListener('click', handleClick)
+		bigScreen.addListener(handleMediaQueryChange)
+
+		return () => {
+			window.removeEventListener('click', handleClick)
+			bigScreen.removeListener(handleMediaQueryChange)
+		}
+	}, [opened, sticky])
+
+	useEffect(() => {
+		if (!sticky && previousLocation !== location) {
+			setOpened(false)
+		}
+		setPreviousLocation(location)
+	})
+
+	const handleClick = event => {
+		if (!sticky && !isParent(ref.current, event.target) && opened) {
+			handleClose()
 		}
 	}
-	handleMediaQueryChange = () => {
-		this.setState({ sticky: bigScreen.matches })
+	const handleMediaQueryChange = () => {
+		setSticky(bigScreen.matches)
 	}
-	handleClose = () => {
-		this.props.tracker.push(['trackEvent', 'Sidebar', 'close'])
-		this.setState({ opened: false })
+	const handleClose = () => {
+		tracker.push(['trackEvent', 'Sidebar', 'close'])
+		setOpened(false)
 	}
-	handleOpen = () => {
-		this.props.tracker.push(['trackEvent', 'Sidebar', 'open'])
-		this.setState({ opened: true })
-	}
-
-	componentDidUpdate(previousProps) {
-		if (!this.state.sticky && previousProps.location !== this.props.location) {
-			this.setState({ opened: false })
-		}
+	const handleOpen = () => {
+		tracker.push(['trackEvent', 'Sidebar', 'open'])
+		setOpened(true)
 	}
 
-	render() {
-		return (
-			<div
-				css="transform: translate(-100%)" // prevent FOUC effect
-				className={classnames('sidebar__container', {
-					opened: this.state.opened
-				})}
-				ref={ref => (this.ref = ref)}>
-				<div className="sidebar">{this.props.children}</div>
-				<button
-					className="menu__button"
-					onClick={this.state.opened ? this.handleClose : this.handleOpen}>
-					<img src={this.state.opened ? backSvg : mobileMenuSvg} />
-				</button>
-			</div>
-		)
-	}
+	return (
+		<div
+			css="transform: translate(-100%)" // prevent FOUC effect
+			className={classnames('sidebar__container', {
+				opened: opened
+			})}
+			ref={ref}>
+			<div className="sidebar">{children}</div>
+			<button
+				className="menu__button"
+				onClick={opened ? handleClose : handleOpen}>
+				<img src={opened ? backSvg : mobileMenuSvg} />
+			</button>
+		</div>
+	)
 }
 
 export default (compose(

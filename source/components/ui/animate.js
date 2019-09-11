@@ -1,5 +1,5 @@
 /* @flow */
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	animated,
 	config as configPresets,
@@ -123,48 +123,35 @@ export const fadeIn = ({
 	</Spring>
 )
 
-type State = {
-	show: boolean
-}
-export class appear extends React.Component<
-	Props & { unless: boolean },
-	State
-> {
-	static defaultProps = {
-		unless: false
-	}
-	state = {
-		show: this.props.unless
-	}
-	componentDidMount() {
-		window.setTimeout(() => this.setState({ show: true }), 0)
-	}
-	render() {
-		const {
-			children,
-			config = configPresets.default,
-			delay = 0,
-			style
-		} = this.props
-		return (
-			<Spring
-				delay={delay}
-				native
-				config={config}
-				to={{
-					opacity: this.state.show ? 1 : 0,
-					height: this.state.show ? 'auto' : '0px'
-				}}>
-				{animStyle => (
-					<animated.div
-						style={{ ...style, ...animStyle }}
-						className={this.props.className}>
-						{children}
-					</animated.div>
-				)}
-			</Spring>
-		)
-	}
+export function appear({
+	children,
+	className,
+	unless = false,
+	config = configPresets.default,
+	delay = 0,
+	style
+}) {
+	const [show, setShow] = useState(unless)
+	useEffect(() => {
+		window.setTimeout(() => setShow(true), 0)
+	}, [])
+
+	return (
+		<Spring
+			delay={delay}
+			native
+			config={config}
+			to={{
+				opacity: show ? 1 : 0,
+				height: show ? 'auto' : '0px'
+			}}>
+			{animStyle => (
+				<animated.div style={{ ...style, ...animStyle }} className={className}>
+					{children}
+				</animated.div>
+			)}
+		</Spring>
+	)
 }
 
 export default {

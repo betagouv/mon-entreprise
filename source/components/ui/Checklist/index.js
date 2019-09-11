@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import Animate from 'Ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
@@ -19,71 +19,68 @@ type CheckItemProps = {
 	tracker: Tracker,
 	defaultChecked?: boolean
 }
-type CheckItemState = {
-	displayExplanations: boolean
-}
-class CheckItemComponent extends Component<CheckItemProps, CheckItemState> {
-	state = {
-		displayExplanations: false
-	}
-	handleChecked = (e: SyntheticInputEvent<HTMLInputElement>) => {
+
+function CheckItemComponent({
+	title,
+	name,
+	explanations,
+	onChange,
+	tracker,
+	defaultChecked
+}: CheckItemProps) {
+	const [displayExplanations, setDisplayExplanations] = useState(false)
+
+	const handleChecked = (e: SyntheticInputEvent<HTMLInputElement>) => {
 		if (e.target.checked) {
-			this.setState({ displayExplanations: false })
+			setDisplayExplanations(false)
 		}
-		this.props.onChange && this.props.onChange(e.target.checked)
-		this.props.tracker.push([
+		onChange && onChange(e.target.checked)
+		tracker.push([
 			'trackEvent',
 			'CheckItem',
 			e.target.checked ? 'check' : 'uncheck',
-			this.props.name
+			name
 		])
 	}
-	handleClick = () => {
-		this.props.tracker.push([
-			'trackEvent',
-			'CheckItem',
-			'click',
-			this.props.name
-		])
-		this.setState(({ displayExplanations }) => ({
-			displayExplanations: !displayExplanations
-		}))
-	}
-	render() {
-		return (
-			<ScrollToElement onlyIfNotVisible when={this.state.displayExplanations}>
-				<div className="ui__ checkItemLabel">
-					{/* TODO ACCESSIBILITY: impossible to tick the checkbox with keyboard ?  */}
-					<Checkbox
-						name={this.props.name}
-						id={this.props.name}
-						onChange={this.handleChecked}
-						defaultChecked={this.props.defaultChecked}
-					/>
 
-					<button
-						className={classnames('ui__ checklist-button', {
-							opened: this.state.displayExplanations
-						})}
-						onClick={this.handleClick}>
-						{this.props.title}
-					</button>
-				</div>
-				{this.state.displayExplanations && this.props.explanations && (
-					<Animate.appear>
-						{typeof this.props.explanations === 'string' ? (
-							<Markdown
-								className="ui__ checklist-explanation"
-								source={this.props.explanations}
-							/>
-						) : (
-							this.props.explanations
-						)}
-					</Animate.appear>
-				)}
-			</ScrollToElement>
-		)
+	const handleClick = () => {
+		tracker.push(['trackEvent', 'CheckItem', 'click', name])
+		setDisplayExplanations(!displayExplanations)
 	}
+
+	return (
+		<ScrollToElement onlyIfNotVisible when={displayExplanations}>
+			<div className="ui__ checkItemLabel">
+				{/* TODO ACCESSIBILITY: impossible to tick the checkbox with keyboard ?  */}
+				<Checkbox
+					name={name}
+					id={name}
+					onChange={handleChecked}
+					defaultChecked={defaultChecked}
+				/>
+
+				<button
+					className={classnames('ui__ checklist-button', {
+						opened: displayExplanations
+					})}
+					onClick={handleClick}>
+					{title}
+				</button>
+			</div>
+			{displayExplanations && explanations && (
+				<Animate.appear>
+					{typeof explanations === 'string' ? (
+						<Markdown
+							className="ui__ checklist-explanation"
+							source={explanations}
+						/>
+					) : (
+						explanations
+					)}
+				</Animate.appear>
+			)}
+		</ScrollToElement>
+	)
 }
 export const CheckItem = withTracker(CheckItemComponent)
 

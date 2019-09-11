@@ -12,22 +12,20 @@ import {
 } from 'Selectors/analyseSelectors'
 import './ExampleSituations.css'
 
-export default class ExampleSituations extends React.Component {
-	render() {
-		return (
-			<div className="ui__ container" id="exampleSituations">
-				<h1>
-					{emoji('💡 ')}
-					<T>Quelques exemples de salaires</T>
-				</h1>
-				<ul>
-					{examples.map(ex => (
-						<Example ex={ex} key={ex.nom} />
-					))}
-				</ul>
-			</div>
-		)
-	}
+export default function ExampleSituations() {
+	return (
+		<div className="ui__ container" id="exampleSituations">
+			<h1>
+				{emoji('💡 ')}
+				<T>Quelques exemples de salaires</T>
+			</h1>
+			<ul>
+				{examples.map(ex => (
+					<Example ex={ex} key={ex.nom} />
+				))}
+			</ul>
+		</div>
+	)
 }
 
 const Example = compose(

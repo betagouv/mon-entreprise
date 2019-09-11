@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Component, React, T } from 'Components'
+import { React, T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
 import { withTranslation } from 'react-i18next'
@@ -17,74 +17,71 @@ export default compose(
 	connect(state => ({
 		period: formValueSelector('conversation')(state, 'période')
 	}))
-)(
-	class Input extends Component {
-		debouncedOnChange = debounce(750, this.props.input.onChange)
-		render() {
-			let {
-					input,
-					dottedName,
-					submit,
-					meta: { dirty, error },
-					t,
-					colours,
-					rulePeriod,
-					period,
-					unit
-				} = this.props,
-				suffixed = unit != null,
-				inputError = dirty && error,
-				submitDisabled = !dirty || inputError
-			return (
-				<>
-					<div css="width: 100%">
-						<InputSuggestions
-							suggestions={this.props.suggestions}
-							onFirstClick={value => this.props.setFormValue('' + value)}
-							onSecondClick={() => this.props.submit('suggestion')}
-							rulePeriod={this.props.rulePeriod}
-						/>
-					</div>
+)(function Input({
+	input,
+	suggestions,
+	setFormValue,
+	submit,
+	rulePeriod,
+	dottedName,
+	meta: { dirty, error },
+	colours,
+	period,
+	unit
+}) {
+	const debouncedOnChange = debounce(750, input.onChange)
+	let suffixed = unit != null,
+		inputError = dirty && error,
+		submitDisabled = !dirty || inputError
 
-					<div className="answer">
-						<input
-							type="text"
-							key={input.value}
-							autoFocus
-							defaultValue={input.value}
-							onChange={e => {
-								e.persist()
-								this.debouncedOnChange(e)
-							}}
-							className={classnames({ suffixed })}
-							id={'step-' + dottedName}
-							inputMode="numeric"
-							style={{ border: `1px solid ${colours.textColourOnWhite}` }}
-						/>
-						{suffixed && (
-							<label className="suffix" htmlFor={'step-' + dottedName}>
-								{unit}
-								{rulePeriod && (
-									<span>
-										{' '}
-										<T>par</T>{' '}
-										<T>
-											{
-												{ mois: 'mois', année: 'an' }[
-													rulePeriod === 'flexible' ? period : rulePeriod
-												]
-											}
-										</T>
-									</span>
-								)}
-							</label>
+	return (
+		<>
+			<div css="width: 100%">
+				<InputSuggestions
+					suggestions={suggestions}
+					onFirstClick={value => setFormValue('' + value)}
+					onSecondClick={() => submit('suggestion')}
+					rulePeriod={rulePeriod}
+				/>
+			</div>
+
+			<div className="answer">
+				<input
+					type="text"
+					key={input.value}
+					autoFocus
+					defaultValue={input.value}
+					onChange={e => {
+						e.persist()
+						debouncedOnChange(e)
+					}}
+					className={classnames({ suffixed })}
+					id={'step-' + dottedName}
+					inputMode="numeric"
+					style={{ border: `1px solid ${colours.textColourOnWhite}` }}
+				/>
+				{suffixed && (
+					<label className="suffix" htmlFor={'step-' + dottedName}>
+						{unit}
+						{rulePeriod && (
+							<span>
+								{' '}
+								<T>par</T>{' '}
+								<T>
+									{
+										{ mois: 'mois', année: 'an' }[
+											rulePeriod === 'flexible' ? period : rulePeriod
+										]
+									}
+								</T>
+							</span>
 						)}
-						<SendButton {...{ disabled: submitDisabled, error, submit }} />
-					</div>
+					</label>
+				)}
+				<SendButton {...{ disabled: submitDisabled, error, submit }} />
+			</div>
 
-					{inputError && <span className="step-input-error">{error}</span>}
-				</>
-			)
-		}
-	}
-)
+			{inputError && <span className="step-input-error">{error}</span>}
+		</>
+	)
+})
