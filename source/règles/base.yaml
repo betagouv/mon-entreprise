@@ -1360,7 +1360,7 @@
 
   formule: net - impôt
 
-- espace: impôt . impôt sur le revenu au taux neutre
+- espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
   période: mois
@@ -1448,7 +1448,7 @@
         - au-dessus de: 52300
           taux: 43%
 
-- espace: impôt . impôt sur le revenu au taux neutre
+- espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
   période: mois
@@ -1537,11 +1537,10 @@
           taux: 43%
 
 - espace: impôt
-  nom: impôt sur le revenu au taux neutre
+  nom: taux neutre d'impôt sur le revenu
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  unité: €
   période: mois
   formule:
     variations:
@@ -3179,15 +3178,23 @@
       - variations:
           - si: méthode de calcul . barème standard
             alors: impôt sur le revenu à payer
-          - si: méthode de calcul . taux neutre
-            alors: impôt sur le revenu au taux neutre
-          - si: méthode de calcul . taux personnalisé
+          - si: méthode de calcul . prélèvement à la source
             alors:
               multiplication:
                 assiette: revenu imposable
-                taux: taux personnalisé
+                taux: taux du prélèvement à la source
       - CEHR
       - auto-entrepreneur . impôt . versement libératoire . montant
+
+- espace: impôt
+  nom: taux du prélèvement à la source
+  période: flexible
+  formule:
+    variations:
+      - si: méthode de calcul . taux neutre
+        alors: taux neutre d'impôt sur le revenu
+      - si: méthode de calcul . taux personnalisé
+        alors: taux personnalisé
 
 - espace: impôt
   nom: méthode de calcul
@@ -3232,6 +3239,13 @@
   titre: avec le barème standard
   description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
   formule: impôt . méthode de calcul = 'barème standard'
+
+- espace: impôt . méthode de calcul
+  nom: prélèvement à la source
+  formule:
+    une de ces conditions:
+      - taux neutre
+      - taux personnalisé
 
 - espace: impôt
   nom: revenu imposable
