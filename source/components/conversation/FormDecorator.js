@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
-import { compose } from 'ramda'
 import React from 'react'
-import { connect } from 'react-redux'
-import { change, Field } from 'redux-form'
+import { useDispatch } from 'react-redux'
+import { Field } from 'redux-form'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -13,47 +12,53 @@ Read https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-comp
 to understand those precious higher order components.
 */
 
-export var FormDecorator = formType => RenderField =>
-	compose(
-		connect(
-			//... this helper directly to the redux state to avoid passing more props
-			state => ({
-				flatRules: state.flatRules
-			}),
-			dispatch => ({
-				stepAction: (name, step, source) =>
-					dispatch({ type: 'STEP_ACTION', name, step, source }),
-				setFormValue: (field, value) =>
-					dispatch(change('conversation', field, value))
+export const FormDecorator = formType => RenderField =>
+	function({ fieldName, question, inversion, unit, ...otherProps }) {
+		const dispatch = useDispatch()
+		const submit = source =>
+			dispatch({
+				type: 'STEP_ACTION',
+				name: 'fold',
+				step: fieldName,
+				source
 			})
-		)
-	)(function(props) {
-		let { stepAction, fieldName, inversion, setFormValue, unit } = props,
-			submit = cause => stepAction('fold', fieldName, cause),
-			stepProps = {
-				...props,
-				submit,
-				setFormValue: (value, name = fieldName) => setFormValue(name, value),
-				...(unit === '%'
-					? {
-							format: x => (x == null ? null : +(x * 100).toFixed(2)),
-							normalize: x => (x == null ? null : x / 100)
-					  }
-					: {})
-			}
+		const setFormValue = (fieldName, value) => {
+			dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
+			dispatch(change('conversation', fieldName, value))
+		}
+
+		const stepProps = {
+			...otherProps,
+			submit,
+			...(unit === '%'
+				? {
+						format: x => (x == null ? null : +(x * 100).toFixed(2)),
+						normalize: x => (x == null ? null : x / 100)
+				  }
+				: {})
+		}
 
 		return (
 			<div className={classNames('step', formType)}>
 				<div className="unfoldedHeader">
 					<h3>
-						{props.question}{' '}
-						{!inversion && <Explicable dottedName={fieldName} />}
+						{question} {!inversion && <Explicable dottedName={fieldName} />}
 					</h3>
 				</div>
 
 				<fieldset>
-					<Field component={RenderField} name={fieldName} {...stepProps} />
+					<Field
+						component={RenderField}
+						name={fieldName}
+						setFormValue={(value, name = fieldName) =>
+							setFormValue(name, value)
+						}
+						onChange={(evt, value) => {
+							dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
+						}}
+						{...stepProps}
+					/>
 				</fieldset>
 			</div>
 		)
-	})
+	}

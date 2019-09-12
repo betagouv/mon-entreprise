@@ -87,8 +87,14 @@ export let situationSelector = createDeepEqualSelector(
 )
 
 export let formattedSituationSelector = createSelector(
-	[situationSelector],
-	situation => nestedSituationToPathMap(situation)
+	[situationSelector, state => state.simulation?.situation],
+	(reduxFormsituation, situation) => {
+		const formatedReduxFormSituation = nestedSituationToPathMap(
+			reduxFormsituation
+		)
+		console.log(formatedReduxFormSituation, situation)
+		return formatedReduxFormSituation
+	}
 )
 
 export let noUserInputSelector = createSelector(

@@ -12,8 +12,7 @@ import { compose, isEmpty, isNil, propEq } from 'ramda'
 import React, { memo, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
@@ -43,8 +42,10 @@ export default compose(
 				state.simulation?.config['objectifs secondaires'] || []
 		}),
 		dispatch => ({
-			setFormValue: (field, name) =>
-				dispatch(change('conversation', field, name)),
+			setFormValue: (fieldName, value) => {
+				dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
+				dispatch(change('conversation', fieldName, value))
+			},
 			setActiveInput: name =>
 				dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
 		})
@@ -282,15 +283,25 @@ let TargetInputOrValue = ({
 	setActiveInput,
 	firstStepCompleted
 }) => {
-	const {
-		i18n: { language }
-	} = useTranslation()
+	const { i18n } = useTranslation()
+	const dispatch = useDispatch()
+
 	let inputIsActive = activeInput === target.dottedName
+	const Component = { '€': CurrencyField, '%': DebouncedPercentageField }[
+		serialiseUnit(target.unit)
+	]
 	return (
 		<span className="targetInputOrValue">
 			{inputIsActive || !target.formule || isEmpty(target.formule) ? (
 				<Field
 					name={target.dottedName}
+					onChange={evt =>
+						dispatch({
+							type: 'UPDATE_SITUATION',
+							fieldName: target.dottedName,
+							value: evt.target.value
+						})
+					}
 					onBlur={event => event.preventDefault()}
 					component={
 						{ '€': CurrencyField, '%': DebouncedPercentageField }[
@@ -298,7 +309,7 @@ let TargetInputOrValue = ({
 						]
 					}
 					{...(inputIsActive ? { autoFocus: true } : {})}
-					language={language}
+					language={i18n.language}
 				/>
 			) : (
 				<TargetValue
@@ -316,21 +327,15 @@ let TargetInputOrValue = ({
 	)
 }
 
-const TargetValue = connect(
-	state => ({
-		blurValue: analysisWithDefaultsSelector(state)?.cache.inversionFail
-	}),
-	dispatch => ({
-		setFormValue: (field, name) => dispatch(change('conversation', field, name))
-	})
-)(function TargetValue({
-	targets,
-	target,
-	blurValue,
-	setFormValue,
-	activeInput,
-	setActiveInput
-}) {
+function TargetValue({ targets, target, activeInput, setActiveInput }) {
+	const blurValue = useSelector(
+		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
+	)
+	const dispatch = useDispatch()
+	const setFormValue = (field, name) => {
+		dispatch({ type: 'REFACTO_UPDATE_ACTIVE_FIELD', field, name })
+		dispatch(change('conversation', field, name))
+	}
 	let targetWithValue = targets?.find(propEq('dottedName', target.dottedName)),
 		value = targetWithValue && targetWithValue.nodeValue
 
@@ -356,12 +361,12 @@ const TargetValue = connect(
 			<AnimatedTargetValue value={value} />
 		</div>
 	)
-})
+}
 
-const AidesGlimpse = compose(
-	withRouter,
-	connect(state => ({ analysis: analysisWithDefaultsSelector(state) }))
-)(({ analysis: { targets }, colours }) => {
+function AidesGlimpse() {
+	const targets = useSelector(
+		state => analysisWithDefaultsSelector(state).targets
+	)
 	const aides = targets?.find(
 		t => t.dottedName === 'contrat salarié . aides employeur'
 	)
@@ -379,4 +384,4 @@ const AidesGlimpse = compose(
 			</div>
 		</Animate.appear>
 	)
-})
+}

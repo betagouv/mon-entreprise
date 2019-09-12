@@ -2,7 +2,7 @@ import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
 import { compose, filter, map, toPairs } from 'ramda'
 import React, { useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { batchActions } from 'redux-batched-actions'
 import { change, Field, reduxForm } from 'redux-form'
 import {
@@ -40,16 +40,20 @@ export default compose(
 	batchPeriodChange,
 	initialPériode
 }) {
+	const dispatch = useDispatch()
 	useEffect(() => {
 		!situation.période &&
 			updateSituation(
 				initialPériode || 'année',
 				batchPeriodChange,
 				situation,
-				rules
+				rules,
+				updatePeriod
 			)
 		return
 	})
+	const updatePeriod = (toPeriod, needConvertion) =>
+		dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConvertion })
 	return (
 		<span id="PeriodSwitch">
 			<span className="base ui__ small toggle">
@@ -60,7 +64,13 @@ export default compose(
 						type="radio"
 						value="année"
 						onChange={() =>
-							updateSituation('année', batchPeriodChange, situation, rules)
+							updateSituation(
+								'année',
+								batchPeriodChange,
+								situation,
+								rules,
+								updatePeriod
+							)
 						}
 					/>
 					<span>
@@ -74,7 +84,13 @@ export default compose(
 						type="radio"
 						value="mois"
 						onChange={() =>
-							updateSituation('mois', batchPeriodChange, situation, rules)
+							updateSituation(
+								'mois',
+								batchPeriodChange,
+								situation,
+								rules,
+								updatePeriod
+							)
 						}
 					/>
 					<span>
@@ -86,11 +102,20 @@ export default compose(
 	)
 })
 
-let updateSituation = (toPeriod, batchPeriodChange, situation, rules) => {
+let updateSituation = (
+	toPeriod,
+	batchPeriodChange,
+	situation,
+	rules,
+	updatePeriod
+) => {
 	let needConvertion = filter(([dottedName, value]) => {
 		let rule = findRuleByDottedName(rules, dottedName)
 		return value != null && rule?.période === 'flexible'
 	})(toPairs(situation))
+
+	updatePeriod(toPeriod, needConvertion.map(([fieldName]) => fieldName))
+
 	let actions = [
 		...map(
 			([dottedName, value]) =>

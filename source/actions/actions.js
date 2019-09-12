@@ -29,6 +29,7 @@ export const validateStepWithValue = (
 	dottedName,
 	value: any
 ): Thunk<StepAction> => dispatch => {
+	dispatch({ type: 'UPDATE_SITUATION', fieldName: dottedName, value })
 	dispatch(change('conversation', dottedName, value))
 	dispatch({
 		type: 'STEP_ACTION',

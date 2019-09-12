@@ -3,8 +3,10 @@
 import {
 	compose,
 	defaultTo,
+	identity,
 	isNil,
 	lensPath,
+	omit,
 	over,
 	set,
 	uniq,
@@ -99,15 +101,58 @@ function conversationSteps(
 	return state
 }
 
-function simulation(state = null, { type, config, url, id }) {
+function updatePeriod(situation, { toPeriod, needConvertion }) {
+	const currentPeriod = situation['période'] || 'mois'
+	if (currentPeriod === toPeriod) {
+		return situation
+	}
+	if (!['mois', 'année'].includes(toPeriod)) {
+		throw new Error('Oups, changement de période invalide')
+	}
+
+	const updatedSituation = Object.entries(situation)
+		.filter(([fieldName]) => needConvertion.includes(fieldName))
+		.map(([fieldName, value]) => [
+			fieldName,
+			currentPeriod === 'mois' && toPeriod === 'année' ? value * 12 : value / 12
+		])
+
+	return {
+		...situation,
+		...Object.fromEntries(updatedSituation),
+		période: toPeriod
+	}
+}
+
+function simulation(
+	state = null,
+	{ type, config, url, id, fieldName, value, toPeriod, needConvertion }
+) {
 	if (type === 'SET_SIMULATION') {
-		return { config, url, hiddenControls: [] }
+		return { config, url, hiddenControls: [], situation: {} }
 	}
-	if (type === 'HIDE_CONTROL' && state !== null) {
-		return { ...state, hiddenControls: [...state.hiddenControls, id] }
+	if (state === null) {
+		return state
 	}
-	if (type === 'RESET_SIMULATION' && state !== null) {
-		return { ...state, hiddenControls: [] }
+	switch (type) {
+		case 'HIDE_CONTROL':
+			return { ...state, hiddenControls: [...state.hiddenControls, id] }
+		case 'RESET_SIMULATION':
+			return { ...state, hiddenControls: [], situation: {} }
+		case 'UPDATE_SITUATION':
+			const { config, situation } = state
+			const removePreviousTarget = config.objectifs.includes(fieldName)
+				? omit(config.objectifs)
+				: identity
+			return {
+				...state,
+				situation: { ...removePreviousTarget(situation), [fieldName]: value }
+			}
+		case 'UPDATE_PERIOD':
+			return {
+				...state,
+				situation: updatePeriod(state.situation, { toPeriod, needConvertion })
+			}
 	}
 	return state
 }
