@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
+import { useTranslation } from 'react-i18next'
 
 type OwnProps = {}
 type Props = {
