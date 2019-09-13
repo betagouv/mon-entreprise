@@ -25,7 +25,8 @@ Mais quelle que soit la direction politique empruntée, **la première étape es
 
 Il s'agit donc d'exposer les chiffres comme **une réponse simple, parlante, fiable à une recherche faite à l'improviste sur un mobile**.
 
-Au-delà d'un chiffre (60kg CO2e) associé à un achat (nouveau smartphone), il faut pouvoir *personnaliser* ce résultat : posés sous la forme de questions simples, des paramètres changent toujours drastiquement l'impact, du simple pour un écran 4 pouces au double pour un écran de 6 pouces. Impossible de donner un impact réaliste des douches sur un an, sans savoir le type de chauffage, le temps passé. C'est aussi l'occasion d'informer sur l'existence de pommeaux économes.
+La première étape, c'est une approximation (40kg CO2e) associé à un achat (nouveau smartphone). Ensuite, il faut toujours *affiner* ce chiffre avec des questions simples : est-ce un écran 4 pouces (30kg CO2e) ou 6 pouces (60kg CO2e). Impossible de donner un impact réaliste d'une douche, sans savoir le type de chauffage et le temps passé. C'est aussi l'occasion d'informer sur l'existence de pommeaux de douche économes.
+
 
 Le périmètre, qui est en fait tout ce qu'on peut acheter depuis la France, est tellement large que cette base doit etre *collaborative*, à la Wikipedia : que ce soit pour poser les bonnes questions, y répondre ou seulement comprendre et  améliorer légèrement une réponse. A la clef, **des mini-modèles libres de l'impact carbone des gestes quotidiens**.
 
