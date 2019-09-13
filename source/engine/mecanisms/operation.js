@@ -1,13 +1,8 @@
-import React from 'react'
-import { curry, map } from 'ramda'
-import { inferUnit } from 'Engine/units'
-import {
-	evaluateNode,
-	makeJsx,
-	mergeMissing,
-	rewriteNode
-} from 'Engine/evaluation'
+import { evaluateNode, makeJsx, mergeMissing } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
+import { inferUnit } from 'Engine/units'
+import { curry, map } from 'ramda'
+import React from 'react'
 
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
@@ -26,7 +21,7 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 				explanation[1].missingVariables
 			)
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let explanation = v.explanation.map(recurse)
@@ -43,7 +38,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 					<span className="fa fa" />
 					{makeJsx(explanation[0])}
 					<span className="operator">{symbol || k}</span>
-
 					{makeJsx(explanation[1])}
 				</span>
 			}
@@ -55,7 +49,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 		evaluate,
 		jsx,
 		operator: symbol || k,
-		// is this useful ?		text: rawNode,
 		explanation,
 		unit
 	}

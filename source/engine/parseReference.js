@@ -1,7 +1,7 @@
 // Reference to a variable
 import parseRule from 'Engine/parseRule'
 import React from 'react'
-import { evaluateNode, rewriteNode } from './evaluation'
+import { evaluateNode } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
 import {
@@ -50,12 +50,12 @@ export let parseReference = (rules, rule, parsedRules, filter) => ({
 			: variable
 
 		let cacheAndNode = (nodeValue, missingVariables, customExplanation) => {
-			cache[cacheName] = rewriteNode(
-				node,
+			cache[cacheName] = {
+				...node,
 				nodeValue,
-				customExplanation || explanation,
+				explanation: customExplanation || explanation,
 				missingVariables
-			)
+			}
 			return cache[cacheName]
 		}
 		const variableScore = variable.defaultValue ? 1 : 2
@@ -187,16 +187,14 @@ export let parseReferenceTransforms = (
 					: nodeValue,
 			periodTransform = nodeValue !== transformedNodeValue
 
-		let result = rewriteNode(
-			{
-				...filteredNode,
-				periodTransform: periodTransform,
-				...(periodTransform ? { originPeriodValue: nodeValue } : {})
-			},
-			transformedNodeValue,
-			filteredNode.explanation,
-			filteredNode.missingVariables
-		)
+		let result = {
+			...filteredNode,
+			periodTransform,
+			...(periodTransform ? { originPeriodValue: nodeValue } : {}),
+			nodeValue: transformedNodeValue,
+			explanation: filteredNode.explanation,
+			missingVariables: filteredNode.missingVariables
+		}
 
 		return result
 	}

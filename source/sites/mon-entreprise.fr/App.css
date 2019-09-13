@@ -1,12 +1,14 @@
 html,
 body,
 #js {
-	min-height: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .app-container {
 	position: relative;
 	width: 100%;
+	overflow: auto;
 	height: 100vh;
 }
 .app-content {
@@ -22,8 +24,6 @@ body,
 		flex: 1;
 	}
 	.app-container {
-		overflow: auto;
 		min-height: 100vh;
-		height: auto;
 	}
 }

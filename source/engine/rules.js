@@ -84,9 +84,19 @@ export let nameLeaf = pipe(
 )
 
 export let encodeRuleName = name =>
-	encodeURI(name.replace(/\s\.\s/g, '/').replace(/\s/g, '-'))
+	encodeURI(
+		name
+			.replace(/\s\.\s/g, '/')
+			.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+			.replace(/\s/g, '-')
+	)
 export let decodeRuleName = name =>
-	decodeURI(name.replace(/\//g, ' . ').replace(/-/g, ' '))
+	decodeURI(
+		name
+			.replace(/\//g, ' . ')
+			.replace(/-/g, ' ')
+			.replace(/\u2011/g, '-')
+	)
 
 export let ruleParents = dottedName => {
 	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
@@ -232,7 +242,7 @@ export let findParentDependency = (rules, rule) => {
 		reject(isNil),
 		find(
 			//Find the first "calculable" parent
-			({ question, unit, formule, name }) =>
+			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) //implicitly, the format is boolean

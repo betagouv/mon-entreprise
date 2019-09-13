@@ -24,6 +24,6 @@ questions:
 
 situation:
   indépendant: oui
-  auto entrepreneur: non
+  auto-entrepreneur: non
   contrat salarié: non
   période: année

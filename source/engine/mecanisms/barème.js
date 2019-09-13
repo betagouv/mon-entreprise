@@ -1,10 +1,10 @@
-import { defaultNode, E, rewriteNode } from 'Engine/evaluation'
-import variations from 'Engine/mecanisms/variations'
+import { defaultNode, E } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
+import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
-import { evolve, has, pluck, sum } from 'ramda'
 import { inferUnit, parseUnit } from 'Engine/units'
+import { evolve, has, pluck, sum } from 'ramda'
 
 export let desugarScale = recurse => tranches =>
 	tranches
@@ -68,16 +68,16 @@ export default (recurse, k, v) => {
 			}),
 			nodeValue = sum(pluck('value', tranches))
 
-		return rewriteNode(
-			node,
+		return {
+			...node,
 			nodeValue,
-			{
+			explanation: {
 				...explanation,
 				tranches
 			},
-			e.missingVariables(),
-			e.valNode
-		)
+			missingVariables: e.missingVariables(),
+			lazyEval: e.valNode
+		}
 	}
 
 	return {

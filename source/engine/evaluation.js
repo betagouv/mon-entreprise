@@ -31,20 +31,6 @@ export let mergeMissing = (left, right) =>
 export let evaluateNode = (cache, situationGate, parsedRules, node) =>
 	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
 
-export let rewriteNode = (
-	node,
-	nodeValue,
-	explanation,
-	missingVariables,
-	lazyEval
-) => ({
-	...node,
-	nodeValue,
-	explanation,
-	missingVariables,
-	lazyEval
-})
-
 export let evaluateArray = (reducer, start) => (
 	cache,
 	situationGate,
@@ -60,8 +46,7 @@ export let evaluateArray = (reducer, start) => (
 			: reduce(reducer, start, values),
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-	//	console.log("".padStart(cache.parseLevel), missingVariables)
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -83,7 +68,7 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let defaultNode = nodeValue => ({
@@ -123,8 +108,7 @@ export let evaluateObject = (objectShape, effect) => (
 			: automaticExplanation,
 		nodeValue = is(Object, evaluated) ? evaluated.nodeValue : evaluated,
 		missingVariables = mergeAllMissing(values(explanation))
-	//	console.log("".padStart(cache.parseLevel),map(node => length(flatten(collectNodeMissing(node))) ,explanation))
-	return rewriteNode(node, nodeValue, explanation, missingVariables)
+	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export let E = (cache, situationGate, parsedRules) => {

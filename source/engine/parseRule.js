@@ -5,7 +5,7 @@ import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
-import { evaluateNode, makeJsx, rewriteNode } from './evaluation'
+import { evaluateNode, makeJsx } from './evaluation'
 import { Node } from './mecanismViews/common'
 import { disambiguateRuleReference, findParentDependency } from './rules'
 
@@ -82,7 +82,7 @@ export default (rules, rule, parsedRules) => {
 					nodeValue = explanation.nodeValue,
 					missingVariables = explanation.missingVariables
 
-				return rewriteNode(node, nodeValue, explanation, missingVariables)
+				return { ...node, nodeValue, explanation, missingVariables }
 			}
 
 			let child = parse(rules, rule, parsedRules)(value)
@@ -177,7 +177,7 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 			nodeValue = explanation.nodeValue,
 			missingVariables = explanation.missingVariables
 
-		return rewriteNode(node, nodeValue, explanation, missingVariables)
+		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
 	let child = parse(rules, rule, parsedRules)(value)

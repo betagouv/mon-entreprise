@@ -1,11 +1,6 @@
 
 
 
-# Redirect for google SEO. See also _redirects file
-[[redirects]]
-from = "/documentation/salaire/*"
-to = "/documentation/rémunération/:splat"
-status = 302
 
 # InFrance PRODUCTION settings
 [[redirects]]
