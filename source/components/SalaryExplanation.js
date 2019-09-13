@@ -6,7 +6,7 @@ import React, { useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { formValueSelector } from 'redux-form'
+import { usePeriod } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
 class ErrorBoundary extends React.Component {
@@ -89,20 +89,21 @@ export default compose(
 	)
 })
 
-const PaySlipSection = connect(state => ({
-	period: formValueSelector('conversation')(state, 'période')
-}))(({ period }) => (
-	<section>
-		<h2>
-			<Trans>
-				{period === 'mois'
-					? 'Fiche de paie mensuelle'
-					: 'Détail annuel des cotisations'}
-			</Trans>
-		</h2>
-		<PaySlip />
-	</section>
-))
+function PaySlipSection() {
+	const period = usePeriod()
+	return (
+		<section>
+			<h2>
+				<Trans>
+					{period === 'mois'
+						? 'Fiche de paie mensuelle'
+						: 'Détail annuel des cotisations'}
+				</Trans>
+			</h2>
+			<PaySlip />
+		</section>
+	)
+}
 
 const DistributionSection = () => (
 	<section>

@@ -1,9 +1,9 @@
 import classnames from 'classnames'
-import { React, T } from 'Components'
+import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
-import { connect } from 'react-redux'
-import { formValueSelector } from 'redux-form'
+import React, { useCallback, useState } from 'react'
+import { usePeriod } from 'Selectors/analyseSelectors'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
@@ -11,33 +11,30 @@ import SendButton from './SendButton'
 
 export default compose(
 	FormDecorator('input'),
-	withColours,
-	connect(state => ({
-		period: formValueSelector('conversation')(state, 'période')
-	}))
+	withColours
 )(function Input({
-	input,
 	suggestions,
 	setFormValue,
 	submit,
 	rulePeriod,
 	dottedName,
-	meta: { dirty, error },
+	value,
+	format,
 	colours,
-	period,
 	unit
 }) {
-	const debouncedOnChange = debounce(750, input.onChange)
-	let suffixed = unit != null,
-		inputError = dirty && error,
-		submitDisabled = !dirty || inputError
+	const period = usePeriod()
+	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
+	const suffixed = unit != null
 
 	return (
 		<>
 			<div css="width: 100%">
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={value => setFormValue('' + value)}
+					onFirstClick={value => {
+						setFormValue(format(value))
+					}}
 					onSecondClick={() => submit('suggestion')}
 					rulePeriod={rulePeriod}
 				/>
@@ -46,12 +43,11 @@ export default compose(
 			<div className="answer">
 				<input
 					type="text"
-					key={input.value}
+					key={value}
 					autoFocus
-					defaultValue={input.value}
-					onChange={e => {
-						e.persist()
-						debouncedOnChange(e)
+					defaultValue={value}
+					onChange={evt => {
+						debouncedSetFormValue(evt.target.value)
 					}}
 					className={classnames({ suffixed })}
 					id={'step-' + dottedName}
@@ -76,10 +72,8 @@ export default compose(
 						)}
 					</label>
 				)}
-				<SendButton {...{ disabled: submitDisabled, error, submit }} />
+				<SendButton {...{ disabled: value === undefined, submit }} />
 			</div>
-
-			{inputError && <span className="step-input-error">{error}</span>}
 		</>
 	)
 })

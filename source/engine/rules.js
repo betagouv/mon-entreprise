@@ -173,8 +173,6 @@ export let findRuleByNamespace = (allRules, ns) =>
 
 export let queryRule = rule => query => path(query.split(' . '))(rule)
 
-// Redux-form stores the form values as a nested object
-// This helper makes a dottedName => value Map
 export let nestedSituationToPathMap = situation => {
 	if (situation == undefined) return {}
 	let rec = (o, currentPath) =>

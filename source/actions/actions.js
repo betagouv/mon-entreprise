@@ -7,8 +7,6 @@ import type {
 	SetSimulationConfigAction,
 	SetSituationBranchAction
 } from 'Types/ActionsTypes'
-// $FlowFixMe
-import { change, reset } from 'redux-form'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
 import type { Thunk } from 'Types/ActionsTypes'
 
@@ -18,19 +16,19 @@ export const resetSimulation = () => (dispatch: any => void): void => {
 			type: 'RESET_SIMULATION'
 		}: ResetSimulationAction)
 	)
-	dispatch(reset('conversation'))
 }
+
 export const goToQuestion = (question: string): StepAction => ({
 	type: 'STEP_ACTION',
 	name: 'unfold',
 	step: question
 })
+
 export const validateStepWithValue = (
 	dottedName,
 	value: any
 ): Thunk<StepAction> => dispatch => {
-	dispatch({ type: 'UPDATE_SITUATION', fieldName: dottedName, value })
-	dispatch(change('conversation', dottedName, value))
+	dispatch(updateSituation(dottedName, value))
 	dispatch({
 		type: 'STEP_ACTION',
 		name: 'fold',
@@ -62,6 +60,12 @@ export const deletePreviousSimulation = () => (
 	})
 	deletePersistedSimulation()
 }
+
+export const updateSituation = (fieldName, value) => ({
+	type: 'UPDATE_SITUATION',
+	fieldName,
+	value
+})
 
 // $FlowFixMe
 export function setExample(name, situation, dottedName) {

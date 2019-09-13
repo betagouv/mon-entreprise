@@ -7,7 +7,7 @@ import { deserialize, serialize } from './serializeSimulation'
 import type { State, SavedSimulation } from '../types/State'
 import type { Action } from 'Types/ActionsTypes'
 
-const VERSION = 2
+const VERSION = 3
 
 const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
 

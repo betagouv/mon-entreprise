@@ -1,3 +1,4 @@
+import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
@@ -8,16 +9,17 @@ import withColours from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { serialiseUnit } from 'Engine/units'
-import { compose, isEmpty, isNil, propEq } from 'ramda'
+import { compose, isEmpty, isNil } from 'ramda'
 import React, { memo, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { change, Field, formValueSelector, reduxForm } from 'redux-form'
 import {
 	analysisWithDefaultsSelector,
-	flatRulesSelector
+	useSituation,
+	useSituationValue,
+	useTarget
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
@@ -26,42 +28,18 @@ import './TargetSelection.css'
 
 export default compose(
 	withColours,
-	reduxForm({
-		form: 'conversation',
-		destroyOnUnmount: false
-	}),
-	connect(
-		state => ({
-			getTargetValue: dottedName =>
-				formValueSelector('conversation')(state, dottedName),
-			analysis: analysisWithDefaultsSelector(state),
-			flatRules: flatRulesSelector(state),
-			activeInput: state.activeTargetInput,
-			objectifs: state.simulation?.config.objectifs || [],
-			secondaryObjectives:
-				state.simulation?.config['objectifs secondaires'] || []
-		}),
-		dispatch => ({
-			setFormValue: (fieldName, value) => {
-				dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
-				dispatch(change('conversation', fieldName, value))
-			},
-			setActiveInput: name =>
-				dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name })
-		})
-	),
 	memo
-)(function TargetSelection({
-	secondaryObjectives,
-	analysis,
-	getTargetValue,
-	setFormValue,
-	colours,
-	activeInput,
-	setActiveInput,
-	objectifs
-}) {
+)(function TargetSelection({ colours }) {
 	const [initialRender, setInitialRender] = useState(true)
+	const analysis = useSelector(analysisWithDefaultsSelector)
+	const objectifs = useSelector(
+		state => state.simulation?.config.objectifs || []
+	)
+	const secondaryObjectives = useSelector(
+		state => state.simulation?.config['objectifs secondaires'] || []
+	)
+	const situation = useSituation()
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		let targets = getTargets()
@@ -72,15 +50,17 @@ export default compose(
 					(!target.formule || isEmpty(target.formule)) &&
 					(!isNil(target.defaultValue) ||
 						!isNil(target.explanation?.defaultValue)) &&
-					!getTargetValue(target.dottedName)
+					!situation[target.dottedName]
 			)
 
 			.forEach(target => {
-				setFormValue(
-					target.dottedName,
-					!isNil(target.defaultValue)
-						? target.defaultValue
-						: target.explanation?.defaultValue
+				dispatch(
+					updateSituation(
+						target.dottedName,
+						!isNil(target.defaultValue)
+							? target.defaultValue
+							: target.explanation?.defaultValue
+					)
 				)
 			})
 
@@ -128,9 +108,6 @@ export default compose(
 							}}>
 							<Targets
 								{...{
-									activeInput,
-									setActiveInput,
-									setFormValue,
 									targets: targets.filter(({ dottedName }) =>
 										groupTargets.includes(dottedName)
 									),
@@ -145,13 +122,7 @@ export default compose(
 	)
 })
 
-let Targets = ({
-	activeInput,
-	setActiveInput,
-	setFormValue,
-	targets,
-	initialRender
-}) => (
+let Targets = ({ targets, initialRender }) => (
 	<div>
 		<ul className="targets">
 			{targets
@@ -167,11 +138,7 @@ let Targets = ({
 						key={target.dottedName}
 						initialRender={initialRender}
 						{...{
-							target,
-							setFormValue,
-							activeInput,
-							setActiveInput,
-							targets
+							target
 						}}
 					/>
 				))}
@@ -179,18 +146,12 @@ let Targets = ({
 	</div>
 )
 
-const Target = ({
-	target,
-	activeInput,
+const Target = ({ target, initialRender }) => {
+	const activeInput = useSelector(state => state.activeTargetInput)
+	const dispatch = useDispatch()
 
-	targets,
-	setActiveInput,
-	setFormValue,
-	initialRender
-}) => {
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
-
 	return (
 		<li
 			key={target.name}
@@ -217,10 +178,7 @@ const Target = ({
 						<TargetInputOrValue
 							{...{
 								target,
-								targets,
-								activeInput,
-								setActiveInput,
-								setFormValue
+								activeInput
 							}}
 						/>
 					</div>
@@ -229,7 +187,7 @@ const Target = ({
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={value => {
-									setFormValue(target.dottedName, '' + value)
+									dispatch(updateSituation(target.dottedName, '' + value))
 								}}
 								rulePeriod={target.période}
 								colouredBackground={true}
@@ -257,7 +215,7 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 	)
 })
 
-let CurrencyField = withColours(props => {
+let DebouncedCurrencyField = withColours(props => {
 	return (
 		<CurrencyInput
 			style={{
@@ -266,8 +224,6 @@ let CurrencyField = withColours(props => {
 			}}
 			debounce={600}
 			className="targetInput"
-			value={props.input.value}
-			{...props.input}
 			{...props}
 		/>
 	)
@@ -276,76 +232,51 @@ let DebouncedPercentageField = props => (
 	<PercentageField debounce={600} {...props} />
 )
 
-let TargetInputOrValue = ({
-	target,
-	targets,
-	activeInput,
-	setActiveInput,
-	firstStepCompleted
-}) => {
+let TargetInputOrValue = ({ target, activeInput }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch()
+	const situationValue = useSituationValue(target.dottedName)
 
 	let inputIsActive = activeInput === target.dottedName
-	const Component = { '€': CurrencyField, '%': DebouncedPercentageField }[
-		serialiseUnit(target.unit)
-	]
+	const Component = {
+		'€': DebouncedCurrencyField,
+		'%': DebouncedPercentageField
+	}[serialiseUnit(target.unit)]
 	return (
 		<span className="targetInputOrValue">
 			{inputIsActive || !target.formule || isEmpty(target.formule) ? (
-				<Field
+				<Component
 					name={target.dottedName}
+					value={situationValue}
 					onChange={evt =>
-						dispatch({
-							type: 'UPDATE_SITUATION',
-							fieldName: target.dottedName,
-							value: evt.target.value
-						})
+						dispatch(updateSituation(target.dottedName, evt.target.value))
 					}
 					onBlur={event => event.preventDefault()}
-					component={
-						{ '€': CurrencyField, '%': DebouncedPercentageField }[
-							serialiseUnit(target.unit)
-						]
-					}
 					{...(inputIsActive ? { autoFocus: true } : {})}
 					language={i18n.language}
 				/>
 			) : (
-				<TargetValue
-					{...{
-						targets,
-						target,
-						activeInput,
-						setActiveInput,
-						firstStepCompleted
-					}}
-				/>
+				<TargetValue target={target} />
 			)}
 			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
 	)
 }
 
-function TargetValue({ targets, target, activeInput, setActiveInput }) {
+function TargetValue({ target }) {
 	const blurValue = useSelector(
 		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
 	)
+	const targetWithValue = useTarget(target.dottedName)
 	const dispatch = useDispatch()
-	const setFormValue = (field, name) => {
-		dispatch({ type: 'REFACTO_UPDATE_ACTIVE_FIELD', field, name })
-		dispatch(change('conversation', field, name))
-	}
-	let targetWithValue = targets?.find(propEq('dottedName', target.dottedName)),
-		value = targetWithValue && targetWithValue.nodeValue
 
+	const value = targetWithValue?.nodeValue
 	const showField = value => () => {
 		if (!target.question) return
 		if (value != null && !Number.isNaN(value))
-			setFormValue(target.dottedName, Math.round(value) + '')
+			dispatch(updateSituation(target.dottedName, Math.round(value) + ''))
 
-		if (activeInput) setFormValue(activeInput, '')
-		setActiveInput(target.dottedName)
+		dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name: target.dottedName })
 	}
 
 	return (
@@ -364,13 +295,8 @@ function TargetValue({ targets, target, activeInput, setActiveInput }) {
 }
 
 function AidesGlimpse() {
-	const targets = useSelector(
-		state => analysisWithDefaultsSelector(state).targets
-	)
-	const aides = targets?.find(
-		t => t.dottedName === 'contrat salarié . aides employeur'
-	)
-	if (!aides || !aides.nodeValue) return null
+	const aides = useTarget('contrat salarié . aides employeur')
+	if (!aides?.nodeValue) return null
 	return (
 		<Animate.appear>
 			<div className="aidesGlimpse">

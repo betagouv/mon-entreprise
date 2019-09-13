@@ -1,8 +1,9 @@
+import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Field } from 'redux-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { situationSelector } from 'Selectors/analyseSelectors'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -15,6 +16,8 @@ to understand those precious higher order components.
 export const FormDecorator = formType => RenderField =>
 	function({ fieldName, question, inversion, unit, ...otherProps }) {
 		const dispatch = useDispatch()
+		const situation = useSelector(situationSelector)
+
 		const submit = source =>
 			dispatch({
 				type: 'STEP_ACTION',
@@ -22,21 +25,13 @@ export const FormDecorator = formType => RenderField =>
 				step: fieldName,
 				source
 			})
-		const setFormValue = (fieldName, value) => {
-			dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
-			dispatch(change('conversation', fieldName, value))
+		const setFormValue = value => {
+			dispatch(updateSituation(fieldName, normalize(value)))
 		}
 
-		const stepProps = {
-			...otherProps,
-			submit,
-			...(unit === '%'
-				? {
-						format: x => (x == null ? null : +(x * 100).toFixed(2)),
-						normalize: x => (x == null ? null : x / 100)
-				  }
-				: {})
-		}
+		const format = x => (unit === '%' && x ? +(x * 100).toFixed(2) : x)
+		const normalize = x => (unit === '%' ? x / 100 : x)
+		const value = format(situation[fieldName])
 
 		return (
 			<div className={classNames('step', formType)}>
@@ -47,16 +42,14 @@ export const FormDecorator = formType => RenderField =>
 				</div>
 
 				<fieldset>
-					<Field
-						component={RenderField}
+					<RenderField
 						name={fieldName}
-						setFormValue={(value, name = fieldName) =>
-							setFormValue(name, value)
-						}
-						onChange={(evt, value) => {
-							dispatch({ type: 'UPDATE_SITUATION', fieldName, value })
-						}}
-						{...stepProps}
+						value={value}
+						setFormValue={setFormValue}
+						submit={submit}
+						format={format}
+						unit={unit}
+						{...otherProps}
 					/>
 				</fieldset>
 			</div>

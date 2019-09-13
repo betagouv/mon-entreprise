@@ -3,11 +3,9 @@ import { T } from 'Components'
 import QuickLinks from 'Components/QuickLinks'
 import { getInputComponent } from 'Engine/generateQuestions'
 import { findRuleByDottedName } from 'Engine/rules'
-import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	currentQuestionSelector,
 	flatRulesSelector,
@@ -17,40 +15,30 @@ import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
 
-export default compose(
-	reduxForm({
-		form: 'conversation',
-		destroyOnUnmount: false
-	}),
-	connect(
-		state => ({
-			flatRules: flatRulesSelector(state),
-			currentQuestion: currentQuestionSelector(state),
-			previousAnswers: state.conversationSteps.foldedSteps,
-			nextSteps: nextStepsSelector(state)
-		}),
-		{ validateStepWithValue, goToQuestion }
+export default function Conversation({ customEndMessages }) {
+	const dispatch = useDispatch()
+	const flatRules = useSelector(flatRulesSelector)
+	const currentQuestion = useSelector(currentQuestionSelector)
+	const previousAnswers = useSelector(
+		state => state.conversationSteps.foldedSteps
 	)
-)(function Conversation({
-	nextSteps,
-	previousAnswers,
-	currentQuestion,
-	customEndMessages,
-	flatRules,
-	goToQuestion,
-	validateStepWithValue
-}) {
+	const nextSteps = useSelector(nextStepsSelector)
+
 	const setDefault = () =>
-		validateStepWithValue(
-			currentQuestion,
-			findRuleByDottedName(flatRules, currentQuestion).defaultValue
+		dispatch(
+			validateStepWithValue(
+				currentQuestion,
+				findRuleByDottedName(flatRules, currentQuestion).defaultValue
+			)
 		)
-	const goToPrevious = () => goToQuestion(previousAnswers.slice(-1)[0])
+	const goToPrevious = () =>
+		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 	const handleKeyDown = ({ key }) => {
 		if (['Escape'].includes(key)) {
 			setDefault()
 		}
 	}
+
 	return nextSteps.length ? (
 		<>
 			<Aide />
@@ -98,4 +86,4 @@ export default compose(
 			</p>
 		</div>
 	)
-})
+}

@@ -1,141 +1,51 @@
-import { findRuleByDottedName, nestedSituationToPathMap } from 'Engine/rules'
-import { compose, filter, map, toPairs } from 'ramda'
+import { findRuleByDottedName } from 'Engine/rules'
 import React, { useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { connect, useDispatch } from 'react-redux'
-import { batchActions } from 'redux-batched-actions'
-import { change, Field, reduxForm } from 'redux-form'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	flatRulesSelector,
-	situationSelector,
-	situationsWithDefaultsSelector
+	situationSelector
 } from 'Selectors/analyseSelectors'
 import './PeriodSwitch.css'
 
-export default compose(
-	reduxForm({
-		form: 'conversation',
-		destroyOnUnmount: false
-	}),
-	connect(
-		state => {
-			let situation = situationsWithDefaultsSelector(state)
-			if (Array.isArray(situation)) {
-				situation = situation[0]
-			}
-
-			return {
-				rules: flatRulesSelector(state),
-				situation: nestedSituationToPathMap(situationSelector(state)),
-				initialPériode: situation.période
-			}
-		},
-		dispatch => ({
-			batchPeriodChange: actions => dispatch(batchActions(actions))
-		})
-	)
-)(function PeriodSwitch({
-	situation,
-	rules,
-	batchPeriodChange,
-	initialPériode
-}) {
+export default function PeriodSwitch() {
 	const dispatch = useDispatch()
+	const rules = useSelector(flatRulesSelector)
+	const situation = useSelector(situationSelector)
+	const initialPeriod = useSelector(
+		state => state.simulation?.config?.situation?.période
+	)
 	useEffect(() => {
-		!situation.période &&
-			updateSituation(
-				initialPériode || 'année',
-				batchPeriodChange,
-				situation,
-				rules,
-				updatePeriod
-			)
-		return
-	})
-	const updatePeriod = (toPeriod, needConvertion) =>
-		dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConvertion })
+		!currentPeriod && updatePeriod(initialPeriod || 'année')
+	}, [])
+	const currentPeriod = situation.période
+	const updatePeriod = toPeriod => {
+		const needConversion = Object.keys(situation).filter(dottedName => {
+			const rule = findRuleByDottedName(rules, dottedName)
+			return rule?.période === 'flexible'
+		})
+		dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConversion })
+	}
+	const periods = ['mois', 'année']
+
 	return (
 		<span id="PeriodSwitch">
 			<span className="base ui__ small toggle">
-				<label>
-					<Field
-						name="période"
-						component="input"
-						type="radio"
-						value="année"
-						onChange={() =>
-							updateSituation(
-								'année',
-								batchPeriodChange,
-								situation,
-								rules,
-								updatePeriod
-							)
-						}
-					/>
-					<span>
-						<Trans>année</Trans>
-					</span>
-				</label>
-				<label>
-					<Field
-						name="période"
-						component="input"
-						type="radio"
-						value="mois"
-						onChange={() =>
-							updateSituation(
-								'mois',
-								batchPeriodChange,
-								situation,
-								rules,
-								updatePeriod
-							)
-						}
-					/>
-					<span>
-						<Trans>mois</Trans>
-					</span>
-				</label>
+				{periods.map(period => (
+					<label key={period}>
+						<input
+							name="période"
+							type="radio"
+							value={period}
+							onChange={() => updatePeriod(period)}
+							checked={currentPeriod === period}
+						/>
+						<span>
+							<Trans>{period}</Trans>
+						</span>
+					</label>
+				))}
 			</span>
 		</span>
 	)
-})
-
-let updateSituation = (
-	toPeriod,
-	batchPeriodChange,
-	situation,
-	rules,
-	updatePeriod
-) => {
-	let needConvertion = filter(([dottedName, value]) => {
-		let rule = findRuleByDottedName(rules, dottedName)
-		return value != null && rule?.période === 'flexible'
-	})(toPairs(situation))
-
-	updatePeriod(toPeriod, needConvertion.map(([fieldName]) => fieldName))
-
-	let actions = [
-		...map(
-			([dottedName, value]) =>
-				change(
-					'conversation',
-					dottedName,
-					Math.round(
-						situation.période === 'mois' && toPeriod === 'année'
-							? value * 12
-							: situation.période === 'année' && toPeriod === 'mois'
-							? value / 12
-							: (function() {
-									throw new Error('Oups, changement de période invalide')
-							  })()
-					) + ''
-				),
-			needConvertion
-		),
-		change('conversation', 'période', toPeriod)
-	]
-
-	batchPeriodChange(actions)
 }

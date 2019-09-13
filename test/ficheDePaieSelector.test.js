@@ -11,16 +11,12 @@ import {
 } from 'Selectors/ficheDePaieSelectors'
 
 let state = {
-	form: {
-		conversation: {
-			values: {
-				'contrat salarié': { rémunération: { 'brut de base': '2300' } },
-				entreprise: { effectif: '50' }
-			}
-		}
-	},
 	simulation: {
-		config: salariéConfig
+		config: salariéConfig,
+		situation: {
+			'contrat salarié . rémunération . brut de base': '2300',
+			'entreprise . effectif': '50'
+		}
 	},
 	conversationSteps: {
 		foldedSteps: []

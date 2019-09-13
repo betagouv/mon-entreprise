@@ -1,21 +1,16 @@
-import { compose, toPairs } from 'ramda'
+import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { formValueSelector } from 'redux-form'
+import { usePeriod } from 'Selectors/analyseSelectors'
 
-export default compose(
-	connect(state => ({
-		period: formValueSelector('conversation')(state, 'période')
-	}))
-)(function InputSuggestions({
+export default function InputSuggestions({
 	suggestions,
 	onSecondClick,
 	onFirstClick,
-	rulePeriod,
-	period
+	rulePeriod
 }) {
 	const [suggestion, setSuggestion] = useState(null)
+	const period = usePeriod()
 	const { t } = useTranslation()
 
 	if (!suggestions) return null
@@ -45,4 +40,4 @@ export default compose(
 			})}
 		</div>
 	)
-})
+}

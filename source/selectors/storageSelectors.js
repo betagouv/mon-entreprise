@@ -1,28 +1,23 @@
 /* @flow */
-import type { Situation } from 'Types/Situation.js'
 import type { SavedSimulation, State } from 'Types/State.js'
 
-const situationSelector: State => Situation = state =>
-	state.form.conversation?.values
+export const currentSimulationSelector: State => SavedSimulation = state => {
+	return {
+		situation: state.simulation.situation,
+		activeTargetInput: state.activeTargetInput,
+		foldedSteps: state.conversationSteps.foldedSteps
+	}
+}
 
-export const currentSimulationSelector: State => SavedSimulation = state => ({
-	situation: situationSelector(state),
-	activeTargetInput: state.activeTargetInput,
-	foldedSteps: state.conversationSteps.foldedSteps
-})
-
-export const createStateFromSavedSimulation: (
-	?SavedSimulation
-) => ?$Supertype<State> = simulation =>
-	simulation && {
-		activeTargetInput: simulation.activeTargetInput,
-		form: {
-			conversation: {
-				values: simulation.situation
-			}
+export const createStateFromSavedSimulation = state =>
+	state.previousSimulation && {
+		activeTargetInput: state.previousSimulation.activeTargetInput,
+		simulation: {
+			...state.simulation,
+			situation: state.previousSimulation.situation || {}
 		},
 		conversationSteps: {
-			foldedSteps: simulation.foldedSteps
+			foldedSteps: state.previousSimulation.foldedSteps
 		},
 		previousSimulation: null
 	}

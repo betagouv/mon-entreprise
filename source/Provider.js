@@ -9,7 +9,6 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore } from 'redux'
-import { enableBatching } from 'redux-batched-actions'
 import thunk from 'redux-thunk'
 import { getIframeOption, inIframe } from './utils'
 
@@ -54,11 +53,7 @@ export default class Provider extends PureComponent {
 			if (this.props.initialStore)
 				this.props.initialStore.lang = this.props.language
 		}
-		this.store = createStore(
-			enableBatching(reducers),
-			this.props.initialStore,
-			storeEnhancer
-		)
+		this.store = createStore(reducers, this.props.initialStore, storeEnhancer)
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
 
 		// Remove loader

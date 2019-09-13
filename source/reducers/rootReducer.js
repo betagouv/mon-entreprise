@@ -14,8 +14,6 @@ import {
 } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
-// $FlowFixMe
-import { reducer as formReducer } from 'redux-form'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
@@ -101,8 +99,15 @@ function conversationSteps(
 	return state
 }
 
-function updatePeriod(situation, { toPeriod, needConvertion }) {
-	const currentPeriod = situation['période'] || 'mois'
+function updateSituation(situation, { fieldName, value, objectifs }) {
+	const removePreviousTarget = objectifs.includes(fieldName)
+		? omit(objectifs)
+		: identity
+	return { ...removePreviousTarget(situation), [fieldName]: value }
+}
+
+function updatePeriod(situation, { toPeriod, needConversion }) {
+	const currentPeriod = situation['période']
 	if (currentPeriod === toPeriod) {
 		return situation
 	}
@@ -111,7 +116,7 @@ function updatePeriod(situation, { toPeriod, needConvertion }) {
 	}
 
 	const updatedSituation = Object.entries(situation)
-		.filter(([fieldName]) => needConvertion.includes(fieldName))
+		.filter(([fieldName]) => needConversion.includes(fieldName))
 		.map(([fieldName, value]) => [
 			fieldName,
 			currentPeriod === 'mois' && toPeriod === 'année' ? value * 12 : value / 12
@@ -124,34 +129,35 @@ function updatePeriod(situation, { toPeriod, needConvertion }) {
 	}
 }
 
-function simulation(
-	state = null,
-	{ type, config, url, id, fieldName, value, toPeriod, needConvertion }
-) {
-	if (type === 'SET_SIMULATION') {
+function simulation(state = null, action) {
+	if (action.type === 'SET_SIMULATION') {
+		const { config, url } = action
 		return { config, url, hiddenControls: [], situation: {} }
 	}
 	if (state === null) {
 		return state
 	}
-	switch (type) {
+	switch (action.type) {
 		case 'HIDE_CONTROL':
-			return { ...state, hiddenControls: [...state.hiddenControls, id] }
+			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
 		case 'RESET_SIMULATION':
 			return { ...state, hiddenControls: [], situation: {} }
 		case 'UPDATE_SITUATION':
-			const { config, situation } = state
-			const removePreviousTarget = config.objectifs.includes(fieldName)
-				? omit(config.objectifs)
-				: identity
 			return {
 				...state,
-				situation: { ...removePreviousTarget(situation), [fieldName]: value }
+				situation: updateSituation(state.situation, {
+					fieldName: action.fieldName,
+					value: action.value,
+					objectifs: state.config.objectifs
+				})
 			}
 		case 'UPDATE_PERIOD':
 			return {
 				...state,
-				situation: updatePeriod(state.situation, { toPeriod, needConvertion })
+				situation: updatePeriod(state.situation, {
+					toPeriod: action.toPeriod,
+					needConversion: action.needConversion
+				})
 			}
 	}
 	return state
@@ -194,8 +200,6 @@ export default reduceReducers(
 	storageReducer,
 	combineReducers({
 		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
-		//  this is handled by redux-form, pas touche !
-		form: formReducer,
 		conversationSteps,
 		lang,
 		simulation,
