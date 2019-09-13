@@ -42,7 +42,7 @@ export default function SimulateurWarning({ simulateur }) {
 						<li>
 							<T k="simulateurs.warning.urssaf">
 								Les calculs sont indicatifs et ne se substituent pas aux
-								décomptes réels des Urssaf, impots.gouv.fr, etc
+								décomptes réels des Urssaf, impots.gouv.fr, etc.
 							</T>
 						</li>
 						{simulateur == 'auto-entreprise' && (
