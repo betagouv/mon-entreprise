@@ -1,5 +1,5 @@
 import { findRuleByDottedName } from 'Engine/rules'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -15,17 +15,20 @@ export default function PeriodSwitch() {
 	const initialPeriod = useSelector(
 		state => state.simulation?.config?.situation?.période
 	)
+	const currentPeriod = situation.période
 	useEffect(() => {
 		!currentPeriod && updatePeriod(initialPeriod || 'année')
-	}, [])
-	const currentPeriod = situation.période
-	const updatePeriod = toPeriod => {
-		const needConversion = Object.keys(situation).filter(dottedName => {
-			const rule = findRuleByDottedName(rules, dottedName)
-			return rule?.période === 'flexible'
-		})
-		dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConversion })
-	}
+	}, [currentPeriod, initialPeriod, updatePeriod])
+	const updatePeriod = useCallback(
+		toPeriod => {
+			const needConversion = Object.keys(situation).filter(dottedName => {
+				const rule = findRuleByDottedName(rules, dottedName)
+				return rule?.période === 'flexible'
+			})
+			dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConversion })
+		},
+		[dispatch, rules, situation]
+	)
 	const periods = ['mois', 'année']
 
 	return (

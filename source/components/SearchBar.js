@@ -2,7 +2,7 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules.js'
 import Fuse from 'fuse.js'
 import { compose, pick, sortBy } from 'ramda'
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
@@ -19,28 +19,23 @@ function SearchBar({
 	const [inputValue, setInputValue] = useState(null)
 	const [selectedOption, setSelectedOption] = useState(null)
 	const inputElementRef = useRef()
-	const fuse = useRef()
+	// This operation is expensive, we don't want to do it everytime we re-render, so we cache its result
+	const fuse = useMemo(() => {
+		const list = rules.map(
+			pick(['title', 'espace', 'description', 'name', 'dottedName'])
+		)
+		const options = {
+			keys: [
+				{ name: 'name', weight: 0.3 },
+				{ name: 'title', weight: 0.3 },
+				{ name: 'espace', weight: 0.2 },
+				{ name: 'description', weight: 0.2 }
+			]
+		}
+		return new Fuse(list, options)
+	}, [rules])
 	const { i18n } = useTranslation()
 
-	const options = {
-		keys: [
-			{ name: 'name', weight: 0.3 },
-			{ name: 'title', weight: 0.3 },
-			{ name: 'espace', weight: 0.2 },
-			{ name: 'description', weight: 0.2 }
-		]
-	}
-	if (!fuse.current) {
-		// This operation is expensive, we don't want to do it everytime we re-render, so we cache its result in a reference
-		fuse.current = new Fuse(
-			rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
-			options
-		)
-	}
-
-	const handleChange = selectedOption => {
-		setSelectedOption(selectedOption)
-	}
 	const renderOption = ({ title, dottedName }) => (
 		<span>
 			<Highlighter searchWords={[inputValue]} textToHighlight={title} />
@@ -49,7 +44,7 @@ function SearchBar({
 			</span>
 		</span>
 	)
-	const filterOptions = (options, filter) => fuse.current.search(filter)
+	const filterOptions = (options, filter) => fuse.search(filter)
 
 	if (selectedOption != null) {
 		finallyCallback && finallyCallback()
@@ -68,8 +63,8 @@ function SearchBar({
 		<>
 			<Select
 				value={selectedOption && selectedOption.dottedName}
-				onChange={handleChange}
-				onInputChange={inputValue => setInputValue(inputValue)}
+				onChange={setSelectedOption}
+				onInputChange={setInputValue}
 				valueKey="dottedName"
 				labelKey="title"
 				options={rules}

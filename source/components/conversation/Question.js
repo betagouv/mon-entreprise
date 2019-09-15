@@ -38,10 +38,13 @@ export default compose(
 	value: currentValue
 }) {
 	const [touched, setTouched] = useState(false)
-	const onChange = useCallback(value => {
-		setFormValue(value)
-		setTouched(true)
-	})
+	const onChange = useCallback(
+		value => {
+			setFormValue(value)
+			setTouched(true)
+		},
+		[setFormValue]
+	)
 
 	const renderBinaryQuestion = () => {
 		return (

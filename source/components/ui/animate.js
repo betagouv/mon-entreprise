@@ -131,7 +131,10 @@ export function appear({
 	delay = 0,
 	style
 }) {
+	// TODO: We should rename this function Appear
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const [show, setShow] = useState(unless)
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		window.setTimeout(() => setShow(true), 0)
 	}, [])

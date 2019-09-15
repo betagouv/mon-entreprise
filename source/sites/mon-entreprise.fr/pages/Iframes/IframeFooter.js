@@ -1,7 +1,7 @@
 import LangSwitcher from 'Components/LangSwitcher'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -9,8 +9,10 @@ import screenfull from 'screenfull'
 import { isIE } from '../../../../utils'
 
 export default function IframeFooter() {
+	const [isFullscreen, setIsFullscreen] = useState(screenfull.isFullscreen)
 	useEffect(() => {
-		screenfull.enabled && screenfull.onchange(() => this.forceUpdate())
+		screenfull.enabled &&
+			screenfull.onchange(() => setIsFullscreen(screenfull.isFullscreen))
 	}, [])
 
 	return (
@@ -44,7 +46,7 @@ export default function IframeFooter() {
 					justifyContent: 'space-between'
 				}}>
 				<LangSwitcher className="ui__ button simple" />
-				{screenfull.enabled && !screenfull.isFullscreen && !isIE() && (
+				{screenfull.enabled && !isFullscreen && !isIE() && (
 					<button
 						className="ui__ button small"
 						onClick={() => {

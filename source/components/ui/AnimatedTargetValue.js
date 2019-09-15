@@ -17,7 +17,7 @@ export default function AnimatedTargetValue({ value }: Props) {
 		}
 		setDifference((value || 0) - (previousValue || 0))
 		setPreviousValue(value)
-	}, [value])
+	}, [previousValue, value])
 	const { i18n } = useTranslation()
 
 	const format = value => {

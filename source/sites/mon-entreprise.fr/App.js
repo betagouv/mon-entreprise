@@ -58,7 +58,7 @@ const middlewares = [
 function InFranceRoute({ basename, language }) {
 	useEffect(() => {
 		setToSessionStorage('lang', language)
-	}, [])
+	}, [language])
 	const paths = constructLocalizedSitePath(language)
 	return (
 		<Provider

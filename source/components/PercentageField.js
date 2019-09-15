@@ -4,7 +4,8 @@ import './PercentageField.css'
 export default function PercentageField({ onChange, value, debounce }) {
 	const [localValue, setLocalValue] = useState(value)
 	const debouncedOnChange = useCallback(
-		debounce ? debounce(debounce, onChange) : onChange
+		debounce ? debounce(debounce, onChange) : onChange,
+		[debounce, onChange]
 	)
 
 	return (

@@ -41,8 +41,14 @@ export default compose(
 	const situation = useSituation()
 	const dispatch = useDispatch()
 
+	const targets =
+		analysis?.targets.filter(
+			t =>
+				!secondaryObjectives.includes(t.dottedName) &&
+				t.dottedName !== 'contrat salarié . aides employeur'
+		) || []
+
 	useEffect(() => {
-		let targets = getTargets()
 		// Initialize defaultValue for target that can't be computed
 		targets
 			.filter(
@@ -64,21 +70,9 @@ export default compose(
 				)
 			})
 
-		if (initialRender) {
-			setInitialRender(false)
-		}
+		setInitialRender(false)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
-	const getTargets = () => {
-		if (!analysis) return []
-		return analysis.targets.filter(
-			t =>
-				!secondaryObjectives.includes(t.dottedName) &&
-				t.dottedName !== 'contrat salarié . aides employeur'
-		)
-	}
-
-	let targets = getTargets()
 
 	return (
 		<div id="targetSelection">
