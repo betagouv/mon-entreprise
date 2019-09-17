@@ -29,6 +29,7 @@ import {
 import React from 'react'
 import grammar from './grammar.ne'
 import {
+	mecanismAbattement,
 	mecanismAllOf,
 	mecanismComplement,
 	mecanismError,
@@ -129,6 +130,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			'toutes ces conditions': mecanismAllOf,
 			'aiguillage numérique': mecanismNumericalSwitch,
 			somme: mecanismSum,
+			abattement: mecanismAbattement,
 			multiplication: mecanismProduct,
 			barème,
 			'barème linéaire': barèmeLinéaire,

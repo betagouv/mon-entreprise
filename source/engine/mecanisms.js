@@ -418,6 +418,37 @@ export let mecanismSum = (recurse, k, v) => {
 	}
 }
 
+export let mecanismAbattement = (recurse, k, v) => {
+	let explanation = recurse(v)
+
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		const explanation = evaluateNode(
+			cache,
+			situationGate,
+			parsedRules,
+			node.explanation
+		)
+		return {
+			...explanation,
+			nodeValue:
+				explanation.nodeValue === null ? null : -1 * explanation.nodeValue
+		}
+	}
+
+	return {
+		evaluate,
+		// eslint-disable-next-line
+		jsx: (nodeValue, explanation, _, unit) => (
+			<>-&nbsp;{makeJsx(explanation)}</>
+		),
+		explanation,
+		category: 'mecanism',
+		name: 'abattement',
+		type: 'numeric',
+		unit: explanation.unit
+	}
+}
+
 export let mecanismReduction = (recurse, k, v) => {
 	let objectShape = {
 		assiette: false,
