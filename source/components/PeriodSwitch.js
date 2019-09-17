@@ -1,36 +1,23 @@
-import { findRuleByDottedName } from 'Engine/rules'
-import React, { useCallback, useEffect } from 'react'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	flatRulesSelector,
-	situationSelector
-} from 'Selectors/analyseSelectors'
+import { situationSelector } from 'Selectors/analyseSelectors'
 import './PeriodSwitch.css'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
-	const rules = useSelector(flatRulesSelector)
 	const situation = useSelector(situationSelector)
-	const initialPeriod = useSelector(
-		state => state.simulation?.config?.situation?.période
+	const defaultPeriod = useSelector(
+		state => state.simulation?.config?.situation?.période || 'année'
 	)
 	const currentPeriod = situation.période
-	useEffect(() => {
-		!currentPeriod && updatePeriod(initialPeriod || 'année')
-	}, [currentPeriod, initialPeriod, updatePeriod])
-	const updatePeriod = useCallback(
-		toPeriod => {
-			const needConversion = Object.keys(situation).filter(dottedName => {
-				const rule = findRuleByDottedName(rules, dottedName)
-				return rule?.période === 'flexible'
-			})
-			dispatch({ type: 'UPDATE_PERIOD', toPeriod, needConversion })
-		},
-		[dispatch, rules, situation]
-	)
 	let periods = ['mois', 'année']
-	if (initialPeriod === 'année') {
+	const updatePeriod = toPeriod => dispatch({ type: 'UPDATE_PERIOD', toPeriod })
+
+	if (!currentPeriod) {
+		updatePeriod(defaultPeriod)
+	}
+	if (defaultPeriod === 'année') {
 		periods.reverse()
 	}
 

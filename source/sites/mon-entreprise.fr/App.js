@@ -38,6 +38,7 @@ import Landing from './pages/Landing/Landing.js'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
+import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -60,6 +61,7 @@ function InFranceRoute({ basename, language }) {
 		setToSessionStorage('lang', language)
 	}, [language])
 	const paths = constructLocalizedSitePath(language)
+	const rules = language === 'en' ? baseRulesEn : baseRulesFr
 	return (
 		<Provider
 			basename={basename}
@@ -68,12 +70,13 @@ function InFranceRoute({ basename, language }) {
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}
 			onStoreCreated={store => {
-				persistEverything()(store)
+				persistEverything({ except: ['rules'] })(store)
 				persistSimulation(store)
 			}}
 			initialStore={{
 				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation()
+				previousSimulation: retrievePersistedSimulation(),
+				rules
 			}}>
 			<RouterSwitch />
 		</Provider>

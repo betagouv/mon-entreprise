@@ -5,9 +5,7 @@ import {
 import {
 	collectDefaults,
 	disambiguateExampleSituation,
-	findRuleByDottedName,
-	rules as baseRulesEn,
-	rulesFr as baseRulesFr
+	findRuleByDottedName
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
@@ -38,18 +36,10 @@ import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
-/*
- *
- * We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
- *
- *
- * */
-
-export let flatRulesSelector = createSelector(
-	state => state.lang,
-	(state, props) => props && props.rules,
-	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
-)
+// We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
+export let flatRulesSelector = (state, props) => {
+	return props?.rules || state?.rules
+}
 
 export let parsedRulesSelector = createSelector(
 	[flatRulesSelector],

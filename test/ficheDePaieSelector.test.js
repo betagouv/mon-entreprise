@@ -3,7 +3,7 @@
 import { expect } from 'chai'
 // $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis, rules } from 'Engine/rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import {
 	analysisToCotisationsSelector,
@@ -11,6 +11,7 @@ import {
 } from 'Selectors/ficheDePaieSelectors'
 
 let state = {
+	rules,
 	simulation: {
 		config: salariéConfig,
 		situation: {

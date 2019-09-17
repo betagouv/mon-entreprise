@@ -10,6 +10,7 @@ let runExamples = (examples, rule) =>
 	examples.map(ex => {
 		let runExample = exampleAnalysisSelector(
 				{
+					rules,
 					currentExample: {
 						situation: ex.situation,
 						dottedName: rule.dottedName

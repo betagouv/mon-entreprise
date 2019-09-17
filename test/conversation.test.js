@@ -9,7 +9,7 @@ import {
 } from '../source/selectors/analyseSelectors'
 let baseState = {
 	conversationSteps: { foldedSteps: [] },
-	form: { conversation: { values: {} } }
+	simulation: { situation: {} }
 }
 
 describe('conversation', function() {
@@ -48,14 +48,11 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
+			rules,
 			simulation: { config: { objectifs: ['startHere'] } }
 		})
 		let step2 = reducers(
-			assocPath(
-				['form', 'conversation', 'values'],
-				{ top: { aa: '1' } },
-				step1
-			),
+			assocPath(['simulation', 'situation'], { 'top . aa': '1' }, step1),
 			{
 				type: 'STEP_ACTION',
 				name: 'fold',
@@ -65,8 +62,8 @@ describe('conversation', function() {
 
 		let step3 = reducers(
 			assocPath(
-				['form', 'conversation', 'values'],
-				{ top: { bb: '1', aa: '1' } },
+				['simulation', 'situation'],
+				{ 'top . aa': '1', 'top . bb': '1' },
 				step2
 			),
 			{
@@ -86,7 +83,7 @@ describe('conversation', function() {
 			step: 'top . bb'
 		})
 
-		expect(currentQuestionSelector(lastStep, { rules })).to.equal('top . bb')
+		expect(currentQuestionSelector(lastStep)).to.equal('top . bb')
 		expect(lastStep.conversationSteps).to.have.property('foldedSteps')
 		expect(lastStep.conversationSteps.foldedSteps).to.have.lengthOf(0)
 	})
@@ -129,12 +126,13 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
+			rules,
 			simulation: { config: { objectifs: ['net'] } }
 		})
-		expect(currentQuestionSelector(step1, { rules })).to.equal('brut')
+		expect(currentQuestionSelector(step1)).to.equal('brut')
 
 		let step2 = reducers(
-			assocPath(['form', 'conversation', 'values', 'brut'], '2300', step1),
+			assocPath(['simulation', 'situation', 'brut'], '2300', step1),
 			{
 				type: 'STEP_ACTION',
 				name: 'fold',

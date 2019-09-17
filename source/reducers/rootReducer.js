@@ -17,6 +17,7 @@ import { combineReducers } from 'redux'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
+import { findRuleByDottedName } from 'Engine/rules'
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
@@ -99,14 +100,14 @@ function conversationSteps(
 	return state
 }
 
-function updateSituation(situation, { fieldName, value, objectifs }) {
-	const removePreviousTarget = objectifs.includes(fieldName)
-		? omit(objectifs)
+function updateSituation(situation, { fieldName, value, config }) {
+	const removePreviousTarget = config.objectifs.includes(fieldName)
+		? omit(config.objectifs)
 		: identity
 	return { ...removePreviousTarget(situation), [fieldName]: value }
 }
 
-function updatePeriod(situation, { toPeriod, needConversion }) {
+function updatePeriod(situation, { toPeriod, rules }) {
 	const currentPeriod = situation['période']
 	if (currentPeriod === toPeriod) {
 		return situation
@@ -114,6 +115,11 @@ function updatePeriod(situation, { toPeriod, needConversion }) {
 	if (!['mois', 'année'].includes(toPeriod)) {
 		throw new Error('Oups, changement de période invalide')
 	}
+
+	const needConversion = Object.keys(situation).filter(dottedName => {
+		const rule = findRuleByDottedName(rules, dottedName)
+		return rule?.période === 'flexible'
+	})
 
 	const updatedSituation = Object.entries(situation)
 		.filter(([fieldName]) => needConversion.includes(fieldName))
@@ -148,7 +154,7 @@ function simulation(state = null, action) {
 				situation: updateSituation(state.situation, {
 					fieldName: action.fieldName,
 					value: action.value,
-					objectifs: state.config.objectifs
+					config: state.config
 				})
 			}
 		case 'UPDATE_PERIOD':
@@ -156,7 +162,7 @@ function simulation(state = null, action) {
 				...state,
 				situation: updatePeriod(state.situation, {
 					toPeriod: action.toPeriod,
-					needConversion: action.needConversion
+					rules: action.rules
 				})
 			}
 	}
@@ -195,19 +201,26 @@ const existingCompanyReducer = (state, action) => {
 	}
 	return newState
 }
-export default reduceReducers(
-	existingCompanyReducer,
-	storageReducer,
-	combineReducers({
-		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
-		conversationSteps,
-		lang,
-		simulation,
-		explainedVariable,
-		previousSimulation: defaultTo(null),
-		currentExample,
-		situationBranch,
-		activeTargetInput,
-		inFranceApp: inFranceAppReducer
-	})
-)
+export default (state, action) => {
+	// Enrich the action
+	if (action.type === 'UPDATE_PERIOD') {
+		action.rules = state.rules
+	}
+	return reduceReducers(
+		existingCompanyReducer,
+		storageReducer,
+		combineReducers({
+			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
+			conversationSteps,
+			lang,
+			rules: defaultTo(null),
+			simulation,
+			explainedVariable,
+			previousSimulation: defaultTo(null),
+			currentExample,
+			situationBranch,
+			activeTargetInput,
+			inFranceApp: inFranceAppReducer
+		})
+	)(state, action)
+}
