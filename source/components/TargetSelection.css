@@ -106,33 +106,45 @@
 	text-decoration: none;
 }
 
-#targetSelection .editable:not(.attractClick) {
-	border: 2px solid rgba(0, 0, 0, 0);
-	border-bottom: 1px dashed #ffffff91;
-	min-width: 2.5em;
-	display: inline-block;
-}
 #targetSelection .targetInputOrValue > :not(.targetInput):not(.attractClick) {
 	margin: 0.2rem 0.6rem;
 }
 
-#targetSelection .attractClick.editable::before {
-	content: '€';
+#targetSelection input {
+	margin: 2.7px 0;
 }
 
-#targetSelection .attractClick,
 #targetSelection .targetInput {
 	width: 5.5em;
 	max-width: 7.5em;
-	display: inline-block;
 	text-align: right;
 	background: rgba(255, 255, 255, 0.2);
-	cursor: text;
 	padding: 0;
 	padding: 0.2rem 0.6rem;
 	border-radius: 0.3rem;
 	border: 2px solid;
 	font-size: inherit;
+}
+
+#targetSelection .editableTarget {
+	max-width: 7.5em;
+	display: inline-block;
+	text-align: right;
+	padding: 0 2px;
+	font-size: inherit;
+}
+
+#targetSelection .targetInputBottomBorder {
+	margin: 0;
+	padding: 0;
+	height: 0;
+	overflow: hidden;
+	position: relative;
+	top: -6px;
+}
+
+#targetSelection .editableTarget + .targetInputBottomBorder {
+	border-bottom: 1px dashed #ffffff91;
 }
 
 #targetSelection .unit {

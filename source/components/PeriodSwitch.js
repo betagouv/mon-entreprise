@@ -29,7 +29,10 @@ export default function PeriodSwitch() {
 		},
 		[dispatch, rules, situation]
 	)
-	const periods = ['mois', 'année']
+	let periods = ['mois', 'année']
+	if (initialPeriod === 'année') {
+		periods.reverse()
+	}
 
 	return (
 		<span id="PeriodSwitch">

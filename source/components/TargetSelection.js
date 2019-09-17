@@ -1,16 +1,15 @@
 import { updateSituation } from 'Actions/actions'
-import classNames from 'classnames'
 import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PercentageField from 'Components/PercentageField'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import withColours from 'Components/utils/withColours'
+import { ThemeColoursContext } from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { encodeRuleName } from 'Engine/rules'
 import { serialiseUnit } from 'Engine/units'
-import { compose, isEmpty, isNil } from 'ramda'
-import React, { memo, useEffect, useState } from 'react'
+import { isEmpty, isNil } from 'ramda'
+import React, { useEffect, useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,10 +25,7 @@ import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
-export default compose(
-	withColours,
-	memo
-)(function TargetSelection({ colours }) {
+export default function TargetSelection() {
 	const [initialRender, setInitialRender] = useState(true)
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const objectifs = useSelector(
@@ -40,6 +36,7 @@ export default compose(
 	)
 	const situation = useSituation()
 	const dispatch = useDispatch()
+	const colours = useContext(ThemeColoursContext)
 
 	const targets =
 		analysis?.targets.filter(
@@ -50,6 +47,7 @@ export default compose(
 
 	useEffect(() => {
 		// Initialize defaultValue for target that can't be computed
+		// TODO: this logic shouldn't be here
 		targets
 			.filter(
 				target =>
@@ -114,7 +112,7 @@ export default compose(
 			)}
 		</div>
 	)
-})
+}
 
 let Targets = ({ targets, initialRender }) => (
 	<div>
@@ -144,6 +142,7 @@ const Target = ({ target, initialRender }) => {
 	const activeInput = useSelector(state => state.activeTargetInput)
 	const dispatch = useDispatch()
 
+	const isActiveInput = activeInput === target.dottedName
 	const isSmallTarget =
 		!target.question || !target.formule || isEmpty(target.formule)
 	return (
@@ -156,8 +155,7 @@ const Target = ({ target, initialRender }) => {
 						<Header
 							{...{
 								target,
-
-								isActiveInput: activeInput === target.dottedName
+								isActiveInput
 							}}
 						/>
 						{isSmallTarget && (
@@ -172,11 +170,12 @@ const Target = ({ target, initialRender }) => {
 						<TargetInputOrValue
 							{...{
 								target,
-								activeInput
+								isActiveInput,
+								isSmallTarget
 							}}
 						/>
 					</div>
-					{activeInput === target.dottedName && (
+					{isActiveInput && (
 						<Animate.fromTop>
 							<InputSuggestions
 								suggestions={target.suggestions}
@@ -209,82 +208,97 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 	)
 })
 
-let DebouncedCurrencyField = withColours(props => {
-	return (
-		<CurrencyInput
-			style={{
-				color: props.colours.textColour,
-				borderColor: props.colours.textColour
-			}}
-			debounce={600}
-			className="targetInput"
-			{...props}
-		/>
-	)
-})
-let DebouncedPercentageField = props => (
-	<PercentageField debounce={600} {...props} />
-)
+export const formatCurrency = (value, language) => {
+	return value == null
+		? ''
+		: Intl.NumberFormat(language, {
+				style: 'currency',
+				currency: 'EUR',
+				maximumFractionDigits: 0,
+				minimumFractionDigits: 0
+		  })
+				.format(value)
+				.replace(/^€/, '€ ')
+}
 
-let TargetInputOrValue = ({ target, activeInput }) => {
+let clickableField = Input =>
+	function WrappedClickableField({ value, ...otherProps }) {
+		const colors = useContext(ThemeColoursContext)
+		const { language } = useTranslation().i18n
+		return (
+			<>
+				<AnimatedTargetValue value={value} />
+				<Input
+					value={value}
+					debounce={600}
+					style={{
+						color: colors.textColour,
+						borderColor: colors.textColour
+					}}
+					{...otherProps}
+				/>
+				<span className="targetInputBottomBorder">
+					{formatCurrency(value, language)}
+				</span>
+			</>
+		)
+	}
+
+let unitToComponent = {
+	'€': clickableField(CurrencyInput),
+	'%': clickableField(PercentageField)
+}
+
+let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch()
 	const situationValue = useSituationValue(target.dottedName)
-
-	let inputIsActive = activeInput === target.dottedName
-	const Component = {
-		'€': DebouncedCurrencyField,
-		'%': DebouncedPercentageField
-	}[serialiseUnit(target.unit)]
+	const targetWithValue = useTarget(target.dottedName)
+	const value = targetWithValue?.nodeValue?.toFixed(0)
+	const inversionFail = useSelector(
+		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
+	)
+	const blurValue = inversionFail && !isActiveInput && value
+	const Component = unitToComponent[serialiseUnit(target.unit)]
 	return (
-		<span className="targetInputOrValue">
-			{inputIsActive || !target.formule || isEmpty(target.formule) ? (
+		<span
+			className="targetInputOrValue"
+			style={blurValue ? { filter: 'blur(3px)' } : {}}>
+			{target.question ? (
 				<Component
 					name={target.dottedName}
-					value={situationValue}
+					value={situationValue || value}
+					className={
+						isActiveInput || isNil(value) ? 'targetInput' : 'editableTarget'
+					}
 					onChange={evt =>
 						dispatch(updateSituation(target.dottedName, evt.target.value))
 					}
 					onBlur={event => event.preventDefault()}
-					{...(inputIsActive ? { autoFocus: true } : {})}
+					// We use onMouseDown instead of onClick because that's when the browser moves the cursor
+					onMouseDown={() => {
+						if (isSmallTarget) return
+						dispatch({
+							type: 'SET_ACTIVE_TARGET_INPUT',
+							name: target.dottedName
+						})
+						// TODO: This shouldn't be necessary: we don't need to recalculate the situation
+						// when the user just focus another field. Removing this line is almost working
+						// however there is a weird bug in the selection of the next question.
+						if (value) {
+							dispatch(updateSituation(target.dottedName, '' + value))
+						}
+					}}
+					{...(isActiveInput ? { autoFocus: true } : {})}
 					language={i18n.language}
 				/>
 			) : (
-				<TargetValue target={target} />
+				<span>
+					{Number.isNaN(value) ? '—' : formatCurrency(value, i18n.language)}
+				</span>
 			)}
 			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
 		</span>
-	)
-}
-
-function TargetValue({ target }) {
-	const blurValue = useSelector(
-		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
-	)
-	const targetWithValue = useTarget(target.dottedName)
-	const dispatch = useDispatch()
-
-	const value = targetWithValue?.nodeValue
-	const showField = value => () => {
-		if (!target.question) return
-		if (value != null && !Number.isNaN(value))
-			dispatch(updateSituation(target.dottedName, Math.round(value) + ''))
-
-		dispatch({ type: 'SET_ACTIVE_TARGET_INPUT', name: target.dottedName })
-	}
-
-	return (
-		<div
-			className={classNames({
-				editable: target.question,
-				attractClick: target.question && isNil(target.nodeValue)
-			})}
-			style={blurValue ? { filter: 'blur(3px)' } : {}}
-			{...(target.question ? { tabIndex: 0 } : {})}
-			onClick={showField(value)}
-			onFocus={showField(value)}>
-			<AnimatedTargetValue value={value} />
-		</div>
 	)
 }
 
@@ -297,7 +311,9 @@ function AidesGlimpse() {
 				<RuleLink {...aides}>
 					-{' '}
 					<strong>
-						<AnimatedTargetValue value={aides.nodeValue} />
+						<AnimatedTargetValue value={aides.nodeValue}>
+							<span>{formatCurrency(aides.nodeValue)}</span>
+						</AnimatedTargetValue>
 					</strong>{' '}
 					<T>d'aides</T> {emoji(aides.icons)}
 				</RuleLink>

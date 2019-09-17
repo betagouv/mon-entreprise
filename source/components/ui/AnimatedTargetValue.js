@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { useTranslation } from 'react-i18next'
 import './AnimatedTargetValue.css'
+import { formatCurrency } from 'Components/TargetSelection'
 
 type Props = {
 	value: ?number
 }
 
-export default function AnimatedTargetValue({ value }: Props) {
+export default function AnimatedTargetValue({ value, children }: Props) {
 	const [difference, setDifference] = useState(0)
 	const [previousValue, setPreviousValue] = useState()
 	useEffect(() => {
@@ -20,18 +21,7 @@ export default function AnimatedTargetValue({ value }: Props) {
 	}, [previousValue, value])
 	const { i18n } = useTranslation()
 
-	const format = value => {
-		return value == null
-			? ''
-			: Intl.NumberFormat(i18n.language, {
-					style: 'currency',
-					currency: 'EUR',
-					maximumFractionDigits: 0,
-					minimumFractionDigits: 0
-			  }).format(value)
-	}
-
-	const formattedDifference = format(difference)
+	const formattedDifference = formatCurrency(difference, i18n.language)
 	const shouldDisplayDifference =
 		Math.abs(difference) > 1 && value != null && !Number.isNaN(value)
 	return (
@@ -40,12 +30,13 @@ export default function AnimatedTargetValue({ value }: Props) {
 				{shouldDisplayDifference && (
 					<Evaporate
 						style={{
-							color: difference > 0 ? 'chartreuse' : 'red'
+							color: difference > 0 ? 'chartreuse' : 'red',
+							pointerEvents: 'none'
 						}}>
 						{(difference > 0 ? '+' : '') + formattedDifference}
 					</Evaporate>
 				)}{' '}
-				<span>{Number.isNaN(value) ? '—' : format(value)}</span>
+				{children}
 			</span>
 		</>
 	)

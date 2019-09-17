@@ -24,6 +24,7 @@ let currencyFormat = language => ({
 export default function CurrencyInput({
 	value: valueProp = '',
 	debounce: debounceTimeout,
+	currencySymbol = '€',
 	onChange,
 	language,
 	className,
@@ -76,7 +77,7 @@ export default function CurrencyInput({
 		<div
 			className={classnames(className, 'currencyInput__container')}
 			{...(valueLength > 5 ? { style: { width } } : {})}>
-			{isCurrencyPrefixed && '€'}
+			{!currentValue && isCurrencyPrefixed && currencySymbol}
 			<NumberFormat
 				{...forwardedProps}
 				thousandSeparator={thousandSeparator}
@@ -84,6 +85,9 @@ export default function CurrencyInput({
 				allowNegative={!valueHasChanged}
 				className="currencyInput__input"
 				inputMode="numeric"
+				prefix={
+					isCurrencyPrefixed && currencySymbol ? `${currencySymbol} ` : ''
+				}
 				onValueChange={({ value }) => {
 					setCurrentValue(value)
 					nextValue.current = value.toString().replace(/^-/, '')
