@@ -1,130 +1,133 @@
 
-
-
+# SEO redirect
+[[redirects]]
+  from = "/documentation/contrat-salari%C3%A9/salaire/*"
+  to = "/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
+  status = 301
 
 # InFrance PRODUCTION settings
 [[redirects]]
-from = "https://www.mycompanyinfrance.fr/*"
-to = "https://mycompanyinfrance.fr/:splat"
-status = 301
+  from = "https://www.mycompanyinfrance.fr/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
 
 [[redirects]]
-from = "https://www.mycompanyinfrance.com/*"
-to = "https://mycompanyinfrance.fr/:splat"
-status = 301
+  from = "https://www.mycompanyinfrance.com/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
 
 [[redirects]]
-from = "https://mycompanyinfrance.com/*"
-to = "https://mycompanyinfrance.fr/:splat"
-status = 301
+  from = "https://mycompanyinfrance.com/*"
+  to = "https://mycompanyinfrance.fr/:splat"
+  status = 301
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/robots.txt"
-to = "/robots.infrance.txt"
-status = 200
+  from = "https://mycompanyinfrance.fr/robots.txt"
+  to = "/robots.infrance.txt"
+  status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/sitemap.txt"
-to = "/sitemap.infrance.en.txt"
-status = 200
+  from = "https://mycompanyinfrance.fr/sitemap.txt"
+  to = "/sitemap.infrance.en.txt"
+  status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr"
-to = "/prerender/infrance/index.html"
-status = 200
+  from = "https://mycompanyinfrance.fr"
+  to = "/prerender/infrance/index.html"
+  status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/social-security/salaried"
-to = "/prerender/infrance/social-security/salaried/index.html"
-status = 200
+  from = "https://mycompanyinfrance.fr/social-security/salaried"
+  to = "/prerender/infrance/social-security/salaried/index.html"
+  status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
-to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
-status = 200
+  from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
+  to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
+  status = 200
 
 [[redirects]]
-from = "https://mycompanyinfrance.fr/*"
-to = "/infrance.html"
-status = 200
+  from = "https://mycompanyinfrance.fr/*"
+  to = "/infrance.html"
+  status = 200
 
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
-from = "https://mon-entreprise.fr/stats"
-to = "https://mon-entreprise.glitch.me/"
-status = 200
+  from = "https://mon-entreprise.fr/stats"
+  to = "https://mon-entreprise.glitch.me/"
+  status = 200
 
 [[redirects]]
-from = "https://mon-entreprise.fr/robots.txt"
-to = "/robots.infrance.txt"
-status = 200
+  from = "https://mon-entreprise.fr/robots.txt"
+  to = "/robots.infrance.txt"
+  status = 200
 
 [[redirects]]
-from = "https://mon-entreprise.fr/sitemap.txt"
-to = "/sitemap.infrance.fr.txt"
-status = 200
+  from = "https://mon-entreprise.fr/sitemap.txt"
+  to = "/sitemap.infrance.fr.txt"
+  status = 200
 
 
 # Embauche redirection settings
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/"
-to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
-status = 301
+  from = "https://embauche.beta.gouv.fr/"
+  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  status = 301
 
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/simulation"
-to = "https://mon-entreprise.fr/sécurité-sociale/salarié"
-status = 301
+  from = "https://embauche.beta.gouv.fr/simulation"
+  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  status = 301
 
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/documentation/*"
-to = "https://mon-entreprise.fr/documentation/:splat"
-status = 301
+  from = "https://embauche.beta.gouv.fr/documentation/*"
+  to = "https://mon-entreprise.fr/documentation/:splat"
+  status = 301
 
 ## Old iframe adresse
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
-to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
-status = 301
+  from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
+  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  status = 301
 
 [[redirects]]
-from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
-to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
-status = 301
+  from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
+  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  status = 301
 
 # Redirection pour les pages en anglais
 [[redirects]]
-from = "/"
-query = {s = "m"}
-to = "/prerender/infrance/index.html"
-status = 200
+  from = "/"
+  query = {s = "m"}
+  to = "/prerender/infrance/index.html"
+  status = 200
 
 [[redirects]]
-from = "/*"
-query = {s = "m"}
-to = "/infrance.html"
-status = 200
+  from = "/*"
+  query = {s = "m"}
+  to = "/infrance.html"
+  status = 200
 
 # Redirection pour les pages en français
 [[redirects]]
-from = "/"
-to = "/prerender/mon-entreprise/index.html"
-status = 200
+  from = "/"
+  to = "/prerender/mon-entreprise/index.html"
+  status = 200
 
 [[redirects]]
-from = "/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-to = "/prerender/mon-entreprise/s%C3%A9curit%C3%A9-sociale/salari%C3%A9/index.html"
-status = 200
+  from = "/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  to = "/prerender/mon-entreprise/s%C3%A9curit%C3%A9-sociale/salari%C3%A9/index.html"
+  status = 200
 
 [[redirects]]
-from = "/iframes/simulateur-embauche"
-to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
-status = 200
+  from = "/iframes/simulateur-embauche"
+  to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
+  status = 200
 
 [[redirects]]
-from = "/*"
-to = "/mon-entreprise.html"
-status = 200
+  from = "/*"
+  to = "/mon-entreprise.html"
+  status = 200
 
 [context.deploy-preview.environment]
   EN_SITE = "${path}?s=m"
