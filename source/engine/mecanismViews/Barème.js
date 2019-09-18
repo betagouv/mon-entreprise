@@ -1,10 +1,10 @@
 import classNames from 'classnames'
-import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
+import { ShowValuesContext } from 'Components/rule/ShowValuesContext'
 import { numberFormatter } from 'Engine/format'
 import { trancheValue } from 'Engine/mecanisms/barème'
 import { inferUnit, serialiseUnit } from 'Engine/units'
 import { identity } from 'ramda'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { makeJsx } from '../evaluation'
 import './Barème.css'
@@ -40,89 +40,94 @@ let Component = function Barème({
 	lazyEval,
 	unit
 }) {
+	const showValues = useContext(ShowValuesContext)
 	return (
-		<ShowValuesConsumer>
-			{showValues => (
-				<Node
-					classes="mecanism barème"
-					name={barèmeType === 'marginal' ? 'barème' : 'barème linéaire'}
-					value={nodeValue}
-					unit={unit}
-					child={
-						<ul className="properties">
-							<BarèmeAttributes explanation={explanation} lazyEval={lazyEval} />
-							<table className="tranches">
-								<thead>
-									<tr>
+		<Node
+			classes="mecanism barème"
+			name={barèmeType === 'marginal' ? 'barème' : 'barème linéaire'}
+			value={nodeValue}
+			unit={unit}
+			child={
+				<ul className="properties">
+					<BarèmeAttributes explanation={explanation} lazyEval={lazyEval} />
+					<table className="tranches">
+						<thead>
+							<tr>
+								<th>
+									<Trans>Tranche de l&apos;assiette</Trans>
+								</th>
+								<th>
+									{typeof unit === 'string' ? (
+										unit
+									) : (
+										<Trans>
+											{explanation.tranches[0].taux != null
+												? 'Taux'
+												: 'Montant'}
+										</Trans>
+									)}
+								</th>
+								{showValues &&
+									!explanation.returnRate &&
+									explanation.tranches[0].taux != null && (
 										<th>
-											<Trans>Tranche de l&apos;assiette</Trans>
+											<Trans>Résultat</Trans>
 										</th>
-										<th>
-											{typeof unit === 'string' ? (
-												unit
-											) : (
-												<Trans>
-													{explanation.tranches[0].taux != null
-														? 'Taux'
-														: 'Montant'}
-												</Trans>
-											)}
-										</th>
-										{showValues && explanation.tranches[0].taux != null && (
-											<th>
-												<Trans>Résultat</Trans>
-											</th>
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{explanation.tranches.map(tranche => (
-										<Tranche
-											key={tranche['de'] + tranche['à']}
-											{...{
-												language,
-												tranche,
-												showValues,
-												tranchesUnit: inferUnit('/', [
-													explanation.assiette.unit,
-													explanation.multiplicateur?.unit
-												]),
-												resultUnit: explanation.assiette.unit,
-												trancheValue:
-													barèmeType === 'marginal'
-														? tranche.value
-														: trancheValue(
-																explanation['assiette'],
-																explanation['multiplicateur']
-														  )(tranche)
-											}}
-										/>
-									))}
-								</tbody>
-							</table>
-							{/* nous avons remarqué que la notion de taux final pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
-							{showValues &&
-								barèmeType === 'marginal' &&
-								explanation.tranches.length > 2 && (
-									<>
-										<b>
-											<Trans>Taux final</Trans> :{' '}
-										</b>
-										<NodeValuePointer
-											data={
-												(nodeValue /
-													lazyEval(explanation['assiette']).nodeValue) *
-												100
-											}
-										/>
-										%
-									</>
-								)}
-						</ul>
-					}
-				/>
-			)}
-		</ShowValuesConsumer>
+									)}
+							</tr>
+						</thead>
+						<tbody>
+							{explanation.tranches.map(tranche => (
+								<Tranche
+									key={tranche['de'] + tranche['à']}
+									{...{
+										language,
+										tranche,
+										showValues,
+										tranchesUnit: inferUnit('/', [
+											explanation.assiette.unit,
+											explanation.multiplicateur?.unit
+										]),
+										resultUnit: explanation.assiette.unit,
+										returnRate: explanation.returnRate,
+										trancheValue:
+											barèmeType === 'marginal'
+												? tranche.value
+												: trancheValue(
+														explanation['assiette'],
+														explanation['multiplicateur']
+												  )(tranche)
+									}}
+								/>
+							))}
+						</tbody>
+					</table>
+					{/* nous avons remarqué que la notion de taux final pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
+					{showValues &&
+						!explanation.returnRate &&
+						barèmeType === 'marginal' &&
+						explanation.tranches.length > 2 && (
+							<>
+								<b>
+									<Trans>Taux final</Trans> :{' '}
+								</b>
+								<NodeValuePointer
+									data={
+										(nodeValue / lazyEval(explanation['assiette']).nodeValue) *
+										100
+									}
+								/>
+								%
+							</>
+						)}
+					{explanation.returnRate && (
+						<p>
+							Ce barème <strong>ne retourne que le taux</strong>.
+						</p>
+					)}
+				</ul>
+			}
+		/>
 	)
 }
 
@@ -137,6 +142,7 @@ let Tranche = ({
 	},
 	tranchesUnit,
 	resultUnit,
+	returnRate,
 	trancheValue,
 	showValues,
 	language
@@ -165,7 +171,7 @@ let Tranche = ({
 				)}
 			</td>
 			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
-			{showValues && taux != null && (
+			{showValues && !returnRate && taux != null && (
 				<td key="value">
 					<NodeValuePointer data={trancheValue} unit={resultUnit} />
 				</td>

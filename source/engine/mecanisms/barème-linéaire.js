@@ -4,6 +4,8 @@ import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
 import { desugarScale } from './barème'
+import { parseUnit } from 'Engine/units'
+
 /* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
 	`en-dessous de: 1`
 	devient
@@ -21,6 +23,8 @@ export default (recurse, k, v) => {
 	if (v.variations) {
 		return variations(recurse, k, v, true)
 	}
+
+	let returnRate = v['retourne seulement le taux'] === 'oui'
 	let tranches = desugarScale(recurse)(v['tranches']),
 		objectShape = {
 			assiette: false,
@@ -40,12 +44,15 @@ export default (recurse, k, v) => {
 
 		if (!matchedTranche) return 0
 		if (matchedTranche.taux)
-			return matchedTranche.taux.nodeValue * val(assiette)
+			return returnRate
+				? matchedTranche.taux.nodeValue
+				: matchedTranche.taux.nodeValue * val(assiette)
 		return matchedTranche.montant
 	}
 
 	let explanation = {
 			...parseObject(recurse, objectShape, v),
+			returnRate,
 			tranches
 		},
 		evaluate = evaluateObject(objectShape, effect)
@@ -58,7 +65,6 @@ export default (recurse, k, v) => {
 		name: 'barème linéaire',
 		barème: 'en taux',
 		type: 'numeric',
-
-		unit: v['unité'] || explanation.assiette.unit
+		unit: returnRate ? parseUnit('%') : v['unité'] || explanation.assiette.unit
 	}
 }
