@@ -11,14 +11,11 @@ export default function PeriodSwitch() {
 		state => state.simulation?.config?.situation?.période || 'année'
 	)
 	const currentPeriod = situation.période
-	let periods = ['mois', 'année']
+	let periods = ['année', 'mois']
 	const updatePeriod = toPeriod => dispatch({ type: 'UPDATE_PERIOD', toPeriod })
 
 	if (!currentPeriod) {
 		updatePeriod(defaultPeriod)
-	}
-	if (defaultPeriod === 'année') {
-		periods.reverse()
 	}
 
 	return (

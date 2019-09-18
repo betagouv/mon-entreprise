@@ -1,29 +1,36 @@
 /* @flow */
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { useTranslation } from 'react-i18next'
 import './AnimatedTargetValue.css'
-import { formatCurrency } from 'Components/TargetSelection'
 
 type Props = {
 	value: ?number
 }
 
-export default function AnimatedTargetValue({ value, children }: Props) {
-	const [difference, setDifference] = useState(0)
-	const [previousValue, setPreviousValue] = useState()
-	useEffect(() => {
-		if (previousValue === value || Number.isNaN(value)) {
-			return
-		}
-		setDifference((value || 0) - (previousValue || 0))
-		setPreviousValue(value)
-	}, [previousValue, value])
-	const { i18n } = useTranslation()
+function formatDifference(difference, language) {
+	const prefix = difference > 0 ? '+' : ''
+	const formatedValue = Intl.NumberFormat(language, {
+		style: 'currency',
+		currency: 'EUR',
+		maximumFractionDigits: 0,
+		minimumFractionDigits: 0
+	}).format(difference)
+	return prefix + formatedValue
+}
 
-	const formattedDifference = formatCurrency(difference, i18n.language)
+export default function AnimatedTargetValue({ value, children }: Props) {
+	const previousValue = useRef()
+	const { language } = useTranslation().i18n
+
+	const difference =
+		previousValue.current === value || Number.isNaN(value)
+			? null
+			: (value || 0) - (previousValue.current || 0)
+	previousValue.current = value
 	const shouldDisplayDifference =
-		Math.abs(difference) > 1 && value != null && !Number.isNaN(value)
+		difference !== null && Math.abs(difference) > 1
+
 	return (
 		<>
 			<span className="Rule-value">
@@ -33,7 +40,7 @@ export default function AnimatedTargetValue({ value, children }: Props) {
 							color: difference > 0 ? 'chartreuse' : 'red',
 							pointerEvents: 'none'
 						}}>
-						{(difference > 0 ? '+' : '') + formattedDifference}
+						{formatDifference(difference, language)}
 					</Evaporate>
 				)}{' '}
 				{children}

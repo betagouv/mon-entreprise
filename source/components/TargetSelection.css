@@ -106,8 +106,8 @@
 	text-decoration: none;
 }
 
-#targetSelection .targetInputOrValue > :not(.targetInput):not(.attractClick) {
-	margin: 0.2rem 0.6rem;
+#targetSelection .targetInputOrValue > :not(.targetInput) {
+	margin: 0 0.6rem;
 }
 
 #targetSelection input {
@@ -136,11 +136,9 @@
 
 #targetSelection .targetInputBottomBorder {
 	margin: 0;
-	padding: 0;
+	padding: 0 2px;
 	height: 0;
 	overflow: hidden;
-	position: relative;
-	top: -6px;
 }
 
 #targetSelection .editableTarget + .targetInputBottomBorder {
