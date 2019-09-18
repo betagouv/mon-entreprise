@@ -1901,9 +1901,6 @@
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
-- espace: contrat salarié
-  nom: salaire
-
 - nom: entreprise
   description: |
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
