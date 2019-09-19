@@ -1,4 +1,4 @@
-import { rewriteNode, evaluateNode } from 'Engine/evaluation'
+import { evaluateNode } from 'Engine/evaluation'
 
 import Correspondance from 'Engine/mecanismViews/Correspondance'
 
@@ -14,14 +14,19 @@ export default (recurse, k, v) => {
 		)
 
 		if (variable.nodeValue == null)
-			return rewriteNode(node, null, v, { [variable.dottedName]: 1 })
+			return {
+				...node,
+				nodeValue: null,
+				explanation: v,
+				missingVariables: { [variable.dottedName]: 1 }
+			}
 		else
-			return rewriteNode(
-				node,
-				tableau[variable.nodeValue],
-				{ ...v, selected: variable.nodeValue },
-				{}
-			)
+			return {
+				...node,
+				nodeValue: tableau[variable.nodeValue],
+				explanation: { ...v, selected: variable.nodeValue },
+				missingVariables: {}
+			}
 	}
 
 	return {
