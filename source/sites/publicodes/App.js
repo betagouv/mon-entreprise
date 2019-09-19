@@ -9,7 +9,6 @@ import sitePaths from './sitePaths'
 import Landing from './Landing'
 import Simulateur from './Simulateur'
 import About from './About'
-import Earth from './EarthLoader'
 import Contribution from './Contribution'
 import TopBar from './TopBar'
 import Scenarios from './Scenarios'
@@ -25,8 +24,7 @@ class App extends Component {
 					fetch: {
 						repo: 'laem/futureco-data',
 						filePath: 'co2.yaml'
-					},
-					loaderComponent: <Earth />
+					}
 				}}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
