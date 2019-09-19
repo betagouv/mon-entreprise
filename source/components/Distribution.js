@@ -6,7 +6,6 @@ import Value from 'Components/Value'
 import { findRuleByDottedName } from 'Engine/rules'
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { config, Spring } from 'react-spring'
 import { compose } from 'redux'
@@ -51,6 +50,7 @@ function Distribution({
 		répartition,
 		cotisationMaximum,
 		total,
+		cotisations,
 		salaireChargé,
 		salaireNet
 	} = distribution
@@ -107,10 +107,8 @@ function Distribution({
 				<RuleLink {...salaireNet} />
 				<Value {...salaireNet} unit="€" maximumFractionDigits={0} />
 				<span>+</span>
-				<Trans>Cotisations</Trans>
-				<Value maximumFractionDigits={0} unit="€">
-					{total.partPatronale + total.partSalariale}
-				</Value>
+				<RuleLink {...cotisations} />
+				<Value {...cotisations} unit="€" maximumFractionDigits={0} />
 				<span />
 				<div className="distribution-chart__total-border" />
 				<span>=</span>

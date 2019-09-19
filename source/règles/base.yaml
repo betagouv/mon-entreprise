@@ -1299,6 +1299,7 @@
       - CDD . majoration chômage
       - CDD . CIF
       - forfait social
+      - (- réductions de cotisations)
 
 - espace: contrat salarié
   nom: rémunération
@@ -1730,7 +1731,10 @@
 
     Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer ce montant.
 
-  formule: rémunération . total sans réduction - cotisations . patronales . réductions de cotisations
+  formule:
+    somme:
+      - brut
+      - cotisations . patronales
 
 - espace: contrat salarié . cotisations . patronales
   nom: réductions de cotisations
@@ -1756,12 +1760,6 @@
   note: La déduction ne s’applique pas aux heures complémentaires
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
-
-- espace: contrat salarié . cotisations . patronales
-  nom: à payer
-  période: flexible
-  unité: €
-  formule: patronales - réductions de cotisations
 
 - espace: contrat salarié
   nom: réduction ACRE
@@ -1825,15 +1823,6 @@
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
 
-- espace: contrat salarié . rémunération
-  nom: total sans réduction
-  période: flexible
-  titre: Rémunération totale sans réduction
-  type: salaire
-  formule:
-    somme:
-      - brut
-      - cotisations . patronales
 
 - espace: contrat salarié
   nom: cotisations
@@ -3831,11 +3820,6 @@
     - contrat salarié
 
 - espace: indépendant . cotisations et contributions
-  nom: cotisations à payer
-  période: flexible
-  formule: cotisations - réduction ACRE
-
-- espace: indépendant . cotisations et contributions
   nom: cotisations
   période: flexible
   références:
@@ -3853,9 +3837,10 @@
   nom: cotisations et contributions
   formule:
     somme:
-      - cotisations à payer
+      - cotisations
       - CSG et CRDS
       - formation professionnelle
+      - (- réduction ACRE)
   unité: €
   période: flexible
 

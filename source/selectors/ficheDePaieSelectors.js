@@ -85,11 +85,23 @@ export const mergeCotisations: (
 )
 
 const variableToCotisation = (variable: VariableWithCotisation): Cotisation => {
+	let displayedVariable = variable
+	if (
+		// Following :  weird logic to automatically handle negative negated value in sum
+		// $FlowFixMe
+		variable.operationType === 'calculation' &&
+		// $FlowFixMe
+		variable.operator === '−' &&
+		variable.explanation[0].nodeValue === 0
+	) {
+		displayedVariable = variable.explanation[1]
+		console.log(displayedVariable, brancheSelector(displayedVariable))
+	}
 	return mergeCotisations(BLANK_COTISATION, {
-		...variable.explanation,
-		branche: brancheSelector(variable),
+		...displayedVariable.explanation,
+		branche: brancheSelector(displayedVariable),
 		montant: {
-			[duParSelector(variable) === 'salarié'
+			[duParSelector(displayedVariable) === 'salarié'
 				? 'partSalariale'
 				: 'partPatronale']: variable.nodeValue
 		}

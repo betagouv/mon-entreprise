@@ -54,7 +54,7 @@ describe('pay slip selector', function() {
 
 	it('should sum all cotisations', function() {
 		let pat = getRuleFromAnalysis(analysis)(
-				'contrat salarié . cotisations . patronales . à payer'
+				'contrat salarié . cotisations . patronales'
 			),
 			sal = getRuleFromAnalysis(analysis)(
 				'contrat salarié . cotisations . salariales'

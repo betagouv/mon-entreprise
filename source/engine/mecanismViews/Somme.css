@@ -25,17 +25,21 @@
 .somme .leaf .name {
 	border: none;
 }
-.somme .operator {
-	text-align: center;
-	width: 1em;
-	padding: 0 0.4em;
-	font-weight: 600;
-	border: none !important;
-	color: black;
-}
 .somme .operator + .element {
 	border-left: none;
 }
+
+.mecanism-somme__row > .element > * > .nodeContent + * {
+	display: none;
+}
+.mecanism-somme__row > .element > * > .nodeContent {
+	display: flex;
+	align-items: center;
+}
+.mecanism-somme__row > .element > * > .nodeContent > .operator:first-child {
+	margin-left: 0;
+}
+
 #rule-rules .somme table .leaf .situationValue {
 	display: none;
 }
@@ -113,7 +117,6 @@
 }
 .mecanism-somme__row .operator {
 	align-self: center;
-	display: none;
 }
 
 .mecanism-somme__row .element .variable,

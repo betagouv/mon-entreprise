@@ -37,7 +37,6 @@ function Row({ v, i, unit }) {
 			key={v.name}
 			// className={isSomme ? '' : 'noNest'}
 			onClick={() => setFolded(!folded)}>
-			<div className="operator blank">{i != 0 && '+'}</div>
 			<div className="element">
 				{makeJsx(v)}
 				{isSomme && (
