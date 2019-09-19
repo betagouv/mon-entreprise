@@ -820,9 +820,8 @@ contrat salarié . rémunération . brut de base:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
 
 contrat salarié . rémunération . brut de base . équivalent temps plein:
-  applicable si: temps de travail . temps partiel
-  titre: Salaire brut équivalent temps plein
-  résumé: Le salaire si l'embauche se faisait à temps plein
+  titre: Salaire brut
+  résumé: Brut de base à temps plein
   question: Quel est le salaire en équivalent temps plein ?
   unité: €
   formule: brut de base / temps de travail . quotité de travail
