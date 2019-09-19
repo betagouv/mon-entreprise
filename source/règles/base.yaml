@@ -1117,7 +1117,7 @@
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
-    📱: 400
+    📱: 4000
     📱✨ (haut de gamme): 850
     💻: 1200
     💻 + 📱✨: 2050
@@ -1267,7 +1267,7 @@
       - CRDS
       - APEC [salarié]
       - complémentaire santé [salarié]
-      - réduction heures supplémentaires
+      - (- réduction heures supplémentaires)
 
 - espace: contrat salarié . cotisations
   nom: patronales
@@ -1802,7 +1802,7 @@
     type: réduction de cotisations
   unité: €
   période: flexible
-  formule: 0 - rémunération . heures supplémentaires * taux des cotisations réduites
+  formule: rémunération . heures supplémentaires * taux des cotisations réduites
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
