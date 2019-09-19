@@ -234,3 +234,32 @@
   formule: -5 * -10
   exemples:
     - valeur attendue: 50
+
+- test: négation de variable
+  formule: '- salaire de base'
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -3000
+
+- test: négation d'expressions
+  formule: '- (10 * 3 + 5)'
+  exemples:
+    - valeur attendue: -35
+
+- test: variables négatives dans expression
+  formule: 10% * (- salaire de base)
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -300
+# TODO
+# - test: expression sur plusieurs lignes
+#   formule: >
+#     salaire de base
+#     + 2000
+#     = 3000
+#   exemples:
+#     - situation:
+#         salaire de base: 1000
+#     - valeur attendue: true
