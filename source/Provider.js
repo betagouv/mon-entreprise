@@ -61,19 +61,6 @@ export default class Provider extends PureComponent {
 			storeEnhancer
 		)
 		this.props.onStoreCreated && this.props.onStoreCreated(this.store)
-
-		// Remove loader
-		var css = document.createElement('style')
-		css.type = 'text/css'
-		css.innerHTML = `
-#js {
-	animation: appear 0.5s;
-	opacity: 1;
-}
-#loading {
-	display: none !important;
-}`
-		document.body.appendChild(css)
 	}
 	componentWillUnmount() {
 		this.props.tracker.disconnectFromHistory()

@@ -7,13 +7,28 @@ export default connect(
 	dispatch => ({ setRules: rules => dispatch({ type: 'SET_RULES', rules }) })
 )(
 	class extends Component {
+		removeLoader() {
+			// Remove loader
+			var css = document.createElement('style')
+			css.type = 'text/css'
+			css.innerHTML = `
+#js {
+        animation: appear 0.5s;
+        opacity: 1;
+}
+#loading {
+        display: none !important;
+}`
+			document.body.appendChild(css)
+		}
 		constructor(props) {
 			super(props)
 
 			if (process.env.NODE_ENV === 'development') {
-				import('../../futureco-data/co2.yaml').then(src =>
+				import('../../futureco-data/co2.yaml').then(src => {
 					this.props.setRules(src.default)
-				)
+					this.removeLoader()
+				})
 			} else {
 				fetch(
 					'https://publicodes.netlify.com/.netlify/functions/getRulesFile?' +
@@ -25,17 +40,12 @@ export default connect(
 					.then(response => response.json())
 					.then(json => {
 						this.props.setRules(json)
+						this.removeLoader()
 					})
 			}
 		}
 		render() {
-			let customLoader = this.props.rulesConfig.loaderComponent
-			if (!this.props.rulesLoaded)
-				return customLoader ? (
-					customLoader
-				) : (
-					<div>La loi est en cours de chargement ...</div>
-				)
+			if (!this.props.rulesLoaded) return null
 			return this.props.children
 		}
 	}
