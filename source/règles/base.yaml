@@ -739,7 +739,6 @@
     - temps de travail . temps partiel
     - temps de travail . heures supplémentaires
     - statut JEI
-    - régime des impatriés
     - entreprise . association non lucrative
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
@@ -1322,14 +1321,15 @@
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   période: flexible
   formule:
-    allègement:
-      assiette: base
-      abattement:
-        somme:
-          - indemnité kilométrique vélo
-          - prime d'impatriation
-          - exonération d'impôt des stagiaires et apprentis
-          - heures supplémentaires défiscalisées
+    somme:
+      - rémunération . net de cotisations
+      - avantages sociaux
+      - CSG [non déductible]
+      - CRDS
+      - (- indemnité kilométrique vélo)
+      - (- prime d'impatriation)
+      - (- exonération d'impôt des stagiaires et apprentis)
+      - (- heures supplémentaires défiscalisées)
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1352,16 +1352,6 @@
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-- espace: contrat salarié . rémunération . net imposable
-  nom: base
-  période: flexible
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - avantages sociaux
-      - CSG [non déductible]
-      - CRDS
-
 - espace: contrat salarié
   nom: prime d'impatriation
   description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
@@ -1370,7 +1360,7 @@
   unité: €
   formule:
     multiplication:
-      assiette: rémunération . net imposable . base
+      assiette: rémunération . net
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid

@@ -34,7 +34,7 @@ function Row({ v, i, unit }) {
 	return [
 		<div
 			className="mecanism-somme__row"
-			key={v.name}
+			key={v.name || i}
 			// className={isSomme ? '' : 'noNest'}
 			onClick={() => setFolded(!folded)}>
 			<div className="element">

@@ -132,7 +132,7 @@
 }
 
 /* Nested Mecanism */
-.nested .mecanism-somme__row {
+.mecanism-somme__row + .nested {
 	padding-left: 2em;
 	border-top: 1px dashed rgba(51, 51, 80, 0.15);
 }

@@ -17,17 +17,6 @@ import {
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
-import type { Analysis } from 'Types/Analysis'
-import type {
-	VariableWithCotisation,
-	Cotisation,
-	Cotisations,
-	Branche,
-	FicheDePaie
-} from 'Types/ResultViewTypes'
-
-import type { Règle } from 'Types/RegleTypes'
-
 // These functions help build the payslip. They take the cotisations from the cache, braving all the particularities of the current engine's implementation, handles the part patronale and part salariale, and gives a map by branch.
 
 export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
@@ -85,31 +74,17 @@ export const mergeCotisations: (
 )
 
 const variableToCotisation = (variable: VariableWithCotisation): Cotisation => {
-	let displayedVariable = variable
-	if (
-		// Following :  weird logic to automatically handle negative negated value in sum
-		// $FlowFixMe
-		variable.operationType === 'calculation' &&
-		// $FlowFixMe
-		variable.operator === '−' &&
-		variable.explanation[0].nodeValue === 0
-	) {
-		displayedVariable = variable.explanation[1]
-		console.log(displayedVariable, brancheSelector(displayedVariable))
-	}
 	return mergeCotisations(BLANK_COTISATION, {
-		...displayedVariable.explanation,
-		branche: brancheSelector(displayedVariable),
+		...variable.explanation,
+		branche: brancheSelector(variable),
 		montant: {
-			[duParSelector(displayedVariable) === 'salarié'
+			[duParSelector(variable) === 'salarié'
 				? 'partSalariale'
 				: 'partPatronale']: variable.nodeValue
 		}
 	})
 }
-const groupByBranche = flatRules => (
-	cotisations: Array<Cotisation>
-): Cotisations => {
+const groupByBranche = (cotisations: Array<Cotisation>): Cotisations => {
 	const cotisationsMap = cotisations.reduce(
 		(acc, cotisation) => ({
 			...acc,
@@ -133,6 +108,15 @@ export let analysisToCotisations = analysis => {
 		.reduce(concat, [])
 
 	const cotisations = pipe(
+		map(rule =>
+			// Following :  weird logic to automatically handle negative negated value in sum
+
+			rule.operationType === 'calculation' &&
+			rule.operator === '−' &&
+			rule.explanation[0].nodeValue === 0
+				? { ...rule.explanation[1], nodeValue: rule.nodeValue }
+				: rule
+		),
 		groupBy(prop('dottedName')),
 		values,
 		map(
@@ -146,7 +130,7 @@ export let analysisToCotisations = analysis => {
 				cotisation.montant.partPatronale !== 0 ||
 				cotisation.montant.partSalariale !== 0
 		),
-		groupByBranche(analysis),
+		groupByBranche,
 		filter(([, brancheCotisation]) => !!brancheCotisation)
 	)(variables)
 	return cotisations
