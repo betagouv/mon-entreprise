@@ -1845,22 +1845,6 @@
       - salariales
 
 - espace: contrat salarié
-  nom: coût d'embauche
-  résumé: Coût employeur - aides
-  question: Quel est le coût d'embauche, toutes aides incluses ?
-  description: |
-
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux organismes de collecte, en tenant compte
-    des aides et subventions qui lui sont reversées : c'est donc le **coût social total réel à long terme** de l'embauche pour l'employeur.
-
-    D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du salarié : je vois dans dans ton travail assez de valeur pour te payer ce montant.
-
-  unité: €
-  période: flexible
-  type: salaire
-  formule: rémunération . total - aides employeur
-
-- espace: contrat salarié
   nom: aides employeur
   résumé: Pour l'employeur, différées dans le temps
   icônes: 🎁
