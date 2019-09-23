@@ -1321,15 +1321,19 @@
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   période: flexible
   formule:
-    somme:
-      - rémunération . net de cotisations
-      - avantages sociaux
-      - CSG [non déductible]
-      - CRDS
-      - (- indemnité kilométrique vélo)
-      - (- prime d'impatriation)
-      - (- exonération d'impôt des stagiaires et apprentis)
-      - (- heures supplémentaires défiscalisées)
+    allègement:
+      assiette:
+        somme:
+          - rémunération . net de cotisations
+          - avantages sociaux
+          - CSG [non déductible]
+          - CRDS
+      abattement:
+        somme:
+          - indemnité kilométrique vélo
+          - prime d'impatriation
+          - exonération d'impôt des stagiaires et apprentis
+          - heures supplémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
