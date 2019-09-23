@@ -195,8 +195,8 @@ contrat salarié . CDD . compensation pour congés non pris:
     compensatrice de congés payés versée par l'employeur.
   titre.en: untaken vacation compensation
   titre.fr: compensation pour congés non pris
-contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
-  titre.en: proportion of untaken leave
+? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
+: titre.en: proportion of untaken leave
   titre.fr: proportion congés non pris
 contrat salarié . CDD . congés dus en jours ouvrés:
   titre.en: leave due in working days
@@ -204,8 +204,8 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   titre.en: leave due by month
   titre.fr: congés dus par mois
-contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
-  titre.en: salary retention bonus
+? contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire
+: titre.en: salary retention bonus
   titre.fr: prime maintient de salaire
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   titre.en: monthly basis
@@ -978,11 +978,11 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
-  titre.en: fixed amount of a meal
+? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
+: titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
-contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
-  question.en: |
+? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
+: question.en: |
     How many meals per month are paid for by the employer?
   question.fr: |
     Combien de repas par mois sont payés par l'employeur ?
@@ -1065,8 +1065,8 @@ contrat salarié . rémunération . net imposable:
     social benefits. It's the basis used to compute income tax.
   description.fr: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
-  titre.en: tax-free overtime hours
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
+: titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires défiscalisées
 ? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
 : titre.en: gross cap
@@ -1200,8 +1200,8 @@ contrat salarié . rémunération . total:
 contrat salarié . cotisations . patronales . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
-contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
-  titre.en: flat-rate deduction for overtime
+? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
+: titre.en: flat-rate deduction for overtime
   titre.fr: déduction forfaitaire pour heures supplémentaires
 contrat salarié . cotisations . patronales . à payer:
   titre.en: to be paid
@@ -1215,8 +1215,8 @@ contrat salarié . réduction ACRE . taux:
 contrat salarié . cotisations . salariales . réduction heures supplémentaires:
   titre.en: reduction for overtime hours
   titre.fr: réduction heures supplémentaires
-contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
-  description.en: the effective rate of the employee's pension contributions
+? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
+: description.en: the effective rate of the employee's pension contributions
   description.fr: >-
     le taux effectif des cotisations d'assurance vieillesse à la charge du
     salarié
@@ -1230,38 +1230,9 @@ contrat salarié . cotisations:
   description.fr: Total des cotisation patronales et salariales
   titre.en: social contributions
   titre.fr: cotisations
-contrat salarié . coût d'embauche:
-  résumé.en: Monthly employer cost - financial aids
-  résumé.fr: Coût employeur - aides
-  question.en: 'What is the cost of hiring, financial aids included?'
-  question.fr: 'Quel est le coût d''embauche, toutes aides incluses ?'
-  description.en: >-
-    This is what the employer will actually have to pay to the employee and the
-    social security collectors in total, taking into account the available
-    financial aids and subsidies : this is the **total long term social cost**
-    of hiring for the employer.
-
-
-    On the other hand, it is also the value that the employer attributes to the
-    employee's work: I see in your work each month enough value to pay you this
-    amount.
-  description.fr: >
-
-    C'est ce que l'employeur devra réellement payer au total au salarié et aux
-    organismes de collecte, en tenant compte
-
-    des aides et subventions qui lui sont reversées : c'est donc le **coût
-    social total réel à long terme** de l'embauche pour l'employeur.
-
-
-    D'un autre côté, c'est aussi la valeur que donne l'employeur au travail du
-    salarié : je vois dans dans ton travail assez de valeur pour te payer ce
-    montant.
-  titre.en: Hiring cost
-  titre.fr: coût d'embauche
 contrat salarié . aides employeur:
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   description.en: >
     Some aids can be requested by the employer to help hires.
 
@@ -1368,7 +1339,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
 établissement:
@@ -2579,7 +2550,7 @@ entreprise . catégorie d'activité . artisanale:
   titre.fr: artisanale
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
+  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . vente de biens:
@@ -2679,8 +2650,8 @@ entreprise . catégorie d'activité . libérale règlementée:
         ne sont pas encore intégrées.
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
-  titre.en: type of regulated liberal activity
+? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
+: titre.en: type of regulated liberal activity
   titre.fr: type d'activité libérale règlementée
 entreprise . rattachée à la CIPAV:
   question.en: Is the regulated liberal profession attached to the CIPAV?
@@ -2760,14 +2731,14 @@ entreprise . rattachement libéral règlementé:
 indépendant . cotisations et contributions . cotisations . maladie:
   titre.en: health insurance
   titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
-  titre.en: health insurance for regulated liberal
+? indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
+: titre.en: health insurance for regulated liberal
   titre.fr: maladie libérale règlementée
 indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre.en: health insurance basis
   titre.fr: assiette maladie
-indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
-  titre.en: health insurance 2
+? indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+: titre.en: health insurance 2
   titre.fr: Maladie 2
   description.en: >-
     Contributions for the daily allowances of self-employed people. If the state
@@ -2778,38 +2749,38 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
-  titre.en: 'craftsmen, traders, liberal'
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+: titre.en: 'craftsmen, traders, liberal'
   titre.fr: artisans commerçants libéraux
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
-  titre.en: variable rate
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
+: titre.en: variable rate
   titre.fr: taux variable
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
-  titre.en: RSA rate
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
+: titre.en: RSA rate
   titre.fr: taux RSA
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
-  titre.en: variable part RSA rate
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
+: titre.en: variable part RSA rate
   titre.fr: taux RSA part variable
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
-  titre.en: upper reduction threshold
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
+: titre.en: upper reduction threshold
   titre.fr: seuil supérieur de réduction
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
-  titre.en: rate
+? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
+: titre.en: rate
   titre.fr: taux
 indépendant . cotisations et contributions . cotisations . retraite de base:
   titre.en: pension
   titre.fr: retraite de base
-indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
-  titre.en: pension basis
+? indépendant . cotisations et contributions . cotisations . retraite de base . assiette
+: titre.en: pension basis
   titre.fr: assiette retraite de base
-indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  titre.en: supplementary pension
+? indépendant . cotisations et contributions . cotisations . retraite complémentaire
+: titre.en: supplementary pension
   titre.fr: retraite complémentaire
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
   titre.en: disability and death
   titre.fr: invalidité et décès
-indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
-  titre.en: disability and death basis
+? indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
+: titre.en: disability and death basis
   titre.fr: assiette invalidité et décès
 indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
@@ -2820,8 +2791,8 @@ indépendant . cotisations et contributions . CSG et CRDS . assiette:
 indépendant . cotisations et contributions . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
-indépendant . cotisations et contributions . cotisations . allocations familiales:
-  titre.en: family allowances
+? indépendant . cotisations et contributions . cotisations . allocations familiales
+: titre.en: family allowances
   titre.fr: allocations familiales
 auto-entrepreneur:
   question.en: Is the activity carried out in a auto-enterprise?
@@ -2931,8 +2902,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
     l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   titre.en: contributions
   titre.fr: cotisations
-auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
-  description.en: >-
+? auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+: description.en: >-
     The total amount that is allocated to the supplementary pension, useful to
     estimate the total amount of the retirement pension for auto-entrepreneurs
   description.fr: >-
@@ -2940,8 +2911,8 @@ auto-entrepreneur . cotisations et contributions . cotisations . retraite compl�
     estimer le montant total de la pension de retraite des auto-entrepreneurs
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
-  description.en: >
+? auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
+: description.en: >
     The social contributions of the self-employed are simplified: there is no
     than a single line whose rate depends on the category of activity.
   description.fr: >
@@ -3140,14 +3111,14 @@ protection sociale . retraite . trimestres validés par an:
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   titre.en: employee quarters
   titre.fr: trimestres salarié
-protection sociale . retraite . trimestres validés par an . trimestres indépendant:
-  titre.en: self-employed quarters
+? protection sociale . retraite . trimestres validés par an . trimestres indépendant
+: titre.en: self-employed quarters
   titre.fr: trimestres indépendant
-protection sociale . retraite . trimestres validés par an . barème trimestres générique:
-  titre.en: generic quarters scale
+? protection sociale . retraite . trimestres validés par an . barème trimestres générique
+: titre.en: generic quarters scale
   titre.fr: barème trimestres générique
-protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
-  description.en: >-
+? protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur
+: description.en: >-
     Minimum turnover thresholds for the validation of quarters for retirement as
     a self-employed entrepreneur. Below the minimum amount, you will only have
     access to the solidarity allowance.
@@ -3187,17 +3158,17 @@ protection sociale . retraite . complémentaire salarié . prix d'achat du point
 protection sociale . retraite . complémentaire sécurité des indépendants:
   titre.en: supplementary pension for self-employed
   titre.fr: complémentaire sécurité des indépendants
-protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
-  titre.en: value of the point
+? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
+: titre.en: value of the point
   titre.fr: valeur du point
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
-  titre.en: acquired points
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
+: titre.en: acquired points
   titre.fr: points acquis
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
-  titre.en: acquired points per month
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
+: titre.en: acquired points per month
   titre.fr: points acquis par mois
-protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
-  titre.en: buying cost of the point
+? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
+: titre.en: buying cost of the point
   titre.fr: prix d'achat du point
 protection sociale . santé:
   résumé.en: >-
