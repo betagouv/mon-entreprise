@@ -135,7 +135,7 @@ function updatePeriod(situation, { toPeriod, rules }) {
 	}
 }
 
-function simulation(state = null, action) {
+function simulation(state = null, action, rules) {
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
 		return { config, url, hiddenControls: [], situation: {} }
@@ -162,7 +162,7 @@ function simulation(state = null, action) {
 				...state,
 				situation: updatePeriod(state.situation, {
 					toPeriod: action.toPeriod,
-					rules: action.rules
+					rules: rules
 				})
 			}
 	}
@@ -201,26 +201,23 @@ const existingCompanyReducer = (state, action) => {
 	}
 	return newState
 }
-export default (state, action) => {
-	// Enrich the action
-	if (action.type === 'UPDATE_PERIOD') {
-		action.rules = state.rules
-	}
-	return reduceReducers(
-		existingCompanyReducer,
-		storageReducer,
+
+export default reduceReducers(
+	existingCompanyReducer,
+	storageReducer,
+	(state, action) =>
 		combineReducers({
 			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 			conversationSteps,
 			lang,
 			rules: defaultTo(null),
-			simulation,
 			explainedVariable,
+			// We need to access the `rules` in the simulation reducer
+			simulation: (a, b) => simulation(a, b, state.rules),
 			previousSimulation: defaultTo(null),
 			currentExample,
 			situationBranch,
 			activeTargetInput,
 			inFranceApp: inFranceAppReducer
-		})
-	)(state, action)
-}
+		})(state, action)
+)

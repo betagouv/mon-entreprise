@@ -1,3 +1,4 @@
+import { updatePeriod } from 'Actions/actions'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,10 +13,9 @@ export default function PeriodSwitch() {
 	)
 	const currentPeriod = situation.période
 	let periods = ['année', 'mois']
-	const updatePeriod = toPeriod => dispatch({ type: 'UPDATE_PERIOD', toPeriod })
 
 	if (!currentPeriod) {
-		updatePeriod(defaultPeriod)
+		dispatch(updatePeriod(defaultPeriod))
 	}
 
 	return (
@@ -27,7 +27,7 @@ export default function PeriodSwitch() {
 							name="période"
 							type="radio"
 							value={period}
-							onChange={() => updatePeriod(period)}
+							onChange={() => dispatch(updatePeriod(period))}
 							checked={currentPeriod === period}
 						/>
 						<span>

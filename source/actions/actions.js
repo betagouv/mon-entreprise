@@ -67,6 +67,11 @@ export const updateSituation = (fieldName, value) => ({
 	value
 })
 
+export const updatePeriod = toPeriod => ({
+	type: 'UPDATE_PERIOD',
+	toPeriod
+})
+
 // $FlowFixMe
 export function setExample(name, situation, dottedName) {
 	return { type: 'SET_EXAMPLE', name, situation, dottedName }
