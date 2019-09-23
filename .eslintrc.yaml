@@ -1,7 +1,4 @@
 rules:
-  linebreak-style:
-    - 2
-    - unix
   quotes:
     - 1 # While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
     - single
@@ -14,10 +11,13 @@ rules:
   react/jsx-no-target-blank: 0
   react/no-unescaped-entities: 0
   react/display-name: 1
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
 parser: babel-eslint
 
 plugins:
   - react
+  - react-hooks
   - flowtype
 env:
   browser: true

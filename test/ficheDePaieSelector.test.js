@@ -3,7 +3,7 @@
 import { expect } from 'chai'
 // $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis, rules } from 'Engine/rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import {
 	analysisToCotisationsSelector,
@@ -11,16 +11,13 @@ import {
 } from 'Selectors/ficheDePaieSelectors'
 
 let state = {
-	form: {
-		conversation: {
-			values: {
-				'contrat salarié': { rémunération: { 'brut de base': '2300' } },
-				entreprise: { effectif: '50' }
-			}
-		}
-	},
+	rules,
 	simulation: {
-		config: salariéConfig
+		config: salariéConfig,
+		situation: {
+			'contrat salarié . rémunération . brut de base': '2300',
+			'entreprise . effectif': '50'
+		}
 	},
 	conversationSteps: {
 		foldedSteps: []

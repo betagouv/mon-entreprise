@@ -3,8 +3,10 @@
 import {
 	compose,
 	defaultTo,
+	identity,
 	isNil,
 	lensPath,
+	omit,
 	over,
 	set,
 	uniq,
@@ -12,11 +14,10 @@ import {
 } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
-// $FlowFixMe
-import { reducer as formReducer } from 'redux-form'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
+import { findRuleByDottedName } from 'Engine/rules'
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
@@ -99,15 +100,71 @@ function conversationSteps(
 	return state
 }
 
-function simulation(state = null, { type, config, url, id }) {
-	if (type === 'SET_SIMULATION') {
-		return { config, url, hiddenControls: [] }
+function updateSituation(situation, { fieldName, value, config }) {
+	const removePreviousTarget = config.objectifs.includes(fieldName)
+		? omit(config.objectifs)
+		: identity
+	return { ...removePreviousTarget(situation), [fieldName]: value }
+}
+
+function updatePeriod(situation, { toPeriod, rules }) {
+	const currentPeriod = situation['période']
+	if (currentPeriod === toPeriod) {
+		return situation
 	}
-	if (type === 'HIDE_CONTROL' && state !== null) {
-		return { ...state, hiddenControls: [...state.hiddenControls, id] }
+	if (!['mois', 'année'].includes(toPeriod)) {
+		throw new Error('Oups, changement de période invalide')
 	}
-	if (type === 'RESET_SIMULATION' && state !== null) {
-		return { ...state, hiddenControls: [] }
+
+	const needConversion = Object.keys(situation).filter(dottedName => {
+		const rule = findRuleByDottedName(rules, dottedName)
+		return rule?.période === 'flexible'
+	})
+
+	const updatedSituation = Object.entries(situation)
+		.filter(([fieldName]) => needConversion.includes(fieldName))
+		.map(([fieldName, value]) => [
+			fieldName,
+			currentPeriod === 'mois' && toPeriod === 'année' ? value * 12 : value / 12
+		])
+
+	return {
+		...situation,
+		...Object.fromEntries(updatedSituation),
+		période: toPeriod
+	}
+}
+
+function simulation(state = null, action, rules) {
+	if (action.type === 'SET_SIMULATION') {
+		const { config, url } = action
+		return { config, url, hiddenControls: [], situation: {} }
+	}
+	if (state === null) {
+		return state
+	}
+	switch (action.type) {
+		case 'HIDE_CONTROL':
+			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
+		case 'RESET_SIMULATION':
+			return { ...state, hiddenControls: [], situation: {} }
+		case 'UPDATE_SITUATION':
+			return {
+				...state,
+				situation: updateSituation(state.situation, {
+					fieldName: action.fieldName,
+					value: action.value,
+					config: state.config
+				})
+			}
+		case 'UPDATE_PERIOD':
+			return {
+				...state,
+				situation: updatePeriod(state.situation, {
+					toPeriod: action.toPeriod,
+					rules: rules
+				})
+			}
 	}
 	return state
 }
@@ -144,21 +201,23 @@ const existingCompanyReducer = (state, action) => {
 	}
 	return newState
 }
+
 export default reduceReducers(
 	existingCompanyReducer,
 	storageReducer,
-	combineReducers({
-		sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
-		//  this is handled by redux-form, pas touche !
-		form: formReducer,
-		conversationSteps,
-		lang,
-		simulation,
-		explainedVariable,
-		previousSimulation: defaultTo(null),
-		currentExample,
-		situationBranch,
-		activeTargetInput,
-		inFranceApp: inFranceAppReducer
-	})
+	(state, action) =>
+		combineReducers({
+			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
+			conversationSteps,
+			lang,
+			rules: defaultTo(null),
+			explainedVariable,
+			// We need to access the `rules` in the simulation reducer
+			simulation: (a, b) => simulation(a, b, state.rules),
+			previousSimulation: defaultTo(null),
+			currentExample,
+			situationBranch,
+			activeTargetInput,
+			inFranceApp: inFranceAppReducer
+		})(state, action)
 )

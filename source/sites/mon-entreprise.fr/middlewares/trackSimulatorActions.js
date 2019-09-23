@@ -1,26 +1,12 @@
 /* @flow */
-
-// $FlowFixMe
-import { actionTypes } from 'redux-form'
 import {
 	currentQuestionSelector,
-	formattedSituationSelector
+	situationSelector
 } from 'Selectors/analyseSelectors'
-import { debounce } from '../../../utils'
 
 import type { Tracker } from 'Components/utils/withTracker'
 
 export default (tracker: Tracker) => {
-	const debouncedUserInputTracking = debounce(1000, action =>
-		tracker.push([
-			'trackEvent',
-			'Simulator',
-			'input',
-			action.meta.field,
-			action.payload
-		])
-	)
-
 	// $FlowFixMe
 	return ({ getState }) => next => action => {
 		next(action)
@@ -31,7 +17,7 @@ export default (tracker: Tracker) => {
 				'Simulator::answer',
 				action.source,
 				action.step,
-				formattedSituationSelector(newState)[action.step]
+				situationSelector(newState)[action.step]
 			])
 
 			if (!currentQuestionSelector(newState)) {
@@ -55,8 +41,15 @@ export default (tracker: Tracker) => {
 			])
 		}
 
-		if (action.type === actionTypes.CHANGE) {
-			debouncedUserInputTracking(action)
+		if (action.type === 'UPDATE_SITUATION' || action.type === 'UPDATE_PERIOD') {
+			tracker.push([
+				'trackEvent',
+				'Simulator',
+				'update situation',
+				...(action.type === 'UPDATE_PERIOD'
+					? ['période', action.toPeriod]
+					: [action.fieldName, action.value])
+			])
 		}
 		if (action.type === 'START_CONVERSATION') {
 			tracker.push([

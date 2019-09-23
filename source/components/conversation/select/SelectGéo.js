@@ -35,14 +35,14 @@ let getOptions = input =>
 				})
 
 export default FormDecorator('select')(function Select({
-	input: { onChange },
+	setFormValue,
 	submit
 }) {
 	let submitOnChange = option => {
 		tauxVersementTransport(option.code)
 			.then(({ taux }) => {
 				// serialize to not mix our data schema and the API response's
-				onChange(
+				setFormValue(
 					JSON.stringify({
 						...option,
 						...(taux != undefined
@@ -59,7 +59,7 @@ export default FormDecorator('select')(function Select({
 				console.log(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
-				) || onChange(JSON.stringify({ option }))
+				) || setFormValue(JSON.stringify({ option }))
 				submit() // eslint-disable-line no-console
 			})
 	}

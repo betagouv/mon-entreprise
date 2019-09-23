@@ -3,7 +3,7 @@
 import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { withRouter } from 'react-router'
 import backSvg from './back.svg'
 import mobileMenuSvg from './mobile-menu.svg'
@@ -19,10 +19,6 @@ type Props = OwnProps & {
 	tracker: Tracker,
 	location: Location
 }
-type State = {
-	opened: boolean,
-	sticky: boolean
-}
 
 const bigScreen = window.matchMedia('(min-width: 1500px)')
 const isParent = (parentNode, children) => {
@@ -35,13 +31,19 @@ const isParent = (parentNode, children) => {
 	return isParent(parentNode, children.parentNode)
 }
 
-function SideBar({ location, tracker, children }) {
+function SideBar({ location, tracker, children }: Props) {
 	const [opened, setOpened] = useState(false)
 	const [sticky, setSticky] = useState(bigScreen.matches)
 	const [previousLocation, setPreviousLocation] = useState(location)
 	const ref = useRef()
 
 	useEffect(() => {
+		const handleClick = event => {
+			if (!sticky && !isParent(ref.current, event.target) && opened) {
+				handleClose()
+			}
+		}
+
 		window.addEventListener('click', handleClick)
 		bigScreen.addListener(handleMediaQueryChange)
 
@@ -49,27 +51,22 @@ function SideBar({ location, tracker, children }) {
 			window.removeEventListener('click', handleClick)
 			bigScreen.removeListener(handleMediaQueryChange)
 		}
-	}, [opened, sticky])
+	}, [handleClose, opened, sticky])
 
 	useEffect(() => {
 		if (!sticky && previousLocation !== location) {
 			setOpened(false)
 		}
 		setPreviousLocation(location)
-	})
+	}, [sticky, previousLocation, location])
 
-	const handleClick = event => {
-		if (!sticky && !isParent(ref.current, event.target) && opened) {
-			handleClose()
-		}
-	}
 	const handleMediaQueryChange = () => {
 		setSticky(bigScreen.matches)
 	}
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		tracker.push(['trackEvent', 'Sidebar', 'close'])
 		setOpened(false)
-	}
+	}, [tracker])
 	const handleOpen = () => {
 		tracker.push(['trackEvent', 'Sidebar', 'open'])
 		setOpened(true)

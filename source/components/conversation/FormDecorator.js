@@ -1,9 +1,9 @@
+import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
-import { compose } from 'ramda'
 import React from 'react'
-import { connect } from 'react-redux'
-import { change, Field } from 'redux-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { situationSelector } from 'Selectors/analyseSelectors'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -13,47 +13,45 @@ Read https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-comp
 to understand those precious higher order components.
 */
 
-export var FormDecorator = formType => RenderField =>
-	compose(
-		connect(
-			//... this helper directly to the redux state to avoid passing more props
-			state => ({
-				flatRules: state.flatRules
-			}),
-			dispatch => ({
-				stepAction: (name, step, source) =>
-					dispatch({ type: 'STEP_ACTION', name, step, source }),
-				setFormValue: (field, value) =>
-					dispatch(change('conversation', field, value))
+export const FormDecorator = formType => RenderField =>
+	function({ fieldName, question, inversion, unit, ...otherProps }) {
+		const dispatch = useDispatch()
+		const situation = useSelector(situationSelector)
+
+		const submit = source =>
+			dispatch({
+				type: 'STEP_ACTION',
+				name: 'fold',
+				step: fieldName,
+				source
 			})
-		)
-	)(function(props) {
-		let { stepAction, fieldName, inversion, setFormValue, unit } = props,
-			submit = cause => stepAction('fold', fieldName, cause),
-			stepProps = {
-				...props,
-				submit,
-				setFormValue: (value, name = fieldName) => setFormValue(name, value),
-				...(unit === '%'
-					? {
-							format: x => (x == null ? null : +(x * 100).toFixed(2)),
-							normalize: x => (x == null ? null : x / 100)
-					  }
-					: {})
-			}
+		const setFormValue = value => {
+			dispatch(updateSituation(fieldName, normalize(value)))
+		}
+
+		const format = x => (unit === '%' && x ? +(x * 100).toFixed(2) : x)
+		const normalize = x => (unit === '%' ? x / 100 : x)
+		const value = format(situation[fieldName])
 
 		return (
 			<div className={classNames('step', formType)}>
 				<div className="unfoldedHeader">
 					<h3>
-						{props.question}{' '}
-						{!inversion && <Explicable dottedName={fieldName} />}
+						{question} {!inversion && <Explicable dottedName={fieldName} />}
 					</h3>
 				</div>
 
 				<fieldset>
-					<Field component={RenderField} name={fieldName} {...stepProps} />
+					<RenderField
+						name={fieldName}
+						value={value}
+						setFormValue={setFormValue}
+						submit={submit}
+						format={format}
+						unit={unit}
+						{...otherProps}
+					/>
 				</fieldset>
 			</div>
 		)
-	})
+	}

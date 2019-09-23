@@ -5,10 +5,7 @@ import {
 import {
 	collectDefaults,
 	disambiguateExampleSituation,
-	findRuleByDottedName,
-	nestedSituationToPathMap,
-	rules as baseRulesEn,
-	rulesFr as baseRulesFr
+	findRuleByDottedName
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
@@ -33,24 +30,16 @@ import {
 	takeWhile,
 	zipWith
 } from 'ramda'
-import { getFormValues } from 'redux-form'
+import { useSelector } from 'react-redux'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
-/*
- *
- * We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
- *
- *
- * */
-
-export let flatRulesSelector = createSelector(
-	state => state.lang,
-	(state, props) => props && props.rules,
-	(lang, rules) => rules || (lang === 'en' ? baseRulesEn : baseRulesFr)
-)
+// We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
+export let flatRulesSelector = (state, props) => {
+	return props?.rules || state?.rules
+}
 
 export let parsedRulesSelector = createSelector(
 	[flatRulesSelector],
@@ -81,24 +70,29 @@ export let targetNamesSelector = state => {
 	return [...targetNames, ...secondaryTargetNames]
 }
 
-export let situationSelector = createDeepEqualSelector(
-	getFormValues('conversation'),
-	x => x
-)
+export let situationSelector = state => state.simulation?.situation || {}
 
-export let formattedSituationSelector = createSelector(
-	[situationSelector],
-	situation => nestedSituationToPathMap(situation)
-)
+export const useSituation = () => useSelector(situationSelector)
+
+export const useSituationValue = fieldName => useSituation()?.[fieldName]
+
+export const usePeriod = () => useSituationValue('période')
+
+export const useTarget = dottedName => {
+	const targets = useSelector(
+		state => analysisWithDefaultsSelector(state).targets
+	)
+	return targets?.find(t => t.dottedName === dottedName)
+}
 
 export let noUserInputSelector = createSelector(
-	[formattedSituationSelector],
+	[situationSelector],
 	situation => !situation || isEmpty(dissoc('période', situation))
 )
 
 export let firstStepCompletedSelector = createSelector(
 	[
-		formattedSituationSelector,
+		situationSelector,
 		targetNamesSelector,
 		parsedRulesSelector,
 		state => state.simulation?.config?.bloquant
@@ -150,7 +144,7 @@ const createSituationBrancheSelector = situationSelector =>
 	)
 
 export let situationBranchesSelector = createSituationBrancheSelector(
-	formattedSituationSelector
+	situationSelector
 )
 export let situationBranchNameSelector = createSelector(
 	[branchesSelector, state => state.situationBranch],
@@ -159,7 +153,7 @@ export let situationBranchNameSelector = createSelector(
 )
 
 export let validatedSituationSelector = createSelector(
-	[formattedSituationSelector, validatedStepsSelector],
+	[situationSelector, validatedStepsSelector],
 	(situation, validatedSteps) => pick(validatedSteps, situation)
 )
 export let validatedSituationBranchesSelector = createSituationBrancheSelector(
@@ -283,7 +277,7 @@ export let nextStepsSelector = createSelector(
 		currentMissingVariablesByTargetSelector,
 		state => state.simulation?.config.questions,
 		state => state.conversationSteps.foldedSteps,
-		formattedSituationSelector
+		situationSelector
 	],
 	(
 		mv,

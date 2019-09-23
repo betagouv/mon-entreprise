@@ -24,10 +24,18 @@ describe('CurrencyInput', () => {
 	})
 
 	it('should separate thousand groups', () => {
-		const input1 = getInput(<CurrencyInput value={1000} language="fr" />)
-		const input2 = getInput(<CurrencyInput value={1000} language="en" />)
-		const input3 = getInput(<CurrencyInput value={1000.5} language="en" />)
-		const input4 = getInput(<CurrencyInput value={1000000} language="en" />)
+		const input1 = getInput(
+			<CurrencyInput value={1000} language="fr" currencySymbol={''} />
+		)
+		const input2 = getInput(
+			<CurrencyInput value={1000} language="en" currencySymbol={''} />
+		)
+		const input3 = getInput(
+			<CurrencyInput value={1000.5} language="en" currencySymbol={''} />
+		)
+		const input4 = getInput(
+			<CurrencyInput value={1000000} language="en" currencySymbol={''} />
+		)
 		expect(input1.instance().value).to.equal('1 000')
 		expect(input2.instance().value).to.equal('1,000')
 		expect(input3.instance().value).to.equal('1,000.5')
@@ -90,7 +98,7 @@ describe('CurrencyInput', () => {
 		const clock = useFakeTimers()
 		let onChange = spy()
 		const input = getInput(
-			<CurrencyInput onChange={onChange} debounce={1000} />
+			<CurrencyInput onChange={onChange} debounce={1000} currencySymbol={''} />
 		)
 		input.simulate('change', { target: { value: '1', focus: () => {} } })
 		expect(onChange).not.to.have.been.called
@@ -106,12 +114,12 @@ describe('CurrencyInput', () => {
 	})
 
 	it('should initialize with value of the value prop', () => {
-		const input = getInput(<CurrencyInput value={1} />)
+		const input = getInput(<CurrencyInput value={1} language="fr" />)
 		expect(input.instance().value).to.equal('1')
 	})
 
 	it('should update its value if the value prop changes', () => {
-		const component = mount(<CurrencyInput value={1} />)
+		const component = mount(<CurrencyInput value={1} language="fr" />)
 		component.setProps({ value: 2 })
 		expect(component.find('input').instance().value).to.equal('2')
 	})

@@ -18,11 +18,6 @@ export type FlatRules = {
 	}
 }
 export type State = {
-	form: {
-		conversation: {
-			values: Situation
-		}
-	},
 	previousSimulation: ?SavedSimulation,
 	conversationSteps: {
 		foldedSteps: Array<string>,

@@ -23,6 +23,7 @@ export default function IntegrationTest() {
 		script.dataset.couleur = colour
 		domNode.current.innerHTML = ''
 		domNode.current.appendChild(script)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [version])
 	return (
 		<>

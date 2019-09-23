@@ -3,16 +3,16 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import './Targets.css'
 
 export default compose(
-	connect(state => ({ analysis: analysisWithDefaultsSelector(state) })),
 	withColours,
 	withSitePaths
-)(function Targets({ analysis, colours, sitePaths }) {
+)(function Targets({ colours, sitePaths }) {
+	const analysis = useSelector(analysisWithDefaultsSelector)
 	let { nodeValue, unité: unit, dottedName } = analysis.targets[0]
 	return (
 		<div id="targets">

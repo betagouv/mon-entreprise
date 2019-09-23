@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
@@ -29,46 +29,40 @@ import SendButton from './SendButton'
 export default compose(
 	FormDecorator('question'),
 	withColours
-)(function Question(props) {
-	let {
-		choices,
-		submit,
-		colours,
-		meta: { pristine }
-	} = props
+)(function Question({
+	choices,
+	submit,
+	colours,
+	name,
+	setFormValue,
+	value: currentValue
+}) {
+	const [touched, setTouched] = useState(false)
+	const onChange = useCallback(
+		value => {
+			setFormValue(value)
+			setTouched(true)
+		},
+		[setFormValue]
+	)
 
 	const renderBinaryQuestion = () => {
-		let {
-			input, // vient de redux-form
-			submit,
-			choices,
-			setFormValue,
-			colours
-		} = props
-
 		return (
 			<div className="binaryQuestionList">
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, input, submit, colours, setFormValue }}
+						{...{ value, label, currentValue, submit, colours, onChange }}
 					/>
 				))}
 			</div>
 		)
 	}
 	const renderChildren = choices => {
-		let {
-				input, // vient de redux-form
-				submit,
-				setFormValue,
-				colours
-			} = props,
-			{ name } = input,
-			// seront stockées ainsi dans le state :
-			// [parent object path]: dotted name relative to parent
-			relativeDottedName = radioDottedName =>
-				radioDottedName.split(name + ' . ')[1]
+		// seront stockées ainsi dans le state :
+		// [parent object path]: dotted name relative to parent
+		const relativeDottedName = radioDottedName =>
+			radioDottedName.split(name + ' . ')[1]
 
 		return (
 			<ul css="width: 100%">
@@ -78,11 +72,11 @@ export default compose(
 							{...{
 								value: 'non',
 								label: 'Aucun',
-								input,
+								currentValue,
 								submit,
 								colours,
 								dottedName: null,
-								setFormValue
+								onChange
 							}}
 						/>
 					</li>
@@ -101,10 +95,10 @@ export default compose(
 										value: relativeDottedName(dottedName),
 										label: title,
 										dottedName,
-										input,
+										currentValue,
 										submit,
 										colours,
-										setFormValue
+										onChange
 									}}
 								/>
 							</li>
@@ -123,7 +117,7 @@ export default compose(
 			{choiceElements}
 			<SendButton
 				{...{
-					disabled: pristine,
+					disabled: !touched,
 					colours,
 					error: false,
 					submit
@@ -143,14 +137,15 @@ let RadioLabel = props => (
 const RadioLabelContent = compose(withColours)(function RadioLabelContent({
 	value,
 	label,
-	input,
+	currentValue,
+	onChange,
 	submit
 }) {
 	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
-		selected = value === input.value
+		selected = value === currentValue
 
 	const click = value => () => {
-		if (input.value == value) submit('dblClick')
+		if (currentValue == value) submit('dblClick')
 	}
 
 	return (
@@ -161,10 +156,10 @@ const RadioLabelContent = compose(withColours)(function RadioLabelContent({
 			<Trans i18nKey={`radio_${label}`}>{label}</Trans>
 			<input
 				type="radio"
-				{...input}
 				onClick={click(value)}
 				value={value}
-				checked={value === input.value ? 'checked' : ''}
+				onChange={evt => onChange(evt.target.value)}
+				checked={value === currentValue ? 'checked' : ''}
 			/>
 		</label>
 	)

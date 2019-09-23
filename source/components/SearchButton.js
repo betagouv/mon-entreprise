@@ -14,20 +14,19 @@ export default compose(
 )(function SearchButton({ flatRules, invisibleButton }) {
 	const [visible, setVisible] = useState(false)
 	useEffect(() => {
+		const handleKeyDown = e => {
+			if (!(e.ctrlKey && e.key === 'k')) return
+			setVisible(true)
+			e.preventDefault()
+			e.stopPropagation()
+			return false
+		}
 		window.addEventListener('keydown', handleKeyDown)
 
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown)
 		}
 	}, [])
-
-	const handleKeyDown = e => {
-		if (!(e.ctrlKey && e.key === 'k')) return
-		setVisible(true)
-		e.preventDefault()
-		e.stopPropagation()
-		return false
-	}
 
 	const close = () => setVisible(false)
 

@@ -88,7 +88,7 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 	}
 }
 
-const ThemeColoursContext: React$Context<ThemeColours> = createContext(
+export const ThemeColoursContext: React$Context<ThemeColours> = createContext(
 	generateTheme()
 )
 

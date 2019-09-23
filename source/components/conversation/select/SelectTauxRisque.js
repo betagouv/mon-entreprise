@@ -5,26 +5,22 @@ import { FormDecorator } from '../FormDecorator'
 import './Select.css'
 import SelectOption from './SelectOption.js'
 
-function ReactSelectWrapper(props) {
-	let {
-		value,
-		onBlur,
-		onChange,
-		submit,
-		options,
-		submitOnChange = option => {
-			option.text = +option['Taux net'].replace(',', '.') / 100
-			onChange(option.text)
-			submit()
-		},
-		selectValue = value && value['Code risque']
-		// but ReactSelect obviously needs a unique identifier
-	} = props
-
+function ReactSelectWrapper({
+	value,
+	onBlur,
+	setFormValue,
+	submit,
+	options,
+	submitOnChange = option => {
+		option.text = +option['Taux net'].replace(',', '.') / 100
+		setFormValue(option.text)
+		submit()
+	},
+	selectValue = value?.['Code risque']
+}) {
 	if (!options) return null
 
 	return (
-		// For redux-form integration, checkout https://github.com/erikras/redux-form/issues/82#issuecomment-143164199
 		<ReactSelect
 			options={options}
 			onChange={submitOnChange}
@@ -40,7 +36,7 @@ function ReactSelectWrapper(props) {
 	)
 }
 
-function Select({ input, submit }) {
+export default FormDecorator('select')(function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
@@ -63,9 +59,7 @@ function Select({ input, submit }) {
 
 	return (
 		<div className="select-answer">
-			<ReactSelectWrapper {...input} options={options} submit={submit} />
+			<ReactSelectWrapper {...props} options={options} />
 		</div>
 	)
-}
-
-export default FormDecorator('select')(Select)
+})
