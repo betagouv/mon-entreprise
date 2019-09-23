@@ -12,6 +12,7 @@ import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { formatCurrency } from 'Engine/format'
 import {
 	analysisWithDefaultsSelector,
 	useSituation,
@@ -205,19 +206,6 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 		</span>
 	)
 })
-
-export const formatCurrency = (value, language) => {
-	return value == null
-		? ''
-		: Intl.NumberFormat(language, {
-				style: 'currency',
-				currency: 'EUR',
-				maximumFractionDigits: 0,
-				minimumFractionDigits: 0
-		  })
-				.format(value)
-				.replace(/^€/, '€ ')
-}
 
 let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 	const { i18n } = useTranslation()

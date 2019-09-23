@@ -1,6 +1,7 @@
 import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
+import { getFormatersFromUnit } from 'Engine/format'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/analyseSelectors'
@@ -29,8 +30,7 @@ export const FormDecorator = formType => RenderField =>
 			dispatch(updateSituation(fieldName, normalize(value)))
 		}
 
-		const format = x => (unit === '%' && x ? +(x * 100).toFixed(2) : x)
-		const normalize = x => (unit === '%' ? x / 100 : x)
+		const { format, normalize } = getFormatersFromUnit(unit)
 		const value = format(situation[fieldName])
 
 		return (

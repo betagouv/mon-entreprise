@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import { numberFormatter } from 'Components/Value'
+import { numberFormatter } from 'Engine/format'
 import { trancheValue } from 'Engine/mecanisms/barème'
 import { inferUnit, serialiseUnit } from 'Engine/units'
 import { identity } from 'ramda'
@@ -165,7 +165,7 @@ let Tranche = ({
 			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
 			{showValues && taux != null && (
 				<td key="value">
-					<NodeValuePointer data={trancheValue} />
+					<NodeValuePointer data={trancheValue} unit={tranchesUnit} />
 				</td>
 			)}
 		</tr>

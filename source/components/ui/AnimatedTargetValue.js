@@ -2,6 +2,7 @@
 import React, { useRef } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { useTranslation } from 'react-i18next'
+import { formatCurrency } from 'Engine/format'
 import './AnimatedTargetValue.css'
 
 type Props = {
@@ -10,13 +11,7 @@ type Props = {
 
 function formatDifference(difference, language) {
 	const prefix = difference > 0 ? '+' : ''
-	const formatedValue = Intl.NumberFormat(language, {
-		style: 'currency',
-		currency: 'EUR',
-		maximumFractionDigits: 0,
-		minimumFractionDigits: 0
-	}).format(difference)
-	return prefix + formatedValue
+	return prefix + formatCurrency(difference, language)
 }
 
 export default function AnimatedTargetValue({ value, children }: Props) {
