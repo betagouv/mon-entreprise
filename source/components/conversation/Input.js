@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { compose } from 'ramda'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { usePeriod } from 'Selectors/analyseSelectors'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
@@ -33,7 +33,7 @@ export default compose(
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
-						setFormValue(format(value))
+						setFormValue(value)
 					}}
 					onSecondClick={() => submit('suggestion')}
 					rulePeriod={rulePeriod}
@@ -45,7 +45,7 @@ export default compose(
 					type="text"
 					key={value}
 					autoFocus
-					defaultValue={value}
+					value={format(value)}
 					onChange={evt => {
 						debouncedSetFormValue(evt.target.value)
 					}}
