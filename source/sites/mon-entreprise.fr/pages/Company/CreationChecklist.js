@@ -483,7 +483,7 @@ const CreateCompany = ({
 						<a
 							className="ui__ button simple"
 							target="_blank"
-							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/30487%20-%20SSI%20Guide%20Objectif%20Entreprise%20%c3%a9dition%20janvier%202019_BD.pdf">
+							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf">
 							{emoji('👉')} Téléchargez le guide PDF
 						</a>
 					</div>
