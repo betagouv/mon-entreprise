@@ -179,7 +179,7 @@ const Target = ({ target, initialRender }) => {
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={value => {
-									dispatch(updateSituation(target.dottedName, '' + value))
+									dispatch(updateSituation(target.dottedName, value))
 								}}
 								rulePeriod={target.période}
 								colouredBackground={true}
@@ -211,9 +211,11 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 	const { i18n } = useTranslation()
 	const colors = useContext(ThemeColoursContext)
 	const dispatch = useDispatch()
-	const situationValue = useSituationValue(target.dottedName)
+	const situationValue = Math.round(useSituationValue(target.dottedName))
 	const targetWithValue = useTarget(target.dottedName)
-	const value = targetWithValue?.nodeValue?.toFixed(0)
+	const value = targetWithValue?.nodeValue
+		? Math.round(targetWithValue?.nodeValue)
+		: undefined
 	const inversionFail = useSelector(
 		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
 	)
@@ -238,7 +240,9 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 							isActiveInput || isNil(value) ? 'targetInput' : 'editableTarget'
 						}
 						onChange={evt =>
-							dispatch(updateSituation(target.dottedName, evt.target.value))
+							dispatch(
+								updateSituation(target.dottedName, Number(evt.target.value))
+							)
 						}
 						onBlur={event => event.preventDefault()}
 						// We use onMouseDown instead of onClick because that's when the browser moves the cursor
@@ -252,7 +256,7 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 							// when the user just focus another field. Removing this line is almost working
 							// however there is a weird bug in the selection of the next question.
 							if (value) {
-								dispatch(updateSituation(target.dottedName, '' + value))
+								dispatch(updateSituation(target.dottedName, value))
 							}
 						}}
 						{...(isActiveInput ? { autoFocus: true } : {})}
