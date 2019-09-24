@@ -116,11 +116,8 @@ export let firstStepCompletedSelector = createSelector(
 )
 
 let validatedStepsSelector = createSelector(
-	[
-		state => state.conversationSteps.foldedSteps,
-		state => state.activeTargetInput
-	],
-	(foldedSteps, target) => [...foldedSteps, target]
+	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
+	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
 )
 let branchesSelector = state => state.simulation?.config.branches
 let configSituationSelector = state => state.simulation?.config.situation || {}

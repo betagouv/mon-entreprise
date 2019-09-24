@@ -252,12 +252,6 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 								type: 'SET_ACTIVE_TARGET_INPUT',
 								name: target.dottedName
 							})
-							// TODO: This shouldn't be necessary: we don't need to recalculate the situation
-							// when the user just focus another field. Removing this line is almost working
-							// however there is a weird bug in the selection of the next question.
-							if (value) {
-								dispatch(updateSituation(target.dottedName, value))
-							}
 						}}
 						{...(isActiveInput ? { autoFocus: true } : {})}
 						language={i18n.language}
