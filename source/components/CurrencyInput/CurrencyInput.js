@@ -39,6 +39,8 @@ export default function CurrencyInput({
 	// the DOM `event` in its custom `onValueChange` handler
 	const nextValue = useRef(null)
 
+	const inputRef = useRef()
+
 	// When the component is rendered with a new "value" prop, we reset our local state
 	if (valueProp !== initialValue) {
 		setCurrentValue(valueProp)
@@ -76,7 +78,8 @@ export default function CurrencyInput({
 	return (
 		<div
 			className={classnames(className, 'currencyInput__container')}
-			{...(valueLength > 5 ? { style: { width } } : {})}>
+			{...(valueLength > 5 ? { style: { width } } : {})}
+			onClick={() => inputRef.current.focus()}>
 			{!currentValue && isCurrencyPrefixed && currencySymbol}
 			<NumberFormat
 				{...forwardedProps}
@@ -85,6 +88,7 @@ export default function CurrencyInput({
 				allowNegative={!valueHasChanged}
 				className="currencyInput__input"
 				inputMode="numeric"
+				getInputRef={inputRef}
 				prefix={
 					isCurrencyPrefixed && currencySymbol ? `${currencySymbol} ` : ''
 				}

@@ -208,7 +208,7 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 })
 
 let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
-	const { i18n } = useTranslation()
+	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColoursContext)
 	const dispatch = useDispatch()
 	const situationValue = Math.round(useSituationValue(target.dottedName))
@@ -244,25 +244,22 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 								updateSituation(target.dottedName, Number(evt.target.value))
 							)
 						}
-						onBlur={event => event.preventDefault()}
-						// We use onMouseDown instead of onClick because that's when the browser moves the cursor
-						onMouseDown={() => {
+						onFocus={() => {
 							if (isSmallTarget) return
 							dispatch({
 								type: 'SET_ACTIVE_TARGET_INPUT',
 								name: target.dottedName
 							})
 						}}
-						{...(isActiveInput ? { autoFocus: true } : {})}
-						language={i18n.language}
+						language={language}
 					/>
 					<span className="targetInputBottomBorder">
-						{formatCurrency(value, i18n.language)}
+						{formatCurrency(value, language)}
 					</span>
 				</>
 			) : (
 				<span>
-					{Number.isNaN(value) ? '—' : formatCurrency(value, i18n.language)}
+					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
 			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
