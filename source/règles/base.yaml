@@ -740,6 +740,7 @@
     - temps de travail . heures supplémentaires
     - statut JEI
     - entreprise . association non lucrative
+    - régime des impatriés
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
@@ -1116,7 +1117,7 @@
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
-    📱: 4000
+    📱: 400
     📱✨ (haut de gamme): 850
     💻: 1200
     💻 + 📱✨: 2050
@@ -1364,10 +1365,14 @@
   unité: €
   formule:
     multiplication:
-      assiette: rémunération . net
+      assiette:
+        somme:
+          - rémunération . net
+          - CSG [non déductible]
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+    Bofip: https://bofip.impots.gouv.fr/bofip/5677-PGP
 
 - espace: contrat salarié . rémunération
   nom: net
@@ -1717,8 +1722,6 @@
   unité: €
   période: flexible
   description: |
-    C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
-
     C'est le total que l'employeur doit verser pour employer un salarié.
 
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
