@@ -521,6 +521,10 @@ path:
     exemples: '/examples'
   privacy:
     index: '/privacy'
+  integration: 
+    index: '/integration'
+    iframe: '/iframe'
+    library: '/library'
   économieCollaborative:
     index: '/sharing-economy'
 
@@ -572,7 +576,9 @@ siteName: My company in France
 
 Faire une simulation: Launch a simulation
 Exemples: Examples
-Intégrer le simulateur: Integrate the simulator
+Intégrer nos simulateurs: Integrate our simulators
+Intégrer l'interface de simulation: Integrate the simulation interface
+Intégrer la bibliothèque de calcul: Integrate the calculation library
 
 # Landing infrance
 Que désirez-vous faire ?: What do you want to do?
