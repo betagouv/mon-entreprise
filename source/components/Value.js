@@ -1,25 +1,7 @@
 import { React, T } from 'Components'
 import { serialiseUnit } from 'Engine/units'
-import { memoizeWith } from 'ramda'
 import { useTranslation } from 'react-i18next'
-
-const NumberFormat = memoizeWith(
-	(...args) => JSON.stringify(args),
-	Intl.NumberFormat
-)
-
-export let numberFormatter = ({
-	style,
-	maximumFractionDigits,
-	minimumFractionDigits = 0,
-	language
-}) => value =>
-	NumberFormat(language, {
-		style,
-		currency: 'EUR',
-		maximumFractionDigits,
-		minimumFractionDigits
-	}).format(value)
+import { formatValue } from 'Engine/format'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
 
@@ -34,7 +16,7 @@ let style = customStyle => `
 		${customStyle}
 `
 
-export default ({
+export default function Value({
 	nodeValue: value,
 	unit,
 	nilValueSymbol,
@@ -43,10 +25,8 @@ export default ({
 	children,
 	negative,
 	customCSS = ''
-}) => {
-	const {
-		i18n: { language }
-	} = useTranslation()
+}) {
+	const { language } = useTranslation().i18n
 
 	/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
 	let nodeValue = value === undefined ? children : value
@@ -71,27 +51,14 @@ export default ({
 				nodeValue.nom
 			) : valueType === 'boolean' ? (
 				booleanTranslations[language][nodeValue]
-			) : unitText === '€' ? (
-				numberFormatter({
-					style: 'currency',
-					maximumFractionDigits,
-					minimumFractionDigits,
-					language
-				})(nodeValue)
-			) : unitText === '%' ? (
-				numberFormatter({ style: 'percent', maximumFractionDigits: 3 })(
-					nodeValue
-				)
 			) : (
-				<>
-					{numberFormatter({
-						style: 'decimal',
-						minimumFractionDigits,
-						maximumFractionDigits
-					})(nodeValue)}
-					&nbsp;
-					{unitText}
-				</>
+				formatValue({
+					minimumFractionDigits,
+					maximumFractionDigits,
+					language,
+					value: nodeValue,
+					unit: unitText
+				})
 			)
 
 	return nodeValue == undefined ? null : (

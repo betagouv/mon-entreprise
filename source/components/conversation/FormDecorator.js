@@ -14,7 +14,7 @@ to understand those precious higher order components.
 */
 
 export const FormDecorator = formType => RenderField =>
-	function({ fieldName, question, inversion, unit, ...otherProps }) {
+	function FormStep({ fieldName, question, inversion, unit, ...otherProps }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
 
@@ -26,12 +26,8 @@ export const FormDecorator = formType => RenderField =>
 				source
 			})
 		const setFormValue = value => {
-			dispatch(updateSituation(fieldName, normalize(value)))
+			dispatch(updateSituation(fieldName, value))
 		}
-
-		const format = x => (unit === '%' && x ? +(x * 100).toFixed(2) : x)
-		const normalize = x => (unit === '%' ? x / 100 : x)
-		const value = format(situation[fieldName])
 
 		return (
 			<div className={classNames('step', formType)}>
@@ -44,10 +40,9 @@ export const FormDecorator = formType => RenderField =>
 				<fieldset>
 					<RenderField
 						name={fieldName}
-						value={value}
+						value={situation[fieldName]}
 						setFormValue={setFormValue}
 						submit={submit}
-						format={format}
 						unit={unit}
 						{...otherProps}
 					/>

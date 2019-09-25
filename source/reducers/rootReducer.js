@@ -18,6 +18,7 @@ import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
 import { findRuleByDottedName } from 'Engine/rules'
+import { targetNamesSelector } from 'Selectors/analyseSelectors'
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
@@ -100,9 +101,16 @@ function conversationSteps(
 	return state
 }
 
-function updateSituation(situation, { fieldName, value, config }) {
-	const removePreviousTarget = config.objectifs.includes(fieldName)
-		? omit(config.objectifs)
+function updateSituation(situation, { fieldName, value, config, rules }) {
+	const goals = targetNamesSelector({ simulation: { config } }).filter(
+		dottedName => {
+			const target = rules.find(r => r.dottedName === dottedName)
+			const isSmallTarget = !target.question || !target.formule
+			return !isSmallTarget
+		}
+	)
+	const removePreviousTarget = goals.includes(fieldName)
+		? omit(goals)
 		: identity
 	return { ...removePreviousTarget(situation), [fieldName]: value }
 }
@@ -154,7 +162,8 @@ function simulation(state = null, action, rules) {
 				situation: updateSituation(state.situation, {
 					fieldName: action.fieldName,
 					value: action.value,
-					config: state.config
+					config: state.config,
+					rules
 				})
 			}
 		case 'UPDATE_PERIOD':
@@ -162,7 +171,7 @@ function simulation(state = null, action, rules) {
 				...state,
 				situation: updatePeriod(state.situation, {
 					toPeriod: action.toPeriod,
-					rules: rules
+					rules
 				})
 			}
 	}

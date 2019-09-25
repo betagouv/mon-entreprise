@@ -1,25 +1,9 @@
 import classnames from 'classnames'
 import React, { useRef, useState } from 'react'
+import { currencyFormat } from 'Engine/format'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
-
-let currencyFormat = language => ({
-	isCurrencyPrefixed: !!Intl.NumberFormat(language, {
-		style: 'currency',
-		currency: 'EUR'
-	})
-		.format(12)
-		.match(/€.*12/),
-
-	thousandSeparator: Intl.NumberFormat(language)
-		.format(1000)
-		.charAt(1),
-
-	decimalSeparator: Intl.NumberFormat(language)
-		.format(0.1)
-		.charAt(1)
-})
 
 export default function CurrencyInput({
 	value: valueProp = '',
@@ -38,6 +22,8 @@ export default function CurrencyInput({
 	// We need some mutable reference because the <NumberFormat /> component doesn't provide
 	// the DOM `event` in its custom `onValueChange` handler
 	const nextValue = useRef(null)
+
+	const inputRef = useRef()
 
 	// When the component is rendered with a new "value" prop, we reset our local state
 	if (valueProp !== initialValue) {
@@ -66,6 +52,7 @@ export default function CurrencyInput({
 		thousandSeparator,
 		decimalSeparator
 	} = currencyFormat(language)
+	console.log({ isCurrencyPrefixed })
 	// We display negative numbers iff this was the provided value (but we disallow the user to enter them)
 	const valueHasChanged = currentValue !== initialValue
 
@@ -76,7 +63,8 @@ export default function CurrencyInput({
 	return (
 		<div
 			className={classnames(className, 'currencyInput__container')}
-			{...(valueLength > 5 ? { style: { width } } : {})}>
+			{...(valueLength > 5 ? { style: { width } } : {})}
+			onClick={() => inputRef.current.focus()}>
 			{!currentValue && isCurrencyPrefixed && currencySymbol}
 			<NumberFormat
 				{...forwardedProps}
@@ -85,6 +73,7 @@ export default function CurrencyInput({
 				allowNegative={!valueHasChanged}
 				className="currencyInput__input"
 				inputMode="numeric"
+				getInputRef={inputRef}
 				prefix={
 					isCurrencyPrefixed && currencySymbol ? `${currencySymbol} ` : ''
 				}

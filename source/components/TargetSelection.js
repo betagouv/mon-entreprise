@@ -12,6 +12,7 @@ import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { formatCurrency } from 'Engine/format'
 import {
 	analysisWithDefaultsSelector,
 	useSituation,
@@ -178,7 +179,7 @@ const Target = ({ target, initialRender }) => {
 							<InputSuggestions
 								suggestions={target.suggestions}
 								onFirstClick={value => {
-									dispatch(updateSituation(target.dottedName, '' + value))
+									dispatch(updateSituation(target.dottedName, value))
 								}}
 								rulePeriod={target.période}
 								colouredBackground={true}
@@ -206,26 +207,15 @@ let Header = withSitePaths(({ target, sitePaths }) => {
 	)
 })
 
-export const formatCurrency = (value, language) => {
-	return value == null
-		? ''
-		: Intl.NumberFormat(language, {
-				style: 'currency',
-				currency: 'EUR',
-				maximumFractionDigits: 0,
-				minimumFractionDigits: 0
-		  })
-				.format(value)
-				.replace(/^€/, '€ ')
-}
-
 let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
-	const { i18n } = useTranslation()
+	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColoursContext)
 	const dispatch = useDispatch()
-	const situationValue = useSituationValue(target.dottedName)
+	const situationValue = Math.round(useSituationValue(target.dottedName))
 	const targetWithValue = useTarget(target.dottedName)
-	const value = targetWithValue?.nodeValue?.toFixed(0)
+	const value = targetWithValue?.nodeValue
+		? Math.round(targetWithValue?.nodeValue)
+		: undefined
 	const inversionFail = useSelector(
 		state => analysisWithDefaultsSelector(state)?.cache.inversionFail
 	)
@@ -250,33 +240,26 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 							isActiveInput || isNil(value) ? 'targetInput' : 'editableTarget'
 						}
 						onChange={evt =>
-							dispatch(updateSituation(target.dottedName, evt.target.value))
+							dispatch(
+								updateSituation(target.dottedName, Number(evt.target.value))
+							)
 						}
-						onBlur={event => event.preventDefault()}
-						// We use onMouseDown instead of onClick because that's when the browser moves the cursor
-						onMouseDown={() => {
+						onFocus={() => {
 							if (isSmallTarget) return
 							dispatch({
 								type: 'SET_ACTIVE_TARGET_INPUT',
 								name: target.dottedName
 							})
-							// TODO: This shouldn't be necessary: we don't need to recalculate the situation
-							// when the user just focus another field. Removing this line is almost working
-							// however there is a weird bug in the selection of the next question.
-							if (value) {
-								dispatch(updateSituation(target.dottedName, '' + value))
-							}
 						}}
-						{...(isActiveInput ? { autoFocus: true } : {})}
-						language={i18n.language}
+						language={language}
 					/>
 					<span className="targetInputBottomBorder">
-						{formatCurrency(value, i18n.language)}
+						{formatCurrency(value, language)}
 					</span>
 				</>
 			) : (
 				<span>
-					{Number.isNaN(value) ? '—' : formatCurrency(value, i18n.language)}
+					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
 			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}

@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { formatPercentage } from 'Engine/format'
 import './PercentageField.css'
 
 export default function PercentageField({ onChange, value, debounce }) {
@@ -25,7 +26,7 @@ export default function PercentageField({ onChange, value, debounce }) {
 				max="1"
 			/>
 			<span style={{ display: 'inline-block', width: '3em' }}>
-				{Math.round(localValue * 100)} %
+				{formatPercentage(localValue)} %
 			</span>
 		</div>
 	)

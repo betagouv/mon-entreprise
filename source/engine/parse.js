@@ -44,6 +44,7 @@ import {
 	mecanismSynchronisation
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
+import { formatValue } from 'Engine/format'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
@@ -159,7 +160,11 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 				nodeValue: v.nodeValue,
 				unit: v.unit,
 				// eslint-disable-next-line
-				jsx: () => <span className={v.type}>{v.nodeValue}</span>
+				jsx: () => (
+					<span className={v.type}>
+						{formatValue({ unit: v.unit, value: v.nodeValue })}
+					</span>
+				)
 			})
 		},
 		action = propOr(mecanismError, k, dispatch)
