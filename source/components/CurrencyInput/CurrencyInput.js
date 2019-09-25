@@ -1,25 +1,9 @@
 import classnames from 'classnames'
 import React, { useRef, useState } from 'react'
+import { currencyFormat } from 'Engine/format'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
-
-let currencyFormat = language => ({
-	isCurrencyPrefixed: !!Intl.NumberFormat(language, {
-		style: 'currency',
-		currency: 'EUR'
-	})
-		.format(12)
-		.match(/€.*12/),
-
-	thousandSeparator: Intl.NumberFormat(language)
-		.format(1000)
-		.charAt(1),
-
-	decimalSeparator: Intl.NumberFormat(language)
-		.format(0.1)
-		.charAt(1)
-})
 
 export default function CurrencyInput({
 	value: valueProp = '',
@@ -68,6 +52,7 @@ export default function CurrencyInput({
 		thousandSeparator,
 		decimalSeparator
 	} = currencyFormat(language)
+	console.log({ isCurrencyPrefixed })
 	// We display negative numbers iff this was the provided value (but we disallow the user to enter them)
 	const valueHasChanged = currentValue !== initialValue
 

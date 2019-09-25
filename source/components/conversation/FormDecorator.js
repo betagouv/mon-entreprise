@@ -1,11 +1,9 @@
 import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
-import { getFormatersFromUnit } from 'Engine/format'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/analyseSelectors'
-import { useTranslation } from 'react-i18next'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -19,7 +17,6 @@ export const FormDecorator = formType => RenderField =>
 	function FormStep({ fieldName, question, inversion, unit, ...otherProps }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
-		const { language } = useTranslation().i18n
 
 		const submit = source =>
 			dispatch({
@@ -29,11 +26,8 @@ export const FormDecorator = formType => RenderField =>
 				source
 			})
 		const setFormValue = value => {
-			dispatch(updateSituation(fieldName, normalize(value)))
+			dispatch(updateSituation(fieldName, value))
 		}
-
-		const { format, normalize } = getFormatersFromUnit(unit, language)
-		const value = format(situation[fieldName])
 
 		return (
 			<div className={classNames('step', formType)}>
@@ -46,11 +40,9 @@ export const FormDecorator = formType => RenderField =>
 				<fieldset>
 					<RenderField
 						name={fieldName}
-						value={value}
+						value={situation[fieldName]}
 						setFormValue={setFormValue}
 						submit={submit}
-						format={format}
-						normalize={normalize}
 						unit={unit}
 						{...otherProps}
 					/>
