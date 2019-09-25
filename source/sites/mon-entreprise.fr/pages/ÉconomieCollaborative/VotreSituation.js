@@ -116,8 +116,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 					<>
 						<h2>Rien à faire</h2>
 						<p>
-							Vous n'avez pas besoin de déclarer vos revenu à l'administration
-							pour ces activités.
+							Vous n'avez pas besoin de déclarer vos revenus pour ces activités.
 						</p>
 
 						<ActivitéList activités={déclarations.AUCUN} />
