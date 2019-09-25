@@ -1,4 +1,4 @@
-![La loi papier sur la page de droite du dessin de l'énorme livre de droit, sera (page de droite) augmentée par du code interprétable](https://raw.githubusercontent.com/betagouv/syso/master/source/sites/embauche.gouv.fr/images/logo.png)
+![logo mon-entreprise.fr](https://mon-entreprise.fr/images/logo.svg)
 
 This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [mon-entreprise.fr](https://mon-entreprise.fr).
 
