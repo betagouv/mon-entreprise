@@ -15,7 +15,7 @@ export default class Tracker {
 	previousPath: string
 
 	constructor(pushFunction: PushType = args => window._paq.push(args)) {
-		window._paq = window._paq || []
+		if (typeof window !== 'undefined') window._paq = window._paq || []
 		this.push = debounce(200, pushFunction)
 	}
 

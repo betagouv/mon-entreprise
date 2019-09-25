@@ -3,7 +3,8 @@ import { map } from 'ramda'
 
 export let capitalise0 = (name: string) => name[0].toUpperCase() + name.slice(1)
 
-export let getUrl = () => window.location.href.toString()
+export let getUrl = () =>
+	typeof window !== 'undefined' ? window.location.href.toString() : null
 
 export let parseDataAttributes = (value: any) =>
 	value === 'undefined'
@@ -17,7 +18,7 @@ export let parseDataAttributes = (value: any) =>
 
 export let getIframeOption = (optionName: string) => {
 	let url = getUrl(),
-		hasOption = url.includes(optionName + '=')
+		hasOption = url?.includes(optionName + '=')
 	return parseDataAttributes(
 		hasOption && url.split(optionName + '=')[1].split('&')[0]
 	)
