@@ -106,7 +106,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 		v = rawNode[k]
 
 	let knownOperations = {
-			'*': [multiply, '∗'],
+			'*': [multiply, '×'],
 			'/': [divide, '∕'],
 			'+': [add],
 			'-': [subtract, '−'],
