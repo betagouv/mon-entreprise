@@ -1203,9 +1203,6 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
 ? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
 : titre.en: flat-rate deduction for overtime
   titre.fr: déduction forfaitaire pour heures supplémentaires
-contrat salarié . cotisations . patronales . à payer:
-  titre.en: to be paid
-  titre.fr: à payer
 contrat salarié . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE

@@ -5,7 +5,7 @@
 @preprocessor esmodule
 
 @{%
-import {string, filteredVariable, variable, temporalVariable,  operation, boolean, number, percentage } from './grammarFunctions'
+import {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, percentage } from './grammarFunctions'
 
 const moo = require("moo");
 
@@ -23,14 +23,14 @@ const lexer = moo.compile({
   ')': ')',
   '[': '[',
   ']': ']',
-  comparisonOperator: ['>','<','>=','<=','=','!='],
-  additionSubstractionOperator: /[\+-]/,
-  multiplicationDivisionOperator: ['*','/'],
+  comparison: ['>','<','>=','<=','=','!='],
+  additionSubstraction: /[\+-]/,
+  multiplicationDivision: ['*','/'],
   temporality: ['annuel' , 'mensuel'],
   words: new RegExp(words),
   string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
   dot: ' . ',
-  _: { match: /[\s]/, lineBreaks: true }
+  space: { match: /[\s]+/, lineBreaks: true }
 });
 %}
 
@@ -40,6 +40,7 @@ main ->
     AdditionSubstraction {% id %}
   | Comparison {% id %}
   | NonNumericTerminal {% id %}
+  | Negation {% id %}
 
 NumericTerminal ->
 	 	Variable {% id %}
@@ -47,11 +48,14 @@ NumericTerminal ->
   | FilteredVariable {% id %}
   | number {% id %}
 
+Negation ->
+    "-" %space Parentheses {% unaryOperation('calculation') %}
 Parentheses ->
     "(" AdditionSubstraction ")"  {% ([,e]) => e %}
+  | "(" Negation ")" {% ([,e]) => e %}
   |  NumericTerminal               {% id %}
 
-Comparison -> Comparable %_ %comparisonOperator %_ Comparable {% operation('comparison')%}
+Comparison -> Comparable %space %comparison %space Comparable {% binaryOperation('comparison')%}
 
 Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 
@@ -65,22 +69,22 @@ Variable -> %words (%dot %words {% ([,words]) => words %}):* {% variable %}
 
 
 Filter -> "[" %words "]" {% ([,filter]) => filter %}
-FilteredVariable -> Variable %_ Filter {% filteredVariable %}
+FilteredVariable -> Variable %space Filter {% filteredVariable %}
 
 TemporalTransform -> "[" %temporality "]" {% ([,temporality]) => temporality %}
-TemporalVariable -> Variable %_ TemporalTransform {% temporalVariable %}
+TemporalVariable -> Variable %space TemporalTransform {% temporalVariable %}
 
 #-----
 
 # Addition and subtraction
 AdditionSubstraction ->
-    AdditionSubstraction %_ %additionSubstractionOperator %_ MultiplicationDivision  {%  operation('calculation') %}
+    AdditionSubstraction %space %additionSubstraction %space MultiplicationDivision  {%  binaryOperation('calculation') %}
   | MultiplicationDivision  {% id %}
 
 
 # Multiplication and division
 MultiplicationDivision ->
-    MultiplicationDivision %_ %multiplicationDivisionOperator %_ Parentheses  {% operation('calculation') %}
+    MultiplicationDivision %space %multiplicationDivision %space Parentheses  {% binaryOperation('calculation') %}
   | Parentheses   {% id %}
 
 
@@ -91,4 +95,5 @@ boolean ->
 number ->
     %number {% number %}
   | %percentage {% percentage %}
+
 string -> %string {% string %}

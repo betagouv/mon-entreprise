@@ -739,8 +739,8 @@
     - temps de travail . temps partiel
     - temps de travail . heures supplémentaires
     - statut JEI
-    - régime des impatriés
     - entreprise . association non lucrative
+    - régime des impatriés
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
@@ -1267,7 +1267,7 @@
       - CRDS
       - APEC [salarié]
       - complémentaire santé [salarié]
-      - réduction heures supplémentaires
+      - (- réduction heures supplémentaires)
 
 - espace: contrat salarié . cotisations
   nom: patronales
@@ -1299,6 +1299,7 @@
       - CDD . majoration chômage
       - CDD . CIF
       - forfait social
+      - (- réductions de cotisations)
 
 - espace: contrat salarié
   nom: rémunération
@@ -1322,7 +1323,12 @@
   période: flexible
   formule:
     allègement:
-      assiette: base
+      assiette:
+        somme:
+          - rémunération . net de cotisations
+          - avantages sociaux
+          - CSG [non déductible]
+          - CRDS
       abattement:
         somme:
           - indemnité kilométrique vélo
@@ -1351,16 +1357,6 @@
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-- espace: contrat salarié . rémunération . net imposable
-  nom: base
-  période: flexible
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - avantages sociaux
-      - CSG [non déductible]
-      - CRDS
-
 - espace: contrat salarié
   nom: prime d'impatriation
   description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
@@ -1369,10 +1365,14 @@
   unité: €
   formule:
     multiplication:
-      assiette: rémunération . net imposable . base
+      assiette:
+        somme:
+          - rémunération . net
+          - CSG [non déductible]
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+    Bofip: https://bofip.impots.gouv.fr/bofip/5677-PGP
 
 - espace: contrat salarié . rémunération
   nom: net
@@ -1722,15 +1722,16 @@
   unité: €
   période: flexible
   description: |
-    C'est la rémunération brute, plus les cotisations patronales, moins les réductions de cotisations sociales.
-
     C'est le total que l'employeur doit verser pour employer un salarié.
 
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
     Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer ce montant.
 
-  formule: rémunération . total sans réduction - cotisations . patronales . réductions de cotisations
+  formule:
+    somme:
+      - brut
+      - cotisations . patronales
 
 - espace: contrat salarié . cotisations . patronales
   nom: réductions de cotisations
@@ -1756,12 +1757,6 @@
   note: La déduction ne s’applique pas aux heures complémentaires
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
-
-- espace: contrat salarié . cotisations . patronales
-  nom: à payer
-  période: flexible
-  unité: €
-  formule: patronales - réductions de cotisations
 
 - espace: contrat salarié
   nom: réduction ACRE
@@ -1802,7 +1797,7 @@
     type: réduction de cotisations
   unité: €
   période: flexible
-  formule: 0 - rémunération . heures supplémentaires * taux des cotisations réduites
+  formule: rémunération . heures supplémentaires * taux des cotisations réduites
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
@@ -1825,15 +1820,6 @@
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
 
-- espace: contrat salarié . rémunération
-  nom: total sans réduction
-  période: flexible
-  titre: Rémunération totale sans réduction
-  type: salaire
-  formule:
-    somme:
-      - brut
-      - cotisations . patronales
 
 - espace: contrat salarié
   nom: cotisations
@@ -3831,11 +3817,6 @@
     - contrat salarié
 
 - espace: indépendant . cotisations et contributions
-  nom: cotisations à payer
-  période: flexible
-  formule: cotisations - réduction ACRE
-
-- espace: indépendant . cotisations et contributions
   nom: cotisations
   période: flexible
   références:
@@ -3853,9 +3834,10 @@
   nom: cotisations et contributions
   formule:
     somme:
-      - cotisations à payer
+      - cotisations
       - CSG et CRDS
       - formation professionnelle
+      - (- réduction ACRE)
   unité: €
   période: flexible
 

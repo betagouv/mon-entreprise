@@ -103,21 +103,13 @@ export default compose(
 						)
 					})}
 
-					<Line
-						negative
-						rule={getRule(
-							'contrat salarié . cotisations . patronales . réductions de cotisations'
-						)}
-					/>
-					<span />
-
 					{/* Total cotisation */}
 					<div className="payslip__total">
 						<Trans>Total des retenues</Trans>
 					</div>
 					<Value
 						nilValueSymbol="—"
-						{...getRule('contrat salarié . cotisations . patronales . à payer')}
+						{...getRule('contrat salarié . cotisations . patronales')}
 						unit="€"
 						className="payslip__total"
 					/>

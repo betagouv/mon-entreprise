@@ -112,6 +112,7 @@ const répartition = (analysis): ?Répartition => {
 	const getRule = getRuleFromAnalysis(analysis),
 		salaireNet = getRule('contrat salarié . rémunération . net'),
 		salaireChargé = getRule('contrat salarié . rémunération . total'),
+		cotisationsRule = getRule('contrat salarié . cotisations'),
 		réductionsDeCotisations = getRule(
 			'contrat salarié . cotisations . patronales . réductions de cotisations'
 		)
@@ -146,10 +147,8 @@ const répartition = (analysis): ?Répartition => {
 			)
 		)(répartitionMap),
 		// $FlowFixMe
-		total: compose(
-			reduce(mergeWith(add), 0),
-			Object.values
-		)(répartitionMap),
+		total: cotisationsRule.nodeValue,
+		cotisations: cotisationsRule,
 		cotisationMaximum: compose(
 			reduce(max, 0),
 			map(montant => montant.partPatronale + montant.partSalariale),

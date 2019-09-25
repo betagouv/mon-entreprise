@@ -2,10 +2,17 @@
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 import { parseUnit } from 'Engine/units'
 
-export let operation = operationType => ([A, , operator, , B]) => ({
+export let binaryOperation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {
 		operationType,
 		explanation: [A, B]
+	}
+})
+
+export let unaryOperation = operationType => ([operator, , A]) => ({
+	[operator]: {
+		operationType,
+		explanation: [number([{ value: '0' }]), A]
 	}
 })
 
