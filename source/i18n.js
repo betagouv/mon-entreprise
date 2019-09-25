@@ -11,7 +11,8 @@ import {
 
 let lang =
 	getIframeOption('lang') ||
-	queryString.parse(location.search)['lang'] ||
+	(typeof location !== 'undefined' &&
+		queryString.parse(location.search)['lang']) ||
 	parseDataAttributes(getFromSessionStorage('lang')) ||
 	'fr'
 
