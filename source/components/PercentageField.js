@@ -26,7 +26,7 @@ export default function PercentageField({ onChange, value, debounce }) {
 				max="1"
 			/>
 			<span style={{ display: 'inline-block', width: '3em' }}>
-				{formatPercentage(localValue)} %
+				{formatPercentage(localValue)}
 			</span>
 		</div>
 	)
