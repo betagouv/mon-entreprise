@@ -9,6 +9,8 @@ Or, aujourd'hui, c'est très difficile de le connaître : les données sont épa
 - le code doit être ouvert
 - le code doit être lisible, critiquable, modifiable.
 
+Ici, c'est le code du site en Javascript. Tout le contenu et les discussions autour des contribution s sur un autre dépot : [futureco-data](https://github.com/futureco-data).
+
 [Plus d'infos sur le projet](https://github.com/laem/futureco/blob/master/source/sites/publicodes/about.md).
 
 ## Et techniquement ?
