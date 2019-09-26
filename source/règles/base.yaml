@@ -1313,6 +1313,8 @@
   période: flexible
   formule: brut - cotisations . salariales
 
+
+
 - espace: contrat salarié . rémunération
   nom: net imposable
   titre: Salaire net imposable
@@ -1323,12 +1325,7 @@
   période: flexible
   formule:
     allègement:
-      assiette:
-        somme:
-          - rémunération . net de cotisations
-          - avantages sociaux
-          - CSG [non déductible]
-          - CRDS
+      assiette: base
       abattement:
         somme:
           - indemnité kilométrique vélo
@@ -1337,6 +1334,18 @@
           - heures supplémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+- espace: contrat salarié . rémunération . net imposable
+  nom: base
+  unité: €
+  période: flexible
+  description: Le net imposable avant les exonérations et déductions
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - avantages sociaux
+      - CSG [non déductible]
+      - CRDS
 
 - espace: contrat salarié . rémunération . net imposable
   nom: heures supplémentaires défiscalisées
@@ -1365,10 +1374,7 @@
   unité: €
   formule:
     multiplication:
-      assiette:
-        somme:
-          - rémunération . net
-          - CSG [non déductible]
+      assiette: rémunération . net imposable . base
       taux: 30%
   références:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
