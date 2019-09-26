@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import React, { Component } from 'react'
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import type { Tracker } from 'Components/utils/withTracker'
 import type { Location } from 'react-router-dom'
@@ -13,7 +13,7 @@ import type { ChildrenArray, Node, Element } from 'react'
 type OwnProps = {
 	children: ChildrenArray<Element<any>>,
 	to?: ?string,
-	title: Node,
+	title: Node
 }
 type Props = OwnProps & {
 	location: Location,

@@ -5,7 +5,6 @@ import { combineReducers } from 'redux'
 import type {
 	Action as CompanyStatusAction,
 	LegalStatusRequirements,
-	ExistingCompanyDetails,
 	State
 } from 'Types/companyTypes'
 import type { Action as CreationChecklistAction } from 'Types/companyCreationChecklistTypes'
@@ -30,10 +29,6 @@ function companyLegalStatus(
 			return { ...state, minorityDirector: action.minorityDirector }
 		case 'RESET_COMPANY_STATUS_CHOICE':
 			return action.answersToReset ? omit(action.answersToReset, state) : {}
-		case 'SAVE_EXISTING_COMPANY_DETAILS':
-			return action.details.apiDetails.nature_entrepreneur_individuel
-				? { ...state, soleProprietorship: true }
-				: state
 	}
 	return state
 }
@@ -89,33 +84,74 @@ function companyStatusChoice(state: ?string = null, action: Action) {
 	) {
 		return null
 	}
-	if (action.type === 'SAVE_EXISTING_COMPANY_DETAILS') {
-		return action.details.legalStatus || null
-	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
 		return state
 	}
 	return action.statusName
 }
 
-function existingCompanyDetails(
-	state: ?ExistingCompanyDetails = null,
-	action: Action
-): ?ExistingCompanyDetails {
-	switch (action.type) {
-		case 'SAVE_EXISTING_COMPANY_DETAILS':
-			return action.details
-		case 'RESET_EXISTING_COMPANY_DETAILS':
-			return null
-		default:
-			return state
+const infereLegalStatusFromCategorieJuridique = catégorieJuridique => {
+	/*
+	Nous utilisons le code entreprise pour connaitre le statut juridique
+	(voir https://www.insee.fr/fr/information/2028129)
+
+	En revanche, impossible de différencier EI et auto-entreprise
+	https://www.sirene.fr/sirene/public/question.action?idQuestion=2933
+	*/
+	if (!catégorieJuridique) {
+		return 'EI'
 	}
+	if (catégorieJuridique === '5498') {
+		return 'EURL'
+	}
+	if (catégorieJuridique.match(/^54..$/)) {
+		return 'SARL'
+	}
+	if (catégorieJuridique.match(/^55..$/)) {
+		return 'SA'
+	}
+	if (catégorieJuridique === '5720') {
+		return 'SASU'
+	}
+	if (catégorieJuridique.match(/^57..$/)) {
+		return 'SAS'
+	}
+	return 'NON_IMPLÉMENTÉ'
 }
+function existingCompany(
+	state: ?{
+		siren: string,
+		catégorieJuridique: ?string,
+		statutJuridique: string
+	} = null,
+	action
+) {
+	if (!action.type.startsWith('EXISTING_COMPANY::')) {
+		return state
+	}
+	if (action.type.endsWith('SET_SIREN')) {
+		return { siren: action.siren }
+	}
+	if (state && action.type.endsWith('SET_CATEGORIE_JURIDIQUE')) {
+		const statutJuridique = infereLegalStatusFromCategorieJuridique(
+			action.catégorieJuridique
+		)
+		return {
+			siren: state.siren,
+			statutJuridique
+		}
+	}
+	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {
+		return { ...state, isAutoEntrepreneur: action.isAutoEntrepreneur }
+	}
+	return state
+}
+
 // $FlowFixMe
 export default (combineReducers({
 	companyLegalStatus,
 	companyStatusChoice,
 	companyCreationChecklist,
-	existingCompanyDetails,
+	existingCompany,
 	hiringChecklist
 }): (State, Action) => State)

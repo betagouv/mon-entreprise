@@ -30,17 +30,6 @@ export type ChangeChecklistItemAction = {
 	name: string
 }
 
-export type ExistingCompanyDetails = {
-	siret: string,
-	effectif?: number,
-	localisation?: Object,
-	legalStatus?: LegalStatus,
-	apiDetails: { [string]: string }
-}
-export type SaveExistingCompanyDetailsAction = {
-	type: 'SAVE_EXISTING_COMPANY_DETAILS',
-	details: ExistingCompanyDetails
-}
 export type DirectorIsInAMinorityAction = {
 	type: 'SPECIFY_DIRECTORS_SHARE',
 	minorityDirector: ?boolean
@@ -66,7 +55,6 @@ export type State = {|
 		+autoEntrepreneur?: ?boolean,
 		+minorityDirector?: ?boolean
 	},
-	+existingCompanyDetails: ?ExistingCompanyDetails,
 	+companyStatusChoice: ?LegalStatus
 |}
 export type LegalStatusRequirements = $PropertyType<State, 'companyLegalStatus'>
@@ -75,7 +63,6 @@ export type Action =
 	| DefineDirectorStatusAction
 	| IsAutoentrepreneurAction
 	| CompanyHasMultipleAssociatesAction
-	| SaveExistingCompanyDetailsAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
 	| ResetExistingCompanyDetailsAction

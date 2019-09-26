@@ -38,8 +38,9 @@ export const fromBottom = ({
 			<animated.div
 				key={i}
 				style={{
-					transform: y.interpolate(y => `translate3d(0, ${y}px,0)`),
-
+					transform: y.interpolate(y =>
+						y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
+					),
 					...style,
 					...inheritedStyle
 				}}>

@@ -495,10 +495,8 @@ Démarches de création: Creation process checklist
 path:
   entreprise:
     index: '/company'
-    votreEntreprise: '/my-company'
     créer: '/create-a-{{companyStatus}}'
     devenirAutoEntrepreneur: '/become-{{autoEntrepreneur}}'
-    trouver: '/find'
     après: '/after-registration'
     statutJuridique:
       index: '/legal-status'

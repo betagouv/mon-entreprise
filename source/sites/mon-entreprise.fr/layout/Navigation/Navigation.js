@@ -20,7 +20,7 @@ type Props = OwnProps & {
 	hiringProgress: number,
 	companyStatusChoice: string
 }
-const StepsHeader = ({ sitePaths, companyStatusChoice }: Props) => {
+const Navigation = ({ sitePaths, companyStatusChoice }: Props) => {
 	const { t } = useTranslation()
 	return (
 		<SideBar>
@@ -188,11 +188,6 @@ const StepsHeader = ({ sitePaths, companyStatusChoice }: Props) => {
 											</ul>
 										</NavOpener>
 									</li>
-									<li>
-										<NavLink to={sitePaths.entreprise.trouver}>
-											<T k="trouver.titre">Retrouver mon entreprise</T>
-										</NavLink>
-									</li>
 								</ul>
 							</NavOpener>
 						</li>
@@ -288,4 +283,4 @@ export default (compose(
 		}),
 		{}
 	)
-)(StepsHeader): React$ComponentType<OwnProps>)
+)(Navigation): React$ComponentType<OwnProps>)

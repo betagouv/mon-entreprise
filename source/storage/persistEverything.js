@@ -1,23 +1,28 @@
 /* @flow */
 
 import type { Store } from 'redux'
+import { omit } from 'ramda'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
-import { omit } from 'ramda';
 import type { State } from 'Types/State'
 import type { Action } from 'Types/ActionsTypes'
 
-const VERSION = 1
+const VERSION = 2
 
 const LOCAL_STORAGE_KEY = 'mycompanyinfrance::persisted-everything:v' + VERSION
 
 type OptionsType = {
 	except?: Array<string>
 }
-export const persistEverything = (options?:OptionsType = {}) => (store: Store<State, Action>): void => {
+export const persistEverything = (options?: OptionsType = {}) => (
+	store: Store<State, Action>
+): void => {
 	const listener = () => {
 		const state = store.getState()
-		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(omit(options.except || [], state)))
+		safeLocalStorage.setItem(
+			LOCAL_STORAGE_KEY,
+			JSON.stringify(omit(options.except || [], state))
+		)
 	}
 	store.subscribe(debounce(1000, listener))
 }
