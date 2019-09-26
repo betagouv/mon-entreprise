@@ -1,11 +1,11 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import { formatPercentage } from 'Engine/format'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { BarèmeAttributes } from './Barème'
 import './Barème.css'
 import { Node } from './common'
+import { formatPercentage } from 'Engine/format'
 
 let Comp = function Barème({ nodeValue, explanation, unit }) {
 	return (
@@ -44,7 +44,7 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 									<b>
 										<Trans>Votre taux </Trans> :{' '}
 									</b>
-									{formatPercentage(explanation.taux)}
+									{formatPercentage(explanation.taux)} %
 								</span>
 							)}
 							{explanation.returnRate && (
