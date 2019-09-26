@@ -8,13 +8,12 @@ import AfterRegistration from './AfterRegistration'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import CreationChecklist from './CreationChecklist'
 import DefineDirectorStatus from './DirectorStatus'
-import Find from './Find'
 import Home from './Home'
 import MinorityDirector from './MinorityDirector'
 import NumberOfAssociate from './NumberOfAssociate'
 import PickLegalStatus from './PickLegalStatus'
 import SoleProprietorship from './SoleProprietorship'
-import YourCompany from './YourCompany'
+
 const withAnimation = Component => {
 	const AnimateRouteComponent = (...props) => (
 		<Animate.fromBottom>
@@ -28,21 +27,15 @@ const CreateMyCompany = ({
 	match,
 	location,
 	companyStatusChoice,
-	existingCompany,
 	sitePaths
 }) => {
 	return (
 		<>
 			<Animate.fromBottom>
 				<Switch>
-					<Route
-						path={sitePaths.entreprise.votreEntreprise}
-						component={YourCompany}
-					/>
 					{sitePaths.entreprise.créer(':status').map(path => (
 						<Route path={path} key={path} component={CreationChecklist} />
 					))}
-					<Route path={sitePaths.entreprise.trouver} component={Find} />
 					<Route
 						path={sitePaths.entreprise.après}
 						component={AfterRegistration}
@@ -51,13 +44,6 @@ const CreateMyCompany = ({
 						path={sitePaths.entreprise.statutJuridique.index}
 						component={Home}
 					/>
-					{existingCompany && (
-						<Redirect
-							exact
-							from={match.path}
-							to={sitePaths.entreprise.votreEntreprise}
-						/>
-					)}
 					{companyStatusChoice ? (
 						<Redirect
 							exact
@@ -105,8 +91,7 @@ const CreateMyCompany = ({
 
 export default compose(
 	connect(state => ({
-		companyStatusChoice: state.inFranceApp.companyStatusChoice,
-		existingCompany: state.inFranceApp.existingCompanyDetails
+		companyStatusChoice: state.inFranceApp.companyStatusChoice
 	})),
 	withSitePaths
 )(CreateMyCompany)

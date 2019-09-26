@@ -28,10 +28,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		index: '',
 		entreprise: {
 			index: t('path.entreprise.index', '/entreprise'),
-			votreEntreprise: t(
-				'path.entreprise.votreEntreprise',
-				'/votre-entreprise'
-			),
 			créer: (companyStatus: LegalStatus | ':status') =>
 				companyStatus === ':status'
 					? [
@@ -58,7 +54,6 @@ export const constructLocalizedSitePath = (language: string) => {
 							companyStatus
 					  }),
 
-			trouver: t('path.entreprise.trouver', '/retrouver-votre-entreprise'),
 			après: t('path.entreprise.après', '/après-la-création'),
 			statutJuridique: {
 				index: t('path.entreprise.statutJuridique.index', '/statut-juridique'),

@@ -1,10 +1,10 @@
 /* @flow */
 
+import { findRuleByDottedName } from 'Engine/rules'
 import {
 	compose,
 	defaultTo,
 	identity,
-	isNil,
 	lensPath,
 	omit,
 	over,
@@ -14,11 +14,11 @@ import {
 } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
+import { targetNamesSelector } from 'Selectors/analyseSelectors'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageReducer from './storageReducer'
-import { findRuleByDottedName } from 'Engine/rules'
-import { targetNamesSelector } from 'Selectors/analyseSelectors'
+
 import type { Action } from 'Types/ActionsTypes'
 
 function explainedVariable(state = null, { type, variableName = null }) {
@@ -188,26 +188,17 @@ const addAnswerToSituation = (dottedName, value, state) => {
 }
 
 const existingCompanyReducer = (state, action) => {
-	if (action.type !== 'SAVE_EXISTING_COMPANY_DETAILS') {
+	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
 	}
-	const details = action.details
-	let newState = state
-	if (details.localisation) {
-		newState = addAnswerToSituation(
+	if (action.type.endsWith('ADD_COMMUNE_DETAILS')) {
+		return addAnswerToSituation(
 			'établissement . localisation',
-			JSON.stringify(details.localisation),
-			newState
+			JSON.stringify(action.details.localisation),
+			state
 		)
 	}
-	if (!isNil(details.effectif)) {
-		newState = addAnswerToSituation(
-			'entreprise . effectif',
-			details.effectif,
-			newState
-		)
-	}
-	return newState
+	return state
 }
 
 export default reduceReducers(
