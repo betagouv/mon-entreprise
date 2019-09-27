@@ -52,7 +52,6 @@ export default function CurrencyInput({
 		thousandSeparator,
 		decimalSeparator
 	} = currencyFormat(language)
-	console.log({ isCurrencyPrefixed })
 	// We display negative numbers iff this was the provided value (but we disallow the user to enter them)
 	const valueHasChanged = currentValue !== initialValue
 

@@ -220,15 +220,6 @@ contrat salarié . CDD . prime de fin de contrat:
   description.fr: Somme versée en fin de CDD comme compensation de précarité.
   titre.en: End of contract bonus
   titre.fr: prime de fin de contrat
-contrat salarié . CDD . majoration chômage:
-  description.en: >-
-    Increase in employers' unemployment insurance contributions for short-term
-    fixed-term contracts ("CDD"). A priori until March 31, 2019.
-  description.fr: >-
-    Majoration des contributions patronales d’assurance chômage pour les
-    contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
-  titre.en: additional unemployment insurance
-  titre.fr: majoration chômage
 contrat salarié . ATMP:
   titre.en: Contribution for work accidents and occupational diseases
   titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles

@@ -87,6 +87,7 @@ let Component = function Barème({
 													explanation.assiette.unit,
 													explanation.multiplicateur?.unit
 												]),
+												resultUnit: explanation.assiette.unit,
 												trancheValue:
 													barèmeType === 'marginal'
 														? tranche.value
@@ -135,6 +136,7 @@ let Tranche = ({
 		montant
 	},
 	tranchesUnit,
+	resultUnit,
 	trancheValue,
 	showValues,
 	language
@@ -165,7 +167,7 @@ let Tranche = ({
 			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
 			{showValues && taux != null && (
 				<td key="value">
-					<NodeValuePointer data={trancheValue} unit={tranchesUnit} />
+					<NodeValuePointer data={trancheValue} unit={resultUnit} />
 				</td>
 			)}
 		</tr>

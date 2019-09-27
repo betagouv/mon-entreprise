@@ -340,64 +340,6 @@
     La prime de précarité n'est pas due si: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
     Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
 
-- espace: contrat salarié . CDD
-  nom: majoration chômage
-  période: flexible
-  cotisation:
-    dû par: employeur
-    type: majoration
-    destinataire: URSSAF
-    branche: assurance chômage
-
-  description: Majoration des contributions patronales d’assurance chômage pour les contrats à durée déterminée courts (CDD). A priori jusqu’au 31 mars 2019.
-
-  non applicable si: événement . poursuite du CDD en CDI
-  # En cas d’embauche sous CDI par l’employeur à l’issue d’un CDD entrant dans le champ de la majoration [...] l’employeur régularise sur sa déclaration suivant la date d’embauche sous CDI, les montants indûment versés au titre de la majoration CDD [...]
-
-  applicable si:
-    toutes ces conditions:
-      - durée contrat <= 3
-      - motif . classique . usage
-
-  formule:
-    multiplication:
-      assiette: cotisations . assiette
-      plafond: 4 * plafond sécurité sociale
-      taux: 0.5%
-
-  exemples:
-    - nom: salaire médian, accroissement d'activité, contrat de 1 mois
-      situation:
-        événement: non
-        CDD: oui
-        cotisations . assiette: 2300
-        motif: classique . accroissement activité
-        durée contrat: 1
-      valeur attendue: 0
-
-    - nom: salaire médian, motif CDD usage, contrat de 1 mois
-      situation:
-        événement: non
-        CDD: oui
-        cotisations . assiette: 2300
-        motif: classique . usage
-        durée contrat: 1
-        plafond sécurité sociale: 3269
-      valeur attendue: 11.5
-
-    - nom: durée de contrat de 4 mois -> non applicable
-      situation:
-        cotisations . assiette: 2300
-        durée contrat: 4
-      valeur attendue: null
-
-  références:
-    La majoration de la contribution chômage: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/la-majoration-de-la-contribution.html
-    Circulaire Unédic: http://www.unedic.org/sites/default/files/ci201317_1.pdf
-
-  note: |
-    - L'URSSAF liste à la fois des conditions pour "Les CDD concernés par l’application de la majoration" et pour "Les contrats de travail exclus de la majoration". Un doute persiste : difficile de savoir si les premières suffisent au calcul (donc que les deuxièmes sont là pour enlever les doutes) ou si les deuxièmes peuvent faire exception...
-
 - espace: contrat salarié
   nom: ATMP
   titre: Cotisation Accidents du Travail et Maladies Professionnelles
@@ -710,17 +652,15 @@
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
       - CIF
-      - majoration chômage
   exemples:
     - nom: 'exemple 1'
       situation:
         CDD: oui
         indemnités salarié CDD: 100
         CIF: 100
-        majoration chômage: 90
         prime de fin de contrat: 60.4
         compensation pour congés non pris: 39.6
-      valeur attendue: 290
+      valeur attendue: 200
 
 - espace: contrat salarié
   nom: assimilé salarié
@@ -733,6 +673,7 @@
     - chômage
     - réduction générale
     - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
     - AGS
     - APEC
     - contribution au dialogue social
@@ -755,6 +696,7 @@
     - statut cadre
     - statut JEI
     - régime des impatriés
+    - temps de travail . temps partiel
 
 - espace: contrat salarié . apprentissage
   nom: diplôme préparé
@@ -822,9 +764,11 @@
     - statut JEI
     - réduction générale
     - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
     - contribution d'équilibre général
     - retraite complémentaire
     - chômage
+    - AGS
     - complémentaire santé
     - contribution au dialogue social
     - temps de travail . temps partiel
@@ -1296,7 +1240,6 @@
       - versement transport
       - taxe d'apprentissage
       - taxe sur les salaires
-      - CDD . majoration chômage
       - CDD . CIF
       - forfait social
       - (- réductions de cotisations)
@@ -2070,7 +2013,7 @@
   période: aucune
   formule:
     le minimum de:
-      - temps de travail [mensuel] / (base légale * 4.33)
+      - temps de travail [mensuel] / (base légale * période . semaines par mois)
       - 100%
   unité: '%'
 
@@ -2124,7 +2067,7 @@
         alors:
           barème:
             assiette: heures supplémentaires
-            multiplicateur: 4.33
+            multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 4
                 taux: 10%
@@ -2136,7 +2079,7 @@
       - sinon:
           barème:
             assiette: heures supplémentaires
-            multiplicateur: 4.33
+            multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 8
                 taux: 25%
@@ -2152,6 +2095,8 @@
   par défaut: non
   rend non applicable:
     - réduction générale
+    - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
 
 - espace: contrat salarié . statut JEI
   nom: exonération de cotisations
@@ -2202,15 +2147,15 @@
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         cotisations . assiette: 1521.22
-      valeur attendue: 427.31
+      valeur attendue: 488.91
     - nom: 'Salaire proche du SMIC'
       situation:
         cotisations . assiette: 1530
-      valeur attendue: 423.2
+      valeur attendue: 484.21
     - nom: 'Résiduelle pour un salaire médian'
       situation:
         cotisations . assiette: 2300
-      valeur attendue: 62.71
+      valeur attendue: 71.75
     - nom: 'Nulle au-dessus du plafond'
       situation:
         cotisations . assiette: 2434
@@ -2230,8 +2175,8 @@
   formule:
     variations:
       - si: entreprise . effectif < 20
-        alors: 0.2809
-      - sinon: 0.2849
+        alors: 0.3214
+      - sinon: 0.3254
 
 - espace: contrat salarié . réduction générale
   nom: assiette
@@ -2246,6 +2191,7 @@
       - part de la cotisation ATMP
       - retraite complémentaire [employeur]
       - contribution d'équilibre général [employeur]
+      - chômage [employeur]
   références:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
@@ -2812,13 +2758,14 @@
   période: aucune
   formule:
     variations:
-      - si:
-          toutes ces conditions:
-            - cotisations . assiette < plafond de réduction employeur
-            - statut JEI != oui
-            - assimilé salarié != oui
+      - si: taux réduit
         alors: 7%
       - sinon: 13%
+
+- espace: contrat salarié . maladie . taux employeur
+  nom: taux réduit
+  période: flexible
+  formule: cotisations . assiette < plafond de réduction employeur
 
 - espace: contrat salarié . maladie
   nom: taux salarié
