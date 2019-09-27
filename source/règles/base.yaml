@@ -733,6 +733,7 @@
     - chômage
     - réduction générale
     - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
     - AGS
     - APEC
     - contribution au dialogue social
@@ -822,6 +823,7 @@
     - statut JEI
     - réduction générale
     - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
     - contribution d'équilibre général
     - retraite complémentaire
     - chômage
@@ -2152,6 +2154,8 @@
   par défaut: non
   rend non applicable:
     - réduction générale
+    - allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
 
 - espace: contrat salarié . statut JEI
   nom: exonération de cotisations
@@ -2812,13 +2816,14 @@
   période: aucune
   formule:
     variations:
-      - si:
-          toutes ces conditions:
-            - cotisations . assiette < plafond de réduction employeur
-            - statut JEI != oui
-            - assimilé salarié != oui
+      - si: taux réduit
         alors: 7%
       - sinon: 13%
+
+- espace: contrat salarié . maladie . taux employeur
+  nom: taux réduit
+  période: flexible
+  formule: cotisations . assiette < plafond de réduction employeur
 
 - espace: contrat salarié . maladie
   nom: taux salarié
