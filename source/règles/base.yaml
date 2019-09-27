@@ -1183,6 +1183,16 @@
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
+- espace: contrat salarié . SMIC temps plein
+  nom: net imposable
+  période: mois
+  unité: €
+  description: Montant du SMIC net imposable
+  formule: 1247,55
+  note: Ce montant est codé en dur, il faudrait le calculer à partir du montant du SMIC brut
+  références:
+    barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
+
 - nom: SMIC horaire
   formule: 10.03
   unité: €/heures
@@ -1255,8 +1265,6 @@
   unité: €
   période: flexible
   formule: brut - cotisations . salariales
-
-
 
 - espace: contrat salarié . rémunération
   nom: net imposable
@@ -1767,7 +1775,6 @@
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
-
 
 - espace: contrat salarié
   nom: cotisations
@@ -3253,10 +3260,27 @@
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
   période: flexible
   formule:
-    somme:
-      - contrat salarié . rémunération . net imposable
-      - indépendant . revenu professionnel
-      - auto-entrepreneur . impôt . revenu imposable
+    allègement:
+      assiette:
+        somme:
+          - contrat salarié . rémunération . net imposable
+          - indépendant . revenu professionnel
+          - auto-entrepreneur . impôt . revenu imposable
+      abattement: abattement contrat court
+
+- espace: impôt . revenu imposable
+  nom: abattement contrat court
+  période: mois
+  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
+  applicable si:
+    toutes ces conditions:
+      - méthode de calcul . taux neutre
+      - contrat salarié . CDD
+      - contrat salarié . CDD . durée contrat <= 2
+  formule: 50% * contrat salarié . SMIC temps plein . net imposable [mois]
+  note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
+  références:
+    Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
 
 - espace: impôt
   nom: revenu abattu
