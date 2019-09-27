@@ -2074,7 +2074,7 @@
   période: aucune
   formule:
     le minimum de:
-      - temps de travail [mensuel] / (base légale * 4.33)
+      - temps de travail [mensuel] / (base légale * période . semaines par mois)
       - 100%
   unité: '%'
 
@@ -2128,7 +2128,7 @@
         alors:
           barème:
             assiette: heures supplémentaires
-            multiplicateur: 4.33
+            multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 4
                 taux: 10%
@@ -2140,7 +2140,7 @@
       - sinon:
           barème:
             assiette: heures supplémentaires
-            multiplicateur: 4.33
+            multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 8
                 taux: 25%
