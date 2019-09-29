@@ -1,5 +1,5 @@
 import LangSwitcher from 'Components/LangSwitcher'
-import marianneSvg from 'Images/marianne.svg'
+// import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -32,7 +32,9 @@ export default function IframeFooter() {
 				<a href="https://beta.gouv.fr" target="_blank">
 					<img
 						style={{ height: '2.5rem' }}
-						src={marianneSvg}
+						src={
+							'https://www.numerique.gouv.fr/assets/img/logos/Logo_de_la_Republique_francaise.png'
+						}
 						alt="un service de l’Etat français incubé par beta.gouv.fr"
 					/>
 				</a>
