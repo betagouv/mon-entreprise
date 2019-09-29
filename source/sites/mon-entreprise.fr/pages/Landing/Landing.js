@@ -37,7 +37,12 @@ export default withSitePaths(({ sitePaths }: Props) => {
 					href="https://beta.gouv.fr"
 					target="_blank"
 					className="landing-header__institutional-logo">
-					<img alt="logo marianne" src={marianneSvg} />
+					<img
+						alt="logo marianne"
+						src={
+							'https://www.numerique.gouv.fr/assets/img/logos/Logo_de_la_Republique_francaise.png'
+						}
+					/>
 				</a>
 				<a
 					href="https://www.urssaf.fr"
