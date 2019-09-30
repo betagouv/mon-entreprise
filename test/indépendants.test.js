@@ -1,9 +1,9 @@
 import { expect } from 'chai'
-import Syso from '../source/engine/index'
+import Lib from '../source/engine/index'
 
 describe('indeps', function() {
 	it('should compute income for indépendant', function() {
-		let values = Syso.evaluate(['revenu net après impôt'], {
+		let values = Lib.evaluate(['revenu net après impôt'], {
 			"entreprise . chiffre d'affaires": 70000,
 			'entreprise . charges': 1000,
 			indépendant: 'oui',
