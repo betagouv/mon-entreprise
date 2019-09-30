@@ -1,11 +1,9 @@
-import { T } from 'Components'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import emoji from 'react-easy-emoji'
 
 export default function Privacy() {
-	const { i18n } = useTranslation()
 	return (
 		<>
 			<ScrollToTop />
@@ -34,10 +32,20 @@ export default function Privacy() {
 				Cette bibliothèque est un commun numérique développé par l'Etat et
 				l'ACOSS.
 			</p>
-			A venir : 
-			<h2>Démo très simple brut -> net</h2>
-			<h2>Démo de paie plus complète</h2>
-			<h2>Démo de graphique économico-journalistique</h2>
+			<h2>Comment l'utiliser ?</h2>
+			<p>
+				Les exemples suivants vous montrent comment utiliser la librairie sur un
+				site ReactJs très simple.
+			</p>
+			<h3>1) Exemple très simple de calcul brut -> net</h3>
+			<iframe
+				src="https://codesandbox.io/embed/damp-bird-0m8gl?fontsize=14&hidenavigation=1"
+				title="mon-entreprise 1"
+				allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+				css="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+				sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			<h2>(à venir) Démo de paie plus complète</h2>
+			<h2>(à venir) Démo de graphique économico-journalistique</h2>
 		</>
 	)
 }
