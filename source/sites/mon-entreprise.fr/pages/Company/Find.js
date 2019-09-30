@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 // $FlowFixMe
@@ -163,7 +162,6 @@ function Search({ sitePaths, onCompanyDetailsConfirmation }) {
 
 export default (compose(
 	withSitePaths,
-	withRouter,
 	connect(
 		null,
 		{

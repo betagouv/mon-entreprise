@@ -4,7 +4,6 @@ import { T } from 'Components'
 import { compose, contains, filter, reject, toPairs } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import {
 	currentQuestionSelector,
 	nextStepsSelector
@@ -60,18 +59,15 @@ const QuickLinks = ({
 	)
 }
 
-export default (compose(
-	withRouter,
-	connect(
-		(state, props) => ({
-			key: props.language,
-			currentQuestion: currentQuestionSelector(state),
-			nextSteps: nextStepsSelector(state),
-			quickLinks: state.simulation?.config.questions?.["à l'affiche"],
-			quickLinksToHide: state.conversationSteps.foldedSteps
-		}),
-		{
-			goToQuestion
-		}
-	)
+export default (connect(
+	(state, props) => ({
+		key: props.language,
+		currentQuestion: currentQuestionSelector(state),
+		nextSteps: nextStepsSelector(state),
+		quickLinks: state.simulation?.config.questions?.["à l'affiche"],
+		quickLinksToHide: state.conversationSteps.foldedSteps
+	}),
+	{
+		goToQuestion
+	}
 )(QuickLinks): React$ComponentType<OwnProps>)

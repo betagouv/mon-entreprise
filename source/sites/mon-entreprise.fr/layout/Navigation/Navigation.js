@@ -7,7 +7,6 @@ import hiringSvg from 'Images/hiring.svg'
 import { compose } from 'ramda'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import './Navigation.css'
 import NavOpener from './NavOpener'
@@ -282,7 +281,6 @@ const StepsHeader = ({ sitePaths, companyStatusChoice }: Props) => {
 }
 
 export default (compose(
-	withRouter,
 	withSitePaths,
 	connect(
 		state => ({

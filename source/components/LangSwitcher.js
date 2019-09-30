@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import emoji from 'react-easy-emoji'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 
 const languageCodeToEmoji = {
 	en: '🇬🇧',
@@ -11,7 +10,6 @@ const languageCodeToEmoji = {
 }
 
 export default compose(
-	withRouter,
 	withTranslation(),
 	connect(
 		null,

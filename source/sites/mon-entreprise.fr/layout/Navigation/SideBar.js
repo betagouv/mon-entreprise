@@ -4,20 +4,18 @@ import classnames from 'classnames'
 import withTracker from 'Components/utils/withTracker'
 import { compose } from 'ramda'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { withRouter } from 'react-router'
+import { useLocation } from 'react-router'
 import backSvg from './back.svg'
 import mobileMenuSvg from './mobile-menu.svg'
 import './SideBar.css'
 import type Tracker from '../../../../Tracker'
-import type { Location } from 'react-router-dom'
 
 type OwnProps = {|
 	children: React$Node
 |}
 
 type Props = OwnProps & {
-	tracker: Tracker,
-	location: Location
+	tracker: Tracker
 }
 
 const bigScreen = window.matchMedia('(min-width: 1500px)')
@@ -31,7 +29,8 @@ const isParent = (parentNode, children) => {
 	return isParent(parentNode, children.parentNode)
 }
 
-function SideBar({ location, tracker, children }: Props) {
+function SideBar({ tracker, children }: Props) {
+	const location = useLocation()
 	const [opened, setOpened] = useState(false)
 	const [sticky, setSticky] = useState(bigScreen.matches)
 	const [previousLocation, setPreviousLocation] = useState(location)
@@ -89,7 +88,4 @@ function SideBar({ location, tracker, children }: Props) {
 	)
 }
 
-export default (compose(
-	withTracker,
-	withRouter
-)(SideBar): React$ComponentType<OwnProps>)
+export default (compose(withTracker)(SideBar): React$ComponentType<OwnProps>)
