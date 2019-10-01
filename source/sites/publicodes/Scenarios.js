@@ -9,7 +9,7 @@ export default () => {
 
 	return (
 		<section id="scenarios">
-			<h1>Quel futur souhaitez vous ?</h1>
+			<h1>Le crédit carbone personnel</h1>
 			<p>
 				Le jeu est simple : plus on émet de gaz à effet de serre, plus on se
 				dirige vers une catastrophe climatique. Ces émissions se mesurent en{' '}
@@ -25,9 +25,11 @@ export default () => {
 					crédit carbone !
 				</em>
 			</p>
+			<h2>Quel futur souhaitez vous ?</h2>
 			<p>
-				Mais quelle doit être cette limite par personne ? Voici trois scénarios,
-				à vous de choisir ! &nbsp;{emoji('👇')}
+				L'évolution du climat, et donc notre futur, est directement lié à la
+				somme de toutes nos émissions de carbone individuelles. Voici trois
+				scénarios, à vous de choisir ! &nbsp;{emoji('👇')}
 			</p>
 			<ul
 				css={`

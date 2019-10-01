@@ -37,10 +37,9 @@ export default withRouter(({ location }) => {
 			{displayIntro && (
 				<p
 					id="intro"
-					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em">
-					La catastrophe climatique n'est plus une menace lointaine, c'est une
-					actualité.&nbsp;
-					<Link to="/à-propos">En savoir plus</Link>. Que faire ?
+					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em; ">
+					La catastrophe climatique n'est plus qu'une menace lointaine, c'est
+					une actualité.&nbsp;<Link to="/à-propos">En savoir plus</Link>.
 				</p>
 			)}
 			<div

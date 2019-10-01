@@ -34,7 +34,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 				{filteredRules.length ? (
 					input && <h2 css="font-size: 100%;">Résultats :</h2>
 				) : (
-					<p>Rien trouvé {emoji('😶')}. </p>
+					<p>Rien trouvé {emoji('😶')}</p>
 				)}
 				{filteredRules && (
 					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
