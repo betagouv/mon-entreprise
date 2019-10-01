@@ -1,8 +1,9 @@
 import React from 'react'
 
-let {
+export const ShowValuesContext = React.createContext(false)
+
+const {
 	Consumer: ShowValuesConsumer,
 	Provider: ShowValuesProvider
-} = React.createContext(false)
-
+} = ShowValuesContext
 export { ShowValuesConsumer, ShowValuesProvider }

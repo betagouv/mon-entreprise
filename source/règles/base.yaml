@@ -1183,6 +1183,16 @@
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
+- espace: contrat salarié . SMIC temps plein
+  nom: net imposable
+  période: mois
+  unité: €
+  description: Montant du SMIC net imposable
+  formule: 1247,55
+  note: Ce montant est codé en dur, il faudrait le calculer à partir du montant du SMIC brut
+  références:
+    barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
+
 - nom: SMIC horaire
   formule: 10.03
   unité: €/heures
@@ -1255,8 +1265,6 @@
   unité: €
   période: flexible
   formule: brut - cotisations . salariales
-
-
 
 - espace: contrat salarié . rémunération
   nom: net imposable
@@ -1360,7 +1368,7 @@
 
   formule: net - impôt
 
-- espace: impôt . impôt sur le revenu au taux neutre
+- espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
   période: mois
@@ -1448,7 +1456,7 @@
         - au-dessus de: 52300
           taux: 43%
 
-- espace: impôt . impôt sur le revenu au taux neutre
+- espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
   période: mois
@@ -1537,11 +1545,10 @@
           taux: 43%
 
 - espace: impôt
-  nom: impôt sur le revenu au taux neutre
+  nom: taux neutre d'impôt sur le revenu
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  unité: €
   période: mois
   formule:
     variations:
@@ -1768,7 +1775,6 @@
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
-
 
 - espace: contrat salarié
   nom: cotisations
@@ -3179,15 +3185,23 @@
       - variations:
           - si: méthode de calcul . barème standard
             alors: impôt sur le revenu à payer
-          - si: méthode de calcul . taux neutre
-            alors: impôt sur le revenu au taux neutre
-          - si: méthode de calcul . taux personnalisé
+          - si: méthode de calcul . prélèvement à la source
             alors:
               multiplication:
                 assiette: revenu imposable
-                taux: taux personnalisé
+                taux: taux du prélèvement à la source
       - CEHR
       - auto-entrepreneur . impôt . versement libératoire . montant
+
+- espace: impôt
+  nom: taux du prélèvement à la source
+  période: flexible
+  formule:
+    variations:
+      - si: méthode de calcul . taux neutre
+        alors: taux neutre d'impôt sur le revenu
+      - si: méthode de calcul . taux personnalisé
+        alors: taux personnalisé
 
 - espace: impôt
   nom: méthode de calcul
@@ -3233,16 +3247,40 @@
   description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
   formule: impôt . méthode de calcul = 'barème standard'
 
+- espace: impôt . méthode de calcul
+  nom: prélèvement à la source
+  formule:
+    une de ces conditions:
+      - taux neutre
+      - taux personnalisé
+
 - espace: impôt
   nom: revenu imposable
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
   période: flexible
   formule:
-    somme:
-      - contrat salarié . rémunération . net imposable
-      - indépendant . revenu professionnel
-      - auto-entrepreneur . impôt . revenu imposable
+    allègement:
+      assiette:
+        somme:
+          - contrat salarié . rémunération . net imposable
+          - indépendant . revenu professionnel
+          - auto-entrepreneur . impôt . revenu imposable
+      abattement: abattement contrat court
+
+- espace: impôt . revenu imposable
+  nom: abattement contrat court
+  période: mois
+  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
+  applicable si:
+    toutes ces conditions:
+      - méthode de calcul . taux neutre
+      - contrat salarié . CDD
+      - contrat salarié . CDD . durée contrat <= 2
+  formule: 50% * contrat salarié . SMIC temps plein . net imposable [mois]
+  note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
+  références:
+    Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
 
 - espace: impôt
   nom: revenu abattu
