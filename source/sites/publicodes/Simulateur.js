@@ -2,7 +2,6 @@ import Simulation from 'Components/Simulation'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { React, emoji } from 'Components'
 import { Helmet } from 'react-helmet'
-import ImpactCard from './ImpactCard'
 import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { connect } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -10,9 +9,11 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import ShareButton from 'Components/ShareButton'
 import { Markdown } from 'Components/utils/markdown'
 import { EndingCongratulations } from 'Components/conversation/Conversation'
+import ImpactCard from './ImpactCard'
 
 export default connect(state => ({
-	rules: flatRulesSelector(state)
+	rules: flatRulesSelector(state),
+	scenario: state.scenario
 }))(props => {
 	let objectif = props.match.params.name,
 		decoded = decodeRuleName(objectif),
@@ -25,10 +26,6 @@ export default connect(state => ({
 					<title>{rule.title}</title>
 					<meta name="description" content="DESCRIPTION" />
 				</Helmet>
-				<h1>
-					{rule.icônes && emoji(rule.icônes + ' ')}
-					{rule.title}
-				</h1>
 				<Simulation
 					noFeedback
 					noProgressMessage

@@ -12,7 +12,9 @@ export default withSitePaths(
 			<div
 				css={`
 					font-size: 85%;
-					color: #444;
+					a {
+						color: inherit;
+					}
 				`}>
 				<div>
 					Soit <strong>{value}</strong> {unit}

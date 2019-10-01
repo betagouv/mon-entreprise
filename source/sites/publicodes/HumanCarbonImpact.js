@@ -4,6 +4,7 @@ import { mapObjIndexed, toPairs } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import CarbonImpact from './CarbonImpact'
 
 let limitPerPeriod = scenario =>
 	mapObjIndexed(
@@ -14,13 +15,13 @@ let limitPerPeriod = scenario =>
 		}
 	)
 
-let find = (scenario, nodeValue) =>
+let findPeriod = (scenario, nodeValue) =>
 	toPairs(limitPerPeriod(scenario)).find(
 		([, limit]) => limit <= Math.abs(nodeValue)
 	)
 
 let humanCarbonImpactData = (scenario, nodeValue) => {
-	let [closestPeriod, closestPeriodValue] = find(scenario, nodeValue),
+	let [closestPeriod, closestPeriodValue] = findPeriod(scenario, nodeValue),
 		factor = Math.round(nodeValue / closestPeriodValue),
 		closestPeriodLabel = closestPeriod.startsWith('demi')
 			? closestPeriod.replace('demi', 'demi-')
@@ -29,7 +30,7 @@ let humanCarbonImpactData = (scenario, nodeValue) => {
 	return { closestPeriod, closestPeriodValue, closestPeriodLabel, factor }
 }
 
-export default ({ scenario, nodeValue }) => {
+export default ({ scenario, nodeValue, formule, showCarbon, dottedName }) => {
 	let { closestPeriodLabel, closestPeriod, factor } = humanCarbonImpactData(
 		scenario,
 		nodeValue
@@ -40,9 +41,7 @@ export default ({ scenario, nodeValue }) => {
 				border-radius: 6px;
 				background: var(--colour);
 				padding: 1em;
-				width: 18em;
 				margin: 0 auto;
-				margin-bottom: 0.6em;
 				color: var(--textColour);
 			`}>
 			{closestPeriodLabel === 'négligeable' ? (
@@ -52,6 +51,7 @@ export default ({ scenario, nodeValue }) => {
 					<div
 						css={`
 							font-size: 220%;
+							margin-bottom: 0.25rem;
 						`}>
 						{factor +
 							' ' +
@@ -67,6 +67,7 @@ export default ({ scenario, nodeValue }) => {
 					</Link>
 				</>
 			)}
+			{showCarbon && <CarbonImpact {...{ nodeValue, formule, dottedName }} />}
 		</div>
 	)
 }
