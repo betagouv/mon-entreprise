@@ -47,11 +47,11 @@ export default () => {
 							width: 16vw;
 							min-width: 16em;
 							margin: 1em;
-							border: 2px solid var(--colour);
+							border: 1px solid #eee;
 
 							h2 {
 								margin-top: 0;
-								font-size: 130%;
+								font-size: 125%;
 							}
 							p {
 								font-style: italic;
@@ -66,6 +66,13 @@ export default () => {
 								background: var(--colour);
 								color: var(--textColour);
 							}
+
+							${state.scenario === nom
+								? `
+								border: 3px solid var(--colour)
+								
+							`
+								: ``}
 						`}>
 						<label>
 							<input
