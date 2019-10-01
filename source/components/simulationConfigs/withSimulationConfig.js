@@ -2,7 +2,6 @@ import { resetSimulation, setSimulationConfig } from 'Actions/actions'
 import { compose } from 'ramda'
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { noUserInputSelector } from 'Selectors/analyseSelectors'
 
 export default config => SimulationComponent =>
@@ -16,8 +15,7 @@ export default config => SimulationComponent =>
 				setSimulationConfig,
 				resetSimulation
 			}
-		),
-		withRouter
+		)
 	)(function DecoratedSimulation(props) {
 		if (config !== props.config) {
 			props.setSimulationConfig(config)

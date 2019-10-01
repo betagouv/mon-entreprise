@@ -8,7 +8,6 @@ import estimateSvg from 'Images/estimate.svg'
 import hiringSvg from 'Images/hiring.svg'
 import { compose } from 'ramda'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { régimeSelector } from 'Selectors/companyStatusSelectors'
 import './Header.css'
@@ -65,7 +64,6 @@ const StepsHeader = ({ showHiring, tracker, sitePaths }: Props) => (
 
 export default (compose(
 	withTracker,
-	withRouter,
 	connect(
 		state => ({ showHiring: régimeSelector(state) !== 'auto-entrepreneur' }),
 		{}

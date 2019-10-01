@@ -7,26 +7,14 @@ import { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 // $FlowFixMe
 import 'react-select/dist/react-select.css'
 import './Find.css'
 import { CompanyDetails as Company } from './YourCompany'
-import type { SitePaths } from 'Components/utils/withSitePaths'
-import type { TFunction } from 'react-i18next'
-import type { RouterHistory } from 'react-router'
 
-type State = {
-	input: ?{ [string]: string }
-}
 type OwnProps = {}
-type Props = {
-	history: RouterHistory,
-	t: TFunction,
-	sitePaths: SitePaths
-}
 
 const isSIREN = (input: string) => input.match(/^ *([\d] *){9}$/)
 const isSIRET = (input: string) => input.match(/^ *([\d] *){14}$/)
@@ -67,6 +55,7 @@ async function getOptions(input: string) {
 		}
 		return { options: etablissements }
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.log(
 			"Erreur dans la recherche d'entreprise à partir du SIREN / nom",
 			error
@@ -163,7 +152,6 @@ function Search({ sitePaths, onCompanyDetailsConfirmation }) {
 
 export default (compose(
 	withSitePaths,
-	withRouter,
 	connect(
 		null,
 		{
