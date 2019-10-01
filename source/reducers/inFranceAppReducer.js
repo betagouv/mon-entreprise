@@ -98,7 +98,8 @@ const infereLegalStatusFromCategorieJuridique = catégorieJuridique => {
 	En revanche, impossible de différencier EI et auto-entreprise
 	https://www.sirene.fr/sirene/public/question.action?idQuestion=2933
 	*/
-	if (!catégorieJuridique) {
+
+	if (catégorieJuridique === '1000') {
 		return 'EI'
 	}
 	if (catégorieJuridique === '5498') {
@@ -129,6 +130,9 @@ function existingCompany(
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
 	}
+	if (action.type.endsWith('RESET')) {
+		return null
+	}
 	if (action.type.endsWith('SET_SIREN')) {
 		return { siren: action.siren }
 	}
@@ -144,6 +148,7 @@ function existingCompany(
 	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {
 		return { ...state, isAutoEntrepreneur: action.isAutoEntrepreneur }
 	}
+
 	return state
 }
 

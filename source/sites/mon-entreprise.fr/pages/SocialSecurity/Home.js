@@ -1,17 +1,20 @@
 /* @flow */
 
+import {
+	resetEntreprise,
+	specifyIfAutoEntrepreneur
+} from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
 import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import Video from './Video'
@@ -46,6 +49,7 @@ type Props = {
 	régime: 'indépendant' | 'assimilé-salarié' | 'auto-entrepreneur' | null,
 	sitePaths: Object
 }
+
 function SocialSecurity({ sitePaths }: Props) {
 	const { t } = useTranslation()
 	const company = useSelector(state => state.inFranceApp.existingCompany)
@@ -138,17 +142,52 @@ function SocialSecurity({ sitePaths }: Props) {
 
 const CompanySection = ({ company }) => {
 	const [searchModal, showSearchModal] = useState(false)
-	const companyRef = useRef(company)
+	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
+
+	const companyRef = useRef(null)
 	useEffect(() => {
 		if (companyRef.current !== company) {
 			companyRef.current = company
-			if (searchModal) {
+			if (searchModal && company) {
 				showSearchModal(false)
+			}
+			if (
+				company?.statutJuridique === 'EI' &&
+				company?.isAutoEntrepreneur == null
+			) {
+				showAutoEntrepreneurModal(true)
 			}
 		}
 	}, [company, searchModal])
+
+	const dispatch = useDispatch(company)
+	const handleAnswerAutoEntrepreneur = isAutoEntrepreneur => {
+		dispatch(specifyIfAutoEntrepreneur(isAutoEntrepreneur))
+		showAutoEntrepreneurModal(false)
+	}
+
 	return (
 		<>
+			{autoEntrepreneurModal && (
+				<>
+					<ScrollToTop />
+					<Overlay>
+						<h2> Êtes-vous auto-entrepreneur ? </h2>
+						<div className="ui__ answer-group">
+							<button
+								className="ui__ button"
+								onClick={() => handleAnswerAutoEntrepreneur(true)}>
+								Oui
+							</button>
+							<button
+								className="ui__ button"
+								onClick={() => handleAnswerAutoEntrepreneur(false)}>
+								Non
+							</button>
+						</div>
+					</Overlay>
+				</>
+			)}
 			{searchModal && (
 				<>
 					<ScrollToTop />
@@ -164,8 +203,11 @@ const CompanySection = ({ company }) => {
 					<br />
 					<button
 						className="ui__ simple small button"
-						onClick={() => showSearchModal(true)}>
-						Modifier
+						onClick={() => {
+							dispatch(resetEntreprise())
+							showSearchModal(true)
+						}}>
+						Changer
 					</button>
 				</>
 			) : (
@@ -192,4 +234,5 @@ const CompanySection = ({ company }) => {
 		</>
 	)
 }
-export default compose(withSitePaths)(SocialSecurity)
+
+export default withSitePaths(SocialSecurity)
