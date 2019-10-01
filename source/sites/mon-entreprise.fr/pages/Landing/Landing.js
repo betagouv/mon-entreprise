@@ -4,7 +4,7 @@ import { T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
-// import marianneSvg from 'Images/marianne.svg'
+import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -37,12 +37,7 @@ export default withSitePaths(({ sitePaths }: Props) => {
 					href="https://beta.gouv.fr"
 					target="_blank"
 					className="landing-header__institutional-logo">
-					<img
-						alt="logo marianne"
-						src={
-							'https://www.numerique.gouv.fr/assets/img/logos/Logo_de_la_Republique_francaise.png'
-						}
-					/>
+					<img alt="logo marianne" src={marianneSvg} />
 				</a>
 				<a
 					href="https://www.urssaf.fr"

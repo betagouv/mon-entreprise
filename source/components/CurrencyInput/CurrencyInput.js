@@ -82,6 +82,7 @@ export default function CurrencyInput({
 				}}
 				onChange={handleChange}
 				value={currentValue.toString().replace('.', decimalSeparator)}
+				autoComplete="off"
 			/>
 			{!isCurrencyPrefixed && <>&nbsp;€</>}
 		</div>

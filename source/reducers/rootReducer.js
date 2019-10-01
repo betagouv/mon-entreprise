@@ -179,9 +179,8 @@ function simulation(state = null, action, rules) {
 }
 
 const addAnswerToSituation = (dottedName, value, state) => {
-	const dottedPath = dottedName.split(' . ')
 	return compose(
-		set(lensPath(['form', 'conversation', 'values', ...dottedPath]), value),
+		set(lensPath(['simulation', 'situation', dottedName]), value),
 		over(lensPath(['conversationSteps', 'foldedSteps']), (steps = []) =>
 			uniq([...steps, dottedName])
 		)

@@ -60,6 +60,7 @@ export default compose(
 						debouncedSetFormValue(unit === '%' ? floatValue / 100 : floatValue)
 					}}
 					value={unit === '%' ? 100 * value : value}
+					autoComplete="off"
 				/>
 				{suffixed && (
 					<label className="suffix" htmlFor={'step-' + dottedName}>
