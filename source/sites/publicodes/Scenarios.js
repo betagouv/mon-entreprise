@@ -51,7 +51,7 @@ export default () => {
 
 							h2 {
 								margin-top: 0;
-								font-size: 140%;
+								font-size: 130%;
 							}
 							p {
 								font-style: italic;
@@ -82,6 +82,7 @@ export default () => {
 								<span>{emoji(s.icône)}</span>&nbsp;
 								{s.titre}
 							</h2>
+							<p>{s['sous-titre']}</p>
 							<div title="Réchauffement à la fin du siècle">
 								<strong>
 									{emoji('🌡️ ')} {s.réchauffement}
