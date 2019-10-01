@@ -42,6 +42,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 							<Suggestion
 								key={dottedName}
 								{...findRuleByDottedName(rules, dottedName)}
+								value={1.8}
 							/>
 						))}
 					</ul>
@@ -51,7 +52,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	}
 )
 
-let Suggestion = ({ dottedName, formule, title, icônes }) => {
+let Suggestion = ({ dottedName, formule, title, icônes, value }) => {
 	let hasFormule = formule != null
 
 	return (
@@ -105,25 +106,23 @@ let Suggestion = ({ dottedName, formule, title, icônes }) => {
 					{icônes && emoji(icônes + ' ')}
 				</div>
 				<span css="width: 100%">{title}</span>
-				{!hasFormule && (
-					<>
-						<div css="visibility: hidden">placeholder</div>
-						<div
-							css={`
-								position: absolute;
-								border-bottom-left-radius: 0.3rem;
-								border-bottom-right-radius: 0.3rem;
-								bottom: 0;
-								left: 0;
-								width: 100%;
-								background: var(--colour);
-								color: white;
-								font-size: 80%;
-							`}>
-							prochainement !
-						</div>
-					</>
-				)}
+				<>
+					<div css="visibility: hidden">placeholder</div>
+					<div
+						css={`
+							position: absolute;
+							border-bottom-left-radius: 0.3rem;
+							border-bottom-right-radius: 0.3rem;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							background: var(--colour);
+							color: white;
+							font-size: 80%;
+						`}>
+						{value}
+					</div>
+				</>
 			</li>
 		</Link>
 	)
