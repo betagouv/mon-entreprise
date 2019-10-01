@@ -46,14 +46,7 @@ function Distribution({
 		return null
 	}
 
-	const {
-		répartition,
-		cotisationMaximum,
-		total,
-		cotisations,
-		salaireChargé,
-		salaireNet
-	} = distribution
+	const { répartition, cotisationMaximum, total } = distribution
 	return (
 		<>
 			<div className="distribution-chart__container">
@@ -102,19 +95,6 @@ function Distribution({
 					}
 				)}
 			</div>
-			<div className="distribution-chart__total">
-				<span />
-				<RuleLink {...salaireNet} />
-				<Value {...salaireNet} unit="€" maximumFractionDigits={0} />
-				<span>+</span>
-				<RuleLink {...cotisations} />
-				<Value {...cotisations} unit="€" maximumFractionDigits={0} />
-				<span />
-				<div className="distribution-chart__total-border" />
-				<span>=</span>
-				<RuleLink {...salaireChargé} />
-				<Value {...salaireChargé} unit="€" maximumFractionDigits={0} />
-			</div>
 		</>
 	)
 }
@@ -126,7 +106,7 @@ export default compose(
 	}))
 )(Distribution)
 
-let ChartItemBar = ({ styles, colour, montant, total }) => (
+let ChartItemBar = ({ styles, colour, montant }) => (
 	<div className="distribution-chart__bar-container">
 		<div
 			className="distribution-chart__bar"
