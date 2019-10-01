@@ -4,6 +4,7 @@ import { findRuleByDottedName } from 'Engine/rules'
 import {
 	compose,
 	defaultTo,
+	dissoc,
 	identity,
 	lensPath,
 	omit,
@@ -186,6 +187,12 @@ const addAnswerToSituation = (dottedName, value, state) => {
 		)
 	)(state)
 }
+const removeAnswerFromSituation = (dottedName, state) => {
+	return compose(
+		over(lensPath(['simulation', 'situation']), dissoc(dottedName)),
+		over(lensPath(['conversationSteps', 'foldedSteps']), without([dottedName]))
+	)(state)
+}
 
 const existingCompanyReducer = (state, action) => {
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
@@ -197,6 +204,9 @@ const existingCompanyReducer = (state, action) => {
 			JSON.stringify(action.details.localisation),
 			state
 		)
+	}
+	if (action.type.endsWith('RESET')) {
+		removeAnswerFromSituation('établissement . localisation', state)
 	}
 	return state
 }

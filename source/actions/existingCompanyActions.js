@@ -26,3 +26,12 @@ export const setEntreprise = siren => async dispatch => {
 		details: communeDetails
 	})
 }
+
+export const specifyIfAutoEntrepreneur = isAutoEntrepreneur => ({
+	type: 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR',
+	isAutoEntrepreneur
+})
+
+export const resetEntreprise = () => ({
+	type: 'EXISTING_COMPANY::RESET'
+})

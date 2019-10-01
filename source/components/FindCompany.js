@@ -77,7 +77,8 @@ export default function Search() {
 							width: 100%;
 							padding: 0.4rem;
 							border-radius: 0.3rem;
-							:hover {
+							:hover,
+							:focus {
 								background-color: var(--lighterColour);
 							}
 						`}>

@@ -20,7 +20,7 @@ export default function CompanyDetails({ siren, denomination }) {
 	const [company, setCompany] = useState()
 	useEffect(() => {
 		fetchCompanyDetails(siren).then(setCompany)
-	}, [siren, company])
+	}, [siren])
 
 	return (
 		<>

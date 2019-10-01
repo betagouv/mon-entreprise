@@ -10,16 +10,18 @@ export default function Overlay({ onClose, children, ...otherProps }) {
 				<FocusTrap
 					focusTrapOptions={{
 						onDeactivate: onClose,
-						clickOutsideDeactivates: true
+						clickOutsideDeactivates: !!onClose
 					}}>
 					<div aria-modal="true" id="overlayContent" {...otherProps}>
 						{children}
-						<LinkButton
-							aria-label="close"
-							onClick={onClose}
-							id="overlayCloseButton">
-							×
-						</LinkButton>
+						{onClose && (
+							<LinkButton
+								aria-label="close"
+								onClick={onClose}
+								id="overlayCloseButton">
+								×
+							</LinkButton>
+						)}
 					</div>
 				</FocusTrap>
 			</animate.fromBottom>
