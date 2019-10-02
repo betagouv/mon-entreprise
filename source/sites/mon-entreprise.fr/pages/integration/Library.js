@@ -37,12 +37,14 @@ export default function Privacy() {
 				site ReactJs très simple.
 			</p>
 			<h3>1) Faire un calcul très simple : du brut au net</h3>
-			<iframe
-				src="https://codesandbox.io/embed/damp-bird-0m8gl?fontsize=14&hidenavigation=1"
-				title="mon-entreprise 1"
-				allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-				css="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-				sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			<div className="ui__ full-width">
+				<iframe
+					src="https://codesandbox.io/embed/damp-bird-0m8gl?fontsize=14&hidenavigation=1"
+					title="mon-entreprise 1"
+					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			</div>
 			<h3>2) Parcourir la documentation en ligne</h3>
 			<p>
 				Vous l'aurez constaté dans l'exemple précédent, la recette d'un calcul
@@ -91,12 +93,14 @@ export default function Privacy() {
 				.
 			</p>
 			<p>Voici ce que donne le calcul pour cet exemple plus complet :</p>
-			<iframe
-				src="https://codesandbox.io/embed/mon-entreprise-2-60d6d?fontsize=14&hidenavigation=1"
-				title="mon-entreprise 2"
-				allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-				css="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-				sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			<div className="ui__ full-width">
+				<iframe
+					src="https://codesandbox.io/embed/mon-entreprise-2-60d6d?fontsize=14&hidenavigation=1"
+					title="mon-entreprise 2"
+					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			</div>
 			<h2>(à venir) Démo de graphique économico-journalistique</h2>
 		</>
 	)
