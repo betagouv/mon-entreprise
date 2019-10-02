@@ -72,11 +72,13 @@ export default withSitePaths(({ sitePaths }: Props) => {
 					<h2>
 						<T>Que désirez-vous faire ?</T>
 					</h2>
-					<Link className="ui__ button-choice " to={sitePaths.entreprise.index}>
+					<Link
+						className="ui__ interactive card button-choice "
+						to={sitePaths.entreprise.index}>
 						{emoji('💡')} <T k="landing.choix1">Créer mon entreprise</T>
 					</Link>
 					<Link
-						className="ui__ button-choice "
+						className="ui__ interactive card button-choice "
 						to={sitePaths.sécuritéSociale.index}>
 						{emoji('💶')}{' '}
 						<T k="landing.choix2">
@@ -85,14 +87,14 @@ export default withSitePaths(({ sitePaths }: Props) => {
 						</T>
 					</Link>
 					<Link
-						className="ui__ button-choice"
+						className="ui__ interactive card button-choice"
 						to={sitePaths.démarcheEmbauche.index}>
 						{emoji('🤝')}{' '}
 						<T k="landing.choix3">Connaître les démarches d'embauche</T>
 					</Link>
 
 					{/*
-				<Link className="ui__ button-choice ui__ button-choice--soon" to={'/'}>
+				<Link className="ui__ interactive card button-choice ui__ interactive card button-choice--soon" to={'/'}>
 					{emoji('🌍')} Démarrer une activité en France en tant qu'entrepreneur
 					étranger
 				</Link> */}
