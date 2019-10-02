@@ -3278,6 +3278,7 @@
   applicable si:
     toutes ces conditions:
       - méthode de calcul . taux neutre
+      - contrat salarié
       - contrat salarié . CDD
       - contrat salarié . CDD . durée contrat <= 2
   formule: 50% * contrat salarié . SMIC temps plein . net imposable [mois]
