@@ -4,6 +4,7 @@
 	padding-left: 1rem;
 	padding-right: 1rem;
 	background: white;
+
 	user-select: text;
 	border-radius: 0.3rem;
 	transition: box-shadow 0.2s;
@@ -69,10 +70,16 @@
 	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
 		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
 		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
+	opacity: inherit !important;
+}
+.ui__.ui__.interactive.card:active {
+	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
 .ui__.card.box {
-	width: 14rem;
+	width: 14.4rem;
+	display: flex;
+	justify-content: center;
 	flex-direction: column;
 	text-align: center;
 	margin: 1rem;
@@ -80,8 +87,19 @@
 	padding-bottom: 1rem;
 	text-decoration: none;
 	color: inherit;
-	font-size: initial !important;
+	font-size: inherit !important;
 }
+.ui__.card.box .ui__.box-icon > img {
+	margin: 0.8rem !important;
+	transform: scale(1.5) translateY(0.1rem);
+}
+.ui__.card.box:active .ui__.box-icon > img {
+	transform: scale(1.5) translateY(0.1rem);
+}
+.ui__.card.box .ui__.big.box-icon > img {
+	transform: scale(2.3) translateY(0.1rem);
+}
+
 @media (max-width: 500px) {
 	.ui__.card.box {
 		width: 100%;

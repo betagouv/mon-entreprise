@@ -39,7 +39,7 @@ export default (function ActivitésSelection() {
 				</p>
 			</section>
 
-			<section className="ui__ full-width choice-group">
+			<section className="ui__ full-width light-bg">
 				<h2 className="ui__ container">
 					Quels types d'activités avez-vous exercé ?
 				</h2>
@@ -145,12 +145,6 @@ const ActivitéContent = ({
 			{plateformes.join(', ')}
 		</p>
 		{label && <div className="ui__ label"> {label}</div>}
-		<div
-			css="img {
-	margin: 0.8rem !important;
-	transform: scale(1.5) translateY(0.1em);
-}">
-			{emoji(icônes)}
-		</div>
+		<div className="ui__ box-icon">{emoji(icônes)}</div>
 	</>
 )

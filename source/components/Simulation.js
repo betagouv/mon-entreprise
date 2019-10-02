@@ -41,7 +41,7 @@ export default function Simulation({ explanations, customEndMessages }) {
 							)}
 							<SeeAnswersButton />
 						</div>
-						<div className="ui__ full-width choice-group">
+						<div className="ui__ full-width light-bg">
 							<div className="ui__ container">
 								<Controls />
 								<Conversation customEndMessages={customEndMessages} />
