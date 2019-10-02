@@ -1,5 +1,5 @@
 .ui__.inverted-button:not(:disabled):not(.disabled):active,
-.ui__.button:not(:disabled):not(.disabled):active {
+.ui__.button:not(:disabled):not(.disabled):not(.skip):not(.left):active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
@@ -10,6 +10,7 @@
 	padding: 0.6rem 1.2rem;
 	text-decoration: none;
 	border: 1px solid;
+	will-change: transform;
 	/* outline: none; */
 	line-height: initial;
 	display: inline-block;
@@ -179,7 +180,7 @@
 	opacity: 0.8;
 	transform: translateX(3px);
 }
-.ui__.skip.button.left:not(:disabled):not(.disabled):hover {
+.ui__.button.left:not(:disabled):not(.disabled):hover {
 	transform: translateX(-3px);
 }
 
@@ -190,7 +191,7 @@
 .ui__.skip.button:active {
 	animation: push-button-right 0.1s ease-out alternate-reverse 2;
 }
-.ui__.skip.button.left:active {
+.ui__.button.left:active {
 	animation: push-button-left 0.1s ease-out alternate-reverse 2;
 }
 
@@ -256,10 +257,10 @@
 
 @keyframes push-button-down {
 	from {
-		transform: translateY(3px);
+		transform: translate3d(0, 3px, 0);
 	}
 	to {
-		transform: translate3d(0);
+		transform: translate3d(0, 0, 0);
 	}
 }
 

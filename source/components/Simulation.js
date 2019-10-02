@@ -47,12 +47,12 @@ export default connect(state => ({
 							)}
 							<SeeAnswersButton />
 						</div>
-						<div className="ui__ full-width light-bg">
+						<section className="ui__ full-width light-bg">
 							<div className="ui__ container">
 								<Controls />
 								<Conversation customEndMessages={customEndMessages} />
 							</div>
-						</div>
+						</section>
 						{progress < 1 && (
 							<Progress progress={progress} className="ui__ full-width" />
 						)}

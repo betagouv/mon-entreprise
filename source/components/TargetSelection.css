@@ -8,7 +8,7 @@
 #targetSelection .targets {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	margin: -1rem 0;
 }
 
 #targetSelection .targets > li:first-child {

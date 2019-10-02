@@ -1,21 +1,20 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import RuleLink from 'Components/RuleLink'
+import Value from 'Components/Value'
+import { getRuleFromAnalysis } from 'Engine/rules'
 import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import './AnswerList.css'
 import {
 	analysisWithDefaultsSelector,
 	nextStepsSelector
 } from 'Selectors/analyseSelectors'
-import Value from 'Components/Value'
-
-import { getRuleFromAnalysis } from 'Engine/rules'
 import { softCatch } from '../../utils'
+import './AnswerList.css'
 
 const AnswerList = ({
 	folded,

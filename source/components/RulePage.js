@@ -74,7 +74,9 @@ const BackToSimulation = compose(
 	// Triggers rerender when the language changes
 	function BackToSimulation({ goBackToSimulation }) {
 		return (
-			<button className="ui__ simple small button" onClick={goBackToSimulation}>
+			<button
+				className="ui__ simple small left button"
+				onClick={goBackToSimulation}>
 				{emoji('⬅️')} <Trans i18nKey="back">Reprendre la simulation</Trans>
 			</button>
 		)
