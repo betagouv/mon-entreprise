@@ -73,13 +73,6 @@ const CreateMyCompany = ({
 					</Helmet>
 
 					<p>
-						<Link to={sitePaths.entreprise.trouver}>
-							<T k="formeJuridique.entreprise-déjà-crée">
-								J'ai déjà déclaré mon entreprise
-							</T>
-						</Link>
-					</p>
-					<p>
 						<T k="formeJuridique.intro">
 							Le droit des sociétés définit plus de 20 statuts juridiques
 							possibles pour déclarer une société avec différents acronymes et
