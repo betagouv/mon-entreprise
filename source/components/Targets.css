@@ -5,15 +5,7 @@
 	justify-content: center;
 	align-items: center;
 }
-#targets > .content {
-	border-radius: 6px;
-	background: var(--colour);
-	padding: 1em;
-	min-width: 16em;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+
 #targets > .icon {
 	margin: 0 0.6em;
 	font-size: 200%;

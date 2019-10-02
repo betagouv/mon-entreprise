@@ -71,6 +71,7 @@ export const ActivitéSelection = ({ activités, currentActivité }) => {
 						<ActivitéCard
 							key={title}
 							title={title}
+							interactive
 							selected={selected}
 							answered={answered}
 						/>
@@ -84,16 +85,18 @@ export const ActivitéSelection = ({ activités, currentActivité }) => {
 
 const activitéCardCss = `
 	width: 14rem;
-	justify-content: center;
 	flex-direction: column;
-	margin: 1rem !important;
+	margin: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	color: white;
 	font-size: initial! important;
 	@media(max-width: 500px) {
 		width: 100%
 	}
 `
 export const ActivitéCard = withSitePaths(
-	({ title, selected, answered, sitePaths, label }) => {
+	({ title, selected, interactive, answered, sitePaths, label }) => {
 		const { dispatch } = useContext(StoreContext)
 		const toggle = useCallback(
 			selected !== undefined
@@ -103,31 +106,35 @@ export const ActivitéCard = withSitePaths(
 			[dispatch, selected]
 		)
 
-		return (
-			<button
-				className={classnames('ui__ button-choice block', { selected })}
-				key={title}
-				tabIndex={-1}
-				css={activitéCardCss}
-				onClick={toggle}>
-				<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
-					{selected !== undefined && (
-						<div css="font-size: 1.5rem;">
-							<Checkbox name={title} id={title} checked={selected} readOnly />
-						</div>
-					)}
-					<ActivitéContent {...getActivité(title)} label={label} />
-					{answered && (
-						<Link
-							readOnly
-							onClick={e => e.stopPropagation()}
-							className="ui__ small simple button"
-							to={sitePaths.économieCollaborative.index + '/' + title}>
-							Modifier
-						</Link>
-					)}
-				</div>
-			</button>
+		return React.createElement(
+			interactive ? 'button' : 'div',
+			{
+				className: classnames('ui__ card ', {
+					selected,
+					interactive
+				}),
+				key: title,
+				tabIndex: -1,
+				css: activitéCardCss,
+				onClick: toggle
+			},
+			<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
+				{selected !== undefined && (
+					<div css="font-size: 1.5rem;">
+						<Checkbox name={title} id={title} checked={selected} readOnly />
+					</div>
+				)}
+				<ActivitéContent {...getActivité(title)} label={label} />
+				{answered && (
+					<Link
+						readOnly
+						onClick={e => e.stopPropagation()}
+						className="ui__ small simple button"
+						to={sitePaths.économieCollaborative.index + '/' + title}>
+						Modifier
+					</Link>
+				)}
+			</div>
 		)
 	}
 )
@@ -153,7 +160,7 @@ const ActivitéContent = ({
 		{label && <div className="ui__ button-choice-label"> {label}</div>}
 		<div
 			css="img {
-	margin: 1rem !important;
+	margin: 0.8rem !important;
 	transform: scale(1.5) translateY(0.1em);
 }">
 			{emoji(icônes)}

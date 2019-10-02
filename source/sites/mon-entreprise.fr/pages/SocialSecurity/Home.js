@@ -88,7 +88,7 @@ function SocialSecurity({ sitePaths }: Props) {
 					<div className="ui__ container">
 						{régime === 'auto-entrepreneur' ? (
 							<Link
-								className="ui__ button-choice "
+								className="ui__ interactive card button-choice "
 								to={sitePaths.sécuritéSociale['auto-entrepreneur']}>
 								{emoji('🚶')}{' '}
 								<T k="sécu.choix.auto-entrepreneur">
@@ -101,7 +101,7 @@ function SocialSecurity({ sitePaths }: Props) {
 									<T k="sécu.choix.titre">Que souhaitez-vous estimer ?</T>
 								</h2>
 								<Link
-									className="ui__ button-choice "
+									className="ui__ interactive card button-choice "
 									to={
 										régime
 											? sitePaths.sécuritéSociale[régime]
@@ -123,7 +123,7 @@ function SocialSecurity({ sitePaths }: Props) {
 										  )}
 								</Link>
 								<Link
-									className="ui__ button-choice "
+									className="ui__ interactive card button-choice "
 									to={sitePaths.sécuritéSociale.salarié}>
 									{emoji('👥')}{' '}
 									<T k="sécu.choix.employé">Le salaire d'un employé</T>

@@ -54,6 +54,10 @@ blockquote {
 	}
 }
 
+.ui__.light-bg {
+	background-color: var(--lighterColour) !important;
+}
+
 .ui__.choice-group {
 	background-color: var(--lightestColour);
 	padding: 1rem 0;

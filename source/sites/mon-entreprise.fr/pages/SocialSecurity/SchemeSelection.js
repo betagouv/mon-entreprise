@@ -22,7 +22,7 @@ const SchemeChoice = compose(
 		<p>
 			<Link
 				to={sitePaths.sécuritéSociale['assimilé-salarié']}
-				className="ui__ button-choice">
+				className="ui__ interactive card light-bg button-choice">
 				{emoji('☂')}
 				<span>
 					<T>Assimilé salarié</T>
@@ -37,7 +37,7 @@ const SchemeChoice = compose(
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale.indépendant}
-				className="ui__ button-choice">
+				className="ui__ interactive card light-bg button-choice">
 				{emoji('👩‍🔧')}
 				<span>
 					<T>Indépendant</T>
@@ -52,7 +52,7 @@ const SchemeChoice = compose(
 			</Link>
 			<Link
 				to={sitePaths.sécuritéSociale['auto-entrepreneur']}
-				className="ui__ button-choice">
+				className="ui__ interactive card light-bg button-choice">
 				{emoji('🚶‍♂️')}
 				Auto-entrepreneur
 			</Link>
