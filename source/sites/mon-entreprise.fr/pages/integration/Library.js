@@ -101,7 +101,7 @@ export default function Privacy() {
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
 					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 			</div>
-			<h2>(à venir) Démo de graphique économico-journalistique</h2>
+			<h2>(bientôt) Faire des de graphiques économiques</h2>
 		</>
 	)
 }
