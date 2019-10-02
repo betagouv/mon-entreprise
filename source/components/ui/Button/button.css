@@ -238,17 +238,7 @@
 .ui__.button-choice--soon img {
 	filter: saturate(0%);
 }
-.ui__.button-choice-label {
-	font-size: 80%;
-	padding: 0 0.8rem;
-	color: white;
-	background: gray;
-	margin-left: 0.8rem;
 
-	font-weight: 500;
-	opacity: 0.8;
-	border-radius: 0.3rem;
-}
 .ui__.button-choice img {
 	margin-right: 2rem !important;
 	margin-left: 0.5rem !important;
