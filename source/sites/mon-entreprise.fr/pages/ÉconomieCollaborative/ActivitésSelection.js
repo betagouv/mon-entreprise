@@ -83,20 +83,8 @@ export const ActivitéSelection = ({ activités, currentActivité }) => {
 	)
 }
 
-const activitéCardCss = `
-	width: 14rem;
-	flex-direction: column;
-	margin: 1rem;
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	color: white;
-	font-size: initial! important;
-	@media(max-width: 500px) {
-		width: 100%
-	}
-`
 export const ActivitéCard = withSitePaths(
-	({ title, selected, interactive, answered, sitePaths, label }) => {
+	({ title, selected, interactive, answered, sitePaths, label, className }) => {
 		const { dispatch } = useContext(StoreContext)
 		const toggle = useCallback(
 			selected !== undefined
@@ -109,13 +97,12 @@ export const ActivitéCard = withSitePaths(
 		return React.createElement(
 			interactive ? 'button' : 'div',
 			{
-				className: classnames('ui__ card ', {
+				className: classnames('ui__ card box', className, {
 					selected,
 					interactive
 				}),
 				key: title,
-				tabIndex: -1,
-				css: activitéCardCss,
+				...(interactive && { tabIndex: -1 }),
 				onClick: toggle
 			},
 			<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
@@ -157,7 +144,7 @@ const ActivitéContent = ({
 		<p css="flex: 1" className="ui__ notice">
 			{plateformes.join(', ')}
 		</p>
-		{label && <div className="ui__ button-choice-label"> {label}</div>}
+		{label && <div className="ui__ label"> {label}</div>}
 		<div
 			css="img {
 	margin: 0.8rem !important;

@@ -55,7 +55,7 @@ blockquote {
 }
 
 .ui__.light-bg {
-	background-color: var(--lighterColour) !important;
+	background-color: var(--lightestColour) !important;
 }
 
 .ui__.choice-group {
@@ -84,9 +84,6 @@ section.ui__:not(:first-of-type) {
 	}
 }
 
-.ui__ .colored-bg {
-	background: var(--lightestColour);
-}
 ul.ui__.no-bullet {
 	list-style: none;
 }
@@ -94,4 +91,13 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	content: '·';
 	margin: 0 0.3rem;
 	display: inline-block;
+}
+
+.ui__.label {
+	font-size: 85%;
+	padding: 0.4rem 0.8rem;
+	color: white;
+	background: var(--lighterTextColour);
+	border-radius: 0.3rem;
+	text-align: center;
 }

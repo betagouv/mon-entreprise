@@ -135,6 +135,7 @@ const ActivitéList = ({ activités }) => {
 				<ActivitéCard
 					key={title}
 					title={title}
+					className="light-bg"
 					answered
 					label={
 						régimeGénéralDisponibleSelector(state, title)
