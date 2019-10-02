@@ -9,7 +9,7 @@ export default function Newsletter() {
 		'app::newsletter::registered',
 		false
 	)
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const tracker = useContext(TrackerContext)
 
 	const onSubmit = () => {
@@ -17,7 +17,7 @@ export default function Newsletter() {
 		setTimeout(() => setUserRegistered(true), 0)
 	}
 
-	if (registered) {
+	if (i18n.language !== 'fr' && registered) {
 		return null
 	}
 
