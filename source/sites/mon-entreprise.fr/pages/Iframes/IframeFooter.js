@@ -1,4 +1,5 @@
 import LangSwitcher from 'Components/LangSwitcher'
+import NewsletterRegister from 'Components/NewsletterRegister'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 import React, { useEffect, useState } from 'react'
@@ -17,6 +18,7 @@ export default function IframeFooter() {
 
 	return (
 		<>
+			<NewsletterRegister />
 			<div
 				style={{
 					textAlign: 'center',
