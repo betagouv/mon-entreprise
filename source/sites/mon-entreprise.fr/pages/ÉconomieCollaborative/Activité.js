@@ -33,7 +33,7 @@ export default withSitePaths(function Activité({
 				<h1>{activité.titre}</h1>
 				<p>{activité.explication}</p>
 				<p>Quels sont plus précisément les types d'activités exercées ? </p>
-				<section className="ui__ full-width choice-group">
+				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
 						currentActivité={title}
 						activités={activité.activités.map(({ titre }) => titre)}

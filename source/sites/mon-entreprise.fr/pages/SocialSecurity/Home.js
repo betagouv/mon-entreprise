@@ -84,7 +84,7 @@ function SocialSecurity({ sitePaths }: Props) {
 
 				<section
 					style={{ marginTop: '2rem' }}
-					className="ui__ full-width choice-group">
+					className="ui__ full-width light-bg">
 					<div className="ui__ container">
 						{régime === 'auto-entrepreneur' ? (
 							<Link

@@ -58,13 +58,16 @@ blockquote {
 	background-color: var(--lightestColour) !important;
 }
 
-.ui__.choice-group {
-	background-color: var(--lightestColour);
+.ui__.center-flex {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+section {
 	padding: 1rem 0;
 }
-section.ui__:not(:first-of-type) {
-	margin-top: 2rem;
-}
+
 .ui__.container {
 	width: 100%;
 	max-width: 850px;
