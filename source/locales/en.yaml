@@ -108,11 +108,9 @@ payslip:
   heures: 'Hours worked per month: '
   disclaimer: It takes into account national law but not union negotiated rules. Lots of financial aids for your enterprise exist, explore them on <1>aides-entreprises.fr (French)</1>.
 A quoi servent mes cotisations ?: What's included in my contributions?
-Simulation personnalisée: Custom simulation
-Faire une simulation personnalisée: Do a customized simulation
-custom-simulation: This is currently a <1>rough estimate</1> based on a generic contract. French legislation provides for a multitude of special cases and specific rules which considerably modify the costs of recruitment.
 Effacer: Reset
 Suivant: Next
+Changer: Change
 quicklinks:
   CDI: Permanent
   Commune: Town
@@ -143,11 +141,9 @@ feedback:
       headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
       email: Your email (if you would like an answer from us)
   thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@mon-entreprise.beta.gouv.fr</2>
-Janvier 2019: January 2019
 d'aides: of aid
 Oui: Yes
 Non: No
-Continuer la simulation: Continue simulation
 Envoyer: Send
 Retour: Back
 legalNotice:
@@ -190,7 +186,6 @@ Commencer: Get started
 Passer: Skip
 
 entreprise:
-  existeDéjà: My company is already registered with the French Administration
   tâches:
     page:
       autoEntrepreneur:
@@ -370,7 +365,6 @@ trouver:
   description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
   ok: Confirm and simulate hiring costs
 
-Entrez le nom de votre société: Type your company name
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Recherche en cours...: Searching...
 
@@ -413,8 +407,6 @@ sécu:
     employé: An employee's salary
 Mon entreprise: My company
 Mon revenu: My income
-Ce n'est pas mon entreprise: This is not my company
-Simuler une embauche: Simulate a hire
 
 Protection sociale: Social security
 Rémunération du dirigeant: Director's remuneration
@@ -540,17 +532,7 @@ privacyContent: >
   <3>You can opt out below.</3>
 Vie privée: Privacy
 
-Nom: Name
-Activité principale: Main activity
-Adresse: Address
-Ville: City
-Région: Region
-Nombre d'employés: Number of employees
-Date de création: Creation date
-Liste des statuts: Legal status list
-
 Recommencer: Start again
-
 Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
@@ -574,18 +556,22 @@ Exemples: Examples
 Intégrer le simulateur: Integrate the simulator
 
 # Landing infrance
-Que désirez-vous faire ?: What do you want to do?
 Créer mon entreprise: Create my company
 landing:
   title: The official assistant for entrepreneurs
   subtitle: All the resources you need to develop your business, from legal status to hiring.
-  choix3: Know the hiring procedures
-  choix2: Simulate contributions and taxes <2>(company director or employee)</2>
-  choix1: Create my company in France
-Déclarer mon activité d'économie collaborative: Declare my activity in the sharing economy
-Prochainement: Soon
+  choice:
+    create: <0>Create a company</0><1>Assistance in choosing the status and the complete list of creation steps</1>
+    manage: <0>Manage my business</0><1>Simulators to anticipate the amount of contributions and better manage your cash flow</1>
+    declare: <0>What income should I declare?</0><1>How to report your income from online platforms (AirBnb, leboncoin, blablacar, etc.)</1>
+  aboutUs: |
+    <0>About us</0>
+    <1>This website is developed by the administration to <2>support entrepreneurs in the development of their business</2>.</1>
+    <2>We start from the premise that it is difficult to navigate through all the online documentation: there is a lack of clear, up-to-date and relevant information on starting a business.</2>
+    <3>Our objective is to <2>remove all uncertainties regarding the administration tasks</2> so that you can focus on what matters: your business.</3>
+    <4>We are a small, autonomous and multidisciplinary team within the <4>URSSAF</4>. We are committed to being as close as possible to our users in order to continuously improve this site in accordance with the <7>Startup d'État</7> method.</4>
+    <5>Feel free to send us your comments and suggestions at <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
 
-Estimer les cotisations sociales pour une embauche: Estimate the social security contributions for a hiring
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Accueil: Home
 
@@ -766,3 +752,7 @@ Cette règle ne s'applique pas pour: This rule does not apply for
 pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
 jour: day
 Pas implémenté: Not implemented
+Votre entreprise: Your company
+Crée le: Created on
+domiciliée à: domiciled in
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code

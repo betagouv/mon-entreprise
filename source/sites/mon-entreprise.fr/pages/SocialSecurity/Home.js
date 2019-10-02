@@ -198,7 +198,9 @@ const CompanySection = ({ company }) => {
 			)}
 			{company ? (
 				<>
-					<h2>Votre entreprise</h2>
+					<h2>
+						<T>Votre entreprise</T>
+					</h2>
 					<CompanyDetails siren={company.siren} />
 					<br />
 					<button
@@ -207,7 +209,7 @@ const CompanySection = ({ company }) => {
 							dispatch(resetEntreprise())
 							showSearchModal(true)
 						}}>
-						Changer
+						<T>Changer</T>
 					</button>
 				</>
 			) : (
