@@ -1371,10 +1371,9 @@
 - espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guadeloupe Réunion Martinique
   icônes: 🇬🇵🇷🇪 🇲🇶
-  période: mois
   formule:
     barème linéaire:
-      assiette: revenu imposable
+      assiette: revenu imposable [mensuel]
       retourne seulement le taux: oui
       tranches:
         - de: 0
@@ -1459,10 +1458,9 @@
 - espace: impôt . taux neutre d'impôt sur le revenu
   nom: barème Guyane Mayotte
   icônes: 🇬🇾 🇾🇹
-  période: mois
   formule:
     barème linéaire:
-      assiette: revenu imposable
+      assiette: revenu imposable [mensuel]
       retourne seulement le taux: oui
       tranches:
         - de: 0
@@ -1549,7 +1547,6 @@
   description: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  période: mois
   formule:
     variations:
       - si:
@@ -1566,7 +1563,7 @@
         alors: barème Guyane Mayotte
       - sinon:
           barème linéaire:
-            assiette: revenu imposable
+            assiette: revenu imposable [mensuel]
             retourne seulement le taux: oui
             tranches:
               - de: 0
@@ -3202,7 +3199,6 @@
 
 - espace: impôt
   nom: taux du prélèvement à la source
-  période: flexible
   formule:
     variations:
       - si: méthode de calcul . taux neutre
@@ -3282,6 +3278,7 @@
   applicable si:
     toutes ces conditions:
       - méthode de calcul . taux neutre
+      - contrat salarié
       - contrat salarié . CDD
       - contrat salarié . CDD . durée contrat <= 2
   formule: 50% * contrat salarié . SMIC temps plein . net imposable [mois]
