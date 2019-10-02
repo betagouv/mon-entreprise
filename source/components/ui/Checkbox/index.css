@@ -54,10 +54,10 @@
 }
 .ui__.checkbox-input:checked + .ui__.checkbox svg path {
 	stroke-dashoffset: 60;
-	transition: all 0.3s linear;
+	transition: all 0.15s linear;
 }
 .ui__.checkbox-input:checked + .ui__.checkbox svg polyline {
 	stroke-dashoffset: 42;
-	transition: all 0.2s linear;
-	transition-delay: 0.15s;
+	transition: all 0.1s linear;
+	transition-delay: 0.075s;
 }
