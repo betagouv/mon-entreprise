@@ -888,7 +888,7 @@
       question: Quel est le salaire ?
       titre: salaire
       avec:
-        - coût du travail
+        - prix du travail
         - rémunération . total
         - rémunération . net
         - rémunération . net après impôt
@@ -1255,8 +1255,6 @@
   unité: €
   période: flexible
   formule: brut - cotisations . salariales
-
-
 
 - espace: contrat salarié . rémunération
   nom: net imposable
@@ -1656,17 +1654,18 @@
   unité: '%'
 
 - espace: contrat salarié
-  nom: coût du travail
+  nom: prix du travail
   titre: Coût total
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   période: flexible
   description: |
     Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées et les coûts de medecine du travail
-
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
-  formule: 
-    somme: 
+
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, etc.
+  formule:
+    somme:
       - rémunération . total
       - (- aides employeur)
       - médecine du travail
@@ -1773,7 +1772,6 @@
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
-
 
 - espace: contrat salarié
   nom: cotisations

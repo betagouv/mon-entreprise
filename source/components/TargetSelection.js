@@ -262,7 +262,7 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
-			{target.dottedName.includes('coût du travail') && <AidesGlimpse />}
+			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
 		</span>
 	)
 }
