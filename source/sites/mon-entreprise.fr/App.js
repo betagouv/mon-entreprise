@@ -23,8 +23,6 @@ import { inIframe, setToSessionStorage } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import { PrivacyContent } from './layout/Footer/Privacy'
-import Library from './layout/Footer/Library'
-import Iframe from './layout/Footer/Iframe'
 import Header from './layout/Header/Header'
 import Navigation from './layout/Navigation/Navigation'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
@@ -37,6 +35,7 @@ import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
 import Iframes from './pages/Iframes'
 import Landing from './pages/Landing/Landing.js'
+import Integration from './pages/integration/index'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
@@ -127,8 +126,8 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 							component={Documentation}
 						/>
 						<Route path={sitePaths.privacy.index} component={PrivacyContent} />
-						<Route path={sitePaths.integration.iframe} component={Iframe} />
-						<Route path={sitePaths.integration.library} component={Library} />
+						<Route path={sitePaths.integration.index} component={Integration} />
+
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

@@ -6,7 +6,7 @@ import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
-import './Integration.css'
+import './iframe.css'
 import { IntegrationCode } from '../../pages/Dev/IntegrationTest'
 
 export default function Integration() {

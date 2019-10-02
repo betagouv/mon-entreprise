@@ -12,7 +12,7 @@ import SocialIcon from 'Ui/SocialIcon'
 import i18n from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
-import Integration from './Integration'
+import { Link } from 'react-router-dom'
 import Privacy from './Privacy'
 
 type OwnProps = {}
@@ -89,11 +89,10 @@ const Footer = ({ sitePaths }) => {
 						<Privacy />
 						{'  •  '}
 						<a href="https://mon-entreprise.fr/stats">Stats</a>
-						{i18n.language === 'fr' && (
-							<>
-								{'  •  '} <Integration />
-							</>
-						)}
+						{'  •  '}{' '}
+						<Link to={sitePaths.integration.index}>
+							Intégrer nos simulateurs
+						</Link>
 						{!!hrefLink.length && '  •  '}
 						{hrefLink.map(({ hrefLang, href }) => (
 							<a

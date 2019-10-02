@@ -7,7 +7,7 @@ export default function Privacy() {
 	return (
 		<>
 			<ScrollToTop />
-			<h1>Bibliothèque de calcul</h1>
+			<h1>Intégrez notre bibliothèque de calcul</h1>
 			<p>
 				Si vous pensez que votre site ou service gagnerait à afficher des
 				calculs de salaire, par exemple passer du salaire brut au salaire net,
