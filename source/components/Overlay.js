@@ -12,7 +12,11 @@ export default function Overlay({ onClose, children, ...otherProps }) {
 						onDeactivate: onClose,
 						clickOutsideDeactivates: !!onClose
 					}}>
-					<div aria-modal="true" id="overlayContent" {...otherProps}>
+					<div
+						aria-modal="true"
+						id="overlayContent"
+						className="ui__ card"
+						{...otherProps}>
 						{children}
 						{onClose && (
 							<LinkButton

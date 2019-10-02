@@ -9,6 +9,7 @@
 }
 #overlayContent {
 	position: absolute;
+	padding-bottom: 1rem;
 	min-height: 6em;
 }
 #overlayCloseButton {

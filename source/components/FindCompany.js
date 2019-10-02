@@ -37,7 +37,9 @@ export default function Search() {
 					site.
 				</T>
 			</p>
-			<label className="ui__ notice">Nom de l'entreprise ou SIREN: </label>
+			<label className="ui__ notice">
+				<T>Nom de l'entreprise ou SIREN </T>:{' '}
+			</label>
 			<br />
 			<input
 				type="search"
