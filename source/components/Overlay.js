@@ -15,8 +15,8 @@ export default function Overlay({ onClose, children, ...otherProps }) {
 					<div
 						aria-modal="true"
 						id="overlayContent"
-						className="ui__ card"
-						{...otherProps}>
+						{...otherProps}
+						className={'ui__ card ' + otherProps.className}>
 						{children}
 						{onClose && (
 							<LinkButton

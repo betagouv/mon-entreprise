@@ -103,7 +103,7 @@ export const ActivitéCard = withSitePaths(
 				}),
 				key: title,
 				...(interactive && { tabIndex: -1 }),
-				onClick: toggle
+				onMouseDown: toggle
 			},
 			<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
 				{selected !== undefined && (
