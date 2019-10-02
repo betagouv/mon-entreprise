@@ -120,7 +120,7 @@
 		"dedent-js": "^1.0.1",
 		"enzyme": "^3.3.0",
 		"enzyme-adapter-react-16": "^1.1.1",
-		"eslint": "^5.13.0",
+		"eslint": "^6.5.1",
 		"eslint-config-prettier": "^4.0.0",
 		"eslint-plugin-flowtype": "^3.2.1",
 		"eslint-plugin-react": "^7.12.4",
