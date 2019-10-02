@@ -59,7 +59,7 @@ describe('library', function() {
 		let salaireNetAprèsImpôt = Lib.evaluate(
 			'contrat salarié . rémunération . net après impôt',
 			{
-				'contrat salarié': { rémunération: { total: salaireTotal } }
+				'contrat salarié . prix du travail': salaireTotal
 			}
 		)
 

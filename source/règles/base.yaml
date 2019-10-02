@@ -888,6 +888,7 @@
       question: Quel est le salaire ?
       titre: salaire
       avec:
+        - prix du travail
         - rémunération . total
         - rémunération . net
         - rémunération . net après impôt
@@ -1234,7 +1235,6 @@
       - ATMP
       - prévoyance obligatoire cadre
       - complémentaire santé [employeur]
-      - médecine du travail
       - vieillesse [employeur]
       - retraite complémentaire [employeur]
       - contribution d'équilibre général [employeur]
@@ -1663,10 +1663,21 @@
   unité: '%'
 
 - espace: contrat salarié
-  nom: coût du travail
+  nom: prix du travail
+  titre: Coût total
+  résumé: Dépensé par l'entreprise
+  question: Quel est le coût total de cette embauche ?
   période: flexible
   description: |
-  formule: rémunération . total - aides employeur
+    Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées et les coûts de medecine du travail
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, etc.
+  formule:
+    somme:
+      - rémunération . total
+      - (- aides employeur)
+      - médecine du travail
   unité: €
 
 - espace: contrat salarié . rémunération
@@ -1679,11 +1690,6 @@
   période: flexible
   description: |
     C'est le total que l'employeur doit verser pour employer un salarié.
-
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
-
-    Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer ce montant.
-
   formule:
     somme:
       - brut
@@ -1787,6 +1793,7 @@
 
 - espace: contrat salarié
   nom: aides employeur
+  titre: aides à l'embauche
   résumé: Pour l'employeur, différées dans le temps
   icônes: 🎁
   période: flexible

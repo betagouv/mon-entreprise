@@ -1056,15 +1056,17 @@ contrat salarié . rémunération . net imposable:
     social benefits. It's the basis used to compute income tax.
   description.fr: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
+contrat salarié . rémunération . net imposable . base:
+  description.en: '!!Le net imposable avant les exonérations et déductions'
+  description.fr: Le net imposable avant les exonérations et déductions
+  titre.en: base
+  titre.fr: base
 ? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
 : titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires défiscalisées
 ? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
 : titre.en: gross cap
   titre.fr: plafond brut
-contrat salarié . rémunération . net imposable . base:
-  titre.en: base
-  titre.fr: base
 contrat salarié . prime d'impatriation:
   description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
   description.fr: >-
@@ -1135,7 +1137,10 @@ impôt . impôt sur le revenu au taux neutre . barème Guyane Mayotte:
   titre.fr: barème Guyane Mayotte
 impôt . impôt sur le revenu au taux neutre:
   description.en: >
-    This is the scale to be applied on the taxable monthly salary to obtain the monthly tax payable for employees who do not want to disclose their tax rate to their company (this rate may reveal, for example, significant income from assets).
+    This is the scale to be applied on the taxable monthly salary to obtain the
+    monthly tax payable for employees who do not want to disclose their tax rate
+    to their company (this rate may reveal, for example, significant income from
+    assets).
   description.fr: >
     C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
     l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
@@ -1146,7 +1151,7 @@ impôt . impôt sur le revenu au taux neutre:
 impôt . taux personnalisé:
   question.en: What is your withholding tax rate?
   question.fr: Quel est votre taux de prélèvement à la source ?
-  description.en: >
+  description.en: |
     Your personalized average tax rate, which you can find:
       - a pay slip
       - a tax notice
@@ -1158,36 +1163,39 @@ impôt . taux personnalisé:
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   titre.en: personalized rate
   titre.fr: taux personnalisé
-contrat salarié . coût du travail:
+contrat salarié . prix du travail:
   titre.en: labor cost
-  titre.fr: coût du travail
-contrat salarié . rémunération . total:
-  titre.en: Total salary
-  titre.fr: Total chargé
-  question.en: 'What is the monthly remuneration, contributions included ?'
-  question.fr: Quel est la rémunération chargée ?
+  titre.fr: Coût total
   résumé.en: Spent by the company
   résumé.fr: Dépensé par l'entreprise
-  description.en: >-
-    It is the gross salary, plus the employer contributions. It is the total
-    that the employer must in principle plan to pay to employ an employee, but
-    in practice certain reductions in contributions and aids may reduce this
-    amount.
+  question.en: What
+  question.fr: What is the total cost of this hiring?
+  description.en: >
+    Total cost of hiring an employee including, in addition to the remuneration elements,
+    deferred subsidies and occupational health service
+
+
+    > It is therefore also a measure of the value that the employee brings to
+    the company: the employer is willing to pay this amount in exchange of the
+    work provided.
   description.fr: >
-    C'est la rémunération brute, plus les cotisations patronales, moins les
-    réductions de cotisations sociales.
-
-
-    C'est le total que l'employeur doit verser pour employer un salarié.
+    Coût total d'embauche d'un salarié en incluant, en plus des éléments de
+    rémunération, les aides différées et les coûts de medecine du travail
 
 
     > C'est donc aussi une mesure de la valeur apportée par le salarié à
     l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du
     travail fourni.
-
-
-    Des [aides différées](/documentation/aides-employeur) peuvent venir diminuer
-    ce montant.
+contrat salarié . rémunération . total:
+  titre.en: Total salary
+  titre.fr: Total chargé
+  description.en: >-
+    It is the gross salary, plus the employer contributions. It is the total
+    that the employer must in principle plan to pay to employ an employee, but
+    in practice certain reductions in contributions and aids may reduce this
+    amount.
+  description.fr: |
+    C'est le total que l'employeur doit verser pour employer un salarié.
 contrat salarié . cotisations . patronales . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
@@ -1210,15 +1218,14 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     salarié
   titre.en: reduced contribution rates
   titre.fr: taux des cotisations réduites
-contrat salarié . rémunération . total sans réduction:
-  titre.en: total salary without reduction
-  titre.fr: Rémunération totale sans réduction
 contrat salarié . cotisations:
   description.en: Total employer and employee contributions
   description.fr: Total des cotisation patronales et salariales
   titre.en: social contributions
   titre.fr: cotisations
 contrat salarié . aides employeur:
+  titre.en: deferred employer aids
+  titre.fr: aides à l'embauche
   résumé.en: Deferred aids available to the employer.
   résumé.fr: "Pour l'employeur, différées dans le temps"
   description.en: >
@@ -1236,8 +1243,6 @@ contrat salarié . aides employeur:
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
-  titre.en: deferred employer aids
-  titre.fr: aides employeur
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description.en: >
     Since 2019, a single hiring aid has replaced four previous schemes. The
@@ -1254,9 +1259,6 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
-contrat salarié . salaire:
-  titre.en: salary
-  titre.fr: salaire
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -1870,6 +1872,9 @@ contrat salarié . maladie:
 contrat salarié . maladie . taux employeur:
   titre.en: employer rate
   titre.fr: taux employeur
+contrat salarié . maladie . taux employeur . taux réduit:
+  titre.en: '!!taux réduit'
+  titre.fr: taux réduit
 contrat salarié . maladie . taux salarié:
   titre.en: employee rate
   titre.fr: taux salarié
@@ -2069,11 +2074,15 @@ impôt . méthode de calcul:
 
     - *The neutral rate*: for a single person without children
 
-    - *The standard scale * : the "official" formula used by
-    tax authorities to obtain the tax rate
+    - *The standard scale * : the "official" formula used by tax authorities to
+    obtain the tax rate
 
-    By filling in your personalized rate, you will be as close as possible to your real situation. The neutral rate can be interesting if you have not sent your personalized rate to the employer and you want to compare the results of the simulator with your pay slip. The standard scale gives you a more accurate result than the neutral rate for a single man without children.
-
+    By filling in your personalized rate, you will be as close as possible to
+    your real situation. The neutral rate can be interesting if you have not
+    sent your personalized rate to the employer and you want to compare the
+    results of the simulator with your pay slip. The standard scale gives you a
+    more accurate result than the neutral rate for a single man without
+    children.
   description.fr: >
     Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
 
@@ -2099,7 +2108,10 @@ impôt . méthode de calcul . taux neutre:
   titre.en: with the neutral rate
   titre.fr: avec le taux neutre
   description.en: >-
-    If you do not know your personalized rate, or if you want to know your withholding tax if you have chosen not to communicate at your rate to the employer, the calculation at the neutral rate corresponds to a tax for a single person without children and without other income/charges.
+    If you do not know your personalized rate, or if you want to know your
+    withholding tax if you have chosen not to communicate at your rate to the
+    employer, the calculation at the neutral rate corresponds to a tax for a
+    single person without children and without other income/charges.
   description.fr: >-
     Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez
     connaître votre impôt à la source dans le cas où vous avez choisi de ne pas
@@ -2110,7 +2122,9 @@ impôt . méthode de calcul . taux personnalisé:
   titre.en: with the personalized rate
   titre.fr: avec votre taux personnalisé
   description.en: >-
-    You can use the personalized rate provided by the tax authorities directly to calculate your tax. To find out, go to your [personal tax space](https://impots.gouv.fr).
+    You can use the personalized rate provided by the tax authorities directly
+    to calculate your tax. To find out, go to your [personal tax
+    space](https://impots.gouv.fr).
   description.fr: >-
     Vous pouvez utiliser directement le taux personnalisé communiqué par
     l'administration fiscal pour calculer votre impôt. Pour le connaître, vous
@@ -2120,14 +2134,17 @@ impôt . méthode de calcul . barème standard:
   titre.en: with the standard scale
   titre.fr: avec le barème standard
   description.en: >-
-    The "official" tax calculation, the one on which the tax authorities base their calculation of your tax rate. For the moment, only takes into account the 10% discount, the scale and the discount.
+    The "official" tax calculation, the one on which the tax authorities base
+    their calculation of your tax rate. For the moment, only takes into account
+    the 10% discount, the scale and the discount.
   description.fr: >-
     Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se
     base pour calculer votre taux d'imposition. Pour l'instant, ne prend en
-    compte que l'abattement 10%, le barème et la décôte.
+    compte que l'abattement 10%, le barème et la décote.
 impôt . revenu imposable:
   description.en: >
-    This is the income to be taken into account when calculating tax with an average tax rate (neutral or personalized).
+    This is the income to be taken into account when calculating tax with an
+    average tax rate (neutral or personalized).
   description.fr: >
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen
     d'imposition (neutre ou personnalisé).
@@ -2186,7 +2203,8 @@ impôt . impôt sur le revenu:
   titre.fr: impôt sur le revenu
 impôt . impôt sur le revenu à payer:
   description.en: >-
-    A discount is applied after the income tax rate, to reduce the tax on low incomes.
+    A discount is applied after the income tax rate, to reduce the tax on low
+    incomes.
   description.fr: >-
     Une décote est appliquée après le barème de l'impôt sur le revenu, pour
     réduire l'impôt des bas revenus.
@@ -2238,13 +2256,13 @@ entreprise . date de création:
   titre.en: Creation date
   titre.fr: date de création
 entreprise . date de création . avant 2018:
-  titre.en: before January 1, 2018
+  titre.en: 'before January 1, 2018'
   titre.fr: avant le 1er janvier 2018
 entreprise . date de création . avant 2019:
-  titre.en: before January 1, 2019
+  titre.en: 'before January 1, 2019'
   titre.fr: avant le 1er janvier 2019
 entreprise . date de création . après 2019:
-  titre.en: after January 1, 2019
+  titre.en: 'after January 1, 2019'
   titre.fr: après le 1er janvier 2019
 entreprise . chiffre d'affaires:
   titre.en: Turnover
@@ -2359,10 +2377,11 @@ entreprise . charges:
   description.fr: >
 
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci,
-    hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto
-    entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise
-    ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur,
-    elles ne sont pas déductibles du chiffre d'affaire encaissé.
+    hors rémunération du dirigeant. Pour les sociétés et entreprises hors
+    auto-entrepreneur, ces charges sont dites déductibles du résultat :
+    l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour
+    l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaire
+    encaissé.
 
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
@@ -2692,9 +2711,6 @@ indépendant:
   question.fr: Activité à la sécurité sociale des indépendants ?
   titre.en: self employed
   titre.fr: indépendant
-indépendant . cotisations et contributions . cotisations à payer:
-  titre.en: contributions to pay
-  titre.fr: cotisations à payer
 indépendant . cotisations et contributions . cotisations:
   titre.en: social contributions
   titre.fr: cotisations
@@ -2910,18 +2926,21 @@ auto-entrepreneur . cotisations et contributions . cotisations:
   titre.fr: taux de cotisation
 entreprise . ACRE:
   description.en: >
-    The aid for the creation or takeover of a company (Acre) consists of a partial exemption from social security contributions, known as the start-up exemption.
+    The aid for the creation or takeover of a company (Acre) consists of a
+    partial exemption from social security contributions, known as the start-up
+    exemption.
 
     *Duration*:
 
-    - 12 months** for companies and sole proprietorships
-    - 3 years** for self-employed companies
+    - 12 months** for companies and sole proprietorships - 3 years** for
+    self-employed companies
 
     *Conditions for obtaining*:
 
-    - For companies created after 2019, the reduction is automatic, unless you have already obtained the ACCRE in the previous three years
-    - For companies created before 2019, the contribution reduction was called ACCRE was subject to conditions and was not automatic: it you should have asked for it.
-
+    - For companies created after 2019, the reduction is automatic, unless you
+    have already obtained the ACCRE in the previous three years - For companies
+    created before 2019, the contribution reduction was called ACCRE was subject
+    to conditions and was not automatic: it you should have asked for it.
   description.fr: >
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
@@ -3000,7 +3019,10 @@ auto-entrepreneur . impôt . abattement . taux:
   titre.fr: taux d'abattement de l'impôt
 auto-entrepreneur . impôt . versement libératoire:
   description.en: >
-    With the option for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with the application of a specific rate according to your activity. To benefit from it, your reference tax income must not exceed €27,086 in 2018
+    With the option for the discharge payment, the income tax is paid at the
+    same time as your contributions (per month or per quarter) with the
+    application of a specific rate according to your activity. To benefit from
+    it, your reference tax income must not exceed €27,086 in 2018
   description.fr: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
@@ -3015,7 +3037,8 @@ auto-entrepreneur . impôt . versement libératoire:
           - 'impôt . revenu fiscal de référence [annuel] > 27086'
           - versement libératoire
       message: >-
-        The discharge payment is not available if your household income exceeds €27,086 per share in 2018
+        The discharge payment is not available if your household income exceeds
+        €27,086 per share in 2018
       niveau: info
   contrôles.fr:
     - si:
@@ -3031,14 +3054,20 @@ auto-entrepreneur . impôt . versement libératoire:
 auto-entrepreneur . impôt . versement libératoire . montant:
   titre.en: discharge payment for auto-entrepreneur
   titre.fr: versement libératoire auto-entrepreneur
-  description.en: |
-    If you have opted for the discharge payment, the income tax is paid at the same time as your contributions (per month or per quarter) with application of a specific rate according to your activity:
+  description.en: >
+    If you have opted for the discharge payment, the income tax is paid at the
+    same time as your contributions (per month or per quarter) with application
+    of a specific rate according to your activity:
 
-    - 1% if the activity is purchase/resale, on-trade sale and hosting service (BIC)
+
+    - 1% if the activity is purchase/resale, on-trade sale and hosting service
+    (BIC)
+
     - 1.7% if the activity is a profit-making service activity
-    industrial and commercial (BIC)
-    - 2.2% for other services covered by non-earnings Commercial (BNC)
 
+    industrial and commercial (BIC)
+
+    - 2.2% for other services covered by non-earnings Commercial (BNC)
   description.fr: >
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
     payé en même temps que vos cotisations (par mois ou par trimestre) avec

@@ -262,7 +262,7 @@ let TargetInputOrValue = ({ target, isActiveInput, isSmallTarget }) => {
 					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
-			{target.dottedName.includes('rémunération . total') && <AidesGlimpse />}
+			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
 		</span>
 	)
 }
@@ -273,14 +273,14 @@ function AidesGlimpse() {
 	return (
 		<Animate.appear>
 			<div className="aidesGlimpse">
-				<RuleLink {...aides}>
-					-{' '}
+				<RuleLink {...aides.explanation}>
+					<T>en incluant</T>{' '}
 					<strong>
 						<AnimatedTargetValue value={aides.nodeValue}>
 							<span>{formatCurrency(aides.nodeValue)}</span>
 						</AnimatedTargetValue>
 					</strong>{' '}
-					<T>d'aides</T> {emoji(aides.icons)}
+					<T>d'aides</T> {emoji(aides.explanation.icons)}
 				</RuleLink>
 			</div>
 		</Animate.appear>

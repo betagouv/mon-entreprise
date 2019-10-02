@@ -46,10 +46,9 @@ describe('pay slip selector', function() {
 		let cotisationsSanté = (cotisations.find(([branche]) =>
 			branche.includes('santé')
 		) || [])[1].map(cotisation => cotisation.nom)
-		expect(cotisationsSanté).to.have.lengthOf(3)
+		expect(cotisationsSanté).to.have.lengthOf(2)
 		expect(cotisationsSanté).to.include('maladie')
 		expect(cotisationsSanté).to.include('complémentaire santé')
-		expect(cotisationsSanté).to.include('médecine du travail')
 	})
 
 	it('should sum all cotisations', function() {
@@ -59,7 +58,7 @@ describe('pay slip selector', function() {
 			sal = getRuleFromAnalysis(analysis)(
 				'contrat salarié . cotisations . salariales'
 			)
-		expect(pat.nodeValue).to.be.closeTo(831.4, 5)
+		expect(pat.nodeValue).to.be.closeTo(824.7, 5)
 		expect(sal.nodeValue).to.be.closeTo(498, 5)
 	})
 
