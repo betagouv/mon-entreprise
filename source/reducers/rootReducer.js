@@ -18,7 +18,7 @@ import { combineReducers } from 'redux'
 import { targetNamesSelector } from 'Selectors/analyseSelectors'
 import i18n from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
-import storageReducer from './storageReducer'
+import storageRootReducer from './storageReducer'
 
 import type { Action } from 'Types/ActionsTypes'
 
@@ -187,6 +187,7 @@ const addAnswerToSituation = (dottedName, value, state) => {
 		)
 	)(state)
 }
+
 const removeAnswerFromSituation = (dottedName, state) => {
 	return compose(
 		over(lensPath(['simulation', 'situation']), dissoc(dottedName)),
@@ -194,7 +195,7 @@ const removeAnswerFromSituation = (dottedName, state) => {
 	)(state)
 }
 
-const existingCompanyReducer = (state, action) => {
+const existingCompanyRootReducer = (state, action) => {
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
 	}
@@ -212,11 +213,10 @@ const existingCompanyReducer = (state, action) => {
 }
 
 export default reduceReducers(
-	existingCompanyReducer,
-	storageReducer,
+	existingCompanyRootReducer,
+	storageRootReducer,
 	(state, action) =>
 		combineReducers({
-			sessionId: defaultTo(Math.floor(Math.random() * 1000000000000) + ''),
 			conversationSteps,
 			lang,
 			rules: defaultTo(null),

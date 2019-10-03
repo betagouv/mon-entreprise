@@ -38,9 +38,6 @@ export type ResetCompanyStatusAction = {
 	type: 'RESET_COMPANY_STATUS_CHOICE',
 	answersToReset?: Array<string>
 }
-export type ResetExistingCompanyDetailsAction = {
-	type: 'RESET_EXISTING_COMPANY_DETAILS'
-}
 
 export type State = {|
 	+companyLegalStatus: {
@@ -65,5 +62,4 @@ export type Action =
 	| CompanyHasMultipleAssociatesAction
 	| ChangeChecklistItemAction
 	| DirectorIsInAMinorityAction
-	| ResetExistingCompanyDetailsAction
 	| ResetCompanyStatusAction
