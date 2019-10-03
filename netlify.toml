@@ -51,6 +51,11 @@
   to = "/infrance.html"
   status = 200
 
+[[redirects]]
+  from = "https://publi.codes/*"
+  to = "/publicodes.html"
+  status = 200
+
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
   from = "https://mon-entreprise.fr/stats"
