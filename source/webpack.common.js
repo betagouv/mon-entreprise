@@ -22,7 +22,8 @@ module.exports.default = {
 		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.js',
 		infrance: './source/sites/mon-entreprise.fr/entry.en.js',
 		'simulateur-iframe-integration':
-			'./source/sites/mon-entreprise.fr/iframe-integration-script.js'
+			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
+		publicodes: './source/sites/publi.codes/entry.js'
 	},
 	output: {
 		path: path.resolve('./dist/')
@@ -151,5 +152,17 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		filename: 'mon-entreprise.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
 		logo: 'images/logo.svg'
+	}),
+	new HTMLPlugin({
+		template: 'index.html',
+		inject: false,
+		// mon-entreprise.fr :
+		chunks: ['publicodes'],
+		title: 'publicodes - langage et plateforme de pulication de calculs',
+		description:
+			'Un langage de calcul ouvert, lisible en français, contributif pour encoder et publier les sujets de société.',
+		filename: 'publicodes.html',
+		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
+		logo: 'https://mon-entreprise.fr/images/illustration.svg'
 	})
 ]
