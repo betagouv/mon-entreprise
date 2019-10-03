@@ -77,11 +77,7 @@ function companyCreationChecklist(
 }
 
 function companyStatusChoice(state: ?string = null, action: Action) {
-	if (
-		['RESET_COMPANY_STATUS_CHOICE', 'RESET_EXISTING_COMPANY_DETAILS'].includes(
-			action.type
-		)
-	) {
+	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
 		return null
 	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
