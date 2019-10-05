@@ -1,15 +1,15 @@
-import { React, emoji } from 'Components'
+import { emoji, React } from 'Components'
+import searchWeights from 'Components/searchWeights'
+import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import Fuse from 'fuse.js'
+import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
-import Fuse from 'fuse.js'
-import searchWeights from 'Components/searchWeights'
-import { pick, pipe, concat, partition, has, apply } from 'ramda'
-import { findRuleByDottedName } from 'Engine/rules'
-import ItemCard from './ItemCard'
 import { Link } from 'react-router-dom'
-import { encodeRuleName } from 'Engine/rules'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import ItemCard from './ItemCard'
 
+let ItemCardWithoutData = ItemCard()
 let buildFuse = rules =>
 	new Fuse(
 		rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
@@ -56,7 +56,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 												opacity: 1 !important;
 											}
 										`}>
-										<ItemCard {...rule} showHumanCarbon={false} />
+										<ItemCardWithoutData {...rule} />
 									</Link>
 								</li>
 							)

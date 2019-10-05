@@ -1,20 +1,14 @@
-import { React, emoji } from 'Components'
+import { emoji, React } from 'Components'
 import HumanCarbonImpact from './HumanCarbonImpact'
+import withTarget from './withTarget'
 
-export default ({
-	dottedName,
-	formule,
-	title,
-	icônes,
-	nodeValue,
-	scenario,
-	showHumanCarbon,
-	showCarbon
-}) => {
-	return (
-		<div
-			key={dottedName}
-			css={`
+export default withFigure => {
+	let decorator = withFigure ? withTarget : a => a
+	return decorator(
+		({ dottedName, formule, title, icônes, nodeValue, scenario }) => (
+			<div
+				key={dottedName}
+				css={`
 					font-size: 120%;
 					padding: 1rem 0 0;
 					margin: 0.6rem;
@@ -47,7 +41,7 @@ export default ({
 						box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2), 0px 4px 5px 0px rgba(41, 117, 209, 0.14), 0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 }
 				     ${
-								showHumanCarbon
+								withFigure
 									? `
 						width: 18rem
 				     `
@@ -59,30 +53,31 @@ export default ({
 					}
 
 				`}>
-			<div css="width: 100%; img { font-size: 150%}}">
-				{icônes && emoji(icônes + ' ')}
+				<div css="width: 100%; img { font-size: 150%}}">
+					{icônes && emoji(icônes + ' ')}
+				</div>
+				<span css="width: 100%">{title}</span>
+				{withFigure && (
+					<>
+						<div css="visibility: hidden">placeholder</div>
+						<div
+							css={`
+								border-bottom-left-radius: 0.3rem;
+								border-bottom-right-radius: 0.3rem;
+								bottom: 0;
+								left: 0;
+								width: 100%;
+								background: var(--colour);
+								color: white;
+								font-size: 80%;
+							`}>
+							<HumanCarbonImpact
+								{...{ nodeValue, formule, dottedName, scenario }}
+							/>
+						</div>
+					</>
+				)}
 			</div>
-			<span css="width: 100%">{title}</span>
-			{showHumanCarbon && (
-				<>
-					<div css="visibility: hidden">placeholder</div>
-					<div
-						css={`
-							border-bottom-left-radius: 0.3rem;
-							border-bottom-right-radius: 0.3rem;
-							bottom: 0;
-							left: 0;
-							width: 100%;
-							background: var(--colour);
-							color: white;
-							font-size: 80%;
-						`}>
-						<HumanCarbonImpact
-							{...{ nodeValue, formule, dottedName, scenario, showCarbon }}
-						/>
-					</div>
-				</>
-			)}
-		</div>
+		)
 	)
 }

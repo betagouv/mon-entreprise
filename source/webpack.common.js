@@ -106,6 +106,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 
 		template: 'index.html',
 		logo: 'https://futur.eco/images/logo.png',
+		shareImage: 'https://futur.eco/images/logo.png',
 		chunks: ['publicodes'],
 
 		title: 'Futureco 🔥',
@@ -113,4 +114,3 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		filename: 'publicodes.html'
 	})
 ]
-

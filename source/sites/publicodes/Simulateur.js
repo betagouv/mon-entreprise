@@ -1,15 +1,21 @@
-import Simulation from 'Components/Simulation'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import { React, emoji } from 'Components'
-import { Helmet } from 'react-helmet'
-import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { connect } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { React } from 'Components'
+import { EndingCongratulations } from 'Components/conversation/Conversation'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import ShareButton from 'Components/ShareButton'
+import Simulation from 'Components/Simulation'
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { Markdown } from 'Components/utils/markdown'
-import { EndingCongratulations } from 'Components/conversation/Conversation'
-import ImpactCard from './ImpactCard'
+import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import CarbonImpact from './CarbonImpact'
+import ItemCard from './ItemCard'
+import withTarget from './withTarget'
+
+let CarbonImpactWithData = withTarget(CarbonImpact)
+
+let ItemCardWithData = ItemCard(true)
 
 export default connect(state => ({
 	rules: flatRulesSelector(state),
@@ -39,11 +45,12 @@ export default connect(state => ({
 					}
 					targets={
 						<>
-							<ImpactCard />
+							<ItemCardWithData />
 							{rule.period === 'flexible' && <PeriodBlock />}
 						</>
 					}
 				/>
+				<CarbonImpactWithData />
 				<ShareButton
 					text="Mesure ton impact sur Futur.eco !"
 					url={'https://' + window.location.hostname + props.match.url}

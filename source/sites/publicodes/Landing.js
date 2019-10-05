@@ -1,9 +1,8 @@
 import { React } from 'Components'
-import { Link } from 'react-router-dom'
-import Suggestions from './Suggestions'
 import { useState } from 'react'
-import Search from './Search'
 import ContributionButton from './ContributionButton'
+import Search from './Search'
+import Suggestions from './Suggestions'
 
 export default () => {
 	const [input, setInput] = useState('')

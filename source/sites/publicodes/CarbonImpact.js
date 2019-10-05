@@ -1,13 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import withSitePaths from 'Components/utils/withSitePaths'
-import humanWeight from './humanWeight'
 import { encodeRuleName } from 'Engine/rules'
+import React from 'react'
+import emoji from 'react-easy-emoji'
+import { Link } from 'react-router-dom'
+import HumanWeight from './HumanWeight'
 
 export default withSitePaths(
-	({ nodeValue, formule, sitePaths, dottedName }) => {
+	({ nodeValue, formule, dottedName, sitePaths }) => {
 		let interestingFormula = formule && formule.explanation.text !== '0'
-		let [value, unit] = humanWeight(nodeValue)
 		return (
 			<div
 				css={`
@@ -15,11 +15,13 @@ export default withSitePaths(
 					a {
 						color: inherit;
 					}
+					text-align: center;
 				`}>
 				<div>
-					Soit <strong>{value}</strong> {unit}
+					<HumanWeight nodeValue={nodeValue} />
 					{interestingFormula && (
 						<div>
+							<span css="font-size: 120%">{emoji('🔬 ')}</span>
 							<Link
 								to={
 									sitePaths.documentation.index +

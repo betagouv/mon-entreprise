@@ -1,10 +1,9 @@
-import scenarios from './scenarios.yaml'
-import * as chrono from './chrono'
 import { mapObjIndexed, toPairs } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
-import CarbonImpact from './CarbonImpact'
+import * as chrono from './chrono'
+import scenarios from './scenarios.yaml'
 
 let limitPerPeriod = scenario =>
 	mapObjIndexed(
@@ -30,7 +29,7 @@ let humanCarbonImpactData = (scenario, nodeValue) => {
 	return { closestPeriod, closestPeriodValue, closestPeriodLabel, factor }
 }
 
-export default ({ scenario, nodeValue, formule, showCarbon, dottedName }) => {
+export default ({ scenario, nodeValue, formule, dottedName }) => {
 	let { closestPeriodLabel, closestPeriod, factor } = humanCarbonImpactData(
 		scenario,
 		nodeValue
@@ -67,7 +66,6 @@ export default ({ scenario, nodeValue, formule, showCarbon, dottedName }) => {
 					</Link>
 				</>
 			)}
-			{showCarbon && <CarbonImpact {...{ nodeValue, formule, dottedName }} />}
 		</div>
 	)
 }
