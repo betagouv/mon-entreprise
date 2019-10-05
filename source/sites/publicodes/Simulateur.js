@@ -27,7 +27,7 @@ export default connect(state => ({
 		Simulateur = withSimulationConfig({
 			objectifs: [decoded]
 		})(() => (
-			<div className="ui__ container">
+			<div className="ui__ container" css="margin-bottom: 1em">
 				<Helmet>
 					<title>{rule.title}</title>
 					<meta name="description" content="DESCRIPTION" />
