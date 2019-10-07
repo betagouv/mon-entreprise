@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
-import '../mon-entreprise.fr/App.css'
-import 'Ui/index.css'
-import ColoredYaml from 'Components/rule/ColoredYaml'
 import exemple1 from '!!raw-loader!./exemple1.yaml'
 import exemple2 from '!!raw-loader!./exemple2.yaml'
+import ColoredYaml from 'Components/rule/ColoredYaml'
+import React, { useEffect } from 'react'
+import emoji from 'react-easy-emoji'
+import 'Ui/index.css'
+import '../mon-entreprise.fr/App.css'
 
 let Landing = () => {
 	useEffect(() => {
@@ -49,10 +50,18 @@ let Landing = () => {
 					librement.
 				</p>
 				<p>
-					La plateforme publicodes fusionne documentation et implémentation en
-					partant d'un code simple. Ajouter une règle de calcul, c'est déployer
-					sans effort sur le Web la page de documentation correspondante,
-					lisible par tout citoyen.
+					La plateforme <em>publicodes</em> fusionne documentation et
+					implémentation en partant d'un code simple. Ajouter une règle de
+					calcul, c'est déployer sans effort sur le Web la page de documentation
+					correspondante, lisible par tout citoyen.
+				</p>
+				<br />
+				<p>
+					{emoji('📖 ')} Pour aller plus loin, lisez la{' '}
+					<a href="https://github.com/betagouv/publicodes/wiki">
+						documentation
+					</a>
+					.
 				</p>
 				<h2>Projets phares</h2>
 				<h3>
