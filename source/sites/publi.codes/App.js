@@ -28,7 +28,7 @@ let Landing = () => {
 						<span css="border: 3px solid var(--colour); color: var(--colour); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
 							publi
 						</span>
-						<span css="background: var(--colour); color: white; padding: 0.1rem 0.6rem 0.1rem 0.4rem; width: 5rem; border: 3px solid var(--colour)">
+						<span css="background: var(--colour); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--colour)">
 							codes
 						</span>
 					</h1>
@@ -69,6 +69,13 @@ let Landing = () => {
 					<a href="https://mon-entreprise.fr">mon-entreprise.fr</a>
 				</h3>
 				<ColoredYaml source={exemple1} />
+				<p>
+					En plus du site Web, Mon-entreprise est disponible comme une{' '}
+					<a href="/intégration/bibliothèque-de-calcul">
+						librairie de calcul autonome
+					</a>
+					.
+				</p>
 
 				<h3>
 					L'impact climatique de nos gestes du quotidien - &nbsp;
