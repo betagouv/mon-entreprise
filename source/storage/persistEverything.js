@@ -7,7 +7,7 @@ import safeLocalStorage from './safeLocalStorage'
 import type { State } from 'Types/State'
 import type { Action } from 'Types/ActionsTypes'
 
-const VERSION = 2
+const VERSION = 3
 
 const LOCAL_STORAGE_KEY = 'mycompanyinfrance::persisted-everything:v' + VERSION
 
