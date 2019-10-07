@@ -40,7 +40,7 @@ export default FormDecorator('select')(function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/sgmap/taux-collectifs-cotisation-atmp/master/taux-2018.json'
+			'hthttps://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2019.json'
 		)
 			.then(response => {
 				if (!response.ok) {
@@ -59,7 +59,11 @@ export default FormDecorator('select')(function Select(props) {
 
 	return (
 		<div className="select-answer">
-			<ReactSelectWrapper {...props} options={options} />
+			<ReactSelectWrapper
+				{...props}
+				options={options}
+				style={{ width: '500px', maxWidth: '100%' }}
+			/>
 		</div>
 	)
 })
