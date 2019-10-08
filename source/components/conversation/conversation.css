@@ -302,7 +302,7 @@
 	margin-left: 0.3em;
 }
 
-.select-answer.commune {
+.select-answer {
 	flex: 1;
 }
 .select-answer.commune .Select {
