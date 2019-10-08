@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import RuleLink from 'Components/RuleLink'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { animated, useSpring } from 'react-spring'
 import { capitalise0 } from '../utils'
 
 const BarStack = styled.div`
@@ -12,6 +14,7 @@ const BarStack = styled.div`
 const BarItem = styled.div`
 	height: 26px;
 	border-right: 2px solid white;
+	transition: width 0.3s ease-out;
 
 	&:last-child {
 		border-right: none;
@@ -76,14 +79,19 @@ export function roundedPercentages(values) {
 }
 
 export default function StackedBarChart({ data }) {
+	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
 	const percentages = roundedPercentages(data.map(d => d.nodeValue))
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]
 	}))
 
+	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+
 	return (
-		<>
+		<animated.div ref={intersectionRef} style={styles}>
 			<BarStack>
 				{dataWithPercentage.map(({ dottedName, color, percentage }) => (
 					<BarItem
@@ -104,6 +112,6 @@ export default function StackedBarChart({ data }) {
 					</BarStackLegendItem>
 				))}
 			</BarStackLegend>
-		</>
+		</animated.div>
 	)
 }
