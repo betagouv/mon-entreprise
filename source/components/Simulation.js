@@ -6,21 +6,15 @@ import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import { simulationProgressSelector } from 'Selectors/progressSelectors'
 import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
 
-export default connect(state => ({
-	firstStepCompleted: firstStepCompletedSelector(state),
-	progress: simulationProgressSelector(state)
-}))(function Simulation({
-	firstStepCompleted,
-	explanations,
-	customEndMessages,
-	progress
-}) {
+export default function Simulation({ explanations, customEndMessages }) {
+	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const progress = useSelector(simulationProgressSelector)
 	return (
 		<>
 			<TargetSelection />
@@ -71,4 +65,4 @@ export default connect(state => ({
 			)}
 		</>
 	)
-})
+}

@@ -36,43 +36,10 @@ export default withSimulationConfig(indépendantConfig)(function Indépendant() 
 				</T>
 			</h1>
 			<Warning />
-			<Simulation
-				explanation={
-					<>
-						<AvertissementForfaitIndépendants />
-						<AvertissementProtectionSocialeIndépendants />
-					</>
-				}
-				explanations={<ExplanationSection />}
-			/>
+			<Simulation explanations={<ExplanationSection />} />
 		</>
 	)
 })
-
-let AvertissementForfaitIndépendants = () => (
-	<p className="ui__ notice">
-		{emoji('💶')}{' '}
-		<T k="simulateurs.indépendant.explication1">
-			Notre estimation prend en compte les <em>cotisations réelles</em> dues par
-			le travailleur indépendant. Pendant la première année de son activité, il
-			paiera un forfait réduit (une somme de l'ordre de 1300€ / an pour un
-			artisan bénéficiant de l'ACRE)... mais il sera régularisé l'année suivante
-			selon ce montant réel.
-		</T>
-	</p>
-)
-
-export let AvertissementProtectionSocialeIndépendants = () => (
-	<p className="ui__ notice">
-		{emoji('☂️')}{' '}
-		<T k="simulateurs.indépendant.explication1">
-			Les assurances chômage et accidents du travail ne sont pas prises en
-			charge au sein de la Sécurité sociale des indépendants. La retraite basée
-			sur le revenu professionnel est généralement plus faible. Pour être
-			couvert le professionnel peut souscrire des assurances complémentaires.
-		</T>
-	</p>
-)
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)

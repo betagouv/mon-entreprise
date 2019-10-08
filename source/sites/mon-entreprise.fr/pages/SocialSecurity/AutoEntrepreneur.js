@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
-import { AvertissementProtectionSocialeIndépendants } from './Indépendant'
 
 const AutoEntrepreneur = () => {
 	const { t } = useTranslation()
@@ -37,10 +36,7 @@ const AutoEntrepreneur = () => {
 				</T>
 			</h1>
 			<Warning simulateur="auto-entreprise" />
-			<Simulation
-				explanation={<AvertissementProtectionSocialeIndépendants />}
-				explanations={<ExplanationSection />}
-			/>
+			<Simulation explanations={<ExplanationSection />} />
 		</>
 	)
 }
