@@ -1,11 +1,10 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 
 export default function Privacy() {
 	return (
-		<>
+		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
 			<h1>Intégrez notre bibliothèque de calcul</h1>
 			<p>
@@ -101,7 +100,35 @@ export default function Privacy() {
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
 					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 			</div>
-			<h2>(bientôt) Faire des de graphiques économiques</h2>
-		</>
+			<h2>Faire des de graphiques économiques{emoji(' 📈')}</h2>
+			<p>
+				Il est aussi possible d'utiliser la librairie pour des calculs d'analyse
+				économique ou politique. Ici, on trace le prix du travail et le salaire
+				net en fonction du brut.
+			</p>
+			<p css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
+				On peut constater la progressivité du salaire total, qui est en % plus
+				faible pour un SMIC que pour un haut revenu. Autrement dit, les hauts
+				salaires paient une partie des cotisations sociales des bas salaires.
+			</p>
+			<p>
+				{emoji('⚠️ ')}Attention, cet example fais pas mal de calculs d'un coup,
+				ce qui peut bloquer votre navigateur quelques secondes. Pour palier à ce
+				problème, il suffit de faire l'appel à la librairie dans un Web Worker,
+				mais nous ne pouvons pas le faire{' '}
+				<a href="https://github.com/facebook/create-react-app/pull/5886">
+					pour l'instant
+				</a>{' '}
+				dans ces démos.
+			</p>
+			<div className="ui__ full-width">
+				<iframe
+					src="https://codesandbox.io/embed/mon-entreprise-3-248rg?fontsize=14&hidenavigation=1"
+					title="mon-entreprise 2"
+					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+			</div>
+		</div>
 	)
 }
