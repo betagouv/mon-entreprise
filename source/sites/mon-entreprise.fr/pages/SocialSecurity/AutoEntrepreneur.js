@@ -4,10 +4,11 @@ import Simulation from 'Components/Simulation'
 import StackedBarChart from 'Components/StackedBarChart'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import { ThemeColoursContext } from 'Components/utils/withColours'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { useSelector } from 'react-redux'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 
@@ -47,6 +48,7 @@ function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
+	const { palettes } = useContext(ThemeColoursContext)
 
 	return (
 		<section>
@@ -55,13 +57,13 @@ function ExplanationSection() {
 				data={[
 					{
 						...getRule('revenu net après impôt'),
-						color: '#4D96A7'
+						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), color: '#A74D92' },
+					{ ...getRule('impôt'), color: palettes[1][0] },
 					{
 						...getRule('auto-entrepreneur . cotisations et contributions'),
 						name: t('Cotisations'),
-						color: '#724DA7'
+						color: palettes[1][1]
 					}
 				]}
 			/>

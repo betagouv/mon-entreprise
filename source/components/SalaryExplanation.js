@@ -2,8 +2,9 @@ import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
+import { ThemeColoursContext } from 'Components/utils/withColours'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -99,6 +100,7 @@ function RevenueRepatitionSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
+	const { palettes } = useContext(ThemeColoursContext)
 
 	return (
 		<section>
@@ -108,12 +110,12 @@ function RevenueRepatitionSection() {
 					{
 						...getRule('contrat salarié . rémunération . net après impôt'),
 						name: t('Revenu disponible'),
-						color: '#4D96A7'
+						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), name: t('Impôts'), color: '#A74D92' },
+					{ ...getRule('impôt'), name: t('Impôts'), color: palettes[1][0] },
 					{
 						...getRule('contrat salarié . cotisations'),
-						color: '#724DA7'
+						color: palettes[1][1]
 					}
 				]}
 			/>

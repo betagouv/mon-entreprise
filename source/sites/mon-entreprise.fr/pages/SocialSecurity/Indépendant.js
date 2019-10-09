@@ -1,4 +1,5 @@
-import { React, T } from 'Components'
+import { ThemeColoursContext } from 'Components/utils/withColours'
+import { T } from 'Components'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
@@ -6,7 +7,7 @@ import StackedBarChart from 'Components/StackedBarChart'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import emoji from 'react-easy-emoji'
+import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -45,6 +46,7 @@ function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
+	const { palettes } = useContext(ThemeColoursContext)
 
 	return (
 		<section>
@@ -54,13 +56,13 @@ function ExplanationSection() {
 					{
 						...getRule('revenu net après impôt'),
 						name: t('Revenu disponible'),
-						color: '#4D96A7'
+						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), color: '#A74D92' },
+					{ ...getRule('impôt'), color: palettes[1][0] },
 					{
 						...getRule('indépendant . cotisations et contributions'),
 						name: t('Cotisations'),
-						color: '#724DA7'
+						color: palettes[1][1]
 					}
 				]}
 			/>
