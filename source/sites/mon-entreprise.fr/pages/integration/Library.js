@@ -28,7 +28,8 @@ export default function Privacy() {
 			</p>
 			<p>
 				Cette bibliothèque est un commun numérique développé par l'Etat et
-				l'ACOSS.
+				l'ACOSS. Elle repose sur un nouveau langage de programmation,{' '}
+				<a href="https://publi.codes">publicodes</a>.
 			</p>
 			<h2>Comment l'utiliser ?</h2>
 			<p>
