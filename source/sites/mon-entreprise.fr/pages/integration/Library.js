@@ -100,7 +100,29 @@ export default function Privacy() {
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
 					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 			</div>
-			<h2>Faire des de graphiques économiques{emoji(' 📈')}</h2>
+			<p>
+				{emoji('ℹ️ ')}
+				Notez que dans l'exemple précédent nous devons spécifier nous-même le
+				taux de versement transport.
+			</p>
+			<p>
+				Alors que dans le simulateur mon-entreprise.fr/sécurité-sociale/salarié,
+				il suffit de renseigner la commune et le taux correspondant est
+				automatiquement déterminé. C'est voulu : pour garder la librairie (et le
+				site) légers, nous utilisons deux API en ligne. L'
+				<a href="https://api.gouv.fr/api/api-geo.html#doc_tech">
+					API Géo - communes
+				</a>{' '}
+				pour passer du nom de la commune au code commune. Puis l'
+				<a href="">API versement transport</a>, développé et maintenu par nos
+				soins, qui n'est pas documenté mais son utilisation est très simple et
+				compréhensible{' '}
+				<a href="https://github.com/betagouv/mon-entreprise/blob/f3e79f42516c0822e8c6d8f6e9fc5646c82fd018/source/components/conversation/select/SelectGéo.js#L7-L14">
+					dans ce composant React qui l'appelle
+				</a>
+				, composant qui fait aussi appel à l'API commune.
+			</p>
+			<h2>Faire des graphiques économiques{emoji(' 📈')}</h2>
 			<p>
 				Il est aussi possible d'utiliser la librairie pour des calculs d'analyse
 				économique ou politique. Ici, on trace le prix du travail et le salaire
