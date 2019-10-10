@@ -75,7 +75,8 @@ export function formatValue({
 				numberFormatter({
 					style: 'decimal',
 					minimumFractionDigits,
-					maximumFractionDigits
+					maximumFractionDigits,
+					language
 				})(value) +
 				(typeof serializedUnit === 'string' ? `\u00A0${serializedUnit}` : '')
 			)
