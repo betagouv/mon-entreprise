@@ -29,9 +29,9 @@ settings:
     flowVersion: '0.92'
 
 overrides:
-  files: ['*.test.js', 'cypress/integration/**/*.js']
-  env:
-    mocha: true
+  - files: ['*.test.js', 'cypress/integration/**/*.js']
+    env:
+      mocha: true
 
 globals:
   process: false

@@ -114,6 +114,11 @@ export const constructLocalizedSitePath = (language: string) => {
 		},
 		privacy: {
 			index: t('path.privacy.index', '/vie-privée')
+		},
+		integration: {
+			index: t('path.integration.index', '/intégration'),
+			iframe: t('path.integration.iframe', '/iframe'),
+			library: t('path.integration.library', '/bibliothèque-de-calcul')
 		}
 	})
 }

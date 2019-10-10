@@ -1,7 +1,7 @@
 {
 	"name": "mon-entreprise",
 	"license": "MIT",
-	"version": "1.2.1",
+	"version": "1.2.3",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build cool forms that asks the question needed to compute an objective.",
 	"main": "./dist/engine.js",
 	"files": [
@@ -120,7 +120,7 @@
 		"dedent-js": "^1.0.1",
 		"enzyme": "^3.3.0",
 		"enzyme-adapter-react-16": "^1.1.1",
-		"eslint": "^5.13.0",
+		"eslint": "^6.5.1",
 		"eslint-config-prettier": "^4.0.0",
 		"eslint-plugin-flowtype": "^3.2.1",
 		"eslint-plugin-react": "^7.12.4",

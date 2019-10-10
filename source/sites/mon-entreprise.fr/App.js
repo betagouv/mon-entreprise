@@ -35,6 +35,7 @@ import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
 import Iframes from './pages/Iframes'
 import Landing from './pages/Landing/Landing.js'
+import Integration from './pages/integration/index'
 import SocialSecurity from './pages/SocialSecurity'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import { constructLocalizedSitePath } from './sitePaths'
@@ -125,6 +126,8 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 							component={Documentation}
 						/>
 						<Route path={sitePaths.privacy.index} component={PrivacyContent} />
+						<Route path={sitePaths.integration.index} component={Integration} />
+
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

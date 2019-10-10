@@ -1,0 +1,95 @@
+- espace: douche
+  nom: impact par douche
+  titre: Une douche
+  icônes: 🚿
+  formule: impact par litre * litres d'eau
+
+- espace: douche
+  nom: impact par litre
+  formule: eau . impact par litre froid + chauffage . impact par litre
+
+- espace: douche
+  nom: litres d'eau
+  formule: durée de la douche * litres par minute
+
+- espace: douche
+  nom: litres par minute
+  unité: l/minute
+  formule:
+    variations:
+      - si: pomme de douche économe
+        alors: 9
+      - sinon: 18
+  références:
+    - https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
+
+- espace: douche
+  nom: pomme de douche économe
+  question: Utilisez-vous une pomme de douche économe ?
+  par défaut: non
+
+- espace: douche
+  nom: durée de la douche
+  question: Combien de temps dure votre douche en général (en minutes) ?
+  par défaut: 5
+  unité: minute
+  suggestions:
+    expresse: 5
+    moyenne: 10
+    lente: 20
+
+
+
+  
+
+- nom: chauffage
+  icônes: 🔥
+
+- espace: chauffage
+  nom: type
+  question: Votre eau est chauffée comment ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - gaz
+        - fioul
+        - électricité
+  par défaut: gaz
+
+
+  
+- espace: chauffage
+  nom: impact par kWh
+  unité: kgCO₂e/kWh
+  formule:
+    variations:
+      - si: type = 'gaz'
+        alors: 0.227
+      - si: type = 'fioul'
+        alors: 0.324
+      - si: type = 'électricité'
+        alors: 0.059
+
+  note: |
+    La base carbone de l'ADEME ne permet malheureusement pas de faire des liens profonds vers les chiffres utilisés. 
+    Pour l'électricité, nous retenons le chiffre de l'ADEME "Electricité - 2016 - usage : Eau Chaude Sanitaire - consommation".
+  références:
+    - http://www.bilans-ges.ademe.fr/fr/accueil
+    - https://www.electricitymap.org/?page=country&solar=false&remote=true&wind=false&countryCode=FR
+    - https://decrypterlenergie.org/decryptage-quel-est-le-contenu-en-co2-du-kwh-electrique
+
+
+
+      
+- espace: chauffage
+  nom: énergie consommée par litre
+  formule: 0.0325
+  unité: kWh
+  références:
+    - https://www.econologie.com/forums/plomberie-et-sanitaire/prix-reel-d-un-bain-ou-d-une-douche-pour-l-eau-et-chauffage-t12727.html
+
+- espace: chauffage
+  nom: impact par litre
+  titre: impact par litre chauffé
+  formule: impact par kWh * énergie consommée par litre
