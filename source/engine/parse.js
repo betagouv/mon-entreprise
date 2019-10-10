@@ -162,7 +162,13 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 				// eslint-disable-next-line
 				jsx: () => (
 					<span className={v.type}>
-						{formatValue({ unit: v.unit, value: v.nodeValue })}
+						{formatValue({
+							unit: v.unit,
+							value: v.nodeValue,
+							// We want to display constants with full precision,
+							// espacilly for percentages like APEC 0,036 %
+							maximumFractionDigits: 5
+						})}
 					</span>
 				)
 			})
