@@ -5,7 +5,16 @@ import withTarget from './withTarget'
 export default withFigure => {
 	let decorator = withFigure ? withTarget : a => a
 	return decorator(
-		({ dottedName, formule, title, icônes, nodeValue, scenario }) => (
+		({
+			dottedName,
+			formule,
+			title,
+			icônes,
+			nodeValue,
+			scenario,
+			nextSteps,
+			foldedSteps
+		}) => (
 			<div
 				key={dottedName}
 				css={`
@@ -56,7 +65,14 @@ export default withFigure => {
 								font-size: 80%;
 							`}>
 							<HumanCarbonImpact
-								{...{ nodeValue, formule, dottedName, scenario }}
+								{...{
+									nodeValue,
+									formule,
+									dottedName,
+									scenario,
+									nextSteps,
+									foldedSteps
+								}}
 							/>
 						</div>
 					</>

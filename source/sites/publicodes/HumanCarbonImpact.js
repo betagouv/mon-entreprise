@@ -29,7 +29,14 @@ let humanCarbonImpactData = (scenario, nodeValue) => {
 	return { closestPeriod, closestPeriodValue, closestPeriodLabel, factor }
 }
 
-export default ({ scenario, nodeValue, formule, dottedName }) => {
+export default ({
+	scenario,
+	nodeValue,
+	formule,
+	dottedName,
+	nextSteps,
+	foldedSteps
+}) => {
 	let { closestPeriodLabel, closestPeriod, factor } = humanCarbonImpactData(
 		scenario,
 		nodeValue
@@ -67,32 +74,38 @@ export default ({ scenario, nodeValue, formule, dottedName }) => {
 				</>
 			)}
 
-			<div
-				css={`
-					position: absolute;
-					color: #555;
-					font-size: 100%;
-					font-weight: 600;
-					display: inline-block;
-					padding: 0rem 1rem;
-					text-transform: uppercase;
-					border-radius: 1rem;
-					font-family: 'Courier';
-					-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-					-webkit-mask-size: 944px 604px;
-					mix-blend-mode: multiply;
-					color: #969494;
-					border: 0.15rem solid #969494;
-					-webkit-mask-position: 13rem 6rem;
-					-webkit-transform: rotate(-16deg);
-					-ms-transform: rotate(-16deg);
-					transform: rotate(-7deg);
-					border-radius: 4px;
-					top: 11.2em;
-					right: -2em;
-				`}>
-				1ère estimation
-			</div>
+			{nextSteps?.length > 0 && (
+				<FirstEstimationStamp foldedSteps={foldedSteps} />
+			)}
 		</div>
 	)
 }
+
+let FirstEstimationStamp = ({ foldedSteps }) => (
+	<div
+		css={`
+			position: absolute;
+			color: #555;
+			font-size: 100%;
+			font-weight: 600;
+			display: inline-block;
+			padding: 0rem 1rem;
+			text-transform: uppercase;
+			border-radius: 1rem;
+			font-family: 'Courier';
+			-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+			-webkit-mask-size: 944px 604px;
+			mix-blend-mode: multiply;
+			color: #969494;
+			border: 0.15rem solid #969494;
+			-webkit-mask-position: 13rem 6rem;
+			-webkit-transform: rotate(-16deg);
+			-ms-transform: rotate(-16deg);
+			transform: rotate(-7deg);
+			border-radius: 4px;
+			top: 11.2em;
+			right: -2em;
+		`}>
+		{!foldedSteps.length ? '1ère estimation' : 'estimation'}
+	</div>
+)
