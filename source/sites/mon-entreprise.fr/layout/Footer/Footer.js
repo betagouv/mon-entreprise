@@ -88,6 +88,10 @@ const Footer = ({ sitePaths }) => {
 						{'  •  '}
 						<Privacy />
 						{'  •  '}
+						<a href="https://github.com/betagouv/mon-entreprise/releases">
+							Nouveautés
+						</a>
+						{'  •  '}
 						<a href="https://mon-entreprise.fr/stats">Stats</a>
 						{i18n.language === 'fr' && (
 							<>
