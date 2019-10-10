@@ -107,8 +107,9 @@ export default function Privacy() {
 				taux de versement transport.
 			</p>
 			<p>
-				Alors que dans le simulateur mon-entreprise.fr/sécurité-sociale/salarié,
-				il suffit de renseigner la commune et le taux correspondant est
+				Alors que dans le simulateur{' '}
+				<a href="https://mon-entreprise.fr/sécurité-sociale/salarié">salarié</a>
+				, il suffit de renseigner la commune et le taux correspondant est
 				automatiquement déterminé. C'est voulu : pour garder la librairie (et le
 				site) légers, nous utilisons deux API en ligne. L'
 				<a href="https://api.gouv.fr/api/api-geo.html#doc_tech">
@@ -130,15 +131,16 @@ export default function Privacy() {
 				net en fonction du brut.
 			</p>
 			<p css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
-				On peut constater la progressivité du salaire total, qui est en % plus
-				faible pour un SMIC que pour un haut revenu. Autrement dit, les hauts
-				salaires paient une partie des cotisations sociales des bas salaires.
+				On peut constater la progressivité du salaire total, qui est en pourcent
+				plus faible pour un SMIC que pour un haut revenu. Autrement dit, les
+				hauts salaires paient une partie des cotisations sociales des bas
+				salaires.
 			</p>
 			<p>
-				{emoji('⚠️ ')}Attention, cet example fais pas mal de calculs d'un coup,
+				{emoji('⚠️ ')}Attention, cet exemple fait pas mal de calculs d'un coup,
 				ce qui peut bloquer votre navigateur quelques secondes. Pour palier à ce
-				problème, il suffit de faire l'appel à la librairie dans un Web Worker,
-				mais nous ne pouvons pas le faire{' '}
+				problème, il faudrait faire l'appel à la librairie dans un Web Worker,
+				mais ça n'est pas possible{' '}
 				<a href="https://github.com/facebook/create-react-app/pull/5886">
 					pour l'instant
 				</a>{' '}
