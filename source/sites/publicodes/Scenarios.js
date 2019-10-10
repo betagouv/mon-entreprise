@@ -60,6 +60,7 @@ export default () => {
 							p {
 								font-style: italic;
 								font-size: 90%;
+								line-height: 1.5rem;
 							}
 							label {
 								cursor: pointer;
@@ -73,7 +74,7 @@ export default () => {
 
 							${state.scenario === nom
 								? `
-								border: 3px solid var(--colour)
+								border: 4px solid var(--colour)
 								
 							`
 								: ``}
@@ -116,8 +117,12 @@ export default () => {
 			/>
 			<p>
 				Les conséquences de ces scénarios sont bien évidemment très compliquées
-				à prévoir : ces descriptions sont indicatives et mériteraient d'être
-				davantage sourcées.{' '}
+				à prévoir : ces descriptions sont indicatives et évolueront notamment
+				lors du prochain rapport du{' '}
+				<a href="https://fr.wikipedia.org/wiki/Groupe_d%27experts_intergouvernemental_sur_l%27%C3%A9volution_du_climat">
+					GIEC
+				</a>
+				.
 			</p>
 			<p>
 				Si vous êtes à l'aise en anglais, l'article{' '}
@@ -129,7 +134,7 @@ export default () => {
 				<a href="https://climatefeedback.org/evaluation/scientists-explain-what-new-york-magazine-article-on-the-uninhabitable-earth-gets-wrong-david-wallace-wells/">
 					cet autre article
 				</a>{' '}
-				les remet en perspective de façon plus rigoureuse et factuelle.
+				l remet en perspective de façon scientifiquement plus rigoureuse.
 			</p>
 		</section>
 	)
