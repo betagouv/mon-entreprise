@@ -11,13 +11,23 @@ export let numberFormatter = ({
 	maximumFractionDigits = 2,
 	minimumFractionDigits = 0,
 	language
-}) => value =>
-	NumberFormat(language, {
+}) => value => {
+	// When we format currency we don't want to display a single decimal digit
+	// ie 8,1€ but we want to display 8,10€
+	const adaptedMinimumFractionDigits =
+		style === 'currency' &&
+		maximumFractionDigits >= 2 &&
+		minimumFractionDigits === 0 &&
+		!Number.isInteger(value)
+			? 2
+			: minimumFractionDigits
+	return NumberFormat(language, {
 		style,
 		currency: 'EUR',
 		maximumFractionDigits,
-		minimumFractionDigits
+		minimumFractionDigits: adaptedMinimumFractionDigits
 	}).format(value)
+}
 
 export const currencyFormat = language => ({
 	isCurrencyPrefixed: !!numberFormatter({ language, style: 'currency' })(
