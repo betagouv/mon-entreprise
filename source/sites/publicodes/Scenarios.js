@@ -53,23 +53,24 @@ export default () => {
 							margin: 1em;
 							border: 1px solid #eee;
 
+							position: relative;
+							padding-bottom: 6rem !important;
+
 							h2 {
 								margin-top: 0;
-								font-size: 125%;
+								font-size: 120%;
 							}
 							p {
 								font-style: italic;
 								font-size: 90%;
 								line-height: 1.5rem;
 							}
-							label {
-								cursor: pointer;
-								display: block;
-							}
 
-							:hover {
-								background: var(--colour);
-								color: var(--textColour);
+							button {
+								visibility: hidden;
+							}
+							:hover button {
+								visibility: visible;
 							}
 
 							${state.scenario === nom
@@ -77,37 +78,48 @@ export default () => {
 								border: 4px solid var(--colour)
 								
 							`
-								: ``}
+								: `border: 4px solid white`}
 						`}>
-						<label>
-							<input
-								css="width: 100%"
-								type="radio"
-								name="scenario"
-								value={nom}
-								checked={state.scenario === nom}
-								onChange={() =>
-									dispatch({ type: 'SET_SCENARIO', scenario: nom })
+						<h2>
+							<span>{emoji(s.icône)}</span>&nbsp;
+							{s.titre}
+						</h2>
+						<p>{s['sous-titre']}</p>
+						<div title="Réchauffement à la fin du siècle">
+							<strong>
+								{emoji('🌡️ ')} {s.réchauffement}
+							</strong>
+						</div>
+						<div>
+							{emoji('💰 ')}
+							{s['crédit carbone par personne']}&nbsp;t de CO₂ / tête / an
+						</div>
+						<div css="margin-top: 1em; ">
+							<p>{s.description}</p>
+						</div>
+						<div
+							css={`
+								position: absolute;
+								bottom: 1rem;
+								left: 50%;
+								transform: translateX(-50%);
+								img {
+									font-size: 200%;
 								}
-							/>
-							<h2>
-								<span>{emoji(s.icône)}</span>&nbsp;
-								{s.titre}
-							</h2>
-							<p>{s['sous-titre']}</p>
-							<div title="Réchauffement à la fin du siècle">
-								<strong>
-									{emoji('🌡️ ')} {s.réchauffement}
-								</strong>
-							</div>
-							<div>
-								{emoji('💰 ')}
-								{s['crédit carbone par personne']}&nbsp;t de CO₂ / tête / an
-							</div>
-							<div css="margin-top: 1em">
-								<p>{s.description}</p>
-							</div>
-						</label>
+							`}>
+							{state.scenario === nom ? (
+								<div>{emoji('☑️ ')}</div>
+							) : (
+								<button
+									className="ui__ button"
+									onClick={() => {
+										dispatch({ type: 'SET_SCENARIO', scenario: nom })
+										setTimeout(() => window.history.go(-1), 1000)
+									}}>
+									Sélectionner
+								</button>
+							)}
+						</div>
 					</li>
 				))}
 			</ul>
