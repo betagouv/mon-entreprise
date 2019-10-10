@@ -30,7 +30,9 @@ export default connect(state => ({
 			<div className="ui__ container" css="margin-bottom: 1em">
 				<Helmet>
 					<title>{rule.title}</title>
-					<meta name="description" content="DESCRIPTION" />
+					{rule.description && (
+						<meta name="description" content={rule.description} />
+					)}
 				</Helmet>
 				<Simulation
 					noFeedback
