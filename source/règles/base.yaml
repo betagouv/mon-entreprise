@@ -3181,7 +3181,7 @@
 - nom: impôt
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
-  titre: impôt sur le revenu
+  titre: impôts sur le revenu
   période: flexible
   unité: €
   formule:

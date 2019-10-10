@@ -1,12 +1,18 @@
 import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
-import { compose } from 'ramda'
-import React, { useRef } from 'react'
+import StackedBarChart from 'Components/StackedBarChart'
+import { ThemeColoursContext } from 'Components/utils/withColours'
+import { getRuleFromAnalysis } from 'Engine/rules'
+import React, { useRef, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { connect } from 'react-redux'
-import { usePeriod } from 'Selectors/analyseSelectors'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import {
+	analysisWithDefaultsSelector,
+	usePeriod
+} from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
 class ErrorBoundary extends React.Component {
@@ -24,22 +30,23 @@ class ErrorBoundary extends React.Component {
 	}
 }
 
-export default compose(
-	connect(state => ({
-		showDistributionFirst: !state.conversationSteps.foldedSteps.length
-	}))
-)(function SalaryExplanation({ showDistributionFirst }) {
+export default function SalaryExplanation() {
+	const showDistributionFirst = useSelector(
+		state => !state.conversationSteps.foldedSteps.length
+	)
 	const distributionRef = useRef({})
 	return (
 		<ErrorBoundary>
 			<Animate.fromTop key={showDistributionFirst}>
 				{showDistributionFirst ? (
 					<>
+						<RevenueRepatitionSection />
 						<DistributionSection />
 						<PaySlipSection />
 					</>
 				) : (
 					<>
+						<RevenueRepatitionSection />
 						<div css="text-align: center">
 							<button
 								className="ui__ small simple button"
@@ -87,7 +94,34 @@ export default compose(
 			</Animate.fromTop>
 		</ErrorBoundary>
 	)
-})
+}
+
+function RevenueRepatitionSection() {
+	const analysis = useSelector(analysisWithDefaultsSelector)
+	const getRule = getRuleFromAnalysis(analysis)
+	const { t } = useTranslation()
+	const { palettes } = useContext(ThemeColoursContext)
+
+	return (
+		<section>
+			<h2>Répartition du total chargé</h2>
+			<StackedBarChart
+				data={[
+					{
+						...getRule('contrat salarié . rémunération . net après impôt'),
+						name: t('Revenu disponible'),
+						color: palettes[0][0]
+					},
+					{ ...getRule('impôt'), name: t('Impôts'), color: palettes[1][0] },
+					{
+						...getRule('contrat salarié . cotisations'),
+						color: palettes[1][1]
+					}
+				]}
+			/>
+		</section>
+	)
+}
 
 function PaySlipSection() {
 	const period = usePeriod()

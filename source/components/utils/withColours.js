@@ -53,6 +53,21 @@ const lightenColour = (hex, x) => {
 	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
 	return '#' + convert.hsl.hex([h, s, Math.max(2, Math.min(l + x, 98))])
 }
+
+const generateDarkenVariations = (numberOfVariation, [h, s, l]) => {
+	return [...Array(numberOfVariation).keys()].map(
+		i => '#' + convert.hsl.hex([h, s, l * 0.8 ** i])
+	)
+}
+
+const deriveAnalogousPalettes = hex => {
+	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
+	return [
+		generateDarkenVariations(4, [(h - 45) % 360, 0.75 * s, l]),
+		generateDarkenVariations(4, [(h + 45) % 360, 0.75 * s, l])
+	]
+}
+
 const generateTheme = (themeColour?: ?string): ThemeColours => {
 	let // Use the default theme colour if the host page hasn't made a choice
 		colour = themeColour || '#2975D1',
@@ -70,7 +85,8 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 				: 'rgba(0, 0, 0, .6)',
 		lighterTextColour = darkColour + '99',
 		lighterInverseTextColour = lightenTextColour(inverseTextColour),
-		textColourOnWhite = textColour === '#ffffff' ? colour : '#333'
+		textColourOnWhite = textColour === '#ffffff' ? colour : '#333',
+		palettes = deriveAnalogousPalettes(colour)
 
 	return {
 		colour,
@@ -84,7 +100,8 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 		lightColour,
 		lighterColour,
 		lightestColour,
-		darkestColour
+		darkestColour,
+		palettes
 	}
 }
 

@@ -6,8 +6,8 @@ import {
 	Spring,
 	Trail,
 	Transition
-} from 'react-spring'
-import type { SpringConfig } from 'react-spring'
+} from 'react-spring/renderprops'
+import type { SpringConfig } from 'react-spring/renderprops'
 import type { Node } from 'react'
 
 type Props = {
@@ -32,11 +32,11 @@ export const fromBottom = ({
 		config={config}
 		from={{ opacity: 0, y: 20 }}
 		leave={{ opacity: 0, y: -20 }}
-		to={{ opacity: 1, y: 0 }}>
+		to={{ opacity: 1, y: 0 }}
+		items={children}>
 		{/* eslint-disable-next-line react/display-name */}
-		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
+		{item => ({ y, ...style }) => (
 			<animated.div
-				key={i}
 				style={{
 					transform: y.interpolate(y =>
 						y !== 0 ? `translate3d(0, ${y}px,0)` : 'none'
@@ -46,7 +46,7 @@ export const fromBottom = ({
 				}}>
 				{item}
 			</animated.div>
-		))}
+		)}
 	</Trail>
 )
 export const fromTop = ({
@@ -62,11 +62,11 @@ export const fromTop = ({
 		config={config}
 		leave={{ opacity: 0, y: 20 }}
 		from={{ opacity: 0, y: -20 }}
-		to={{ opacity: 1, y: 0 }}>
+		to={{ opacity: 1, y: 0 }}
+		items={children}>
 		{/* eslint-disable-next-line react/display-name */}
-		{React.Children.map(children, (item, i) => ({ y, ...style }) => (
+		{item => ({ y, ...style }) => (
 			<animated.div
-				key={i}
 				style={{
 					transform: y.interpolate(y =>
 						y ? `translate3d(0, ${y}px,0)` : 'none'
@@ -76,7 +76,7 @@ export const fromTop = ({
 				}}>
 				{item}
 			</animated.div>
-		))}
+		)}
 	</Trail>
 )
 
