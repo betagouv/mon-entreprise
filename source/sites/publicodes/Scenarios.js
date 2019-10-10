@@ -1,8 +1,8 @@
-import { React, emoji } from 'Components'
+import { emoji, React } from 'Components'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
-import { Link } from 'react-router-dom'
 
 export default () => {
 	let { state, dispatch } = useContext(StoreContext)
@@ -25,7 +25,9 @@ export default () => {
 					crédit carbone !
 				</em>
 			</p>
-			<h2>Quel futur souhaitez vous ?</h2>
+			<h2 css="display: inline-block;background: var(--colour); padding: .1rem .4rem; margin-right: .4rem;  color: white">
+				Quel futur souhaitez vous ?
+			</h2>
 			<p>
 				L'évolution du climat, et donc notre futur, est directement lié à la
 				somme de toutes nos émissions de carbone individuelles. Voici trois
