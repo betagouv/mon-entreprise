@@ -109,8 +109,9 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		shareImage: 'https://futur.eco/images/logo.png',
 		chunks: ['publicodes'],
 
-		title: 'Futureco 🔥',
-		description: "L'impact sur le climat de vos gestes quotidiens",
+		title: "Futureco 🔥 - L'impact climat de vos gestes quotidiens",
+		description:
+			"La catastrophe climatique n'est plus qu'une menace lointaine, c'est une actualité. Tous vos gestes et consommations quotidiennes impactent le climat. À vous de jouer !",
 		filename: 'publicodes.html'
 	})
 ]
