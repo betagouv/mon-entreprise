@@ -72,7 +72,7 @@ let Landing = () => {
 				<p>
 					En plus du site Web, Mon-entreprise est disponible comme une{' '}
 					<a href="/intégration/bibliothèque-de-calcul">
-						librairie de calcul autonome
+						bibliothèque de calcul autonome
 					</a>
 					.
 				</p>

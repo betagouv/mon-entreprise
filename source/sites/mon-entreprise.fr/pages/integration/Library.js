@@ -15,7 +15,7 @@ export default function Privacy() {
 				<b>
 					intégrables sous forme d'une{' '}
 					<a href="https://www.npmjs.com/package/mon-entreprise">
-						librairie NPM
+						bibliothèque NPM
 					</a>
 				</b>
 				.
@@ -33,8 +33,8 @@ export default function Privacy() {
 			</p>
 			<h2>Comment l'utiliser ?</h2>
 			<p>
-				Les exemples suivants vous montrent comment utiliser la librairie sur un
-				site ReactJs très simple.
+				Les exemples suivants vous montrent comment utiliser la bibliothèque sur
+				un site ReactJs très simple.
 			</p>
 			<h3>1) Faire un calcul très simple : du brut au net</h3>
 			<div className="ui__ full-width">
@@ -110,8 +110,8 @@ export default function Privacy() {
 				Alors que dans le simulateur{' '}
 				<a href="https://mon-entreprise.fr/sécurité-sociale/salarié">salarié</a>
 				, il suffit de renseigner la commune et le taux correspondant est
-				automatiquement déterminé. C'est voulu : pour garder la librairie (et le
-				site) légers, nous utilisons deux API en ligne. L'
+				automatiquement déterminé. C'est voulu : pour garder la bibliothèque (et
+				le site) légers, nous utilisons deux API en ligne. L'
 				<a href="https://api.gouv.fr/api/api-geo.html#doc_tech">
 					API Géo - communes
 				</a>{' '}
@@ -126,9 +126,9 @@ export default function Privacy() {
 			</p>
 			<h2>Faire des graphiques économiques{emoji(' 📈')}</h2>
 			<p>
-				Il est aussi possible d'utiliser la librairie pour des calculs d'analyse
-				économique ou politique. Ici, on trace le prix du travail et le salaire
-				net en fonction du brut.
+				Il est aussi possible d'utiliser la bibliothèque pour des calculs
+				d'analyse économique ou politique. Ici, on trace le prix du travail et
+				le salaire net en fonction du brut.
 			</p>
 			<p css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
 				On peut constater la progressivité du salaire total, qui est en pourcent
@@ -139,8 +139,8 @@ export default function Privacy() {
 			<p>
 				{emoji('⚠️ ')}Attention, cet exemple fait pas mal de calculs d'un coup,
 				ce qui peut bloquer votre navigateur quelques secondes. Pour palier à ce
-				problème, il faudrait faire l'appel à la librairie dans un Web Worker,
-				mais ça n'est pas possible{' '}
+				problème, il faudrait faire l'appel à la bibliothèque dans un Web
+				Worker, mais ça n'est pas possible{' '}
 				<a href="https://github.com/facebook/create-react-app/pull/5886">
 					pour l'instant
 				</a>{' '}
