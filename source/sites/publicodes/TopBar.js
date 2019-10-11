@@ -1,9 +1,9 @@
-import { React, emoji } from 'Components'
+import { emoji, React } from 'Components'
 import { useContext } from 'react'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
-import { withRouter } from 'react-router'
 
 export default withRouter(({ location }) => {
 	let {
@@ -37,35 +37,36 @@ export default withRouter(({ location }) => {
 			{displayIntro && (
 				<p
 					id="intro"
-					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em">
-					La catastrophe climatique n'est plus une menace lointaine, c'est une
-					actualité.&nbsp;
-					<Link to="/à-propos">En savoir plus</Link>. Que faire ?
+					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em; ">
+					La catastrophe climatique n'est plus qu'une menace lointaine, c'est
+					une actualité.&nbsp;<Link to="/à-propos">En savoir plus</Link>.
 				</p>
 			)}
-			<div
-				className="ui__ card"
-				css={`
-					text-align: center;
-					padding: 0.6rem 1rem !important;
-					margin-right: 0.6rem;
-					background: var(--colour);
-					color: white;
-					a {
-						color: inherit;
-					}
-				`}>
-				Votre futur :
+			{!location.pathname.includes('/scénarios') && (
 				<div
+					className="ui__ card"
 					css={`
-						img {
-							font-size: 250%;
+						text-align: center;
+						padding: 0.6rem 1rem !important;
+						margin-right: 0.6rem;
+						background: var(--colour);
+						color: white;
+						a {
+							color: inherit;
 						}
 					`}>
-					{emoji(scenario.icône)}
+					Votre futur :
+					<div
+						css={`
+							img {
+								font-size: 250%;
+							}
+						`}>
+						{emoji(scenario.icône)}
+					</div>
+					<Link to="/scénarios">changer</Link>
 				</div>
-				<Link to="/scénarios">changer</Link>
-			</div>
+			)}
 		</section>
 	)
 })

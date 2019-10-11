@@ -1,18 +1,25 @@
-import Simulation from 'Components/Simulation'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
-import { React, emoji } from 'Components'
-import { Helmet } from 'react-helmet'
-import ImpactCard from './ImpactCard'
-import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import { connect } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { React } from 'Components'
+import { EndingCongratulations } from 'Components/conversation/Conversation'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import ShareButton from 'Components/ShareButton'
+import Simulation from 'Components/Simulation'
+import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { Markdown } from 'Components/utils/markdown'
-import { EndingCongratulations } from 'Components/conversation/Conversation'
+import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
+import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import CarbonImpact from './CarbonImpact'
+import ItemCard from './ItemCard'
+import withTarget from './withTarget'
+
+let CarbonImpactWithData = withTarget(CarbonImpact)
+
+let ItemCardWithData = ItemCard(true)
 
 export default connect(state => ({
-	rules: flatRulesSelector(state)
+	rules: flatRulesSelector(state),
+	scenario: state.scenario
 }))(props => {
 	let objectif = props.match.params.name,
 		decoded = decodeRuleName(objectif),
@@ -20,15 +27,13 @@ export default connect(state => ({
 		Simulateur = withSimulationConfig({
 			objectifs: [decoded]
 		})(() => (
-			<div className="ui__ container">
+			<div className="ui__ container" css="margin-bottom: 1em">
 				<Helmet>
 					<title>{rule.title}</title>
-					<meta name="description" content="DESCRIPTION" />
+					{rule.description && (
+						<meta name="description" content={rule.description} />
+					)}
 				</Helmet>
-				<h1>
-					{rule.icônes && emoji(rule.icônes + ' ')}
-					{rule.title}
-				</h1>
 				<Simulation
 					noFeedback
 					noProgressMessage
@@ -42,11 +47,12 @@ export default connect(state => ({
 					}
 					targets={
 						<>
-							<ImpactCard />
+							<ItemCardWithData />
 							{rule.period === 'flexible' && <PeriodBlock />}
 						</>
 					}
 				/>
+				<CarbonImpactWithData />
 				<ShareButton
 					text="Mesure ton impact sur Futur.eco !"
 					url={'https://' + window.location.hostname + props.match.url}

@@ -19,7 +19,7 @@ export default connect(state => ({
 	firstStepCompleted,
 	explanations,
 	customEndMessages,
-		customEnd,
+	customEnd,
 	progress,
 	targets,
 	showConversation,
@@ -41,7 +41,7 @@ export default connect(state => ({
 								marginBottom: '0.6rem',
 								alignItems: 'baseline'
 							}}>
-							{progress < 1 ? (
+							{progress < 1 && !noProgressMessage ? (
 								<small css="padding: 0.4rem 0">
 									<T k="simulateurs.précision.défaut">
 										Affinez la simulation en répondant aux questions :
@@ -55,7 +55,10 @@ export default connect(state => ({
 						<div className="ui__ full-width choice-group">
 							<div className="ui__ container">
 								<Controls />
-								<Conversation customEnd={customEnd} customEndMessages={customEndMessages} />
+								<Conversation
+									customEnd={customEnd}
+									customEndMessages={customEndMessages}
+								/>
 							</div>
 						</div>
 						{progress < 1 && (

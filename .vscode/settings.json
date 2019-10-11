@@ -4,5 +4,8 @@
 	"spellright.documentTypes": ["yaml"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": true
+	},
+	"files.exclude": {
+		"**/node_modules": true
 	}
 }
