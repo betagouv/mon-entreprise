@@ -1,5 +1,5 @@
 
-import { resetEntreprise, specifyIfAutoEntrepreneur } from 'Actions/existingCompanyActions';
+import { resetEntreprise, specifyIfAutoEntrepreneur, specifyIfDirigeantMajoritaire } from 'Actions/existingCompanyActions';
 import { React, T } from 'Components';
 import CompanyDetails from 'Components/CompanyDetails';
 import FindCompany from 'Components/FindCompany';
@@ -24,11 +24,11 @@ const infereRégimeFromCompanyDetails = (
     if (company.isAutoEntrepreneur) {
         return 'auto-entrepreneur'
     }
-    if (['EI', 'EURL'].includes(company.statutJuridique)) {
+    if (['EI', 'EURL'].includes(company.statutJuridique) || company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire) {
         return 'indépendant'
     }
 
-    if (['SASU', 'SAS'].includes(company.statutJuridique)) {
+    if (['SASU', 'SAS'].includes(company.statutJuridique) || company.statutJuridique === 'SARL' && !company.isDirigeantMajoritaire) {
         return 'assimilé-salarié'
     }
 
@@ -95,22 +95,40 @@ export default function SocialSecurity() {
                         <p><T k="sécu.choix.employé">Estimer le montant d’une embauche</T></p>
                         <small>Découvrez le montant total dépensé par l’entreprise pour rémunérer votre prochain employé</small>
                     </Link>}
-                    <h2>Liens utiles</h2>
-                    <Link
-                        className="ui__ interactive card button-choice light-bg"
-                        css={`
-                            width: 50%;
-                            @media (max-width: 850px) {
-                                width: 100%;
-                            }
-                        `}
-                        to={sitePaths.gérer.embaucher}
-                    >
-                        <p>Découvrir les démarches d’embauche </p>
-                        <small>La liste des choses à faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau salarié</small>
-                    </Link>
+                    <h2>Ressources utiles</h2>
+                    <div css={`
+                    display: flex; 
+                    margin: 0 -1rem;
+                    > * {
+                        margin: 1rem !important;
+                        flex: 1;
+                    }
+                    `}>
+                        {!company ?.isAutoEntrepreneur && <Link
+                            className="ui__ interactive card button-choice light-bg"
+                            to={sitePaths.gérer.embaucher}
+                        >
+                            <p>Découvrir les démarches d’embauche </p>
+                            <small>La liste des choses à faire pour être sûr de ne rien oublier lors de l’embauche d’un nouveau salarié</small>
+                        </Link>}
+                        {company ?.isAutoEntrepreneur && <a
+                            className="ui__ interactive card button-choice light-bg"
+                            href="https://autoentrepreneur.urssaf.fr"
+                        >
+                            <p>Accéder au site officiel auto-entrepreneur</p>
+                            <small>Vous pourrez effectuer votre déclaration de chiffre d'affaire, payer vos cotisations, et plus largement trouver toutes les informations relatives au statut d'auto-entrepreneur</small>
+                        </a>}
+                        <Link
+                            className="ui__ interactive card button-choice light-bg"
+                            to={sitePaths.gérer.sécuritéSociale}
+                        >
+                            <p>Comprendre la sécurité sociale </p>
+                            <small>A quoi servent les cotisations sociales ? Le point sur le système de protection sociale dont bénéficient touts les travailleurs en France</small>
+                        </Link>
+
+                    </div>
                 </>
-                }
+
             </Animate.fromBottom>
         </>
     )
@@ -119,6 +137,7 @@ export default function SocialSecurity() {
 const CompanySection = ({ company }) => {
     const [searchModal, showSearchModal] = useState(false)
     const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
+    const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] = useState(false)
 
     const companyRef = useRef(null)
     useEffect(() => {
@@ -133,6 +152,11 @@ const CompanySection = ({ company }) => {
 			) {
                 showAutoEntrepreneurModal(true)
             }
+            if (
+                company ?.statutJuridique === 'SARL' && company ?.isDirigeantMajoritaire == null
+			) {
+                showDirigeantMajoritaireModal(true)
+            }
         }
     }, [company, searchModal])
 
@@ -140,6 +164,10 @@ const CompanySection = ({ company }) => {
     const handleAnswerAutoEntrepreneur = isAutoEntrepreneur => {
         dispatch(specifyIfAutoEntrepreneur(isAutoEntrepreneur))
         showAutoEntrepreneurModal(false)
+    }
+    const handleAnswerDirigeantMajoritaire = DirigeantMajoritaire => {
+        dispatch(specifyIfDirigeantMajoritaire(DirigeantMajoritaire))
+        showDirigeantMajoritaireModal(false)
     }
 
     return (
@@ -158,6 +186,28 @@ const CompanySection = ({ company }) => {
                             <button
                                 className="ui__ button"
                                 onClick={() => handleAnswerAutoEntrepreneur(false)}>
+                                Non
+							</button>
+                        </div>
+                    </Overlay>
+                </>
+            )}
+            {DirigeantMajoritaireModal && (
+                <>
+                    <ScrollToTop />
+                    <Overlay>
+                        <h2> Êtes-vous dirigeant majoritaire ? </h2>
+                        <p>Si vous êtes administrateur majoritaire
+					ou si vous faites partie d'un conseil d'administration majoritaire, vous n'aurez pas le même statut que si vous êtes minoritaire.</p>
+                        <div className="ui__ answer-group">
+                            <button
+                                className="ui__ button"
+                                onClick={() => handleAnswerDirigeantMajoritaire(true)}>
+                                Oui
+							</button>
+                            <button
+                                className="ui__ button"
+                                onClick={() => handleAnswerDirigeantMajoritaire(false)}>
                                 Non
 							</button>
                         </div>
@@ -183,6 +233,9 @@ const CompanySection = ({ company }) => {
                                     :
                                     company.statutJuridique}
                             </span>
+                            {company.isDirigeantMajoritaire != null && <span css="margin-left: 1rem" className="ui__ label">
+                                {company.isDirigeantMajoritaire ? 'Dirigeant majoritaire' : 'Dirigeant minoritaire'}
+                            </span>}
                         </>
                     }
                     </p>
