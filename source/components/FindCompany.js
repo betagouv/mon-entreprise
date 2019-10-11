@@ -13,7 +13,7 @@ export default function Search() {
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function(value) {
+		function (value) {
 			searchDenominationOrSiren(value).then(results => {
 				setLoadingState(false)
 				setSearchResults(results)
@@ -77,7 +77,7 @@ export default function Search() {
 						css={`
 							text-align: left;
 							width: 100%;
-							padding: 0.4rem;
+							padding: 0 0.4rem;
 							border-radius: 0.3rem;
 							:hover,
 							:focus {

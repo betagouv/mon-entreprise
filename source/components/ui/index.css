@@ -64,6 +64,12 @@ blockquote {
 	flex-wrap: wrap;
 }
 
+@media (max-width: 850px) {
+	.ui__.hide-mobile {
+		display: none;	
+	}
+}
+
 section {
 	padding: 1rem 0;
 }
@@ -103,4 +109,8 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	background: var(--lighterTextColour);
 	border-radius: 0.3rem;
 	text-align: center;
+}
+
+.no-scroll {
+	overflow: hidden;
 }

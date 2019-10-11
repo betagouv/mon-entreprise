@@ -502,26 +502,28 @@ path:
       statutDirigeant: '/directors-status'
       nombreAssociés: '/multiple-associates'
       autoEntrepreneur: '/auto-entrepreneur'
-  sécuritéSociale:
-    index: '/social-security'
+  gérer:
+    index: '/manage'
+    embaucher: '/hiring'
+    selection: '/social-scheme-selection'
+    sécuritéSociale: '/social-security'
+  simulateurs:
+    index: /simulators
     assimilé-salarié: '/assimilated-salaried'
     indépendant: '/self-employed'
     auto-entrepreneur: '/auto-entrepreneur'
     salarié: '/salaried'
-    selection: '/social-scheme-selection'
     comparaison: '/social-scheme-comparaison'
-  démarcheEmbauche:
-    index: '/hiring-process'
   documentation:
     exemples: '/examples'
-  privacy:
-    index: '/privacy'
   integration:
     index: '/integration'
     iframe: '/iframe'
     library: '/library'
+
   économieCollaborative:
     index: '/sharing-economy'
+    votreSituation: '/your-situation'
 
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL

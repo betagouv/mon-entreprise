@@ -31,28 +31,28 @@ export const constructLocalizedSitePath = (language: string) => {
 			créer: (companyStatus: LegalStatus | ':status') =>
 				companyStatus === ':status'
 					? [
-							t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
-								companyStatus: ':status'
-							}),
-							t(
-								'path.entreprise.devenirAutoEntrepreneur',
-								'/devenir-{{autoEntrepreneur}}',
-								{
-									autoEntrepreneur: ':status'
-								}
-							)
-					  ]
+						t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+							companyStatus: ':status'
+						}),
+						t(
+							'path.entreprise.devenirAutoEntrepreneur',
+							'/devenir-{{autoEntrepreneur}}',
+							{
+								autoEntrepreneur: ':status'
+							}
+						)
+					]
 					: companyStatus.includes('auto-entrepreneur')
-					? t(
+						? t(
 							'path.entreprise.devenirAutoEntrepreneur',
 							'/devenir-{{autoEntrepreneur}}',
 							{
 								autoEntrepreneur: companyStatus
 							}
-					  )
-					: t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
+						)
+						: t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
 							companyStatus
-					  }),
+						}),
 
 			après: t('path.entreprise.après', '/après-la-création'),
 			statutJuridique: {
@@ -80,26 +80,28 @@ export const constructLocalizedSitePath = (language: string) => {
 				)
 			}
 		},
-		sécuritéSociale: {
-			index: t('path.sécuritéSociale.index', '/sécurité-sociale'),
+		gérer: {
+			index: t('path.gérer.index', '/gérer'),
+			embauche: t('path.gérer.embaucher', '/embaucher'),
+			selection: t('path.gérer.selection', '/sélection-du-régime'),
+			sécuritéSociale: t('path.gérer.selection', '/sécurité-sociale'),
+		},
+		simulateurs: {
+			index: t('path.simulateurs.index', '/simulateurs'),
 			'assimilé-salarié': t(
-				'path.sécuritéSociale.assimilé-salarié',
+				'path.simulateurs.assimilé-salarié',
 				'/assimilé-salarié'
 			),
-			indépendant: t('path.sécuritéSociale.indépendant', '/indépendant'),
+			indépendant: t('path.simulateurs.indépendant', '/indépendant'),
 			'auto-entrepreneur': t(
-				'path.sécuritéSociale.auto-entrepreneur',
+				'path.simulateurs.auto-entrepreneur',
 				'/auto-entrepreneur'
 			),
 			comparaison: t(
-				'path.sécuritéSociale.comparaison',
+				'path.simulateurs.comparaison',
 				'/comparaison-régimes-sociaux'
 			),
-			selection: t('path.sécuritéSociale.selection', '/sélection-du-régime'),
-			salarié: t('path.sécuritéSociale.salarié', '/salarié')
-		},
-		démarcheEmbauche: {
-			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
+			salarié: t('path.simulateurs.salarié', '/salarié')
 		},
 		économieCollaborative: {
 			index: t('path.économieCollaborative.index', '/économie-collaborative'),
@@ -111,9 +113,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		documentation: {
 			exemples: t('path.documentation.exemples', '/exemples'),
 			index: t('path.documentation.index', '/documentation')
-		},
-		privacy: {
-			index: t('path.privacy.index', '/vie-privée')
 		},
 		integration: {
 			index: t('path.integration.index', '/intégration'),

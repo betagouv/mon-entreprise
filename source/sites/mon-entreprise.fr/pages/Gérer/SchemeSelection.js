@@ -21,7 +21,7 @@ const SchemeChoice = compose(
 		</h1>
 		<p>
 			<Link
-				to={sitePaths.sécuritéSociale['assimilé-salarié']}
+				to={sitePaths.simulateurs['assimilé-salarié']}
 				className="ui__ interactive card light-bg button-choice">
 				{emoji('☂')}
 				<span>
@@ -36,7 +36,7 @@ const SchemeChoice = compose(
 				</span>
 			</Link>
 			<Link
-				to={sitePaths.sécuritéSociale.indépendant}
+				to={sitePaths.simulateurs.indépendant}
 				className="ui__ interactive card light-bg button-choice">
 				{emoji('👩‍🔧')}
 				<span>
@@ -51,7 +51,7 @@ const SchemeChoice = compose(
 				</span>
 			</Link>
 			<Link
-				to={sitePaths.sécuritéSociale['auto-entrepreneur']}
+				to={sitePaths.simulateurs['auto-entrepreneur']}
 				className="ui__ interactive card light-bg button-choice">
 				{emoji('🚶‍♂️')}
 				Auto-entrepreneur
@@ -65,7 +65,7 @@ const SchemeChoice = compose(
 		<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 			<Link
 				className="ui__  plain cta button"
-				to={sitePaths.sécuritéSociale.comparaison}>
+				to={sitePaths.simulateurs.comparaison}>
 				<T k="selectionRégime.comparer.cta">Comparer les régimes</T>
 			</Link>
 		</p>

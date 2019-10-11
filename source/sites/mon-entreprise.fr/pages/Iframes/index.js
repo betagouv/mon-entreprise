@@ -1,9 +1,9 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import React from 'react'
 import { Route } from 'react-router'
-import SimulateurAssimiléSalarié from '../SocialSecurity/AssimiléSalarié'
-import SimulateurAutoEntrepreneur from '../SocialSecurity/AutoEntrepreneur'
-import SimulateurIndépendant from '../SocialSecurity/Indépendant'
+import SimulateurAssimiléSalarié from '../Simulateurs/AssimiléSalarié'
+import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
+import SimulateurIndépendant from '../Simulateurs/Indépendant'
 import IframeFooter from './IframeFooter'
 import SimulateurEmbauche from './SimulateurEmbauche'
 

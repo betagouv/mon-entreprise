@@ -3,11 +3,11 @@ import { React, T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
-import { useTranslation } from 'react-i18next'
 
 type OwnProps = {}
 type Props = {
@@ -70,7 +70,7 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 					<span
 						style={
 							companyStatusChoice &&
-							companyStatusChoice.match(/auto-entrepreneur|EI/)
+								companyStatusChoice.match(/auto-entrepreneur|EI/)
 								? { display: 'none' }
 								: {}
 						}>
@@ -118,11 +118,6 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 					to={sitePaths.entreprise.index}
 					className="ui__ simple skip button left">
 					← <T k="après.actions.retour">Démarche de création</T>
-				</Link>
-				<Link
-					to={sitePaths.sécuritéSociale.index}
-					className="ui__ plain button">
-					<T k="après.actions.avance">Estimez vos cotisations </T>→
 				</Link>
 			</p>
 		</Animate.fromBottom>
