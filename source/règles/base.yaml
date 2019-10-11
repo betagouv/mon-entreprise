@@ -1815,6 +1815,7 @@ entreprise . établissement bancaire:
       chemin: nom
 
 établissement . taux du versement transport:
+  unité: '%'
   formule:
     synchronisation:
       API: localisation
@@ -4438,7 +4439,7 @@ protection sociale . retraite . complémentaire salarié:
 protection sociale . retraite . complémentaire salarié . valeur du point:
   formule: 1.2588
   période: année
-  unité: €
+  unité: €/points
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -4471,7 +4472,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
 protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
   formule: 1.187
   période: année
-  unité: €
+  unité: €/points
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
