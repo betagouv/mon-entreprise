@@ -75,10 +75,16 @@ button {
 }
 
 p,
+a,
 ul {
 	line-height: 1.7rem;
+	
+}
+
+p, ul {
 	margin: 0 0 0.6rem;
 }
+
 p.ui__.lead {
 	font-size: 120%;
 	line-height: 2rem;
@@ -127,4 +133,5 @@ small,
 	color: rgba(0, 0, 0, 0.6);
 	color: var(--lighterTextColour);
 	font-size: 85%;
+	line-height: 1.2rem;
 }

@@ -33,17 +33,18 @@ export default function CompanyDetails({ siren, denomination }) {
 						<small>({siren})</small>
 					</>
 				) : (
-					<Skeleton width={400} />
-				)}
+						<Skeleton width={400} />
+					)}
 			</h3>
-			<small>
+
+			<p className="ui__ notice">
 				<T>Crée le</T>{' '}
 				<strong>
 					{company ? (
 						DateFormatter.format(new Date(company.date_creation))
 					) : (
-						<Skeleton width={80} />
-					)}
+							<Skeleton width={80} />
+						)}
 				</strong>
 				, <T>domiciliée à</T>{' '}
 				{company ? (
@@ -52,9 +53,10 @@ export default function CompanyDetails({ siren, denomination }) {
 						{company.etablissement_siege.code_postal})
 					</>
 				) : (
-					<Skeleton width={100} />
-				)}
-			</small>
+						<Skeleton width={100} />
+					)}
+			</p>
+
 		</>
 	)
 }

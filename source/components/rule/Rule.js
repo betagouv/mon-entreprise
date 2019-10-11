@@ -4,11 +4,7 @@ import withColours from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import {
-	encodeRuleName,
-	findRuleByDottedName,
-	findRuleByNamespace
-} from 'Engine/rules'
+import { encodeRuleName, findRuleByDottedName, findRuleByNamespace } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
 import React, { Suspense, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -16,12 +12,7 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {
-	exampleAnalysisSelector,
-	flatRulesSelector,
-	noUserInputSelector,
-	ruleAnalysisSelector
-} from 'Selectors/analyseSelectors'
+import { exampleAnalysisSelector, flatRulesSelector, noUserInputSelector, ruleAnalysisSelector } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import { AttachDictionary } from '../AttachDictionary'
 import RuleLink from '../RuleLink'
@@ -96,36 +87,36 @@ export default compose(
 					</Suspense>
 				</>
 			) : (
-				<div id="rule">
-					<Animate.fromBottom>
-						<Helmet
-							title={title}
-							meta={[
-								{
-									name: 'description',
-									content: description
-								}
-							]}
-						/>
-						<RuleHeader
-							{...{
-								ns,
-								type,
-								description,
-								question,
-								flatRule,
-								flatRules,
-								name,
-								title,
-								icon,
-								valuesToShow
-							}}
-						/>
+					<div id="rule">
+						<Animate.fromBottom>
+							<Helmet
+								title={title}
+								meta={[
+									{
+										name: 'description',
+										content: description
+									}
+								]}
+							/>
+							<RuleHeader
+								{...{
+									ns,
+									type,
+									description,
+									question,
+									flatRule,
+									flatRules,
+									name,
+									title,
+									icon,
+									valuesToShow
+								}}
+							/>
 
-						<section id="rule-content">
-							<div
-								id="ruleValue"
-								css={`
+							<section id="rule-content">
+								<div
+									id="ruleValue"
+									css={`
 									display: flex;
 									justify-content: center;
 									flex-wrap: wrap;
@@ -140,85 +131,85 @@ export default compose(
 										margin: 0 0.6em;
 									}
 								`}>
-								<Value
-									{...displayedRule}
-									nilValueSymbol={
-										displayedRule.parentDependency?.nodeValue == false
-											? '-'
-											: null
-									}
-								/>
-								<Period
-									period={flatRule['période']}
-									valuesToShow={valuesToShow}
-								/>
-							</div>
-							{displayedRule.defaultValue != null && (
-								<div id="ruleDefault">
-									par défaut :{' '}
 									<Value
 										{...displayedRule}
-										nodeValue={displayedRule.defaultValue}
+										nilValueSymbol={
+											displayedRule.parentDependency ?.nodeValue == false
+												? '-'
+												: null
+									}
+									/>
+									<Period
+										period={flatRule['période']}
+										valuesToShow={valuesToShow}
 									/>
 								</div>
-							)}
-							{!valuesToShow && (
-								<div style={{ textAlign: 'center', marginTop: '1em' }}>
-									<Link
-										className="ui__ cta plain button"
-										target="_parent"
-										to={
-											dottedName.includes('contrat salarié')
-												? sitePaths.sécuritéSociale.salarié
-												: dottedName.includes('auto-entrepreneur')
-												? sitePaths.sécuritéSociale['auto-entrepreneur']
-												: dottedName.includes('indépendant')
-												? sitePaths.sécuritéSociale.indépendant
-												: // otherwise
-												  sitePaths.sécuritéSociale.index
-										}>
-										<T>Faire une simulation</T>
-									</Link>
-								</div>
-							)}
-							<Algorithm
-								rule={displayedRule}
-								showValues={valuesToShow || currentExample}
-							/>
-							{displayedRule['rend non applicable'] && (
-								<section id="non-applicable">
-									<h3>
-										<T>Rend non applicable les règles suivantes</T> :{' '}
-									</h3>
-									<ul>
-										{displayedRule['rend non applicable'].map(ruleName => (
-											<li key={ruleName}>
-												<RuleLink dottedName={ruleName} />
-											</li>
-										))}
-									</ul>
-								</section>
-							)}
-							{flatRule.note && (
-								<section id="notes">
-									<h3>Note : </h3>
-									<Markdown source={flatRule.note} />
-								</section>
-							)}
-							<Examples
-								currentExample={currentExample}
-								situationExists={valuesToShow}
-								rule={displayedRule}
-							/>
-							{!isEmpty(namespaceRules) && (
-								<NamespaceRulesList {...{ namespaceRules }} />
-							)}
-							{renderReferences(flatRule)}
-						</section>
-						{renderToggleSourceButton()}
-					</Animate.fromBottom>
-				</div>
-			)}
+								{displayedRule.defaultValue != null && (
+									<div id="ruleDefault">
+										par défaut :{' '}
+										<Value
+											{...displayedRule}
+											nodeValue={displayedRule.defaultValue}
+										/>
+									</div>
+								)}
+								{!valuesToShow && (
+									<div style={{ textAlign: 'center', marginTop: '1em' }}>
+										<Link
+											className="ui__ cta plain button"
+											target="_parent"
+											to={
+												dottedName.includes('contrat salarié')
+													? sitePaths.simulateurs.salarié
+													: dottedName.includes('auto-entrepreneur')
+														? sitePaths.simulateurs['auto-entrepreneur']
+														: dottedName.includes('indépendant')
+															? sitePaths.simulateurs.indépendant
+															: // otherwise
+															sitePaths.simulateurs.index
+											}>
+											<T>Faire une simulation</T>
+										</Link>
+									</div>
+								)}
+								<Algorithm
+									rule={displayedRule}
+									showValues={valuesToShow || currentExample}
+								/>
+								{displayedRule['rend non applicable'] && (
+									<section id="non-applicable">
+										<h3>
+											<T>Rend non applicable les règles suivantes</T> :{' '}
+										</h3>
+										<ul>
+											{displayedRule['rend non applicable'].map(ruleName => (
+												<li key={ruleName}>
+													<RuleLink dottedName={ruleName} />
+												</li>
+											))}
+										</ul>
+									</section>
+								)}
+								{flatRule.note && (
+									<section id="notes">
+										<h3>Note : </h3>
+										<Markdown source={flatRule.note} />
+									</section>
+								)}
+								<Examples
+									currentExample={currentExample}
+									situationExists={valuesToShow}
+									rule={displayedRule}
+								/>
+								{!isEmpty(namespaceRules) && (
+									<NamespaceRulesList {...{ namespaceRules }} />
+								)}
+								{renderReferences(flatRule)}
+							</section>
+							{renderToggleSourceButton()}
+						</Animate.fromBottom>
+					</div>
+				)}
 		</>
 	)
 })
@@ -259,13 +250,13 @@ let Period = ({ period, valuesToShow }) =>
 		valuesToShow && period === 'flexible' ? (
 			<PeriodSwitch />
 		) : (
-			<span className="inlineMecanism">
-				<span
-					className="name"
-					data-term-definition="période"
-					style={{ background: '#8e44ad' }}>
-					{period}
+				<span className="inlineMecanism">
+					<span
+						className="name"
+						data-term-definition="période"
+						style={{ background: '#8e44ad' }}>
+						{period}
+					</span>
 				</span>
-			</span>
-		)
+			)
 	) : null

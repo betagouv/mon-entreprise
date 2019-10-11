@@ -31,8 +31,8 @@ const StatusButton = withSitePaths(
 					{status.includes('auto-entrepreneur') ? (
 						<T>Devenir</T>
 					) : (
-						<T>Créer une</T>
-					)}{' '}
+							<T>Créer une</T>
+						)}{' '}
 					{t(status)}
 				</Link>
 			</div>
@@ -126,11 +126,6 @@ const SetMainStatus = ({
 					className="ui__ simple small skip button left">
 					← <T>Précédent</T>
 				</button>
-				<Link
-					to={sitePaths.sécuritéSociale.index}
-					className="ui__ simple small skip button">
-					<T>Choisir plus tard</T> →
-				</Link>
 			</div>
 		</>
 	)

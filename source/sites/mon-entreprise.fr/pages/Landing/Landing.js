@@ -85,7 +85,7 @@ export default withSitePaths(({ sitePaths }: Props) => {
 				</Link>
 				<Link
 					className="ui__ interactive card box "
-					to={sitePaths.sécuritéSociale.index}>
+					to={sitePaths.gérer.index}>
 					<div className="ui__ big box-icon">{emoji('💶')}</div>
 					<T k="landing.choice.manage">
 						<h3>Gérer mon activité</h3>

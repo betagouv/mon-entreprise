@@ -93,7 +93,7 @@
 }
 .ui__.button.cta,
 .ui__.inverted-button.cta {
-	margin: 1rem;
+	margin: 1rem 0;
 	display: inline-block;
 	align-self: center;
 	font-size: 120%;
@@ -203,27 +203,14 @@
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.3rem;
 }
-.ui__.button-choice:first-of-type {
-	margin-top: 2rem;
-}
-.ui__.button-choice:last-of-type {
-	margin-bottom: 2rem;
-}
+
 .ui__.button-choice {
-	display: flex;
 	padding-top: 1rem;
-	padding-bottom: 1rem;
-	align-items: baseline;
 	color: inherit;
-	line-height: 2rem;
+	padding-bottom: 1rem;
 	margin: 1rem 0;
 	position: relative;
 	text-decoration: none;
-	font-size: 1.15rem;
-}
-.ui__.button-choice small {
-	margin-left: 0.2rem;
-	flex-grow: 1;
 }
 
 .ui__.button-choice--soon {
@@ -240,20 +227,6 @@
 	filter: saturate(0%);
 }
 
-.ui__.button-choice img {
-	margin-right: 2rem !important;
-	margin-left: 0.5rem !important;
-	transform: scale(1.5) translateY(0.1em);
-}
-
-@media (min-width: 600px) {
-	.ui__.button-choice:not(.button-choice--soon)::after {
-		content: '›';
-		position: absolute;
-		right: 20px;
-		font-size: 2rem;
-	}
-}
 
 @keyframes push-button-down {
 	from {

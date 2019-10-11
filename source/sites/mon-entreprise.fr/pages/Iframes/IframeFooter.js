@@ -4,9 +4,9 @@ import urssafSvg from 'Images/urssaf.svg'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import screenfull from 'screenfull'
 import { isIE } from '../../../../utils'
+import Privacy from '../../layout/Footer/Privacy'
 
 export default function IframeFooter() {
 	const [isFullscreen, setIsFullscreen] = useState(screenfull.isFullscreen)
@@ -60,9 +60,7 @@ export default function IframeFooter() {
 					{emoji('🖨')}
 					<Trans>Imprimer</Trans>
 				</button>
-				<Link to="/vie-privée" target="_top">
-					<Trans>Vie privée</Trans>
-				</Link>
+				<Privacy />
 			</div>
 		</>
 	)

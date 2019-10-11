@@ -23,10 +23,10 @@ type OwnProps = {}
 const feedbackBlacklist = [
 	['index'],
 	['entreprise', 'statutJuridique', 'index'],
-	['sécuritéSociale', 'indépendant'],
-	['sécuritéSociale', 'auto-entrepreneur'],
-	['sécuritéSociale', 'assimilé-salarié'],
-	['sécuritéSociale', 'salarié']
+	['simulateurs', 'indépendant'],
+	['simulateurs', 'auto-entrepreneur'],
+	['simulateurs', 'assimilé-salarié'],
+	['simulateurs', 'salarié']
 ].map(lensPath)
 
 const Footer = ({ tracker, sitePaths }) => {
@@ -42,11 +42,11 @@ const Footer = ({ tracker, sitePaths }) => {
 	}
 	const hrefLink =
 		hrefLangLink[i18n.language][
-			decodeURIComponent(
-				(process.env.NODE_ENV === 'production'
-					? window.location.protocol + '//' + window.location.host
-					: '') + window.location.pathname
-			).replace(/\/$/, '')
+		decodeURIComponent(
+			(process.env.NODE_ENV === 'production'
+				? window.location.protocol + '//' + window.location.host
+				: '') + window.location.pathname
+		).replace(/\/$/, '')
 		] || []
 	return (
 		<div className="footer-container">
@@ -162,8 +162,8 @@ const Footer = ({ tracker, sitePaths }) => {
 								) : hrefLang === 'en' ? (
 									<> Switch to English {emoji('🇬🇧')}</>
 								) : (
-									hrefLang
-								)}
+											hrefLang
+										)}
 							</a>
 						))}
 					</p>
