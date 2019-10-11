@@ -10,8 +10,16 @@ let inputToStateSelector = rules => input => dottedName =>
 		...input
 	}[dottedName])
 
-let enrichRules = input =>
-	(typeof input === 'string' ? safeLoad(input) : input).map(enrichRule)
+let enrichRules = input => {
+	const rules = typeof input === 'string' ? safeLoad(input) : input
+	const rulesList = Array.isArray(rules)
+		? rules
+		: Object.entries(rules).map(([dottedName, rule]) => ({
+				dottedName,
+				...rule
+		  }))
+	return rulesList.map(enrichRule)
+}
 
 export default {
 	evaluate: (targetInput, input, config) => {

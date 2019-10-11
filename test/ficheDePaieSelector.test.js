@@ -45,7 +45,7 @@ describe('pay slip selector', function() {
 		// $FlowFixMe
 		let cotisationsSanté = (cotisations.find(([branche]) =>
 			branche.includes('santé')
-		) || [])[1].map(cotisation => cotisation.nom)
+		) || [])[1].map(cotisation => cotisation.name)
 		expect(cotisationsSanté).to.have.lengthOf(2)
 		expect(cotisationsSanté).to.include('maladie')
 		expect(cotisationsSanté).to.include('complémentaire santé')

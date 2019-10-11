@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { evaluateBottomUp, getSituationValue } from '../source/engine/getSituationValue'
+import { getSituationValue } from '../source/engine/getSituationValue'
 
 describe('getSituationValue', function() {
 	it('should directly return the value of any rule that specifies a format (i.e currency, duration)', function() {
@@ -66,8 +66,7 @@ describe('getSituationValue', function() {
 
 	it('should set the value of variants to false if one of them is true', function() {
 		let rule = {
-				nom: 'ici',
-				espace: 'univers',
+				nom: 'univers . ici',
 				formule: { 'une possibilité': ['noir', 'blanc'] }
 			},
 			state = { 'univers . ici': 'blanc' },

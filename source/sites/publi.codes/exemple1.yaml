@@ -1,13 +1,13 @@
-- nom:  revenu imposable
+revenu imposable:
   format: euros
 
-- nom: revenu abattu
+revenu abattu:
   formule:
     allègement:
       assiette: revenu imposable
       abattement: 10%
 
-- nom: impôt sur le revenu
+impôt sur le revenu:
   formule:
     barème:
       assiette: revenu abattu
@@ -26,8 +26,7 @@
         - au-dessus de: 153783
           taux: 45%
           
-
-- nom: impôt final
+impôt final:
   formule:
     allègement:
       assiette: impôt sur le revenu

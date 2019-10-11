@@ -37,13 +37,14 @@ Functions working on one rule */
 export let enrichRule = rule => {
 	try {
 		let unit = rule.unité && parseUnit(rule.unité)
+		const dottedName = rule.dottedName || rule.nom
+		const name = nameLeaf(dottedName)
 		return {
 			...rule,
+			dottedName,
+			name,
 			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
-			name: rule['nom'],
-			title: capitalise0(rule['titre'] || rule['nom']),
-			ns: rule['espace'],
-			dottedName: buildDottedName(rule),
+			title: capitalise0(rule['titre'] || name),
 			defaultValue: rule['par défaut'],
 			examples: rule['exemples'],
 			icons: rule['icônes'],
@@ -55,9 +56,6 @@ export let enrichRule = rule => {
 		throw new Error('Problem enriching ' + JSON.stringify(rule))
 	}
 }
-
-export let buildDottedName = rule =>
-	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -166,7 +164,7 @@ export let findRule = (rules, nameOrDottedName) =>
 		: findRuleByName(rules, nameOrDottedName)
 
 export let findRuleByNamespace = (allRules, ns) =>
-	allRules.filter(propEq('ns', ns))
+	allRules.filter(rule => parentName(rule.dottedName) === ns)
 
 /*********************************
  Autres */
@@ -186,7 +184,7 @@ export let nestedSituationToPathMap = situation => {
 /* Traduction */
 
 export let translateAll = (translations, flatRules) => {
-	let translationsOf = rule => translations[buildDottedName(rule)],
+	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
 			if (prop === 'suggestions' && propTrans)
@@ -223,12 +221,17 @@ export let translateAll = (translations, flatRules) => {
 	return map(translateRule('en', translations, targets), flatRules)
 }
 
+const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
+	dottedName,
+	...rule
+}))
+
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rawRules).map(rule =>
+export let rules = translateAll(translations, rulesList).map(rule =>
 	enrichRule(rule)
 )
 
-export let rulesFr = rawRules.map(rule => enrichRule(rule))
+export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
 export let findParentDependency = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no

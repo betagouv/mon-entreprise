@@ -16,7 +16,7 @@ describe('enrichRule', function() {
 	})
 
 	it('should extract the dotted name of the rule', function() {
-		let rule = { espace: 'contrat salarié', nom: 'CDD' }
+		let rule = { nom: 'contrat salarié . CDD' }
 		expect(enrichRule(rule)).to.have.property('name', 'CDD')
 		expect(enrichRule(rule)).to.have.property(
 			'dottedName',
@@ -77,8 +77,7 @@ describe('translateAll', function() {
 	it('should translate flat rules', function() {
 		let rules = [
 			{
-				espace: 'foo',
-				nom: 'bar',
+				nom: 'foo . bar',
 				titre: 'Titre',
 				description: 'Description',
 				question: 'Question'
@@ -115,16 +114,14 @@ describe('misc', function() {
 	it('should procude an array of the parents of a rule', function() {
 		let rawRules = [
 			{ nom: 'CDD', question: 'CDD ?' },
-			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{ nom: 'CDD . taxe', formule: 'montant annuel / 12' },
 			{
-				nom: 'montant annuel',
-				formule: '20 - exonération annuelle',
-				espace: 'CDD . taxe'
+				nom: 'CDD . taxe . montant annuel',
+				formule: '20 - exonération annuelle'
 			},
 			{
-				nom: 'exonération annuelle',
-				formule: 20,
-				espace: 'CDD . taxe . montant annuel'
+				nom: 'CDD . taxe . montant annuel . exonération annuelle',
+				formule: 20
 			}
 		]
 
@@ -138,16 +135,14 @@ describe('misc', function() {
 	it("should disambiguate a reference to another rule in a rule, given the latter's namespace", function() {
 		let rawRules = [
 			{ nom: 'CDD', question: 'CDD ?' },
-			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{ nom: 'CDD . taxe', formule: 'montant annuel / 12' },
 			{
-				nom: 'montant annuel',
-				formule: '20 - exonération annuelle',
-				espace: 'CDD . taxe'
+				nom: 'CDD . taxe . montant annuel',
+				formule: '20 - exonération annuelle'
 			},
 			{
-				nom: 'exonération annuelle',
-				formule: 20,
-				espace: 'CDD . taxe . montant annuel'
+				nom: 'CDD . taxe . montant annuel . exonération annuelle',
+				formule: 20
 			}
 		]
 
