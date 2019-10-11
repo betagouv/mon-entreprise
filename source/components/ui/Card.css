@@ -78,7 +78,6 @@
 .ui__.card.box {
 	width: 14.4rem;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	text-align: center;
 	margin: 1rem;
