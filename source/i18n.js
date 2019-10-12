@@ -15,18 +15,16 @@ let lang =
 	'fr'
 
 setToSessionStorage('lang', lang)
-i18next.use(initReactI18next).init(
-	{
+i18next
+	.use(initReactI18next)
+	.init({
 		lng: lang,
 		resources: {
 			en: {
 				translation: enTranslations
 			}
 		}
-	},
-	(err, t) => {
-		console && console.error('Error from i18n load', err, t) //eslint-disable-line no-console
-	}
-)
+	})
+	.catch(err => console?.error('Error from i18n load', err))
 
 export default i18next
