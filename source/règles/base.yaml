@@ -6,7 +6,7 @@ période:
 
 période . jours ouvrés moyen par mois:
   période: mois
-  unité: jours
+  unité: jour
   formule: 21
   note: On retient 21 comme nombre de jours ouvrés moyen par mois
 
@@ -192,7 +192,7 @@ contrat salarié . CDD . congés dus en jours ouvrés:
   formule: contrat salarié . congés dus par mois * durée contrat
 
 contrat salarié . congés dus par mois:
-  unité: jours/mois
+  unité: jour/mois
   formule: 25 / 12
 
 contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
@@ -513,7 +513,7 @@ contrat salarié . CDD . congés non pris:
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  unité: jours
+  unité: jour
   suggestions:
     3: 3
     10: 10
@@ -1052,7 +1052,7 @@ contrat salarié . SMIC temps plein . net imposable:
 
 SMIC horaire:
   formule: 10.03
-  unité: €/heures
+  unité: €/heure
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -1689,7 +1689,7 @@ entreprise . effectif:
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
-  unité: employés
+  unité: employé
   suggestions:
     1: 1
     20: 20
@@ -1778,7 +1778,7 @@ entreprise . établissement bancaire:
       - établissement . localisation . département = 'Mayotte'
 
 contrat salarié . temps de travail:
-  unité: heures
+  unité: heure
   formule:
     somme:
       - temps contractuel
@@ -1787,7 +1787,7 @@ contrat salarié . temps de travail:
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 contrat salarié . temps de travail . temps contractuel:
-  unité: heures
+  unité: heure
   période: mois
   formule:
     multiplication:
@@ -1795,7 +1795,7 @@ contrat salarié . temps de travail . temps contractuel:
       facteur: période . semaines par mois
 
 contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
-  unité: heures/semaine
+  unité: heure/semaine
   formule:
     variations:
       - si: temps partiel
@@ -1804,7 +1804,7 @@ contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
 
 contrat salarié . temps de travail . base légale:
   formule: 35
-  unité: heures/semaine
+  unité: heure/semaine
 
 contrat salarié . temps de travail . temps partiel:
   période: aucune
@@ -1817,7 +1817,7 @@ contrat salarié . temps de travail . temps partiel:
 
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   par défaut: 32
-  unité: heures / semaine
+  unité: heure/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
     - si: heures par semaine < 24
@@ -1841,7 +1841,7 @@ contrat salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
-  unité: heures
+  unité: heure
   période: mois
   suggestions:
     aucune: 0
@@ -1877,7 +1877,7 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
   titre: majoration heures supplémentaires
   note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
   période: mois
-  unité: heures
+  unité: heure
   formule:
     variations:
       - si: entreprise . hôtel café restaurant
@@ -4080,7 +4080,7 @@ auto-entrepreneur . impôt:
 
 auto-entrepreneur . impôt . abattement:
   période: flexible
-  unité: '€'
+  unité: €
   formule:
     le maximum de:
       - multiplication:
@@ -4235,7 +4235,7 @@ protection sociale . retraite . base . taux de la pension:
 
 protection sociale . retraite . trimestres validés par an:
   période: aucune
-  unité: trimestres
+  unité: trimestre
   formule:
     le minimum de:
       - somme:
@@ -4246,13 +4246,13 @@ protection sociale . retraite . trimestres validés par an:
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   période: aucune
-  unité: trimestres
+  unité: trimestre
   applicable si: contrat salarié
   formule: barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . trimestres indépendant:
   période: aucune
-  unité: trimestres
+  unité: trimestre
   applicable si: indépendant
   formule:
     variations:
@@ -4267,7 +4267,7 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
   période: aucune
   formule:
     barème linéaire:
-      unité: trimestres
+      unité: trimestre
       assiette: revenu moyen [annuel]
       multiplicateur: SMIC horaire
       tranches:
@@ -4296,7 +4296,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
       - si: entreprise . catégorie d'activité = 'libérale'
         alors:
           barème linéaire:
-            unité: trimestres
+            unité: trimestre
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2880
@@ -4318,7 +4318,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
           barème linéaire:
-            unité: trimestres
+            unité: trimestre
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 4137
@@ -4336,7 +4336,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
                 montant: 4
       - sinon:
           barème linéaire:
-            unité: trimestres
+            unité: trimestre
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2412
@@ -4380,7 +4380,7 @@ protection sociale . retraite . complémentaire salarié:
 protection sociale . retraite . complémentaire salarié . valeur du point:
   formule: 1.2588
   période: année
-  unité: €/points
+  unité: €/point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -4388,13 +4388,13 @@ protection sociale . retraite . complémentaire salarié . valeur du point:
 protection sociale . retraite . complémentaire salarié . points acquis:
   formule: points acquis par mois * mois cotisés
   période: aucune
-  unité: points
+  unité: point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . points acquis par mois:
   période: mois
-  unité: points/mois
+  unité: point/mois
   formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 protection sociale . retraite . complémentaire salarié . prix d'achat du point:
@@ -4413,7 +4413,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
 protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
   formule: 1.187
   période: année
-  unité: €/points
+  unité: €/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 

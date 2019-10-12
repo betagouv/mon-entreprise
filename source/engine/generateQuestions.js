@@ -25,7 +25,7 @@ import {
 } from 'ramda'
 import React from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
-import {serialiseUnit} from 'Engine/units'
+import { serialiseUnit } from 'Engine/units'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES

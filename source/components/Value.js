@@ -1,5 +1,4 @@
 import { React, T } from 'Components'
-import { serialiseUnit } from 'Engine/units'
 import { useTranslation } from 'react-i18next'
 import { formatValue } from 'Engine/format'
 
@@ -42,8 +41,6 @@ export default function Value({
 			</span>
 		)
 	let valueType = typeof nodeValue,
-		unitText =
-			unit !== null && (typeof unit == 'object' ? serialiseUnit(unit) : unit),
 		formattedValue =
 			valueType === 'string' ? (
 				<T>{nodeValue}</T>
@@ -56,8 +53,8 @@ export default function Value({
 					minimumFractionDigits,
 					maximumFractionDigits,
 					language,
-					value: nodeValue,
-					unit: unitText
+					unit,
+					value: nodeValue
 				})
 			)
 

@@ -58,7 +58,7 @@ export function formatValue({
 	if (typeof value !== 'number') {
 		return value
 	}
-	const serializedUnit = typeof unit == 'object' ? serialiseUnit(unit) : unit
+	const serializedUnit = serialiseUnit(unit, value)
 
 	switch (serializedUnit) {
 		case '€':

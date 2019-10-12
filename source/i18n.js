@@ -1,6 +1,7 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.yaml'
+import unitsTranslations from './locales/units.yaml'
 
 let lang =
 	new URLSearchParams(document.location.search.substring(1)).get('lang') ||
@@ -13,8 +14,10 @@ i18next
 	.init({
 		lng: lang,
 		resources: {
+			fr: { units: unitsTranslations.fr },
 			en: {
-				translation: enTranslations
+				translation: enTranslations,
+				units: unitsTranslations.en
 			}
 		}
 	})
