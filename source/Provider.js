@@ -10,7 +10,7 @@ import { Router } from 'react-router-dom'
 import reducers from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { getIframeOption, inIframe } from './utils'
+import { inIframe } from './utils'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -73,10 +73,13 @@ export default class Provider extends PureComponent {
 		this.props.tracker.disconnectFromHistory()
 	}
 	render() {
+		const iframeCouleur = new URLSearchParams(
+			document.location.search.substring(1)
+		).get('couleur')
 		return (
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>
-				<ThemeColoursProvider colour={getIframeOption('couleur')}>
+				<ThemeColoursProvider colour={iframeCouleur}>
 					<TrackerProvider value={this.props.tracker}>
 						<SitePathProvider value={this.props.sitePaths}>
 							<I18nextProvider i18n={i18next}>

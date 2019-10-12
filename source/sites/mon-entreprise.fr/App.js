@@ -19,7 +19,7 @@ import {
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
-import { inIframe, setToSessionStorage } from '../../utils'
+import { inIframe } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import { PrivacyContent } from './layout/Footer/Privacy'
@@ -59,7 +59,7 @@ const middlewares = [
 
 function InFranceRoute({ basename, language }) {
 	useEffect(() => {
-		setToSessionStorage('lang', language)
+		sessionStorage?.setItem('lang', language)
 	}, [language])
 	const paths = constructLocalizedSitePath(language)
 	const rules = language === 'en' ? baseRulesEn : baseRulesFr
