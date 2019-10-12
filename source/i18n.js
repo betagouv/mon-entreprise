@@ -1,5 +1,4 @@
 import i18next from 'i18next'
-import queryString from 'query-string'
 import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.yaml'
 import {
@@ -11,8 +10,7 @@ import {
 
 let lang =
 	getIframeOption('lang') ||
-	(typeof location !== 'undefined' &&
-		queryString.parse(location.search)['lang']) ||
+	new URLSearchParams(document.location.search.substring(1)).get('lang') ||
 	parseDataAttributes(getFromSessionStorage('lang')) ||
 	'fr'
 
