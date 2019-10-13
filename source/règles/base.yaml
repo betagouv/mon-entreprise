@@ -4079,14 +4079,16 @@ auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
 auto-entrepreneur . impôt:
 
 auto-entrepreneur . impôt . abattement:
-  période: flexible
+  période: année
   unité: €
   formule:
     le maximum de:
       - multiplication:
-          assiette: base des cotisations
+          assiette: base des cotisations [annuel]
           taux: taux
       - 305
+  références:
+    Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
 auto-entrepreneur . impôt . abattement . taux inversé:
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
