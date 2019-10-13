@@ -4509,7 +4509,7 @@ protection sociale . santé . indemnités journalières . indépendant:
 protection sociale . santé . indemnités journalières . salarié:
   période: aucune
   unité: €
-  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestrielle, puis on le divise par 91.25, conformément à la fiche service-public.fr
+  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
     multiplication:
