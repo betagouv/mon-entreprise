@@ -158,17 +158,17 @@ export let parseReferenceTransforms = (
 		]
 
 		// Exceptions
-		if (!rule.période && !inlinePeriodTransform) {
-			if (supportedPeriods.includes(ruleToTransform.période))
-				throw new Error(
-					`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
+		// if (!rule.période && !inlinePeriodTransform) {
+		// 	if (supportedPeriods.includes(ruleToTransform.période))
+		// 		throw new Error(
+		// 			`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
 
-					Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
-				`
-				)
+		// 			Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
+		// 		`
+		// 		)
 
-			return filteredNode
-		}
+		// 	return filteredNode
+		// }
 		if (!ruleToTransform.période) return filteredNode
 		let environmentPeriod = situation('période') || 'mois'
 		let callingPeriod =

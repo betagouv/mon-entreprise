@@ -5,14 +5,11 @@ période:
     - année
 
 période . jours ouvrés moyen par mois:
-  période: mois
-  unité: jour
-  formule: 21
+  formule: 21 jour/mois
   note: On retient 21 comme nombre de jours ouvrés moyen par mois
 
 période . semaines par mois:
-  unité: semaine
-  formule: 52 / 12
+  formule: 52 semaine / 12 mois
 
 contrat salarié:
   icônes: 📄
@@ -55,8 +52,6 @@ contrat salarié . indemnité kilométrique vélo:
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
-  unité: €
-  période: année
   applicable si: active
   formule:
     le minimum de:
@@ -72,24 +67,19 @@ contrat salarié . indemnité kilométrique vélo:
       valeur attendue: 200
 
 contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
-  unité: €
-  formule: 200
+  formule: 200 €/an
 
 contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
-  unité: €/km
-  formule: 0.25
+  formule: 0.25 €/km
 
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  période: année
   formule: distance journalière * jours travaillés
 
 contrat salarié . indemnité kilométrique vélo . distance journalière:
   description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
-  formule: 4
-  unité: km/jour
+  formule: 4 km/jour
 contrat salarié . indemnité kilométrique vélo . jours travaillés:
-  formule: 218
-  unité: jour
+  formule: 218 jour/an
 
 contrat salarié . indemnité kilométrique vélo . active:
   titre: indemnité vélo active
@@ -114,14 +104,10 @@ contrat salarié . CDD . compensation pour congés non pris:
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
-  période: mois
-  unité: €
-
   non applicable si:
     une de ces conditions:
       - événement . poursuite du CDD en CDI
     # TODO Y a-t-il d'autres conditions ? Sinon supprimer la liste
-
   formule:
     le maximum de:
       - description: Méthode "du dixième"
@@ -192,22 +178,18 @@ contrat salarié . CDD . congés dus en jours ouvrés:
   formule: contrat salarié . congés dus par mois * durée contrat
 
 contrat salarié . congés dus par mois:
-  unité: jour/mois
-  formule: 25 / 12
+  formule: 25 jour / 12 mois
 
 contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
   formule: salaire journalier * congés non pris
 
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
-  période: mois
   formule: rémunération . brut de base + prime de fin de contrat
 
 contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
-  période: aucune
   formule: assiette mensuelle / période . jours ouvrés moyen par mois
 
 contrat salarié . CDD . prime de fin de contrat:
-  période: flexible
   indemnité:
     destinataire: salarié
 
@@ -273,7 +255,6 @@ contrat salarié . ATMP:
     branche: accidents du travail et maladies professionnelles
     destinataire: URSSAF
     responsable: CARSAT
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -534,7 +515,6 @@ contrat salarié . CDD . contrat jeune vacances:
   par défaut: non
 
 contrat salarié . CDD . indemnités salarié CDD:
-  période: flexible
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
@@ -548,7 +528,6 @@ contrat salarié . CDD . surcoût:
     financières en contrepartie de la souplesse apportée par ce contrat; elles sont au nombre de 4.
 
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire mensuel; elles sont ici ramenées à leur coût mensuel.
-  période: flexible
   formule:
     somme: #TODO à l'avenir, exprimer une somme par requête de type : obligation applicable au CDD
       - indemnités salarié CDD
@@ -664,7 +643,6 @@ contrat salarié . stage:
     - régime des impatriés
 
 contrat salarié . stage . gratification minimale:
-  période: flexible
   formule: 15% * plafond sécurité sociale temps plein
   références:
     Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
@@ -678,7 +656,6 @@ contrat salarié . exonération d'impôt des stagiaires et apprentis:
     une de ces conditions:
       - apprentissage
       - stage
-  période: flexible
   formule: SMIC
 
 contrat salarié . CDD:
@@ -703,7 +680,6 @@ contrat salarié . cotisations . assiette:
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  période: flexible
   formule:
     allègement:
       assiette: rémunération . brut
@@ -715,7 +691,6 @@ contrat salarié . cotisations . assiette . salariale:
     Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
   références:
     URSSAF: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
-  période: flexible
   formule:
     variations:
       - si: apprentissage
@@ -734,8 +709,7 @@ contrat salarié . rémunération . brut de base:
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
-  période: flexible
-  unité: €
+  unité: €/mois
   suggestions:
     salaire médian: 2300
     SMIC: 1522
@@ -787,22 +761,19 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre: Salaire brut équivalent temps plein
   résumé: Le salaire si l'embauche se faisait à temps plein
   question: Quel est le salaire en équivalent temps plein ?
-  unité: €
   formule: brut de base / temps de travail . quotité de travail
-  période: flexible
   suggestions:
     salaire médian: 2300
     SMIC: 1522
 
 contrat salarié . rémunération . heures supplémentaires . taux horaire:
   description: Le taux horaire utilisé pour calculer la rémunération liée au heures supplémentaires. Il intègre les avantages en nature.
-  période: aucune
   formule:
     multiplication:
       assiette:
         somme:
-          - brut de base [mensuel]
-          - avantages en nature . montant [mensuel]
+          - brut de base
+          - avantages en nature . montant
       facteur: 1 / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
@@ -812,8 +783,6 @@ contrat salarié . rémunération . heures supplémentaires . taux horaire:
 contrat salarié . rémunération . assiette de vérification du SMIC:
   description: >
     C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
-  unité: €
-  période: flexible
   formule:
     somme:
       - rémunération . brut de base
@@ -822,8 +791,6 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
-  unité: €
-  période: flexible
   formule:
     somme:
       - rémunération . brut de base
@@ -834,8 +801,6 @@ contrat salarié . rémunération . brut:
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
-  unité: €
-  période: flexible
   formule:
     multiplication:
       assiette: taux horaire
@@ -848,8 +813,6 @@ contrat salarié . avantages sociaux:
   description: >
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
     Ils sont soumis à l'impôt sur le revenu.
-  unité: €
-  période: flexible
   formule:
     somme:
       - prévoyance obligatoire cadre
@@ -866,7 +829,6 @@ contrat salarié . rémunération . avantages en nature:
 
 contrat salarié . rémunération . avantages en nature . montant:
   titre: Avantages en nature (montant)
-  période: flexible
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
 
@@ -894,18 +856,15 @@ contrat salarié . rémunération . avantages en nature . autres:
   par défaut: non
 
 contrat salarié . rémunération . avantages en nature . autres . montant:
-  période: flexible
   question: >
     Quel est le montant de ces autres avantages ?
   par défaut: 0
   suggestions:
     🚗 véhicule: 260
-  unité: €
+  unité: €/mois
 
 contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre: outils NTIC
-  unité: €
-  période: année
   description: |
     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
 
@@ -926,8 +885,7 @@ contrat salarié . rémunération . avantages en nature . ntic . montant:
 contrat salarié . rémunération . avantages en nature . ntic . coût appareils:
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
-  unité: €
-  période: année
+  unité: €/an
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
@@ -938,8 +896,7 @@ contrat salarié . rémunération . avantages en nature . ntic . coût appareils
 
 contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
-  unité: €
-  période: mois
+  unité: €/mois
   par défaut: 20
   suggestions:
     aucun: 0
@@ -956,15 +913,12 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
-  période: flexible
-  unité: €
   formule:
     multiplication:
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
-  période: aucune
   unité: €/repas
   formule:
     variations:
@@ -975,11 +929,10 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant f
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
 contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
-  période: mois
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
-  unité: repas
+  unité: repas/mois
   suggestions:
     1 par jour: 21
     2 par jour: 42
@@ -995,13 +948,11 @@ entreprise . hôtel café restaurant:
 
 #     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de : [10% x (850€ + (30€ x 12 mois)) ] / 12 mois, soit 10,08€
 
-#   période: flexible
 
 #   unité: €
 #   par défaut: 0
 
 contrat salarié . indemnités salarié:
-  période: flexible
   formule:
     somme:
       - CDD . indemnités salarié CDD
@@ -1021,21 +972,17 @@ contrat salarié . statut cadre . choix statut cadre:
 
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
-  période: mois
   acronyme: PSS
-  formule: 3377
-  unité: €
+  formule: 3377 €/mois
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
 
 contrat salarié . plafond sécurité sociale:
-  période: flexible
   acronyme: PSS
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC temps plein:
-  période: mois
   formule:
     multiplication:
       assiette: temps de travail . base légale * période . semaines par mois
@@ -1044,10 +991,8 @@ contrat salarié . SMIC temps plein:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
 
 contrat salarié . SMIC temps plein . net imposable:
-  période: mois
-  unité: €
   description: Montant du SMIC net imposable
-  formule: 1247,55
+  formule: 1247,55 €/mois
   note: Ce montant est codé en dur, il faudrait le calculer à partir du montant du SMIC brut
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
@@ -1062,7 +1007,6 @@ SMIC horaire:
 contrat salarié . SMIC contractuel:
   description: >
     Valeur du SMIC pro-ratisé pour prendre en compte le temps partiel et utilisé pour la détermination du salaire minimum
-  période: flexible
   formule: SMIC temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC:
@@ -1077,8 +1021,6 @@ contrat salarié . SMIC:
 
 contrat salarié . cotisations . salariales:
   titre: cotisations salariales
-  unité: €
-  période: flexible
   formule:
     somme:
       - vieillesse [salarié]
@@ -1094,8 +1036,6 @@ contrat salarié . cotisations . salariales:
 
 contrat salarié . cotisations . patronales:
   titre: cotisations patronales
-  période: flexible
-  unité: €
   formule:
     somme:
       - maladie [employeur]
@@ -1126,17 +1066,13 @@ contrat salarié . rémunération:
 contrat salarié . rémunération . net de cotisations:
   titre: Salaire net de cotisations
   type: rémunération
-  unité: €
-  période: flexible
   formule: brut - cotisations . salariales
 
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
   type: salaire
-  unité: €
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
-  période: flexible
   formule:
     allègement:
       assiette: base
@@ -1150,8 +1086,6 @@ contrat salarié . rémunération . net imposable:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . rémunération . net imposable . base:
-  unité: €
-  période: flexible
   description: Le net imposable avant les exonérations et déductions
   formule:
     somme:
@@ -1161,8 +1095,6 @@ contrat salarié . rémunération . net imposable . base:
       - CRDS
 
 contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
-  période: flexible
-  unité: €
   formule:
     le minimum de:
       - plafond brut
@@ -1171,17 +1103,13 @@ contrat salarié . rémunération . net imposable . heures supplémentaires déf
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
-  unité: €
-  période: année
-  formule: 5358
+  formule: 5358 €/an
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . prime d'impatriation:
   description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
   applicable si: régime des impatriés
-  période: flexible
-  unité: €
   formule:
     multiplication:
       assiette: rémunération . net imposable . base
@@ -1193,7 +1121,6 @@ contrat salarié . prime d'impatriation:
 contrat salarié . rémunération . net:
   titre: Salaire net
   type: salaire
-  unité: €
   question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
   description: |
@@ -1202,7 +1129,6 @@ contrat salarié . rémunération . net:
     Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  période: flexible
   formule: rémunération . net de cotisations - avantages en nature . montant
 
 contrat salarié . rémunération . net après impôt:
@@ -1210,8 +1136,6 @@ contrat salarié . rémunération . net après impôt:
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
-  unité: €
-  période: flexible
   description: |
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
@@ -1516,7 +1440,6 @@ contrat salarié . prix du travail:
   titre: Coût total
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
-  période: flexible
   description: |
     Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées et les coûts de medecine du travail
     > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
@@ -1527,15 +1450,12 @@ contrat salarié . prix du travail:
       - rémunération . total
       - (- aides employeur)
       - médecine du travail
-  unité: €
 
 contrat salarié . rémunération . total:
   titre: Total chargé
   question: Quel est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
-  unité: €
-  période: flexible
   description: |
     C'est le total que l'employeur doit verser pour employer un salarié.
   formule:
@@ -1544,8 +1464,6 @@ contrat salarié . rémunération . total:
       - cotisations . patronales
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
-  période: flexible
-  unité: €
   formule:
     somme:
       - réduction générale
@@ -1554,7 +1472,6 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
       - déduction heures supplémentaires
 
 contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
-  période: flexible
   applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
   formule:
@@ -1570,7 +1487,6 @@ contrat salarié . réduction ACRE:
     toutes ces conditions:
       - assimilé salarié
       - entreprise . ACRE
-  période: flexible
   formule:
     multiplication:
       assiette:
@@ -1582,7 +1498,6 @@ contrat salarié . réduction ACRE:
 
 contrat salarié . réduction ACRE . taux:
   titre: taux ACRE
-  période: flexible
   formule:
     barème continu:
       assiette: cotisations . assiette
@@ -1599,14 +1514,11 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     dû par: salarié
   aide:
     type: réduction de cotisations
-  unité: €
-  période: flexible
   formule: rémunération . heures supplémentaires * taux des cotisations réduites
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
 contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
-  période: aucune
   unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
@@ -1624,7 +1536,6 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
 
 contrat salarié . cotisations:
-  période: flexible
   description: Total des cotisation patronales et salariales
   formule:
     somme:
@@ -1635,7 +1546,6 @@ contrat salarié . aides employeur:
   titre: aides à l'embauche
   résumé: Pour l'employeur, différées dans le temps
   icônes: 🎁
-  période: flexible
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
 
@@ -1659,8 +1569,7 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       # HACK: "apprentissage . ancienneté" n'est pas détecté par le moteur dans les dépendances ("missingVariables") de cette aide.
       # On l'ajoute ici uniquement pour faire remonter la question au bon niveau, mais ça ne devrait pas être nécessaire.
       - apprentissage . ancienneté
-  période: année
-  unité: €
+  unité: €/an
   formule:
     variations:
       - si: apprentissage . ancienneté = 'moins d'un an'
@@ -1676,7 +1585,6 @@ entreprise:
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 entreprise . prélèvements obligatoires:
-  période: flexible
   formule:
     somme:
       - CVAE
@@ -1684,7 +1592,6 @@ entreprise . prélèvements obligatoires:
 
 entreprise . prélèvements obligatoires . CVAE:
   titre: Cotisation sur la valeur ajoutée des entreprises
-  période: flexible
   formule: 0
   note: Cette contribution concerne les entreprises ou travailleurs indépendants qui réalisent plus de  500 000 € de chiffre d'affaires. Elle n'est pour l'instant **pas intégrée dans nos calculs**.
   références:
@@ -1693,7 +1600,6 @@ entreprise . prélèvements obligatoires . CVAE:
 entreprise . prélèvements obligatoires . CFE:
   titre: Cotisation foncière des entreprises
   formule: 0
-  période: flexible
   note: Cette cotisation n'est pas due pour la première année d'une entreprise, ni pour un chiffre d'affaires inférieur à 5000€. La CFE n'est **pas encore intégrée** dans nos calculs.
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547
@@ -1791,17 +1697,15 @@ entreprise . établissement bancaire:
       - établissement . localisation . département = 'Mayotte'
 
 contrat salarié . temps de travail:
-  unité: heure
+  unité: heure/mois
   formule:
     somme:
       - temps contractuel
       - heures supplémentaires
-  période: flexible
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 contrat salarié . temps de travail . temps contractuel:
-  unité: heure
-  période: mois
+  unité: heure/mois
   formule:
     multiplication:
       assiette: temps hebdomadaire
@@ -1816,11 +1720,9 @@ contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
       - sinon: base légale
 
 contrat salarié . temps de travail . base légale:
-  formule: 35
-  unité: heure/semaine
+  formule: 35 heure/semaine
 
 contrat salarié . temps de travail . temps partiel:
-  période: aucune
   question: Le contrat est-il à temps partiel ?
   description: |
     Deux contrats au même salaire, l'un à temps partiel, l'autre à temps complet, peuvent donner lieu à des montants de cotisation différents.
@@ -1842,7 +1744,6 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
 
 contrat salarié . temps de travail . quotité de travail:
   description: Temps de travail en proportion du temps complet légal.
-  période: aucune
   formule:
     le minimum de:
       - temps de travail [mensuel] / (base légale * période . semaines par mois)
@@ -1854,8 +1755,7 @@ contrat salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
-  unité: heure
-  période: mois
+  unité: heure/mois
   suggestions:
     aucune: 0
     39h / semaine: 17.33
@@ -1889,14 +1789,13 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
   note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
-  période: mois
-  unité: heure
+  unité: heure/mois
   formule:
     variations:
       - si: entreprise . hôtel café restaurant
         alors:
           barème:
-            assiette: heures supplémentaires
+            assiette: heures supplémentaires [mensuel]
             multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 4
@@ -1908,7 +1807,7 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
                 taux: 50%
       - sinon:
           barème:
-            assiette: heures supplémentaires
+            assiette: heures supplémentaires [mensuel]
             multiplicateur: période . semaines par mois
             tranches:
               - en-dessous de: 8
@@ -1938,13 +1837,11 @@ contrat salarié . statut JEI . exonération de cotisations:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-
-  période: mois
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
     le minimum de:
-      - 1634.39 €
+      - 1634.39 €/mois
       - somme:
           - allocations familiales
           - maladie [employeur]
@@ -1963,7 +1860,6 @@ contrat salarié . réduction générale:
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   applicable si: cotisations . assiette <= plafond de l'assiette
-  période: flexible
   formule:
     le minimum de:
       - assiette
@@ -1989,7 +1885,6 @@ contrat salarié . réduction générale:
       valeur attendue: 0
 
 contrat salarié . réduction générale . écart au plafond de l'assiette:
-  période: flexible
   formule: plafond de l'assiette - cotisations . assiette
 
 contrat salarié . réduction générale . multiplicateur:
@@ -2004,7 +1899,6 @@ contrat salarié . réduction générale . paramètre T:
 
 contrat salarié . réduction générale . assiette:
   titre: Assiette de la réduction générale
-  période: flexible
   formule:
     somme:
       - allocations familiales
@@ -2019,7 +1913,6 @@ contrat salarié . réduction générale . assiette:
     changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
 
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2030,7 +1923,6 @@ contrat salarié . réduction générale . assiette . part de la cotisation ATMP
     Code de la sécurité sociale - Mise à jour du taux: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B2573099C91B1ACDA218B214D650C071.tplgfr25s_3?idArticle=JORFARTI000037884643&cidTexte=JORFTEXT000037884638&dateTexte=29990101&categorieLien=id
 
 contrat salarié . réduction générale . plafond de l'assiette:
-  période: flexible
   formule: 1.6 * SMIC
 
 contrat salarié . contribution d'équilibre général:
@@ -2039,7 +1931,6 @@ contrat salarié . contribution d'équilibre général:
     branche: retraite
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
-  période: flexible
   formule:
     barème:
       assiette: cotisations . assiette
@@ -2077,7 +1968,6 @@ contrat salarié . contribution d'équilibre technique:
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   applicable si: cotisations . assiette > plafond sécurité sociale
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2099,7 +1989,6 @@ contrat salarié . retraite complémentaire:
     destinataire: AGIRC-ARRCO
   description: |
     Cotisation de retraite complémentaire. Remplace les cotisations AGIRC et ARRCO qui étaient avant 2019 séparées.
-  période: flexible
   formule:
     barème:
       assiette: cotisations . assiette
@@ -2140,7 +2029,6 @@ contrat salarié . AGS:
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2148,7 +2036,6 @@ contrat salarié . AGS:
       taux: 0.15%
 
 contrat salarié . allocations familiales:
-  période: flexible
   cotisation:
     dû par: employeur
     branche: famille
@@ -2164,12 +2051,10 @@ contrat salarié . allocations familiales:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
 
 contrat salarié . allocations familiales . taux réduit:
-  période: flexible
   formule: cotisations . assiette < plafond de réduction
 
 contrat salarié . allocations familiales . taux réduit . plafond de réduction:
   titre: Plafond de la réduction des allocations familiales
-  période: flexible
   formule: SMIC * 3.5
 
 contrat salarié . APEC:
@@ -2185,7 +2070,6 @@ contrat salarié . APEC:
 
   applicable si: statut cadre
 
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2208,7 +2092,6 @@ contrat salarié . chômage:
     calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2246,7 +2129,6 @@ contrat salarié . complémentaire santé:
     branche: santé
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F20739
-  période: flexible
   formule:
     multiplication:
       assiette: forfait
@@ -2289,7 +2171,6 @@ contrat salarié . complémentaire santé . part salarié:
 
 contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
-  période: flexible
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
@@ -2313,8 +2194,7 @@ contrat salarié . complémentaire santé . forfait . en alsace moselle:
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
   références:
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
-  période: mois
-  unité: €
+  unité: €/mois
   par défaut: 30
   suggestions:
     basique: 30
@@ -2323,8 +2203,7 @@ contrat salarié . complémentaire santé . forfait . en alsace moselle:
 contrat salarié . complémentaire santé . forfait . en france:
   titre: forfait complémentaire santé en France
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
-  période: mois
-  unité: €
+  unité: €/mois
   par défaut: 40
   suggestions:
     basique: 40
@@ -2355,7 +2234,6 @@ contrat salarié . contribution au dialogue social:
     - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2363,7 +2241,6 @@ contrat salarié . contribution au dialogue social:
 
 contrat salarié . assiette CSG et CRDS:
   note: Cette assiette est complexe, cette version n'est qu'une simplification.
-  période: flexible
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
@@ -2375,7 +2252,6 @@ contrat salarié . assiette CSG et CRDS:
       - complémentaire santé [employeur]
 
 contrat salarié . assiette CSG et CRDS . assiette abattue:
-  période: flexible
   formule:
     barème:
       assiette: cotisations . assiette
@@ -2388,7 +2264,6 @@ contrat salarié . assiette CSG et CRDS . assiette abattue:
           taux: 100%
 
 contrat salarié . CSG . assiette heures supplémentaires défiscalisées:
-  période: flexible
   formule:
     multiplication:
       assiette: rémunération . net imposable . heures supplémentaires défiscalisées
@@ -2397,8 +2272,6 @@ contrat salarié . CSG . assiette heures supplémentaires défiscalisées:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . CSG . assiette CSG déductible:
-  période: flexible
-  unité: €
   formule: assiette CSG et CRDS - assiette heures supplémentaires défiscalisées
 
 contrat salarié . CSG:
@@ -2408,7 +2281,6 @@ contrat salarié . CSG:
   description: |
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
-  période: flexible
   formule:
     multiplication:
       composantes:
@@ -2446,7 +2318,6 @@ contrat salarié . CRDS:
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
-  période: flexible
   formule:
     multiplication:
       assiette: assiette CSG et CRDS
@@ -2462,7 +2333,6 @@ contrat salarié . FNAL:
     branche: famille
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2499,7 +2369,6 @@ contrat salarié . formation professionnelle:
     - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour les entreprises de travail temporaire)
     - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les entreprises de travail temporaire)
     - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
-  période: flexible
   non applicable si:
     toutes ces conditions:
       - entreprise . effectif < 11
@@ -2526,7 +2395,6 @@ contrat salarié . maladie:
     fiche: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
     Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2549,7 +2417,6 @@ contrat salarié . maladie:
           taux: 0.3%
 
 contrat salarié . maladie . taux employeur:
-  période: aucune
   formule:
     variations:
       - si: taux réduit
@@ -2557,11 +2424,9 @@ contrat salarié . maladie . taux employeur:
       - sinon: 13%
 
 contrat salarié . maladie . taux employeur . taux réduit:
-  période: flexible
   formule: cotisations . assiette < plafond de réduction employeur
 
 contrat salarié . maladie . taux salarié:
-  période: aucune
   formule:
     variations:
       - si: régime alsace moselle
@@ -2569,7 +2434,6 @@ contrat salarié . maladie . taux salarié:
       - sinon: 0%
 
 contrat salarié . maladie . plafond de réduction employeur:
-  période: flexible
   formule: 2.5 * SMIC
 
 contrat salarié . médecine du travail:
@@ -2585,7 +2449,7 @@ contrat salarié . médecine du travail:
     L'employeur a l'obligation d'organiser un service de santé au travail, en adhérant à un service interentreprises, ou en créant un service interne.
 
     Dans le cas de l'adhésion à un service, le montant de cette cotisation n'est pas défini par la loi, mais il doit être proportionnel au nombre d'employés. Nous avons choisi un montant indicatif (voir les références) ajusté avec l'inflation depuis 2007.
-  période: année
+  unité: €/an
   formule: 80
 
 contrat salarié . participation effort de construction:
@@ -2603,7 +2467,6 @@ contrat salarié . participation effort de construction:
     L'employeur a le choix entre verser cet impôt à un "organisme du 1% patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
   applicable si: entreprise . effectif >= 20
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2621,7 +2484,6 @@ contrat salarié . prévoyance obligatoire cadre:
   références:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   applicable si: statut cadre
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2644,7 +2506,6 @@ contrat salarié . taxe d'apprentissage:
     csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
 
   note: Taxe complexe, comportant notamment des exonérations non prises en compte ici.
-  période: flexible
   formule:
     somme:
       - base
@@ -2652,7 +2513,6 @@ contrat salarié . taxe d'apprentissage:
 
 contrat salarié . taxe d'apprentissage . assiette:
   titre: assiette de la taxe d'apprentissage
-  période: flexible
   description: Le salaire des apprentis est partiellement exonéré dans la base de calcul de la taxe d'apprentissage.
   formule:
     variations:
@@ -2669,7 +2529,6 @@ contrat salarié . taxe d'apprentissage . assiette:
 
 contrat salarié . taxe d'apprentissage . base:
   titre: taxe d'apprentissage de base
-  période: flexible
   formule:
     multiplication:
       assiette: assiette
@@ -2686,7 +2545,6 @@ contrat salarié . taxe d'apprentissage . contribution supplémentaire:
       - entreprise . effectif >= 250
       - entreprise . ratio alternants < 5%
 
-  période: flexible
   formule:
     multiplication:
       assiette: assiette
@@ -2724,7 +2582,6 @@ contrat salarié . taxe d'apprentissage . csa au taux majoré:
       - entreprise . ratio alternants < 1%
 
 contrat salarié . taxe sur les salaires . assiette de base:
-  période: flexible
   formule:
     somme:
       - cotisations . assiette
@@ -2734,7 +2591,6 @@ contrat salarié . taxe sur les salaires . assiette de base:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 contrat salarié . taxe sur les salaires . assiette:
-  période: flexible
   formule:
     allègement:
       assiette: assiette de base
@@ -2746,10 +2602,9 @@ contrat salarié . taxe sur les salaires . assiette:
 contrat salarié . taxe sur les salaires . barème:
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-  période: année
   formule:
     barème:
-      assiette: assiette
+      assiette: assiette [annuel]
       tranches:
         - en-dessous de: 7799
           taux: 4.25%
@@ -2795,16 +2650,13 @@ contrat salarié . régime des impatriés:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
 entreprise . taxe sur les salaires . barème:
-  période: flexible
   formule: contrat salarié . taxe sur les salaires . barème * effectif
 
 entreprise . taxe sur les salaires . abattement associations:
   applicable si: entreprise . association non lucrative
-  période: année
-  formule: 20507
+  formule: 20507 €/an
 
 entreprise . taxe sur les salaires:
-  période: année
   formule:
     allègement:
       assiette: barème
@@ -2822,7 +2674,6 @@ contrat salarié . taxe sur les salaires:
     une de ces conditions:
       - entreprise . association non lucrative
       - entreprise . établissement bancaire
-  période: flexible
   formule: entreprise . taxe sur les salaires / entreprise . effectif
 
   note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
@@ -2854,7 +2705,6 @@ contrat salarié . versement transport:
   cotisation:
     branche: transport
     dû par: employeur
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2870,7 +2720,6 @@ contrat salarié . vieillesse:
     destinataire: CNAV
     # CTP: 100
   description: Cotisation au régime de retraite de base des salariés.
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2919,7 +2768,6 @@ contrat salarié . forfait social:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
-  période: flexible
   formule:
     multiplication:
       assiette: forfait social . assiette taux huit
@@ -2931,7 +2779,6 @@ contrat salarié . forfait social . assiette taux huit:
   références:
     Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
   applicable si: entreprise . effectif > 10
-  période: flexible
   formule:
     somme:
       - complémentaire santé [employeur]
@@ -2943,8 +2790,6 @@ impôt:
   icônes: 🏛️
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre: impôts sur le revenu
-  période: flexible
-  unité: €
   formule:
     somme:
       - variations:
@@ -2978,7 +2823,6 @@ impôt . méthode de calcul:
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: auto-entrepreneur . impôt . versement libératoire
-  période: aucune
   par défaut: barème standard
   formule:
     une possibilité:
@@ -3015,7 +2859,6 @@ impôt . méthode de calcul . prélèvement à la source:
 impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
-  période: flexible
   formule:
     allègement:
       assiette:
@@ -3026,7 +2869,6 @@ impôt . revenu imposable:
       abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
-  période: mois
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
   applicable si:
     toutes ces conditions:
@@ -3043,14 +2885,12 @@ impôt . revenu abattu:
   description: |
     L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée.
     Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
-  période: flexible
   formule:
     somme:
       - revenu abattu par défaut
       - auto-entrepreneur . impôt . revenu imposable
 
 impôt . revenu abattu par défaut:
-  période: flexible
   description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
@@ -3070,10 +2910,9 @@ impôt . impôt sur le revenu:
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
-  période: année
   formule:
     barème:
-      assiette: revenu abattu
+      assiette: revenu abattu [annuel]
       tranches:
         - en-dessous de: 9964
           taux: 0%
@@ -3098,10 +2937,9 @@ impôt . impôt sur le revenu:
 
 impôt . impôt sur le revenu à payer:
   description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
-  période: année
   formule:
     allègement:
-      assiette: impôt sur le revenu
+      assiette: impôt sur le revenu [annuel]
       décote:
         plafond: 1177
         taux: 75%
@@ -3112,7 +2950,6 @@ impôt . impôt sur le revenu à payer:
       valeur attendue: 7162
 
 impôt . revenu fiscal de référence:
-  période: année
   description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
   formule:
     somme:
@@ -3123,11 +2960,10 @@ impôt . revenu fiscal de référence:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
 
 impôt . CEHR:
-  période: année
   note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
   formule:
     barème:
-      assiette: revenu fiscal de référence
+      assiette: revenu fiscal de référence [annuel]
       tranches:
         - en-dessous de: 250000
           taux: 0%
@@ -3143,7 +2979,6 @@ impôt . CEHR:
 
 revenu net de cotisations:
   résumé: Avant impôt
-  période: flexible
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -3154,9 +2989,7 @@ revenu net de cotisations:
       - auto-entrepreneur . revenu net de cotisations
 
 revenu net après impôt:
-  unité: €
   résumé: Versé sur le compte bancaire
-  période: flexible
   question: Quel revenu voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de charges, cotisations et d'impôts.
@@ -3187,19 +3020,14 @@ entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
-  période: flexible
-  unité: €
   formule: rémunération totale du dirigeant + charges
 
 entreprise . chiffre d'affaires minimum:
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
-  période: flexible
   question: Quel est votre chiffre d'affaires minimum envisagé ?
-  unité: €
   formule: chiffre d'affaires
 
 entreprise . chiffre d'affaires de société:
-  période: flexible
   formule:
     somme:
       - rémunération totale du dirigeant / rémunération du dirigeant
@@ -3213,19 +3041,16 @@ entreprise . rémunération du dirigeant:
   par défaut: 1
 
 entreprise . bénéfice:
-  période: flexible
   formule: chiffre d'affaires - charges dont rémunération dirigeant
 
 entreprise . résultat net:
   résumé: Ce qu'il reste après impôt sur les sociétés
-  période: flexible
   formule: bénéfice - impôt sur les sociétés
 
 entreprise . impôt sur les sociétés:
-  période: année
   formule:
     barème:
-      assiette: bénéfice
+      assiette: bénéfice [annuel]
       tranches:
         - en-dessous de: 38120
           taux: 15%
@@ -3238,19 +3063,16 @@ entreprise . impôt sur les sociétés:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
 entreprise . charges dont rémunération dirigeant:
-  période: flexible
   formule: charges + rémunération totale du dirigeant
 
 entreprise . rémunération totale du dirigeant:
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
-  unité: €
   description:
     C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
     On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
-  période: flexible
   formule:
     variations:
       - si: indépendant
@@ -3288,20 +3110,17 @@ entreprise . charges:
 
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
-  période: flexible
   par défaut: 0
-  unité: €
+  unité: €/mois
 
 indépendant . cotisations et contributions . réduction ACRE:
   applicable si: entreprise . ACRE
-  période: flexible
   formule:
     multiplication:
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
 
 indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
-  période: flexible
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3314,11 +3133,10 @@ indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
 
 indépendant . revenu net de cotisations:
   formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
-  période: flexible
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  unité: €
+  unité: €/mois
 
 indépendant . revenu professionnel:
   titre: revenu professionnel (net imposable)
@@ -3330,8 +3148,7 @@ indépendant . revenu professionnel:
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
 
-  période: flexible
-  unité: €
+  unité: €/mois
   formule:
     inversion numérique:
       avec:
@@ -3529,7 +3346,6 @@ indépendant:
     - contrat salarié
 
 indépendant . cotisations et contributions . cotisations:
-  période: flexible
   références:
     assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
   formule:
@@ -3548,8 +3364,6 @@ indépendant . cotisations et contributions:
       - CSG et CRDS
       - formation professionnelle
       - (- réduction ACRE)
-  unité: €
-  période: flexible
 
 entreprise . rattachement libéral règlementé:
   description: |
@@ -3573,10 +3387,8 @@ entreprise . rattachement libéral règlementé:
   rend non applicable:
     - protection sociale . retraite
     - indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
-  période: aucune
 
 indépendant . cotisations et contributions . cotisations . maladie:
-  période: flexible
   formule:
     variations:
       - si: entreprise . rattachement libéral règlementé
@@ -3585,7 +3397,6 @@ indépendant . cotisations et contributions . cotisations . maladie:
       - sinon: artisans commerçants libéraux
 
 indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
-  période: flexible
   titre: maladie libérale règlementée
   formule:
     barème continu:
@@ -3598,7 +3409,6 @@ indépendant . cotisations et contributions . cotisations . maladie . libérale 
 indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
 
-  période: flexible
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -3613,7 +3423,6 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
 indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
-  période: flexible
   formule:
     multiplication:
       assiette: maladie . assiette
@@ -3621,7 +3430,6 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
       plafond: 5 * plafond sécurité sociale temps plein
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
-  période: flexible
   formule:
     barème:
       assiette: assiette
@@ -3641,7 +3449,6 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
-  période: flexible
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -3649,7 +3456,6 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
       - sinon: taux
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
-  période: flexible
   formule:
     multiplication:
       assiette: taux RSA part variable + 1.35%
@@ -3658,21 +3464,18 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
-  période: flexible
   formule:
     multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
-  période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
 indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
-  période: flexible
   formule:
     barème continu:
       retourne seulement le taux: oui
@@ -3691,7 +3494,6 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
 indépendant . cotisations et contributions . cotisations . retraite de base:
-  période: année
   formule:
     variations:
       - si: entreprise . rattachement libéral règlementé
@@ -3717,7 +3519,6 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
                 taux: 0.6%
 
 indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
-  période: flexible
   titre: assiette retraite de base
   formule:
     variations:
@@ -3731,15 +3532,13 @@ indépendant . cotisations et contributions . cotisations . retraite de base . a
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  période: année
-  unité: €
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
     variations:
       - si: entreprise . rattachement libéral règlementé
         alors:
           barème linéaire:
-            assiette: revenu professionnel
+            assiette: revenu professionnel [annuel]
             tranches:
               - en-dessous de: 26580
                 montant: 1315
@@ -3765,7 +3564,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
                 montant: 17095
       - sinon:
           barème:
-            assiette: revenu professionnel
+            assiette: revenu professionnel [annuel]
             tranches:
               - en-dessous de: 37960
                 taux: 7%
@@ -3776,7 +3575,6 @@ indépendant . cotisations et contributions . cotisations . retraite complément
                 taux: 0%
 
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
-  période: flexible
   formule:
     multiplication:
       assiette: assiette
@@ -3786,7 +3584,6 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
 indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
-  période: flexible
   titre: assiette invalidité et décès
   formule:
     variations:
@@ -3800,7 +3597,6 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 indépendant . cotisations et contributions . CSG et CRDS:
-  période: flexible
   formule:
     multiplication:
       assiette: assiette
@@ -3816,14 +3612,12 @@ indépendant . cotisations et contributions . CSG et CRDS:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
 indépendant . cotisations et contributions . CSG et CRDS . assiette:
-  période: flexible
   formule:
     somme:
       - revenu professionnel
       - cotisations
 
 indépendant . cotisations et contributions . formation professionnelle:
-  période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
@@ -3839,7 +3633,6 @@ indépendant . cotisations et contributions . formation professionnelle:
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
 indépendant . cotisations et contributions . cotisations . allocations familiales:
-  période: flexible
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3860,7 +3653,6 @@ auto-entrepreneur:
 
 auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
-  période: flexible
   contrôles:
     - si: base des cotisations > plafond
       message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
@@ -3875,8 +3667,7 @@ auto-entrepreneur . plafond:
   références:
     Fiche sevice-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
 
-  période: année
-  unité: €
+  unité: €/an
   formule:
     variations:
       - si:
@@ -3893,11 +3684,8 @@ auto-entrepreneur . revenu net de cotisations:
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule: entreprise . rémunération totale du dirigeant - cotisations et contributions
-  période: flexible
-  unité: €
 
 auto-entrepreneur . cotisations et contributions:
-  unité: €
   formule:
     somme:
       - cotisations
@@ -3906,12 +3694,9 @@ auto-entrepreneur . cotisations et contributions:
       - entreprise . prélèvements obligatoires
   références:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
-  période: flexible
 
 auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
-  unité: €
-  période: flexible
   note: |
     Nous n'avons pas intégré les exceptions suivantes :
 
@@ -3926,8 +3711,6 @@ auto-entrepreneur . cotisations et contributions . TFC:
 
 auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
-  période: flexible
-  unité: €
   applicable si: entreprise . catégorie d'activité = 'commerciale ou industrielle'
   formule:
     multiplication:
@@ -3942,8 +3725,6 @@ auto-entrepreneur . cotisations et contributions . TFC . commerce:
           - sinon: 0.044%
 
 auto-entrepreneur . cotisations et contributions . TFC . métiers:
-  période: flexible
-  unité: €
   titre: taxe pour frais de chambre des métiers
   applicable si: entreprise . catégorie d'activité = 'artisanale'
   formule:
@@ -3957,8 +3738,6 @@ auto-entrepreneur . cotisations et contributions . TFC . métiers:
 
 auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
   titre: Contribution à la formation professionnelle
-  unité: €
-  période: flexible
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
@@ -3984,8 +3763,6 @@ auto-entrepreneur . cotisations et contributions . cotisations:
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
 
     Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
-  période: flexible
-  unité: €
   formule:
     barème:
       assiette: base des cotisations
@@ -4000,10 +3777,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
 
 auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
   description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
-  unité: €
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
-  période: flexible
   formule:
     multiplication:
       assiette: base des cotisations
@@ -4065,13 +3840,11 @@ entreprise . ACRE . année . moins de deux ans:
 entreprise . ACRE . année . moins de trois ans:
 
 auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  période: flexible
   formule: 100% - réduction ACRE
 
 auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
-  période: flexible
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
@@ -4084,16 +3857,14 @@ auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
-auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
 
+auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
-  période: flexible
 
 auto-entrepreneur . impôt:
 
 auto-entrepreneur . impôt . abattement:
-  période: année
-  unité: €
+  unité: €/an
   formule:
     le maximum de:
       - multiplication:
@@ -4133,7 +3904,6 @@ auto-entrepreneur . impôt . versement libératoire:
           - versement libératoire
       message: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
       niveau: info
-  période: aucune
 
 auto-entrepreneur . impôt . versement libératoire . montant:
   titre: versement libératoire auto-entrepreneur
@@ -4143,9 +3913,6 @@ auto-entrepreneur . impôt . versement libératoire . montant:
     - 1% si l’activité est l’achat/revente, la vente à consommer sur place et la prestation d’hébergement (BIC)
     - 1,7% si l’activité est une activité de services relevant des bénéfices industriels et commerciaux (BIC)
     - 2,2% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
-  unité: €
-  période: flexible
-
   formule:
     multiplication:
       assiette: base des cotisations
@@ -4163,12 +3930,10 @@ auto-entrepreneur . impôt . versement libératoire . montant:
 
 auto-entrepreneur . impôt . revenu imposable:
   non applicable si: versement libératoire
-  période: flexible
   formule: revenu abattu
 
 auto-entrepreneur . impôt . revenu abattu:
   titre: revenu abattu auto-entrepreneur
-  période: flexible
   formule:
     allègement:
       assiette: base des cotisations
@@ -4203,8 +3968,6 @@ protection sociale . retraite:
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
     INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
 
-  unité: €
-  période: flexible
   formule:
     somme:
       - base
@@ -4225,8 +3988,6 @@ protection sociale . retraite:
 
 protection sociale . retraite . base:
   titre: pension de retraite de base
-  unité: €
-  période: flexible
   formule:
     multiplication:
       plafond: plafond sécurité sociale temps plein
@@ -4238,7 +3999,6 @@ protection sociale . retraite . base:
 
 protection sociale . retraite . base . taux de la pension:
   description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
-  période: flexible
   formule:
     variations:
       - si: trimestres validés par an = 0
@@ -4249,7 +4009,6 @@ protection sociale . retraite . base . taux de la pension:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
 protection sociale . retraite . trimestres validés par an:
-  période: aucune
   unité: trimestre
   formule:
     le minimum de:
@@ -4260,13 +4019,11 @@ protection sociale . retraite . trimestres validés par an:
       - 4
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
-  période: aucune
   unité: trimestre
   applicable si: contrat salarié
   formule: barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . trimestres indépendant:
-  période: aucune
   unité: trimestre
   applicable si: indépendant
   formule:
@@ -4279,7 +4036,6 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
             - barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . barème trimestres générique:
-  période: aucune
   formule:
     barème linéaire:
       unité: trimestre
@@ -4304,7 +4060,6 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
 
 protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
   applicable si: auto-entrepreneur
-  période: aucune
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
     variations:
@@ -4373,8 +4128,6 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
 protection sociale . revenu moyen:
   description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
   notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
-  unité: €
-  période: année
   formule:
     le maximum de:
       - indépendant . revenu professionnel
@@ -4388,56 +4141,44 @@ protection sociale . retraite . mois cotisés:
 
 protection sociale . retraite . complémentaire salarié:
   formule: points acquis * valeur du point
-  période: année
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . valeur du point:
-  formule: 1.2588
-  période: année
-  unité: €/point
+  formule: 1.2588 €/point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
 
 protection sociale . retraite . complémentaire salarié . points acquis:
   formule: points acquis par mois * mois cotisés
-  période: aucune
   unité: point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . points acquis par mois:
-  période: mois
   unité: point/mois
   formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 protection sociale . retraite . complémentaire salarié . prix d'achat du point:
-  formule: 16.7226
-  période: mois
-  unité: €
+  formule: 16.7226 €/point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire sécurité des indépendants:
   formule: points acquis * valeur du point
-  période: année
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
 protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
-  formule: 1.187
-  période: année
-  unité: €/point
+  formule: 1.187 €/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
   formule: points acquis par mois * mois cotisés
-  période: aucune
 
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
-  période: mois
   formule:
     multiplication:
       assiette:
@@ -4447,9 +4188,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
       facteur: 1 / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
-  formule: 17.456
-  période: mois
-  unité: €
+  formule: 17.456 €/point
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
@@ -4481,8 +4220,6 @@ protection sociale . santé . indemnités journalières:
     votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
     brut et versées tous les 14 jours en moyenne.
   # TODO : période : jour
-  période: aucune
-  unité: €
   formule:
     somme:
       - indemnités journalières . auto-entrepreneur
@@ -4491,8 +4228,7 @@ protection sociale . santé . indemnités journalières:
 
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
   applicable si: auto-entrepreneur
-  période: aucune
-  unité: €
+  unité: €/jour
   formule:
     variations:
       - si: revenu moyen [annuel] < 3919.20
@@ -4508,8 +4244,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
 
 protection sociale . santé . indemnités journalières . indépendant:
   applicable si: indépendant
-  période: aucune
-  unité: €
+  unité: €/jour
   formule:
     le maximum de:
       - 21
@@ -4522,8 +4257,7 @@ protection sociale . santé . indemnités journalières . indépendant:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
 protection sociale . santé . indemnités journalières . salarié:
-  période: aucune
-  unité: €
+  unité: €/jour
   notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
@@ -4596,8 +4330,7 @@ protection sociale . accidents du travail et maladies professionnelles:
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
 
-  période: mois
-  unité: €
+  unité: €/jour
   applicable si: contrat salarié
   formule:
     le minimum de:
@@ -4648,4 +4381,3 @@ situation personnelle . RSA:
   titre: allocataire RSA
   question: Êtes-vous allocataire du RSA ?
   par défaut: non
-
