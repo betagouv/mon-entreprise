@@ -17,6 +17,7 @@ import Tracker, { devTracker } from '../../Tracker'
 import { getSessionStorage, inIframe } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
+import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import CompanyIndex from './pages/Company'
 import Couleur from './pages/Dev/Couleur'
@@ -80,6 +81,7 @@ function InFranceRoute({ basename, language }) {
 let RouterSwitch = () => {
 	return (
 		<>
+			<Header />
 			<Switch>
 				<Route exact path="/" component={Landing} />
 				<Route path="/iframes" component={Iframes} />

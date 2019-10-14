@@ -60,7 +60,7 @@ export default function SocialSecurity() {
                         <T k="gérer.index.content.entreprise">
                             Vous souhaitez vous verser un revenu ou embaucher ? <br />
                             Vous aurez à payer des cotisations et des impôts. <br />
-                            Pour anticiper leur montant, nous avons conçu des simulateurs adaptés à votre situation.
+                            Anticipez leurs montants grâce aux simulateurs adaptés à votre situation.
                         </T>
                     </p>}
                         <CompanySection company={company} />

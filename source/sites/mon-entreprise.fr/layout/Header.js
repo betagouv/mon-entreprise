@@ -1,0 +1,46 @@
+import { SitePathsContext } from 'Components/utils/withSitePaths';
+import logoEnSvg from 'Images/logo-mycompany.svg';
+import logoSvg from 'Images/logo.svg';
+import marianneSvg from 'Images/marianne.svg';
+import urssafSvg from 'Images/urssaf.svg';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
+export default function Header() {
+    const sitePaths = useContext(SitePathsContext)
+    const { i18n: { language } } = useTranslation();
+    return (
+        <div className="ui__ container" css="display:flex; align-items: center">
+            <Link css='height: 4rem' to={sitePaths.index}>
+                <img
+                    alt="logo mon-entreprise.fr"
+                    css={`
+                        padding: 0.5rem 0; 
+                        height: 100%;`
+                    }
+                    src={language === 'fr' ? logoSvg : logoEnSvg}
+                />
+            </Link>
+            <div style={{ flex: 1 }} />
+            <a
+                href="https://beta.gouv.fr"
+                target="_blank"
+                css={`
+                    height: 4rem;
+                    padding: 1rem;
+                `}>
+                <img alt="logo marianne" css={'height: 100%'} src={marianneSvg} />
+            </a>
+            <a
+                href="https://www.urssaf.fr"
+                target="_blank"
+                css={`
+                    height: 4rem;
+                    padding: 1rem;
+	            `}
+                className="landing-header__institutional-logo">
+                <img alt="logo urssaf" css={'height: 100%'} src={urssafSvg} />
+            </a>
+        </div>)
+}
