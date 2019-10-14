@@ -37,11 +37,11 @@ export default function Simulation({ explanations, customEndMessages }) {
 									</T>
 								</small>
 							) : (
-								<span />
-							)}
+									<span />
+								)}
 							<SeeAnswersButton />
 						</div>
-						<section className="ui__ full-width light-bg">
+						<section className="ui__ full-width lighter-bg">
 							<div className="ui__ container">
 								<Controls />
 								<Conversation customEndMessages={customEndMessages} />

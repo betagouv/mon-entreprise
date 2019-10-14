@@ -15,7 +15,7 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 				to={sitePaths.économieCollaborative.index}
 				className="ui__ notice small simple button"
 				style={{ position: 'relative', bottom: '-2rem' }}>
-				Revenus de plateformes en ligne >
+				Revenus de plateformes en ligne ›
 			</Link>
 			<StoreProvider
 				reducer={reducer}

@@ -57,6 +57,9 @@ blockquote {
 .ui__.light-bg {
 	background-color: var(--lighterColour) !important;
 }
+.ui__.lighter-bg {
+	background-color: var(--lightestColour) !important;
+}
 
 .ui__.center-flex {
 	display: flex;

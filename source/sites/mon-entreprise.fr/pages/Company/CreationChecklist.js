@@ -1,8 +1,5 @@
 /* @flow */
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
-} from 'Actions/companyCreationChecklistActions'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import Route404 from 'Components/Route404'
@@ -25,11 +22,11 @@ type Props = {
 	statusChooserCompleted: boolean,
 	match: Match,
 	onChecklistInitialization: (string, Array<string>) => void,
-	onStatusChange: () => void,
-	sitePaths: Object,
-	onItemCheck: (name: string, checked: boolean) => void,
-	t: TFunction,
-	companyCreationChecklist: { [string]: boolean }
+		onStatusChange: () => void,
+			sitePaths: Object,
+				onItemCheck: (name: string, checked: boolean) => void,
+					t: TFunction,
+						companyCreationChecklist: { [string]: boolean }
 }
 
 const CreateCompany = ({
@@ -56,23 +53,23 @@ const CreateCompany = ({
 	}
 	const titre = isAutoentrepreneur
 		? t(
-				[
-					'entreprise.tâches.page.autoEntrepreneur.titre',
-					'Comment devenir {{autoEntrepreneur}}'
-				],
-				{
-					autoEntrepreneur: t(companyStatus)
-				}
-		  )
+			[
+				'entreprise.tâches.page.autoEntrepreneur.titre',
+				'Comment devenir {{autoEntrepreneur}}'
+			],
+			{
+				autoEntrepreneur: t(companyStatus)
+			}
+		)
 		: t(
-				[
-					'entreprise.tâches.page.entreprise.titre',
-					'Créer une {{companyStatus}}'
-				],
-				{
-					companyStatus: t(companyStatus)
-				}
-		  )
+			[
+				'entreprise.tâches.page.entreprise.titre',
+				'Créer une {{companyStatus}}'
+			],
+			{
+				companyStatus: t(companyStatus)
+			}
+		)
 	return (
 		<Animate.fromBottom>
 			<Helmet>
@@ -82,44 +79,30 @@ const CreateCompany = ({
 					content={
 						isAutoentrepreneur
 							? t(
-									[
-										'entreprise.tâches.page.autoEntrepreneur.description',
-										`La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.`
-									],
-									{ autoEntrepreneur: t(companyStatus) }
-							  )
+								[
+									'entreprise.tâches.page.autoEntrepreneur.description',
+									'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.'
+								],
+								{ autoEntrepreneur: t(companyStatus) }
+							)
 							: t(
-									[
-										'entreprise.tâches.page.description',
-										`La liste complète des démarches à faire pour créer une {{companyStatus}} auprès de l'administration française.`
-									],
-									{ companyStatus: t(companyStatus) }
-							  )
+								[
+									'entreprise.tâches.page.description',
+									'La liste complète des démarches à faire pour créer une {{companyStatus}} auprès de l\'administration française.'
+								],
+								{ companyStatus: t(companyStatus) }
+							)
 					}
 				/>
 			</Helmet>
 			<Scroll.toTop />
 			<h1>{titre}</h1>
-			{statusChooserCompleted ? (
-				<button
-					onClick={onStatusChange}
-					className="ui__ simple small skip button left">
-					← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
-				</button>
-			) : (
-				<>
-					<p>
-						<button className="ui__ link-button" onClick={onStatusChange}>
-							<T k="formeJuridique.incertain">
-								Pas convaincu par cette forme juridique ? Suivez notre guide !
-							</T>
-						</button>
-					</p>
-					<p>
-						<StatusDescription status={companyStatus} />
-					</p>
-				</>
-			)}
+			<p><StatusDescription status={companyStatus} /></p>
+			<button
+				onClick={onStatusChange}
+				className="ui__ simple small skip button left">
+				← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
+			</button>
 
 			<h2>
 				{emoji('📋')}{' '}
