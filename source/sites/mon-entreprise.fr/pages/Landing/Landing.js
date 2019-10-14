@@ -1,51 +1,17 @@
-/* @flow */
-
 import { T } from 'Components'
-import withSitePaths from 'Components/utils/withSitePaths'
-import logoEnSvg from 'Images/logo-mycompany.svg'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import logoSvg from 'Images/logo.svg'
-import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/urssaf.svg'
-import React from 'react'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Footer from '../../layout/Footer/Footer'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
-import type { SitePaths } from 'Components/utils/withSitePaths'
 
-type Props = {
-	sitePaths: SitePaths
-}
-export default withSitePaths(({ sitePaths }: Props) => {
-	const {
-		i18n: { language }
-	} = useTranslation()
-
+export default function Landing() {
+	const sitePaths = useContext(SitePathsContext);
 	return (
 		<div className="app-content">
-			<div className="ui__ container landing-header">
-				<Link className="landing-header__brand-logo" to={sitePaths.index}>
-					<img
-						alt="logo mon-entreprise.fr"
-						src={language === 'fr' ? logoSvg : logoEnSvg}
-					/>
-				</Link>
-				<div style={{ flex: 1 }} />
-				<a
-					href="https://beta.gouv.fr"
-					target="_blank"
-					className="landing-header__institutional-logo">
-					<img alt="logo marianne" src={marianneSvg} />
-				</a>
-				<a
-					href="https://www.urssaf.fr"
-					target="_blank"
-					className="landing-header__institutional-logo">
-					<img alt="logo urssaf" src={urssafSvg} />
-				</a>
-			</div>
 			<section className="ui__ container landing-title">
 				<img
 					alt="logo mon-entreprise.fr"
@@ -158,4 +124,4 @@ export default withSitePaths(({ sitePaths }: Props) => {
 			<Footer />
 		</div>
 	)
-})
+}
