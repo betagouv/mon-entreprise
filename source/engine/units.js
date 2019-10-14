@@ -1,4 +1,5 @@
 import { remove, isEmpty, unnest } from 'ramda'
+import i18n from '../i18n'
 
 //TODO this function does not handle complex units like passenger-kilometer/flight
 export let parseUnit = string => {
@@ -10,12 +11,21 @@ export let parseUnit = string => {
 	return result
 }
 
-let printUnits = units => units.filter(unit => unit !== '%').join('-')
+let printUnits = (units, count) =>
+	units
+		.filter(unit => unit !== '%')
+		.map(unit => i18n.t(`units:${unit}`, { count }))
+		.join('-')
 
-export let serialiseUnit = rawUnit => {
+const plural = 2
+export let serialiseUnit = (rawUnit, count = plural) => {
+	if (typeof rawUnit !== 'object') {
+		return typeof rawUnit === 'string'
+			? i18n.t(`units:${rawUnit}`, { count })
+			: rawUnit
+	}
 	let unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
-
 	// the unit '%' is only displayed when it is the only unit
 	let merge = [...numerators, ...denominators]
 	if (merge.length === 1 && merge[0] === '%') return '%'
@@ -26,10 +36,10 @@ export let serialiseUnit = rawUnit => {
 		!n && !d
 			? ''
 			: n && !d
-			? printUnits(numerators)
+			? printUnits(numerators, count)
 			: !n && d
-			? `/${printUnits(denominators)}`
-			: `${printUnits(numerators)} / ${printUnits(denominators)}`
+			? `/${printUnits(denominators, 1)}`
+			: `${printUnits(numerators, plural)} / ${printUnits(denominators, 1)}`
 
 	return string
 }

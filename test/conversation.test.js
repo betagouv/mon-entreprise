@@ -16,11 +16,11 @@ describe('conversation', function() {
 	it('should start with the first missing variable', function() {
 		let rawRules = [
 				// TODO - this won't work without the indirection, figure out why
-				{ nom: 'startHere', formule: { somme: ['a', 'b'] }, espace: 'top' },
-				{ nom: 'a', espace: 'top', formule: 'aa' },
-				{ nom: 'b', espace: 'top', formule: 'bb' },
-				{ nom: 'aa', question: '?', titre: 'a', espace: 'top' },
-				{ nom: 'bb', question: '?', titre: 'b', espace: 'top' }
+				{ nom: 'top . startHere', formule: { somme: ['a', 'b'] } },
+				{ nom: 'top . a', formule: 'aa' },
+				{ nom: 'top . b', formule: 'bb' },
+				{ nom: 'top . aa', question: '?', titre: 'a' },
+				{ nom: 'top . bb', question: '?', titre: 'b' }
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
@@ -34,16 +34,15 @@ describe('conversation', function() {
 		let rawRules = [
 				// TODO - this won't work without the indirection, figure out why
 				{
-					nom: 'startHere',
-					formule: { somme: ['a', 'b', 'c'] },
-					espace: 'top'
+					nom: 'top . startHere',
+					formule: { somme: ['a', 'b', 'c'] }
 				},
-				{ nom: 'a', espace: 'top', formule: 'aa' },
-				{ nom: 'b', espace: 'top', formule: 'bb' },
-				{ nom: 'c', espace: 'top', formule: 'cc' },
-				{ nom: 'aa', question: '?', titre: 'a', espace: 'top' },
-				{ nom: 'bb', question: '?', titre: 'b', espace: 'top' },
-				{ nom: 'cc', question: '?', titre: 'c', espace: 'top' }
+				{ nom: 'top . a', formule: 'aa' },
+				{ nom: 'top . b', formule: 'bb' },
+				{ nom: 'top . c', formule: 'cc' },
+				{ nom: 'top . aa', question: '?', titre: 'a' },
+				{ nom: 'top . bb', question: '?', titre: 'b' },
+				{ nom: 'top . cc', question: '?', titre: 'c' }
 			],
 			rules = rawRules.map(enrichRule)
 

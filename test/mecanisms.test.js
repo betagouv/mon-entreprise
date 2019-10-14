@@ -10,7 +10,6 @@ import { analyse, parseAll } from '../source/engine/traverse'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
 import * as R from 'ramda'
-import { isNumeric } from '../source/utils'
 import { serialiseUnit } from 'Engine/units'
 
 describe('Mécanismes', () =>
@@ -43,7 +42,7 @@ describe('Mécanismes', () =>
 									missing = collectMissingVariables(analysis.targets),
 									target = analysis.targets[0]
 
-								if (isNumeric(valeur)) {
+								if (typeof valeur === 'number') {
 									expect(target.nodeValue).to.be.closeTo(valeur, 0.001)
 								} else if (valeur !== undefined) {
 									expect(target).to.have.property('nodeValue', valeur)

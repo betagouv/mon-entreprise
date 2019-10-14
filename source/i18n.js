@@ -1,34 +1,26 @@
 import i18next from 'i18next'
-import queryString from 'query-string'
 import { initReactI18next } from 'react-i18next'
 import enTranslations from './locales/en.yaml'
-import {
-	getFromSessionStorage,
-	getIframeOption,
-	parseDataAttributes,
-	setToSessionStorage
-} from './utils'
+import unitsTranslations from './locales/units.yaml'
 
 let lang =
-	getIframeOption('lang') ||
-	(typeof location !== 'undefined' &&
-		queryString.parse(location.search)['lang']) ||
-	parseDataAttributes(getFromSessionStorage('lang')) ||
+	new URLSearchParams(document.location.search.substring(1)).get('lang') ||
+	sessionStorage?.getItem('lang')?.match(/^(fr|en)$/)?.[0] ||
 	'fr'
 
-setToSessionStorage('lang', lang)
-i18next.use(initReactI18next).init(
-	{
+sessionStorage?.setItem('lang', lang)
+i18next
+	.use(initReactI18next)
+	.init({
 		lng: lang,
 		resources: {
+			fr: { units: unitsTranslations.fr },
 			en: {
-				translation: enTranslations
+				translation: enTranslations,
+				units: unitsTranslations.en
 			}
 		}
-	},
-	(err, t) => {
-		console && console.error('Error from i18n load', err, t) //eslint-disable-line no-console
-	}
-)
+	})
+	.catch(err => console?.error('Error from i18n load', err))
 
 export default i18next

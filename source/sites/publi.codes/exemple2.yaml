@@ -1,19 +1,15 @@
-- espace: douche
-  nom: impact par douche
+douche . impact par douche:
   titre: Une douche
   icônes: 🚿
   formule: impact par litre * litres d'eau
 
-- espace: douche
-  nom: impact par litre
+douche . impact par litre:
   formule: eau . impact par litre froid + chauffage . impact par litre
 
-- espace: douche
-  nom: litres d'eau
+douche . litres d'eau:
   formule: durée de la douche * litres par minute
 
-- espace: douche
-  nom: litres par minute
+douche . litres par minute:
   unité: l/minute
   formule:
     variations:
@@ -23,13 +19,11 @@
   références:
     - https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
 
-- espace: douche
-  nom: pomme de douche économe
+douche . pomme de douche économe:
   question: Utilisez-vous une pomme de douche économe ?
   par défaut: non
 
-- espace: douche
-  nom: durée de la douche
+douche . durée de la douche:
   question: Combien de temps dure votre douche en général (en minutes) ?
   par défaut: 5
   unité: minute
@@ -38,15 +32,10 @@
     moyenne: 10
     lente: 20
 
-
-
-  
-
-- nom: chauffage
+chauffage:
   icônes: 🔥
 
-- espace: chauffage
-  nom: type
+chauffage . type:
   question: Votre eau est chauffée comment ?
   formule:
     une possibilité:
@@ -57,10 +46,7 @@
         - électricité
   par défaut: gaz
 
-
-  
-- espace: chauffage
-  nom: impact par kWh
+chauffage . impact par kWh:
   unité: kgCO₂e/kWh
   formule:
     variations:
@@ -79,17 +65,12 @@
     - https://www.electricitymap.org/?page=country&solar=false&remote=true&wind=false&countryCode=FR
     - https://decrypterlenergie.org/decryptage-quel-est-le-contenu-en-co2-du-kwh-electrique
 
-
-
-      
-- espace: chauffage
-  nom: énergie consommée par litre
+chauffage . énergie consommée par litre:
   formule: 0.0325
   unité: kWh
   références:
     - https://www.econologie.com/forums/plomberie-et-sanitaire/prix-reel-d-un-bain-ou-d-une-douche-pour-l-eau-et-chauffage-t12727.html
 
-- espace: chauffage
-  nom: impact par litre
+chauffage . impact par litre:
   titre: impact par litre chauffé
   formule: impact par kWh * énergie consommée par litre

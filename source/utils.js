@@ -4,31 +4,6 @@ import { map } from 'ramda'
 export let capitalise0 = (name: string) =>
 	name && name[0].toUpperCase() + name.slice(1)
 
-export let getUrl = () =>
-	typeof window !== 'undefined' ? window.location.href.toString() : null
-
-export let parseDataAttributes = (value: any) =>
-	value === 'undefined'
-		? undefined
-		: value === null
-		? null
-		: !isNaN(value)
-		? +value
-		: /* value is a normal string */
-		  value
-
-export let getIframeOption = (optionName: string) => {
-	let url = getUrl(),
-		hasOption = url?.includes(optionName + '=')
-	return parseDataAttributes(
-		hasOption && url.split(optionName + '=')[1].split('&')[0]
-	)
-}
-
-export function isNumeric(val: number) {
-	return Number(parseFloat(val)) === val
-}
-
 export function debounce<ArgType: any>(
 	timeout: number,
 	fn: ArgType => void
@@ -93,14 +68,4 @@ export const constructSitePaths = (
 				: constructSitePaths(root + index, value),
 		sitePaths
 	)
-})
-
-export const getFromSessionStorage = softCatch<string, any>(where => {
-	typeof sessionStorage !== 'undefined' ? sessionStorage[where] : null
-})
-
-export const setToSessionStorage = softCatch<string, void>((where, what) => {
-	if (typeof sessionStorage !== 'undefined') {
-		sessionStorage[where] = what
-	}
 })

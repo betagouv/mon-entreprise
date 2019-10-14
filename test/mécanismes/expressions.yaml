@@ -140,8 +140,7 @@
 
 - nom: CDD
 
-- espace: CDD
-  nom: poursuivi en CDI
+- nom: CDD . poursuivi en CDI
 
 - test: variable booléene
   formule: CDD . poursuivi en CDI
@@ -188,10 +187,8 @@
       - commerciale
       - artisanale
 
-- espace: catégorie d'activité
-  nom: artisanale
-- espace: catégorie d'activité
-  nom: commerciale
+- nom: catégorie d'activité . artisanale
+- nom: catégorie d'activité . commerciale
 
 - test: test de possibilités
   formule: catégorie d'activité = 'artisanale'
