@@ -68,7 +68,7 @@ const generateTheme = (themeColour?: ?string): ThemeColours => {
 			textColour === '#ffffff'
 				? 'rgba(255, 255, 255, .7)'
 				: 'rgba(0, 0, 0, .7)',
-		lighterTextColour = darkColour + 'bb',
+		lighterTextColour = darkColour + 'cc',
 		lighterInverseTextColour = lightenTextColour(inverseTextColour),
 		textColourOnWhite = textColour === '#ffffff' ? colour : '#333'
 
@@ -107,20 +107,20 @@ export function ThemeColoursProvider({ colour, children }: ProviderProps) {
 	)
 }
 
-export default function withThemeColours<Props: { colours: ThemeColours }>(
+export default function withThemeColours<Props: { colours: ThemeColours }> (
 	WrappedComponent: React$ComponentType<Props>
-): React$ComponentType<$Diff<Props, { colours: ThemeColours }>> {
-	class WithThemeColours extends Component<
-		$Diff<Props, { colours: ThemeColours }>
+): React$ComponentType < $Diff < Props, { colours: ThemeColours } >> {
+	class WithThemeColours extends Component <
+		$Diff < Props, { colours: ThemeColours }>
 	> {
-		displayName = `withThemeColours(${WrappedComponent.displayName || ''})`
+				displayName = `withThemeColours(${WrappedComponent.displayName || ''})`
 		render() {
-			return (
-				<ThemeColoursContext.Consumer>
-					{colours => <WrappedComponent {...this.props} colours={colours} />}
-				</ThemeColoursContext.Consumer>
-			)
-		}
-	}
-	return WithThemeColours
+					return (
+						<ThemeColoursContext.Consumer>
+							{colours => <WrappedComponent {...this.props} colours={colours} />}
+						</ThemeColoursContext.Consumer>
+					)
+				}
+			}
+return WithThemeColours
 }

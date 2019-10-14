@@ -371,6 +371,7 @@ for the appearing element to appear without stacking up below the first one */
 
 .step label.userAnswerButton {
 	border: 1px solid var(--colour);
+	background-color: white;
 	color: var(--textColourOnWhite);
 }
 .step label.userAnswerButton.selected {
