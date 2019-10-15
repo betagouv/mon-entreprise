@@ -8,7 +8,7 @@
 .landing-title__img {
 	align-self: flex-end;
 	margin-top: 2rem;
-	width: 30rem;
+	max-width: 18rem;
 	margin-left: 1rem;
 	margin-bottom: -2rem;
 }
