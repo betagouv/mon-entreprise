@@ -95,7 +95,7 @@
 	transform: scale(1.5) translateY(0.1rem);
 }
 .ui__.card.box .ui__.big.box-icon > img {
-	transform: scale(2.3) translateY(0.1rem);
+	transform: scale(2.3) translateY(0.2rem);
 }
 
 @media (max-width: 500px) {

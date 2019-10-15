@@ -11,14 +11,18 @@ export default function Header() {
     const sitePaths = useContext(SitePathsContext)
     const { i18n: { language } } = useTranslation();
     return (
-        <div className="ui__ container" css="display:flex; align-items: center">
-            <Link css='height: 4rem' to={sitePaths.index}>
+        <div className="ui__ container" style={{
+            display: 'flex',
+            alignItems: 'center'
+        }}
+        >
+            <Link style={{ height: '4rem' }} to={sitePaths.index}>
                 <img
                     alt="logo mon-entreprise.fr"
-                    css={`
-                        padding: 0.5rem 0; 
-                        height: 100%;`
-                    }
+                    style={{
+                        padding: '0.5rem 0',
+                        height: '100%'
+                    }}
                     src={language === 'fr' ? logoSvg : logoEnSvg}
                 />
             </Link>
@@ -26,21 +30,21 @@ export default function Header() {
             <a
                 href="https://beta.gouv.fr"
                 target="_blank"
-                css={`
-                    height: 4rem;
-                    padding: 1rem;
-                `}>
-                <img alt="logo marianne" css={'height: 100%'} src={marianneSvg} />
+                style={{
+                    height: '4rem',
+                    padding: '1rem'
+                }}>
+                <img alt="logo marianne" style={{ height: '100%' }} src={marianneSvg} />
             </a>
             <a
                 href="https://www.urssaf.fr"
                 target="_blank"
-                css={`
-                    height: 4rem;
-                    padding: 1rem;
-	            `}
+                css={{
+                    height: '4rem',
+                    padding: '1rem'
+                }}
                 className="landing-header__institutional-logo">
-                <img alt="logo urssaf" css={'height: 100%'} src={urssafSvg} />
+                <img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
             </a>
         </div>)
 }
