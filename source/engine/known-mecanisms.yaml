@@ -156,7 +156,7 @@ complément:
 composantes:
   type: numeric
   description: |
-    Beaucoup de cotisations sont composées de deux parties qui partage la méthode de calcul mais diffèrent par des paramètres différents.
+    Beaucoup de cotisations sont composées de deux parties qui partagent la méthode de calcul mais diffèrent par des paramètres différents.
 
     Pour ne pas définir deux variables presque redondantes, on utilise le mécanisme de composante. Il se comportera comme une somme dans les calculs, mais son affichage sur les pages /règle sera adapté.
 
