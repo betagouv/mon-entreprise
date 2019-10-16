@@ -1022,6 +1022,7 @@ contrat salarié . statut cadre . choix statut cadre:
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
+  acronyme: PSS
   formule: 3377
   unité: €
   références:
@@ -1030,6 +1031,7 @@ plafond sécurité sociale temps plein:
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
+  acronyme: PSS
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC temps plein:

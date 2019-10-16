@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { ShowValuesContext } from 'Components/rule/ShowValuesContext'
+import RuleLink from 'Components/RuleLink'
 import { numberFormatter } from 'Engine/format'
 import { trancheValue } from 'Engine/mecanisms/barème'
 import { inferUnit, serialiseUnit } from 'Engine/units'
@@ -10,27 +11,31 @@ import { makeJsx } from '../evaluation'
 import './Barème.css'
 import { Node, NodeValuePointer } from './common'
 
-export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => (
-	<>
-		<li key="assiette">
-			<span className="key">
-				<Trans>assiette</Trans>:{' '}
-			</span>
-			<span className="value">{makeJsx(lazyEval(explanation.assiette))}</span>
-		</li>
-		{explanation['multiplicateur'] &&
-			explanation['multiplicateur'].nodeValue !== 1 && (
-				<li key="multiplicateur">
-					<span className="key">
-						<Trans>multiplicateur</Trans>:{' '}
-					</span>
-					<span className="value">
-						{makeJsx(lazyEval(explanation['multiplicateur']))}
-					</span>
-				</li>
-			)}
-	</>
-)
+export let BarèmeAttributes = ({ explanation, lazyEval = identity }) => {
+	const multiplicateur = lazyEval(explanation['multiplicateur'])
+	const multiplicateurAcronym = multiplicateur?.explanation?.acronyme
+
+	return (
+		<>
+			<li key="assiette">
+				<span className="key">
+					<Trans>assiette</Trans>:{' '}
+				</span>
+				<span className="value">{makeJsx(lazyEval(explanation.assiette))}</span>
+			</li>
+			{explanation['multiplicateur'] &&
+				explanation['multiplicateur'].nodeValue !== 1 &&
+				!multiplicateurAcronym && (
+					<li key="multiplicateur">
+						<span className="key">
+							<Trans>multiplicateur</Trans>:{' '}
+						</span>
+						<span className="value">{makeJsx(multiplicateur)}</span>
+					</li>
+				)}
+		</>
+	)
+}
 
 let Component = function Barème({
 	language,
@@ -41,6 +46,7 @@ let Component = function Barème({
 	unit
 }) {
 	const showValues = useContext(ShowValuesContext)
+	const multiplicateur = lazyEval(explanation?.multiplicateur)
 	return (
 		<Node
 			classes="mecanism barème"
@@ -90,6 +96,7 @@ let Component = function Barème({
 										]),
 										resultUnit: explanation.assiette.unit,
 										returnRate: explanation.returnRate,
+										multiplicateur,
 										trancheValue:
 											barèmeType === 'marginal'
 												? tranche.value
@@ -137,6 +144,7 @@ let Tranche = ({
 		taux,
 		montant
 	},
+	multiplicateur,
 	tranchesUnit,
 	resultUnit,
 	returnRate,
@@ -144,10 +152,18 @@ let Tranche = ({
 	showValues,
 	language
 }) => {
-	const trancheFormatter = numberFormatter({
-		language,
-		style: serialiseUnit(tranchesUnit) === '€' ? 'currency' : undefined
-	})
+	const trancheFormatter = value => (
+		<TrancheFormatter
+			{...{
+				language,
+				tranchesUnit,
+				resultUnit,
+				multiplicateur,
+				value
+			}}
+		/>
+	)
+
 	let activated = trancheValue > 0
 	return (
 		<tr className={classNames('tranche', { activated })}>
@@ -175,6 +191,37 @@ let Tranche = ({
 			)}
 		</tr>
 	)
+}
+
+function TrancheFormatter({
+	language,
+	tranchesUnit,
+	resultUnit,
+	multiplicateur,
+	value
+}) {
+	const multiplicateurAcronym = multiplicateur?.explanation?.acronyme
+	if (!multiplicateurAcronym) {
+		return numberFormatter({
+			language,
+			style: serialiseUnit(tranchesUnit) === '€' ? 'currency' : undefined
+		})(value)
+	} else {
+		return (
+			<>
+				{value}&nbsp;
+				<RuleLink
+					{...multiplicateur.explanation}
+					title={multiplicateur.explanation.name}>
+					{multiplicateurAcronym}
+				</RuleLink>{' '}
+				<NodeValuePointer
+					data={value * multiplicateur.nodeValue}
+					unit={resultUnit}
+				/>
+			</>
+		)
+	}
 }
 
 //eslint-disable-next-line
