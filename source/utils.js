@@ -54,6 +54,17 @@ export function coerceArray<A>(x: A | Array<A>): Array<A> {
 	return Array.isArray(x) ? x : [x]
 }
 
+export function getSessionStorage() {
+	// In some browsers like Brave, even just reading the variable sessionStorage
+	// is throwing an error in the iframe, so we can't do things if sessionStorage !== undefined
+	// and we need to wrap it in a try { } catch { } logic
+	try {
+		return window.sessionStorage
+	} catch (e) {
+		return undefined
+	}
+}
+
 export const constructSitePaths = (
 	root: string,
 	{ index, ...sitePaths }: { index: string }
