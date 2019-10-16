@@ -3,7 +3,7 @@ let script =
 		document.getElementById('script-monentreprise') ||
 		document.getElementById('script-simulateur-embauche'),
 	moduleName = script.dataset.module || 'simulateur-embauche',
-	couleur = script.dataset.couleur,
+	couleur = encodeURIComponent(script.dataset.couleur),
 	lang = script.dataset.lang,
 	baseUrl =
 		script.dataset.iframeUrl ||

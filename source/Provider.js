@@ -79,7 +79,8 @@ export default class Provider extends PureComponent {
 		return (
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>
-				<ThemeColoursProvider colour={iframeCouleur}>
+				<ThemeColoursProvider
+					colour={iframeCouleur && decodeURIComponent(iframeCouleur)}>
 					<TrackerProvider value={this.props.tracker}>
 						<SitePathProvider value={this.props.sitePaths}>
 							<I18nextProvider i18n={i18next}>
