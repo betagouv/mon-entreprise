@@ -1,13 +1,12 @@
 import { React, T } from 'Components'
 import SearchBar from 'Components/SearchBar'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import 'react-select/dist/react-select.css'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import './RulesList.css'
 
-export default connect(state => ({
-	flatRules: flatRulesSelector(state)
-}))(function RulesList({ flatRules }) {
+export default function RulesList() {
+	const flatRules = useSelector(flatRulesSelector)
 	return (
 		<div id="RulesList" className="ui__ container">
 			<h1>
@@ -16,4 +15,4 @@ export default connect(state => ({
 			<SearchBar showDefaultList={true} rules={flatRules} />
 		</div>
 	)
-})
+}

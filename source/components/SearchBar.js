@@ -84,7 +84,7 @@ function SearchBar({
 								to={
 									sitePaths.documentation.index +
 									'/' +
-									encodeRuleName(rule.name)
+									encodeRuleName(rule.dottedName)
 								}>
 								{rule.title || capitalise0(rule.name)}
 							</Link>

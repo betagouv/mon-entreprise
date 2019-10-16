@@ -1,24 +1,20 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { encodeRuleName } from 'Engine/rules'
 import {
 	decodeRuleName,
-	findRuleByDottedName,
-	findRulesByName
+	findRuleByDottedName
 } from 'Engine/rules.js'
-import { compose, head } from 'ramda'
+import { compose } from 'ramda'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import {
 	flatRulesSelector,
 	noUserInputSelector,
 	situationBranchNameSelector
 } from 'Selectors/analyseSelectors'
-import { capitalise0 } from '../utils'
-import Namespace from './rule/Namespace'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
@@ -47,22 +43,10 @@ export default compose(
 		)
 	}
 
-	if (decodedRuleName.includes(' . ')) {
-		if (!findRuleByDottedName(flatRules, decodedRuleName))
-			return <Redirect to="/404" />
+	if (!findRuleByDottedName(flatRules, decodedRuleName))
+		return <Redirect to="/404" />
 
-		return renderRule(decodedRuleName)
-	}
-
-	let rules = findRulesByName(flatRules, decodedRuleName)
-	if (!rules.length) return <Redirect to="/404" />
-	if (rules.find(({ ns }) => ns == null)) return renderRule(decodedRuleName)
-	if (rules.length > 1)
-		return (
-			<DisambiguateRuleQuery rules={rules} flatRules={flatRules} name={name} />
-		)
-	let dottedName = head(rules).dottedName
-	return renderRule(dottedName)
+	return renderRule(decodedRuleName)
 })
 
 const BackToSimulation = compose(
@@ -79,23 +63,4 @@ const BackToSimulation = compose(
 			</button>
 		)
 	}
-)
-
-let DisambiguateRuleQuery = ({ rules, flatRules, name }) => (
-	<div className="centeredMessage ui__ container">
-		<h1>{capitalise0(name)}</h1>
-		<p>
-			<Trans i18nKey="ambiguous">
-				Plusieurs règles de la base ont ce nom. Laquelle voulez-vous afficher ?
-			</Trans>
-		</p>
-		<ul>
-			{rules.map(({ dottedName, ns, title }) => (
-				<li key={dottedName}>
-					<Namespace ns={ns} flatRules={flatRules} />
-					<Link to={'' + encodeRuleName(dottedName)}>{title}</Link>
-				</li>
-			))}
-		</ul>
-	</div>
 )
