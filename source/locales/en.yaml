@@ -188,7 +188,7 @@ De: From
 à: to
 En-dessous de: Below
 Au-dessus de: Above
-Taux final: Final rate
+Taux moyen: Average rate
 Commencer: Get started
 Passer: Skip
 
@@ -523,7 +523,7 @@ path:
     exemples: '/examples'
   privacy:
     index: '/privacy'
-  integration: 
+  integration:
     index: '/integration'
     iframe: '/iframe'
     library: '/library'

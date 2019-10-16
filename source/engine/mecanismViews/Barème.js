@@ -102,22 +102,19 @@ let Component = function Barème({
 							))}
 						</tbody>
 					</table>
-					{/* nous avons remarqué que la notion de taux final pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
+					{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
 					{showValues &&
 						!explanation.returnRate &&
 						barèmeType === 'marginal' &&
 						explanation.tranches.length > 2 && (
 							<>
 								<b>
-									<Trans>Taux final</Trans> :{' '}
+									<Trans>Taux moyen</Trans> :{' '}
 								</b>
 								<NodeValuePointer
-									data={
-										(nodeValue / lazyEval(explanation['assiette']).nodeValue) *
-										100
-									}
+									data={nodeValue / lazyEval(explanation['assiette']).nodeValue}
+									unit="%"
 								/>
-								%
 							</>
 						)}
 					{explanation.returnRate && (
