@@ -10,7 +10,7 @@ import Namespace from './Namespace'
 
 let RuleHeader = withColours(
 	({
-		ns,
+		dottedName,
 		type,
 		description,
 		question,
@@ -26,9 +26,7 @@ let RuleHeader = withColours(
 			<section id="ruleHeader">
 				<header className="ui__ plain card">
 					<div>
-						{ns && (
-							<Namespace {...{ ns, flatRules, colour: colours.textColour }} />
-						)}
+							<Namespace {...{ dottedName, flatRules, colour: colours.textColour }} />
 						<h1 style={{ color: colours.textColour }}>
 							{title || capitalise0(name)}
 						</h1>

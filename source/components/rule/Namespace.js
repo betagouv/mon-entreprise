@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
+let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 	return (
 		<ul id="namespace">
-			{ns
+			{dottedName
 				.split(' . ')
+				.slice(0, -1)
 				.reduce(
 					(memo, next) => [
 						...memo,
