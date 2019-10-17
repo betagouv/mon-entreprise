@@ -9,7 +9,7 @@ import illustrationSvg from './illustration.svg'
 import './Landing.css'
 
 export default function Landing() {
-	const sitePaths = useContext(SitePathsContext);
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<div className="app-content">
 			<section className="ui__ container landing-title">
@@ -49,9 +49,7 @@ export default function Landing() {
 						<T>Commencer</T>
 					</div>
 				</Link>
-				<Link
-					className="ui__ interactive card box "
-					to={sitePaths.gérer.index}>
+				<Link className="ui__ interactive card box " to={sitePaths.gérer.index}>
 					<div className="ui__ big box-icon">{emoji('💶')}</div>
 					<T k="landing.choice.manage">
 						<h3>Gérer mon activité</h3>

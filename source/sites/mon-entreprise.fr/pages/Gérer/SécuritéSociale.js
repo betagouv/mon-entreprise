@@ -1,19 +1,15 @@
-
 import { React, T } from 'Components'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import * as Animate from 'Ui/animate'
 import Video from './Video'
 
-
 export default function SocialSecurity() {
 	const { t } = useTranslation()
 	return (
 		<>
 			<Helmet>
-				<title>
-					{t('sécu.page.titre', 'Sécurité sociale')}
-				</title>
+				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
 				<meta name="description" content={t('sécu.page.description')} />
 			</Helmet>
 

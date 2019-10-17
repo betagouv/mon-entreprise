@@ -208,8 +208,9 @@
 	padding-top: 1rem;
 	color: inherit;
 	padding-bottom: 1rem;
-	margin: 1rem 0;
+	margin-bottom: 1rem;
 	position: relative;
+	margin-right: 1rem;
 	text-decoration: none;
 }
 
