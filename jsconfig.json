@@ -1,0 +1,37 @@
+{
+    "exclude": [
+        "node_modules"
+    ],
+    "include": [
+        "source/**/*"
+    ],
+    "paths": {
+        "Engine": [
+            "source/engine"
+        ],
+        "Règles": [
+            "source/règles"
+        ],
+        "Actions": [
+            "source/actions"
+        ],
+        "Ui": [
+            "source/components/ui"
+        ],
+        "Components": [
+            "source/components"
+        ],
+        "Selectors": [
+            "source/selectors"
+        ],
+        "Reducers": [
+            "source/reducers"
+        ],
+        "Types": [
+            "source/types"
+        ],
+        "Images": [
+            "source/image"
+        ]
+    }
+}
