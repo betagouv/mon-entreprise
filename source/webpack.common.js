@@ -158,7 +158,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		inject: false,
 		// mon-entreprise.fr :
 		chunks: ['publicodes'],
-		title: 'publicodes - langage et plateforme de pulication de calculs',
+		title: 'publicodes - langage et plateforme de publication de calculs',
 		description:
 			'Un langage de calcul ouvert, lisible en français, contributif pour encoder et publier les sujets de société.',
 		filename: 'publicodes.html',
