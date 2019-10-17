@@ -47,6 +47,13 @@ export let number = ([{ value }]) => ({
 	}
 })
 
+export let numberWithUnit = ([number, , unit]) => ({
+	constant: {
+		nodeValue: parseFloat(number.value),
+		unit: parseUnit(unit.value)
+	}
+})
+
 export let percentage = ([{ value }]) => ({
 	constant: {
 		type: 'percentage',

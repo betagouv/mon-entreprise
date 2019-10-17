@@ -181,6 +181,23 @@
         salaire de base: 1000
       valeur attendue: 381
 
+- test: litéral avec unité
+  formule: 1 jour
+  unité attendue: jour
+
+- test: litéral avec unité €
+  formule: 2 €
+  unité attendue: €
+
+- test: litéral avec unité complexe
+  formule: 1 €/jour
+  unité attendue: €/jour
+
+- test: inférence d'unité littéraux
+  formule: 2 €/jour * 2 jour
+  valeur attendue: 4
+  unité attendue: €
+
 - nom: catégorie d'activité
   formule:
     une possibilité:
