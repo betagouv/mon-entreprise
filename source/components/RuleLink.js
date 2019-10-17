@@ -29,6 +29,7 @@ const RuleLink = ({
 		<Link
 			to={newPath}
 			className="rule-link"
+			title={title}
 			style={{ color: colour, ...style }}>
 			{children || title || nameLeaf(dottedName)}
 		</Link>

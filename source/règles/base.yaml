@@ -1022,6 +1022,7 @@ contrat salarié . statut cadre . choix statut cadre:
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
+  acronyme: PSS
   formule: 3377
   unité: €
   références:
@@ -1030,6 +1031,7 @@ plafond sécurité sociale temps plein:
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
+  acronyme: PSS
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC temps plein:
@@ -1543,11 +1545,10 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
   période: flexible
   applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
-  unité: €
   formule:
     multiplication:
       assiette: temps de travail . heures supplémentaires
-      facteur: 1.50
+      facteur: 1.50 €/heure
   note: La déduction ne s’applique pas aux heures complémentaires
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
@@ -1931,7 +1932,7 @@ contrat salarié . statut JEI . exonération de cotisations:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
     le minimum de:
-      - 1634.39
+      - 1634.39 €
       - somme:
           - allocations familiales
           - maladie [employeur]
@@ -4592,7 +4593,7 @@ protection sociale . accidents du travail et maladies professionnelles:
           assiette: revenu moyen [mensuel]
           taux: 60%
           facteur: 1 / 30.42
-      - 202.78
+      - 202.78 €
       # TODO
       # - 0.834% * plafond sécurité sociale temps plein [annuel]
 

@@ -5,7 +5,7 @@
 @preprocessor esmodule
 
 @{%
-import {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, percentage } from './grammarFunctions'
+import {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, numberWithUnit, percentage } from './grammarFunctions'
 
 const moo = require("moo");
 
@@ -15,6 +15,9 @@ const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
 const words = `${word}(?: ${word}|${letterOrNumber}*)*`
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?';
 const percentageRegExp = numberRegExp + '\\%'
+const simpleUnit = `(?:€|[a-z]+)`;
+const dashedSimpleUnits = `${simpleUnit}(?:-${simpleUnit})?`
+const unit = `${dashedSimpleUnits}(?:\/${dashedSimpleUnits})?` 
 
 const lexer = moo.compile({
   percentage: new RegExp(percentageRegExp),
@@ -28,6 +31,7 @@ const lexer = moo.compile({
   multiplicationDivision: ['*','/'],
   temporality: ['annuel' , 'mensuel'],
   words: new RegExp(words),
+  unit: new RegExp(unit),
   string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
   dot: ' . ',
   space: { match: /[\s]+/, lineBreaks: true }
@@ -94,6 +98,8 @@ boolean ->
 
 number ->
     %number {% number %}
+  | %number %space %words {% numberWithUnit %}
+  | %number %space %unit {% numberWithUnit %}
   | %percentage {% percentage %}
 
 string -> %string {% string %}

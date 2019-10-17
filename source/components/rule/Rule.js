@@ -57,7 +57,7 @@ export default compose(
 	const { t } = useTranslation()
 
 	let flatRule = findRuleByDottedName(flatRules, dottedName)
-	let { type, name, title, description, question, icon } = flatRule,
+	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
 
@@ -116,6 +116,7 @@ export default compose(
 								flatRule,
 								flatRules,
 								name,
+								acronyme,
 								title,
 								icon,
 								valuesToShow

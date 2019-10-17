@@ -1,11 +1,12 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
-import { formatPercentage } from 'Engine/format'
+import RuleLink from 'Components/RuleLink'
+import { formatPercentage, formatValue } from 'Engine/format'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
 import React from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { BarèmeAttributes } from './Barème'
 import './Barème.css'
-import { Node } from './common'
+import { Node, NodeValuePointer } from './common'
 
 let Comp = function Barème({ nodeValue, explanation, unit }) {
 	return (
@@ -33,7 +34,14 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 								<tbody>
 									{sortObjectByKeys(explanation.points).map(([seuil, taux]) => (
 										<tr key={seuil} className="tranche">
-											<td key="tranche">{seuil}</td>
+											<td key="tranche">
+												<SeuilFormatteur
+													value={Number(seuil)}
+													multiplicateur={
+														explanation.multiplicateur.explanation
+													}
+												/>
+											</td>
 											<td key="taux"> {taux}</td>
 										</tr>
 									))}
@@ -58,6 +66,34 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 			)}
 		</ShowValuesConsumer>
 	)
+}
+
+function SeuilFormatteur({ value, multiplicateur }) {
+	const { language } = useTranslation().i18n
+	if (value === 0) {
+		return '0'
+	} else {
+		return (
+			<>
+				{formatValue({
+					value,
+					language
+				})}
+				{multiplicateur && (
+					<>
+						&nbsp;
+						<RuleLink {...multiplicateur} title={multiplicateur.name}>
+							{multiplicateur.acronyme}
+						</RuleLink>
+					</>
+				)}{' '}
+				<NodeValuePointer
+					data={value * multiplicateur.nodeValue}
+					unit={multiplicateur.unit}
+				/>
+			</>
+		)
+	}
 }
 
 //eslint-disable-next-line

@@ -16,6 +16,7 @@ let RuleHeader = withColours(
 		question,
 		flatRule,
 		flatRules,
+		acronyme,
 		name,
 		title,
 		icon,
@@ -26,9 +27,12 @@ let RuleHeader = withColours(
 			<section id="ruleHeader">
 				<header className="ui__ plain card">
 					<div>
-							<Namespace {...{ dottedName, flatRules, colour: colours.textColour }} />
+						<Namespace
+							{...{ dottedName, flatRules, colour: colours.textColour }}
+						/>
 						<h1 style={{ color: colours.textColour }}>
 							{title || capitalise0(name)}
+							{acronyme && <> ({acronyme})</>}
 						</h1>
 					</div>
 					{icon && <span id="ruleHeader__icon"> {emoji(icon)}</span>}
