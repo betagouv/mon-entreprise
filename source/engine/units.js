@@ -19,7 +19,7 @@ let printUnits = (units, count) =>
 
 const plural = 2
 export let serialiseUnit = (rawUnit, count = plural, lng = undefined) => {
-	if (typeof rawUnit !== 'object') {
+	if (rawUnit === null || typeof rawUnit !== 'object') {
 		return typeof rawUnit === 'string'
 			? i18n.t(`units:${rawUnit}`, { count, lng })
 			: rawUnit
