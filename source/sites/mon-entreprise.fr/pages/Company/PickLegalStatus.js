@@ -31,8 +31,8 @@ const StatusButton = withSitePaths(
 					{status.includes('auto-entrepreneur') ? (
 						<T>Devenir</T>
 					) : (
-						<T>Créer une</T>
-					)}{' '}
+							<T>Créer une</T>
+						)}{' '}
 					{t(status)}
 				</Link>
 			</div>
@@ -123,7 +123,7 @@ const SetMainStatus = ({
 			<div className="ui__ answer-group">
 				<button
 					onClick={goBackToPreviousQuestion}
-					className="ui__ simple small skip button left">
+					className="ui__ simple small button push-left">
 					← <T>Précédent</T>
 				</button>
 			</div>

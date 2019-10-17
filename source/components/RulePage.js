@@ -1,23 +1,16 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import {
-	decodeRuleName,
-	findRuleByDottedName
-} from 'Engine/rules.js'
+import { decodeRuleName, findRuleByDottedName } from 'Engine/rules.js'
 import { compose } from 'ramda'
 import React from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {
-	flatRulesSelector,
-	noUserInputSelector,
-	situationBranchNameSelector
-} from 'Selectors/analyseSelectors'
+import { flatRulesSelector, noUserInputSelector, situationBranchNameSelector } from 'Selectors/analyseSelectors'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
+
 
 export default compose(
 	connect(state => ({
@@ -26,7 +19,7 @@ export default compose(
 		brancheName: situationBranchNameSelector(state)
 	}))
 )(function RulePage({ flatRules, match, valuesToShow, brancheName }) {
-	let name = match?.params?.name,
+	let name = match ?.params ?.name,
 		decodedRuleName = decodeRuleName(name)
 
 	const renderRule = dottedName => {
@@ -59,9 +52,9 @@ const BackToSimulation = compose(
 	function BackToSimulation({ goBackToSimulation }) {
 		return (
 			<button
-				className="ui__ simple small left button"
+				className="ui__ simple small push-left button"
 				onClick={goBackToSimulation}>
-				{emoji('⬅️')} <Trans i18nKey="back">Reprendre la simulation</Trans>
+				← <Trans i18nKey="back">Reprendre la simulation</Trans>
 			</button>
 		)
 	}

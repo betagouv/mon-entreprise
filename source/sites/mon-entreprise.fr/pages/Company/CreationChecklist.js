@@ -103,10 +103,8 @@ const CreateCompany = ({
 			<p>
 				<StatusDescription status={companyStatus} />
 			</p>
-			<button
-				onClick={onStatusChange}
-				className="ui__ simple small skip button left">
-				← <T k="entreprise.tâches.retour">Choisir un autre statut</T>
+			<button onClick={onStatusChange} className="ui__ simple small button">
+				<T k="entreprise.tâches.retour">Choisir un autre statut</T>
 			</button>
 
 			<h2>

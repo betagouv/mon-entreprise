@@ -18,14 +18,14 @@ const requirementToText = (key, value) => {
 					Entreprise individuelle
 				</T>
 			) : (
-				<T k="responsabilité.bouton1">Société</T>
-			)
+					<T k="responsabilité.bouton1">Société</T>
+				)
 		case 'directorStatus':
 			return value === 'SELF_EMPLOYED' ? (
 				<T>Indépendant</T>
 			) : (
-				<T>Assimilé salarié</T>
-			)
+					<T>Assimilé salarié</T>
+				)
 		case 'autoEntrepreneur':
 			return value ? <T>Auto-entrepreneur</T> : <T>Pas en auto-entrepreneur</T>
 		case 'minorityDirector':
@@ -48,7 +48,7 @@ const PreviousAnswers = ({
 			{!!Object.keys(legalStatus).length && (
 				<button
 					onClick={goToCompanyStatusChoice}
-					className="ui__ simple small skip button left">
+					className="ui__ simple small button">
 					⟲ <T>Recommencer</T>
 				</button>
 			)}

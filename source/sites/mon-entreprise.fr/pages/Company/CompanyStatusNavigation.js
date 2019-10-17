@@ -17,12 +17,12 @@ export default (connect(
 )(({ goBackToPreviousQuestion, onSkip }: Props) => (
 	<div className="ui__ answer-group">
 		<button
-			className="ui__ small simple skip button left"
+			className="ui__ small simple push-left button"
 			onClick={goBackToPreviousQuestion}>
 			← <T>Précédent</T>
 		</button>
 		{onSkip && (
-			<button onClick={onSkip} className={'ui__ simple skip button small'}>
+			<button onClick={onSkip} className={'ui__ simple small push-right button'}>
 				<T>Passer</T> →
 			</button>
 		)}

@@ -1,22 +1,26 @@
-import withSitePaths from 'Components/utils/withSitePaths'
-import React from 'react'
-import { Route, Switch } from 'react-router'
-import { Link } from 'react-router-dom'
-import Activité from './Activité'
-import ActivitésSelection from './ActivitésSelection'
-import reducer from './reducer'
-import { StoreProvider } from './StoreContext'
-import VotreSituation from './VotreSituation'
+import { SitePathsContext } from 'Components/utils/withSitePaths';
+import React, { useContext } from 'react';
+import { Route, Switch } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import Activité from './Activité';
+import ActivitésSelection from './ActivitésSelection';
+import reducer from './reducer';
+import { StoreProvider } from './StoreContext';
+import VotreSituation from './VotreSituation';
 
-export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
+export default function ÉconomieCollaborative() {
+	const sitePaths = useContext(SitePathsContext);
 	return (
 		<>
-			<Link
-				to={sitePaths.économieCollaborative.index}
-				className="ui__ notice small simple button"
-				style={{ position: 'relative', bottom: '-2rem' }}>
-				Revenus de plateformes en ligne ›
-			</Link>
+			<div css="transform: translateY(2rem)">
+				<NavLink
+					to={sitePaths.économieCollaborative.index}
+					exact
+					activeClassName="ui__ hide"
+					className="ui__ simple small push-left button ">
+					← Retour à la selection d'activités
+				</NavLink>
+			</div>
 			<StoreProvider
 				reducer={reducer}
 				localStorageKey="app::économie-collaborative:v1">
@@ -38,4 +42,4 @@ export default withSitePaths(function ÉconomieCollaborative({ sitePaths }) {
 			</StoreProvider>
 		</>
 	)
-})
+}

@@ -5,12 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { ActivitéCard } from './ActivitésSelection'
 import illustration from './images/multitasking.svg'
-import {
-	activitésEffectuéesSelector,
-	déclarationsSelector,
-	nextActivitéSelector,
-	régimeGénéralDisponibleSelector
-} from './selectors'
+import { activitésEffectuéesSelector, déclarationsSelector, nextActivitéSelector, régimeGénéralDisponibleSelector } from './selectors'
 import { StoreContext } from './StoreContext'
 
 export default withSitePaths(function VotreSituation({ sitePaths }) {
@@ -135,7 +130,7 @@ const ActivitéList = ({ activités }) => {
 				<ActivitéCard
 					key={title}
 					title={title}
-					className="light-bg"
+					className="lighter-bg"
 					answered
 					label={
 						régimeGénéralDisponibleSelector(state, title)

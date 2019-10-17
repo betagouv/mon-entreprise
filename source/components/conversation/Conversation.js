@@ -6,11 +6,7 @@ import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	currentQuestionSelector,
-	flatRulesSelector,
-	nextStepsSelector
-} from 'Selectors/analyseSelectors'
+import { currentQuestionSelector, flatRulesSelector, nextStepsSelector } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
@@ -53,14 +49,14 @@ export default function Conversation({ customEndMessages }) {
 								<>
 									<button
 										onClick={goToPrevious}
-										className="ui__ simple small skip button left">
+										className="ui__ simple small push-left button">
 										← <T>Précédent</T>
 									</button>
 								</>
 							)}
 							<button
 								onClick={setDefault}
-								className="ui__ simple small skip button right">
+								className="ui__ simple small push-right button">
 								<T>Passer</T> →
 							</button>
 						</div>
@@ -70,20 +66,20 @@ export default function Conversation({ customEndMessages }) {
 			<QuickLinks />
 		</>
 	) : (
-		<div style={{ textAlign: 'center' }}>
-			<h3>
-				{emoji('🌟')}{' '}
-				<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
-			</h3>
-			<p>
-				{customEndMessages ? (
-					customEndMessages
-				) : (
-					<T k="simulation-end.text">
-						Vous avez maintenant accès à l'estimation la plus précise possible.
+			<div style={{ textAlign: 'center' }}>
+				<h3>
+					{emoji('🌟')}{' '}
+					<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
+				</h3>
+				<p>
+					{customEndMessages ? (
+						customEndMessages
+					) : (
+							<T k="simulation-end.text">
+								Vous avez maintenant accès à l'estimation la plus précise possible.
 					</T>
-				)}
-			</p>
-		</div>
-	)
+						)}
+				</p>
+			</div>
+		)
 }

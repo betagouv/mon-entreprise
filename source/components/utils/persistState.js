@@ -16,6 +16,6 @@ export const getInitialState = key => {
 export const usePersistingState = (key, defaultState) => {
 	const initialState = getInitialState(key)
 	return persistState(key)(
-		useState(initialState !== undefined ? initialState : defaultState)
+		useState(initialState != null ? initialState : defaultState)
 	)
 }

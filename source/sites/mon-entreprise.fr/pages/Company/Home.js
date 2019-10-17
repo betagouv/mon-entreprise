@@ -88,7 +88,7 @@ const CreateMyCompany = ({
 						</Link>
 						<Link
 							to={sitePaths.entreprise.statutJuridique.liste}
-							className="ui__ simple skip button">
+							className="ui__ simple push-right button">
 							<T>Je connais mon statut</T> →
 						</Link>
 					</div>
