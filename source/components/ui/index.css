@@ -67,6 +67,9 @@ blockquote {
 	flex-wrap: wrap;
 }
 
+.ui__ .hide {
+	display: none;
+}
 @media (max-width: 850px) {
 	.ui__.hide-mobile {
 		display: none;	

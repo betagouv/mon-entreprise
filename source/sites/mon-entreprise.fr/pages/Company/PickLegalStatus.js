@@ -31,8 +31,8 @@ const StatusButton = withSitePaths(
 					{status.includes('auto-entrepreneur') ? (
 						<T>Devenir</T>
 					) : (
-							<T>Créer une</T>
-						)}{' '}
+						<T>Créer une</T>
+					)}{' '}
 					{t(status)}
 				</Link>
 			</div>

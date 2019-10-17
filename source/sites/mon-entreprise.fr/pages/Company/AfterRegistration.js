@@ -70,7 +70,7 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 					<span
 						style={
 							companyStatusChoice &&
-								companyStatusChoice.match(/auto-entrepreneur|EI/)
+							companyStatusChoice.match(/auto-entrepreneur|EI/)
 								? { display: 'none' }
 								: {}
 						}>

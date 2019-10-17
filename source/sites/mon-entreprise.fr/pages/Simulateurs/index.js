@@ -1,7 +1,10 @@
+import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { Route, Switch } from 'react-router'
+import { Link, useLocation } from 'react-router-dom'
 import AssimiléSalarié from './AssimiléSalarié'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Indépendant from './Indépendant'
@@ -9,12 +12,28 @@ import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
 
 export default function Simulateurs() {
-    const sitePaths = useContext(SitePathsContext);
+    const sitePaths = useContext(SitePathsContext)
+    const { state } = useLocation()
+    const [lastState] = usePersistingState(
+        'navigation::simulateurs::locationState::v2',
+        state
+    )
     return (
         <>
             <ScrollToTop />
+            <div css="transform: translateY(2rem);">
+                {lastState ?.fromGérer && (
+                    <Link to={sitePaths.gérer.index} className="ui__ simple small button">
+                        {emoji('⬅️')} Retour à mon activité
+					</Link>
+                )}
+                {lastState ?.fromCréer && (
+                    <Link to={sitePaths.gérer.index} className="ui__ simple small button">
+                        {emoji('⬅️')} Retour à la création
+					</Link>
+                )}
+            </div>
             <Switch>
-                {/* <Route exact path={sitePaths.simulateurs.index} component={Home} /> */}
                 <Route path={sitePaths.simulateurs.salarié} component={Salarié} />
                 <Route
                     path={sitePaths.simulateurs.comparaison}
