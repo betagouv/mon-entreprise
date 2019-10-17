@@ -1,7 +1,6 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Route, Switch } from 'react-router'
 import { NavLink, useLocation } from 'react-router-dom'
 import Embaucher from './Embaucher'
@@ -16,13 +15,12 @@ export default function Gérer() {
 		<>
 			<ScrollToTop key={location.pathname} />
 			<div css="transform: translateY(2rem)">
-				{' '}
 				<NavLink
 					to={sitePaths.gérer.index}
 					exact
 					activeClassName="ui__ hide"
 					className="ui__ simple small button">
-					{emoji('⬅️')} Retour à mon activité
+					← Retour à mon activité
 				</NavLink>
 			</div>
 			<Switch>

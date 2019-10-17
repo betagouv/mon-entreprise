@@ -77,9 +77,15 @@ export default function Landing() {
 						<T>Commencer</T>
 					</div>
 				</Link>
-			</section>
 
+			</section>
 			<section className="ui__ container">
+				<Link
+					to={sitePaths.simulateurs.index}
+					style={{ width: '100%', textAlign: 'center' }}
+					className="ui__ simple small button ">
+					{emoji('🧮')} Voir la liste des simulateurs
+				</Link>
 				<T k="landing.aboutUs">
 					<h2>Qui sommes-nous ?</h2>
 					<p>

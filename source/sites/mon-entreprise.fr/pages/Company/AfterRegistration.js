@@ -24,6 +24,15 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
+			<div css="transform: translateY(2rem)">
+				<Link
+					to={sitePaths.entreprise.index}
+					exact
+					activeClassName="ui__ hide"
+					className="ui__ simple small button">
+					← Retour la création
+				</Link>
+			</div>
 			<h1>
 				<T k="après.titre">Après la création</T>
 			</h1>
@@ -113,13 +122,6 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 						</p>
 					</>
 				)}
-			<p className="ui__ answer-group">
-				<Link
-					to={sitePaths.entreprise.index}
-					className="ui__ simple skip button left">
-					← <T k="après.actions.retour">Démarche de création</T>
-				</Link>
-			</p>
 		</Animate.fromBottom>
 	)
 }
