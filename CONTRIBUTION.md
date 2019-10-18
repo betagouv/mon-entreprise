@@ -26,6 +26,7 @@ Nous utilisons :
 - [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
 - [Flow](https://flow.org/) pour ajouter un système de typage à notre code JavaScript. Le typage Flow n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
 - [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
+- [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
 ### Démarrage
 
@@ -69,3 +70,25 @@ Et ceux spécifiques au projet :
 - :alien: `:alien:` pour ajouter des traductions
 - :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
 - :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
+
+### Tests
+
+Pour executer les tests unitaires :
+
+```sh
+$ yarn run test-common
+```
+
+Pour le snapshot testing :
+
+```sh
+$ yarn run test-regressions
+```
+
+Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
+
+Enfin pour les tests d'intégration :
+
+```sh
+$ yarn run test-cypress
+```

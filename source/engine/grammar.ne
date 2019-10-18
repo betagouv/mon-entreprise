@@ -2,10 +2,11 @@
 
 # Look for the PEMDAS system : Parentheses, Exponents (omitted here), Multiplication, and you should guess the rest :)
 
-@preprocessor esmodule
+# This preprocessor was disabled because it doesn't work with Jest
+# @preprocessor esmodule
 
 @{%
-import {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, numberWithUnit, percentage } from './grammarFunctions'
+const {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, numberWithUnit, percentage } = require('./grammarFunctions')
 
 const moo = require("moo");
 

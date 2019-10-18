@@ -39,6 +39,7 @@ jobs:
           yarn run flow-typed install
           git config --global core.quotepath false
           yarn test
+          yarn test-regressions
 
   end-to-end-test:
     docker:
