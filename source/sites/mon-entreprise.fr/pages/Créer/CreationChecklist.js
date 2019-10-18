@@ -438,31 +438,67 @@ const CreateCompany = ({
 					}
 				/>
 			</Checklist>
-			<p className="ui__ answer-group">
-				<Link to={sitePaths.créer.après} className="ui__  button plain">
-					<T k="entreprise.tâches.ensuite">Après la création</T> →
-				</Link>
-			</p>
-			{i18n.language === 'fr' && (
-				<>
-					<h2>{emoji('📜')} Vous êtes plutôt papier ?</h2>
-					<p>
-						Accédez gratuitement au guide complet de la création entreprise en
-						2019, édité par l'Urssaf. Au programme : des conseils sur comment
-						préparer son projet, comment se lancer dans la création ou encore la
-						présentation détaillée de votre protection sociale.
-					</p>
+			<h2>{emoji('🧰')} Ressources utiles</h2>
+			<div
+				css={`
+					display: flex;
+					margin-right: -1rem;
+					flex-wrap: wrap;
+					> * {
+						flex: 1;
+					}
+				`}>
 
-					<div style={{ textAlign: 'center' }}>
-						<a
-							className="ui__ button simple"
-							target="_blank"
-							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf">
-							{emoji('👉')} Téléchargez le guide PDF
-						</a>
+				{isAutoentrepreneur && <Link
+					className="ui__ interactive card button-choice lighter-bg"
+					to={{ pathname: sitePaths.simulateurs['auto-entrepreneur'], state: { fromCréer: true } }}>
+					<p>Simulateur de revenus auto-entrepreneur</p>
+					<small>
+						Simuler le montant de vos cotisations sociale et de votre impôt et estimez votre futur revenu net.
+					</small>
+				</Link>
+				}
+				{['EI', 'EIRL', 'EURL'].includes(statut) && <Link
+					className="ui__ interactive card button-choice lighter-bg"
+					to={{ pathname: sitePaths.simulateurs.indépendant, state: { fromCréer: true } }}>
+					<p>Simulateur de cotisations indépendant</p>
+					<small>
+						Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
+					</small>
+				</Link>
+				}
+				{['SAS', 'SASU'].includes(statut) && <Link
+					className="ui__ interactive card button-choice lighter-bg"
+					to={{ pathname: sitePaths.simulateurs['assimilé-salarié'], state: { fromCréer: true } }}>
+					<p>Simulateur de cotisations assimilé-salarié</p>
+					<small>
+						Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
+					</small>
+				</Link>
+				}
+				<Link
+					className="ui__ interactive card button-choice lighter-bg"
+					to={sitePaths.créer.après}>
+					<p>					<T k="entreprise.tâches.ensuite">Après la création</T></p>
+					<small>
+						SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous pourrez (éventuellement) rencontrer après la création.
+					</small>
+				</Link>
+				{i18n.language === 'fr' && (<a
+					target="_blank"
+					className="ui__ interactive card button-choice lighter-bg"
+					href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf">
+					<p>Guide de création URSSAF </p>
+					<small>
+						Des conseils sur comment
+						préparer son projet pour se lancer dans la création et une
+							présentation détaillée de votre protection sociale.
+					</small><br />
+					<div css="text-align: right">
+						<small className="ui__ label">PDF</small>
 					</div>
-				</>
-			)}
+				</a>)}
+			</div>
 		</Animate.fromBottom>
 	)
 }

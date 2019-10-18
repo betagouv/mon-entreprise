@@ -1,8 +1,4 @@
-import {
-	resetEntreprise,
-	specifyIfAutoEntrepreneur,
-	specifyIfDirigeantMajoritaire
-} from 'Actions/existingCompanyActions'
+import { resetEntreprise, specifyIfAutoEntrepreneur, specifyIfDirigeantMajoritaire } from 'Actions/existingCompanyActions'
 import { React, T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
@@ -124,11 +120,12 @@ export default function SocialSecurity() {
 						css={`
 							display: flex;
 							margin-right: -1rem;
+							flex-wrap: wrap;
 							> * {
 								flex: 1;
 							}
 						`}>
-						{!company?.isAutoEntrepreneur && (
+						{!company ?.isAutoEntrepreneur && (
 							<Link
 								className="ui__ interactive card button-choice lighter-bg"
 								to={sitePaths.gérer.embaucher}>
@@ -139,7 +136,7 @@ export default function SocialSecurity() {
 								</small>
 							</Link>
 						)}
-						{company?.isAutoEntrepreneur && (
+						{company ?.isAutoEntrepreneur && (
 							<a
 								className="ui__ interactive card button-choice lighter-bg"
 								href="https://autoentrepreneur.urssaf.fr">
@@ -183,14 +180,14 @@ const CompanySection = ({ company }) => {
 				showSearchModal(false)
 			}
 			if (
-				company?.statutJuridique === 'EI' &&
-				company?.isAutoEntrepreneur == null
+				company ?.statutJuridique === 'EI' &&
+					company ?.isAutoEntrepreneur == null
 			) {
 				showAutoEntrepreneurModal(true)
 			}
 			if (
-				company?.statutJuridique === 'SARL' &&
-				company?.isDirigeantMajoritaire == null
+				company ?.statutJuridique === 'SARL' &&
+					company ?.isDirigeantMajoritaire == null
 			) {
 				showDirigeantMajoritaireModal(true)
 			}
@@ -294,14 +291,14 @@ const CompanySection = ({ company }) => {
 					</button>
 				</>
 			) : (
-				<p>
-					<button
-						onClick={() => showSearchModal(true)}
-						className="ui__ plain cta button">
-						<T>Renseigner mon entreprise</T>
-					</button>
-				</p>
-			)}
+					<p>
+						<button
+							onClick={() => showSearchModal(true)}
+							className="ui__ plain cta button">
+							<T>Renseigner mon entreprise</T>
+						</button>
+					</p>
+				)}
 		</>
 	)
 }

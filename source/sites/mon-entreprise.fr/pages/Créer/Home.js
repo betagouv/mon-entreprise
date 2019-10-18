@@ -25,7 +25,7 @@ export default function Créer() {
 				<div>
 
 					<p className='ui__ lead'>
-						La première étape consiste à choisir un statut juridique qui soit adapté à votre activité.
+						La première étape consiste à choisir un statut juridique adapté à votre activité.
 						Les démarches administratives pour créer votre entreprise changent en fonction de ce dernier.
 				</p>
 					<Link
@@ -33,7 +33,7 @@ export default function Créer() {
 						to={guideAlreadyStarted ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
 						<T>{!guideAlreadyStarted ? 'Trouver le bon statut' : 'Continuer le guide'}</T>
 					</Link>
-					<p className="ui__ notice">Note : les forme juridiques spécifiques aux professions libérales réglementées ne sont pas traitées</p>
+					<p className="ui__ notice">Note : le cas des professions libérales réglementées n'est pas traitées</p>
 				</div>
 
 				<img
@@ -47,6 +47,7 @@ export default function Créer() {
 				css={`
 					display: flex;
 					margin-right: -1rem;
+					flex-wrap: wrap;
 					> * {
 						flex: 1;
 					}

@@ -201,6 +201,7 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 	position: relative;
+	min-width: 14.4rem;
 	margin-right: 1rem;
 	text-decoration: none;
 }
