@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
-import StatusDescription from './StatusDescription'
+import StatutDescription from '../StatutDescription'
 import type { RouterHistory } from 'react-router'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import type { TFunction } from 'react-i18next'
@@ -22,63 +22,63 @@ type Props = {
 	language: string
 }
 
-const StatusButton = withSitePaths(
-	({ status, sitePaths }: { status: LegalStatus, sitePaths: Object }) => {
+const StatutButton = withSitePaths(
+	({ statut, sitePaths }: { statut: LegalStatus, sitePaths: Object }) => {
 		const { t } = useTranslation()
 		return (
 			<div className="ui__ answer-group">
-				<Link to={sitePaths.entreprise.créer(status)} className="ui__ button">
-					{status.includes('auto-entrepreneur') ? (
+				<Link to={sitePaths.créer[statut]} className="ui__ button">
+					{statut.includes('auto-entrepreneur') ? (
 						<T>Devenir</T>
 					) : (
 							<T>Créer une</T>
 						)}{' '}
-					{t(status)}
+					{t(statut)}
 				</Link>
 			</div>
 		)
 	}
 )
-const StatusTitle = ({ status, language }) =>
-	status === 'EI' ? (
+const StatutTitle = ({ statut, language }) =>
+	statut === 'EI' ? (
 		<>
 			Entreprise individuelle {language !== 'fr' && '(Individual business)'}:{' '}
 		</>
-	) : status === 'EIRL' ? (
+	) : statut === 'EIRL' ? (
 		<>
 			Entrepreneur individuel à responsabilité limitée{' '}
 			{language !== 'fr' && '(Individual entrepreneur with limited liability)'}:{' '}
 		</>
-	) : status === 'EURL' ? (
+	) : statut === 'EURL' ? (
 		<>
 			EURL - Entreprise unipersonnelle à responsabilité limitée{' '}
 			{language !== 'fr' && '(Limited personal company)'}:{' '}
 		</>
-	) : status === 'SARL' ? (
+	) : statut === 'SARL' ? (
 		<>
 			SARL - Société à responsabilité limitée{' '}
 			{language !== 'fr' && '(Limited corporation)'}:{' '}
 		</>
-	) : status === 'SAS' ? (
+	) : statut === 'SAS' ? (
 		<>
 			SAS - Société par actions simplifiées{' '}
 			{language !== 'fr' && '(Simplified joint stock company)'}:{' '}
 		</>
-	) : status === 'SASU' ? (
+	) : statut === 'SASU' ? (
 		<>
 			SASU - Société par action simplifiée unipersonnelle{' '}
 			{language !== 'fr' && '(Simplified personal joint stock company)'}:{' '}
 		</>
-	) : status === 'SA' ? (
+	) : statut === 'SA' ? (
 		<>SA - Société anonyme {language !== 'fr' && '(Anonymous company)'}: </>
-	) : status === 'SNC' ? (
+	) : statut === 'SNC' ? (
 		<>SNC - Société en nom collectif {language !== 'fr' && '(Partnership)'}: </>
-	) : status === 'auto-entrepreneur' ? (
+	) : statut === 'auto-entrepreneur' ? (
 		<>
 			<T>Auto-entrepreneur</T>
 			{language === 'fr' && ' '}:{' '}
 		</>
-	) : status === 'auto-entrepreneur-EIRL' ? (
+	) : statut === 'auto-entrepreneur-EIRL' ? (
 		<>
 			<T>Auto-entrepreneur en EIRL</T>
 			{language === 'fr' && ' '}
@@ -90,7 +90,6 @@ const SetMainStatus = ({
 	history,
 	possibleStatus,
 	goBackToPreviousQuestion,
-	sitePaths
 }: Props) => {
 	const { t, i18n } = useTranslation()
 	return (
@@ -108,15 +107,15 @@ const SetMainStatus = ({
 			</h2>
 
 			<ul>
-				{Object.keys(filter(Boolean, possibleStatus)).map(status => (
-					<li key={status}>
+				{Object.keys(filter(Boolean, possibleStatus)).map(statut => (
+					<li key={statut}>
 						<strong>
-							<StatusTitle status={status} language={i18n.language} />
+							<StatutTitle statut={statut} language={i18n.language} />
 						</strong>{' '}
 						<p>
-							<StatusDescription status={status} />
+							<StatutDescription statut={statut} />
 						</p>
-						<StatusButton status={status} history={history} />
+						<StatutButton statut={statut} history={history} />
 					</li>
 				))}
 			</ul>

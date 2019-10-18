@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import CompanyStatusNavigation from './CompanyStatusNavigation'
-import type { TFunction } from 'react-i18next'
 
 type Props = {
 	isSoleProprietorship: (?boolean) => void

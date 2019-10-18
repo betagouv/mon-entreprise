@@ -1,11 +1,7 @@
 /* @flow */
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
-} from 'Actions/companyCreationChecklistActions'
+import { checkCompanyCreationItem, initializeCompanyCreationChecklist } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
-import Route404 from 'Components/Route404'
 import Scroll from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
@@ -16,25 +12,21 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
-import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'
-import StatusDescription from './StatusDescription'
-
-import type { Match } from 'react-router'
+import StatutDescription from './StatutDescription'
+import type { LegalStatus } from 'Selectors/companyStatusSelectors'
 import type { TFunction } from 'react-i18next'
 type Props = {
-	statusChooserCompleted: boolean,
-	match: Match,
+	statut: LegalStatus,
 	onChecklistInitialization: (string, Array<string>) => void,
-	onStatusChange: () => void,
-	sitePaths: Object,
-	onItemCheck: (name: string, checked: boolean) => void,
-	t: TFunction,
-	companyCreationChecklist: { [string]: boolean }
+		onStatusChange: () => void,
+			sitePaths: Object,
+				onItemCheck: (name: string, checked: boolean) => void,
+					t: TFunction,
+						companyCreationChecklist: { [string]: boolean }
 }
 
 const CreateCompany = ({
-	match,
-	statusChooserCompleted,
+	statut,
 	onChecklistInitialization,
 	onItemCheck,
 	sitePaths,
@@ -42,37 +34,30 @@ const CreateCompany = ({
 	onStatusChange
 }: Props) => {
 	const { t, i18n } = useTranslation()
-	const companyStatus = LANDING_LEGAL_STATUS_LIST.find(
-		status => t(status) === match.params.status
-	)
-	const isAutoentrepreneur = [
-		'auto-entrepreneur',
-		'auto-entrepreneur-EIRL'
-	].includes(companyStatus)
-	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(companyStatus)
-	const isEI = isAutoentrepreneur || ['EI', 'EIRL'].includes(companyStatus)
-	if (!companyStatus) {
-		return <Route404 />
-	}
+	// TODO : add this logic inside selector
+	const isAutoentrepreneur = statut.startsWith('auto-entrepreneur')
+	const multipleAssociates = ['SARL', 'SAS', 'SA'].includes(statut)
+	const isEI = isAutoentrepreneur || statut.startsWith('EI')
+
 	const titre = isAutoentrepreneur
 		? t(
-				[
-					'entreprise.tâches.page.autoEntrepreneur.titre',
-					'Comment devenir {{autoEntrepreneur}}'
-				],
-				{
-					autoEntrepreneur: t(companyStatus)
-				}
-		  )
+			[
+				'entreprise.tâches.page.autoEntrepreneur.titre',
+				'Comment devenir {{autoEntrepreneur}}'
+			],
+			{
+				autoEntrepreneur: t(statut)
+			}
+		)
 		: t(
-				[
-					'entreprise.tâches.page.entreprise.titre',
-					'Créer une {{companyStatus}}'
-				],
-				{
-					companyStatus: t(companyStatus)
-				}
-		  )
+			[
+				'entreprise.tâches.page.entreprise.titre',
+				'Créer une {{statut}}'
+			],
+			{
+				statut: t(statut)
+			}
+		)
 	return (
 		<Animate.fromBottom>
 			<Helmet>
@@ -82,30 +67,33 @@ const CreateCompany = ({
 					content={
 						isAutoentrepreneur
 							? t(
-									[
-										'entreprise.tâches.page.autoEntrepreneur.description',
-										'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.'
-									],
-									{ autoEntrepreneur: t(companyStatus) }
-							  )
+								[
+									'entreprise.tâches.page.autoEntrepreneur.description',
+									'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.'
+								],
+								{ autoEntrepreneur: t(statut) }
+							)
 							: t(
-									[
-										'entreprise.tâches.page.description',
-										"La liste complète des démarches à faire pour créer une {{companyStatus}} auprès de l'administration française."
-									],
-									{ companyStatus: t(companyStatus) }
-							  )
+								[
+									'entreprise.tâches.page.description',
+									"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française."
+								],
+								{ statut: t(statut) }
+							)
 					}
 				/>
 			</Helmet>
 			<Scroll.toTop />
+			<div css="transform: translateY(2rem);">
+				<button onClick={onStatusChange} className="ui__ simple small push-left button">
+					<T k="entreprise.tâches.retour">← Choisir un autre statut</T>
+				</button>
+			</div>
+
 			<h1>{titre}</h1>
 			<p>
-				<StatusDescription status={companyStatus} />
+				<StatutDescription statut={statut} />
 			</p>
-			<button onClick={onStatusChange} className="ui__ simple small button">
-				<T k="entreprise.tâches.retour">Choisir un autre statut</T>
-			</button>
 
 			<h2>
 				{emoji('📋')}{' '}
@@ -119,9 +107,9 @@ const CreateCompany = ({
 				</T>
 			</p>
 			<Checklist
-				key={companyStatus}
+				key={statut}
 				onInitialization={items =>
-					onChecklistInitialization(companyStatus, items)
+					onChecklistInitialization(statut, items)
 				}
 				onItemCheck={onItemCheck}
 				defaultChecked={companyCreationChecklist}>
@@ -202,7 +190,7 @@ const CreateCompany = ({
 				)}
 				{!isEI && (
 					<CheckItem
-						name="companyStatus"
+						name="statut"
 						title={
 							<T k="entreprise.tâches.statuts.titre">Écrire les statuts</T>
 						}
@@ -221,8 +209,8 @@ const CreateCompany = ({
 										les rédiger.{' '}
 									</span>
 								</T>
-								{['SARL', 'EURL'].includes(companyStatus) && (
-									<StatutsExample companyStatus={companyStatus} />
+								{['SARL', 'EURL'].includes(statut) && (
+									<StatutsExample statut={statut} />
 								)}
 							</p>
 						}
@@ -240,7 +228,7 @@ const CreateCompany = ({
 									Le but d'un <strong>compte bancaire d'entreprise</strong> est
 									de séparer les actifs de l'entreprise des vôtres.
 								</T>{' '}
-								{companyStatus === 'EI' && (
+								{statut === 'EI' && (
 									<T k="entreprise.tâches.banque.description.EI">
 										Si son ouverture n'est pas obligatoire pour un IE, elle
 										reste fortement recommandée.{' '}
@@ -289,7 +277,7 @@ const CreateCompany = ({
 						}
 					/>
 				)}
-				{companyStatus.includes('EIRL') && (
+				{statut.includes('EIRL') && (
 					<CheckItem
 						name="declarationOfAssignement"
 						title={
@@ -451,7 +439,7 @@ const CreateCompany = ({
 				/>
 			</Checklist>
 			<p className="ui__ answer-group">
-				<Link to={sitePaths.entreprise.après} className="ui__  button plain">
+				<Link to={sitePaths.créer.après} className="ui__  button plain">
 					<T k="entreprise.tâches.ensuite">Après la création</T> →
 				</Link>
 			</p>
@@ -483,8 +471,6 @@ export default compose(
 	connect(
 		state => ({
 			companyCreationChecklist: state.inFranceApp.companyCreationChecklist,
-			statusChooserCompleted:
-				Object.keys(state.inFranceApp.companyLegalStatus).length !== 0
 		}),
 		{
 			onChecklistInitialization: initializeCompanyCreationChecklist,
@@ -494,18 +480,18 @@ export default compose(
 	)
 )(CreateCompany)
 
-let StatutsExample = ({ companyStatus }) => {
+let StatutsExample = ({ statut }) => {
 	const links = {
 		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'
 	}
 
-	if (!(companyStatus in links)) return null
+	if (!(statut in links)) return null
 
 	return (
-		<a target="_blank" href={links[companyStatus]}>
+		<a target="_blank" href={links[statut]}>
 			<T k="entreprise.tâches.statuts.exemple">Exemple de statuts pour votre</T>{' '}
-			{companyStatus}
+			{statut}
 		</a>
 	)
 }

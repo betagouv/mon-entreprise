@@ -36,7 +36,7 @@ export default function Simulateurs() {
                     )}
                     {lastState ?.fromCréer && (
                         <Link
-                            to={sitePaths.company.index}
+                            to={sitePaths.créer.index}
                             className="ui__ simple small push-left button">
                             ← Retour à la création
 						</Link>

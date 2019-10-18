@@ -26,7 +26,7 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => {
 					name="description"
 					content={t(
 						'statut du dirigeant.page.description',
-						`Ce choix est important parce qu'il détermine le régime de sécurité sociale et la couverture sociale de l'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.`
+						'Ce choix est important parce qu\'il détermine le régime de sécurité sociale et la couverture sociale de l\'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.'
 					)}
 				/>
 			</Helmet>

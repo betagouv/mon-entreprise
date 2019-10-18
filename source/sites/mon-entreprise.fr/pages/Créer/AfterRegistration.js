@@ -1,37 +1,31 @@
 /* @flow */
-import { React, T } from 'Components'
-import { ScrollToTop } from 'Components/utils/Scroll'
-import withSitePaths from 'Components/utils/withSitePaths'
-import { compose } from 'ramda'
-import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import Animate from 'Ui/animate'
-import siret from './siret.jpg'
+import { React, T } from 'Components';
+import { ScrollToTop } from 'Components/utils/Scroll';
+import { SitePathsContext } from 'Components/utils/withSitePaths';
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import Animate from 'Ui/animate';
+import siret from './siret.jpg';
 
-type OwnProps = {}
-type Props = {
-	companyStatusChoice: string,
-	sitePaths: Object
-} & OwnProps
-
-const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
+export default function AfterRegistration() {
+	const sitePaths = useContext(SitePathsContext);
+	const statutChoisi = useSelector(state => state.inFranceApp.companyStatusChoice);
 	const { t } = useTranslation()
-	const isAutoentrepreneur = [
-		'auto-entrepreneur',
-		'auto-entrepreneur-EIRL'
-	].includes(companyStatusChoice)
+	const isAutoentrepreneur = statutChoisi.match('auto-entrepreneur')
+
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop />
 			<div css="transform: translateY(2rem)">
-				<Link
-					to={sitePaths.entreprise.index}
+				<NavLink
+					to={sitePaths.créer.index}
 					exact
 					activeClassName="ui__ hide"
 					className="ui__ simple small button">
-					← Retour la création
-				</Link>
+					← Retour à la création
+				</NavLink>
 			</div>
 			<h1>
 				<T k="après.titre">Après la création</T>
@@ -40,9 +34,9 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 				<T k="après.intro">
 					Une fois votre{' '}
 					{{
-						companyStatusChoice: isAutoentrepreneur
+						statutChoisi: isAutoentrepreneur
 							? t('auto-entreprise')
-							: companyStatusChoice || t(['après.entreprise', 'entreprise'])
+							: statutChoisi || t(['après.entreprise', 'entreprise'])
 					}}{' '}
 					créée, vous recevez les informations suivantes :
 				</T>
@@ -78,8 +72,8 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 					).{' '}
 					<span
 						style={
-							companyStatusChoice &&
-							companyStatusChoice.match(/auto-entrepreneur|EI/)
+							statutChoisi &&
+								statutChoisi.match(/auto-entrepreneur|EI/)
 								? { display: 'none' }
 								: {}
 						}>
@@ -96,8 +90,8 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 					</p>
 				</T>
 			</p>
-			{companyStatusChoice &&
-				!companyStatusChoice.includes('auto-entrepreneur') && (
+			{statutChoisi &&
+				!statutChoisi.includes('auto-entrepreneur') && (
 					<>
 						<h2>
 							<T k="après.kbis.titre">Le Kbis</T>
@@ -125,10 +119,3 @@ const AfterRegistration = ({ companyStatusChoice, sitePaths }: Props) => {
 		</Animate.fromBottom>
 	)
 }
-
-export default (compose(
-	connect(state => ({
-		companyStatusChoice: state.inFranceApp.companyStatusChoice
-	})),
-	withSitePaths
-)(AfterRegistration): React$ComponentType<OwnProps>)

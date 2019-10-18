@@ -73,13 +73,13 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 								</a>
 							)}
 							<Link
-								to={sitePaths.entreprise.index}
+								to={sitePaths.créer.index}
 								css="flex: 1"
 								className="ui__  small button">
 								Déclarer avec une nouvelle entreprise
 							</Link>
 							<Link
-								to={sitePaths.entreprise.trouver}
+								to={sitePaths.gérer.index}
 								css="flex: 1"
 								className="ui__   small button">
 								Déclarer avec une entreprise existante

@@ -489,17 +489,17 @@ Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
 
 path:
-  entreprise:
+  créer:
     index: '/company'
-    créer: '/create-a-{{companyStatus}}'
+    statut: '/{{companyStatus}}'
     devenirAutoEntrepreneur: '/become-{{autoEntrepreneur}}'
     après: '/after-registration'
-    statutJuridique:
-      index: '/legal-status'
+    guideStatut:
+      index: '/legal-status-guide'
       liste: '/list'
       gérantMinoritaire: '/chairman-or-managing-director'
       responsabilité: '/liability'
-      statutDirigeant: '/directors-status'
+      statutDirigeant: '/director'
       nombreAssociés: '/multiple-associates'
       autoEntrepreneur: '/auto-entrepreneur'
   gérer:

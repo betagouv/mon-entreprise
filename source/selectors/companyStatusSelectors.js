@@ -2,18 +2,7 @@
 
 import type { State, LegalStatusRequirements } from 'Types/companyTypes'
 import type { SitePaths } from 'Components/utils/withSitePaths'
-import {
-	add,
-	any,
-	countBy,
-	difference,
-	flatten,
-	isNil,
-	map,
-	mergeAll,
-	mergeWith,
-	sortBy
-} from 'ramda'
+import { add, any, countBy, difference, flatten, isNil, map, mergeAll, mergeWith, sortBy } from 'ramda'
 
 const LEGAL_STATUS_DETAILS: {
 	[status: string]: Array<LegalStatusRequirements> | LegalStatusRequirements
@@ -176,7 +165,7 @@ export const nextQuestionUrlSelector = (
 ) => {
 	const nextQuestion = nextQuestionSelector(state)
 	if (!nextQuestion) {
-		return sitePaths.entreprise.statutJuridique.liste
+		return sitePaths.créer.guideStatut.liste
 	}
-	return sitePaths.entreprise.statutJuridique[nextQuestion]
+	return sitePaths.créer.guideStatut[nextQuestion]
 }

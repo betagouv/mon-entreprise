@@ -36,7 +36,7 @@ export default function Landing() {
 			<section className="ui__ full-width light-bg center-flex">
 				<Link
 					className="ui__ interactive card box"
-					to={sitePaths.entreprise.index}>
+					to={sitePaths.créer.index}>
 					<div className="ui__ big box-icon">{emoji('💡')}</div>
 					<T k="landing.choice.create">
 						<h3>Créer une entreprise</h3>

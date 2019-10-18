@@ -26,7 +26,7 @@ const MinorityDirector = ({ directorIsInAMinority, t }: Props) => (
 				name="description"
 				content={t(
 					'gérant minoritaire.page.description',
-					`Certaines règles particulières s'appliquent en fonction du nombre d'actions détenues par l'administrateur, ce qui peut conduire à un statut différent lors de la création de votre société`
+					'Certaines règles particulières s\'appliquent en fonction du nombre d\'actions détenues par l\'administrateur, ce qui peut conduire à un statut différent lors de la création de votre société'
 				)}
 			/>
 		</Helmet>

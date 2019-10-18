@@ -19,7 +19,7 @@ import './App.css'
 import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
-import CompanyIndex from './pages/Company'
+import Créer from './pages/Créer'
 import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
@@ -101,7 +101,7 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 			<div className="app-content">
 				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 					<Switch>
-						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
+						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route
 							path={sitePaths.gérer.index}
 							component={Gérer}
