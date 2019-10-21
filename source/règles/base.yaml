@@ -178,8 +178,8 @@ contrat salarié . CDD . compensation pour congés non pris:
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
     assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
-? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
-: unité: '%'
+contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
+  unité: '%'
   formule: congés non pris / congés dus en jours ouvrés
 
 contrat salarié . CDD . congés dus en jours ouvrés:
@@ -188,8 +188,8 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   formule: 25 jours / 12 mois
 
-? contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire
-: formule: salaire journalier * congés non pris
+contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
+  formule: salaire journalier * congés non pris
 
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   période: mois
@@ -956,8 +956,8 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
-? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
-: période: aucune
+contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
+  période: aucune
   unité: €/repas
   formule:
     variations:
@@ -967,8 +967,8 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
-? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
-: période: mois
+contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
+  période: mois
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
@@ -1151,8 +1151,8 @@ contrat salarié . rémunération . net imposable . base:
       - CSG [non déductible]
       - CRDS
 
-? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
-: période: flexible
+contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
+  période: flexible
   unité: €
   formule:
     le minimum de:
@@ -1215,8 +1215,8 @@ contrat salarié . rémunération . net après impôt:
 
   formule: net - impôt
 
-? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
-: icônes: 🇬🇵🇷🇪 🇲🇶
+impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
+  icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire:
       assiette: revenu imposable [mensuel]
@@ -1544,8 +1544,8 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
       - réduction ACRE
       - déduction heures supplémentaires
 
-? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
-: période: flexible
+contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
+  période: flexible
   applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
   formule:
@@ -1596,8 +1596,8 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
-? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
-: période: aucune
+contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
+  période: aucune
   unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
@@ -3234,8 +3234,7 @@ entreprise . rémunération totale du dirigeant:
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
   unité: €
-  description:
-    C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
+  description: C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
     On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
@@ -3435,8 +3434,8 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-: formule:
+entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
+  formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
@@ -3573,8 +3572,8 @@ indépendant . cotisations et contributions . cotisations . maladie:
 
       - sinon: artisans commerçants libéraux
 
-? indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
+  période: flexible
   titre: maladie libérale règlementée
   formule:
     barème continu:
@@ -3599,8 +3598,8 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
-: titre: Maladie 2
+indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
+  titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
   formule:
@@ -3609,8 +3608,8 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
+  période: flexible
   formule:
     barème:
       assiette: assiette
@@ -3629,16 +3628,16 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
+  période: flexible
   formule:
     variations:
       - si: situation personnelle . RSA
         alors: taux RSA
       - sinon: taux
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
+  période: flexible
   formule:
     multiplication:
       assiette: taux RSA part variable + 1.35%
@@ -3646,22 +3645,22 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
+  période: flexible
   formule:
     multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
+  période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
-: période: flexible
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
+  période: flexible
   formule:
     barème continu:
       retourne seulement le taux: oui
@@ -3705,8 +3704,8 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
               - au-dessus de: 1
                 taux: 0.6%
 
-? indépendant . cotisations et contributions . cotisations . retraite de base . assiette
-: période: flexible
+indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
+  période: flexible
   titre: assiette retraite de base
   formule:
     variations:
@@ -3719,8 +3718,8 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? indépendant . cotisations et contributions . cotisations . retraite complémentaire
-: période: année
+indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  période: année
   unité: €
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
@@ -3774,8 +3773,8 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
-? indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
-: période: flexible
+indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
+  période: flexible
   titre: assiette invalidité et décès
   formule:
     variations:
@@ -3827,8 +3826,8 @@ indépendant . cotisations et contributions . formation professionnelle:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-? indépendant . cotisations et contributions . cotisations . allocations familiales
-: période: flexible
+indépendant . cotisations et contributions . cotisations . allocations familiales:
+  période: flexible
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3944,8 +3943,8 @@ auto-entrepreneur . cotisations et contributions . TFC . métiers:
             alors: 0.22%
           - sinon: 0.48%
 
-? auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
-: titre: Contribution à la formation professionnelle
+auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
+  titre: Contribution à la formation professionnelle
   unité: €
   période: flexible
   références:
@@ -3987,8 +3986,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
-? auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
-: description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
+auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
+  description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
   unité: €
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
@@ -4009,8 +4008,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
 
-? auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
-: description: |
+auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
+  description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
@@ -4266,8 +4265,8 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
             - 3
             - barème trimestres générique
 
-? protection sociale . retraite . trimestres validés par an . barème trimestres générique
-: période: aucune
+protection sociale . retraite . trimestres validés par an . barème trimestres générique:
+  période: aucune
   formule:
     barème linéaire:
       unité: trimestres
@@ -4290,8 +4289,8 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
-? protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur
-: applicable si: auto-entrepreneur
+protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
+  applicable si: auto-entrepreneur
   période: aucune
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
@@ -4417,8 +4416,8 @@ protection sociale . retraite . complémentaire sécurité des indépendants . v
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
-: formule: points acquis par mois * mois cotisés
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
+  formule: points acquis par mois * mois cotisés
   période: aucune
 
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
