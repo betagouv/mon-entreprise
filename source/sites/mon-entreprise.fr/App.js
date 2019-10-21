@@ -31,6 +31,7 @@ import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
+import FichesDePaie from './pages/Dev/FichesDePaie'
 import Documentation from './pages/Documentation'
 import HiringProcess from './pages/HiringProcess'
 import Iframes from './pages/Iframes'
@@ -136,6 +137,7 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 						/>
 						<Route exact path="/dev/couleur" component={Couleur} />
 						<Route exact path="/dev/personas" component={Personas} />
+						<Route exact path="/dev/fiches-de-paie" component={FichesDePaie} />
 
 						<Route component={Route404} />
 					</Switch>

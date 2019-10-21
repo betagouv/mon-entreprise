@@ -4673,7 +4673,7 @@ contrat salarié . sportif . primes . autre manifestations:
 
 contrat salarié . sportif . franchise de cotisations:
   période: flexible
-  applicable si: rémunération . brut >= 115 * SMIC horaire + 5 * 70% * plafond journalier sécurité sociale temps plein
+  applicable si: rémunération . brut < 115 * SMIC horaire + 5 * 70% * plafond journalier sécurité sociale temps plein
   somme:
     - le minimum de:
       - 70% * plafond journalier sécurité sociale
