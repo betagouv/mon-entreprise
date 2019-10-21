@@ -4675,25 +4675,108 @@ contrat salarié . lodeom . réduction zone un:
   formule:
     le minimum de:
       - contrat salarié . réduction générale . assiette
-      - multiplicateur * écart au plafond de l'assiette
+      - variations:
+          - si:
+              toutes ces conditions:
+                - éligible barème trois
+                - cotisations . assiette > borne inférieure
+                - cotisations . assiette < 2.5 * SMIC
+            alors: 1.7 * paramètre T * SMIC
+          - si:
+              toutes ces conditions:
+                - éligible barème trois
+                - cotisations . assiette > 2.5 * SMIC
+            alors: ((borne inférieure * paramètre T) / (borne supérieure - 2.5)) *  écart au plafond de l'assiette
+          - sinon: multiplicateur * écart au plafond de l'assiette
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
+  référnces: 
+    - https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
   exemples:
-    # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
+    # Barème 1
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
+        zone un: oui
         cotisations . assiette: 1521.22
-      valeur attendue: 427.31
+      valeur attendue: 488.92
     - nom: 'Salaire proche du SMIC'
       situation:
+        zone un: oui
         cotisations . assiette: 1530
-      valeur attendue: 423.2
+      valeur attendue: 491.74
     - nom: 'Résiduelle pour un salaire médian'
       situation:
+        zone un: oui
         cotisations . assiette: 2300
-      valeur attendue: 62.71
+      valeur attendue: 485.99
     - nom: 'Nulle au-dessus du plafond'
       situation:
-        cotisations . assiette: 2434
+        zone un: oui
+        cotisations . assiette: 3400
+      valeur attendue: 0
+
+    # Barème 2
+    - nom: "Maximale dans le cas d'un SMIC"
+      situation:
+        zone un: oui
+        éligible barème deux: oui
+        cotisations . assiette: 1521.22
+      valeur attendue: 488.92
+    - nom: 'Salaire proche du SMIC'
+      situation:
+        zone un: oui
+        éligible barème deux: oui
+        cotisations . assiette: 2565
+      valeur attendue: 824.39
+    - nom: 'Résiduelle pour un salaire médian'
+      situation:
+        zone un: oui
+        éligible barème deux: oui
+        cotisations . assiette: 3900
+      valeur attendue: 113.26
+    - nom: 'Résiduelle pour un salaire médian'
+      situation:
+        zone un: oui
+        éligible barème deux: oui
+        cotisations . assiette: 3000
+      valeur attendue: 605.10
+    - nom: 'Nulle au-dessus du plafond'
+      situation:
+        zone un: oui
+        éligible barème deux: oui
+        cotisations . assiette: 4200
+      valeur attendue: 0
+
+    # Barème 3
+    - nom: "Barème 3 Maximale dans le cas d'un SMIC"
+      situation:
+        zone un: oui
+        éligible barème trois: oui
+        cotisations . assiette: 1521.22
+      valeur attendue: 488.92
+    - nom: 'Barème 3'
+      situation:
+        zone un: oui
+        éligible barème trois: oui
+        cotisations . assiette: 2565
+      valeur attendue: 824.39
+    - nom: 'Barème 3'
+      situation:
+        zone un: oui
+        éligible barème trois: oui
+        cotisations . assiette: 2800
+      valeur attendue: 831.04
+    - nom: 'Barème 3'
+      situation:
+        zone un: oui
+        éligible barème trois: oui
+        cotisations . assiette: 4000
+      valeur attendue: 723.60
+
+    - nom: 'Barème 3 Nulle au-dessus du plafond'
+      situation:
+        zone un: oui
+        éligible barème trois: oui
+        cotisations . assiette: 5500
       valeur attendue: 0
 
 contrat salarié . lodeom . plafond de l'assiette:
@@ -4706,6 +4789,7 @@ contrat salarié . lodeom . écart au plafond de l'assiette:
 
 contrat salarié . lodeom . éligible barème un:
   titre: Eligibilité au barème de compétitivité
+  applicable si: zone un
   rend non applicable:
     - réduction générale
   formule:
@@ -4730,6 +4814,7 @@ contrat salarié . lodeom . éligible barème un . secteurs d'activité:
   par défaut: non
 
 contrat salarié . lodeom . éligible barème deux:
+  applicable si: zone un
   rend non applicable:
     - réduction générale
     - éligible barème un
@@ -4744,6 +4829,7 @@ contrat salarié . lodeom . éligible barème deux:
     - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
 
 contrat salarié . lodeom . éligible barème trois:
+  applicable si: zone un
   rend non applicable:
     - réduction générale
     - éligible barème un
@@ -4783,15 +4869,7 @@ contrat salarié . lodeom . borne supérieure:
 contrat salarié . lodeom . multiplicateur:
   note: pour le barème 1 le dénominateur vaut 0,9
   période: flexible
-  formule:
-    variations:
-      - si:
-          toutes ces conditions:
-            - éligible barème trois
-            - cotisations . assiette > borne inférieure * SMIC
-            - cotisations . assiette < 2.5 * SMIC
-        alors: paramètre T
-      - sinon: (borne inférieure * paramètre T) / (borne supérieure - borne inférieure)
+  formule: (borne inférieure * paramètre T) / (borne supérieure - borne inférieure)
 
 contrat salarié . lodeom . paramètre T:
   formule:
