@@ -15,7 +15,7 @@ export let desugarScale = recurse => tranches =>
 				? { ...t, de: t['au-dessus de'], à: Infinity }
 				: t
 		)
-		.map(evolve({ taux: recurse }))
+		.map(evolve({ taux: recurse, montant: recurse }))
 
 // This function was also used for marginal barèmes, but now only for linear ones
 export let trancheValue = (assiette, multiplicateur) => ({

@@ -47,7 +47,7 @@ export default (recurse, k, v) => {
 			return returnRate
 				? matchedTranche.taux.nodeValue
 				: matchedTranche.taux.nodeValue * val(assiette)
-		return matchedTranche.montant
+		return val(matchedTranche.montant)
 	}
 
 	let explanation = {
