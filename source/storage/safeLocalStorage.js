@@ -1,5 +1,5 @@
 export default {
-	removeItem: function(...args) {
+	removeItem: function (...args) {
 		try {
 			return window.localStorage.removeItem(...args)
 		} catch (error) {
@@ -11,7 +11,7 @@ export default {
 			return null
 		}
 	},
-	getItem: function(...args) {
+	getItem: function (...args) {
 		try {
 			return window.localStorage.getItem(...args)
 		} catch (error) {
@@ -23,7 +23,7 @@ export default {
 			return null
 		}
 	},
-	setItem: function(...args) {
+	setItem: function (...args) {
 		try {
 			return window.localStorage.setItem(...args)
 		} catch (error) {
