@@ -1019,6 +1019,13 @@ contrat salarié . statut cadre . choix statut cadre:
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caisse de retraite de base spécifique
   par défaut: non
 
+plafond journalier sécurité sociale temps plein:
+  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
+  période: mois
+  acronyme: PSS
+  formule: 186
+  unité: €
+
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
@@ -1027,7 +1034,7 @@ plafond sécurité sociale temps plein:
   unité: €
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
-    arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
+    arrêté: https://www.legifrance.gouv.fr/eli/arrete/2018/12/11/SSAS1833942A/jo/texte
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
@@ -4640,9 +4647,49 @@ situation personnelle . RSA:
 
 contrat salarié . sportif:
   description: >
-    Les sportifs bénéficient de deux dispositifs dérogatoires (la franchise de cotisations et l'assiette forfaitaire).
+    Les sportifs bénéficient de deux dispositifs dérogatoires (la franchise de cotisations et l'assiette forfaitaire). Ces dérogations ne s'appliquent qu'aux structures à but non lucratif (associations en particulier).
 
     Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
+
+contrat salarié . sportif . primes:
+contrat salarié . sportif . primes . manifestation 1:
+  période: mois
+  unité: €
+contrat salarié . sportif . primes . manifestation 2:
+  période: mois
+  unité: €
+contrat salarié . sportif . primes . manifestation 3:
+  période: mois
+  unité: €
+contrat salarié . sportif . primes . manifestation 4:
+  période: mois
+  unité: €
+contrat salarié . sportif . primes . manifestation 5:
+  période: mois
+  unité: €
+contrat salarié . sportif . primes . autre manifestations:
+  période: mois
+  unité: €
+
+contrat salarié . sportif . franchise de cotisations:
+  période: flexible
+  applicable si: rémunération . brut >= 115 * SMIC horaire + 5 * 70% * plafond journalier sécurité sociale temps plein
+  somme:
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - contrat salarié . sportif . primes . manifestation 1
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - contrat salarié . sportif . primes . manifestation 2
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - contrat salarié . sportif . primes . manifestation 3
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - contrat salarié . sportif . primes . manifestation 4
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - contrat salarié . sportif . primes . manifestation 5
 
 contrat salarié . sportif . base forfaitaire:
   période: flexible
