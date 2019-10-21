@@ -26,82 +26,64 @@ const thenGoToNextQuestion = actionCreator => (...args: any) =>
 export const isSoleProprietorship = thenGoToNextQuestion(
 	(isSoleProprietorship: ?boolean): IsSoleProprietorshipAction => ({
 			type: 'COMPANY_IS_SOLE_PROPRIETORSHIP',
-		isSoleProprietorship
-	})
+	isSoleProprietorship
+})
 )
 
 export const defineDirectorStatus = thenGoToNextQuestion(
 	(status: ?DirectorStatus): DefineDirectorStatusAction => ({
 			type: 'DEFINE_DIRECTOR_STATUS',
-		status
-	})
+	status
+})
 )
 
 export const companyHasMultipleAssociates = thenGoToNextQuestion(
 	(multipleAssociates: ?boolean): CompanyHasMultipleAssociatesAction => ({
 			type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES',
-		multipleAssociates
-	})
+	multipleAssociates
+})
 )
 
 export const isAutoentrepreneur = thenGoToNextQuestion(
 	(autoEntrepreneur: ?boolean): IsAutoentrepreneurAction => ({
 			type: 'COMPANY_IS_MICROENTERPRISE',
-		autoEntrepreneur
-	})
+	autoEntrepreneur
+})
 )
 
 export const directorIsInAMinority = thenGoToNextQuestion(
 	(minorityDirector: ?boolean): DirectorIsInAMinorityAction => ({
 			type: 'SPECIFY_DIRECTORS_SHARE',
-		minorityDirector
-	})
+	minorityDirector
+})
 )
 
 export const goToCompanyStatusChoice = (): Thunk<ResetCompanyStatusAction> => (
-			dispatch,
-			_,
+					dispatch,
+					_,
 	{history, sitePaths}
 			) => {
 				dispatch(
 					({
 						type: 'RESET_COMPANY_STATUS_CHOICE'
 					}: ResetCompanyStatusAction)
-		)
-		history.push(sitePaths.créer.index)
-	}
-	
-	export const resetCompanyStatusChoice = (
-		from: string
+)
+history.push(sitePaths.créer.index)
+}
+
+export const resetCompanyStatusChoice = (
+from: string
 ): Thunk<ResetCompanyStatusAction> => (dispatch, getState) => {
 	const answeredQuestion = Object.keys(
-					getState().inFranceApp.companyLegalStatus
-				)
-				const answersToReset = dropWhile(a => a !== from, answeredQuestion)
+								getState().inFranceApp.companyLegalStatus
+							)
+							const answersToReset = dropWhile(a => a !== from, answeredQuestion)
 	if (!answersToReset.length) {
 		return
-			}
+					}
 	dispatch({
 					type: 'RESET_COMPANY_STATUS_CHOICE',
-				answersToReset
-			})
-		}
+			answersToReset
+		})
+	}
 		
-export const goBackToPreviousQuestion = (): Thunk<ResetCompanyStatusAction> => (
-					dispatch,
-					getState,
-	{history, sitePaths}
-					) => {
-	const previousQuestion = last(
-						Object.keys(getState().inFranceApp.companyLegalStatus)
-					)
-	if (previousQuestion) {
-						dispatch({
-							type: 'RESET_COMPANY_STATUS_CHOICE',
-							answersToReset: [previousQuestion]
-						})
-					}
-					history.push(
-						sitePaths.créer.guideStatut[previousQuestion || 'index']
-					)
-				}

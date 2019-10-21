@@ -1,10 +1,13 @@
 /* @flow */
+import { resetCompanyStatusChoice } from 'Actions/companyStatusActions';
 import { T } from 'Components';
 import { SitePathsContext } from 'Components/utils/withSitePaths';
-import React, { useContext } from 'react';
+import { toPairs } from 'ramda';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
-import { NavLink, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, Route, useLocation } from 'react-router-dom';
 import Animate from 'Ui/animate';
 import AutoEntrepreneur from './AutoEntrepreneur';
 import DirectorStatus from './DirectorStatus';
@@ -13,6 +16,7 @@ import NumberOfAssociate from './NumberOfAssociate';
 import PickLegalStatus from './PickLegalStatus';
 import PreviousAnswers from './PreviousAnswers';
 import SoleProprietorship from './SoleProprietorship';
+
 
 const withAnimation = Component => {
     const AnimateRouteComponent = (...props) => (
@@ -23,9 +27,25 @@ const withAnimation = Component => {
     return AnimateRouteComponent
 }
 
+const useResetFollowingAnswers = () => {
+    const dispatch = useDispatch();
+    const sitePaths = useContext(SitePathsContext);
+    const location = useLocation();
+    useEffect(() => {
+        const companyStatusCurrentQuestionName = (toPairs(
+            sitePaths.créer.guideStatut
+        ).find(([, pathname]) => location.pathname === pathname) || [])[0]
+        if (!companyStatusCurrentQuestionName) {
+            return
+        }
+        dispatch(resetCompanyStatusChoice(companyStatusCurrentQuestionName))
+    }, [location.pathname, dispatch, sitePaths.créer.guideStatut])
+}
+
 export default function Créer() {
     const { t } = useTranslation()
     const sitePaths = useContext(SitePathsContext);
+    useResetFollowingAnswers();
     return (
         <>
             <Helmet>
@@ -61,7 +81,7 @@ export default function Créer() {
                 component={withAnimation(SoleProprietorship)}
             />
             <Route
-                path={sitePaths.créer.guideStatut.director}
+                path={sitePaths.créer.guideStatut.directorStatus}
                 component={withAnimation(DirectorStatus)}
             />
             <Route

@@ -40,7 +40,7 @@ export const constructLocalizedSitePath = (language: string) => {
 					'path.créer.guideStatut.responsabilité',
 					'/responsabilité'
 				),
-				director: t(
+				directorStatus: t(
 					'path.créer.guideStatut.statutDirigeant',
 					'/dirigeant'
 				),

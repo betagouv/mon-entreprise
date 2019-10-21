@@ -5,7 +5,6 @@ import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import CompanyStatusNavigation from './CompanyStatusNavigation'
 
 type Props = {
 	isSoleProprietorship: (?boolean) => void
@@ -86,7 +85,6 @@ const SoleProprietorship = ({ isSoleProprietorship }: Props) => {
 					<T k="responsabilité.bouton1">Société</T>
 				</button>
 			</div>
-			<CompanyStatusNavigation onSkip={() => isSoleProprietorship(null)} />
 			{/* this is an economic activity conducted by a single natural person, in his own name ; */}
 			{/* Company  : This is an economic activity conducted by a single partner - single member company with limited liability (EURL) - or several partners (limited liability company (SARL), public limited company (SA), simplified joint-stock company (SAS)...). */}
 		</>

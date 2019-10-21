@@ -30,7 +30,7 @@ export default function Créer() {
 				</p>
 					<Link
 						className="ui__ button plain cta"
-						to={guideAlreadyStarted ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
+						to={guideAlreadyStarted && nextQuestionUrl ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
 						<T>{!guideAlreadyStarted ? 'Trouver le bon statut' : 'Continuer le guide'}</T>
 					</Link>
 					<p className="ui__ notice">Note : le cas des professions libérales réglementées n'est pas traitées</p>

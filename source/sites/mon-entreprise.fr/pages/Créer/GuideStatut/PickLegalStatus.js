@@ -1,5 +1,4 @@
 /* @flow */
-import { goBackToPreviousQuestion } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, filter } from 'ramda'
@@ -89,7 +88,6 @@ const StatutTitle = ({ statut, language }) =>
 const SetMainStatus = ({
 	history,
 	possibleStatus,
-	goBackToPreviousQuestion,
 }: Props) => {
 	const { t, i18n } = useTranslation()
 	return (
@@ -119,13 +117,7 @@ const SetMainStatus = ({
 					</li>
 				))}
 			</ul>
-			<div className="ui__ answer-group">
-				<button
-					onClick={goBackToPreviousQuestion}
-					className="ui__ simple small button push-left">
-					← <T>Précédent</T>
-				</button>
-			</div>
+
 		</>
 	)
 }
@@ -134,6 +126,5 @@ export default compose(
 	withSitePaths,
 	connect(
 		state => ({ possibleStatus: possibleStatusSelector(state) }),
-		{ goBackToPreviousQuestion }
 	)
 )(SetMainStatus)
