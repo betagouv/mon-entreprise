@@ -1055,6 +1055,7 @@ contrat salarié . SMIC temps plein . net imposable:
 SMIC horaire:
   formule: 10.03
   unité: €/heure
+  acronyme: SMIC
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -4636,4 +4637,52 @@ situation personnelle . RSA:
   titre: allocataire RSA
   question: Êtes-vous allocataire du RSA ?
   par défaut: non
+
+contrat salarié . sportif:
+  description: >
+    Les sportifs bénéficient de deux dispositifs dérogatoires (la franchise de cotisations et l'assiette forfaitaire).
+
+    Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
+
+contrat salarié . sportif . base forfaitaire:
+  période: flexible
+  formule:
+    barème linéaire:
+      assiette: contrat salarié . cotisations . assiette
+      multiplicateur: SMIC horaire
+      tranches:
+        - en-dessous de: 45
+          montant: 5 * SMIC horaire
+        - de: 45
+          à: 60
+          montant: 15 * SMIC horaire
+        - de: 60
+          à: 80
+          montant: 25 * SMIC horaire
+        - de: 80
+          à: 100
+          montant: 35 * SMIC horaire
+        - de: 100
+          à: 115
+          montant: 50 * SMIC horaire
+        - au-dessus de: 45
+          montant: contrat salarié . cotisations . assiette
+
+contrat salarié . sportif . encadrement de l'assiette forfaitaire:
+  période: flexible
+  description: >
+    Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
+    1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+  formule:
+    variations:
+      - si: rémunération . brut >= 1.5 * plafond sécurité sociale temps plein
+        alors:
+          le maximum de:
+            - 70% * rémunération . brut
+            - contrat salarié . sportif . base forfaitaire
+      - sinon: contrat salarié . sportif . base forfaitaire
+  note: > 
+    Nous implémentons cet encadrement de l'assiette forfaitaire au niveau des règles relatives aux sportifs car c'est le seul
+    endroit où nous l'utilisons pour l'instant, mais il faudrait la généraliser pour qu'elle s'applique aux autres assiettes
+    forfaitaires de la législations (vendeurs à domicile, personnels rémunérés au pourboire, etc.)
 
