@@ -10,11 +10,10 @@ export default function SocialSecurity() {
 		<>
 			<Helmet>
 				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
-				<meta name="description" content={t('sécu.page.description')} />
 			</Helmet>
 
 			<Animate.fromBottom>
-				<T k="sécu.content">
+				<T k="sécu.contenu">
 					<h1>Protection sociale </h1>
 					<p>
 						En France, tous les travailleurs bénéficient d'une protection

@@ -42,20 +42,20 @@ const CreateCompany = ({
 	const titre = isAutoentrepreneur
 		? t(
 			[
-				'entreprise.tâches.page.autoEntrepreneur.titre',
+				'entreprise.page.autoEntrepreneur.titre',
 				'Comment devenir {{autoEntrepreneur}}'
 			],
 			{
-				autoEntrepreneur: t(statut)
+				autoEntrepreneur: statut
 			}
 		)
 		: t(
 			[
-				'entreprise.tâches.page.entreprise.titre',
-				'Créer une {{statut}}'
+				'entreprise.page.entreprise.titre',
+				'Créer une {{status}}'
 			],
 			{
-				statut: t(statut)
+				status: statut
 			}
 		)
 	return (
@@ -68,14 +68,14 @@ const CreateCompany = ({
 						isAutoentrepreneur
 							? t(
 								[
-									'entreprise.tâches.page.autoEntrepreneur.description',
+									'entreprise.page.autoEntrepreneur.description',
 									'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.'
 								],
 								{ autoEntrepreneur: t(statut) }
 							)
 							: t(
 								[
-									'entreprise.tâches.page.description',
+									'entreprise.page.description',
 									"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française."
 								],
 								{ statut: t(statut) }
@@ -86,7 +86,7 @@ const CreateCompany = ({
 			<Scroll.toTop />
 			<div css="transform: translateY(2rem);">
 				<button onClick={onStatusChange} className="ui__ simple small push-left button">
-					<T k="entreprise.tâches.retour">← Choisir un autre statut</T>
+					<T k="entreprise.retour">← Choisir un autre statut</T>
 				</button>
 			</div>
 
@@ -438,7 +438,7 @@ const CreateCompany = ({
 					}
 				/>
 			</Checklist>
-			<h2>{emoji('🧰')} Ressources utiles</h2>
+			<h2>{emoji('🧰')} <T>Ressources utiles</T></h2>
 			<div
 				css={`
 					display: flex;
@@ -452,37 +452,43 @@ const CreateCompany = ({
 				{isAutoentrepreneur && <Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={{ pathname: sitePaths.simulateurs['auto-entrepreneur'], state: { fromCréer: true } }}>
-					<p>Simulateur de revenus auto-entrepreneur</p>
-					<small>
-						Simuler le montant de vos cotisations sociale et de votre impôt et estimez votre futur revenu net.
+					<T k="entreprise.ressources.simu.autoEntrepreneur"><p>Simulateur de revenus auto-entrepreneur</p>
+						<small>
+							Simuler le montant de vos cotisations sociale et de votre impôt et estimez votre futur revenu net.
 					</small>
+					</T>
 				</Link>
 				}
 				{['EI', 'EIRL', 'EURL'].includes(statut) && <Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={{ pathname: sitePaths.simulateurs.indépendant, state: { fromCréer: true } }}>
-					<p>Simulateur de cotisations indépendant</p>
-					<small>
-						Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
-					</small>
+					<T k="entreprise.ressources.simu.indépendant">
+						<p>Simulateur de cotisations indépendant</p>
+						<small>
+							Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
+					</small></T>
 				</Link>
 				}
 				{['SAS', 'SASU'].includes(statut) && <Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={{ pathname: sitePaths.simulateurs['assimilé-salarié'], state: { fromCréer: true } }}>
-					<p>Simulateur de cotisations assimilé-salarié</p>
-					<small>
-						Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
+					<T k="entreprise.ressources.simu.assimilé">
+						<p>Simulateur de cotisations assimilé-salarié</p>
+						<small>
+							Simuler le montant de vos cotisations sociales pour bien préparer votre business plan.
 					</small>
+					</T>
 				</Link>
 				}
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.après}>
-					<p>					<T k="entreprise.tâches.ensuite">Après la création</T></p>
-					<small>
-						SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous pourrez (éventuellement) rencontrer après la création.
-					</small>
+					<T k="entreprise.ressources.après">
+						<p>Après la création</p>
+						<small>
+							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous pourrez (éventuellement) rencontrer après la création.
+						</small>
+					</T>
 				</Link>
 				{i18n.language === 'fr' && (<a
 					target="_blank"
@@ -499,7 +505,7 @@ const CreateCompany = ({
 					</div>
 				</a>)}
 			</div>
-		</Animate.fromBottom>
+		</Animate.fromBottom >
 	)
 }
 export default compose(

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Trans } from 'react-i18next'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 
-let T = ({ children, k }) => <Trans i18nKey={k}>{children}</Trans>
+let T = ({ k, ...props }) => <Trans i18nKey={k} {...props} />
 
 export { React, Component, T, emoji }
+

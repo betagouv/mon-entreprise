@@ -137,7 +137,7 @@ simulation-end:
 feedback:
   simulator: Do you like this simulator ?
   reportError: Make a suggestion
-  question: Was this information useful to you?
+  question: Was this page useful to you?
   bad:
     form:
       headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
@@ -150,6 +150,10 @@ Oui: Yes
 Non: No
 Envoyer: Send
 Retour: Back
+Retour à mon activité: Back to my business
+Retour à la création: Back to creation
+Voir les autres simulateurs: See the other simulators
+
 legalNotice:
   title: Legal notice
   editeur:
@@ -190,14 +194,14 @@ Commencer: Get started
 Passer: Skip
 
 entreprise:
+  page:
+    autoEntrepreneur:
+      description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
+      titre: How to become {{autoEntrepreneur}}
+    entreprise:
+      description: A complete todo list to help you create a {{status}} with the French administration.`
+      titre: Create an {{status}}
   tâches:
-    page:
-      autoEntrepreneur:
-        description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
-        titre: How to become {{autoEntrepreneur}}
-      entreprise:
-        description: A complete todo list to help you create a {{companyStatus}} with the French administration.`
-        titre: Create a {{companyStatus}} in France
     nom:
       titre: Find a corporate name
       description: |
@@ -278,18 +282,89 @@ entreprise:
           <0>$t(Plus d'informations)</0>
         </2>
     avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
-    retour: Choose another status
-    ensuite: After registration
     titre: The to-do list for creating your business
+  retour: Choose another status
+  ressources:
+    simu:
+      indépendant: |
+        <0>Independent: contribution simulator </0>
+        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
+      assimilé: |
+        <0>Assimilé-salarié: contribution simulator </0>
+        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
+      autoEntrepreneur: |
+        <0>Auto-entrepreneur: income simulator</0>
+        <1>Simulate the amount of your social security contributions and taxes and estimate your future net income.</1>
+    après: |
+      <0>After registration</0>
+      <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may (possibly) encounter after creation.</1>
+
+
+créer:
+  titre: Create a company
+  description: The first step is to choose a legal status that is appropriate for your business. The administrative procedures for setting up your business change according to it.
+  warningPL: "Note: the case of regulated liberal professions is not covered"
+  cta:
+    default: Find the right status
+    continue: Continue the guide
+  ressources: 
+    listeStatuts: |
+      <0>List of legal statuses</0>
+      <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
+    comparaison: |
+      <0> SASU, EURL or auto-entrepreneur?</0>
+      <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
+    autoEntrepreneur: 
+      <0>Become auto-entrepreneur</0>
+      <1>Go to the simplified creation process for small businesses</1>
+
+
+gérer:
+  titre: Manage my business
+  description: Do you want to earn an income or hire? You will have to pay contributions and taxes. Anticipate their amounts thanks to simulators adapted to your situation.
+  cta: Find my company
+  choix:
+    titre: What do you want to do?
+    embauche: | 
+      <0>Estimate the amount spent for hiring</0>
+      <1>Calculate how much your company will have to spend to pay your next employee</1>
+    revenus: |
+      <0>Calculate my net income</0>
+      <1>Estimate precisely the amount of your contributions thanks to the URSSAF simulator for {{régime}}</1>
+  ressources: 
+    embaucher: |
+      <0>Discover the hiring process</0>
+      <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
+    sécuritéSociale: 
+      <0>Understanding social security</0>
+      <1>What are social security contributions used for? Update on the social protection system enjoyed by all workers in France</1>
+    autoEntrepreneur: 
+      <0>Access the official auto-entrepreneur website</0>
+      <1>You will be able to make your turnover declaration, pay your contributions, and more widely find all the information relating to the status of auto-entrepreneur</1>
+  entreprise:
+    auto: Are you an auto-entrepreneur?
+    dirigeant: |
+      <0>Are you the majority director?</0>
+      <1>If you are a majority director or a member of a majority board of directors, you will not have the same social security system as if you are a minority.</1>
+    majoritaire: Majority director
+    minoritaire: Minority director
+    changer: Change the selected company
+
+sécu:
+  titre: Social security in France
+  contenu: |
+    <0> Social protection</0>
+    <1>In France, all workers benefit from quality social protection. This mandatory system is based on solidarity and aims to ensure the <2>general well-being of the population</2>.</1>
+    <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
+  
+  
+
+Mon entreprise: My company
+Mon revenu: My income
+
 
 formeJuridique:
-  page:
-    titre: Which legal status should you choose for your company in France?
-    description: >
-      The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide quickly helps you to find the right status for your company project in France.
-  titre: Create a company
-  incertain: Not sure about this status? Take our guide to help you choose
-  intro: 'The French business law defines more than 20 possible legal statuses to declare a company with various acronyms and processes : SAS, SARL, SA, EIRL... This guide will help you find quickly the right status for your needs.'
+  titre: Choice of legal status
   EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
   EIRL: Allows you to protect your personal assets by allocating specific capital to your professional activity. Society and the individual are the same person. Not suitable if the sole shareholder is a legal entity (company) or if you plan to welcome other shareholders during the development of your company (choose EURL in this case).
   EURL: The company has only one partner. Liability is limited to the amount of the capital contribution of the sole shareholder. Evolves into a SARL when new partners join the company.
@@ -300,13 +375,11 @@ formeJuridique:
   SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
   micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
   micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
-  entreprise-déjà-crée: I have already declared my company
 
 Votre forme juridique: Your legal status
 Créer une: Create a
 Devenir: Become
 Choisir la forme juridique: Choose your legal status
-Je connais mon statut: I know my status
 
 responsabilité:
   page:
@@ -392,26 +465,6 @@ après:
     retour: Creation checklist
     avance: Go to social security
 
-sécu:
-  page:
-    titre: 'Social security in France: costs and benefits'
-    description: Découvrez les coûts et avantages de la sécurité sociale française en simulant un cas concret d'embauche dans votre entreprise.
-  content: |
-    <0>Social protection: costs and benefits</0>
-    <1>
-      France has chosen to provide its citizens with a high-quality social safety net. This mandatory system is based on solidarity and designed to ensure the <strong>general welfare of its people
-    </1>
-  video: Social security explained visually
-  entrepriseCrée: If you already own a company, we can <2>automatically customize</2> your simulations to your situation. All you have to do is <5>enter the name of your company</5>.
-  choix:
-    titre: What do you want to estimate?
-    auto-entrepreneur: Estimate my remuneration as an auto-entrepreneur
-    dirigeant1: My income as a {{legalStatus}} director
-    dirigeant2: My income as a company director
-    employé: An employee's salary
-Mon entreprise: My company
-Mon revenu: My income
-
 Protection sociale: Social security
 Rémunération du dirigeant: Director's remuneration
 Simulateur de salaire: Employee salary simulation
@@ -490,12 +543,10 @@ Démarches de création: Creation process checklist
 
 path:
   créer:
-    index: '/company'
-    statut: '/{{companyStatus}}'
-    devenirAutoEntrepreneur: '/become-{{autoEntrepreneur}}'
+    index: '/create'
     après: '/after-registration'
     guideStatut:
-      index: '/legal-status-guide'
+      index: '/legal-status'
       liste: '/list'
       gérantMinoritaire: '/chairman-or-managing-director'
       responsabilité: '/liability'
@@ -505,12 +556,11 @@ path:
   gérer:
     index: '/manage'
     embaucher: '/hiring'
-    selection: '/social-scheme-selection'
     sécuritéSociale: '/social-security'
   simulateurs:
     index: /simulators
-    assimilé-salarié: '/assimilated-salaried'
-    indépendant: '/self-employed'
+    assimilé-salarié: '/assimile-salarie'
+    indépendant: '/independant'
     auto-entrepreneur: '/auto-entrepreneur'
     salarié: '/salaried'
     comparaison: '/social-scheme-comparaison'
@@ -567,8 +617,6 @@ Intégrer nos simulateurs: Integrate our simulators
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
 
-# Landing infrance
-Créer mon entreprise: Create my company
 landing:
   title: The official assistant for entrepreneurs
   subtitle: All the resources you need to develop your business, from legal status to hiring.
@@ -576,6 +624,7 @@ landing:
     create: <0>Create a company</0><1>Assistance in choosing the status and the complete list of creation steps</1>
     manage: <0>Manage my business</0><1>Simulators to anticipate the amount of contributions and better manage your cash flow</1>
     declare: <0>What income should I declare?</0><1>How to report your income from online platforms (AirBnb, leboncoin, blablacar, etc.)</1>
+  seeSimulators: See the simulators list
   aboutUs: |
     <0>About us</0>
     <1>This website is developed by the administration to <2>support entrepreneurs in the development of their business</2>.</1>
@@ -583,7 +632,7 @@ landing:
     <3>Our objective is to <2>remove all uncertainties regarding the administration tasks</2> so that you can focus on what matters: your business.</3>
     <4>We are a small, autonomous and multidisciplinary team within the <4>URSSAF</4>. We are committed to being as close as possible to our users in order to continuously improve this site in accordance with the <7>Startup d'État</7> method.</4>
     <5>Feel free to send us your comments and suggestions at <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
-
+  
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Accueil: Home
 
@@ -604,8 +653,31 @@ Simulations personnalisées: Customized simulations
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
 
-Comparer les trois régimes: Compare the three schemes
 simulateurs:
+  accueil: 
+    titre: Available simulators
+    assimilé: |
+      <0>"Assimilé-salarié"</0>
+      <1>Calculate the income of an officer of a minority SAS, SASU or SARL</1>
+    indépendant: |
+      <0>"Indépendant"</0>
+      <1>Calculate the income of a majority manager of EURL, EI, or SARL</1>
+    auto: |
+      <0>Auto-entrepreneur</0>
+      <1>Calculate the income (or turnover) of an auto-entrepreneur</1>
+    salarié: |
+      <0>Employee</0>
+      <1>Calculate the net, gross, or total salary of an employee, trainee, or similar</1>
+    comparaison: |
+      <0>Status comparison</0>
+      <1>Simulate the differences between the plans (contributions, retirement, maternity, illness, etc.)</1>
+    description: 
+      <0>All the simulators on this site are:</0>
+
+      <1><0>Maintained with the latest legislation</0>
+      <1>Continuously improved to increase the number of devices taken into account (currently 320)</1>
+      <2>Developed in partnership with the Urssaf (the contribution collector entity in France)<2>
+      </1>
   inversionFail: The amount entered is too small or results in an impossible situation, try another one
   warning:
     titre: Before starting...
@@ -768,3 +840,5 @@ Votre entreprise: Your company
 Crée le: Created on
 domiciliée à: domiciled in
 "Nom de l'entreprise ou SIREN ": Company name or SIREN code
+Ressources utiles: Helpful resources
+Aucun résultat: No result

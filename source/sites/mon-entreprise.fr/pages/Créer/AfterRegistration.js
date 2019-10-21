@@ -24,7 +24,7 @@ export default function AfterRegistration() {
 					exact
 					activeClassName="ui__ hide"
 					className="ui__ simple small button">
-					← Retour à la création
+					← <T>Retour à la création</T>
 				</NavLink>
 			</div>
 			<h1>

@@ -6,3 +6,10 @@
 /entreprise/cr%C3%A9er-une-*                                /cr%C3%A9er/:splat      301
 /entreprise/devenir-*                                       /cr%C3%A9er/:splat      301
 /entreprise*                                                /cr%C3%A9er:splat       301
+
+/social-security                                            /manage                 301
+/social-security/assimilated-salaried                       /social-security/assimile-salarie 301
+/social-security/*                                          /simulators/:splat      301
+/company/create-a-*                                         /create/:splat          301
+/company/become-*                                           /create/:splat          301
+/company*                                                   /create:splat           301

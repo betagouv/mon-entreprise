@@ -1,16 +1,21 @@
-.ui__.inverted-button:not(:disabled):not(.disabled):active,
 .ui__.button:not(:disabled):not(.disabled):not(.push-right):not(.push-left):active {
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
-.ui__.button,
-.ui__.inverted-button {
+
+.ui__.button:disabled,
+.ui__.button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	/* pointer-events: none; */
+}
+
+.ui__.button {
 	font-size: 1.2rem;
 	display: inline-block;
 	padding: 0.6rem 1.2rem;
 	text-decoration: none;
 	border: 1px solid;
-	will-change: transform;
 	/* outline: none; */
 	line-height: initial;
 	display: inline-block;
@@ -18,21 +23,11 @@
 	transition: all 0.15s;
 	text-align: center;
 	text-transform: uppercase;
-
+	
 	font-family: 'Roboto', sans-serif;
 	font-weight: normal;
 	cursor: pointer;
-}
 
-.ui__.button:disabled,
-.ui__.button.disabled,
-.ui__.inverted-button:disabled,
-.ui__.inverted-button.disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-	/* pointer-events: none; */
-}
-.ui__.button {
 	/* ie11 */
 	border-color: rgb(41, 117, 209);
 	border-color: var(--colour);
@@ -53,7 +48,6 @@
 	);
 	background-size: 280%;
 	background-position-x: 99%;
-	will-change: transform;
 }
 .ui__.button.plain {
 	background-image: linear-gradient(
@@ -92,25 +86,12 @@
 .ui__.button.simple:not(:last-of-type) {
 	margin-right: 0.6em;
 }
-.ui__.button.cta,
-.ui__.inverted-button.cta {
+.ui__.button.cta {
 	margin: 1rem 0;
 	display: inline-block;
 	align-self: center;
 	font-size: 120%;
 	padding: 0.9rem 1.8rem;
-}
-.ui__.inverted-button {
-	color: white;
-	border-color: white;
-}
-.ui__.inverted-button:not(:disabled):not(.disabled):hover,
-.ui__.inverted-button:not(:disabled):not(.disabled).selected {
-	background-color: rgba(255, 255, 255, 1);
-	color: rgb(41, 117, 209);
-	color: var(--colour);
-	border-color: rgb(41, 117, 209);
-	border-color: var(--colour);
 }
 
 .ui__.link-button,
@@ -186,8 +167,7 @@
 	animation: push-button-left 0.1s ease-out alternate-reverse 2;
 }
 
-.ui__.small.button,
-.ui__.small.inverted-button {
+.ui__.small.button {
 	font-size: 90%;
 	line-height: 1rem;
 	transition: all 0.08s;

@@ -3,6 +3,7 @@ import { T } from 'Components'
 import Animate from 'Components/ui/animate'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
+import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -17,23 +18,31 @@ export default function Créer() {
 		.length);
 	return (
 		<Animate.fromBottom>
+			<Helmet>
+				<title>{t(
+					'créer.titre',
+					'Créer une entreprise'
+				)}</title>
+			</Helmet>
 
-			<h1 className="question__title">
-				<T k="formeJuridique.titre">Créer mon entreprise</T>
+			<h1>
+				<T k="créer.titre">Créer une entreprise</T>
 			</h1>
 			<div css="display: flex; align-items: flex-start; justify-content: space-between">
 				<div>
 
 					<p className='ui__ lead'>
-						La première étape consiste à choisir un statut juridique adapté à votre activité.
-						Les démarches administratives pour créer votre entreprise changent en fonction de ce dernier.
-				</p>
+						<T k="créer.description">
+							La première étape consiste à choisir un statut juridique adapté à votre activité.
+							Les démarches administratives pour créer votre entreprise changent en fonction de ce dernier.
+						</T>
+					</p>
 					<Link
 						className="ui__ button plain cta"
 						to={guideAlreadyStarted && nextQuestionUrl ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
-						<T>{!guideAlreadyStarted ? 'Trouver le bon statut' : 'Continuer le guide'}</T>
+						{!guideAlreadyStarted ? t('créer.cta.default', 'Trouver le bon statut') : t('créer.cta.continue', 'Continuer le guide')}
 					</Link>
-					<p className="ui__ notice">Note : le cas des professions libérales réglementées n'est pas traitées</p>
+					<p className="ui__ notice"><T k="créer.warningPL">Note : le cas des professions libérales réglementées n'est pas traités</T></p>
 				</div>
 
 				<img
@@ -42,7 +51,7 @@ export default function Créer() {
 					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) scale(1.4);"
 				/>
 			</div>
-			<h2>Ressources utiles</h2>
+			<h2><T>Ressources utiles</T></h2>
 			<div
 				css={`
 					display: flex;
@@ -55,27 +64,35 @@ export default function Créer() {
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.guideStatut.liste}>
-					<p>Liste des statuts juridiques </p>
-					<small>
-						EURL, SARL, SASU, etc : un raccourci si vous connaissez déjà votre statut
+					<T k="créer.ressources.listeStatuts">
+						<p>Liste des statuts juridiques </p>
+						<small>
+							EURL, SARL, SASU, etc : un raccourci si vous connaissez déjà votre statut
 					</small>
+					</T>
 				</Link>
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={{ pathname: sitePaths.simulateurs.comparaison, state: { fromCréer: true } }}>
-					<p>SASU, EURL ou auto-entrepreneur ?</p>
-					<small>
-						Découvrez les différences en terme de revenus, cotisations, retraite, etc.
+					<T k="créer.ressources.comparaison">
+
+						<p>SASU, EURL ou auto-entrepreneur ?</p>
+						<small>
+							Découvrez les différences en terme de revenus, cotisations, retraite, etc.
 					</small>
+					</T>
 				</Link>
 
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer['auto-entrepreneur']}>
-					<p>Devenir auto-entrepreneur</p>
-					<small>
-						Découvrez les démarches de création simplifiées
+					<T k="créer.ressources.autoEntrepreneur">
+
+						<p>Devenir auto-entrepreneur</p>
+						<small>
+							Accédez aux démarches de création simplifiées pour les petites activités
 					</small>
+					</T>
 				</Link>
 			</div>
 		</Animate.fromBottom >

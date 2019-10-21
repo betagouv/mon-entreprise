@@ -27,7 +27,7 @@ export default function Search() {
 	const dispatch = useDispatch()
 	return (
 		<>
-			<h1 className="question__title">
+			<h1>
 				<T k="trouver.titre">Retrouver mon entreprise</T>
 			</h1>
 			<p>
@@ -67,7 +67,7 @@ export default function Search() {
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && searchResults === null && <p>Aucun résultat</p>}
+			{!isLoading && searchResults === null && <p><T>Aucun résultat</T></p>}
 
 			{searchResults &&
 				searchResults.map(({ siren, denomination }) => (

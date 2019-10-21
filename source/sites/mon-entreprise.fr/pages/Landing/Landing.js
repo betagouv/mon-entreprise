@@ -85,8 +85,8 @@ export default function Landing() {
 						to={sitePaths.simulateurs.index}
 
 						className="ui__ simple small button ">
-						{emoji('🧮')} Voir la liste des simulateurs
-				</Link>
+						{emoji('🧮')} <T k="landing.seeSimulators">Voir la liste des simulateurs</T>
+					</Link>
 				</div>
 				<T k="landing.aboutUs">
 					<h2>Qui sommes-nous ?</h2>

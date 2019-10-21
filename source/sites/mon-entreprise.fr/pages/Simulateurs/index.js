@@ -1,3 +1,4 @@
+import { T } from 'Components'
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
@@ -31,23 +32,23 @@ export default function Simulateurs() {
                         <Link
                             to={sitePaths.gérer.index}
                             className="ui__ simple small push-left button">
-                            ← Retour à mon activité
-						</Link>
+                            ← <T>Retour à mon activité</T>
+                        </Link>
                     )}
                     {lastState ?.fromCréer && (
                         <Link
                             to={sitePaths.créer.index}
                             className="ui__ simple small push-left button">
-                            ← Retour à la création
-						</Link>
+                            ← <T>Retour à la création</T>
+                        </Link>
                     )}
                     {!lastState ||
                         (lastState ?.fromSimulateurs && (
                             <Link
                                 to={sitePaths.simulateurs.index}
                                 className="ui__ simple small push-left button">
-                                ← Voir les autres simulateurs
-							</Link>
+                                ← <T>Voir les autres simulateurs</T>
+                            </Link>
                         ))}
                 </div>
             )}

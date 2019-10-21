@@ -61,7 +61,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		gérer: {
 			index: t('path.gérer.index', '/gérer'),
 			embaucher: t('path.gérer.embaucher', '/embaucher'),
-			selection: t('path.gérer.selection', '/sélection-du-régime'),
 			sécuritéSociale: t('path.gérer.sécuritéSociale', '/sécurité-sociale'),
 		},
 		simulateurs: {

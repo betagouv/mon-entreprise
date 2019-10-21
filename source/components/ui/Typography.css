@@ -115,7 +115,7 @@ p img {
 	max-width: 100%;
 }
 
-a:not(:disabled):not(.button):not(.inverted-button):not(.button-choice):hover {
+a:not(:disabled):not(.button):not(.button-choice):hover {
 	opacity: 0.8;
 }
 
