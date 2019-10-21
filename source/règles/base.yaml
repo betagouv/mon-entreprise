@@ -5079,24 +5079,19 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
           unité: heures/mois
           tranches:
             - en-dessous de: 45
-              montant: 5
-              # * SMIC horaire
+              montant: 5 * SMIC horaire
             - de: 45
               à: 60
-              montant: 15
-              # * SMIC horaire
+              montant: 15 * SMIC horaire
             - de: 60
               à: 80
-              montant: 25
-              # * SMIC horaire
+              montant: 25 * SMIC horaire
             - de: 80
               à: 100
-              montant: 35
-              # * SMIC horaire
+              montant: 35 * SMIC horaire
             - de: 100
               à: 115
-              montant: 50
-              # * SMIC horaire
+              montant: 50 * SMIC horaire
 
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?

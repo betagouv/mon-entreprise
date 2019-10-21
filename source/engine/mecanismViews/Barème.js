@@ -187,7 +187,7 @@ let Tranche = ({
 					</>
 				)}
 			</td>
-			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
+			<td key="taux"> {taux != null ? makeJsx(taux) : makeJsx(montant)}</td>
 			{showValues && !returnRate && taux != null && (
 				<td key="value">
 					<NodeValuePointer data={nodeValue} unit={resultUnit} />
