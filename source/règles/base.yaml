@@ -1539,6 +1539,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
     somme:
       - réduction générale
+      - lodeom . réduction zone un
       - statut JEI . exonération de cotisations
       - réduction ACRE
       - déduction heures supplémentaires
@@ -4654,7 +4655,13 @@ contrat salarié . lodeom . réduction zone un:
     thème: aide bas salaires
     démarches: non
 
-  applicable si: zone un
+  applicable si:
+    toutes ces conditions:
+      - zone un
+      - une de ces conditions:
+          - éligible barème un
+          - éligible barème deux
+          - éligible barème trois
 
   non applicable si:
     une de ces conditions:
@@ -4712,22 +4719,36 @@ contrat salarié . lodeom . paramètre T:
 
 contrat salarié . lodeom . éligible barème un:
   titre: Eligibilité au barème de compétitivité
-  question: Êtes-vous éligibles au barème compétitivité ?
-  description: >
-    ### Employeurs éligibles
+  rend non applicable:
+    - réduction générale
+  formule:
+    variations:
+      - si: entreprise . effectif < 11
+        alors: oui
+      - sinon: secteurs d'activité
 
-      - les entreprises de moins de 11 salariés, quel que soit le secteur d’activité ; quel que soit leur effectif,
-      - les entreprises de transport aérien assurant les liaisons entre les départements et régions d’Outre-mer et entre la métropole et ces territoires, ainsi que les dessertes intérieures ;
-      - les entreprises assurant les dessertes maritimes, fluviales ou les liaisons entre départements et régions d’Outre-mer ;
-      - les employeurs relevant des secteurs du bâtiment et des travaux publics, de la presse, de la production audiovisuelle ;
-      - les employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation et de croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).
+contrat salarié . lodeom . éligible barème un . secteurs d'activité:
+  question: Votre entreprise appartient-elle à l'un de ces secteurs ?
+  description: |
+    Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de compétitivité, votre entreprise doit appartenir à l'un des secteurs suivants :
+
+    - ✈ transport aérien assurant les liaisons entre les départements et régions d’Outre-mer et entre la métropole et ces territoires, ainsi que les dessertes intérieures
+    - ⛵ dessertes maritimes, fluviales ou les liaisons entre départements et régions d’Outre-mer 
+    - 🏗 bâtiment et travaux publics
+    - 📰 la presse
+    - 🎥 la production audiovisuelle 
+    - les secteurs éligibles aux régimes de compétitivité renforcée (barème 2) ou d’innovation et de croissance (barème 3), qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).
   par défaut: non
 
 contrat salarié . lodeom . éligible barème deux:
+  rend non applicable:
+    - réduction générale
   question: Êtes-vous éligibles au barème compétitivité renforcée ?
   par défaut: non
 
 contrat salarié . lodeom . éligible barème trois:
+  rend non applicable:
+    - réduction générale
   question: Êtes-vous éligibles au barème innovation et croissance ?
   par défaut: non
 
