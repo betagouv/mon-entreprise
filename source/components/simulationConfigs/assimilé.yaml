@@ -13,9 +13,6 @@ objectifs:
       - entreprise . charges
       - entreprise . chiffre d'affaires minimum
 
-objectifs secondaires:
-  - contrat salarié . cotisations
-
 questions:
   à l'affiche:
     ACRE: entreprise . ACRE

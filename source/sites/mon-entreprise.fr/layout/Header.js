@@ -39,7 +39,7 @@ export default function Header() {
             <a
                 href="https://www.urssaf.fr"
                 target="_blank"
-                css={{
+                style={{
                     height: '4rem',
                     padding: '1rem'
                 }}

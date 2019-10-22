@@ -118,8 +118,6 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 							path={sitePaths.documentation.index}
 							component={Documentation}
 						/>
-
-						<Route path={sitePaths.privacy.index} component={PrivacyContent} />
 						<Route path={sitePaths.integration.index} component={Integration} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route

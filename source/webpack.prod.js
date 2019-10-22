@@ -115,7 +115,7 @@ module.exports = {
 			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
 			routes: [
 				'/',
-				'/sécurité-sociale/salarié',
+				'/simulateurs/salarié',
 				'/iframes/simulateur-embauche'
 			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')

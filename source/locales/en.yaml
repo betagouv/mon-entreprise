@@ -342,7 +342,7 @@ gérer:
       <0>Access the official auto-entrepreneur website</0>
       <1>You will be able to make your turnover declaration, pay your contributions, and more widely find all the information relating to the status of auto-entrepreneur</1>
   entreprise:
-    auto: Are you an auto-entrepreneur?
+    auto: Are you auto-entrepreneur?
     dirigeant: |
       <0>Are you the majority director?</0>
       <1>If you are a majority director or a member of a majority board of directors, you will not have the same social security system as if you are a minority.</1>
