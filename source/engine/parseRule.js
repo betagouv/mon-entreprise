@@ -3,7 +3,7 @@ import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
 import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
-import { evolve, map } from 'ramda'
+import { evolve, fromPairs, map } from 'ramda'
 import React from 'react'
 import { evaluateNode, makeJsx } from './evaluation'
 import { Node } from './mecanismViews/common'
@@ -71,33 +71,17 @@ export default (rules, rule, parsedRules) => {
 				return disambiguateRuleReference(rules, rule, referenceName)
 			}),
 		// formule de calcul
-		formule: value => {
-			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let explanation = evaluateNode(
-						cache,
-						situationGate,
-						parsedRules,
-						node.explanation
-					),
-					nodeValue = explanation.nodeValue,
-					missingVariables = explanation.missingVariables
-
-				return { ...node, nodeValue, explanation, missingVariables }
-			}
-
-			let child = parse(rules, rule, parsedRules)(value)
-
-			let jsx = (nodeValue, explanation) => makeJsx(explanation)
-
-			return {
-				evaluate,
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'formula',
-				name: 'formule',
-				type: 'numeric',
-				explanation: child
-			}
+		formule: evolveFormula(rules, rule, parsedRules),
+		modifie: modifiers => {
+			const entries = Object.entries(modifiers).map(
+				([ruleName, newFormula]) => {
+					return [
+						ruleName,
+						evolveFormula(rules, { dottedName: ruleName }, newFormula)
+					]
+				}
+			)
+			return fromPairs(entries)
 		},
 		contrôles: map(control => {
 			let testExpression = parse(rules, rule, parsedRules)(control.si)
@@ -204,6 +188,35 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 		rulePropType: 'cond',
 		name,
 		type: 'boolean',
+		explanation: child
+	}
+}
+
+let evolveFormula = (rules, rule, parsedRules) => value => {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let explanation = evaluateNode(
+				cache,
+				situationGate,
+				parsedRules,
+				node.explanation
+			),
+			nodeValue = explanation.nodeValue,
+			missingVariables = explanation.missingVariables
+
+		return { ...node, nodeValue, explanation, missingVariables }
+	}
+
+	let child = parse(rules, rule, parsedRules)(value)
+
+	let jsx = (nodeValue, explanation) => makeJsx(explanation)
+
+	return {
+		evaluate,
+		jsx,
+		category: 'ruleProp',
+		rulePropType: 'formula',
+		name: 'formule',
+		type: 'numeric',
 		explanation: child
 	}
 }

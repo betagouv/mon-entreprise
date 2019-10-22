@@ -965,12 +965,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
   période: aucune
-  unité: €/repas
-  formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors: 3.62
-      - sinon: 4.85
+  formule: 4.85 €/repas
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
@@ -987,6 +982,20 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
 entreprise . hôtel café restaurant:
   par défaut: non
   question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?
+  modifie:
+    contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas: 3.62
+    contrat salarié . temps de travail . heures supplémentaires . majoration:
+      barème:
+        assiette: heures supplémentaires
+        multiplicateur: période . semaines par mois
+        tranches:
+          - en-dessous de: 4
+            taux: 10%
+          - de: 4
+            à: 8
+            taux: 20%
+          - au-dessus de: 8
+            taux: 50%
 
 # contrat salarié . rémunération . avantages en nature . montant
 #   titre: Avantages en nature (montant)
@@ -1888,29 +1897,14 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
   période: mois
   unité: heure
   formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 4
-                taux: 10%
-              - de: 4
-                à: 8
-                taux: 20%
-              - au-dessus de: 8
-                taux: 50%
-      - sinon:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 8
-                taux: 25%
-              - au-dessus de: 8
-                taux: 50%
+    barème:
+      assiette: heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - en-dessous de: 8
+          taux: 25%
+        - au-dessus de: 8
+          taux: 50%
 
 contrat salarié . statut JEI:
   titre: Statut JEI

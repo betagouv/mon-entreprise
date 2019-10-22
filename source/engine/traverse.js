@@ -58,6 +58,12 @@ export let parseAll = flatRules => {
 		if (parsed['rend non applicable']) {
 			nonApplicableMapping[rule.dottedName] = parsed['rend non applicable']
 		}
+		Object.entries(parsed['modifie'] || {}).forEach(([ruleName, formula]) => {
+			parsedRules[ruleName].modifiedBy = {
+				[rule.dottedName]: formula,
+				...(parsedRules[ruleName].modifiedBy || {})
+			}
+		})
 	})
 
 	Object.entries(nonApplicableMapping).forEach(([a, b]) => {

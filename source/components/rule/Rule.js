@@ -186,6 +186,20 @@ export default compose(
 								rule={displayedRule}
 								showValues={valuesToShow || currentExample}
 							/>
+							{displayedRule['modifie'] && (
+								<section id="non-applicable">
+									<h3>
+										<T>Modifie les règles suivantes</T> :{' '}
+									</h3>
+									<ul>
+										{Object.keys(displayedRule['modifie']).map(ruleName => (
+											<li key={ruleName}>
+												<RuleLink dottedName={ruleName} />
+											</li>
+										))}
+									</ul>
+								</section>
+							)}
 							{displayedRule['rend non applicable'] && (
 								<section id="non-applicable">
 									<h3>
