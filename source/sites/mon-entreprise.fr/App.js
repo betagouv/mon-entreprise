@@ -8,7 +8,7 @@ import Raven from 'raven-js'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import { persistEverything, retrievePersistedState } from '../../storage/persistEverything'
@@ -31,6 +31,7 @@ import Integration from './pages/integration/index'
 import Landing from './pages/Landing/Landing.js'
 import Simulateurs from './pages/Simulateurs'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
+import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
 
@@ -101,6 +102,8 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 			<div className="app-content">
 				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 					<Switch>
+						{redirects}
+						<Redirect from="/zoub/*" to="/zab/*" />
 						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route
 							path={sitePaths.gérer.index}

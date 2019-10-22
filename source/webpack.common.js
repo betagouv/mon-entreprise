@@ -117,7 +117,10 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			test: /\.yaml$/,
 			use: ['json-loader', 'yaml-loader']
 		},
-
+		{
+			test: /\.toml$/,
+			use: ['toml-loader']
+		},
 		{
 			test: /\.ne$/,
 			use: [babelLoader, 'nearley-loader']
