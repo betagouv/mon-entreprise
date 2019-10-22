@@ -5,7 +5,8 @@ import unitsTranslations from './locales/units.yaml'
 import { getSessionStorage } from './utils'
 
 let lang =
-	new URLSearchParams(document.location.search.substring(1)).get('lang') ||
+	(typeof document !== 'undefined' &&
+		new URLSearchParams(document.location.search.substring(1)).get('lang')) ||
 	getSessionStorage()
 		?.getItem('lang')
 		?.match(/^(fr|en)$/)?.[0] ||

@@ -74,7 +74,7 @@ export default class Provider extends PureComponent {
 	}
 	render() {
 		const iframeCouleur = new URLSearchParams(
-			document.location.search.substring(1)
+			document?.location.search.substring(1)
 		).get('couleur')
 		return (
 			// If IE < 11 display nothing
