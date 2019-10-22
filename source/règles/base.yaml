@@ -742,7 +742,7 @@ contrat salarié . rémunération . brut de base:
   contrôles:
     - si:
         toutes ces conditions:
-          - rémunération . assiette de vérification du SMIC [mensuel] < SMIC [mensuel]
+          - rémunération . assiette de vérification du SMIC [mensuel] < SMIC contractuel [mensuel]
           - assimilé salarié != oui
           - stage != oui
           - apprentissage != oui
@@ -1059,9 +1059,21 @@ SMIC horaire:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
 
-contrat salarié . SMIC:
+contrat salarié . SMIC contractuel:
+  description: >
+    Valeur du SMIC pro-ratisé pour prendre en compte le temps partiel et utilisé pour la détermination du salaire minimum
   période: flexible
   formule: SMIC temps plein * temps de travail . quotité de travail
+
+contrat salarié . SMIC:
+  description: |
+    Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
+
+    Les heures supplémentaires sont prises en compte sans tenir compte de la majoration.
+  période: flexible
+  formule: temps de travail * SMIC horaire
+  références:
+    Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
 
 contrat salarié . cotisations . salariales:
   titre: cotisations salariales

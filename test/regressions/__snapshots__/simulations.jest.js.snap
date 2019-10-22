@@ -208,15 +208,15 @@ exports[`calculate simulations-salarié: cdd 1`] = `"[2494,0,0,2000,1561,1477]"`
 
 exports[`calculate simulations-salarié: cdd 2`] = `"[2494,0,0,2000,1561,1477]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires 1`] = `"[2642,0,0,2000,1636,1551]"`;
+exports[`calculate simulations-salarié: heures supplémentaires 1`] = `"[2599,0,0,2000,1636,1551]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires 2`] = `"[3349,0,0,2000,2009,1914]"`;
+exports[`calculate simulations-salarié: heures supplémentaires 2`] = `"[3123,0,0,2000,2009,1914]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires 3`] = `"[2713,0,0,2000,1636,1551]"`;
+exports[`calculate simulations-salarié: heures supplémentaires 3`] = `"[2669,0,0,2000,1636,1551]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires 4`] = `"[2623,0,0,2000,1627,1543]"`;
+exports[`calculate simulations-salarié: heures supplémentaires 4`] = `"[2580,0,0,2000,1627,1543]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires 5`] = `"[3291,0,0,2000,1970,1885]"`;
+exports[`calculate simulations-salarié: heures supplémentaires 5`] = `"[3043,0,0,2000,1970,1885]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 1`] = `"[4076,0,0,3000,2353,2168]"`;
 
