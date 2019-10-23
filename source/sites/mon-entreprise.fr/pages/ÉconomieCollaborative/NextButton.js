@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import { T } from 'Components'
 import withSitePaths from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
@@ -31,7 +32,7 @@ export default withSitePaths(function NextButton({
 						? sitePaths.économieCollaborative.index + '/' + nextActivité
 						: sitePaths.économieCollaborative.votreSituation
 				}>
-				{nextActivité || disabled ? 'Continuer' : 'Voir mes obligations'}
+				{nextActivité || disabled ? <T>Continuer</T> : <T k="économieCollaborative.activité.voirObligations">Voir mes obligations</T>}
 			</Link>
 		</p>
 	)

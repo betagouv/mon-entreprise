@@ -1,3 +1,4 @@
+import { T } from 'Components';
 import { SitePathsContext } from 'Components/utils/withSitePaths';
 import React, { useContext } from 'react';
 import { Route, Switch } from 'react-router';
@@ -18,7 +19,7 @@ export default function ÉconomieCollaborative() {
 					exact
 					activeClassName="ui__ hide"
 					className="ui__ simple small push-left button ">
-					← Retour à la selection d'activités
+					← <T k="économieCollaborative.retourAccueil">Retour à la selection d'activités</T>
 				</NavLink>
 			</div>
 			<StoreProvider

@@ -1,49 +1,15 @@
-enterSalary: Enter a monthly salary
 previousSimulationBanner:
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation
-Première estimation: First estimate
-Commencer la simulation: Start simulation
-selectMany: You may pick more than one
-votre réponse: answer here
-reset: Start over
-resetAll: Discard answers
-change: Change answers
-details: See the social cotisations
-revenir: back
-Modifier: Edit
-passer: skip
-irrelevant: Not owed
-unsatisfied: Awaiting your answers…
+Modifier: Modify
 Échap: Esc
 Entrée: Enter
-À propos: About (fr)
 Plein écran: Fullscreen
-first: Your first estimate is now available!
-lastQ: One last question!
-radio_Oui: Yes
-radio_Non: No
-radio_Aucun: None
 oui: yes
 non: no
 déplier: show more
 replier: show less
-Salaire brut: Gross salary
-Salaire net: Net salary
-Salaire chargé: Total salary
-Salaire brut de base: Base salary
-Avantages salarié: Employee benefits
-Réductions: Deductions
-clickForMore: You can click the results below for detailed explanations.
-Quel est le salaire mensuel ?: What is the monthly salary?
-back: Back to your simulation
-ambiguous: More than one rule with this name found. Which one are you looking for ?
-Références: Relevant legal information (fr)
 Pages associées: Related pages
-Pas de sources officielles: No official information
-Votre avis nous intéresse !: Your opinion matters!
-afficher les sources complémentaires: display additional information sources
-input: This rule does not have a formula to compute it. Its value must be supplied through the form.
 Déclenchement: Applicability
 Calcul: Formula
 Désactivée: Inactive
@@ -52,15 +18,7 @@ Chercher dans la documentation: Search the documentation
 Entrez des mots clefs ici: Enter keywords
 noresults: No results
 cliquez pour insérer cette suggestion: click to insert this suggestion
-satisfaction: Are you satisfied with the simulator ?
-Envoyez-nous un commentaire !: Send us a comment !
-Qu'est-ce qui n'a pas été ?: What went wrong ?
-satisfaction-email-ou: To start a conversation with us, fill your email address or
-satisfaction-mailto: click here to directly write an email
-Votre adresse e-mail: Your email address
-envoyer: send
 Rechercher: Search
-Situation incomplète: More information needed
 Destinataire: Levied by
 cotisation: contribution
 aide: aid or subsidy
@@ -113,6 +71,7 @@ A quoi servent mes cotisations ?: What's included in my contributions?
 Effacer: Reset
 Suivant: Next
 Changer: Change
+Continuer: Continue
 quicklinks:
   CDI: Permanent
   Commune: Town
@@ -841,4 +800,53 @@ Crée le: Created on
 domiciliée à: domiciled in
 "Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Ressources utiles: Helpful resources
-Aucun résultat: No result
+Aucun résultat: No result$
+inférieurs à: lower than
+supérieurs à: higher than
+
+économieCollaborative:
+  retourAccueil: Back to the selection of activities
+  accueil: 
+    titre: How to declare income from digital platforms? 
+    contenu: 
+      <0> You have revenues from online platforms (Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.)? You must report them in most cases. However, it can be difficult to find your way around.</0>
+      <1>Follow this guide to find out in a few clicks how to be in good standing.</1>
+      <2>From 2020 onwards, these revenues will be automatically reported by the platforms to the tax authorities and Urssaf.</2>
+    question: What types of activity did you undertake?
+    réassurance: "PS: this tool is only there to inform you, no data will be transmitted to the administrations"
+  activité: 
+    choix: What are more precisely the activities carried out?
+    voirObligations: See my obligations
+    pro: |
+      <0>This is a professional activity</0>
+      <1>The income from this activity is considered as professional income from the first euro earned.</1>
+    impôt: |
+      <0>You must declare your income to the tax authorities</0>
+      <1>Income from this activity is taxable.</1>
+    revenusAnnuels: |
+      <0>Annual income</0>
+      <1>Your annual income for this activity is: </1>
+  exonération: 
+    question: Are you in one of the following situations?
+    notice: If none of these cases apply to you, you will have nothing to worry about.
+  obligations:
+    titre: What do I have to do to be in good standing?
+    pro: 
+      <0>Declare as a professional activity</0>
+      <1>Your income is considered as professional income and is subject to social security contributions. In return, they entitle you to social benefits (pension, health insurance, maternity, etc.).</1>
+    entreprise:
+      <0>With a company</0>
+      <1>If you already have a declared activity, you can add this income to the company's income. You will only have to check that its corporate purpose is compatible with the activities concerned (and change it if necessary). Otherwise, you will have to start a new business.</1>
+      <2>Create a company</2>
+    régimeGénéral: |
+      <0>With the general regime option</0>
+      <1>For some activities, you can declare your income directly on the Urssaf website. This is an interesting option if you do not want to create a new company or modify an existing one. In any case, you will have to declare this income for tax purposes.</1>
+      <2>Declare to the general regime</2>
+    impôts:
+      <0>Declare your income to the tax autorities</0>
+      <1>For these activities, you only need to report your income on your tax return. For more information, you can visit the <2>dedicated page on impots.gouv.fr</2>.</1>
+    aucune: |
+      <0>Nothing to do</0>
+      <1>You do not need to report your income for these activities.</1>
+    régimeGénéralDisponible: General regime available
+

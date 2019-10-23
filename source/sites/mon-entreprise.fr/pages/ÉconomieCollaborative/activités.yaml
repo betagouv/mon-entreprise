@@ -69,12 +69,12 @@
     - eBay
     - Etsy...
   activités:
-    - titre: Vente de vos biens occasionnels
+    - titre: Vente de biens occasionnelle
       icônes: 🧳 🕹 🧸 📺
       plateformes:
         - Leboncoin
         - eBay
-      explication: Vous vendez de façon occasionnel des biens que vous ne souhaitez plus conserver, dans le cadre de la gestion de votre patrimoine privé.
+      explication: Vous vendez de façon occasionnelle des biens que vous ne souhaitez plus conserver, dans le cadre de la gestion de votre patrimoine privé.
 
       seuil déclaration: 0
       exonérée sauf si:

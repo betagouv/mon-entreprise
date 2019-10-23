@@ -1,55 +1,65 @@
 import classnames from 'classnames'
+import { T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { Helmet } from 'react-helmet'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import Checkbox from 'Ui/Checkbox'
 import InfoBulle from 'Ui/InfoBulle'
 import { debounce } from '../../../../utils'
 import { toggleActivité } from './actions'
-import { activités, getActivité } from './activitésData'
+import { activités, getTranslatedActivité } from './activitésData'
 import NextButton from './NextButton'
-import {
-	activitésEffectuéesSelector,
-	activitésRéponduesSelector
-} from './selectors'
+import { activitésEffectuéesSelector, activitésRéponduesSelector } from './selectors'
 import { StoreContext } from './StoreContext'
 
 export default (function ActivitésSelection() {
+	const { t } = useTranslation()
+	const titre = t('économieCollaborative.accueil.titre', 'Comment déclarer mes revenus des plateformes en ligne ?')
 	return (
-		<Animate.fromBottom>
-			<ScrollToTop />
-			<h1>Comment déclarer mes revenus des plateformes en ligne ?</h1>
-			<section css="margin-bottom: 2rem">
-				<p>
-					Vous avez des revenus issus des <strong>plateformes en ligne</strong>{' '}
-					(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les
-					déclarer dans la plupart des cas. Cependant, il peut être difficile de
-					s'y retrouver {emoji('🤔')}
-				</p>
-				<p>
-					Suivez ce guide pour savoir en quelques clics comment être en règle.
-				</p>
-				<p className="ui__ notice">
-					À partir de 2020, ces revenus seront communiqués automatiquement par
-					les plateformes à l’administration fiscale et à l’Urssaf.
-				</p>
-			</section>
+		<>
+			<Helmet>
+				<title>{titre}</title>
+			</Helmet>
+			<Animate.fromBottom>
+				<ScrollToTop />
+				<h1>{titre}</h1>
+				<section css="margin-bottom: 2rem">
+					<T k="économieCollaborative.accueil.contenu">
 
-			<section className="ui__ full-width light-bg">
-				<h2 className="ui__ container">
-					Quels types d'activités avez-vous exercé ?
-				</h2>
-				<ActivitéSelection activités={activités.map(({ titre }) => titre)} />
-				<p className="ui__ container notice" css="text-align: center">
-					PS : cet outil est là uniquement pour vous informer, aucune donnée ne
-					sera transmise aux administrations {emoji('😌')}
+						<p>
+							Vous avez des revenus issus des <strong>plateformes en ligne</strong>{' '}
+							(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les
+							déclarer dans la plupart des cas. Cependant, il peut être difficile de
+							s'y retrouver. {emoji('🤔')}
+						</p>
+						<p>
+							Suivez ce guide pour savoir en quelques clics comment être en règle.
 				</p>
-			</section>
-		</Animate.fromBottom>
+						<p className="ui__ notice">
+							À partir de 2020, ces revenus seront communiqués automatiquement par
+							les plateformes à l’administration fiscale et à l’Urssaf.
+				</p>
+					</T>
+				</section>
+
+				<section className="ui__ full-width light-bg">
+					<h2 className="ui__ container" css="text-align: center">
+						<T k="économieCollaborative.accueil.question">Quels types d'activités avez-vous exercé ?</T>
+					</h2>
+					<ActivitéSelection activités={activités.map(({ titre }) => titre)} />
+					<p className="ui__ container notice" css="text-align: center">
+						<T k="économieCollaborative.accueil.réassurance">PS : cet outil est là uniquement pour vous informer, aucune donnée ne
+					sera transmise aux administrations</T> {emoji('😌')}
+					</p>
+				</section>
+			</Animate.fromBottom>
+		</>
 	)
 })
 
@@ -86,11 +96,12 @@ export const ActivitéSelection = ({ activités, currentActivité }) => {
 export const ActivitéCard = withSitePaths(
 	({ title, selected, interactive, answered, sitePaths, label, className }) => {
 		const { dispatch } = useContext(StoreContext)
+		const { i18n: { language } } = useTranslation();
 		const toggle = useCallback(
 			selected !== undefined
 				? // debounce to avoid double onClick call when clicking on checkbox
-				  debounce(1, () => dispatch(toggleActivité(title)))
-				: () => {},
+				debounce(1, () => dispatch(toggleActivité(title)))
+				: () => { },
 			[dispatch, selected]
 		)
 
@@ -111,14 +122,14 @@ export const ActivitéCard = withSitePaths(
 						<Checkbox name={title} id={title} checked={selected} readOnly />
 					</div>
 				)}
-				<ActivitéContent {...getActivité(title)} label={label} />
+				<ActivitéContent {...getTranslatedActivité(title, language)} label={label} />
 				{answered && (
 					<Link
 						readOnly
 						onClick={e => e.stopPropagation()}
 						className="ui__ small simple button"
 						to={sitePaths.économieCollaborative.index + '/' + title}>
-						Modifier
+						<T>Modifier</T>
 					</Link>
 				)}
 			</div>
@@ -133,18 +144,18 @@ const ActivitéContent = ({
 	icônes,
 	label
 }) => (
-	<>
-		<h4 className="title">
-			{titre}{' '}
-			<InfoBulle>
-				<div css="line-height: initial">{explication}</div>
-			</InfoBulle>
-		</h4>
+		<>
+			<h4 className="title">
+				{titre}{' '}
+				<InfoBulle>
+					<div css="line-height: initial">{explication}</div>
+				</InfoBulle>
+			</h4>
 
-		<p css="flex: 1" className="ui__ notice">
-			{plateformes.join(', ')}
-		</p>
-		{label && <div className="ui__ label"> {label}</div>}
-		<div className="ui__ box-icon">{emoji(icônes)}</div>
-	</>
-)
+			<p css="flex: 1" className="ui__ notice">
+				{plateformes.join(', ')}
+			</p>
+			{label && <div className="ui__ label"> {label}</div>}
+			<div className="ui__ box-icon">{emoji(icônes)}</div>
+		</>
+	)

@@ -81,7 +81,7 @@
 }
 
 .ui__.card.box {
-	min-width: 14.4rem;
+	min-width: 14.333rem;
 	flex: 0.3;
 	max-width: 17rem;
 	display: flex;

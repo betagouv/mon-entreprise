@@ -1,4 +1,5 @@
 import { map, pipe, unnest } from 'ramda'
+import activitésEn from './activités.en.yaml'
 import activités from './activités.yaml'
 
 export { activités }
@@ -8,6 +9,11 @@ export const flatActivités = pipe(
 )(activités)
 
 export const getActivité = a => flatActivités.find(item => item.titre === a)
+
+export const getTranslatedActivité = a => ({
+	...getActivité(a),
+	...activitésEn[a]
+})
 
 export const getMinimumDéclaration = a => {
 	const activité = getActivité(a)
