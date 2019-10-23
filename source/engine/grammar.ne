@@ -13,12 +13,8 @@ const moo = require("moo");
 const letter = '[a-zA-Z\u00C0-\u017F]';
 const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
 const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
-const words = `${word}(?: ${word}|${letterOrNumber}*)*`
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?';
 const percentageRegExp = numberRegExp + '\\%'
-const simpleUnit = `(?:€|[a-z]+)`;
-const dashedSimpleUnits = `${simpleUnit}(?:-${simpleUnit})?`
-const unit = `${dashedSimpleUnits}(?:\/${dashedSimpleUnits})?` 
 
 const lexer = moo.compile({
   percentage: new RegExp(percentageRegExp),
@@ -30,13 +26,16 @@ const lexer = moo.compile({
   comparison: ['>','<','>=','<=','=','!='],
   additionSubstraction: /[\+-]/,
   multiplicationDivision: ['*','/'],
-  temporality: ['annuel' , 'mensuel'],
-  words: new RegExp(words),
-  unit: new RegExp(unit),
+  word: new RegExp(word),
   string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
+  '€': '€',
   dot: ' . ',
+  letterOrNumber: new RegExp(letterOrNumber),
   space: { match: /[\s]+/, lineBreaks: true }
 });
+
+const join = (args) => ({value: (args.map(x => x && x.value).join(""))})
+const flattenJoin = ([a, b]) => Array.isArray(b) ? join([a, ...b]) : a
 %}
 
 @lexer lexer
@@ -68,26 +67,26 @@ NonNumericTerminal ->
 	  boolean  {% id %}
 	| string   {% id %}
 
+Words -> %word (%space (%word {% id %} | %letterOrNumber {% id %}) {% join %}):* {% flattenJoin %}
 
+Variable -> Words (%dot Words {% ([,words]) => words %}):* {% variable %}
 
-Variable -> %words (%dot %words {% ([,words]) => words %}):* {% variable %}
+BaseUnit ->
+  %word {% id %}
+  | "€" {% id %}
 
+Unit -> BaseUnit ("/" BaseUnit {% join %}):? {% join %}
 
-Filter -> "[" %words "]" {% ([,filter]) => filter %}
+Filter -> "[" Words "]" {% ([,filter]) => filter %}
 FilteredVariable -> Variable %space Filter {% filteredVariable %}
 
-TemporalTransform -> "[" %temporality "]" {% ([,temporality]) => temporality %}
+TemporalTransform -> "[" ("mensuel" | "annuel" {% id %}) "]" {% ([,temporality]) => temporality %}
 TemporalVariable -> Variable %space TemporalTransform {% temporalVariable %}
 
-#-----
-
-# Addition and subtraction
 AdditionSubstraction ->
     AdditionSubstraction %space %additionSubstraction %space MultiplicationDivision  {%  binaryOperation('calculation') %}
   | MultiplicationDivision  {% id %}
 
-
-# Multiplication and division
 MultiplicationDivision ->
     MultiplicationDivision %space %multiplicationDivision %space Parentheses  {% binaryOperation('calculation') %}
   | Parentheses   {% id %}
@@ -99,8 +98,7 @@ boolean ->
 
 number ->
     %number {% number %}
-  | %number %space %words {% numberWithUnit %}
-  | %number %space %unit {% numberWithUnit %}
+  | %number %space Unit {% numberWithUnit %}
   | %percentage {% percentage %}
 
 string -> %string {% string %}
