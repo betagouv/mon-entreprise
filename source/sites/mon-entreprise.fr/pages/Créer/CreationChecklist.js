@@ -43,7 +43,7 @@ const CreateCompany = ({
 		? t(
 			[
 				'entreprise.page.autoEntrepreneur.titre',
-				'Comment devenir {{autoEntrepreneur}}'
+				'Devenir {{autoEntrepreneur}}'
 			],
 			{
 				autoEntrepreneur: statut

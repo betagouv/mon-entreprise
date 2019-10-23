@@ -41,7 +41,7 @@ export default function Créer() {
 						to={guideAlreadyStarted && nextQuestionUrl ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
 						{!guideAlreadyStarted ? t('créer.cta.default', 'Trouver le bon statut') : t('créer.cta.continue', 'Continuer le guide')}
 					</Link>
-					<p className="ui__ notice"><T k="créer.warningPL">Note : le cas des professions libérales réglementées n'est pas traité</T></p>
+					<p className="ui__ notice"><T k="créer.warningPL">Le cas des professions libérales réglementées n'est pas encore traité</T></p>
 				</div>
 
 				<img
@@ -66,7 +66,7 @@ export default function Créer() {
 					<T k="créer.ressources.listeStatuts">
 						<p>Liste des statuts juridiques </p>
 						<small>
-							EURL, SARL, SASU, etc : un raccourci si vous connaissez déjà votre statut
+							Vous savez déjà quel statut choisir ? Accédez directement à la liste des démarches associées
 					</small>
 					</T>
 				</Link>
@@ -75,9 +75,9 @@ export default function Créer() {
 					to={{ pathname: sitePaths.simulateurs.comparaison, state: { fromCréer: true } }}>
 					<T k="créer.ressources.comparaison">
 
-						<p>SASU, EURL ou auto-entrepreneur ?</p>
+						<p>Comparateur de régimes</p>
 						<small>
-							Découvrez les différences en terme de revenus, cotisations, retraite, etc.
+							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les différences en terme de revenus, cotisations, retraite, etc
 					</small>
 					</T>
 				</Link>
@@ -87,9 +87,9 @@ export default function Créer() {
 					to={sitePaths.créer['auto-entrepreneur']}>
 					<T k="créer.ressources.autoEntrepreneur">
 
-						<p>Devenir auto-entrepreneur</p>
+						<p>Démarche auto-entrepreneur</p>
 						<small>
-							Accédez aux démarches de création simplifiées démarrer une activité
+							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien démarrer votre activité
 					</small>
 					</T>
 				</Link>

@@ -1,15 +1,17 @@
-import { T } from 'Components'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
-import logoSvg from 'Images/logo.svg'
-import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
-import { Link } from 'react-router-dom'
-import Footer from '../../layout/Footer/Footer'
-import illustrationSvg from './illustration.svg'
-import './Landing.css'
+import { T } from 'Components';
+import { SitePathsContext } from 'Components/utils/withSitePaths';
+import logoSvg from 'Images/logo.svg';
+import React, { useContext } from 'react';
+import emoji from 'react-easy-emoji';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Footer from '../../layout/Footer/Footer';
+import illustrationSvg from './illustration.svg';
+import './Landing.css';
 
 export default function Landing() {
 	const sitePaths = useContext(SitePathsContext)
+	const statutChoisi = useSelector(state => state.inFranceApp.companyStatusChoice);
 	return (
 		<div className="app-content">
 			<section className="ui__ container landing-title">
@@ -36,7 +38,7 @@ export default function Landing() {
 			<section className="ui__ full-width light-bg center-flex">
 				<Link
 					className="ui__ interactive card box"
-					to={sitePaths.créer.index}>
+					to={statutChoisi ? sitePaths.créer[statutChoisi] : sitePaths.créer.index}>
 					<div className="ui__ big box-icon">{emoji('💡')}</div>
 					<T k="landing.choice.create">
 						<h3>Créer une entreprise</h3>
@@ -46,7 +48,7 @@ export default function Landing() {
 						</p>
 					</T>
 					<div className="ui__ small simple button">
-						<T>Commencer</T>
+						{statutChoisi ? <T>Continuer</T> : <T>Commencer</T>}
 					</div>
 				</Link>
 				<Link className="ui__ interactive card box " to={sitePaths.gérer.index}>
