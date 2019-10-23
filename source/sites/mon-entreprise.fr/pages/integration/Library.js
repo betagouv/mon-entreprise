@@ -108,7 +108,7 @@ export default function Privacy() {
 			</p>
 			<p>
 				Alors que dans le simulateur{' '}
-				<a href="https://mon-entreprise.fr/sécurité-sociale/salarié">salarié</a>
+				<a href="https://mon-entreprise.fr/simulateurs/salarié">salarié</a>
 				, il suffit de renseigner la commune et le taux correspondant est
 				automatiquement déterminé. C'est voulu : pour garder la bibliothèque (et
 				le site) légers, nous utilisons deux API en ligne. L'
