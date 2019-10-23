@@ -96,7 +96,7 @@ export default function Simulateurs() {
             </p>
                     <ul>
                         <li><strong>Maintenus à jour</strong> avec les dernières legislation</li>
-                        <li><strong>Améliorés en continu</strong> afin d'augmenter le nombre de dispositifs pris en compte (actuellement 320)</li>
+                        <li><strong>Améliorés en continu</strong> afin d'augmenter le nombre de dispositifs pris en compte</li>
                         <li>Développés en <strong>partenariat avec l'Urssaf</strong></li>
                     </ul>
                 </T>

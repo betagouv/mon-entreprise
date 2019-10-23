@@ -454,7 +454,7 @@ const CreateCompany = ({
 					to={{ pathname: sitePaths.simulateurs['auto-entrepreneur'], state: { fromCréer: true } }}>
 					<T k="entreprise.ressources.simu.autoEntrepreneur"><p>Simulateur de revenus auto-entrepreneur</p>
 						<small>
-							Simuler le montant de vos cotisations sociale et de votre impôt et estimez votre futur revenu net.
+							Simuler le montant de vos cotisations sociales et de votre impôt et estimez votre futur revenu net.
 					</small>
 					</T>
 				</Link>

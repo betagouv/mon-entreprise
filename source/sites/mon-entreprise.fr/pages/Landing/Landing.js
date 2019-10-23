@@ -112,7 +112,7 @@ export default function Landing() {
 					<p>
 						Nous sommes une petite{' '}
 						<strong>équipe autonome et pluridisciplinaire</strong> au sein de l’
-						<a href="https://urssaf.fr">URSSAF</a>. Nous avons à coeur d’être au
+						<a href="https://www.urssaf.fr">URSSAF</a>. Nous avons à coeur d’être au
 						plus proche de nos usagers afin d’améliorer en permanence ce site
 						conformément à la méthode des{' '}
 						<a href="https://beta.gouv.fr">Startup d’État</a>.

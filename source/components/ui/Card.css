@@ -66,6 +66,10 @@
 	color: rgba(255, 255, 255, 0.8);
 }
 
+.ui__.interactive.card {
+	user-select: text;
+	-webkit-user-drag: none;
+}
 .ui__.interactive.card:hover {
 	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
 		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
@@ -77,7 +81,9 @@
 }
 
 .ui__.card.box {
-	width: 14.4rem;
+	min-width: 14.4rem;
+	flex: 0.3;
+	max-width: 17rem;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -101,6 +107,7 @@
 
 @media (max-width: 500px) {
 	.ui__.card.box {
-		width: 100%;
+		max-width: 100%;
+		flex: 1;
 	}
 }

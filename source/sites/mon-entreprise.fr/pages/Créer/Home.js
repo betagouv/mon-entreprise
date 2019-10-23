@@ -33,8 +33,7 @@ export default function Créer() {
 
 					<p className='ui__ lead'>
 						<T k="créer.description">
-							La première étape consiste à choisir un statut juridique adapté à votre activité.
-							Les démarches administratives pour créer votre entreprise changent en fonction de ce dernier.
+							Avant d'entamer les démarches administratives pour créer votre entreprise, vous devez choisir un statut juridique adapté à votre activité
 						</T>
 					</p>
 					<Link
@@ -42,7 +41,7 @@ export default function Créer() {
 						to={guideAlreadyStarted && nextQuestionUrl ? nextQuestionUrl : sitePaths.créer.guideStatut.multipleAssociates}>
 						{!guideAlreadyStarted ? t('créer.cta.default', 'Trouver le bon statut') : t('créer.cta.continue', 'Continuer le guide')}
 					</Link>
-					<p className="ui__ notice"><T k="créer.warningPL">Note : le cas des professions libérales réglementées n'est pas traités</T></p>
+					<p className="ui__ notice"><T k="créer.warningPL">Note : le cas des professions libérales réglementées n'est pas traité</T></p>
 				</div>
 
 				<img
@@ -90,7 +89,7 @@ export default function Créer() {
 
 						<p>Devenir auto-entrepreneur</p>
 						<small>
-							Accédez aux démarches de création simplifiées pour les petites activités
+							Accédez aux démarches de création simplifiées démarrer une activité
 					</small>
 					</T>
 				</Link>

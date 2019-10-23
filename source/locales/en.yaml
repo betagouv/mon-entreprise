@@ -302,7 +302,7 @@ entreprise:
 
 créer:
   titre: Create a company
-  description: The first step is to choose a legal status that is appropriate for your business. The administrative procedures for setting up your business change according to it.
+  description: Before starting the administrative procedures to create your company, you must choose a legal status adapted to your activity
   warningPL: "Note: the case of regulated liberal professions is not covered"
   cta:
     default: Find the right status
@@ -316,7 +316,7 @@ créer:
       <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
     autoEntrepreneur: 
       <0>Become auto-entrepreneur</0>
-      <1>Go to the simplified creation process for small businesses</1>
+      <1>Go to the simplified creation process for starting a business</1>
 
 
 gérer:
@@ -675,7 +675,7 @@ simulateurs:
       <0>All the simulators on this site are:</0>
 
       <1><0>Maintained with the latest legislation</0>
-      <1>Continuously improved to increase the number of devices taken into account (currently 320)</1>
+      <1>Continuously improved to increase the number of devices taken into account</1>
       <2>Developed in partnership with the Urssaf (the contribution collector entity in France)<2>
       </1>
   inversionFail: The amount entered is too small or results in an impossible situation, try another one
