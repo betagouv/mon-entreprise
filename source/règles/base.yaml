@@ -327,11 +327,14 @@ contrat salarié . ATMP:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      taux:
-        variations:
-          - si: taux réduit
-            alors: 1%
-          - sinon: ATMP . taux collectif ATMP
+      taux: taux
+
+contrat salarié . ATMP . taux:
+  formule:
+    variations:
+      - si: taux réduit
+        alors: 1%
+      - sinon: ATMP . taux collectif ATMP
 
 contrat salarié . ATMP . taux réduit:
   titre: taux réduit pour activité sans risque
@@ -761,7 +764,10 @@ contrat salarié . cotisations . assiette:
   formule:
     allègement:
       assiette: rémunération . brut
-      abattement: indemnité kilométrique vélo + stage . gratification minimale
+      abattement: 
+        somme: 
+          - indemnité kilométrique vélo
+          - stage . gratification minimale
 
 contrat salarié . cotisations . assiette . salariale:
   titre: Assiette des cotisations sociales
@@ -870,8 +876,28 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
   période: flexible
   formule:
     somme:
-      - rémunération . brut de base
+      - brut de base
       - avantages en nature . montant
+      - primes . activité
+
+contrat salarié . rémunération . primes: 
+  formule: activité
+contrat salarié . rémunération . primes . activité:
+  titre: primes d'activité
+  description: >
+    Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
+
+    Ces primes sont prises en compte pour le calcul du salaire minimum
+  formule:
+    somme: 
+      - base
+      - conventionnelles
+
+contrat salarié . rémunération . primes . activité . base:
+  formule: 0
+
+contrat salarié . rémunération . primes . activité . conventionnelles:
+  formule: 0
 
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
@@ -882,6 +908,7 @@ contrat salarié . rémunération . brut:
     somme:
       - rémunération . brut de base
       - avantages en nature . montant
+      - primes
       - indemnités salarié
       - heures supplémentaires
 
@@ -1061,12 +1088,18 @@ plafond sécurité sociale temps plein:
   formule: 3377 €
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
-    arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
+    arrêté: https://www.legifrance.gouv.fr/eli/arrete/2018/12/11/SSAS1833942A/jo/texte
+plafond horaire sécurité sociale:
+  acronyme: PHSS
+  formule:
+    plafond sécurité sociale temps plein / 135 
+  unité: €
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
   acronyme: PSS
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
+
 
 contrat salarié . SMIC temps plein:
   période: mois
@@ -1119,10 +1152,12 @@ contrat salarié . cotisations . salariales:
       - retraite complémentaire [salarié]
       - contribution d'équilibre général [salarié]
       - contribution d'équilibre technique [salarié]
+      - chômage [salarié]
       - CSG
       - CRDS
       - APEC [salarié]
       - complémentaire santé [salarié]
+      - conventionnelles
       - (- réduction heures supplémentaires)
 
 contrat salarié . cotisations . patronales:
@@ -1133,8 +1168,7 @@ contrat salarié . cotisations . patronales:
     somme:
       - maladie [employeur]
       - ATMP
-      - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
+      - avantages sociaux
       - vieillesse [employeur]
       - retraite complémentaire [employeur]
       - contribution d'équilibre général [employeur]
@@ -1152,6 +1186,7 @@ contrat salarié . cotisations . patronales:
       - taxe sur les salaires
       - CDD . CPF
       - forfait social
+      - conventionnelles
       - (- réductions de cotisations)
 
 contrat salarié . rémunération:
@@ -1665,6 +1700,19 @@ contrat salarié . cotisations:
       - patronales
       - salariales
 
+contrat salarié . cotisations . salariales . conventionnelles:
+  titre: cotisations salariales conventionnelles 
+  période: flexible
+  description: Cotisations spécifiques à la convention collective
+  formule: 0
+
+contrat salarié . cotisations . patronales . conventionnelles:
+  titre: cotisations patronales conventionnelles
+  période: flexible
+  description: Cotisations spécifiques à la convention collective
+  formule: 0
+
+
 contrat salarié . aides employeur:
   titre: aides à l'embauche
   résumé: Pour l'employeur, différées dans le temps
@@ -2072,8 +2120,6 @@ contrat salarié . contribution d'équilibre général:
             - de: 1
               à: 8
               taux: 1.62%
-            - au-dessus de: 8
-              taux: 0%
 
         - attributs:
             dû par: salarié
@@ -2084,8 +2130,6 @@ contrat salarié . contribution d'équilibre général:
             - de: 1
               à: 8
               taux: 1.08%
-            - au-dessus de: 8
-              taux: 0%
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -2117,7 +2161,7 @@ contrat salarié . retraite complémentaire:
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   description: |
-    Cotisation de retraite complémentaire. Remplace les cotisations AGIRC et ARRCO qui étaient avant 2019 séparées.
+    Cotisations de retraite complémentaire. 
   période: flexible
   formule:
     barème:
@@ -2128,28 +2172,34 @@ contrat salarié . retraite complémentaire:
             dû par: employeur
           tranches:
             - en-dessous de: 1
-              taux: 4.72%
+              taux: taux employeur tranche 1
             - de: 1
               à: 8
-              taux: 12.95%
-            - au-dessus de: 8
-              taux: 0%
-
+              taux: taux employeur tranche 2
         - attributs:
             dû par: salarié
           assiette: cotisations . assiette . salariale
           tranches:
             - en-dessous de: 1
-              taux: 3.15%
+              taux: taux salarié tranche 1
             - de: 1
               à: 8
-              taux: 8.64%
-            - au-dessus de: 8
-              taux: 0%
+              taux: taux salarié tranche 2
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
     régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+
+contrat salarié . retraite complémentaire . taux employeur tranche 1:
+  formule: 4.72%
+contrat salarié . retraite complémentaire . taux employeur tranche 2:
+  formule: 12.95%
+contrat salarié . retraite complémentaire . taux salarié tranche 1:
+  formule: 3.15%
+contrat salarié . retraite complémentaire . taux salarié tranche 2:
+  formule: 8.64%
+
+
 
 contrat salarié . AGS:
   description: Cotisation au Régime de Garantie des Salaires
@@ -2174,13 +2224,20 @@ contrat salarié . allocations familiales:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      taux:
-        variations:
-          - si: taux réduit
-            alors: 3.45%
-          - sinon: 5.25%
+      taux: taux
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+contrat salarié . allocations familiales . taux:
+  période: aucune
+  formule:
+    variations:
+      - si: taux réduit
+        alors: 3.45%
+      - sinon: 5.25%
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+  
 
 contrat salarié . allocations familiales . taux réduit:
   période: flexible
@@ -2232,18 +2289,13 @@ contrat salarié . chômage:
     multiplication:
       assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
-
       composantes:
         - attributs:
-            nom: base
-          taux: 4%
-
+            dû par: salarié
+          taux: taux salarié
         - attributs:
-            nom: contribution exceptionnelle temporaire
-          description: |
-            Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
-          taux: 0.05%
-
+            dû par: employeur
+          taux: taux employeur
   exemples:
     - nom: SMIC
       situation:
@@ -2253,6 +2305,13 @@ contrat salarié . chômage:
       situation:
         cotisations . assiette: 20000
       valeur attendue: 547.07
+  
+contrat salarié . chômage . taux salarié: 
+  formule: 0%
+
+contrat salarié . chômage . taux employeur: 
+  formule: 4.05 %
+  
 
 contrat salarié . complémentaire santé:
   description: |
@@ -2390,8 +2449,7 @@ contrat salarié . assiette CSG et CRDS:
   formule:
     somme:
       - assiette abattue
-      - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
+      - avantages sociaux
 
 contrat salarié . assiette CSG et CRDS . assiette abattue:
   période: flexible
@@ -2485,13 +2543,18 @@ contrat salarié . FNAL:
   formule:
     multiplication:
       assiette: cotisations . assiette
+      taux: taux
       variations:
         - si: entreprise . effectif < 20
           alors:
-            taux: 0.1%
             plafond: plafond sécurité sociale
-        - sinon:
-            taux: 0.5%
+
+contrat salarié . FNAL . taux:
+  formule: 
+    variations:
+      - si: entreprise . effectif < 20
+        alors: 0.1%
+      - sinon: 0.5%
 
   exemples:
     - nom: SMIC
@@ -2523,6 +2586,7 @@ contrat salarié . formation professionnelle:
     toutes ces conditions:
       - entreprise . effectif < 11
       - apprentissage
+
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2632,6 +2696,7 @@ contrat salarié . participation effort de construction:
 # TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
 # indiquer le taux appliqué par l'entreprise
 #
+
 contrat salarié . prévoyance obligatoire cadre:
   titre: Prévoyance obligatoire pour les cadres
   cotisation:
@@ -2746,8 +2811,7 @@ contrat salarié . taxe sur les salaires . assiette de base:
   formule:
     somme:
       - cotisations . assiette
-      - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
+      - avantages sociaux
   références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
@@ -2898,18 +2962,19 @@ contrat salarié . vieillesse:
           assiette: cotisations . assiette . salariale
           composantes:
             - nom: non plafonnée
-              taux: 0.4%
+              taux: taux salarié non plafonné
+
             - nom: plafonnée
               plafond: plafond sécurité sociale
-              taux: 6.90%
+              taux: taux salarié plafonné
         - attributs:
             dû par: employeur
           composantes:
             - nom: non plafonnée
-              taux: 1.9%
+              taux: taux employeur non plafonné
             - nom: plafonnée
               plafond: plafond sécurité sociale
-              taux: 8.55%
+              taux: taux employeur plafonné
 
   exemples:
     - nom: SMIC
@@ -2920,14 +2985,25 @@ contrat salarié . vieillesse:
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
-
   références:
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
+
+contrat salarié . vieillesse . taux salarié plafonné:
+  formule: 6.90%
+contrat salarié . vieillesse . taux salarié non plafonné:
+  formule: 0.4%
+contrat salarié . vieillesse . taux employeur plafonné:
+  formule: 8.55%
+contrat salarié . vieillesse . taux employeur non plafonné:
+  formule: 1.9%
+
+
 
 contrat salarié . forfait social:
   titre: Forfait social
   description: |
     Le forfait social est une contribution versée par l'employeur. Elle est prélevée sur les rémunérations ou gains non soumis aux cotisations et contributions sociales, mais assujettis à la CSG.
+  applicable si: entreprise . effectif > 10
   cotisation:
     branche: retraite
     collecteur: URSSAF
@@ -2940,20 +3016,11 @@ contrat salarié . forfait social:
   période: flexible
   formule:
     multiplication:
-      assiette: forfait social . assiette taux huit
+      assiette: avantage sociaux
       taux: 8%
     # Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
 
-contrat salarié . forfait social . assiette taux huit:
-  titre: Assiette du forfait social au taux de 8%
-  références:
-    Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
-  applicable si: entreprise . effectif > 10
-  période: flexible
-  formule:
-    somme:
-      - complémentaire santé [employeur]
-      - prévoyance obligatoire cadre
+
 
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
 
@@ -4910,6 +4977,7 @@ contrat salarié . lodeom . paramètre T:
         alors: 0.3254
   note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.
 entreprise . convention collective:
+contrat salarié . convention collective:
   par défaut: droit commun
   question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
   formule:
@@ -4921,16 +4989,10 @@ entreprise . convention collective:
         # - intermittents du spectacle
         - droit commun
 
-entreprise . convention collective . droit commun:
+contrat salarié . convention collective . droit commun:
   formule: convention collective = 'droit commun'
 
-entreprise . convention collective . sportifs:
-  formule: convention collective = 'sportifs'  
-
-entreprise . convention collective . intermittents du spectacle:
-  formule: convention collective = 'intermittents du spectacle'  
-
-entreprise . convention collective . hôtel café restaurant:
+contrat salarié . convention collective . hôtel café restaurant:
   formule: convention collective = 'hôtel café restaurant'
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 
@@ -4940,13 +5002,12 @@ entreprise . convention collective . hôtel café restaurant . montant forfaitai
     règle: contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
   formule: 3.62 €/repas
 
-entreprise . convention collective . hôtel café restaurant . majoration heures supplémentaires: 
-  remplace: 
-    règle: contrat salarié . temps de travail . heures supplémentaires . majoration 
+contrat salarié . convention collective . hôtel café restaurant . majoration heures supplémentaires: 
+  remplace: temps de travail . heures supplémentaires . majoration 
   période: flexible
   formule:
     barème:
-      assiette: contrat salarié . temps de travail . heures supplémentaires
+      assiette: temps de travail . heures supplémentaires
       multiplicateur: période . semaines par mois
       tranches:
         - en-dessous de: 4
@@ -4956,3 +5017,456 @@ entreprise . convention collective . hôtel café restaurant . majoration heures
           taux: 20%
         - au-dessus de: 8
           taux: 50%
+
+contrat salarié . convention collective . sportifs:
+  formule: convention collective = 'sportifs'  
+  description: |
+    L'entreprise dépend de la convention collective nationale des sportifs (CCNS)
+    Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
+
+
+contrat salarié . convention collective . sportifs . cotisations:
+contrat salarié . convention collective . sportifs . cotisations . prévoyance: 
+  remplace: 
+    - règle: cotisations . salariales . conventionnelles
+      par: prévoyance [salarié]
+    - règle: cotisations . patronales . conventionnelles
+      par: prévoyance [employeur]
+  formule: 
+    multiplication:
+      assiette: assiette forfaitaire
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 0.365 %
+        - attributs:
+            dû par: salarié
+          taux: 0.365 %
+  références: 
+    Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+
+contrat salarié . convention collective . sportifs . cotisations . régime frais de santé:
+  période: flexible
+  remplace: contrat salarié . complémentaire santé . forfait
+  formule: 
+    multiplication: 
+      assiette: plafond sécurité sociale temps plein
+      taux: taux
+
+contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . taux:
+  formule: 
+    variations: 
+      - si: régime alsace moselle
+        alors: 
+          variations:
+            - si: option . R1
+              alors: 0.59%
+            - si: option . R2
+              alors: 0.77%
+            - si: option . R3
+              alors: 0.89%
+      - sinon: 
+          variations:
+            - si: option . R1
+              alors: 0.92%
+            - si: option . R2
+              alors: 1.17%
+            - si: option . R3
+              alors: 1.32%
+  référence: 
+    unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
+    unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
+  
+contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . option:
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - R1
+        - R2
+        - R3
+
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle: 
+  remplace: formation professionnelle
+  période: année
+  formule: 
+    somme:
+      - plan de formation
+      - professionnalisation
+      - CIF CDI
+      - CIF CDD
+  références:
+    Article 8.6 de la CCNS (IDCC2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000034406905&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . plan de formation: 
+  formule: 
+    le maximum de: 
+      - versement minimum
+      - multiplication:
+          assiette: cotisations . assiette
+          taux:
+            variations: 
+            - si: entreprise . effectif < 20
+              alors: 1.45%
+            - si: entreprise . effectif >= 20
+              alors: 0.90%
+
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . plan de formation . versement minimum:
+  applicable si: entreprise . effectif < 10
+  formule: 30 €/mois
+
+    
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . professionnalisation: 
+  formule:
+    le maximum de: 
+      - versement minimum
+      - multiplication:
+          assiette: cotisations . assiette
+          taux:
+            variations: 
+            - si: entreprise . effectif < 20
+              alors: 0.15%
+            - si: entreprise . effectif >= 20
+              alors: 0.50%
+
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . professionnalisation . versement minimum:
+  applicable si: entreprise . effectif < 10
+  formule: 5 €/mois  
+
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . CIF CDI: 
+  applicable si:
+    toutes ces conditions:
+      - CDI
+      - entreprise . effectif >= 20
+  formule:
+    multiplication:
+      assiette: cotisations . assiette
+      taux: 0.20 %
+      
+contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . CIF CDD: 
+  applicable si: CDD
+  formule: 
+    multiplication:
+      assiette: cotisations . assiette
+      taux: 1 %
+    
+
+contrat salarié . convention collective . sportifs . cotisations . assiette franchisée:
+  période: flexible
+  formule:
+    allègement:
+      assiette: cotisations . assiette
+      abattement: franchise
+
+contrat salarié . convention collective . sportifs . joueur entraineur:
+  question: le joueur est-il aussi entraineur ? 
+  par défaut: non
+
+contrat salarié . convention collective . sportifs . exonération taux AT:
+  non applicable si: joueur entraineur
+  question: l'employeur a-t'il décidé de ne pas être exonéré de taux AT ?
+  rend non applicable:
+    - atmp
+  par défaut: non
+
+contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire:
+  période: flexible
+  applicable si: assiette franchisée < 115 * SMIC horaire
+  remplace: cotisation . assiette forfaitaire
+  formule:
+    barème linéaire:
+      assiette: assiette franchisée
+      multiplicateur: SMIC horaire
+      tranches:
+        - en-dessous de: 45
+          montant: 5 * SMIC horaire
+        - de: 45
+          à: 60
+          montant: 15 * SMIC horaire
+        - de: 60
+          à: 80
+          montant: 25 * SMIC horaire
+        - de: 80
+          à: 100
+          montant: 35 * SMIC horaire
+        - de: 100
+          à: 115
+          montant: 50 * SMIC horaire
+
+contrat salarié . convention collective . sportifs . primes . nombre de manifestations:
+  question: combien de manifestations le joueur a-t'il effectué ce mois-ci ?
+  unité: manifestations/mois
+  par défaut: 0
+
+contrat salarié . convention collective . sportifs . primes:
+  remplace: rémunération . primes . activité . conventionelles
+  formule:
+    somme: 
+      - manifestation 1
+      - manifestation 2
+      - manifestation 3
+      - manifestation 4
+      - manifestation 5
+      - autres manifestations
+
+contrat salarié . convention collective . sportifs . primes . manifestation 1:
+  période: mois
+  question: Quelle prime pour la première manifestation ?
+  applicable si: nombre de manifestations > 0
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 2:
+  période: mois
+  question: Quelle prime pour la deuxième manifestation ?
+  applicable si: nombre de manifestations > 1
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 3:
+  période: mois
+  question: Quelle prime pour la troisième manifestation ?
+  applicable si: nombre de manifestations > 2
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 4:
+  période: mois
+  question: Quelle prime pour la quatrième manifestation ?
+  applicable si: nombre de manifestations > 3
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 5:
+  question: Quelle prime pour la cinquième manifestation ?
+  applicable si: nombre de manifestations > 4
+  période: mois
+  unité: €
+contrat salarié . convention collective . sportifs . primes . autre manifestations:
+  question: Quelles primes pour les autres manifestations ?
+  applicable si: nombre de manifestations > 5
+  période: mois
+  unité: €
+
+contrat salarié . convention collective . sportifs . cotisations . franchise:
+  applicable si: entreprise . effectif > 10
+  période: flexible
+  somme:
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - primes . manifestation 1
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - primes . manifestation 2
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - primes . manifestation 3
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - primes . manifestation 4
+    - le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - primes . manifestation 5
+
+contrat salarié . convention collective . intermittents du spectacle:
+  par défaut: non
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - techniciens
+        - artiste
+
+contrat salarié . convention collective . intermittents du spectacle . formation professionnelle:
+  remplace: formation professionnelle
+  formule: 
+    somme: 
+      - 50 €
+      - multiplication:
+          assiette: rémunération . brut
+          taux: 2.10 % 
+
+contrat salarié . convention collective . intermittents du spectacle . caisse des congés spectacle:
+  remplace: cotisations . patronales . conventionnelles
+  formule:  
+    multiplication:
+      assiette: rémunération . brut 
+      taux: 15.40%
+  références:
+    audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
+
+contrat salarié . convention collective . intermittents du spectacle . retraite complémentaire techniciens et cadre:
+  applicable si: 
+    une de ces conditions: 
+      - cadre
+      - technicien
+  remplace: 
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 3.94%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 3.93%
+  références: 
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+contrat salarié . convention collective . intermittents du spectacle . technicien:
+  formule: intermittents du spectacle = 'technicien'
+  
+contrat salarié . convention collective . intermittents du spectacle . technicien . non cadre:
+  applicable si: cadre = non
+  remplace: 
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans: 
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+  références: 
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+contrat salarié . convention collective . intermittents du spectacle . artiste:
+  IDCC: 3090
+  formule: intermittents du spectacle = "artiste"
+  description: |
+    Sont considérés comme artistes du spectacle :
+    - L'artiste lyrique
+    - L'artiste dramatique
+    - L'artiste chorégraphique
+    - L'artiste de variétés
+    - Le musicien
+    - Le chansonnier
+    - L'artiste de complément
+    - Le chef d'orchestre
+    - L'arrangeur-orchestrateur
+    - Le metteur en scène, le réalisateur et le chorégraphe, pour l'exécution matérielle de leur conception artistique
+    - L'artiste de cirque
+    - Le marionnettiste
+    - Les personnes dont l'activité est reconnue comme un métier d'artiste-interprète par les conventions collectives du spectacle vivant étendues.
+ 
+  références: 
+    Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
+  par défaut: non
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . non cadre:
+  applicable si: cadre = non
+  remplace:
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans: 
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 4.45%
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 4.44%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+  références: 
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . activité accessoire:
+  rend non applicable: réduction de taux
+  question: | 
+    l'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
+  par défaut: non
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . réduction de taux:
+  rend non applicable:  exonérations
+  remplace: 
+    - règle: exonération . taux réduit
+      par: oui
+    - règle: maladie . taux employeur
+      par: maladie . taux employeur * réduction de taux
+    - règle: maladie . taux salarié
+      par: maladie . taux salarié * réduction de taux
+    - règle: vieillesse . taux employeur plafonné
+      par: vieillesse . taux employeur plafonné * réduction de taux
+    - règle: vieillesse . taux employeur non plafonné
+      par: vieillesse . taux employeur non plafonné * réduction de taux
+    - règle: vieillesse . taux salarié plafonné
+      par: vieillesse . taux salarié plafonné * réduction de taux
+    - règle: vieillesse . taux salarié non plafonné
+      par: vieillesse . taux salarié non plafonné * réduction de taux
+    - règle: allocation familiales . taux
+      par: allocation familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: FNAL . taux
+      par: FNAL . taux * réduction de taux
+  formule: 70%
+  
+contrat salarié . convention collective . intermittents du spectacle . artiste . réduction de taux . ATMP:
+  remplace: ATMP . taux
+  formule: 
+    variations:
+      - si: régime alsace moselle
+        alors: 1.54%
+      - sinon: 1.12%
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . nombre jours travaillés:
+  question: Pour combien de jours continus l'artiste est-il engagé ?
+  par défaut: 5
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . plafond proratisé:
+  applicable si: jours travaillés < 5
+  remplace: 
+    règle: plafond sécurité sociale
+    dans: 
+      - FNAL
+      - vieillesse
+  formule: 
+    multiplication:
+      assiette: plafond horaire de la sécurité sociale
+      facteur: 12 * nombre jours travaillés
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . acteur de complément: 
+  non applicable si: activité accessoire
+  remplace: 
+    règle: nombre jours travaillés
+    par: 1
+  question: l'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
+  par defaut: non
+
+contrat salarié . convention collective . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire:
+  applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
+  remplace: cotisation . assiette forfaitaire
+  formule:
+    multiplication:
+      assiette: SMIC horaire
+      facteur: 9
+
+
+contrat salarié . cotisations . assiette forfaitaire: 
+  formule: non
+
+contrat salarié . cotisations . assiette forfaitaire . montant:
+  applicable si: rémunération réelle = non
+  rend non applicable: 
+    - exonération . réduction générale
+  remplace:
+    - règle: cotisations . assiette
+      sauf dans: 
+        - chômage
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+    - assiette CSG et CRDS . assiette abattue
+  formule: 
+    le maximum de:
+      - minimum
+      - assiette forfaitaire
+  références:
+    exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
+    CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+
+
+contrat salarié . cotisations . assiette forfaitaire . minimum:
+  période: flexible
+  description: >
+    Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
+    1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+  applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale temps plein
+  formule: 70% * rémunération . brut
+
+contrat salarié . cotisations . assiette forfaitaire . rémunération réelle: 
+  question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
+  par défaut: non
