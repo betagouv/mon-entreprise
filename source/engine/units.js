@@ -5,10 +5,20 @@ import i18n from '../i18n'
 export let parseUnit = string => {
 	let [a, b = ''] = string.split('/'),
 		result = {
-			numerators: a !== '' ? [a] : [],
-			denominators: b !== '' ? [b] : []
+			numerators: a !== '' ? [getUnitKey(a)] : [],
+			denominators: b !== '' ? [getUnitKey(b)] : []
 		}
 	return result
+}
+
+const translations = Object.entries(
+	i18n.getResourceBundle(i18n.language, 'units')
+)
+function getUnitKey(unit) {
+	const key = translations
+		.find(([, trans]) => trans === unit)?.[0]
+		.replace(/_plural$/, '')
+	return key || unit
 }
 
 let printUnits = (units, count) =>

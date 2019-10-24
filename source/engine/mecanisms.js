@@ -560,7 +560,8 @@ export let mecanismMax = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le maximum de'
+		name: 'le maximum de',
+		unit: explanation[0].unit
 	}
 }
 

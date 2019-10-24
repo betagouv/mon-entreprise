@@ -6,13 +6,11 @@ période:
 
 période . jours ouvrés moyen par mois:
   période: mois
-  unité: jour
-  formule: 21
+  formule: 21 jours
   note: On retient 21 comme nombre de jours ouvrés moyen par mois
 
 période . semaines par mois:
-  unité: semaine
-  formule: 52 / 12
+  formule: 52 semaines / 12
 
 contrat salarié:
   icônes: 📄
@@ -72,12 +70,10 @@ contrat salarié . indemnité kilométrique vélo:
       valeur attendue: 200
 
 contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
-  unité: €
-  formule: 200
+  formule: 200 €
 
 contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
-  unité: €/km
-  formule: 0.25
+  formule: 0.25 €/km
 
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
   période: année
@@ -85,11 +81,9 @@ contrat salarié . indemnité kilométrique vélo . distance annuelle:
 
 contrat salarié . indemnité kilométrique vélo . distance journalière:
   description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
-  formule: 4
-  unité: km/jour
+  formule: 4 km/jour
 contrat salarié . indemnité kilométrique vélo . jours travaillés:
-  formule: 218
-  unité: jour
+  formule: 218 jours
 
 contrat salarié . indemnité kilométrique vélo . active:
   titre: indemnité vélo active
@@ -192,8 +186,7 @@ contrat salarié . CDD . congés dus en jours ouvrés:
   formule: contrat salarié . congés dus par mois * durée contrat
 
 contrat salarié . congés dus par mois:
-  unité: jour/mois
-  formule: 25 / 12
+  formule: 25 jours / 12 mois
 
 contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
   formule: salaire journalier * congés non pris
@@ -1023,8 +1016,7 @@ plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
   période: mois
   acronyme: PSS
-  formule: 3377
-  unité: €
+  formule: 3377 €
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
     arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
@@ -1053,8 +1045,7 @@ contrat salarié . SMIC temps plein . net imposable:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
 
 SMIC horaire:
-  formule: 10.03
-  unité: €/heure
+  formule: 10.03 €/heure
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
@@ -1171,9 +1162,8 @@ contrat salarié . rémunération . net imposable . heures supplémentaires déf
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
-  unité: €
   période: année
-  formule: 5358
+  formule: 5358 €
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1791,7 +1781,7 @@ entreprise . établissement bancaire:
       - établissement . localisation . département = 'Mayotte'
 
 contrat salarié . temps de travail:
-  unité: heure
+  unité: heures
   formule:
     somme:
       - temps contractuel
@@ -1800,7 +1790,7 @@ contrat salarié . temps de travail:
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 contrat salarié . temps de travail . temps contractuel:
-  unité: heure
+  unité: heures
   période: mois
   formule:
     multiplication:
@@ -1808,7 +1798,7 @@ contrat salarié . temps de travail . temps contractuel:
       facteur: période . semaines par mois
 
 contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
-  unité: heure/semaine
+  unité: heures/semaine
   formule:
     variations:
       - si: temps partiel
@@ -1816,8 +1806,7 @@ contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
       - sinon: base légale
 
 contrat salarié . temps de travail . base légale:
-  formule: 35
-  unité: heure/semaine
+  formule: 35 heures/semaine
 
 contrat salarié . temps de travail . temps partiel:
   période: aucune
@@ -1830,7 +1819,7 @@ contrat salarié . temps de travail . temps partiel:
 
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   par défaut: 32
-  unité: heure/semaine
+  unité: heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
     - si: heures par semaine < 24
@@ -1854,7 +1843,7 @@ contrat salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
-  unité: heure
+  unité: heures
   période: mois
   suggestions:
     aucune: 0
@@ -4099,7 +4088,7 @@ auto-entrepreneur . impôt . abattement:
       - multiplication:
           assiette: base des cotisations [annuel]
           taux: taux
-      - 305
+      - 305 €
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
@@ -4250,7 +4239,7 @@ protection sociale . retraite . base . taux de la pension:
 
 protection sociale . retraite . trimestres validés par an:
   période: aucune
-  unité: trimestre
+  unité: trimestres
   formule:
     le minimum de:
       - somme:
@@ -4261,13 +4250,13 @@ protection sociale . retraite . trimestres validés par an:
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   période: aucune
-  unité: trimestre
+  unité: trimestres
   applicable si: contrat salarié
   formule: barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . trimestres indépendant:
   période: aucune
-  unité: trimestre
+  unité: trimestres
   applicable si: indépendant
   formule:
     variations:
@@ -4282,7 +4271,7 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
   période: aucune
   formule:
     barème linéaire:
-      unité: trimestre
+      unité: trimestres
       assiette: revenu moyen [annuel]
       multiplicateur: SMIC horaire
       tranches:
@@ -4311,7 +4300,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
       - si: entreprise . catégorie d'activité = 'libérale'
         alors:
           barème linéaire:
-            unité: trimestre
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2880
@@ -4333,7 +4322,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
           barème linéaire:
-            unité: trimestre
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 4137
@@ -4351,7 +4340,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
                 montant: 4
       - sinon:
           barème linéaire:
-            unité: trimestre
+            unité: trimestres
             assiette: entreprise . chiffre d'affaires [annuel]
             tranches:
               - en-dessous de: 2412
@@ -4393,9 +4382,8 @@ protection sociale . retraite . complémentaire salarié:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . valeur du point:
-  formule: 1.2588
+  formule: 1.2588 €/point
   période: année
-  unité: €/point
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -4403,19 +4391,18 @@ protection sociale . retraite . complémentaire salarié . valeur du point:
 protection sociale . retraite . complémentaire salarié . points acquis:
   formule: points acquis par mois * mois cotisés
   période: aucune
-  unité: point
+  unité: points
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . points acquis par mois:
   période: mois
-  unité: point/mois
+  unité: points/mois
   formule: contrat salarié . retraite complémentaire / prix d'achat du point
 
 protection sociale . retraite . complémentaire salarié . prix d'achat du point:
-  formule: 16.7226
+  formule: 16.7226 €/point
   période: mois
-  unité: €
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
@@ -4426,9 +4413,8 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
 protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
-  formule: 1.187
+  formule: 1.187 €/point
   période: année
-  unité: €/point
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
@@ -4438,6 +4424,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
 
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
   période: mois
+  unité: points/mois
   formule:
     multiplication:
       assiette:
@@ -4447,9 +4434,8 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
       facteur: 1 / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
-  formule: 17.456
+  formule: 17.456 €/point
   période: mois
-  unité: €
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
@@ -4502,7 +4488,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
             - multiplication:
                 assiette: revenu moyen [annuel]
                 facteur: 1 / 730
-            - 55.51
+            - 55.51 €
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -4512,12 +4498,12 @@ protection sociale . santé . indemnités journalières . indépendant:
   unité: €
   formule:
     le maximum de:
-      - 21
+      - 21 €
       - le minimum de:
           - multiplication:
               assiette: revenu moyen [annuel]
               facteur: 1 / 730
-          - 55.51
+          - 55.51 €
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -4648,4 +4634,3 @@ situation personnelle . RSA:
   titre: allocataire RSA
   question: Êtes-vous allocataire du RSA ?
   par défaut: non
-
