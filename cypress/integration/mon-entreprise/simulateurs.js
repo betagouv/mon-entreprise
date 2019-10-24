@@ -31,8 +31,9 @@ describe('Simulateurs', function () {
 
             it.only('should allow to change period', function () {
                 cy.contains('année').click()
+                cy.wait(200)
                 cy.get(inputSelector).first().type('{selectall}12000')
-                cy.wait(500)
+                cy.wait(600)
                 cy.contains('mois').click()
                 cy.get(inputSelector).first().invoke('val').should('match', /1[\s]000/)
             })

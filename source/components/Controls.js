@@ -26,17 +26,17 @@ function Controls({
 		...controls,
 		...(inversionFail
 			? [
-					{
-						message: t([
-							'simulateurs.inversionFail',
-							'Le montant saisi est trop faible ou aboutit à une situation impossible, essayez en un autre'
-						]),
-						level: 'avertissement'
-					}
-			  ]
+				{
+					message: t([
+						'simulateurs.inversionFail',
+						'Le montant saisi est trop faible ou aboutit à une situation impossible, essayez en un autre'
+					]),
+					level: 'avertissement'
+				}
+			]
 			: [])
 	]
-	if (!messages?.length) return null
+	if (!messages ?.length) return null
 
 	return (
 		<div id="controlsBlock">
@@ -51,8 +51,8 @@ function Controls({
 										{message ? (
 											<Markdown source={message} />
 										) : (
-											<span id="controlExplanation">{makeJsx(evaluated)}</span>
-										)}
+												<span id="controlExplanation">{makeJsx(evaluated)}</span>
+											)}
 
 										{solution && !foldedSteps.includes(solution.cible) && (
 											<div>
@@ -84,8 +84,8 @@ export default compose(
 	connect(
 		(state, props) => ({
 			foldedSteps: state.conversationSteps.foldedSteps,
-			controls: analysisWithDefaultsSelector(state)?.controls,
-			inversionFail: analysisWithDefaultsSelector(state)?.cache?.inversionFail,
+			controls: analysisWithDefaultsSelector(state) ?.controls,
+			inversionFail: analysisWithDefaultsSelector(state) ?.cache ?.inversionFail,
 			key: props.language,
 			hiddenControls: state.simulation.hiddenControls
 		}),
