@@ -67,7 +67,7 @@ blockquote {
 	flex-wrap: wrap;
 }
 
-.ui__ .hide {
+.ui__.hide {
 	display: none;
 }
 @media (max-width: 850px) {

@@ -8,7 +8,7 @@ import Raven from 'raven-js'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import { persistEverything, retrievePersistedState } from '../../storage/persistEverything'
@@ -82,7 +82,7 @@ function InFranceRoute({ basename, language }) {
 let RouterSwitch = () => {
 	return (
 		<>
-			<Header />
+			{!inIframe() && <Header />}
 			<Switch>
 				<Route exact path="/" component={Landing} />
 				<Route path="/iframes" component={Iframes} />
@@ -103,7 +103,6 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 					<Switch>
 						{redirects}
-						<Redirect from="/zoub/*" to="/zab/*" />
 						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route
 							path={sitePaths.gérer.index}
