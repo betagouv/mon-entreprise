@@ -4,18 +4,15 @@ import {
 	initializeHiringChecklist
 } from 'Actions/hiringChecklistAction'
 import { React, T } from 'Components'
-import withSitePaths from 'Components/utils/withSitePaths'
 import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 
-const HiringProcess = ({
+const Embaucher = ({
 	onChecklistInitialization,
-	sitePaths,
 	onItemCheck,
 	hiringChecklist,
 	t
@@ -23,13 +20,13 @@ const HiringProcess = ({
 	<Animate.fromBottom>
 		<Helmet>
 			<title>
-				{t(['embauche.tâches.page.titre', `Les formalités pour embaucher`])}
+				{t(['embauche.tâches.page.titre', 'Les formalités pour embaucher'])}
 			</title>
 			<meta
 				name="description"
 				content={t(
 					'embauche.tâches.page.description',
-					`Toutes les démarches nécessaires à l'embauche de votre premier salarié.`
+					"Toutes les démarches nécessaires à l'embauche de votre premier salarié."
 				)}
 			/>
 		</Helmet>
@@ -196,16 +193,13 @@ const HiringProcess = ({
 				</li>
 				<li>Remettre la fiche de paie à votre employé</li>
 			</ul>
-			<Link className="ui__ button" to={sitePaths.sécuritéSociale.salarié}>
-				Obtenir un exemple de fiche de paie
-			</Link>
 		</T>
 	</Animate.fromBottom>
 )
 
 export default compose(
 	withTranslation(),
-	withSitePaths,
+
 	connect(
 		state => ({ hiringChecklist: state.inFranceApp.hiringChecklist }),
 		{
@@ -213,4 +207,4 @@ export default compose(
 			onItemCheck: checkHiringItem
 		}
 	)
-)(HiringProcess)
+)(Embaucher)

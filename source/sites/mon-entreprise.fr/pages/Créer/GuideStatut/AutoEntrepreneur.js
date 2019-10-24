@@ -6,7 +6,6 @@ import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import CompanyStatusNavigation from './CompanyStatusNavigation'
 
 import type { TFunction } from 'react-i18next'
 
@@ -61,8 +60,6 @@ const Autoentrepreneur = ({ isAutoentrepreneur, t }: Props) => (
 		<div className="ui__ full-width">
 			<SchemeComparaison hideAssimiléSalarié />
 		</div>
-
-		<CompanyStatusNavigation onSkip={() => isAutoentrepreneur(null)} />
 	</>
 )
 

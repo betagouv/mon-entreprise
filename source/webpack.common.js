@@ -88,12 +88,12 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 					{
 						targets: !legacy
 							? {
-									esmodules: true
-							  }
+								esmodules: true
+							}
 							: {
-									esmodules: false,
-									browsers: ['ie 11']
-							  },
+								esmodules: false,
+								browsers: ['ie 11']
+							},
 						useBuiltIns: 'entry',
 						corejs: '3'
 					}
@@ -117,7 +117,10 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			test: /\.yaml$/,
 			use: ['json-loader', 'yaml-loader']
 		},
-
+		{
+			test: /\.toml$/,
+			use: ['toml-loader']
+		},
 		{
 			test: /\.ne$/,
 			use: [babelLoader, 'nearley-loader']

@@ -1,13 +1,15 @@
+import { T } from 'Components'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import withSitePaths from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { useTranslation } from "react-i18next"
 import { Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { selectSeuilRevenus } from './actions'
-import { getActivité } from './activitésData'
+import { getTranslatedActivité } from './activitésData'
 import { ActivitéSelection } from './ActivitésSelection'
 import ExceptionsExonération from './ExceptionsExonération'
 import NextButton from './NextButton'
@@ -20,8 +22,9 @@ export default withSitePaths(function Activité({
 		params: { title }
 	}
 }) {
-	const { state, dispatch } = useContext(StoreContext)
-	const activité = getActivité(title)
+	const { i18n: { language } } = useTranslation();
+	const { state, dispatch } = useContext(StoreContext)	
+	const activité = getTranslatedActivité(title, language);
 	if (!(title in state)) {
 		return <Redirect to={sitePaths.économieCollaborative.index} />
 	}
@@ -32,8 +35,8 @@ export default withSitePaths(function Activité({
 				<ScrollToTop />
 				<h1>{activité.titre}</h1>
 				<p>{activité.explication}</p>
-				<p>Quels sont plus précisément les types d'activités exercées ? </p>
-				<section className="ui__ full-width choice-group">
+				<p><T k="économieCollaborative.activité.choix">Quelles sont plus précisément les activités exercées ?</T></p>
+				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
 						currentActivité={title}
 						activités={activité.activités.map(({ titre }) => titre)}
@@ -54,9 +57,8 @@ export default withSitePaths(function Activité({
 				</h1>
 				<Markdown source={activité.explication} />
 				{activité.plateformes && (
-					<p>
-						{emoji('📱 ')}
-						Exemples de plateformes : {activité.plateformes.join(', ')}
+					<p className="ui__ notice">
+						{emoji('📱 ')}{activité.plateformes.join(', ')}
 					</p>
 				)}
 				<ExceptionsExonération
@@ -65,22 +67,25 @@ export default withSitePaths(function Activité({
 				/>
 
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
-					<>
+					<T k="économieCollaborative.activité.pro">
 						<h2>Il s'agit d'une activité professionnelle</h2>
 						<p>
 							Les revenus de cette activité sont considérés comme des{' '}
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
 						</p>
-					</>
+					</T>
 				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
-					<>
+					<T k="économieCollaborative.activité.impôt">
 						<h2>Vous devez déclarez vos revenus aux impôts</h2>
 						<p>Les revenus de cette activité sont imposables.</p>
-					</>
+					</T>
 				) : (
 					<>
+					<T k="économieCollaborative.activité.revenusAnnuels">
+
 						<h2>Revenus annuels</h2>
 						<p>Vos revenus annuels pour cette activité sont :</p>
+					</T>
 						<ul
 							key={title}
 							css="
@@ -100,7 +105,7 @@ export default withSitePaths(function Activité({
 												value="AUCUN"
 												defaultChecked={seuilRevenus === 'AUCUN'}
 											/>{' '}
-											inférieurs à{' '}
+											<T>inférieurs à</T>{' '}
 											<Value numFractionDigits={0} unit="€">
 												{activité['seuil déclaration']}
 											</Value>
@@ -115,7 +120,7 @@ export default withSitePaths(function Activité({
 										value="IMPOSITION"
 										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
-									inférieurs à :{' '}
+									<T>inférieurs à</T>{' '}
 									<Value numFractionDigits={0} unit="€">
 										{activité['seuil pro']}
 									</Value>
@@ -132,7 +137,7 @@ export default withSitePaths(function Activité({
 												seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE'
 											}
 										/>{' '}
-										supérieurs à :{' '}
+										<T>supérieurs à</T>{' '}
 										<Value numFractionDigits={0} unit="€">
 											{activité['seuil pro']}
 										</Value>
@@ -150,7 +155,7 @@ export default withSitePaths(function Activité({
 											seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
 										}
 									/>{' '}
-									supérieurs à :{' '}
+									<T>supérieurs à</T>{' '}
 									<Value numFractionDigits={0} unit="€">
 										{activité['seuil régime général'] || activité['seuil pro']}
 									</Value>

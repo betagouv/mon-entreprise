@@ -33,7 +33,7 @@ h1 {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.9rem;
-	line-height: 3rem;
+	line-height: 2.6rem;
 }
 h2 {
 	margin-top: 2rem;
@@ -75,10 +75,16 @@ button {
 }
 
 p,
+a,
 ul {
 	line-height: 1.7rem;
+	
+}
+
+p, ul {
 	margin: 0 0 0.6rem;
 }
+
 p.ui__.lead {
 	font-size: 120%;
 	line-height: 2rem;
@@ -86,7 +92,7 @@ p.ui__.lead {
 }
 ul {
 	list-style: '› ';
-	padding-left: 0.7rem;
+	padding-left: 0.8rem;
 }
 ol {
 	margin: 0;
@@ -109,7 +115,7 @@ p img {
 	max-width: 100%;
 }
 
-a:not(:disabled):not(.button):not(.inverted-button):hover {
+a:not(:disabled):not(.button):not(.button-choice):hover {
 	opacity: 0.8;
 }
 
@@ -127,4 +133,5 @@ small,
 	color: rgba(0, 0, 0, 0.6);
 	color: var(--lighterTextColour);
 	font-size: 85%;
+	line-height: 1.2rem;
 }

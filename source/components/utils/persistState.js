@@ -10,12 +10,17 @@ export const getInitialState = key => {
 	if (!value) {
 		return
 	}
-	return JSON.parse(safeLocalStorage.getItem(key))
+	try {
+		return JSON.parse(safeLocalStorage.getItem(key))
+	} catch (e) {
+		console.warn(e);
+		return null;
+	}
 }
 
 export const usePersistingState = (key, defaultState) => {
 	const initialState = getInitialState(key)
 	return persistState(key)(
-		useState(initialState !== undefined ? initialState : defaultState)
+		useState(initialState != null ? initialState : defaultState)
 	)
 }

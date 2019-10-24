@@ -9,7 +9,11 @@ export default function SimulateurWarning({ simulateur }) {
 		false
 	)
 	return (
-		<div id="SimulateurWarning" style={{ marginBottom: '2em' }}>
+		<div
+			id="SimulateurWarning"
+			css={`
+				margin-bottom: 1rem;
+			`}>
 			<p>
 				{emoji('🚩 ')}
 				<strong>
@@ -23,9 +27,11 @@ export default function SimulateurWarning({ simulateur }) {
 					</button>
 				)}
 			</p>
-			<div className={`content ${folded ? '' : 'ui__ card'}`}>
-				{!folded && (
-					<ul style={{ marginLeft: '1em' }}>
+			{!folded && (
+				<div
+					className="ui__ card light-bg"
+					css="padding-top: 1rem; padding-bottom: 0.4rem">
+					<ul>
 						{simulateur == 'auto-entreprise' && (
 							<li>
 								<T k="simulateurs.warning.cfe">
@@ -42,7 +48,7 @@ export default function SimulateurWarning({ simulateur }) {
 						<li>
 							<T k="simulateurs.warning.urssaf">
 								Les calculs sont indicatifs et ne se substituent pas aux
-								décomptes réels des Urssaf, impots.gouv.fr, etc.
+								décomptes réels des Urssaf, impots.gouv.fr, ou autres.
 							</T>
 						</li>
 						{simulateur == 'auto-entreprise' && (
@@ -57,18 +63,15 @@ export default function SimulateurWarning({ simulateur }) {
 							</li>
 						)}
 					</ul>
-				)}
-
-				{!folded && (
-					<div style={{ textAlign: 'right', paddingRight: '1em' }}>
+					<div className="ui__ answer-group">
 						<button
 							className="ui__ button simple small"
 							onClick={() => fold(true)}>
 							<T>J'ai compris</T>
 						</button>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</div>
 	)
 }

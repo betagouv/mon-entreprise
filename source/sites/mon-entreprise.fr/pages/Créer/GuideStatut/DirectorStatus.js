@@ -6,9 +6,8 @@ import { compose } from 'ramda'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { DirectorStatus } from 'Types/companyTypes'
-import type { TFunction } from 'react-i18next'
+
 
 type Props = {
 	defineDirectorStatus: (?DirectorStatus) => void,
@@ -26,7 +25,7 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => {
 					name="description"
 					content={t(
 						'statut du dirigeant.page.description',
-						`Ce choix est important parce qu'il détermine le régime de sécurité sociale et la couverture sociale de l'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.`
+						'Ce choix est important parce qu\'il détermine le régime de sécurité sociale et la couverture sociale de l\'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise.'
 					)}
 				/>
 			</Helmet>
@@ -43,8 +42,6 @@ const DefineDirectorStatus = ({ defineDirectorStatus }: Props) => {
 					<SchemeComparaison hideAutoEntrepreneur />
 				</div>
 			</T>
-
-			<CompanyStatusNavigation onSkip={() => defineDirectorStatus(null)} />
 		</>
 	)
 }

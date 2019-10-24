@@ -1,6 +1,6 @@
 import { fetchCompanyDetails } from '../api/sirene'
 
-const fetchCommuneDetails = function(codeCommune) {
+const fetchCommuneDetails = function (codeCommune) {
 	return fetch(
 		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
 	).then(response => {
@@ -30,6 +30,11 @@ export const setEntreprise = siren => async dispatch => {
 export const specifyIfAutoEntrepreneur = isAutoEntrepreneur => ({
 	type: 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR',
 	isAutoEntrepreneur
+})
+
+export const specifyIfDirigeantMajoritaire = isDirigeantMajoritaire => ({
+	type: 'EXISTING_COMPANY::SPECIFY_DIRIGEANT_MAJORITAIRE',
+	isDirigeantMajoritaire
 })
 
 export const resetEntreprise = () => ({

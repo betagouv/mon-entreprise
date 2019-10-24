@@ -1,4 +1,4 @@
-import { React } from 'Components'
+import { React, T } from 'Components'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
@@ -33,28 +33,30 @@ export default function CompanyDetails({ siren, denomination }) {
 						<small>({siren})</small>
 					</>
 				) : (
-					<Skeleton width={400} />
-				)}
+						<Skeleton width={400} />
+					)}
 			</h3>
-			<small>
-				Crée le{' '}
+
+			<p className="ui__ notice">
+				<T>Crée le</T>{' '}
 				<strong>
 					{company ? (
 						DateFormatter.format(new Date(company.date_creation))
 					) : (
-						<Skeleton width={80} />
-					)}
+							<Skeleton width={80} />
+						)}
 				</strong>
-				, domiciliée à{' '}
+				, <T>domiciliée à</T>{' '}
 				{company ? (
 					<>
 						<strong>{company.etablissement_siege.libelle_commune}</strong> (
 						{company.etablissement_siege.code_postal})
 					</>
 				) : (
-					<Skeleton width={100} />
-				)}
-			</small>
+						<Skeleton width={100} />
+					)}
+			</p>
+
 		</>
 	)
 }

@@ -4,8 +4,8 @@ import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import type {
 	Action as CompanyStatusAction,
-	LegalStatusRequirements,
-	State
+		LegalStatusRequirements,
+		State
 } from 'Types/companyTypes'
 import type { Action as CreationChecklistAction } from 'Types/companyCreationChecklistTypes'
 import type { Action as HiringChecklist } from 'Types/hiringChecklistTypes'
@@ -44,9 +44,9 @@ function hiringChecklist(state: { [string]: boolean } = {}, action: Action) {
 			return Object.keys(state).length
 				? state
 				: action.checklistItems.reduce(
-						(checklist, item) => ({ ...checklist, [item]: false }),
-						{}
-				  )
+					(checklist, item) => ({ ...checklist, [item]: false }),
+					{}
+				)
 		default:
 			return state
 	}
@@ -66,9 +66,9 @@ function companyCreationChecklist(
 			return Object.keys(state).length
 				? state
 				: action.checklistItems.reduce(
-						(checklist, item) => ({ ...checklist, [item]: false }),
-						{}
-				  )
+					(checklist, item) => ({ ...checklist, [item]: false }),
+					{}
+				)
 		case 'RESET_COMPANY_STATUS_CHOICE':
 			return {}
 		default:
@@ -77,11 +77,7 @@ function companyCreationChecklist(
 }
 
 function companyStatusChoice(state: ?string = null, action: Action) {
-	if (
-		['RESET_COMPANY_STATUS_CHOICE', 'RESET_EXISTING_COMPANY_DETAILS'].includes(
-			action.type
-		)
-	) {
+	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
 		return null
 	}
 	if (action.type !== 'INITIALIZE_COMPANY_CREATION_CHECKLIST') {
@@ -147,6 +143,9 @@ function existingCompany(
 	}
 	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {
 		return { ...state, isAutoEntrepreneur: action.isAutoEntrepreneur }
+	}
+	if (state && action.type.endsWith('SPECIFY_DIRIGEANT_MAJORITAIRE')) {
+		return { ...state, isDirigeantMajoritaire: action.isDirigeantMajoritaire }
 	}
 
 	return state

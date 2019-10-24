@@ -3,10 +3,9 @@
 import { companyHasMultipleAssociates } from 'Actions/companyStatusActions'
 import { React, T } from 'Components'
 import { compose } from 'ramda'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import CompanyStatusNavigation from './CompanyStatusNavigation'
 import type { TFunction } from 'react-i18next'
 
 type Props = {
@@ -63,9 +62,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates, t }: Props) => (
 				<T k="associés.choix2">Plusieurs personnes</T>
 			</button>
 		</div>
-		<CompanyStatusNavigation
-			onSkip={() => companyHasMultipleAssociates(null)}
-		/>
+
 	</>
 )
 

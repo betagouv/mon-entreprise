@@ -11,7 +11,6 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SAS',
 	'SARL',
 	'SASU',
-	'SNC',
 	'auto-entrepreneur',
 	'auto-entrepreneur-EIRL',
 	'SA'
@@ -26,80 +25,60 @@ export const constructLocalizedSitePath = (language: string) => {
 	const t = translateTo(language)
 	return constructSitePaths('', {
 		index: '',
-		entreprise: {
-			index: t('path.entreprise.index', '/entreprise'),
-			créer: (companyStatus: LegalStatus | ':status') =>
-				companyStatus === ':status'
-					? [
-							t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
-								companyStatus: ':status'
-							}),
-							t(
-								'path.entreprise.devenirAutoEntrepreneur',
-								'/devenir-{{autoEntrepreneur}}',
-								{
-									autoEntrepreneur: ':status'
-								}
-							)
-					  ]
-					: companyStatus.includes('auto-entrepreneur')
-					? t(
-							'path.entreprise.devenirAutoEntrepreneur',
-							'/devenir-{{autoEntrepreneur}}',
-							{
-								autoEntrepreneur: companyStatus
-							}
-					  )
-					: t('path.entreprise.créer', '/créer-une-{{companyStatus}}', {
-							companyStatus
-					  }),
-
-			après: t('path.entreprise.après', '/après-la-création'),
-			statutJuridique: {
-				index: t('path.entreprise.statutJuridique.index', '/statut-juridique'),
-				liste: t('path.entreprise.statutJuridique.liste', '/liste'),
+		créer: {
+			index: t('path.créer.index', '/créer'),
+			...(LANDING_LEGAL_STATUS_LIST.reduce((paths, statut) => ({
+				[statut]:
+					`/${statut}`,
+				...paths
+			}), {})),
+			après: t('path.créer.après', '/après-la-création'),
+			guideStatut: {
+				index: t('path.créer.guideStatut.index', '/statut-juridique'),
+				liste: t('path.créer.guideStatut.liste', '/liste'),
 				soleProprietorship: t(
-					'path.entreprise.statutJuridique.responsabilité',
+					'path.créer.guideStatut.responsabilité',
 					'/responsabilité'
 				),
 				directorStatus: t(
-					'path.entreprise.statutJuridique.statutDirigeant',
-					'/statut-du-dirigeant'
+					'path.créer.guideStatut.statutDirigeant',
+					'/dirigeant'
 				),
 				autoEntrepreneur: t(
-					'path.entreprise.statutJuridique.autoEntrepreneur',
+					'path.créer.guideStatut.autoEntrepreneur',
 					'/auto-entrepreneur-ou-entreprise-individuelle'
 				),
 				multipleAssociates: t(
-					'path.entreprise.statutJuridique.nombreAssociés',
+					'path.créer.guideStatut.nombreAssociés',
 					'/nombre-associés'
 				),
 				minorityDirector: t(
-					'path.entreprise.statutJuridique.gérantMinoritaire',
+					'path.créer.guideStatut.gérantMinoritaire',
 					'/gérant-majoritaire-ou-minoritaire'
 				)
 			}
 		},
-		sécuritéSociale: {
-			index: t('path.sécuritéSociale.index', '/sécurité-sociale'),
+		gérer: {
+			index: t('path.gérer.index', '/gérer'),
+			embaucher: t('path.gérer.embaucher', '/embaucher'),
+			sécuritéSociale: t('path.gérer.sécuritéSociale', '/sécurité-sociale'),
+		},
+		simulateurs: {
+			index: t('path.simulateurs.index', '/simulateurs'),
 			'assimilé-salarié': t(
-				'path.sécuritéSociale.assimilé-salarié',
+				'path.simulateurs.assimilé-salarié',
 				'/assimilé-salarié'
 			),
-			indépendant: t('path.sécuritéSociale.indépendant', '/indépendant'),
+			indépendant: t('path.simulateurs.indépendant', '/indépendant'),
 			'auto-entrepreneur': t(
-				'path.sécuritéSociale.auto-entrepreneur',
+				'path.simulateurs.auto-entrepreneur',
 				'/auto-entrepreneur'
 			),
 			comparaison: t(
-				'path.sécuritéSociale.comparaison',
+				'path.simulateurs.comparaison',
 				'/comparaison-régimes-sociaux'
 			),
-			selection: t('path.sécuritéSociale.selection', '/sélection-du-régime'),
-			salarié: t('path.sécuritéSociale.salarié', '/salarié')
-		},
-		démarcheEmbauche: {
-			index: t('path.démarcheEmbauche.index', '/démarches-embauche')
+			salarié: t('path.simulateurs.salarié', '/salarié')
 		},
 		économieCollaborative: {
 			index: t('path.économieCollaborative.index', '/économie-collaborative'),
@@ -111,9 +90,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		documentation: {
 			exemples: t('path.documentation.exemples', '/exemples'),
 			index: t('path.documentation.index', '/documentation')
-		},
-		privacy: {
-			index: t('path.privacy.index', '/vie-privée')
 		},
 		integration: {
 			index: t('path.integration.index', '/intégration'),
@@ -135,11 +111,9 @@ const deepReduce = (fn, initialValue, object: Object) =>
 
 export const generateSiteMap = (sitePaths: Object) =>
 	deepReduce(
-		(paths, path, key) => [
+		(paths, path) => [
 			...paths,
-			...(typeof path === 'function' && key === 'créer'
-				? LANDING_LEGAL_STATUS_LIST.map(path)
-				: [path])
+			...([path])
 		],
 		[],
 		sitePaths

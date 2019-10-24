@@ -1,5 +1,6 @@
 import Route404 from 'Components/Route404'
 import withSitePaths from 'Components/utils/withSitePaths'
+import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
 import 'iframe-resizer'
 import { compose } from 'ramda'
 import createRavenMiddleware from 'raven-for-redux'
@@ -7,39 +8,33 @@ import Raven from 'raven-js'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import {
-	persistEverything,
-	retrievePersistedState
-} from '../../storage/persistEverything'
-import {
-	persistSimulation,
-	retrievePersistedSimulation
-} from '../../storage/persistSimulation'
+import { persistEverything, retrievePersistedState } from '../../storage/persistEverything'
+import { persistSimulation, retrievePersistedSimulation } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
-import { inIframe, getSessionStorage } from '../../utils'
+import { getSessionStorage, inIframe } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
-import { PrivacyContent } from './layout/Footer/Privacy'
-import Header from './layout/Header/Header'
-import Navigation from './layout/Navigation/Navigation'
+import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
-import CompanyIndex from './pages/Company'
+import Créer from './pages/Créer'
 import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
 import Documentation from './pages/Documentation'
-import HiringProcess from './pages/HiringProcess'
+import Gérer from './pages/Gérer'
 import Iframes from './pages/Iframes'
-import Landing from './pages/Landing/Landing.js'
 import Integration from './pages/integration/index'
-import SocialSecurity from './pages/SocialSecurity'
+import Landing from './pages/Landing/Landing.js'
+import Simulateurs from './pages/Simulateurs'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
+import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
-import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
+
+
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -59,7 +54,7 @@ const middlewares = [
 
 function InFranceRoute({ basename, language }) {
 	useEffect(() => {
-		getSessionStorage()?.setItem('lang', language)
+		getSessionStorage() ?.setItem('lang', language)
 	}, [language])
 	const paths = constructLocalizedSitePath(language)
 	const rules = language === 'en' ? baseRulesEn : baseRulesFr
@@ -87,7 +82,7 @@ function InFranceRoute({ basename, language }) {
 let RouterSwitch = () => {
 	return (
 		<>
-			{!inIframe() && <Navigation location={location} />}
+			<Header />
 			<Switch>
 				<Route exact path="/" component={Landing} />
 				<Route path="/iframes" component={Iframes} />
@@ -105,29 +100,28 @@ const App = compose(withSitePaths)(({ sitePaths }) => {
 			{/* Passing location down to prevent update blocking */}
 
 			<div className="app-content">
-				{!inIframe() && <Header />}
 				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 					<Switch>
-						<Route path={sitePaths.entreprise.index} component={CompanyIndex} />
+						{redirects}
+						<Redirect from="/zoub/*" to="/zab/*" />
+						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route
-							path={sitePaths.sécuritéSociale.index}
-							component={SocialSecurity}
-						/>
-						<Route
-							path={sitePaths.démarcheEmbauche.index}
-							component={HiringProcess}
+							path={sitePaths.gérer.index}
+							component={Gérer}
 						/>
 						<Route
 							path={sitePaths.économieCollaborative.index}
 							component={ÉconomieCollaborative}
 						/>
 						<Route
+							path={sitePaths.simulateurs.index}
+							component={Simulateurs}
+						/>
+						<Route
 							path={sitePaths.documentation.index}
 							component={Documentation}
 						/>
-						<Route path={sitePaths.privacy.index} component={PrivacyContent} />
 						<Route path={sitePaths.integration.index} component={Integration} />
-
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

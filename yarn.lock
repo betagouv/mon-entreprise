@@ -3508,7 +3508,7 @@ cyclist@~0.2.2:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
-cypress@^3.2.0:
+cypress@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-3.4.1.tgz#ca2e4e9864679da686c6a6189603efd409664c30"
   integrity sha512-1HBS7t9XXzkt6QHbwfirWYty8vzxNMawGj1yI+Fu6C3/VZJ8UtUngMW6layqwYZzLTZV8tiDpdCNBypn78V4Dg==
@@ -10802,6 +10802,18 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+
+toml-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/toml-loader/-/toml-loader-1.0.0.tgz#05249b9294b623601148260caa480b22a653a19a"
+  integrity sha1-BSSbkpS2I2ARSCYMqkgLIqZToZo=
+  dependencies:
+    toml "^2.2.2"
+
+toml@^2.2.2:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/toml/-/toml-2.3.6.tgz#25b0866483a9722474895559088b436fd11f861b"
+  integrity sha512-gVweAectJU3ebq//Ferr2JUY4WKSDe5N+z0FvjDncLGyHmIDoxgY/2Ie4qfEIDm4IS7OA6Rmdm7pdEEdMcV/xQ==
 
 topo@2.x.x:
   version "2.0.2"

@@ -13,7 +13,7 @@ export default function Search() {
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function(value) {
+		function (value) {
 			searchDenominationOrSiren(value).then(results => {
 				setLoadingState(false)
 				setSearchResults(results)
@@ -27,7 +27,7 @@ export default function Search() {
 	const dispatch = useDispatch()
 	return (
 		<>
-			<h1 className="question__title">
+			<h1>
 				<T k="trouver.titre">Retrouver mon entreprise</T>
 			</h1>
 			<p>
@@ -37,7 +37,9 @@ export default function Search() {
 					site.
 				</T>
 			</p>
-			<label className="ui__ notice">Nom de l'entreprise ou SIREN: </label>
+			<label className="ui__ notice">
+				<T>Nom de l'entreprise ou SIREN </T>:{' '}
+			</label>
 			<br />
 			<input
 				type="search"
@@ -65,7 +67,7 @@ export default function Search() {
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && searchResults === null && <p>Aucun résultat</p>}
+			{!isLoading && searchResults === null && <p><T>Aucun résultat</T></p>}
 
 			{searchResults &&
 				searchResults.map(({ siren, denomination }) => (
@@ -75,7 +77,7 @@ export default function Search() {
 						css={`
 							text-align: left;
 							width: 100%;
-							padding: 0.4rem;
+							padding: 0 0.4rem;
 							border-radius: 0.3rem;
 							:hover,
 							:focus {

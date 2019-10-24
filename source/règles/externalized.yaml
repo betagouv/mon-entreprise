@@ -2808,7 +2808,7 @@ auto-entrepreneur . plafond:
 
     In the event of a consecutive overrun over two years, the auto-entrepreneur
     automatically switches to the [sole proprietorship
-    regime](/social-security/self-employed).
+    regime](/simulator/independant).
   description.fr: >
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires
     annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un
@@ -2817,7 +2817,7 @@ auto-entrepreneur . plafond:
 
     En cas de dépassement consécutif sur deux ans, l'auto-entrepreneur bascule
     automatiquement dans le régime de [l'entreprise
-    individuelle](/sécurité-sociale/indépendant).
+    individuelle](/simulateurs/indépendant).
   titre.en: upper limit
   titre.fr: plafond
 auto-entrepreneur . revenu net de cotisations:

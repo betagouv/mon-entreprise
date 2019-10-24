@@ -37,16 +37,16 @@ export default function Simulation({ explanations, customEndMessages }) {
 									</T>
 								</small>
 							) : (
-								<span />
-							)}
+									<span />
+								)}
 							<SeeAnswersButton />
 						</div>
-						<div className="ui__ full-width choice-group">
+						<section className="ui__ full-width lighter-bg">
 							<div className="ui__ container">
 								<Controls />
 								<Conversation customEndMessages={customEndMessages} />
 							</div>
-						</div>
+						</section>
 						{progress < 1 && (
 							<Progress progress={progress} className="ui__ full-width" />
 						)}
