@@ -25,7 +25,7 @@ export default function Simulateurs() {
     }, [setLastState, state])
     return (
         <>
-            <ScrollToTop />
+            <ScrollToTop key={pathname} />
             {pathname !== sitePaths.simulateurs.index && (
                 <div css="transform: translateY(2rem);">
                     {lastState ?.fromGérer && (
