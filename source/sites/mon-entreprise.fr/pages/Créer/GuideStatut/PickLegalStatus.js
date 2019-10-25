@@ -10,7 +10,6 @@ import { possibleStatusSelector } from 'Selectors/companyStatusSelectors'
 import StatutDescription from '../StatutDescription'
 import type { RouterHistory } from 'react-router'
 import type { LegalStatus } from 'Selectors/companyStatusSelectors'
-import type { TFunction } from 'react-i18next'
 
 type Props = {
 	history: RouterHistory,
@@ -38,6 +37,7 @@ const StatutButton = withSitePaths(
 		)
 	}
 )
+
 const StatutTitle = ({ statut, language }) =>
 	statut === 'EI' ? (
 		<>
@@ -101,7 +101,7 @@ const SetMainStatus = ({
 				</title>
 			</Helmet>
 			<h2>
-				<T>Votre forme juridique</T>
+				{Object.keys(possibleStatus).every(Boolean) ? <T> Liste des statuts juridiques </T> : <T>Votre forme juridique</T>}
 			</h2>
 
 			<ul>

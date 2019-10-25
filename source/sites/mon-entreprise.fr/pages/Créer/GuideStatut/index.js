@@ -4,9 +4,8 @@ import { T } from 'Components';
 import { SitePathsContext } from 'Components/utils/withSitePaths';
 import { toPairs } from 'ramda';
 import React, { useContext, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { NavLink, Route, useLocation } from 'react-router-dom';
+import { NavLink, Route, Switch, useLocation } from 'react-router-dom';
 import Animate from 'Ui/animate';
 import AutoEntrepreneur from './AutoEntrepreneur';
 import DirectorStatus from './DirectorStatus';
@@ -17,14 +16,6 @@ import PreviousAnswers from './PreviousAnswers';
 import SoleProprietorship from './SoleProprietorship';
 
 
-const withAnimation = Component => {
-    const AnimateRouteComponent = (...props) => (
-        <Animate.fromBottom>
-            <Component {...props} />
-        </Animate.fromBottom>
-    )
-    return AnimateRouteComponent
-}
 
 const useResetFollowingAnswers = () => {
     const dispatch = useDispatch();
@@ -43,6 +34,7 @@ const useResetFollowingAnswers = () => {
 
 export default function Créer() {
     const sitePaths = useContext(SitePathsContext);
+    const location = useLocation();
     useResetFollowingAnswers();
     return (
         <>
@@ -59,30 +51,40 @@ export default function Créer() {
                 <T k="formeJuridique.titre">Choix du statut juridique</T>
             </h1>
             <PreviousAnswers />
-            <Route
-                path={sitePaths.créer.guideStatut.soleProprietorship}
-                component={withAnimation(SoleProprietorship)}
-            />
-            <Route
-                path={sitePaths.créer.guideStatut.directorStatus}
-                component={withAnimation(DirectorStatus)}
-            />
-            <Route
-                path={sitePaths.créer.guideStatut.autoEntrepreneur}
-                component={withAnimation(AutoEntrepreneur)}
-            />
-            <Route
-                path={sitePaths.créer.guideStatut.multipleAssociates}
-                component={withAnimation(NumberOfAssociate)}
-            />
-            <Route
-                path={sitePaths.créer.guideStatut.minorityDirector}
-                component={withAnimation(MinorityDirector)}
-            />
-            <Route
-                path={sitePaths.créer.guideStatut.liste}
-                component={withAnimation(PickLegalStatus)}
-            />
+            <Animate.fromBottom key={location.pathname}>
+                <Switch>
+                    <Route
+                        path={sitePaths.créer.guideStatut.soleProprietorship}
+                    >
+                        <SoleProprietorship />
+                    </Route>
+                    <Route
+                        path={sitePaths.créer.guideStatut.directorStatus}
+                    >
+                        <DirectorStatus />
+                    </Route>
+                    <Route
+                        path={sitePaths.créer.guideStatut.autoEntrepreneur}
+                    >
+                        <AutoEntrepreneur />
+                    </Route>
+                    <Route
+                        path={sitePaths.créer.guideStatut.multipleAssociates}
+                    >
+                        <NumberOfAssociate />
+                    </Route>
+                    <Route
+                        path={sitePaths.créer.guideStatut.minorityDirector}
+                    >
+                        <MinorityDirector />
+                    </Route>
+                    <Route
+                        path={sitePaths.créer.guideStatut.liste}
+                    >
+                        <PickLegalStatus />
+                    </Route>
+                </Switch>
+            </Animate.fromBottom>
         </>
     )
 }

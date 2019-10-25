@@ -1,18 +1,7 @@
 /* @flow */
 
 import { findRuleByDottedName } from 'Engine/rules'
-import {
-	compose,
-	defaultTo,
-	dissoc,
-	identity,
-	lensPath,
-	omit,
-	over,
-	set,
-	uniq,
-	without
-} from 'ramda'
+import { compose, defaultTo, dissoc, identity, lensPath, omit, over, set, uniq, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers } from 'redux'
 import { targetNamesSelector } from 'Selectors/analyseSelectors'
@@ -72,9 +61,9 @@ function lang(state = i18n.language, { type, lang }) {
 }
 
 type ConversationSteps = {|
-	+foldedSteps: Array<string>,
+	+foldedSteps: Array < string >,
 	+unfoldedStep: ?string
-|}
+		|}
 
 function conversationSteps(
 	state: ConversationSteps = {
@@ -127,7 +116,7 @@ function updatePeriod(situation, { toPeriod, rules }) {
 
 	const needConversion = Object.keys(situation).filter(dottedName => {
 		const rule = findRuleByDottedName(rules, dottedName)
-		return rule?.période === 'flexible'
+		return rule ?.période === 'flexible'
 	})
 
 	const updatedSituation = Object.entries(situation)

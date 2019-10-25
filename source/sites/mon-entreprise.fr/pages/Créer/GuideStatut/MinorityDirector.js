@@ -2,7 +2,6 @@
 import { directorIsInAMinority } from 'Actions/companyStatusActions';
 import { React, T } from 'Components';
 import { compose } from 'ramda';
-import { useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -14,9 +13,6 @@ type Props = {
 }
 
 const MinorityDirector = ({ directorIsInAMinority, t }: Props) => {
-	useEffect(() => {
-		directorIsInAMinority(null)
-	}, [directorIsInAMinority])
 	return (
 		<>
 			<Helmet>
@@ -40,18 +36,17 @@ const MinorityDirector = ({ directorIsInAMinority, t }: Props) => {
 			<T k="gérant minoritaire.description">
 				<p>
 					Certaines règles spéciales s'appliquent selon le nombre d'actions
-					détenues par le gérant.
-			</p>
+					détenues.
+				</p>
 				<ul>
 					<li>
-						<strong>Gérant majoritaire</strong> : L'administrateur est majoritaire
-						ou fait partie d'un conseil d'administration majoritaire.
+						<strong>Gérant majoritaire</strong> : Vous êtes l'administrateur majoritaire
+						(ou faite partie d'un conseil d'administration majoritaire).
 				</li>
 					<li>
-						<strong>Gérant minoritaire</strong> : L'administrateur est minoritaire
-						(ou égalitaire), ou fait partie d'un conseil d'administration
-						minoritaire (ou égalitaire).
-				</li>
+						<strong>Gérant minoritaire</strong> : Vous êtes administrateur minoritaire ou égalitaire (ou faites partie d'un conseil d'administration
+						minoritaire ou égalitaire).
+					</li>
 				</ul>
 			</T>
 

@@ -4,7 +4,6 @@ import withSitePaths from 'Components/utils/withSitePaths'
 import { compose, isNil } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Animate from 'Ui/animate'
 import type { LegalStatusRequirements } from 'Types/companyTypes'
 
 const requirementToText = (key, value) => {
@@ -42,18 +41,16 @@ const PreviousAnswers = ({
 	legalStatus
 }: Props) => !!Object.values(legalStatus).length && (
 	<ul css="margin-bottom: -1rem;">
-		<Animate.fromBottom>
-			{Object.entries(legalStatus).map(
-				([key, value]) =>
-					!isNil(value) && (
-						<li key={key}>
-							<Link to={sitePaths.créer.guideStatut[key]}>
-								{requirementToText(key, value)}
-							</Link>
-						</li>
-					)
-			)}
-		</Animate.fromBottom>
+		{Object.entries(legalStatus).map(
+			([key, value]) =>
+				!isNil(value) && (
+					<li key={key}>
+						<Link to={sitePaths.créer.guideStatut[key]}>
+							{requirementToText(key, value)}
+						</Link>
+					</li>
+				)
+		)}
 	</ul>
 )
 
