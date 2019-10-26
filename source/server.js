@@ -13,9 +13,7 @@ const rewrite = basename => ({
 })
 
 app.get('/', function(req, res) {
-	res.send(`<ul><li><a href="/mon-entreprise">mon-entreprise [fr]</a></li>
-	<li><a href="/infrance">infrance [en]</a></li>
-	<li><a href="/mon-entreprise/dev/integration-test">intégration du simulateur sur site tiers [iframe fr]</a></li></ul>`)
+	res.send(`<a href="/publicodes">publicodes</a>`)
 })
 
 app.use(
