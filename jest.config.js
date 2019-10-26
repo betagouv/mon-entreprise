@@ -177,7 +177,7 @@ module.exports = {
 		// ie ['jest-transform-nearley', 'babel-jest'], so we removed ES6 module from nearley output.
 		'\\.ne$': 'jest-transform-nearley',
 		'\\.yaml$': 'yaml-jest',
-		'\\.js?$': 'babel-jest'
+		'\\.(js|tsx?)$': 'babel-jest'
 	},
 
 	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

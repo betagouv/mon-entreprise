@@ -1,4 +1,3 @@
-/* @flow */
 
 import type { State } from 'Types/State'
 import type { Action } from 'Types/ActionsTypes'

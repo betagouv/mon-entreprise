@@ -1,4 +1,3 @@
-/* @flow */
 import type { OuiNon } from './shared'
 export type Entreprise = {
 	effectif: string,

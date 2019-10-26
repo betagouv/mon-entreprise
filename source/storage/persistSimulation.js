@@ -1,4 +1,3 @@
-/* @flow */
 
 import type { Store } from 'redux'
 import { debounce } from '../utils'

@@ -1,4 +1,3 @@
-/* @flow */
 
 import { ScrollToElement } from 'Components/utils/Scroll'
 import withTracker from 'Components/utils/withTracker'

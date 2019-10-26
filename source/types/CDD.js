@@ -1,4 +1,3 @@
-/* @flow */
 
 export type Événements =
 	| 'poursuite du CDD en CDI'

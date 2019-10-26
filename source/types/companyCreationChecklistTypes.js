@@ -1,4 +1,3 @@
-/* @flow */
 
 export type InitializeCompanyCreationChecklistAction = {
 	type: 'INITIALIZE_COMPANY_CREATION_CHECKLIST',

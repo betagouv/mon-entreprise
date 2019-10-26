@@ -5,14 +5,14 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
 import { ThemeColoursContext } from 'Components/utils/withColours'
 import withSitePaths from 'Components/utils/withSitePaths'
+import { formatCurrency } from 'Engine/format'
 import { encodeRuleName } from 'Engine/rules'
 import { isEmpty, isNil } from 'ramda'
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { formatCurrency } from 'Engine/format'
 import {
 	analysisWithDefaultsSelector,
 	useSituation,

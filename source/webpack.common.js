@@ -16,11 +16,12 @@ module.exports.default = {
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
 			Images: path.resolve('source/images/')
-		}
+		},
+		extensions: ['.js', '.ts', '.tsx']
 	},
 	entry: {
-		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.js',
-		infrance: './source/sites/mon-entreprise.fr/entry.en.js',
+		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.tsx',
+		infrance: './source/sites/mon-entreprise.fr/entry.en.tsx',
 		'simulateur-iframe-integration':
 			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
 		publicodes: './source/sites/publi.codes/entry.js'
@@ -88,12 +89,12 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 					{
 						targets: !legacy
 							? {
-								esmodules: true
-							}
+									esmodules: true
+							  }
 							: {
-								esmodules: false,
-								browsers: ['ie 11']
-							},
+									esmodules: false,
+									browsers: ['ie 11']
+							  },
 						useBuiltIns: 'entry',
 						corejs: '3'
 					}
@@ -103,7 +104,11 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 	}
 
 	return [
-		{ test: /\.js$/, loader: babelLoader, exclude: /node_modules|dist/ },
+		{
+			test: /\.(js|ts|tsx)$/,
+			loader: babelLoader,
+			exclude: /node_modules|dist/
+		},
 		{
 			test: /\.(jpe?g|png|svg)$/,
 			use: {

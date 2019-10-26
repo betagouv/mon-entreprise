@@ -1,9 +1,8 @@
 import { setEntreprise } from 'Actions/existingCompanyActions'
-import { React, T } from 'Components'
+import { T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
-import { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-// $FlowFixMe
 import 'react-select/dist/react-select.css'
 import { searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
@@ -13,7 +12,7 @@ export default function Search() {
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function (value) {
+		function(value) {
 			searchDenominationOrSiren(value).then(results => {
 				setLoadingState(false)
 				setSearchResults(results)
@@ -67,7 +66,11 @@ export default function Search() {
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && searchResults === null && <p><T>Aucun résultat</T></p>}
+			{!isLoading && searchResults === null && (
+				<p>
+					<T>Aucun résultat</T>
+				</p>
+			)}
 
 			{searchResults &&
 				searchResults.map(({ siren, denomination }) => (

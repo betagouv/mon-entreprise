@@ -1,4 +1,3 @@
-/* @flow */
 import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
 import { compose, contains, filter, reject, toPairs } from 'ramda'
@@ -59,7 +58,7 @@ const QuickLinks = ({
 	)
 }
 
-export default (connect(
+export default connect(
 	(state, props) => ({
 		key: props.language,
 		currentQuestion: currentQuestionSelector(state),
@@ -70,4 +69,4 @@ export default (connect(
 	{
 		goToQuestion
 	}
-)(QuickLinks): React$ComponentType<OwnProps>)
+)(QuickLinks)

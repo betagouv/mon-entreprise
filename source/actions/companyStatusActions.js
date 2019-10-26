@@ -1,4 +1,3 @@
-/* @flow */
 
 import { dropWhile, last } from 'ramda'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'

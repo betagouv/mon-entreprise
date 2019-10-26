@@ -1,5 +1,3 @@
-/* @flow */
-
 import withTracker from 'Components/utils/withTracker'
 import React, { Component } from 'react'
 import { Trans } from 'react-i18next'
@@ -166,7 +164,7 @@ class PageFeedback extends Component<Props, State> {
 const PageFeedbackWithRouter = ({ location, ...props }) => (
 	<PageFeedback {...props} location={location} key={location.pathname} />
 )
-export default (compose(
+export default compose(
 	withRouter,
 	withTracker
-)(PageFeedbackWithRouter): React$ComponentType<OwnProps>)
+)(PageFeedbackWithRouter)

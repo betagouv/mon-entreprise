@@ -18,13 +18,13 @@ L'application est écrite en JavaScript, elle est exécuté uniquement côté cl
 
 Nous utilisons :
 
+- [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
 - [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
 - [React](https://reactjs.org) pour la gestion de l'interface utilisateur
 - [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
 - [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
 - [Webpack](https://webpack.js.org) pour le “bundling”
 - [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
-- [Flow](https://flow.org/) pour ajouter un système de typage à notre code JavaScript. Le typage Flow n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
 - [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
 - [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 

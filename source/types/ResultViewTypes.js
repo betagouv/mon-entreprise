@@ -1,4 +1,3 @@
-/* @flow */
 import type { RègleAvecMontant, Règle } from './RegleTypes'
 
 export type Cotisation = Règle & {
