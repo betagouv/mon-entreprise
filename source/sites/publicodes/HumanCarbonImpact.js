@@ -96,8 +96,8 @@ let FirstEstimationStamp = ({ foldedSteps }) => (
 			-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
 			-webkit-mask-size: 944px 604px;
 			mix-blend-mode: multiply;
-			color: #969494;
-			border: 0.15rem solid #969494;
+			color: #757373;
+			border: 0.15rem solid #757373;
 			-webkit-mask-position: 13rem 6rem;
 			-webkit-transform: rotate(-16deg);
 			-ms-transform: rotate(-16deg);
