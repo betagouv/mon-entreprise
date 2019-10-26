@@ -1,4 +1,3 @@
-/* @flow */
 
 export type InitializeHiringChecklistAction = {
 	type: 'INITIALIZE_HIRING_CHECKLIST',

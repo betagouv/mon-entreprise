@@ -36,5 +36,6 @@ app.use(
 app.use(require('webpack-hot-middleware')(compiler))
 
 app.listen(8080, function() {
+	// eslint-disable-next-line no-console
 	console.log('Mon-entreprise listening on port 8080!\n')
 })

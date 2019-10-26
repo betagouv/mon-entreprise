@@ -1,4 +1,3 @@
-/* @flow */
 
 import { findRuleByDottedName } from 'Engine/rules'
 import { compose, defaultTo, dissoc, identity, lensPath, omit, over, set, uniq, without } from 'ramda'

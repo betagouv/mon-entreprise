@@ -1,5 +1,5 @@
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules.js'
+import { encodeRuleName } from 'Engine/rules'
 import Fuse from 'fuse.js'
 import { compose, pick, sortBy } from 'ramda'
 import React, { useMemo, useRef, useState } from 'react'

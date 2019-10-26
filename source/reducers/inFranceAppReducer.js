@@ -1,4 +1,3 @@
-/* @flow */
 
 import { omit } from 'ramda'
 import { combineReducers } from 'redux'

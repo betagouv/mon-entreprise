@@ -30,13 +30,20 @@ commands:
       - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --parallel --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
 
 jobs:
+  type-check:
+    docker:
+      - image: node
+    steps:
+      - install
+      - run: |
+          yarn run type-check
+
   unit-test:
     docker:
       - image: node
     steps:
       - install
       - run: |
-          yarn run flow-typed install
           git config --global core.quotepath false
           yarn test
           yarn test-regressions
@@ -86,6 +93,7 @@ workflows:
   version: 2
   test:
     jobs:
+      - type-check
       - unit-test
       - end-to-end-test
       - production-end-to-end-test:

@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
@@ -24,9 +22,9 @@ let Banner = ({ hidden = false, children, icon }: PropTypes) =>
 		</Animate.fadeIn>
 	) : null
 
-export default (connect(
+export default connect(
 	(state: State, { hidden }: PropTypes) => ({
 		hidden: hidden || firstStepCompletedSelector(state)
 	}),
 	{}
-)(Banner): React$ComponentType<PropTypes>)
+)(Banner)

@@ -1,4 +1,3 @@
-/* @flow */
 import { setSituationBranch } from 'Actions/actions'
 import {
 	defineDirectorStatus,
@@ -639,7 +638,7 @@ const RuleValueLink = compose(
 	}
 )
 
-export default (compose(
+export default compose(
 	withSimulationConfig(ComparaisonConfig),
 	connect(
 		state => ({
@@ -657,4 +656,4 @@ export default (compose(
 			setSituationBranch
 		}
 	)
-)(SchemeComparaison): React$Component<OwnProps>)
+)(SchemeComparaison)

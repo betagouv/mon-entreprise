@@ -1,8 +1,7 @@
-import { React, T } from 'Components'
-import { useEffect, useMemo, useState } from 'react'
+import { T } from 'Components'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
-// $FlowFixMe
 import 'react-select/dist/react-select.css'
 import { fetchCompanyDetails } from '../api/sirene'
 
@@ -33,8 +32,8 @@ export default function CompanyDetails({ siren, denomination }) {
 						<small>({siren})</small>
 					</>
 				) : (
-						<Skeleton width={400} />
-					)}
+					<Skeleton width={400} />
+				)}
 			</h3>
 
 			<p className="ui__ notice">
@@ -43,8 +42,8 @@ export default function CompanyDetails({ siren, denomination }) {
 					{company ? (
 						DateFormatter.format(new Date(company.date_creation))
 					) : (
-							<Skeleton width={80} />
-						)}
+						<Skeleton width={80} />
+					)}
 				</strong>
 				, <T>domiciliée à</T>{' '}
 				{company ? (
@@ -53,10 +52,9 @@ export default function CompanyDetails({ siren, denomination }) {
 						{company.etablissement_siege.code_postal})
 					</>
 				) : (
-						<Skeleton width={100} />
-					)}
+					<Skeleton width={100} />
+				)}
 			</p>
-
 		</>
 	)
 }

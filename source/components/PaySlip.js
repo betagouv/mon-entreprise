@@ -1,4 +1,3 @@
-/* @flow */
 import type { FicheDePaie } from 'Types/ResultViewTypes'
 import withColours from 'Components/utils/withColours'
 import Value from 'Components/Value'

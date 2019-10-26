@@ -1,4 +1,3 @@
-/* @flow */
 import type { OuiNon } from './shared'
 import type { CDD } from './CDD'
 

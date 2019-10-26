@@ -3,7 +3,7 @@ import ReactSelect from 'react-select'
 import 'react-select/dist/react-select.css'
 import { FormDecorator } from '../FormDecorator'
 import './Select.css'
-import SelectOption from './SelectOption.js'
+import SelectOption from './SelectOption'
 
 function ReactSelectWrapper({
 	value,

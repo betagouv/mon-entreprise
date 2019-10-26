@@ -1,6 +1,7 @@
-import { React, T } from 'Components'
-import { useTranslation } from 'react-i18next'
+import { T } from 'Components'
 import { formatValue } from 'Engine/format'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
 

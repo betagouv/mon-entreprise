@@ -1,5 +1,6 @@
-import { React, T } from 'Components'
+import { T } from 'Components'
 import Value from 'Components/Value'
+import React from 'react'
 import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {

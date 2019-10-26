@@ -124,7 +124,7 @@ export default withSitePaths(function VotreSituation({ sitePaths }) {
 					</>
 				)}
 			</section>
-		</Animate.fromBottom >
+		</Animate.fromBottom>
 	)
 })
 
@@ -147,4 +147,4 @@ const ActivitéList = ({ activités }) => {
 			))}
 		</div>
 	)
-}
+} 

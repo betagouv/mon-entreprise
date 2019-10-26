@@ -1,7 +1,6 @@
 import type { SitePaths } from 'Components/utils/withSitePaths'
 import type { RouterHistory } from 'react-router'
 
-/* @flow */
 
 export type LoadPreviousSimulationAction = {
 	type: 'LOAD_PREVIOUS_SIMULATION'
