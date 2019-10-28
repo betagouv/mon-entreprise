@@ -31,7 +31,7 @@ export default withRouter(({ location }) => {
 						}
 						margin-right: 1em;
 					`}
-					src={require('./logo.png')}
+					src={require('./logo.svg')}
 					alt=""
 				/>
 			</Link>
