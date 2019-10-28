@@ -22,7 +22,7 @@ export default withRouter(({ location }) => {
 				justify-content: space-between;
 				padding-top: ${displayIntro ? 3 : 1}rem;
 			`}>
-			<Link to="/">
+			<Link to="/" title="Revenir à l'accueil">
 				<img
 					css={`
 						width: ${displayIntro ? '8em' : '5em'};
@@ -32,6 +32,7 @@ export default withRouter(({ location }) => {
 						margin-right: 1em;
 					`}
 					src={require('./logo.png')}
+					alt=""
 				/>
 			</Link>
 			{displayIntro && (

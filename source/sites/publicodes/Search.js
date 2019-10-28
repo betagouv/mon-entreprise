@@ -16,10 +16,9 @@ export default ({ setInput, input }) => (
 				border-radius: 1rem;
 				padding: 0 0.6rem;
 			`}
-			type="text"
+			type="search"
 			value={input}
 			onChange={event => {
-				let value = event.target.value
 				setInput(event.target.value)
 			}}
 		/>
