@@ -56,7 +56,7 @@ export default function Landing() {
 					<T k="landing.choice.manage">
 						<h3>Gérer mon activité</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Des simulateurs pour anticiper le montant des cotisation et mieux
+							Des simulateurs pour anticiper le montant des cotisations et mieux
 							gérer votre trésorerie
 						</p>
 					</T>
@@ -117,7 +117,7 @@ export default function Landing() {
 						<a href="https://www.urssaf.fr">URSSAF</a>. Nous avons à coeur d’être au
 						plus proche de nos usagers afin d’améliorer en permanence ce site
 						conformément à la méthode des{' '}
-						<a href="https://beta.gouv.fr">Startup d’État</a>.
+						<a href="https://beta.gouv.fr">Startups d’État</a>.
 					</p>
 					<p>
 						N’hésitez pas à nous remonter vos remarques et suggestions à{' '}

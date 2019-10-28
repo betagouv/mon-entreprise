@@ -164,7 +164,7 @@ export default function SocialSecurity() {
 								<p>Comprendre la sécurité sociale </p>
 								<small>
 									A quoi servent les cotisations sociales ? Le point sur le
-									système de protection sociale dont bénéficient touts les
+									système de protection sociale dont bénéficient tous les
 									travailleurs en France
 							</small>
 							</T>

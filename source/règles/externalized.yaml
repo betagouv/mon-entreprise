@@ -1191,7 +1191,7 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   titre.fr: taux des cotisations réduites
 contrat salarié . cotisations:
   description.en: Total employer and employee contributions
-  description.fr: Total des cotisation patronales et salariales
+  description.fr: Total des cotisations patronales et salariales
   titre.en: social contributions
   titre.fr: cotisations
 contrat salarié . aides employeur:

@@ -1625,7 +1625,7 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
 
 contrat salarié . cotisations:
   période: flexible
-  description: Total des cotisation patronales et salariales
+  description: Total des cotisations patronales et salariales
   formule:
     somme:
       - patronales
