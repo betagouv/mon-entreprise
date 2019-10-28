@@ -95,7 +95,7 @@ export default function Simulateurs() {
                         Tous les simulateurs sur ce site sont :
             </p>
                     <ul>
-                        <li><strong>Maintenus à jour</strong> avec les dernières legislation</li>
+                        <li><strong>Maintenus à jour</strong> avec les dernières évolutions législatives</li>
                         <li><strong>Améliorés en continu</strong> afin d'augmenter le nombre de dispositifs pris en compte</li>
                         <li>Développés en <strong>partenariat avec l'Urssaf</strong></li>
                     </ul>
