@@ -563,8 +563,6 @@ contrat salarié . assimilé salarié:
     - contrat salarié
     - chômage
     - réduction générale
-    - allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
     - AGS
     - APEC
     - contribution au dialogue social
@@ -644,8 +642,6 @@ contrat salarié . stage:
     - statut cadre
     - statut JEI
     - réduction générale
-    - allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
     - contribution d'équilibre général
     - retraite complémentaire
     - chômage
@@ -1913,8 +1909,6 @@ contrat salarié . statut JEI:
   par défaut: non
   rend non applicable:
     - réduction générale
-    - allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
 
 contrat salarié . statut JEI . exonération de cotisations:
   titre: Exonération JEI
@@ -1947,6 +1941,8 @@ contrat salarié . réduction générale:
   alias: réduction fillon
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+
+    L'éligibilité au dispositif de réduction générale détermine également celle relative aux taux réduits de cotisations d'assurance maladie et d'allocations familiales.
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
@@ -2154,7 +2150,10 @@ contrat salarié . allocations familiales:
 
 contrat salarié . allocations familiales . taux réduit:
   période: flexible
+  applicable si: réduction générale
   formule: cotisations . assiette < plafond de réduction
+  références:
+    Legifrance: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025515714&cidTexte=LEGITEXT000006073189
 
 contrat salarié . allocations familiales . taux réduit . plafond de réduction:
   titre: Plafond de la réduction des allocations familiales
@@ -2547,6 +2546,7 @@ contrat salarié . maladie . taux employeur:
 
 contrat salarié . maladie . taux employeur . taux réduit:
   période: flexible
+  applicable si: réduction générale
   formule: cotisations . assiette < plafond de réduction employeur
 
 contrat salarié . maladie . taux salarié:
