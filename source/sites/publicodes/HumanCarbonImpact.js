@@ -93,8 +93,6 @@ let FirstEstimationStamp = ({ foldedSteps }) => (
 			text-transform: uppercase;
 			border-radius: 1rem;
 			font-family: 'Courier';
-			-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-			-webkit-mask-size: 944px 604px;
 			mix-blend-mode: multiply;
 			color: #757373;
 			border: 0.15rem solid #757373;
