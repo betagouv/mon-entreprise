@@ -3,7 +3,6 @@ import { T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import 'react-select/dist/react-select.css'
 import { searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
 
