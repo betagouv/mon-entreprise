@@ -4146,6 +4146,118 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         alors: 12.8%
       - sinon: 22%
 
+artiste-auteur:
+  description: Le régime des artistes-auteurs
+  icônes: 👩‍🎨
+
+artiste-auteur . revenus:
+
+artiste-auteur . revenus . traitements et salaires:
+  unité: €
+  période: année
+  par défault: 0
+  question: Traitements et salaires
+  résumé: Revenus en précompte
+
+artiste-auteur . revenus . BNC:
+  période: flexible
+  formule:
+    variations:
+      - si: régime spécial
+        alors: 
+          somme: 
+            - recettes
+            - (- charges forfaitaires)
+      - sinon:
+          somme: 
+            - recettes
+            - (- frais réels)
+
+artiste-auteur . revenus . BNC . régime spécial:
+  applicable si: recettes [annuel] < 70000 €
+  par défaut: oui
+  question: x
+
+artiste-auteur . revenus . BNC . recettes:
+  unité: €
+  période: année
+  par défaut: 0
+  question: Recettes BNC HT
+  résumé: Le montant des ventes réalisées
+
+artiste-auteur . revenus . BNC . frais réels:
+  unité: €
+  période: année
+  par défaut: 0
+  question: x
+
+artiste-auteur . revenus . BNC . charges forfaitaires:
+  période: flexible
+  formule: 34% * recettes
+
+artiste-auteur . cotisations:
+  période: flexible
+  formule:
+    somme:
+      - vieillesse
+      - CSG-CRDS
+      - formation profesionnelle
+
+artiste-auteur . cotisations . assiette:
+  période: flexible
+  formule:
+    somme:
+      - revenus . traitements et salaires
+      - revenus . BNC
+
+artiste-auteur . cotisations . vieillesse:
+  période: flexible
+  # Note: C'est la même formule que la cotisation salarié
+  formule:
+    multiplication:
+      assiette: assiette 
+      composantes:
+        - nom: plafonnée
+          plafond: contrat salarié . plafond sécurité sociale
+          taux: 6.90%
+        - nom: non plafonnée
+          taux: 0.4%
+
+artiste-auteur . cotisations . CSG-CRDS:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      # TODO: ajouter déductible / non déductible
+      # TODO : ré-utiliser la règle salarié ?
+      composantes:
+        - nom: CSG
+          taux: 9.20%
+        - nom: CRDS
+          taux: 0.50%
+
+artiste-auteur . cotisations . CSG-CRDS . assiette:
+  période: flexible
+  formule:
+    somme:
+      - cotisations . assiette
+      - (- CSG-CRDS . abattement)
+
+artiste-auteur . cotisations . CSG-CRDS . abattement:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: revenus . traitements et salaires
+      plafond: 4 * contrat salarié . plafond sécurité sociale
+      taux: 1.75%
+
+artiste-auteur . cotisations . formation profesionnelle:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette
+      taux: 0.35%
+  
 entreprise . ACRE:
   description: |
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
@@ -5685,3 +5797,125 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
   période: aucune
   question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
   par défaut: non
+
+dirigeant . artiste-auteur:
+  description: Le régime des artistes-auteurs
+  icônes: 👩‍🎨
+  formule: dirigeant = 'artiste-auteur'
+
+dirigeant . artiste-auteur . revenus:
+
+dirigeant . artiste-auteur . revenus . traitements et salaires:
+  unité: €
+  période: année
+  par défaut: 0
+  question: Traitements et salaires
+  résumé: Revenus en précompte
+
+dirigeant . artiste-auteur . revenus . BNC:
+  période: flexible
+  formule:
+    le maximum de:
+      - 0
+      - variations:
+        - si: régime spécial
+          alors: 
+            somme: 
+              - recettes
+              - (- charges forfaitaires)
+        - sinon:
+            somme: 
+              - recettes
+              - (- frais réels)
+
+dirigeant . artiste-auteur . revenus . BNC . régime spécial:
+  applicable si: recettes [annuel] < 70000 €
+  par défaut: oui
+  formule: déclaration controlée = non
+
+dirigeant . artiste-auteur . revenus . BNC . déclaration controlée:
+  applicable si: régime spécial
+  par défaut: non
+  unité: booléen
+  question: Opter pour la déclaration controlée
+
+dirigeant . artiste-auteur . revenus . BNC . recettes:
+  unité: €
+  période: année
+  par défaut: 0
+  question: Recettes BNC HT
+  résumé: Le montant des ventes réalisées
+
+dirigeant . artiste-auteur . revenus . BNC . frais réels:
+  unité: €
+  période: année
+  par défaut: 0
+  question: Déficit
+  résumé: Le montant des frais réels
+  non applicable si: régime spécial
+
+dirigeant . artiste-auteur . revenus . BNC . charges forfaitaires:
+  période: flexible
+  formule: 34% * recettes
+
+dirigeant . artiste-auteur . cotisations:
+  période: flexible
+  formule:
+    somme:
+      - vieillesse
+      - CSG-CRDS
+      - formation profesionnelle
+
+dirigeant . artiste-auteur . cotisations . assiette:
+  période: flexible
+  formule:
+    somme:
+      - revenus . traitements et salaires
+      - revenus . BNC * 1.15
+
+dirigeant . artiste-auteur . cotisations . vieillesse:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette 
+      composantes:
+        - nom: plafonnée
+          plafond: contrat salarié . plafond sécurité sociale
+          taux: contrat salarié . vieillesse . taux salarié plafonné - 0.75%
+        - nom: non plafonnée
+          taux: contrat salarié . vieillesse . taux salarié non plafonné - 0.4%
+
+dirigeant . artiste-auteur . cotisations . CSG-CRDS:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      # TODO: ajouter déductible / non déductible
+      # TODO : ré-utiliser la règle salarié ?
+      composantes:
+        - nom: CSG
+          taux: 9.20%
+        - nom: CRDS
+          taux: 0.50%
+
+dirigeant . artiste-auteur . cotisations . CSG-CRDS . assiette:
+  période: flexible
+  formule:
+    somme:
+      - cotisations . assiette
+      - (- CSG-CRDS . abattement)
+
+dirigeant . artiste-auteur . cotisations . CSG-CRDS . abattement:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: revenus . traitements et salaires
+      plafond: 4 * contrat salarié . plafond sécurité sociale
+      taux: 1.75%
+
+dirigeant . artiste-auteur . cotisations . formation profesionnelle:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette
+      taux: 0.35%
