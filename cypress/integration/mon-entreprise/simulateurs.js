@@ -29,7 +29,7 @@ describe('Simulateurs', function () {
                 })
             })
 
-            it.only('should allow to change period', function () {
+            it('should allow to change period', function () {
                 cy.contains('année').click()
                 cy.wait(200)
                 cy.get(inputSelector).first().type('{selectall}12000')
@@ -58,7 +58,7 @@ describe('Simulateurs', function () {
                     cy.contains('Passer').click()
                     cy.contains('Passer').click()
                     cy.contains('Passer').click()
-                    cy.wait(1000)
+                    cy.wait(1600)
                     cy.visit('/simulateurs/salarié')
                     cy.contains('Retrouver ma simulation').click()
                     cy.get(inputSelector).first().invoke('val').should('match', /2[\s]137/)
