@@ -10,9 +10,9 @@ export const flatActivités = pipe(
 
 export const getActivité = a => flatActivités.find(item => item.titre === a)
 
-export const getTranslatedActivité = a => ({
-	...getActivité(a),
-	...activitésEn[a]
+export const getTranslatedActivité = (title, language) => ({
+	...getActivité(title),
+	...(language !== 'fr' && activitésEn[title])
 })
 
 export const getMinimumDéclaration = a => {
