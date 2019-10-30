@@ -1,0 +1,37 @@
+- nom: restaurant . prix du repas
+  formule: 10 €/repas
+
+- nom: restaurant . client gourmand
+  formule: oui
+
+- nom: restaurant . client enfant
+  rend non applicable:
+    - client gourmand
+  formule: non
+
+- nom: restaurant . prix du repas gourmand
+  applicable si: client gourmand
+  remplace: prix du repas
+  formule: 15 €/repas
+  
+- nom: restaurant . menu enfant
+  applicable si: client enfant
+  remplace: 
+    règle: prix du repas 
+    par: 8 €
+  
+- test: modifie une règle
+  formule: restaurant . prix du repas
+  exemples:
+    - nom: prix du repas modifié
+      valeur attendue: 15
+    - nom: prix du repas sans modification
+      situation:
+        restaurant . client gourmand: non
+      valeur attendue: 10
+    - nom: prix du repas modifé par règle
+      situation: 
+        restaurant . client enfant: oui
+      valeur attendue: 8
+    
+ 

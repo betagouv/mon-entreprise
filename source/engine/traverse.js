@@ -3,11 +3,7 @@ import parseRule from 'Engine/parseRule'
 import { chain, path } from 'ramda'
 import { evaluateNode } from './evaluation'
 import { parseReference } from './parseReference'
-import {
-	disambiguateRuleReference,
-	findRule,
-	findRuleByDottedName
-} from './rules'
+import { disambiguateRuleReference, findRule, findRuleByDottedName } from './rules'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -53,26 +49,41 @@ export let parseAll = flatRules => {
 	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B` in the definition of `A`.
 	We need to map these exonerations to be able to retreive them from `B` */
 	let nonApplicableMapping = {}
+	let replacedByMapping = {}
 	flatRules.forEach(rule => {
 		const parsed = parseRule(flatRules, rule, parsedRules)
 		if (parsed['rend non applicable']) {
 			nonApplicableMapping[rule.dottedName] = parsed['rend non applicable']
+		}
+
+		const descriptor = parsed['remplace']
+		if (descriptor) {
+			replacedByMapping[descriptor.referenceName] = [...(replacedByMapping[descriptor.referenceName] ?? []), { ...descriptor, referenceName: rule.dottedName }]
 		}
 	})
 
 	Object.entries(nonApplicableMapping).forEach(([a, b]) => {
 		b.forEach(ruleName => {
 			parsedRules[ruleName].isDisabledBy.push(
-				parseReference(flatRules, parsedRules[ruleName], parsedRules)({
-					fragments: [a]
-				})
+				parseReference(flatRules, parsedRules[ruleName], parsedRules)(
+					a
+				)
 			)
 		})
 	})
+	Object.entries(replacedByMapping).forEach(([a, b]) => {
+		parsedRules[a].replacedBy = b.map((({ referenceName, replacementNode }) => ({
+			replacementNode, referenceNode: parseReference(flatRules, parsedRules[referenceName], parsedRules)(
+				referenceName
+			)
+		})
+		))
+	})
+
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
 		A = B * C
 		B = D / E
-
+	
 		C unité km
 		D unité €
 		E unité km
@@ -80,7 +91,6 @@ export let parseAll = flatRules => {
 	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
 	 *
 	 * */
-
 	return parsedRules
 }
 
@@ -88,11 +98,11 @@ export let getTargets = (target, rules) => {
 	let multiSimulation = path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
-		  multiSimulation
-				.map(n => disambiguateRuleReference(rules, target, n))
-				.map(n => findRuleByDottedName(rules, n))
+		multiSimulation
+			.map(n => disambiguateRuleReference(rules, target, n))
+			.map(n => findRuleByDottedName(rules, n))
 		: // Sinon on est dans le cas d'une simple variable d'objectif
-		  [target]
+		[target]
 
 	return targets
 }
@@ -103,13 +113,13 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	let cache = { parseLevel: 0 }
 
 	let parsedTargets = targetNames.map(t => {
-			let parsedTarget = findRule(parsedRules, t)
-			if (!parsedTarget)
-				throw new Error(
-					`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
-				)
-			return parsedTarget
-		}),
+		let parsedTarget = findRule(parsedRules, t)
+		if (!parsedTarget)
+			throw new Error(
+				`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
+			)
+		return parsedTarget
+	}),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(
 			t =>
 				cache[t.dottedName] || // This check exists because it is not done in parseRuleRoot's eval, while it is in parseVariable. This should be merged : we should probably call parseVariable here : targetNames could be expressions (hence with filters) TODO
