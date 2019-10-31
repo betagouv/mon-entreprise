@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 import { Rule } from 'Types/rule'
 import './RuleLink.css'
 
-type RuleLinkProps = Rule & {
+type RuleLinkProps = {
+	dottedName: Rule['dottedName']
+	title?: Rule['title']
 	style?: React.CSSProperties
 	children: React.ReactNode
 }

@@ -2,9 +2,10 @@ import { T } from 'Components'
 import { usePersistingState } from 'Components/utils/persistState'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import { SitePaths } from './utils/withSitePaths'
 
 type SimulateurWarningProps = {
-	simulateur: string
+	simulateur: Exclude<keyof SitePaths['simulateurs'], 'index'>
 }
 
 export default function SimulateurWarning({
@@ -41,7 +42,7 @@ export default function SimulateurWarning({
 					css="padding-top: 1rem; padding-bottom: 0.4rem"
 				>
 					<ul>
-						{simulateur == 'auto-entreprise' && (
+						{simulateur == 'auto-entrepreneur' && (
 							<li>
 								<T k="simulateurs.warning.cfe">
 									Le simulateur n'intègre pas la cotisation foncière des
@@ -54,13 +55,15 @@ export default function SimulateurWarning({
 								</T>
 							</li>
 						)}
-						<li>
-							<T k="simulateurs.warning.urssaf">
-								Les calculs sont indicatifs et ne se substituent pas aux
-								décomptes réels des Urssaf, impots.gouv.fr, ou autres.
-							</T>
-						</li>
-						{simulateur == 'auto-entreprise' && (
+						{simulateur !== 'artiste-auteur' && (
+							<li>
+								<T k="simulateurs.warning.urssaf">
+									Les calculs sont indicatifs et ne se substituent pas aux
+									décomptes réels des Urssaf, impots.gouv.fr, ou autres.
+								</T>
+							</li>
+						)}
+						{simulateur == 'auto-entrepreneur' && (
 							<li>
 								<T k="simulateurs.warning.auto-entrepreneur">
 									{' '}
@@ -68,6 +71,17 @@ export default function SimulateurWarning({
 									leur chiffre d'affaires. Il faut donc retrancher au net tous
 									les coûts liés à l'entreprise pour obtenir le revenu
 									réellement perçu.
+								</T>
+							</li>
+						)}
+						{simulateur === 'artiste-auteur' && (
+							<li>
+								<T k="simulateurs.warning.artiste-auteur">
+									Cette estimation est proposée à titre indicatif. Elle est
+									faite à partir des éléments réglementaires applicables et des
+									éléments que vous avez saisis, mais elle ne tient pas compte
+									de l'ensemble de votre situation . Le montant réel de vos
+									cotisations peut donc être différent.
 								</T>
 							</li>
 						)}

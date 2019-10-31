@@ -38,7 +38,7 @@ export default function AutoEntrepreneur() {
 					Simulateur de revenus auto-entrepreneur
 				</T>
 			</h1>
-			<Warning simulateur="auto-entreprise" />
+			<Warning simulateur="auto-entrepreneur" />
 			<Simulation explanations={<ExplanationSection />} />
 		</>
 	)
