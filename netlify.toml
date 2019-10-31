@@ -30,8 +30,8 @@
   status = 301
 
 [[redirects]] 
-  from="/entreprise*"
-  to="/cr%C3%A9er:splat"
+  from="/entreprise/*"
+  to="/cr%C3%A9er/:splat"
   status = 301
 
 [[redirects]] 
@@ -60,8 +60,8 @@
   status = 301
 
 [[redirects]] 
-  from="/company*"
-  to="/create:splat"
+  from="/company/*"
+  to="/create/:splat"
   status = 301
 
 
