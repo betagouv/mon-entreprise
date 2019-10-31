@@ -1039,8 +1039,11 @@ contrat salarié . SMIC temps plein . net imposable:
   période: mois
   unité: €
   description: Montant du SMIC net imposable
-  formule: 1247,55
-  note: Ce montant est codé en dur, il faudrait le calculer à partir du montant du SMIC brut
+  formule: 
+    simulation:
+      montant: rémunération . net imposable . base
+      situation:
+        rémunération . brut de base: SMIC temps plein
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
 
