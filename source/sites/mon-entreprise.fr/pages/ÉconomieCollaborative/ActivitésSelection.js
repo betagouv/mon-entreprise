@@ -31,12 +31,11 @@ export default (function ActivitésSelection() {
 				<h1>{titre}</h1>
 				<section css="margin-bottom: 2rem">
 					<T k="économieCollaborative.accueil.contenu">
-
 						<p>
 							Vous avez des revenus issus des <strong>plateformes en ligne</strong>{' '}
 							(Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les
 							déclarer dans la plupart des cas. Cependant, il peut être difficile de
-							s'y retrouver. {emoji('🤔')}
+							s'y retrouver <span>{emoji('🤔')}</span>.
 						</p>
 						<p>
 							Suivez ce guide pour savoir en quelques clics comment être en règle.
