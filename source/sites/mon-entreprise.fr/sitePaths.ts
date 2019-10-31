@@ -101,7 +101,8 @@ export const constructLocalizedSitePath = (language: string) => {
 				'path.simulateurs.comparaison',
 				'/comparaison-régimes-sociaux'
 			),
-			salarié: t('path.simulateurs.salarié', '/salarié')
+			salarié: t('path.simulateurs.salarié', '/salarié'),
+			'artiste-auteur': t('path.simulateurs.artiste-auteur', '/artiste-auteur')
 		},
 		économieCollaborative: {
 			index: t('path.économieCollaborative.index', '/économie-collaborative'),
