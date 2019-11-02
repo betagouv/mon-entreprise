@@ -25,18 +25,12 @@ export default connect(
 			super(props)
 
 			if (process.env.NODE_ENV === 'development') {
-				import('../../futureco-data/co2.yaml').then(src => {
+				import('../../data/co2.yaml').then(src => {
 					this.props.setRules(src.default)
 					this.removeLoader()
 				})
 			} else {
-				fetch(
-					'https://publicodes.netlify.com/.netlify/functions/getRulesFile?' +
-						toPairs(props.rulesConfig.fetch)
-							.map(([k, v]) => k + '=' + v)
-							.join('&'),
-					{ mode: 'cors' }
-				)
+				fetch(props.rulesURL, { mode: 'cors' })
 					.then(response => response.json())
 					.then(json => {
 						this.props.setRules(json)

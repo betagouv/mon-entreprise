@@ -21,12 +21,7 @@ class App extends Component {
 		return (
 			<Provider
 				basename="publicodes"
-				rulesConfig={{
-					fetch: {
-						repo: 'laem/futureco-data',
-						filePath: 'co2.yaml'
-					}
-				}}
+				rulesURL="https://futureco-data.netlify.com/co2.json"
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}>
 				<StoreProvider>
