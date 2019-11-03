@@ -24,6 +24,7 @@ export default withRouter(({ location }) => {
 			`}>
 			<Link to="/" title="Revenir à l'accueil">
 				<img
+					width="5em"
 					css={`
 						width: ${displayIntro ? '8em' : '5em'};
 						@media (max-width: 800px) {
