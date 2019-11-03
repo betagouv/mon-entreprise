@@ -57,7 +57,7 @@ export default withRouter(({ location }) => {
 							color: inherit;
 						}
 					`}>
-					Votre futur :
+					Votre futur&nbsp;:
 					<div
 						css={`
 							img {
