@@ -66,7 +66,7 @@ export default (rules, rule, parsedRules) => {
 		),
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
 		'rend non applicable': nonApplicableRules =>
-			nonApplicableRules.map(referenceName => {
+			coerceArray(nonApplicableRules).map(referenceName => {
 				return disambiguateRuleReference(rules, rule, referenceName)
 			}),
 		remplace: evolveReplacement(rules, rule, parsedRules),
