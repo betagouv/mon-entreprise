@@ -115,3 +115,17 @@
 - nom: exemple3
   formule: non
 
+
+- nom: A
+  formule: 1
+- nom: B
+  remplace: A
+  formule: 2
+- nom: C
+  remplace: B
+  formule: 3
+  
+- test: remplacement associatif
+  formule: A
+  exemples:
+    - valeur attendue: 3
