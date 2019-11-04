@@ -72,12 +72,12 @@ export let parseAll = flatRules => {
 		})
 	})
 	Object.entries(replacedByMapping).forEach(([a, b]) => {
-		parsedRules[a].replacedBy = b.map((({ referenceName, replacementNode }) => ({
-			replacementNode, referenceNode: parseReference(flatRules, parsedRules[referenceName], parsedRules)(
-				referenceName
-			)
-		})
-		))
+		parsedRules[a].replacedBy = b
+			.map((({ referenceName, ...other }) => ({
+				referenceNode: parseReference(flatRules, parsedRules[referenceName], parsedRules)(
+					referenceName
+				), ...other
+			})))
 	})
 
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
