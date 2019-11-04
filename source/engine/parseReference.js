@@ -1,28 +1,40 @@
 // Reference to a variable
-import parseRule from 'Engine/parseRule'
-import React from 'react'
-import { evaluateNode } from './evaluation'
-import { getSituationValue } from './getSituationValue'
-import { Leaf } from './mecanismViews/common'
-import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules'
+import parseRule from 'Engine/parseRule';
+import React from 'react';
+import { evaluateApplicability } from './evaluateRule';
+import { evaluateNode } from './evaluation';
+import { getSituationValue } from './getSituationValue';
+import { Leaf } from './mecanismViews/common';
+import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules';
 
+const ruleHasConditions = (rule, rules) =>
+	rule['applicable si'] != null ||
+		rule['non applicable si'] != null ||
+		rule.isDisabledBy ?.length > 1 ||
+		findParentDependency(rules, rule)
 
 let evaluateReference = (filter) => (cache, situation, rules, node) => {
 	let rule = rules[node.dottedName]
 
+
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const applicableReplacements = rule.replacedBy
-		.map(({ referenceNode, replacementNode }) => (
-			({
-				referenceNode: evaluateReference(filter)(cache, situation, rules, referenceNode),
-				replacementNode: replacementNode && evaluateNode(cache, situation, rules, replacementNode),
-			})))
-		.filter(({ referenceNode }) => referenceNode.explanation.isApplicable)
+		.filter(({ referenceNode }) => {
+			const isApplicable =
+				!ruleHasConditions(rules[referenceNode.dottedName], rules) ||
+				evaluateApplicability(cache, situation, rules, rules[referenceNode.dottedName]).nodeValue === true
+			return isApplicable
+		}
+		)
+		.map(({ referenceNode, replacementNode }) =>
+			replacementNode != null ? evaluateNode(cache, situation, rules, replacementNode) : evaluateReference(filter)(cache, situation, rules, referenceNode)
+		)
 
 	if (applicableReplacements.length) {
-		return applicableReplacements[0].replacementNode ?? applicableReplacements[0].referenceNode
+		return applicableReplacements[0]
 	}
+
 
 	let dottedName = node.dottedName,
 		// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -31,12 +43,9 @@ let evaluateReference = (filter) => (cache, situation, rules, node) => {
 		cached = cache[cacheName]
 	if (cached) return cached
 
+
 	let variableHasFormula = rule.formule != null,
-		variableHasCond =
-			rule['applicable si'] != null ||
-			rule['non applicable si'] != null ||
-			rule.isDisabledBy.length > 1 ||
-			findParentDependency(rules, rule),
+		variableHasCond = ruleHasConditions(rule, rules),
 		situationValue = getSituationValue(situation, dottedName, rule),
 
 		needsEvaluation =

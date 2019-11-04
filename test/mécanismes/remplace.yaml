@@ -33,5 +33,64 @@
       situation: 
         restaurant . client enfant: oui
       valeur attendue: 8
+
+
     
- 
+- nom: cotisations . assiette
+  formule: 0 €
+
+- nom: cotisations
+  formule:
+    somme:
+      - retraite
+      - chômage
+      - maladie
+
+- nom: cotisations . retraite
+  formule: 
+    multiplication: 
+      taux: 10%
+      assiette: assiette
+
+- nom: cotisations . chômage
+  formule: 
+    multiplication:
+      taux: 10%
+      assiette: assiette
+
+- nom: cotisations . maladie
+  formule: 
+    multiplication:
+      taux: 10%
+      assiette: assiette
+
+- test: remplacement sans boucle infinie si il n'y a pas de dépendances cycliques
+  applicable si: exemple1
+  formule: cotisations
+  remplace: 
+    règle: cotisations . assiette
+    par: 1000
+  exemples: 
+    - situation: 
+        exemple1: oui
+      valeur attendue: 300
+
+    
+# - test: remplacement contextuel par inclusion
+#   formule: cotisations
+#   remplace: 
+#     règle: cotisations . assiette
+#     dans: cotisations . retraite 
+#     par: 500
+#   exemples: 
+#     - situation: 
+#         exemple2: oui
+#     - valeur attendue: 250
+#   applicable si: exemple2
+
+- nom: exemple1
+  formule: non
+- nom: exemple2
+  formule: non
+
+    
