@@ -1,0 +1,15 @@
+cotisation retraite:
+
+Arrondi:
+  formule:
+    arrondi: cotisation retraite
+
+  exemples:
+    - nom: arrondi en dessous
+      situation:
+        cotisation retraite: 1200.21
+      valeur attendue: 1200
+    - nom: arrondi au-dessous
+      situation:
+        cotisation retraite: 1200.50
+      valeur attendue: 1201

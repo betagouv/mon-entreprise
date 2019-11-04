@@ -38,6 +38,7 @@ export let NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 	</span>
 )
 
+// Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 type NodeProps = {
 	classes: string
 	name: string
@@ -47,7 +48,6 @@ type NodeProps = {
 	child: React.ReactNode
 }
 
-// Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export function Node({ classes, name, value, child, inline, unit }: NodeProps) {
 	let termDefinition = contains('mecanism', classes) && name
 
