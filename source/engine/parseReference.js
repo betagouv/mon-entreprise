@@ -13,13 +13,16 @@ const ruleHasConditions = (rule, rules) =>
 		rule.isDisabledBy ?.length > 1 ||
 		findParentDependency(rules, rule)
 
-let evaluateReference = (filter) => (cache, situation, rules, node) => {
+let evaluateReference = (filter, contextRuleName) => (cache, situation, rules, node) => {
 	let rule = rules[node.dottedName]
 
 
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const applicableReplacements = rule.replacedBy
+		.sort((replacement1, replacement2) => !!replacement2.whiteListedName - !!replacement1.whiteListedName)
+		.filter(({ whiteListedName }) => !whiteListedName || whiteListedName === contextRuleName)
+		.filter(({ blackListedName }) => !blackListedName || blackListedName !== contextRuleName)
 		.filter(({ referenceNode }) => {
 			const isApplicable =
 				!ruleHasConditions(rules[referenceNode.dottedName], rules) ||
@@ -113,7 +116,7 @@ export let parseReference = (rules, rule, parsedRules, filter) => (
 
 
 	return {
-		evaluate: evaluateReference(filter, parsedRule),
+		evaluate: evaluateReference(filter, rule.dottedName),
 		//eslint-disable-next-line react/display-name
 		jsx: nodeValue => (
 			<>

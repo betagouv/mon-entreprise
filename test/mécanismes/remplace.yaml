@@ -37,7 +37,7 @@
 
     
 - nom: cotisations . assiette
-  formule: 0 €
+  formule: 1000 €
 
 - nom: cotisations
   formule:
@@ -69,24 +69,50 @@
   formule: cotisations
   remplace: 
     règle: cotisations . assiette
-    par: 1000
+    par: 100
   exemples: 
     - situation: 
         exemple1: oui
-      valeur attendue: 300
+      valeur attendue: 30
 
     
-# - test: remplacement contextuel par inclusion
-#   formule: cotisations
-#   remplace: 
-#     règle: cotisations . assiette
-#     dans: cotisations . retraite 
-#     par: 500
-#   exemples: 
-#     - situation: 
-#         exemple2: oui
-#     - valeur attendue: 250
-#   applicable si: exemple2
+- test: remplacement contextuel par inclusion
+  formule: cotisations
+  remplace: 
+    règle: cotisations . assiette
+    par: 500
+    dans: cotisations . retraite 
+  exemples: 
+    - situation: 
+        exemple2: oui
+      valeur attendue: 250
+    - nom: avec remplacement existant
+      situation: 
+        exemple1: oui
+        exemple2: oui
+      valeur attendue: 70
+  applicable si: exemple2
+
+
+- test: remplacement contextuel par exclusion
+  formule: cotisations
+  remplace: 
+    règle: cotisations . assiette
+    par: 100
+    sauf dans: cotisations . chômage
+  exemples: 
+    - situation: 
+        exemple3: oui
+      valeur attendue: 120
+  applicable si: exemple3
+
+- nom: exemple1
+  formule: non
+- nom: exemple2
+  formule: non
+- nom: exemple3
+  formule: non
+
 
 - nom: exemple1
   formule: non

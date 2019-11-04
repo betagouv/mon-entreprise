@@ -39,6 +39,7 @@ export const evaluateApplicability = (cache, situationGate, parsedRules, node) =
 	// mais seulement dans le cas où une condition est effectivement présente
 	return { nodeValue: isApplicable, missingVariables, ...evaluatedAttributes, inactiveParent: parentDependency && val(parentDependency) == false }
 }
+
 export default (cache, situationGate, parsedRules, node) => {
 	cache.parseLevel++
 	let
