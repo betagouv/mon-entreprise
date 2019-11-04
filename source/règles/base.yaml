@@ -1020,11 +1020,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
 contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
   période: aucune
   unité: €/repas
-  formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors: 3.62
-      - sinon: 4.85
+  formule: 4.85
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
@@ -1038,21 +1034,6 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
     1 par jour: 21
     2 par jour: 42
 
-entreprise . hôtel café restaurant:
-  par défaut: non
-  question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?
-
-# contrat salarié . rémunération . avantages en nature . montant
-#   titre: Avantages en nature (montant)
-#   description: >
-#     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-
-#     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de : [10% x (850€ + (30€ x 12 mois)) ] / 12 mois, soit 10,08€
-
-#   période: flexible
-
-#   unité: €
-#   par défaut: 0
 
 contrat salarié . indemnités salarié:
   période: flexible
@@ -1942,31 +1923,16 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
   titre: majoration heures supplémentaires
   note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
   période: mois
-  unité: heure
+  unité: heure  
   formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 4
-                taux: 10%
-              - de: 4
-                à: 8
-                taux: 20%
-              - au-dessus de: 8
-                taux: 50%
-      - sinon:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 8
-                taux: 25%
-              - au-dessus de: 8
-                taux: 50%
+    barème:
+      assiette: heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - en-dessous de: 8
+          taux: 25%
+        - au-dessus de: 8
+          taux: 50%
 
 contrat salarié . statut JEI:
   titre: Statut JEI
@@ -4943,3 +4909,48 @@ contrat salarié . lodeom . paramètre T:
             - entreprise . effectif >= 20
         alors: 0.3254
   note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.
+entreprise . convention collective:
+  par défaut: droit commun
+  question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - hôtel café restaurant
+        # - sportifs
+        # - intermittents du spectacle
+        - droit commun
+
+entreprise . convention collective . droit commun:
+  formule: convention collective = 'droit commun'
+
+entreprise . convention collective . sportifs:
+  formule: convention collective = 'sportifs'  
+
+entreprise . convention collective . intermittents du spectacle:
+  formule: convention collective = 'intermittents du spectacle'  
+
+entreprise . convention collective . hôtel café restaurant:
+  formule: convention collective = 'hôtel café restaurant'
+  description: L'entreprise est un hôtel, café, restaurant ou assimilé.
+  période: aucune
+  remplace:
+    règle: contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
+    par: 3.62 €/repas
+
+entreprise . convention collective . hôtel café restaurant . majoration heures supplémentaires: 
+  remplace: 
+    règle: contrat salarié . temps de travail . heures supplémentaires . majoration 
+  période: flexible
+  formule:
+    barème:
+      assiette: contrat salarié . temps de travail . heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - en-dessous de: 4
+          taux: 10%
+        - de: 4
+          à: 8
+          taux: 20%
+        - au-dessus de: 8
+          taux: 50%
