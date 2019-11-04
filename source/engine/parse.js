@@ -3,6 +3,7 @@
 // TODO import them automatically
 // TODO convert the legacy functions to new files
 import { formatValue } from 'Engine/format'
+import mecanismRound from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
@@ -140,6 +141,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			'toutes ces conditions': mecanismAllOf,
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
+			arrondi: mecanismRound,
 			barème,
 			'barème linéaire': barèmeLinéaire,
 			'barème continu': barèmeContinu,

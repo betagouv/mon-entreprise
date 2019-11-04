@@ -91,6 +91,11 @@ somme:
   description: |
     C'est tout simplement la somme de chaque terme de la liste.
 
+arrondi:
+  type: numeric
+  description: |
+    On arrondi à l'euro le plus proche
+
 ##########################################
 # Ce qu'on appelle aujourd'hui des RuleProp
 # Et qui deviendront des mécanismes classiques normalement par la suite #TODO
