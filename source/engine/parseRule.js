@@ -76,9 +76,14 @@ export default (rules, rule, parsedRules) => {
 			if (replacementNode) {
 				replacementNode = parse(rules, rule, parsedRules)(replacementNode)
 			}
+			let whitelistedRule = reference.dans
+			if (whitelistedRule) {
+				disambiguateRuleReference(rules, rule, whitelistedRule)
+			}
 			return {
 				referenceName: disambiguateRuleReference(rules, rule, referenceName),
-				replacementNode
+				replacementNode,
+				whitelistedRule
 			}
 		},
 		formule: value => {
