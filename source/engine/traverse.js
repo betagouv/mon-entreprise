@@ -60,12 +60,15 @@ export let parseAll = flatRules => {
 			nonApplicableMapping[rule.dottedName] = parsed['rend non applicable']
 		}
 
-		const descriptor = parsed['remplace']
-		if (descriptor) {
-			replacedByMapping[descriptor.referenceName] = [
-				...(replacedByMapping[descriptor.referenceName] ?? []),
-				{ ...descriptor, referenceName: rule.dottedName }
-			]
+		const replaceDescriptors = parsed['remplace']
+		if (replaceDescriptors) {
+			replaceDescriptors.forEach(
+				descriptor =>
+					(replacedByMapping[descriptor.referenceName] = [
+						...(replacedByMapping[descriptor.referenceName] ?? []),
+						{ ...descriptor, referenceName: rule.dottedName }
+					])
+			)
 		}
 	})
 

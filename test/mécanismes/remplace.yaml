@@ -136,14 +136,24 @@
       valeur attendue: 40
   applicable si: exemple4
 
+- test: remplacement de plusieurs variables d'un coup
+  formule: cotisations
+  remplace:
+    - règle: cotisations . chômage
+      par: 10
+    - règle: cotisations . maladie
+      par: 0
+  exemples:
+    - situation:
+        exemple5: oui
+      valeur attendue: 110
+  applicable si: exemple5
+
 - nom: exemple1
-  formule: non
 - nom: exemple2
-  formule: non
 - nom: exemple3
-  formule: non
 - nom: exemple4
-  formule: non
+- nom: exemple5
 
 - nom: A
   formule: 1

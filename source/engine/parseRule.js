@@ -71,30 +71,7 @@ export default (rules, rule, parsedRules) => {
 			nonApplicableRules.map(referenceName => {
 				return disambiguateRuleReference(rules, rule, referenceName)
 			}),
-		remplace: reference => {
-			const referenceName =
-				typeof reference === 'string' ? reference : reference.règle
-			let replacementNode = reference.par
-			if (replacementNode) {
-				replacementNode = parse(rules, rule, parsedRules)(replacementNode)
-			}
-			let [whiteListedNames, blackListedNames] = [
-				reference.dans,
-				reference['sauf dans']
-			]
-				.map(name => name && coerceArray(name))
-				.map(
-					names =>
-						names &&
-						names.map(name => disambiguateRuleReference(rules, rule, name))
-				)
-			return {
-				referenceName: disambiguateRuleReference(rules, rule, referenceName),
-				replacementNode,
-				whiteListedNames,
-				blackListedNames
-			}
-		},
+		remplace: evolveReplacement(rules, rule, parsedRules),
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let explanation = evaluateNode(
@@ -232,3 +209,29 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 		explanation: child
 	}
 }
+
+let evolveReplacement = (rules, rule, parsedRules) => replacements =>
+	coerceArray(replacements).map(reference => {
+		const referenceName =
+			typeof reference === 'string' ? reference : reference.règle
+		let replacementNode = reference.par
+		if (replacementNode != null) {
+			replacementNode = parse(rules, rule, parsedRules)(replacementNode)
+		}
+		let [whiteListedNames, blackListedNames] = [
+			reference.dans,
+			reference['sauf dans']
+		]
+			.map(name => name && coerceArray(name))
+			.map(
+				names =>
+					names &&
+					names.map(name => disambiguateRuleReference(rules, rule, name))
+			)
+		return {
+			referenceName: disambiguateRuleReference(rules, rule, referenceName),
+			replacementNode,
+			whiteListedNames,
+			blackListedNames
+		}
+	})
