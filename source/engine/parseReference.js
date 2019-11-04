@@ -1,43 +1,67 @@
 // Reference to a variable
-import parseRule from 'Engine/parseRule';
-import React from 'react';
-import { evaluateApplicability } from './evaluateRule';
-import { evaluateNode } from './evaluation';
-import { getSituationValue } from './getSituationValue';
-import { Leaf } from './mecanismViews/common';
-import { disambiguateRuleReference, findParentDependency, findRuleByDottedName } from './rules';
+import parseRule from 'Engine/parseRule'
+import React from 'react'
+import { evaluateApplicability } from './evaluateRule'
+import { evaluateNode } from './evaluation'
+import { getSituationValue } from './getSituationValue'
+import { Leaf } from './mecanismViews/common'
+import {
+	disambiguateRuleReference,
+	findParentDependency,
+	findRuleByDottedName
+} from './rules'
 
 const ruleHasConditions = (rule, rules) =>
 	rule['applicable si'] != null ||
-		rule['non applicable si'] != null ||
-		rule.isDisabledBy ?.length > 1 ||
-		findParentDependency(rules, rule)
+	rule['non applicable si'] != null ||
+	rule.isDisabledBy?.length > 1 ||
+	findParentDependency(rules, rule)
 
-let evaluateReference = (filter, contextRuleName) => (cache, situation, rules, node) => {
+let evaluateReference = (filter, contextRuleName) => (
+	cache,
+	situation,
+	rules,
+	node
+) => {
 	let rule = rules[node.dottedName]
-
 
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const applicableReplacements = rule.replacedBy
-		.sort((replacement1, replacement2) => !!replacement2.whiteListedNames - !!replacement1.whiteListedNames)
-		.filter(({ whiteListedNames }) => !whiteListedNames || whiteListedNames.some(name => name === contextRuleName))
-		.filter(({ blackListedNames }) => !blackListedNames || blackListedNames.every(name => name !== contextRuleName))
+		.sort(
+			(replacement1, replacement2) =>
+				!!replacement2.whiteListedNames - !!replacement1.whiteListedNames
+		)
+		.filter(
+			({ whiteListedNames }) =>
+				!whiteListedNames ||
+				whiteListedNames.some(name => name === contextRuleName)
+		)
+		.filter(
+			({ blackListedNames }) =>
+				!blackListedNames ||
+				blackListedNames.every(name => name !== contextRuleName)
+		)
 		.filter(({ referenceNode }) => {
 			const isApplicable =
 				!ruleHasConditions(rules[referenceNode.dottedName], rules) ||
-				evaluateApplicability(cache, situation, rules, rules[referenceNode.dottedName]).nodeValue === true
+				evaluateApplicability(
+					cache,
+					situation,
+					rules,
+					rules[referenceNode.dottedName]
+				).nodeValue === true
 			return isApplicable
-		}
-		)
+		})
 		.map(({ referenceNode, replacementNode }) =>
-			replacementNode != null ? evaluateNode(cache, situation, rules, replacementNode) : evaluateReference(filter)(cache, situation, rules, referenceNode)
+			replacementNode != null
+				? evaluateNode(cache, situation, rules, replacementNode)
+				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
 
 	if (applicableReplacements.length) {
 		return applicableReplacements[0]
 	}
-
 
 	let dottedName = node.dottedName,
 		// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -46,11 +70,9 @@ let evaluateReference = (filter, contextRuleName) => (cache, situation, rules, n
 		cached = cache[cacheName]
 	if (cached) return cached
 
-
 	let variableHasFormula = rule.formule != null,
 		variableHasCond = ruleHasConditions(rule, rules),
 		situationValue = getSituationValue(situation, dottedName, rule),
-
 		needsEvaluation =
 			situationValue == null && (variableHasCond || variableHasFormula)
 
@@ -101,19 +123,21 @@ let evaluateReference = (filter, contextRuleName) => (cache, situation, rules, n
 		return cacheAndNode(null, explanation.missingVariables)
 	}
 }
-export let parseReference = (rules, rule, parsedRules, filter) => (
-	partialReference
-) => {
+export let parseReference = (
+	rules,
+	rule,
+	parsedRules,
+	filter
+) => partialReference => {
 	let dottedName = disambiguateRuleReference(rules, rule, partialReference)
 
-	let inInversionFormula = rule.formule ?.['inversion numérique']
+	let inInversionFormula = rule.formule?.['inversion numérique']
 
 	let parsedRule =
 		parsedRules[dottedName] ||
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula &&
 			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
-
 
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
@@ -150,9 +174,6 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 	parsedRules,
 	node
 ) => {
-
-
-
 	// Filter transformation
 	let filteringSituation = name =>
 		name == 'sys.filter' ? parseResult.filter : situation(name)
@@ -171,10 +192,7 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 	// Temporal transformation
 	let supportedPeriods = ['mois', 'année', 'flexible']
 	if (nodeValue == null) return filteredNode
-	let ruleToTransform = findRuleByDottedName(
-		parsedRules,
-		filteredNode.explanation.dottedName
-	)
+	let ruleToTransform = parsedRules[filteredNode.explanation.dottedName]
 
 	let inlinePeriodTransform = { mensuel: 'mois', annuel: 'année' }[
 		parseResult.temporalTransform
@@ -182,7 +200,7 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 
 	// Exceptions
 	if (!rule.période && !inlinePeriodTransform) {
-		if (supportedPeriods.includes(ruleToTransform.période))
+		if (supportedPeriods.includes(ruleToTransform?.période))
 			throw new Error(
 				`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
 
@@ -192,7 +210,7 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 
 		return filteredNode
 	}
-	if (!ruleToTransform.période) return filteredNode
+	if (!ruleToTransform?.période) return filteredNode
 	let environmentPeriod = situation('période') || 'mois'
 	let callingPeriod =
 		inlinePeriodTransform ||
@@ -203,9 +221,9 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 			: ruleToTransform.période
 
 	let transformedNodeValue =
-		callingPeriod === 'mois' && calledPeriod === 'année'
-			? nodeValue / 12
-			: callingPeriod === 'année' && calledPeriod === 'mois'
+			callingPeriod === 'mois' && calledPeriod === 'année'
+				? nodeValue / 12
+				: callingPeriod === 'année' && calledPeriod === 'mois'
 				? nodeValue * 12
 				: nodeValue,
 		periodTransform = nodeValue !== transformedNodeValue
@@ -236,12 +254,12 @@ export let parseReferenceTransforms = (
 		// Decorate node with the composante filter (either who is paying, either tax free)
 		...(parseResult.filter
 			? {
-				cotisation: {
-					...node.cotisation,
-					'dû par': parseResult.filter,
-					'impôt sur le revenu': parseResult.filter
-				}
-			}
+					cotisation: {
+						...node.cotisation,
+						'dû par': parseResult.filter,
+						'impôt sur le revenu': parseResult.filter
+					}
+			  }
 			: {}),
 		evaluate: evaluateTransforms(node.evaluate, rule, parseResult)
 	}

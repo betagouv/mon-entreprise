@@ -71,15 +71,23 @@ export default (rules, rule, parsedRules) => {
 			nonApplicableRules.map(referenceName => {
 				return disambiguateRuleReference(rules, rule, referenceName)
 			}),
-		'remplace': (reference) => {
-			const referenceName = typeof reference === 'string' ? reference : reference.règle
+		remplace: reference => {
+			const referenceName =
+				typeof reference === 'string' ? reference : reference.règle
 			let replacementNode = reference.par
 			if (replacementNode) {
 				replacementNode = parse(rules, rule, parsedRules)(replacementNode)
 			}
-			let [whiteListedNames, blackListedNames] = [reference.dans, reference['sauf dans']]
+			let [whiteListedNames, blackListedNames] = [
+				reference.dans,
+				reference['sauf dans']
+			]
 				.map(name => name && coerceArray(name))
-				.map(names => names && names.map(name => disambiguateRuleReference(rules, rule, name)))
+				.map(
+					names =>
+						names &&
+						names.map(name => disambiguateRuleReference(rules, rule, name))
+				)
 			return {
 				referenceName: disambiguateRuleReference(rules, rule, referenceName),
 				replacementNode,
@@ -90,11 +98,11 @@ export default (rules, rule, parsedRules) => {
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let explanation = evaluateNode(
-					cache,
-					situationGate,
-					parsedRules,
-					node.explanation
-				),
+						cache,
+						situationGate,
+						parsedRules,
+						node.explanation
+					),
 					nodeValue = explanation.nodeValue,
 					missingVariables = explanation.missingVariables
 
@@ -143,7 +151,7 @@ export default (rules, rule, parsedRules) => {
 		parsed: true,
 		isDisabledBy: [],
 		replacedBy: [],
-		unit: rule.unit || parsedRoot.formule ?.explanation ?.unit
+		unit: rule.unit || parsedRoot.formule?.explanation?.unit
 	}
 
 	parsedRules[rule.dottedName]['rendu non applicable'] = {
@@ -186,11 +194,11 @@ export default (rules, rule, parsedRules) => {
 let evolveCond = (name, rule, rules, parsedRules) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let explanation = evaluateNode(
-			cache,
-			situationGate,
-			parsedRules,
-			node.explanation
-		),
+				cache,
+				situationGate,
+				parsedRules,
+				node.explanation
+			),
 			nodeValue = explanation.nodeValue,
 			missingVariables = explanation.missingVariables
 
@@ -208,8 +216,8 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 				explanation.category === 'variable' ? (
 					<div className="node">{makeJsx(explanation)}</div>
 				) : (
-						makeJsx(explanation)
-					)
+					makeJsx(explanation)
+				)
 			}
 		/>
 	)

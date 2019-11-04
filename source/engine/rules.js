@@ -1,5 +1,30 @@
 import { parseUnit } from 'Engine/units'
-import { assoc, chain, dropLast, find, fromPairs, has, is, isNil, join, last, map, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda'
+import {
+	assoc,
+	chain,
+	dropLast,
+	find,
+	fromPairs,
+	has,
+	is,
+	isNil,
+	join,
+	last,
+	map,
+	path,
+	pipe,
+	propEq,
+	props,
+	range,
+	reduce,
+	reduced,
+	reject,
+	split,
+	take,
+	toPairs,
+	trim,
+	when
+} from 'ramda'
 import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
@@ -85,10 +110,10 @@ export let disambiguateRuleReference = (
 	partialName
 ) => {
 	let pathPossibilities = [
-		[], // the top level namespace
-		...ruleParents(dottedName), // the parents namespace
-		splitName(dottedName) // the rule's own namespace
-	],
+			[], // the top level namespace
+			...ruleParents(dottedName), // the parents namespace
+			splitName(dottedName) // the rule's own namespace
+		],
 		found = reduce(
 			(res, path) => {
 				let dottedNameToCheck = [...path, partialName].join(' . ')
@@ -100,7 +125,7 @@ export let disambiguateRuleReference = (
 			pathPossibilities
 		)
 
-	if (found ?.dottedName) {
+	if (found?.dottedName) {
 		return found.dottedName
 	}
 
@@ -220,7 +245,7 @@ export let findParentDependency = (rules, rule) => {
 			//Find the first "calculable" parent
 			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
-				(question && formule ?.['une possibilité'] !== undefined) ||
+				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) //implicitly, the format is boolean
 		)
 	)(parentDependencies)
@@ -233,8 +258,8 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
 		.map(
 			analysis =>
-				analysis.cache[dottedName] ?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
-					analysis.targets.find(propEq('dottedName', dottedName))
+				analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
+				analysis.targets.find(propEq('dottedName', dottedName))
 		)
 		.filter(Boolean)[0]
 

@@ -3,7 +3,11 @@ import parseRule from 'Engine/parseRule'
 import { chain, path } from 'ramda'
 import { evaluateNode } from './evaluation'
 import { parseReference } from './parseReference'
-import { disambiguateRuleReference, findRule, findRuleByDottedName } from './rules'
+import {
+	disambiguateRuleReference,
+	findRule,
+	findRuleByDottedName
+} from './rules'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -58,26 +62,29 @@ export let parseAll = flatRules => {
 
 		const descriptor = parsed['remplace']
 		if (descriptor) {
-			replacedByMapping[descriptor.referenceName] = [...(replacedByMapping[descriptor.referenceName] ?? []), { ...descriptor, referenceName: rule.dottedName }]
+			replacedByMapping[descriptor.referenceName] = [
+				...(replacedByMapping[descriptor.referenceName] ?? []),
+				{ ...descriptor, referenceName: rule.dottedName }
+			]
 		}
 	})
 
 	Object.entries(nonApplicableMapping).forEach(([a, b]) => {
 		b.forEach(ruleName => {
 			parsedRules[ruleName].isDisabledBy.push(
-				parseReference(flatRules, parsedRules[ruleName], parsedRules)(
-					a
-				)
+				parseReference(flatRules, parsedRules[ruleName], parsedRules)(a)
 			)
 		})
 	})
 	Object.entries(replacedByMapping).forEach(([a, b]) => {
-		parsedRules[a].replacedBy = b
-			.map((({ referenceName, ...other }) => ({
-				referenceNode: parseReference(flatRules, parsedRules[referenceName], parsedRules)(
-					referenceName
-				), ...other
-			})))
+		parsedRules[a].replacedBy = b.map(({ referenceName, ...other }) => ({
+			referenceNode: parseReference(
+				flatRules,
+				parsedRules[referenceName],
+				parsedRules
+			)(referenceName),
+			...other
+		}))
 	})
 
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
@@ -98,11 +105,11 @@ export let getTargets = (target, rules) => {
 	let multiSimulation = path(['simulateur', 'objectifs'])(target)
 	let targets = multiSimulation
 		? // On a un simulateur qui définit une liste d'objectifs
-		multiSimulation
-			.map(n => disambiguateRuleReference(rules, target, n))
-			.map(n => findRuleByDottedName(rules, n))
+		  multiSimulation
+				.map(n => disambiguateRuleReference(rules, target, n))
+				.map(n => findRuleByDottedName(rules, n))
 		: // Sinon on est dans le cas d'une simple variable d'objectif
-		[target]
+		  [target]
 
 	return targets
 }
@@ -113,13 +120,13 @@ export let analyseMany = (parsedRules, targetNames) => situationGate => {
 	let cache = { parseLevel: 0 }
 
 	let parsedTargets = targetNames.map(t => {
-		let parsedTarget = findRule(parsedRules, t)
-		if (!parsedTarget)
-			throw new Error(
-				`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
-			)
-		return parsedTarget
-	}),
+			let parsedTarget = findRule(parsedRules, t)
+			if (!parsedTarget)
+				throw new Error(
+					`L'objectif de calcul "${t}" ne semble pas  exister dans la base de règles`
+				)
+			return parsedTarget
+		}),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(
 			t =>
 				cache[t.dottedName] || // This check exists because it is not done in parseRuleRoot's eval, while it is in parseVariable. This should be merged : we should probably call parseVariable here : targetNames could be expressions (hence with filters) TODO
