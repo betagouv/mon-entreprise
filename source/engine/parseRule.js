@@ -5,6 +5,7 @@ import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
+import { coerceArray } from '../utils'
 import { evaluateNode, makeJsx } from './evaluation'
 import { Node } from './mecanismViews/common'
 import { disambiguateRuleReference, findParentDependency } from './rules'
@@ -76,19 +77,14 @@ export default (rules, rule, parsedRules) => {
 			if (replacementNode) {
 				replacementNode = parse(rules, rule, parsedRules)(replacementNode)
 			}
-			let whiteListedName = reference.dans
-			if (whiteListedName) {
-				disambiguateRuleReference(rules, rule, whiteListedName)
-			}
-			let blackListedName = reference['sauf dans']
-			if (blackListedName) {
-				disambiguateRuleReference(rules, rule, blackListedName)
-			}
+			let [whiteListedNames, blackListedNames] = [reference.dans, reference['sauf dans']]
+				.map(name => name && coerceArray(name))
+				.map(names => names && names.map(name => disambiguateRuleReference(rules, rule, name)))
 			return {
 				referenceName: disambiguateRuleReference(rules, rule, referenceName),
 				replacementNode,
-				whiteListedName,
-				blackListedName
+				whiteListedNames,
+				blackListedNames
 			}
 		},
 		formule: value => {

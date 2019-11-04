@@ -99,11 +99,13 @@
   remplace: 
     règle: cotisations . assiette
     par: 100
-    sauf dans: cotisations . chômage
+    sauf dans: 
+      - cotisations . chômage
+      - cotisations . maladie
   exemples: 
     - situation: 
         exemple3: oui
-      valeur attendue: 120
+      valeur attendue: 210
   applicable si: exemple3
 
 - nom: exemple1
@@ -113,10 +115,3 @@
 - nom: exemple3
   formule: non
 
-
-- nom: exemple1
-  formule: non
-- nom: exemple2
-  formule: non
-
-    

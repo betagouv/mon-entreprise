@@ -20,9 +20,9 @@ let evaluateReference = (filter, contextRuleName) => (cache, situation, rules, n
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const applicableReplacements = rule.replacedBy
-		.sort((replacement1, replacement2) => !!replacement2.whiteListedName - !!replacement1.whiteListedName)
-		.filter(({ whiteListedName }) => !whiteListedName || whiteListedName === contextRuleName)
-		.filter(({ blackListedName }) => !blackListedName || blackListedName !== contextRuleName)
+		.sort((replacement1, replacement2) => !!replacement2.whiteListedNames - !!replacement1.whiteListedNames)
+		.filter(({ whiteListedNames }) => !whiteListedNames || whiteListedNames.some(name => name === contextRuleName))
+		.filter(({ blackListedNames }) => !blackListedNames || blackListedNames.every(name => name !== contextRuleName))
 		.filter(({ referenceNode }) => {
 			const isApplicable =
 				!ruleHasConditions(rules[referenceNode.dottedName], rules) ||
