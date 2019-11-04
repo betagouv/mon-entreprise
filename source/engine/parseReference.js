@@ -2,7 +2,7 @@
 import parseRule from 'Engine/parseRule'
 import React from 'react'
 import { evaluateApplicability } from './evaluateRule'
-import { evaluateNode } from './evaluation'
+import { evaluateNode, mergeMissing } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
@@ -20,9 +20,9 @@ let evaluateReference = (filter, contextRuleName) => (
 	node
 ) => {
 	let rule = rules[node.dottedName]
-
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
+	let missingVariableList = []
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>
@@ -39,15 +39,14 @@ let evaluateReference = (filter, contextRuleName) => (
 				blackListedNames.every(name => name !== contextRuleName)
 		)
 		.filter(({ referenceNode }) => {
-			const isApplicable =
-				!ruleHasConditions(rules[referenceNode.dottedName], rules) ||
-				evaluateApplicability(
-					cache,
-					situation,
-					rules,
-					rules[referenceNode.dottedName]
-				).nodeValue === true
-			return isApplicable
+			const { nodeValue, missingVariables } = evaluateApplicability(
+				cache,
+				situation,
+				rules,
+				rules[referenceNode.dottedName]
+			)
+			missingVariableList.push(missingVariables)
+			return nodeValue === true
 		})
 		.map(({ referenceNode, replacementNode }) =>
 			replacementNode != null
@@ -77,6 +76,10 @@ let evaluateReference = (filter, contextRuleName) => (
 		: rule
 
 	let cacheAndNode = (nodeValue, missingVariables, customExplanation) => {
+		missingVariables = missingVariableList.reduce(
+			mergeMissing,
+			missingVariables
+		)
 		cache[cacheName] = {
 			...node,
 			nodeValue,
