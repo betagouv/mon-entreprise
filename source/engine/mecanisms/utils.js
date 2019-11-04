@@ -33,4 +33,3 @@ export let decompose = (recurse, k, v) => {
 		unit: inferUnit('+', explanation.map(e => e.unit))
 	}
 }
-

@@ -2,16 +2,21 @@ import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
 import { map, mergeAll, pick, pipe } from 'ramda'
 import { anyNull, undefOrTrue, val } from './traverse-common-functions'
 
-export const evaluateApplicability = (cache, situationGate, parsedRules, node) => {
+export const evaluateApplicability = (
+	cache,
+	situationGate,
+	parsedRules,
+	node
+) => {
 	let evaluatedAttributes = pipe(
-		pick([
-			'parentDependency',
-			'non applicable si',
-			'applicable si',
-			'rendu non applicable'
-		]),
-		map(value => evaluateNode(cache, situationGate, parsedRules, value))
-	)(node),
+			pick([
+				'parentDependency',
+				'non applicable si',
+				'applicable si',
+				'rendu non applicable'
+			]),
+			map(value => evaluateNode(cache, situationGate, parsedRules, value))
+		)(node),
 		{
 			parentDependency,
 			'non applicable si': notApplicable,
@@ -20,52 +25,62 @@ export const evaluateApplicability = (cache, situationGate, parsedRules, node) =
 		} = evaluatedAttributes,
 		isApplicable =
 			val(parentDependency) === false ||
-				val(notApplicable) === true ||
-				val(applicable) === false ||
-				val(disabled) === true
+			val(notApplicable) === true ||
+			val(applicable) === false ||
+			val(disabled) === true
 				? false
 				: anyNull([notApplicable, applicable, parentDependency])
-					? null
-					: !val(notApplicable) && undefOrTrue(val(applicable)),
+				? null
+				: !val(notApplicable) && undefOrTrue(val(applicable)),
 		missingVariables =
 			isApplicable === false
 				? {}
 				: mergeAll([
-					parentDependency ?.missingVariables || {},
-					notApplicable ?.missingVariables || {},
-					applicable ?.missingVariables || {}
-							  ])
+						parentDependency?.missingVariables || {},
+						notApplicable?.missingVariables || {},
+						applicable?.missingVariables || {}
+				  ])
 	// On veut abaisser le score des conséquences par rapport aux conditions,
 	// mais seulement dans le cas où une condition est effectivement présente
-	return { nodeValue: isApplicable, missingVariables, ...evaluatedAttributes, inactiveParent: parentDependency && val(parentDependency) == false }
+	return {
+		nodeValue: isApplicable,
+		missingVariables,
+		...evaluatedAttributes,
+		inactiveParent: parentDependency && val(parentDependency) == false
+	}
 }
 
 export default (cache, situationGate, parsedRules, node) => {
 	cache.parseLevel++
-	let
-		applicabilityEvaluation = evaluateApplicability(cache, situationGate, parsedRules, node),
-		{ missingVariables: condMissing, nodeValue: isApplicable } = applicabilityEvaluation,
+	let applicabilityEvaluation = evaluateApplicability(
+			cache,
+			situationGate,
+			parsedRules,
+			node
+		),
+		{
+			missingVariables: condMissing,
+			nodeValue: isApplicable
+		} = applicabilityEvaluation,
 		evaluateFormula = () =>
 			node.formule
 				? evaluateNode(cache, situationGate, parsedRules, node.formule)
 				: {},
 		// evaluate the formula lazily, only if the applicability is known and true
-		evaluatedFormula =
-			isApplicable
-				? evaluateFormula()
-				: isApplicable === false
-					? {
-						...node.formule,
-						missingVariables: {},
-						nodeValue: 0
-					}
-					: {
-						...node.formule,
-						missingVariables: {},
-						nodeValue: null
-					},
+		evaluatedFormula = isApplicable
+			? evaluateFormula()
+			: isApplicable === false
+			? {
+					...node.formule,
+					missingVariables: {},
+					nodeValue: 0
+			  }
+			: {
+					...node.formule,
+					missingVariables: {},
+					nodeValue: null
+			  },
 		{ missingVariables: formulaMissingVariables, nodeValue } = evaluatedFormula,
-
 		missingVariables = mergeMissing(
 			bonus(condMissing, !!Object.keys(condMissing).length),
 			formulaMissingVariables
@@ -78,7 +93,6 @@ export default (cache, situationGate, parsedRules, node) => {
 		...{ formule: evaluatedFormula },
 		nodeValue,
 		isApplicable,
-		missingVariables,
-
+		missingVariables
 	}
 }

@@ -1,4 +1,18 @@
-import { add, any, equals, evolve, filter, fromPairs, is, keys, map, mergeWith, pluck, reduce, values } from 'ramda'
+import {
+	add,
+	any,
+	equals,
+	evolve,
+	filter,
+	fromPairs,
+	is,
+	keys,
+	map,
+	mergeWith,
+	pluck,
+	reduce,
+	values
+} from 'ramda'
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
@@ -24,7 +38,7 @@ export let evaluateArray = (reducer, start) => (
 	node
 ) => {
 	let evaluateOne = child =>
-		evaluateNode(cache, situationGate, parsedRules, child),
+			evaluateNode(cache, situationGate, parsedRules, child),
 		explanation = map(evaluateOne, node.explanation),
 		values = pluck('nodeValue', explanation),
 		nodeValue = any(equals(null), values)
@@ -42,7 +56,7 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	node
 ) => {
 	let evaluateOne = child =>
-		evaluateNode(cache, situationGate, parsedRules, child),
+			evaluateNode(cache, situationGate, parsedRules, child),
 		explanation = map(
 			evaluateOne,
 			filter(evaluationFilter(situationGate), node.explanation)
