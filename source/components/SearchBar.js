@@ -53,13 +53,15 @@ let SearchBar = ({
 						color: var(--textColour);
 					}
 				`}
-				onClick={() => setSelectedOption(option)}>
+				onClick={() => setSelectedOption(option)}
+			>
 				<div
 					style={{
 						fontWeight: '300',
 						fontSize: '85%',
 						lineHeight: '.9em'
-					}}>
+					}}
+				>
 					<Highlighter
 						searchWords={[input]}
 						textToHighlight={
@@ -73,7 +75,8 @@ let SearchBar = ({
 					/>
 				</div>
 				<Link
-					to={sitePaths.documentation.index + '/' + encodeRuleName(dottedName)}>
+					to={sitePaths.documentation.index + '/' + encodeRuleName(dottedName)}
+				>
 					<Highlighter
 						searchWords={[input]}
 						textToHighlight={title || capitalise0(name)}

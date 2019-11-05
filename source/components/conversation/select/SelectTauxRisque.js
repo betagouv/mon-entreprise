@@ -1,6 +1,8 @@
 import { T } from 'Components'
 import React, { useEffect, useState } from 'react'
+import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
 import { FormDecorator } from '../FormDecorator'
+const worker = new Worker()
 
 function SelectComponent({ setFormValue, submit, options }) {
 	const [searchResults, setSearchResults] = useState()
@@ -9,8 +11,13 @@ function SelectComponent({ setFormValue, submit, options }) {
 		setFormValue(option.text)
 		submit()
 	}
+	useEffect(() => {
+		worker.postMessage({
+			options
+		})
 
-	if (!options) return null
+		worker.onmessage = ({ data: results }) => setSearchResults(results)
+	}, [])
 
 	return (
 		<>
@@ -33,17 +40,12 @@ function SelectComponent({ setFormValue, submit, options }) {
 				`}
 				placeholder="Saisissez votre domaine d'activité"
 				onChange={e => {
-					if (e.target.value.length < 2) {
+					let input = e.target.value
+					if (input.length < 2) {
 						setSearchResults(undefined)
 						return
 					}
-					setSearchResults(
-						options.filter(option =>
-							option['Nature du risque']
-								.toLocaleLowerCase()
-								.includes(e.target.value.toLocaleLowerCase())
-						)
-					)
+					worker.postMessage({ input })
 				}}
 			/>
 			{searchResults && searchResults.length === 0 && (
@@ -149,5 +151,6 @@ export default FormDecorator('select')(function Select(props) {
 			)
 	}, [])
 
+	if (!options) return null
 	return <SelectComponent {...props} options={options} />
 })
