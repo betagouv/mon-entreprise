@@ -881,10 +881,12 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
       - primes . activité
 
 contrat salarié . rémunération . primes:
+  unité: €
   période: flexible
   formule: activité
 contrat salarié . rémunération . primes . activité:
   période: flexible
+  unité: €  
   titre: primes d'activité
   description: >
     Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
@@ -897,10 +899,12 @@ contrat salarié . rémunération . primes . activité:
 
 contrat salarié . rémunération . primes . activité . base:
   période: flexible
+  unité: €
   formule: 0
 
 contrat salarié . rémunération . primes . activité . conventionnelles:
   période: flexible
+  unité: €
   formule: 0
 
 contrat salarié . rémunération . brut:
@@ -5161,116 +5165,124 @@ contrat salarié . convention collective . sportifs . cotisations:
       assiette: cotisations . assiette
       taux: 1%
 
-# ? contrat salarié . convention collective . sportifs . cotisations . assiette franchisée
-# : période: flexible
-#   formule:
-#     allègement:
-#       assiette: cotisations . assiette
-#       abattement: franchise
+? contrat salarié . convention collective . sportifs . cotisations . assiette franchisée
+: période: flexible
+  formule:
+    allègement:
+      assiette: cotisations . assiette
+      abattement: franchise
 
-# contrat salarié . convention collective . sportifs . joueur entraineur:
-#   question: le joueur est-il aussi entraineur ?
-#   par défaut: non
+contrat salarié . convention collective . sportifs . joueur entraineur:
+  question: le joueur est-il aussi entraineur ?
+  par défaut: non
 
-# contrat salarié . convention collective . sportifs . exonération taux AT:
-#   non applicable si: joueur entraineur
-#   question: l'employeur a-t'il décidé de ne pas être exonéré de taux AT ?
-#   rend non applicable:
-#     - ATMP
-#   par défaut: non
+contrat salarié . convention collective . sportifs . exonération taux AT:
+  non applicable si: joueur entraineur
+  question: l'employeur a-t'il décidé de ne pas être exonéré de taux AT ?
+  rend non applicable:
+    - ATMP
+  par défaut: non
 
-# ? contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire
-# :
-#   applicable si: assiette franchisée < 115 * SMIC horaire
-#   période: mois
-#   remplace: contrat salarié . cotisations . assiette forfaitaire
-#   formule:
-#     barème linéaire:
-#       assiette: assiette franchisée
-#       multiplicateur: SMIC horaire
-#       tranches:
-#         - en-dessous de: 45
-#           montant: 5 * SMIC horaire
-#         - de: 45
-#           à: 60
-#           montant: 15 * SMIC horaire
-#         - de: 60
-#           à: 80
-#           montant: 25 * SMIC horaire
-#         - de: 80
-#           à: 100
-#           montant: 35 * SMIC horaire
-#         - de: 100
-#           à: 115
-#           montant: 50 * SMIC horaire
+? contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire
+:
+  applicable si: assiette franchisée < 115 * SMIC horaire
+  période: mois
+  remplace: contrat salarié . cotisations . assiette forfaitaire
+  formule:
+    barème linéaire:
+      assiette: assiette franchisée
+      multiplicateur: SMIC horaire
+      tranches:
+        - en-dessous de: 45
+          montant: 5 * SMIC horaire
+        - de: 45
+          à: 60
+          montant: 15 * SMIC horaire
+        - de: 60
+          à: 80
+          montant: 25 * SMIC horaire
+        - de: 80
+          à: 100
+          montant: 35 * SMIC horaire
+        - de: 100
+          à: 115
+          montant: 50 * SMIC horaire
 
-# ? contrat salarié . convention collective . sportifs . primes . nombre de manifestations
-# : question: combien de manifestations le joueur a-t'il effectué ce mois-ci ?
-#   unité: manifestations/mois
-#   par défaut: 0
+? contrat salarié . convention collective . sportifs . primes . nombre de manifestations
+: question: Combien de manifestations le joueur a-t'il effectué ce mois-ci ?
+  unité: manifestations/mois
+  par défaut: 0
 
-# contrat salarié . convention collective . sportifs . primes:
-#   remplace: rémunération . primes . activité . conventionnelles
-#   période: flexible
-#   formule:
-#     somme:
-#       - manifestation 1
-#       - manifestation 2
-#       - manifestation 3
-#       - manifestation 4
-#       - manifestation 5
-#       - autres manifestations
+contrat salarié . convention collective . sportifs . primes:
+  titre: primes de manifestation
+  applicable si: période = 'mois'
+  remplace: rémunération . primes . activité . conventionnelles
+  unité: €
+  période: mois
+  formule:
+    somme:
+      - manifestation 1
+      - manifestation 2
+      - manifestation 3
+      - manifestation 4
+      - manifestation 5
+      - autres manifestations
 
-# contrat salarié . convention collective . sportifs . primes . manifestation 1:
-#   période: mois
-#   question: Quelle prime pour la première manifestation ?
-#   applicable si: nombre de manifestations > 0
-#   unité: €
-# contrat salarié . convention collective . sportifs . primes . manifestation 2:
-#   période: mois
-#   question: Quelle prime pour la deuxième manifestation ?
-#   applicable si: nombre de manifestations > 1
-#   unité: €
-# contrat salarié . convention collective . sportifs . primes . manifestation 3:
-#   période: mois
-#   question: Quelle prime pour la troisième manifestation ?
-#   applicable si: nombre de manifestations > 2
-#   unité: €
-# contrat salarié . convention collective . sportifs . primes . manifestation 4:
-#   période: mois
-#   question: Quelle prime pour la quatrième manifestation ?
-#   applicable si: nombre de manifestations > 3
-#   unité: €
-# contrat salarié . convention collective . sportifs . primes . manifestation 5:
-#   question: Quelle prime pour la cinquième manifestation ?
-#   applicable si: nombre de manifestations > 4
-#   période: mois
-#   unité: €
-# ? contrat salarié . convention collective . sportifs . primes . autres manifestations
-# : question: Quelles primes pour les autres manifestations ?
-#   applicable si: nombre de manifestations > 5
-#   période: mois
-#   unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 1:
+  période: mois
+  question: Quelle prime pour la première manifestation ?
+  applicable si: nombre de manifestations > 0
+  par défaut: 50
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 2:
+  période: mois
+  question: Quelle prime pour la deuxième manifestation ?
+  applicable si: nombre de manifestations > 1
+  par défaut: 50
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 3:
+  période: mois
+  question: Quelle prime pour la troisième manifestation ?
+  applicable si: nombre de manifestations > 2
+  par défaut: 50
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 4:
+  période: mois
+  question: Quelle prime pour la quatrième manifestation ?
+  applicable si: nombre de manifestations > 3
+  par défaut: 50
+  unité: €
+contrat salarié . convention collective . sportifs . primes . manifestation 5:
+  question: Quelle prime pour la cinquième manifestation ?
+  applicable si: nombre de manifestations > 4
+  par défaut: 50
+  période: mois
+  unité: €
+? contrat salarié . convention collective . sportifs . primes . autres manifestations
+: question: Quelles primes pour les autres manifestations ?
+  applicable si: nombre de manifestations > 5
+  période: mois
+  unité: €
 
-# contrat salarié . convention collective . sportifs . cotisations . franchise:
-#   applicable si: entreprise . effectif > 10
-#   période: mois
-#   somme:
-#     - le minimum de:
-#         - 70% * plafond journalier sécurité sociale
-#         - primes . manifestation 1
-#     - le minimum de:
-#         - 70% * plafond journalier sécurité sociale
-#         - primes . manifestation 2
-#     - le minimum de:
-#         - 70% * plafond journalier sécurité sociale
-#         - primes . manifestation 3
-#     - le minimum de:
-#         - 70% * plafond journalier sécurité sociale
-#         - primes . manifestation 4
-#     - le minimum de:
-#         - 70% * plafond journalier sécurité sociale
-#         - primes . manifestation 5
+contrat salarié . convention collective . sportifs . cotisations . franchise:
+  applicable si: entreprise . effectif > 10
+  période: mois
+  somme:
+    - le minimum de:
+        - 70% * plafond journalier sécurité sociale
+        - primes . manifestation 1
+    - le minimum de:
+        - 70% * plafond journalier sécurité sociale
+        - primes . manifestation 2
+    - le minimum de:
+        - 70% * plafond journalier sécurité sociale
+        - primes . manifestation 3
+    - le minimum de:
+        - 70% * plafond journalier sécurité sociale
+        - primes . manifestation 4
+    - le minimum de:
+        - 70% * plafond journalier sécurité sociale
+        - primes . manifestation 5
 
 # contrat salarié . convention collective . intermittents du spectacle:
 #   par défaut: non
@@ -5464,6 +5476,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         - retraite complémentaire
         - contribution d'équilibre général
         - contribution d'équilibre technique
+        - convention collective
     - assiette CSG et CRDS . assiette abattue
   formule:
     le maximum de:

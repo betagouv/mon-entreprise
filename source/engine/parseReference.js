@@ -31,12 +31,12 @@ let evaluateReference = (filter, contextRuleName) => (
 		.filter(
 			({ whiteListedNames }) =>
 				!whiteListedNames ||
-				whiteListedNames.some(name => name === contextRuleName)
+				whiteListedNames.some(name => contextRuleName.startsWith(name))
 		)
 		.filter(
 			({ blackListedNames }) =>
 				!blackListedNames ||
-				blackListedNames.every(name => name !== contextRuleName)
+				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
 		.filter(({ referenceNode }) => {
 			const { nodeValue, missingVariables } = evaluateApplicability(

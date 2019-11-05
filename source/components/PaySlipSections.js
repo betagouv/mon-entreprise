@@ -12,7 +12,8 @@ export let SalaireBrutSection = ({ getRule }) => {
 			'contrat salarié . rémunération . heures supplémentaires'
 		),
 		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
-		rémunérationBrute = getRule('contrat salarié . rémunération . brut')
+		rémunérationBrute = getRule('contrat salarié . rémunération . brut'),
+		primes = getRule('contrat salarié . rémunération . primes')
 
 	return (
 		<div className="payslip__salarySection">
@@ -25,6 +26,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 			{heuresSupplémentaires.nodeValue !== 0 && (
 				<Line rule={heuresSupplémentaires} />
 			)}
+			{primes.nodeValue !== 0 && <Line rule={primes} />}
 			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
 				<Line rule={rémunérationBrute} />
 			)}
