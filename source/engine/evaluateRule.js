@@ -42,6 +42,7 @@ export const evaluateApplicability = (
 				  ])
 	// On veut abaisser le score des conséquences par rapport aux conditions,
 	// mais seulement dans le cas où une condition est effectivement présente
+	if (node.dottedName === 'x . y') console.log(node, parentDependency)
 	return {
 		nodeValue: isApplicable,
 		missingVariables,

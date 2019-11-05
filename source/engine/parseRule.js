@@ -24,9 +24,7 @@ export default (rules, rule, parsedRules) => {
 */
 
 	let parentDependency = findParentDependency(rules, rule)
-
 	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
-
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie

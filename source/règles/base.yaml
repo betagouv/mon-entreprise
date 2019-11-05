@@ -4917,7 +4917,7 @@ entreprise . convention collective:
       choix obligatoire: oui
       possibilités:
         - hôtel café restaurant
-        # - sportifs
+        - sportifs
         # - intermittents du spectacle
         - droit commun
 
@@ -4933,10 +4933,12 @@ entreprise . convention collective . intermittents du spectacle:
 entreprise . convention collective . hôtel café restaurant:
   formule: convention collective = 'hôtel café restaurant'
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
+
+entreprise . convention collective . hôtel café restaurant . montant forfaitaire d'un repas:
   période: aucune
   remplace:
     règle: contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
-    par: 3.62 €/repas
+  formule: 3.62 €/repas
 
 entreprise . convention collective . hôtel café restaurant . majoration heures supplémentaires: 
   remplace: 

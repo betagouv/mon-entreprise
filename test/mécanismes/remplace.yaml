@@ -157,9 +157,11 @@
 
 - nom: A
   formule: 1
+
 - nom: B
   remplace: A
   formule: 2
+
 - nom: C
   remplace: B
   formule: 3
@@ -168,3 +170,18 @@
   formule: A
   exemples:
     - valeur attendue: 3
+
+- nom: x
+  formule: non
+
+- nom: x . y
+  remplace: z
+  formule: 10
+
+- nom: z
+  formule: 1
+
+- test: remplacement non applicable (branche desactivée)
+  formule: z
+  exemples:
+    - valeur attendue: 1
