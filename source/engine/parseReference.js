@@ -5,17 +5,13 @@ import { evaluateApplicability } from './evaluateRule'
 import { evaluateNode } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
-import {
-	disambiguateRuleReference,
-	findParentDependency,
-	findRuleByDottedName
-} from './rules'
+import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 
-const ruleHasConditions = (rule, rules) =>
+const ruleHasConditions = rule =>
 	rule['applicable si'] != null ||
 	rule['non applicable si'] != null ||
-	rule.isDisabledBy?.length > 1 ||
-	findParentDependency(rules, rule)
+	rule.isDisabledBy?.length >= 1 ||
+	rule.parentDependency
 
 let evaluateReference = (filter, contextRuleName) => (
 	cache,

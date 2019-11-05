@@ -246,7 +246,9 @@ export let findParentDependency = (rules, rule) => {
 			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
-				(typeof formule === 'string' && formule.includes(' = ')) //implicitly, the format is boolean
+				(typeof formule === 'string' && formule.includes(' = ')) ||
+				formule === 'oui' ||
+				formule === 'non'
 		)
 	)(parentDependencies)
 }
