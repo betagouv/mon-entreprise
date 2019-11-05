@@ -545,7 +545,7 @@ contrat salarié . CDD . surcoût:
 
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire
     mensuel; elles sont ici ramenées à leur coût mensuel.
-contrat salarié . assimilé salarié:
+assimilé salarié:
   description.en: >
     Some company managers (this is particularly the case for SASUs) are
     considered by the social security system as equivalent to employees. They

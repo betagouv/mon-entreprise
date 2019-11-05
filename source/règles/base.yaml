@@ -616,26 +616,28 @@ contrat salarié . CDD . surcoût:
         compensation pour congés non pris: 39.6
       valeur attendue: 200
 
-contrat salarié . assimilé salarié:
+assimilé salarié:
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   question: Le salarié est-il considéré comme "assimilé salarié" ?
   par défaut: non
+  remplace:
+    règle: contrat salarié
+    par: "'CDI'"
   rend non applicable:
-    - contrat salarié
-    - chômage
-    - réduction générale
-    - allocations familiales . taux réduit
+    - contrat salarié . chômage
+    - contrat salarié . réduction générale
+    - contrat salarié . allocations familiales . taux réduit
     - contrat salarié . maladie . taux employeur . taux réduit
-    - lodeom
-    - AGS
-    - APEC
-    - contribution au dialogue social
-    - temps de travail . temps partiel
-    - temps de travail . heures supplémentaires
-    - statut JEI
+    - contrat salarié . lodeom
+    - contrat salarié . AGS
+    - contrat salarié . APEC
+    - contrat salarié . contribution au dialogue social
+    - contrat salarié . temps de travail . temps partiel
+    - contrat salarié . temps de travail . heures supplémentaires
+    - contrat salarié . statut JEI
     - entreprise . association non lucrative
-    - régime des impatriés
+    - contrat salarié . régime des impatriés
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
@@ -886,7 +888,7 @@ contrat salarié . rémunération . primes:
   formule: activité
 contrat salarié . rémunération . primes . activité:
   période: flexible
-  unité: €  
+  unité: €
   titre: primes d'activité
   description: >
     Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
@@ -3344,7 +3346,7 @@ entreprise . rémunération totale du dirigeant:
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
-      - si: contrat salarié . assimilé salarié
+      - si: assimilé salarié
         alors: contrat salarié . rémunération . total
 
 entreprise . charges:
@@ -4993,8 +4995,8 @@ contrat salarié . convention collective . hôtel café restaurant:
   formule: convention collective = 'hôtel café restaurant'
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 
-contrat salarié . convention collective . hôtel café restaurant . montant forfaitaire d'un repas:
-  période: aucune
+? contrat salarié . convention collective . hôtel café restaurant . montant forfaitaire d'un repas
+: période: aucune
   remplace:
     règle: rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
   formule: 3.62 €/repas
@@ -5107,8 +5109,7 @@ contrat salarié . convention collective . sportifs . cotisations:
     Article 8.6 de la CCNS (IDCC2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000034406905&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
 ? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . plan de formation
-:
-  période: flexible
+: période: flexible
   formule:
     le maximum de:
       - versement minimum
@@ -5127,8 +5128,7 @@ contrat salarié . convention collective . sportifs . cotisations:
   formule: 30 €/mois
 
 ? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . professionnalisation
-:
-  période: flexible
+: période: flexible
   formule:
     le maximum de:
       - versement minimum
@@ -5184,8 +5184,7 @@ contrat salarié . convention collective . sportifs . exonération taux AT:
   par défaut: non
 
 ? contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire
-:
-  applicable si: assiette franchisée < 115 * SMIC horaire
+: applicable si: assiette franchisée < 115 * SMIC horaire
   période: mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
   formule:

@@ -12,7 +12,7 @@
     - nom: evasion fiscale
       situation:
         exilé fiscal: oui
-      valeur attendue: 0
+      valeur attendue: false
     - nom: bon citoyen
       situation:
         exilé fiscal: non

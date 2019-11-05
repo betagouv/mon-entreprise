@@ -27,7 +27,7 @@ branches:
       auto-entrepreneur: non
       indépendant: non
       contrat salarié: oui
-      contrat salarié . assimilé salarié: oui
+      assimilé salarié: oui
       contrat salarié . ATMP . taux réduit: oui
   - nom: Indépendant
     situation:

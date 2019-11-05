@@ -37,7 +37,7 @@ questions:
 situation:
   auto-entrepreneur: non
   indépendant: non
-  contrat salarié . assimilé salarié: oui
+  assimilé salarié: oui
   contrat salarié . temps partiel: non
   contrat salarié . ATMP . taux réduit: oui
   période: année

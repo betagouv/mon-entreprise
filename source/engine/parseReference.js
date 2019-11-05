@@ -7,12 +7,6 @@ import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 
-const ruleHasConditions = rule =>
-	rule['applicable si'] != null ||
-	rule['non applicable si'] != null ||
-	rule.isDisabledBy?.length >= 1 ||
-	rule.parentDependency
-
 let evaluateReference = (filter, contextRuleName) => (
 	cache,
 	situation,
@@ -65,17 +59,8 @@ let evaluateReference = (filter, contextRuleName) => (
 		cached = cache[cacheName]
 	if (cached) return cached
 
-	let variableHasFormula = rule.formule != null,
-		variableHasCond = ruleHasConditions(rule, rules),
-		situationValue = getSituationValue(situation, dottedName, rule),
-		needsEvaluation =
-			situationValue == null && (variableHasCond || variableHasFormula)
-
-	let explanation = needsEvaluation
-		? evaluateNode(cache, situation, rules, rule)
-		: rule
-
-	let cacheAndNode = (nodeValue, missingVariables, customExplanation) => {
+	let cacheNode = (nodeValue, missingVariables, explanation) => {
+		// console.log(node.dottedName, nodeValue)
 		missingVariables = missingVariableList.reduce(
 			mergeMissing,
 			missingVariables
@@ -83,44 +68,38 @@ let evaluateReference = (filter, contextRuleName) => (
 		cache[cacheName] = {
 			...node,
 			nodeValue,
-			explanation: customExplanation || explanation,
+			...(explanation && { explanation }),
 			missingVariables
 		}
 		return cache[cacheName]
 	}
-	const variableScore = rule.defaultValue ? 1 : 2
 
-	// SITUATION 1 : La variable est directement renseignée
-	if (situationValue != null) {
-		return cacheAndNode(
-			situationValue,
-			{},
-			{ ...explanation, nodeValue: situationValue }
+	const {
+		nodeValue: isApplicable,
+		missingVariables: condMissingVariables
+	} = evaluateApplicability(cache, situation, rules, rule)
+
+	if (!isApplicable) {
+		return cacheNode(isApplicable, condMissingVariables)
+	}
+	const situationValue = getSituationValue(situation, dottedName, rule)
+	if (situationValue !== undefined) {
+		return cacheNode(situationValue, condMissingVariables, {
+			...rule,
+			nodeValue: situationValue
+		})
+	}
+
+	if (rule.formule != null) {
+		const evaluation = evaluateNode(cache, situation, rules, rule)
+		return cacheNode(
+			evaluation.nodeValue,
+			evaluation.missingVariables,
+			evaluation
 		)
 	}
 
-	// SITUATION 2 : La variable est calculée
-	if (situationValue == null && variableHasFormula)
-		return cacheAndNode(explanation.nodeValue, explanation.missingVariables)
-
-	// SITUATION 3 : La variable est une question sans condition dont la valeur n'a pas été renseignée
-	if (situationValue == null && !variableHasFormula && !variableHasCond)
-		return cacheAndNode(null, { [dottedName]: variableScore })
-
-	// SITUATION 4 : La variable est une question avec conditions
-	if (situationValue == null && !variableHasFormula && variableHasCond) {
-		// SITUATION 4.1 : La condition est connue et vrai
-		if (explanation.isApplicable)
-			return rule.question
-				? cacheAndNode(null, { [dottedName]: variableScore })
-				: cacheAndNode(true, {})
-
-		// SITUATION 4.2 : La condition est connue et fausse
-		if (explanation.isApplicable === false) return cacheAndNode(false, {})
-
-		// SITUATION 4.3 : La condition n'est pas connue
-		return cacheAndNode(null, explanation.missingVariables)
-	}
+	return cacheNode(null, { [dottedName]: rule.defaultValue ? 1 : 2 })
 }
 export let parseReference = (
 	rules,
