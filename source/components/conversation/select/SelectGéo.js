@@ -2,7 +2,6 @@ import { T } from 'Components'
 import React, { useCallback, useMemo, useState } from 'react'
 import { debounce } from '../../../utils'
 import { FormDecorator } from '../FormDecorator'
-import './Select.css'
 
 async function tauxVersementTransport(codeCommune) {
 	const response = await fetch(
@@ -74,7 +73,7 @@ export default FormDecorator('select')(function Select({
 	}
 
 	return (
-		<div className="select-answer commune">
+		<div>
 			<input
 				type="search"
 				css={`
@@ -124,7 +123,8 @@ export default FormDecorator('select')(function Select({
 								:focus {
 									background-color: var(--lighterColour);
 								}
-							`}>
+							`}
+						>
 							{nom + ` (${departement?.nom})`}
 						</button>
 					)
