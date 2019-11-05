@@ -73,7 +73,7 @@ export default FormDecorator('select')(function Select({
 	}
 
 	return (
-		<div>
+		<>
 			<input
 				type="search"
 				css={`
@@ -123,12 +123,19 @@ export default FormDecorator('select')(function Select({
 								:focus {
 									background-color: var(--lighterColour);
 								}
+								background: white;
+								border-radius: 0.6remv;
+								margin-bottom: 0.3rem;
+								font-size: 100%;
+								padding: 0.6rem;
+								color: inherit;
+								margin-right: 2rem;
 							`}
 						>
 							{nom + ` (${departement?.nom})`}
 						</button>
 					)
 				})}
-		</div>
+		</>
 	)
 })
