@@ -257,6 +257,7 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
+
 	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
 		.map(
 			analysis =>

@@ -33,14 +33,21 @@ let evaluateReference = (filter, contextRuleName) => (
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
 		.filter(({ referenceNode }) => {
-			const { nodeValue, missingVariables } = evaluateApplicability(
-				cache,
+			const referenceRule = rules[referenceNode.dottedName]
+			const situationValue = getSituationValue(
 				situation,
-				rules,
-				rules[referenceNode.dottedName]
+				referenceRule.dottedName,
+				referenceRule
 			)
+			const {
+				nodeValue: isApplicable,
+				missingVariables
+			} = evaluateApplicability(cache, situation, rules, referenceRule)
+			if (referenceNode.question && situationValue == null) {
+				missingVariableList[referenceNode.dottedName] = 1
+			}
 			missingVariableList.push(missingVariables)
-			return nodeValue === true
+			return isApplicable && situationValue !== false
 		})
 		.map(({ referenceNode, replacementNode }) =>
 			replacementNode != null
@@ -60,7 +67,6 @@ let evaluateReference = (filter, contextRuleName) => (
 	if (cached) return cached
 
 	let cacheNode = (nodeValue, missingVariables, explanation) => {
-		// console.log(node.dottedName, nodeValue)
 		missingVariables = missingVariableList.reduce(
 			mergeMissing,
 			missingVariables
@@ -78,7 +84,6 @@ let evaluateReference = (filter, contextRuleName) => (
 		nodeValue: isApplicable,
 		missingVariables: condMissingVariables
 	} = evaluateApplicability(cache, situation, rules, rule)
-
 	if (!isApplicable) {
 		return cacheNode(isApplicable, condMissingVariables)
 	}

@@ -885,7 +885,12 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
 contrat salarié . rémunération . primes:
   unité: €
   période: flexible
-  formule: activité
+  formule: 
+    somme:
+      - base
+      - activité
+contrat salarié . rémunération . primes . base:
+  formule: 0
 contrat salarié . rémunération . primes . activité:
   période: flexible
   unité: €
@@ -1098,10 +1103,19 @@ plafond sécurité sociale temps plein:
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
     arrêté: https://www.legifrance.gouv.fr/eli/arrete/2018/12/11/SSAS1833942A/jo/texte
+
 plafond horaire sécurité sociale:
+  période: aucune
   acronyme: PHSS
   formule: plafond sécurité sociale temps plein / 135
   unité: €
+
+plafond journalier sécurité sociale:
+  période: aucune
+  acronyme: PJSS
+  formule: plafond sécurité sociale temps plein / 18.2
+  unité: €
+
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
@@ -5024,25 +5038,30 @@ contrat salarié . convention collective . sportifs:
     Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
 
 contrat salarié . convention collective . sportifs . cotisations:
-# contrat salarié . convention collective . sportifs . cotisations . prévoyance:
-#   période: flexible
-#   remplace:
-#     - règle: cotisations . salariales . conventionnelles
-#       par: prévoyance [salarié]
-#     - règle: cotisations . patronales . conventionnelles
-#       par: prévoyance [employeur]
-#   formule:
-#     multiplication:
-#       assiette: assiette forfaitaire
-#       composantes:
-#         - attributs:
-#             dû par: employeur
-#           taux: 0.365%
-#         - attributs:
-#             dû par: salarié
-#           taux: 0.365%
-#   références:
-#     Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+
+contrat salarié . convention collective . sportifs . cotisations . prévoyance:
+  période: flexible
+  remplace:
+    - règle: cotisations . salariales . conventionnelles
+      par: prévoyance [salarié]
+    - règle: cotisations . patronales . conventionnelles
+      par: prévoyance [employeur]
+  formule:
+    multiplication:
+      assiette: 
+        variations:
+          - si: cotisations . assiette forfaitaire . montant
+            alors: cotisations . assiette forfaitaire . montant
+          - sinon: cotisations . assiette
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 0.365%
+        - attributs:
+            dû par: salarié
+          taux: 0.365%
+  références:
+    Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
 ? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé
 : période: flexible
@@ -5173,51 +5192,62 @@ contrat salarié . convention collective . sportifs . cotisations:
       abattement: franchise
 
 contrat salarié . convention collective . sportifs . joueur entraineur:
-  question: le joueur est-il aussi entraineur ?
+  question: Le joueur est-il aussi entraineur ?
   par défaut: non
 
-contrat salarié . convention collective . sportifs . exonération taux AT:
-  non applicable si: joueur entraineur
-  question: l'employeur a-t'il décidé de ne pas être exonéré de taux AT ?
-  rend non applicable:
-    - ATMP
+contrat salarié . convention collective . sportifs . exonération cotisation AT:
+  non applicable si: 
+    une de ces conditions: 
+      - joueur entraineur
+      - refus
+  remplace: 
+    règle: ATMP
+    par: non
+
+contrat salarié . convention collective . sportifs . exonération cotisation AT . refus:
+  titre: refus exonération AT
+  question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   par défaut: non
 
-? contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire
-: applicable si: assiette franchisée < 115 * SMIC horaire
+contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire: 
+  applicable si: assiette franchisée < 115 * SMIC horaire
   période: mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
+  unité: €
   formule:
-    barème linéaire:
-      assiette: assiette franchisée
-      multiplicateur: SMIC horaire
-      tranches:
-        - en-dessous de: 45
-          montant: 5 * SMIC horaire
-        - de: 45
-          à: 60
-          montant: 15 * SMIC horaire
-        - de: 60
-          à: 80
-          montant: 25 * SMIC horaire
-        - de: 80
-          à: 100
-          montant: 35 * SMIC horaire
-        - de: 100
-          à: 115
-          montant: 50 * SMIC horaire
+    multiplication: 
+      assiette: SMIC horaire
+      facteur: 
+        barème linéaire:
+          assiette: assiette franchisée
+          multiplicateur: SMIC horaire
+          tranches:
+            - en-dessous de: 45
+              montant: 5
+            - de: 45
+              à: 60
+              montant: 15
+            - de: 60
+              à: 80
+              montant: 25
+            - de: 80
+              à: 100
+              montant: 35
+            - de: 100
+              à: 115
+              montant: 50
 
 ? contrat salarié . convention collective . sportifs . primes . nombre de manifestations
-: question: Combien de manifestations le joueur a-t'il effectué ce mois-ci ?
-  unité: manifestations/mois
+: question: Combien de manifestations rémunérées le joueur a-t'il effectué ce mois-ci ?
+  applicable si: période = 'mois'
+  unité: manifestations
   par défaut: 0
 
 contrat salarié . convention collective . sportifs . primes:
   titre: primes de manifestation
-  applicable si: période = 'mois'
   remplace: rémunération . primes . activité . conventionnelles
   unité: €
-  période: mois
+  période: aucune
   formule:
     somme:
       - manifestation 1
@@ -5228,61 +5258,98 @@ contrat salarié . convention collective . sportifs . primes:
       - autres manifestations
 
 contrat salarié . convention collective . sportifs . primes . manifestation 1:
-  période: mois
+  période: aucune
   question: Quelle prime pour la première manifestation ?
   applicable si: nombre de manifestations > 0
   par défaut: 50
   unité: €
+
+contrat salarié . convention collective . sportifs . primes . manifestation 1 . franchise:
+  titre: franchise manifestation 1 
+  période: aucune
+  formule: 
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 1
+
 contrat salarié . convention collective . sportifs . primes . manifestation 2:
-  période: mois
+  période: aucune
   question: Quelle prime pour la deuxième manifestation ?
   applicable si: nombre de manifestations > 1
   par défaut: 50
   unité: €
+
+contrat salarié . convention collective . sportifs . primes . manifestation 2 . franchise:
+  titre: franchise manifestation 2 
+  période: aucune
+  formule: 
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 2
+
 contrat salarié . convention collective . sportifs . primes . manifestation 3:
-  période: mois
+  période: aucune
   question: Quelle prime pour la troisième manifestation ?
   applicable si: nombre de manifestations > 2
   par défaut: 50
   unité: €
+
+contrat salarié . convention collective . sportifs . primes . manifestation 3 . franchise:
+  titre: franchise manifestation 3 
+  période: aucune
+  formule: 
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 3
+
 contrat salarié . convention collective . sportifs . primes . manifestation 4:
-  période: mois
+  période: aucune
   question: Quelle prime pour la quatrième manifestation ?
   applicable si: nombre de manifestations > 3
   par défaut: 50
   unité: €
+
+contrat salarié . convention collective . sportifs . primes . manifestation 4 . franchise:
+  titre: franchise manifestation 4 
+  période: aucune
+  formule: 
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 4
+
 contrat salarié . convention collective . sportifs . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
   applicable si: nombre de manifestations > 4
   par défaut: 50
-  période: mois
+  période: aucune
   unité: €
+
+contrat salarié . convention collective . sportifs . primes . manifestation 5 . franchise:
+  titre: franchise manifestation 5 
+  période: aucune
+  formule: 
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 5
+
 ? contrat salarié . convention collective . sportifs . primes . autres manifestations
 : question: Quelles primes pour les autres manifestations ?
   applicable si: nombre de manifestations > 5
-  période: mois
+  période: aucune
   unité: €
 
 contrat salarié . convention collective . sportifs . cotisations . franchise:
-  applicable si: entreprise . effectif > 10
-  période: mois
-  somme:
-    - le minimum de:
-        - 70% * plafond journalier sécurité sociale
-        - primes . manifestation 1
-    - le minimum de:
-        - 70% * plafond journalier sécurité sociale
-        - primes . manifestation 2
-    - le minimum de:
-        - 70% * plafond journalier sécurité sociale
-        - primes . manifestation 3
-    - le minimum de:
-        - 70% * plafond journalier sécurité sociale
-        - primes . manifestation 4
-    - le minimum de:
-        - 70% * plafond journalier sécurité sociale
-        - primes . manifestation 5
-
+  applicable si: entreprise . effectif < 10
+  période: aucune
+  unité: €
+  formule:
+    somme: 
+      - primes . manifestation 1 . franchise
+      - primes . manifestation 2 . franchise
+      - primes . manifestation 3 . franchise
+      - primes . manifestation 4 . franchise
+      - primes . manifestation 5 . franchise
+   
 # contrat salarié . convention collective . intermittents du spectacle:
 #   par défaut: non
 #   formule:
@@ -5294,6 +5361,7 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 
 # ? contrat salarié . convention collective . intermittents du spectacle . formation professionnelle
 # : remplace: formation professionnelle
+#   période: mois
 #   formule:
 #     somme:
 #       - 50 €
@@ -5303,6 +5371,7 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 
 # ? contrat salarié . convention collective . intermittents du spectacle . caisse des congés spectacle
 # : remplace: cotisations . patronales . conventionnelles
+#   période: flexible
 #   formule:
 #     multiplication:
 #       assiette: rémunération . brut
@@ -5395,6 +5464,7 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 # :
 #   # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
 #   rend non applicable: réduction générale
+#   période: aucune
 #   remplace:
 #     # - règle: exonérations . taux réduit
 #     #   par: oui
@@ -5420,6 +5490,7 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 
 # ? contrat salarié . convention collective . intermittents du spectacle . artiste . réduction de taux . ATMP
 # : remplace: ATMP . taux
+#   période: aucune
 #   formule:
 #     variations:
 #       - si: régime alsace moselle
@@ -5428,10 +5499,12 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 
 # ? contrat salarié . convention collective . intermittents du spectacle . artiste . nombre jours travaillés
 # : question: Pour combien de jours continus l'artiste est-il engagé ?
+#   applicable si: CDD
 #   par défaut: 5
 
 # ? contrat salarié . convention collective . intermittents du spectacle . artiste . plafond proratisé
 # : applicable si: nombre jours travaillés < 5
+#   période: mois
 #   remplace:
 #     règle: plafond sécurité sociale
 #     dans:
@@ -5452,6 +5525,7 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
 
 # ? contrat salarié . convention collective . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
 # : applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
+#   période: flexible
 #   remplace: contrat salarié . cotisations . assiette forfaitaire
 #   formule:
 #     multiplication:
@@ -5462,11 +5536,9 @@ contrat salarié . cotisations . assiette forfaitaire:
   formule: non
 
 contrat salarié . cotisations . assiette forfaitaire . montant:
+  titre: assiette forfaitaire de cotisations
   période: flexible
-  applicable si:
-    toutes ces conditions:
-      - assiette forfaitaire
-      - rémunération réelle = non
+  non applicable si: rémunération réelle
   rend non applicable: réduction générale
   remplace:
     - règle: cotisations . assiette
@@ -5494,5 +5566,6 @@ contrat salarié . cotisations . assiette forfaitaire . minimum:
   formule: 70% * rémunération . brut
 
 contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
+  période: aucune
   question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
   par défaut: non

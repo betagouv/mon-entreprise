@@ -5,7 +5,7 @@ import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-			'contrat salarié . rémunération . avantages en nature . montant'
+			'contrat salarié . rémunération . avantages en nature'
 		),
 		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
 		heuresSupplémentaires = getRule(
@@ -14,14 +14,19 @@ export let SalaireBrutSection = ({ getRule }) => {
 		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
 		rémunérationBrute = getRule('contrat salarié . rémunération . brut'),
 		primes = getRule('contrat salarié . rémunération . primes')
-
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<T>Salaire</T>
 			</h4>
 			<Line rule={salaireDeBase} />
-			{avantagesEnNature.nodeValue !== 0 && <Line rule={avantagesEnNature} />}
+			{avantagesEnNature.nodeValue && (
+				<Line
+					rule={getRule(
+						'contrat salarié . rémunération . avantages en nature . montant'
+					)}
+				/>
+			)}
 			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
 			{heuresSupplémentaires.nodeValue !== 0 && (
 				<Line rule={heuresSupplémentaires} />
@@ -43,7 +48,7 @@ export let Line = ({ rule, ...props }) => (
 
 export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-		'contrat salarié . rémunération . avantages en nature . montant'
+		'contrat salarié . rémunération . avantages en nature'
 	)
 	return (
 		<div className="payslip__salarySection">
@@ -51,7 +56,7 @@ export let SalaireNetSection = ({ getRule }) => {
 				<T>Salaire net</T>
 			</h4>
 			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
-			{avantagesEnNature.nodeValue !== 0 ? (
+			{avantagesEnNature.nodeValue && (
 				<>
 					{/* Salaire net de cotisations */}
 					<Line
@@ -60,9 +65,14 @@ export let SalaireNetSection = ({ getRule }) => {
 						)}
 					/>
 					{/* Avantages en nature */}
-					<Line negative rule={avantagesEnNature} />
+					<Line
+						negative
+						rule={getRule(
+							'contrat salarié . rémunération . avantages en nature . montant'
+						)}
+					/>
 				</>
-			) : null}
+			)}
 			<Line rule={getRule('contrat salarié . rémunération . net')} />
 
 			<Line negative rule={getRule('impôt')} />

@@ -40,6 +40,7 @@ export const evaluateApplicability = (
 						notApplicable?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
+
 	return {
 		nodeValue: isApplicable,
 		missingVariables,
