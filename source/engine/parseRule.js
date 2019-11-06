@@ -226,6 +226,7 @@ let evolveReplacement = (rules, rule, parsedRules) => replacements =>
 					names &&
 					names.map(name => disambiguateRuleReference(rules, rule, name))
 			)
+
 		return {
 			referenceName: disambiguateRuleReference(rules, rule, referenceName),
 			replacementNode,

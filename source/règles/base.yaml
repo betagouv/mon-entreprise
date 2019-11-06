@@ -901,13 +901,15 @@ contrat salarié . rémunération . primes . activité:
     Ces primes sont prises en compte pour le calcul du salaire minimum
   formule:
     somme:
-      - base
-      - conventionnelles
+      - activité . conventionnelles
+      - activité . base
 
 contrat salarié . rémunération . primes . activité . base:
+  titre: primes d'activité
   période: flexible
   unité: €
-  formule: 0
+  question: Quel est le montant des primes liées à l'activité du salarié ?
+  par défaut: 0
 
 contrat salarié . rémunération . primes . activité . conventionnelles:
   période: flexible
@@ -1189,7 +1191,7 @@ contrat salarié . cotisations . patronales:
     somme:
       - maladie [employeur]
       - ATMP
-      - avantages sociaux
+      - prévoyance obligatoire cadre
       - vieillesse [employeur]
       - retraite complémentaire [employeur]
       - complémentaire santé [employeur]
@@ -2565,6 +2567,7 @@ contrat salarié . FNAL:
         - si: entreprise . effectif < 20
           alors:
             plafond: plafond sécurité sociale
+        - sinon: rien
 
 contrat salarié . FNAL . taux:
   formule:
@@ -4997,25 +5000,26 @@ contrat salarié . convention collective:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - hôtel café restaurant
-        - sportifs
-        # - intermittents du spectacle
         - droit commun
+        - HCR
+        - sport
+        - SVP
 
 contrat salarié . convention collective . droit commun:
   formule: convention collective = 'droit commun'
 
-contrat salarié . convention collective . hôtel café restaurant:
+contrat salarié . convention collective . HCR:
   formule: convention collective = 'hôtel café restaurant'
+  titre: hôtels, cafés restaurants HCR (beta)
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 
-? contrat salarié . convention collective . hôtel café restaurant . montant forfaitaire d'un repas
+? contrat salarié . convention collective . HCR . montant forfaitaire d'un repas
 : période: aucune
   remplace:
     règle: rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
   formule: 3.62 €/repas
 
-? contrat salarié . convention collective . hôtel café restaurant . majoration heures supplémentaires
+? contrat salarié . convention collective . HCR . majoration heures supplémentaires
 : remplace: temps de travail . heures supplémentaires . majoration
   période: flexible
   formule:
@@ -5031,39 +5035,120 @@ contrat salarié . convention collective . hôtel café restaurant:
         - au-dessus de: 8
           taux: 50%
 
-contrat salarié . convention collective . sportifs:
-  formule: convention collective = 'sportifs'
+contrat salarié . convention collective . SVP:
+  titre: Spectacle vivant privé (beta)
+  formule: convention collective = 'SVP'
+  description: |
+    L'entreprise dépend de la convention collective nationale des entreprises privée du spectacle
+
+contrat salarié . convention collective . SVP . cotisations patronales: 
+  titre: cotisations conventionnelles
+  période: flexible
+  remplace: cotisations . patronales . conventionnelles
+  formule: 
+    somme: 
+      - intermittents du spectacle . caisse des congés spectacle
+      - FCAP
+      - prévoyance
+
+contrat salarié . convention collective . SVP . FCAP:
+  titre: Fond commun d'aide au paritarisme
+  description: |
+    Le Fonds Commun d’Aide au Paritarisme du Spectacle Vivant Privé (FCAP-SVP) résulte de l’application du titre V – Financement du paritarisme la CCN des entreprises du secteur privé du spectacle vivant. Il a pour but de :
+
+    - Permettre aux organisations d’employeurs et de salariés d’exercer leurs missions et de favoriser l’application dans le temps de la Convention collective,
+    - De couvrir les frais engagés par les organisations syndicales,
+    - De couvrir les frais relatifs au dispositif des Conseillers Conventionnels des Salariés, au nombre de 28
+    - De financer le rapport de branche du spectacle vivant privé.
+
+  période: année
+  # TODO : 
+  note: les minimum et maximum sont fixé par entreprise, et non par salarié
+  formule:
+    le minimum de:
+      - 80 € / entreprise . effectif
+      - le maximum de:
+        - multiplication: 
+            plafonnée à: plafond sécurité sociale
+            assiette: rémunération . brut
+            taux: 0.1%
+        - 300 € / entreprise . effectif
+  références: 
+    Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
+    Note explicative AUDIENS: http://www.cheque-intermittents.com/wp-content/uploads/2015/05/FCAP-SVP-EXPLIC_final.pdf
+    
+
+contrat salarié . convention collective . SVP . prévoyance:
+  période: flexible
+  formule: 
+    multiplication:
+      plafonnée à: plafond sécurité sociale
+      assiette: cotisations . assiette
+      taux: 1.20%
+  non applicable si: prévoyance obligatoire cadre 
+  note: Dans le cas du statut cadre, la prévoyance obligatoire est plus avantageuse, c'est donc cette dernière qui est prise en compte
+  références: 
+    notice audiens: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/CCN/CCN-SVP-2015.pdf
+    Article 12.6, Titre VII, IDCC 3090: https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000028157451&cidTexte=KALITEXT000028157267&dateTexte=29990101&categorieLien=id
+
+contrat salarié . convention collective . sport:
+  formule: convention collective = 'sport'
+  titre: Sport (beta)
   description: |
     L'entreprise dépend de la convention collective nationale des sportifs (CCNS)
     Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
 
-contrat salarié . convention collective . sportifs . cotisations:
 
-contrat salarié . convention collective . sportifs . cotisations . prévoyance:
+
+
+contrat salarié . convention collective . sport . cotisations:
+
+contrat salarié . convention collective . sport . cotisations . patronales:
+  titre: cotisations conventionnelles
+  période: flexible
+  remplace:
+    - règle: cotisations . patronales . conventionnelles  
+  formule:
+    somme: 
+      - prévoyance [employeur]
+      - financement du paritarisme
+
+contrat salarié . convention collective . sport . cotisations . financement du paritarisme:
+  période: année
+  # TODO
+  note: se calcul sur la masse salariale
+  formule:
+    le maximum de:
+      - 3 €
+      - multiplication:
+          assiette: cotisations . assiette 
+          taux: 0.06%
+
+contrat salarié . convention collective . sport . cotisations . prévoyance:
   période: flexible
   remplace:
     - règle: cotisations . salariales . conventionnelles
       par: prévoyance [salarié]
-    - règle: cotisations . patronales . conventionnelles
-      par: prévoyance [employeur]
+    - règle: avantages sociaux
+      par: 
+        somme:
+          - prévoyance [employeur]
+          - avantages sociaux
   formule:
     multiplication:
-      assiette: 
-        variations:
-          - si: cotisations . assiette forfaitaire . montant
-            alors: cotisations . assiette forfaitaire . montant
-          - sinon: cotisations . assiette
+      assiette: cotisations . assiette
+      plafonnée à: 8 * plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
-          taux: 0.365%
+          taux: 0.29%
         - attributs:
             dû par: salarié
-          taux: 0.365%
+          taux: 0.29%
   références:
     Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé
 : période: flexible
   remplace: contrat salarié . complémentaire santé . forfait
   formule:
@@ -5071,7 +5156,7 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
       assiette: plafond sécurité sociale temps plein
       taux: taux
 
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . taux
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux
 : formule:
     variations:
       - si: régime alsace moselle
@@ -5096,7 +5181,7 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
     unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
 
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . option
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option
 : question: Quel option a été choisi pour le régime des frais de santé ?
   formule:
     une possibilité:
@@ -5108,16 +5193,16 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
   par défaut: R1
   références:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . option . R1
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1
 : formule: option = 'R1'
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . option . R2
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2
 : formule: option = 'R2'
-? contrat salarié . convention collective . sportifs . cotisations . régime frais de santé . option . R3
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3
 : formule: option = 'R3'
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle
 : remplace: contrat salarié . formation professionnelle
-  période: année
+  période: flexible
   formule:
     somme:
       - plan de formation
@@ -5127,7 +5212,7 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
   références:
     Article 8.6 de la CCNS (IDCC2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000034406905&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . plan de formation
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation
 : période: flexible
   formule:
     le maximum de:
@@ -5141,12 +5226,12 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
               - si: entreprise . effectif >= 20
                 alors: 0.90%
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . plan de formation . versement minimum
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum
 : applicable si: entreprise . effectif < 10
   période: mois
-  formule: 30 €/mois
+  formule: 30 €
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . professionnalisation
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation
 : période: flexible
   formule:
     le maximum de:
@@ -5160,12 +5245,12 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
               - si: entreprise . effectif >= 20
                 alors: 0.50%
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . professionnalisation . versement minimum
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum
 : applicable si: entreprise . effectif < 10
   période: mois
   formule: 5 €/mois
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . CIF CDI
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI
 : applicable si:
     toutes ces conditions:
       - CDI
@@ -5176,7 +5261,7 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
       assiette: cotisations . assiette
       taux: 0.20%
 
-? contrat salarié . convention collective . sportifs . cotisations . formation professionnelle . CIF CDD
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD
 : applicable si: CDD
   période: flexible
   formule:
@@ -5184,18 +5269,18 @@ contrat salarié . convention collective . sportifs . cotisations . prévoyance:
       assiette: cotisations . assiette
       taux: 1%
 
-? contrat salarié . convention collective . sportifs . cotisations . assiette franchisée
+? contrat salarié . convention collective . sport . cotisations . assiette franchisée
 : période: flexible
   formule:
     allègement:
       assiette: cotisations . assiette
       abattement: franchise
 
-contrat salarié . convention collective . sportifs . joueur entraineur:
+contrat salarié . convention collective . sport . joueur entraineur:
   question: Le joueur est-il aussi entraineur ?
   par défaut: non
 
-contrat salarié . convention collective . sportifs . exonération cotisation AT:
+contrat salarié . convention collective . sport . exonération cotisation AT:
   non applicable si: 
     une de ces conditions: 
       - joueur entraineur
@@ -5204,12 +5289,12 @@ contrat salarié . convention collective . sportifs . exonération cotisation AT
     règle: ATMP
     par: non
 
-contrat salarié . convention collective . sportifs . exonération cotisation AT . refus:
+contrat salarié . convention collective . sport . exonération cotisation AT . refus:
   titre: refus exonération AT
   question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   par défaut: non
 
-contrat salarié . convention collective . sportifs . cotisations . assiette forfaitaire: 
+contrat salarié . convention collective . sport . cotisations . assiette forfaitaire: 
   applicable si: assiette franchisée < 115 * SMIC horaire
   période: mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
@@ -5237,13 +5322,13 @@ contrat salarié . convention collective . sportifs . cotisations . assiette for
               à: 115
               montant: 50
 
-? contrat salarié . convention collective . sportifs . primes . nombre de manifestations
+? contrat salarié . convention collective . sport . primes . nombre de manifestations
 : question: Combien de manifestations rémunérées le joueur a-t'il effectué ce mois-ci ?
   applicable si: période = 'mois'
   unité: manifestations
   par défaut: 0
 
-contrat salarié . convention collective . sportifs . primes:
+contrat salarié . convention collective . sport . primes:
   titre: primes de manifestation
   remplace: rémunération . primes . activité . conventionnelles
   unité: €
@@ -5257,14 +5342,14 @@ contrat salarié . convention collective . sportifs . primes:
       - manifestation 5
       - autres manifestations
 
-contrat salarié . convention collective . sportifs . primes . manifestation 1:
+contrat salarié . convention collective . sport . primes . manifestation 1:
   période: aucune
   question: Quelle prime pour la première manifestation ?
   applicable si: nombre de manifestations > 0
-  par défaut: 50
+  par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sportifs . primes . manifestation 1 . franchise:
+contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1 
   période: aucune
   formule: 
@@ -5272,14 +5357,14 @@ contrat salarié . convention collective . sportifs . primes . manifestation 1 .
       - 70% * plafond journalier sécurité sociale
       - manifestation 1
 
-contrat salarié . convention collective . sportifs . primes . manifestation 2:
+contrat salarié . convention collective . sport . primes . manifestation 2:
   période: aucune
   question: Quelle prime pour la deuxième manifestation ?
   applicable si: nombre de manifestations > 1
-  par défaut: 50
+  par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sportifs . primes . manifestation 2 . franchise:
+contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2 
   période: aucune
   formule: 
@@ -5287,14 +5372,14 @@ contrat salarié . convention collective . sportifs . primes . manifestation 2 .
       - 70% * plafond journalier sécurité sociale
       - manifestation 2
 
-contrat salarié . convention collective . sportifs . primes . manifestation 3:
+contrat salarié . convention collective . sport . primes . manifestation 3:
   période: aucune
   question: Quelle prime pour la troisième manifestation ?
   applicable si: nombre de manifestations > 2
-  par défaut: 50
+  par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sportifs . primes . manifestation 3 . franchise:
+contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3 
   période: aucune
   formule: 
@@ -5302,14 +5387,14 @@ contrat salarié . convention collective . sportifs . primes . manifestation 3 .
       - 70% * plafond journalier sécurité sociale
       - manifestation 3
 
-contrat salarié . convention collective . sportifs . primes . manifestation 4:
+contrat salarié . convention collective . sport . primes . manifestation 4:
   période: aucune
   question: Quelle prime pour la quatrième manifestation ?
   applicable si: nombre de manifestations > 3
-  par défaut: 50
+  par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sportifs . primes . manifestation 4 . franchise:
+contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4 
   période: aucune
   formule: 
@@ -5317,14 +5402,14 @@ contrat salarié . convention collective . sportifs . primes . manifestation 4 .
       - 70% * plafond journalier sécurité sociale
       - manifestation 4
 
-contrat salarié . convention collective . sportifs . primes . manifestation 5:
+contrat salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
   applicable si: nombre de manifestations > 4
-  par défaut: 50
+  par défaut: 100
   période: aucune
   unité: €
 
-contrat salarié . convention collective . sportifs . primes . manifestation 5 . franchise:
+contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5 
   période: aucune
   formule: 
@@ -5332,13 +5417,14 @@ contrat salarié . convention collective . sportifs . primes . manifestation 5 .
       - 70% * plafond journalier sécurité sociale
       - manifestation 5
 
-? contrat salarié . convention collective . sportifs . primes . autres manifestations
+? contrat salarié . convention collective . sport . primes . autres manifestations
 : question: Quelles primes pour les autres manifestations ?
   applicable si: nombre de manifestations > 5
   période: aucune
+  par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sportifs . cotisations . franchise:
+contrat salarié . convention collective . sport . cotisations . franchise:
   applicable si: entreprise . effectif < 10
   période: aucune
   unité: €
@@ -5350,187 +5436,196 @@ contrat salarié . convention collective . sportifs . cotisations . franchise:
       - primes . manifestation 4 . franchise
       - primes . manifestation 5 . franchise
    
-# contrat salarié . convention collective . intermittents du spectacle:
-#   par défaut: non
-#   formule:
-#     une possibilité:
-#       choix obligatoire: oui
-#       possibilités:
-#         - techniciens
-#         - artiste
+contrat salarié . intermittents du spectacle:
+  applicable si:
+    toutes ces conditions:
+      - CDD . motif . classique . usage
+      - une de ces conditions:
+        - convention collective . SVP
+  question: A quel statut d'intermittent est rattaché l'employé ?
+  par défaut: technicien
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - technicien
+        - artiste
 
-# ? contrat salarié . convention collective . intermittents du spectacle . formation professionnelle
-# : remplace: formation professionnelle
-#   période: mois
-#   formule:
-#     somme:
-#       - 50 €
-#       - multiplication:
-#           assiette: rémunération . brut
-#           taux: 2.10%
+? contrat salarié . intermittents du spectacle . formation professionnelle
+: remplace: formation professionnelle
+  période: mois
+  formule:
+    somme:
+      - 50 €
+      - multiplication:
+          assiette: rémunération . brut
+          taux: 2.10%
 
-# ? contrat salarié . convention collective . intermittents du spectacle . caisse des congés spectacle
-# : remplace: cotisations . patronales . conventionnelles
-#   période: flexible
-#   formule:
-#     multiplication:
-#       assiette: rémunération . brut
-#       taux: 15.40%
-#   références:
-#     audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
+? contrat salarié . intermittents du spectacle . caisse des congés spectacle
+:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: rémunération . brut
+      taux: 15.40%
+  références:
+    audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
 
-# ? contrat salarié . convention collective . intermittents du spectacle . retraite complémentaire techniciens et cadre
-# : applicable si:
-#     une de ces conditions:
-#       - statut cadre
-#       - technicien
-#   remplace:
-#     - règle: retraite complémentaire . taux employeur tranche 1
-#       par: 3.94%
-#     - règle: retraite complémentaire . taux salarié tranche 1
-#       par: 3.93%
-#   références:
-#     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+? contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre
+: applicable si:
+    une de ces conditions:
+      - statut cadre
+      - technicien
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 3.94%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 3.93%
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
 
-# ? contrat salarié . convention collective . intermittents du spectacle . technicien
-# : formule: intermittents du spectacle = 'technicien'
+? contrat salarié . intermittents du spectacle . technicien
+: formule: intermittents du spectacle = 'technicien'
 
-# ? contrat salarié . convention collective . intermittents du spectacle . technicien . non cadre
-# : applicable si: statut cadre = non
-#   remplace:
-#     - règle: retraite complémentaire . taux employeur tranche 2
-#       par: 10.80%
-#     - règle: retraite complémentaire . taux salarié tranche 2
-#       par: 10.79%
-#     - règle: plafond sécurité sociale
-#       par: plafond sécurité sociale temps plein
-#       dans:
-#         - retraite complémentaire
-#         - contribution d'équilibre général
-#         - contribution d'équilibre technique
-#   références:
-#     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+? contrat salarié . intermittents du spectacle . technicien . non cadre
+: applicable si: statut cadre = non
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans:
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
 
-# contrat salarié . convention collective . intermittents du spectacle . artiste:
-#   IDCC: 3090
-#   formule: intermittents du spectacle = 'artiste'
-#   description: |
-#     Sont considérés comme artistes du spectacle :
-#     - L'artiste lyrique
-#     - L'artiste dramatique
-#     - L'artiste chorégraphique
-#     - L'artiste de variétés
-#     - Le musicien
-#     - Le chansonnier
-#     - L'artiste de complément
-#     - Le chef d'orchestre
-#     - L'arrangeur-orchestrateur
-#     - Le metteur en scène, le réalisateur et le chorégraphe, pour l'exécution matérielle de leur conception artistique
-#     - L'artiste de cirque
-#     - Le marionnettiste
-#     - Les personnes dont l'activité est reconnue comme un métier d'artiste-interprète par les conventions collectives du spectacle vivant étendues.
+contrat salarié . intermittents du spectacle . artiste:
+  formule: intermittents du spectacle = 'artiste'
+  description: |
+    Sont considérés comme artistes du spectacle :
+    - L'artiste lyrique
+    - L'artiste dramatique
+    - L'artiste chorégraphique
+    - L'artiste de variétés
+    - Le musicien
+    - Le chansonnier
+    - L'artiste de complément
+    - Le chef d'orchestre
+    - L'arrangeur-orchestrateur
+    - Le metteur en scène, le réalisateur et le chorégraphe, pour l'exécution matérielle de leur conception artistique
+    - L'artiste de cirque
+    - Le marionnettiste
+    - Les personnes dont l'activité est reconnue comme un métier d'artiste-interprète par les conventions collectives du spectacle vivant étendues.
 
-#   références:
-#     Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
-#   par défaut: non
+  références:
+    Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . non cadre
-# : applicable si: statut cadre = non
-#   remplace:
-#     - règle: plafond sécurité sociale
-#       par: plafond sécurité sociale temps plein
-#       dans:
-#         - retraite complémentaire
-#         - contribution d'équilibre général
-#         - contribution d'équilibre technique
-#     - règle: retraite complémentaire . taux employeur tranche 1
-#       par: 4.45%
-#     - règle: retraite complémentaire . taux employeur tranche 2
-#       par: 10.80%
-#     - règle: retraite complémentaire . taux salarié tranche 1
-#       par: 4.44%
-#     - règle: retraite complémentaire . taux salarié tranche 2
-#       par: 10.79%
-#   références:
-#     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+? contrat salarié . intermittents du spectacle . artiste . non cadre
+: applicable si: statut cadre = non
+  remplace:
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans:
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 4.45%
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 4.44%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . activité accessoire
-# : rend non applicable: réduction de taux
-#   question: |
-#     l'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
-#   par défaut: non
+? contrat salarié . intermittents du spectacle . artiste . activité accessoire
+: question: |
+    L'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
+  par défaut: non
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . réduction de taux
-# :
-#   # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
-#   rend non applicable: réduction générale
-#   période: aucune
-#   remplace:
-#     # - règle: exonérations . taux réduit
-#     #   par: oui
-#     - règle: maladie . taux employeur
-#       par: maladie . taux employeur * réduction de taux
-#     - règle: maladie . taux salarié
-#       par: maladie . taux salarié * réduction de taux
-#     - règle: vieillesse . taux employeur plafonné
-#       par: vieillesse . taux employeur plafonné * réduction de taux
-#     - règle: vieillesse . taux employeur non plafonné
-#       par: vieillesse . taux employeur non plafonné * réduction de taux
-#     - règle: vieillesse . taux salarié plafonné
-#       par: vieillesse . taux salarié plafonné * réduction de taux
-#     - règle: vieillesse . taux salarié non plafonné
-#       par: vieillesse . taux salarié non plafonné * réduction de taux
-#     - règle: allocations familiales . taux
-#       par: allocations familiales . taux * réduction de taux
-#     - règle: établissement . taux du versement transport
-#       par: établissement . taux du versement transport * réduction de taux
-#     - règle: FNAL . taux
-#       par: FNAL . taux * réduction de taux
-#   formule: 70%
+? contrat salarié . intermittents du spectacle . artiste . réduction de taux
+:
+  # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
+  rend non applicable: réduction générale
+  non applicable si: activité accessoire
+  période: aucune
+  remplace:
+    # - règle: exonérations . taux réduit
+    #   par: oui
+    - règle: maladie . taux employeur
+      par: maladie . taux employeur * réduction de taux
+    - règle: maladie . taux salarié
+      par: maladie . taux salarié * réduction de taux
+    - règle: vieillesse . taux employeur plafonné
+      par: vieillesse . taux employeur plafonné * réduction de taux
+    - règle: vieillesse . taux employeur non plafonné
+      par: vieillesse . taux employeur non plafonné * réduction de taux
+    - règle: vieillesse . taux salarié plafonné
+      par: vieillesse . taux salarié plafonné * réduction de taux
+    - règle: vieillesse . taux salarié non plafonné
+      par: vieillesse . taux salarié non plafonné * réduction de taux
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: FNAL . taux
+      par: FNAL . taux * réduction de taux
+  formule: 70%
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . réduction de taux . ATMP
-# : remplace: ATMP . taux
-#   période: aucune
-#   formule:
-#     variations:
-#       - si: régime alsace moselle
-#         alors: 1.54%
-#       - sinon: 1.12%
+? contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP
+: remplace: ATMP . taux
+  période: aucune
+  formule:
+    variations:
+      - si: régime alsace moselle
+        alors: 1.54%
+      - sinon: 1.12%
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . nombre jours travaillés
-# : question: Pour combien de jours continus l'artiste est-il engagé ?
-#   applicable si: CDD
-#   par défaut: 5
+? contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés
+: question: Pour combien de jours continus l'artiste est-il engagé ?
+  unité: jours
+  par défaut: 5
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . plafond proratisé
-# : applicable si: nombre jours travaillés < 5
-#   période: mois
-#   remplace:
-#     règle: plafond sécurité sociale
-#     dans:
-#       - FNAL
-#       - vieillesse
-#   formule:
-#     multiplication:
-#       assiette: plafond horaire sécurité sociale
-#       facteur: 12 * nombre jours travaillés
+? contrat salarié . intermittents du spectacle . artiste . plafond proratisé
+: applicable si: nombre jours travaillés < 5
+  période: mois
+  unité: €
+  remplace:
+    règle: plafond sécurité sociale
+    dans:
+      - FNAL
+      - vieillesse
+  formule:
+    multiplication:
+      assiette: plafond horaire sécurité sociale
+      facteur: 12 * nombre jours travaillés
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . acteur de complément
-# : non applicable si: activité accessoire
-#   remplace:
-#     règle: nombre jours travaillés
-#     par: 1
-#   question: l'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
-#   par defaut: non
+? contrat salarié . intermittents du spectacle . artiste . acteur de complément
+: non applicable si: activité accessoire
+  question: L'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
+  par defaut: non
 
-# ? contrat salarié . convention collective . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
-# : applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
-#   période: flexible
-#   remplace: contrat salarié . cotisations . assiette forfaitaire
-#   formule:
-#     multiplication:
-#       assiette: SMIC horaire
-#       facteur: 9
+contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
+  remplace: artiste . nombre jours travaillés
+  formule: 1
+
+? contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
+: applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
+  période: flexible
+  remplace: 
+    - contrat salarié . cotisations . assiette forfaitaire
+    - règle: nombre jours travaillés
+      par: 1
+  formule:
+    multiplication:
+      assiette: SMIC horaire
+      facteur: 9
 
 contrat salarié . cotisations . assiette forfaitaire:
   formule: non
@@ -5539,7 +5634,6 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
   titre: assiette forfaitaire de cotisations
   période: flexible
   non applicable si: rémunération réelle
-  rend non applicable: réduction générale
   remplace:
     - règle: cotisations . assiette
       sauf dans:
@@ -5548,7 +5642,13 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         - contribution d'équilibre général
         - contribution d'équilibre technique
         - convention collective
+        # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
+        - assiette . salariale
+    - règle: assiette . salariale
+      dans: vieillesse
     - assiette CSG et CRDS . assiette abattue
+    - règle: réduction générale
+      par: non
   formule:
     le maximum de:
       - minimum

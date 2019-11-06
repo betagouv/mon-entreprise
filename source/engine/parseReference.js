@@ -17,6 +17,7 @@ let evaluateReference = (filter, contextRuleName) => (
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	let missingVariableList = []
+	// console.log(node.dottedName)
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>
@@ -32,6 +33,7 @@ let evaluateReference = (filter, contextRuleName) => (
 				!blackListedNames ||
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
+		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
 			const situationValue = getSituationValue(
@@ -182,7 +184,7 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 	]
 
 	// Exceptions
-	if (!rule.période && !inlinePeriodTransform) {
+	if (!rule.période && !inlinePeriodTransform && rule.formule) {
 		if (supportedPeriods.includes(ruleToTransform?.période))
 			throw new Error(
 				`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
