@@ -2,7 +2,6 @@ import { T } from 'Components'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
-import 'react-select/dist/react-select.css'
 import { fetchCompanyDetails } from '../api/sirene'
 
 export default function CompanyDetails({ siren, denomination }) {

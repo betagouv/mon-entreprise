@@ -1,50 +1,90 @@
 import withSitePaths from 'Components/utils/withSitePaths'
-import { encodeRuleName } from 'Engine/rules'
-import Fuse from 'fuse.js'
-import { compose, pick, sortBy } from 'ramda'
-import React, { useMemo, useRef, useState } from 'react'
+import { encodeRuleName, parentName } from 'Engine/rules.js'
+import { compose, pick, sortBy, take } from 'ramda'
+import React, { useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
+import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
 
-function SearchBar({
+const worker = new Worker()
+
+let SearchBar = ({
 	rules,
 	showDefaultList,
 	finally: finallyCallback,
 	sitePaths
-}) {
-	const [inputValue, setInputValue] = useState(null)
+}) => {
+	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState(null)
-	const inputElementRef = useRef()
-	// This operation is expensive, we don't want to do it everytime we re-render, so we cache its result
-	const fuse = useMemo(() => {
-		const list = rules.map(
-			pick(['title', 'espace', 'description', 'name', 'dottedName'])
-		)
-		const options = {
-			keys: [
-				{ name: 'name', weight: 0.3 },
-				{ name: 'title', weight: 0.3 },
-				{ name: 'espace', weight: 0.2 },
-				{ name: 'description', weight: 0.2 }
-			]
-		}
-		return new Fuse(list, options)
-	}, [rules])
+	const [results, setResults] = useState([])
 	const { i18n } = useTranslation()
 
-	const renderOption = ({ title, dottedName }) => (
-		<span>
-			<Highlighter searchWords={[inputValue]} textToHighlight={title} />
-			<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
-				<Highlighter searchWords={[inputValue]} textToHighlight={dottedName} />
-			</span>
-		</span>
-	)
-	const filterOptions = (options, filter) => fuse.search(filter)
+	useEffect(() => {
+		worker.postMessage({
+			rules: rules.map(
+				pick(['title', 'espace', 'description', 'name', 'dottedName'])
+			)
+		})
+
+		worker.onmessage = ({ data: results }) => setResults(results)
+	}, [])
+
+	let renderOptions = rules => {
+		let options =
+			(rules && sortBy(rule => rule.dottedName, rules)) || take(5)(results)
+		return <ul>{options.map(option => renderOption(option))}</ul>
+	}
+
+	let renderOption = option => {
+		let { title, dottedName, name } = option
+		return (
+			<li
+				key={dottedName}
+				css={`
+					padding: 0.4rem;
+					border-radius: 0.3rem;
+					:hover {
+						background: var(--colour);
+						color: var(--textColour);
+					}
+					:hover a {
+						color: var(--textColour);
+					}
+				`}
+				onClick={() => setSelectedOption(option)}
+			>
+				<div
+					style={{
+						fontWeight: '300',
+						fontSize: '85%',
+						lineHeight: '.9em'
+					}}
+				>
+					<Highlighter
+						searchWords={[input]}
+						textToHighlight={
+							parentName(dottedName)
+								? parentName(dottedName)
+										.split(' . ')
+										.map(capitalise0)
+										.join(' - ')
+								: ''
+						}
+					/>
+				</div>
+				<Link
+					to={sitePaths.documentation.index + '/' + encodeRuleName(dottedName)}
+				>
+					<Highlighter
+						searchWords={[input]}
+						textToHighlight={title || capitalise0(name)}
+					/>
+				</Link>
+			</li>
+		)
+	}
 
 	if (selectedOption != null) {
 		finallyCallback && finallyCallback()
@@ -61,37 +101,22 @@ function SearchBar({
 
 	return (
 		<>
-			<Select
-				value={selectedOption && selectedOption.dottedName}
-				onChange={setSelectedOption}
-				onInputChange={setInputValue}
-				valueKey="dottedName"
-				labelKey="title"
-				options={rules}
-				filterOptions={filterOptions}
-				optionRenderer={renderOption}
+			<input
+				type="text"
+				value={input}
 				placeholder={i18n.t('Entrez des mots clefs ici')}
-				noResultsText={i18n.t('noresults', {
+				onChange={e => {
+					let input = e.target.value
+					setInput(input)
+					if (input.length > 2) worker.postMessage({ input })
+				}}
+			/>
+			{input.length > 2 &&
+				!results.length &&
+				i18n.t('noresults', {
 					defaultValue: "Nous n'avons rien trouvé…"
 				})}
-				ref={inputElementRef}
-			/>
-			{showDefaultList && !inputValue && (
-				<ul>
-					{sortBy(rule => rule.title, rules).map(rule => (
-						<li key={rule.dottedName}>
-							<Link
-								to={
-									sitePaths.documentation.index +
-									'/' +
-									encodeRuleName(rule.dottedName)
-								}>
-								{rule.title || capitalise0(rule.name)}
-							</Link>
-						</li>
-					))}
-				</ul>
-			)}
+			{showDefaultList && !input ? renderOptions(rules) : renderOptions()}
 		</>
 	)
 }

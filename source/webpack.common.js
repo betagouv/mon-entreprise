@@ -27,7 +27,8 @@ module.exports.default = {
 		publicodes: './source/sites/publi.codes/entry.js'
 	},
 	output: {
-		path: path.resolve('./dist/')
+		path: path.resolve('./dist/'),
+		globalObject: 'self'
 	},
 	plugins: [
 		new EnvironmentPlugin({

@@ -1,26 +1,119 @@
+import { T } from 'Components'
 import React, { useEffect, useState } from 'react'
-import ReactSelect from 'react-select'
-import 'react-select/dist/react-select.css'
+import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
 import { FormDecorator } from '../FormDecorator'
-import './Select.css'
-import SelectOption from './SelectOption'
+const worker = new Worker()
 
-function ReactSelectWrapper({
-	value,
-	onBlur,
-	setFormValue,
-	submit,
-	options,
-	submitOnChange = option => {
+function SelectComponent({ setFormValue, submit, options }) {
+	const [searchResults, setSearchResults] = useState()
+	let submitOnChange = option => {
 		option.text = +option['Taux net'].replace(',', '.') / 100
 		setFormValue(option.text)
 		submit()
-	},
-	selectValue = value?.['Code risque']
-}) {
-	if (!options) return null
+	}
+	useEffect(() => {
+		worker.postMessage({
+			options
+		})
+
+		worker.onmessage = ({ data: results }) => setSearchResults(results)
+	}, [])
 
 	return (
+		<>
+			<input
+				type="search"
+				css={`
+					padding: 0.4rem;
+					margin: 0.2rem 0;
+					width: 100%;
+					border: 1px solid var(--lighterTextColour);
+					border-radius: 0.3rem;
+					color: inherit;
+					font-size: inherit;
+					transition: border-color 0.1s;
+					position: relative;
+
+					:focus {
+						border-color: var(--colour);
+					}
+				`}
+				placeholder="Saisissez votre domaine d'activité"
+				onChange={e => {
+					let input = e.target.value
+					if (input.length < 2) {
+						setSearchResults(undefined)
+						return
+					}
+					worker.postMessage({ input })
+				}}
+			/>
+			{searchResults && searchResults.length === 0 && (
+				<p>
+					<T>Aucun résultat</T>
+				</p>
+			)}
+
+			{searchResults &&
+				searchResults.map(option => (
+					<div
+						key={JSON.stringify(option)}
+						css={`
+							text-align: left;
+							width: 100%;
+							padding: 0 0.4rem;
+							border-radius: 0.3rem;
+							display: flex;
+							align-items: center;
+							cursor: pointer;
+							:hover,
+							:focus {
+								background-color: var(--lighterColour);
+							}
+							background: white;
+							border-radius: 0.6rem;
+							margin-top: 0.4rem;
+							span {
+								display: inline-block;
+								margin: 0.6rem;
+							}
+						`}
+						onClick={() => submitOnChange(option)}
+					>
+						<span
+							css={`
+								width: 65%;
+								font-size: 85%;
+							`}
+						>
+							{option['Nature du risque']}
+						</span>
+
+						<span
+							css={`
+								width: 10%;
+								min-width: 3em;
+								color: #333;
+							`}
+						>
+							<span>{option['Taux net'] + ' %'}</span>
+						</span>
+						<span
+							css={`
+								width: 20%;
+								font-size: 85%;
+								background-color: #ddd;
+								color: #333;
+								border-radius: 0.25em;
+								padding: 0.5em;
+								text-align: center;
+							`}
+						>
+							{option['Catégorie']}
+						</span>
+					</div>
+				))}
+			{/*
 		<ReactSelect
 			options={options}
 			onChange={submitOnChange}
@@ -31,8 +124,9 @@ function ReactSelectWrapper({
 			valueRenderer={value => value['Taux net']}
 			clearable={false}
 			value={selectValue}
-			onBlur={() => onBlur(value)}
 		/>
+				*/}
+		</>
 	)
 }
 
@@ -57,9 +151,6 @@ export default FormDecorator('select')(function Select(props) {
 			)
 	}, [])
 
-	return (
-		<div className="select-answer">
-			<ReactSelectWrapper {...props} options={options} />
-		</div>
-	)
+	if (!options) return null
+	return <SelectComponent {...props} options={options} />
 })

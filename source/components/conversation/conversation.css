@@ -302,13 +302,6 @@
 	margin-left: 0.3em;
 }
 
-.select-answer {
-	flex: 1;
-}
-.select-answer.commune .Select {
-	width: 50%;
-}
-
 .info-zone {
 	font-size: 65%;
 	text-align: center;
