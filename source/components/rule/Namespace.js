@@ -6,9 +6,17 @@ import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
+const Namespace = ({ ns, flatRules, colour, sitePaths }) => {
+	const style = { color: colour }
+
 	return (
 		<ul id="namespace">
+			<li style={style}>
+				<Link style={style} to={sitePaths.documentation.index}>
+					Documentation
+				</Link>
+				{' › '}
+			</li>
 			{ns
 				.split(' . ')
 				.reduce(
@@ -19,15 +27,14 @@ let Namespace = ({ ns, flatRules, colour, sitePaths }) => {
 					[]
 				)
 				.map(fragments => {
-					let ruleName = fragments.join(' . '),
+					const ruleName = fragments.join(' . '),
 						rule = findRuleByDottedName(flatRules, ruleName)
 					if (!rule) {
 						throw new Error(
 							`Attention, il se peut que la règle ${ruleName}, ait été définie avec un namespace qui n'existe pas.`
 						)
 					}
-					let ruleText = rule.title || capitalise0(rule.name),
-						style = { color: colour }
+					const ruleText = rule.title || capitalise0(rule.name)
 
 					return (
 						<li style={style} key={fragments.join()}>
