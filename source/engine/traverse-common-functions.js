@@ -1,8 +1,8 @@
-import { any, pipe, equals } from 'ramda'
+import { any, equals, pipe } from 'ramda'
 
 export let val = node => node && node.nodeValue
 
-export let undefOrTrue = val => val == undefined || val == true
+export let undefOrTruthy = val => val == undefined || !!val
 
 export let anyNull = any(
 	pipe(

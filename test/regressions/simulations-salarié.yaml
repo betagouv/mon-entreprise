@@ -117,10 +117,10 @@ heures supplémentaires:
     entreprise . effectif: 100
   - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . heures supplémentaires: 5
-    entreprise . hôtel café restaurant: true
+    contrat salarié . convention collective: 'HCR'
   - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . heures supplémentaires: 30
-    entreprise . hôtel café restaurant: true
+    contrat salarié . convention collective: 'HCR'
 
 avantages:
   - contrat salarié . rémunération . brut de base: 2000

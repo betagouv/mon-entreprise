@@ -20,18 +20,18 @@ export let SalaireBrutSection = ({ getRule }) => {
 				<T>Salaire</T>
 			</h4>
 			<Line rule={salaireDeBase} />
-			{avantagesEnNature.nodeValue && (
+			{!!avantagesEnNature?.nodeValue && (
 				<Line
 					rule={getRule(
 						'contrat salarié . rémunération . avantages en nature . montant'
 					)}
 				/>
 			)}
-			{indemnitésSalarié.nodeValue !== 0 && <Line rule={indemnitésSalarié} />}
-			{heuresSupplémentaires.nodeValue !== 0 && (
+			{!!indemnitésSalarié?.nodeValue && <Line rule={indemnitésSalarié} />}
+			{!!heuresSupplémentaires?.nodeValue && (
 				<Line rule={heuresSupplémentaires} />
 			)}
-			{primes.nodeValue !== 0 && <Line rule={primes} />}
+			{!!primes?.nodeValue && <Line rule={primes} />}
 			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
 				<Line rule={rémunérationBrute} />
 			)}

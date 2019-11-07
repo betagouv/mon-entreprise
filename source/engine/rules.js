@@ -3,7 +3,7 @@ import {
 	assoc,
 	chain,
 	dropLast,
-	find,
+	filter,
 	fromPairs,
 	has,
 	is,
@@ -233,7 +233,7 @@ export let rules = translateAll(translations, rulesList).map(rule =>
 
 export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
-export let findParentDependency = (rules, rule) => {
+export let findParentDependencies = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
 	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
 	// It lets those children omit obvious and repetitive parent applicability tests
@@ -241,7 +241,7 @@ export let findParentDependency = (rules, rule) => {
 	return pipe(
 		map(parent => findRuleByDottedName(rules, parent)),
 		reject(isNil),
-		find(
+		filter(
 			//Find the first "calculable" parent
 			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
@@ -265,11 +265,8 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 				analysis.targets.find(propEq('dottedName', dottedName))
 		)
 		.filter(Boolean)[0]
-
-	if (!rule) {
-		throw new Error(
-			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
-		)
+	if (process.env.NODE_ENV !== 'production' && !rule) {
+		console.warn(`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`)
 	}
 
 	return rule

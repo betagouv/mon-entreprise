@@ -8,7 +8,7 @@ import React from 'react'
 import { coerceArray } from '../utils'
 import { evaluateNode, makeJsx } from './evaluation'
 import { Node } from './mecanismViews/common'
-import { disambiguateRuleReference, findParentDependency } from './rules'
+import { disambiguateRuleReference, findParentDependencies } from './rules'
 
 export default (rules, rule, parsedRules) => {
 	//	if (rule.dottedName.includes('distance journalière'))
@@ -23,41 +23,42 @@ export default (rules, rule, parsedRules) => {
 		These mechanisms or variables are in turn traversed by `parse()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
 */
 
-	let parentDependency = findParentDependency(rules, rule)
-	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
+	let parentDependencies = findParentDependencies(rules, rule)
+	let root = { ...rule, parentDependencies }
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
-		parentDependency: parent => {
-			let node = parse(rules, rule, parsedRules)(parent.dottedName)
+		parentDependencies: parents =>
+			parents.map(parent => {
+				let node = parse(rules, rule, parsedRules)(parent.dottedName)
 
-			let jsx = (nodeValue, explanation) => (
-				<ShowValuesConsumer>
-					{showValues =>
-						!showValues ? (
-							<div>Active seulement si {makeJsx(explanation)}</div>
-						) : nodeValue === true ? (
-							<div>Active car {makeJsx(explanation)}</div>
-						) : nodeValue === false ? (
-							<div>Non active car {makeJsx(explanation)}</div>
-						) : null
-					}
-				</ShowValuesConsumer>
-			)
+				let jsx = (nodeValue, explanation) => (
+					<ShowValuesConsumer>
+						{showValues =>
+							!showValues ? (
+								<div>Active seulement si {makeJsx(explanation)}</div>
+							) : nodeValue === true ? (
+								<div>Active car {makeJsx(explanation)}</div>
+							) : nodeValue === false ? (
+								<div>Non active car {makeJsx(explanation)}</div>
+							) : null
+						}
+					</ShowValuesConsumer>
+				)
 
-			return {
-				evaluate: (cache, situation, parsedRules) =>
-					node.evaluate(cache, situation, parsedRules, node),
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'parentDependency',
-				type: 'numeric',
-				explanation: node
-			}
-		},
+				return {
+					evaluate: (cache, situation, parsedRules) =>
+						node.evaluate(cache, situation, parsedRules, node),
+					jsx,
+					category: 'ruleProp',
+					rulePropType: 'cond',
+					name: 'parentDependencies',
+					type: 'numeric',
+					explanation: node
+				}
+			}),
 		'non applicable si': evolveCond(
 			'non applicable si',
 			rule,

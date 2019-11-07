@@ -10,14 +10,15 @@ import { ShowValuesProvider } from './ShowValuesContext'
 
 let Conditions = ({
 	'rendu non applicable': disabledBy,
-	parentDependency,
+	parentDependencies,
 	'applicable si': applicable,
 	'non applicable si': notApplicable
 }) => {
 	let listElements = [
-		parentDependency?.nodeValue === false && (
+		...parentDependencies.map(parentDependency =>
+		parentDependency.nodeValue === false && (
 			<ShowIfDisabled dependency={parentDependency} key="parent dependency" />
-		),
+		)),
 		...disabledBy?.explanation?.isDisabledBy?.map(
 			(dependency, i) =>
 				dependency?.nodeValue === true && (

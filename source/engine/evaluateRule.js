@@ -1,6 +1,6 @@
 import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
 import { map, mergeAll, pick, pipe } from 'ramda'
-import { anyNull, undefOrTrue, val } from './traverse-common-functions'
+import { anyNull, undefOrTruthy, val } from './traverse-common-functions'
 
 export const evaluateApplicability = (
 	cache,
@@ -9,43 +9,49 @@ export const evaluateApplicability = (
 	node
 ) => {
 	let evaluatedAttributes = pipe(
-			pick([
-				'parentDependency',
-				'non applicable si',
-				'applicable si',
-				'rendu non applicable'
-			]),
+			pick(['non applicable si', 'applicable si', 'rendu non applicable']),
 			map(value => evaluateNode(cache, situationGate, parsedRules, value))
 		)(node),
 		{
-			parentDependency,
 			'non applicable si': notApplicable,
 			'applicable si': applicable,
 			'rendu non applicable': disabled
 		} = evaluatedAttributes,
+		parentDependencies = node.parentDependencies.map(parent =>
+			evaluateNode(cache, situationGate, parsedRules, parent)
+		),
 		isApplicable =
-			val(parentDependency) === false ||
+			parentDependencies.some(parent => val(parent) === false) ||
 			val(notApplicable) === true ||
 			val(applicable) === false ||
 			val(disabled) === true
 				? false
-				: anyNull([notApplicable, applicable, parentDependency])
+				: anyNull([notApplicable, applicable, ...parentDependencies])
 				? null
-				: !val(notApplicable) && undefOrTrue(val(applicable)),
+				: !val(notApplicable) && undefOrTruthy(val(applicable)),
 		missingVariables =
 			isApplicable === false
 				? {}
 				: mergeAll([
-						parentDependency?.missingVariables || {},
+						...parentDependencies.map(parent => parent.missingVariables),
 						notApplicable?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
-
+	if (
+		node.dottedName === "contrat salarié . contribution d'équilibre technique"
+	) {
+		console.log(
+			node.dottedName,
+			isApplicable,
+			notApplicable,
+			applicable,
+			parentDependencies
+		)
+	}
 	return {
 		nodeValue: isApplicable,
 		missingVariables,
-		...evaluatedAttributes,
-		inactiveParent: parentDependency && val(parentDependency) == false
+		...evaluatedAttributes
 	}
 }
 

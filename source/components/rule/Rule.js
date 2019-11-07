@@ -145,7 +145,9 @@ export default compose(
 								<Value
 									{...displayedRule}
 									nilValueSymbol={
-										displayedRule.parentDependency?.nodeValue == false
+										displayedRule.parentDependencies.some(
+											parent => parent?.nodeValue == false
+										)
 											? '-'
 											: null
 									}

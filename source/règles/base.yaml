@@ -616,31 +616,6 @@ contrat salarié . CDD . surcoût:
         compensation pour congés non pris: 39.6
       valeur attendue: 200
 
-assimilé salarié:
-  description: |
-    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
-  question: Le salarié est-il considéré comme "assimilé salarié" ?
-  par défaut: non
-  remplace:
-    règle: contrat salarié
-    par: "'CDI'"
-  rend non applicable:
-    - contrat salarié . chômage
-    - contrat salarié . réduction générale
-    - contrat salarié . allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
-    - contrat salarié . lodeom
-    - contrat salarié . AGS
-    - contrat salarié . APEC
-    - contrat salarié . contribution au dialogue social
-    - contrat salarié . temps de travail . temps partiel
-    - contrat salarié . temps de travail . heures supplémentaires
-    - contrat salarié . statut JEI
-    - entreprise . association non lucrative
-    - contrat salarié . régime des impatriés
-  références:
-    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
-
 contrat salarié . apprentissage:
   description: |
     Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
@@ -805,7 +780,7 @@ contrat salarié . rémunération . brut de base:
     - si:
         toutes ces conditions:
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC contractuel [mensuel]
-          - assimilé salarié != oui
+          - entreprise . dirigeant . assimilé salarié != oui
           - stage != oui
           - apprentissage != oui
       niveau: avertissement
@@ -885,7 +860,7 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
 contrat salarié . rémunération . primes:
   unité: €
   période: flexible
-  formule: 
+  formule:
     somme:
       - base
       - activité
@@ -1086,13 +1061,6 @@ contrat salarié . indemnités salarié:
       - indemnité kilométrique vélo
 
 contrat salarié . statut cadre:
-  formule:
-    variations:
-      - si: assimilé salarié
-        alors: oui
-      - sinon: choix statut cadre
-
-contrat salarié . statut cadre . choix statut cadre:
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caisse de retraite de base spécifique
   par défaut: non
@@ -1117,7 +1085,6 @@ plafond journalier sécurité sociale:
   acronyme: PJSS
   formule: plafond sécurité sociale temps plein / 18.2
   unité: €
-
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
@@ -1661,7 +1628,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - assimilé salarié
+      - entreprise . dirigeant . assimilé salarié
       - entreprise . ACRE
   période: flexible
   formule:
@@ -3353,9 +3320,9 @@ entreprise . rémunération totale du dirigeant:
   période: flexible
   formule:
     variations:
-      - si: indépendant
+      - si: dirigeant . indépendant
         alors: revenu net de cotisations + indépendant . cotisations et contributions
-      - si: auto-entrepreneur
+      - si: dirigeant . auto-entrepreneur
         alors:
           inversion numérique:
             avec:
@@ -3363,7 +3330,7 @@ entreprise . rémunération totale du dirigeant:
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
-      - si: assimilé salarié
+      - si: dirigeant . assimilé salarié
         alors: contrat salarié . rémunération . total
 
 entreprise . charges:
@@ -3623,10 +3590,7 @@ entreprise . auto entreprise impossible:
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
 indépendant:
-  par défaut: non
-  question: Activité à la sécurité sociale des indépendants ?
-  rend non applicable:
-    - contrat salarié
+  applicable si: entreprise . dirigeant . indépendant
 
 indépendant . cotisations et contributions . cotisations:
   période: flexible
@@ -3659,7 +3623,7 @@ entreprise . rattachement libéral règlementé:
   formule:
     une de ces conditions:
       - toutes ces conditions:
-          - contrat salarié != oui
+          - contrat salarié = non
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - indépendant
@@ -3949,14 +3913,58 @@ indépendant . cotisations et contributions . formation professionnelle:
         1.1: 0%
         1.4: 3.1%
 
+entreprise . dirigeant:
+  question: Quel est le régime social du dirigeant ?
+  par défaut: non
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - auto-entrepreneur
+        - assimilé salarié
+        - indépendant
+
+entreprise . dirigeant . assimilé salarié:
+  description: |
+    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
+  formule: dirigeant = 'assimilé salarié'
+  remplace:
+    - règle: contrat salarié
+      par: "'CDI'"
+    - règle: contrat salarié . statut cadre
+      par: oui
+  rend non applicable:
+    - contrat salarié . convention collective
+    - contrat salarié . rémunération . primes
+    - contrat salarié . chômage
+    - contrat salarié . réduction générale
+    - contrat salarié . allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
+    - contrat salarié . lodeom
+    - contrat salarié . AGS
+    - contrat salarié . APEC
+    - contrat salarié . contribution au dialogue social
+    - contrat salarié . temps de travail . temps partiel
+    - contrat salarié . temps de travail . heures supplémentaires
+    - contrat salarié . statut JEI
+    - entreprise . association non lucrative
+    - contrat salarié . régime des impatriés
+  références:
+    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
+
+entreprise . dirigeant . indépendant:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'indépendant'
+
+entreprise . dirigeant . auto-entrepreneur:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'auto-entrepreneur'
+
 auto-entrepreneur:
   icônes: 🚶
-  par défaut: non
-  question: L'activité est-elle exercée en auto-entreprise ?
+  applicable si: entreprise . dirigeant . auto-entrepreneur
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
-  rend non applicable:
-    - contrat salarié
 
 auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
@@ -5013,8 +5021,8 @@ contrat salarié . convention collective . HCR:
   titre: hôtels, cafés restaurants HCR (beta)
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 
-? contrat salarié . convention collective . HCR . montant forfaitaire d'un repas
-: période: aucune
+contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
+  période: aucune
   remplace:
     règle: rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
   formule: 3.62 €/repas
@@ -5041,12 +5049,12 @@ contrat salarié . convention collective . SVP:
   description: |
     L'entreprise dépend de la convention collective nationale des entreprises privée du spectacle
 
-contrat salarié . convention collective . SVP . cotisations patronales: 
+contrat salarié . convention collective . SVP . cotisations patronales:
   titre: cotisations conventionnelles
   période: flexible
   remplace: cotisations . patronales . conventionnelles
-  formule: 
-    somme: 
+  formule:
+    somme:
       - intermittents du spectacle . caisse des congés spectacle
       - FCAP
       - prévoyance
@@ -5062,32 +5070,31 @@ contrat salarié . convention collective . SVP . FCAP:
     - De financer le rapport de branche du spectacle vivant privé.
 
   période: année
-  # TODO : 
+  # TODO :
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
   formule:
     le minimum de:
       - 80 € / entreprise . effectif
       - le maximum de:
-        - multiplication: 
-            plafonnée à: plafond sécurité sociale
-            assiette: rémunération . brut
-            taux: 0.1%
-        - 300 € / entreprise . effectif
-  références: 
+          - multiplication:
+              plafonnée à: plafond sécurité sociale
+              assiette: rémunération . brut
+              taux: 0.1%
+          - 300 € / entreprise . effectif
+  références:
     Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
     Note explicative AUDIENS: http://www.cheque-intermittents.com/wp-content/uploads/2015/05/FCAP-SVP-EXPLIC_final.pdf
-    
 
 contrat salarié . convention collective . SVP . prévoyance:
   période: flexible
-  formule: 
+  formule:
     multiplication:
       plafonnée à: plafond sécurité sociale
       assiette: cotisations . assiette
       taux: 1.20%
-  non applicable si: prévoyance obligatoire cadre 
+  non applicable si: prévoyance obligatoire cadre
   note: Dans le cas du statut cadre, la prévoyance obligatoire est plus avantageuse, c'est donc cette dernière qui est prise en compte
-  références: 
+  références:
     notice audiens: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/CCN/CCN-SVP-2015.pdf
     Article 12.6, Titre VII, IDCC 3090: https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000028157451&cidTexte=KALITEXT000028157267&dateTexte=29990101&categorieLien=id
 
@@ -5098,30 +5105,27 @@ contrat salarié . convention collective . sport:
     L'entreprise dépend de la convention collective nationale des sportifs (CCNS)
     Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
 
-
-
-
 contrat salarié . convention collective . sport . cotisations:
 
 contrat salarié . convention collective . sport . cotisations . patronales:
   titre: cotisations conventionnelles
   période: flexible
   remplace:
-    - règle: cotisations . patronales . conventionnelles  
+    - règle: cotisations . patronales . conventionnelles
   formule:
-    somme: 
+    somme:
       - prévoyance [employeur]
       - financement du paritarisme
 
-contrat salarié . convention collective . sport . cotisations . financement du paritarisme:
-  période: année
+? contrat salarié . convention collective . sport . cotisations . financement du paritarisme
+: période: année
   # TODO
   note: se calcul sur la masse salariale
   formule:
     le maximum de:
       - 3 €
       - multiplication:
-          assiette: cotisations . assiette 
+          assiette: cotisations . assiette
           taux: 0.06%
 
 contrat salarié . convention collective . sport . cotisations . prévoyance:
@@ -5130,7 +5134,7 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
     - règle: cotisations . salariales . conventionnelles
       par: prévoyance [salarié]
     - règle: avantages sociaux
-      par: 
+      par:
         somme:
           - prévoyance [employeur]
           - avantages sociaux
@@ -5281,28 +5285,28 @@ contrat salarié . convention collective . sport . joueur entraineur:
   par défaut: non
 
 contrat salarié . convention collective . sport . exonération cotisation AT:
-  non applicable si: 
-    une de ces conditions: 
+  non applicable si:
+    une de ces conditions:
       - joueur entraineur
       - refus
-  remplace: 
+  remplace:
     règle: ATMP
     par: non
 
-contrat salarié . convention collective . sport . exonération cotisation AT . refus:
-  titre: refus exonération AT
+? contrat salarié . convention collective . sport . exonération cotisation AT . refus
+: titre: refus exonération AT
   question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   par défaut: non
 
-contrat salarié . convention collective . sport . cotisations . assiette forfaitaire: 
-  applicable si: assiette franchisée < 115 * SMIC horaire
+? contrat salarié . convention collective . sport . cotisations . assiette forfaitaire
+: applicable si: assiette franchisée < 115 * SMIC horaire
   période: mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
   unité: €
   formule:
-    multiplication: 
+    multiplication:
       assiette: SMIC horaire
-      facteur: 
+      facteur:
         barème linéaire:
           assiette: assiette franchisée
           multiplicateur: SMIC horaire
@@ -5349,10 +5353,10 @@ contrat salarié . convention collective . sport . primes . manifestation 1:
   par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
-  titre: franchise manifestation 1 
+? contrat salarié . convention collective . sport . primes . manifestation 1 . franchise
+: titre: franchise manifestation 1
   période: aucune
-  formule: 
+  formule:
     le minimum de:
       - 70% * plafond journalier sécurité sociale
       - manifestation 1
@@ -5364,10 +5368,10 @@ contrat salarié . convention collective . sport . primes . manifestation 2:
   par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
-  titre: franchise manifestation 2 
+? contrat salarié . convention collective . sport . primes . manifestation 2 . franchise
+: titre: franchise manifestation 2
   période: aucune
-  formule: 
+  formule:
     le minimum de:
       - 70% * plafond journalier sécurité sociale
       - manifestation 2
@@ -5379,10 +5383,10 @@ contrat salarié . convention collective . sport . primes . manifestation 3:
   par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
-  titre: franchise manifestation 3 
+? contrat salarié . convention collective . sport . primes . manifestation 3 . franchise
+: titre: franchise manifestation 3
   période: aucune
-  formule: 
+  formule:
     le minimum de:
       - 70% * plafond journalier sécurité sociale
       - manifestation 3
@@ -5394,10 +5398,10 @@ contrat salarié . convention collective . sport . primes . manifestation 4:
   par défaut: 100
   unité: €
 
-contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
-  titre: franchise manifestation 4 
+? contrat salarié . convention collective . sport . primes . manifestation 4 . franchise
+: titre: franchise manifestation 4
   période: aucune
-  formule: 
+  formule:
     le minimum de:
       - 70% * plafond journalier sécurité sociale
       - manifestation 4
@@ -5409,10 +5413,10 @@ contrat salarié . convention collective . sport . primes . manifestation 5:
   période: aucune
   unité: €
 
-contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
-  titre: franchise manifestation 5 
+? contrat salarié . convention collective . sport . primes . manifestation 5 . franchise
+: titre: franchise manifestation 5
   période: aucune
-  formule: 
+  formule:
     le minimum de:
       - 70% * plafond journalier sécurité sociale
       - manifestation 5
@@ -5429,19 +5433,19 @@ contrat salarié . convention collective . sport . cotisations . franchise:
   période: aucune
   unité: €
   formule:
-    somme: 
+    somme:
       - primes . manifestation 1 . franchise
       - primes . manifestation 2 . franchise
       - primes . manifestation 3 . franchise
       - primes . manifestation 4 . franchise
       - primes . manifestation 5 . franchise
-   
+
 contrat salarié . intermittents du spectacle:
   applicable si:
     toutes ces conditions:
       - CDD . motif . classique . usage
       - une de ces conditions:
-        - convention collective . SVP
+          - convention collective . SVP
   question: A quel statut d'intermittent est rattaché l'employé ?
   par défaut: technicien
   formule:
@@ -5451,8 +5455,8 @@ contrat salarié . intermittents du spectacle:
         - technicien
         - artiste
 
-? contrat salarié . intermittents du spectacle . formation professionnelle
-: remplace: formation professionnelle
+contrat salarié . intermittents du spectacle . formation professionnelle:
+  remplace: formation professionnelle
   période: mois
   formule:
     somme:
@@ -5461,8 +5465,7 @@ contrat salarié . intermittents du spectacle:
           assiette: rémunération . brut
           taux: 2.10%
 
-? contrat salarié . intermittents du spectacle . caisse des congés spectacle
-:
+contrat salarié . intermittents du spectacle . caisse des congés spectacle:
   période: flexible
   formule:
     multiplication:
@@ -5484,11 +5487,11 @@ contrat salarié . intermittents du spectacle:
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
 
-? contrat salarié . intermittents du spectacle . technicien
-: formule: intermittents du spectacle = 'technicien'
+contrat salarié . intermittents du spectacle . technicien:
+  formule: intermittents du spectacle = 'technicien'
 
-? contrat salarié . intermittents du spectacle . technicien . non cadre
-: applicable si: statut cadre = non
+contrat salarié . intermittents du spectacle . technicien . non cadre:
+  applicable si: statut cadre = non
   remplace:
     - règle: retraite complémentaire . taux employeur tranche 2
       par: 10.80%
@@ -5524,8 +5527,8 @@ contrat salarié . intermittents du spectacle . artiste:
   références:
     Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
 
-? contrat salarié . intermittents du spectacle . artiste . non cadre
-: applicable si: statut cadre = non
+contrat salarié . intermittents du spectacle . artiste . non cadre:
+  applicable si: statut cadre = non
   remplace:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
@@ -5544,13 +5547,12 @@ contrat salarié . intermittents du spectacle . artiste:
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
 
-? contrat salarié . intermittents du spectacle . artiste . activité accessoire
-: question: |
+contrat salarié . intermittents du spectacle . artiste . activité accessoire:
+  question: |
     L'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
   par défaut: non
 
-? contrat salarié . intermittents du spectacle . artiste . réduction de taux
-:
+contrat salarié . intermittents du spectacle . artiste . réduction de taux:
   # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
   rend non applicable: réduction générale
   non applicable si: activité accessoire
@@ -5592,8 +5594,8 @@ contrat salarié . intermittents du spectacle . artiste:
   unité: jours
   par défaut: 5
 
-? contrat salarié . intermittents du spectacle . artiste . plafond proratisé
-: applicable si: nombre jours travaillés < 5
+contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
+  applicable si: nombre jours travaillés < 5
   période: mois
   unité: €
   remplace:
@@ -5606,19 +5608,19 @@ contrat salarié . intermittents du spectacle . artiste:
       assiette: plafond horaire sécurité sociale
       facteur: 12 * nombre jours travaillés
 
-? contrat salarié . intermittents du spectacle . artiste . acteur de complément
-: non applicable si: activité accessoire
+contrat salarié . intermittents du spectacle . artiste . acteur de complément:
+  non applicable si: activité accessoire
   question: L'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
   par defaut: non
 
-contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
-  remplace: artiste . nombre jours travaillés
+? contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés
+: remplace: artiste . nombre jours travaillés
   formule: 1
 
 ? contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
 : applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
   période: flexible
-  remplace: 
+  remplace:
     - contrat salarié . cotisations . assiette forfaitaire
     - règle: nombre jours travaillés
       par: 1
@@ -5661,7 +5663,7 @@ contrat salarié . cotisations . assiette forfaitaire . minimum:
   période: mois
   description: >
     Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
-    1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+      1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
   applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale temps plein
   formule: 70% * rémunération . brut
 

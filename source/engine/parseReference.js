@@ -87,6 +87,9 @@ let evaluateReference = (filter, contextRuleName) => (
 		missingVariables: condMissingVariables
 	} = evaluateApplicability(cache, situation, rules, rule)
 	if (!isApplicable) {
+		// if (condMissingVariables['contrat salarié . convention collective']) {
+		// 	console.log(node.dottedName, isApplicable, condMissingVariables)
+		// }
 		return cacheNode(isApplicable, condMissingVariables)
 	}
 	const situationValue = getSituationValue(situation, dottedName, rule)
