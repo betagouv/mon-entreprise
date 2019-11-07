@@ -60,8 +60,7 @@ export default compose(
 	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
-	console.log('RULE', displayedRule)
-
+	
 	const renderToggleSourceButton = () => {
 		return (
 			<button
