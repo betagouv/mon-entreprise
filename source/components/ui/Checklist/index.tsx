@@ -1,9 +1,9 @@
 import classnames from 'classnames'
-import Animate from 'Ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
 import { TrackerContext } from 'Components/utils/withTracker'
 import React, { Component, useContext, useState } from 'react'
+import Animate from 'Ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
 
@@ -58,7 +58,8 @@ export function CheckItem({
 					className={classnames('ui__ checklist-button', {
 						opened: displayExplanations
 					})}
-					onClick={handleClick}>
+					onClick={handleClick}
+				>
 					{title}
 				</button>
 			</div>
@@ -78,7 +79,7 @@ export function CheckItem({
 	)
 }
 
-type ChecklistProps = {
+export type ChecklistProps = {
 	children: React.ReactNode
 	onItemCheck: (string, boolean) => void
 	onInitialization: (arg: Array<string>) => void

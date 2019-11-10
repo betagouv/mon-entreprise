@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import StatutDescription from './StatutDescription'
@@ -24,8 +25,8 @@ function CreateCompany({
 }) {
 	const { t, i18n } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-	const companyCreationChecklist = useSelector<any, any>(
-		state => state.inFranceApp.companyCreationChecklist
+	const companyCreationChecklist = useSelector(
+		(state: RootState) => state.inFranceApp.companyCreationChecklist
 	)
 
 	// TODO : add this logic inside selector
@@ -75,7 +76,8 @@ function CreateCompany({
 			<div css="transform: translateY(2rem);">
 				<button
 					onClick={onStatusChange}
-					className="ui__ simple small push-left button">
+					className="ui__ simple small push-left button"
+				>
 					<T k="entreprise.retour">← Choisir un autre statut</T>
 				</button>
 			</div>
@@ -100,7 +102,8 @@ function CreateCompany({
 				key={statut}
 				onInitialization={items => onChecklistInitialization(statut, items)}
 				onItemCheck={x => onItemCheck}
-				defaultChecked={companyCreationChecklist}>
+				defaultChecked={companyCreationChecklist}
+			>
 				<CheckItem
 					name="legalStatus"
 					defaultChecked={true}
@@ -191,7 +194,8 @@ function CreateCompany({
 									<span
 										style={{
 											display: multipleAssociates ? 'visible' : 'none'
-										}}>
+										}}
+									>
 										Dans le cas d'une création d'entreprise avec plusieurs
 										associés, il est recommandé de faire appel à un juriste pour
 										les rédiger.{' '}
@@ -365,7 +369,8 @@ function CreateCompany({
 											? 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html'
 											: 'https://account.guichet-entreprises.fr/user/create'
 									}
-									target="blank">
+									target="blank"
+								>
 									Faire la démarche en ligne
 								</a>
 							</div>
@@ -437,14 +442,16 @@ function CreateCompany({
 					> * {
 						flex: 1;
 					}
-				`}>
+				`}
+			>
 				{isAutoentrepreneur && (
 					<Link
 						className="ui__ interactive card button-choice lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs['auto-entrepreneur'],
 							state: { fromCréer: true }
-						}}>
+						}}
+					>
 						<T k="entreprise.ressources.simu.autoEntrepreneur">
 							<p>Simulateur de revenus auto-entrepreneur</p>
 							<small>
@@ -460,7 +467,8 @@ function CreateCompany({
 						to={{
 							pathname: sitePaths.simulateurs.indépendant,
 							state: { fromCréer: true }
-						}}>
+						}}
+					>
 						<T k="entreprise.ressources.simu.indépendant">
 							<p>Simulateur de cotisations indépendant</p>
 							<small>
@@ -476,7 +484,8 @@ function CreateCompany({
 						to={{
 							pathname: sitePaths.simulateurs['assimilé-salarié'],
 							state: { fromCréer: true }
-						}}>
+						}}
+					>
 						<T k="entreprise.ressources.simu.assimilé">
 							<p>Simulateur de cotisations assimilé-salarié</p>
 							<small>
@@ -488,7 +497,8 @@ function CreateCompany({
 				)}
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
-					to={sitePaths.créer.après}>
+					to={sitePaths.créer.après}
+				>
 					<T k="entreprise.ressources.après">
 						<p>Après la création</p>
 						<small>
@@ -501,7 +511,8 @@ function CreateCompany({
 					<a
 						target="_blank"
 						className="ui__ interactive card button-choice lighter-bg"
-						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf">
+						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf"
+					>
 						<p>Guide de création URSSAF </p>
 						<small>
 							Des conseils sur comment préparer son projet pour se lancer dans
@@ -519,14 +530,11 @@ function CreateCompany({
 	)
 }
 
-export default connect(
-	null,
-	{
-		onChecklistInitialization: initializeCompanyCreationChecklist,
-		onItemCheck: checkCompanyCreationItem,
-		onStatusChange: goToCompanyStatusChoice
-	}
-)(CreateCompany)
+export default connect(null, {
+	onChecklistInitialization: initializeCompanyCreationChecklist,
+	onItemCheck: checkCompanyCreationItem,
+	onStatusChange: goToCompanyStatusChoice
+})(CreateCompany)
 
 let StatutsExample = ({ statut }) => {
 	const links = {

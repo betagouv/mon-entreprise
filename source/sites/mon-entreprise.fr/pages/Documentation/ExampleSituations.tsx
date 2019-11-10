@@ -6,10 +6,8 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import examples from 'Règles/cas-types.yaml'
-import {
-	parsedRulesSelector,
-	ruleDefaultsSelector
-} from 'Selectors/analyseSelectors'
+import { parsedRulesSelector, ruleDefaultsSelector } from 'Selectors/analyseSelectors'
+import { DottedName } from "Types/rule"
 import './ExampleSituations.css'
 
 export default function ExampleSituations() {
@@ -20,7 +18,7 @@ export default function ExampleSituations() {
 				<T>Quelques exemples de salaires</T>
 			</h1>
 			<ul>
-				{examples.map(ex => (
+				{examples.map((ex: any) => (
 					<Example ex={ex} key={ex.nom} />
 				))}
 			</ul>
@@ -29,14 +27,16 @@ export default function ExampleSituations() {
 }
 
 const Example = function Example({ ex: { nom, situation } }) {
-	const defaults = useSelector(ruleDefaultsSelector) as object
+	const defaults = useSelector(ruleDefaultsSelector)
 	const parsedRules = useSelector(parsedRulesSelector)
 	const colours = useContext(ThemeColoursContext)
 	let [total, net, netAprèsImpôts] = analyseMany(parsedRules, [
 			'total',
 			'net',
 			'net après impôt'
-		])(dottedName => ({ ...defaults, ...situation }[dottedName])).targets,
+		])(
+			(dottedName: DottedName) => ({ ...defaults, ...situation }[dottedName])
+		).targets,
 		figures = [
 			total,
 			{
@@ -60,7 +60,8 @@ const Example = function Example({ ex: { nom, situation } }) {
 						<h3>{t.title}</h3>
 						<span
 							style={{ color: colours.textColourOnWhite }}
-							className="figure">
+							className="figure"
+						>
 							{Math.round(t.nodeValue)} €
 						</span>
 					</li>

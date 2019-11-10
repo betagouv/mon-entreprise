@@ -1,11 +1,11 @@
 import { T } from 'Components'
-import animate from 'Ui/animate'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import animate from 'Ui/animate'
 
 export default function SchemeChoice() {
 	const sitePaths = useContext(SitePathsContext)
@@ -21,7 +21,8 @@ export default function SchemeChoice() {
 			<p>
 				<Link
 					to={sitePaths.simulateurs['assimilé-salarié']}
-					className="ui__ interactive card light-bg button-choice">
+					className="ui__ interactive card light-bg button-choice"
+				>
 					{emoji('☂')}
 					<span>
 						<T>Assimilé salarié</T>
@@ -36,7 +37,8 @@ export default function SchemeChoice() {
 				</Link>
 				<Link
 					to={sitePaths.simulateurs.indépendant}
-					className="ui__ interactive card light-bg button-choice">
+					className="ui__ interactive card light-bg button-choice"
+				>
 					{emoji('👩‍🔧')}
 					<span>
 						<T>Indépendant</T>
@@ -51,7 +53,8 @@ export default function SchemeChoice() {
 				</Link>
 				<Link
 					to={sitePaths.simulateurs['auto-entrepreneur']}
-					className="ui__ interactive card light-bg button-choice">
+					className="ui__ interactive card light-bg button-choice"
+				>
 					{emoji('🚶‍♂️')}
 					Auto-entrepreneur
 				</Link>
@@ -64,7 +67,8 @@ export default function SchemeChoice() {
 			<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 				<Link
 					className="ui__  plain cta button"
-					to={sitePaths.simulateurs.comparaison}>
+					to={sitePaths.simulateurs.comparaison}
+				>
 					<T k="selectionRégime.comparer.cta">Comparer les régimes</T>
 				</Link>
 			</p>

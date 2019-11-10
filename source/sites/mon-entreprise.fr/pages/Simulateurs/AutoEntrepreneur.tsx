@@ -2,7 +2,7 @@ import { T } from 'Components'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColoursContext } from 'Components/utils/withColours'
 import { getRuleFromAnalysis } from 'Engine/rules'
@@ -12,8 +12,10 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
-const AutoEntrepreneur = () => {
+export default function AutoEntrepreneur() {
+	useSimulationConfig(indépendantConfig)
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<Helmet>
@@ -41,8 +43,6 @@ const AutoEntrepreneur = () => {
 		</>
 	)
 }
-
-export default withSimulationConfig(indépendantConfig)(AutoEntrepreneur)
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)

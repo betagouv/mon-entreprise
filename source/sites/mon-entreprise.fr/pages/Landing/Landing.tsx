@@ -5,14 +5,15 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import Footer from '../../layout/Footer/Footer'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
 
 export default function Landing() {
 	const sitePaths = useContext(SitePathsContext)
-	const statutChoisi = useSelector<any, any>(
-		state => state.inFranceApp.companyStatusChoice
+	const statutChoisi = useSelector(
+		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
 	return (
 		<div className="app-content">
@@ -42,7 +43,8 @@ export default function Landing() {
 					className="ui__ interactive card box"
 					to={
 						statutChoisi ? sitePaths.créer[statutChoisi] : sitePaths.créer.index
-					}>
+					}
+				>
 					<div className="ui__ big box-icon">{emoji('💡')}</div>
 					<T k="landing.choice.create">
 						<h3>Créer une entreprise</h3>
@@ -70,7 +72,8 @@ export default function Landing() {
 				</Link>
 				<Link
 					className="ui__ interactive card box"
-					to={sitePaths.économieCollaborative.index}>
+					to={sitePaths.économieCollaborative.index}
+				>
 					<div className="ui__ big box-icon">{emoji('🙋')}</div>
 					<T k="landing.choice.declare">
 						<h3>Que dois-je déclarer ?</h3>
@@ -88,7 +91,8 @@ export default function Landing() {
 				<div style={{ width: '100%', textAlign: 'center' }}>
 					<Link
 						to={sitePaths.simulateurs.index}
-						className="ui__ simple small button ">
+						className="ui__ simple small button "
+					>
 						{emoji('🧮')}{' '}
 						<T k="landing.seeSimulators">Voir la liste des simulateurs</T>
 					</Link>

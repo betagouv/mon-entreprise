@@ -1,6 +1,6 @@
 import { fetchCompanyDetails } from '../api/sirene'
 
-const fetchCommuneDetails = function (codeCommune) {
+const fetchCommuneDetails = function(codeCommune) {
 	return fetch(
 		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
 	).then(response => {

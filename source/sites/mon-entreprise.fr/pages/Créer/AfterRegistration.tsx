@@ -5,13 +5,14 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import Animate from 'Ui/animate'
 import siret from './siret.jpg'
 
 export default function AfterRegistration() {
 	const sitePaths = useContext(SitePathsContext)
-	const statutChoisi = useSelector<any, any>(
-		state => state.inFranceApp.companyStatusChoice
+	const statutChoisi = useSelector(
+		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
 	const { t } = useTranslation()
 	const isAutoentrepreneur = statutChoisi.match('auto-entrepreneur')
@@ -24,7 +25,8 @@ export default function AfterRegistration() {
 					to={sitePaths.créer.index}
 					exact
 					activeClassName="ui__ hide"
-					className="ui__ simple small button">
+					className="ui__ simple small button"
+				>
 					← <T>Retour à la création</T>
 				</NavLink>
 			</div>
@@ -76,7 +78,8 @@ export default function AfterRegistration() {
 							statutChoisi && statutChoisi.match(/auto-entrepreneur|EI/)
 								? { display: 'none' }
 								: {}
-						}>
+						}
+					>
 						Il détermine aussi la convention collective applicable à
 						l'entreprise, et en partie le taux de la cotisation accidents du
 						travail et maladies professionnelles à payer.

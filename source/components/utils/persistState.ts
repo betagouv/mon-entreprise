@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 
-export const persistState = key => ([state, changeState]) => {
+export const persistState = (key: string) => ([state, changeState]) => {
 	useEffect(() => safeLocalStorage.setItem(key, JSON.stringify(state)), [state])
 	return [state, changeState]
 }
-export const getInitialState = key => {
+
+export const getInitialState = (key: string) => {
 	const value = safeLocalStorage.getItem(key)
 	if (!value) {
 		return

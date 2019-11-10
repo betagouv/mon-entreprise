@@ -1,13 +1,5 @@
-import withColours, { ThemeColours } from 'Components/utils/withColours'
-import React from 'react'
-
-type OwnProps = {
-	media: 'email' | 'facebook' | 'linkedin' | 'github' | 'twitter'
-}
-
-type Props = {
-	colours: ThemeColours
-} & OwnProps
+import { ThemeColoursContext } from 'Components/utils/withColours'
+import React, { useContext } from 'react'
 
 const icons = {
 	facebook: {
@@ -42,10 +34,12 @@ const icons = {
 	}
 }
 
-export default withColours(function withSocialMedia({
-	media,
-	colours: { colour }
-}: Props) {
+export default function withSocialMedia({
+	media
+}: {
+	media: keyof typeof icons
+}) {
+	const { colour } = useContext(ThemeColoursContext)
 	return (
 		<svg
 			viewBox="0 0 64 64"
@@ -55,7 +49,8 @@ export default withColours(function withSocialMedia({
 				height: '2rem',
 				margin: '0.6rem',
 				fillRule: 'evenodd'
-			}}>
+			}}
+		>
 			<g
 				style={{
 					display: 'inline-block',
@@ -64,7 +59,8 @@ export default withColours(function withSocialMedia({
 					position: 'relative',
 					overflow: 'hidden',
 					verticalAlign: 'middle'
-				}}>
+				}}
+			>
 				<circle cx="32" cy="32" r="31" />
 			</g>
 			<g>
@@ -75,4 +71,4 @@ export default withColours(function withSocialMedia({
 			</g>
 		</svg>
 	)
-})
+}

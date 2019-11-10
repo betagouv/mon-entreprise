@@ -1,12 +1,13 @@
-import withSitePaths from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import React from 'react'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
+export default function Namespace({ dottedName, flatRules, colour }) {
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<ul id="namespace">
 			{dottedName
@@ -36,7 +37,8 @@ let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 								style={style}
 								to={
 									sitePaths.documentation.index + '/' + encodeRuleName(ruleName)
-								}>
+								}
+							>
 								{rule.icons && <span>{emoji(rule.icons)} </span>}
 								{ruleText}
 							</Link>
@@ -47,4 +49,3 @@ let Namespace = ({ dottedName, flatRules, colour, sitePaths }) => {
 		</ul>
 	)
 }
-export default withSitePaths(Namespace)

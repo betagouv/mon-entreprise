@@ -14,18 +14,16 @@ function LinkRenderer({ href, children }) {
 	}
 }
 
-interface MarkdownProps {
+type MarkdownProps = ReactMarkdownProps & {
 	source: string
 	className?: string
-	renderers?: ReactMarkdownProps['renderers']
-	[other_props: string]: any
 }
 
 export const Markdown = ({
 	source,
 	className = '',
 	renderers = {},
-	otherProps
+	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
 		source={source}

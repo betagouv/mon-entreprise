@@ -70,14 +70,16 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 					onClick={() => {
 						isSoleProprietorship(true)
 					}}
-					className="ui__ button">
+					className="ui__ button"
+				>
 					<T k="responsabilité.bouton2">Entreprise individuelle</T>
 				</button>
 				<button
 					onClick={() => {
 						isSoleProprietorship(false)
 					}}
-					className="ui__ button">
+					className="ui__ button"
+				>
 					<T k="responsabilité.bouton1">Société</T>
 				</button>
 			</div>
@@ -87,9 +89,6 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 	)
 }
 
-export default compose(
-	connect(
-		null,
-		{ isSoleProprietorship }
-	)
-)(SoleProprietorship)
+export default compose(connect(null, { isSoleProprietorship }))(
+	SoleProprietorship
+)

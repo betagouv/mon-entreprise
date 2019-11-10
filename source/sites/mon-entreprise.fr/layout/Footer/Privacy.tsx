@@ -30,7 +30,7 @@ export default function Privacy() {
 	)
 }
 
-export let PrivacyContent = ({ language }) => (
+export let PrivacyContent = ({ language }: { language: string }) => (
 	<>
 		<T k="privacyContent">
 			<h1>Vie privée</h1>

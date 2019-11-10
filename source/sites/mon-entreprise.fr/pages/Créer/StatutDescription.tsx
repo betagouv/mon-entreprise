@@ -56,7 +56,7 @@ const StatutDescription = ({ statut }: Props) =>
 			d'être coté en bourse (à partir de 7 actionnaires). Le capital social
 			minimum est de 37.000 €.
 		</T>
-	) : statut === 'SNC' ? (
+	) : (statut as string) === 'SNC' ? (
 		<T k="formeJuridique.SNC">
 			La responsabilité des associés pour les dettes de la société est solidaire
 			(un seul associé peut être poursuivi pour la totalité de la dette) et

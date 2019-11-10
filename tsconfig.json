@@ -5,11 +5,8 @@
 		"target": "es2019",
 		"jsx": "react",
 		"baseUrl": "source",
-		// We add the `node` types in order to support `process.env` but this is not
-		// really what we want since our app is client-side and we only have access
-		// to process.env and not to other NodeJS variables.
-		"types": ["node"],
-		"typeRoots": ["source/types/typescript"],
+		"types": ["webpack-env"],
+		"typeRoots": ["source/types"],
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"paths": {
@@ -25,9 +22,5 @@
 			"Types/*": ["types/*"]
 		}
 	},
-	"include": ["source/types/typescript"],
-	"files": [
-		"source/sites/mon-entreprise.fr/entry.fr.tsx",
-		"source/sites/mon-entreprise.fr/entry.en.tsx"
-	]
+	"include": ["source"]
 }

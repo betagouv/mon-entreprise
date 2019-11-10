@@ -3,11 +3,11 @@ import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { encodeRuleName, nameLeaf } from 'Engine/rules'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Règle } from 'Types/RegleTypes'
+import { Rule } from 'Types/rule'
 import './RuleLink.css'
 
-type RuleLinkProps = Règle & {
-	style: React.CSSProperties
+type RuleLinkProps = Rule & {
+	style?: React.CSSProperties
 	children: React.ReactNode
 }
 
@@ -27,7 +27,8 @@ export default function RuleLink({
 			to={newPath}
 			className="rule-link"
 			title={title}
-			style={{ color: colour, ...style }}>
+			style={{ color: colour, ...style }}
+		>
 			{children || title || nameLeaf(dottedName)}
 		</Link>
 	)

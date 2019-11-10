@@ -1,10 +1,13 @@
-
-import withColours, { ThemeColoursProvider } from 'Components/utils/withColours'
-import React, { Suspense, useState } from 'react'
+import {
+	ThemeColoursContext,
+	ThemeColoursProvider
+} from 'Components/utils/withColours'
+import React, { Suspense, useContext, useState } from 'react'
 import Home from '../Iframes/SimulateurEmbauche'
 let LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
-const Couleur = ({ colours: { colour: defaultColour } }) => {
+export default function Couleur() {
+	const { colour: defaultColour } = useContext(ThemeColoursContext)
 	const [colour, setColour] = useState(defaultColour)
 	return (
 		<>
@@ -28,5 +31,3 @@ const Couleur = ({ colours: { colour: defaultColour } }) => {
 		</>
 	)
 }
-
-export default withColours(Couleur)
