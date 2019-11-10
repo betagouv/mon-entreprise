@@ -182,7 +182,7 @@
 		"yaml-loader": "^0.5.0"
 	},
 	"optionalDependencies": {
-		"cypress": "^3.4.1",
+		"cypress": "^3.6.1",
 		"prerender-spa-plugin": "^3.4.0"
 	}
 }
