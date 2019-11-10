@@ -111,7 +111,7 @@ export function ThemeColoursProvider({ colour, children }: ProviderProps) {
 	)
 }
 
-interface WithColoursProps {
+type WithColoursProps = {
 	colours: ThemeColours
 }
 

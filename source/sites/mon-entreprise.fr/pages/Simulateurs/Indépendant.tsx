@@ -2,7 +2,7 @@ import { T } from 'Components'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColoursContext } from 'Components/utils/withColours'
 import { getRuleFromAnalysis } from 'Engine/rules'
@@ -12,7 +12,8 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
-export default withSimulationConfig(indépendantConfig)(function Indépendant() {
+export default function Indépendant() {
+	useSimulationConfig(indépendantConfig)
 	const { t } = useTranslation()
 	return (
 		<>
@@ -36,11 +37,11 @@ export default withSimulationConfig(indépendantConfig)(function Indépendant() 
 					Simulateur de revenus pour indépendants
 				</T>
 			</h1>
-			<Warning />
+			<Warning simulateur="indépendant" />
 			<Simulation explanations={<ExplanationSection />} />
 		</>
 	)
-})
+}
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)

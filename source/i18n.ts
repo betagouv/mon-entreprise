@@ -4,6 +4,8 @@ import enTranslations from './locales/en.yaml'
 import unitsTranslations from './locales/units.yaml'
 import { getSessionStorage } from './utils'
 
+export type AvailableLangs = 'fr' | 'en'
+
 let lang =
 	(typeof document !== 'undefined' &&
 		new URLSearchParams(document.location.search.substring(1)).get('lang')) ||

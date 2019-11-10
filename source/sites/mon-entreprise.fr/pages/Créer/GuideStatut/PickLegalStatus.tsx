@@ -12,7 +12,11 @@ import {
 } from 'Selectors/companyStatusSelectors'
 import StatutDescription from '../StatutDescription'
 
-const StatutButton = ({ statut }: { statut: LegalStatus }) => {
+type StatutButtonProps = {
+	statut: LegalStatus
+}
+
+const StatutButton = ({ statut }: StatutButtonProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	return (
@@ -29,7 +33,12 @@ const StatutButton = ({ statut }: { statut: LegalStatus }) => {
 	)
 }
 
-const StatutTitle = ({ statut, language }) =>
+type StatutTitleProps = {
+	statut: LegalStatus
+	language: string
+}
+
+const StatutTitle = ({ statut, language }: StatutTitleProps) =>
 	statut === 'EI' ? (
 		<>
 			Entreprise individuelle {language !== 'fr' && '(Individual business)'}:{' '}
@@ -61,7 +70,7 @@ const StatutTitle = ({ statut, language }) =>
 		</>
 	) : statut === 'SA' ? (
 		<>SA - Société anonyme {language !== 'fr' && '(Anonymous company)'}: </>
-	) : statut === 'SNC' ? (
+	) : (statut as string) === 'SNC' ? (
 		<>SNC - Société en nom collectif {language !== 'fr' && '(Partnership)'}: </>
 	) : statut === 'auto-entrepreneur' ? (
 		<>
@@ -98,7 +107,7 @@ export default function SetMainStatus() {
 			</h2>
 
 			<ul>
-				{Object.keys(filter(Boolean, possibleStatus as any)).map(
+				{Object.keys(filter(Boolean, possibleStatus)).map(
 					(statut: keyof typeof possibleStatus) => (
 						<li key={statut}>
 							<strong>

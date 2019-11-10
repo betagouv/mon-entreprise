@@ -14,7 +14,7 @@ export default function IntegrationTest() {
 	)
 	const [colour, setColour] = React.useState('#005aa1')
 	const [version, setVersion] = React.useState(0)
-	const domNode = React.useRef(null)
+	const domNode = React.useRef<HTMLDivElement>(null)
 	React.useEffect(() => {
 		const script = document.createElement('script')
 		script.id = 'script-monentreprise'
@@ -47,14 +47,16 @@ export default function IntegrationTest() {
 
 			<button
 				className="ui__ button plain"
-				onClick={() => setVersion(version + 1)}>
+				onClick={() => setVersion(version + 1)}
+			>
 				{!version ? 'Visualiser le module' : 'Valider les changements'}
 			</button>
 
 			<div
 				css={`
 					display: ${version > 0 ? 'block' : 'none'};
-				`}>
+				`}
+			>
 				<p>Code d'intégration </p>
 				<IntegrationCode colour={colour} module={currentModule} />
 				<div style={{ border: '2px dashed blue' }}>
@@ -99,7 +101,8 @@ export let IntegrationCode = ({
 			#scriptColor {
 				color: #2975d1;
 			}
-		`}>
+		`}
+	>
 		<span>{'<'}</span>
 		<em>
 			script

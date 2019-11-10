@@ -1,17 +1,14 @@
+import { History, Location } from 'history'
 import { debounce } from './utils'
 
 declare global {
-    interface Window { _paq: any; }
+	interface Window {
+		_paq: any
+	}
 }
 
-function push(args: ['trackPageView']): void
-function push(args: ['trackEvent']): void
-function push(args: ['trackEvent', string, string]): void
-function push(args: ['trackEvent', string, string, string]): void
-function push(args: ['trackEvent', string, string, string, string, string]): void
-function push(args: ['trackEvent', string, string, string, number]): void
-function push() {}
-type PushType = typeof push
+type PushArgs = ['trackPageView'] | ['trackEvent', ...Array<string | number>]
+type PushType = (args: PushArgs) => void
 
 export default class Tracker {
 	push: PushType
@@ -23,7 +20,7 @@ export default class Tracker {
 		this.push = debounce(200, pushFunction) as PushType
 	}
 
-	connectToHistory(history) {
+	connectToHistory(history: History) {
 		this.unlistenFromHistory = history.listen(loc => {
 			this.track(loc)
 		})
@@ -52,5 +49,5 @@ export default class Tracker {
 }
 
 export const devTracker = new Tracker(
-	(console?.log?.bind(console)) ?? (() => {}) // eslint-disable-line no-console
+	console?.log?.bind(console) ?? (() => {}) // eslint-disable-line no-console
 )

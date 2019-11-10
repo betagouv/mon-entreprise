@@ -46,7 +46,7 @@ export default (tracker: Tracker) => {
 				...(action.type === 'UPDATE_PERIOD'
 					? ['période', action.toPeriod]
 					: [action.fieldName, action.value])
-			] as any)
+			])
 		}
 		if (action.type === 'START_CONVERSATION') {
 			tracker.push([

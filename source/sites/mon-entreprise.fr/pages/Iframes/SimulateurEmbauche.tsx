@@ -1,10 +1,10 @@
-import { SitePathsContext } from 'Components/utils/withSitePaths';
-import React, { useContext } from 'react';
-import { Helmet } from 'react-helmet';
-import { SalarySimulation } from '../Simulateurs/Salarié';
+import { SitePathsContext } from 'Components/utils/withSitePaths'
+import React, { useContext } from 'react'
+import { Helmet } from 'react-helmet'
+import { SalarySimulation } from '../Simulateurs/Salarié'
 
 export default function IframeSimulateurEmbauche() {
-	const sitePaths = useContext(SitePathsContext);
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<Helmet>

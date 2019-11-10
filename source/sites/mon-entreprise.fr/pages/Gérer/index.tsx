@@ -19,7 +19,8 @@ export default function Gérer() {
 					to={sitePaths.gérer.index}
 					exact
 					activeClassName="ui__ hide"
-					className="ui__ simple push-left small button">
+					className="ui__ simple push-left small button"
+				>
 					← <T>Retour à mon activité</T>
 				</NavLink>
 			</div>

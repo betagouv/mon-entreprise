@@ -124,7 +124,7 @@ export const constructLocalizedSitePath = (language: string) => {
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
-const deepReduce = (fn, initialValue, object) =>
+const deepReduce = (fn, initialValue?: any, object?: any) =>
 	reduce(
 		(acc, [key, value]) =>
 			typeof value === 'object'
@@ -134,18 +134,28 @@ const deepReduce = (fn, initialValue, object) =>
 		toPairs(object)
 	)
 
-export const generateSiteMap = (sitePaths: Object) =>
-	deepReduce((paths, path) => [...paths, ...[path]], [], sitePaths)
-
 type SiteMap = Array<string>
-const enSiteMap: SiteMap = generateSiteMap(
-	constructLocalizedSitePath('en')
-).map(path => (process.env.EN_SITE || '').replace('${path}', path))
-const frSiteMap: SiteMap = generateSiteMap(
-	constructLocalizedSitePath('fr')
-).map(path => (process.env.FR_SITE || '').replace('${path}', path))
+export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
+	deepReduce(
+		(paths: Array<string>, path: string) => [...paths, ...[path]],
+		[],
+		sitePaths
+	)
+
+const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(path =>
+	(process.env.EN_SITE || '').replace('${path}', path)
+)
+const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(path =>
+	(process.env.FR_SITE || '').replace('${path}', path)
+)
 
 export const hrefLangLink = {
-	en: zipObj(enSiteMap, frSiteMap.map(href => [{ href, hrefLang: 'fr' }])),
-	fr: zipObj(frSiteMap, enSiteMap.map(href => [{ href, hrefLang: 'en' }]))
+	en: zipObj(
+		enSiteMap,
+		frSiteMap.map(href => [{ href, hrefLang: 'fr' }])
+	),
+	fr: zipObj(
+		frSiteMap,
+		enSiteMap.map(href => [{ href, hrefLang: 'en' }])
+	)
 }

@@ -7,7 +7,6 @@ import screenfull from 'screenfull'
 import { isIE } from '../../../../utils'
 import Privacy from '../../layout/Footer/Privacy'
 
-
 export default function IframeFooter() {
 	const [isFullscreen, setIsFullscreen] = useState(screenfull.isFullscreen)
 	useEffect(() => {
@@ -25,14 +24,16 @@ export default function IframeFooter() {
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'space-between'
-				}}>
+				}}
+			>
 				<LangSwitcher className="ui__ button simple" />
 				{screenfull.enabled && !isFullscreen && !isIE() && (
 					<button
 						className="ui__ button small"
 						onClick={() => {
 							screenfull.toggle()
-						}}>
+						}}
+					>
 						{emoji('🖵')}&nbsp;
 						<Trans>Plein écran</Trans>
 					</button>

@@ -1,7 +1,7 @@
 import { T } from 'Components'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
-import withSitePaths from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {
@@ -10,7 +10,7 @@ import {
 	findRuleByNamespace
 } from 'Engine/rules'
 import { compose, isEmpty } from 'ramda'
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -42,17 +42,16 @@ export default compose(
 		analysedRule: ruleAnalysisSelector(state, props),
 		analysedExample: exampleAnalysisSelector(state, props)
 	})),
-	AttachDictionary(knownMecanisms),
-	withSitePaths
+	AttachDictionary(knownMecanisms)
 )(function Rule({
 	dottedName,
 	currentExample,
 	flatRules,
 	valuesToShow,
-	sitePaths,
 	analysedExample,
 	analysedRule
 }) {
+	const sitePaths = useContext(SitePathsContext)
 	const [viewSource, setViewSource] = useState(false)
 	const { t } = useTranslation()
 
@@ -60,13 +59,14 @@ export default compose(
 	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
-	
+
 	const renderToggleSourceButton = () => {
 		return (
 			<button
 				id="toggleRuleSource"
 				className="ui__ link-button"
-				onClick={() => setViewSource(!viewSource)}>
+				onClick={() => setViewSource(!viewSource)}
+			>
 				{emoji(
 					viewSource
 						? `📖 ${t('Revenir à la documentation')}`
@@ -140,7 +140,8 @@ export default compose(
 									> * {
 										margin: 0 0.6em;
 									}
-								`}>
+								`}
+							>
 								<Value
 									{...displayedRule}
 									nilValueSymbol={
@@ -177,7 +178,8 @@ export default compose(
 												? sitePaths.simulateurs.indépendant
 												: // otherwise
 												  sitePaths.simulateurs.index
-										}>
+										}
+									>
 										<T>Faire une simulation</T>
 									</Link>
 								</div>
@@ -224,10 +226,8 @@ export default compose(
 	)
 })
 
-let NamespaceRulesList = compose(
-	withColours,
-	withSitePaths
-)(({ namespaceRules, colours, sitePaths }) => {
+let NamespaceRulesList = compose(withColours)(({ namespaceRules, colours }) => {
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<section>
 			<h2>
@@ -245,7 +245,8 @@ let NamespaceRulesList = compose(
 								sitePaths.documentation.index +
 								'/' +
 								encodeRuleName(r.dottedName)
-							}>
+							}
+						>
 							{r.title || r.name}
 						</Link>
 					</li>
@@ -264,7 +265,8 @@ let Period = ({ period, valuesToShow }) =>
 				<span
 					className="name"
 					data-term-definition="période"
-					style={{ background: '#8e44ad' }}>
+					style={{ background: '#8e44ad' }}
+				>
 					{period}
 				</span>
 			</span>

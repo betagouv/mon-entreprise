@@ -3,14 +3,15 @@ import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import React from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 
-const AssimiléSalarié = () => {
+export default function AssimiléSalarié() {
+	useSimulationConfig(assimiléConfig)
 	const { t } = useTranslation()
+
 	return (
 		<>
 			<Helmet>
@@ -34,24 +35,7 @@ const AssimiléSalarié = () => {
 				</T>
 			</h1>
 			<Warning simulateur="assimilé-salarié" />
-			<Simulation
-				explanations={
-					<SalaryExplanation
-						protectionText={
-							<p className="ui__ notice">
-								{emoji('☂️ ')}{' '}
-								<T k="simulateurs.assimilé-salarié.explications">
-									Les gérants égalitaires ou minoritaires de SARL ou les
-									dirigeants de SA et SAS sont assimilés salariés et relèvent du
-									régime général. Par conséquent, le dirigeant a la même
-									protection sociale qu'un salarié, mis à part le chômage.
-								</T>
-							</p>
-						}
-					/>
-				}
-			/>
+			<Simulation explanations={<SalaryExplanation />} />
 		</>
 	)
 }
-export default withSimulationConfig(assimiléConfig)(AssimiléSalarié)

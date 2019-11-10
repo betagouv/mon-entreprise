@@ -28,7 +28,8 @@ export default function Options() {
 				<br />
 				<Link
 					className="ui__ button-choice "
-					to={sitePaths.integration.library}>
+					to={sitePaths.integration.library}
+				>
 					{emoji('🧰')} <T>Intégrer la bibliothèque de calcul</T>
 				</Link>
 				<p css="margin-top: -1em">

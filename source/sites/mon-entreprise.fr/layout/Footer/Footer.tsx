@@ -8,7 +8,7 @@ import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import SocialIcon from 'Ui/SocialIcon'
-import i18n from '../../../../i18n'
+import i18n, { AvailableLangs } from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import Privacy from './Privacy'
@@ -25,7 +25,7 @@ const feedbackBlacklist = [
 const Footer = () => {
 	const sitePaths = useContext(SitePathsContext)
 	const hrefLink =
-		hrefLangLink[i18n.language][
+		hrefLangLink[i18n.language as AvailableLangs][
 			decodeURIComponent(
 				(process.env.NODE_ENV === 'production'
 					? window.location.protocol + '//' + window.location.host
@@ -99,7 +99,8 @@ const Footer = () => {
 							<a
 								href={href}
 								key={hrefLang}
-								style={{ textDecoration: 'underline' }}>
+								style={{ textDecoration: 'underline' }}
+							>
 								{hrefLang === 'fr' ? (
 									<> Passer en français {emoji('🇫🇷')}</>
 								) : hrefLang === 'en' ? (

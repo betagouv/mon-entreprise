@@ -32,8 +32,8 @@ function Ref({ name, link }) {
 	)
 }
 
-interface ReferencesProps {
-	refs: { [key: string]: string }
+type ReferencesProps = {
+	refs: { [name: string]: string }
 }
 
 export default function References({ refs }: ReferencesProps) {

@@ -4,14 +4,13 @@ import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
+import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
 import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -101,26 +100,13 @@ In addition to the salary, our simulator takes into account the calculation of b
 
 There are deferred hiring aids that are not taken into account by our simulator, you can find them on the official portal.`
 
-export let SalarySimulation = withSimulationConfig(salariéConfig)(() => {
+export let SalarySimulation = () => {
+	useSimulationConfig(salariéConfig)
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<Simulation
-				explanations={
-					<SalaryExplanation
-						protectionText={
-							<p className="ui__ notice">
-								{emoji('☂️')}{' '}
-								<T k="simulateurs.salarié.description">
-									Dès que l'embauche d'un salarié est déclarée et qu'il est
-									payé, il est couvert par le régime général de la Sécurité
-									sociale (santé, maternité, invalidité, vieillesse, maladie
-									professionnelle et accidents) et chômage.
-								</T>
-							</p>
-						}
-					/>
-				}
+				explanations={<SalaryExplanation />}
 				customEndMessages={
 					<>
 						<T k="simulation-end.hiring.text">
@@ -129,7 +115,8 @@ export let SalarySimulation = withSimulationConfig(salariéConfig)(() => {
 						<div style={{ textAlign: 'center', margin: '1rem' }}>
 							<Link
 								className="ui__ plain button"
-								to={sitePaths.gérer.embaucher}>
+								to={sitePaths.gérer.embaucher}
+							>
 								<T k="simulation-end.cta">Connaître les démarches</T>
 							</Link>
 						</div>
@@ -139,4 +126,4 @@ export let SalarySimulation = withSimulationConfig(salariéConfig)(() => {
 			<PreviousSimulationBanner />
 		</>
 	)
-})
+}

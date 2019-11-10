@@ -1,18 +1,18 @@
-export let capitalise0 = (name: string) =>
+export let capitalise0 = (name: string): string =>
 	name && name[0].toUpperCase() + name.slice(1)
 
 export function debounce<ArgType>(
 	timeout: number,
 	fn: (arg: ArgType) => void
 ): (arg: ArgType) => void {
-	let timeoutId
+	let timeoutId: ReturnType<typeof setTimeout>
 	return (...args) => {
 		clearTimeout(timeoutId)
 		timeoutId = setTimeout(() => fn(...args), timeout)
 	}
 }
 
-export function isIE() {
+export function isIE(): boolean {
 	return (
 		navigator.appName == 'Microsoft Internet Explorer' ||
 		(navigator.appName == 'Netscape' &&
@@ -22,7 +22,7 @@ export function isIE() {
 	)
 }
 
-export function inIframe() {
+export function inIframe(): boolean {
 	try {
 		return window.self !== window.top
 	} catch (e) {

@@ -4,6 +4,7 @@ import { isNil } from 'ramda'
 import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import { LegalStatusRequirements } from 'Types/companyTypes'
 
 const requirementToText = (
@@ -15,9 +16,7 @@ const requirementToText = (
 			return value ? <T>Plusieurs associés</T> : <T>Un seul associé</T>
 		case 'soleProprietorship':
 			return value ? (
-				<T T k="responsabilité.bouton2">
-					Entreprise individuelle
-				</T>
+				<T k="responsabilité.bouton2">Entreprise individuelle</T>
 			) : (
 				<T k="responsabilité.bouton1">Société</T>
 			)
@@ -36,8 +35,8 @@ const requirementToText = (
 
 export default function PreviousAnswers() {
 	const sitePaths = useContext(SitePathsContext)
-	const legalStatus = useSelector<any, any>(
-		state => state.inFranceApp.companyLegalStatus
+	const legalStatus = useSelector(
+		(state: RootState) => state.inFranceApp.companyLegalStatus
 	)
 	return (
 		!!Object.values(legalStatus).length && (

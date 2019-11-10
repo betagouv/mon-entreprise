@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next'
 import { usePeriod } from 'Selectors/analyseSelectors'
 import './AnimatedTargetValue.css'
 
-interface AnimatedTargetValueProps {
+type AnimatedTargetValueProps = {
 	value?: number
-	children: React.ReactNode
+	children?: React.ReactNode
 }
 
-function formatDifference(difference, language) {
+const formatDifference: typeof formatCurrency = (difference, language) => {
 	const prefix = difference > 0 ? '+' : ''
 	return prefix + formatCurrency(difference, language)
 }
@@ -46,7 +46,8 @@ export default function AnimatedTargetValue({
 						style={{
 							color: difference > 0 ? 'chartreuse' : 'red',
 							pointerEvents: 'none'
-						}}>
+						}}
+					>
 						{formatDifference(difference, language)}
 					</Evaporate>
 				)}{' '}
@@ -61,7 +62,8 @@ const Evaporate = React.memo(
 		<ReactCSSTransitionGroup
 			transitionName="evaporate"
 			transitionEnterTimeout={2500}
-			transitionLeaveTimeout={1}>
+			transitionLeaveTimeout={1}
+		>
 			<span key={children} style={style} className="evaporate">
 				{children}
 			</span>

@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
 import Animate from 'Ui/animate'
 import créerSvg from './créer.svg'
@@ -12,11 +13,12 @@ import créerSvg from './créer.svg'
 export default function Créer() {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-	const nextQuestionUrl = useSelector(state =>
+	const nextQuestionUrl = useSelector((state: RootState) =>
 		nextQuestionUrlSelector(state, { sitePaths })
 	)
-	const guideAlreadyStarted = useSelector<any, any>(
-		state => !!Object.keys(state.inFranceApp.companyLegalStatus).length
+	const guideAlreadyStarted = useSelector(
+		(state: RootState) =>
+			!!Object.keys(state.inFranceApp.companyLegalStatus).length
 	)
 	return (
 		<Animate.fromBottom>
@@ -42,7 +44,8 @@ export default function Créer() {
 							guideAlreadyStarted && nextQuestionUrl
 								? nextQuestionUrl
 								: sitePaths.créer.guideStatut.multipleAssociates
-						}>
+						}
+					>
 						{!guideAlreadyStarted
 							? t('créer.cta.default', 'Trouver le bon statut')
 							: t('créer.cta.continue', 'Continuer le guide')}
@@ -72,10 +75,12 @@ export default function Créer() {
 					> * {
 						flex: 1;
 					}
-				`}>
+				`}
+			>
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
-					to={sitePaths.créer.guideStatut.liste}>
+					to={sitePaths.créer.guideStatut.liste}
+				>
 					<T k="créer.ressources.listeStatuts">
 						<p>Liste des statuts juridiques </p>
 						<small>
@@ -89,7 +94,8 @@ export default function Créer() {
 					to={{
 						pathname: sitePaths.simulateurs.comparaison,
 						state: { fromCréer: true }
-					}}>
+					}}
+				>
 					<T k="créer.ressources.comparaison">
 						<p>Comparateur de régimes</p>
 						<small>
@@ -101,7 +107,8 @@ export default function Créer() {
 
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
-					to={sitePaths.créer['auto-entrepreneur']}>
+					to={sitePaths.créer['auto-entrepreneur']}
+				>
 					<T k="créer.ressources.autoEntrepreneur">
 						<p>Démarche auto-entrepreneur</p>
 						<small>

@@ -2,9 +2,12 @@ import { safeDump } from 'js-yaml'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import rules from 'Règles/base.yaml'
+import { Rule } from 'Types/rule'
 import ColoredYaml from './ColoredYaml'
 
-export default function RuleSource({ dottedName }) {
+type RuleSourceProps = Pick<Rule, 'dottedName'>
+
+export default function RuleSource({ dottedName }: RuleSourceProps) {
 	let source = rules[dottedName]
 
 	return (

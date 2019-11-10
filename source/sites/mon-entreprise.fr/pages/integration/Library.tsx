@@ -2,7 +2,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 
-export default function Privacy() {
+export default function Library() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
@@ -43,7 +43,8 @@ export default function Privacy() {
 					title="mon-entreprise 1"
 					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+				></iframe>
 			</div>
 			<h3>2) Parcourir la documentation en ligne</h3>
 			<p>
@@ -99,7 +100,8 @@ export default function Privacy() {
 					title="mon-entreprise 2"
 					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+				></iframe>
 			</div>
 			<p>
 				{emoji('ℹ️ ')}
@@ -108,8 +110,8 @@ export default function Privacy() {
 			</p>
 			<p>
 				Alors que dans le simulateur{' '}
-				<a href="https://mon-entreprise.fr/simulateurs/salarié">salarié</a>
-				, il suffit de renseigner la commune et le taux correspondant est
+				<a href="https://mon-entreprise.fr/simulateurs/salarié">salarié</a>, il
+				suffit de renseigner la commune et le taux correspondant est
 				automatiquement déterminé. C'est voulu : pour garder la bibliothèque (et
 				le site) légers, nous utilisons deux API en ligne. L'
 				<a href="https://api.gouv.fr/api/api-geo.html#doc_tech">
@@ -152,7 +154,8 @@ export default function Privacy() {
 					title="mon-entreprise 2"
 					allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
 					css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+					sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+				></iframe>
 			</div>
 		</div>
 	)

@@ -1,7 +1,7 @@
-import withSitePaths from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { encodeRuleName, parentName } from 'Engine/rules.js'
-import { compose, pick, sortBy, take } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import { pick, sortBy, take } from 'ramda'
+import React, { useContext, useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
@@ -10,12 +10,12 @@ import { capitalise0 } from '../utils'
 
 const worker = new Worker()
 
-let SearchBar = ({
+export default function SearchBar({
 	rules,
 	showDefaultList,
-	finally: finallyCallback,
-	sitePaths
-}) => {
+	finally: finallyCallback
+}) {
+	const sitePaths = useContext(SitePathsContext)
 	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState(null)
 	const [results, setResults] = useState([])
@@ -29,7 +29,7 @@ let SearchBar = ({
 		})
 
 		worker.onmessage = ({ data: results }) => setResults(results)
-	}, [])
+	}, [rules])
 
 	let renderOptions = rules => {
 		let options =
@@ -120,5 +120,3 @@ let SearchBar = ({
 		</>
 	)
 }
-
-export default compose(withSitePaths)(SearchBar)
