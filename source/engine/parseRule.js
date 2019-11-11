@@ -11,8 +11,6 @@ import { Node } from './mecanismViews/common'
 import { disambiguateRuleReference, findParentDependencies } from './rules'
 
 export default (rules, rule, parsedRules) => {
-	//	if (rule.dottedName.includes('distance journalière'))
-	//		console.log('trr', rule, parsedRules)
 	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
 
 	parsedRules[rule.dottedName] = 'being parsed'
@@ -24,6 +22,7 @@ export default (rules, rule, parsedRules) => {
 */
 
 	let parentDependencies = findParentDependencies(rules, rule)
+
 	let root = { ...rule, parentDependencies }
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
@@ -135,7 +134,7 @@ export default (rules, rule, parsedRules) => {
 			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
 				evaluateNode(cache, situation, parsedRules, disablerNode)
 			)
-			const nodeValue = isDisabledBy.some(x => x.nodeValue === true)
+			const nodeValue = isDisabledBy.some(x => !!x.nodeValue)
 			const explanation = { ...node.explanation, isDisabledBy }
 			return { ...node, explanation, nodeValue }
 		},

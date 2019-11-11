@@ -31,8 +31,8 @@ activités:
     entreprise . catégorie d'activité: artisanale
   - entreprise . rémunération totale du dirigeant: 20000
     entreprise . catégorie d'activité: commerciale ou industrielle
-    entreprise . catégorie d'activité . service ou vente: vente de biens
+    entreprise . catégorie d'activité . service ou vente: vente
   - entreprise . rémunération totale du dirigeant: 20000
     entreprise . catégorie d'activité: commerciale ou industrielle
-    entreprise . catégorie d'activité . service ou vente: prestation de service
+    entreprise . catégorie d'activité . service ou vente: service
     entreprise . catégorie d'activité . restauration ou hébergement: true

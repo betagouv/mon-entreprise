@@ -3,9 +3,9 @@ objectifs:
     nom: Mon revenu
     objectifs:
       - entreprise . rémunération totale du dirigeant
-      - indépendant . cotisations et contributions
-      - indépendant . revenu net de cotisations
-      - indépendant . revenu professionnel
+      - dirigeant . indépendant . cotisations et contributions
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . indépendant . revenu professionnel
       - impôt
       - revenu net après impôt
   - icône: 🏢
@@ -23,7 +23,5 @@ questions:
     - entreprise . charges
 
 situation:
-  indépendant: oui
-  auto-entrepreneur: non
-  contrat salarié: non
+  dirigeant: 'indépendant'
   période: année

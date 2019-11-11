@@ -6,23 +6,21 @@ import { evaluateNode, mergeMissing } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
-
-let evaluateReference = (filter, contextRuleName) => (
+const getApplicableReplacements = (
+	filter,
+	contextRuleName,
 	cache,
 	situation,
 	rules,
-	node
+	rule
 ) => {
-	let rule = rules[node.dottedName]
-	// When a rule exists in different version (created using the `replace` mecanism), we add
-	// a redirection in the evaluation of references to use a potential active replacement
-	let missingVariableList = []
-	// console.log(node.dottedName)
+	const missingVariableList = []
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>
 				!!replacement2.whiteListedNames - !!replacement1.whiteListedNames
 		)
+		// Remove remplacement not in whitelist
 		.filter(
 			({ whiteListedNames }) =>
 				!whiteListedNames ||
@@ -34,6 +32,17 @@ let evaluateReference = (filter, contextRuleName) => (
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
 		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
+		// Remove remplacement defined in a not applicable node
+		.filter(({ referenceNode }) => {
+			const referenceRule = rules[referenceNode.dottedName]
+			const {
+				nodeValue: isApplicable,
+				missingVariables
+			} = evaluateApplicability(cache, situation, rules, referenceRule)
+			missingVariableList.push(missingVariables)
+			return isApplicable
+		})
+		// Remove remplacement defined in a node whose situation value is false
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
 			const situationValue = getSituationValue(
@@ -41,21 +50,54 @@ let evaluateReference = (filter, contextRuleName) => (
 				referenceRule.dottedName,
 				referenceRule
 			)
-			const {
-				nodeValue: isApplicable,
-				missingVariables
-			} = evaluateApplicability(cache, situation, rules, referenceRule)
 			if (referenceNode.question && situationValue == null) {
 				missingVariableList[referenceNode.dottedName] = 1
 			}
+			return situationValue !== false
+		})
+		// Remove remplacement defined in a boolean node whose evaluated value is false
+		.filter(({ referenceNode }) => {
+			const referenceRule = rules[referenceNode.dottedName]
+			if (referenceRule.formule?.explanation?.operationType !== 'comparison') {
+				return true
+			}
+			const { nodeValue: isApplicable, missingVariables } = evaluateNode(
+				cache,
+				situation,
+				rules,
+				referenceRule
+			)
 			missingVariableList.push(missingVariables)
-			return isApplicable && situationValue !== false
+			return isApplicable
 		})
 		.map(({ referenceNode, replacementNode }) =>
 			replacementNode != null
 				? evaluateNode(cache, situation, rules, replacementNode)
 				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
+	return [applicableReplacements, missingVariableList]
+}
+
+let evaluateReference = (filter, contextRuleName) => (
+	cache,
+	situation,
+	rules,
+	node
+) => {
+	let rule = rules[node.dottedName]
+	// When a rule exists in different version (created using the `replace` mecanism), we add
+	// a redirection in the evaluation of references to use a potential active replacement
+	const [
+		applicableReplacements,
+		missingVariableList
+	] = getApplicableReplacements(
+		filter,
+		contextRuleName,
+		cache,
+		situation,
+		rules,
+		rule
+	)
 
 	if (applicableReplacements.length) {
 		return applicableReplacements[0]
@@ -87,9 +129,6 @@ let evaluateReference = (filter, contextRuleName) => (
 		missingVariables: condMissingVariables
 	} = evaluateApplicability(cache, situation, rules, rule)
 	if (!isApplicable) {
-		// if (condMissingVariables['contrat salarié . convention collective']) {
-		// 	console.log(node.dottedName, isApplicable, condMissingVariables)
-		// }
 		return cacheNode(isApplicable, condMissingVariables)
 	}
 	const situationValue = getSituationValue(situation, dottedName, rule)

@@ -780,7 +780,7 @@ contrat salarié . rémunération . brut de base:
     - si:
         toutes ces conditions:
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC contractuel [mensuel]
-          - entreprise . dirigeant . assimilé salarié != oui
+          - dirigeant . assimilé salarié != oui
           - stage != oui
           - apprentissage != oui
       niveau: avertissement
@@ -1628,7 +1628,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - entreprise . dirigeant . assimilé salarié
+      - dirigeant . assimilé salarié
       - entreprise . ACRE
   période: flexible
   formule:
@@ -3023,8 +3023,9 @@ impôt:
               multiplication:
                 assiette: revenu imposable
                 taux: taux du prélèvement à la source
+          - sinon: 0
       - CEHR
-      - auto-entrepreneur . impôt . versement libératoire . montant
+      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
 
 impôt . taux du prélèvement à la source:
   formule:
@@ -3045,7 +3046,7 @@ impôt . méthode de calcul:
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
-  non applicable si: auto-entrepreneur . impôt . versement libératoire
+  non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
   période: aucune
   par défaut: barème standard
   formule:
@@ -3089,8 +3090,8 @@ impôt . revenu imposable:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - indépendant . revenu professionnel
-          - auto-entrepreneur . impôt . revenu imposable
+          - dirigeant . indépendant . revenu professionnel
+          - dirigeant . auto-entrepreneur . impôt . revenu imposable
       abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
@@ -3115,7 +3116,7 @@ impôt . revenu abattu:
   formule:
     somme:
       - revenu abattu par défaut
-      - auto-entrepreneur . impôt . revenu imposable
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
 
 impôt . revenu abattu par défaut:
   période: flexible
@@ -3125,7 +3126,7 @@ impôt . revenu abattu par défaut:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - indépendant . revenu professionnel
+          - dirigeant . indépendant . revenu professionnel
       abattement: 10%
       plafond: 12502
   note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
@@ -3185,7 +3186,7 @@ impôt . revenu fiscal de référence:
   formule:
     somme:
       - revenu abattu par défaut
-      - auto-entrepreneur . impôt . revenu abattu
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . prime d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
@@ -3218,8 +3219,8 @@ revenu net de cotisations:
   formule:
     somme:
       - contrat salarié . rémunération . net
-      - indépendant . revenu net de cotisations
-      - auto-entrepreneur . revenu net de cotisations
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . revenu net de cotisations
 
 revenu net après impôt:
   unité: €
@@ -3321,12 +3322,12 @@ entreprise . rémunération totale du dirigeant:
   formule:
     variations:
       - si: dirigeant . indépendant
-        alors: revenu net de cotisations + indépendant . cotisations et contributions
+        alors: revenu net de cotisations + dirigeant . indépendant . cotisations et contributions
       - si: dirigeant . auto-entrepreneur
         alors:
           inversion numérique:
             avec:
-              - auto-entrepreneur . revenu net de cotisations
+              - dirigeant . auto-entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
@@ -3359,7 +3360,7 @@ entreprise . charges:
   par défaut: 0
   unité: €
 
-indépendant . cotisations et contributions . réduction ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE:
   applicable si: entreprise . ACRE
   période: flexible
   formule:
@@ -3367,7 +3368,7 @@ indépendant . cotisations et contributions . réduction ACRE:
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
 
-indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
   période: flexible
   formule:
     barème continu:
@@ -3379,7 +3380,7 @@ indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
         1: 0%
       retourne seulement le taux: oui
 
-indépendant . revenu net de cotisations:
+dirigeant . indépendant . revenu net de cotisations:
   formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
   période: flexible
   résumé: Avant impôt
@@ -3387,7 +3388,7 @@ indépendant . revenu net de cotisations:
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   unité: €
 
-indépendant . revenu professionnel:
+dirigeant . indépendant . revenu professionnel:
   titre: revenu professionnel (net imposable)
   description: |
     C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
@@ -3402,7 +3403,7 @@ indépendant . revenu professionnel:
   formule:
     inversion numérique:
       avec:
-        - indépendant . revenu net de cotisations
+        - dirigeant . indépendant . revenu net de cotisations
         - entreprise . rémunération totale du dirigeant
         - revenu net après impôt
         - entreprise . chiffre d'affaires
@@ -3466,24 +3467,26 @@ entreprise . catégorie d'activité . service ou vente:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - prestation de service
-        - vente de biens
-  par défaut: prestation de service
+        - service
+        - vente
+  par défaut: service
 
-entreprise . catégorie d'activité . service ou vente . vente de biens:
+entreprise . catégorie d'activité . service ou vente . vente:
+  titre: vente de biens
   description: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-entreprise . catégorie d'activité . service ou vente . prestation de service:
+entreprise . catégorie d'activité . service ou vente . service:
+  titre: prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 entreprise . catégorie d'activité . restauration ou hébergement:
-  applicable si: service ou vente = 'prestation de service'
+  applicable si: service ou vente = 'service'
   description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
   question: Est-ce une activité de restauration ou d'hébergement ?
   par défaut: non
@@ -3589,10 +3592,12 @@ entreprise . auto entreprise impossible:
       - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
-indépendant:
-  applicable si: entreprise . dirigeant . indépendant
 
-indépendant . cotisations et contributions . cotisations:
+dirigeant . indépendant:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'indépendant'
+
+dirigeant . indépendant . cotisations et contributions . cotisations:
   période: flexible
   références:
     assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
@@ -3605,7 +3610,7 @@ indépendant . cotisations et contributions . cotisations:
       - invalidité et décès
       - allocations familiales
 
-indépendant . cotisations et contributions:
+dirigeant . indépendant . cotisations et contributions:
   formule:
     somme:
       - cotisations
@@ -3626,20 +3631,20 @@ entreprise . rattachement libéral règlementé:
           - contrat salarié = non
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - indépendant
+          - dirigeant = 'indépendant'
           - entreprise . date de création = 'avant 2019'
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
-          - auto-entrepreneur
+          - dirigeant = 'auto-entrepreneur'
           - entreprise . date de création = 'avant 2018'
           - entreprise . catégorie d'activité = 'libérale'
 
   rend non applicable:
     - protection sociale . retraite
-    - indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+    - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
   période: aucune
 
-indépendant . cotisations et contributions . cotisations . maladie:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   période: flexible
   formule:
     variations:
@@ -3648,7 +3653,7 @@ indépendant . cotisations et contributions . cotisations . maladie:
 
       - sinon: artisans commerçants libéraux
 
-? indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
 : période: flexible
   titre: maladie libérale règlementée
   formule:
@@ -3659,7 +3664,7 @@ indépendant . cotisations et contributions . cotisations . maladie:
         0: 1.5%
         1.1: 6.5%
 
-indépendant . cotisations et contributions . cotisations . maladie . assiette:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
 
   période: flexible
@@ -3674,7 +3679,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+? dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
 : titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
@@ -3684,7 +3689,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
 : période: flexible
   formule:
     barème:
@@ -3704,7 +3709,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
 : période: flexible
   formule:
     variations:
@@ -3712,7 +3717,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
         alors: taux RSA
       - sinon: taux
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
 : période: flexible
   formule:
     multiplication:
@@ -3721,21 +3726,21 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
 : période: flexible
   formule:
     multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
 : période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
 : période: flexible
   formule:
     barème continu:
@@ -3754,7 +3759,7 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-indépendant . cotisations et contributions . cotisations . retraite de base:
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   période: année
   formule:
     variations:
@@ -3780,7 +3785,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
               - au-dessus de: 1
                 taux: 0.6%
 
-? indépendant . cotisations et contributions . cotisations . retraite de base . assiette
+? dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette
 : période: flexible
   titre: assiette retraite de base
   formule:
@@ -3794,7 +3799,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? indépendant . cotisations et contributions . cotisations . retraite complémentaire
+? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
 : période: année
   unité: €
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
@@ -3839,7 +3844,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
               - au-dessus de: 162096
                 taux: 0%
 
-indépendant . cotisations et contributions . cotisations . invalidité et décès:
+dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   période: flexible
   formule:
     multiplication:
@@ -3849,7 +3854,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
-? indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
+? dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
 : période: flexible
   titre: assiette invalidité et décès
   formule:
@@ -3863,7 +3868,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-indépendant . cotisations et contributions . CSG et CRDS:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   période: flexible
   formule:
     multiplication:
@@ -3879,14 +3884,14 @@ indépendant . cotisations et contributions . CSG et CRDS:
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
-indépendant . cotisations et contributions . CSG et CRDS . assiette:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   période: flexible
   formule:
     somme:
       - revenu professionnel
       - cotisations
 
-indépendant . cotisations et contributions . formation professionnelle:
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   période: flexible
   formule:
     multiplication:
@@ -3902,7 +3907,7 @@ indépendant . cotisations et contributions . formation professionnelle:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-? indépendant . cotisations et contributions . cotisations . allocations familiales
+? dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales
 : période: flexible
   formule:
     barème continu:
@@ -3913,7 +3918,7 @@ indépendant . cotisations et contributions . formation professionnelle:
         1.1: 0%
         1.4: 3.1%
 
-entreprise . dirigeant:
+dirigeant:
   question: Quel est le régime social du dirigeant ?
   par défaut: non
   formule:
@@ -3924,7 +3929,7 @@ entreprise . dirigeant:
         - assimilé salarié
         - indépendant
 
-entreprise . dirigeant . assimilé salarié:
+dirigeant . assimilé salarié:
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   formule: dirigeant = 'assimilé salarié'
@@ -3952,21 +3957,16 @@ entreprise . dirigeant . assimilé salarié:
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
-entreprise . dirigeant . indépendant:
-  rend non applicable: contrat salarié
-  formule: dirigeant = 'indépendant'
 
-entreprise . dirigeant . auto-entrepreneur:
+
+dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié
   formule: dirigeant = 'auto-entrepreneur'
-
-auto-entrepreneur:
   icônes: 🚶
-  applicable si: entreprise . dirigeant . auto-entrepreneur
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
-auto-entrepreneur . base des cotisations:
+dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
   période: flexible
   contrôles:
@@ -3974,7 +3974,7 @@ auto-entrepreneur . base des cotisations:
       message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
 
-auto-entrepreneur . plafond:
+dirigeant . auto-entrepreneur . plafond:
   description: |
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un certain seuil, qui dépend de sa catégorie d'activité.
 
@@ -3991,12 +3991,12 @@ auto-entrepreneur . plafond:
           toutes ces conditions:
             - entreprise . catégorie d'activité != 'libérale'
             - une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
       - sinon: 70000
 
-auto-entrepreneur . revenu net de cotisations:
+dirigeant . auto-entrepreneur . revenu net de cotisations:
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -4004,7 +4004,7 @@ auto-entrepreneur . revenu net de cotisations:
   période: flexible
   unité: €
 
-auto-entrepreneur . cotisations et contributions:
+dirigeant . auto-entrepreneur . cotisations et contributions:
   unité: €
   formule:
     somme:
@@ -4016,7 +4016,7 @@ auto-entrepreneur . cotisations et contributions:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
-auto-entrepreneur . cotisations et contributions . TFC:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
   unité: €
   période: flexible
@@ -4032,7 +4032,7 @@ auto-entrepreneur . cotisations et contributions . TFC:
       - commerce
       - métiers
 
-auto-entrepreneur . cotisations et contributions . TFC . commerce:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
   période: flexible
   unité: €
@@ -4044,12 +4044,12 @@ auto-entrepreneur . cotisations et contributions . TFC . commerce:
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
           - sinon: 0.044%
 
-auto-entrepreneur . cotisations et contributions . TFC . métiers:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   période: flexible
   unité: €
   titre: taxe pour frais de chambre des métiers
@@ -4059,11 +4059,11 @@ auto-entrepreneur . cotisations et contributions . TFC . métiers:
       assiette: base des cotisations
       taux:
         variations:
-          - si: entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+          - si: entreprise . catégorie d'activité . service ou vente = 'vente'
             alors: 0.22%
           - sinon: 0.48%
 
-? auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
+? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
 : titre: Contribution à la formation professionnelle
   unité: €
   période: flexible
@@ -4085,7 +4085,7 @@ auto-entrepreneur . cotisations et contributions . TFC . métiers:
             alors: 0.1%
           - sinon: 0
 
-auto-entrepreneur . cotisations et contributions . cotisations:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
@@ -4106,7 +4106,7 @@ auto-entrepreneur . cotisations et contributions . cotisations:
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
-? auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
 : description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
   unité: €
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
@@ -4119,7 +4119,7 @@ auto-entrepreneur . cotisations et contributions . cotisations:
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 2.04%
           - si:
@@ -4128,14 +4128,14 @@ auto-entrepreneur . cotisations et contributions . cotisations:
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
 
-? auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
+? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
 : description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
@@ -4155,7 +4155,6 @@ entreprise . ACRE:
   par défaut: non
 
 entreprise . ACRE . année:
-  applicable si: auto-entrepreneur
   question: Quel est l'âge de l'entreprise ?
   formule:
     une possibilité:
@@ -4172,11 +4171,11 @@ entreprise . ACRE . année . moins de deux ans:
 
 entreprise . ACRE . année . moins de trois ans:
 
-auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   période: flexible
   formule: 100% - réduction ACRE
 
-auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
   période: flexible
@@ -4192,13 +4191,13 @@ auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
-auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
-auto-entrepreneur . impôt:
+dirigeant . auto-entrepreneur . impôt:
 
-auto-entrepreneur . impôt . abattement:
+dirigeant . auto-entrepreneur . impôt . abattement:
   période: année
   unité: €
   formule:
@@ -4210,11 +4209,11 @@ auto-entrepreneur . impôt . abattement:
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
-auto-entrepreneur . impôt . abattement . taux inversé:
+dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
   formule: 1 - taux
 
-auto-entrepreneur . impôt . abattement . taux:
+dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre: taux d'abattement de l'impôt
   formule:
     variations:
@@ -4222,12 +4221,12 @@ auto-entrepreneur . impôt . abattement . taux:
         alors: 34%
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
       - sinon: 50%
 
-auto-entrepreneur . impôt . versement libératoire:
+dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
     Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
@@ -4242,7 +4241,7 @@ auto-entrepreneur . impôt . versement libératoire:
       niveau: info
   période: aucune
 
-auto-entrepreneur . impôt . versement libératoire . montant:
+dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre: versement libératoire auto-entrepreneur
   description: |
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité :
@@ -4260,7 +4259,7 @@ auto-entrepreneur . impôt . versement libératoire . montant:
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 1%
           - si: entreprise . catégorie d'activité . service ou vente = 'service'
@@ -4268,12 +4267,12 @@ auto-entrepreneur . impôt . versement libératoire . montant:
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
 
-auto-entrepreneur . impôt . revenu imposable:
+dirigeant . auto-entrepreneur . impôt . revenu imposable:
   non applicable si: versement libératoire
   période: flexible
   formule: revenu abattu
 
-auto-entrepreneur . impôt . revenu abattu:
+dirigeant . auto-entrepreneur . impôt . revenu abattu:
   titre: revenu abattu auto-entrepreneur
   période: flexible
   formule:
@@ -4375,7 +4374,7 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
 ? protection sociale . retraite . trimestres validés par an . trimestres indépendant
 : période: aucune
   unité: trimestres
-  applicable si: indépendant
+  applicable si: dirigeant = 'indépendant'
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -4410,7 +4409,7 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
 ? protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur
-: applicable si: auto-entrepreneur
+: applicable si: dirigeant = 'auto-entrepreneur'
   période: aucune
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
@@ -4436,7 +4435,7 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
                 montant: 4
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
           barème linéaire:
@@ -4484,8 +4483,8 @@ protection sociale . revenu moyen:
   période: année
   formule:
     le maximum de:
-      - indépendant . revenu professionnel
-      - auto-entrepreneur . impôt . revenu imposable
+      - dirigeant . indépendant . revenu professionnel
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
 
 protection sociale . retraite . mois cotisés:
@@ -4547,8 +4546,8 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
     multiplication:
       assiette:
         somme:
-          - indépendant . cotisations et contributions . cotisations . retraite complémentaire
-          - auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
 ? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
@@ -4594,7 +4593,7 @@ protection sociale . santé . indemnités journalières:
       - indemnités journalières . salarié
 
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
-  applicable si: auto-entrepreneur
+  applicable si: dirigeant = 'auto-entrepreneur'
   période: aucune
   unité: €
   formule:
@@ -4611,7 +4610,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
 protection sociale . santé . indemnités journalières . indépendant:
-  applicable si: indépendant
+  applicable si: dirigeant = 'indépendant'
   période: aucune
   unité: €
   formule:
@@ -5017,7 +5016,7 @@ contrat salarié . convention collective . droit commun:
   formule: convention collective = 'droit commun'
 
 contrat salarié . convention collective . HCR:
-  formule: convention collective = 'hôtel café restaurant'
+  formule: convention collective = 'HCR'
   titre: hôtels, cafés restaurants HCR (beta)
   description: L'entreprise est un hôtel, café, restaurant ou assimilé.
 

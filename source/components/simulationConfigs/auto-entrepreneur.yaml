@@ -1,7 +1,7 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - auto-entrepreneur . cotisations et contributions
-  - auto-entrepreneur . revenu net de cotisations
+  - dirigeant . auto-entrepreneur . cotisations et contributions
+  - dirigeant . auto-entrepreneur . revenu net de cotisations
   - impôt
   - revenu net après impôt
 
@@ -15,7 +15,5 @@ questions:
     - entreprise . charges
 
 situation:
-  auto-entrepreneur: oui
-  indépendant: non
-  assimilé-salarié: non
+  dirigeant: 'auto-entrepreneur'
   période: année

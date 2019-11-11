@@ -37,17 +37,6 @@ export const evaluateApplicability = (
 						notApplicable?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
-	if (
-		node.dottedName === "contrat salarié . contribution d'équilibre technique"
-	) {
-		console.log(
-			node.dottedName,
-			isApplicable,
-			notApplicable,
-			applicable,
-			parentDependencies
-		)
-	}
 	return {
 		nodeValue: isApplicable,
 		missingVariables,

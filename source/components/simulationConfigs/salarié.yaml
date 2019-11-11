@@ -29,7 +29,5 @@ questions:
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
 situation:
-  assimilé salarié: non
-  indépendant: non
-  auto-entrepreneur: non
+  dirigeant: non
   période: mois
