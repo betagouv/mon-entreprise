@@ -65,6 +65,15 @@ jobs:
           base_url: http://localhost:5001
           language: en
 
+  bundle-watch:
+    docker:
+      - image: node
+    steps:
+      - install
+      - run: |
+          yarn run compile
+          yarn run bundlewatch
+
   production-end-to-end-test:
     docker:
       - image: cypress/base:8
@@ -93,6 +102,7 @@ workflows:
       - type-check
       - unit-test
       - end-to-end-test
+      - bundle-watch
       - production-end-to-end-test:
           filters:
             branches:
