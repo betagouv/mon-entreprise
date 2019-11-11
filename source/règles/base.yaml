@@ -780,7 +780,7 @@ contrat salarié . rémunération . brut de base:
     - si:
         toutes ces conditions:
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC contractuel [mensuel]
-          - dirigeant . assimilé salarié != oui
+          - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
       niveau: avertissement
@@ -1625,7 +1625,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - dirigeant . assimilé salarié
+      - dirigeant = 'assimilé salarié'
       - entreprise . ACRE
   période: flexible
   formule:
@@ -2532,6 +2532,12 @@ contrat salarié . FNAL:
           alors:
             plafond: plafond sécurité sociale
         - sinon: rien
+  exemples:
+    - nom: SMIC
+      situation:
+        cotisations . assiette: 1500
+        entreprise . effectif: 10
+      valeur attendue: 1.5
 
 contrat salarié . FNAL . taux:
   formule:
@@ -2540,12 +2546,6 @@ contrat salarié . FNAL . taux:
         alors: 0.1%
       - sinon: 0.5%
 
-  exemples:
-    - nom: SMIC
-      situation:
-        cotisations . assiette: 1500
-        entreprise . effectif: 10
-      valeur attendue: 1.5
 contrat salarié . formation professionnelle:
   cotisation:
     dû par: employeur
@@ -3328,7 +3328,7 @@ entreprise . rémunération totale du dirigeant:
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
-      - si: dirigeant . assimilé salarié
+      - si: dirigeant = 'assimilé salarié'
         alors: contrat salarié . rémunération . total
 
 entreprise . charges:

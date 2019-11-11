@@ -37,6 +37,7 @@ export const evaluateApplicability = (
 						notApplicable?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
+
 	return {
 		nodeValue: isApplicable,
 		missingVariables,
@@ -80,7 +81,9 @@ export default (cache, situationGate, parsedRules, node) => {
 			formulaMissingVariables
 		)
 	cache.parseLevel--
-
+	if (node.dottedName.startsWith('sum')) {
+		// console.log(node.dottedName, missingVariables, node)
+	}
 	return {
 		...node,
 		...applicabilityEvaluation,

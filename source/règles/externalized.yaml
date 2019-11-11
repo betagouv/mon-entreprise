@@ -195,8 +195,8 @@ contrat salarié . CDD . compensation pour congés non pris:
     compensatrice de congés payés versée par l'employeur.
   titre.en: untaken vacation compensation
   titre.fr: compensation pour congés non pris
-? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
-: titre.en: proportion of untaken leave
+contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
+  titre.en: proportion of untaken leave
   titre.fr: proportion congés non pris
 contrat salarié . CDD . congés dus en jours ouvrés:
   titre.en: leave due in working days
@@ -204,8 +204,8 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   titre.en: leave due by month
   titre.fr: congés dus par mois
-? contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire
-: titre.en: salary retention bonus
+contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
+  titre.en: salary retention bonus
   titre.fr: prime maintient de salaire
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   titre.en: monthly basis
@@ -714,8 +714,12 @@ contrat salarié . rémunération . brut de base:
   contrôles.en:
     - si:
         toutes ces conditions:
-          - 'brut de base [mensuel] < SMIC [mensuel]'
-          - assimilé salarié != oui
+          - >-
+            rémunération . assiette de vérification du SMIC [mensuel] < SMIC
+            [mensuel]
+          - dirigeant != 'assimilé salarié'
+          - stage != oui
+          - apprentissage != oui
       niveau: avertissement
       message: |
         The wage entered is lower than the minimum wage.
@@ -736,7 +740,7 @@ contrat salarié . rémunération . brut de base:
           - >-
             rémunération . assiette de vérification du SMIC [mensuel] < SMIC
             [mensuel]
-          - assimilé salarié != oui
+          - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
       niveau: avertissement
@@ -969,11 +973,11 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
-: titre.en: fixed amount of a meal
+contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
+  titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
-? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
-: question.en: |
+contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
+  question.en: |
     How many meals per month are paid for by the employer?
   question.fr: |
     Combien de repas par mois sont payés par l'employeur ?
@@ -1061,11 +1065,11 @@ contrat salarié . rémunération . net imposable . base:
   description.fr: Le net imposable avant les exonérations et déductions
   titre.en: base
   titre.fr: base
-? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
-: titre.en: tax-free overtime hours
+contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
+  titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires défiscalisées
-? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
-: titre.en: gross cap
+contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
+  titre.en: gross cap
   titre.fr: plafond brut
 contrat salarié . prime d'impatriation:
   description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
@@ -1129,8 +1133,8 @@ contrat salarié . rémunération . net après impôt:
 
     Pour une simulation plus complète, rendez-vous sur
     [impots.gouv.fr](https://www3.impots.gouv.fr/simulateur/calcul_impot/2018/index.htm).
-? impôt . impôt sur le revenu au taux neutre . barème Guadeloupe Réunion Martinique
-: titre.en: Guadeloupe / Reunion Island / Martinique scale
+impôt . impôt sur le revenu au taux neutre . barème Guadeloupe Réunion Martinique:
+  titre.en: Guadeloupe / Reunion Island / Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
 impôt . impôt sur le revenu au taux neutre . barème Guyane Mayotte:
   titre.en: Guyana Mayotte scale
@@ -1199,8 +1203,8 @@ contrat salarié . rémunération . total:
 contrat salarié . cotisations . patronales . réductions de cotisations:
   titre.en: contribution reductions
   titre.fr: réductions de cotisations
-? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
-: titre.en: flat-rate deduction for overtime
+contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
+  titre.en: flat-rate deduction for overtime
   titre.fr: déduction forfaitaire pour heures supplémentaires
 contrat salarié . réduction ACRE:
   titre.en: ACRE reduction
@@ -1211,8 +1215,8 @@ contrat salarié . réduction ACRE . taux:
 contrat salarié . cotisations . salariales . réduction heures supplémentaires:
   titre.en: reduction for overtime hours
   titre.fr: réduction heures supplémentaires
-? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
-: description.en: the effective rate of the employee's pension contributions
+contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
+  description.en: the effective rate of the employee's pension contributions
   description.fr: >-
     le taux effectif des cotisations d'assurance vieillesse à la charge du
     salarié
@@ -2657,8 +2661,8 @@ entreprise . catégorie d'activité . libérale règlementée:
         ne sont pas encore intégrées.
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-: titre.en: type of regulated liberal activity
+entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
+  titre.en: type of regulated liberal activity
   titre.fr: type d'activité libérale règlementée
 entreprise . rattachée à la CIPAV:
   question.en: Is the regulated liberal profession attached to the CIPAV?
@@ -2735,14 +2739,14 @@ entreprise . rattachement libéral règlementé:
 indépendant . cotisations et contributions . cotisations . maladie:
   titre.en: health insurance
   titre.fr: maladie
-? indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
-: titre.en: health insurance for regulated liberal
+indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
+  titre.en: health insurance for regulated liberal
   titre.fr: maladie libérale règlementée
 indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre.en: health insurance basis
   titre.fr: assiette maladie
-? indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
-: titre.en: health insurance 2
+indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
+  titre.en: health insurance 2
   titre.fr: Maladie 2
   description.en: >-
     Contributions for the daily allowances of self-employed people. If the state
@@ -2753,38 +2757,38 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
-: titre.en: 'craftsmen, traders, liberal'
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
+  titre.en: 'craftsmen, traders, liberal'
   titre.fr: artisans commerçants libéraux
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
-: titre.en: variable rate
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
+  titre.en: variable rate
   titre.fr: taux variable
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
-: titre.en: RSA rate
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
+  titre.en: RSA rate
   titre.fr: taux RSA
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
-: titre.en: variable part RSA rate
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
+  titre.en: variable part RSA rate
   titre.fr: taux RSA part variable
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
-: titre.en: upper reduction threshold
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
+  titre.en: upper reduction threshold
   titre.fr: seuil supérieur de réduction
-? indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
-: titre.en: rate
+indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
+  titre.en: rate
   titre.fr: taux
 indépendant . cotisations et contributions . cotisations . retraite de base:
   titre.en: pension
   titre.fr: retraite de base
-? indépendant . cotisations et contributions . cotisations . retraite de base . assiette
-: titre.en: pension basis
+indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
+  titre.en: pension basis
   titre.fr: assiette retraite de base
-? indépendant . cotisations et contributions . cotisations . retraite complémentaire
-: titre.en: supplementary pension
+indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  titre.en: supplementary pension
   titre.fr: retraite complémentaire
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
   titre.en: disability and death
   titre.fr: invalidité et décès
-? indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
-: titre.en: disability and death basis
+indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
+  titre.en: disability and death basis
   titre.fr: assiette invalidité et décès
 indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
@@ -2795,8 +2799,8 @@ indépendant . cotisations et contributions . CSG et CRDS . assiette:
 indépendant . cotisations et contributions . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
-? indépendant . cotisations et contributions . cotisations . allocations familiales
-: titre.en: family allowances
+indépendant . cotisations et contributions . cotisations . allocations familiales:
+  titre.en: family allowances
   titre.fr: allocations familiales
 auto-entrepreneur:
   question.en: Is the activity carried out in a auto-enterprise?
@@ -2874,8 +2878,8 @@ auto-entrepreneur . cotisations et contributions . TFC . commerce:
 auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
-? auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
-: titre.en: Contribution to vocational training
+auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
+  titre.en: Contribution to vocational training
   titre.fr: Contribution à la formation professionnelle
 auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
@@ -2906,8 +2910,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
     l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   titre.en: contributions
   titre.fr: cotisations
-? auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
-: description.en: >-
+auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
+  description.en: >-
     The total amount that is allocated to the supplementary pension, useful to
     estimate the total amount of the retirement pension for auto-entrepreneurs
   description.fr: >-
@@ -2915,8 +2919,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
     estimer le montant total de la pension de retraite des auto-entrepreneurs
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-? auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
-: description.en: >
+auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
+  description.en: >
     The social contributions of the self-employed are simplified: there is no
     than a single line whose rate depends on the category of activity.
   description.fr: >
@@ -3128,14 +3132,14 @@ protection sociale . retraite . trimestres validés par an:
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   titre.en: employee quarters
   titre.fr: trimestres salarié
-? protection sociale . retraite . trimestres validés par an . trimestres indépendant
-: titre.en: self-employed quarters
+protection sociale . retraite . trimestres validés par an . trimestres indépendant:
+  titre.en: self-employed quarters
   titre.fr: trimestres indépendant
-? protection sociale . retraite . trimestres validés par an . barème trimestres générique
-: titre.en: generic quarters scale
+protection sociale . retraite . trimestres validés par an . barème trimestres générique:
+  titre.en: generic quarters scale
   titre.fr: barème trimestres générique
-? protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur
-: description.en: >-
+protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
+  description.en: >-
     Minimum turnover thresholds for the validation of quarters for retirement as
     a self-employed entrepreneur. Below the minimum amount, you will only have
     access to the solidarity allowance.
@@ -3175,17 +3179,17 @@ protection sociale . retraite . complémentaire salarié . prix d'achat du point
 protection sociale . retraite . complémentaire sécurité des indépendants:
   titre.en: supplementary pension for self-employed
   titre.fr: complémentaire sécurité des indépendants
-? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
-: titre.en: value of the point
+protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
+  titre.en: value of the point
   titre.fr: valeur du point
-? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
-: titre.en: acquired points
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
+  titre.en: acquired points
   titre.fr: points acquis
-? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
-: titre.en: acquired points per month
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
+  titre.en: acquired points per month
   titre.fr: points acquis par mois
-? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
-: titre.en: buying cost of the point
+protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
+  titre.en: buying cost of the point
   titre.fr: prix d'achat du point
 protection sociale . santé:
   résumé.en: >-

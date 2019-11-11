@@ -85,6 +85,7 @@ let evaluateReference = (filter, contextRuleName) => (
 	node
 ) => {
 	let rule = rules[node.dottedName]
+
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const [
@@ -108,8 +109,8 @@ let evaluateReference = (filter, contextRuleName) => (
 		// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 		cacheName = dottedName + (filter ? '.' + filter : ''),
 		cached = cache[cacheName]
-	if (cached) return cached
 
+	if (cached) return cached
 	let cacheNode = (nodeValue, missingVariables, explanation) => {
 		missingVariables = missingVariableList.reduce(
 			mergeMissing,
@@ -123,7 +124,6 @@ let evaluateReference = (filter, contextRuleName) => (
 		}
 		return cache[cacheName]
 	}
-
 	const {
 		nodeValue: isApplicable,
 		missingVariables: condMissingVariables
@@ -150,6 +150,7 @@ let evaluateReference = (filter, contextRuleName) => (
 
 	return cacheNode(null, { [dottedName]: rule.defaultValue ? 1 : 2 })
 }
+
 export let parseReference = (
 	rules,
 	rule,
