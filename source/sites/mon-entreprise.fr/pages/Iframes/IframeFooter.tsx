@@ -38,10 +38,12 @@ export default function IframeFooter() {
 						<Trans>Plein écran</Trans>
 					</button>
 				)}
-				<button className="ui__ button small" onClick={() => window.print()}>
-					{emoji('🖨')}
-					<Trans>Imprimer</Trans>
-				</button>
+				{window?.print && (
+					<button className="ui__ button small" onClick={() => window.print()}>
+						{emoji('🖨')}
+						<Trans>Imprimer</Trans>
+					</button>
+				)}
 				<Privacy />
 			</div>
 		</>
