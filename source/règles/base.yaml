@@ -565,6 +565,7 @@ contrat salarié . assimilé salarié:
     - réduction générale
     - allocations familiales . taux réduit
     - contrat salarié . maladie . taux employeur . taux réduit
+    - lodeom
     - AGS
     - APEC
     - contribution au dialogue social
@@ -645,7 +646,8 @@ contrat salarié . stage:
     - statut JEI
     - réduction générale
     - allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
+    - maladie . taux employeur . taux réduit
+    - lodeom
     - contribution d'équilibre général
     - retraite complémentaire
     - chômage
@@ -1539,7 +1541,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
     somme:
       - réduction générale
-      - lodeom . réduction zone un
+      - lodeom . réduction outre-mer
       - statut JEI . exonération de cotisations
       - réduction ACRE
       - déduction heures supplémentaires
@@ -1916,6 +1918,7 @@ contrat salarié . statut JEI:
     - réduction générale
     - allocations familiales . taux réduit
     - contrat salarié . maladie . taux employeur . taux réduit
+    - lodeom
 
 contrat salarié . statut JEI . exonération de cotisations:
   titre: Exonération JEI
@@ -4650,7 +4653,7 @@ contrat salarié . lodeom . zone un:
       - établissement . localisation . département = 'Martinique'
       - établissement . localisation . département = 'Guyane'
 
-contrat salarié . lodeom . réduction zone un:
+contrat salarié . lodeom . réduction outre-mer:
   aide:
     type: réduction de cotisations
     thème: aide bas salaires
@@ -4658,17 +4661,12 @@ contrat salarié . lodeom . réduction zone un:
 
   applicable si:
     toutes ces conditions:
+      - cotisations . assiette <= plafond de l'assiette
       - zone un
       - une de ces conditions:
-          - éligible barème un
-          - éligible barème deux
-          - éligible barème trois
-
-  non applicable si:
-    une de ces conditions:
-      - assimilé salarié
-      - cotisations . assiette > plafond de l'assiette
-      - statut JEI
+          - éligible barème compétitivité
+          - éligible barème compétitivité renforcée
+          - éligible barème innovation et croissance
 
   période: flexible
 
@@ -4678,19 +4676,19 @@ contrat salarié . lodeom . réduction zone un:
       - variations:
           - si:
               toutes ces conditions:
-                - éligible barème trois
+                - éligible barème innovation et croissance
                 - cotisations . assiette > borne inférieure
                 - cotisations . assiette < 2.5 * SMIC
             alors: 1.7 * paramètre T * SMIC
           - si:
               toutes ces conditions:
-                - éligible barème trois
+                - éligible barème innovation et croissance
                 - cotisations . assiette > 2.5 * SMIC
             alors: ((borne inférieure * paramètre T) / (borne supérieure - 2.5)) *  écart au plafond de l'assiette
           - sinon: multiplicateur * écart au plafond de l'assiette
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
-  référnces: 
-    - https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
+  références: 
+    Estimateur URSSAF: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
   exemples:
     # Barème 1
     - nom: "Maximale dans le cas d'un SMIC"
@@ -4718,31 +4716,31 @@ contrat salarié . lodeom . réduction zone un:
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
         zone un: oui
-        éligible barème deux: oui
+        éligible barème compétitivité renforcée: oui
         cotisations . assiette: 1521.22
       valeur attendue: 488.92
     - nom: 'Salaire proche du SMIC'
       situation:
         zone un: oui
-        éligible barème deux: oui
+        éligible barème compétitivité renforcée: oui
         cotisations . assiette: 2565
       valeur attendue: 824.39
     - nom: 'Résiduelle pour un salaire médian'
       situation:
         zone un: oui
-        éligible barème deux: oui
+        éligible barème compétitivité renforcée: oui
         cotisations . assiette: 3900
       valeur attendue: 113.26
     - nom: 'Résiduelle pour un salaire médian'
       situation:
         zone un: oui
-        éligible barème deux: oui
+        éligible barème compétitivité renforcée: oui
         cotisations . assiette: 3000
       valeur attendue: 605.10
     - nom: 'Nulle au-dessus du plafond'
       situation:
         zone un: oui
-        éligible barème deux: oui
+        éligible barème compétitivité renforcée: oui
         cotisations . assiette: 4200
       valeur attendue: 0
 
@@ -4750,32 +4748,32 @@ contrat salarié . lodeom . réduction zone un:
     - nom: "Barème 3 Maximale dans le cas d'un SMIC"
       situation:
         zone un: oui
-        éligible barème trois: oui
+        éligible barème innovation et croissance: oui
         cotisations . assiette: 1521.22
       valeur attendue: 488.92
     - nom: 'Barème 3'
       situation:
         zone un: oui
-        éligible barème trois: oui
+        éligible barème innovation et croissance: oui
         cotisations . assiette: 2565
       valeur attendue: 824.39
     - nom: 'Barème 3'
       situation:
         zone un: oui
-        éligible barème trois: oui
+        éligible barème innovation et croissance: oui
         cotisations . assiette: 2800
       valeur attendue: 831.04
     - nom: 'Barème 3'
       situation:
         zone un: oui
-        éligible barème trois: oui
+        éligible barème innovation et croissance: oui
         cotisations . assiette: 4000
       valeur attendue: 723.60
 
     - nom: 'Barème 3 Nulle au-dessus du plafond'
       situation:
         zone un: oui
-        éligible barème trois: oui
+        éligible barème innovation et croissance: oui
         cotisations . assiette: 5500
       valeur attendue: 0
 
@@ -4787,7 +4785,7 @@ contrat salarié . lodeom . écart au plafond de l'assiette:
   période: flexible
   formule: plafond de l'assiette - cotisations . assiette
 
-contrat salarié . lodeom . éligible barème un:
+contrat salarié . lodeom . éligible barème compétitivité:
   titre: Eligibilité au barème de compétitivité
   applicable si: zone un
   rend non applicable:
@@ -4798,9 +4796,9 @@ contrat salarié . lodeom . éligible barème un:
         alors: oui
       - sinon: secteurs d'activité
   références:
-    - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
 
-contrat salarié . lodeom . éligible barème un . secteurs d'activité:
+contrat salarié . lodeom . éligible barème compétitivité . secteurs d'activité:
   question: Votre entreprise appartient-elle à l'un de ces secteurs ?
   description: |
     Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de compétitivité, votre entreprise doit appartenir à l'un des secteurs suivants :
@@ -4813,32 +4811,32 @@ contrat salarié . lodeom . éligible barème un . secteurs d'activité:
     - les secteurs éligibles aux régimes de compétitivité renforcée (barème 2) ou d’innovation et de croissance (barème 3), qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).
   par défaut: non
 
-contrat salarié . lodeom . éligible barème deux:
+contrat salarié . lodeom . éligible barème compétitivité renforcée:
   applicable si: zone un
   rend non applicable:
     - réduction générale
-    - éligible barème un
+    - éligible barème compétitivité
   question: Êtes-vous éligibles au barème compétitivité renforcée ?
   description: |
-    - chiffre d'affaire de moins de 50 millions d'euros
+    - Chiffre d'affaire de moins de 50 millions d'euros
     - Les employeurs relevant des secteurs de l’industrie, de la restauration, de l’environnement, de l’agro nutrition, des énergies renouvelables, des nouvelles technologies de l’information et de la communication et des centres d’appel, de la pêche, des cultures marines, de l’aquaculture, de l’agriculture, du tourisme y compris les activités de loisirs s’y rapportant, du nautisme, de l’hôtellerie, de la recherche et du développement ;
     - Les entreprises bénéficiaires du régime de perfectionnement actif défini à l’article 256 du règlement (UE) n° 952/2013 du parlement européen et du conseil du 9 octobre 2013 établissant le code des douanes de l’Union
     - En Guyane, les employeurs ayant une activité principale relevant de l’un des secteurs d’activité éligibles à la réduction d’impôt prévue à l’article 199 undecies B du code général des impôts, ou correspondant à l’une des activités suivantes : comptabilité, conseil aux entreprises, ingénierie ou études techniques.
   par défaut: non
   références:
-    - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite-renf.html
 
-contrat salarié . lodeom . éligible barème trois:
+contrat salarié . lodeom . éligible barème innovation et croissance:
   applicable si: zone un
   rend non applicable:
     - réduction générale
-    - éligible barème un
-    - éligible barème deux
+    - éligible barème compétitivité
+    - éligible barème compétitivité renforcée
   question: Êtes-vous éligibles au barème innovation et croissance ?
   description: |
     - Sont éligibles à ce barème les employeurs occupant moins de 250 salariés et ayant réalisé un chiffre d’affaires annuel inférieur à 50 millions d’euros, au titre de la rémunération des salariés concourant essentiellement à la réalisation de projets innovants dans le domaine des technologies de l’information et de la communication.
     - Les projets innovants se définissent comme des projets ayant pour but l’introduction d’un bien, d’un service, d’une méthode de production ou de distribution nouveau ou sensiblement amélioré sur le plan des caractéristiques et de l’usage auquel il est destiné. Ces projets doivent être réalisés dans les domaines suivants :
-      - télécommunication ;
+      - 📱 télécommunication ;
       - informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance de systèmes et d’applications, gestion d‘installations, traitement des données, hébergement et activités connexes ;
       - édition de portails internet et de logiciels;
       - infographie, notamment conception de contenus visuels et numériques ;
@@ -4847,23 +4845,23 @@ contrat salarié . lodeom . éligible barème trois:
     - Sont donc exclues les fonctions supports : tâches administratives financières, logistiques et de ressources humaines.
   par défaut: non
   références:
-    - https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
 
 contrat salarié . lodeom . borne inférieure:
   formule:
     variations:
-      - si: éligible barème un
+      - si: éligible barème compétitivité
         alors: 1.3
       - sinon: 1.7
 
 contrat salarié . lodeom . borne supérieure:
   formule:
     variations:
-      - si: éligible barème un
+      - si: éligible barème compétitivité
         alors: 2.2
-      - si: éligible barème deux
+      - si: éligible barème compétitivité renforcée
         alors: 2.7
-      - si: éligible barème trois
+      - si: éligible barème innovation et croissance
         alors: 3.5
 
 contrat salarié . lodeom . multiplicateur:
@@ -4884,3 +4882,4 @@ contrat salarié . lodeom . paramètre T:
             - zone un
             - entreprise . effectif >= 20
         alors: 0.3254
+  note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.

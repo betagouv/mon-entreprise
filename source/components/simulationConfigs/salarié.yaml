@@ -5,7 +5,6 @@ objectifs:
   - contrat salarié . rémunération . brut de base
   - contrat salarié . rémunération . net
   - contrat salarié . rémunération . net après impôt
-  - contrat salarié . lodeom . réduction zone un
 
 objectifs secondaires:
   - contrat salarié . temps de travail
@@ -13,9 +12,6 @@ objectifs secondaires:
 
 questions:
   à l'affiche:
-    LODEOM barème 1: contrat salarié . lodeom . éligible barème un . secteurs d'activité
-    LODEOM barème 2: contrat salarié . lodeom . éligible barème deux
-    LODEOM barème 3: contrat salarié . lodeom . éligible barème trois
     Contrat: contrat salarié
     Cadre: contrat salarié . statut cadre . choix statut cadre
     Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
@@ -34,7 +30,6 @@ questions:
     - contrat salarié . régime des impatriés
 situation:
   contrat salarié . assimilé salarié: non
-  contrat salarié . lodeom . zone un: oui
   indépendant: non
   auto-entrepreneur: non
   période: mois
