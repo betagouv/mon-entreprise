@@ -222,7 +222,7 @@ exports[`calculate simulations-salarié: impôt sur le revenu 1`] = `"[4076,0,0,
 
 exports[`calculate simulations-salarié: impôt sur le revenu 2`] = `"[41765,0,0,30000,24267,14656]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu 3`] = `"[4076,0,0,3000,2353,2270]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu 3`] = `"[4106,0,0,3000,2353,2270]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 4`] = `"[4076,0,0,3000,2353,2205]"`;
 
