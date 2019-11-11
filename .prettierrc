@@ -1,6 +1,14 @@
 {
-	"bracketSpacing": true,
-	"useTabs": true,
-	"semi": false,
-	"singleQuote": true
+  "bracketSpacing": true,
+  "useTabs": true,
+  "semi": false,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.yaml",
+      "options": {
+        "printWidth": 1000
+      }
+    }
+  ]
 }
