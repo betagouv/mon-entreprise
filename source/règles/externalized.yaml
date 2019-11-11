@@ -166,6 +166,35 @@ contrat salarié . indemnité kilométrique vélo . active:
     revenu. Pour verser une prime de salaire équivalente à son salarié sans ce
     dispositif, **l'employeur devrait débourser près de 500€ pour un salaire
     médian**.
+contrat salarié . CDD . CPF:
+  description.en: >-
+    Contribution to the financing of individual training leave, specific to
+    fixed-term contracts.
+  description.fr: >-
+    Contribution au financement du congé individuel de formation spécifique aux
+    CDD.
+  titre.en: CPF
+  titre.fr: CPF
+contrat salarié . CDD . compensation pour congés non pris:
+  description.en: >-
+    The employee on a fixed-term contract has the same rights for paid leave as
+    the employee on a permanent contract. He acquires and takes his paid leave
+    under the same conditions.
+
+
+    It is however common that the employee can not take all his leave before the
+    end of his contract. In that case, he receives a compensatory alowance paid
+    by the employer.
+  description.fr: >
+    Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
+    en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+
+    Il est cependant courant que le salarié ne puisse pas prendre tous ses
+    congés avant le terme de son contrat, il bénéficie alors d'une indemnité
+    compensatrice de congés payés versée par l'employeur.
+  titre.en: untaken vacation compensation
+  titre.fr: compensation pour congés non pris
 ? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
 : titre.en: proportion of untaken leave
   titre.fr: proportion congés non pris
