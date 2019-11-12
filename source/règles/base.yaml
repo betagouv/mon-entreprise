@@ -3406,6 +3406,168 @@ dirigeant . indépendant . revenu professionnel:
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
 
+dirigeant . indépendant . conjoint collaborateur:
+  non applicable si: entreprise . rattachement libéral règlementé
+  question: Avez-vous un conjoint collaborateur ?
+  description: |
+    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
+    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
+    - exercer une activité professionnelle régulière et habituelle dans l'entreprise 
+    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans 
+    - ne pas être rémunéré 
+    - ne pas être associé de la société.
+  par défaut: non
+  références: 
+    secu-independant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
+  
+dirigeant . indépendant . conjoint collaborateur . assiette :
+  question: Sur quelle base le conjoint cotise-t'il ?
+  description: |
+    Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
+    - 1/3 du Plafond de Sécurité Sociale
+    - Option sur le revenu du chef avec partage ( ½ ou 1/3)
+    - Option sur le revenu du chef sans partage ( ½ ou 1/3)
+  par défaut: forfaitaire
+  formule:   
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - forfaitaire
+        - revenu sans partage
+        - revenu avec partage
+dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
+  description: Le conjoint collaborateur paiera des cotisations équivalentes à un revenu professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale.
+  formule: assiette = 'forfaitaire'
+  
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
+  description: |
+    Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
+    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (retraite, indémnité journalière, indemnité décès, etc)**
+  période: flexible
+  formule: assiette = 'revenu avec partage'
+  remplace: 
+    règle: revenu professionnel
+    par: revenu professionnel - cotisations . assiette
+    dans: 
+      - cotisations et contributions . cotisations . retraite de base
+      - cotisations et contributions . cotisations . retraite complémentaire
+      - cotisations et contributions . cotisations . invalidité et décès
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un tiers ou la moitié).
+  formule: assiette = 'revenu sans partage'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: 
+  question: À quel pourcentage du revenu le conjoint cotise-t'il ?
+  par défaut: tiers
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - tiers
+        - moitié
+        
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers: 
+  formule: pourcentage = 'tiers'
+  titre: '1/3'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié: 
+  formule: pourcentage = 'moitié'
+  titre: '1/2'
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
+  période: flexible
+  titre: assiette conjoint collaborateur
+  formule: 
+    multiplication:
+        assiette: revenu professionnel
+        taux: 1 / 3
+        variations: 
+          - si: assiette . forfaitaire
+            alors: 
+              assiette: plafond sécurité sociale temps plein 
+          - si: assiette . pourcentage . moitié
+            alors: 
+              taux: 50%
+          - sinon: rien
+
+dirigeant . indépendant . conjoint collaborateur . cotisations: 
+  titre: Cotisations conjoint collaborateur
+  période: flexible
+  formule: 
+    somme:
+      - retraite de base
+      - retraite complémentaire
+      - invalidité et décès
+      - indemnités journalières maladie
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
+  période: flexible
+  formule: 
+    le maximum de: 
+      - cotisations . assiette
+      - 5.25% * plafond sécurité sociale temps plein
+      - 200 * SMIC horaire
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  période: flexible
+  formule: 
+    barème:
+      assiette: assiette retraite
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  période: flexible
+  formule:
+    barème:
+      assiette: retraite complémentaire . assiette
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
+  période: flexible
+  titre: assiette retraite complémentaire
+  formule: 
+    le minimum de:
+      - variations:
+          - si: entreprise . catégorie d'activité = 'artisanale'
+            alors: 4 * plafond sécurité sociale temps plein
+          - sinon: 3 * plafond sécurité sociale temps plein
+      - assiette retraite
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
+  titre: assiette invalidité et décès
+  période: flexible
+  formule: 
+    le maximum de:
+      - cotisations . assiette
+      - 20% * plafond sécurité sociale temps plein
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette 
+      plafond: plafond sécurité sociale temps plein
+      taux: 1.3%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      facteur: 40%
+      taux: 0.85%
+
+
 entreprise . catégorie d'activité:
   question: Quelle est votre catégorie d'activité ?
   description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
@@ -3613,6 +3775,7 @@ dirigeant . indépendant . cotisations et contributions:
       - cotisations
       - CSG et CRDS
       - formation professionnelle
+      - conjoint collaborateur . cotisations
       - (- réduction ACRE)
   unité: €
   période: flexible
@@ -3842,12 +4005,13 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
                 taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
-  période: flexible
   formule:
     multiplication:
       assiette: assiette
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
+  période: flexible
+
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
@@ -3895,10 +4059,12 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
       assiette: plafond sécurité sociale temps plein
       taux:
         variations:
+          - si: conjoint collaborateur
+            alors: 0.34%
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
           - sinon: 0.25%
-  note: Pour les commerçants et professions libérales, le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
