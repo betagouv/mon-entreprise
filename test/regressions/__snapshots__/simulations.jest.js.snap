@@ -204,9 +204,9 @@ exports[`calculate simulations-salarié: avantages 3`] = `"[2602,0,0,2000,1549,1
 
 exports[`calculate simulations-salarié: cadre 1`] = `"[4122,0,0,3000,2348,2149]"`;
 
-exports[`calculate simulations-salarié: cdd 1`] = `"[2494,0,0,2000,1561,1477]"`;
+exports[`calculate simulations-salarié: cdd 1`] = `"[2514,0,0,2000,1561,1477]"`;
 
-exports[`calculate simulations-salarié: cdd 2`] = `"[2494,0,0,2000,1561,1477]"`;
+exports[`calculate simulations-salarié: cdd 2`] = `"[2605,0,0,2000,1599,1506]"`;
 
 exports[`calculate simulations-salarié: heures supplémentaires 1`] = `"[2599,0,0,2000,1636,1551]"`;
 
