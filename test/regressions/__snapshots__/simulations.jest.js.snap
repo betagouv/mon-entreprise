@@ -204,6 +204,10 @@ exports[`calculate simulations-salarié:  aides 1`] = `"[2302,0,0,2000,1561,1524
 
 exports[`calculate simulations-salarié:  aides 2`] = `"[12823,0,0,10000,8911,7667]"`;
 
+exports[`calculate simulations-salarié:  aides 3`] = `"[2062,417,0,2000,1561,1524]"`;
+
+exports[`calculate simulations-salarié:  aides 4`] = `"[2292,208,0,2000,1561,1524]"`;
+
 exports[`calculate simulations-salarié:  apprentissage 1`] = `"[1552,0,0,1500,1448,1448]"`;
 
 exports[`calculate simulations-salarié:  apprentissage 2`] = `"[1385,167,0,1500,1448,1448]"`;

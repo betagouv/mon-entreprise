@@ -919,6 +919,43 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
+contrat salarié . aides employeur . emploi franc:
+  description.en: "[automatic] Deferred assistance paid by Pôle emploi for the hiring of a job seeker registered with Pôle Emploi and residing in a priority neighbourhood of the city (QPV).\n- * hiring on a permanent contract*: €5,000/year for 3 years, i.e. a total of €15,000 - * hiring on a fixed-term contract of at least 6 months*: €2,500/year for 2 years, i.e. a maximum of €5,000\n[\U0001F5FA Check address eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)"
+  description.fr: "Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville (QPV).\n- *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€ - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum\n[\U0001F5FA Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)"
+  titre.en: '[automatic] open job'
+  titre.fr: emploi franc
+contrat salarié . aides employeur . emploi franc . éligible:
+  description.en: >
+    [automatic] Terms and conditions: 
+
+    - The recruited employee is a job seeker registered with Pôle Emploi and
+    resides in a priority district of the city (QPV) [check the eligibility of a
+    district](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+
+    - The employer is up to date with its contributions and has not made an
+    economic layoff for the position filled in the 6 months prior to
+    recruitment.
+
+    - The recruited employee must not have been part of the company's workforce
+    in the 6 months prior to hiring.
+  description.fr: >
+    Conditions : 
+
+    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et
+    réside dans un quartier prioritaire de la ville (QPV) [vérifier
+    l'éligibilité d'un
+    quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+
+    - L'employeur est à jour de ses cotisations et n'a pas procédé à un
+    licenciement économique pour le poste pourvu dans les 6 mois précédents le
+    recrutement
+
+    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de
+    l'entreprise dans les 6 mois précédent l'embauche
+  question.en: '[automatic] Are you eligible for Emploi-franc assistance for this hiring?'
+  question.fr: Etes-vous éligible à l'aide emploi-franc pour cette embauche ?
+  titre.en: '[automatic] eligible'
+  titre.fr: éligible
 contrat salarié . allocations familiales:
   titre.en: Family allowances
   titre.fr: allocations familiales
