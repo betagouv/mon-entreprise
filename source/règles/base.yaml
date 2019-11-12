@@ -3407,7 +3407,7 @@ dirigeant . indépendant . revenu professionnel:
         - entreprise . chiffre d'affaires minimum
 
 dirigeant . indépendant . conjoint collaborateur:
-  non applicable si: entreprise . rattachement libéral règlementé
+  non applicable si: dirigeant . indépendant . rattachement CIPAV
   question: Avez-vous un conjoint collaborateur ?
   description: |
     Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
@@ -3780,11 +3780,12 @@ dirigeant . indépendant . cotisations et contributions:
   unité: €
   période: flexible
 
-entreprise . rattachement libéral règlementé:
+dirigeant . indépendant . rattachement CIPAV:
   description: |
     Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
+  note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -3804,17 +3805,9 @@ entreprise . rattachement libéral règlementé:
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
   période: aucune
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
-  période: flexible
-  formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors: libérale règlementée
-
-      - sinon: artisans commerçants libéraux
-
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
+? dirigeant . indépendant . libérale règlementée . maladie
 : période: flexible
+  remplace: cotisations et contributions . cotisations . maladie
   titre: maladie libérale règlementée
   formule:
     barème continu:
@@ -3826,7 +3819,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
-
   période: flexible
   formule:
     variations:
@@ -3849,7 +3841,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie
 : période: flexible
   formule:
     barème:
@@ -3869,7 +3861,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux variable
 : période: flexible
   formule:
     variations:
@@ -3877,7 +3869,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
         alors: taux RSA
       - sinon: taux
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA
 : période: flexible
   formule:
     multiplication:
@@ -3886,21 +3878,21 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable
 : période: flexible
   formule:
     multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction
 : période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux
 : période: flexible
   formule:
     barème continu:
@@ -3919,31 +3911,32 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
+dirigeant . indépendant . rattachement CIPAV . retraite de base:
+  période: flexible
+  remplace: cotisations et contributions . cotisations . retraite de base
+  formule: 
+    multiplication:
+      assiette: cotisations et contributions . cotisations . retraite de base . assiette
+      multiplicateur:
+      composantes:
+        - nom: tranche 1
+          plafond: plafond sécurité sociale temps plein
+          taux: 8.23%
+        - nom: tranche 2
+          plafond: 5 * plafond sécurité sociale temps plein
+          taux: 1.87%
+
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
-  période: année
+  période: flexible
   formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          multiplication:
-            assiette: assiette
-            multiplicateur:
-            composantes:
-              - nom: tranche 1
-                plafond: plafond sécurité sociale temps plein
-                taux: 8.23%
-              - nom: tranche 2
-                plafond: 5 * plafond sécurité sociale temps plein
-                taux: 1.87%
-      - sinon:
-          barème:
-            assiette: assiette
-            multiplicateur: plafond sécurité sociale temps plein
-            tranches:
-              - en-dessous de: 1
-                taux: 17.75%
-              - au-dessus de: 1
-                taux: 0.6%
+    barème:
+      assiette: assiette
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
 
 ? dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette
 : période: flexible
@@ -3959,50 +3952,51 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
+? dirigeant . indépendant . rattachement CIPAV . retraite complémentaire:
+  période: année
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  formule:
+    barème linéaire:
+      assiette: revenu professionnel
+      tranches:
+        - en-dessous de: 26580
+          montant: 1315
+        - de: 26581
+          à: 49280
+          montant: 2630
+        - de: 49281
+          à: 57850
+          montant: 3945
+        - de: 57851
+          à: 66400
+          montant: 6575
+        - de: 66401
+          à: 83060
+          montant: 9205
+        - de: 83061
+          à: 103180
+          montant: 14465
+        - de: 103181
+          à: 123300
+          montant: 15780
+        - au-dessus de: 123300
+          montant: 17095
+
+
 ? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
 : période: année
   unité: €
-  note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          barème linéaire:
-            assiette: revenu professionnel
-            tranches:
-              - en-dessous de: 26580
-                montant: 1315
-              - de: 26581
-                à: 49280
-                montant: 2630
-              - de: 49281
-                à: 57850
-                montant: 3945
-              - de: 57851
-                à: 66400
-                montant: 6575
-              - de: 66401
-                à: 83060
-                montant: 9205
-              - de: 83061
-                à: 103180
-                montant: 14465
-              - de: 103181
-                à: 123300
-                montant: 15780
-              - au-dessus de: 123300
-                montant: 17095
-      - sinon:
-          barème:
-            assiette: revenu professionnel
-            tranches:
-              - en-dessous de: 37960
-                taux: 7%
-              - de: 37960
-                à: 162096
-                taux: 8%
-              - au-dessus de: 162096
-                taux: 0%
+    barème:
+      assiette: revenu professionnel
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
+        - au-dessus de: 162096
+          taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:

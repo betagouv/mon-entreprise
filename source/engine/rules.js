@@ -243,12 +243,14 @@ export let findParentDependencies = (rules, rule) => {
 		reject(isNil),
 		filter(
 			//Find the first "calculable" parent
-			({ question, unit, formule }) =>
+			({ question, unit, formule, dottedName }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) ||
 				formule === 'oui' ||
-				formule === 'non'
+				formule === 'non' ||
+				formule?.['une de ces conditions'] ||
+				formule?.['toutes ces conditions']
 		)
 	)(parentDependencies)
 }
