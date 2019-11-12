@@ -101,22 +101,22 @@ module.exports = {
 			// both options are optional
 			filename: '[name].[hash].css',
 			chunkFilename: '[id].[hash].css'
-		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'infrance'),
-			routes: [
-				'/',
-				'/social-security/salaried',
-				'/iframes/simulateur-embauche'
-			],
-			indexPath: path.resolve('dist', 'infrance.html')
-		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: ['/', '/simulateurs/salarié', '/iframes/simulateur-embauche'],
-			indexPath: path.resolve('dist', 'mon-entreprise.html')
 		})
+		// new PrerenderSPAPlugin({
+		// 	...prerenderConfig(),
+		// 	outputDir: path.resolve('dist', 'prerender', 'infrance'),
+		// 	routes: [
+		// 		'/',
+		// 		'/social-security/salaried',
+		// 		'/iframes/simulateur-embauche'
+		// 	],
+		// 	indexPath: path.resolve('dist', 'infrance.html')
+		// }),
+		// new PrerenderSPAPlugin({
+		// 	...prerenderConfig(),
+		// 	outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
+		// 	routes: ['/', '/simulateurs/salarié', '/iframes/simulateur-embauche'],
+		// 	indexPath: path.resolve('dist', 'mon-entreprise.html')
+		// })
 	]
 }
