@@ -3329,6 +3329,168 @@ dirigeant . indépendant . revenu professionnel:
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
 
+dirigeant . indépendant . conjoint collaborateur:
+  non applicable si: dirigeant . indépendant . rattachement CIPAV
+  question: Avez-vous un conjoint collaborateur ?
+  description: |
+    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
+    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
+    - exercer une activité professionnelle régulière et habituelle dans l'entreprise 
+    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans 
+    - ne pas être rémunéré 
+    - ne pas être associé de la société.
+  par défaut: non
+  références: 
+    secu-independant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
+  
+dirigeant . indépendant . conjoint collaborateur . assiette :
+  question: Sur quelle base le conjoint cotise-t'il ?
+  description: |
+    Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
+    - 1/3 du Plafond de Sécurité Sociale
+    - Option sur le revenu du chef avec partage ( ½ ou 1/3)
+    - Option sur le revenu du chef sans partage ( ½ ou 1/3)
+  par défaut: forfaitaire
+  formule:   
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - forfaitaire
+        - revenu sans partage
+        - revenu avec partage
+dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
+  description: Le conjoint collaborateur paiera des cotisations équivalentes à un revenu professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale.
+  formule: assiette = 'forfaitaire'
+  
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
+  description: |
+    Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
+    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (retraite, indémnité journalière, indemnité décès, etc)**
+  période: flexible
+  formule: assiette = 'revenu avec partage'
+  remplace: 
+    règle: revenu professionnel
+    par: revenu professionnel - cotisations . assiette
+    dans: 
+      - cotisations et contributions . cotisations . retraite de base
+      - cotisations et contributions . cotisations . retraite complémentaire
+      - cotisations et contributions . cotisations . invalidité et décès
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un tiers ou la moitié).
+  formule: assiette = 'revenu sans partage'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: 
+  question: À quel pourcentage du revenu le conjoint cotise-t'il ?
+  par défaut: tiers
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - tiers
+        - moitié
+        
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers: 
+  formule: pourcentage = 'tiers'
+  titre: '1/3'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié: 
+  formule: pourcentage = 'moitié'
+  titre: '1/2'
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
+  période: flexible
+  titre: assiette conjoint collaborateur
+  formule: 
+    multiplication:
+        assiette: revenu professionnel
+        taux: 1 / 3
+        variations: 
+          - si: assiette . forfaitaire
+            alors: 
+              assiette: plafond sécurité sociale temps plein 
+          - si: assiette . pourcentage . moitié
+            alors: 
+              taux: 50%
+          - sinon: rien
+
+dirigeant . indépendant . conjoint collaborateur . cotisations: 
+  titre: Cotisations conjoint collaborateur
+  période: flexible
+  formule: 
+    somme:
+      - retraite de base
+      - retraite complémentaire
+      - invalidité et décès
+      - indemnités journalières maladie
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
+  période: flexible
+  formule: 
+    le maximum de: 
+      - cotisations . assiette
+      - 5.25% * plafond sécurité sociale temps plein
+      - 200 * SMIC horaire
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  période: flexible
+  formule: 
+    barème:
+      assiette: assiette retraite
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  période: flexible
+  formule:
+    barème:
+      assiette: retraite complémentaire . assiette
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
+  période: flexible
+  titre: assiette retraite complémentaire
+  formule: 
+    le minimum de:
+      - variations:
+          - si: entreprise . catégorie d'activité = 'artisanale'
+            alors: 4 * plafond sécurité sociale temps plein
+          - sinon: 3 * plafond sécurité sociale temps plein
+      - assiette retraite
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
+  titre: assiette invalidité et décès
+  période: flexible
+  formule: 
+    le maximum de:
+      - cotisations . assiette
+      - 20% * plafond sécurité sociale temps plein
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: assiette 
+      plafond: plafond sécurité sociale temps plein
+      taux: 1.3%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  période: flexible
+  formule: 
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      facteur: 40%
+      taux: 0.85%
+
+
 entreprise . catégorie d'activité:
   question: Quelle est votre catégorie d'activité ?
   description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
@@ -3534,14 +3696,16 @@ dirigeant . indépendant . cotisations et contributions:
       - cotisations
       - CSG et CRDS
       - formation professionnelle
+      - conjoint collaborateur . cotisations
       - (- réduction ACRE)
   unité par défaut: €/an
 
-entreprise . rattachement libéral règlementé:
+dirigeant . indépendant . rattachement CIPAV:
   description: |
     Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
+  note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -3560,16 +3724,9 @@ entreprise . rattachement libéral règlementé:
     - protection sociale . retraite
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
-  formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors: libérale règlementée
-
-      - sinon: artisans commerçants libéraux
-
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
-  titre: maladie libérale règlementée
+dirigeant . indépendant . rattachement CIPAV . maladie:
+  remplace: cotisations et contributions . cotisations . maladie
+  titre: maladie (CIPAV)
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3580,7 +3737,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
-
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -3601,7 +3757,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations . indemnit
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   formule:
     barème:
       assiette: assiette
@@ -3620,14 +3777,15 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux variable:
   formule:
     variations:
       - si: situation personnelle . RSA
         alors: taux RSA
       - sinon: taux
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA:
   formule:
     multiplication:
       assiette: taux RSA part variable + 1.35%
@@ -3635,16 +3793,19 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
-  formule: 5% * (revenu professionnel / seuil supérieur de réduction)
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable:
+  formule:
+    multiplication:
+      assiette: 5%
+      taux: revenu professionnel / seuil supérieur de réduction
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux:
   formule:
     barème continu:
       retourne seulement le taux: oui
@@ -3662,31 +3823,31 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
+dirigeant . indépendant . rattachement CIPAV . retraite de base:
+  période: flexible
+  remplace: cotisations et contributions . cotisations . retraite de base
+  formule: 
+    multiplication:
+      assiette: cotisations et contributions . cotisations . retraite de base . assiette
+      multiplicateur:
+      composantes:
+        - nom: tranche 1
+          plafond: plafond sécurité sociale temps plein
+          taux: 8.23%
+        - nom: tranche 2
+          plafond: 5 * plafond sécurité sociale temps plein
+          taux: 1.87%
+
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
-  unité par défaut: €/an
-  formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          multiplication:
-            assiette: assiette [€/an]
-            multiplicateur:
-            composantes:
-              - nom: tranche 1
-                plafond: plafond sécurité sociale temps plein
-                taux: 8.23%
-              - nom: tranche 2
-                plafond: 5 * plafond sécurité sociale temps plein
-                taux: 1.87%
-      - sinon:
-          barème:
-            assiette: assiette [€/an]
-            multiplicateur: plafond sécurité sociale temps plein
-            tranches:
-              - en-dessous de: 1
-                taux: 17.75%
-              - au-dessus de: 1
-                taux: 0.6%
+ formule:
+    barème:
+      assiette: assiette
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
   titre: assiette retraite de base
@@ -3701,49 +3862,50 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  unité par défaut: €/an
-  note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
+
+dirigeant . indépendant . rattachement CIPAV . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          barème linéaire:
-            assiette: revenu professionnel [€/an]
-            tranches:
-              - en-dessous de: 26580
-                montant: 1315
-              - de: 26581
-                à: 49280
-                montant: 2630
-              - de: 49281
-                à: 57850
-                montant: 3945
-              - de: 57851
-                à: 66400
-                montant: 6575
-              - de: 66401
-                à: 83060
-                montant: 9205
-              - de: 83061
-                à: 103180
-                montant: 14465
-              - de: 103181
-                à: 123300
-                montant: 15780
-              - au-dessus de: 123300
-                montant: 17095
-      - sinon:
-          barème:
-            assiette: revenu professionnel [€/an]
-            tranches:
-              - en-dessous de: 37960
-                taux: 7%
-              - de: 37960
-                à: 162096
-                taux: 8%
-              - au-dessus de: 162096
-                taux: 0%
+    barème linéaire:
+      unité: €/an
+      assiette: revenu professionnel [€/an]
+      tranches:
+        - en-dessous de: 26580
+          montant: 1315
+        - de: 26581
+          à: 49280
+          montant: 2630
+        - de: 49281
+          à: 57850
+          montant: 3945
+        - de: 57851
+          à: 66400
+          montant: 6575
+        - de: 66401
+          à: 83060
+          montant: 9205
+        - de: 83061
+          à: 103180
+          montant: 14465
+        - de: 103181
+          à: 123300
+          montant: 15780
+        - au-dessus de: 123300
+          montant: 17095
+
+
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  formule:
+    barème:
+      assiette: revenu professionnel [€/an]
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
+        - au-dessus de: 162096
+          taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
@@ -3751,6 +3913,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
       assiette: assiette
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
+  période: flexible
+
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
@@ -3794,10 +3958,12 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
       assiette: plafond sécurité sociale temps plein
       taux:
         variations:
+          - si: conjoint collaborateur
+            alors: 0.34%
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
           - sinon: 0.25%
-  note: Pour les commerçants et professions libérales, le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
