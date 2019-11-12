@@ -312,7 +312,7 @@ function AidesGlimpse() {
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
 	const aidesNode = aides?.explanation
 	const aidesDetail = aides?.explanation.formule.explanation.explanation
-	const aidesNotNul = aidesDetail?.filter(node => node.nodeValue !== 0)
+	const aidesNotNul = aidesDetail?.filter(node => node.nodeValue !== false)
 	const aideLink = aidesNotNul?.length === 1 ? aidesNotNul[0] : aidesNode
 
 	if (!aides?.nodeValue) return null
