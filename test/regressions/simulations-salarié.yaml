@@ -82,6 +82,12 @@ aides:
     contrat salarié . statut JEI: true
   - contrat salarié . rémunération . brut de base: 10000
     contrat salarié . régime des impatriés: true
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . aides employeur . emploi franc . éligible: true
+  - contrat salarié: CDD
+    contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . CDD . durée contrat: 6
+    contrat salarié . aides employeur . emploi franc . éligible: true
 
 temps partiel:
   - contrat salarié . rémunération . brut de base: 2000

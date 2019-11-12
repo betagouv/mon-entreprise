@@ -1634,6 +1634,7 @@ contrat salarié . aides employeur:
   formule:
     somme:
       - aide à l'embauche d'apprentis
+      - emploi franc
   note:
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -1660,6 +1661,42 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       - sinon: 1200 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+
+contrat salarié . aides employeur . emploi franc:
+  description: >-
+    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
+    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+    (QPV).
+
+    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
+    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+    [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  applicable si: éligible
+  formule:
+    multiplication:
+      assiette:
+        variations:
+          - si: CDI
+            alors: 5000 €/an
+          - si: CDD
+            alors: 2500 €/an
+      facteur: temps de travail . quotité de travail
+
+contrat salarié . aides employeur . emploi franc . éligible:
+  applicable si:
+    une de ces conditions:
+      - CDI
+      - toutes ces conditions:
+          - CDD
+          - CDD . durée contrat >= 6
+  question: Etes-vous éligible à l'aide emploi-franc pour cette embauche ?
+  description: |
+    Conditions : 
+    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
+    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
+  par défaut: non
 
 contrat salarié . temps de travail:
   unité: heures/mois
