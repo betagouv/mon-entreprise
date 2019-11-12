@@ -53,26 +53,47 @@ export let parseAll = flatRules => {
 	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B` in the definition of `A`.
 	We need to map these exonerations to be able to retreive them from `B` */
 	let nonApplicableMapping = {}
+	let replacedByMapping = {}
 	flatRules.forEach(rule => {
 		const parsed = parseRule(flatRules, rule, parsedRules)
 		if (parsed['rend non applicable']) {
 			nonApplicableMapping[rule.dottedName] = parsed['rend non applicable']
+		}
+
+		const replaceDescriptors = parsed['remplace']
+		if (replaceDescriptors) {
+			replaceDescriptors.forEach(
+				descriptor =>
+					(replacedByMapping[descriptor.referenceName] = [
+						...(replacedByMapping[descriptor.referenceName] ?? []),
+						{ ...descriptor, referenceName: rule.dottedName }
+					])
+			)
 		}
 	})
 
 	Object.entries(nonApplicableMapping).forEach(([a, b]) => {
 		b.forEach(ruleName => {
 			parsedRules[ruleName].isDisabledBy.push(
-				parseReference(flatRules, parsedRules[ruleName], parsedRules)({
-					fragments: [a]
-				})
+				parseReference(flatRules, parsedRules[ruleName], parsedRules)(a)
 			)
 		})
 	})
+	Object.entries(replacedByMapping).forEach(([a, b]) => {
+		parsedRules[a].replacedBy = b.map(({ referenceName, ...other }) => ({
+			referenceNode: parseReference(
+				flatRules,
+				parsedRules[referenceName],
+				parsedRules
+			)(referenceName),
+			...other
+		}))
+	})
+
 	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
 		A = B * C
 		B = D / E
-
+	
 		C unité km
 		D unité €
 		E unité km
@@ -80,7 +101,6 @@ export let parseAll = flatRules => {
 	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
 	 *
 	 * */
-
 	return parsedRules
 }
 

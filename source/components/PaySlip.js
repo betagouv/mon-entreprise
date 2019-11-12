@@ -48,13 +48,14 @@ export default compose(
 						justify-content: flex-end;
 						padding-right: 0.2em;
 					}
-				`}>
+				`}
+			>
 				<div className="payslip__salarySection">
 					<Line
 						rule={getRule('contrat salarié . temps de travail')}
 						maximumFractionDigits={1}
 					/>
-					{heuresSupplémentaires.nodeValue > 0 && (
+					{heuresSupplémentaires?.nodeValue > 0 && (
 						<Line rule={heuresSupplémentaires} maximumFractionDigits={1} />
 					)}
 				</div>
@@ -87,13 +88,15 @@ export default compose(
 										<Value
 											nilValueSymbol="—"
 											unit="€"
-											customCSS="background-color: var(--lightestColour)">
+											customCSS="background-color: var(--lightestColour)"
+										>
 											{cotisation.montant.partPatronale}
 										</Value>
 										<Value
 											nilValueSymbol="—"
 											unit="€"
-											customCSS="background-color: var(--lightestColour)">
+											customCSS="background-color: var(--lightestColour)"
+										>
 											{cotisation.montant.partSalariale}
 										</Value>
 									</Fragment>

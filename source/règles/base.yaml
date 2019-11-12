@@ -235,8 +235,8 @@ contrat salarié . CDD . compensation pour congés non pris:
     Congés payés et contrat CDD: https://www.easycdd.com/LEGISLATION-CDD/L-embauche-le-suivi-du-contrat-CDD-les-incidents-frequents/Conges-payes-et-contrat-CDD
     assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
-contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
-  unité: '%'
+? contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris
+: unité: '%'
   formule: congés non pris / congés dus en jours ouvrés
 
 contrat salarié . CDD . congés dus en jours ouvrés:
@@ -245,8 +245,8 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   formule: 25 jours / 12 mois
 
-contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire:
-  formule: salaire journalier * congés non pris
+? contrat salarié . CDD . compensation pour congés non pris . prime maintient de salaire
+: formule: salaire journalier * congés non pris
 
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   période: mois
@@ -327,11 +327,14 @@ contrat salarié . ATMP:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      taux:
-        variations:
-          - si: taux réduit
-            alors: 1%
-          - sinon: ATMP . taux collectif ATMP
+      taux: taux
+
+contrat salarié . ATMP . taux:
+  formule:
+    variations:
+      - si: taux réduit
+        alors: 1%
+      - sinon: ATMP . taux collectif ATMP
 
 contrat salarié . ATMP . taux réduit:
   titre: taux réduit pour activité sans risque
@@ -613,29 +616,6 @@ contrat salarié . CDD . surcoût:
         compensation pour congés non pris: 39.6
       valeur attendue: 200
 
-contrat salarié . assimilé salarié:
-  description: |
-    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
-  question: Le salarié est-il considéré comme "assimilé salarié" ?
-  par défaut: non
-  rend non applicable:
-    - contrat salarié
-    - chômage
-    - réduction générale
-    - allocations familiales . taux réduit
-    - contrat salarié . maladie . taux employeur . taux réduit
-    - lodeom
-    - AGS
-    - APEC
-    - contribution au dialogue social
-    - temps de travail . temps partiel
-    - temps de travail . heures supplémentaires
-    - statut JEI
-    - entreprise . association non lucrative
-    - régime des impatriés
-  références:
-    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
-
 contrat salarié . apprentissage:
   description: |
     Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
@@ -761,7 +741,10 @@ contrat salarié . cotisations . assiette:
   formule:
     allègement:
       assiette: rémunération . brut
-      abattement: indemnité kilométrique vélo + stage . gratification minimale
+      abattement:
+        somme:
+          - indemnité kilométrique vélo
+          - stage . gratification minimale
 
 contrat salarié . cotisations . assiette . salariale:
   titre: Assiette des cotisations sociales
@@ -797,7 +780,7 @@ contrat salarié . rémunération . brut de base:
     - si:
         toutes ces conditions:
           - rémunération . assiette de vérification du SMIC [mensuel] < SMIC contractuel [mensuel]
-          - assimilé salarié != oui
+          - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
       niveau: avertissement
@@ -853,10 +836,7 @@ contrat salarié . rémunération . heures supplémentaires . taux horaire:
   période: aucune
   formule:
     multiplication:
-      assiette:
-        somme:
-          - brut de base [mensuel]
-          - avantages en nature . montant [mensuel]
+      assiette: assiette de vérification du SMIC
       facteur: 1 / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
@@ -870,8 +850,43 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
   période: flexible
   formule:
     somme:
-      - rémunération . brut de base
+      - brut de base
       - avantages en nature . montant
+      - primes . activité
+
+contrat salarié . rémunération . primes:
+  unité: €
+  période: flexible
+  formule:
+    somme:
+      - base
+      - activité
+contrat salarié . rémunération . primes . base:
+  formule: 0
+contrat salarié . rémunération . primes . activité:
+  période: flexible
+  unité: €
+  titre: primes d'activité
+  description: >
+    Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
+
+    Ces primes sont prises en compte pour le calcul du salaire minimum
+  formule:
+    somme:
+      - activité . conventionnelles
+      - activité . base
+
+contrat salarié . rémunération . primes . activité . base:
+  titre: primes d'activité
+  période: flexible
+  unité: €
+  question: Quel est le montant des primes liées à l'activité du salarié ?
+  par défaut: 0
+
+contrat salarié . rémunération . primes . activité . conventionnelles:
+  période: flexible
+  unité: €
+  formule: 0
 
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
@@ -882,6 +897,7 @@ contrat salarié . rémunération . brut:
     somme:
       - rémunération . brut de base
       - avantages en nature . montant
+      - primes
       - indemnités salarié
       - heures supplémentaires
 
@@ -1017,19 +1033,15 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
-contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
-  période: aucune
+? contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
+: période: aucune
   unité: €/repas
-  formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors: 3.62
-      - sinon: 4.85
+  formule: 4.85
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
-contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
-  période: mois
+? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
+: période: mois
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
@@ -1037,22 +1049,6 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
   suggestions:
     1 par jour: 21
     2 par jour: 42
-
-entreprise . hôtel café restaurant:
-  par défaut: non
-  question: Est-ce que l'entreprise est un hôtel, café, restaurant ou assimilé ?
-
-# contrat salarié . rémunération . avantages en nature . montant
-#   titre: Avantages en nature (montant)
-#   description: >
-#     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-
-#     Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de : [10% x (850€ + (30€ x 12 mois)) ] / 12 mois, soit 10,08€
-
-#   période: flexible
-
-#   unité: €
-#   par défaut: 0
 
 contrat salarié . indemnités salarié:
   période: flexible
@@ -1062,13 +1058,6 @@ contrat salarié . indemnités salarié:
       - indemnité kilométrique vélo
 
 contrat salarié . statut cadre:
-  formule:
-    variations:
-      - si: assimilé salarié
-        alors: oui
-      - sinon: choix statut cadre
-
-contrat salarié . statut cadre . choix statut cadre:
   question: Le salarié a-t-il le statut cadre ?
   description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caisse de retraite de base spécifique
   par défaut: non
@@ -1080,7 +1069,19 @@ plafond sécurité sociale temps plein:
   formule: 3377 €
   références:
     2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/plafond-de-la-securite-social-1.html
-    arrêté: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036171732
+    arrêté: https://www.legifrance.gouv.fr/eli/arrete/2018/12/11/SSAS1833942A/jo/texte
+
+plafond horaire sécurité sociale:
+  période: aucune
+  acronyme: PHSS
+  formule: plafond sécurité sociale temps plein / 135
+  unité: €
+
+plafond journalier sécurité sociale:
+  période: aucune
+  acronyme: PJSS
+  formule: plafond sécurité sociale temps plein / 18.2
+  unité: €
 
 contrat salarié . plafond sécurité sociale:
   période: flexible
@@ -1100,7 +1101,7 @@ contrat salarié . SMIC temps plein . net imposable:
   période: mois
   unité: €
   description: Montant du SMIC net imposable
-  formule: 1247,55
+  formule: 1247.55
   note: Ce montant est codé en dur, il faudrait le calculer à partir du montant du SMIC brut
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
@@ -1138,10 +1139,12 @@ contrat salarié . cotisations . salariales:
       - retraite complémentaire [salarié]
       - contribution d'équilibre général [salarié]
       - contribution d'équilibre technique [salarié]
+      - chômage [salarié]
       - CSG
       - CRDS
       - APEC [salarié]
       - complémentaire santé [salarié]
+      - conventionnelles
       - (- réduction heures supplémentaires)
 
 contrat salarié . cotisations . patronales:
@@ -1153,9 +1156,9 @@ contrat salarié . cotisations . patronales:
       - maladie [employeur]
       - ATMP
       - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
       - vieillesse [employeur]
       - retraite complémentaire [employeur]
+      - complémentaire santé [employeur]
       - contribution d'équilibre général [employeur]
       - contribution d'équilibre technique [employeur]
       - allocations familiales
@@ -1171,6 +1174,7 @@ contrat salarié . cotisations . patronales:
       - taxe sur les salaires
       - CDD . CPF
       - forfait social
+      - conventionnelles
       - (- réductions de cotisations)
 
 contrat salarié . rémunération:
@@ -1213,8 +1217,8 @@ contrat salarié . rémunération . net imposable . base:
       - CSG [non déductible]
       - CRDS
 
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
-  période: flexible
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées
+: période: flexible
   unité: €
   formule:
     le minimum de:
@@ -1223,8 +1227,8 @@ contrat salarié . rémunération . net imposable . heures supplémentaires déf
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
-  période: année
+? contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut
+: période: année
   formule: 5358 €
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -1277,8 +1281,8 @@ contrat salarié . rémunération . net après impôt:
 
   formule: net - impôt
 
-impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
-  icônes: 🇬🇵🇷🇪 🇲🇶
+? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
+: icônes: 🇬🇵🇷🇪 🇲🇶
   formule:
     barème linéaire:
       assiette: revenu imposable [mensuel]
@@ -1606,8 +1610,8 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
       - réduction ACRE
       - déduction heures supplémentaires
 
-contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
-  période: flexible
+? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
+: période: flexible
   applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
   formule:
@@ -1621,7 +1625,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - assimilé salarié
+      - dirigeant = 'assimilé salarié'
       - entreprise . ACRE
   période: flexible
   formule:
@@ -1658,8 +1662,8 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   références:
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
-contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
-  période: aucune
+? contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites
+: période: aucune
   unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
@@ -1683,6 +1687,18 @@ contrat salarié . cotisations:
     somme:
       - patronales
       - salariales
+
+contrat salarié . cotisations . salariales . conventionnelles:
+  titre: cotisations salariales conventionnelles
+  période: flexible
+  description: Cotisations spécifiques à la convention collective
+  formule: 0
+
+contrat salarié . cotisations . patronales . conventionnelles:
+  titre: cotisations patronales conventionnelles
+  période: flexible
+  description: Cotisations spécifiques à la convention collective
+  formule: 0
 
 contrat salarié . aides employeur:
   titre: aides à l'embauche
@@ -1944,29 +1960,14 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
   période: mois
   unité: heure
   formule:
-    variations:
-      - si: entreprise . hôtel café restaurant
-        alors:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 4
-                taux: 10%
-              - de: 4
-                à: 8
-                taux: 20%
-              - au-dessus de: 8
-                taux: 50%
-      - sinon:
-          barème:
-            assiette: heures supplémentaires
-            multiplicateur: période . semaines par mois
-            tranches:
-              - en-dessous de: 8
-                taux: 25%
-              - au-dessus de: 8
-                taux: 50%
+    barème:
+      assiette: heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - en-dessous de: 8
+          taux: 25%
+        - au-dessus de: 8
+          taux: 50%
 
 contrat salarié . statut JEI:
   titre: Statut JEI
@@ -2106,8 +2107,6 @@ contrat salarié . contribution d'équilibre général:
             - de: 1
               à: 8
               taux: 1.62%
-            - au-dessus de: 8
-              taux: 0%
 
         - attributs:
             dû par: salarié
@@ -2118,8 +2117,6 @@ contrat salarié . contribution d'équilibre général:
             - de: 1
               à: 8
               taux: 1.08%
-            - au-dessus de: 8
-              taux: 0%
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -2151,7 +2148,7 @@ contrat salarié . retraite complémentaire:
     type de retraite: complémentaire
     destinataire: AGIRC-ARRCO
   description: |
-    Cotisation de retraite complémentaire. Remplace les cotisations AGIRC et ARRCO qui étaient avant 2019 séparées.
+    Cotisations de retraite complémentaire.
   période: flexible
   formule:
     barème:
@@ -2162,28 +2159,32 @@ contrat salarié . retraite complémentaire:
             dû par: employeur
           tranches:
             - en-dessous de: 1
-              taux: 4.72%
+              taux: taux employeur tranche 1
             - de: 1
               à: 8
-              taux: 12.95%
-            - au-dessus de: 8
-              taux: 0%
-
+              taux: taux employeur tranche 2
         - attributs:
             dû par: salarié
           assiette: cotisations . assiette . salariale
           tranches:
             - en-dessous de: 1
-              taux: 3.15%
+              taux: taux salarié tranche 1
             - de: 1
               à: 8
-              taux: 8.64%
-            - au-dessus de: 8
-              taux: 0%
+              taux: taux salarié tranche 2
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
     régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+
+contrat salarié . retraite complémentaire . taux employeur tranche 1:
+  formule: 4.72%
+contrat salarié . retraite complémentaire . taux employeur tranche 2:
+  formule: 12.95%
+contrat salarié . retraite complémentaire . taux salarié tranche 1:
+  formule: 3.15%
+contrat salarié . retraite complémentaire . taux salarié tranche 2:
+  formule: 8.64%
 
 contrat salarié . AGS:
   description: Cotisation au Régime de Garantie des Salaires
@@ -2208,11 +2209,17 @@ contrat salarié . allocations familiales:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      taux:
-        variations:
-          - si: taux réduit
-            alors: 3.45%
-          - sinon: 5.25%
+      taux: taux
+  références:
+    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+
+contrat salarié . allocations familiales . taux:
+  période: aucune
+  formule:
+    variations:
+      - si: taux réduit
+        alors: 3.45%
+      - sinon: 5.25%
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
 
@@ -2266,18 +2273,13 @@ contrat salarié . chômage:
     multiplication:
       assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
-
       composantes:
         - attributs:
-            nom: base
-          taux: 4%
-
+            dû par: salarié
+          taux: taux salarié
         - attributs:
-            nom: contribution exceptionnelle temporaire
-          description: |
-            Instaurée le 1er octobre 2017, applicable jusqu’au 30 septembre 2020 au plus tard.
-          taux: 0.05%
-
+            dû par: employeur
+          taux: taux employeur
   exemples:
     - nom: SMIC
       situation:
@@ -2287,6 +2289,12 @@ contrat salarié . chômage:
       situation:
         cotisations . assiette: 20000
       valeur attendue: 547.07
+
+contrat salarié . chômage . taux salarié:
+  formule: 0%
+
+contrat salarié . chômage . taux employeur:
+  formule: 4.05%
 
 contrat salarié . complémentaire santé:
   description: |
@@ -2424,8 +2432,7 @@ contrat salarié . assiette CSG et CRDS:
   formule:
     somme:
       - assiette abattue
-      - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
+      - avantages sociaux
 
 contrat salarié . assiette CSG et CRDS . assiette abattue:
   période: flexible
@@ -2519,20 +2526,26 @@ contrat salarié . FNAL:
   formule:
     multiplication:
       assiette: cotisations . assiette
+      taux: taux
       variations:
         - si: entreprise . effectif < 20
           alors:
-            taux: 0.1%
             plafond: plafond sécurité sociale
-        - sinon:
-            taux: 0.5%
-
+        - sinon: rien
   exemples:
     - nom: SMIC
       situation:
         cotisations . assiette: 1500
         entreprise . effectif: 10
       valeur attendue: 1.5
+
+contrat salarié . FNAL . taux:
+  formule:
+    variations:
+      - si: entreprise . effectif < 20
+        alors: 0.1%
+      - sinon: 0.5%
+
 contrat salarié . formation professionnelle:
   cotisation:
     dû par: employeur
@@ -2557,6 +2570,7 @@ contrat salarié . formation professionnelle:
     toutes ces conditions:
       - entreprise . effectif < 11
       - apprentissage
+
   formule:
     multiplication:
       assiette: cotisations . assiette
@@ -2666,6 +2680,7 @@ contrat salarié . participation effort de construction:
 # TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
 # indiquer le taux appliqué par l'entreprise
 #
+
 contrat salarié . prévoyance obligatoire cadre:
   titre: Prévoyance obligatoire pour les cadres
   cotisation:
@@ -2780,8 +2795,7 @@ contrat salarié . taxe sur les salaires . assiette de base:
   formule:
     somme:
       - cotisations . assiette
-      - prévoyance obligatoire cadre
-      - complémentaire santé [employeur]
+      - avantages sociaux
   références:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
@@ -2932,18 +2946,19 @@ contrat salarié . vieillesse:
           assiette: cotisations . assiette . salariale
           composantes:
             - nom: non plafonnée
-              taux: 0.4%
+              taux: taux salarié non plafonné
+
             - nom: plafonnée
               plafond: plafond sécurité sociale
-              taux: 6.90%
+              taux: taux salarié plafonné
         - attributs:
             dû par: employeur
           composantes:
             - nom: non plafonnée
-              taux: 1.9%
+              taux: taux employeur non plafonné
             - nom: plafonnée
               plafond: plafond sécurité sociale
-              taux: 8.55%
+              taux: taux employeur plafonné
 
   exemples:
     - nom: SMIC
@@ -2954,14 +2969,23 @@ contrat salarié . vieillesse:
       situation:
         cotisations . assiette: 8000
       valeur attendue: 705.75
-
   références:
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
+
+contrat salarié . vieillesse . taux salarié plafonné:
+  formule: 6.90%
+contrat salarié . vieillesse . taux salarié non plafonné:
+  formule: 0.4%
+contrat salarié . vieillesse . taux employeur plafonné:
+  formule: 8.55%
+contrat salarié . vieillesse . taux employeur non plafonné:
+  formule: 1.9%
 
 contrat salarié . forfait social:
   titre: Forfait social
   description: |
     Le forfait social est une contribution versée par l'employeur. Elle est prélevée sur les rémunérations ou gains non soumis aux cotisations et contributions sociales, mais assujettis à la CSG.
+  applicable si: entreprise . effectif > 10
   cotisation:
     branche: retraite
     collecteur: URSSAF
@@ -2974,20 +2998,9 @@ contrat salarié . forfait social:
   période: flexible
   formule:
     multiplication:
-      assiette: forfait social . assiette taux huit
+      assiette: avantages sociaux
       taux: 8%
     # Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
-
-contrat salarié . forfait social . assiette taux huit:
-  titre: Assiette du forfait social au taux de 8%
-  références:
-    Fiche urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
-  applicable si: entreprise . effectif > 10
-  période: flexible
-  formule:
-    somme:
-      - complémentaire santé [employeur]
-      - prévoyance obligatoire cadre
 
 # Ci-dessous une implémentation basique de l'impôt sur le revenu annuel dans le but d'illustrer un post de blog
 
@@ -3007,8 +3020,9 @@ impôt:
               multiplication:
                 assiette: revenu imposable
                 taux: taux du prélèvement à la source
+          - sinon: 0
       - CEHR
-      - auto-entrepreneur . impôt . versement libératoire . montant
+      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
 
 impôt . taux du prélèvement à la source:
   formule:
@@ -3029,7 +3043,7 @@ impôt . méthode de calcul:
   question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
-  non applicable si: auto-entrepreneur . impôt . versement libératoire
+  non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
   période: aucune
   par défaut: barème standard
   formule:
@@ -3073,8 +3087,8 @@ impôt . revenu imposable:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - indépendant . revenu professionnel
-          - auto-entrepreneur . impôt . revenu imposable
+          - dirigeant . indépendant . revenu professionnel
+          - dirigeant . auto-entrepreneur . impôt . revenu imposable
       abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
@@ -3099,7 +3113,7 @@ impôt . revenu abattu:
   formule:
     somme:
       - revenu abattu par défaut
-      - auto-entrepreneur . impôt . revenu imposable
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
 
 impôt . revenu abattu par défaut:
   période: flexible
@@ -3109,7 +3123,7 @@ impôt . revenu abattu par défaut:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - indépendant . revenu professionnel
+          - dirigeant . indépendant . revenu professionnel
       abattement: 10%
       plafond: 12502
   note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
@@ -3169,7 +3183,7 @@ impôt . revenu fiscal de référence:
   formule:
     somme:
       - revenu abattu par défaut
-      - auto-entrepreneur . impôt . revenu abattu
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . prime d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
@@ -3202,8 +3216,8 @@ revenu net de cotisations:
   formule:
     somme:
       - contrat salarié . rémunération . net
-      - indépendant . revenu net de cotisations
-      - auto-entrepreneur . revenu net de cotisations
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . revenu net de cotisations
 
 revenu net après impôt:
   unité: €
@@ -3304,17 +3318,17 @@ entreprise . rémunération totale du dirigeant:
   période: flexible
   formule:
     variations:
-      - si: indépendant
-        alors: revenu net de cotisations + indépendant . cotisations et contributions
-      - si: auto-entrepreneur
+      - si: dirigeant . indépendant
+        alors: revenu net de cotisations + dirigeant . indépendant . cotisations et contributions
+      - si: dirigeant . auto-entrepreneur
         alors:
           inversion numérique:
             avec:
-              - auto-entrepreneur . revenu net de cotisations
+              - dirigeant . auto-entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
-      - si: contrat salarié . assimilé salarié
+      - si: dirigeant = 'assimilé salarié'
         alors: contrat salarié . rémunération . total
 
 entreprise . charges:
@@ -3343,7 +3357,7 @@ entreprise . charges:
   par défaut: 0
   unité: €
 
-indépendant . cotisations et contributions . réduction ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE:
   applicable si: entreprise . ACRE
   période: flexible
   formule:
@@ -3351,7 +3365,7 @@ indépendant . cotisations et contributions . réduction ACRE:
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux ACRE
 
-indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
   période: flexible
   formule:
     barème continu:
@@ -3363,7 +3377,7 @@ indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
         1: 0%
       retourne seulement le taux: oui
 
-indépendant . revenu net de cotisations:
+dirigeant . indépendant . revenu net de cotisations:
   formule: revenu professionnel - cotisations et contributions . CSG et CRDS [non déductible]
   période: flexible
   résumé: Avant impôt
@@ -3371,7 +3385,7 @@ indépendant . revenu net de cotisations:
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   unité: €
 
-indépendant . revenu professionnel:
+dirigeant . indépendant . revenu professionnel:
   titre: revenu professionnel (net imposable)
   description: |
     C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
@@ -3386,7 +3400,7 @@ indépendant . revenu professionnel:
   formule:
     inversion numérique:
       avec:
-        - indépendant . revenu net de cotisations
+        - dirigeant . indépendant . revenu net de cotisations
         - entreprise . rémunération totale du dirigeant
         - revenu net après impôt
         - entreprise . chiffre d'affaires
@@ -3450,24 +3464,26 @@ entreprise . catégorie d'activité . service ou vente:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - prestation de service
-        - vente de biens
-  par défaut: prestation de service
+        - service
+        - vente
+  par défaut: service
 
-entreprise . catégorie d'activité . service ou vente . vente de biens:
+entreprise . catégorie d'activité . service ou vente . vente:
+  titre: vente de biens
   description: |
     Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-entreprise . catégorie d'activité . service ou vente . prestation de service:
+entreprise . catégorie d'activité . service ou vente . service:
+  titre: prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
   références:
     page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 entreprise . catégorie d'activité . restauration ou hébergement:
-  applicable si: service ou vente = 'prestation de service'
+  applicable si: service ou vente = 'service'
   description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
   question: Est-ce une activité de restauration ou d'hébergement ?
   par défaut: non
@@ -3497,8 +3513,8 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
-  formule:
+? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
+: formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
@@ -3573,13 +3589,12 @@ entreprise . auto entreprise impossible:
       - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
-indépendant:
-  par défaut: non
-  question: Activité à la sécurité sociale des indépendants ?
-  rend non applicable:
-    - contrat salarié
 
-indépendant . cotisations et contributions . cotisations:
+dirigeant . indépendant:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'indépendant'
+
+dirigeant . indépendant . cotisations et contributions . cotisations:
   période: flexible
   références:
     assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
@@ -3592,7 +3607,7 @@ indépendant . cotisations et contributions . cotisations:
       - invalidité et décès
       - allocations familiales
 
-indépendant . cotisations et contributions:
+dirigeant . indépendant . cotisations et contributions:
   formule:
     somme:
       - cotisations
@@ -3610,23 +3625,23 @@ entreprise . rattachement libéral règlementé:
   formule:
     une de ces conditions:
       - toutes ces conditions:
-          - contrat salarié != oui
+          - contrat salarié = non
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - indépendant
+          - dirigeant = 'indépendant'
           - entreprise . date de création = 'avant 2019'
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
-          - auto-entrepreneur
+          - dirigeant = 'auto-entrepreneur'
           - entreprise . date de création = 'avant 2018'
           - entreprise . catégorie d'activité = 'libérale'
 
   rend non applicable:
     - protection sociale . retraite
-    - indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+    - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
   période: aucune
 
-indépendant . cotisations et contributions . cotisations . maladie:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   période: flexible
   formule:
     variations:
@@ -3635,8 +3650,8 @@ indépendant . cotisations et contributions . cotisations . maladie:
 
       - sinon: artisans commerçants libéraux
 
-indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée
+: période: flexible
   titre: maladie libérale règlementée
   formule:
     barème continu:
@@ -3646,7 +3661,7 @@ indépendant . cotisations et contributions . cotisations . maladie . libérale 
         0: 1.5%
         1.1: 6.5%
 
-indépendant . cotisations et contributions . cotisations . maladie . assiette:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
 
   période: flexible
@@ -3661,8 +3676,8 @@ indépendant . cotisations et contributions . cotisations . maladie . assiette:
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
-  titre: Maladie 2
+? dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+: titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   période: flexible
   formule:
@@ -3671,8 +3686,8 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux
+: période: flexible
   formule:
     barème:
       assiette: assiette
@@ -3691,16 +3706,16 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable
+: période: flexible
   formule:
     variations:
       - si: situation personnelle . RSA
         alors: taux RSA
       - sinon: taux
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA
+: période: flexible
   formule:
     multiplication:
       assiette: taux RSA part variable + 1.35%
@@ -3708,22 +3723,22 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable
+: période: flexible
   formule:
     multiplication:
       assiette: 5%
       taux: revenu professionnel / seuil supérieur de réduction
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction
+: période: flexible
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux
+: période: flexible
   formule:
     barème continu:
       retourne seulement le taux: oui
@@ -3741,7 +3756,7 @@ indépendant . cotisations et contributions . cotisations . maladie . artisans c
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-indépendant . cotisations et contributions . cotisations . retraite de base:
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   période: année
   formule:
     variations:
@@ -3767,8 +3782,8 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
               - au-dessus de: 1
                 taux: 0.6%
 
-indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette
+: période: flexible
   titre: assiette retraite de base
   formule:
     variations:
@@ -3781,8 +3796,8 @@ indépendant . cotisations et contributions . cotisations . retraite de base . a
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  période: année
+? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
+: période: année
   unité: €
   note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
   formule:
@@ -3826,7 +3841,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
               - au-dessus de: 162096
                 taux: 0%
 
-indépendant . cotisations et contributions . cotisations . invalidité et décès:
+dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   période: flexible
   formule:
     multiplication:
@@ -3836,8 +3851,8 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
-indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette
+: période: flexible
   titre: assiette invalidité et décès
   formule:
     variations:
@@ -3850,7 +3865,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-indépendant . cotisations et contributions . CSG et CRDS:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   période: flexible
   formule:
     multiplication:
@@ -3866,14 +3881,14 @@ indépendant . cotisations et contributions . CSG et CRDS:
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
 
-indépendant . cotisations et contributions . CSG et CRDS . assiette:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   période: flexible
   formule:
     somme:
       - revenu professionnel
       - cotisations
 
-indépendant . cotisations et contributions . formation professionnelle:
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   période: flexible
   formule:
     multiplication:
@@ -3889,8 +3904,8 @@ indépendant . cotisations et contributions . formation professionnelle:
     fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
     brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
 
-indépendant . cotisations et contributions . cotisations . allocations familiales:
-  période: flexible
+? dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales
+: période: flexible
   formule:
     barème continu:
       assiette: revenu professionnel
@@ -3900,16 +3915,55 @@ indépendant . cotisations et contributions . cotisations . allocations familial
         1.1: 0%
         1.4: 3.1%
 
-auto-entrepreneur:
-  icônes: 🚶
+dirigeant:
+  question: Quel est le régime social du dirigeant ?
   par défaut: non
-  question: L'activité est-elle exercée en auto-entreprise ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - auto-entrepreneur
+        - assimilé salarié
+        - indépendant
+
+dirigeant . assimilé salarié:
+  description: |
+    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
+  formule: dirigeant = 'assimilé salarié'
+  remplace:
+    - règle: contrat salarié
+      par: "'CDI'"
+    - règle: contrat salarié . statut cadre
+      par: oui
+  rend non applicable:
+    - contrat salarié . convention collective
+    - contrat salarié . rémunération . primes
+    - contrat salarié . chômage
+    - contrat salarié . réduction générale
+    - contrat salarié . allocations familiales . taux réduit
+    - contrat salarié . maladie . taux employeur . taux réduit
+    - contrat salarié . lodeom
+    - contrat salarié . AGS
+    - contrat salarié . APEC
+    - contrat salarié . contribution au dialogue social
+    - contrat salarié . temps de travail . temps partiel
+    - contrat salarié . temps de travail . heures supplémentaires
+    - contrat salarié . statut JEI
+    - entreprise . association non lucrative
+    - contrat salarié . régime des impatriés
+  références:
+    Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
+
+
+
+dirigeant . auto-entrepreneur:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'auto-entrepreneur'
+  icônes: 🚶
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
-  rend non applicable:
-    - contrat salarié
 
-auto-entrepreneur . base des cotisations:
+dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
   période: flexible
   contrôles:
@@ -3917,7 +3971,7 @@ auto-entrepreneur . base des cotisations:
       message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/auto-entrepreneur/plafond)
       niveau: avertissement
 
-auto-entrepreneur . plafond:
+dirigeant . auto-entrepreneur . plafond:
   description: |
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas un certain seuil, qui dépend de sa catégorie d'activité.
 
@@ -3934,12 +3988,12 @@ auto-entrepreneur . plafond:
           toutes ces conditions:
             - entreprise . catégorie d'activité != 'libérale'
             - une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000
       - sinon: 70000
 
-auto-entrepreneur . revenu net de cotisations:
+dirigeant . auto-entrepreneur . revenu net de cotisations:
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -3947,7 +4001,7 @@ auto-entrepreneur . revenu net de cotisations:
   période: flexible
   unité: €
 
-auto-entrepreneur . cotisations et contributions:
+dirigeant . auto-entrepreneur . cotisations et contributions:
   unité: €
   formule:
     somme:
@@ -3959,7 +4013,7 @@ auto-entrepreneur . cotisations et contributions:
     Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
   période: flexible
 
-auto-entrepreneur . cotisations et contributions . TFC:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
   unité: €
   période: flexible
@@ -3975,7 +4029,7 @@ auto-entrepreneur . cotisations et contributions . TFC:
       - commerce
       - métiers
 
-auto-entrepreneur . cotisations et contributions . TFC . commerce:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
   période: flexible
   unité: €
@@ -3987,12 +4041,12 @@ auto-entrepreneur . cotisations et contributions . TFC . commerce:
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 0.015%
           - sinon: 0.044%
 
-auto-entrepreneur . cotisations et contributions . TFC . métiers:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   période: flexible
   unité: €
   titre: taxe pour frais de chambre des métiers
@@ -4002,12 +4056,12 @@ auto-entrepreneur . cotisations et contributions . TFC . métiers:
       assiette: base des cotisations
       taux:
         variations:
-          - si: entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+          - si: entreprise . catégorie d'activité . service ou vente = 'vente'
             alors: 0.22%
           - sinon: 0.48%
 
-auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
-  titre: Contribution à la formation professionnelle
+? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
+: titre: Contribution à la formation professionnelle
   unité: €
   période: flexible
   références:
@@ -4028,7 +4082,7 @@ auto-entrepreneur . cotisations et contributions . contribution formation profes
             alors: 0.1%
           - sinon: 0
 
-auto-entrepreneur . cotisations et contributions . cotisations:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
@@ -4049,8 +4103,8 @@ auto-entrepreneur . cotisations et contributions . cotisations:
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
-auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
-  description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
+? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+: description: Le montant total qui est alloué à la retraite complémentaire, utile pour estimer le montant total de la pension de retraite des auto-entrepreneurs
   unité: €
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
@@ -4062,7 +4116,7 @@ auto-entrepreneur . cotisations et contributions . cotisations . retraite compl�
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 2.04%
           - si:
@@ -4071,14 +4125,14 @@ auto-entrepreneur . cotisations et contributions . cotisations . retraite compl�
                 - entreprise . catégorie d'activité = 'artisanale'
             alors: 3.50%
 
-auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
-  description: |
+? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
+: description: |
     Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   formule:
     variations:
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
@@ -4098,7 +4152,6 @@ entreprise . ACRE:
   par défaut: non
 
 entreprise . ACRE . année:
-  applicable si: auto-entrepreneur
   question: Quel est l'âge de l'entreprise ?
   formule:
     une possibilité:
@@ -4115,11 +4168,11 @@ entreprise . ACRE . année . moins de deux ans:
 
 entreprise . ACRE . année . moins de trois ans:
 
-auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   période: flexible
   formule: 100% - réduction ACRE
 
-auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
   période: flexible
@@ -4135,13 +4188,13 @@ auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
-auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
   période: flexible
 
-auto-entrepreneur . impôt:
+dirigeant . auto-entrepreneur . impôt:
 
-auto-entrepreneur . impôt . abattement:
+dirigeant . auto-entrepreneur . impôt . abattement:
   période: année
   unité: €
   formule:
@@ -4153,11 +4206,11 @@ auto-entrepreneur . impôt . abattement:
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
-auto-entrepreneur . impôt . abattement . taux inversé:
+dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
   formule: 1 - taux
 
-auto-entrepreneur . impôt . abattement . taux:
+dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre: taux d'abattement de l'impôt
   formule:
     variations:
@@ -4165,12 +4218,12 @@ auto-entrepreneur . impôt . abattement . taux:
         alors: 34%
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
       - sinon: 50%
 
-auto-entrepreneur . impôt . versement libératoire:
+dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
     Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
@@ -4185,7 +4238,7 @@ auto-entrepreneur . impôt . versement libératoire:
       niveau: info
   période: aucune
 
-auto-entrepreneur . impôt . versement libératoire . montant:
+dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre: versement libératoire auto-entrepreneur
   description: |
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité :
@@ -4203,7 +4256,7 @@ auto-entrepreneur . impôt . versement libératoire . montant:
         variations:
           - si:
               une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
             alors: 1%
           - si: entreprise . catégorie d'activité . service ou vente = 'service'
@@ -4211,12 +4264,12 @@ auto-entrepreneur . impôt . versement libératoire . montant:
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
 
-auto-entrepreneur . impôt . revenu imposable:
+dirigeant . auto-entrepreneur . impôt . revenu imposable:
   non applicable si: versement libératoire
   période: flexible
   formule: revenu abattu
 
-auto-entrepreneur . impôt . revenu abattu:
+dirigeant . auto-entrepreneur . impôt . revenu abattu:
   titre: revenu abattu auto-entrepreneur
   période: flexible
   formule:
@@ -4315,10 +4368,10 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
   applicable si: contrat salarié
   formule: barème trimestres générique
 
-protection sociale . retraite . trimestres validés par an . trimestres indépendant:
-  période: aucune
+? protection sociale . retraite . trimestres validés par an . trimestres indépendant
+: période: aucune
   unité: trimestres
-  applicable si: indépendant
+  applicable si: dirigeant = 'indépendant'
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -4328,8 +4381,8 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
             - 3
             - barème trimestres générique
 
-protection sociale . retraite . trimestres validés par an . barème trimestres générique:
-  période: aucune
+? protection sociale . retraite . trimestres validés par an . barème trimestres générique
+: période: aucune
   formule:
     barème linéaire:
       unité: trimestres
@@ -4352,8 +4405,8 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
-protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
-  applicable si: auto-entrepreneur
+? protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur
+: applicable si: dirigeant = 'auto-entrepreneur'
   période: aucune
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   formule:
@@ -4379,7 +4432,7 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
                 montant: 4
       - si:
           une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente de biens'
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors:
           barème linéaire:
@@ -4427,8 +4480,8 @@ protection sociale . revenu moyen:
   période: année
   formule:
     le maximum de:
-      - indépendant . revenu professionnel
-      - auto-entrepreneur . impôt . revenu imposable
+      - dirigeant . indépendant . revenu professionnel
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
 
 protection sociale . retraite . mois cotisés:
@@ -4473,29 +4526,29 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
   références:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
-protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
-  formule: 1.187 €/point
+? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
+: formule: 1.187 €/point
   période: année
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
-  formule: points acquis par mois * mois cotisés
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis
+: formule: points acquis par mois * mois cotisés
   période: aucune
 
-protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
-  période: mois
+? protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois
+: période: mois
   unité: points/mois
   formule:
     multiplication:
       assiette:
         somme:
-          - indépendant . cotisations et contributions . cotisations . retraite complémentaire
-          - auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
-protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
-  formule: 17.456 €/point
+? protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point
+: formule: 17.456 €/point
   période: mois
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
@@ -4537,7 +4590,7 @@ protection sociale . santé . indemnités journalières:
       - indemnités journalières . salarié
 
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
-  applicable si: auto-entrepreneur
+  applicable si: dirigeant = 'auto-entrepreneur'
   période: aucune
   unité: €
   formule:
@@ -4554,7 +4607,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
 protection sociale . santé . indemnités journalières . indépendant:
-  applicable si: indépendant
+  applicable si: dirigeant = 'indépendant'
   période: aucune
   unité: €
   formule:
@@ -4943,3 +4996,674 @@ contrat salarié . lodeom . paramètre T:
             - entreprise . effectif >= 20
         alors: 0.3254
   note: La valeur du paramètre `T` dépend du taux FNAL. Une meilleur implémentation consiste à calculer ce paramètre comme une somme de taux.
+entreprise . convention collective:
+contrat salarié . convention collective:
+  par défaut: droit commun
+  question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - droit commun
+        - HCR
+        - sport
+        - SVP
+
+contrat salarié . convention collective . droit commun:
+  formule: convention collective = 'droit commun'
+
+contrat salarié . convention collective . HCR:
+  formule: convention collective = 'HCR'
+  titre: hôtels, cafés restaurants HCR (beta)
+  description: L'entreprise est un hôtel, café, restaurant ou assimilé.
+
+contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
+  période: aucune
+  remplace:
+    règle: rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas
+  formule: 3.62 €/repas
+
+? contrat salarié . convention collective . HCR . majoration heures supplémentaires
+: remplace: temps de travail . heures supplémentaires . majoration
+  période: flexible
+  formule:
+    barème:
+      assiette: temps de travail . heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - en-dessous de: 4
+          taux: 10%
+        - de: 4
+          à: 8
+          taux: 20%
+        - au-dessus de: 8
+          taux: 50%
+
+contrat salarié . convention collective . SVP:
+  titre: Spectacle vivant privé (beta)
+  formule: convention collective = 'SVP'
+  description: |
+    L'entreprise dépend de la convention collective nationale des entreprises privée du spectacle
+
+contrat salarié . convention collective . SVP . cotisations patronales:
+  titre: cotisations conventionnelles
+  période: flexible
+  remplace: cotisations . patronales . conventionnelles
+  formule:
+    somme:
+      - intermittents du spectacle . caisse des congés spectacle
+      - FCAP
+      - prévoyance
+
+contrat salarié . convention collective . SVP . FCAP:
+  titre: Fond commun d'aide au paritarisme
+  description: |
+    Le Fonds Commun d’Aide au Paritarisme du Spectacle Vivant Privé (FCAP-SVP) résulte de l’application du titre V – Financement du paritarisme la CCN des entreprises du secteur privé du spectacle vivant. Il a pour but de :
+
+    - Permettre aux organisations d’employeurs et de salariés d’exercer leurs missions et de favoriser l’application dans le temps de la Convention collective,
+    - De couvrir les frais engagés par les organisations syndicales,
+    - De couvrir les frais relatifs au dispositif des Conseillers Conventionnels des Salariés, au nombre de 28
+    - De financer le rapport de branche du spectacle vivant privé.
+
+  période: année
+  # TODO :
+  note: les minimum et maximum sont fixé par entreprise, et non par salarié
+  formule:
+    le minimum de:
+      - 80 € / entreprise . effectif
+      - le maximum de:
+          - multiplication:
+              plafonnée à: plafond sécurité sociale
+              assiette: rémunération . brut
+              taux: 0.1%
+          - 300 € / entreprise . effectif
+  références:
+    Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
+    Note explicative AUDIENS: http://www.cheque-intermittents.com/wp-content/uploads/2015/05/FCAP-SVP-EXPLIC_final.pdf
+
+contrat salarié . convention collective . SVP . prévoyance:
+  période: flexible
+  formule:
+    multiplication:
+      plafonnée à: plafond sécurité sociale
+      assiette: cotisations . assiette
+      taux: 1.20%
+  non applicable si: prévoyance obligatoire cadre
+  note: Dans le cas du statut cadre, la prévoyance obligatoire est plus avantageuse, c'est donc cette dernière qui est prise en compte
+  références:
+    notice audiens: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/CCN/CCN-SVP-2015.pdf
+    Article 12.6, Titre VII, IDCC 3090: https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000028157451&cidTexte=KALITEXT000028157267&dateTexte=29990101&categorieLien=id
+
+contrat salarié . convention collective . sport:
+  formule: convention collective = 'sport'
+  titre: Sport (beta)
+  description: |
+    L'entreprise dépend de la convention collective nationale des sportifs (CCNS)
+    Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
+
+contrat salarié . convention collective . sport . cotisations:
+
+contrat salarié . convention collective . sport . cotisations . patronales:
+  titre: cotisations conventionnelles
+  période: flexible
+  remplace:
+    - règle: cotisations . patronales . conventionnelles
+  formule:
+    somme:
+      - prévoyance [employeur]
+      - financement du paritarisme
+
+? contrat salarié . convention collective . sport . cotisations . financement du paritarisme
+: période: année
+  # TODO
+  note: se calcul sur la masse salariale
+  formule:
+    le maximum de:
+      - 3 €
+      - multiplication:
+          assiette: cotisations . assiette
+          taux: 0.06%
+
+contrat salarié . convention collective . sport . cotisations . prévoyance:
+  période: flexible
+  remplace:
+    - règle: cotisations . salariales . conventionnelles
+      par: prévoyance [salarié]
+    - règle: avantages sociaux
+      par:
+        somme:
+          - prévoyance [employeur]
+          - avantages sociaux
+  formule:
+    multiplication:
+      assiette: cotisations . assiette
+      plafonnée à: 8 * plafond sécurité sociale
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 0.29%
+        - attributs:
+            dû par: salarié
+          taux: 0.29%
+  références:
+    Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé
+: période: flexible
+  remplace: contrat salarié . complémentaire santé . forfait
+  formule:
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      taux: taux
+
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . taux
+: formule:
+    variations:
+      - si: régime alsace moselle
+        alors:
+          variations:
+            - si: option . R1
+              alors: 0.59%
+            - si: option . R2
+              alors: 0.77%
+            - si: option . R3
+              alors: 0.89%
+      - sinon:
+          variations:
+            - si: option . R1
+              alors: 0.92%
+            - si: option . R2
+              alors: 1.17%
+            - si: option . R3
+              alors: 1.32%
+  période: flexible
+  référence:
+    unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
+    unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
+
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option
+: question: Quel option a été choisi pour le régime des frais de santé ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - R1
+        - R2
+        - R3
+  par défaut: R1
+  références:
+    unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1
+: formule: option = 'R1'
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R2
+: formule: option = 'R2'
+? contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R3
+: formule: option = 'R3'
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle
+: remplace: contrat salarié . formation professionnelle
+  période: flexible
+  formule:
+    somme:
+      - plan de formation
+      - professionnalisation
+      - CIF CDI
+      - CIF CDD
+  références:
+    Article 8.6 de la CCNS (IDCC2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000034406905&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation
+: période: flexible
+  formule:
+    le maximum de:
+      - versement minimum
+      - multiplication:
+          assiette: cotisations . assiette
+          taux:
+            variations:
+              - si: entreprise . effectif < 20
+                alors: 1.45%
+              - si: entreprise . effectif >= 20
+                alors: 0.90%
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum
+: applicable si: entreprise . effectif < 10
+  période: mois
+  formule: 30 €
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation
+: période: flexible
+  formule:
+    le maximum de:
+      - versement minimum
+      - multiplication:
+          assiette: cotisations . assiette
+          taux:
+            variations:
+              - si: entreprise . effectif < 20
+                alors: 0.15%
+              - si: entreprise . effectif >= 20
+                alors: 0.50%
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum
+: applicable si: entreprise . effectif < 10
+  période: mois
+  formule: 5 €/mois
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDI
+: applicable si:
+    toutes ces conditions:
+      - CDI
+      - entreprise . effectif >= 20
+  période: flexible
+  formule:
+    multiplication:
+      assiette: cotisations . assiette
+      taux: 0.20%
+
+? contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD
+: applicable si: CDD
+  période: flexible
+  formule:
+    multiplication:
+      assiette: cotisations . assiette
+      taux: 1%
+
+? contrat salarié . convention collective . sport . cotisations . assiette franchisée
+: période: flexible
+  formule:
+    allègement:
+      assiette: cotisations . assiette
+      abattement: franchise
+
+contrat salarié . convention collective . sport . joueur entraineur:
+  question: Le joueur est-il aussi entraineur ?
+  par défaut: non
+
+contrat salarié . convention collective . sport . exonération cotisation AT:
+  non applicable si:
+    une de ces conditions:
+      - joueur entraineur
+      - refus
+  remplace:
+    règle: ATMP
+    par: non
+
+? contrat salarié . convention collective . sport . exonération cotisation AT . refus
+: titre: refus exonération AT
+  question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
+  par défaut: non
+
+? contrat salarié . convention collective . sport . cotisations . assiette forfaitaire
+: applicable si: assiette franchisée < 115 * SMIC horaire
+  période: mois
+  remplace: contrat salarié . cotisations . assiette forfaitaire
+  unité: €
+  formule:
+    multiplication:
+      assiette: SMIC horaire
+      facteur:
+        barème linéaire:
+          assiette: assiette franchisée
+          multiplicateur: SMIC horaire
+          tranches:
+            - en-dessous de: 45
+              montant: 5
+            - de: 45
+              à: 60
+              montant: 15
+            - de: 60
+              à: 80
+              montant: 25
+            - de: 80
+              à: 100
+              montant: 35
+            - de: 100
+              à: 115
+              montant: 50
+
+? contrat salarié . convention collective . sport . primes . nombre de manifestations
+: question: Combien de manifestations rémunérées le joueur a-t'il effectué ce mois-ci ?
+  applicable si: période = 'mois'
+  unité: manifestations
+  par défaut: 0
+
+contrat salarié . convention collective . sport . primes:
+  titre: primes de manifestation
+  remplace: rémunération . primes . activité . conventionnelles
+  unité: €
+  période: aucune
+  formule:
+    somme:
+      - manifestation 1
+      - manifestation 2
+      - manifestation 3
+      - manifestation 4
+      - manifestation 5
+      - autres manifestations
+
+contrat salarié . convention collective . sport . primes . manifestation 1:
+  période: aucune
+  question: Quelle prime pour la première manifestation ?
+  applicable si: nombre de manifestations > 0
+  par défaut: 100
+  unité: €
+
+? contrat salarié . convention collective . sport . primes . manifestation 1 . franchise
+: titre: franchise manifestation 1
+  période: aucune
+  formule:
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 1
+
+contrat salarié . convention collective . sport . primes . manifestation 2:
+  période: aucune
+  question: Quelle prime pour la deuxième manifestation ?
+  applicable si: nombre de manifestations > 1
+  par défaut: 100
+  unité: €
+
+? contrat salarié . convention collective . sport . primes . manifestation 2 . franchise
+: titre: franchise manifestation 2
+  période: aucune
+  formule:
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 2
+
+contrat salarié . convention collective . sport . primes . manifestation 3:
+  période: aucune
+  question: Quelle prime pour la troisième manifestation ?
+  applicable si: nombre de manifestations > 2
+  par défaut: 100
+  unité: €
+
+? contrat salarié . convention collective . sport . primes . manifestation 3 . franchise
+: titre: franchise manifestation 3
+  période: aucune
+  formule:
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 3
+
+contrat salarié . convention collective . sport . primes . manifestation 4:
+  période: aucune
+  question: Quelle prime pour la quatrième manifestation ?
+  applicable si: nombre de manifestations > 3
+  par défaut: 100
+  unité: €
+
+? contrat salarié . convention collective . sport . primes . manifestation 4 . franchise
+: titre: franchise manifestation 4
+  période: aucune
+  formule:
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 4
+
+contrat salarié . convention collective . sport . primes . manifestation 5:
+  question: Quelle prime pour la cinquième manifestation ?
+  applicable si: nombre de manifestations > 4
+  par défaut: 100
+  période: aucune
+  unité: €
+
+? contrat salarié . convention collective . sport . primes . manifestation 5 . franchise
+: titre: franchise manifestation 5
+  période: aucune
+  formule:
+    le minimum de:
+      - 70% * plafond journalier sécurité sociale
+      - manifestation 5
+
+? contrat salarié . convention collective . sport . primes . autres manifestations
+: question: Quelles primes pour les autres manifestations ?
+  applicable si: nombre de manifestations > 5
+  période: aucune
+  par défaut: 100
+  unité: €
+
+contrat salarié . convention collective . sport . cotisations . franchise:
+  applicable si: entreprise . effectif < 10
+  période: aucune
+  unité: €
+  formule:
+    somme:
+      - primes . manifestation 1 . franchise
+      - primes . manifestation 2 . franchise
+      - primes . manifestation 3 . franchise
+      - primes . manifestation 4 . franchise
+      - primes . manifestation 5 . franchise
+
+contrat salarié . intermittents du spectacle:
+  applicable si:
+    toutes ces conditions:
+      - CDD . motif . classique . usage
+      - une de ces conditions:
+          - convention collective . SVP
+  question: A quel statut d'intermittent est rattaché l'employé ?
+  par défaut: technicien
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - technicien
+        - artiste
+
+contrat salarié . intermittents du spectacle . formation professionnelle:
+  remplace: formation professionnelle
+  période: mois
+  formule:
+    somme:
+      - 50 €
+      - multiplication:
+          assiette: rémunération . brut
+          taux: 2.10%
+
+contrat salarié . intermittents du spectacle . caisse des congés spectacle:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: rémunération . brut
+      taux: 15.40%
+  références:
+    audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
+
+? contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre
+: applicable si:
+    une de ces conditions:
+      - statut cadre
+      - technicien
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 3.94%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 3.93%
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+contrat salarié . intermittents du spectacle . technicien:
+  formule: intermittents du spectacle = 'technicien'
+
+contrat salarié . intermittents du spectacle . technicien . non cadre:
+  applicable si: statut cadre = non
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans:
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+contrat salarié . intermittents du spectacle . artiste:
+  formule: intermittents du spectacle = 'artiste'
+  description: |
+    Sont considérés comme artistes du spectacle :
+    - L'artiste lyrique
+    - L'artiste dramatique
+    - L'artiste chorégraphique
+    - L'artiste de variétés
+    - Le musicien
+    - Le chansonnier
+    - L'artiste de complément
+    - Le chef d'orchestre
+    - L'arrangeur-orchestrateur
+    - Le metteur en scène, le réalisateur et le chorégraphe, pour l'exécution matérielle de leur conception artistique
+    - L'artiste de cirque
+    - Le marionnettiste
+    - Les personnes dont l'activité est reconnue comme un métier d'artiste-interprète par les conventions collectives du spectacle vivant étendues.
+
+  références:
+    Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
+
+contrat salarié . intermittents du spectacle . artiste . non cadre:
+  applicable si: statut cadre = non
+  remplace:
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+      dans:
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 4.45%
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 10.80%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 4.44%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 10.79%
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+contrat salarié . intermittents du spectacle . artiste . activité accessoire:
+  question: |
+    L'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
+  par défaut: non
+
+contrat salarié . intermittents du spectacle . artiste . réduction de taux:
+  # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
+  rend non applicable: réduction générale
+  non applicable si: activité accessoire
+  période: aucune
+  remplace:
+    # - règle: exonérations . taux réduit
+    #   par: oui
+    - règle: maladie . taux employeur
+      par: maladie . taux employeur * réduction de taux
+    - règle: maladie . taux salarié
+      par: maladie . taux salarié * réduction de taux
+    - règle: vieillesse . taux employeur plafonné
+      par: vieillesse . taux employeur plafonné * réduction de taux
+    - règle: vieillesse . taux employeur non plafonné
+      par: vieillesse . taux employeur non plafonné * réduction de taux
+    - règle: vieillesse . taux salarié plafonné
+      par: vieillesse . taux salarié plafonné * réduction de taux
+    - règle: vieillesse . taux salarié non plafonné
+      par: vieillesse . taux salarié non plafonné * réduction de taux
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: FNAL . taux
+      par: FNAL . taux * réduction de taux
+  formule: 70%
+
+? contrat salarié . intermittents du spectacle . artiste . réduction de taux . ATMP
+: remplace: ATMP . taux
+  période: aucune
+  formule:
+    variations:
+      - si: régime alsace moselle
+        alors: 1.54%
+      - sinon: 1.12%
+
+? contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés
+: question: Pour combien de jours continus l'artiste est-il engagé ?
+  unité: jours
+  par défaut: 5
+
+contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
+  applicable si: nombre jours travaillés < 5
+  période: mois
+  unité: €
+  remplace:
+    règle: plafond sécurité sociale
+    dans:
+      - FNAL
+      - vieillesse
+  formule:
+    multiplication:
+      assiette: plafond horaire sécurité sociale
+      facteur: 12 * nombre jours travaillés
+
+contrat salarié . intermittents du spectacle . artiste . acteur de complément:
+  non applicable si: activité accessoire
+  question: L'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
+  par defaut: non
+
+? contrat salarié . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés
+: remplace: artiste . nombre jours travaillés
+  formule: 1
+
+? contrat salarié . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire
+: applicable si: rémunération . brut < 6% * plafond sécurité sociale temps plein
+  période: flexible
+  remplace:
+    - contrat salarié . cotisations . assiette forfaitaire
+    - règle: nombre jours travaillés
+      par: 1
+  formule:
+    multiplication:
+      assiette: SMIC horaire
+      facteur: 9
+
+contrat salarié . cotisations . assiette forfaitaire:
+  formule: non
+
+contrat salarié . cotisations . assiette forfaitaire . montant:
+  titre: assiette forfaitaire de cotisations
+  période: flexible
+  non applicable si: rémunération réelle
+  remplace:
+    - règle: cotisations . assiette
+      sauf dans:
+        - chômage
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+        - convention collective
+        # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
+        - assiette . salariale
+    - règle: assiette . salariale
+      dans: vieillesse
+    - assiette CSG et CRDS . assiette abattue
+    - règle: réduction générale
+      par: non
+  formule:
+    le maximum de:
+      - minimum
+      - assiette forfaitaire
+  références:
+    exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
+    CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+
+contrat salarié . cotisations . assiette forfaitaire . minimum:
+  période: mois
+  description: >
+    Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
+      1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+  applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale temps plein
+  formule: 70% * rémunération . brut
+
+contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
+  période: aucune
+  question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
+  par défaut: non

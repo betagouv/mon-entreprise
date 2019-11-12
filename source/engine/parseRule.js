@@ -5,13 +5,12 @@ import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
+import { coerceArray } from '../utils'
 import { evaluateNode, makeJsx } from './evaluation'
 import { Node } from './mecanismViews/common'
-import { disambiguateRuleReference, findParentDependency } from './rules'
+import { disambiguateRuleReference, findParentDependencies } from './rules'
 
 export default (rules, rule, parsedRules) => {
-	//	if (rule.dottedName.includes('distance journalière'))
-	//		console.log('trr', rule, parsedRules)
 	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
 
 	parsedRules[rule.dottedName] = 'being parsed'
@@ -22,43 +21,43 @@ export default (rules, rule, parsedRules) => {
 		These mechanisms or variables are in turn traversed by `parse()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
 */
 
-	let parentDependency = findParentDependency(rules, rule)
+	let parentDependencies = findParentDependencies(rules, rule)
 
-	let root = { ...rule, ...(parentDependency ? { parentDependency } : {}) }
-
+	let root = { ...rule, parentDependencies }
 	let parsedRoot = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
-		parentDependency: parent => {
-			let node = parse(rules, rule, parsedRules)(parent.dottedName)
+		parentDependencies: parents =>
+			parents.map(parent => {
+				let node = parse(rules, rule, parsedRules)(parent.dottedName)
 
-			let jsx = (nodeValue, explanation) => (
-				<ShowValuesConsumer>
-					{showValues =>
-						!showValues ? (
-							<div>Active seulement si {makeJsx(explanation)}</div>
-						) : nodeValue === true ? (
-							<div>Active car {makeJsx(explanation)}</div>
-						) : nodeValue === false ? (
-							<div>Non active car {makeJsx(explanation)}</div>
-						) : null
-					}
-				</ShowValuesConsumer>
-			)
+				let jsx = (nodeValue, explanation) => (
+					<ShowValuesConsumer>
+						{showValues =>
+							!showValues ? (
+								<div>Active seulement si {makeJsx(explanation)}</div>
+							) : nodeValue === true ? (
+								<div>Active car {makeJsx(explanation)}</div>
+							) : nodeValue === false ? (
+								<div>Non active car {makeJsx(explanation)}</div>
+							) : null
+						}
+					</ShowValuesConsumer>
+				)
 
-			return {
-				evaluate: (cache, situation, parsedRules) =>
-					node.evaluate(cache, situation, parsedRules, node),
-				jsx,
-				category: 'ruleProp',
-				rulePropType: 'cond',
-				name: 'parentDependency',
-				type: 'numeric',
-				explanation: node
-			}
-		},
+				return {
+					evaluate: (cache, situation, parsedRules) =>
+						node.evaluate(cache, situation, parsedRules, node),
+					jsx,
+					category: 'ruleProp',
+					rulePropType: 'cond',
+					name: 'parentDependencies',
+					type: 'numeric',
+					explanation: node
+				}
+			}),
 		'non applicable si': evolveCond(
 			'non applicable si',
 			rule,
@@ -67,10 +66,10 @@ export default (rules, rule, parsedRules) => {
 		),
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
 		'rend non applicable': nonApplicableRules =>
-			nonApplicableRules.map(referenceName => {
+			coerceArray(nonApplicableRules).map(referenceName => {
 				return disambiguateRuleReference(rules, rule, referenceName)
 			}),
-		// formule de calcul
+		remplace: evolveReplacement(rules, rule, parsedRules),
 		formule: value => {
 			let evaluate = (cache, situationGate, parsedRules, node) => {
 				let explanation = evaluateNode(
@@ -126,6 +125,7 @@ export default (rules, rule, parsedRules) => {
 		evaluate,
 		parsed: true,
 		isDisabledBy: [],
+		replacedBy: [],
 		unit: rule.unit || parsedRoot.formule?.explanation?.unit
 	}
 
@@ -134,7 +134,7 @@ export default (rules, rule, parsedRules) => {
 			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
 				evaluateNode(cache, situation, parsedRules, disablerNode)
 			)
-			const nodeValue = isDisabledBy.some(x => x.nodeValue === true)
+			const nodeValue = isDisabledBy.some(x => !!x.nodeValue)
 			const explanation = { ...node.explanation, isDisabledBy }
 			return { ...node, explanation, nodeValue }
 		},
@@ -207,3 +207,30 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 		explanation: child
 	}
 }
+
+let evolveReplacement = (rules, rule, parsedRules) => replacements =>
+	coerceArray(replacements).map(reference => {
+		const referenceName =
+			typeof reference === 'string' ? reference : reference.règle
+		let replacementNode = reference.par
+		if (replacementNode != null) {
+			replacementNode = parse(rules, rule, parsedRules)(replacementNode)
+		}
+		let [whiteListedNames, blackListedNames] = [
+			reference.dans,
+			reference['sauf dans']
+		]
+			.map(name => name && coerceArray(name))
+			.map(
+				names =>
+					names &&
+					names.map(name => disambiguateRuleReference(rules, rule, name))
+			)
+
+		return {
+			referenceName: disambiguateRuleReference(rules, rule, referenceName),
+			replacementNode,
+			whiteListedNames,
+			blackListedNames
+		}
+	})

@@ -35,9 +35,6 @@ questions:
     - contrat salarié . régime des impatriés
 
 situation:
-  auto-entrepreneur: non
-  indépendant: non
-  contrat salarié . assimilé salarié: oui
-  contrat salarié . temps partiel: non
+  dirigeant: 'assimilé salarié'
   contrat salarié . ATMP . taux réduit: oui
   période: année

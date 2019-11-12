@@ -1,11 +1,11 @@
 import classnames from 'classnames'
 import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
-import { compose } from 'ramda'
-import NumberFormat from 'react-number-format'
 import { currencyFormat } from 'Engine/format'
-import { useTranslation } from 'react-i18next'
+import { compose } from 'ramda'
 import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import NumberFormat from 'react-number-format'
 import { usePeriod } from 'Selectors/analyseSelectors'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
@@ -65,7 +65,7 @@ export default compose(
 				{suffixed && (
 					<label className="suffix" htmlFor={'step-' + dottedName}>
 						{unit}
-						{rulePeriod && (
+						{rulePeriod && rulePeriod !== 'aucune' && (
 							<span>
 								{' '}
 								<T>par</T>{' '}

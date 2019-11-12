@@ -6,7 +6,7 @@ import {
 import { enrichRule, rules as realRules } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 
-let stateSelector = () => null
+let stateSelector = () => undefined
 
 describe('collectMissingVariables', function() {
 	it('should identify missing variables', function() {

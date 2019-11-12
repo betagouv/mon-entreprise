@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import { analyse, parseAll } from '../source/engine/traverse'
 import { enrichRule } from '../source/engine/rules'
+import { analyse, parseAll } from '../source/engine/traverse'
 
-let stateSelector = () => null
+let stateSelector = () => undefined
 
 describe('analyse', function() {
 	it('should directly return simple numerical values', function() {

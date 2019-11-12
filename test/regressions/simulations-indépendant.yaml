@@ -1,17 +1,17 @@
 échelle de revenus:
-  - indépendant . revenu net de cotisations: 500
-  - indépendant . revenu net de cotisations: 1000
-  - indépendant . revenu net de cotisations: 1500
-  - indépendant . revenu net de cotisations: 2000
-  - indépendant . revenu net de cotisations: 5000
-  - indépendant . revenu net de cotisations: 10000
-  - indépendant . revenu net de cotisations: 100000
-  - indépendant . revenu net de cotisations: 1000000
+  - dirigeant . indépendant . revenu net de cotisations: 500
+  - dirigeant . indépendant . revenu net de cotisations: 1000
+  - dirigeant . indépendant . revenu net de cotisations: 1500
+  - dirigeant . indépendant . revenu net de cotisations: 2000
+  - dirigeant . indépendant . revenu net de cotisations: 5000
+  - dirigeant . indépendant . revenu net de cotisations: 10000
+  - dirigeant . indépendant . revenu net de cotisations: 100000
+  - dirigeant . indépendant . revenu net de cotisations: 1000000
 
 période:
-  - indépendant . revenu net de cotisations: 1000
+  - dirigeant . indépendant . revenu net de cotisations: 1000
     période: mois
-  - indépendant . revenu net de cotisations: 5000
+  - dirigeant . indépendant . revenu net de cotisations: 5000
     période: mois
 
 inversions:
@@ -27,20 +27,20 @@ inversions:
     entreprise . charges: 2000
 
 activité:
-  - indépendant . revenu net de cotisations: 20000
+  - dirigeant . indépendant . revenu net de cotisations: 20000
     entreprise . catégorie d'activité: libérale
-  - indépendant . revenu net de cotisations: 20000
+  - dirigeant . indépendant . revenu net de cotisations: 20000
     entreprise . catégorie d'activité: artisanale
 
 acre:
-  - indépendant . revenu net de cotisations: 50000
+  - dirigeant . indépendant . revenu net de cotisations: 50000
     entreprise . ACRE: true
 
 impôt sur le revenu:
-  - indépendant . revenu net de cotisations: 20000
+  - dirigeant . indépendant . revenu net de cotisations: 20000
     impôt . méthode de calcul: taux neutre
-  - indépendant . revenu net de cotisations: 50000
+  - dirigeant . indépendant . revenu net de cotisations: 50000
     impôt . méthode de calcul: taux neutre
-  - indépendant . revenu net de cotisations: 20000
+  - dirigeant . indépendant . revenu net de cotisations: 20000
     impôt . méthode de calcul: taux personnalisé
     impôt . taux personnalisé: 0.1

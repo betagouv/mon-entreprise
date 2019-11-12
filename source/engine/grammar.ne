@@ -13,21 +13,22 @@ const moo = require("moo");
 const letter = '[a-zA-Z\u00C0-\u017F]';
 const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
 const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
-const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?';
+const wordOrNumber = `(?:${word}|${letterOrNumber}+)`
+const words = `${word}(?:[\\s]?${wordOrNumber}+)*`
+const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\\.[0-9]+)?';
 const percentageRegExp = numberRegExp + '\\%'
-
 const lexer = moo.compile({
   percentage: new RegExp(percentageRegExp),
-  number: new RegExp(numberRegExp),
   '(': '(',
   ')': ')',
   '[': '[',
   ']': ']',
   comparison: ['>','<','>=','<=','=','!='],
+  words: new RegExp(words),
+  number: new RegExp(numberRegExp),
+  string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
   additionSubstraction: /[\+-]/,
   multiplicationDivision: ['*','/'],
-  word: new RegExp(word),
-  string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
   '€': '€',
   dot: ' . ',
   letterOrNumber: new RegExp(letterOrNumber),
@@ -67,17 +68,15 @@ NonNumericTerminal ->
 	  boolean  {% id %}
 	| string   {% id %}
 
-Words -> %word (%space (%word {% id %} | %letterOrNumber {% id %}) {% join %}):* {% flattenJoin %}
-
-Variable -> Words (%dot Words {% ([,words]) => words %}):* {% variable %}
+Variable -> %words (%dot %words {% ([,words]) => words %}):* {% variable %}
 
 BaseUnit ->
-  %word {% id %}
+  %words {% id %}
   | "€" {% id %}
 
 Unit -> BaseUnit ("/" BaseUnit {% join %}):? {% join %}
 
-Filter -> "[" Words "]" {% ([,filter]) => filter %}
+Filter -> "[" %words "]" {% ([,filter]) => filter %}
 FilteredVariable -> Variable %space Filter {% filteredVariable %}
 
 TemporalTransform -> "[" ("mensuel" | "annuel" {% id %}) "]" {% ([,temporality]) => temporality %}

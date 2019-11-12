@@ -6,26 +6,26 @@
     barème linéaire:
       assiette: assiette
       tranches:
-      - de: 0
-        à: 999
-        taux: 5%
-      - de: 1000
-        à: 1999
-        taux: 10%
-      - au-dessus de: 2000
-        taux: 15%
+        - de: 0
+          à: 999
+          taux: 5%
+        - de: 1000
+          à: 1999
+          taux: 10%
+        - au-dessus de: 2000
+          taux: 15%
   unité attendue: €
 
   exemples:
-    - nom: "petite assiette"
+    - nom: 'petite assiette'
       situation:
         assiette: 200
       valeur attendue: 10
-    - nom: "moyenne assiette"
+    - nom: 'moyenne assiette'
       situation:
         assiette: 1500
       valeur attendue: 150
-    - nom: "grande assiette"
+    - nom: 'grande assiette'
       situation:
         assiette: 10000
       valeur attendue: 1500
@@ -43,26 +43,26 @@
     barème linéaire:
       assiette: assiette
       tranches:
-      - de: 0
-        à: 999
-        montant: 50
-      - de: 1000
-        à: 1999
-        montant: 170
-      - au-dessus de: 2000
-        montant: 400
+        - de: 0
+          à: 999
+          montant: 50
+        - de: 1000
+          à: 1999
+          montant: 170
+        - au-dessus de: 2000
+          montant: 400
 
   unité attendue: €
   exemples:
-    - nom: "petite assiette"
+    - nom: 'petite assiette'
       situation:
         assiette: 200
       valeur attendue: 50
-    - nom: "moyenne assiette"
+    - nom: 'moyenne assiette'
       situation:
         assiette: 1500
       valeur attendue: 170
-    - nom: "grande assiette"
+    - nom: 'grande assiette'
       situation:
         assiette: 10000
       valeur attendue: 400
@@ -74,4 +74,3 @@
       situation:
         assiette: 999.6
       valeur attendue: 170
-

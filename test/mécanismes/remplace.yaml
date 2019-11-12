@@ -1,0 +1,187 @@
+- nom: restaurant . prix du repas
+  formule: 10 €/repas
+
+- nom: restaurant . client gourmand
+  formule: oui
+
+- nom: restaurant . client enfant
+  rend non applicable:
+    - client gourmand
+  formule: non
+
+- nom: restaurant . prix du repas gourmand
+  applicable si: client gourmand
+  remplace: prix du repas
+  formule: 15 €/repas
+
+- nom: restaurant . menu enfant
+  applicable si: client enfant
+  remplace:
+    règle: prix du repas
+    par: 8 €
+
+- test: modifie une règle
+  formule: restaurant . prix du repas
+  exemples:
+    - nom: prix du repas modifié
+      valeur attendue: 15
+    - nom: prix du repas sans modification
+      situation:
+        restaurant . client gourmand: non
+      valeur attendue: 10
+    - nom: prix du repas modifé par règle
+      situation:
+        restaurant . client enfant: oui
+      valeur attendue: 8
+
+- nom: cotisations . assiette
+  formule: 1000 €
+
+- nom: cotisations
+  formule:
+    somme:
+      - retraite [salarié]
+      - retraite [employeur]
+      - chômage
+      - maladie
+
+- nom: cotisations . retraite
+  formule:
+    multiplication:
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: 8%
+        - attributs:
+            dû par: salarié
+          taux: 2%
+      assiette: assiette
+
+- nom: cotisations . chômage
+  formule:
+    multiplication:
+      taux: 10%
+      assiette: assiette
+
+- nom: cotisations . maladie
+  formule:
+    multiplication:
+      taux: 10%
+      assiette: assiette
+
+- test: remplacement sans boucle infinie si il n'y a pas de dépendances cycliques
+  applicable si: exemple1
+  formule: cotisations
+  remplace:
+    règle: cotisations . assiette
+    par: 100
+  exemples:
+    - situation:
+        exemple1: oui
+      valeur attendue: 30
+
+- test: remplacement contextuel par inclusion
+  formule: cotisations
+  remplace:
+    règle: cotisations . assiette
+    par: 500
+    dans: cotisations . retraite
+  exemples:
+    - situation:
+        exemple2: oui
+      valeur attendue: 250
+    - nom: avec remplacement existant
+      situation:
+        exemple1: oui
+        exemple2: oui
+      valeur attendue: 70
+  applicable si: exemple2
+
+- test: remplacement contextuel par exclusion
+  formule: cotisations
+  remplace:
+    règle: cotisations . assiette
+    par: 100
+    sauf dans:
+      - cotisations . chômage
+      - cotisations . maladie
+  exemples:
+    - situation:
+        exemple3: oui
+      valeur attendue: 210
+  applicable si: exemple3
+
+- test: remplacement d'une variable avec composante
+  formule: cotisations
+  remplace:
+    règle: cotisations . retraite
+    par:
+      multiplication:
+        assiette: cotisations . assiette
+        composantes:
+          - attributs:
+              dû par: employeur
+            taux: 12%
+          - attributs:
+              dû par: salarié
+            taux: 8%
+  exemples:
+    - situation:
+        exemple4: oui
+      valeur attendue: 400
+    - nom: avec remplacement dans un remplacement
+      situation:
+        exemple4: oui
+        exemple1: oui
+      valeur attendue: 40
+  applicable si: exemple4
+
+- test: remplacement de plusieurs variables d'un coup
+  formule: cotisations
+  remplace:
+    - règle: cotisations . chômage
+      par: 10
+    - règle: cotisations . maladie
+      par: 0
+  exemples:
+    - situation:
+        exemple5: oui
+      valeur attendue: 110
+  applicable si: exemple5
+
+- nom: exemple1
+- nom: exemple2
+- nom: exemple3
+- nom: exemple4
+- nom: exemple5
+
+- nom: A
+  formule: 1
+
+- nom: B
+  remplace: A
+  formule: 2
+
+- nom: C
+  remplace: B
+  formule: 3
+
+- test: remplacement associatif
+  formule: A
+  exemples:
+    - valeur attendue: 3
+
+- nom: x
+  formule: non
+
+- nom: x . y
+  remplace: z
+  formule: 10
+
+- nom: z
+  formule: 1
+
+- test: remplacement non applicable (branche desactivée)
+  formule: z
+  exemples:
+    - valeur attendue: 1

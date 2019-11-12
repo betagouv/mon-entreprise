@@ -6,15 +6,15 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Lib from '../../source/engine/index'
-import employeeConfig from '../../source/components/simulationConfigs/salarié.yaml'
-import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
 import autoentrepreneurConfig from '../../source/components/simulationConfigs/auto-entrepreneur.yaml'
+import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
 import remunerationDirigeantConfig from '../../source/components/simulationConfigs/rémunération-dirigeant.yaml'
-import employeeSituations from './simulations-salarié.yaml'
-import independentSituations from './simulations-indépendant.yaml'
+import employeeConfig from '../../source/components/simulationConfigs/salarié.yaml'
+import Lib from '../../source/engine/index'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
+import independentSituations from './simulations-indépendant.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
+import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
 

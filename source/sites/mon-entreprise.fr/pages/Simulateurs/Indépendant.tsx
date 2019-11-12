@@ -61,7 +61,9 @@ function ExplanationSection() {
 					},
 					{ ...getRule('impôt'), color: palettes[1][0] },
 					{
-						...getRule('indépendant . cotisations et contributions'),
+						...getRule(
+							'dirigeant . indépendant . cotisations et contributions'
+						),
 						name: t('Cotisations'),
 						color: palettes[1][1]
 					}
