@@ -2780,6 +2780,7 @@ contrat salarié . taxe sur les salaires . barème:
 
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
+  non applicable si: situation personnelle . domicilié à l'étranger
   par défaut: non
   description: |
     Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
@@ -3897,7 +3898,10 @@ dirigeant . indépendant . rattachement CIPAV . retraite complémentaire:
 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR :
-  non applicable si: rattachement CIPAV
+  applicable si: 
+    toutes ces conditions: 
+      - entreprise . catégorie d'activité = 'libérale'
+      - rattachement CIPAV = non
   titre: taux spécifique profession libérale non reglementée
   question:
     Avez-vous opté pour des taux spécifique de cotisation retraite complémentaire ?
@@ -3905,6 +3909,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
     Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019  et ont opté pour le régime général des travailleurs indépendants  ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.
   références:
     Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR . taux:
   titre: retraite complémentaire (taux PLNR)
   description: la retraite complémentaire avec taux spécifiques
@@ -4055,8 +4060,8 @@ dirigeant . indépendant . exonération ZFU . taux:
 
 situation personnelle . domicilié à l'étranger:
   description: |
-    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux de 14,5%. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
-  question: Le travailleur est-il fiscalement domicilié à l'étranger ?
+    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
+  question: La résidence fiscale de l'assuré est-elle domicilié à l'étranger ?
   par défaut: non
   rend non applicable: 
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
@@ -4069,6 +4074,7 @@ situation personnelle . domicilié à l'étranger:
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie domicilié à l'étranger:
   applicable si: situation personnelle . domicilié à l'étranger
   période: flexible
+  description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
   remplace: maladie
   formule: 
     multiplication: 
