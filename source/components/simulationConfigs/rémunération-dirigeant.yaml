@@ -11,7 +11,7 @@ objectifs:
 
 questions:
   uniquement:
-    - entreprise . rémunération totale du dirigeant
+    - dirigeant . rémunération totale
     - entreprise . charges
     - entreprise . catégorie d'activité
     - entreprise . catégorie d'activité . service ou vente

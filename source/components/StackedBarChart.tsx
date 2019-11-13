@@ -88,7 +88,9 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 		threshold: 0.5
 	})
 	data = data.filter(datum => datum.nodeValue != undefined)
-	const percentages = roundedPercentages(data.map(d => d.nodeValue))
+	const percentages = roundedPercentages(
+		data.map(d => d.nodeValue) as Array<number>
+	)
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]

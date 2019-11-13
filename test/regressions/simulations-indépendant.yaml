@@ -9,8 +9,8 @@
   - dirigeant . indépendant . revenu net de cotisations: 1000000
 
 inversions:
-  - entreprise . rémunération totale du dirigeant: 2000
-  - entreprise . rémunération totale du dirigeant: 50000
+  - dirigeant . rémunération totale: 2000
+  - dirigeant . rémunération totale: 50000
   - revenu net après impôt: 10000
   - revenu net après impôt: 50000
   - revenu net après impôt: 10000
