@@ -3896,6 +3896,31 @@ dirigeant . indépendant . rattachement CIPAV . retraite complémentaire:
           montant: 17095
 
 
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR :
+  non applicable si: rattachement CIPAV
+  titre: taux spécifique profession libérale non reglementée
+  question:
+    Avez-vous opté pour des taux spécifique de cotisation retraite complémentaire ?
+  description: |
+    Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019  et ont opté pour le régime général des travailleurs indépendants  ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.
+  références:
+    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR . taux:
+  titre: retraite complémentaire (taux PLNR)
+  description: la retraite complémentaire avec taux spécifiques
+  remplace: retraite complémentaire
+  période: flexible
+  formule: 
+    barème:
+      assiette: revenu professionnel
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - de: 1
+          à: 4
+          taux: 14%
+
+
+    
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   formule:
     barème:
