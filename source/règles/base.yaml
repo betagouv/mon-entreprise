@@ -1,3 +1,6 @@
+année courante: 
+  formule: 2019
+
 période:
   par défaut: mois
   une possibilité:
@@ -3230,24 +3233,23 @@ revenu net après impôt:
   formule: revenu net de cotisations - impôt
 
 entreprise . date de création:
-  question: Quand avez-vous crée votre entreprise ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - avant 2018
-        - avant 2019
-        - après 2019
-  par défaut: après 2019
+  question: En quelle année avez-vous crée votre entreprise ?
+  par défaut: 2019
+  suggestions:
+    2019: 2019
+    2018: 2018
+    2017: 2017
+  unité: " "
+  contrôles:
+    - si: date de création > 2020
+      niveau: avertissement
+      message: Nous ne pouvons voir aussi loin dans le futur
+    - si: date de création < 1900
+      niveau: avertissement
+      message: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
-entreprise . date de création . avant 2018:
-  titre: avant le 1er janvier 2018
-
-entreprise . date de création . avant 2019:
-  titre: avant le 1er janvier 2019
-
-entreprise . date de création . après 2019:
-  titre: après le 1er janvier 2019
+entreprise . année d'activité:
+  formule: année courante - date de création 
 
 entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
@@ -3793,11 +3795,11 @@ dirigeant . indépendant . rattachement CIPAV:
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - dirigeant = 'indépendant'
-          - entreprise . date de création = 'avant 2019'
+          - entreprise . date de création < 2019
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
           - dirigeant = 'auto-entrepreneur'
-          - entreprise . date de création = 'avant 2018'
+          - entreprise . date de création < 2018 
           - entreprise . catégorie d'activité = 'libérale'
 
   rend non applicable:
@@ -3805,7 +3807,7 @@ dirigeant . indépendant . rattachement CIPAV:
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
   période: aucune
 
-? dirigeant . indépendant . libérale règlementée . maladie
+? dirigeant . indépendant . rattachement CIPAV . maladie
 : période: flexible
   remplace: cotisations et contributions . cotisations . maladie
   titre: maladie libérale règlementée
@@ -4075,6 +4077,53 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
         1.1: 0%
         1.4: 3.1%
 
+entreprise . ZFU:
+  question: Votre entreprise est-elle localisée dans une zone franche urbaine (ZFU) ?
+  par défaut: non
+
+dirigeant . indépendant . exonération ZFU:
+  période: aucune
+  applicable si: entreprise . date de création < 2015
+  non applicable si: rattachement CIPAV
+  formule: entreprise . ZFU = oui
+  remplace:
+    règle: cotisations et contributions . cotisations . maladie
+    par: taux * cotisations et contributions . cotisations . maladie
+  
+
+dirigeant . indépendant . exonération ZFU . taux:
+  titre: taux exonération ZFU
+  formule:
+    variations:
+      - si: entreprise . effectif < 5
+        alors:     
+          barème linéaire:
+            assiette: entreprise . année d'activité
+            retourne seulement le taux: oui
+            tranches:
+            - en-dessous de: 9
+              taux: 0%
+            - de: 10 
+              à: 15
+              taux: 40%
+            - de: 16
+              à: 17
+              taux: 60%
+            - de: 18
+              à: 19
+              taux: 80%
+            - au-dessus de: 20
+              taux: 100%
+      - sinon:
+          variations:
+            - si: entreprise . année d'activité = 6
+              alors: 40%
+            - si: entreprise . année d'activité = 7
+              alors: 60%
+            - si: entreprise . année d'activité = 8
+              alors: 80%
+            - sinon: 100%
+
 dirigeant:
   question: Quel est le régime social du dirigeant ?
   par défaut: non
@@ -4308,6 +4357,12 @@ entreprise . ACRE:
     *Conditions d'obtention*:
     - Pour les entreprises créées après le 1er janvier 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
     - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+  applicable si:
+    une de ces conditions: 
+      - toutes ces conditions: 
+          - dirigeant = 'auto-entrepreneur'
+          - entreprise . année d'activité < 4
+      - entreprise . année d'activité < 2
   question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
 
