@@ -4149,6 +4149,34 @@ dirigeant . indépendant . exonération ZFU . taux:
               alors: 80%
             - sinon: 100%
 
+situation personnelle . domicilié à l'étranger:
+  description: |
+    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux de 14,5%. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
+  question: Le travailleur est-il fiscalement domicilié à l'étranger ?
+  par défaut: non
+  rend non applicable: 
+    - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
+    - contrat salarié . CSG
+    - contrat salarié . CRDS
+    - impôt
+  références: 
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie domicilié à l'étranger:
+  applicable si: situation personnelle . domicilié à l'étranger
+  période: flexible
+  remplace: maladie
+  formule: 
+    multiplication: 
+      assiette: maladie . assiette
+      taux: 14.5%
+
+contrat salarié . maladie . taux domicilié à l'étranger:
+  applicable si: situation personnelle . domicilié à l'étranger
+  période: aucune
+  remplace: taux salarié
+  formule: 5.50%
+
 dirigeant:
   question: Quel est le régime social du dirigeant ?
   par défaut: non
