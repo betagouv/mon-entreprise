@@ -2320,7 +2320,7 @@ entreprise . impôt sur les sociétés:
 entreprise . charges dont rémunération dirigeant:
   titre.en: expenses of which executive compensation
   titre.fr: charges dont rémunération dirigeant
-entreprise . rémunération totale du dirigeant:
+dirigeant . rémunération totale:
   question.en: How much do you think you will make available for your remuneration?
   question.fr: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé.en: Spent by the company

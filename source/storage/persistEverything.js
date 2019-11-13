@@ -1,4 +1,3 @@
-
 import type { Store } from 'redux'
 import { omit } from 'ramda'
 import { debounce } from '../utils'
