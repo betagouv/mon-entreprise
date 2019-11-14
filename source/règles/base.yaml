@@ -4000,14 +4000,31 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
     IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
 
+dirigeant . indépendant . revenus étrangers: 
+  description: |
+    Les revenus étrangers sont des revenus déclarés par les travailleurs indépendants pour des revenus perçus au titre de l’exercice d’une activité non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.  
+    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS. 
+    Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+
+  question: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ? 
+  par défaut: non
+
+dirigeant . indépendant . revenus étrangers . montant:
+  période: flexible
+  unité: €
+  titre: revenus perçu à l'étranger
+  question: Quel est leur montant ?
+  par défaut: 0
+
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   formule:
     somme:
       - revenu professionnel
       - cotisations
+      - (- revenus étrangers . montant)
       - (- situation personnelle . IJSS . fiscalisées)
-
+  
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   formule:
     multiplication:
