@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 
 export const persistState = (key: string) => ([state, changeState]) => {
-	useEffect(() => safeLocalStorage.setItem(key, JSON.stringify(state)), [state])
+	useEffect(() => {
+		safeLocalStorage.setItem(key, JSON.stringify(state))
+		return
+	}, [state])
 	return [state, changeState]
 }
 
