@@ -14,7 +14,7 @@ const getApplicableReplacements = (
 	rules,
 	rule
 ) => {
-	const missingVariableList = []
+	let missingVariableList = []
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>
@@ -51,7 +51,7 @@ const getApplicableReplacements = (
 				referenceRule
 			)
 			if (referenceNode.question && situationValue == null) {
-				missingVariableList[referenceNode.dottedName] = 1
+				missingVariableList.push({ [referenceNode.dottedName]: 1 })
 			}
 			return situationValue !== false
 		})
@@ -75,6 +75,10 @@ const getApplicableReplacements = (
 				? evaluateNode(cache, situation, rules, replacementNode)
 				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
+	missingVariableList = missingVariableList.filter(
+		missingVariables => !!Object.keys(missingVariables).length
+	)
+
 	return [applicableReplacements, missingVariableList]
 }
 
@@ -90,7 +94,7 @@ let evaluateReference = (filter, contextRuleName) => (
 	// a redirection in the evaluation of references to use a potential active replacement
 	const [
 		applicableReplacements,
-		missingVariableList
+		replacementMissingVariableList
 	] = getApplicableReplacements(
 		filter,
 		contextRuleName,
@@ -101,8 +105,25 @@ let evaluateReference = (filter, contextRuleName) => (
 	)
 
 	if (applicableReplacements.length) {
+		if (applicableReplacements.length > 1) {
+			console.warn(`
+Règle ${rule.dottedName}: plusieurs remplacements valides ont été trouvés : 
+\n\t${applicableReplacements.map(node => node.rawNode).join('\n\t')} 
+
+Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, vous pouvez : 
+	- Restreindre son applicabilité via "applicable si" sur la règle de définition
+	- Restreindre sa portée en ajoutant une liste blanche (via le mot clé "dans") ou une liste noire (via le mot clé "sauf dans")
+`)
+		}
 		return applicableReplacements[0]
 	}
+	const addReplacementMissingVariable = node => ({
+		...node,
+		missingVariables: replacementMissingVariableList.reduce(
+			mergeMissing,
+			node.missingVariables
+		)
+	})
 
 	let dottedName = node.dottedName,
 		// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
@@ -110,19 +131,16 @@ let evaluateReference = (filter, contextRuleName) => (
 		cacheName = dottedName + (filter ? '.' + filter : ''),
 		cached = cache[cacheName]
 
-	if (cached) return cached
+	if (cached) return addReplacementMissingVariable(cached)
+
 	let cacheNode = (nodeValue, missingVariables, explanation) => {
-		missingVariables = missingVariableList.reduce(
-			mergeMissing,
-			missingVariables
-		)
 		cache[cacheName] = {
 			...node,
 			nodeValue,
 			...(explanation && { explanation }),
 			missingVariables
 		}
-		return cache[cacheName]
+		return addReplacementMissingVariable(cache[cacheName])
 	}
 	const {
 		nodeValue: isApplicable,
