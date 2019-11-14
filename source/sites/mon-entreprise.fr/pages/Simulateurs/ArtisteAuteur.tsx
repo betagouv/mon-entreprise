@@ -16,6 +16,7 @@ import {
 import styled from 'styled-components'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
+import ToggleSwitch from 'Ui/ToggleSwitch'
 
 const situation = {
 	période: 'année',
@@ -145,8 +146,7 @@ function DeclarationControléeSwitch() {
 						</label>
 					</div>
 					<div className="targetInputOrValue">
-						<input
-							type="checkbox"
+						<ToggleSwitch
 							id={`step-${dottedName}`}
 							onChange={evt =>
 								dispatch(
