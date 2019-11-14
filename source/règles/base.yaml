@@ -3938,6 +3938,7 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . rémunération . primes
+    - contrat salarié . rémunération . primes . activité
     - contrat salarié . chômage
     - contrat salarié . réduction générale
     - contrat salarié . allocations familiales . taux réduit

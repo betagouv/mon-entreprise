@@ -10,12 +10,14 @@ import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
+let configSelector = (state: RootState) => state.simulation && state.simulation.config || {}
+
 // We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
 export let flatRulesSelector = (
 	state: RootState,
 	props?: { rules: RootState['rules'] }
 ) => {
-	return props?.rules || state?.rules
+	return props && props.rules || state.rules
 }
 
 export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
@@ -27,7 +29,7 @@ export let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 )
 
 export let targetNamesSelector = (state: RootState) => {
-	let objectifs = state.simulation?.config.objectifs
+	let objectifs = configSelector(state).objectifs
 	if (!objectifs || !Array.isArray(objectifs)) {
 		return null
 	}
@@ -40,7 +42,7 @@ export let targetNamesSelector = (state: RootState) => {
 	)
 
 	const secondaryTargetNames =
-		state.simulation?.config['objectifs secondaires'] || []
+		configSelector(state)['objectifs secondaires'] || []
 
 	return [...targetNames, ...secondaryTargetNames]
 }
@@ -48,7 +50,7 @@ export let targetNamesSelector = (state: RootState) => {
 type SituationSelectorType = typeof situationSelector
 
 export const situationSelector = (state: RootState) =>
-	state.simulation?.situation || {}
+	state.simulation && state.simulation.situation || {}
 
 export const usePeriod = () => useSelector(situationSelector)['période']
 
@@ -56,7 +58,7 @@ export const useTarget = (dottedName: DottedName) => {
 	const targets = useSelector(
 		(state: RootState) => analysisWithDefaultsSelector(state).targets
 	)
-	return targets?.find(t => t.dottedName === dottedName)
+	return targets && targets.find(t => t.dottedName === dottedName)
 }
 
 export let noUserInputSelector = createSelector(
@@ -69,21 +71,23 @@ export let firstStepCompletedSelector = createSelector(
 		situationSelector,
 		targetNamesSelector,
 		parsedRulesSelector,
-		state => state.simulation?.config?.bloquant
+		configSelector
 	],
-	(situation, targetNames, parsedRules, bloquant) => {
+	(situation, targetNames, parsedRules, config) => {
 		if (!situation) {
 			return true
 		}
 		const situations = Object.keys(situation)
 		const allBlockingAreAnswered =
-			bloquant && bloquant.every(rule => situations.includes(rule))
+			config.bloquant && config.bloquant.every(rule => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
 			targetNames.some(
-				targetName =>
-					findRuleByDottedName(parsedRules, targetName)?.formule &&
+				targetName => {
+					const rule = findRuleByDottedName(parsedRules, targetName) 
+					return rule && rule.formule && 
 					targetName in situation
+				}
 			)
 		return allBlockingAreAnswered || targetIsAnswered
 	}
@@ -93,9 +97,9 @@ let validatedStepsSelector = createSelector(
 	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
 	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
 )
-let branchesSelector = (state: RootState) => state.simulation?.config.branches
+let branchesSelector = (state: RootState) => configSelector(state).branches 
 let configSituationSelector = (state: RootState) =>
-	state.simulation?.config.situation || {}
+	configSelector(state).situation || {}
 
 const createSituationBrancheSelector = (
 	situationSelector: SituationSelectorType
@@ -252,17 +256,17 @@ const similarity = (rule1: DottedName, rule2: DottedName) =>
 export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
-		state => state.simulation?.config.questions,
+		configSelector,
 		state => state.conversationSteps.foldedSteps,
 		situationSelector
 	],
 	(
 		mv,
-		{
+		{questions: {
 			'non prioritaires': notPriority = [],
-			uniquement: only,
+			uniquement: only = null,
 			'liste noire': blacklist = []
-		} = {},
+		} = {}},
 		foldedSteps = [],
 		situation
 	) => {
