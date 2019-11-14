@@ -3211,28 +3211,6 @@ impôt . CEHR:
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
-revenu net de cotisations:
-  résumé: Avant impôt
-  période: flexible
-  question: Quel revenu avant impôt voulez-vous toucher ?
-  description: |
-    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  formule:
-    somme:
-      - contrat salarié . rémunération . net
-      - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . auto-entrepreneur . revenu net de cotisations
-
-revenu net après impôt:
-  unité: €
-  résumé: Versé sur le compte bancaire
-  période: flexible
-  question: Quel revenu voulez-vous toucher ?
-  description: |
-    Il s'agit du revenu net de charges, cotisations et d'impôts.
-    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  formule: revenu net de cotisations - impôt
-
 entreprise . date de création:
   question: En quelle année avez-vous crée votre entreprise ?
   par défaut: 2019
@@ -3418,7 +3396,6 @@ dirigeant . indépendant . revenu professionnel:
         - entreprise . chiffre d'affaires minimum
 
 dirigeant . indépendant . conjoint collaborateur:
-  non applicable si: dirigeant . indépendant . rattachement CIPAV
   question: Avez-vous un conjoint collaborateur ?
   description: |
     Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
@@ -3429,7 +3406,7 @@ dirigeant . indépendant . conjoint collaborateur:
     - ne pas être associé de la société.
   par défaut: non
   références: 
-    secu-independant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    secu-indépendant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
   
 dirigeant . indépendant . conjoint collaborateur . assiette :
@@ -3681,7 +3658,7 @@ entreprise . catégorie d'activité . libérale règlementée:
 
         - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
         - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
-        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
@@ -3813,7 +3790,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
     par: revenu professionnel - déduction tabac
     
 
-dirigeant . indépendant . rattachement CIPAV:
+dirigeant . rattachement CIPAV:
   description: |
     Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
@@ -3835,16 +3812,18 @@ dirigeant . indépendant . rattachement CIPAV:
 
   rend non applicable:
     - protection sociale . retraite
+    - protection sociale . santé . indemnités journalières
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+    - dirigeant . indépendant . conjoint collaborateur
   période: aucune
 
-? dirigeant . indépendant . rattachement CIPAV . maladie
+? dirigeant . rattachement CIPAV . maladie
 : période: flexible
-  remplace: cotisations et contributions . cotisations . maladie
+  remplace: indépendant . cotisations et contributions . cotisations . maladie
   titre: maladie libérale règlementée
   formule:
     barème continu:
-      assiette: revenu professionnel
+      assiette: indépendant . revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 1.5%
@@ -3944,12 +3923,12 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-dirigeant . indépendant . rattachement CIPAV . retraite de base:
+dirigeant . rattachement CIPAV . retraite de base:
   période: flexible
-  remplace: cotisations et contributions . cotisations . retraite de base
+  remplace: indépendant . cotisations et contributions . cotisations . retraite de base
   formule: 
     multiplication:
-      assiette: cotisations et contributions . cotisations . retraite de base . assiette
+      assiette: indépendant . cotisations et contributions . cotisations . retraite de base . assiette
       multiplicateur:
       composantes:
         - nom: tranche 1
@@ -3985,12 +3964,12 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-? dirigeant . indépendant . rattachement CIPAV . retraite complémentaire:
+dirigeant . rattachement CIPAV . retraite complémentaire:
   période: année
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
   formule:
     barème linéaire:
-      assiette: revenu professionnel
+      assiette: indépendant . revenu professionnel
       tranches:
         - en-dessous de: 26580
           montant: 1315
@@ -4111,7 +4090,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   note: 
     Lorsque le revenu fiscal de reference de l'année N-1 est inferieur à un seuil, il y a exonération / taux réduit de la CSG, ce qui n'est pas encore implémenté
   références:
-    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
     IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
 
@@ -4158,8 +4137,8 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
 
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
-    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
-    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
+    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
+    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-indépendant/transfert-du-recouvrement-de-la.html
 
 ? dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales
 : période: flexible
@@ -4587,7 +4566,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ré
       - si: entreprise . ACRE . année = 'moins de trois ans'
         alors: 25%
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
@@ -4677,6 +4656,28 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
     allègement:
       assiette: base des cotisations
       abattement: abattement
+
+revenus net de cotisations:
+  résumé: Avant impôt
+  période: flexible
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  formule:
+    somme:
+      - contrat salarié . rémunération . net
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . revenu net de cotisations
+
+revenu net après impôt:
+  unité: €
+  résumé: Versé sur le compte bancaire
+  période: flexible
+  question: Quel revenu voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
+    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
+  formule: revenus net de cotisations - impôt
 
 protection sociale:
   description: >

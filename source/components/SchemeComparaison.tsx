@@ -1,8 +1,5 @@
 import { setSituationBranch } from 'Actions/actions'
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur
-} from 'Actions/companyStatusActions'
+import { defineDirectorStatus, isAutoentrepreneur } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import { T } from 'Components'
 import Conversation from 'Components/conversation/Conversation'
@@ -19,10 +16,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	branchAnalyseSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector, branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
@@ -375,13 +369,13 @@ export default function SchemeComparaison({
 							<div className="AS">
 								<RuleValueLink
 									branch="assimilé"
-									rule="contrat salarié . rémunération . net"
+									rule="revenus net de cotisations"
 								/>
 							</div>
 							<div className="indep">
 								<RuleValueLink
 									branch="indépendant"
-									rule="indépendant . revenu net de cotisations"
+									rule="revenus net de cotisations"
 								/>
 							</div>
 							<div className="auto">
@@ -390,7 +384,7 @@ export default function SchemeComparaison({
 								) : (
 									<RuleValueLink
 										branch="auto-entrepreneur"
-										rule="auto-entrepreneur . revenu net de cotisations"
+										rule="revenus net de cotisations"
 									/>
 								)}
 							</div>
@@ -416,7 +410,7 @@ export default function SchemeComparaison({
 							</div>
 							<div className="indep">
 								{getRule('indépendant', 'protection sociale . retraite')
-									.applicable !== false ? (
+									.isApplicable !== false ? (
 									<span>
 										<RuleValueLink
 											branch="indépendant"
@@ -441,7 +435,7 @@ export default function SchemeComparaison({
 								) : getRule(
 										'auto-entrepreneur',
 										'protection sociale . retraite'
-								  ).applicable !== false ? (
+								  ).isApplicable !== false ? (
 									<span>
 										<RuleValueLink
 											branch="auto-entrepreneur"
@@ -522,6 +516,9 @@ export default function SchemeComparaison({
 							</div>
 							<div className="indep">
 								<span>
+								{getRule('indépendant', 'protection sociale . santé . indemnités journalières')
+									.isApplicable !== false ? (
+									<span>
 									<RuleValueLink
 										appendText={
 											<>
@@ -531,6 +528,13 @@ export default function SchemeComparaison({
 										branch="indépendant"
 										rule="protection sociale . santé . indemnités journalières"
 									/>
+									</span>
+								) : (
+									<span className="ui__ notice">
+										<T>Pas implémenté</T>
+									</span>
+								)}
+									
 								</span>
 							</div>
 							<div className="auto">

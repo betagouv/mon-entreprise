@@ -545,7 +545,7 @@ contrat salarié . CDD . surcoût:
 
     Certaines sont versées en fin de contrat, d'autres avec chaque salaire
     mensuel; elles sont ici ramenées à leur coût mensuel.
-assimilé salarié:
+dirigeant . assimilé salarié:
   description.en: >
     Some company managers (this is particularly the case for SASUs) are
     considered by the social security system as equivalent to employees. They
@@ -998,9 +998,6 @@ contrat salarié . indemnités salarié:
   titre.en: Employee benefits
   titre.fr: indemnités salarié
 contrat salarié . statut cadre:
-  titre.en: cadre status
-  titre.fr: statut cadre
-contrat salarié . statut cadre . choix statut cadre:
   question.en: Does the employee have the "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >-
@@ -2411,13 +2408,13 @@ entreprise . charges:
 
     A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une
     charge sans immobilisation.
-indépendant . cotisations et contributions . réduction ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE
-indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
+dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
   titre.en: ACRE rate
   titre.fr: taux ACRE
-indépendant . revenu net de cotisations:
+dirigeant . indépendant . revenu net de cotisations:
   résumé.en: Before taxes
   résumé.fr: Avant impôt
   question.en: What pre-tax income do you want to receive?
@@ -2430,7 +2427,7 @@ indépendant . revenu net de cotisations:
     l'impôt sur le revenu.
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
-indépendant . revenu professionnel:
+dirigeant . indépendant . revenu professionnel:
   titre.en: Professional income
   titre.fr: revenu professionnel (net imposable)
   description.en: >
@@ -2715,10 +2712,10 @@ indépendant:
   question.fr: Activité à la sécurité sociale des indépendants ?
   titre.en: self employed
   titre.fr: indépendant
-indépendant . cotisations et contributions . cotisations:
+dirigeant . indépendant . cotisations et contributions . cotisations:
   titre.en: social contributions
   titre.fr: cotisations
-indépendant . cotisations et contributions:
+dirigeant . indépendant . cotisations et contributions:
   titre.en: all contributions
   titre.fr: cotisations et contributions
 entreprise . rattachement libéral règlementé:
@@ -2736,16 +2733,16 @@ entreprise . rattachement libéral règlementé:
     donc dépendent de la sécurité sociale des indépendants.
   titre.en: linked with regulated liberal
   titre.fr: rattachement libéral règlementé
-indépendant . cotisations et contributions . cotisations . maladie:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   titre.en: health insurance
   titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
   titre.en: health insurance for regulated liberal
   titre.fr: maladie libérale règlementée
-indépendant . cotisations et contributions . cotisations . maladie . assiette:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre.en: health insurance basis
   titre.fr: assiette maladie
-indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
+dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   titre.en: health insurance 2
   titre.fr: Maladie 2
   description.en: >-
@@ -2757,49 +2754,49 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     santé des artisans, commerçants, industriels et conjoints collaborateurs
     nécessite un arrêt de travail, une part de leur ancien revenu leur sera
     versé.
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
   titre.en: 'craftsmen, traders, liberal'
   titre.fr: artisans commerçants libéraux
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
   titre.en: variable rate
   titre.fr: taux variable
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
   titre.en: RSA rate
   titre.fr: taux RSA
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
   titre.en: variable part RSA rate
   titre.fr: taux RSA part variable
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
   titre.en: upper reduction threshold
   titre.fr: seuil supérieur de réduction
-indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
   titre.en: rate
   titre.fr: taux
-indépendant . cotisations et contributions . cotisations . retraite de base:
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   titre.en: pension
   titre.fr: retraite de base
-indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
   titre.en: pension basis
   titre.fr: assiette retraite de base
-indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-indépendant . cotisations et contributions . cotisations . invalidité et décès:
+dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   titre.en: disability and death
   titre.fr: invalidité et décès
-indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
+dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
   titre.en: disability and death basis
   titre.fr: assiette invalidité et décès
-indépendant . cotisations et contributions . CSG et CRDS:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
   titre.fr: CSG et CRDS
-indépendant . cotisations et contributions . CSG et CRDS . assiette:
+dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   titre.en: basis
   titre.fr: assiette
-indépendant . cotisations et contributions . formation professionnelle:
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
-indépendant . cotisations et contributions . cotisations . allocations familiales:
+dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales:
   titre.en: family allowances
   titre.fr: allocations familiales
 auto-entrepreneur:
@@ -2818,7 +2815,7 @@ auto-entrepreneur:
     cotisations sociales par un prélèvement unique mensuel.
   titre.en: auto-entrepreneur
   titre.fr: auto-entrepreneur
-auto-entrepreneur . base des cotisations:
+dirigeant . auto-entrepreneur . base des cotisations:
   contrôles.en:
     - si: base des cotisations > plafond
       message: >-
@@ -2833,7 +2830,7 @@ auto-entrepreneur . base des cotisations:
       niveau: avertissement
   titre.en: contribution basis
   titre.fr: base des cotisations
-auto-entrepreneur . plafond:
+dirigeant . auto-entrepreneur . plafond:
   description.en: >
     The status of microentrepreneur applies as long as the annual turnover
     (actually collected during the calendar year) does not exceed a certain
@@ -2853,7 +2850,7 @@ auto-entrepreneur . plafond:
     individuelle](/simulateurs/indépendant).
   titre.en: upper limit
   titre.fr: plafond
-auto-entrepreneur . revenu net de cotisations:
+dirigeant . auto-entrepreneur . revenu net de cotisations:
   résumé.en: Before taxes
   résumé.fr: Avant impôt
   question.en: What pre-tax income do you want to receive?
@@ -2866,22 +2863,22 @@ auto-entrepreneur . revenu net de cotisations:
     l'impôt sur le revenu.
   titre.en: Net contribution income
   titre.fr: revenu net de cotisations
-auto-entrepreneur . cotisations et contributions:
+dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
-auto-entrepreneur . cotisations et contributions . TFC:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre.en: Chamber taxes
   titre.fr: Taxes pour frais de chambre
-auto-entrepreneur . cotisations et contributions . TFC . commerce:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre.en: Chamber of Trades taxes
   titre.fr: taxe pour frais de chambre de commerce
-auto-entrepreneur . cotisations et contributions . TFC . métiers:
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
-auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
+dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
   titre.en: Contribution to vocational training
   titre.fr: Contribution à la formation professionnelle
-auto-entrepreneur . cotisations et contributions . cotisations:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
     Social security contributions give the self-employed entrepreneur access to
     a minimum social protection: a pension, health care, social security, social
@@ -2910,7 +2907,7 @@ auto-entrepreneur . cotisations et contributions . cotisations:
     l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   titre.en: contributions
   titre.fr: cotisations
-auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire:
   description.en: >-
     The total amount that is allocated to the supplementary pension, useful to
     estimate the total amount of the retirement pension for auto-entrepreneurs
@@ -2919,7 +2916,7 @@ auto-entrepreneur . cotisations et contributions . cotisations . retraite compl�
     estimer le montant total de la pension de retraite des auto-entrepreneurs
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
   description.en: >
     The social contributions of the self-employed are simplified: there is no
     than a single line whose rate depends on the category of activity.
@@ -2984,11 +2981,11 @@ entreprise . ACRE . année . moins de deux ans:
 entreprise . ACRE . année . moins de trois ans:
   titre.en: less than three years
   titre.fr: moins de trois ans
-auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE
-auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre.en: |
     "ACRE" reduction
   titre.fr: réduction ACRE
@@ -2999,16 +2996,16 @@ auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE
   description.fr: >-
     Ce taux peut dans certains cas réduire le montant des cotisations sociales
     de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
-auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   titre.en: ACRE upper limit
   titre.fr: plafond ACRE
-auto-entrepreneur . impôt:
+dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
-auto-entrepreneur . impôt . abattement:
+dirigeant . auto-entrepreneur . impôt . abattement:
   titre.en: allowance
   titre.fr: abattement
-auto-entrepreneur . impôt . abattement . taux inversé:
+dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description.en: >-
     This is the rate to be applied to determine what remains after the
     application of
@@ -3018,10 +3015,10 @@ auto-entrepreneur . impôt . abattement . taux inversé:
     l'abattement
   titre.en: inverted rate
   titre.fr: taux inversé
-auto-entrepreneur . impôt . abattement . taux:
+dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre.en: tax allowance rate
   titre.fr: taux d'abattement de l'impôt
-auto-entrepreneur . impôt . versement libératoire:
+dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
     With the option for the discharge payment, the income tax is paid at the
     same time as your contributions (per month or per quarter) with the
@@ -3055,7 +3052,7 @@ auto-entrepreneur . impôt . versement libératoire:
       niveau: info
   titre.en: discharge payment
   titre.fr: versement libératoire
-auto-entrepreneur . impôt . versement libératoire . montant:
+dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre.en: discharge payment for auto-entrepreneur
   titre.fr: versement libératoire auto-entrepreneur
   description.en: >
@@ -3086,10 +3083,10 @@ auto-entrepreneur . impôt . versement libératoire . montant:
 
     - 2,2% pour les autres prestations de services relevants des bénéfices non
     commerciaux (BNC)
-auto-entrepreneur . impôt . revenu imposable:
+dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre.en: taxable income
   titre.fr: revenu imposable
-auto-entrepreneur . impôt . revenu abattu:
+dirigeant . auto-entrepreneur . impôt . revenu abattu:
   titre.en: reduced income
   titre.fr: revenu abattu auto-entrepreneur
 protection sociale:
