@@ -525,6 +525,43 @@ contrat salarié . CDD . indemnités salarié CDD:
   description.fr: Cotisations employeur spécifiques au CDD
   titre.en: fixed-term contrat employee compensations
   titre.fr: indemnités salarié CDD
+contrat salarié . CDD . surcoût:
+  titre.en: Of which additional cost CDD
+  titre.fr: Dont surcoût CDD
+  description.en: >-
+    The fixed-term contract (CDD) requires the employer to pay some additional
+    employee and social contributions in return for the flexibility provided by
+    this contract.
+
+    Some are paid at the end of the contract, others with each monthly salary;
+    Here, all of them are reduced to their monthly cost.
+  description.fr: >
+    Le contrat à durée déterminée exige que l'employeur verse, au salarié ou aux
+    organismes sociaux, certaines compensations
+
+    financières en contrepartie de la souplesse apportée par ce contrat; elles
+    sont au nombre de 4.
+
+
+    Certaines sont versées en fin de contrat, d'autres avec chaque salaire
+    mensuel; elles sont ici ramenées à leur coût mensuel.
+dirigeant . assimilé salarié:
+  description.en: >
+    Some company managers (this is particularly the case for SASUs) are
+    considered by the social security system as equivalent to employees. They
+    are then in the general social security system, with some constraints
+    however. For example, they do not contribute to unemployment insurance, and
+    therefore are not entitled to it.
+  description.fr: >
+    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont
+    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
+    alors au régime général de la sécurité sociale, avec quelques contraintes
+    cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas
+    droit.
+  question.en: Is the employee considered as "assimilated employee"?
+  question.fr: Le salarié est-il considéré comme "assimilé salarié" ?
+  titre.en: Assimilated salaried
+  titre.fr: assimilé salarié
 contrat salarié . apprentissage:
   description.en: >
     An apprenticeship contract is a written employment contract of limited
@@ -1019,7 +1056,7 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture. 
+    représentation sociale, de rôle dans l'entreprise ou de culture.
   titre.en: cadre status
   titre.fr: statut cadre
 plafond sécurité sociale temps plein:
@@ -1306,7 +1343,7 @@ contrat salarié . aides employeur:
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   description.en: >
     Some aids can be requested by the employer to help hires.
 
@@ -1409,7 +1446,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
 établissement:
@@ -2693,7 +2730,7 @@ entreprise . catégorie d'activité . artisanale:
   titre.fr: artisanale
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
+  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . vente:
@@ -2937,21 +2974,7 @@ dirigeant:
   question.fr: Quel est le régime social du dirigeant ?
   titre.en: director
   titre.fr: dirigeant
-dirigeant . assimilé salarié:
-  description.en: >
-    Some company managers (this is particularly the case for SASUs) are
-    considered by the social security system as equivalent to employees. They
-    are then in the general social security system, with some constraints
-    however. For example, they do not contribute to unemployment insurance, and
-    therefore are not entitled to it.
-  description.fr: >
-    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont
-    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
-    alors au régime général de la sécurité sociale, avec quelques contraintes
-    cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas
-    droit.
-  titre.en: Assimilated salaried
-  titre.fr: assimilé salarié
+
 dirigeant . auto-entrepreneur:
   description.en: |
     Self-enterprise is a simplified sole proprietorship. At the beginning
@@ -3683,7 +3706,7 @@ entreprise . convention collective:
   titre.fr: convention collective
 contrat salarié . convention collective:
   question.en: 'Which "convention collective" is applicable à l''entreprise ? [beta] '
-  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
+  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
   contrôles.en:
     - si: convention collective != 'droit commun'
       niveau: avertissement
@@ -3710,7 +3733,7 @@ contrat salarié . convention collective . HCR:
   titre.en: '!!hôtels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
+  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
 contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
@@ -4010,7 +4033,7 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux . A
   titre.en: '!!ATMP'
   titre.fr: ATMP
 contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
-  question.en: '!!Pour combien de jours continus l''artiste est-il engagé ?'
+  question.en: "!!Pour combien de jours continus l'artiste est-il engagé ?"
   question.fr: Pour combien de jours continus l'artiste est-il engagé ?
   titre.en: '!!nombre jours travaillés'
   titre.fr: nombre jours travaillés
@@ -4093,7 +4116,7 @@ artiste-auteur . revenus . BNC . recettes:
 artiste-auteur . revenus . BNC . frais réels:
   question.en: '!!Frais réels BNC'
   question.fr: Frais réels BNC
-  résumé.en: '!!Vient s''imputer aux recettes pour déterminer le bénéfice'
+  résumé.en: "!!Vient s'imputer aux recettes pour déterminer le bénéfice"
   résumé.fr: Vient s'imputer aux recettes pour déterminer le bénéfice
   titre.en: '!!frais réels'
   titre.fr: frais réels

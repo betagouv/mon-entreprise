@@ -114,7 +114,11 @@ exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  ac
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  activités 3`] = `"[17336,17336,4093,3,8,0]"`;
 
+<<<<<<< HEAD
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  activités 4`] = `"[17417,17417,4093,3,8,0]"`;
+=======
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur - activités 2`] = `"[15560,15560,0,4,0,0]"`;
+>>>>>>> :green_heart: répare les tests de non regression
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  activités 5`] = `"[17417,17417,4093,3,8,0]"`;
 
@@ -148,7 +152,15 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activit
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec charges 1`] = `"[6795,6795,4977,4,21,0]"`;
 
+<<<<<<< HEAD
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec charges 2`] = `"[13769,13769,10084,4,21,0]"`;
+=======
+<<<<<<< HEAD
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec charges 2`] = `"[13772,13772,10086,4,21,0]"`;
+=======
+exports[`calculate simulations-rémunération-dirigeant: Indépendant - activités 2`] = `"[14563,14571,0,4,0,0]"`;
+>>>>>>> :green_heart: répare les tests de non regression
+>>>>>>> :green_heart: répare les tests de non regression
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 1`] = `"[0,0,36807,3,21,0]"`;
 
@@ -166,7 +178,15 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échell
 
 exports[`calculate simulations-salarié:  aides 1`] = `"[2302,0,0,2000,1561,1524]"`;
 
+<<<<<<< HEAD
 exports[`calculate simulations-salarié:  aides 2`] = `"[12823,0,0,10000,8911,7667]"`;
+=======
+<<<<<<< HEAD
+exports[`calculate simulations-salarié:  aides 2`] = `"[12823,0,0,10000,8910,7652]"`;
+=======
+exports[`calculate simulations-rémunération-dirigeant: Indépendant - échelle de rémunération 1`] = `"[null,null,36807,3,21,0]"`;
+>>>>>>> :green_heart: répare les tests de non regression
+>>>>>>> :green_heart: répare les tests de non regression
 
 exports[`calculate simulations-salarié:  apprentissage 1`] = `"[1551,0,0,1500,1448,1448]"`;
 
