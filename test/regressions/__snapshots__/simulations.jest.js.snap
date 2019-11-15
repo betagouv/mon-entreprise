@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
+
+exports[`calculate simulations-artiste-auteur: bnc 2`] = `"[1863]"`;
+
+exports[`calculate simulations-artiste-auteur: bnc 3`] = `"[932]"`;
+
+exports[`calculate simulations-artiste-auteur: salarié 1`] = `"[160]"`;
+
+exports[`calculate simulations-artiste-auteur: salarié 2`] = `"[1603]"`;
+
+exports[`calculate simulations-artiste-auteur: salarié 3`] = `"[12372]"`;
+
 exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5299,299,5000,0,5000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[52991,2991,50000,2314,47686]"`;

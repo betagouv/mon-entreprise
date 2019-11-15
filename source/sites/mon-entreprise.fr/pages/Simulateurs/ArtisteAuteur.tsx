@@ -2,6 +2,7 @@ import { updateSituation } from 'Actions/actions'
 import { DistributionBranch } from 'Components/Distribution'
 import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
+import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
@@ -18,13 +19,6 @@ import styled from 'styled-components'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import ToggleSwitch from 'Ui/ToggleSwitch'
-
-const situation = {
-	période: 'année',
-	dirigeant: 'artiste-auteur'
-}
-const objectifs = ['dirigeant . artiste-auteur . cotisations']
-const config = { situation, objectifs }
 
 export function useRule(dottedName: DottedName) {
 	const analysis = useSelector(analysisWithDefaultsSelector)
