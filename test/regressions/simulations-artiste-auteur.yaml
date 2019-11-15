@@ -1,0 +1,12 @@
+salarié:
+  - dirigeant . artiste-auteur . revenus . traitements et salaires: 1000
+  - dirigeant . artiste-auteur . revenus . traitements et salaires: 10000
+  - dirigeant . artiste-auteur . revenus . traitements et salaires: 100000
+
+bnc:
+  - dirigeant . artiste-auteur . revenus . BNC . recettes: 10000
+  - dirigeant . artiste-auteur . revenus . BNC . recettes: 10000
+    dirigeant . artiste-auteur . revenus . BNC . régime spécial: false
+  - dirigeant . artiste-auteur . revenus . BNC . recettes: 10000
+    dirigeant . artiste-auteur . revenus . BNC . régime spécial: false
+    dirigeant . artiste-auteur . revenus . BNC . frais réels: 5000

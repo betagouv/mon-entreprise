@@ -1,0 +1,5 @@
+situation:
+  période: année
+  dirigeant: artiste-auteur
+objectifs:
+  - dirigeant . artiste-auteur . cotisations

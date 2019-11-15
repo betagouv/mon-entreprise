@@ -6,11 +6,13 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
+import artisteAuteurConfig from '../../source/components/simulationConfigs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/components/simulationConfigs/auto-entrepreneur.yaml'
 import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
 import remunerationDirigeantConfig from '../../source/components/simulationConfigs/rémunération-dirigeant.yaml'
 import employeeConfig from '../../source/components/simulationConfigs/salarié.yaml'
 import Lib from '../../source/engine/index'
+import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
@@ -70,4 +72,12 @@ it('calculate simulations-rémunération-dirigeant', () => {
 			`${nom} - `
 		)
 	})
+})
+
+it('calculate simulations-artiste-auteur', () => {
+	runSimulations(
+		artisteAuteurSituations,
+		artisteAuteurConfig.objectifs,
+		artisteAuteurConfig.situation
+	)
 })
