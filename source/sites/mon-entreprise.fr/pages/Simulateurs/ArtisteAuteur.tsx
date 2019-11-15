@@ -1,4 +1,5 @@
 import { updateSituation } from 'Actions/actions'
+import { DistributionBranch } from 'Components/Distribution'
 import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
@@ -25,7 +26,7 @@ const situation = {
 const objectifs = ['dirigeant . artiste-auteur . cotisations']
 const config = { situation, objectifs }
 
-function useRule(dottedName: DottedName) {
+export function useRule(dottedName: DottedName) {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	return getRule(dottedName)
@@ -165,7 +166,6 @@ const ResultBlock = styled.div`
 	margin-top: 30px;
 	padding: 10px;
 	background: #eee;
-	border: 2px solid grey;
 	font-size: 1.25em;
 	background: #eee;
 	display: flexbox;
@@ -205,7 +205,47 @@ function CotisationsResult() {
 						)}
 					</div>
 				</ResultBlock>
+				<RepartitionCotisations />
 			</Animate.appear>
 		)
+	)
+}
+
+const branches = [
+	{
+		dottedName: 'dirigeant . artiste-auteur . cotisations . vieillesse',
+		icon: '👵'
+	},
+	{
+		dottedName: 'dirigeant . artiste-auteur . cotisations . CSG-CRDS',
+		icon: '🏛'
+	},
+	{
+		dottedName:
+			'dirigeant . artiste-auteur . cotisations . formation profesionnelle',
+		icon: '👷‍♂️'
+	}
+]
+
+function RepartitionCotisations() {
+	const cotisations = branches.map(branch => ({
+		...branch,
+		value: useRule(branch.dottedName).nodeValue as number
+	}))
+	const maximum = Math.max(...cotisations.map(x => x.value))
+	const total = cotisations.map(x => x.value).reduce((a = 0, b) => a + b)
+	return (
+		<section>
+			<h2>À quoi servent mes cotisations ?</h2>
+			<div className="distribution-chart__container">
+				{cotisations.map(cotisation => (
+					<DistributionBranch
+						key={cotisation.dottedName}
+						distribution={{ maximum, total }}
+						{...cotisation}
+					/>
+				))}
+			</div>
+		</section>
 	)
 }

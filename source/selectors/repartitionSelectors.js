@@ -149,7 +149,7 @@ const répartition = (analysis): ?Répartition => {
 		// $FlowFixMe
 		total: cotisationsRule.nodeValue,
 		cotisations: cotisationsRule,
-		cotisationMaximum: compose(
+		maximum: compose(
 			reduce(max, 0),
 			map(montant => montant.partPatronale + montant.partSalariale),
 			Object.values
@@ -161,7 +161,4 @@ const répartition = (analysis): ?Répartition => {
 }
 
 // $FlowFixMe
-export default createSelector(
-	[analysisWithDefaultsSelector],
-	répartition
-)
+export default createSelector([analysisWithDefaultsSelector], répartition)
