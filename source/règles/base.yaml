@@ -5718,15 +5718,14 @@ dirigeant . artiste-auteur . revenus . BNC:
               - (- frais réels)
 
 dirigeant . artiste-auteur . revenus . BNC . régime spécial:
-  applicable si: recettes [annuel] < 70000 €
+  applicable si: 
+    toutes ces conditions:
+      - recettes [annuel] >= 1 €
+      - recettes [annuel] < 70000 €
+  # unité: booléen
   par défaut: oui
-  formule: déclaration controlée = non
-
-dirigeant . artiste-auteur . revenus . BNC . déclaration controlée:
-  applicable si: régime spécial
-  par défaut: non
-  unité: booléen
-  question: Opter pour la déclaration controlée
+  question: Opter pour le régime spécial
+  résumé: Évaluation forfaitaire des frais à 34% des recettes
 
 dirigeant . artiste-auteur . revenus . BNC . recettes:
   unité: €
@@ -5741,6 +5740,7 @@ dirigeant . artiste-auteur . revenus . BNC . frais réels:
   par défaut: 0
   question: Frais réels BNC
   résumé: Vient s'imputer aux recettes pour déterminer le bénéfice
+  applicable si: recettes [annuel] >= 1 €
   non applicable si: régime spécial
 
 dirigeant . artiste-auteur . revenus . BNC . charges forfaitaires:
