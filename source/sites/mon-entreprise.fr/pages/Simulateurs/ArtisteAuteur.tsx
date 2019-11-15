@@ -46,7 +46,7 @@ export default function ArtisteAuteur() {
 
 	return (
 		<>
-			<h1>Artistes-auteurs</h1>
+			<h1>Estimer mes cotisations d’artiste-auteur</h1>
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<section className="ui__ plain card">
 				<div id="targetSelection">
@@ -59,7 +59,11 @@ export default function ArtisteAuteur() {
 							dottedName="dirigeant . artiste-auteur . revenus . BNC . recettes"
 							initialRender={initialRender}
 						/>
-						<DeclarationControléeSwitch />
+						<SimpleField
+							dottedName="dirigeant . artiste-auteur . revenus . BNC . régime spécial"
+							initialRender={initialRender}
+						/>
+						<WarningRegimeSpecial />
 						<SimpleField
 							dottedName="dirigeant . artiste-auteur . revenus . BNC . frais réels"
 							initialRender={initialRender}
@@ -119,7 +123,18 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 								`}
 							/>
 						)}
-						{unit === 'booléen' && <>ok</>}
+						{/* Super hacky */}
+						{unit !== '€' && (
+							<ToggleSwitch
+								id={`step-${dottedName}`}
+								defaultChecked={rule.nodeValue}
+								onChange={evt =>
+									dispatch(
+										updateSituation(dottedName, evt.currentTarget.checked)
+									)
+								}
+							/>
+						)}
 					</div>
 				</div>
 			</Animate.appear>
@@ -127,38 +142,17 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 	)
 }
 
-function DeclarationControléeSwitch() {
-	const dottedName =
-		'dirigeant . artiste-auteur . revenus . BNC . régime spécial'
-	const rule = useRule(dottedName)
-	const dispatch = useDispatch()
-
+function WarningRegimeSpecial() {
+	const situation = useSelector(situationSelector)
+	const recettes =
+		situation['dirigeant . artiste-auteur . revenus . BNC . recettes']
+	const showWarning = recettes !== 0 && recettes >= 70000
 	return (
-		<li>
-			{rule === undefined ? (
-				<>Vos revenus vous obligent à opter pour la déclaration contrôlée</>
-			) : (
-				<div className="main">
-					<div className="header">
-						<label htmlFor={`step-${dottedName}`}>
-							<span className="optionTitle">
-								Opter pour la déclaration contrôlée
-							</span>
-						</label>
-					</div>
-					<div className="targetInputOrValue">
-						<ToggleSwitch
-							id={`step-${dottedName}`}
-							onChange={evt =>
-								dispatch(
-									updateSituation(dottedName, !evt.currentTarget.checked)
-								)
-							}
-						/>
-					</div>
-				</div>
-			)}
-		</li>
+		showWarning && (
+			<li>
+				Vos revenus ne vous permettent pas d'opter pour le régime spécial.
+			</li>
+		)
 	)
 }
 
