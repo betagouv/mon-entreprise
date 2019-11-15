@@ -5739,8 +5739,8 @@ dirigeant . artiste-auteur . revenus . BNC . frais réels:
   unité: €
   période: année
   par défaut: 0
-  question: Déficit
-  résumé: Le montant des frais réels
+  question: Frais réels BNC
+  résumé: Vient s'imputer aux recettes pour déterminer le bénéfice
   non applicable si: régime spécial
 
 dirigeant . artiste-auteur . revenus . BNC . charges forfaitaires:
