@@ -21,6 +21,8 @@ questions:
     ACRE: entreprise . ACRE
   liste noire:
     - entreprise . charges
+  non prioritaires:
+    - entreprise . catégorie d'activité . débit de tabac
 
 situation:
   dirigeant: 'indépendant'

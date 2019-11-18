@@ -1,11 +1,39 @@
-import { collectMissingVariablesByTarget, getNextSteps } from 'Engine/generateQuestions'
-import { collectDefaults, disambiguateExampleSituation, findRuleByDottedName } from 'Engine/rules'
+import {
+	collectMissingVariablesByTarget,
+	getNextSteps
+} from 'Engine/generateQuestions'
+import {
+	collectDefaults,
+	disambiguateExampleSituation,
+	findRuleByDottedName
+} from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { add, defaultTo, difference, dissoc, equals, head, intersection, isEmpty, isNil, last, length, map, mergeDeepWith, negate, pick, pipe, sortBy, split, takeWhile, zipWith } from 'ramda'
+import {
+	add,
+	defaultTo,
+	difference,
+	dissoc,
+	equals,
+	head,
+	intersection,
+	isEmpty,
+	isNil,
+	last,
+	length,
+	map,
+	mergeDeepWith,
+	negate,
+	pick,
+	pipe,
+	sortBy,
+	split,
+	takeWhile,
+	zipWith
+} from 'ramda'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { DottedName } from "Types/rule"
+import { DottedName } from 'Types/rule'
 import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
@@ -281,8 +309,10 @@ export let nextStepsSelector = createSelector(
 
 		nextSteps = sortBy(
 			question =>
-				similarity(question, lastStepWithAnswer) +
-				notPriority.indexOf(question),
+				notPriority.includes(question)
+					? notPriority.indexOf(question)
+					: similarity(question, lastStepWithAnswer),
+
 			nextSteps
 		)
 

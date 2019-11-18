@@ -2836,7 +2836,7 @@ contrat salarié . taxe sur les salaires . barème:
 
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
-  non applicable si: situation personnelle . domicilié à l'étranger
+  non applicable si: situation personnelle . domiciliation fiscale à l'étranger
   par défaut: non
   description: |
     Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
@@ -3212,7 +3212,7 @@ impôt . CEHR:
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 entreprise . date de création:
-  question: En quelle année avez-vous crée votre entreprise ?
+  question: En quelle année avez-vous créé votre entreprise ?
   par défaut: 2019
   suggestions:
     2019: 2019
@@ -3431,7 +3431,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
   description: |
     Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
-    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (retraite, indémnité journalière, indemnité décès, etc)**
+    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   période: flexible
   formule: assiette = 'revenu avec partage'
   remplace: 
@@ -3776,7 +3776,7 @@ dirigeant . indépendant . cotisations et contributions:
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac: 
   applicable si: entreprise . catégorie d'activité . débit de tabac
-  question: Quels est le montant des revenus issus de la vente de tabac que souhaitez-vous exonérer de cotisation vieillesse ?
+  question: Quel est le montant des revenus issus de la vente de tabac que vous souhaitez exonérer de cotisation vieillesse ?
   description: |
     Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.
   unité: €
@@ -3787,6 +3787,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
     dans: 
       - retraite de base
       - retraite complémentaire
+      - invalidité et décès
     par: revenu professionnel - déduction tabac
     
 
@@ -3816,6 +3817,17 @@ dirigeant . rattachement CIPAV:
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
     - dirigeant . indépendant . conjoint collaborateur
   période: aucune
+
+dirigeant . indépendant . PLNR régime général:
+  applicable si: 
+    toutes ces conditions: 
+      - entreprise . catégorie d'activité = 'libérale'
+      - entreprise . catégorie d'activité . libérale règlementée = non
+      - entreprise . date de création < 2019
+  question: Avez-vous opté pour le rattachement au régime général des indépendant ?
+  description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
+  par défaut: non
+  rend non applicable: rattachement CIPAV
 
 ? dirigeant . rattachement CIPAV . maladie
 : période: flexible
@@ -4036,8 +4048,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
         - de: 37960
           à: 162096
           taux: 8%
-        - au-dessus de: 162096
-          taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
@@ -4055,12 +4065,12 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
   titre: assiette invalidité et décès
   formule:
     variations:
-      - si: situation personnelle . RSA != oui
-        alors:
+      - si: situation personnelle . RSA
+        alors: revenu professionnel
+      - sinon: 
           le maximum de:
             - 11.5% * plafond sécurité sociale temps plein
             - revenu professionnel
-      - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -4077,18 +4087,16 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
             impôt sur le revenu: déductible
           taux: 6.8%
         - attributs:
-            nom: indemnités journalières
+            nom: revenus de remplacement
             impôt sur le revenu: non déductible
           assiette: situation personnelle . IJSS . total
           taux: 2.9%
         - attributs:
-            nom: indemnités journalières
+            nom: revenus de remplacement
             impôt sur le revenu: déductible
           assiette: situation personnelle . IJSS . total
           taux: 3.8%
 
-  note: 
-    Lorsque le revenu fiscal de reference de l'année N-1 est inferieur à un seuil, il y a exonération / taux réduit de la CSG, ce qui n'est pas encore implémenté
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
@@ -4129,11 +4137,12 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
       assiette: plafond sécurité sociale temps plein
       taux:
         variations:
-          - si: conjoint collaborateur
-            alors: 0.34%
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
+          - si: conjoint collaborateur
+            alors: 0.34%
           - sinon: 0.25%
+  note: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
 
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
@@ -4170,7 +4179,7 @@ situation personnelle . IJSS:
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
 
     Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
-  question: Avez-vous touché des indemnité journalières de sécurité sociale (maladie, maternité, paternité, etc.) ?
+  question: Avez-vous touché des indemnités journalières de sécurité sociale (maladie, maternité, paternité, etc.) ?
   par défaut: non
 
 situation personnelle . IJSS . montant:
@@ -4260,10 +4269,10 @@ dirigeant . indépendant . exonération ZFU . taux:
               alors: 80%
             - sinon: 100%
 
-situation personnelle . domicilié à l'étranger:
+situation personnelle . domiciliation fiscale à l'étranger:
   description: |
     Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
-  question: La résidence fiscale de l'assuré est-elle domicilié à l'étranger ?
+  question: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
   par défaut: non
   rend non applicable: 
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
@@ -4273,8 +4282,9 @@ situation personnelle . domicilié à l'étranger:
   références: 
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie domicilié à l'étranger:
-  applicable si: situation personnelle . domicilié à l'étranger
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  titre: Maladie (domiciliation fiscale à l'étranger)
   période: flexible
   description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
   remplace: maladie
@@ -4283,8 +4293,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
       assiette: maladie . assiette
       taux: 14.5%
 
-contrat salarié . maladie . taux domicilié à l'étranger:
-  applicable si: situation personnelle . domicilié à l'étranger
+contrat salarié . maladie . taux domiciliation fiscale étranger:
+  titre: taux salarié (domiciliation fiscale à l'étranger)
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
   période: aucune
   remplace: taux salarié
   formule: 5.50%
@@ -4528,7 +4539,7 @@ entreprise . ACRE:
           - dirigeant = 'auto-entrepreneur'
           - entreprise . année d'activité < 4
       - entreprise . année d'activité < 2
-  question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
+  question: Votre entreprise bénéficie-t-elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
 
 entreprise . ACRE . année:
