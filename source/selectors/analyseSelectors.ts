@@ -320,8 +320,10 @@ export let nextStepsSelector = createSelector(
 
 		nextSteps = sortBy(
 			question =>
-				similarity(question, lastStepWithAnswer) +
-				notPriority.indexOf(question),
+				notPriority.includes(question)
+					? notPriority.indexOf(question)
+					: similarity(question, lastStepWithAnswer),
+
 			nextSteps
 		)
 
