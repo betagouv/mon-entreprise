@@ -35,6 +35,7 @@ export const evaluateApplicability = (
 				: mergeAll([
 						...parentDependencies.map(parent => parent.missingVariables),
 						notApplicable?.missingVariables || {},
+						disabled?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
 
@@ -81,9 +82,7 @@ export default (cache, situationGate, parsedRules, node) => {
 			formulaMissingVariables
 		)
 	cache.parseLevel--
-	if (node.dottedName.startsWith('sum')) {
-		// console.log(node.dottedName, missingVariables, node)
-	}
+
 	return {
 		...node,
 		...applicabilityEvaluation,

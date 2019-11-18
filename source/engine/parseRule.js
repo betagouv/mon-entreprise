@@ -6,7 +6,7 @@ import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
 import { coerceArray } from '../utils'
-import { evaluateNode, makeJsx } from './evaluation'
+import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
 import { Node } from './mecanismViews/common'
 import { disambiguateRuleReference, findParentDependencies } from './rules'
 
@@ -136,7 +136,12 @@ export default (rules, rule, parsedRules) => {
 			)
 			const nodeValue = isDisabledBy.some(x => !!x.nodeValue)
 			const explanation = { ...node.explanation, isDisabledBy }
-			return { ...node, explanation, nodeValue }
+			return {
+				...node,
+				explanation,
+				nodeValue,
+				missingVariables: mergeAllMissing(isDisabledBy)
+			}
 		},
 		jsx: (nodeValue, { isDisabledBy }) => {
 			return (
