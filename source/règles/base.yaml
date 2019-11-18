@@ -3947,6 +3947,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
           taux: 8%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
+  non applicable si: exonérations . âge
   formule:
     multiplication:
       assiette: assiette
@@ -4051,18 +4052,28 @@ dirigeant . indépendant . cotisations et contributions . cotisations . allocati
         1.4: 3.1%
 
 entreprise . ZFU:
-  question: Votre entreprise est-elle localisée dans une zone franche urbaine (ZFU) ?
+  question: Votre entreprise bénéficie-t'elle du dispositif zone franche urbaine (ZFU) ?
   par défaut: non
 
-dirigeant . indépendant . exonération ZFU:
+dirigeant . indépendant . cotisations et contributions . exonérations:
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   période: aucune
   applicable si: entreprise . date de création < 2015
   non applicable si: rattachement CIPAV
   formule: entreprise . ZFU = oui
   remplace:
-    règle: cotisations et contributions . cotisations . maladie
-    par: taux * cotisations et contributions . cotisations . maladie
-  
+    règle: cotisations . maladie
+    par: taux * cotisations . maladie
+
+dirigeant . indépendant . cotisations et contributions . exonérations . âge:
+  question: Bénéficiez-vous du dispositif d'exonération "âge" 
+  description: Ce dispositif a été arrêté en 2015, mais est toujours actifs pour les personnes qui en bénéficiait avant son abbrogation.
+  applicable si: entreprise . date de création < 2016
+  par défaut: non
+
+dirigeant . indépendant . cotisations et contributions . exonérations . âge . effet:
+  applicable si: âge
+
 situation personnelle . IJSS:
   description: |
     En cas de maladie, maternité, ou accident, le régime général de Sécurité sociale ainsi que les régimes spéciaux assurent le versement de prestations « en espèces ». Ce sont les indemnités journalières de Sécurité sociale (IJSS),
@@ -4121,7 +4132,7 @@ situation personnelle . IJSS . total:
   
 
 
-dirigeant . indépendant . exonération ZFU . taux:
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   titre: taux exonération ZFU
   formule:
     variations:
