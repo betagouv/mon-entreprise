@@ -38,6 +38,7 @@ export const evaluateApplicability = (
 				: mergeAll([
 						...parentDependencies.map(parent => parent.missingVariables),
 						notApplicable?.missingVariables || {},
+						disabled?.missingVariables || {},
 						applicable?.missingVariables || {}
 				  ])
 

@@ -3709,7 +3709,6 @@ dirigeant . rattachement CIPAV:
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
-  non applicable si: indépendant . PLNR régime général
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -3738,6 +3737,7 @@ dirigeant . indépendant . PLNR régime général:
       - entreprise . date de création < 2019
   question: Avez-vous opté pour le rattachement au régime général des indépendant ?
   description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
+  rend non applicable: rattachement CIPAV
   par défaut: non
 
 dirigeant . rattachement CIPAV . maladie:
@@ -4059,9 +4059,10 @@ entreprise . ZFU:
 dirigeant . indépendant . cotisations et contributions . exonérations:
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   période: aucune
-  applicable si: entreprise . date de création < 2015
-  non applicable si: rattachement CIPAV
-  formule: entreprise . ZFU = oui
+  applicable si: 
+    toutes ces conditions:
+      - entreprise . date de création < 2015
+      - entreprise . ZFU
   remplace:
     règle: cotisations . maladie
     par: taux * cotisations . maladie
@@ -4072,8 +4073,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   applicable si: entreprise . date de création < 2016
   par défaut: non
 
-dirigeant . indépendant . cotisations et contributions . exonérations . âge . effet:
-  applicable si: âge
+dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
+  question: Êtes-vous titulaire d’une pension d’invalidité ? 
+  description:  Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
+  par défaut: non
+  rend non applicable: 
+    - cotisations . maladie
+    - cotisations . indemnités journalières maladie
+    - cotisations . retraite complémentaire
+  
+
 
 situation personnelle . IJSS:
   titre: indemnités journalières de sécurité sociale
