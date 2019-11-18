@@ -3699,6 +3699,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
       - retraite de base
       - retraite complémentaire
       - invalidité et décès
+      - conjoint collaborateur . cotisations . assiette
     par: revenu professionnel - déduction tabac
     
 
@@ -3708,6 +3709,7 @@ dirigeant . rattachement CIPAV:
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
+  non applicable si: indépendant . PLNR régime général
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -3737,7 +3739,6 @@ dirigeant . indépendant . PLNR régime général:
   question: Avez-vous opté pour le rattachement au régime général des indépendant ?
   description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
   par défaut: non
-  rend non applicable: rattachement CIPAV
 
 dirigeant . rattachement CIPAV . maladie:
   remplace: indépendant . cotisations et contributions . cotisations . maladie
@@ -4075,6 +4076,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge .
   applicable si: âge
 
 situation personnelle . IJSS:
+  titre: indemnités journalières de sécurité sociale
   description: |
     En cas de maladie, maternité, ou accident, le régime général de Sécurité sociale ainsi que les régimes spéciaux assurent le versement de prestations « en espèces ». Ce sont les indemnités journalières de Sécurité sociale (IJSS),
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
