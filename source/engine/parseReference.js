@@ -291,9 +291,12 @@ export let parseReferenceTransforms = (
 	parsedRules
 ) => parseResult => {
 	const referenceName = parseResult.variable.fragments.join(' . ')
-	let node = parseReference(rules, rule, parsedRules, parseResult.filter)(
-		referenceName
-	)
+	let node = parseReference(
+		rules,
+		rule,
+		parsedRules,
+		parseResult.filter
+	)(referenceName)
 
 	return {
 		...node,
