@@ -1039,6 +1039,11 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@monaco-editor/react@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-2.3.0.tgz#ef1e09c408bb3119e2dc0d369b132e82b2d3ade7"
+  integrity sha512-jmmZCQ4iSMfwelWGRV4HWUOJchkN4MOx9vhx1DWvC6ERpvK5DXrcwJBBzuayVtiK7cyCVOGKB7mgjT7KOdUkJw==
+
 "@prerenderer/prerenderer@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@prerenderer/prerenderer/-/prerenderer-0.7.2.tgz#b26a806bcdb3b313d527b313bdd72a57434b45fd"
