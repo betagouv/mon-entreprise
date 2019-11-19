@@ -105,7 +105,16 @@ class ErrorBoundary extends React.Component {
 	render() {
 		return (
 			<>
-				{this.state.error && <p>Erreur : {JSON.stringify(this.state.error)}</p>}
+				{this.state.error && (
+					<p css="max-height: 4rem; overflow: hidden; border: 3px solid red;">
+						Erreur :{' '}
+						{
+							this.state.error.message.split(
+								'The error may be correlated with'
+							)[0]
+						}
+					</p>
+				)}
 				{this.props.children}
 			</>
 		)
