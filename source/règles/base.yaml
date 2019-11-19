@@ -3781,15 +3781,21 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
     Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.
   unité: €
   période: flexible
-  par défaut: 0
+  par défaut: non
+
+dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits: 
+  titre: revenu professionnel (avec déduction tabac) 
+  période: flexible
+  applicable si: déduction tabac
+  unité: €
   remplace: 
     règle: revenu professionnel
     dans: 
       - retraite de base
       - retraite complémentaire
       - invalidité et décès
-      - conjoint collaborateur . cotisations . assiette
-    par: revenu professionnel - déduction tabac
+      - conjoint collaborateur
+  formule: revenu professionnel - déduction tabac
     
 
 dirigeant . rattachement CIPAV:
@@ -4127,6 +4133,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     somme:
       - revenu professionnel
       - cotisations
+      - conjoint collaborateur . cotisations
       - (- revenus étrangers . montant)
       - (- situation personnelle . IJSS . fiscalisées)
 
