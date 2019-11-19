@@ -229,16 +229,21 @@ export let translateAll = (translations, flatRules) => {
 	)
 }
 
-const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
-	dottedName,
-	...rule
-}))
+const rulesToList = rulesObject =>
+	Object.entries(rulesObject).map(([dottedName, rule]) => ({
+		dottedName,
+		...rule
+	}))
+
+export const buildFlatRules = rulesObject =>
+	rulesToList(rulesObject).map(enrichRule)
 
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rulesList).map(rule =>
+export let rules = translateAll(translations, rulesToList(rawRules)).map(rule =>
 	enrichRule(rule)
 )
-export let rulesFr = rulesList.map(rule => enrichRule(rule))
+
+export let rulesFr = buildFlatRules(rawRules)
 
 export let findParentDependencies = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no

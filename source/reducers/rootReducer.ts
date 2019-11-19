@@ -6,12 +6,23 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
-import { DottedName, Rule } from 'Types/rule'
+import { DottedName } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
-function explainedVariable(state: DottedName | null = null, action: Action) {
+function rules(state = null, action) {
+	switch (action.type) {
+		case 'SET_RULES':
+			return action.rules
+		default:
+			return state
+	}
+}
+function explainedVariable(
+	state: DottedName | null = null,
+	action: Action
+): DottedName | null {
 	switch (action.type) {
 		case 'EXPLAIN_VARIABLE':
 			return action.variableName
@@ -267,7 +278,7 @@ const existingCompanyReducer = (state, action: Action) => {
 const mainReducer = (state, action: Action) =>
 	combineReducers({
 		lang,
-		rules: defaultTo(null) as Reducer<Array<Rule>>,
+		rules,
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
