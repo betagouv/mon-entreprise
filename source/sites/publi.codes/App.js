@@ -18,7 +18,12 @@ function Router({ basename, language }) {
 			language={language}
 			reduxMiddlewares={[]}
 			initialStore={{
-				rules
+				rules,
+				simulation: {
+					config: {
+						objectifs: ['a']
+					}
+				}
 			}}
 		>
 			<RouterSwitch />

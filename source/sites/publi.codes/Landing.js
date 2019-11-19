@@ -3,6 +3,8 @@ import exemple2 from '!!raw-loader!./exemple2.yaml'
 import ColoredYaml from 'Components/rule/ColoredYaml'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
+import { Header } from './Header'
+import Yo from './Yo'
 
 export default function Landing() {
 	useEffect(() => {
@@ -21,20 +23,8 @@ export default function Landing() {
 	return (
 		<div className="app-container">
 			<div className="app-content ui__ container">
-				<div css="text-align: center">
-					<h1 css="">
-						<span css="border: 3px solid var(--colour); color: var(--colour); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
-							publi
-						</span>
-						<span css="background: var(--colour); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--colour)">
-							codes
-						</span>
-					</h1>
-					<p css="width: 28rem; margin: 0 auto; font-size: 120%">
-						Un nouveau langage de calcul pour encoder les algorithmes d'intérêt
-						public.
-					</p>
-				</div>
+				<Header />
+				<Yo />
 				<h2>Pourquoi ?</h2>
 				<p>
 					Certains algorithmes sont bien trop importants pour être maintenus
