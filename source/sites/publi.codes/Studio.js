@@ -35,7 +35,6 @@ export default function SafeStudio() {
 		</div>
 	)
 }
-
 export function Studio() {
 	const defaultTarget = 'b'
 	const [ready, setReady] = useState(false)

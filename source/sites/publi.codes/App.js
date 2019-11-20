@@ -7,7 +7,7 @@ import Provider from '../../Provider'
 import { getSessionStorage } from '../../utils'
 import redirects from '../mon-entreprise.fr/redirects'
 import Landing from './Landing'
-import Studio from './Studio'
+import Studio from './LazyStudio'
 
 function Router({ language }) {
 	useEffect(() => {
