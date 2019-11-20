@@ -13,9 +13,8 @@ export const Header = ({ noSubtitle }) => (
 			</h1>
 		</Link>
 		{!noSubtitle && (
-			<p css="width: 28rem; margin: 0 auto; font-size: 120%">
-				Un nouveau langage de calcul pour encoder les algorithmes d'intérêt
-				public.
+			<p css="max-width: 28rem; margin: 0 auto; font-size: 120%">
+				Un nouveau langage pour les algorithmes d'intérêt public.
 			</p>
 		)}
 	</header>
