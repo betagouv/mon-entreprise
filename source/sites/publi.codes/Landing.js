@@ -4,7 +4,7 @@ import ColoredYaml from 'Components/rule/ColoredYaml'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Header } from './Header'
-import Yo from './Yo'
+import Studio from './Studio'
 
 export default function Landing() {
 	useEffect(() => {
@@ -24,7 +24,7 @@ export default function Landing() {
 		<div className="app-container">
 			<div className="app-content ui__ container">
 				<Header />
-				<Yo />
+				<Studio />
 				<h2>Pourquoi ?</h2>
 				<p>
 					Certains algorithmes sont bien trop importants pour être maintenus
