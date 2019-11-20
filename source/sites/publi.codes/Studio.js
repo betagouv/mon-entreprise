@@ -8,6 +8,8 @@ import {
 	flatRulesSelector
 } from 'Selectors/analyseSelectors'
 import { setSimulationConfig } from '../../actions/actions'
+import { Header } from './Header'
+
 let initialInput = `
 
 a: 
@@ -26,9 +28,12 @@ d:
 
 export default function SafeStudio() {
 	return (
-		<ErrorBoundary>
-			<Studio />
-		</ErrorBoundary>
+		<div className="app-content ui__ container" css="margin-bottom: 2rem">
+			<Header noSubtitle />
+			<ErrorBoundary>
+				<Studio />
+			</ErrorBoundary>
+		</div>
 	)
 }
 
@@ -68,30 +73,25 @@ export function Studio() {
 
 	return (
 		<div>
-			Saissez des formules
+			Construisez votre modèle ici :
 			<Editor
 				height="40vh"
 				language="yaml"
 				value={initialInput}
 				editorDidMount={handleEditorDidMount}
 			/>
-			<label>
-				Que voulez-vous calculer ?{' '}
-				<select
-					name="pets"
-					id="pet-select"
-					onChange={e => setTarget(e.target.value)}
-				>
-					{flatRules.map(({ dottedName, title }) => (
-						<option key={dottedName} value={dottedName}>
-							{title}
-						</option>
-					))}
-				</select>
-			</label>
+			<label htmlFor="objectif">Que voulez-vous calculer ? </label>
 			<br />
+			<select id="objectif" onChange={e => setTarget(e.target.value)}>
+				{flatRules.map(({ dottedName, title }) => (
+					<option key={dottedName} value={dottedName}>
+						{title}
+					</option>
+				))}
+			</select>
 			<button
-				className="ui__ button"
+				css="margin-left: .6rem"
+				className="ui__ button simple"
 				onClick={handleShowValue}
 				disabled={!isEditorReady}
 			>
