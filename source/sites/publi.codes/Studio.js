@@ -1,7 +1,8 @@
-import Editor from '@monaco-editor/react'
+import { ControlledEditor } from '@monaco-editor/react'
 import { buildFlatRules } from 'Engine/rules'
 import { safeLoad } from 'js-yaml'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	analysisWithDefaultsSelector,
@@ -40,13 +41,12 @@ export default function SafeStudio() {
 export function Studio() {
 	const defaultTarget = 'b'
 	const [ready, setReady] = useState(false)
+	const [value, setValue] = useState(initialInput)
 	const [target, setTarget] = useState(defaultTarget)
 
 	const dispatch = useDispatch()
 	const flatRules = useSelector(state => flatRulesSelector(state))
 
-	const [isEditorReady, setIsEditorReady] = useState(false)
-	const valueGetter = useRef()
 	const setRules = rulesString =>
 		dispatch({
 			type: 'SET_RULES',
@@ -61,41 +61,38 @@ export function Studio() {
 		setReady(true)
 	}, [])
 
-	function handleEditorDidMount(_valueGetter) {
-		setIsEditorReady(true)
-		valueGetter.current = _valueGetter
+	function onChange(ev, newValue) {
+		setValue(newValue)
 	}
 
-	function handleShowValue() {
-		setRules(valueGetter.current())
+	function updateRules() {
+		setRules(value)
 		setTargets([target])
 	}
 
 	return (
 		<div>
 			Construisez votre modèle ici :
-			<Editor
+			<ControlledEditor
 				height="40vh"
 				language="yaml"
-				value={initialInput}
-				editorDidMount={handleEditorDidMount}
+				value={value}
+				onChange={onChange}
 			/>
-			<label htmlFor="objectif">Que voulez-vous calculer ? </label>
-			<br />
-			<select id="objectif" onChange={e => setTarget(e.target.value)}>
-				{flatRules.map(({ dottedName, title }) => (
-					<option key={dottedName} value={dottedName}>
-						{title}
-					</option>
-				))}
-			</select>
+			<div>
+				<label htmlFor="objectif">Que voulez-vous calculer ? </label>
+				<input
+					id="objectif"
+					value={target}
+					onChange={e => setTarget(e.target.value)}
+				/>
+			</div>
 			<button
-				css="margin-left: .6rem"
-				className="ui__ button simple"
-				onClick={handleShowValue}
-				disabled={!isEditorReady}
+				css="display: block; margin-top: 1rem"
+				className="ui__ button small"
+				onClick={() => updateRules()}
 			>
-				Calculer
+				{emoji('▶️')} Mettre à jour
 			</button>
 			{ready && <Results />}
 		</div>
