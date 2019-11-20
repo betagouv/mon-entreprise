@@ -3,9 +3,11 @@ import { buildFlatRules } from 'Engine/rules'
 import { safeLoad } from 'js-yaml'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	flatRulesSelector
+} from 'Selectors/analyseSelectors'
 import { setSimulationConfig } from '../../actions/actions'
-
 let initialInput = `
 
 a: 
@@ -36,7 +38,7 @@ export function Studio() {
 	const [target, setTarget] = useState(defaultTarget)
 
 	const dispatch = useDispatch()
-	const stateConfig = useSelector(state => state.simulation?.config)
+	const flatRules = useSelector(state => flatRulesSelector(state))
 
 	const [isEditorReady, setIsEditorReady] = useState(false)
 	const valueGetter = useRef()
@@ -73,10 +75,26 @@ export function Studio() {
 				value={initialInput}
 				editorDidMount={handleEditorDidMount}
 			/>
-			<h3>Que voulez-vous calculer ?</h3>
-			<input value={target} onChange={e => setTarget(e.target.value)} />
+			<label>
+				Que voulez-vous calculer ?{' '}
+				<select
+					name="pets"
+					id="pet-select"
+					onChange={e => setTarget(e.target.value)}
+				>
+					{flatRules.map(({ dottedName, title }) => (
+						<option key={dottedName} value={dottedName}>
+							{title}
+						</option>
+					))}
+				</select>
+			</label>
 			<br />
-			<button onClick={handleShowValue} disabled={!isEditorReady}>
+			<button
+				className="ui__ button"
+				onClick={handleShowValue}
+				disabled={!isEditorReady}
+			>
 				Calculer
 			</button>
 			{ready && <Results />}
