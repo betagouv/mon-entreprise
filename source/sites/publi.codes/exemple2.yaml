@@ -74,3 +74,18 @@ chauffage . énergie consommée par litre:
 chauffage . impact par litre:
   titre: impact par litre chauffé
   formule: impact par kWh * énergie consommée par litre
+
+eau . impact par litre froid:
+  unité: kgCO₂e/l
+  formule: eau potable + traitement eau usée
+  références:
+    - >-
+      http://www.bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/index.htm?boissons.htm
+
+eau . impact par litre froid . eau potable:
+  unité: kgCO₂e/l
+  formule: 0.000132
+
+eau . impact par litre froid . traitement eau usée:
+  unité: kgCO₂e/l
+  formule: 0.000262

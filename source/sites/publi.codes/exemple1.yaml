@@ -1,5 +1,5 @@
 revenu imposable:
-  unité: €
+  formule: 30000 €
 
 revenu abattu:
   formule:
