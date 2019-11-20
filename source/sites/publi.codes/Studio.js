@@ -12,7 +12,6 @@ import { setSimulationConfig } from '../../actions/actions'
 import { Header } from './Header'
 
 let initialInput = `
-
 a: 
   formule: 10
 b: 
@@ -24,7 +23,6 @@ c:
       taux: 3%
 d:
   formule: a + b + c
-
 `
 
 export default function SafeStudio() {
@@ -78,6 +76,7 @@ export function Studio() {
 				language="yaml"
 				value={value}
 				onChange={onChange}
+				options={{ minimap: { enabled: false } }}
 			/>
 			<div>
 				<label htmlFor="objectif">Que voulez-vous calculer ? </label>
