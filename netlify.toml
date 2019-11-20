@@ -122,6 +122,12 @@
   to = "/publicodes.html"
   status = 200
 
+[[redirects]]
+  from = "/*"
+  query = {s = "p"}
+  to = "/publicodes.html"
+  status = 200
+
 # Mon-entreprise.fr PRODUCTION settings
 [[redirects]]
   from = "https://mon-entreprise.fr/stats"
