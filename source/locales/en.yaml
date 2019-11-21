@@ -5,7 +5,9 @@ Modifier: Modify
 Échap: Esc
 Entrée: Enter
 Plein écran: Fullscreen
+Oui: Yes
 oui: yes
+Non: No
 non: no
 déplier: show more
 replier: show less
@@ -105,8 +107,6 @@ feedback:
 Janvier 2019: January 2019
 en incluant: including
 d'aides: of aid
-Oui: Yes
-Non: No
 Envoyer: Send
 Retour: Back
 Retour à mon activité: Back to my business
@@ -258,25 +258,22 @@ entreprise:
       <0>After registration</0>
       <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may (possibly) encounter after creation.</1>
 
-
 créer:
   titre: Create a company
   description: Before starting the administrative procedures to create your company, you must choose a legal status adapted to your activity
-  warningPL: "Note: the case of regulated liberal professions is not covered"
+  warningPL: 'Note: the case of regulated liberal professions is not covered'
   cta:
     default: Find the right status
     continue: Continue the guide
-  ressources: 
+  ressources:
     listeStatuts: |
       <0>List of legal statuses</0>
       <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
     comparaison: |
       <0> SASU, EURL or auto-entrepreneur?</0>
       <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
-    autoEntrepreneur: 
-      <0>Become auto-entrepreneur</0>
+    autoEntrepreneur: <0>Become auto-entrepreneur</0>
       <1>Go to the simplified creation process for starting a business</1>
-
 
 gérer:
   titre: Manage my business
@@ -284,21 +281,19 @@ gérer:
   cta: Find my company
   choix:
     titre: What do you want to do?
-    embauche: | 
+    embauche: |
       <0>Estimate the amount spent for hiring</0>
       <1>Calculate how much your company will have to spend to pay your next employee</1>
     revenus: |
       <0>Calculate my net income</0>
       <1>Estimate precisely the amount of your contributions thanks to the URSSAF simulator for {{régime}}</1>
-  ressources: 
+  ressources:
     embaucher: |
       <0>Discover the hiring process</0>
       <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
-    sécuritéSociale: 
-      <0>Understanding social security</0>
+    sécuritéSociale: <0>Understanding social security</0>
       <1>What are social security contributions used for? Update on the social protection system enjoyed by all workers in France</1>
-    autoEntrepreneur: 
-      <0>Access the official auto-entrepreneur website</0>
+    autoEntrepreneur: <0>Access the official auto-entrepreneur website</0>
       <1>You will be able to make your turnover declaration, pay your contributions, and more widely find all the information relating to the status of auto-entrepreneur</1>
   entreprise:
     auto: Are you auto-entrepreneur?
@@ -315,12 +310,9 @@ sécu:
     <0> Social protection</0>
     <1>In France, all workers benefit from quality social protection. This mandatory system is based on solidarity and aims to ensure the <2>general well-being of the population</2>.</1>
     <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
-  
-  
 
 Mon entreprise: My company
 Mon revenu: My income
-
 
 formeJuridique:
   titre: Choice of legal status
@@ -591,7 +583,7 @@ landing:
     <3>Our objective is to <2>remove all uncertainties regarding the administration tasks</2> so that you can focus on what matters: your business.</3>
     <4>We are a small, autonomous and multidisciplinary team within the <4>URSSAF</4>. We are committed to being as close as possible to our users in order to continuously improve this site in accordance with the <7>Startup d'État</7> method.</4>
     <5>Feel free to send us your comments and suggestions at <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
-  
+
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Accueil: Home
 
@@ -613,7 +605,7 @@ indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
 
 simulateurs:
-  accueil: 
+  accueil:
     titre: Available simulators
     assimilé: |
       <0>"Assimilé-salarié"</0>
@@ -630,8 +622,7 @@ simulateurs:
     comparaison: |
       <0>Status comparison</0>
       <1>Simulate the differences between the plans (contributions, retirement, maternity, illness, etc.)</1>
-    description: 
-      <0>All the simulators on this site are:</0>
+    description: <0>All the simulators on this site are:</0>
 
       <1><0>Maintained with the latest legislation</0>
       <1>Continuously improved to increase the number of devices taken into account</1>
@@ -806,15 +797,14 @@ supérieurs à: higher than
 
 économieCollaborative:
   retourAccueil: Back to the selection of activities
-  accueil: 
-    titre: How to declare income from digital platforms? 
-    contenu: 
-      <0> You have revenues from online platforms (Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.)? You must report them in most cases. However, it can be difficult to find your way around.</0>
+  accueil:
+    titre: How to declare income from digital platforms?
+    contenu: <0> You have revenues from online platforms (Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.)? You must report them in most cases. However, it can be difficult to find your way around.</0>
       <1>Follow this guide to find out in a few clicks how to be in good standing.</1>
       <2>From 2020 onwards, these revenues will be automatically reported by the platforms to the tax authorities and Urssaf.</2>
     question: What types of activity did you undertake?
-    réassurance: "PS: this tool is only there to inform you, no data will be transmitted to the administrations"
-  activité: 
+    réassurance: 'PS: this tool is only there to inform you, no data will be transmitted to the administrations'
+  activité:
     choix: What are more precisely the activities carried out?
     voirObligations: See my obligations
     pro: |
@@ -826,27 +816,23 @@ supérieurs à: higher than
     revenusAnnuels: |
       <0>Annual income</0>
       <1>Your annual income for this activity is: </1>
-  exonération: 
+  exonération:
     question: Are you in one of the following situations?
     notice: If none of these cases apply to you, you will have nothing to worry about.
   obligations:
     titre: What do I have to do to be in good standing?
-    pro: 
-      <0>Declare as a professional activity</0>
+    pro: <0>Declare as a professional activity</0>
       <1>Your income is considered as professional income and is subject to social security contributions. In return, they entitle you to social benefits (pension, health insurance, maternity, etc.).</1>
-    entreprise:
-      <0>With a company</0>
+    entreprise: <0>With a company</0>
       <1>If you already have a declared activity, you can add this income to the company's income. You will only have to check that its corporate purpose is compatible with the activities concerned (and change it if necessary). Otherwise, you will have to start a new business.</1>
       <2>Create a company</2>
     régimeGénéral: |
       <0>With the general regime option</0>
       <1>For some activities, you can declare your income directly on the Urssaf website. This is an interesting option if you do not want to create a new company or modify an existing one. In any case, you will have to declare this income for tax purposes.</1>
       <2>Declare to the general regime</2>
-    impôts:
-      <0>Declare your income to the tax autorities</0>
+    impôts: <0>Declare your income to the tax autorities</0>
       <1>For these activities, you only need to report your income on your tax return. For more information, you can visit the <2>dedicated page on impots.gouv.fr</2>.</1>
     aucune: |
       <0>Nothing to do</0>
       <1>You do not need to report your income for these activities.</1>
     régimeGénéralDisponible: General regime available
-

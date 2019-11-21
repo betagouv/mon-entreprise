@@ -1,3 +1,4 @@
+import { T } from 'Components'
 import FormDecorator from 'Components/conversation/FormDecorator'
 import React from 'react'
 
@@ -6,7 +7,6 @@ export default FormDecorator('rhetorical-question')(
 		if (!possibleChoice) return null // No action possible, don't render an answer
 
 		let { text, value } = possibleChoice
-
 		return (
 			<span className="answer">
 				<label key={value} className="radio userAnswerButton">
@@ -16,7 +16,7 @@ export default FormDecorator('rhetorical-question')(
 						onClick={submit}
 						value={value}
 					/>
-					{text}
+					<T>{text}</T>
 				</label>
 			</span>
 		)
