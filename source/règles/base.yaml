@@ -5009,6 +5009,15 @@ contrat salarié . convention collective:
         - HCR
         - sport
         - SVP
+  contrôles:
+    - si: convention collective != 'droit commun'
+      niveau: avertissement
+      message: |
+        Attention, l'implémentation des conventions collective est encore
+        partielle et non vérifiée.
+        Néanmoins, cela permet d'obtenir une première estimation, plus précise
+        que le régime général.
+
 
 contrat salarié . convention collective . droit commun:
   formule: convention collective = 'droit commun'
