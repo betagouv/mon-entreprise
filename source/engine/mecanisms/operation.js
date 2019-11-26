@@ -3,25 +3,32 @@ import { Node } from 'Engine/mecanismViews/common'
 import { inferUnit } from 'Engine/units'
 import { curry, map } from 'ramda'
 import React from 'react'
+import { convertToDateIfNeeded } from '../date.ts'
 
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = map(
-				curry(evaluateNode)(cache, situation, parsedRules),
-				node.explanation
-			),
-			value1 = explanation[0].nodeValue,
-			value2 = explanation[1].nodeValue,
-			nodeValue =
-				value1 == null || value2 == null
-					? null
-					: operatorFunction(value1, value2),
-			missingVariables = mergeMissing(
-				explanation[0].missingVariables,
-				explanation[1].missingVariables
-			)
+		const explanation = map(
+			curry(evaluateNode)(cache, situation, parsedRules),
+			node.explanation
+		)
+		const missingVariables = mergeMissing(
+			explanation[0].missingVariables,
+			explanation[1].missingVariables
+		)
 
-		return { ...node, nodeValue, explanation, missingVariables }
+		const value1 = explanation[0].nodeValue
+		const value2 = explanation[1].nodeValue
+		if (value1 == null || value2 == null) {
+			return { ...node, nodeValue: null, explanation, missingVariables }
+		}
+		let nodeValue = operatorFunction(...convertToDateIfNeeded(value1, value2))
+
+		return {
+			...node,
+			nodeValue,
+			explanation,
+			missingVariables
+		}
 	}
 
 	let explanation = v.explanation.map(recurse)

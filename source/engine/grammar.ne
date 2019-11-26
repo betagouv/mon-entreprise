@@ -48,7 +48,7 @@ main ->
   | Comparison {% id %}
   | NonNumericTerminal {% id %}
   | Negation {% id %}
-  | %date {% date %}
+  | Date {% id %}
 
 NumericTerminal ->
 	 	Variable {% id %}
@@ -58,12 +58,19 @@ NumericTerminal ->
 
 Negation ->
     "-" %space Parentheses {% unaryOperation('calculation') %}
+
 Parentheses ->
     "(" AdditionSubstraction ")"  {% ([,e]) => e %}
   | "(" Negation ")" {% ([,e]) => e %}
   |  NumericTerminal               {% id %}
 
-Comparison -> Comparable %space %comparison %space Comparable {% binaryOperation('comparison')%}
+Date -> 
+    Variable {% id %}
+  | %date {% date %}
+
+Comparison -> 
+    Comparable %space %comparison %space Comparable {% binaryOperation('comparison')%}
+  | Date %space %comparison %space Date {% binaryOperation('comparison')%}
 
 Comparable -> (  AdditionSubstraction | NonNumericTerminal) {% ([[e]]) => e %}
 

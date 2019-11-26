@@ -74,7 +74,6 @@ export let date = ([{ value }], ...otherstuf) => {
 	return {
 		constant: {
 			type: 'date',
-			date,
 			nodeValue: `${jour}/${mois}/${année}`
 		}
 	}
