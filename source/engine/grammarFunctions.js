@@ -62,12 +62,23 @@ export let percentage = ([{ value }]) => ({
 	}
 })
 
-export let date = ([{ value }]) => ({
-	constant: {
-		type: 'date',
-		nodeValue: value
+export let date = ([{ value }], ...otherstuf) => {
+	let [jour, mois, année] = value.split('/')
+	if (!année) {
+		;[jour, mois, année] = ['01', jour, mois]
 	}
-})
+	const date = new Date(année, +mois - 1, jour)
+	if (!+date || date.getDate() !== +jour) {
+		throw new SyntaxError(`La date ${value} n'est pas valide`)
+	}
+	return {
+		constant: {
+			type: 'date',
+			date,
+			nodeValue: `${jour}/${mois}/${année}`
+		}
+	}
+}
 
 export let boolean = nodeValue => () => ({
 	constant: {

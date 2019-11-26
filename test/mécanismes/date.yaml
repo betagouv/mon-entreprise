@@ -1,5 +1,9 @@
-- test: Dates
-  formule: 01/01/2015
+- test: Parse correctement les dates
+  formule: 08/02/2015
   exemples:
-    - nom: Parse correctement les dates
-      valeur attendue: 01/01/2015
+    - valeur attendue: 08/02/2015
+
+- test: Défaut au premier jour du mois
+  formule: 02/2015
+  exemples:
+    - valeur attendue: 01/02/2015

@@ -2,6 +2,7 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
+import { formatValue } from 'Engine/format'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
@@ -44,7 +45,6 @@ import {
 	mecanismSynchronisation
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
-import { formatValue } from 'Engine/format'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
@@ -68,8 +68,23 @@ export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
-	let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
-	return parseObject(rules, rule, parsedRules)(parseResult)
+	try {
+		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
+		return parseObject(rules, rule, parsedRules)(parseResult)
+	} catch (e) {
+		throw new Error(`
+
+Erreur syntaxique 
+=================
+
+Dans la règle \`${rule.dottedName}\`,
+\`${rawNode}\` n'est pas une formule valide
+
+-----------------
+
+${e.message}
+		`)
+	}
 }
 
 export let parseNumber = rawNode => ({
@@ -144,14 +159,22 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			filter: () =>
-				parseReferenceTransforms(rules, rule, parsedRules)({
+				parseReferenceTransforms(
+					rules,
+					rule,
+					parsedRules
+				)({
 					filter: v.filter,
 					variable: v.explanation
 				}),
 			variable: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
 			temporalTransform: () =>
-				parseReferenceTransforms(rules, rule, parsedRules)({
+				parseReferenceTransforms(
+					rules,
+					rule,
+					parsedRules
+				)({
 					variable: v.explanation,
 					temporalTransform: v.temporalTransform
 				}),
