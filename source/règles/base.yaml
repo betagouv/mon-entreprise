@@ -1605,7 +1605,7 @@ contrat salarié . réduction ACRE . taux:
   formule:
     barème continu:
       assiette: cotisations . assiette
-      multiplicateur: plafond sécurité sociale * entreprise . ACRE . prorata
+      multiplicateur: plafond sécurité sociale
       points:
         0: 100%
         0.75: 100%
@@ -3243,7 +3243,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . réduc
   formule:
     barème continu:
       assiette: revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein * entreprise . ACRE . prorata
+      multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 100%
         0.75: 100%
@@ -3252,13 +3252,14 @@ dirigeant . indépendant . cotisations et contributions . exonérations . réduc
 
 dirigeant . indépendant . cotisations et contributions . exonérations . réduction ACRE:
   applicable si: entreprise . ACRE
-  période: flexible
-  formule:
-    multiplication:
-      assiette: cotisations - cotisations . retraite complémentaire
-      taux: taux ACRE
-      facteur: prorata
-
+  formule: 
+    variable temporelle:
+      début: entreprise . date de création
+      durée: 1 an
+      montant:
+        multiplication:
+          assiette: cotisations - cotisations . retraite complémentaire
+          taux: taux ACRE
 
 
 dirigeant . indépendant . revenu net de cotisations:
@@ -4044,42 +4045,49 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
   
   note: La loi dit qu'il ne peut pas y avoir deux exonérations sur le même risque active pendant la même période. Pour l'instant, nous ne vérifions pas cette hypothèse.
 
-dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
-  période: flexible
-  applicable si: entreprise . ZFU
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   formule:
-    prorata temporis:
-      assiette: cotisations . maladie
-      début d'effet: entreprise . date de création
+    variable temporelle:
+      début: entreprise . date de création
       variations:
         si: entreprise . effectif < 5 
         alors:
-          tranches:
-            - avant: 10 ans
-              taux: 100%
+          périodes:
+            - pendant: 10 ans
+              montant: 100%
             - entre: 10 ans
               et: 15 ans
-              taux: 60%
+              montant: 60%
             - entre: 15 ans
               et: 17 ans
-              taux: 40%
+              montant: 40%
             - entre: 18 ans
               et: 20 ans
-              taux: 20%
+              montant: 20%
         sinon: 
-          tranches:
-            - avant: 5 ans
-              taux: 100%
+          périodes:
+            - pendant: 5 ans
+              montant: 100%
             - entre: 5 ans
               et: 6 ans
-              taux: 60%
+              montant: 60%
             - entre: 6 ans
               et: 7 ans
-              taux: 40%
+              montant: 40%
             - entre: 7 ans
               et: 8 ans
-              taux: 20%
-              
+              montant: 20%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
+  applicable si: entreprise . ZFU
+  période: année
+  formule:
+    le minimum de:
+      - 120% * SMIC [mensuel]
+      - multiplication:
+          assiette: cotisations . maladie
+          taux: taux
+                  
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge" 
   description: Ce dispositif a été arrêté en 2015, mais est toujours actifs pour les personnes qui en bénéficiait avant son abbrogation.
@@ -4090,16 +4098,15 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
 dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
   question: Êtes-vous titulaire d’une pension d’invalidité ? 
   description:  Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
-  période: flexible
   par défaut: non
   formule:
-    prorata temporis:
-      assiette: 
+    variable temporelle:
+      début d'effet: début d'effet
+      montant:
         somme:
           - cotisations . maladie
           - cotisations . indemnités journalières maladie
           - cotisations . retraite complémentaire
-      début d'effet: début d'effet
         
 
 dirigeant . indépendant . cotisations et contributions . exonérations . invalidité . début d'effet:
@@ -4432,46 +4439,32 @@ entreprise . ACRE:
   question: Votre entreprise bénéficie-t-elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
 
-entreprise . ACRE . prorata:
-  période: flexible
-  formule:
-    prorata temporis:
-      début d'effet: entreprise . date de création
-      durée: 1 an
-
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  période: flexible
   formule: 100% - réduction ACRE
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
-  période: flexible
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
-    prorata temporis:
-      début d'effet: 
+    variable temporelle:
+      début: 
         début du trimestre: entreprise . date de création
-      durée: 3 ans
-      tranches: 
-        - avant: 1 an
-          taux: 75%
+      périodes: 
+        - pendant: 1 an
+          montant: 75%
         - entre: 1 an
           et: 2 ans
-          taux: 50%
+          montant: 50%
         - entre: 2 ans
           et: 3 ans
-          taux: 25%
+          montant: 25%
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   période: année
-  formule: 
-    prorata temporis: 
-      assiette: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
-      début d'effet: entreprise . date de création
-      durée: 3 ans
+  formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
 dirigeant . auto-entrepreneur . impôt:
 
