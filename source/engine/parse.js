@@ -69,8 +69,23 @@ export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
-	let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
-	return parseObject(rules, rule, parsedRules)(parseResult)
+	try {
+		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
+		return parseObject(rules, rule, parsedRules)(parseResult)
+	} catch (e) {
+		throw new Error(`
+
+Erreur syntaxique 
+=================
+
+Dans la règle \`${rule.dottedName}\`,
+\`${rawNode}\` n'est pas une formule valide
+
+-----------------
+
+${e.message}
+		`)
+	}
 }
 
 export let parseNumber = rawNode => ({
