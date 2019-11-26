@@ -62,6 +62,13 @@ export let percentage = ([{ value }]) => ({
 	}
 })
 
+export let date = ([{ value }]) => ({
+	constant: {
+		type: 'date',
+		nodeValue: value
+	}
+})
+
 export let boolean = nodeValue => () => ({
 	constant: {
 		type: 'boolean',

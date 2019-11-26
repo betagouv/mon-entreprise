@@ -1,0 +1,5 @@
+- test: Dates
+  formule: 01/01/2015
+  exemples:
+    - nom: Parse correctement les dates
+      valeur attendue: 01/01/2015

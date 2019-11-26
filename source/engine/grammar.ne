@@ -6,10 +6,11 @@
 # @preprocessor esmodule
 
 @{%
-const {string, filteredVariable, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, numberWithUnit, percentage } = require('./grammarFunctions')
+const {string, filteredVariable, date, variable, temporalVariable,  binaryOperation, unaryOperation, boolean, number, numberWithUnit, percentage } = require('./grammarFunctions')
 
 const moo = require("moo");
 
+const dateRegexp = /(?:0?[1-9]|[12][0-9]|3[01])\/(?:0?[1-9]|1[012])\/\d{4}/
 const letter = '[a-zA-Z\u00C0-\u017F]';
 const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
 const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
@@ -18,6 +19,7 @@ const words = `${word}(?:[\\s]?${wordOrNumber}+)*`
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\\.[0-9]+)?';
 const percentageRegExp = numberRegExp + '\\%'
 const lexer = moo.compile({
+  date: dateRegexp,
   percentage: new RegExp(percentageRegExp),
   '(': '(',
   ')': ')',
@@ -46,6 +48,7 @@ main ->
   | Comparison {% id %}
   | NonNumericTerminal {% id %}
   | Negation {% id %}
+  | %date {% date %}
 
 NumericTerminal ->
 	 	Variable {% id %}
