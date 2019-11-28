@@ -94,7 +94,6 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 	}))
 
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
-
 	return (
 		<animated.div ref={intersectionRef} style={styles}>
 			<BarStack>

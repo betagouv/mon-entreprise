@@ -59,7 +59,6 @@ export default compose(
 	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
-
 	const renderToggleSourceButton = () => {
 		return (
 			<button
@@ -144,13 +143,9 @@ export default compose(
 							>
 								<Value
 									{...displayedRule}
-									nilValueSymbol={
-										displayedRule.parentDependencies.some(
-											parent => parent?.nodeValue == false
-										)
-											? '-'
-											: null
-									}
+									nilValueSymbol={displayedRule.parentDependencies.some(
+										parent => parent?.nodeValue == false
+									)}
 								/>
 								<Period
 									period={flatRule['période']}
@@ -163,6 +158,7 @@ export default compose(
 									<Value
 										{...displayedRule}
 										nodeValue={displayedRule.defaultValue}
+										unit={displayedRule.unit || displayedRule.defaultUnit}
 									/>
 								</div>
 							)}

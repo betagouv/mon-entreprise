@@ -1,5 +1,5 @@
 import { Action } from 'Actions/actions'
-import { findRuleByDottedName } from 'Engine/rules'
+import { areUnitConvertible, convertUnit, parseUnit } from 'Engine/units'
 import {
 	compose,
 	defaultTo,
@@ -14,10 +14,11 @@ import {
 } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { targetNamesSelector } from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName, Rule } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
+import { Unit } from './../engine/units'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
@@ -111,48 +112,39 @@ function conversationSteps(
 	return state
 }
 
-function updateSituation(situation, { fieldName, value, config, rules }) {
-	const goals = targetNamesSelector({ simulation: { config } } as any).filter(
-		dottedName => {
-			const target = rules.find(r => r.dottedName === dottedName)
-			const isSmallTarget = !target.question || !target.formule
-			return !isSmallTarget
-		}
-	)
+function updateSituation(situation, { fieldName, value, analysis }) {
+	const goals = analysis.targets.filter(target => {
+		const isSmallTarget = !target.question || !target.formule
+		return !isSmallTarget
+	})
 	const removePreviousTarget = goals.includes(fieldName)
 		? omit(goals)
 		: identity
 	return { ...removePreviousTarget(situation), [fieldName]: value }
 }
 
-function updatePeriod(situation, { toPeriod, rules }) {
-	const currentPeriod = situation['période']
-	if (currentPeriod === toPeriod) {
-		return situation
-	}
-	if (!['mois', 'année'].includes(toPeriod)) {
-		throw new Error('Oups, changement de période invalide')
-	}
+function updateDefaultUnit(situation, { toUnit, analysis }) {
+	const unit = parseUnit(toUnit)
 
-	const needConversion = Object.keys(situation).filter(dottedName => {
-		const rule = findRuleByDottedName(rules, dottedName)
-		return rule?.période === 'flexible'
-	})
-
-	const updatedSituation = Object.entries(situation)
-		.filter(([fieldName]) => needConversion.includes(fieldName))
-		.map(([fieldName, value]) => [
-			fieldName,
-			currentPeriod === 'mois' && toPeriod === 'année'
-				? (value as number) * 12
-				: (value as number) / 12
-		])
-
-	return {
-		...situation,
-		...Object.fromEntries(updatedSituation),
-		période: toPeriod
-	}
+	const convertedSituation = Object.keys(situation)
+		.map(dottedName => analysis.cache[dottedName])
+		.filter(
+			rule =>
+				(rule.unit || rule.defaultUnit) &&
+				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
+		)
+		.reduce(
+			(convertedSituation, rule) => ({
+				...convertedSituation,
+				[rule.dottedName]: convertUnit(
+					rule.unit || rule.defaultUnit,
+					unit,
+					situation[rule.dottedName]
+				)
+			}),
+			situation
+		)
+	return convertedSituation
 }
 
 type QuestionsKind =
@@ -176,16 +168,23 @@ export type Simulation = {
 	url: string
 	hiddenControls: Array<string>
 	situation: Record<DottedName, any>
+	defaultUnits: string[]
 }
 
 function simulation(
 	state: Simulation = null,
 	action: Action,
-	rules: Array<Rule>
+	analysis: Record<DottedName, { nodeValue: any; unit: Unit | undefined }>
 ): Simulation | null {
-	if (action.type === 'SET_SIMULATION') {
+	if (action.type === 'SET_SIMULATION' && action.config !== state.config) {
 		const { config, url } = action
-		return { config, url, hiddenControls: [], situation: {} }
+		return {
+			config,
+			url,
+			hiddenControls: [],
+			situation: {},
+			defaultUnits: state.defaultUnits || config.defaultUnits || ['€/mois']
+		}
 	}
 	if (state === null) {
 		return state
@@ -201,16 +200,16 @@ function simulation(
 				situation: updateSituation(state.situation, {
 					fieldName: action.fieldName,
 					value: action.value,
-					config: state.config,
-					rules
+					analysis
 				})
 			}
-		case 'UPDATE_PERIOD':
+		case 'UPDATE_DEFAULT_UNIT':
 			return {
 				...state,
-				situation: updatePeriod(state.situation, {
-					toPeriod: action.toPeriod,
-					rules
+				defaultUnits: [action.defaultUnit],
+				situation: updateDefaultUnit(state.situation, {
+					toUnit: action.defaultUnit,
+					analysis
 				})
 			}
 	}
@@ -268,7 +267,7 @@ const mainReducer = (state, action: Action) =>
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null, b: Action) =>
-			simulation(a, b, state.rules),
+			simulation(a, b, analysisWithDefaultsSelector(state)),
 		previousSimulation: defaultTo(null) as Reducer<SavedSimulation>,
 		currentExample,
 		situationBranch,

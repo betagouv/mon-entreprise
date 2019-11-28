@@ -90,10 +90,14 @@ export const setSituationBranch = (id: number) =>
 
 export const setSimulationConfig = (config: Object): ThunkResult<void> => (
 	dispatch,
-	_,
+	getState,
 	{ history }
 ): void => {
+	if (getState().simulation?.config === config) {
+		return
+	}
 	const url = history.location.pathname
+	console.log(config)
 	dispatch({
 		type: 'SET_SIMULATION',
 		url,
@@ -121,10 +125,10 @@ export const updateSituation = (fieldName: DottedName, value: any) =>
 		value
 	} as const)
 
-export const updatePeriod = (toPeriod: string) =>
+export const updateUnit = (defaultUnit: string) =>
 	({
-		type: 'UPDATE_PERIOD',
-		toPeriod
+		type: 'UPDATE_DEFAULT_UNIT',
+		defaultUnit
 	} as const)
 
 export function setExample(name: string, situation, dottedName: string) {

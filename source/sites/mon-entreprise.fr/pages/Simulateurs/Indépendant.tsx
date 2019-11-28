@@ -1,19 +1,20 @@
+import { setSimulationConfig } from 'Actions/actions'
 import { T } from 'Components'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
-import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColoursContext } from 'Components/utils/withColours'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import React, { useContext } from 'react'
+import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function Indépendant() {
-	useSimulationConfig(indépendantConfig)
+	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(indépendantConfig))
 	const { t } = useTranslation()
 	return (
 		<>

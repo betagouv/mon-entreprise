@@ -9,10 +9,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	usePeriod
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
 class ErrorBoundary extends React.Component {
@@ -123,15 +120,10 @@ function RevenueRepatitionSection() {
 }
 
 function PaySlipSection() {
-	const period = usePeriod()
 	return (
 		<section>
 			<h2>
-				<Trans>
-					{period === 'mois'
-						? 'Fiche de paie mensuelle'
-						: 'Détail annuel des cotisations'}
-				</Trans>
+				<Trans>Fiche de paie</Trans>
 			</h2>
 			<PaySlip />
 		</section>

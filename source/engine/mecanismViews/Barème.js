@@ -142,6 +142,7 @@ let Tranche = ({
 		de: min,
 		à: max,
 		taux,
+		nodeValue,
 		montant
 	},
 	multiplicateur,
@@ -186,7 +187,7 @@ let Tranche = ({
 			<td key="taux"> {taux != null ? makeJsx(taux) : montant}</td>
 			{showValues && !returnRate && taux != null && (
 				<td key="value">
-					<NodeValuePointer data={trancheValue} unit={resultUnit} />
+					<NodeValuePointer data={nodeValue} unit={resultUnit} />
 				</td>
 			)}
 		</tr>
@@ -212,7 +213,8 @@ function TrancheFormatter({
 				{value}&nbsp;
 				<RuleLink
 					{...multiplicateur.explanation}
-					title={multiplicateur.explanation.name}>
+					title={multiplicateur.explanation.name}
+				>
 					{multiplicateurAcronym}
 				</RuleLink>{' '}
 				<NodeValuePointer

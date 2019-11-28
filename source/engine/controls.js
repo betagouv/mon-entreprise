@@ -10,7 +10,7 @@ export let evaluateControls = (cache, situationGate, parsedRules) =>
 			getControls(rule).map(control => ({
 				...control,
 				evaluated: evaluateNode(
-					cache,
+					{ ...cache, contextRule: [rule.dottedName] },
 					situationGate,
 					parsedRules,
 					control.testExpression

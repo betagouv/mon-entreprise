@@ -1,23 +1,52 @@
-import { collectMissingVariablesByTarget, getNextSteps } from 'Engine/generateQuestions'
-import { collectDefaults, disambiguateExampleSituation, findRuleByDottedName } from 'Engine/rules'
+import {
+	collectMissingVariablesByTarget,
+	getNextSteps
+} from 'Engine/generateQuestions'
+import {
+	collectDefaults,
+	disambiguateExampleSituation,
+	findRuleByDottedName
+} from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { add, defaultTo, difference, dissoc, equals, head, intersection, isEmpty, isNil, last, length, map, mergeDeepWith, negate, pick, pipe, sortBy, split, takeWhile, zipWith } from 'ramda'
+import {
+	add,
+	defaultTo,
+	difference,
+	dissoc,
+	equals,
+	head,
+	intersection,
+	isEmpty,
+	isNil,
+	last,
+	length,
+	map,
+	mergeDeepWith,
+	negate,
+	pick,
+	pipe,
+	sortBy,
+	split,
+	takeWhile,
+	zipWith
+} from 'ramda'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
-import { DottedName } from "Types/rule"
+import { DottedName } from 'Types/rule'
 import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
-let configSelector = (state: RootState) => state.simulation && state.simulation.config || {}
+let configSelector = (state: RootState) =>
+	(state.simulation && state.simulation.config) || {}
 
 // We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
 export let flatRulesSelector = (
 	state: RootState,
 	props?: { rules: RootState['rules'] }
 ) => {
-	return props && props.rules || state.rules
+	return (props && props.rules) || state.rules
 }
 
 export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
@@ -50,9 +79,7 @@ export let targetNamesSelector = (state: RootState) => {
 type SituationSelectorType = typeof situationSelector
 
 export const situationSelector = (state: RootState) =>
-	state.simulation && state.simulation.situation || {}
-
-export const usePeriod = () => useSelector(situationSelector)['période']
+	(state.simulation && state.simulation.situation) || {}
 
 export const useTarget = (dottedName: DottedName) => {
 	const targets = useSelector(
@@ -67,28 +94,21 @@ export let noUserInputSelector = createSelector(
 )
 
 export let firstStepCompletedSelector = createSelector(
-	[
-		situationSelector,
-		targetNamesSelector,
-		parsedRulesSelector,
-		configSelector
-	],
+	[situationSelector, targetNamesSelector, parsedRulesSelector, configSelector],
 	(situation, targetNames, parsedRules, config) => {
 		if (!situation) {
 			return true
 		}
 		const situations = Object.keys(situation)
 		const allBlockingAreAnswered =
-			config.bloquant && config.bloquant.every(rule => situations.includes(rule))
+			config.bloquant &&
+			config.bloquant.every(rule => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
-			targetNames.some(
-				targetName => {
-					const rule = findRuleByDottedName(parsedRules, targetName) 
-					return rule && rule.formule && 
-					targetName in situation
-				}
-			)
+			targetNames.some(targetName => {
+				const rule = findRuleByDottedName(parsedRules, targetName)
+				return rule && rule.formule && targetName in situation
+			})
 		return allBlockingAreAnswered || targetIsAnswered
 	}
 )
@@ -97,7 +117,8 @@ let validatedStepsSelector = createSelector(
 	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
 	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
 )
-let branchesSelector = (state: RootState) => configSelector(state).branches 
+const defaultUnitsSelector = (state: RootState) => state.simulation.defaultUnits
+let branchesSelector = (state: RootState) => configSelector(state).branches
 let configSituationSelector = (state: RootState) =>
 	configSelector(state).situation || {}
 
@@ -144,23 +165,29 @@ export let situationsWithDefaultsSelector = createSelector(
 		mapOrApply(situation => ({ ...defaults, ...situation }), situations)
 )
 
-let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
-	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
+let analyseRule = (parsedRules, ruleDottedName, situationGate, defaultUnits) =>
+	analyse(parsedRules, ruleDottedName, defaultUnits)(situationGate).targets[0]
 
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, props) => props.dottedName,
 		situationsWithDefaultsSelector,
-		state => state.situationBranch || 0
+		state => state.situationBranch || 0,
+		defaultUnitsSelector
 	],
-	(rules, dottedName, situations, situationBranch) => {
-		return analyseRule(rules, dottedName, dottedName => {
-			const currentSituation = Array.isArray(situations)
-				? situations[situationBranch]
-				: situations
-			return currentSituation[dottedName]
-		})
+	(rules, dottedName, situations, situationBranch, defaultUnits) => {
+		return analyseRule(
+			rules,
+			dottedName,
+			dottedName => {
+				const currentSituation = Array.isArray(situations)
+					? situations[situationBranch]
+					: situations
+				return currentSituation[dottedName]
+			},
+			defaultUnits
+		)
 	}
 )
 
@@ -183,22 +210,34 @@ export let exampleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, props) => props.dottedName,
-		exampleSituationSelector
+		exampleSituationSelector,
+		({ currentExample }) => currentExample
 	],
-	(rules, dottedName, situation) =>
+	(rules, dottedName, situation, example) =>
 		situation &&
-		analyseRule(rules, dottedName, dottedName => situation[dottedName])
+		analyseRule(
+			rules,
+			dottedName,
+			dottedName => situation[dottedName],
+			example.defaultUnits
+		)
 )
 
 let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 	createDeepEqualSelector(
-		[parsedRulesSelector, targetNamesSelector, situationSelector],
-		(parsedRules, targetNames, situations) =>
+		[
+			parsedRulesSelector,
+			targetNamesSelector,
+			situationSelector,
+			defaultUnitsSelector
+		],
+		(parsedRules, targetNames, situations, defaultUnits) =>
 			mapOrApply(
 				situation =>
 					analyseMany(
 						parsedRules,
-						targetNames
+						targetNames,
+						defaultUnits
 					)(dottedName => {
 						return situation[dottedName]
 					}),
@@ -262,11 +301,13 @@ export let nextStepsSelector = createSelector(
 	],
 	(
 		mv,
-		{questions: {
-			'non prioritaires': notPriority = [],
-			uniquement: only = null,
-			'liste noire': blacklist = []
-		} = {}},
+		{
+			questions: {
+				'non prioritaires': notPriority = [],
+				uniquement: only = null,
+				'liste noire': blacklist = []
+			} = {}
+		},
 		foldedSteps = [],
 		situation
 	) => {

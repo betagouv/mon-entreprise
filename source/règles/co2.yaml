@@ -16,22 +16,23 @@ douche . impact:
 douche . nombre:
   période: flexible
   question: Combien prenez-vous de douches ?
-  unité: _
+  unité: douche
   par défaut: 30
   suggestions:
     Une par jour: 30
 
 douche . impact par douche:
-  formule: impact par litre * litres d'eau
+  formule: impact par litre * litres d'eau par douche
 
 douche . impact par litre:
   formule: eau . impact par litre froid + chauffage . impact par litre
 
-douche . litres d'eau:
+douche . litres d'eau par douche:
   icônes: 🇱
-  formule: durée de la douche * litres par minute
+  formule: durée de la douche * litres par minute / 1 douche
 
 douche . litres par minute:
+  unité: l/min
   formule:
     variations:
       - si: pomme de douche économe
@@ -113,7 +114,7 @@ chauffage . impact par litre:
 
 douche . durée de la douche:
   question: Combien de temps dure votre douche en général ?
-  unité: _
+  unité: min
   par défaut: 5
   suggestions:
     expresse: 5

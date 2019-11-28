@@ -9,10 +9,11 @@ import {
 	keys,
 	map,
 	mergeWith,
-	pluck,
 	reduce,
 	values
 } from 'ramda'
+import { typeWarning } from './error'
+import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
@@ -28,8 +29,34 @@ export let mergeAllMissing = missings =>
 export let mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 
-export let evaluateNode = (cache, situationGate, parsedRules, node) =>
-	node.evaluate ? node.evaluate(cache, situationGate, parsedRules, node) : node
+export let evaluateNode = (cache, situationGate, parsedRules, node) => {
+	let evaluatedNode = node.evaluate
+		? node.evaluate(cache, situationGate, parsedRules, node)
+		: node
+	if (typeof evaluatedNode.nodeValue !== 'number') {
+		return evaluatedNode
+	}
+	evaluatedNode = node.unité
+		? convertNodeToUnit(node.unit, evaluatedNode)
+		: simplifyNodeUnit(evaluatedNode)
+	return evaluatedNode
+}
+const sameUnitValues = (explanation, contextRule, mecanismName) => {
+	const unit = explanation.map(n => n.unit).find(Boolean)
+	const values = explanation.map(node => {
+		try {
+			return convertNodeToUnit(unit, node).nodeValue
+		} catch (e) {
+			typeWarning(
+				contextRule,
+				`'${node.name}' a une unité incompatible avec celle du mécanisme ${mecanismName}`,
+				e
+			)
+			return node.nodeValue
+		}
+	})
+	return [unit, values]
+}
 
 export let evaluateArray = (reducer, start) => (
 	cache,
@@ -40,13 +67,23 @@ export let evaluateArray = (reducer, start) => (
 	let evaluateOne = child =>
 			evaluateNode(cache, situationGate, parsedRules, child),
 		explanation = map(evaluateOne, node.explanation),
-		values = pluck('nodeValue', explanation),
-		nodeValue = any(equals(null), values)
+		[unit, values] = sameUnitValues(
+			explanation,
+			cache._meta.contextRule,
+			node.name
+		),
+		nodeValue = values.some(value => value === null)
 			? null
 			: reduce(reducer, start, values),
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-	return { ...node, nodeValue, explanation, missingVariables }
+	return {
+		...node,
+		nodeValue,
+		explanation,
+		missingVariables,
+		unit
+	}
 }
 
 export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
@@ -61,14 +98,18 @@ export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 			evaluateOne,
 			filter(evaluationFilter(situationGate), node.explanation)
 		),
-		values = pluck('nodeValue', explanation),
+		[unit, values] = sameUnitValues(
+			explanation,
+			cache._meta.contextRule,
+			node.name
+		),
 		nodeValue = any(equals(null), values)
 			? null
 			: reduce(reducer, start, values),
 		missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
 
-	return { ...node, nodeValue, explanation, missingVariables }
+	return { ...node, nodeValue, explanation, missingVariables, unit }
 }
 
 export let defaultNode = nodeValue => ({
@@ -102,34 +143,17 @@ export let evaluateObject = (objectShape, effect) => (
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		automaticExplanation = evolve(fromPairs(transforms))(node.explanation)
 	// the result of effect can either be just a nodeValue, or an object {additionalExplanation, nodeValue}. The latter is useful for a richer JSX visualisation of the mecanism : the view should not duplicate code to recompute intermediate values (e.g. for a marginal 'barème', the marginal 'tranche')
-	let evaluated = effect(automaticExplanation),
+	let evaluated = effect(automaticExplanation, cache),
 		explanation = is(Object, evaluated)
 			? { ...automaticExplanation, ...evaluated.additionalExplanation }
 			: automaticExplanation,
 		nodeValue = is(Object, evaluated) ? evaluated.nodeValue : evaluated,
 		missingVariables = mergeAllMissing(values(explanation))
-	return { ...node, nodeValue, explanation, missingVariables }
-}
-
-export let E = (cache, situationGate, parsedRules) => {
-	let missingVariables = {}
-
-	let valNode = element =>
-		evaluateNode(cache, situationGate, parsedRules, element)
-	let val = element => {
-		let evaluated = valNode(element)
-		// automatically add missing variables when a variable is evaluated and thus needed in this mecanism's evaluation
-		missingVariables = mergeMissing(
-			missingVariables,
-			evaluated.missingVariables
-		)
-
-		return evaluated.nodeValue
-	}
-
-	return {
-		val,
-		valNode,
-		missingVariables: () => missingVariables
-	}
+	return simplifyNodeUnit({
+		...node,
+		nodeValue,
+		explanation,
+		missingVariables,
+		unit: explanation.unit
+	})
 }

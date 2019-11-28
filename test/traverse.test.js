@@ -111,27 +111,6 @@ describe('analyse with mecanisms', function() {
 		).to.have.property('nodeValue', false)
 	})
 
-	it('should handle switch statements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						'aiguillage numérique': {
-							'1 > dix': '1000%',
-							'3 < dix': '1100%',
-							'3 > dix': '1200%'
-						}
-					}
-				},
-				{ nom: 'top . dix', formule: 10 }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 11)
-	})
-
 	it('should handle percentages', function() {
 		let rawRules = [{ nom: 'top' }, { nom: 'top . startHere', formule: '35%' }],
 			rules = parseAll(rawRules.map(enrichRule))
@@ -353,7 +332,7 @@ describe('analyse with mecanisms', function() {
 	it('should handle filtering on components', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'top . startHere', formule: 'composed [salarié]' },
+				{ nom: 'top . startHere', formule: 'composed .salarié' },
 				{
 					nom: 'top . composed',
 					formule: {
@@ -393,7 +372,7 @@ describe('analyse with mecanisms', function() {
 				{ nom: 'top' },
 				{
 					nom: 'top . startHere',
-					formule: 'composed [salarié] + composed [employeur]'
+					formule: 'composed .salarié + composed .employeur'
 				},
 				{ nom: 'top . orHere', formule: 'composed' },
 				{

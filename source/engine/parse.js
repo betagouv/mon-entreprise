@@ -28,6 +28,7 @@ import {
 	without
 } from 'ramda'
 import React from 'react'
+import { syntaxError } from './error.ts'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -36,7 +37,6 @@ import {
 	mecanismInversion,
 	mecanismMax,
 	mecanismMin,
-	mecanismNumericalSwitch,
 	mecanismOneOf,
 	mecanismOnePossibility,
 	mecanismProduct,
@@ -72,18 +72,11 @@ export let parseString = (rules, rule, parsedRules) => rawNode => {
 		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
 		return parseObject(rules, rule, parsedRules)(parseResult)
 	} catch (e) {
-		throw new Error(`
-
-Erreur syntaxique 
-=================
-
-Dans la règle \`${rule.dottedName}\`,
-\`${rawNode}\` n'est pas une formule valide
-
------------------
-
-${e.message}
-		`)
+		syntaxError(
+			rule.dottedName,
+			`\`${rawNode}\` n'est pas une formule valide`,
+			e
+		)
 	}
 }
 
@@ -143,7 +136,6 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 	let dispatch = {
 			'une de ces conditions': mecanismOneOf,
 			'toutes ces conditions': mecanismAllOf,
-			'aiguillage numérique': mecanismNumericalSwitch,
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
 			barème,
@@ -169,14 +161,14 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 				}),
 			variable: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
-			temporalTransform: () =>
+			unitConversion: () =>
 				parseReferenceTransforms(
 					rules,
 					rule,
 					parsedRules
 				)({
 					variable: v.explanation,
-					temporalTransform: v.temporalTransform
+					unit: v.unit
 				}),
 			constant: () => ({
 				type: v.type,

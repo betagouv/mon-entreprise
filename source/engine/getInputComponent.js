@@ -62,9 +62,8 @@ export default rules => dottedName => {
 		<Input
 			{...{
 				...commonProps,
-				unit: serialiseUnit(rule.unit),
-				suggestions: rule.suggestions,
-				rulePeriod: rule.période
+				unit: serialiseUnit(rule.unit || rule.defaultUnit),
+				suggestions: rule.suggestions
 			}}
 		/>
 	)

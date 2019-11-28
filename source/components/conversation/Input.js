@@ -1,12 +1,10 @@
 import classnames from 'classnames'
-import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { currencyFormat } from 'Engine/format'
 import { compose } from 'ramda'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
-import { usePeriod } from 'Selectors/analyseSelectors'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
@@ -20,13 +18,11 @@ export default compose(
 	suggestions,
 	setFormValue,
 	submit,
-	rulePeriod,
 	dottedName,
 	value,
 	colours,
 	unit
 }) {
-	const period = usePeriod()
 	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
 	const suffixed = unit != null && unit !== '%'
 	const { language } = useTranslation().i18n
@@ -42,7 +38,6 @@ export default compose(
 						setFormValue(value)
 					}}
 					onSecondClick={() => submit('suggestion')}
-					rulePeriod={rulePeriod}
 				/>
 			</div>
 
@@ -57,27 +52,14 @@ export default compose(
 					allowEmptyFormatting={true}
 					style={{ border: `1px solid ${colours.textColourOnWhite}` }}
 					onValueChange={({ floatValue }) => {
-						debouncedSetFormValue(unit === '%' ? floatValue / 100 : floatValue)
+						debouncedSetFormValue(floatValue)
 					}}
-					value={unit === '%' ? 100 * value : value}
+					value={value}
 					autoComplete="off"
 				/>
 				{suffixed && (
 					<label className="suffix" htmlFor={'step-' + dottedName}>
 						{unit}
-						{rulePeriod && rulePeriod !== 'aucune' && (
-							<span>
-								{' '}
-								<T>par</T>{' '}
-								<T>
-									{
-										{ mois: 'mois', année: 'an' }[
-											rulePeriod === 'flexible' ? period : rulePeriod
-										]
-									}
-								</T>
-							</span>
-						)}
 					</label>
 				)}
 				<SendButton {...{ disabled: value === undefined, submit }} />

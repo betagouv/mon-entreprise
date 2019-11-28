@@ -78,34 +78,34 @@
       assiette: assiette
       multiplicateur: base
       tranches:
-      - en-dessous de: 1
-        taux: taux variable
-      - au-dessus de: 1
-        taux: 90%
+        - en-dessous de: 1
+          taux: taux variable
+        - au-dessus de: 1
+          taux: 90%
   unité attendue: €
 
   exemples:
-   - nom: taux faible
-     situation:
-       assiette: 200
-       base: 100
-       ma condition: oui
-     valeur attendue: 119
-   - nom: taux fort
-     situation:
-       assiette: 200
-       base: 100
-       ma condition: non
-     valeur attendue: 146
-   - nom: assiette manquante
-     situation:
-       base: 100
-       ma condition: oui
-     variables manquantes: 
-       - assiette
-   - nom: condition manquante
-     situation:
-       base: 100
-       assiette: 400
-     variables manquantes: 
-       - ma condition
+    - nom: taux faible
+      situation:
+        assiette: 200
+        base: 100
+        ma condition: oui
+      valeur attendue: 119
+    - nom: taux fort
+      situation:
+        assiette: 200
+        base: 100
+        ma condition: non
+      valeur attendue: 146
+    - nom: assiette manquante
+      situation:
+        base: 100
+        ma condition: oui
+      variables manquantes:
+        - assiette
+    - nom: condition manquante
+      situation:
+        assiette: 40
+        base: 100
+      variables manquantes:
+        - ma condition

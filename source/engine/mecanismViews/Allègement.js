@@ -15,11 +15,12 @@ export default function Allègement(nodeValue, rawExplanation) {
 				classes="mecanism allègement"
 				name="allègement"
 				value={nodeValue}
+				unit={explanation.unit}
 				child={
 					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
-							<span className="value">{makeJsx(rawExplanation.assiette)}</span>
+							<span className="value">{makeJsx(explanation.assiette)}</span>
 						</li>
 						{explanation.franchise && (
 							<li key="franchise">

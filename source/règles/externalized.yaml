@@ -698,9 +698,7 @@ contrat salarié . rémunération . brut de base:
   contrôles.en:
     - si:
         toutes ces conditions:
-          - >-
-            rémunération . assiette de vérification du SMIC [mensuel] < SMIC
-            [mensuel]
+          - rémunération . assiette de vérification du SMIC < SMIC
           - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
@@ -710,40 +708,18 @@ contrat salarié . rémunération . brut de base:
       solution:
         cible: contrat salarié . temps partiel
         texte: Is it a part-time contract?
-    - si:
-        toutes ces conditions:
-          - 'brut de base [mensuel] > 10000'
-          - période = 'mois'
+    - si: brut de base > 10000 €/mois
       niveau: information
       message: >
         The monthly wage seized is high. Are you sure the calculation period
         isn't set to month instead of year?
   contrôles.fr:
-    - si:
-        toutes ces conditions:
-          - >-
-            rémunération . assiette de vérification du SMIC [mensuel] < SMIC
-            contractuel [mensuel]
-          - dirigeant != 'assimilé salarié'
-          - stage != oui
-          - apprentissage != oui
-      niveau: avertissement
-      message: |
+    - message: |
         Le salaire saisi est inférieur au SMIC.
-    - si:
-        toutes ces conditions:
-          - stage
-          - 'brut de base [mensuel] < stage . gratification minimale [mensuel]'
-      niveau: avertissement
-      message: >
+    - message: >
         La rémunération du stage est inférieure à la [gratification
         minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
-    - si:
-        toutes ces conditions:
-          - 'brut de base [mensuel] > 10000'
-          - période = 'mois'
-      niveau: information
-      message: >
+    - message: >
         Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
         période de calcul ?
 contrat salarié . rémunération . brut de base . équivalent temps plein:
@@ -1555,11 +1531,11 @@ contrat salarié . temps de travail . heures supplémentaires:
   contrôles.en:
     - si:
         toutes ces conditions:
-          - heures supplémentaires > 9 * 4.33
-          - heures supplémentaires <= 13 * 4.33
+          - heures supplémentaires > 9 heures/semaine * période . semaines par mois
+          - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
       niveau: info
       message: The average weekly working time may not exceed 44 hours
-    - si: heures supplémentaires > 13 * 4.33
+    - si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
       niveau: avertissement
       message: The maximum weekly working time may not exceed 48 hours
   contrôles.fr:
@@ -1817,17 +1793,15 @@ contrat salarié . complémentaire santé . forfait:
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
   contrôles.en:
-    - si: 'complémentaire santé . forfait [mensuel] < 15'
+    - si: 'complémentaire santé . forfait < 15€/mois'
       message: >-
         Make sure that such an inexpensive health supplement covers the minimum
         care basket defined in the law.
       niveau: avertissement
   contrôles.fr:
-    - si: 'complémentaire santé . forfait [mensuel] < 15'
-      message: >-
+    - message: >-
         Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier
         de soin minimal défini dans la loi.
-      niveau: avertissement
 contrat salarié . complémentaire santé . forfait . en alsace moselle:
   titre.en: Complementary health insurance plan (Alsace-Moselle)
   titre.fr: forfait complémentaire santé en Alsace-Moselle
@@ -3174,7 +3148,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
   contrôles.en:
     - si:
         toutes ces conditions:
-          - 'impôt . revenu fiscal de référence [annuel] > 27086'
+          - 'impôt . revenu fiscal de référence > 27086 €/an'
           - versement libératoire
       message: >-
         The discharge payment is not available if your household income exceeds
@@ -3183,7 +3157,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
   contrôles.fr:
     - si:
         toutes ces conditions:
-          - 'impôt . revenu fiscal de référence [annuel] > 27086'
+          - 'impôt . revenu fiscal de référence > 27086 €/an'
           - versement libératoire
       message: >-
         Le versement libératoire n'est pas disponible si les revenus de votre

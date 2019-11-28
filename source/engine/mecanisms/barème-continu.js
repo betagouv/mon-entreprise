@@ -1,9 +1,8 @@
-import { defaultNode, evaluateObject } from 'Engine/evaluation'
+import { defaultNode, evaluateObject, parseObject } from 'Engine/evaluation'
 import BarèmeContinu from 'Engine/mecanismViews/BarèmeContinu'
-import { val, anyNull } from 'Engine/traverse-common-functions'
+import { anyNull, val } from 'Engine/traverse-common-functions'
 import { parseUnit } from 'Engine/units'
-import { parseObject } from 'Engine/evaluation'
-import { reduce, toPairs, sort, aperture, pipe, reduced, last } from 'ramda'
+import { aperture, last, pipe, reduce, reduced, sort, toPairs } from 'ramda'
 
 export default (recurse, k, v) => {
 	let objectShape = {
@@ -24,8 +23,8 @@ export default (recurse, k, v) => {
 			reduce((_, [[lowerLimit, lowerRate], [upperLimit, upperRate]]) => {
 				let x1 = val(multiplicateur) * lowerLimit,
 					x2 = val(multiplicateur) * upperLimit,
-					y1 = val(assiette) * val(recurse(lowerRate)),
-					y2 = val(assiette) * val(recurse(upperRate))
+					y1 = (val(assiette) * val(recurse(lowerRate))) / 100,
+					y2 = (val(assiette) * val(recurse(upperRate))) / 100
 				if (val(assiette) > x1 && val(assiette) <= x2) {
 					// Outside of these 2 limits, it's a linear function a * x + b
 					let a = (y2 - y1) / (x2 - x1),
@@ -33,16 +32,16 @@ export default (recurse, k, v) => {
 						nodeValue = a * val(assiette) + b,
 						taux = nodeValue / val(assiette)
 					return reduced({
-						nodeValue: returnRate ? taux : nodeValue,
+						nodeValue: returnRate ? taux * 100 : nodeValue,
 						additionalExplanation: {
 							seuil: val(assiette) / val(multiplicateur),
-							taux
+							taux,
+							unit: returnRate ? parseUnit('%') : assiette.unit
 						}
 					})
 				}
 			}, 0)
 		)(points)
-
 		return result
 	}
 	let explanation = {
