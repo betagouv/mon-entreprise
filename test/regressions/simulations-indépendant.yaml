@@ -8,12 +8,6 @@
   - dirigeant . indépendant . revenu net de cotisations: 100000
   - dirigeant . indépendant . revenu net de cotisations: 1000000
 
-période:
-  - dirigeant . indépendant . revenu net de cotisations: 1000
-    période: mois
-  - dirigeant . indépendant . revenu net de cotisations: 5000
-    période: mois
-
 inversions:
   - entreprise . rémunération totale du dirigeant: 2000
   - entreprise . rémunération totale du dirigeant: 50000
@@ -43,4 +37,4 @@ impôt sur le revenu:
     impôt . méthode de calcul: taux neutre
   - dirigeant . indépendant . revenu net de cotisations: 20000
     impôt . méthode de calcul: taux personnalisé
-    impôt . taux personnalisé: 0.1
+    impôt . taux personnalisé: 10

@@ -1,6 +1,9 @@
 import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
 import { map, mergeAll, pick, pipe } from 'ramda'
+import { typeWarning } from './error'
+import { convertNodeToUnit } from './nodeUnits'
 import { anyNull, undefOrTruthy, val } from './traverse-common-functions'
+import { areUnitConvertible } from './units'
 
 export const evaluateApplicability = (
 	cache,
@@ -46,7 +49,8 @@ export const evaluateApplicability = (
 }
 
 export default (cache, situationGate, parsedRules, node) => {
-	cache.parseLevel++
+	cache._meta.parseLevel++
+	cache._meta.contextRule.push(node.dottedName)
 	let applicabilityEvaluation = evaluateApplicability(
 			cache,
 			situationGate,
@@ -80,15 +84,35 @@ export default (cache, situationGate, parsedRules, node) => {
 			bonus(condMissing, !!Object.keys(condMissing).length),
 			formulaMissingVariables
 		)
-	cache.parseLevel--
-	if (node.dottedName.startsWith('sum')) {
-		// console.log(node.dottedName, missingVariables, node)
+	const unit =
+		node.unit ||
+		(node.defaultUnit &&
+			cache._meta.defaultUnits.find(unit =>
+				areUnitConvertible(node.defaultUnit, unit)
+			)) ||
+		node.defaultUnit ||
+		evaluatedFormula.unit
+
+	if (unit) {
+		try {
+			nodeValue = convertNodeToUnit(unit, evaluatedFormula).nodeValue
+		} catch (e) {
+			typeWarning(
+				node.dottedName,
+				`L'unité de la règle est incompatible avec celle de sa formule`,
+				e
+			)
+		}
 	}
+
+	cache._meta.contextRule.pop()
+	cache._meta.parseLevel--
 	return {
 		...node,
 		...applicabilityEvaluation,
-		...{ formule: evaluatedFormula },
+		...(node.formule && { formule: evaluatedFormula }),
 		nodeValue,
+		unit,
 		isApplicable,
 		missingVariables
 	}

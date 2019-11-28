@@ -42,7 +42,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 export let Line = ({ rule, ...props }) => (
 	<>
 		<RuleLink {...rule} />
-		<Value {...rule} nilValueSymbol="—" {...props} />
+		<Value {...rule} nilValueSymbol="—" unit="€" {...props} />
 	</>
 )
 

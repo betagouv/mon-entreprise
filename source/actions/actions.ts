@@ -1,6 +1,6 @@
 import { SitePaths } from 'Components/utils/withSitePaths'
 import { History } from 'history'
-import { RootState } from 'Reducers/rootReducer'
+import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Types/rule'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
@@ -13,10 +13,11 @@ export type Action =
 	| DeletePreviousSimulationAction
 	| SetExempleAction
 	| ExplainVariableAction
-	| UpdatePeriodAction
+	| UpdateSituationAction
 	| HideControlAction
 	| LoadPreviousSimulationAction
 	| SetSituationBranchAction
+	| UpdateDefaultUnit
 	| SetActiveTargetAction
 
 type ThunkResult<R> = ThunkAction<
@@ -35,7 +36,7 @@ type StepAction = {
 type SetSimulationConfigAction = {
 	type: 'SET_SIMULATION'
 	url: string
-	config: Object
+	config: SimulationConfig
 }
 
 type DeletePreviousSimulationAction = {
@@ -51,12 +52,13 @@ type SetExempleAction = {
 
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
-type UpdatePeriodAction = ReturnType<typeof updatePeriod>
+type UpdateSituationAction = ReturnType<typeof updateSituation>
 type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
 type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideControlAction = ReturnType<typeof hideControl>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
+type UpdateDefaultUnit = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({
@@ -90,9 +92,12 @@ export const setSituationBranch = (id: number) =>
 
 export const setSimulationConfig = (config: Object): ThunkResult<void> => (
 	dispatch,
-	_,
+	getState,
 	{ history }
 ): void => {
+	if (getState().simulation?.config === config) {
+		return
+	}
 	const url = history.location.pathname
 	dispatch({
 		type: 'SET_SIMULATION',
@@ -121,10 +126,10 @@ export const updateSituation = (fieldName: DottedName, value: any) =>
 		value
 	} as const)
 
-export const updatePeriod = (toPeriod: string) =>
+export const updateUnit = (defaultUnit: string) =>
 	({
-		type: 'UPDATE_PERIOD',
-		toPeriod
+		type: 'UPDATE_DEFAULT_UNIT',
+		defaultUnit
 	} as const)
 
 export function setExample(name: string, situation, dottedName: string) {

@@ -1,18 +1,18 @@
-import { updateSituation } from 'Actions/actions'
+import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import { DistributionBranch } from 'Components/Distribution'
 import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import config from 'Components/simulationConfigs/artiste-auteur.yaml'
-import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import { serialiseUnit } from 'Engine/units'
 import React, { useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
+	ruleAnalysisSelector,
 	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
@@ -35,7 +35,8 @@ function useInitialRender() {
 }
 
 export default function ArtisteAuteur() {
-	useSimulationConfig(config)
+	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(config))
 	const initialRender = useInitialRender()
 
 	return (
@@ -82,13 +83,15 @@ type SimpleFieldProps = {
 function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 	const rule = useRule(dottedName)
 	const dispatch = useDispatch()
-	const situation = useSelector(situationSelector)
-	const [value, setValue] = useState(situation[dottedName])
-	if (!rule) {
+	const analysis = useSelector((state: RootState) =>
+		ruleAnalysisSelector(state, { dottedName })
+	)
+	const [value, setValue] = useState(analysis.nodeValue)
+
+	if (!analysis.isApplicable) {
 		return null
 	}
 
-	const unit = serialiseUnit(rule.unit)
 	return (
 		<li>
 			<Animate.appear unless={initialRender}>
@@ -100,7 +103,8 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 						</label>
 					</div>
 					<div className="targetInputOrValue">
-						{unit === '€' && (
+						{/* Super hacky */}
+						{analysis.unit !== undefined ? (
 							<NumberFormat
 								autoFocus
 								id={'step-' + dottedName}
@@ -120,9 +124,7 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 									padding: 10px;
 								`}
 							/>
-						)}
-						{/* Super hacky */}
-						{unit !== '€' && (
+						) : (
 							<ToggleSwitch
 								id={`step-${dottedName}`}
 								defaultChecked={rule.nodeValue}

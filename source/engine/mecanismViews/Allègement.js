@@ -3,23 +3,25 @@ import React from 'react'
 import { makeJsx } from '../evaluation'
 import { Node } from './common'
 
-export default function Allègement(nodeValue, rawExplanation) {
+export default function Allègement(nodeValue, rawExplanation, ...other) {
 	// properties with a nodeValue of 0 are not interesting to display
 	let explanation = map(
 		k => (k && k.nodeValue !== 0 ? k : null),
 		rawExplanation
 	)
+	console.log(other)
 	return (
 		<div>
 			<Node
 				classes="mecanism allègement"
 				name="allègement"
 				value={nodeValue}
+				unit={explanation.unit}
 				child={
 					<ul className="properties">
 						<li key="assiette">
 							<span className="key">assiette: </span>
-							<span className="value">{makeJsx(rawExplanation.assiette)}</span>
+							<span className="value">{makeJsx(explanation.assiette)}</span>
 						</li>
 						{explanation.franchise && (
 							<li key="franchise">
@@ -39,6 +41,12 @@ export default function Allègement(nodeValue, rawExplanation) {
 							<li key="abattement">
 								<span className="key">abattement: </span>
 								<span className="value">{makeJsx(explanation.abattement)}</span>
+							</li>
+						)}
+						{explanation.plafond && (
+							<li key="abattement">
+								<span className="key">plafond: </span>
+								<span className="value">{makeJsx(explanation.plafond)}</span>
 							</li>
 						)}
 					</ul>

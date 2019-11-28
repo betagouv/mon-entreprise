@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
-	usePeriod
+	defaultUnitsSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
@@ -126,15 +126,15 @@ function RevenueRepatitionSection() {
 }
 
 function PaySlipSection() {
-	const period = usePeriod()
+	const unit = useSelector(defaultUnitsSelector)[0]
 	return (
 		<section>
 			<h2>
-				<Trans>
-					{period === 'mois'
-						? 'Fiche de paie mensuelle'
-						: 'Détail annuel des cotisations'}
-				</Trans>
+				{unit.endsWith('mois') ? (
+					<Trans>Fiche de paie</Trans>
+				) : (
+					<Trans>Détail annuel des cotisations</Trans>
+				)}
 			</h2>
 			<PaySlip />
 		</section>

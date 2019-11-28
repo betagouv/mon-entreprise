@@ -78,10 +78,8 @@ export default (rules, rule, parsedRules) => {
 						parsedRules,
 						node.explanation
 					),
-					nodeValue = explanation.nodeValue,
-					missingVariables = explanation.missingVariables
-
-				return { ...node, nodeValue, explanation, missingVariables }
+					{ nodeValue, unit, missingVariables } = explanation
+				return { ...node, nodeValue, unit, missingVariables, explanation }
 			}
 
 			let child = parse(rules, rule, parsedRules)(value)
@@ -94,7 +92,7 @@ export default (rules, rule, parsedRules) => {
 				category: 'ruleProp',
 				rulePropType: 'formula',
 				name: 'formule',
-				type: 'numeric',
+				unit: child.unit,
 				explanation: child
 			}
 		},
@@ -125,10 +123,9 @@ export default (rules, rule, parsedRules) => {
 		evaluate,
 		parsed: true,
 		isDisabledBy: [],
-		replacedBy: [],
-		unit: rule.unit || parsedRoot.formule?.explanation?.unit
+		defaultUnit: parsedRoot.defaultUnit || parsedRoot.formule?.unit,
+		replacedBy: []
 	}
-
 	parsedRules[rule.dottedName]['rendu non applicable'] = {
 		evaluate: (cache, situation, parsedRules, node) => {
 			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
@@ -162,7 +159,6 @@ export default (rules, rule, parsedRules) => {
 		type: 'boolean',
 		explanation: parsedRules[rule.dottedName]
 	}
-
 	return parsedRules[rule.dottedName]
 }
 

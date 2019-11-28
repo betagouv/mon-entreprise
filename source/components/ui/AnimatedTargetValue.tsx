@@ -2,7 +2,8 @@ import { formatCurrency } from 'Engine/format'
 import React, { useRef } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { useTranslation } from 'react-i18next'
-import { usePeriod } from 'Selectors/analyseSelectors'
+import { useSelector } from 'react-redux'
+import { RootState } from 'Reducers/rootReducer'
 import './AnimatedTargetValue.css'
 
 type AnimatedTargetValueProps = {
@@ -22,9 +23,11 @@ export default function AnimatedTargetValue({
 	const previousValue = useRef<number>()
 	const { language } = useTranslation().i18n
 
-	// We don't want to show the animated if the difference comes from a change in the period
-	const currentPeriod = usePeriod()
-	const previousPeriod = useRef(currentPeriod)
+	// We don't want to show the animated if the difference comes from a change in the unit
+	const currentUnit = useSelector(
+		(state: RootState) => state.simulation.defaultUnits[0]
+	)
+	const previousUnit = useRef(currentUnit)
 
 	const difference =
 		previousValue.current === value || Number.isNaN(value)
@@ -32,11 +35,11 @@ export default function AnimatedTargetValue({
 			: (value || 0) - (previousValue.current || 0)
 	const shouldDisplayDifference =
 		difference !== null &&
-		previousPeriod.current === currentPeriod &&
+		previousUnit.current === currentUnit &&
 		Math.abs(difference) > 1
 
 	previousValue.current = value
-	previousPeriod.current = currentPeriod
+	previousUnit.current = currentUnit
 
 	return (
 		<>

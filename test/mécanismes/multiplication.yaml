@@ -27,7 +27,6 @@
       situation:
       valeur attendue: 9.9
 
-
 - nom: mon plafond
   unité: €
 
@@ -66,8 +65,6 @@
         mon facteur: 3
       valeur attendue: 300
 
-
-
 - test: Multiplication complète
   formule:
     multiplication:
@@ -76,7 +73,7 @@
       plafond: mon plafond
       taux: 0.5%
 
-  unité attendue: €-patates
+  unité attendue: €.patates
   exemples:
     - nom:
       situation:
@@ -84,8 +81,6 @@
         mon facteur: 2
         mon plafond: 100
       valeur attendue: 1
-
-
 # This should work, but with the use of objectShape & co, the short circuits are not performed
 #- test: Multiplication complète
 #  formule:
@@ -102,5 +97,4 @@
 #        mon plafond: 100
 #      valeur attendue: 0
 #      variables manquantes: []
-
 

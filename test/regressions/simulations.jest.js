@@ -2,7 +2,7 @@
 // of simulations and persist their results in a snapshot (ie, a file commited in git). Our test runner,
 // Jest, then compare the existing snapshot with the current Engine calculation and reports any difference.
 //
-// We only persist goals values in the file system, in order to be resilient to rule renaming (if a rule is
+// We only persist targets values in the file system, in order to be resilient to rule renaming (if a rule is
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
@@ -19,21 +19,25 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
-
+const engine = new Lib.Engine()
 const runSimulations = (
 	situations,
-	goals,
+	targets,
 	baseSituation = {},
+	defaultUnits,
 	namePrefix = ''
 ) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach(situation => {
-			const res = Lib.evaluate(goals, { ...baseSituation, ...situation })
+			const res = engine.evaluate(targets, {
+				situation: { ...baseSituation, ...situation },
+				defaultUnits
+			})
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
 			expect(JSON.stringify(roundResult(res))).toMatchSnapshot(
-				namePrefix + name
+				namePrefix + ' ' + name
 			)
 		})
 	)
@@ -42,23 +46,27 @@ it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,
-		employeeConfig.situation
+		employeeConfig.situation,
+		['€/mois']
 	)
 })
 
 it('calculate simulations-indépendant', () => {
-	const goals = independantConfig.objectifs.reduce(
+	const targets = independantConfig.objectifs.reduce(
 		(acc, cur) => [...acc, ...cur.objectifs],
 		[]
 	)
-	runSimulations(independentSituations, goals, independantConfig.situation)
+	runSimulations(independentSituations, targets, independantConfig.situation, [
+		'€/an'
+	])
 })
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
 		autoEntrepreneurSituations,
 		autoentrepreneurConfig.objectifs,
-		autoentrepreneurConfig.situation
+		autoentrepreneurConfig.situation,
+		['€/an']
 	)
 })
 
@@ -69,6 +77,7 @@ it('calculate simulations-rémunération-dirigeant', () => {
 			remunerationDirigeantSituations,
 			remunerationDirigeantConfig.objectifs,
 			{ ...baseSituation, ...situation },
+			['€/an'],
 			`${nom} - `
 		)
 	})
@@ -78,6 +87,7 @@ it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
 		artisteAuteurSituations,
 		artisteAuteurConfig.objectifs,
-		artisteAuteurConfig.situation
+		artisteAuteurConfig.situation,
+		['€/an']
 	)
 })

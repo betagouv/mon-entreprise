@@ -1,4 +1,4 @@
-import { setSituationBranch } from 'Actions/actions'
+import { setSimulationConfig, setSituationBranch } from 'Actions/actions'
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur
@@ -9,12 +9,11 @@ import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
-import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
 import revenusSVG from 'Images/revenus.svg'
-import React, { useCallback, useContext, useState } from 'react'
+import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -45,8 +44,9 @@ export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
 	hideAssimiléSalarié = false
 }: SchemeComparaisonProps) {
-	useSimulationConfig(ComparaisonConfig)
 	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(ComparaisonConfig))
+
 	const analyses = useSelector(analysisWithDefaultsSelector)
 	const plafondAutoEntrepreneurDépassé = useSelector((state: RootState) =>
 		branchAnalyseSelector(state, {
@@ -298,7 +298,7 @@ export default function SchemeComparaison({
 				{conversationStarted && (
 					<>
 						<T k="comparaisonRégimes.période">
-							<h3 className="legend">Période</h3>
+							<h3 className="legend">Unité</h3>
 						</T>
 						<div className="AS-indep-et-auto" style={{ alignSelf: 'start' }}>
 							<PeriodSwitch />

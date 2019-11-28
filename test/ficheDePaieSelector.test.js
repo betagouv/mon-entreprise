@@ -1,4 +1,3 @@
-
 import { expect } from 'chai'
 // $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'

@@ -16,14 +16,6 @@
   - contrat salarié . rémunération . brut de base: 100000
   - contrat salarié . rémunération . brut de base: 1000000
 
-périodes:
-  - contrat salarié . rémunération . brut de base: 3000
-    période: année
-  - contrat salarié . rémunération . brut de base: 45000
-    période: année
-  - contrat salarié . rémunération . brut de base: 500000
-    période: année
-
 inversions:
   - contrat salarié . prix du travail: 2000
   - contrat salarié . rémunération . net: 2000
@@ -57,7 +49,7 @@ cdd:
 
 atmp:
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . ATMP . taux collectif ATMP: 0.05
+    contrat salarié . ATMP . taux collectif ATMP: 5
 
 assimilé salarié:
   - dirigeant: assimilé salarié
@@ -105,7 +97,7 @@ impôt sur le revenu:
     établissement . localisation . département: Mayotte
   - contrat salarié . rémunération . brut de base: 3000
     impôt . méthode de calcul: taux personnalisé
-    impôt . taux personnalisé: 0.1
+    impôt . taux personnalisé: 10
 
 heures supplémentaires:
   - contrat salarié . rémunération . brut de base: 2000

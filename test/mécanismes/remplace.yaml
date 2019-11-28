@@ -18,7 +18,7 @@
   applicable si: client enfant
   remplace:
     règle: prix du repas
-    par: 8 €
+    par: 8 €/repas
 
 - test: modifie une règle
   formule: restaurant . prix du repas
@@ -40,8 +40,8 @@
 - nom: cotisations
   formule:
     somme:
-      - retraite [salarié]
-      - retraite [employeur]
+      - retraite .salarié
+      - retraite .employeur
       - chômage
       - maladie
 
@@ -140,7 +140,7 @@
   formule: cotisations
   remplace:
     - règle: cotisations . chômage
-      par: 10
+      par: 10€
     - règle: cotisations . maladie
       par: 0
   exemples:

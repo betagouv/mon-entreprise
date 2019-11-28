@@ -72,7 +72,6 @@ export default function Value({
 					value: nodeValue
 				})
 			)
-
 	return nodeValue == undefined ? null : (
 		<span css={style(customCSS)} className="value">
 			{negative ? '-' : ''}

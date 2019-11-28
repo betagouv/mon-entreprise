@@ -1,6 +1,6 @@
 {
 	"editor.formatOnSave": true,
-	"spellright.language": ["fr"],
+	"spellright.language": ["fr", "en"],
 	"spellright.documentTypes": ["yaml", "git-commit"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": true

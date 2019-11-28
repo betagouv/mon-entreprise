@@ -16,17 +16,12 @@ export let unaryOperation = operationType => ([operator, , A]) => ({
 	}
 })
 
-export let filteredVariable = (
-	[{ variable }, , { value: filter }],
-	l,
-	reject
-) =>
-	['mensuel', 'annuel'].includes(filter)
-		? reject
-		: { filter: { filter, explanation: variable } }
+export let filteredVariable = ([{ variable }, , { value: filter }]) => ({
+	filter: { filter, explanation: variable }
+})
 
-export let temporalVariable = ([{ variable }, , temporalTransform]) => ({
-	temporalTransform: { explanation: variable, temporalTransform }
+export let variableWithConversion = ([{ variable }, , unit]) => ({
+	unitConversion: { explanation: variable, unit: parseUnit(unit.value) }
 })
 
 export let variable = ([firstFragment, nextFragment], _, reject) => {
@@ -54,15 +49,7 @@ export let numberWithUnit = ([number, , unit]) => ({
 	}
 })
 
-export let percentage = ([{ value }]) => ({
-	constant: {
-		type: 'percentage',
-		unit: parseUnit('%'),
-		nodeValue: parseFloat(value.slice(0, -1)) / 100
-	}
-})
-
-export let date = ([{ value }], ...otherstuf) => {
+export let date = ([{ value }]) => {
 	let [jour, mois, année] = value.split('/')
 	if (!année) {
 		;[jour, mois, année] = ['01', jour, mois]

@@ -52,12 +52,13 @@
   unité: '%'
 
 - test: soustraction
-  formule: 1 - taux
+  unité: '%'
+  formule: 100% - taux
   unité attendue: '%'
   exemples:
     - situation:
-        taux: 0.89
-      valeur attendue: 0.11
+        taux: 89
+      valeur attendue: 11
 
 - test: addition
   formule: salaire de base + 2000
@@ -137,6 +138,7 @@
       valeur attendue: false
 
 - nom: plafond sécurité sociale
+  unité: $
 
 - nom: CDD
 
@@ -218,16 +220,14 @@
       valeur attendue: false
 
 - nom: revenu
-  période: mois
-  unité: €
+  unité: €/mois
 
-- test: variable modifiée temporellement
-  formule: revenu [annuel]
-  période: aucune
+- test: unité de variable modifiée
+  formule: revenu [k€/an]
   exemples:
     - situation:
         revenu: 1000
-      valeur attendue: 12000
+      valeur attendue: 12
 
 - test: opérations multiples
   formule: 4 * plafond sécurité sociale * 10%

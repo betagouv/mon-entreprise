@@ -1,39 +1,39 @@
 import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { usePeriod } from 'Selectors/analyseSelectors'
+import { useSelector } from 'react-redux'
+import { defaultUnitsSelector } from 'Selectors/analyseSelectors'
+import { convertUnit, parseUnit } from '../../engine/units'
 
 export default function InputSuggestions({
 	suggestions,
-	onSecondClick,
+	onSecondClick = x => x,
 	onFirstClick,
-	rulePeriod
+	unit
 }) {
 	const [suggestion, setSuggestion] = useState(null)
-	const period = usePeriod()
 	const { t } = useTranslation()
-
+	const defaultUnit = parseUnit(useSelector(defaultUnitsSelector)[0])
 	if (!suggestions) return null
 
 	return (
 		<div css="display: flex; align-items: baseline; justify-content: flex-end;">
 			<small>Suggestions :</small>
 
-			{toPairs(suggestions).map(([text, value]) => {
-				// TODO : ce serait mieux de déplacer cette logique dans le moteur
-				const adjustedValue =
-					rulePeriod === 'flexible' && period === 'année' ? value * 12 : value
+			{toPairs(suggestions).map(([text, value]: [string, number]) => {
+				value = unit ? convertUnit(unit, defaultUnit, value) : value
 				return (
 					<button
 						className="ui__ link-button"
 						key={value}
 						css="margin: 0 0.4rem !important"
 						onClick={() => {
-							onFirstClick(adjustedValue)
-							if (suggestion !== adjustedValue) setSuggestion(adjustedValue)
-							else onSecondClick && onSecondClick(adjustedValue)
+							onFirstClick(value)
+							if (suggestion !== value) setSuggestion(value)
+							else onSecondClick && onSecondClick(value)
 						}}
-						title={t('cliquez pour insérer cette suggestion')}>
+						title={t('cliquez pour insérer cette suggestion')}
+					>
 						{text}
 					</button>
 				)

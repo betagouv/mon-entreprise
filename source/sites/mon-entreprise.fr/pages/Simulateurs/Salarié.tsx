@@ -1,22 +1,24 @@
+import { setSimulationConfig } from 'Actions/actions'
 import { T } from 'Components'
 import Banner from 'Components/Banner'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
-import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
-import React, { useContext } from 'react'
+import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export default function Salarié() {
 	const { t, i18n } = useTranslation()
+
 	const isEmbedded = React.useContext(IsEmbeddedContext)
 	return (
 		<>
@@ -101,7 +103,8 @@ In addition to the salary, our simulator takes into account the calculation of b
 There are deferred hiring aids that are not taken into account by our simulator, you can find them on the official portal.`
 
 export let SalarySimulation = () => {
-	useSimulationConfig(salariéConfig)
+	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(salariéConfig))
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>

@@ -187,8 +187,7 @@ const Target = ({ target, initialRender }) => {
 								onFirstClick={value => {
 									dispatch(updateSituation(target.dottedName, value))
 								}}
-								rulePeriod={target.période}
-								colouredBackground={true}
+								unit={target.defaultUnit}
 							/>
 						</Animate.fromTop>
 					)}
@@ -237,7 +236,7 @@ let TargetInputOrValue = ({
 		: undefined
 	const inversionFail = useSelector(
 		(state: RootState) =>
-			analysisWithDefaultsSelector(state)?.cache.inversionFail
+			analysisWithDefaultsSelector(state)?.cache._meta.inversionFail
 	)
 	const blurValue = inversionFail && !isActiveInput && value
 

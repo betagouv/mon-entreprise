@@ -38,13 +38,16 @@ export default (tracker: Tracker) => {
 			])
 		}
 
-		if (action.type === 'UPDATE_SITUATION' || action.type === 'UPDATE_PERIOD') {
+		if (
+			action.type === 'UPDATE_SITUATION' ||
+			action.type === 'UPDATE_DEFAULT_UNIT'
+		) {
 			tracker.push([
 				'trackEvent',
 				'Simulator',
 				'update situation',
-				...(action.type === 'UPDATE_PERIOD'
-					? ['période', action.toPeriod]
+				...(action.type === 'UPDATE_DEFAULT_UNIT'
+					? ['unité', action.defaultUnit]
 					: [action.fieldName, action.value])
 			])
 		}
