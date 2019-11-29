@@ -19,7 +19,6 @@
 }
 .info-bulle__text {
 	text-align: left;
-
 	position: absolute;
 	z-index: -1;
 	border: 1px solid var(--colour);
@@ -33,6 +32,7 @@
 	background-color: white;
 	transition: opacity 0.2s, transform 0.2s;
 	opacity: 0;
+	pointer-events: none;
 	transform: translateY(-5px);
 }
 
