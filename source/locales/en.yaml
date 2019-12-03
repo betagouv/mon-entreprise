@@ -69,6 +69,7 @@ payslip:
   notice: This simulation helps you understand your French payslip, but it should not be used as one. For further details, check <1>service-public.fr (French)</1>.
   heures: 'Hours worked per month: '
   disclaimer: It takes into account national law but not union negotiated rules. Lots of financial aids for your enterprise exist, explore them on <1>aides-entreprises.fr (French)</1>.
+  repartition: Distribution of total amount
 A quoi servent mes cotisations ?: What's included in my contributions?
 Effacer: Reset
 Suivant: Next
@@ -554,6 +555,8 @@ Précédent: Previous
 Choisir plus tard: Choose later
 
 mois: month
+heures: hours
+heure: hour
 année: year
 an: year
 par: per

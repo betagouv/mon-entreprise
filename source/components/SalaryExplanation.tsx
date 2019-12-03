@@ -103,7 +103,9 @@ function RevenueRepatitionSection() {
 
 	return (
 		<section>
-			<h2>Répartition du total chargé</h2>
+			<h2>
+				<T k="payslip.repartition">Répartition du total chargé</T>
+			</h2>
 			<StackedBarChart
 				data={[
 					{

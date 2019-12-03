@@ -1059,7 +1059,12 @@ contrat salarié . indemnités salarié:
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
-  description: Notion mal définie mais reconnue par les conventions collectives et déterminant l'appartenance à une caisse de retraite de base spécifique
+  description: |
+    Un cadre d'entreprise est un employé ou dirigeant d'une entreprise appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut reconnu par les conventions collectives, qui détermine l'appartenance à une caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du contrat de travail.
+
+    Reconnaissant initialement les compétences techniques et le rôle d'encadrement du salarié, le statut s'est progressivement élargi à un ensemble de postes de plus en plus nombreux, et a fini par recouvrir une large population, mêlant managers, experts et dirigeants1.
+
+    Il s'agit d'une notion mal définie désignant des concepts différents selon le point de vue envisagé — que ce soit en termes de statut, de représentation sociale, de rôle dans l'entreprise ou de culture. 
   par défaut: non
 
 plafond sécurité sociale temps plein:

@@ -1,8 +1,8 @@
 import classnames from 'classnames'
+import { T } from 'Components'
 import withColours from 'Components/utils/withColours'
 import { compose, is } from 'ramda'
 import React, { useCallback, useState } from 'react'
-import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -152,8 +152,9 @@ const RadioLabelContent = compose(withColours)(function RadioLabelContent({
 		<label
 			key={value}
 			style={labelStyle}
-			className={classnames('radio', 'userAnswerButton', { selected })}>
-			<Trans i18nKey={`radio_${label}`}>{label}</Trans>
+			className={classnames('radio', 'userAnswerButton', { selected })}
+		>
+			<T>{label}</T>
 			<input
 				type="radio"
 				onClick={click(value)}

@@ -1,11 +1,11 @@
-import { T } from 'Components'
 import FormDecorator from 'Components/conversation/FormDecorator'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default FormDecorator('rhetorical-question')(
 	function RhetoricalQuestion({ value: currentValue, submit, possibleChoice }) {
+		const { t } = useTranslation()
 		if (!possibleChoice) return null // No action possible, don't render an answer
-
 		let { text, value } = possibleChoice
 		return (
 			<span className="answer">
@@ -16,7 +16,7 @@ export default FormDecorator('rhetorical-question')(
 						onClick={submit}
 						value={value}
 					/>
-					<T>{text}</T>
+					{t(text)}
 				</label>
 			</span>
 		)
