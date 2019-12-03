@@ -1752,6 +1752,7 @@ entreprise:
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 entreprise . prélèvements obligatoires:
+  applicable si: établissement . localisation
   période: flexible
   formule:
     somme:
@@ -1828,6 +1829,7 @@ entreprise . établissement bancaire:
     departement:
       nom: Non renseigné
     taux du versement transport: 0.018
+  
 
 établissement . localisation . code commune:
   formule:
@@ -3963,13 +3965,28 @@ dirigeant . assimilé salarié:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
 
-
 dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié
   formule: dirigeant = 'auto-entrepreneur'
   icônes: 🚶
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
+  contrôles: 
+    - si:
+        toutes ces conditions:
+          - une de ces conditions:
+              - établissement . localisation . département = 'Ariège'
+              - établissement . localisation . département = 'Aveyron'
+              - établissement . localisation . département = 'Haute-Garonne'
+              - établissement . localisation . département = 'Gers'
+              - établissement . localisation . département = 'Lot'
+              - établissement . localisation . département = 'Hautes-Pyrénées'
+              - établissement . localisation . département = 'Tarn'
+              - établissement . localisation . département = 'Tarn-et-Garonne'
+          - dirigeant . auto-entrepreneur
+      niveau: info
+      message: L'Urssaf Midi-Pyrénées vous accompagne ! Assistez au webinar dédiés aux auto-entrepreneur en début d'activité, où vous pourrez poser toutes vos questions. [En savoir plus](https://webikeo.fr/webinar/auto-entrepreneurs-maitrisez-les-fondamentaux-pour-une-installation-reussie-3)
+
 
 dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires

@@ -513,7 +513,7 @@ function CreateCompany({
 						className="ui__ interactive card button-choice lighter-bg"
 						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf"
 					>
-						<p>Guide de création URSSAF </p>
+						<p>Guide de création de l'Urssaf </p>
 						<small>
 							Des conseils sur comment préparer son projet pour se lancer dans
 							la création et une présentation détaillée de votre protection

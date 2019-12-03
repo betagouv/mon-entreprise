@@ -102,7 +102,7 @@ export default function SocialSecurity() {
 								<p>Calculer mon revenu net</p>
 								<small>
 									Estimez précisément le montant de vos cotisations grâce au
-									simulateur {{ régime }} de l’URSSAF
+									simulateur {{ régime }} de l'Urssaf
 								</small>
 							</T>
 						</Link>

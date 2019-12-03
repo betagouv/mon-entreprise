@@ -24,7 +24,7 @@ export default function Salarié() {
 				<title>
 					{t(
 						'simulateurs.salarié.page.titre',
-						`Calcul du salaire brut en net : le simulateur URSSAF`
+						`Calcul du salaire brut / net : le simulateur de l'Urssaf`
 					)}
 				</title>
 				<meta
