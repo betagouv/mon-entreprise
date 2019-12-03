@@ -123,12 +123,21 @@ const infereLegalStatusFromCategorieJuridique = (
 	return 'NON_IMPLÉMENTÉ'
 }
 
+type GeoDetails = {
+	nom: string
+	code: string
+}
 export type Company = {
 	siren: string
 	catégorieJuridique?: string
 	statutJuridique?: string
+	dateDébutActivité?: Date
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
+	localisation?: GeoDetails & {
+		departement: GeoDetails
+		region: GeoDetails
+	}
 }
 
 function existingCompany(state: Company = null, action): Company {
@@ -141,13 +150,14 @@ function existingCompany(state: Company = null, action): Company {
 	if (action.type.endsWith('SET_SIREN')) {
 		return { siren: action.siren }
 	}
-	if (state && action.type.endsWith('SET_CATEGORIE_JURIDIQUE')) {
+	if (state && action.type.endsWith('SET_DETAILS')) {
 		const statutJuridique = infereLegalStatusFromCategorieJuridique(
 			action.catégorieJuridique
 		)
 		return {
 			siren: state.siren,
-			statutJuridique
+			statutJuridique,
+			dateDébutActivité: action.dateDébutActivité
 		}
 	}
 	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {
@@ -156,7 +166,9 @@ function existingCompany(state: Company = null, action): Company {
 	if (state && action.type.endsWith('SPECIFY_DIRIGEANT_MAJORITAIRE')) {
 		return { ...state, isDirigeantMajoritaire: action.isDirigeantMajoritaire }
 	}
-
+	if (state && action.type.endsWith('ADD_COMMUNE_DETAILS')) {
+		return { ...state, localisation: action.details }
+	}
 	return state
 }
 

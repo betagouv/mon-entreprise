@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
 import * as Animate from 'Ui/animate'
+import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
 const infereRégimeFromCompanyDetails = (company: Company) => {
@@ -127,6 +128,7 @@ export default function SocialSecurity() {
 							</T>
 						</Link>
 					)}
+					<AideOrganismeLocal />
 					<h2>
 						<T>Ressources utiles</T>
 					</h2>

@@ -222,8 +222,9 @@ const addAnswerToSituation = (
 	value: any,
 	state: RootState
 ) => {
+	console.log(state)
 	return (compose(
-		set(lensPath(['simulation', 'situation', dottedName]), value),
+		set(lensPath(['simulation', 'config', 'situation', dottedName]), value),
 		over(lensPath(['conversationSteps', 'foldedSteps']), (steps = []) =>
 			uniq([...steps, dottedName])
 		) as any
@@ -235,7 +236,7 @@ const removeAnswerFromSituation = (
 	state: RootState
 ) => {
 	return (compose(
-		over(lensPath(['simulation', 'situation']), dissoc(dottedName)),
+		over(lensPath(['simulation', 'config', 'situation']), dissoc(dottedName)),
 		over(
 			lensPath(['conversationSteps', 'foldedSteps']),
 			without([dottedName])
