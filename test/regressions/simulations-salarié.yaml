@@ -48,11 +48,11 @@ cadre:
     contrat salarié . statut cadre: true
 
 cdd:
-  - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . cdd: true
-  - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . cdd: true
-    contrat salarié . cdd . durée contrat: 6
+  - contrat salarié: CDD
+    contrat salarié . rémunération . brut de base: 2000
+  - contrat salarié: CDD
+    contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . CDD . durée contrat: 6
     contrat salarié . CDD . congés non pris: 3
 
 atmp:
@@ -60,12 +60,12 @@ atmp:
     contrat salarié . ATMP . taux collectif ATMP: 0.05
 
 assimilé salarié:
-  - dirigeant: 'assimilé salarié'
+  - dirigeant: assimilé salarié
     contrat salarié . rémunération . brut de base: 5000
-  - dirigeant: 'assimilé salarié'
+  - dirigeant: assimilé salarié
     contrat salarié . rémunération . brut de base: 1500
     entreprise . ACRE: true
-  - dirigeant: 'assimilé salarié'
+  - dirigeant: assimilé salarié
     contrat salarié . rémunération . brut de base: 3000
     entreprise . ACRE: true
 
@@ -87,10 +87,10 @@ impôt sur le revenu:
     impôt . méthode de calcul: taux neutre
   - contrat salarié . rémunération . brut de base: 30000
     impôt . méthode de calcul: taux neutre
-  - contrat salarié . rémunération . brut de base: 3000
-    impôt . méthode de calcul: taux neutre
-    contrat salarié . CDD: true
+  - contrat salarié: CDD
+    contrat salarié . rémunération . brut de base: 3000
     contrat salarié . CDD . durée contrat: 2
+    impôt . méthode de calcul: taux neutre
   - contrat salarié . rémunération . brut de base: 3000
     impôt . méthode de calcul: taux neutre
     établissement . localisation . département: Guadeloupe
