@@ -24,14 +24,14 @@ export default function Salarié() {
 				<title>
 					{t(
 						'simulateurs.salarié.page.titre',
-						`Calcul du salaire net et brut : simulateur officiel`
+						`Calcul du salaire brut en net : le simulateur URSSAF`
 					)}
 				</title>
 				<meta
 					name="description"
 					content={t(
 						'simulateurs.salarié.page.description',
-						'Estimez les cotisations pour un salarié à partir du salaire brut, net ou "superbrut". Prise en compte de toutes les cotisations du régime général et de l\'impôt sur le revenu. Découvrez les contreparties garanties par sécurité sociale'
+						'Estimez les cotisations sociales pour un salarié à partir du salaire brut, net ou "superbrut". Prise en compte de toutes les cotisations du régime général et de l\'impôt sur le revenu. Découvrez les contreparties garanties par sécurité sociale'
 					)}
 				/>
 			</Helmet>
