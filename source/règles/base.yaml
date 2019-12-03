@@ -1062,10 +1062,12 @@ contrat salarié . statut cadre:
   description: |
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut reconnu par les conventions collectives, qui détermine l'appartenance à une caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du contrat de travail.
 
-    Reconnaissant initialement les compétences techniques et le rôle d'encadrement du salarié, le statut s'est progressivement élargi à un ensemble de postes de plus en plus nombreux, et a fini par recouvrir une large population, mêlant managers, experts et dirigeants1.
+    Reconnaissant initialement les compétences techniques et le rôle d'encadrement du salarié, le statut s'est progressivement élargi à un ensemble de postes de plus en plus nombreux, et a fini par recouvrir une large population, mêlant managers, experts et dirigeants.
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon le point de vue envisagé — que ce soit en termes de statut, de représentation sociale, de rôle dans l'entreprise ou de culture. 
   par défaut: non
+  références: 
+    wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise
 
 plafond sécurité sociale temps plein:
   description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.

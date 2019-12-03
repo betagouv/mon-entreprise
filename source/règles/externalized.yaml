@@ -1009,14 +1009,17 @@ contrat salarié . indemnités salarié:
 contrat salarié . statut cadre:
   question.en: 'Does the employee have "cadre" status?'
   question.fr: Le salarié a-t-il le statut cadre ?
-  description.en: >-
-    An executive is an employee or manager of a company in the higher category of employees. This is a status recognized by collective agreements, which determines membership of a specific pension fund, the AGIRC, and some specific terms of the employment contract.
+  description.en: >
+    A "cadre" is an employee or manager of a company in the higher category of employees. This is a status recognized by collective agreements, which determines membership of a specific pension fund, the AGIRC, and some specific terms of the employment contract.
 
-    Initially recognizing the employee's technical skills and managerial role, the status gradually expanded to an ever-increasing number of positions, and eventually covered a large population, including managers, experts and executives1.
+
+    Initially recognizing the employee's technical skills and managerial role, the status gradually expanded to an ever-increasing number of positions, and eventually covered a large population, including managers, experts and executives.
+
 
     It is a poorly defined concept that refers to different concepts depending on the point of view considered - whether in terms of status, social representation, role in the company or culture.
 
-    This concept is more prevalent in France than in the Anglo-Saxon countries, which explicitly distinguish between "managers", "professionals" and "executives" (senior executives, directors), and do not know a common word for all three functions2. 
+
+    This concept is more prevalent in France than in the Anglo-Saxon countries, which explicitly distinguish between "managers", "professionals" and "executives" (senior executives, directors), and do not know a common word for all three functions.
 
   titre.en: cadre status
   titre.fr: statut cadre
@@ -1058,7 +1061,6 @@ contrat salarié . SMIC contractuel:
   titre.en: 'Contractual minimum wage (SMIC)'
   titre.fr: SMIC contractuel
 contrat salarié . SMIC:
-
   description.fr: >
     Plusieurs réductions de cotisations ([réduction
     générale](/documentation/contrat-salarié/réduction-générale), taux réduit
@@ -1189,7 +1191,7 @@ impôt . taux neutre d'impôt sur le revenu:
     l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
     leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
-  titre.en: "neutral income tax rate"
+  titre.en: 'neutral income tax rate'
   titre.fr: taux neutre d'impôt sur le revenu
 impôt . taux personnalisé:
   question.en: What is your withholding tax rate?
@@ -1236,9 +1238,8 @@ contrat salarié . prix du travail:
 contrat salarié . rémunération . total:
   titre.en: Total salary
   titre.fr: Total chargé
-  question.en: '!!Quel est la rémunération chargée ?'
   question.fr: Quel est la rémunération chargée ?
-  résumé.en: "!!Dépensé par l'entreprise"
+  résumé.en: 'Spent by the company'
   résumé.fr: Dépensé par l'entreprise
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
@@ -2670,7 +2671,7 @@ entreprise . catégorie d'activité . service ou vente . vente:
   titre.en: 'sale of goods'
   titre.fr: vente de biens
   description.en: >
-        This refers to any transaction involving the transfer of ownership of tangible property, i.e. property having a material existence. All other activities are part of the services provided.
+    This refers to any transaction involving the transfer of ownership of tangible property, i.e. property having a material existence. All other activities are part of the services provided.
   description.fr: >
     Il s’agit de toute opération comportant transfert de propriété d'un bien
     corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre
@@ -3863,31 +3864,31 @@ contrat salarié . intermittents du spectacle . technicien . non cadre:
 contrat salarié . intermittents du spectacle . artiste:
   description.en: >
     The following are considered as performing artists:
- 
+
     - The lyrical artist
- 
+
     - The dramatic artist
- 
+
     - The choreographic artist
- 
+
     - The variety artist
- 
+
     - The musician
- 
+
     - The songwriter
- 
+
     - The complementary artist
- 
+
     - The conductor
- 
+
     - The arranger-orchestrator
- 
+
     - The director, director and choreographer, for the material execution of their artistic conception
- 
+
     - The circus artist
- 
+
     - The puppeteer
- 
+
     - Persons whose activity is recognised as a performing artist's profession by the extended collective agreements on performing arts.
 
   description.fr: >
@@ -3928,7 +3929,7 @@ contrat salarié . intermittents du spectacle . artiste . non cadre:
   titre.fr: non cadre
 contrat salarié . intermittents du spectacle . artiste . activité accessoire:
   question.en: >
-   Is the artist remunerated for an ancillary activity (exemption from courses, internships, etc.)?
+    Is the artist remunerated for an ancillary activity (exemption from courses, internships, etc.)?
   question.fr: >
     L'artiste est-il rémunéré pour une activité accessoire (dispense de cours,
     stages, etc) ?

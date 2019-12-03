@@ -64,7 +64,7 @@ function ExplanationSection() {
 						...getRule(
 							'dirigeant . auto-entrepreneur . cotisations et contributions'
 						),
-						name: t('Cotisations'),
+						title: t('Cotisations'),
 						color: palettes[1][1]
 					}
 				]}

@@ -56,7 +56,7 @@ function ExplanationSection() {
 				data={[
 					{
 						...getRule('revenu net après impôt'),
-						name: t('Revenu disponible'),
+						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
 					{ ...getRule('impôt'), color: palettes[1][0] },
@@ -64,7 +64,7 @@ function ExplanationSection() {
 						...getRule(
 							'dirigeant . indépendant . cotisations et contributions'
 						),
-						name: t('Cotisations'),
+						title: t('Cotisations'),
 						color: palettes[1][1]
 					}
 				]}

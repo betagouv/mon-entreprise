@@ -110,12 +110,13 @@ function RevenueRepatitionSection() {
 				data={[
 					{
 						...getRule('contrat salarié . rémunération . net après impôt'),
-						name: t('Revenu disponible'),
+						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), name: t('Impôts'), color: palettes[1][0] },
+					{ ...getRule('impôt'), title: t('Impôts'), color: palettes[1][0] },
 					{
 						...getRule('contrat salarié . cotisations'),
+
 						color: palettes[1][1]
 					}
 				]}

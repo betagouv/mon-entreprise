@@ -48,7 +48,6 @@ export default function Aide() {
 					</p>
 					{refs && (
 						<div>
-							<p>Pour en savoir plus: </p>
 							<References refs={refs} />
 						</div>
 					)}

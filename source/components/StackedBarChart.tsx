@@ -112,7 +112,7 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 				{dataWithPercentage.map(({ percentage, color, ...rule }) => (
 					<BarStackLegendItem key={rule.dottedName}>
 						<SmallCircle style={{ backgroundColor: color }} />
-						<RuleLink {...rule}>{capitalise0(rule.name)}</RuleLink>
+						<RuleLink {...rule}>{capitalise0(rule.title)}</RuleLink>
 						<strong>{percentage} %</strong>
 					</BarStackLegendItem>
 				))}
