@@ -168,7 +168,12 @@ allègement:
   type: numeric
   description: |
     Permet de réduire le montant d'une variable. 
-    Très utilisé dans le contexte des impôts. 
+    Très utilisé dans le contexte des impôts.
+
+encadrement:
+  type: numeric
+  description: |
+    Permet d'ajouter un plafond et/ou un plancher à une valeur.
 
 synchronisation:
   type: object
