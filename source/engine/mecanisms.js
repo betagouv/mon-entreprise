@@ -211,11 +211,7 @@ export let mecanismNumericalSwitch = (recurse, k, v) => {
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			nonFalsyTerms = filter(node => node.condValue !== false, explanation),
-			getFirst = o =>
-				pipe(
-					head,
-					prop(o)
-				)(nonFalsyTerms),
+			getFirst = o => pipe(head, prop(o))(nonFalsyTerms),
 			nodeValue =
 				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
 				isEmpty(nonFalsyTerms)
@@ -414,7 +410,10 @@ export let mecanismSum = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'somme',
 		type: 'numeric',
-		unit: inferUnit('+', explanation.map(r => r.unit))
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.unit)
+		)
 	}
 }
 

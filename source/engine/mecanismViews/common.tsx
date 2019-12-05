@@ -1,18 +1,24 @@
 import { default as classNames, default as classnames } from 'classnames'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import Value from 'Components/Value'
+import Value, { ValueProps } from 'Components/Value'
 import { contains, isNil, pipe, sort, toPairs } from 'ramda'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { DottedName, Rule } from 'Types/rule'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
 import mecanismColours from './colours'
 
-export let NodeValuePointer = ({ data, unit }) => (
+type NodeValuePointerProps = {
+	data: ValueProps['nodeValue']
+	unit: ValueProps['unit']
+}
+
+export let NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 	<span
 		className={classnames('situationValue', {
 			boolean: typeof data == 'boolean'
@@ -32,8 +38,17 @@ export let NodeValuePointer = ({ data, unit }) => (
 	</span>
 )
 
+type NodeProps = {
+	classes: string
+	name: string
+	value: NodeValuePointerProps['data']
+	unit: NodeValuePointerProps['unit']
+	inline?: boolean
+	child: React.ReactNode
+}
+
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Node({ classes, name, value, child, inline, unit }) {
+export function Node({ classes, name, value, child, inline, unit }: NodeProps) {
 	let termDefinition = contains('mecanism', classes) && name
 
 	return (
@@ -69,9 +84,9 @@ export function Node({ classes, name, value, child, inline, unit }) {
 						}
 					`}
 				>
-					{value !== true && value !== false && !isNil(value) && (
-						<span className="operator"> =&nbsp;</span>
-					)}
+					{(value as any) !== true &&
+						(value as any) !== false &&
+						!isNil(value) && <span className="operator"> =&nbsp;</span>}
 					<NodeValuePointer data={value} unit={unit} />
 				</span>
 			)}
@@ -79,7 +94,7 @@ export function Node({ classes, name, value, child, inline, unit }) {
 	)
 }
 
-export function InlineMecanism({ name }) {
+export function InlineMecanism({ name }: { name: string }) {
 	return (
 		<span className="inlineMecanism">
 			<LinkButton
@@ -93,8 +108,24 @@ export function InlineMecanism({ name }) {
 	)
 }
 
+type LeafProps = {
+	classes: string
+	dottedName: DottedName
+	name: string
+	nodeValue: NodeValuePointerProps['data']
+	filter: string
+	unit: NodeValuePointerProps['unit']
+}
+
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Leaf({ classes, dottedName, name, nodeValue, filter, unit }) {
+export function Leaf({
+	classes,
+	dottedName,
+	name,
+	nodeValue,
+	filter,
+	unit
+}: LeafProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const flatRules = useSelector(flatRulesSelector)
 	let rule = findRuleByDottedName(flatRules, dottedName)
@@ -127,7 +158,11 @@ export function Leaf({ classes, dottedName, name, nodeValue, filter, unit }) {
 	)
 }
 
-export function SimpleRuleLink({ rule: { dottedName, title, name } }) {
+type SimpleRuleLinkProps = { rule: Rule }
+
+export function SimpleRuleLink({
+	rule: { dottedName, title, name }
+}: SimpleRuleLinkProps) {
 	return (
 		<Link to={'/documentation/' + encodeRuleName(dottedName)}>
 			<span className="name">{title || capitalise0(name)}</span>

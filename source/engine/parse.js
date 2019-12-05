@@ -2,9 +2,11 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
+import { formatValue } from 'Engine/format'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
+import encadrement from 'Engine/mecanisms/encadrement'
 import operation from 'Engine/mecanisms/operation'
 import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
@@ -44,7 +46,6 @@ import {
 	mecanismSynchronisation
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
-import { formatValue } from 'Engine/format'
 
 export let parse = (rules, rule, parsedRules) => rawNode => {
 	let onNodeType = cond([
@@ -134,6 +135,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			barème,
 			'barème linéaire': barèmeLinéaire,
 			'barème continu': barèmeContinu,
+			encadrement: encadrement,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
@@ -144,14 +146,22 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			synchronisation: mecanismSynchronisation,
 			...operationDispatch,
 			filter: () =>
-				parseReferenceTransforms(rules, rule, parsedRules)({
+				parseReferenceTransforms(
+					rules,
+					rule,
+					parsedRules
+				)({
 					filter: v.filter,
 					variable: v.explanation
 				}),
 			variable: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
 			temporalTransform: () =>
-				parseReferenceTransforms(rules, rule, parsedRules)({
+				parseReferenceTransforms(
+					rules,
+					rule,
+					parsedRules
+				)({
 					variable: v.explanation,
 					temporalTransform: v.temporalTransform
 				}),

@@ -57,9 +57,9 @@ contrat salarié . indemnité kilométrique vélo:
   période: année
   applicable si: active
   formule:
-    le minimum de:
-      - distance annuelle * indemnité kilométrique
-      - plafond d'exonération
+    encadrement:
+      valeur: distance annuelle * indemnité kilométrique
+      plafond: plafond d'exonération
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
     fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
@@ -1228,9 +1228,9 @@ contrat salarié . rémunération . net imposable . base:
 : période: flexible
   unité: €
   formule:
-    le minimum de:
-      - plafond brut
-      - heures supplémentaires
+    encadrement:
+      valeur: heures supplémentaires
+      plafond: plafond brut
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1674,15 +1674,16 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
-    le minimum de:
-      - 11.31%
-      - multiplication:
+    encadrement:
+      valeur:
+        multiplication:
           assiette:
             somme:
               - vieillesse [salarié]
               - retraite complémentaire [salarié]
               - contribution d'équilibre général [salarié]
           facteur: 1 / assiette
+      plafond: 11.31%
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
@@ -1920,9 +1921,9 @@ contrat salarié . temps de travail . quotité de travail:
   description: Temps de travail en proportion du temps complet légal.
   période: aucune
   formule:
-    le minimum de:
-      - temps de travail [mensuel] / (base légale * période . semaines par mois)
-      - 100%
+    encadrement:
+      valeur: temps de travail [mensuel] / (base légale * période . semaines par mois)
+      plafond: 100%
   unité: '%'
 
 contrat salarié . temps de travail . heures supplémentaires:
@@ -2005,9 +2006,10 @@ contrat salarié . statut JEI . exonération de cotisations:
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
-    le minimum de:
-      - 1634.39 €
-      - somme:
+    encadrement:
+      plafond: 1634.39 €
+      valeur:
+        somme:
           - allocations familiales
           - maladie [employeur]
           - vieillesse [employeur]
@@ -2027,9 +2029,9 @@ contrat salarié . réduction générale:
   applicable si: cotisations . assiette <= plafond de l'assiette
   période: flexible
   formule:
-    le minimum de:
-      - assiette
-      - multiplicateur * écart au plafond de l'assiette
+    encadrement:
+      valeur: assiette
+      plafond: multiplicateur * écart au plafond de l'assiette
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   exemples:
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
@@ -3678,9 +3680,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
       - si: situation personnelle . RSA
         alors: revenu professionnel
       - sinon:
-          le maximum de:
-            - 40% * plafond sécurité sociale temps plein
-            - revenu professionnel
+          encadrement:
+            plancher: 40% * plafond sécurité sociale temps plein
+            valeur: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -3797,9 +3799,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
     variations:
       - si: situation personnelle . RSA != oui
         alors:
-          le maximum de:
-            - 11.5% * plafond sécurité sociale temps plein
-            - revenu professionnel
+          encadrement:
+            plancher: 11.5% * plafond sécurité sociale temps plein
+            valeur: revenu professionnel
       - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -3866,9 +3868,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
     variations:
       - si: situation personnelle . RSA != oui
         alors:
-          le maximum de:
-            - 11.5% * plafond sécurité sociale temps plein
-            - revenu professionnel
+          encadrement:
+            valeur: revenu professionnel
+            plancher: 11.5% * plafond sécurité sociale temps plein
       - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -4207,11 +4209,12 @@ dirigeant . auto-entrepreneur . impôt . abattement:
   période: année
   unité: €
   formule:
-    le maximum de:
-      - multiplication:
+    encadrement:
+      valeur:
+        multiplication:
           assiette: base des cotisations [annuel]
           taux: taux
-      - 305 €
+      plancher: 305 €
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
@@ -4364,12 +4367,13 @@ protection sociale . retraite . trimestres validés par an:
   période: aucune
   unité: trimestres
   formule:
-    le minimum de:
-      - somme:
+    encadrement:
+      valeur:
+        somme:
           - trimestres salarié
           - trimestres indépendant
           - trimestres auto-entrepreneur
-      - 4
+      plafond: 4
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   période: aucune
@@ -4386,9 +4390,9 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
       - si: situation personnelle . RSA
         alors: barème trimestres générique
       - sinon:
-          le maximum de:
-            - 3
-            - barème trimestres générique
+          encadrement:
+            plancher: 3
+            valeur: barème trimestres générique
 
 ? protection sociale . retraite . trimestres validés par an . barème trimestres générique
 : période: aucune
@@ -4607,11 +4611,12 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
       - si: revenu moyen [annuel] < 3919.20
         alors: 0
       - sinon:
-          le minimum de:
-            - multiplication:
+          encadrement:
+            valeur:
+              multiplication:
                 assiette: revenu moyen [annuel]
                 facteur: 1 / 730
-            - 55.51 €
+            plafond: 55.51 €
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -4620,13 +4625,13 @@ protection sociale . santé . indemnités journalières . indépendant:
   période: aucune
   unité: €
   formule:
-    le maximum de:
-      - 21 €
-      - le minimum de:
-          - multiplication:
-              assiette: revenu moyen [annuel]
-              facteur: 1 / 730
-          - 55.51 €
+    encadrement:
+      valeur:
+        multiplication:
+          assiette: revenu moyen [annuel]
+          facteur: 1 / 730
+      plancher: 21 €
+      plafond: 55.51 €
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -4709,12 +4714,13 @@ protection sociale . accidents du travail et maladies professionnelles:
   unité: €
   applicable si: contrat salarié
   formule:
-    le minimum de:
-      - multiplication:
+    encadrement:
+      valeur:
+        multiplication:
           assiette: revenu moyen [mensuel]
           taux: 60%
           facteur: 1 / 30.42
-      - 202.78 €
+      plafond: 202.78 €
       # TODO
       # - 0.834% * plafond sécurité sociale temps plein [annuel]
 
@@ -4793,9 +4799,10 @@ contrat salarié . lodeom . réduction outre-mer:
   période: flexible
 
   formule:
-    le minimum de:
-      - contrat salarié . réduction générale . assiette
-      - variations:
+    encadrement:
+      valeur: contrat salarié . réduction générale . assiette
+      plafond:
+        variations:
           - si:
               toutes ces conditions:
                 - éligible barème innovation et croissance
@@ -5087,14 +5094,14 @@ contrat salarié . convention collective . SVP . FCAP:
   # TODO :
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
   formule:
-    le minimum de:
-      - 80 € / entreprise . effectif
-      - le maximum de:
-          - multiplication:
-              plafonnée à: plafond sécurité sociale
-              assiette: rémunération . brut
-              taux: 0.1%
-          - 300 € / entreprise . effectif
+    encadrement:
+      valeur:
+        multiplication:
+          plafonnée à: plafond sécurité sociale
+          assiette: rémunération . brut
+          taux: 0.1%
+      plancher: 80 € / entreprise . effectif
+      plafond: 300 € / entreprise . effectif
   références:
     Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
     Note explicative AUDIENS: http://www.cheque-intermittents.com/wp-content/uploads/2015/05/FCAP-SVP-EXPLIC_final.pdf
@@ -5134,11 +5141,12 @@ contrat salarié . convention collective . sport . cotisations . patronales:
 ? contrat salarié . convention collective . sport . cotisations . financement du paritarisme
 : période: année
   # TODO
-  note: se calcul sur la masse salariale
+  note: se calcule sur la masse salariale
   formule:
-    le maximum de:
-      - 3 €
-      - multiplication:
+    encadrement:
+      plancher: 3 €
+      valeur:
+        multiplication:
           assiette: cotisations . assiette
           taux: 0.06%
 
@@ -5233,9 +5241,10 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
 ? contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation
 : période: flexible
   formule:
-    le maximum de:
-      - versement minimum
-      - multiplication:
+    encadrement:
+      plancher: versement minimum
+      valeur:
+        multiplication:
           assiette: cotisations . assiette
           taux:
             variations:
@@ -5252,9 +5261,10 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
 ? contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation
 : période: flexible
   formule:
-    le maximum de:
-      - versement minimum
-      - multiplication:
+    encadrement:
+      plancher: versement minimum
+      valeur:
+        multiplication:
           assiette: cotisations . assiette
           taux:
             variations:
@@ -5371,9 +5381,9 @@ contrat salarié . convention collective . sport . primes . manifestation 1:
 : titre: franchise manifestation 1
   période: aucune
   formule:
-    le minimum de:
-      - 70% * plafond journalier sécurité sociale
-      - manifestation 1
+    encadrement:
+      valeur: manifestation 1
+      plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 2:
   période: aucune
@@ -5386,9 +5396,9 @@ contrat salarié . convention collective . sport . primes . manifestation 2:
 : titre: franchise manifestation 2
   période: aucune
   formule:
-    le minimum de:
-      - 70% * plafond journalier sécurité sociale
-      - manifestation 2
+    encadrement:
+      valeur: manifestation 2
+      plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 3:
   période: aucune
@@ -5401,9 +5411,9 @@ contrat salarié . convention collective . sport . primes . manifestation 3:
 : titre: franchise manifestation 3
   période: aucune
   formule:
-    le minimum de:
-      - 70% * plafond journalier sécurité sociale
-      - manifestation 3
+    encadrement:
+      valeur: manifestation 3
+      plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 4:
   période: aucune
@@ -5416,9 +5426,9 @@ contrat salarié . convention collective . sport . primes . manifestation 4:
 : titre: franchise manifestation 4
   période: aucune
   formule:
-    le minimum de:
-      - 70% * plafond journalier sécurité sociale
-      - manifestation 4
+    encadrement:
+      valeur: manifestation 4
+      plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
@@ -5431,9 +5441,9 @@ contrat salarié . convention collective . sport . primes . manifestation 5:
 : titre: franchise manifestation 5
   période: aucune
   formule:
-    le minimum de:
-      - 70% * plafond journalier sécurité sociale
-      - manifestation 5
+    encadrement:
+      valeur: manifestation 5
+      plafond: 70% * plafond journalier sécurité sociale
 
 ? contrat salarié . convention collective . sport . primes . autres manifestations
 : question: Quelles primes pour les autres manifestations ?
@@ -5666,9 +5676,9 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
     - règle: réduction générale
       par: non
   formule:
-    le maximum de:
-      - minimum
-      - assiette forfaitaire
+    encadrement:
+      valeur: assiette forfaitaire
+      plancher: minimum
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
@@ -5702,18 +5712,19 @@ artiste-auteur . revenus . traitements et salaires:
 artiste-auteur . revenus . BNC:
   période: flexible
   formule:
-    le maximum de:
-      - 0
-      - variations:
-        - si: micro-bnc
-          alors: 
-            somme: 
-              - recettes
-              - (- charges forfaitaires)
-        - sinon:
-            somme:
-              - recettes
-              - (- frais réels)
+    encadrement:
+      plancher: 0 €
+      valeur:
+        variations:
+          - si: micro-bnc
+            alors: 
+              somme: 
+                - recettes
+                - (- charges forfaitaires)
+          - sinon:
+              somme:
+                - recettes
+                - (- frais réels)
 
 artiste-auteur . revenus . BNC . micro-bnc:
   applicable si: 

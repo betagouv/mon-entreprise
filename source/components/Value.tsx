@@ -17,7 +17,7 @@ let style = customStyle => `
 		${customStyle}
 `
 
-type ValueProps = Partial<
+export type ValueProps = Partial<
 	Pick<Rule, 'nodeValue' | 'unit'> &
 		Pick<
 			formatValueOptions,
