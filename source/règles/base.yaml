@@ -3683,8 +3683,9 @@ dirigeant . indépendant . cotisations et contributions:
       - formation professionnelle
       - conjoint collaborateur . cotisations
       - (- réduction ACRE)
+      - (- exonérations)
   unité par défaut: €/an
-
+  
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac: 
   applicable si: entreprise . catégorie d'activité . débit de tabac
@@ -4058,27 +4059,36 @@ dirigeant . indépendant . cotisations et contributions . cotisations . allocati
         1.4: 3.1%
 
 entreprise . ZFU:
-  question: Votre entreprise bénéficie-t'elle du dispositif zone franche urbaine (ZFU) ?
+  question: Votre entreprise bénéficie-t-elle du dispositif zone franche urbaine (ZFU) ?
   par défaut: non
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
+  période: flexible
+  formule:
+    somme:
+      - ZFU
+
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: 
     toutes ces conditions:
       - entreprise . date de création < 2015
       - entreprise . ZFU
-  remplace:
-    règle: cotisations . maladie
-    par: taux * cotisations . maladie
-
+  formule:
+    multiplication:
+      assiette:
+        le minimum de:
+          - cotisations . maladie . assiette [annuel]
+          - 3042 * SMIC horaire
+      taux: taux
+          
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge" 
-  description: Ce dispositif a été arrêté en 2015, mais est toujours actifs pour les personnes qui en bénéficiait avant son abbrogation.
+  description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiait avant son abbrogation.
   applicable si: entreprise . date de création < 2016
   par défaut: non
 
 dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
-  question: Êtes-vous titulaire d’une pension d’invalidité ? 
+  question: Êtes-vous titulaire d’une pension d’invalidité du régime des travailleurs indépendants ? 
   description:  Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
   par défaut: non
   rend non applicable: 
@@ -4157,28 +4167,30 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
             assiette: entreprise . année d'activité
             retourne seulement le taux: oui
             tranches:
-            - en-dessous de: 9
-              taux: 0%
-            - de: 10 
-              à: 15
-              taux: 40%
-            - de: 16
-              à: 17
-              taux: 60%
-            - de: 18
-              à: 19
-              taux: 80%
-            - au-dessus de: 20
+            - en-dessous de: 6
               taux: 100%
+            - de: 6 
+              à: 10
+              taux: 60%
+            - de: 11
+              à: 12
+              taux: 40%
+            - de: 13
+              à: 14
+              taux: 20%
+            - au-dessus de: 14
+              taux: 0%
       - sinon:
           variations:
+            - si: entreprise . année d'activité <= 5
+              alors: 100%
             - si: entreprise . année d'activité = 6
-              alors: 40%
-            - si: entreprise . année d'activité = 7
               alors: 60%
+            - si: entreprise . année d'activité = 7
+              alors: 40%
             - si: entreprise . année d'activité = 8
-              alors: 80%
-            - sinon: 100%
+              alors: 20%
+            - sinon: 0%
 
 situation personnelle . domiciliation fiscale à l'étranger:
   description: |
