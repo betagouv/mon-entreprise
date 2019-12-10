@@ -17,7 +17,7 @@ export let numberFormatter = ({
 	maximumFractionDigits?: number
 	minimumFractionDigits?: number
 	language?: string
-}) => value => {
+}) => (value: number) => {
 	// When we format currency we don't want to display a single decimal digit
 	// ie 8,1€ but we want to display 8,10€
 	const adaptedMinimumFractionDigits =

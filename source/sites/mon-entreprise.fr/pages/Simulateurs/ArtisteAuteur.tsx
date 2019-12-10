@@ -46,20 +46,24 @@ export default function ArtisteAuteur() {
 				<div id="targetSelection">
 					<ul className="targets">
 						<SimpleField
-							dottedName="dirigeant . artiste-auteur . revenus . traitements et salaires"
+							dottedName="artiste-auteur . revenus . traitements et salaires"
 							initialRender={initialRender}
 						/>
 						<SimpleField
-							dottedName="dirigeant . artiste-auteur . revenus . BNC . recettes"
+							dottedName="artiste-auteur . revenus . BNC . recettes"
 							initialRender={initialRender}
 						/>
 						<SimpleField
-							dottedName="dirigeant . artiste-auteur . revenus . BNC . régime spécial"
+							dottedName="artiste-auteur . revenus . BNC . micro-bnc"
 							initialRender={initialRender}
 						/>
 						<WarningRegimeSpecial />
 						<SimpleField
-							dottedName="dirigeant . artiste-auteur . revenus . BNC . frais réels"
+							dottedName="artiste-auteur . revenus . BNC . frais réels"
+							initialRender={initialRender}
+						/>
+						<SimpleField
+							dottedName="artiste-auteur . cotisations . option surcotisation"
 							initialRender={initialRender}
 						/>
 					</ul>
@@ -138,13 +142,12 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 
 function WarningRegimeSpecial() {
 	const situation = useSelector(situationSelector)
-	const recettes =
-		situation['dirigeant . artiste-auteur . revenus . BNC . recettes']
+	const recettes = situation['artiste-auteur . revenus . BNC . recettes']
 	const showWarning = recettes !== 0 && recettes >= 70000
 	return (
 		showWarning && (
 			<li>
-				Vos revenus ne vous permettent pas d'opter pour le régime spécial.
+				Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
 			</li>
 		)
 	)
@@ -166,7 +169,7 @@ const ResultLabel = styled.div`
 
 function CotisationsResult() {
 	const [display, setDisplay] = useState(false)
-	const cotisationRule = useRule('dirigeant . artiste-auteur . cotisations')
+	const cotisationRule = useRule('artiste-auteur . cotisations')
 	const value = cotisationRule.nodeValue
 
 	if (value && !display) {
@@ -178,22 +181,16 @@ function CotisationsResult() {
 			<Animate.appear>
 				<ResultBlock className="ui__ card">
 					<ResultLabel>Montant des cotisations</ResultLabel>
-					<div>
-						{cotisationRule.nodeValue ? (
-							<RuleLink dottedName={cotisationRule.dottedName}>
-								{formatValue({
-									value: cotisationRule.nodeValue,
-									language: 'fr',
-									unit: '€',
-									maximumFractionDigits: 0
-								})}
-							</RuleLink>
-						) : (
-							'-'
-						)}
-					</div>
+					<RuleLink dottedName={cotisationRule.dottedName}>
+						{formatValue({
+							value: cotisationRule.nodeValue,
+							language: 'fr',
+							unit: '€',
+							maximumFractionDigits: 0
+						})}
+					</RuleLink>
 				</ResultBlock>
-				<RepartitionCotisations />
+				{cotisationRule.nodeValue ? <RepartitionCotisations /> : null}
 			</Animate.appear>
 		)
 	)
@@ -201,16 +198,19 @@ function CotisationsResult() {
 
 const branches = [
 	{
-		dottedName: 'dirigeant . artiste-auteur . cotisations . vieillesse',
+		dottedName: 'artiste-auteur . cotisations . vieillesse',
 		icon: '👵'
 	},
 	{
-		dottedName: 'dirigeant . artiste-auteur . cotisations . CSG-CRDS',
+		dottedName: 'artiste-auteur . cotisations . CSG-CRDS . CSG',
 		icon: '🏛'
 	},
 	{
-		dottedName:
-			'dirigeant . artiste-auteur . cotisations . formation profesionnelle',
+		dottedName: 'artiste-auteur . cotisations . CSG-CRDS . CRDS',
+		icon: '🏛'
+	},
+	{
+		dottedName: 'artiste-auteur . cotisations . formation professionnelle',
 		icon: '👷‍♂️'
 	}
 ]

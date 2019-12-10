@@ -3933,7 +3933,6 @@ dirigeant:
         - auto-entrepreneur
         - assimilé salarié
         - indépendant
-        - artiste-auteur
 
 dirigeant . assimilé salarié:
   description: |
@@ -5687,82 +5686,105 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
   question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
   par défaut: non
 
-dirigeant . artiste-auteur:
+artiste-auteur:
   description: Le régime des artistes-auteurs
   icônes: 👩‍🎨
-  formule: dirigeant = 'artiste-auteur'
 
-dirigeant . artiste-auteur . revenus:
+artiste-auteur . revenus:
 
-dirigeant . artiste-auteur . revenus . traitements et salaires:
+artiste-auteur . revenus . traitements et salaires:
   unité: €
   période: année
   par défaut: 0
   question: Traitements et salaires
   résumé: Revenus en précompte
 
-dirigeant . artiste-auteur . revenus . BNC:
+artiste-auteur . revenus . BNC:
   période: flexible
   formule:
     le maximum de:
       - 0
       - variations:
-        - si: régime spécial
+        - si: micro-bnc
           alors: 
             somme: 
               - recettes
               - (- charges forfaitaires)
         - sinon:
-            somme: 
+            somme:
               - recettes
               - (- frais réels)
 
-dirigeant . artiste-auteur . revenus . BNC . régime spécial:
+artiste-auteur . revenus . BNC . micro-bnc:
   applicable si: 
     toutes ces conditions:
-      - recettes [annuel] >= 1 €
+      - recettes [annuel] > 0 €
       - recettes [annuel] < 70000 €
-  # unité: booléen
   par défaut: oui
-  question: Opter pour le régime spécial
+  question: Opter pour le régime micro-BNC
   résumé: Évaluation forfaitaire des frais à 34% des recettes
 
-dirigeant . artiste-auteur . revenus . BNC . recettes:
+artiste-auteur . revenus . BNC . recettes:
   unité: €
   période: année
   par défaut: 0
   question: Recettes BNC HT
   résumé: Le montant des ventes réalisées
 
-dirigeant . artiste-auteur . revenus . BNC . frais réels:
+artiste-auteur . revenus . BNC . frais réels:
   unité: €
   période: année
   par défaut: 0
   question: Frais réels BNC
   résumé: Vient s'imputer aux recettes pour déterminer le bénéfice
-  applicable si: recettes [annuel] >= 1 €
-  non applicable si: régime spécial
+  applicable si: recettes [annuel] > 0 €
+  non applicable si: micro-bnc
 
-dirigeant . artiste-auteur . revenus . BNC . charges forfaitaires:
+artiste-auteur . revenus . BNC . charges forfaitaires:
   période: flexible
   formule: 34% * recettes
 
-dirigeant . artiste-auteur . cotisations:
+artiste-auteur . cotisations:
   période: flexible
   formule:
     somme:
       - vieillesse
       - CSG-CRDS
-      - formation profesionnelle
+      - formation professionnelle
+  références:
+    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
 
-dirigeant . artiste-auteur . cotisations . assiette:
+artiste-auteur . cotisations . assiette:
   période: flexible
+  description: Les revenus des artistes-auteurs peuvent être catégorisés soit comme des traitements et salaires, soit comme des bénéfices non commerciaux. Les cotisations sociales sont payées sur la somme des revenus de ces deux catégories.
   formule:
     somme:
       - revenus . traitements et salaires
       - revenus . BNC * 1.15
 
-dirigeant . artiste-auteur . cotisations . vieillesse:
+artiste-auteur . cotisations . option surcotisation:
+  applicable si: 
+    toutes ces conditions:
+      - assiette > 0 €
+      - assiette < assiette surcotisation
+  question: Souhaitez-vous surcotiser ?
+  résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
+  par défaut: non
+  références:
+    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
+
+artiste-auteur . cotisations . assiette surcotisation:
+  formule: 900 heures * SMIC horaire
+  
+artiste-auteur . cotisations . surcotisation:
+  période: flexible
+  applicable si: option surcotisation
+  remplace:
+    - règle: assiette
+      dans: vieillesse
+      par: assiette surcotisation
+
+artiste-auteur . cotisations . vieillesse:
   période: flexible
   formule:
     multiplication:
@@ -5774,27 +5796,21 @@ dirigeant . artiste-auteur . cotisations . vieillesse:
         - nom: non plafonnée
           taux: contrat salarié . vieillesse . taux salarié non plafonné - 0.4%
 
-dirigeant . artiste-auteur . cotisations . CSG-CRDS:
+artiste-auteur . cotisations . CSG-CRDS:
   période: flexible
   formule:
-    multiplication:
-      assiette: CSG-CRDS . assiette
-      # TODO: ajouter déductible / non déductible
-      # TODO : ré-utiliser la règle salarié ?
-      composantes:
-        - nom: CSG
-          taux: 9.20%
-        - nom: CRDS
-          taux: 0.50%
+    somme:
+      - CSG
+      - CRDS
 
-dirigeant . artiste-auteur . cotisations . CSG-CRDS . assiette:
+artiste-auteur . cotisations . CSG-CRDS . assiette:
   période: flexible
   formule:
     somme:
       - cotisations . assiette
       - (- CSG-CRDS . abattement)
 
-dirigeant . artiste-auteur . cotisations . CSG-CRDS . abattement:
+artiste-auteur . cotisations . CSG-CRDS . abattement:
   période: flexible
   formule:
     multiplication:
@@ -5802,7 +5818,21 @@ dirigeant . artiste-auteur . cotisations . CSG-CRDS . abattement:
       plafond: 4 * contrat salarié . plafond sécurité sociale
       taux: 1.75%
 
-dirigeant . artiste-auteur . cotisations . formation profesionnelle:
+artiste-auteur . cotisations . CSG-CRDS . CSG:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      taux: 9.20%
+
+artiste-auteur . cotisations . CSG-CRDS . CRDS:
+  période: flexible
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      taux: 0.50%
+
+artiste-auteur . cotisations . formation professionnelle:
   période: flexible
   formule:
     multiplication:
