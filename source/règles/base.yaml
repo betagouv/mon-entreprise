@@ -4282,13 +4282,13 @@ protection sociale . retraite . trimestres validés par an . trimestres salarié
 protection sociale . revenu moyen:
   description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
   notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
-  unité: €/an
-  
+  unité par défaut: €/an
   formule:
     le maximum de:
       - dirigeant . indépendant . revenu professionnel
       - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
+
 
 protection sociale . retraite . mois cotisés:
   unité: mois
@@ -4301,7 +4301,7 @@ protection sociale . retraite . complémentaire salarié:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . valeur du point:
-  formule: 1.2588 €/point
+  formule: 1.2588 €/point/an
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
@@ -4327,7 +4327,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
     secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
 
 ? protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point
-: formule: 1.187 €/point
+: formule: 1.187 €/point/an
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
 
@@ -4350,6 +4350,31 @@ protection sociale . retraite . complémentaire sécurité des indépendants:
   notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
   références:
     secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
+
+protection sociale . retraite universelle:
+  unité par défaut: €/mois
+  formule: 
+    le maximum de: 
+      - total point  * valeur du point
+      - 85% * contrat salarié . SMIC temps plein . net imposable
+
+protection sociale . retraite universelle . cotisations:
+  formule:
+    multiplication: 
+      assiette: revenu moyen
+      plafond: 3 * plafond sécurité sociale temps plein
+      taux: 28.12%
+
+      
+protection sociale . retraite universelle . total point: 
+  unité: point
+  formule: protection sociale . retraite . mois cotisés * cotisations * prix d'achat du point
+
+protection sociale . retraite universelle . prix d'achat du point:
+  formule: 0.1 point/€
+
+protection sociale . retraite universelle . valeur du point:
+  formule: 0.55€/an/point
 
 protection sociale . santé:
   icônes: 🏥
@@ -4417,6 +4442,9 @@ protection sociale . santé . indemnités journalières . indépendant:
           - 55.51 €/jour
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+
+
+
 
 protection sociale . santé . indemnités journalières . salarié:
   unité: €/jour

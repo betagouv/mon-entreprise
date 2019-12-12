@@ -125,7 +125,7 @@ export let analyseMany = (
 ) => situationGate => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	defaultUnits = defaultUnits.map(parseUnit)
+	defaultUnits = (defaultUnits || []).map(parseUnit)
 	let cache = {
 		_meta: { parseLevel: 0, contextRule: [], defaultUnits }
 	}

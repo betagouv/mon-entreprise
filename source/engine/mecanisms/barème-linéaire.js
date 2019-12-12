@@ -54,9 +54,7 @@ export default (recurse, k, v) => {
 		return {
 			nodeValue,
 			additionalExplanation: {
-				unit: returnRate
-					? parseUnit('%')
-					: v['unité'] || explanation.assiette.unit
+				unit: returnRate ? parseUnit('%') : explanation.assiette.unit
 			}
 		}
 	}
@@ -66,7 +64,10 @@ export default (recurse, k, v) => {
 			returnRate,
 			tranches
 		},
-		evaluate = evaluateObject(objectShape, effect)
+		evaluate = evaluateObject(objectShape, effect),
+		unit = returnRate
+			? parseUnit('%')
+			: (v['unité'] && parseUnit(v['unité'])) || explanation.assiette.unit
 
 	return {
 		evaluate,
@@ -76,6 +77,6 @@ export default (recurse, k, v) => {
 		name: 'barème linéaire',
 		barème: 'en taux',
 		type: 'numeric',
-		unit: returnRate ? parseUnit('%') : v['unité'] || explanation.assiette.unit
+		unit
 	}
 }

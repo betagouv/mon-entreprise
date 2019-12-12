@@ -1,0 +1,11 @@
+objectifs:
+  - contrat salarié . rémunération . brut de base
+  - protection sociale . retraite
+  - protection sociale . retraite universelle
+
+questions:
+  uniquement: []
+unités par défaut: [€/mois]
+situation:
+  dirigeant: non
+  période: mois

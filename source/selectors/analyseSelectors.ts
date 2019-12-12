@@ -117,7 +117,8 @@ let validatedStepsSelector = createSelector(
 	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
 	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
 )
-const defaultUnitsSelector = (state: RootState) => state.simulation.defaultUnits
+const defaultUnitsSelector = (state: RootState) =>
+	state.simulation?.defaultUnits
 let branchesSelector = (state: RootState) => configSelector(state).branches
 let configSituationSelector = (state: RootState) =>
 	configSelector(state).situation || {}

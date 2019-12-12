@@ -1,11 +1,8 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
-import marianneSvg from 'Images/marianne.svg'
-import urssafSvg from 'Images/urssaf.svg'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 
 export default function Header() {
 	const sitePaths = useContext(SitePathsContext)
@@ -16,8 +13,9 @@ export default function Header() {
 			style={{
 				display: 'flex',
 				alignItems: 'center'
-			}}>
-			<Link style={{ height: '4rem' }} to={sitePaths.index}>
+			}}
+		>
+			<a style={{ height: '4rem' }} href={'https://onestla.tech'}>
 				<img
 					alt="logo mon-entreprise.fr"
 					style={{
@@ -26,27 +24,8 @@ export default function Header() {
 					}}
 					src={language === 'fr' ? logoSvg : logoEnSvg}
 				/>
-			</Link>
+			</a>
 			<div style={{ flex: 1 }} />
-			<a
-				href="https://beta.gouv.fr"
-				target="_blank"
-				style={{
-					height: '4rem',
-					padding: '1rem'
-				}}>
-				<img alt="logo marianne" style={{ height: '100%' }} src={marianneSvg} />
-			</a>
-			<a
-				href="https://www.urssaf.fr"
-				target="_blank"
-				style={{
-					height: '4rem',
-					padding: '1rem'
-				}}
-				className="landing-header__institutional-logo">
-				<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
-			</a>
 		</div>
 	)
 }
