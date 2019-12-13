@@ -7,6 +7,9 @@ const config = require('./webpack.dev.js')
 const compiler = webpack(config)
 const history = require('connect-history-api-fallback')
 
+const { watchDottedNames } = require('./scripts/dottednames')
+watchDottedNames()
+
 const rewrite = basename => ({
 	from: new RegExp(`^/${basename}/(.*)$|^/${basename}$`),
 	to: `/${basename}.html`

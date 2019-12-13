@@ -215,7 +215,7 @@ const branches = [
 		dottedName: 'artiste-auteur . cotisations . formation professionnelle',
 		icon: '👷‍♂️'
 	}
-]
+] as const
 
 function RepartitionCotisations() {
 	const cotisations = branches.map(branch => ({

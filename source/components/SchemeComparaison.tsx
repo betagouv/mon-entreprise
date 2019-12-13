@@ -381,7 +381,7 @@ export default function SchemeComparaison({
 							<div className="indep">
 								<RuleValueLink
 									branch="indépendant"
-									rule="indépendant . revenu net de cotisations"
+									rule="dirigeant . indépendant . revenu net de cotisations"
 								/>
 							</div>
 							<div className="auto">
@@ -390,7 +390,7 @@ export default function SchemeComparaison({
 								) : (
 									<RuleValueLink
 										branch="auto-entrepreneur"
-										rule="auto-entrepreneur . revenu net de cotisations"
+										rule="dirigeant . auto-entrepreneur . revenu net de cotisations"
 									/>
 								)}
 							</div>
@@ -606,7 +606,7 @@ export default function SchemeComparaison({
 
 type RuleValueLinkProps = {
 	branch: string
-	rule: string
+	rule: DottedName
 	appendText?: React.ReactNode
 	unit?: null | string
 }

@@ -124,7 +124,13 @@ const createSituationBrancheSelector = (
 ) =>
 	createSelector(
 		[situationSelector, branchesSelector, configSituationSelector],
-		(situation, branches, configSituation) => {
+		(
+			situation,
+			branches,
+			configSituation
+		):
+			| RootState['simulation']['situation']
+			| Array<RootState['simulation']['situation']> => {
 			if (branches) {
 				return branches.map(({ situation: branchSituation }) => ({
 					...configSituation,
@@ -262,7 +268,7 @@ export let branchAnalyseSelector = createSelector(
 )
 
 let analysisValidatedOnlySelector = makeAnalysisSelector(
-	validatedSituationBranchesSelector
+	validatedSituationBranchesSelector as SituationSelectorType
 )
 
 let currentMissingVariablesByTargetSelector = createSelector(
@@ -293,7 +299,7 @@ export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
 		configSelector,
-		state => state.conversationSteps.foldedSteps,
+		(state: RootState) => state.conversationSteps.foldedSteps,
 		situationSelector
 	],
 	(
@@ -318,7 +324,7 @@ export let nextStepsSelector = createSelector(
 		// L'ajout de la réponse permet de traiter les questions dont la réponse est "une possibilité", exemple "contrat salarié . cdd"
 		let lastStep = last(foldedSteps),
 			lastStepWithAnswer = situation[lastStep]
-				? [lastStep, situation[lastStep]].join(' . ')
+				? ([lastStep, situation[lastStep]].join(' . ') as DottedName)
 				: lastStep
 
 		nextSteps = sortBy(
