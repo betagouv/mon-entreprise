@@ -82,8 +82,8 @@ function lang(
 }
 
 type ConversationSteps = {
-	foldedSteps: Array<string>
-	unfoldedStep?: string
+	foldedSteps: Array<DottedName>
+	unfoldedStep?: DottedName
 }
 
 function conversationSteps(
@@ -173,7 +173,7 @@ export type Simulation = {
 	config: SimulationConfig
 	url: string
 	hiddenControls: Array<string>
-	situation: Record<DottedName, any>
+	situation: Partial<Record<DottedName, any>>
 	defaultUnits: [string]
 }
 

@@ -30,7 +30,7 @@ type ThunkResult<R> = ThunkAction<
 type StepAction = {
 	type: 'STEP_ACTION'
 	name: 'fold' | 'unfold'
-	step: string
+	step: DottedName
 }
 
 type SetSimulationConfigAction = {
@@ -106,7 +106,7 @@ export const setSimulationConfig = (config: Object): ThunkResult<void> => (
 	})
 }
 
-export const setActiveTarget = (targetName: string) =>
+export const setActiveTarget = (targetName: DottedName) =>
 	({
 		type: 'SET_ACTIVE_TARGET_INPUT',
 		name: targetName
@@ -132,7 +132,7 @@ export const updateUnit = (defaultUnit: string) =>
 		defaultUnit
 	} as const)
 
-export function setExample(name: string, situation, dottedName: string) {
+export function setExample(name: string, situation, dottedName: DottedName) {
 	return { type: 'SET_EXAMPLE', name, situation, dottedName } as const
 }
 

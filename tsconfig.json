@@ -9,6 +9,7 @@
 		"typeRoots": ["source/types"],
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],
