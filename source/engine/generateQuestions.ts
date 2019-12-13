@@ -53,7 +53,7 @@ export let getNextSteps = missingVariablesByTarget => {
 			missingByTotalScore
 		),
 		pairs = toPairs(missingByCompound),
-		sortedPairs = sortWith([descend(byCount), descend(byScore)], pairs)
+		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs)
 }
 

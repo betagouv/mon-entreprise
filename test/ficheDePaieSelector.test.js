@@ -1,5 +1,4 @@
 import { expect } from 'chai'
-// $FlowFixMe
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import { getRuleFromAnalysis, rules } from 'Engine/rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
@@ -27,20 +26,17 @@ let cotisations = null,
 
 describe('pay slip selector', function() {
 	beforeEach(() => {
-		// $FlowFixMe
 		cotisations = analysisToCotisationsSelector(state)
 		analysis = analysisWithDefaultsSelector(state)
 
 		expect(cotisations).not.to.eq(null)
 	})
 	it('should have cotisations grouped by branches in the proper ordering', function() {
-		// $FlowFixMe
 		let branches = cotisations.map(([branche]) => branche)
 		expect(branches).to.eql(COTISATION_BRANCHE_ORDER)
 	})
 
 	it('should collect all cotisations in a branche', function() {
-		// $FlowFixMe
 		let cotisationsSanté = (cotisations.find(([branche]) =>
 			branche.includes('santé')
 		) || [])[1].map(cotisation => cotisation.name)
@@ -61,7 +57,6 @@ describe('pay slip selector', function() {
 	})
 
 	it('should have value for "salarié" and "employeur" for a cotisation', function() {
-		// $FlowFixMe
 		let cotisationATMP = (cotisations.find(([branche]) =>
 			branche.includes('accidents du travail et maladies professionnelles')
 		) || [])[1][0]

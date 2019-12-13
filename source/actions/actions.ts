@@ -20,7 +20,7 @@ export type Action =
 	| UpdateDefaultUnit
 	| SetActiveTargetAction
 
-type ThunkResult<R> = ThunkAction<
+export type ThunkResult<R> = ThunkAction<
 	R,
 	RootState,
 	{ history: History; sitePaths: SitePaths },
@@ -74,7 +74,7 @@ export const goToQuestion = (question: string) =>
 
 export const validateStepWithValue = (
 	dottedName: DottedName,
-	value: any
+	value: unknown
 ): ThunkResult<void> => dispatch => {
 	dispatch(updateSituation(dottedName, value))
 	dispatch({
@@ -119,7 +119,7 @@ export const deletePreviousSimulation = (): ThunkResult<void> => dispatch => {
 	deletePersistedSimulation()
 }
 
-export const updateSituation = (fieldName: DottedName, value: any) =>
+export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
 		type: 'UPDATE_SITUATION',
 		fieldName,

@@ -5,16 +5,23 @@ import React, { useContext, useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
+import { Rule } from 'Types/rule'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
 
 const worker = new Worker()
 
+type SearchBarProps = {
+	rules: Array<Rule>
+	showDefaultList: boolean
+	finally?: () => void
+}
+
 export default function SearchBar({
 	rules,
 	showDefaultList,
 	finally: finallyCallback
-}) {
+}: SearchBarProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState(null)
@@ -31,7 +38,7 @@ export default function SearchBar({
 		worker.onmessage = ({ data: results }) => setResults(results)
 	}, [rules])
 
-	let renderOptions = rules => {
+	let renderOptions = (rules?: Array<Rule>) => {
 		let options =
 			(rules && sortBy(rule => rule.dottedName, rules)) || take(5)(results)
 		return <ul>{options.map(option => renderOption(option))}</ul>
@@ -57,7 +64,7 @@ export default function SearchBar({
 			>
 				<div
 					style={{
-						fontWeight: '300',
+						fontWeight: 300,
 						fontSize: '85%',
 						lineHeight: '.9em'
 					}}

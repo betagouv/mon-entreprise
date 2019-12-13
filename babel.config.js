@@ -9,8 +9,7 @@ module.exports = {
 			}
 		],
 		'@babel/react',
-		'@babel/preset-typescript',
-		'@babel/flow'
+		'@babel/preset-typescript'
 	],
 	plugins: [
 		'@babel/plugin-proposal-class-properties',

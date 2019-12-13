@@ -1,10 +1,9 @@
-
-import type { Store } from 'redux'
+import { Action } from 'Actions/actions'
 import { omit } from 'ramda'
+import { RootState } from 'Reducers/rootReducer'
+import { Store } from 'redux'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
-import type { State } from 'Types/State'
-import type { Action } from 'Types/ActionsTypes'
 
 const VERSION = 3
 
@@ -13,8 +12,8 @@ const LOCAL_STORAGE_KEY = 'mycompanyinfrance::persisted-everything:v' + VERSION
 type OptionsType = {
 	except?: Array<string>
 }
-export const persistEverything = (options?: OptionsType = {}) => (
-	store: Store<State, Action>
+export const persistEverything = (options: OptionsType = {}) => (
+	store: Store<RootState, Action>
 ): void => {
 	const listener = () => {
 		const state = store.getState()
@@ -26,7 +25,7 @@ export const persistEverything = (options?: OptionsType = {}) => (
 	store.subscribe(debounce(1000, listener))
 }
 
-export function retrievePersistedState(): ?State {
+export function retrievePersistedState(): RootState {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	return serializedState ? JSON.parse(serializedState) : null
 }

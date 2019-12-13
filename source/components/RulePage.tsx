@@ -39,7 +39,7 @@ export default function RulePage({ match }) {
 	if (!findRuleByDottedName(flatRules, decodedRuleName))
 		return <Redirect to="/404" />
 
-	return renderRule(decodedRuleName)
+	return renderRule(decodedRuleName as DottedName)
 }
 
 const BackToSimulation = connect(null, { goBackToSimulation })(

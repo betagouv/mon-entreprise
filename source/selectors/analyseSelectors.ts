@@ -86,7 +86,7 @@ export const useTarget = (dottedName: DottedName) => {
 	return targets && targets.find(t => t.dottedName === dottedName)
 }
 
-export let noUserInputSelector = state =>
+export let noUserInputSelector = (state: RootState) =>
 	!Object.keys(situationSelector(state)).length
 
 export let firstStepCompletedSelector = createSelector(
@@ -221,7 +221,7 @@ export let exampleAnalysisSelector = createSelector(
 		analyseRule(
 			rules,
 			dottedName,
-			dottedName => situation[dottedName],
+			(dottedName: DottedName) => situation[dottedName],
 			example.defaultUnits
 		)
 )
@@ -234,18 +234,19 @@ let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 			situationSelector,
 			defaultUnitsSelector
 		],
-		(parsedRules, targetNames, situations, defaultUnits) =>
-			mapOrApply(
+		(parsedRules, targetNames, situations, defaultUnits) => {
+			return mapOrApply(
 				situation =>
 					analyseMany(
 						parsedRules,
 						targetNames,
 						defaultUnits
-					)(dottedName => {
+					)((dottedName: DottedName) => {
 						return situation[dottedName]
 					}),
 				situations
 			)
+		}
 	)
 
 export let analysisWithDefaultsSelector = makeAnalysisSelector(

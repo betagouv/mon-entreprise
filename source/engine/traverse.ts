@@ -1,6 +1,7 @@
 import { evaluateControls } from 'Engine/controls'
 import parseRule from 'Engine/parseRule'
 import { chain, path } from 'ramda'
+import { DottedName } from 'Types/rule'
 import { evaluateNode } from './evaluation'
 import { parseReference } from './parseReference'
 import {
@@ -8,7 +9,7 @@ import {
 	findRule,
 	findRuleByDottedName
 } from './rules'
-import { parseUnit } from './units'
+import { parseUnit, Unit } from './units'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -47,14 +48,17 @@ par exemple ainsi : https://github.com/Engelberg/instaparse#transforming-the-tre
 */
 
 export let parseAll = flatRules => {
-	/* First we parse each rule one by one. When a mechanism is encountered, it is recursively parsed. When a reference to a variable is encountered, a 'variable' node is created, we don't parse variables recursively. */
+	/* First we parse each rule one by one. When a mechanism is encountered, it is
+	recursively parsed. When a reference to a variable is encountered, a
+	'variable' node is created, we don't parse variables recursively. */
 
 	let parsedRules = {}
 
-	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B` in the definition of `A`.
-	We need to map these exonerations to be able to retreive them from `B` */
-	let nonApplicableMapping = {}
-	let replacedByMapping = {}
+	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B`
+	in the definition of `A`. We need to map these exonerations to be able to
+	retreive them from `B` */
+	let nonApplicableMapping: Record<string, any> = {}
+	let replacedByMapping: Record<string, any> = {}
 	flatRules.forEach(rule => {
 		const parsed = parseRule(flatRules, rule, parsedRules)
 		if (parsed['rend non applicable']) {
@@ -107,7 +111,7 @@ export let parseAll = flatRules => {
 
 export let getTargets = (target, rules) => {
 	let multiSimulation = path(['simulateur', 'objectifs'])(target)
-	let targets = multiSimulation
+	let targets = Array.isArray(multiSimulation)
 		? // On a un simulateur qui définit une liste d'objectifs
 		  multiSimulation
 				.map(n => disambiguateRuleReference(rules, target, n))
@@ -118,16 +122,23 @@ export let getTargets = (target, rules) => {
 	return targets
 }
 
-export let analyseMany = (
-	parsedRules,
-	targetNames,
-	defaultUnits = []
-) => situationGate => {
+type CacheMeta = {
+	contextRule: Array<string>
+	defaultUnits: Array<Unit>
+	inversionFail?: {
+		given: string
+		estimated: string
+	}
+}
+
+export let analyseMany = (parsedRules, targetNames, defaultUnits = []) => (
+	situationGate: (name: DottedName) => any
+) => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	defaultUnits = defaultUnits.map(parseUnit)
 	let cache = {
-		_meta: { contextRule: [], defaultUnits }
+		_meta: { contextRule: [], defaultUnits } as CacheMeta
 	}
 
 	let parsedTargets = targetNames.map(t => {
@@ -147,6 +158,8 @@ export let analyseMany = (
 	let controls = evaluateControls(cache, situationGate, parsedRules)
 	return { targets, cache, controls }
 }
+
+export type Analysis = ReturnType<ReturnType<typeof analyse>>
 
 export let analyse = (parsedRules, target, defaultUnits = []) => {
 	return analyseMany(parsedRules, [target], defaultUnits)
