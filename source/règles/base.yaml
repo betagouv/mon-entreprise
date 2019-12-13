@@ -3179,7 +3179,7 @@ impôt . impôt sur le revenu à payer:
     allègement:
       assiette: impôt sur le revenu
       décote:
-        plafond: 1177
+        plafond: 1594
         taux: 75%
   exemples:
     - nom: Salaire d'un cadre
