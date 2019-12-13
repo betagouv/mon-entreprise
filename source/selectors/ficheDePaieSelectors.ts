@@ -1,4 +1,4 @@
-/* @flow */
+import { Analysis } from 'Engine/traverse'
 import {
 	add,
 	concat,
@@ -16,10 +16,20 @@ import {
 } from 'ramda'
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { Branch, Cotisation } from './repartitionSelectors'
+// Used for type consistency
+export const BLANK_COTISATION: Cotisation = {
+	montant: {
+		partPatronale: 0,
+		partSalariale: 0
+	},
+	unit: 'ERROR_SHOULD_BE_INSTANCIATED',
+	dottedName: 'ERROR_SHOULD_BE_INSTANCIATED' as any,
+	title: 'ERROR_SHOULD_BE_INSTANCIATED',
+	branche: 'protection sociale . autres'
+}
 
-// These functions help build the payslip. They take the cotisations from the cache, braving all the particularities of the current engine's implementation, handles the part patronale and part salariale, and gives a map by branch.
-
-export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
+export const COTISATION_BRANCHE_ORDER: Array<Branch> = [
 	'protection sociale . santé',
 	'protection sociale . accidents du travail et maladies professionnelles',
 	'protection sociale . retraite',
@@ -30,50 +40,34 @@ export const COTISATION_BRANCHE_ORDER: Array<Branche> = [
 	'protection sociale . autres'
 ]
 
-// Used for type consistency
-export const BLANK_COTISATION: Cotisation = {
-	montant: {
-		partPatronale: 0,
-		partSalariale: 0
-	},
-	dottedName: 'ERROR_SHOULD_BE_INSTANCIATED',
-	title: 'ERROR_SHOULD_BE_INSTANCIATED',
-	branche: 'protection sociale . autres'
-}
-
-function duParSelector(
-	variable: VariableWithCotisation
-): ?('employeur' | 'employé') {
+function duParSelector(variable): 'employeur' | 'salarié' {
 	const dusPar = [
 		['cotisation', 'dû par'],
 		['taxe', 'dû par'],
 		['explanation', 'cotisation', 'dû par'],
 		['explanation', 'taxe', 'dû par']
 	].map(p => path(p, variable))
-	return dusPar.filter(Boolean)[0]
+	return dusPar.filter(Boolean)[0] as any
 }
-function brancheSelector(variable: VariableWithCotisation): Branche {
+function brancheSelector(variable): Branch {
 	const branches = [
 		['cotisation', 'branche'],
 		['taxe', 'branche'],
 		['explanation', 'cotisation', 'branche'],
 		['explanation', 'taxe', 'branche']
 	].map(p => path(p, variable))
-	return (
-		// $FlowFixMe
-		'protection sociale . ' + (branches.filter(Boolean)[0] || 'autres')
-	)
+	return ('protection sociale . ' +
+		(branches.filter(Boolean)[0] || 'autres')) as any
 }
 
-// $FlowFixMe
 export const mergeCotisations: (
-	Cotisation,
-	Cotisation
+	a: Cotisation,
+	b: Cotisation
 ) => Cotisation = mergeWithKey((key, a, b) =>
 	key === 'montant' ? mergeWith(add, a, b) : b
 )
 
-const variableToCotisation = (variable: VariableWithCotisation): Cotisation => {
+const variableToCotisation = (variable): Cotisation => {
 	return mergeCotisations(BLANK_COTISATION, {
 		...variable.explanation,
 		branche: brancheSelector(variable),
@@ -84,7 +78,7 @@ const variableToCotisation = (variable: VariableWithCotisation): Cotisation => {
 		}
 	})
 }
-const groupByBranche = (cotisations: Array<Cotisation>): Cotisations => {
+const groupByBranche = (cotisations: Array<Cotisation>) => {
 	const cotisationsMap = cotisations.reduce(
 		(acc, cotisation) => ({
 			...acc,
@@ -94,11 +88,10 @@ const groupByBranche = (cotisations: Array<Cotisation>): Cotisations => {
 	)
 	return COTISATION_BRANCHE_ORDER.map(branche => [
 		branche,
-		// $FlowFixMe
 		cotisationsMap[branche]
 	])
 }
-export let analysisToCotisations = analysis => {
+export let analysisToCotisations = (analysis: Analysis) => {
 	const variables = [
 		'contrat salarié . cotisations . salariales',
 		'contrat salarié . cotisations . patronales'
@@ -108,7 +101,7 @@ export let analysisToCotisations = analysis => {
 		.reduce(concat, [])
 
 	const cotisations = pipe(
-		map(rule =>
+		map((rule: any) =>
 			// Following :  weird logic to automatically handle negative negated value in sum
 
 			rule.operationType === 'calculation' &&

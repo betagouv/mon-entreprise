@@ -3,14 +3,21 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { defaultUnitsSelector } from 'Selectors/analyseSelectors'
-import { convertUnit, parseUnit } from '../../engine/units'
+import { convertUnit, parseUnit, Unit } from '../../engine/units'
+
+type InputSuggestionsProps = {
+	suggestions: Record<string, number>
+	onFirstClick: (val: number) => void
+	onSecondClick?: (val: number) => void
+	unit: Unit
+}
 
 export default function InputSuggestions({
 	suggestions,
 	onSecondClick = x => x,
 	onFirstClick,
 	unit
-}) {
+}: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState(null)
 	const { t } = useTranslation()
 	const defaultUnit = parseUnit(useSelector(defaultUnitsSelector)[0])

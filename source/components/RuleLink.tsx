@@ -10,7 +10,7 @@ type RuleLinkProps = {
 	dottedName: Rule['dottedName']
 	title?: Rule['title']
 	style?: React.CSSProperties
-	children: React.ReactNode
+	children?: React.ReactNode
 }
 
 export default function RuleLink({

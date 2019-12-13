@@ -3,8 +3,8 @@ export let capitalise0 = (name: string): string =>
 
 export function debounce<ArgType>(
 	timeout: number,
-	fn: (arg: ArgType) => void
-): (arg: ArgType) => void {
+	fn: (arg?: ArgType) => void
+): (arg?: ArgType) => void {
 	let timeoutId: ReturnType<typeof setTimeout>
 	return (...args) => {
 		clearTimeout(timeoutId)
@@ -43,10 +43,10 @@ export function softCatch<ArgType, ReturnType>(
 		}
 	}
 }
-export function mapOrApply<A, B>(
-	fn: (a: A) => B,
-	x: Array<A> | A
-): Array<B> | B {
+
+export function mapOrApply<A, B>(fn: (a: A) => B, x: A): B
+export function mapOrApply<A, B>(fn: (a: A) => B, x: Array<A>): Array<B>
+export function mapOrApply(fn, x) {
 	return Array.isArray(x) ? x.map(fn) : fn(x)
 }
 

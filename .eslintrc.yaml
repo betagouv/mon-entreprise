@@ -25,7 +25,6 @@ env:
 settings:
   react:
     version: 'detect'
-    flowVersion: '0.92'
 
 overrides:
   - files: ['*.test.js', 'cypress/integration/**/*.js']
@@ -39,7 +38,6 @@ extends:
   - eslint:recommended
   - plugin:react/recommended
   - prettier
-  - prettier/flowtype
   - prettier/react
 parserOptions:
   ecmaFeatures:

@@ -1,5 +1,3 @@
-/* @flow */
-
 import { getRuleFromAnalysis } from 'Engine/rules'
 import {
 	add,
@@ -20,25 +18,39 @@ import {
 } from 'ramda'
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { Rule } from 'Types/rule'
 import {
 	analysisToCotisations,
 	BLANK_COTISATION,
 	mergeCotisations
 } from './ficheDePaieSelectors'
 
-import type {
-	Cotisation,
-	MontantPartagé,
-	Branche,
-	Répartition
-} from 'Types/ResultViewTypes'
+export type Cotisation = Rule & {
+	branche: Branch
+	montant: MontantPartagé
+}
+
+type MontantPartagé = {
+	partSalariale: number
+	partPatronale: number
+}
+
+export type Branch =
+	| 'protection sociale . santé'
+	| 'protection sociale . accidents du travail et maladies professionnelles'
+	| 'protection sociale . retraite'
+	| 'protection sociale . famille'
+	| 'protection sociale . assurance chômage'
+	| 'protection sociale . formation'
+	| 'protection sociale . transport'
+	| 'protection sociale . autres'
 
 const totalCotisations = (cotisations: Array<Cotisation>): MontantPartagé =>
 	cotisations.reduce(mergeCotisations, BLANK_COTISATION).montant
 
 const byMontantTotal = (
-	a: [Branche, MontantPartagé],
-	b: [Branche, MontantPartagé]
+	a: [Branch, MontantPartagé],
+	b: [Branch, MontantPartagé]
 ): number => {
 	return (
 		b[1].partPatronale +
@@ -48,7 +60,7 @@ const byMontantTotal = (
 	)
 }
 
-const REPARTITION_CSG: { [Branche]: number } = {
+const REPARTITION_CSG: Partial<Record<Branch, number>> = {
 	'protection sociale . famille': 0.85,
 	'protection sociale . santé': 7.75,
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
@@ -57,10 +69,9 @@ const REPARTITION_CSG: { [Branche]: number } = {
 }
 function applyCSGInPlace(
 	CSG: Cotisation,
-	rawRépartition: { [Branche]: MontantPartagé }
+	rawRépartition: Record<Branch, MontantPartagé>
 ): void {
-	// $FlowFixMe
-	for (const branche: Branche in REPARTITION_CSG) {
+	for (const branche in REPARTITION_CSG) {
 		rawRépartition[branche] = {
 			partPatronale:
 				rawRépartition[branche].partPatronale +
@@ -82,15 +93,14 @@ const brancheConcernéeParLaRéduction = [
 ].map(branche => 'protection sociale . ' + branche)
 function applyReduction(
 	réduction,
-	répartitionMap: { [Branche]: MontantPartagé }
-): { [Branche]: MontantPartagé } {
-	const totalPatronal = pipe(
+	répartitionMap: Record<Branch, MontantPartagé>
+): Record<Branch, MontantPartagé> {
+	const totalPatronal = (pipe(
 		pick(brancheConcernéeParLaRéduction),
 		Object.values,
 
 		reduce(mergeWith(add), {})
-		// $FlowFixMe
-	)(répartitionMap).partPatronale
+	)(répartitionMap) as any).partPatronale
 	return mapObjIndexed(
 		({ partPatronale, partSalariale }, branche) => ({
 			partPatronale: brancheConcernéeParLaRéduction.find(equals(branche))
@@ -98,16 +108,12 @@ function applyReduction(
 				: partPatronale,
 			partSalariale
 		}),
-		// $FlowFixMe
 		répartitionMap
 	)
 }
 
-const répartition = (analysis): ?Répartition => {
-	// $FlowFixMe
-	let cotisations: { [Branche]: Array<Cotisation> } = fromPairs(
-		analysisToCotisations(analysis)
-	)
+const répartition = analysis => {
+	let cotisations = fromPairs(analysisToCotisations(analysis) as any)
 
 	const getRule = getRuleFromAnalysis(analysis),
 		salaireNet = getRule('contrat salarié . rémunération . net'),
@@ -117,7 +123,7 @@ const répartition = (analysis): ?Répartition => {
 			'contrat salarié . cotisations . patronales . réductions de cotisations'
 		)
 	let CSG
-	const autresCotisations = cotisations['protection sociale . autres']
+	const autresCotisations = cotisations['protection sociale . autres'] as any
 	if (autresCotisations) {
 		CSG = autresCotisations.find(propEq('dottedName', 'contrat salarié . CSG'))
 		cotisations['protection sociale . autres'] = without(
@@ -126,39 +132,34 @@ const répartition = (analysis): ?Répartition => {
 		)
 	}
 
-	// $FlowFixMe
-	let répartitionMap: { [Branche]: MontantPartagé } = map(
-		totalCotisations,
-		cotisations
-	)
+	let répartitionMap = map(totalCotisations, cotisations) as Record<
+		Branch,
+		MontantPartagé
+	>
 	if (CSG) {
 		applyCSGInPlace(CSG, répartitionMap)
 	}
 
 	répartitionMap = applyReduction(réductionsDeCotisations, répartitionMap)
 	return {
-		// $FlowFixMe
 		répartition: compose(
 			sort(byMontantTotal),
-			Object.entries,
+			Object.entries as any,
 			filter(
 				({ partPatronale, partSalariale }) =>
 					Math.round(partPatronale + partSalariale) !== 0
 			)
 		)(répartitionMap),
-		// $FlowFixMe
 		total: cotisationsRule.nodeValue,
 		cotisations: cotisationsRule,
 		maximum: compose(
 			reduce(max, 0),
 			map(montant => montant.partPatronale + montant.partSalariale),
 			Object.values
-			// $FlowFixMe
 		)(répartitionMap),
 		salaireNet,
 		salaireChargé
 	}
 }
 
-// $FlowFixMe
 export default createSelector([analysisWithDefaultsSelector], répartition)

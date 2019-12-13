@@ -1,6 +1,6 @@
 import { goToQuestion } from 'Actions/actions'
 import { T } from 'Components'
-import { compose, contains, filter, reject, toPairs } from 'ramda'
+import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -8,6 +8,7 @@ import {
 	currentQuestionSelector,
 	nextStepsSelector
 } from 'Selectors/analyseSelectors'
+import { DottedName } from 'Types/rule'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)
@@ -23,11 +24,11 @@ export default function QuickLinks() {
 	if (!quickLinks) {
 		return null
 	}
-	const links = compose(
-		toPairs,
-		filter(dottedName => contains(dottedName, nextSteps)) as any,
-		reject(dottedName => contains(dottedName, quickLinksToHide))
-	)(quickLinks) as any
+	const links = pipe(
+		reject((dottedName: DottedName) => contains(dottedName, quickLinksToHide)),
+		filter((dottedName: DottedName) => contains(dottedName, nextSteps)),
+		toPairs
+	)(quickLinks)
 
 	return (
 		!!links.length && (

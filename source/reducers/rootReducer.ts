@@ -1,13 +1,14 @@
 import { Action } from 'Actions/actions'
+import { Analysis } from 'Engine/traverse'
 import { areUnitConvertible, convertUnit, parseUnit } from 'Engine/units'
 import {
-	compose,
 	defaultTo,
 	dissoc,
 	identity,
 	lensPath,
 	omit,
 	over,
+	pipe,
 	set,
 	uniq,
 	without
@@ -18,7 +19,6 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName, Rule } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
-import { Unit } from './../engine/units'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
@@ -180,7 +180,7 @@ export type Simulation = {
 function simulation(
 	state: Simulation = null,
 	action: Action,
-	analysis: Record<DottedName, { nodeValue: any; unit: Unit | undefined }>
+	analysis: Analysis | Array<Analysis>
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
@@ -226,23 +226,27 @@ function simulation(
 	return state
 }
 
-const addAnswerToSituation = (dottedName: DottedName, value: any, state) => {
-	return (compose(
-		set(lensPath(['simulation', 'situation', dottedName]), value),
+const addAnswerToSituation = (
+	dottedName: DottedName,
+	value: unknown,
+	state: RootState
+) => {
+	return pipe(
 		over(lensPath(['conversationSteps', 'foldedSteps']), (steps = []) =>
 			uniq([...steps, dottedName])
-		) as any
-	) as any)(state)
+		),
+		set(lensPath(['simulation', 'situation', dottedName]), value)
+	)(state)
 }
 
-const removeAnswerFromSituation = (dottedName: DottedName, state) => {
-	return (compose(
-		over(lensPath(['simulation', 'situation']), dissoc(dottedName)),
-		over(
-			lensPath(['conversationSteps', 'foldedSteps']),
-			without([dottedName])
-		) as any
-	) as any)(state)
+const removeAnswerFromSituation = (
+	dottedName: DottedName,
+	state: RootState
+) => {
+	return pipe(
+		over(lensPath(['conversationSteps', 'foldedSteps']), without([dottedName])),
+		over(lensPath(['simulation', 'situation']), dissoc(dottedName))
+	)(state)
 }
 
 const existingCompanyRootReducer = (state: RootState, action) => {

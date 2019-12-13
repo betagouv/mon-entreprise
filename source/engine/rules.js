@@ -46,7 +46,7 @@ export let enrichRule = rule => {
 		if (defaultUnit && unit) {
 			warning(
 				dottedName,
-				"Le paramètre `unité` n'est plus contraignant que `unité par défaut`.",
+				'Le paramètre `unité` est plus contraignant que `unité par défaut`.',
 				'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
 			)
 		}

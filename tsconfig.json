@@ -10,6 +10,14 @@
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
+		"allowJs": true,
+		// The end goal is to enable `"strict": true` which correspond to the
+		// following settings: noImplicitAny, noImplicitThis, alwaysStrict,
+		// strictBindCallApply, strictNullChecks, strictFunctionTypes, and
+		// strictPropertyInitialization. During the transition we enable these
+		// settings one by one.
+		"noImplicitThis": true,
+		"strictBindCallApply": true,
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],

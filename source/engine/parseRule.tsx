@@ -15,11 +15,16 @@ export default (rules, rule, parsedRules) => {
 
 	parsedRules[rule.dottedName] = 'being parsed'
 	/*
-		The parseRule function will traverse the tree of the `rule` and produce an AST, an object containing other objects containing other objects...
-		Some of the attributes of the rule are dynamic, they need to be parsed. It is the case of  `non applicable si`, `applicable si`, `formule`.
-		These attributes' values themselves may have  mechanism properties (e. g. `barème`) or inline expressions (e. g. `maVariable + 3`).
-		These mechanisms or variables are in turn traversed by `parse()`. During this processing, 'evaluate' and'jsx' functions are attached to the objects of the AST. They will be evaluated during the evaluation phase, called "analyse".
-*/
+		The parseRule function will traverse the tree of the `rule` and produce an
+		AST, an object containing other objects containing other objects... Some of
+		the attributes of the rule are dynamic, they need to be parsed. It is the
+		case of  `non applicable si`, `applicable si`, `formule`. These attributes'
+		values themselves may have  mechanism properties (e. g. `barème`) or inline
+		expressions (e. g. `maVariable + 3`). These mechanisms or variables are in
+		turn traversed by `parse()`. During this processing, 'evaluate' and'jsx'
+		functions are attached to the objects of the AST. They will be evaluated
+		during the evaluation phase, called "analyse".
+	*/
 
 	let parentDependencies = findParentDependencies(rules, rule)
 
@@ -84,7 +89,7 @@ export default (rules, rule, parsedRules) => {
 
 			let child = parse(rules, rule, parsedRules)(value)
 
-			let jsx = (nodeValue, explanation) => makeJsx(explanation)
+			let jsx = (_nodeValue, explanation) => makeJsx(explanation)
 
 			return {
 				evaluate,
@@ -96,7 +101,7 @@ export default (rules, rule, parsedRules) => {
 				explanation: child
 			}
 		},
-		contrôles: map(control => {
+		contrôles: map((control: any) => {
 			let testExpression = parse(rules, rule, parsedRules)(control.si)
 			if (
 				!testExpression.explanation &&
@@ -118,7 +123,9 @@ export default (rules, rule, parsedRules) => {
 	})(root)
 
 	parsedRules[rule.dottedName] = {
-		// Pas de propriété explanation et jsx ici car on est parti du (mauvais) principe que 'non applicable si' et 'formule' sont particuliers, alors qu'ils pourraient être rangé avec les autres mécanismes
+		// Pas de propriété explanation et jsx ici car on est parti du (mauvais)
+		// principe que 'non applicable si' et 'formule' sont particuliers, alors
+		// qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
 		parsed: true,
@@ -135,7 +142,7 @@ export default (rules, rule, parsedRules) => {
 			const explanation = { ...node.explanation, isDisabledBy }
 			return { ...node, explanation, nodeValue }
 		},
-		jsx: (nodeValue, { isDisabledBy }) => {
+		jsx: (_nodeValue, { isDisabledBy }) => {
 			return (
 				isDisabledBy.length > 0 && (
 					<>
@@ -183,6 +190,7 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 			classes="ruleProp mecanism cond"
 			name={name}
 			value={nodeValue}
+			unit={undefined}
 			child={
 				explanation.category === 'variable' ? (
 					<div className="node">{makeJsx(explanation)}</div>
