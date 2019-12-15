@@ -3979,7 +3979,7 @@ dirigeant . auto-entrepreneur . base des cotisations:
   période: flexible
   contrôles:
     - si: base des cotisations > plafond
-      message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/dirigeant/auto-entrepreneur/plafond)
+      message: Seuil de chiffre d'affaires dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
       niveau: avertissement
 
 dirigeant . auto-entrepreneur . plafond:
