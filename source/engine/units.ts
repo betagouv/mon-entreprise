@@ -258,7 +258,6 @@ export function areUnitConvertible(a: Unit, b: Unit) {
 		flatten,
 		uniq
 	)([numA, denomA, numB, denomB])
-
 	return unitClasses.every(
 		unitClass =>
 			(numA[unitClass] || 0) - (denomA[unitClass] || 0) ===

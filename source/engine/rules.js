@@ -5,7 +5,6 @@ import {
 	dropLast,
 	filter,
 	fromPairs,
-	has,
 	is,
 	isNil,
 	join,
@@ -30,7 +29,6 @@ import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
 import { syntaxError, warning } from './error'
-import possibleVariableTypes from './possibleVariableTypes.yaml'
 
 /***********************************
 Functions working on one rule */
@@ -55,7 +53,7 @@ export let enrichRule = rule => {
 			...rule,
 			dottedName,
 			name,
-			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
+			type: rule.type,
 			title: capitalise0(rule['titre'] || name),
 			defaultValue: rule['par défaut'],
 			examples: rule['exemples'],

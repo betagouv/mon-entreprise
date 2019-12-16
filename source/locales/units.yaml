@@ -3,6 +3,7 @@ fr:
   jour_plural: jours
   semaine_plural: semaines
   trimestre_plural: trimestres
+  an_plural: ans
   employé_plural: employés
   point_plural: points
 en:
@@ -18,3 +19,5 @@ en:
   repas_plural: meals
   employé: employee
   employé_plural: employees
+  an: year
+  an_plural: years

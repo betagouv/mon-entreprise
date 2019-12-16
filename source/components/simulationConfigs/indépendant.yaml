@@ -17,8 +17,9 @@ objectifs:
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité
-    Impôt sur le revenu: impôt . méthode de calcul
+    Date de création: entreprise . date de création
     ACRE: entreprise . ACRE
+    Impôt sur le revenu: impôt . méthode de calcul
   liste noire:
     - entreprise . charges
   non prioritaires:

@@ -8,7 +8,7 @@ export function convertToDateIfNeeded(...values: string[]) {
 	dateStrings.forEach(dateString => {
 		if (!dateString.match(dateRegexp)) {
 			throw new TypeError(
-				`L'opérande '${dateString}' n'est pas une date valide`
+				`'${dateString}' n'est pas une date valide (format attendu: mm/aaaa ou jj/mm/aaaa)`
 			)
 		}
 	})

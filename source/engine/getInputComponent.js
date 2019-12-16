@@ -5,6 +5,7 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import { serialiseUnit } from 'Engine/units'
 import { is, pick, prop, unless } from 'ramda'
 import React from 'react'
+import DateInput from '../components/conversation/DateInput'
 import { findRuleByDottedName, queryRule } from './rules'
 
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
@@ -17,42 +18,37 @@ export default rules => dottedName => {
 	let commonProps = {
 		key: dottedName,
 		fieldName: dottedName,
-		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
+		...pick(
+			['dottedName', 'title', 'question', 'defaultValue', 'suggestions'],
+			rule
+		)
 	}
 
 	if (getVariant(rule))
 		return (
 			<Question
-				{...{
-					...commonProps,
-					choices: buildVariantTree(rules, dottedName)
-				}}
+				{...commonProps}
+				choices={buildVariantTree(rules, dottedName)}
 			/>
 		)
 	if (rule.API && rule.API === 'géo')
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
-	if (rule.suggestions == 'atmp-2017')
-		return (
-			<SelectAtmp
-				{...{
-					...commonProps,
-					suggestions: rule.suggestions
-				}}
-			/>
-		)
+	if (rule.suggestions == 'atmp-2017') return <SelectAtmp {...commonProps} />
+
+	if (rule.type === 'date') {
+		return <DateInput {...commonProps} />
+	}
 
 	if (rule.unit == null && rule.defaultUnit == null)
 		return (
 			<Question
-				{...{
-					...commonProps,
-					choices: [
-						{ value: 'non', label: 'Non' },
-						{ value: 'oui', label: 'Oui' }
-					]
-				}}
+				{...commonProps}
+				choices={[
+					{ value: 'non', label: 'Non' },
+					{ value: 'oui', label: 'Oui' }
+				]}
 			/>
 		)
 
@@ -60,11 +56,8 @@ export default rules => dottedName => {
 
 	return (
 		<Input
-			{...{
-				...commonProps,
-				unit: serialiseUnit(rule.unit || rule.defaultUnit),
-				suggestions: rule.suggestions
-			}}
+			{...commonProps}
+			unit={serialiseUnit(rule.unit || rule.defaultUnit)}
 		/>
 	)
 }

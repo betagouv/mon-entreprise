@@ -183,6 +183,11 @@ encadrement:
   description: |
     Permet d'ajouter un plafond et/ou un plancher à une valeur.
 
+durée:
+  type: numeric
+  description: |
+    Permet d'obtenir le nombre de jours entre deux dates
+
 synchronisation:
   type: object
   description: |

@@ -1,5 +1,5 @@
-année courante: 
-  formule: 2019
+début d'année:
+  formule: 01/01/2019
 
 période:
 période . jours ouvrés moyen par mois:
@@ -3149,23 +3149,40 @@ impôt . CEHR:
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 entreprise . date de création:
-  question: En quelle année avez-vous créé votre entreprise ?
-  par défaut: 2019
+  question: Quand avez-vous créé votre entreprise ?
+  par défaut: 01/01/2019
   suggestions:
-    2019: 2019
-    2018: 2018
-    2017: 2017
-  unité: " "
+    Décembre 2019: 01/12/2019
+    Janvier 2019: 01/01/2019
+    Janvier 2018: 01/01/2018
+  type: date
   contrôles:
-    - si: date de création > 2020
+    - si: date de création > 01/2020
       niveau: avertissement
       message: Nous ne pouvons voir aussi loin dans le futur
-    - si: date de création < 1900
+    - si: date de création < 01/1900
       niveau: avertissement
       message: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
-entreprise . année d'activité:
-  formule: année courante - date de création 
+entreprise . durée d'activité:
+  formule: 
+    durée: 
+      depuis: date de création
+
+entreprise . durée d'activité . en fin d'année:
+  titre: durée d'activité à la fin de l'année
+  formule: 
+    durée: 
+      depuis: date de création
+      jusqu'à: 31/12/2019
+
+entreprise . durée d'activité . en début d'année:
+  titre: durée d'activité au début de l'année
+  formule: 
+    durée: 
+      depuis: date de création
+      jusqu'à: 01/01/2019
+
 
 entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
@@ -3271,18 +3288,42 @@ entreprise . charges:
   par défaut: 0
   unité par défaut: €/an
 
-dirigeant . indépendant . cotisations et contributions . réduction ACRE:
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
   formule:
     multiplication:
       assiette: cotisations - cotisations . retraite complémentaire
-      taux: taux ACRE
+      taux: taux 
+      facteur: prorata sur l'année
 
-dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
+  formule: 
+    multiplication: 
+      assiette: plafond sécurité sociale temps plein
+      taux:
+        encadrement: 
+          valeur: entreprise . durée d'activité . en fin d'année / 1 an 
+          plafond: 100%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière, 
+    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+
+    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
+    cotisations 2019 sera le suivant :
+
+    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
+
+  formule: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
   formule:
     barème continu:
       assiette: revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: PSS proratisé
       points:
         0: 100%
         0.75: 100%
@@ -3294,7 +3335,7 @@ dirigeant . indépendant . revenu net de cotisations:
     somme: 
       - revenu professionnel
       - situation personnelle . IJSS . défiscalisées
-      - (- cotisations et contributions . CSG et CRDS [non déductible])
+      - (- cotisations et contributions . CSG et CRDS .non déductible)
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -3682,7 +3723,6 @@ dirigeant . indépendant . cotisations et contributions:
       - CSG et CRDS
       - formation professionnelle
       - conjoint collaborateur . cotisations
-      - (- réduction ACRE)
       - (- exonérations)
   unité par défaut: €/an
   
@@ -3721,11 +3761,11 @@ dirigeant . rattachement CIPAV:
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - dirigeant = 'indépendant'
-          - entreprise . date de création < 2019
+          - entreprise . date de création < 01/2019
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
           - dirigeant = 'auto-entrepreneur'
-          - entreprise . date de création < 2018 
+          - entreprise . date de création < 01/2018
           - entreprise . catégorie d'activité = 'libérale'
 
   rend non applicable:
@@ -3739,7 +3779,7 @@ dirigeant . indépendant . PLNR régime général:
     toutes ces conditions: 
       - entreprise . catégorie d'activité = 'libérale'
       - entreprise . catégorie d'activité . libérale règlementée = non
-      - entreprise . date de création < 2019
+      - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendant ?
   description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
   rend non applicable: rattachement CIPAV
@@ -3953,7 +3993,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
           taux: 8%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
-  non applicable si: exonérations . âge
   formule:
     multiplication:
       assiette: assiette
@@ -4058,46 +4097,50 @@ dirigeant . indépendant . cotisations et contributions . cotisations . allocati
         1.1: 0%
         1.4: 3.1%
 
-entreprise . ZFU:
-  question: Votre entreprise bénéficie-t-elle du dispositif zone franche urbaine (ZFU) ?
+établissement . ZFU:
+  applicable si: entreprise . date de création < 01/2015
+  question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
   par défaut: non
+
+établissement . ZFU . durée d'implantation en fin d'année:
+  formule:
+    durée: 
+      depuis: entreprise . date de création
+      jusqu'à: 31/12/2019
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
   période: flexible
   formule:
     somme:
       - ZFU
-
+      - ACRE
+      
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
-  applicable si: 
-    toutes ces conditions:
-      - entreprise . date de création < 2015
-      - entreprise . ZFU
+  applicable si: établissement . ZFU
   formule:
     multiplication:
-      assiette:
-        le minimum de:
-          - cotisations . maladie . assiette [annuel]
-          - 3042 * SMIC horaire
+      assiette: cotisations . maladie
+      # TODO : ceci n'est pas bon (le plafond est sur le revenu exonéré, et est proratisé en début / fin d'éxo)
+      plafond: 3042 heures/an * SMIC horaire
       taux: taux
           
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge" 
   description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiait avant son abbrogation.
-  applicable si: entreprise . date de création < 2016
   par défaut: non
+  applicable si: entreprise . date de création < 01/2016
+  rend non applicable: cotisations . invalidité et décès
 
 dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
   question: Êtes-vous titulaire d’une pension d’invalidité du régime des travailleurs indépendants ? 
   description:  Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
   par défaut: non
   rend non applicable: 
+    - exonérations . ZFU
     - cotisations . maladie
     - cotisations . indemnités journalières maladie
     - cotisations . retraite complémentaire
   
-
-
 situation personnelle . IJSS:
   titre: indemnités journalières de sécurité sociale
   description: |
@@ -4154,43 +4197,34 @@ situation personnelle . IJSS . total:
     somme: 
       - fiscalisées
       - défiscalisées
-  
-
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   titre: taux exonération ZFU
   formule:
-    variations:
-      - si: entreprise . effectif < 5
-        alors:     
-          barème linéaire:
-            assiette: entreprise . année d'activité
-            retourne seulement le taux: oui
-            tranches:
-            - en-dessous de: 6
-              taux: 100%
-            - de: 6 
-              à: 10
-              taux: 60%
-            - de: 11
-              à: 12
-              taux: 40%
-            - de: 13
-              à: 14
-              taux: 20%
-            - au-dessus de: 14
-              taux: 0%
-      - sinon:
-          variations:
-            - si: entreprise . année d'activité <= 5
-              alors: 100%
-            - si: entreprise . année d'activité = 6
-              alors: 60%
-            - si: entreprise . année d'activité = 7
-              alors: 40%
-            - si: entreprise . année d'activité = 8
-              alors: 20%
-            - sinon: 0%
+    barème continu:
+      assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
+      retourne seulement le taux: oui
+      variations:
+        - si: entreprise . effectif
+          alors:     
+            points:
+              0: 100%
+              5: 100%
+              6: 60%
+              10: 60%
+              11: 40%
+              12: 40%
+              13: 20%
+              14: 20%
+              15: 0%
+        - sinon: 
+            points: 
+              0: 100%
+              5: 100%
+              6: 60%
+              7: 40%
+              8: 20%
+              9: 0%
 
 situation personnelle . domiciliation fiscale à l'étranger:
   description: |
@@ -4465,27 +4499,11 @@ entreprise . ACRE:
     une de ces conditions: 
       - toutes ces conditions: 
           - dirigeant = 'auto-entrepreneur'
-          - entreprise . année d'activité < 4
-      - entreprise . année d'activité < 2
+          - entreprise . durée d'activité < 3 ans
+          - entreprise . date de création < 01/01/2020
+      - entreprise . durée d'activité . en début d'année < 1 an
   par défaut: non
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
-
-entreprise . ACRE . année:
-  question: Quel est l'âge de l'entreprise ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - moins d'un an
-        - moins de deux ans
-        - moins de trois ans
-  par défaut: moins d'un an
-
-entreprise . ACRE . année . moins d'un an:
-
-entreprise . ACRE . année . moins de deux ans:
-
-entreprise . ACRE . année . moins de trois ans:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   formule: 100% - réduction ACRE
@@ -4493,18 +4511,18 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
-  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
+  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
   formule:
     variations:
       # TODO : ce code fonctionne en 2020, mais en 2021 il faudra faire la
       # distinction entre les entreprises créées en 2019 (qui ont le droit à
       # l'ACRE pendant 3 ans) et celles créées en 2020 et après qui n'ont le
       # droit qu'à une année de réduction.
-      - si: entreprise . ACRE . année = 'moins d'un an'
+      - si: entreprise . durée d'activité < 1 an
         alors: 50%
-      - si: entreprise . ACRE . année = 'moins de deux ans'
+      - si: entreprise . durée d'activité < 2 ans
         alors: 25%
-      - si: entreprise . ACRE . année = 'moins de trois ans'
+      - si: entreprise . durée d'activité < 3 ans
         alors: 10%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html

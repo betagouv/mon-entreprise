@@ -6,6 +6,7 @@ import { formatValue } from 'Engine/format'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
+import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'
 import operation from 'Engine/mecanisms/operation'
 import variations from 'Engine/mecanisms/variations'
@@ -143,6 +144,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			'barème linéaire': barèmeLinéaire,
 			'barème continu': barèmeContinu,
 			encadrement,
+			durée,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			complément: mecanismComplement,
