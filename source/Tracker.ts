@@ -49,5 +49,5 @@ export default class Tracker {
 }
 
 export const devTracker = new Tracker(
-	console?.log?.bind(console) ?? (() => {}) // eslint-disable-line no-console
+	console?.debug?.bind(console) ?? (() => {}) // eslint-disable-line no-console
 )

@@ -127,7 +127,7 @@ export let analyseMany = (
 	// setRule in Rule.js needs to get smarter and pass dottedName
 	defaultUnits = defaultUnits.map(parseUnit)
 	let cache = {
-		_meta: { parseLevel: 0, contextRule: [], defaultUnits }
+		_meta: { contextRule: [], defaultUnits }
 	}
 
 	let parsedTargets = targetNames.map(t => {

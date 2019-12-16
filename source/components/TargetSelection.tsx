@@ -147,8 +147,7 @@ const Target = ({ target, initialRender }) => {
 	const dispatch = useDispatch()
 
 	const isActiveInput = activeInput === target.dottedName
-	const isSmallTarget =
-		!target.question || !target.formule || isEmpty(target.formule)
+	const isSmallTarget = !!target.question !== !!target.formule
 	return (
 		<li
 			key={target.name}
@@ -234,11 +233,10 @@ let TargetInputOrValue = ({
 	const value = targetWithValue?.nodeValue
 		? Math.round(targetWithValue?.nodeValue)
 		: undefined
-	const inversionFail = useSelector(
-		(state: RootState) =>
-			analysisWithDefaultsSelector(state)?.cache._meta.inversionFail
-	)
-	const blurValue = inversionFail && !isActiveInput && value
+	const inversionFail = useSelector(analysisWithDefaultsSelector)?.cache._meta
+		.inversionFail
+
+	const blurValue = inversionFail && !isActiveInput
 
 	return (
 		<span

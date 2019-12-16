@@ -49,7 +49,6 @@ export const evaluateApplicability = (
 }
 
 export default (cache, situationGate, parsedRules, node) => {
-	cache._meta.parseLevel++
 	cache._meta.contextRule.push(node.dottedName)
 	let applicabilityEvaluation = evaluateApplicability(
 			cache,
@@ -106,7 +105,6 @@ export default (cache, situationGate, parsedRules, node) => {
 	}
 
 	cache._meta.contextRule.pop()
-	cache._meta.parseLevel--
 	return {
 		...node,
 		...applicabilityEvaluation,
