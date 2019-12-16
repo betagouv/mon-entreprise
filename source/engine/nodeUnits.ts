@@ -21,7 +21,7 @@ export const getNodeDefaultUnit = (node, cache) => {
 		node.question &&
 		node.unit == null &&
 		node.defaultUnit == null &&
-		!node.formule?.unit == null
+		node.formule?.unit == null
 	) {
 		return false
 	}

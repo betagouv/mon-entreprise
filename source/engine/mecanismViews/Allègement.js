@@ -9,7 +9,6 @@ export default function Allègement(nodeValue, rawExplanation, ...other) {
 		k => (k && k.nodeValue !== 0 ? k : null),
 		rawExplanation
 	)
-	console.log(other)
 	return (
 		<div>
 			<Node

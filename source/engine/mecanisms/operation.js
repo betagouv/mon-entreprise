@@ -47,15 +47,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 			...convertToDateIfNeeded(node1.nodeValue, node2.nodeValue)
 		)
 		let unit = inferUnit(k, [node1.unit, node2.unit])
-		// if (node1.name === 'revenu professionnel') {
-		// 	console.log(
-		// 		node1.name,
-		// 		node2.name,
-		// 		serialiseUnit(node1.unit),
-		// 		serialiseUnit(node2.unit),
-		// 		serialiseUnit(unit)
-		// 	)
-		// }
 		return {
 			...node,
 			nodeValue,

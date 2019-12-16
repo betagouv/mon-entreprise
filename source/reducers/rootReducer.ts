@@ -136,7 +136,6 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 			rule =>
 				(rule.unit || rule.defaultUnit) &&
 				!rule.unité &&
-				!rule.explanation?.unité &&
 				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
 		)
 		.reduce(
