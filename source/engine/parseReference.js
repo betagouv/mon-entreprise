@@ -1,11 +1,14 @@
 // Reference to a variable
 import parseRule from 'Engine/parseRule'
 import React from 'react'
+import { typeWarning } from './error'
 import { evaluateApplicability } from './evaluateRule'
 import { evaluateNode, mergeMissing } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
+import { convertNodeToUnit, getNodeDefaultUnit } from './nodeUnits'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
+import { areUnitConvertible } from './units'
 const getApplicableReplacements = (
 	filter,
 	contextRuleName,
@@ -75,6 +78,19 @@ const getApplicableReplacements = (
 				? evaluateNode(cache, situation, rules, replacementNode)
 				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
+		.map(replacementNode => {
+			const replacedRuleUnit = getNodeDefaultUnit(rule, cache)
+			if (!areUnitConvertible(replacementNode.unit, replacedRuleUnit)) {
+				typeWarning(
+					contextRuleName,
+					`L'unité de la règle de remplacement n'est pas compatible avec celle de la règle remplacée ${rule.dottedName}`
+				)
+			}
+			return {
+				...replacementNode,
+				unit: replacementNode.unit || replacedRuleUnit
+			}
+		})
 	return [applicableReplacements, missingVariableList]
 }
 
@@ -85,7 +101,6 @@ let evaluateReference = (filter, contextRuleName) => (
 	node
 ) => {
 	let rule = rules[node.dottedName]
-
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const [
@@ -119,7 +134,10 @@ let evaluateReference = (filter, contextRuleName) => (
 		cache[cacheName] = {
 			...node,
 			nodeValue,
-			...(explanation && { explanation }),
+			...(explanation && {
+				explanation
+			}),
+			...(explanation?.unit && { unit: explanation.unit }),
 			missingVariables
 		}
 		return cache[cacheName]
@@ -129,13 +147,15 @@ let evaluateReference = (filter, contextRuleName) => (
 		missingVariables: condMissingVariables
 	} = evaluateApplicability(cache, situation, rules, rule)
 	if (!isApplicable) {
-		return cacheNode(isApplicable, condMissingVariables)
+		return cacheNode(isApplicable, condMissingVariables, rule)
 	}
 	const situationValue = getSituationValue(situation, dottedName, rule)
 	if (situationValue !== undefined) {
+		const unit = getNodeDefaultUnit(rule, cache)
 		return cacheNode(situationValue, condMissingVariables, {
 			...rule,
-			nodeValue: situationValue
+			nodeValue: situationValue,
+			unit
 		})
 	}
 
@@ -166,11 +186,12 @@ export let parseReference = (
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula &&
 			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
-
+	const unit =
+		parsedRule.unit || parsedRule.formule?.unit || parsedRule.defaultUnit
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
 		//eslint-disable-next-line react/display-name
-		jsx: nodeValue => (
+		jsx: (nodeValue, explanation, _, nodeUnit) => (
 			<>
 				<Leaf
 					classes="variable filtered"
@@ -178,22 +199,21 @@ export let parseReference = (
 					name={partialReference}
 					dottedName={dottedName}
 					nodeValue={nodeValue}
-					unit={parsedRule.unit}
+					unit={nodeUnit || explanation?.unit || unit}
 				/>
 			</>
 		),
-
 		name: partialReference,
 		category: 'reference',
 		partialReference,
 		dottedName,
-		unit: parsedRule.unit
+		unit
 	}
 }
 
 // This function is a wrapper that can apply :
-// - temporal transformations to the value of the variable.
-// See the période.yaml test suite for details
+// - unit transformations to the value of the variable.
+// See the unité-temporelle.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
 const evaluateTransforms = (originalEval, rule, parseResult) => (
@@ -211,61 +231,24 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 		parsedRules,
 		node
 	)
-	if (!filteredNode.explanation) {
+	const { explanation, nodeValue } = filteredNode
+	if (!explanation || nodeValue === null) {
 		return filteredNode
 	}
-
-	let nodeValue = filteredNode.nodeValue
-
-	// Temporal transformation
-	let supportedPeriods = ['mois', 'année', 'flexible']
-	if (nodeValue == null) return filteredNode
-	let ruleToTransform = parsedRules[filteredNode.explanation.dottedName]
-
-	let inlinePeriodTransform = { mensuel: 'mois', annuel: 'année' }[
-		parseResult.temporalTransform
-	]
-
-	// Exceptions
-	if (!rule.période && !inlinePeriodTransform && rule.formule) {
-		if (supportedPeriods.includes(ruleToTransform?.période))
-			throw new Error(
-				`Attention, une variable sans période, ${rule.dottedName}, qui appelle une variable à période, ${ruleToTransform.dottedName}, c'est suspect !
-
-				Si la période de la variable appelée est neutralisée dans la formule de calcul, par exemple un montant mensuel divisé par 30 (comprendre 30 jours), utilisez "période: aucune" pour taire cette erreur et rassurer tout le monde.
-			`
+	const unit = parseResult.unit
+	if (unit) {
+		try {
+			return convertNodeToUnit(unit, filteredNode)
+		} catch (e) {
+			typeWarning(
+				cache._meta.contextRule,
+				`Impossible de convertir la reference '${filteredNode.name}'`,
+				e
 			)
-
-		return filteredNode
-	}
-	if (!ruleToTransform?.période) return filteredNode
-	let environmentPeriod = situation('période') || 'mois'
-	let callingPeriod =
-		inlinePeriodTransform ||
-		(rule.période === 'flexible' ? environmentPeriod : rule.période)
-	let calledPeriod =
-		ruleToTransform.période === 'flexible'
-			? environmentPeriod
-			: ruleToTransform.période
-
-	let transformedNodeValue =
-			callingPeriod === 'mois' && calledPeriod === 'année'
-				? nodeValue / 12
-				: callingPeriod === 'année' && calledPeriod === 'mois'
-				? nodeValue * 12
-				: nodeValue,
-		periodTransform = nodeValue !== transformedNodeValue
-
-	let result = {
-		...filteredNode,
-		periodTransform,
-		...(periodTransform ? { originPeriodValue: nodeValue } : {}),
-		nodeValue: transformedNodeValue,
-		explanation: filteredNode.explanation,
-		missingVariables: filteredNode.missingVariables
+		}
 	}
 
-	return result
+	return filteredNode
 }
 export let parseReferenceTransforms = (
 	rules,
@@ -273,9 +256,12 @@ export let parseReferenceTransforms = (
 	parsedRules
 ) => parseResult => {
 	const referenceName = parseResult.variable.fragments.join(' . ')
-	let node = parseReference(rules, rule, parsedRules, parseResult.filter)(
-		referenceName
-	)
+	let node = parseReference(
+		rules,
+		rule,
+		parsedRules,
+		parseResult.filter
+	)(referenceName)
 
 	return {
 		...node,
@@ -289,6 +275,7 @@ export let parseReferenceTransforms = (
 					}
 			  }
 			: {}),
-		evaluate: evaluateTransforms(node.evaluate, rule, parseResult)
+		evaluate: evaluateTransforms(node.evaluate, rule, parseResult),
+		unit: parseResult.unit || node.unit
 	}
 }

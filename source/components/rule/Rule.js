@@ -1,5 +1,4 @@
 import { T } from 'Components'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import withColours from 'Components/utils/withColours'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
@@ -59,7 +58,6 @@ export default compose(
 	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
-
 	const renderToggleSourceButton = () => {
 		return (
 			<button
@@ -144,17 +142,9 @@ export default compose(
 							>
 								<Value
 									{...displayedRule}
-									nilValueSymbol={
-										displayedRule.parentDependencies.some(
-											parent => parent?.nodeValue == false
-										)
-											? '-'
-											: null
-									}
-								/>
-								<Period
-									period={flatRule['période']}
-									valuesToShow={valuesToShow}
+									nilValueSymbol={displayedRule.parentDependencies.some(
+										parent => parent?.nodeValue == false
+									)}
 								/>
 							</div>
 							{displayedRule.defaultValue != null && (
@@ -163,6 +153,7 @@ export default compose(
 									<Value
 										{...displayedRule}
 										nodeValue={displayedRule.defaultValue}
+										unit={displayedRule.unit || displayedRule.defaultUnit}
 									/>
 								</div>
 							)}
@@ -257,20 +248,3 @@ let NamespaceRulesList = compose(withColours)(({ namespaceRules, colours }) => {
 		</section>
 	)
 })
-
-let Period = ({ period, valuesToShow }) =>
-	period ? (
-		valuesToShow && period === 'flexible' ? (
-			<PeriodSwitch />
-		) : (
-			<span className="inlineMecanism">
-				<span
-					className="name"
-					data-term-definition="période"
-					style={{ background: '#8e44ad' }}
-				>
-					{period}
-				</span>
-			</span>
-		)
-	) : null

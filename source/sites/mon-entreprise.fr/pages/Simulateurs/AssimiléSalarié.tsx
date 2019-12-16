@@ -1,15 +1,18 @@
+import { setSimulationConfig } from 'Actions/actions'
 import { T } from 'Components'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
-import { useSimulationConfig } from 'Components/simulationConfigs/useSimulationConfig'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 export default function AssimiléSalarié() {
-	useSimulationConfig(assimiléConfig)
+	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(assimiléConfig))
+
 	const { t } = useTranslation()
 
 	return (

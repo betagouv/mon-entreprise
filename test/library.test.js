@@ -32,7 +32,6 @@ describe('library', function() {
 - nom: yo
   formule: 1
 - nom: ya
-  période: flexible
   formule:  contrat salarié . rémunération . net + yo
 `
 

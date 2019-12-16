@@ -140,28 +140,6 @@ describe('collectMissingVariables', function() {
 		expect(result).to.be.empty
 	})
 
-	it('should report missing variables in switch statements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						'aiguillage numérique': {
-							'11 > dix': '1000%',
-							'3 > dix': '1100%',
-							'1 > dix': '1200%'
-						}
-					}
-				},
-				{ nom: 'top . dix' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.include('top . dix')
-	})
-
 	// TODO : enlever ce test, depuis que l'on évalue plus les branches qui ne sont pas encore applicable
 	it.skip('should report missing variables in variations', function() {
 		let rawRules = [
@@ -216,75 +194,6 @@ describe('collectMissingVariables', function() {
 		expect(result).not.to.include('top . quatre')
 		// TODO
 		// expect(result).to.include('top . trois')
-	})
-
-	it('should not report missing variables in switch for consequences of false conditions', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						'aiguillage numérique': {
-							'8 > 10': '1000%',
-							'1 > 2': 'dix'
-						}
-					}
-				},
-				{ nom: 'top . dix' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-	})
-
-	it('should report missing variables in consequence when its condition is unresolved', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						'aiguillage numérique': {
-							'10 > 11': '1000%',
-							'3 > dix': {
-								douze: '560%',
-								'1 > 2': '75015%'
-							}
-						}
-					}
-				},
-				{ nom: 'top . douze' },
-				{ nom: 'top . dix' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.include('top . dix')
-		expect(result).to.include('top . douze')
-	})
-
-	it('should not report missing variables when a switch short-circuits', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						'aiguillage numérique': {
-							'11 > 10': '1000%',
-							'3 > dix': '1100%',
-							'1 > dix': '1200%'
-						}
-					}
-				},
-				{ nom: 'top . dix' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
 	})
 })
 
@@ -368,9 +277,10 @@ describe('nextSteps', function() {
 			}[name])
 
 		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'contrat salarié . rémunération . net')(
-				stateSelector
-			),
+			analysis = analyse(
+				rules,
+				'contrat salarié . rémunération . net'
+			)(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')

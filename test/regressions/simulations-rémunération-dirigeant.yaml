@@ -7,14 +7,6 @@
   - entreprise . rémunération totale du dirigeant: 50000
   - entreprise . rémunération totale du dirigeant: 100000
 
-périodes:
-  - entreprise . rémunération totale du dirigeant: 200
-    période: mois
-  - entreprise . rémunération totale du dirigeant: 500
-    période: mois
-  - entreprise . rémunération totale du dirigeant: 5000
-    période: mois
-
 avec charges:
   - entreprise . rémunération totale du dirigeant: 10000
     entreprise . charges: 2000

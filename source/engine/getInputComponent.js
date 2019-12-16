@@ -33,7 +33,17 @@ export default rules => dottedName => {
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
-	if (rule.unit == null)
+	if (rule.suggestions == 'atmp-2017')
+		return (
+			<SelectAtmp
+				{...{
+					...commonProps,
+					suggestions: rule.suggestions
+				}}
+			/>
+		)
+
+	if (rule.unit == null && rule.defaultUnit == null)
 		return (
 			<Question
 				{...{
@@ -46,25 +56,14 @@ export default rules => dottedName => {
 			/>
 		)
 
-	if (rule.suggestions == 'atmp-2017')
-		return (
-			<SelectAtmp
-				{...{
-					...commonProps,
-					suggestions: rule.suggestions
-				}}
-			/>
-		)
-
 	// Now the numeric input case
 
 	return (
 		<Input
 			{...{
 				...commonProps,
-				unit: serialiseUnit(rule.unit),
-				suggestions: rule.suggestions,
-				rulePeriod: rule.période
+				unit: serialiseUnit(rule.unit || rule.defaultUnit),
+				suggestions: rule.suggestions
 			}}
 		/>
 	)

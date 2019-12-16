@@ -7,7 +7,7 @@ const worker = new Worker()
 function SelectComponent({ setFormValue, submit, options }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = option => {
-		option.text = +option['Taux net'].replace(',', '.') / 100
+		option.text = +option['Taux net'].replace(',', '.')
 		setFormValue(option.text)
 		submit()
 	}

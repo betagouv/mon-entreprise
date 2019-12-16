@@ -87,7 +87,7 @@ export function formatValue({
 				style: 'percent',
 				maximumFractionDigits,
 				language
-			})(value)
+			})(value / 100)
 		default:
 			return (
 				numberFormatter({

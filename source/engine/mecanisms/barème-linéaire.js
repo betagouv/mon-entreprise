@@ -3,8 +3,8 @@ import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
 import { val } from 'Engine/traverse-common-functions'
-import { desugarScale } from './barème'
 import { parseUnit } from 'Engine/units'
+import { desugarScale } from './barème'
 
 /* on réécrit en une syntaxe plus bas niveau mais plus régulière les tranches :
 	`en-dessous de: 1`
@@ -41,13 +41,24 @@ export default (recurse, k, v) => {
 				roundedAssiette >= val(multiplicateur) * min &&
 				roundedAssiette <= max * val(multiplicateur)
 		)
-
-		if (!matchedTranche) return 0
-		if (matchedTranche.taux)
-			return returnRate
+		let nodeValue
+		if (!matchedTranche) {
+			nodeValue = 0
+		} else if (matchedTranche.taux) {
+			nodeValue = returnRate
 				? matchedTranche.taux.nodeValue
-				: matchedTranche.taux.nodeValue * val(assiette)
-		return matchedTranche.montant
+				: (matchedTranche.taux.nodeValue / 100) * val(assiette)
+		} else {
+			nodeValue = matchedTranche.montant.nodeValue
+		}
+		return {
+			nodeValue,
+			additionalExplanation: {
+				unit: returnRate
+					? parseUnit('%')
+					: (v['unité'] && parseUnit(v['unité'])) || explanation.assiette.unit
+			}
+		}
 	}
 
 	let explanation = {
@@ -55,8 +66,10 @@ export default (recurse, k, v) => {
 			returnRate,
 			tranches
 		},
-		evaluate = evaluateObject(objectShape, effect)
-
+		evaluate = evaluateObject(objectShape, effect),
+		unit = returnRate
+			? parseUnit('%')
+			: (v['unité'] && parseUnit(v['unité'])) || explanation.assiette.unit
 	return {
 		evaluate,
 		jsx: Barème('linéaire'),
@@ -65,6 +78,6 @@ export default (recurse, k, v) => {
 		name: 'barème linéaire',
 		barème: 'en taux',
 		type: 'numeric',
-		unit: returnRate ? parseUnit('%') : v['unité'] || explanation.assiette.unit
+		unit
 	}
 }

@@ -1,3 +1,4 @@
+import { typeWarning } from 'Engine/error'
 import {
 	defaultNode,
 	evaluateNode,
@@ -5,49 +6,43 @@ import {
 	parseObject
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
+import { convertNodeToUnit } from 'Engine/nodeUnits'
 import React from 'react'
 import { val } from '../traverse-common-functions'
 
-function MecanismEncadrement({ nodeValue, explanation }) {
+function MecanismEncadrement({ nodeValue, explanation, unit }) {
 	return (
 		<Node
 			classes="mecanism encadrement"
 			name="encadrement"
 			value={nodeValue}
-			unit={explanation.unit}
+			unit={unit}
 			child={
 				<>
 					{makeJsx(explanation.valeur)}
-					<ul className="properties">
+					<p>
 						{!explanation.plancher.isDefault && (
-							<li key="plancher">
-								<span
-									style={
-										nodeValue === val(explanation.plancher)
-											? { background: 'yellow' }
-											: {}
-									}
-								>
-									<span className="key">Minimum :</span>
-									<span className="value">{makeJsx(explanation.plancher)}</span>
-								</span>
-							</li>
+							<span
+								css={
+									nodeValue === val(explanation.plancher) &&
+									'background: yellow'
+								}
+							>
+								<strong className="key">Minimum : </strong>
+								<span className="value">{makeJsx(explanation.plancher)}</span>
+							</span>
 						)}
 						{!explanation.plafond.isDefault && (
-							<li key="plafond">
-								<span
-									style={
-										nodeValue === val(explanation.plafond)
-											? { background: 'yellow' }
-											: {}
-									}
-								>
-									<span className="key">Plafonné à :</span>
-									<span className="value">{makeJsx(explanation.plafond)}</span>
-								</span>
-							</li>
+							<span
+								css={
+									nodeValue === val(explanation.plafond) && 'background: yellow'
+								}
+							>
+								<strong className="key">Plafonné à : </strong>
+								<span className="value">{makeJsx(explanation.plafond)}</span>
+							</span>
 						)}
-					</ul>
+					</p>
 				</>
 			}
 		/>
@@ -61,26 +56,33 @@ const objectShape = {
 }
 
 const evaluate = (cache, situation, parsedRules, node) => {
-	const valeur = evaluateNode(
-		cache,
-		situation,
-		parsedRules,
-		node.explanation.valeur
-	)
-	const plafond = evaluateNode(
-		cache,
-		situation,
-		parsedRules,
-		node.explanation.plafond
-	)
-	const plancher = evaluateNode(
-		cache,
-		situation,
-		parsedRules,
-		node.explanation.plancher
-	)
+	let evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
+	const valeur = evaluateAttribute(node.explanation.valeur)
+	let plafond = evaluateAttribute(node.explanation.plafond)
+	let plancher = evaluateAttribute(node.explanation.plancher)
+	if (valeur.unit) {
+		try {
+			plafond = convertNodeToUnit(valeur.unit, plafond)
+			plancher = convertNodeToUnit(valeur.unit, plancher)
+		} catch (e) {
+			typeWarning(
+				cache._meta.contextRule,
+				"Le plafond / plancher de l'encadrement a une unité incompatible avec celle de la valeur à encadrer",
+				e
+			)
+		}
+	}
 	const nodeValue = Math.max(val(plancher), Math.min(val(plafond), val(valeur)))
-	return { ...node, nodeValue }
+	return {
+		...node,
+		nodeValue,
+		unit: valeur.unit,
+		explanation: {
+			valeur,
+			plafond,
+			plancher
+		}
+	}
 }
 
 export default (recurse, k, v) => {
@@ -89,8 +91,12 @@ export default (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<MecanismEncadrement nodeValue={nodeValue} explanation={explanation} />
+		jsx: (nodeValue, explanation, _, unit) => (
+			<MecanismEncadrement
+				nodeValue={nodeValue}
+				explanation={explanation}
+				unit={unit}
+			/>
 		),
 		explanation,
 		category: 'mecanism',

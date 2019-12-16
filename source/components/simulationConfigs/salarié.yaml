@@ -28,6 +28,6 @@ questions:
     - contrat salarié . statut JEI
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
+unités par défaut: [€/mois]
 situation:
   dirigeant: non
-  période: mois

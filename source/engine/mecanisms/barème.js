@@ -1,10 +1,11 @@
-import { defaultNode, E } from 'Engine/evaluation'
+import { defaultNode, evaluateNode, mergeAllMissing } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
-import { val } from 'Engine/traverse-common-functions'
-import { inferUnit, parseUnit } from 'Engine/units'
-import { evolve, has, pluck, sum } from 'ramda'
+import { evolve, has } from 'ramda'
+import { typeWarning } from '../error'
+import { convertNodeToUnit } from '../nodeUnits'
+import { parseUnit } from '../units'
 
 export let desugarScale = recurse => tranches =>
 	tranches
@@ -15,7 +16,7 @@ export let desugarScale = recurse => tranches =>
 				? { ...t, de: t['au-dessus de'], à: Infinity }
 				: t
 		)
-		.map(evolve({ taux: recurse }))
+		.map(evolve({ taux: recurse, montant: recurse }))
 
 // This function was also used for marginal barèmes, but now only for linear ones
 export let trancheValue = (assiette, multiplicateur) => ({
@@ -24,10 +25,10 @@ export let trancheValue = (assiette, multiplicateur) => ({
 	taux,
 	montant
 }) =>
-	Math.round(val(assiette)) >= min * val(multiplicateur) &&
-	(!max || Math.round(val(assiette)) <= max * val(multiplicateur))
+	Math.round(assiette.nodeValue) >= min * multiplicateur.nodeValue &&
+	(!max || Math.round(assiette.nodeValue) <= max * multiplicateur.nodeValue)
 		? taux != null
-			? val(assiette) * val(taux)
+			? assiette.nodeValue * taux.nodeValue
 			: montant
 		: 0
 
@@ -52,22 +53,66 @@ export default (recurse, k, v) => {
 	}
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let e = E(cache, situationGate, parsedRules)
+		let { assiette, multiplicateur } = node.explanation
+		assiette = evaluateNode(cache, situationGate, parsedRules, assiette)
+		multiplicateur = evaluateNode(
+			cache,
+			situationGate,
+			parsedRules,
+			multiplicateur
+		)
+		try {
+			multiplicateur = convertNodeToUnit(assiette.unit, multiplicateur)
+		} catch (e) {
+			typeWarning(
+				cache._meta.contextRule,
+				`L'unité du multiplicateur du barème doit être compatible avec celle de son assiette`,
+				e
+			)
+		}
+		const tranches = node.explanation.tranches.map(tranche => {
+			let { de: min, à: max, taux } = tranche
+			if (
+				[assiette, multiplicateur].every(
+					({ nodeValue }) => nodeValue != null
+				) &&
+				assiette.nodeValue < min * multiplicateur.nodeValue
+			) {
+				return { ...tranche, nodeValue: 0 }
+			}
+			taux = convertNodeToUnit(
+				parseUnit(''),
+				evaluateNode(cache, situationGate, parsedRules, taux)
+			)
+			if (
+				[assiette, multiplicateur, taux].some(
+					({ nodeValue }) => nodeValue == null
+				)
+			) {
+				return {
+					...tranche,
+					nodeValue: null,
+					missingVariables: taux.missingVariables
+				}
+			}
+			return {
+				...tranche,
+				nodeValue:
+					(Math.min(assiette.nodeValue, max * multiplicateur.nodeValue) -
+						min * multiplicateur.nodeValue) *
+					taux.nodeValue
+			}
+		})
 
-		let { assiette, multiplicateur } = node.explanation,
-			tranches = node.explanation.tranches.map(tranche => {
-				let { de: min, à: max, taux } = tranche
-				let value =
-					e.val(assiette) < min * e.val(multiplicateur)
-						? 0
-						: (Math.min(e.val(assiette), max * e.val(multiplicateur)) -
-								min * e.val(multiplicateur)) *
-						  e.val(taux)
-
-				return { ...tranche, value }
-			}),
-			nodeValue = sum(pluck('value', tranches))
-
+		const nodeValue = tranches.reduce(
+			(value, { nodeValue }) => (nodeValue == null ? null : value + nodeValue),
+			0
+		)
+		const missingVariables = mergeAllMissing([
+			assiette,
+			multiplicateur,
+			...tranches
+		])
 		return {
 			...node,
 			nodeValue,
@@ -75,8 +120,9 @@ export default (recurse, k, v) => {
 				...explanation,
 				tranches
 			},
-			missingVariables: e.missingVariables(),
-			lazyEval: e.valNode
+			missingVariables,
+			unit: assiette.unit,
+			lazyEval: node => evaluateNode(cache, situationGate, parsedRules, node)
 		}
 	}
 
@@ -87,6 +133,6 @@ export default (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'barème',
 		barème: 'marginal',
-		unit: inferUnit('*', [explanation.assiette.unit, parseUnit('%')])
+		unit: explanation.assiette.unit
 	}
 }

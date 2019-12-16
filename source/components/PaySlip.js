@@ -53,10 +53,15 @@ export default compose(
 				<div className="payslip__salarySection">
 					<Line
 						rule={getRule('contrat salarié . temps de travail')}
+						unit="heures/mois"
 						maximumFractionDigits={1}
 					/>
 					{heuresSupplémentaires?.nodeValue > 0 && (
-						<Line rule={heuresSupplémentaires} maximumFractionDigits={1} />
+						<Line
+							rule={heuresSupplémentaires}
+							unit="heures/mois"
+							maximumFractionDigits={1}
+						/>
 					)}
 				</div>
 

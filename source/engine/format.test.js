@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { formatCurrency, formatPercentage, formatValue } from './format'
 import { parseUnit } from 'Engine/units'
+import { formatCurrency, formatPercentage, formatValue } from './format'
 
 describe('format engine values', () => {
 	it('format currencies', () => {
@@ -12,9 +12,9 @@ describe('format engine values', () => {
 	})
 
 	it('format percentages', () => {
-		expect(formatPercentage(0.1)).to.equal('10%')
-		expect(formatPercentage(1)).to.equal('100%')
-		expect(formatPercentage(0.102)).to.equal('10.2%')
+		expect(formatPercentage(10)).to.equal('10%')
+		expect(formatPercentage(100)).to.equal('100%')
+		expect(formatPercentage(10.2)).to.equal('10.2%')
 	})
 
 	it('format values', () => {

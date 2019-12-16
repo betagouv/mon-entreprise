@@ -10,14 +10,6 @@
   - dirigeant . auto-entrepreneur . revenu net de cotisations: 100000
   - dirigeant . auto-entrepreneur . revenu net de cotisations: 1000000
 
-périodes:
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 100
-    période: mois
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 500
-    période: mois
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 1000
-    période: mois
-
 aides:
   - dirigeant . auto-entrepreneur . revenu net de cotisations: 5000
     entreprise . ACRE: true

@@ -21,8 +21,28 @@ let enrichRules = input => {
 	return rulesList.map(enrichRule)
 }
 
+class Engine {
+	situation = {}
+	parsedRules
+	constructor(rules = rulesFr) {
+		this.parsedRules = parseAll(rules)
+		this.defaultValues = collectDefaults(rules)
+	}
+	evaluate(targets, { defaultUnits, situation }) {
+		this.evaluation = analyseMany(
+			this.parsedRules,
+			targets,
+			defaultUnits
+		)(dottedName => situation[dottedName] || this.defaultValues[dottedName])
+		return this.evaluation.targets.map(({ nodeValue }) => nodeValue)
+	}
+	getLastEvaluationExplanations() {
+		return this.evaluation
+	}
+}
+
 export default {
-	evaluate: (targetInput, input, config) => {
+	evaluate: (targetInput, input, config, defaultUnits = []) => {
 		let rules = config
 			? [
 					...(config.base ? enrichRules(config.base) : rulesFr),
@@ -32,12 +52,14 @@ export default {
 
 		let evaluation = analyseMany(
 			parseAll(rules),
-			Array.isArray(targetInput) ? targetInput : [targetInput]
+			Array.isArray(targetInput) ? targetInput : [targetInput],
+			defaultUnits
 		)(inputToStateSelector(rules)(input))
 		if (config?.debug) return evaluation
 
 		let values = evaluation.targets.map(t => t.nodeValue)
 
 		return Array.isArray(targetInput) ? values : values[0]
-	}
+	},
+	Engine
 }

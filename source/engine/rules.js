@@ -29,6 +29,7 @@ import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
+import { syntaxError, warning } from './error'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 
 /***********************************
@@ -36,9 +37,20 @@ Functions working on one rule */
 
 export let enrichRule = rule => {
 	try {
-		let unit = rule.unité && parseUnit(rule.unité)
 		const dottedName = rule.dottedName || rule.nom
 		const name = nameLeaf(dottedName)
+		let unit = rule.unité && parseUnit(rule.unité)
+		let defaultUnit =
+			rule['unité par défaut'] && parseUnit(rule['unité par défaut'])
+
+		if (defaultUnit && unit) {
+			warning(
+				dottedName,
+				"Le paramètre `unité` n'est plus contraignant que `unité par défaut`.",
+				'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
+			)
+		}
+
 		return {
 			...rule,
 			dottedName,
@@ -49,11 +61,15 @@ export let enrichRule = rule => {
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
-			unit
+			unit,
+			defaultUnit
 		}
 	} catch (e) {
-		console.log(e)
-		throw new Error('Problem enriching ' + JSON.stringify(rule))
+		syntaxError(
+			rule.dottedName || rule.nom,
+			'Problème dans la lecture des champs de la règle',
+			e
+		)
 	}
 }
 
@@ -71,15 +87,8 @@ export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 export let splitName = split(' . '),
 	joinName = join(' . ')
 
-export let parentName = pipe(
-	splitName,
-	dropLast(1),
-	joinName
-)
-export let nameLeaf = pipe(
-	splitName,
-	last
-)
+export let parentName = pipe(splitName, dropLast(1), joinName)
+export let nameLeaf = pipe(splitName, last)
 
 export let encodeRuleName = name =>
 	encodeURI(
@@ -117,9 +126,10 @@ export let disambiguateRuleReference = (
 		found = reduce(
 			(res, path) => {
 				let dottedNameToCheck = [...path, partialName].join(' . ')
-				return when(is(Object), reduced)(
-					findRuleByDottedName(allRules, dottedNameToCheck)
-				)
+				return when(
+					is(Object),
+					reduced
+				)(findRuleByDottedName(allRules, dottedNameToCheck))
 			},
 			null,
 			pathPossibilities
