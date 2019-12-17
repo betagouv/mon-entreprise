@@ -49,8 +49,8 @@ export default function Landing() {
 					<T k="landing.choice.create">
 						<h3>Créer une entreprise</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Un accompagnement au choix du statut et la liste complète des
-							démarches de création
+							Un accompagnement au choix du statut juridique et la liste
+							complète des démarches de création
 						</p>
 					</T>
 					<div className="ui__ small simple button">
@@ -62,8 +62,8 @@ export default function Landing() {
 					<T k="landing.choice.manage">
 						<h3>Gérer mon activité</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Des simulateurs pour anticiper le montant des cotisations et mieux
-							gérer votre trésorerie
+							Des simulateurs pour anticiper le montant des cotisations sociales
+							à payer et mieux gérer votre trésorerie
 						</p>
 					</T>
 					<div className="ui__ small simple button">
