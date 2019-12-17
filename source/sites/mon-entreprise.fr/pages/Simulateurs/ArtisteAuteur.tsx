@@ -86,7 +86,8 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 	const analysis = useSelector((state: RootState) =>
 		ruleAnalysisSelector(state, { dottedName })
 	)
-	const [value, setValue] = useState(analysis.nodeValue)
+	const situation = useSelector(situationSelector)
+	const [value, setValue] = useState(situation[dottedName])
 
 	if (!analysis.isApplicable) {
 		return null

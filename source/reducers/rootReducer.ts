@@ -166,7 +166,7 @@ export type SimulationConfig = Partial<{
 	bloquant: Array<DottedName>
 	situation: Simulation['situation']
 	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	defaultUnits: [string]
+	'unités par défaut': [string]
 }>
 
 export type Simulation = {
@@ -192,8 +192,7 @@ function simulation(
 			url,
 			hiddenControls: [],
 			situation: {},
-			defaultUnits: (state && state.defaultUnits) ||
-				config.defaultUnits || ['€/mois']
+			defaultUnits: config['unités par défaut'] || ['€/mois']
 		}
 	}
 	if (state === null) {
