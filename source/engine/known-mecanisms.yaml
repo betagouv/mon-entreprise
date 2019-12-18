@@ -33,21 +33,33 @@ toutes ces conditions:
 variations:
   type: numeric
   description: |
-    Contient une liste de couples condition-conséquence.
+    Contient une liste de conditions (`si`) et leurs conséquences associées (`alors`).
 
-    Couple par couple, si la condition est vraie, alors on choisit la conséquence.
+    Pour la première condition vraie dans la liste, on retient la valeur qui lui est associée.
 
-    Cette conséquence peut elle-même être un mécanisme `variations` ou plus simplement un `taux`.
-
-    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable`
 
 
+    Exemple:
     ```
-    si: condition
-    alors: consequence
+    - si: age < 18 ans
+      alors: 'mineur'
+    - sinon: 'majeur'
     ```
 
-    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel que la multiplication ou le barème. Par exemple, certains paramètres de la multiplication seront communs (ex. l'assiette) alors que d'autres (ex. le taux) variront selon une autre variable (ex. statut cadre).
+    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel que la multiplication ou le barème. 
+
+    Exemple (TVA):
+    ```
+    multiplication: 
+      assiette: total hors taxe
+      variations:
+        - si: restauration
+          alors: 
+            taux: 10%
+        - sinon: 
+            taux: 20%
+    ```
 
 multiplication:
   type: numeric
