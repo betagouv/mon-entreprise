@@ -124,7 +124,7 @@ export default compose(FormDecorator('question'))(function Question({
 	)
 })
 
-let RadioLabel = props => (
+export let RadioLabel = props => (
 	<>
 		<RadioLabelContent {...props} />
 		<Explicable dottedName={props.dottedName} />

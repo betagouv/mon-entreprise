@@ -7,6 +7,10 @@ import React from 'react'
 import DateInput from '../components/conversation/DateInput'
 import { findRuleByDottedName, queryRule } from './rules'
 
+export const binaryOptionChoices = [
+	{ value: 'non', label: 'Non' },
+	{ value: 'oui', label: 'Oui' }
+]
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 
@@ -42,15 +46,7 @@ export default rules => dottedName => {
 	}
 
 	if (rule.unit == null && rule.defaultUnit == null)
-		return (
-			<Question
-				{...commonProps}
-				choices={[
-					{ value: 'non', label: 'Non' },
-					{ value: 'oui', label: 'Oui' }
-				]}
-			/>
-		)
+		return <Question {...commonProps} choices={binaryOptionChoices} />
 
 	// Now the numeric input case
 
@@ -59,7 +55,7 @@ export default rules => dottedName => {
 
 let getVariant = rule => queryRule(rule)('formule . une possibilité')
 
-let buildVariantTree = (allRules, path) => {
+export let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = findRuleByDottedName(allRules, path)
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
