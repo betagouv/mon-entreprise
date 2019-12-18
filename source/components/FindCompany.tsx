@@ -47,7 +47,7 @@ export default function Search() {
 					padding: 0.4rem;
 					margin: 0.2rem 0;
 					width: 100%;
-					border: 1px solid var(--lighterTextColour);
+					border: 1px solid var(--lighterTextColor);
 					border-radius: 0.3rem;
 					color: inherit;
 					font-size: inherit;
@@ -55,7 +55,7 @@ export default function Search() {
 					position: relative;
 
 					:focus {
-						border-color: var(--colour);
+						border-color: var(--color);
 					}
 				`}
 				onChange={e => {
@@ -85,7 +85,7 @@ export default function Search() {
 							border-radius: 0.3rem;
 							:hover,
 							:focus {
-								background-color: var(--lighterColour);
+								background-color: var(--lighterColor);
 							}
 						`}
 					>

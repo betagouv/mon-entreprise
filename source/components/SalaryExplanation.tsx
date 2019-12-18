@@ -2,7 +2,7 @@ import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
@@ -99,7 +99,7 @@ function RevenueRepatitionSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColoursContext)
+	const { palettes } = useContext(ThemeColorsContext)
 
 	return (
 		<section>

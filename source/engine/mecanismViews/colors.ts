@@ -1,4 +1,4 @@
-const colours = {
+const colors = {
 	ruleProp: '#9b59b6',
 	'applicable si': '#9b59b6',
 	'non applicable si': '#9b59b6',
@@ -12,4 +12,4 @@ const colours = {
 	barèmeLinéaire: '#AD1457'
 }
 
-export default (name: string) => colours[name] || '#34495e'
+export default (name: string) => colors[name] || '#34495e'

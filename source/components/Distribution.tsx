@@ -1,5 +1,5 @@
+import { ThemeColorsContext } from 'Components/utils/colors'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { ThemeColoursContext } from 'Components/utils/withColours'
 import Value from 'Components/Value'
 import { findRuleByDottedName } from 'Engine/rules'
 import React, { useContext } from 'react'
@@ -57,7 +57,7 @@ export function DistributionBranch({
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	const colours = useContext(ThemeColoursContext)
+	const { color } = useContext(ThemeColorsContext)
 	const branche = findRuleByDottedName(rules, dottedName)
 	const montant = brancheInViewport ? value : 0
 	const styles = useSpring({
@@ -86,7 +86,7 @@ export function DistributionBranch({
 				<ChartItemBar
 					{...{
 						styles,
-						colour: colours.colour,
+						color,
 						montant,
 						total: distribution.total
 					}}
@@ -96,12 +96,12 @@ export function DistributionBranch({
 	)
 }
 
-let ChartItemBar = ({ styles, colour, montant }) => (
+let ChartItemBar = ({ styles, color, montant }) => (
 	<div className="distribution-chart__bar-container">
 		<animated.div
 			className="distribution-chart__bar"
 			style={{
-				backgroundColor: colour,
+				backgroundColor: color,
 				...(!isIE()
 					? { flex: styles.flex }
 					: { minWidth: styles.flex * 500 + 'px' })
@@ -111,7 +111,7 @@ let ChartItemBar = ({ styles, colour, montant }) => (
 			css={`
 				font-weight: bold;
 				margin-left: 1rem;
-				color: var(--textColourOnWhite);
+				color: var(--textColorOnWhite);
 			`}
 		>
 			<Value maximumFractionDigits={0} unit="€">

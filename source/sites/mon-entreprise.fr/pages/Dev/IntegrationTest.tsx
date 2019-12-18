@@ -12,7 +12,7 @@ export default function IntegrationTest() {
 	const [currentModule, setCurrentModule] = React.useState(
 		integrableModuleNames[0]
 	)
-	const [colour, setColour] = React.useState('#005aa1')
+	const [color, setColor] = React.useState('#005aa1')
 	const [version, setVersion] = React.useState(0)
 	const domNode = React.useRef<HTMLDivElement>(null)
 	React.useEffect(() => {
@@ -20,7 +20,7 @@ export default function IntegrationTest() {
 		script.id = 'script-monentreprise'
 		script.src = window.location.origin + '/simulateur-iframe-integration.js'
 		script.dataset.module = currentModule
-		script.dataset.couleur = colour
+		script.dataset.couleur = color
 		if (domNode.current) {
 			domNode.current.innerHTML = ''
 			domNode.current.appendChild(script)
@@ -44,7 +44,7 @@ export default function IntegrationTest() {
 
 			<h2>Quelle couleur ?</h2>
 			<Suspense fallback={<div>Chargement...</div>}>
-				<LazyColorPicker colour={colour} onChange={setColour} />
+				<LazyColorPicker color={color} onChange={setColor} />
 			</Suspense>
 
 			<button
@@ -60,7 +60,7 @@ export default function IntegrationTest() {
 				`}
 			>
 				<p>Code d'intégration </p>
-				<IntegrationCode colour={colour} module={currentModule} />
+				<IntegrationCode color={color} module={currentModule} />
 				<div style={{ border: '2px dashed blue' }}>
 					<div ref={domNode} />
 				</div>
@@ -71,7 +71,7 @@ export default function IntegrationTest() {
 
 export let IntegrationCode = ({
 	module = 'simulateur-embauche',
-	colour = '#2975D1'
+	color = '#2975D1'
 }) => (
 	<code
 		css={`
@@ -114,7 +114,7 @@ export let IntegrationCode = ({
 		="script-simulateur-embauche"
 		<em>data-module</em>="
 		<span>{module}</span>"<em>data-couleur</em>="
-		<span id="scriptColor">{colour}</span>" <em>src</em>
+		<span id="scriptColor">{color}</span>" <em>src</em>
 		="https://mon-entreprise.fr/simulateur-iframe-integration.js">
 		<span>{'<'}</span>
 		<span>/</span>

@@ -25,10 +25,10 @@ let Landing = () => {
 			<div className="app-content ui__ container">
 				<div css="text-align: center">
 					<h1 css="">
-						<span css="border: 3px solid var(--colour); color: var(--colour); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
+						<span css="border: 3px solid var(--color); color: var(--color); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
 							publi
 						</span>
-						<span css="background: var(--colour); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--colour)">
+						<span css="background: var(--color); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--color)">
 							codes
 						</span>
 					</h1>

@@ -56,7 +56,7 @@ function StepsTable({ rules, onClose }) {
 					<tr
 						key={rule.dottedName}
 						css={`
-							background: var(--lightestColour);
+							background: var(--lightestColor);
 						`}
 					>
 						<td>
@@ -75,7 +75,7 @@ function StepsTable({ rules, onClose }) {
 									font-weight: 500;
 									> span {
 										border-bottom: 1px dashed blue;
-										border-bottom-color: var(--textColourOnWhite);
+										border-bottom-color: var(--textColorOnWhite);
 										padding: 0.05em 0em;
 										display: inline-block;
 									}

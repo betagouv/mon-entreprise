@@ -1,8 +1,8 @@
 import classnames from 'classnames'
 import { T } from 'Components'
-import withColours from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { compose, is } from 'ramda'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -26,17 +26,14 @@ import SendButton from './SendButton'
 
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
 // dont Question est un example
-export default compose(
-	FormDecorator('question'),
-	withColours
-)(function Question({
+export default compose(FormDecorator('question'))(function Question({
 	choices,
 	submit,
-	colours,
 	name,
 	setFormValue,
 	value: currentValue
 }) {
+	const colors = useContext(ThemeColorsContext)
 	const [touched, setTouched] = useState(false)
 	const onChange = useCallback(
 		value => {
@@ -52,7 +49,7 @@ export default compose(
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, currentValue, submit, colours, onChange }}
+						{...{ value, label, currentValue, submit, colors, onChange }}
 					/>
 				))}
 			</div>
@@ -74,7 +71,7 @@ export default compose(
 								label: 'Aucun',
 								currentValue,
 								submit,
-								colours,
+								colors,
 								dottedName: null,
 								onChange
 							}}
@@ -97,7 +94,7 @@ export default compose(
 										dottedName,
 										currentValue,
 										submit,
-										colours,
+										colors,
 										onChange
 									}}
 								/>
@@ -118,7 +115,7 @@ export default compose(
 			<SendButton
 				{...{
 					disabled: !touched,
-					colours,
+					colors,
 					error: false,
 					submit
 				}}
@@ -134,13 +131,7 @@ let RadioLabel = props => (
 	</>
 )
 
-const RadioLabelContent = compose(withColours)(function RadioLabelContent({
-	value,
-	label,
-	currentValue,
-	onChange,
-	submit
-}) {
+function RadioLabelContent({ value, label, currentValue, onChange, submit }) {
 	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
 		selected = value === currentValue
 
@@ -164,4 +155,4 @@ const RadioLabelContent = compose(withColours)(function RadioLabelContent({
 			/>
 		</label>
 	)
-})
+}

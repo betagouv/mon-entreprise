@@ -55,11 +55,11 @@ export default function SearchBar({
 					padding: 0.4rem;
 					border-radius: 0.3rem;
 					:hover {
-						background: var(--colour);
-						color: var(--textColour);
+						background: var(--color);
+						color: var(--textColor);
 					}
 					:hover a {
-						color: var(--textColour);
+						color: var(--textColor);
 					}
 				`}
 				onClick={() => setSelectedOption(option)}

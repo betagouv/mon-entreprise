@@ -162,7 +162,7 @@
 .step input[type='text'] {
 	border-bottom: 1px solid;
 	border-radius: 0.3em;
-	color: var(--colour);
+	color: var(--color);
 	display: inline-block;
 	line-height: 1.6em;
 	height: 1.6em; /* IE 11 needs this */
@@ -363,19 +363,19 @@ for the appearing element to appear without stacking up below the first one */
 }
 
 .step label.userAnswerButton {
-	border: 1px solid var(--colour);
+	border: 1px solid var(--color);
 	background-color: white;
-	color: var(--textColourOnWhite);
+	color: var(--textColorOnWhite);
 }
 .step label.userAnswerButton.selected {
-	background: var(--colour);
-	border: 1px solid var(--colour);
-	color: var(--textColour);
+	background: var(--color);
+	border: 1px solid var(--color);
+	color: var(--textColor);
 }
 @media (hover) {
 	.step label.userAnswerButton:hover {
-		background: var(--colour);
-		border: 1px solid var(--colour);
-		color: var(--textColour);
+		background: var(--color);
+		border: 1px solid var(--color);
+		color: var(--textColor);
 	}
 }

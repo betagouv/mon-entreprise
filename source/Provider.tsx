@@ -1,4 +1,4 @@
-import { ThemeColoursProvider } from 'Components/utils/withColours'
+import { ThemeColorsProvider } from 'Components/utils/colors'
 import { SitePathProvider, SitePaths } from 'Components/utils/withSitePaths'
 import { TrackerProvider } from 'Components/utils/withTracker'
 import { createBrowserHistory, History } from 'history'
@@ -102,8 +102,8 @@ export default class Provider extends PureComponent<ProviderProps> {
 		return (
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>
-				<ThemeColoursProvider
-					colour={iframeCouleur && decodeURIComponent(iframeCouleur)}
+				<ThemeColorsProvider
+					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
 					<TrackerProvider value={this.props.tracker}>
 						<SitePathProvider value={this.props.sitePaths}>
@@ -114,7 +114,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 							</I18nextProvider>
 						</SitePathProvider>
 					</TrackerProvider>
-				</ThemeColoursProvider>
+				</ThemeColorsProvider>
 			</ReduxProvider>
 		)
 	}
