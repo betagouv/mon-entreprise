@@ -11,7 +11,7 @@ type AnimatedTargetValueProps = {
 	children?: React.ReactNode
 }
 
-const formatDifference: typeof formatCurrency = (difference, language) => {
+const formatDifference = (difference: number, language: string) => {
 	const prefix = difference > 0 ? '+' : ''
 	return prefix + formatCurrency(difference, language)
 }
@@ -25,12 +25,12 @@ export default function AnimatedTargetValue({
 
 	// We don't want to show the animated if the difference comes from a change in the unit
 	const currentUnit = useSelector(
-		(state: RootState) => state.simulation.defaultUnits[0]
+		(state: RootState) => state?.simulation?.defaultUnits[0]
 	)
 	const previousUnit = useRef(currentUnit)
 
 	const difference =
-		previousValue.current === value || Number.isNaN(value)
+		previousValue.current === value || (value && Number.isNaN(value))
 			? null
 			: (value || 0) - (previousValue.current || 0)
 	const shouldDisplayDifference =
@@ -44,7 +44,7 @@ export default function AnimatedTargetValue({
 	return (
 		<>
 			<span className="Rule-value">
-				{shouldDisplayDifference && (
+				{shouldDisplayDifference && difference !== null && (
 					<Evaporate
 						style={{
 							color: difference > 0 ? 'chartreuse' : 'red',

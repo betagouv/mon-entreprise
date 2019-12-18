@@ -147,12 +147,13 @@ function WarningRegimeSpecial() {
 	const situation = useSelector(situationSelector)
 	const recettes = situation['artiste-auteur . revenus . BNC . recettes']
 	const showWarning = recettes !== 0 && recettes >= 70000
+	if (!showWarning) {
+		return null
+	}
 	return (
-		showWarning && (
-			<li>
-				Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
-			</li>
-		)
+		<li>
+			Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
+		</li>
 	)
 }
 
@@ -179,23 +180,25 @@ function CotisationsResult() {
 		setDisplay(true)
 	}
 
+	if (!display) {
+		return null
+	}
+
 	return (
-		display && (
-			<Animate.appear>
-				<ResultBlock className="ui__ card">
-					<ResultLabel>Montant des cotisations</ResultLabel>
-					<RuleLink dottedName={cotisationRule.dottedName}>
-						{formatValue({
-							value: cotisationRule.nodeValue,
-							language: 'fr',
-							unit: '€',
-							maximumFractionDigits: 0
-						})}
-					</RuleLink>
-				</ResultBlock>
-				{cotisationRule.nodeValue ? <RepartitionCotisations /> : null}
-			</Animate.appear>
-		)
+		<Animate.appear>
+			<ResultBlock className="ui__ card">
+				<ResultLabel>Montant des cotisations</ResultLabel>
+				<RuleLink dottedName={cotisationRule.dottedName}>
+					{formatValue({
+						value: cotisationRule.nodeValue,
+						language: 'fr',
+						unit: '€',
+						maximumFractionDigits: 0
+					})}
+				</RuleLink>
+			</ResultBlock>
+			{cotisationRule.nodeValue ? <RepartitionCotisations /> : null}
+		</Animate.appear>
 	)
 }
 

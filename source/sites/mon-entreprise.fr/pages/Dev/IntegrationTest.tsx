@@ -21,8 +21,10 @@ export default function IntegrationTest() {
 		script.src = window.location.origin + '/simulateur-iframe-integration.js'
 		script.dataset.module = currentModule
 		script.dataset.couleur = colour
-		domNode.current.innerHTML = ''
-		domNode.current.appendChild(script)
+		if (domNode.current) {
+			domNode.current.innerHTML = ''
+			domNode.current.appendChild(script)
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [version])
 	return (

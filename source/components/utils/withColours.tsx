@@ -97,7 +97,7 @@ export type ThemeColours = ReturnType<typeof generateTheme>
 export const ThemeColoursContext = createContext<ThemeColours>(generateTheme())
 
 type ProviderProps = {
-	colour: string
+	colour?: string
 	children: React.ReactNode
 }
 

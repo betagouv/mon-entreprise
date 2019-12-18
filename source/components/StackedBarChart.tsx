@@ -87,7 +87,7 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	const percentages = roundedPercentages(data.map(d => d.nodeValue))
+	const percentages = roundedPercentages(data.map(d => d.nodeValue || 0))
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]

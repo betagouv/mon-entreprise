@@ -274,7 +274,7 @@ let TargetInputOrValue = ({
 				</>
 			) : (
 				<span>
-					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
+					{value && Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
 			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}

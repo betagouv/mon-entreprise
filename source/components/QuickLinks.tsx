@@ -30,24 +30,26 @@ export default function QuickLinks() {
 		toPairs
 	)(quickLinks)
 
+	if (links.length < 1) {
+		return null
+	}
+
 	return (
-		!!links.length && (
-			<span>
-				<small>Questions :</small>
-				{links.map(([label, dottedName]) => (
-					<button
-						key={dottedName}
-						className={`ui__ link-button ${
-							dottedName === currentQuestion ? 'active' : ''
-						}`}
-						css="margin: 0 0.4rem !important"
-						onClick={() => dispatch(goToQuestion(dottedName))}
-					>
-						<T k={'quicklinks.' + label}>{label}</T>
-					</button>
-				))}{' '}
-				{/* <button className="ui__ link-button">Voir la liste</button> */}
-			</span>
-		)
+		<span>
+			<small>Questions :</small>
+			{links.map(([label, dottedName]) => (
+				<button
+					key={dottedName}
+					className={`ui__ link-button ${
+						dottedName === currentQuestion ? 'active' : ''
+					}`}
+					css="margin: 0 0.4rem !important"
+					onClick={() => dispatch(goToQuestion(dottedName))}
+				>
+					<T k={'quicklinks.' + label}>{label}</T>
+				</button>
+			))}{' '}
+			{/* <button className="ui__ link-button">Voir la liste</button> */}
+		</span>
 	)
 }

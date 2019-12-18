@@ -20,7 +20,7 @@ import * as Animate from 'Ui/animate'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
-const infereRégimeFromCompanyDetails = (company: Company) => {
+const infereRégimeFromCompanyDetails = (company: Company | null) => {
 	if (!company) {
 		return null
 	}
@@ -28,14 +28,14 @@ const infereRégimeFromCompanyDetails = (company: Company) => {
 		return 'auto-entrepreneur'
 	}
 	if (
-		['EI', 'EURL'].includes(company.statutJuridique) ||
+		['EI', 'EURL'].includes(company.statutJuridique ?? '') ||
 		(company.statutJuridique === 'SARL' && company.isDirigeantMajoritaire)
 	) {
 		return 'indépendant'
 	}
 
 	if (
-		['SASU', 'SAS'].includes(company.statutJuridique) ||
+		['SASU', 'SAS'].includes(company.statutJuridique ?? '') ||
 		(company.statutJuridique === 'SARL' && !company.isDirigeantMajoritaire)
 	) {
 		return 'assimilé-salarié'
@@ -193,7 +193,7 @@ export default function SocialSecurity() {
 }
 
 type CompanySectionProps = {
-	company: Company
+	company: Company | null
 }
 
 const CompanySection = ({ company }: CompanySectionProps) => {
@@ -203,7 +203,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 		false
 	)
 
-	const companyRef = useRef(null)
+	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {
 		if (companyRef.current !== company) {
 			companyRef.current = company

@@ -34,7 +34,7 @@ export default function SalaryExplanation() {
 	const showDistributionFirst = useSelector(
 		(state: RootState) => !state.conversationSteps.foldedSteps.length
 	)
-	const distributionRef = useRef<HTMLDivElement>()
+	const distributionRef = useRef<HTMLDivElement>(null)
 	return (
 		<ErrorBoundary>
 			<Animate.fromTop key={showDistributionFirst.toString()}>
@@ -51,7 +51,7 @@ export default function SalaryExplanation() {
 							<button
 								className="ui__ small simple button"
 								onClick={() =>
-									distributionRef.current.scrollIntoView({
+									distributionRef.current?.scrollIntoView({
 										behavior: 'smooth',
 										block: 'start'
 									})
@@ -130,7 +130,7 @@ function PaySlipSection() {
 	return (
 		<section>
 			<h2>
-				{unit.endsWith('mois') ? (
+				{unit?.endsWith('mois') ? (
 					<Trans>Fiche de paie</Trans>
 				) : (
 					<Trans>Détail annuel des cotisations</Trans>

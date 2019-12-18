@@ -131,14 +131,16 @@ type CacheMeta = {
 	}
 }
 
-export let analyseMany = (parsedRules, targetNames, defaultUnits = []) => (
-	situationGate: (name: DottedName) => any
-) => {
+export let analyseMany = (
+	parsedRules,
+	targetNames,
+	defaultUnits: Array<string> = []
+) => (situationGate: (name: DottedName) => any) => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	defaultUnits = defaultUnits.map(parseUnit)
+	const defaultParsedUnits = defaultUnits.map(parseUnit)
 	let cache = {
-		_meta: { contextRule: [], defaultUnits } as CacheMeta
+		_meta: { contextRule: [], defaultUnits: defaultParsedUnits } as CacheMeta
 	}
 
 	let parsedTargets = targetNames.map(t => {

@@ -1,14 +1,14 @@
-export let capitalise0 = (name: string): string =>
+export let capitalise0 = (name: string | undefined) =>
 	name && name[0].toUpperCase() + name.slice(1)
 
-export function debounce<ArgType>(
-	timeout: number,
-	fn: (arg?: ArgType) => void
-): (arg?: ArgType) => void {
+export const debounce = <F extends (...args: any[]) => void>(
+	waitFor: number,
+	fn: F
+) => {
 	let timeoutId: ReturnType<typeof setTimeout>
-	return (...args) => {
+	return (...args: any[]) => {
 		clearTimeout(timeoutId)
-		timeoutId = setTimeout(() => fn(...args), timeout)
+		timeoutId = setTimeout(() => fn(...args), waitFor)
 	}
 }
 

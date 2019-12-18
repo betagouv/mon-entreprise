@@ -25,11 +25,11 @@ export default function CurrencyInput({
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
 	const onChangeDebounced = useRef(
-		debounceTimeout ? debounce(debounceTimeout, onChange) : onChange
+		debounceTimeout && onChange ? debounce(debounceTimeout, onChange) : onChange
 	)
 	// We need some mutable reference because the <NumberFormat /> component doesn't provide
 	// the DOM `event` in its custom `onValueChange` handler
-	const nextValue = useRef(null)
+	const nextValue = useRef('')
 
 	const inputRef = useRef<HTMLInputElement>()
 
@@ -51,8 +51,8 @@ export default function CurrencyInput({
 			...event.target,
 			value: nextValue.current
 		}
-		nextValue.current = null
-		onChangeDebounced.current(event)
+		nextValue.current = ''
+		onChangeDebounced.current?.(event)
 	}
 
 	const {
@@ -71,7 +71,7 @@ export default function CurrencyInput({
 		<div
 			className={classnames(className, 'currencyInput__container')}
 			{...(valueLength > 5 ? { style: { width } } : {})}
-			onClick={() => inputRef.current.focus()}
+			onClick={() => inputRef.current?.focus()}
 		>
 			{!currentValue && isCurrencyPrefixed && currencySymbol}
 			<NumberFormat

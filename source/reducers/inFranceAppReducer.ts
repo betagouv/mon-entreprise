@@ -78,10 +78,7 @@ function companyCreationChecklist(
 	}
 }
 
-function companyStatusChoice(
-	state: LegalStatus = null,
-	action: Action
-): LegalStatus {
+function companyStatusChoice(state: LegalStatus | null = null, action: Action) {
 	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
 		return null
 	}
@@ -131,7 +128,7 @@ export type Company = {
 	siren: string
 	catégorieJuridique?: string
 	statutJuridique?: string
-	dateDébutActivité?: Date
+	dateDébutActivité?: string
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
 	localisation?: GeoDetails & {
@@ -140,7 +137,7 @@ export type Company = {
 	}
 }
 
-function existingCompany(state: Company = null, action): Company {
+function existingCompany(state: Company | null = null, action): Company | null {
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
 	}

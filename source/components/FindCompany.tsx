@@ -7,7 +7,9 @@ import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
 
 export default function Search() {
-	const [searchResults, setSearchResults] = useState<Array<Etablissement>>()
+	const [searchResults, setSearchResults] = useState<Array<
+		Etablissement
+	> | null>()
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(

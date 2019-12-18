@@ -98,7 +98,7 @@ export let analysisToCotisations = (analysis: Analysis) => {
 	]
 		.map(name => analysis.cache[name])
 		.map(pathOr([], ['explanation', 'formule', 'explanation', 'explanation']))
-		.reduce(concat, [])
+		.reduce(concat as any, [])
 
 	const cotisations = pipe(
 		map((rule: any) =>

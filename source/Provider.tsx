@@ -95,9 +95,10 @@ export default class Provider extends PureComponent<ProviderProps> {
 		this.props.tracker.disconnectFromHistory()
 	}
 	render() {
-		const iframeCouleur = new URLSearchParams(
-			document?.location.search.substring(1)
-		).get('couleur')
+		const iframeCouleur =
+			new URLSearchParams(document?.location.search.substring(1)).get(
+				'couleur'
+			) ?? undefined
 		return (
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>

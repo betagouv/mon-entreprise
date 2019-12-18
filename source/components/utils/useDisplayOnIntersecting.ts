@@ -5,7 +5,7 @@ export default function({
 	rootMargin,
 	threshold = 0
 }: IntersectionObserverInit): [React.RefObject<HTMLDivElement>, boolean] {
-	const ref = useRef<HTMLDivElement>()
+	const ref = useRef<HTMLDivElement>(null)
 	const [wasOnScreen, setWasOnScreen] = useState(false)
 
 	useEffect(() => {
@@ -13,7 +13,7 @@ export default function({
 			([entry]) => {
 				if (entry.isIntersecting) {
 					setWasOnScreen(entry.isIntersecting)
-					observer.unobserve(ref.current)
+					ref.current && observer.unobserve(ref.current)
 				}
 			},
 			{
@@ -23,11 +23,11 @@ export default function({
 			}
 		)
 		const node = ref.current
-		if (ref.current) {
+		if (node) {
 			observer.observe(node)
 		}
 		return () => {
-			observer.unobserve(node)
+			node && observer.unobserve(node)
 		}
 	}, [root, rootMargin, threshold])
 

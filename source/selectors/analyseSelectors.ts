@@ -27,7 +27,7 @@ import {
 	zipWith
 } from 'ramda'
 import { useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
+import { RootState, Simulation } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 import { DottedName } from 'Types/rule'
 import { mapOrApply } from '../utils'
@@ -51,7 +51,7 @@ export let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
 export let targetNamesSelector = (state: RootState) => {
 	let objectifs = configSelector(state).objectifs
 	if (!objectifs || !Array.isArray(objectifs)) {
-		return null
+		return []
 	}
 	const targetNames = [].concat(
 		...(objectifs as any).map(objectifOrGroup =>
@@ -121,9 +121,7 @@ const createSituationBrancheSelector = (
 			situation,
 			branches,
 			configSituation
-		):
-			| RootState['simulation']['situation']
-			| Array<RootState['simulation']['situation']> => {
+		): Simulation['situation'] | Array<Simulation['situation']> => {
 			if (branches) {
 				return branches.map(({ situation: branchSituation }) => ({
 					...configSituation,
@@ -215,7 +213,7 @@ export let exampleAnalysisSelector = createSelector(
 			rules,
 			dottedName,
 			(dottedName: DottedName) => situation[dottedName],
-			example.defaultUnits
+			example?.defaultUnits
 		)
 )
 
