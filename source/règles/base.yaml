@@ -3297,7 +3297,7 @@ entreprise . catégorie d'activité . service ou vente:
       possibilités:
         - service
         - vente
-  par défaut: service
+  par défaut: vente
 
 entreprise . catégorie d'activité . service ou vente . vente:
   titre: vente de biens
@@ -3774,32 +3774,40 @@ dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
   contrôles:
     - si: base des cotisations > plafond
-      message: Le seuil annuel de chiffre d'affaires dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
+      message: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
       niveau: avertissement
+
 
 dirigeant . auto-entrepreneur . plafond:
   description: |
-    Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise. Lors de sa déclaration d'activité, le micro-entrepreneur a créé une entreprise individuelle ; le dépassement des seuils de chiffre d'affaires n'a pas d'incidence sur son statut juridique, il reste entrepreneur individuel.
-    
-    En cas de dépassement consécutif sur deux ans, l'auto-entrepreneur bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+    Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise. 
 
-    Lors de la première année d'activité, le seuil est proratisé au cours de l'exercice. Si, par exemple, le CA dépasse la moitié du seuil maximum au bout de 6 mois, le seuil est considéré comme dépassé.
+    En cas de dépassement **sur deux années consécutives**, l'auto-entrepreneur bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+
+    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité. 
+    
+    Exemple :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation. 
+    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+    > 
+    > `50 000€ x (365/153) = 119 280 €`
+    
 
     Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
 
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
-
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html 
+    Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
   unité: €/an
-
   formule:
     variations:
-      - si:
-          toutes ces conditions:
-            - entreprise . catégorie d'activité != 'libérale'
-            - une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente'
-                - entreprise . catégorie d'activité . restauration ou hébergement
+      - si: 
+          une de ces conditions:
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
+            - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 170000 €/an
       - sinon: 70000 €/an
 
@@ -3871,6 +3879,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
   titre: Contribution à la formation professionnelle
   unité par défaut: €/mois
   références:
+    shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
     multiplication:
@@ -3881,12 +3890,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
             alors: 0.3%
           - si: entreprise . catégorie d'activité . libérale règlementée
             alors: 0.2%
-          - si:
-              une de ces conditions:
-                - entreprise . catégorie d'activité = 'commerciale ou industrielle'
-                - entreprise . catégorie d'activité = 'libérale'
-            alors: 0.1%
-          - sinon: 0%
+          - sinon: 0.1%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
