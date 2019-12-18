@@ -5,12 +5,12 @@ import {
 import {
 	collectDefaults,
 	disambiguateExampleSituation,
-	findRuleByDottedName
+	findRuleByDottedName,
+	splitName
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
 import {
 	add,
-	defaultTo,
 	difference,
 	equals,
 	head,
@@ -18,13 +18,11 @@ import {
 	isNil,
 	last,
 	length,
-	map,
 	mergeDeepWith,
 	negate,
 	pick,
 	pipe,
 	sortBy,
-	split,
 	takeWhile,
 	zipWith
 } from 'ramda'
@@ -40,12 +38,7 @@ let configSelector = (state: RootState) =>
 	(state.simulation && state.simulation.config) || {}
 
 // We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
-export let flatRulesSelector = (
-	state: RootState,
-	props?: { rules: RootState['rules'] }
-) => {
-	return (props && props.rules) || state.rules
-}
+export let flatRulesSelector = (state: RootState) => state.rules
 
 export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
 	parseAll(rules)
@@ -174,7 +167,7 @@ let analyseRule = (parsedRules, ruleDottedName, situationGate, defaultUnits) =>
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
-		(_, props) => props.dottedName,
+		(_, props: { dottedName: DottedName }) => props.dottedName,
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0,
 		defaultUnitsSelector
@@ -212,7 +205,7 @@ let exampleSituationSelector = createSelector(
 export let exampleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
-		(_, props) => props.dottedName,
+		(_, props: { dottedName: DottedName }) => props.dottedName,
 		exampleSituationSelector,
 		({ currentExample }) => currentExample
 	],
@@ -256,7 +249,7 @@ export let analysisWithDefaultsSelector = makeAnalysisSelector(
 export let branchAnalyseSelector = createSelector(
 	[
 		analysisWithDefaultsSelector,
-		(_, props) => props?.situationBranchName,
+		(_, props: { situationBranchName: string }) => props?.situationBranchName,
 		branchesSelector
 	],
 	(analysedSituations, branchName, branches) => {
@@ -286,15 +279,13 @@ let currentMissingVariablesByTargetSelector = createSelector(
 	}
 )
 
-const similarity = (rule1: DottedName, rule2: DottedName) =>
+const similarity = (rule1: string = '', rule2: string = '') =>
 	pipe(
-		map(defaultTo('')),
-		map(split(' . ')),
-		(rules: [string[], string[]]) => zipWith(equals, ...rules),
+		zipWith(equals),
 		takeWhile(Boolean),
 		length,
 		negate
-	)([rule1, rule2])
+	)(splitName(rule1), splitName(rule2))
 
 export let nextStepsSelector = createSelector(
 	[

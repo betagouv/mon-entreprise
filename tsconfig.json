@@ -18,6 +18,7 @@
 		// settings one by one.
 		"noImplicitThis": true,
 		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],

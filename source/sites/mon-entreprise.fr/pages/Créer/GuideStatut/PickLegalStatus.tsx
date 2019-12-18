@@ -108,7 +108,8 @@ export default function SetMainStatus() {
 
 			<ul>
 				{Object.keys(filter(Boolean, possibleStatus)).map(
-					(statut: keyof typeof possibleStatus) => (
+					/* https://github.com/microsoft/TypeScript/issues/32811 */
+					(statut: any) => (
 						<li key={statut}>
 							<strong>
 								<StatutTitle statut={statut} language={i18n.language} />

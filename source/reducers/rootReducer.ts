@@ -281,10 +281,10 @@ const mainReducer = (state, action: Action) =>
 		inFranceApp: inFranceAppReducer
 	})(state, action)
 
-export default reduceReducers(
+export default reduceReducers<RootState>(
 	existingCompanyRootReducer,
-	storageRootReducer,
-	mainReducer
+	mainReducer as any,
+	storageRootReducer as any
 )
 
 export type RootState = ReturnType<typeof mainReducer>

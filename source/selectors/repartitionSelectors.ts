@@ -102,7 +102,7 @@ function applyReduction(
 		reduce(mergeWith(add), {})
 	)(répartitionMap) as any).partPatronale
 	return mapObjIndexed(
-		({ partPatronale, partSalariale }, branche) => ({
+		({ partPatronale, partSalariale }, branche: string) => ({
 			partPatronale: brancheConcernéeParLaRéduction.find(equals(branche))
 				? partPatronale - (partPatronale / totalPatronal) * réduction.nodeValue
 				: partPatronale,
@@ -132,10 +132,7 @@ const répartition = analysis => {
 		)
 	}
 
-	let répartitionMap = map(totalCotisations, cotisations) as Record<
-		Branch,
-		MontantPartagé
-	>
+	let répartitionMap = map(totalCotisations as any, cotisations) as any
 	if (CSG) {
 		applyCSGInPlace(CSG, répartitionMap)
 	}
