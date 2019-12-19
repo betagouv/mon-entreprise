@@ -1,6 +1,6 @@
 import { Action } from 'Actions/actions'
 import { Analysis } from 'Engine/traverse'
-import { areUnitConvertible, convertUnit, parseUnit } from 'Engine/units'
+import { areUnitConvertible, convertUnit, parseUnit, Unit } from 'Engine/units'
 import {
 	defaultTo,
 	dissoc,
@@ -22,10 +22,7 @@ import i18n, { AvailableLangs } from '../i18n'
 import inFranceAppReducer from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
-function explainedVariable(
-	state: DottedName = null,
-	action: Action
-): DottedName {
+function explainedVariable(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
 		case 'EXPLAIN_VARIABLE':
 			return action.variableName
@@ -36,17 +33,23 @@ function explainedVariable(
 	}
 }
 
-function currentExample(state = null, action: Action) {
+type Example = null | {
+	name: string
+	situation: object
+	dottedName: DottedName
+	defaultUnits?: Array<Unit>
+}
+
+function currentExample(state: Example = null, action: Action): Example {
 	switch (action.type) {
 		case 'SET_EXAMPLE':
-			const { situation, name, dottedName } = action
-			return name != null ? { name, situation, dottedName } : null
+			return action.name != null ? action : null
 		default:
 			return state
 	}
 }
 
-function situationBranch(state: number = null, action: Action): number {
+function situationBranch(state: number | null = null, action: Action) {
 	switch (action.type) {
 		case 'SET_SITUATION_BRANCH':
 			return action.id
@@ -55,10 +58,7 @@ function situationBranch(state: number = null, action: Action): number {
 	}
 }
 
-function activeTargetInput(
-	state: DottedName | null = null,
-	action: Action
-): DottedName | null {
+function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
 			return action.name
@@ -83,7 +83,7 @@ function lang(
 
 type ConversationSteps = {
 	foldedSteps: Array<DottedName>
-	unfoldedStep?: DottedName
+	unfoldedStep?: DottedName | null
 }
 
 function conversationSteps(
@@ -178,9 +178,9 @@ export type Simulation = {
 }
 
 function simulation(
-	state: Simulation = null,
+	state: Simulation | null = null,
 	action: Action,
-	analysis: Analysis | Array<Analysis>
+	analysis: Analysis | Array<Analysis> | null
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
@@ -272,19 +272,19 @@ const mainReducer = (state, action: Action) =>
 		rules: defaultTo(null) as Reducer<Array<Rule>>,
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
-		simulation: (a: Simulation | null, b: Action): Simulation =>
+		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b, a && analysisWithDefaultsSelector(state)),
-		previousSimulation: defaultTo(null) as Reducer<SavedSimulation>,
+		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
 		currentExample,
 		situationBranch,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer
 	})(state, action)
 
-export default reduceReducers(
+export default reduceReducers<RootState>(
 	existingCompanyRootReducer,
-	storageRootReducer,
-	mainReducer
-)
+	mainReducer as any,
+	storageRootReducer as any
+) as Reducer<RootState>
 
 export type RootState = ReturnType<typeof mainReducer>

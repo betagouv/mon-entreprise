@@ -24,8 +24,9 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 						{!explanation.plancher.isDefault && (
 							<span
 								css={
-									nodeValue === val(explanation.plancher) &&
-									'background: yellow'
+									nodeValue === val(explanation.plancher)
+										? 'background: yellow'
+										: {}
 								}
 							>
 								<strong className="key">Minimum : </strong>
@@ -35,7 +36,9 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 						{!explanation.plafond.isDefault && (
 							<span
 								css={
-									nodeValue === val(explanation.plafond) && 'background: yellow'
+									nodeValue === val(explanation.plafond)
+										? 'background: yellow'
+										: {}
 								}
 							>
 								<strong className="key">Plafonné à : </strong>

@@ -1,7 +1,7 @@
-import withColours from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { currencyFormat } from 'Engine/format'
 import { compose } from 'ramda'
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
@@ -10,18 +10,15 @@ import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
 
 // TODO: fusionner Input.js et CurrencyInput.js
-export default compose(
-	FormDecorator('input'),
-	withColours
-)(function Input({
+export default compose(FormDecorator('input'))(function Input({
 	suggestions,
 	setFormValue,
 	submit,
 	dottedName,
 	value,
-	colours,
 	unit
 }) {
+	const colors = useContext(ThemeColorsContext)
 	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
 	const { language } = useTranslation().i18n
 
@@ -47,7 +44,7 @@ export default compose(
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
-					style={{ border: `1px solid ${colours.textColourOnWhite}` }}
+					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
 					onValueChange={({ floatValue }) => {
 						debouncedSetFormValue(floatValue)
 					}}

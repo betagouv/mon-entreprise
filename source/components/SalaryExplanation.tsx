@@ -2,7 +2,7 @@ import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
@@ -34,7 +34,7 @@ export default function SalaryExplanation() {
 	const showDistributionFirst = useSelector(
 		(state: RootState) => !state.conversationSteps.foldedSteps.length
 	)
-	const distributionRef = useRef<HTMLDivElement>()
+	const distributionRef = useRef<HTMLDivElement>(null)
 	return (
 		<ErrorBoundary>
 			<Animate.fromTop key={showDistributionFirst.toString()}>
@@ -51,7 +51,7 @@ export default function SalaryExplanation() {
 							<button
 								className="ui__ small simple button"
 								onClick={() =>
-									distributionRef.current.scrollIntoView({
+									distributionRef.current?.scrollIntoView({
 										behavior: 'smooth',
 										block: 'start'
 									})
@@ -99,7 +99,7 @@ function RevenueRepatitionSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColoursContext)
+	const { palettes } = useContext(ThemeColorsContext)
 
 	return (
 		<section>
@@ -130,7 +130,7 @@ function PaySlipSection() {
 	return (
 		<section>
 			<h2>
-				{unit.endsWith('mois') ? (
+				{unit?.endsWith('mois') ? (
 					<Trans>Fiche de paie</Trans>
 				) : (
 					<Trans>Détail annuel des cotisations</Trans>

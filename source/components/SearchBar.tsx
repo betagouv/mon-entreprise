@@ -17,6 +17,8 @@ type SearchBarProps = {
 	finally?: () => void
 }
 
+type Option = Pick<Rule, 'dottedName' | 'name' | 'title'>
+
 export default function SearchBar({
 	rules,
 	showDefaultList,
@@ -24,7 +26,7 @@ export default function SearchBar({
 }: SearchBarProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const [input, setInput] = useState('')
-	const [selectedOption, setSelectedOption] = useState(null)
+	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
 	const [results, setResults] = useState([])
 	const { i18n } = useTranslation()
 
@@ -44,7 +46,7 @@ export default function SearchBar({
 		return <ul>{options.map(option => renderOption(option))}</ul>
 	}
 
-	let renderOption = option => {
+	let renderOption = (option: Option) => {
 		let { title, dottedName, name } = option
 		return (
 			<li
@@ -53,11 +55,11 @@ export default function SearchBar({
 					padding: 0.4rem;
 					border-radius: 0.3rem;
 					:hover {
-						background: var(--colour);
-						color: var(--textColour);
+						background: var(--color);
+						color: var(--textColor);
 					}
 					:hover a {
-						color: var(--textColour);
+						color: var(--textColor);
 					}
 				`}
 				onClick={() => setSelectedOption(option)}
@@ -86,14 +88,14 @@ export default function SearchBar({
 				>
 					<Highlighter
 						searchWords={[input]}
-						textToHighlight={title || capitalise0(name)}
+						textToHighlight={title || capitalise0(name) || ''}
 					/>
 				</Link>
 			</li>
 		)
 	}
 
-	if (selectedOption != null) {
+	if (selectedOption !== null) {
 		finallyCallback && finallyCallback()
 		return (
 			<Redirect

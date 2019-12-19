@@ -30,10 +30,10 @@
 
 	/* ie11 */
 	border-color: rgb(41, 117, 209);
-	border-color: var(--colour);
+	border-color: var(--color);
 	/* ie11 */
 	color: rgb(41, 117, 209);
-	color: var(--colour);
+	color: var(--color);
 	background-image: linear-gradient(
 		50deg,
 		rgba(39, 69, 195, 0.87) 5%,
@@ -42,8 +42,8 @@
 	);
 	background-image: linear-gradient(
 		50deg,
-		var(--colour) 5%,
-		var(--lightColour) 50%,
+		var(--color) 5%,
+		var(--lightColor) 50%,
 		rgba(255, 255, 255, 0.52) 55%
 	);
 	background-size: 280%;
@@ -58,9 +58,9 @@
 	);
 	background-image: linear-gradient(
 		50deg,
-		var(--darkColour) -50%,
-		var(--colour) 50%,
-		var(--lightColour) 55%
+		var(--darkColor) -50%,
+		var(--color) 50%,
+		var(--lightColor) 55%
 	);
 
 	color: white;
@@ -121,7 +121,7 @@
 	text-decoration: underline;
 	text-underline-offset: 4px;
 	color: rgb(41, 117, 209);
-	color: var(--colour);
+	color: var(--color);
 }
 .ui__.link-button.active {
 	font-weight: bold;
@@ -134,7 +134,7 @@
 .ui__.dashed-button {
 	border-bottom: 1px dashed;
 	border-color: rgb(41, 117, 209);
-	border-color: var(--colour);
+	border-color: var(--color);
 	padding: 0.15em 0em;
 }
 

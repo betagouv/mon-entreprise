@@ -6,7 +6,7 @@ import { Trans } from 'react-i18next'
 type Props = { onEnd: () => void; onCancel: () => void }
 
 export default function FeedbackForm({ onEnd, onCancel }: Props) {
-	const formRef = useRef<HTMLFormElement>()
+	const formRef = useRef<HTMLFormElement>(null)
 	const tracker = useContext(TrackerContext)
 
 	const handleFormSubmit = (e: React.FormEvent): void => {
@@ -14,7 +14,7 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 		e.preventDefault()
 		fetch('/', {
 			method: 'POST',
-			body: new FormData(formRef.current)
+			body: new FormData(formRef.current ?? undefined)
 		})
 		onEnd()
 	}

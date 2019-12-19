@@ -43,12 +43,17 @@ type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
-type SetExempleAction = {
-	type: 'SET_EXAMPLE'
-	name: null | string
-	situation?: object
-	dottedName?: string
-}
+type SetExempleAction =
+	| {
+			type: 'SET_EXAMPLE'
+			name: null
+	  }
+	| {
+			type: 'SET_EXAMPLE'
+			name: string
+			situation: object
+			dottedName: DottedName
+	  }
 
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
@@ -142,7 +147,8 @@ export const goBackToSimulation = (): ThunkResult<void> => (
 	{ history }
 ) => {
 	dispatch({ type: 'SET_EXAMPLE', name: null })
-	history.push(getState().simulation.url)
+	const url = getState().simulation?.url
+	url && history.push(url)
 }
 
 export function loadPreviousSimulation() {
@@ -155,7 +161,7 @@ export function hideControl(id: string) {
 	return { type: 'HIDE_CONTROL', id } as const
 }
 
-export const explainVariable = (variableName = null) =>
+export const explainVariable = (variableName: DottedName | null = null) =>
 	({
 		type: 'EXPLAIN_VARIABLE',
 		variableName

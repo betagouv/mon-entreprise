@@ -1,4 +1,4 @@
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { encodeRuleName, nameLeaf } from 'Engine/rules'
 import React, { useContext } from 'react'
@@ -20,7 +20,7 @@ export default function RuleLink({
 	children
 }: RuleLinkProps) {
 	const sitePaths = useContext(SitePathsContext)
-	const { colour } = useContext(ThemeColoursContext)
+	const { color } = useContext(ThemeColorsContext)
 	const newPath =
 		sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
 
@@ -29,7 +29,7 @@ export default function RuleLink({
 			to={newPath}
 			className="rule-link"
 			title={title}
-			style={{ color: colour, ...style }}
+			style={{ color, ...style }}
 		>
 			{children || title || nameLeaf(dottedName)}
 		</Link>

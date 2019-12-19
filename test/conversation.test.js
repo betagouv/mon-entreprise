@@ -24,9 +24,10 @@ describe('conversation', function() {
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
+				rules,
 				simulation: { config: { objectifs: ['startHere'] } }
 			}),
-			currentQuestion = currentQuestionSelector(state, { rules })
+			currentQuestion = currentQuestionSelector(state)
 
 		expect(currentQuestion).to.equal('top . aa')
 	})
@@ -142,15 +143,16 @@ describe('conversation', function() {
 		expect(step2.conversationSteps).to.have.property('foldedSteps')
 		expect(step2.conversationSteps.foldedSteps).to.have.lengthOf(1)
 		expect(step2.conversationSteps.foldedSteps[0]).to.equal('brut')
-		expect(currentQuestionSelector(step2, { rules })).to.equal('cadre')
+		expect(currentQuestionSelector(step2)).to.equal('cadre')
 	})
 })
 describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
+				rules,
 				simulation: { config: salariéConfig }
 			}),
-			nextSteps = nextStepsSelector(state, { rules })
+			nextSteps = nextStepsSelector(state)
 
 		expect(nextSteps.length).to.be.below(30) // If this breaks, that's good news
 		expect(nextSteps.length).to.be.above(10)

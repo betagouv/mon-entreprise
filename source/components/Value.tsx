@@ -47,7 +47,7 @@ export default function Value({
 
 	if (
 		(nilValueSymbol !== undefined && nodeValue === 0) ||
-		Number.isNaN(nodeValue) ||
+		(nodeValue && Number.isNaN(nodeValue)) ||
 		nodeValue === null
 	)
 		return (
@@ -63,7 +63,7 @@ export default function Value({
 				(nodeValue as any).nom
 			) : valueType === 'boolean' ? (
 				booleanTranslations[language][nodeValue]
-			) : (
+			) : nodeValue !== undefined ? (
 				formatValue({
 					minimumFractionDigits,
 					maximumFractionDigits,
@@ -71,7 +71,7 @@ export default function Value({
 					unit,
 					value: nodeValue
 				})
-			)
+			) : null
 	return nodeValue == undefined ? null : (
 		<span css={style(customCSS)} className="value">
 			{negative ? '-' : ''}

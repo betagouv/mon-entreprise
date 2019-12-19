@@ -11,6 +11,7 @@ const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {
 		return false
 	}
 	return (
+		company.dateDébutActivité &&
 		new Date(company.dateDébutActivité) > new Date('2019-04-01') &&
 		company.isAutoEntrepreneur &&
 		company.localisation &&

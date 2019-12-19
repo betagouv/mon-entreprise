@@ -8,7 +8,7 @@
 #targets > .icon {
 	margin: 0 0.6em;
 	font-size: 200%;
-	color: var(--colour);
+	color: var(--color);
 }
 #targets .value {
 	font-size: 180%;

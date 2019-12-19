@@ -86,7 +86,7 @@ let noUnit = { numerators: [], denominators: [] }
 export let inferUnit = (
 	operator: SupportedOperators,
 	rawUnits: Array<Unit>
-): Unit => {
+): Unit | undefined => {
 	let units = rawUnits.map(u => u || noUnit)
 	if (operator === '*')
 		return simplify({
@@ -109,7 +109,7 @@ export let inferUnit = (
 		return rawUnits.find(u => u)
 	}
 
-	return null
+	return undefined
 }
 
 export let removeOnce = <T>(

@@ -15,7 +15,7 @@ export const getInitialState = (key: string) => {
 		return
 	}
 	try {
-		return JSON.parse(safeLocalStorage.getItem(key))
+		return JSON.parse(value)
 	} catch (e) {
 		console.warn(e)
 		return null

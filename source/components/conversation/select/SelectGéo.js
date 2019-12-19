@@ -80,7 +80,7 @@ export default FormDecorator('select')(function Select({
 					padding: 0.4rem;
 					margin: 0.2rem 0;
 					width: 100%;
-					border: 1px solid var(--lighterTextColour);
+					border: 1px solid var(--lighterTextColor);
 					border-radius: 0.3rem;
 					color: inherit;
 					font-size: inherit;
@@ -88,7 +88,7 @@ export default FormDecorator('select')(function Select({
 					position: relative;
 
 					:focus {
-						border-color: var(--colour);
+						border-color: var(--color);
 					}
 				`}
 				placeholder="Saisissez le nom d'une commune"
@@ -121,7 +121,7 @@ export default FormDecorator('select')(function Select({
 								border-radius: 0.3rem;
 								:hover,
 								:focus {
-									background-color: var(--lighterColour);
+									background-color: var(--lighterColor);
 								}
 								background: white;
 								border-radius: 0.6remv;

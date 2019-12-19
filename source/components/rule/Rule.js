@@ -1,5 +1,5 @@
 import { T } from 'Components'
-import withColours from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
@@ -8,12 +8,12 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { compose, isEmpty } from 'ramda'
+import { isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
 	exampleAnalysisSelector,
@@ -33,23 +33,16 @@ import './Rule.css'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
-export default compose(
-	connect((state, props) => ({
-		currentExample: state.currentExample,
-		flatRules: flatRulesSelector(state),
-		valuesToShow: !noUserInputSelector(state),
-		analysedRule: ruleAnalysisSelector(state, props),
-		analysedExample: exampleAnalysisSelector(state, props)
-	})),
-	AttachDictionary(knownMecanisms)
-)(function Rule({
-	dottedName,
-	currentExample,
-	flatRules,
-	valuesToShow,
-	analysedExample,
-	analysedRule
-}) {
+export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
+	const currentExample = useSelector(state => state.currentExample)
+	const flatRules = useSelector(flatRulesSelector)
+	const valuesToShow = !useSelector(noUserInputSelector)
+	const analysedRule = useSelector(state =>
+		ruleAnalysisSelector(state, { dottedName })
+	)
+	const analysedExample = useSelector(state =>
+		exampleAnalysisSelector(state, { dottedName })
+	)
 	const sitePaths = useContext(SitePathsContext)
 	const [viewSource, setViewSource] = useState(false)
 	const { t } = useTranslation()
@@ -219,7 +212,8 @@ export default compose(
 	)
 })
 
-let NamespaceRulesList = compose(withColours)(({ namespaceRules, colours }) => {
+function NamespaceRulesList({ namespaceRules }) {
+	const colors = useContext(ThemeColorsContext)
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<section>
@@ -231,7 +225,7 @@ let NamespaceRulesList = compose(withColours)(({ namespaceRules, colours }) => {
 					<li key={r.name}>
 						<Link
 							style={{
-								color: colours.textColourOnWhite,
+								color: colors.textColorOnWhite,
 								textDecoration: 'underline'
 							}}
 							to={
@@ -247,4 +241,4 @@ let NamespaceRulesList = compose(withColours)(({ namespaceRules, colours }) => {
 			</ul>
 		</section>
 	)
-})
+}

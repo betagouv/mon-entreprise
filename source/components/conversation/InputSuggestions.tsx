@@ -18,9 +18,9 @@ export default function InputSuggestions({
 	onFirstClick,
 	unit
 }: InputSuggestionsProps) {
-	const [suggestion, setSuggestion] = useState(null)
+	const [suggestion, setSuggestion] = useState<number>()
 	const { t } = useTranslation()
-	const defaultUnit = parseUnit(useSelector(defaultUnitsSelector)[0])
+	const defaultUnit = parseUnit(useSelector(defaultUnitsSelector)[0] ?? '')
 	if (!suggestions) return null
 
 	return (

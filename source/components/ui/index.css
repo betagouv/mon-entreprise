@@ -5,9 +5,9 @@
 @import './reset.css';
 
 :root {
-	--colour: rgb(41, 117, 209);
-	--darkColour: rgb(24, 69, 123);
-	--textColour: rgb(24, 69, 123);
+	--color: rgb(41, 117, 209);
+	--darkColor: rgb(24, 69, 123);
+	--textColor: rgb(24, 69, 123);
 }
 html:fullscreen {
 	background-color: white;
@@ -23,7 +23,7 @@ button {
 }
 
 blockquote {
-	background: var(--lighterColour);
+	background: var(--lighterColor);
 	border-radius: 0.6em;
 	padding: 1.2em 1em 0.4em;
 	margin: 0.6em;
@@ -55,10 +55,10 @@ blockquote {
 }
 
 .ui__.light-bg {
-	background-color: var(--lighterColour) !important;
+	background-color: var(--lighterColor) !important;
 }
 .ui__.lighter-bg {
-	background-color: var(--lightestColour) !important;
+	background-color: var(--lightestColor) !important;
 }
 
 .ui__.center-flex {
@@ -72,7 +72,7 @@ blockquote {
 }
 @media (max-width: 850px) {
 	.ui__.hide-mobile {
-		display: none;	
+		display: none;
 	}
 }
 
@@ -112,7 +112,7 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	font-size: 85%;
 	padding: 0.4rem 0.8rem;
 	color: white;
-	background: var(--lighterTextColour);
+	background: var(--lighterTextColor);
 	border-radius: 0.3rem;
 	text-align: center;
 }

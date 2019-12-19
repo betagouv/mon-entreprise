@@ -15,6 +15,7 @@ import {
 	toPairs,
 	values
 } from 'ramda'
+import { DottedName } from 'Types/rule'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -31,7 +32,12 @@ import {
 	missingVariables: {variable: [objectives]}
  */
 
-export let collectMissingVariablesByTarget = (targets = []) =>
+type Explanation = {
+	missingVariables: Array<DottedName>
+	dottedName: DottedName
+}
+
+export let collectMissingVariablesByTarget = (targets: Explanation[] = []) =>
 	fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {

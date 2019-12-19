@@ -3,7 +3,7 @@ import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatCurrency } from 'Engine/format'
 import { encodeRuleName } from 'Engine/rules'
@@ -37,7 +37,7 @@ export default function TargetSelection() {
 	)
 	const situation = useSelector(situationSelector)
 	const dispatch = useDispatch()
-	const colours = useContext(ThemeColoursContext)
+	const colors = useContext(ThemeColorsContext)
 
 	const targets =
 		analysis?.targets.filter(
@@ -94,11 +94,11 @@ export default function TargetSelection() {
 							className="ui__ plain card"
 							style={{
 								marginTop: '.6em',
-								color: colours.textColour,
+								color: colors.textColor,
 								background: `linear-gradient(
 								60deg,
-								${colours.darkColour} 0%,
-								${colours.colour} 100%
+								${colors.darkColor} 0%,
+								${colors.color} 100%
 								)`
 							}}
 						>
@@ -224,7 +224,7 @@ let TargetInputOrValue = ({
 	isSmallTarget
 }: TargetInputOrValueProps) => {
 	const { language } = useTranslation().i18n
-	const colors = useContext(ThemeColoursContext)
+	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
 	const situationValue = Math.round(
 		useSelector(situationSelector)[target.dottedName]
@@ -248,8 +248,8 @@ let TargetInputOrValue = ({
 					{!isActiveInput && <AnimatedTargetValue value={value} />}
 					<CurrencyInput
 						style={{
-							color: colors.textColour,
-							borderColor: colors.textColour
+							color: colors.textColor,
+							borderColor: colors.textColor
 						}}
 						debounce={600}
 						name={target.dottedName}
@@ -274,7 +274,7 @@ let TargetInputOrValue = ({
 				</>
 			) : (
 				<span>
-					{Number.isNaN(value) ? '—' : formatCurrency(value, language)}
+					{value && Number.isNaN(value) ? '—' : formatCurrency(value, language)}
 				</span>
 			)}
 			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}

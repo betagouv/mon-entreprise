@@ -1,4 +1,4 @@
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import Value from 'Components/Value'
 import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
 import React, { Fragment, useContext } from 'react'
@@ -14,7 +14,7 @@ import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 import RuleLink from './RuleLink'
 
 export default function PaySlip() {
-	const { lightestColour } = useContext(ThemeColoursContext)
+	const { lightestColor } = useContext(ThemeColorsContext)
 	const cotisations = useSelector(analysisToCotisationsSelector)
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const parsedRules = useSelector(parsedRulesSelector)
@@ -72,20 +72,20 @@ export default function PaySlip() {
 							{cotisationList.map(cotisation => (
 								<Fragment key={cotisation.dottedName}>
 									<RuleLink
-										style={{ backgroundColor: lightestColour }}
+										style={{ backgroundColor: lightestColor }}
 										{...cotisation}
 									/>
 									<Value
 										nilValueSymbol="—"
 										unit="€"
-										customCSS="background-color: var(--lightestColour)"
+										customCSS="background-color: var(--lightestColor)"
 									>
 										{cotisation.montant.partPatronale}
 									</Value>
 									<Value
 										nilValueSymbol="—"
 										unit="€"
-										customCSS="background-color: var(--lightestColour)"
+										customCSS="background-color: var(--lightestColor)"
 									>
 										{cotisation.montant.partSalariale}
 									</Value>

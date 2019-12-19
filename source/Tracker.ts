@@ -12,8 +12,8 @@ type PushType = (args: PushArgs) => void
 
 export default class Tracker {
 	push: PushType
-	unlistenFromHistory: () => void
-	previousPath: string
+	unlistenFromHistory: (() => void) | undefined
+	previousPath: string | undefined
 
 	constructor(pushFunction: PushType = args => window._paq.push(args)) {
 		if (typeof window !== 'undefined') window._paq = window._paq || []

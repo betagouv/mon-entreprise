@@ -38,20 +38,21 @@ export default function PreviousAnswers() {
 	const legalStatus = useSelector(
 		(state: RootState) => state.inFranceApp.companyLegalStatus
 	)
+	if (Object.values(legalStatus).length < 1) {
+		return null
+	}
 	return (
-		!!Object.values(legalStatus).length && (
-			<ul css="margin-bottom: -1rem;">
-				{Object.entries(legalStatus).map(
-					([key, value]) =>
-						!isNil(value) && (
-							<li key={key}>
-								<Link to={sitePaths.créer.guideStatut[key]}>
-									{requirementToText(key as any, value as any)}
-								</Link>
-							</li>
-						)
-				)}
-			</ul>
-		)
+		<ul css="margin-bottom: -1rem;">
+			{Object.entries(legalStatus).map(
+				([key, value]) =>
+					!isNil(value) && (
+						<li key={key}>
+							<Link to={sitePaths.créer.guideStatut[key]}>
+								{requirementToText(key as any, value as any)}
+							</Link>
+						</li>
+					)
+			)}
+		</ul>
 	)
 }

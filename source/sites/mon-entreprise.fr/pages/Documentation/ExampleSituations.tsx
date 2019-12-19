@@ -1,13 +1,16 @@
 // Page listing the engine's currently implemented mecanisms and their tests
 import { T } from 'Components'
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { analyseMany } from 'Engine/traverse'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import examples from 'Règles/cas-types.yaml'
-import { parsedRulesSelector, ruleDefaultsSelector } from 'Selectors/analyseSelectors'
-import { DottedName } from "Types/rule"
+import {
+	parsedRulesSelector,
+	ruleDefaultsSelector
+} from 'Selectors/analyseSelectors'
+import { DottedName } from 'Types/rule'
 import './ExampleSituations.css'
 
 export default function ExampleSituations() {
@@ -29,7 +32,7 @@ export default function ExampleSituations() {
 const Example = function Example({ ex: { nom, situation } }) {
 	const defaults = useSelector(ruleDefaultsSelector)
 	const parsedRules = useSelector(parsedRulesSelector)
-	const colours = useContext(ThemeColoursContext)
+	const colors = useContext(ThemeColorsContext)
 	let [total, net, netAprèsImpôts] = analyseMany(parsedRules, [
 			'total',
 			'net',
@@ -58,17 +61,14 @@ const Example = function Example({ ex: { nom, situation } }) {
 				{figures.map(t => (
 					<li key={t.dottedName}>
 						<h3>{t.title}</h3>
-						<span
-							style={{ color: colours.textColourOnWhite }}
-							className="figure"
-						>
+						<span style={{ color: colors.textColorOnWhite }} className="figure">
 							{Math.round(t.nodeValue)} €
 						</span>
 					</li>
 				))}{' '}
 				<li key="%">
 					<h3>Prélèvements</h3>
-					<span style={{ color: colours.textColourOnWhite }} className="figure">
+					<span style={{ color: colors.textColorOnWhite }} className="figure">
 						{percentage} %
 					</span>
 				</li>

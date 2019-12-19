@@ -1,14 +1,14 @@
 import {
-	ThemeColoursContext,
-	ThemeColoursProvider
-} from 'Components/utils/withColours'
+	ThemeColorsContext,
+	ThemeColorsProvider
+} from 'Components/utils/colors'
 import React, { Suspense, useContext, useState } from 'react'
 import Home from '../Iframes/SimulateurEmbauche'
 let LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
 export default function Couleur() {
-	const { colour: defaultColour } = useContext(ThemeColoursContext)
-	const [colour, setColour] = useState(defaultColour)
+	const { color: defaultColor } = useContext(ThemeColorsContext)
+	const [color, setColor] = useState(defaultColor)
 	return (
 		<>
 			<h1>Changez la couleur de l'integration </h1>
@@ -17,16 +17,16 @@ export default function Couleur() {
 				couleurs principales.
 			</p>
 			<Suspense fallback={<div>Chargement...</div>}>
-				<LazyColorPicker colour={colour} onChange={setColour} />
+				<LazyColorPicker color={color} onChange={setColor} />
 			</Suspense>
 			<p className="indication">
 				La couleur sélectionnée, à déclarer comme attribut
-				&quot;data-couleur&quot; du script sur votre page est : <b>{colour}</b>
+				&quot;data-couleur&quot; du script sur votre page est : <b>{color}</b>
 			</p>
 			<div className="ui__ card">
-				<ThemeColoursProvider colour={colour}>
+				<ThemeColorsProvider color={color}>
 					<Home />
-				</ThemeColoursProvider>
+				</ThemeColorsProvider>
 			</div>
 		</>
 	)

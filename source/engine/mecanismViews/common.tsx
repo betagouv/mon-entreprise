@@ -11,7 +11,7 @@ import { DottedName, Rule } from 'Types/rule'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName, findRuleByDottedName } from '../rules'
-import mecanismColours from './colours'
+import mecanismColors from './colors'
 
 type NodeValuePointerProps = {
 	data: ValueProps['nodeValue']
@@ -54,13 +54,13 @@ export function Node({ classes, name, value, child, inline, unit }: NodeProps) {
 	return (
 		<div
 			className={classNames(classes, 'node', { inline })}
-			style={termDefinition ? { borderColor: mecanismColours(name) } : {}}
+			style={termDefinition ? { borderColor: mecanismColors(name) } : {}}
 		>
 			{name && !inline && (
 				<div className="nodeHead" css="margin-bottom: 1em">
 					<LinkButton
 						className="name"
-						style={termDefinition ? { background: mecanismColours(name) } : {}}
+						style={termDefinition ? { background: mecanismColors(name) } : {}}
 						data-term-definition={termDefinition}
 					>
 						<Trans>{name}</Trans>
@@ -100,7 +100,7 @@ export function InlineMecanism({ name }: { name: string }) {
 			<LinkButton
 				className="name"
 				data-term-definition={name}
-				style={{ background: mecanismColours(name) }}
+				style={{ background: mecanismColors(name) }}
 			>
 				<Trans>{name}</Trans>
 			</LinkButton>

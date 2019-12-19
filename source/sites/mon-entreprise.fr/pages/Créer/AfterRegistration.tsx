@@ -15,7 +15,7 @@ export default function AfterRegistration() {
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
 	const { t } = useTranslation()
-	const isAutoentrepreneur = statutChoisi.match('auto-entrepreneur')
+	const isAutoentrepreneur = statutChoisi?.match('auto-entrepreneur')
 
 	return (
 		<Animate.fromBottom>

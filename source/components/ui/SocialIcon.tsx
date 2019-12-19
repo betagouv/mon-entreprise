@@ -1,4 +1,4 @@
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import React, { useContext } from 'react'
 
 const icons = {
@@ -39,7 +39,7 @@ export default function withSocialMedia({
 }: {
 	media: keyof typeof icons
 }) {
-	const { colour } = useContext(ThemeColoursContext)
+	const { color } = useContext(ThemeColorsContext)
 	return (
 		<svg
 			viewBox="0 0 64 64"
@@ -66,7 +66,7 @@ export default function withSocialMedia({
 			<g>
 				<path d={icons[media].icon} style={{ fill: 'transparent' }} />
 			</g>
-			<g style={{ fill: colour }}>
+			<g style={{ fill: color }}>
 				<path d={icons[media].mask} />
 			</g>
 		</svg>

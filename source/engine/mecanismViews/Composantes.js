@@ -1,4 +1,4 @@
-import colours from 'Engine/mecanismViews/colours'
+import colors from 'Engine/mecanismViews/colors'
 import { toPairs } from 'ramda'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -29,18 +29,21 @@ let Comp = function Composantes({ nodeValue, explanation, unit }) {
 							<li
 								className="composante"
 								css={``}
-								key={JSON.stringify(c.composante)}>
+								key={JSON.stringify(c.composante)}
+							>
 								<ul
 									className="composanteAttributes"
 									css={`
-										border-left: 4px solid ${colours('composantes')};
-									`}>
+										border-left: 4px solid ${colors('composantes')};
+									`}
+								>
 									{toPairs(c.composante).map(([k, v]) => (
 										<li key={k} className="composanteName">
 											<span
 												css={`
-													color: ${colours('composantes')};
-												`}>
+													color: ${colors('composantes')};
+												`}
+											>
 												<Trans>{k}</Trans>:{' '}
 											</span>
 											<span>
@@ -56,7 +59,8 @@ let Comp = function Composantes({ nodeValue, explanation, unit }) {
 										width: 100%;
 										font-size: 2.6rem;
 										margin: 0.4em 0 0.2em;
-									`}>
+									`}
+								>
 									{i === explanation.length - 1 ? null : '+'}
 								</div>
 							</li>

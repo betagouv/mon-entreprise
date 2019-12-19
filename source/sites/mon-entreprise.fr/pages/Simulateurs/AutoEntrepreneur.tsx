@@ -4,7 +4,7 @@ import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
-import { ThemeColoursContext } from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -50,7 +50,7 @@ function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
-	const { palettes } = useContext(ThemeColoursContext)
+	const { palettes } = useContext(ThemeColorsContext)
 
 	return (
 		<section>

@@ -35,7 +35,7 @@ export let numberFormatter = ({
 	}).format(value)
 }
 
-export const currencyFormat = (language: string) => ({
+export const currencyFormat = (language: string | undefined) => ({
 	isCurrencyPrefixed: !!numberFormatter({ language, style: 'currency' })(
 		12
 	).match(/^€/),
@@ -43,13 +43,13 @@ export const currencyFormat = (language: string) => ({
 	decimalSeparator: numberFormatter({ language })(0.1).charAt(1)
 })
 
-export const formatCurrency = (value: number, language: string) => {
+export const formatCurrency = (value: number | undefined, language: string) => {
 	return value == null
 		? ''
 		: formatValue({ unit: '€', language, value }).replace(/^(-)?€/, '$1€\u00A0')
 }
 
-export const formatPercentage = value =>
+export const formatPercentage = (value: number | undefined) =>
 	value == null
 		? ''
 		: formatValue({ unit: '%', value, maximumFractionDigits: 2 })
@@ -58,7 +58,7 @@ export type formatValueOptions = {
 	maximumFractionDigits?: number
 	minimumFractionDigits?: number
 	language?: string
-	unit: Unit | string
+	unit?: Unit | string
 	value: number
 }
 
@@ -72,7 +72,7 @@ export function formatValue({
 	if (typeof value !== 'number') {
 		return value
 	}
-	const serializedUnit = serialiseUnit(unit, value, language)
+	const serializedUnit = unit ? serialiseUnit(unit, value, language) : undefined
 
 	switch (serializedUnit) {
 		case '€':

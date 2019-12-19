@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
 
-export default function Namespace({ dottedName, flatRules, colour }) {
+export default function Namespace({ dottedName, flatRules, color }) {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<ul id="namespace">
@@ -29,7 +29,7 @@ export default function Namespace({ dottedName, flatRules, colour }) {
 						)
 					}
 					let ruleText = rule.title || capitalise0(rule.name),
-						style = { color: colour }
+						style = { color }
 
 					return (
 						<li style={style} key={fragments.join()}>

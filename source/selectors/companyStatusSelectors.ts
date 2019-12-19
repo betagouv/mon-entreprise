@@ -12,6 +12,7 @@ import {
 	mergeWith,
 	sortBy
 } from 'ramda'
+import { RootState } from 'Reducers/rootReducer'
 import { LegalStatusRequirements, State } from 'Types/companyTypes'
 
 const LEGAL_STATUS_DETAILS = {
@@ -125,9 +126,7 @@ export const possibleStatusSelector = (state: {
 }): Record<LegalStatus, boolean> =>
 	possibleStatus(state.inFranceApp.companyLegalStatus)
 
-export const nextQuestionSelector = (state: {
-	inFranceApp: State
-}): Question => {
+export const nextQuestionSelector = (state: RootState): Question | null => {
 	const legalStatusRequirements = state.inFranceApp.companyLegalStatus
 	const questionAnswered = Object.keys(legalStatusRequirements) as Array<
 		Question
@@ -167,7 +166,7 @@ export const nextQuestionSelector = (state: {
 }
 
 export const nextQuestionUrlSelector = (
-	state: { inFranceApp: State },
+	state: RootState,
 	{ sitePaths }: { sitePaths: SitePaths }
 ) => {
 	const nextQuestion = nextQuestionSelector(state)
