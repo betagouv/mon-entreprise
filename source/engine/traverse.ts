@@ -1,7 +1,7 @@
 import { evaluateControls } from 'Engine/controls'
 import parseRule from 'Engine/parseRule'
 import { chain, path } from 'ramda'
-import { DottedName } from 'Types/rule'
+import { DottedName, EvaluatedRule } from 'Types/rule'
 import { evaluateNode } from './evaluation'
 import { parseReference } from './parseReference'
 import {
@@ -152,7 +152,7 @@ export let analyseMany = (
 			return parsedTarget
 		}),
 		targets = chain(pt => getTargets(pt, parsedRules), parsedTargets).map(
-			t =>
+			(t): EvaluatedRule =>
 				cache[t.dottedName] || // This check exists because it is not done in parseRuleRoot's eval, while it is in parseVariable. This should be merged : we should probably call parseVariable here : targetNames could be expressions (hence with filters) TODO
 				evaluateNode(cache, situationGate, parsedRules, t)
 		)

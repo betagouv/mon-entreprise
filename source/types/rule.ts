@@ -3,9 +3,22 @@ export type DottedName = keyof typeof jsonRules
 
 export type Rule = {
 	dottedName: DottedName
-	nodeValue?: number
 	question?: string
+	unité: string
 	unit: string
 	name?: string
 	title?: string
+	defaultValue: any
+	icons: string
+	formule: any
+}
+
+// This type should be defined inline by the function evaluating the rule (and
+// probably infered as its return type). This is only a partial definition but
+// it type-checks.
+export type EvaluatedRule = Rule & {
+	nodeValue?: number
+	isApplicable: boolean
+	missingVariables: Array<DottedName>
+	explanation: EvaluatedRule
 }

@@ -2,7 +2,7 @@ import { T } from 'Components'
 import { formatValue, formatValueOptions } from 'Engine/format'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Rule } from 'Types/rule'
+import { EvaluatedRule } from 'Types/rule'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
 
@@ -18,7 +18,7 @@ let style = customStyle => `
 `
 
 export type ValueProps = Partial<
-	Pick<Rule, 'nodeValue' | 'unit'> &
+	Pick<EvaluatedRule, 'nodeValue' | 'unit'> &
 		Pick<
 			formatValueOptions,
 			'maximumFractionDigits' | 'minimumFractionDigits'

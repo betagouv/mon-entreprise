@@ -112,12 +112,25 @@ function conversationSteps(
 	return state
 }
 
-function updateSituation(situation, { fieldName, value, analysis }) {
-	const goals = analysis.targets
-		.map(target => target.explanation || target)
-		.filter(target => !!target.formule == !!target.question)
-		.map(({ dottedName }) => dottedName)
-	const removePreviousTarget = goals.includes(fieldName)
+function updateSituation(
+	situation,
+	{
+		fieldName,
+		value,
+		analysis
+	}: {
+		fieldName: DottedName
+		value: any
+		analysis: Analysis | Array<Analysis> | null
+	}
+) {
+	const goals =
+		analysis &&
+		(Array.isArray(analysis) ? analysis[0] : analysis).targets
+			.map(target => target.explanation || target)
+			.filter(target => !!target.formule == !!target.question)
+			.map(({ dottedName }) => dottedName)
+	const removePreviousTarget = goals?.includes(fieldName)
 		? omit(goals)
 		: identity
 	return { ...removePreviousTarget(situation), [fieldName]: value }

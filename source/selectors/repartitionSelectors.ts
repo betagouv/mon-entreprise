@@ -25,7 +25,7 @@ import {
 	mergeCotisations
 } from './ficheDePaieSelectors'
 
-export type Cotisation = Rule & {
+export type Cotisation = Partial<Rule> & {
 	branche: Branch
 	montant: MontantPartagé
 }
