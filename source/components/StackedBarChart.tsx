@@ -3,7 +3,7 @@ import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import styled from 'styled-components'
-import { Rule } from 'Types/rule'
+import { EvaluatedRule } from 'Types/rule'
 import { capitalise0 } from '../utils'
 
 const BarStack = styled.div`
@@ -80,7 +80,7 @@ export function roundedPercentages(values: Array<number>) {
 }
 
 type StackedBarChartProps = {
-	data: Array<{ color?: string } & Rule>
+	data: Array<{ color?: string } & EvaluatedRule>
 }
 
 export default function StackedBarChart({ data }: StackedBarChartProps) {
