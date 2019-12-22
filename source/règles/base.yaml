@@ -1219,82 +1219,82 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
       retourne seulement le taux: oui
       tranches:
         - de: 0
-          à: 1609
+          à: 1625
           taux: 0%
 
-        - de: 1610
-          à: 1706
+        - de: 1626
+          à: 1723
           taux: 0.5%
 
-        - de: 1707
-          à: 1836
-          taux: 1.5%
+        - de: 1724
+          à: 1899
+          taux: 1.3%
 
-        - de: 1837
-          à: 1947
-          taux: 2.5%
+        - de: 1900
+          à: 2074
+          taux: 2.1%
 
-        - de: 1948
-          à: 2116
+        - de: 2075
+          à: 2291
+          taux: 2.9%
+
+        - de: 2292
+          à: 2416
           taux: 3.5%
 
-        - de: 2117
-          à: 2376
-          taux: 4.5%
+        - de: 2417
+          à: 2499
+          taux: 4.1%
 
-        - de: 2377
-          à: 2783
-          taux: 6%
+        - de: 2500
+          à: 2749
+          taux: 5.3%
 
-        - de: 2784
-          à: 3175
+        - de: 2750
+          à: 3399
           taux: 7.5%
 
-        - de: 3176
-          à: 3695
-          taux: 9%
+        - de: 3400
+          à: 4349
+          taux: 9.9%
 
-        - de: 3696
-          à: 4364
-          taux: 10.5%
+        - de: 4350
+          à: 4941
+          taux: 11.9%
 
-        - de: 4365
-          à: 4909
-          taux: 12%
+        - de: 4942
+          à: 5724
+          taux: 13.8%
 
-        - de: 4910
-          à: 5729
-          taux: 14%
+        - de: 5725
+          à: 6857
+          taux: 15.8%
 
-        - de: 5730
-          à: 6854
-          taux: 16%
+        - de: 6858
+          à: 7624
+          taux: 17.9%
 
-        - de: 6855
-          à: 7619
-          taux: 18%
-
-        - de: 7620
-          à: 9069
+        - de: 7625
+          à: 8666
           taux: 20%
 
-        - de: 9070
-          à: 11944
+        - de: 8667
+          à: 11916
           taux: 24%
 
-        - de: 11945
-          à: 16229
+        - de: 11917
+          à: 15832
           taux: 28%
 
-        - de: 16230
-          à: 24769
+        - de: 15833
+          à: 24166
           taux: 33%
 
-        - de: 24770
-          à: 52299
+        - de: 24167
+          à: 52824
           taux: 38%
 
-        - au-dessus de: 52300
+        - au-dessus de: 52825
           taux: 43%
 
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
@@ -1305,82 +1305,82 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
       retourne seulement le taux: oui
       tranches:
         - de: 0
-          à: 1723
+          à: 1740
           taux: 0%
 
-        - de: 1724
-          à: 1832
+        - de: 1741
+          à: 1882
           taux: 0.5%
 
-        - de: 1833
-          à: 1973
-          taux: 1.5%
+        - de: 1883
+          à: 2099
+          taux: 1.3%
 
-        - de: 1974
-          à: 2166
-          taux: 2.5%
+        - de: 2100
+          à: 2366
+          taux: 2.1%
 
-        - de: 2167
-          à: 2401
+        - de: 2367
+          à: 2457
+          taux: 2.9%
+
+        - de: 2458
+          à: 2541
           taux: 3.5%
 
-        - de: 2402
-          à: 2646
-          taux: 4.5%
+        - de: 2542
+          à: 2624
+          taux: 4.1%
 
-        - de: 2647
-          à: 3066
-          taux: 6%
+        - de: 2625
+          à: 2916
+          taux: 5.3%
 
-        - de: 3067
-          à: 3646
+        - de: 2917
+          à: 4024
           taux: 7.5%
 
-        - de: 3647
-          à: 4494
-          taux: 9%
+        - de: 4025
+          à: 5207
+          taux: 9.9%
 
-        - de: 4495
-          à: 5209
-          taux: 10.5%
+        - de: 5208
+          à: 5874
+          taux: 11.9%
 
-        - de: 5210
-          à: 5859
-          taux: 12%
+        - de: 5875
+          à: 6816
+          taux: 13.8%
 
-        - de: 5860
-          à: 6829
-          taux: 14%
+        - de: 6817
+          à: 7499
+          taux: 15.8%
 
-        - de: 6830
-          à: 7519
-          taux: 16%
+        - de: 7500
+          à: 8307
+          taux: 17.9%
 
-        - de: 7520
-          à: 8359
-          taux: 18%
-
-        - de: 8360
-          à: 10049
+        - de: 8308
+          à: 9641
           taux: 20%
 
-        - de: 10050
-          à: 12829
+        - de: 9642
+          à: 12970
           taux: 24%
 
-        - de: 12830
-          à: 17149
+        - de: 12971
+          à: 16499
           taux: 28%
 
-        - de: 17150
-          à: 26179
+        - de: 16500
+          à: 26442
           taux: 33%
 
-        - de: 26180
-          à: 55259
+        - de: 26443
+          à: 55814
           taux: 38%
 
-        - au-dessus de: 55260
+        - au-dessus de: 55815
           taux: 43%
 
 impôt . taux neutre d'impôt sur le revenu:
@@ -1407,82 +1407,82 @@ impôt . taux neutre d'impôt sur le revenu:
             retourne seulement le taux: oui
             tranches:
               - de: 0
-                à: 1403
+                à: 1417
                 taux: 0%
 
-              - de: 1404
-                à: 1456
+              - de: 1418
+                à: 1471
                 taux: 0.5%
 
-              - de: 1457
-                à: 1550
-                taux: 1.5%
+              - de: 1472
+                à: 1566
+                taux: 1.3%
 
-              - de: 1551
-                à: 1655
-                taux: 2.5%
+              - de: 1567
+                à: 1672
+                taux: 2.1%
 
-              - de: 1656
-                à: 1768
+              - de: 1673
+                à: 1786
+                taux: 2.9%
+
+              - de: 1787
+                à: 1882
                 taux: 3.5%
 
-              - de: 1769
-                à: 1863
-                taux: 4.5%
+              - de: 1883
+                à: 2007
+                taux: 4.1%
 
-              - de: 1864
-                à: 1987
-                taux: 6%
+              - de: 2008
+                à: 2375
+                taux: 5.3%
 
-              - de: 1988
-                à: 2577
+              - de: 2376
+                à: 2719
                 taux: 7.5%
 
-              - de: 2578
-                à: 2796
-                taux: 9%
+              - de: 2720
+                à: 3097
+                taux: 9.9%
 
-              - de: 2797
-                à: 3066
-                taux: 10.5%
+              - de: 3098
+                à: 3486
+                taux: 11.9%
 
-              - de: 3067
-                à: 3451
-                taux: 12%
+              - de: 3487
+                à: 4068
+                taux: 13.8%
 
-              - de: 3452
-                à: 4028
-                taux: 14%
+              - de: 4069
+                à: 4877
+                taux: 15.8%
 
-              - de: 4029
-                à: 4829
-                taux: 16%
+              - de: 4878
+                à: 6103
+                taux: 17.9%
 
-              - de: 4830
-                à: 6042
-                taux: 18%
-
-              - de: 6043
-                à: 7779
+              - de: 6104
+                à: 7624
                 taux: 20%
 
-              - de: 7780
-                à: 10561
+              - de: 7625
+                à: 10582
                 taux: 24%
 
-              - de: 10562
-                à: 14794
+              - de: 10583
+                à: 14332
                 taux: 28%
 
-              - de: 14795
-                à: 22619
+              - de: 14333
+                à: 22499
                 taux: 33%
 
-              - de: 22620
-                à: 47716
+              - de: 22500
+                à: 48195
                 taux: 38%
 
-              - au-dessus de: 47717
+              - au-dessus de: 48196
                 taux: 43%
 
   références:
