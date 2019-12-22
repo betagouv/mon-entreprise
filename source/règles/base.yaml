@@ -724,11 +724,11 @@ contrat salarié . rémunération . brut de base:
   unité par défaut: €/mois
   suggestions:
     salaire médian: 2300
-    SMIC: 1522
+    SMIC: 1539
   contrôles:
     - si:
         toutes ces conditions:
-          - rémunération . assiette de vérification du SMIC < SMIC contractuel
+          - rémunération . assiette de vérification du SMIC < (SMIC contractuel - 1)
           - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
@@ -1053,7 +1053,7 @@ contrat salarié . SMIC temps plein . net imposable:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
 
 SMIC horaire:
-  formule: 10.03 €/heure
+  formule: 10.15 €/heure
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
