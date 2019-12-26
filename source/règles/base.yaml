@@ -1663,16 +1663,44 @@ entreprise:
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 entreprise . effectif:
+  unité: employé
+  formule:
+    variations:
+      - si: entreprise . effectif . seuil = 'moins de 11'
+        alors: 10 employés
+      - si: entreprise . effectif . seuil = 'moins de 20'
+        alors: 19 employés
+      - si: entreprise . effectif . seuil = 'moins de 50'
+        alors: 49 employés
+      - si: entreprise . effectif . seuil = 'moins de 250'
+        alors: 249 employés
+      - si: entreprise . effectif . seuil = '251 et plus'
+        alors: 251 employés
+
+entreprise . effectif . seuil:
   question: Quel est l'effectif de l'entreprise ?
   description: |
-    De nombreuses cotisations patronales varient selon l'effectif de l'entreprise.
-  unité: employé
-  suggestions:
-    1: 1
-    20: 20
-    50: 50
-    1000: 1000
-  par défaut: 1
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+
+    Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
+    atteint ou dépassé pendant 5 années civiles consécutives.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins de 11
+        - moins de 20
+        - moins de 50
+        - moins de 250
+        - 251 et plus
+  par défaut: moins de 11
+
+entreprise . effectif . seuil . moins de 11:
+entreprise . effectif . seuil . moins de 20:
+entreprise . effectif . seuil . moins de 50:
+entreprise . effectif . seuil . moins de 250:
+entreprise . effectif . seuil . 251 et plus:
 
 entreprise . ratio alternants:
   question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
@@ -2394,7 +2422,7 @@ contrat salarié . FNAL:
       assiette: cotisations . assiette
       taux: taux
       variations:
-        - si: entreprise . effectif < 20
+        - si: entreprise . effectif < 50
           alors:
             plafond: plafond sécurité sociale
         - sinon: rien
@@ -2408,7 +2436,7 @@ contrat salarié . FNAL:
 contrat salarié . FNAL . taux:
   formule:
     variations:
-      - si: entreprise . effectif < 20
+      - si: entreprise . effectif < 50
         alors: 0.1%
       - sinon: 0.5%
 
@@ -2528,7 +2556,7 @@ contrat salarié . participation effort de construction:
   note: |
     L'employeur a le choix entre verser cet impôt à un "organisme du 1% patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
-  applicable si: entreprise . effectif >= 20
+  non applicable si: entreprise . effectif < 50
   formule:
     multiplication:
       assiette: cotisations . assiette
