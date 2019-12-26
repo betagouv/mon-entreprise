@@ -199,7 +199,17 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<ul>
 					<li>
 						Utiliser un logiciel de paie pour calculer les cotisations sociales
-						et les transmettre via la déclaration sociale nominative (DSN)
+						et les transmettre via la déclaration sociale nominative (DSN).
+						<br />
+						Certaines offres de service de l’URSSAF comme le{' '}
+						<a href="https://www.letese.urssaf.fr" target="_blank">
+							titre emploi service entreprise (Tese)
+						</a>{' '}
+						ou le{' '}
+						<a href="https://www.cesu.urssaf.fr" target="_blank">
+							chèque emploi associatif (CEA)
+						</a>{' '}
+						gèrent automatiquement la transmission de la DSN pour vous.
 					</li>
 					<li>Remettre la fiche de paie à votre employé</li>
 				</ul>
