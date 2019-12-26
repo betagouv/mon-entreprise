@@ -2732,6 +2732,14 @@ dirigeant . auto-entrepreneur . base des cotisations:
     Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise
     est dépassé. [En savoir
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
+  contrôles.1.en: >-
+    [automatic] The annual turnover threshold for VAT exemption is exceeded.
+    Read
+    more](/documentation/documentation/manager/self-contractor/vat-franchise)
+  contrôles.1.fr: >-
+    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
+    [En savoir
+    plus](/documentation/dirigeant/auto‑entrepreneur/franchise-de-tva)
   titre.en: contribution basis
   titre.fr: base des cotisations
 dirigeant . auto-entrepreneur . cotisations et contributions:
@@ -4042,6 +4050,29 @@ entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 50:
   titre.en: less than 50
   titre.fr: moins de 50
+entreprise . franchise de TVA:
+  description.en: |
+    [automatic] The VAT exemption is an exemption from VAT for businesses.
+    declaration and payment of VAT. It applies below a threshold of
+    annual turnover depending on the activity.
+
+    The professional covered by this scheme invoices his services or his
+    sales excluding tax, and cannot deduct VAT from its purchases.
+  description.fr: |
+    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
+
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  note.en: >
+    [automatic] The increased thresholds (which apply if the "reduced" threshold
+    has not been exceeded in year `n - 2`) are taken into account here.
+  note.fr: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  titre.en: '[automatic] VAT exemption'
+  titre.fr: franchise de TVA
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
@@ -4962,6 +4993,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . localisation . outre-mer:
   titre.en: overseas
   titre.fr: outre-mer
+établissement . localisation . outre-mer . Guadeloupe Réunion Martinique:
+  titre.en: '[automatic] Guadeloupe Reunion Martinique'
+  titre.fr: Guadeloupe Réunion Martinique
 établissement . taux du versement transport:
   titre.en: Rate of transport tax
   titre.fr: taux du versement transport

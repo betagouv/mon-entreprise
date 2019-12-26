@@ -1456,11 +1456,7 @@ impôt . taux neutre d'impôt sur le revenu:
   note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
   formule:
     variations:
-      - si:
-          une de ces conditions:
-            - établissement . localisation . département = 'Guadeloupe'
-            - établissement . localisation . département = 'La Réunion'
-            - établissement . localisation . département = 'Martinique'
+      - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
         alors: barème Guadeloupe Réunion Martinique
 
       - si:
@@ -1848,11 +1844,18 @@ entreprise . établissement bancaire:
 établissement . localisation . outre-mer:
   applicable si:
     une de ces conditions:
-      - établissement . localisation . département = 'Guadeloupe'
-      - établissement . localisation . département = 'Martinique'
-      - établissement . localisation . département = 'Guyane'
-      - établissement . localisation . département = 'La Réunion'
-      - établissement . localisation . département = 'Mayotte'
+      - département = 'Guadeloupe'
+      - département = 'Martinique'
+      - département = 'Guyane'
+      - département = 'La Réunion'
+      - département = 'Mayotte'
+
+établissement . localisation . outre-mer . Guadeloupe Réunion Martinique:
+  formule:
+    une de ces conditions:
+      - département = 'Guadeloupe'
+      - département = 'Martinique'
+      - département = 'La Réunion'
 
 contrat salarié . temps de travail:
   unité: heures/mois
@@ -4321,6 +4324,36 @@ dirigeant . auto-entrepreneur:
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
+entreprise . franchise de TVA:
+  description: |
+    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
+
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  formule:
+    variations:
+      - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+        alors:
+          variations:
+            - si: entreprise . catégorie d'activité . service ou vente = 'service'
+              alors: 60000 €/an
+            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
+              alors: 110000 €/an
+      - sinon:
+          variations:
+            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
+              alors: 94300 €/an
+            - si: entreprise . catégorie d'activité . service ou vente = 'service'
+              alors: 36500 €/an
+            - si: entreprise . catégorie d'activité = 'libérale'
+              alors: 36500 €/an
+  note: > 
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
@@ -4328,6 +4361,9 @@ dirigeant . auto-entrepreneur . base des cotisations:
     - si: base des cotisations > plafond
       message: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
       niveau: avertissement
+    - si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
+      message: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/franchise-de-tva)
+      niveau: information
 
 
 dirigeant . auto-entrepreneur . plafond:
