@@ -71,7 +71,7 @@ describe('library', function() {
 			{ extra: sasuRules }
 		)
 
-		expect(revenuDisponible).to.be.closeTo(2309, 1)
+		expect(revenuDisponible).to.be.closeTo(2324, 1)
 		expect(dividendes).to.be.closeTo(2507, 1)
 	}).timeout(5000)
 

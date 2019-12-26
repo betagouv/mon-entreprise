@@ -52,7 +52,7 @@ describe('pay slip selector', function() {
 			sal = getRuleFromAnalysis(analysis)(
 				'contrat salarié . cotisations . salariales'
 			)
-		expect(pat.nodeValue).to.be.closeTo(824.7, 5)
+		expect(pat.nodeValue).to.be.closeTo(808.9, 5)
 		expect(sal.nodeValue).to.be.closeTo(498, 5)
 	})
 
