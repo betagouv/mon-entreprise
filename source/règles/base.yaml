@@ -3974,17 +3974,18 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 
 entreprise . ACRE:
   description: |
-    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d'activité pendant 12 mois. Elle doit être demandée et est réservée aux
+    bénéficiaires suivants: 
 
-    *Durée*:
-    - **12 mois** pour les sociétés et entreprises individuelles
-    - **3 ans** pour les auto-entreprises
-
-    *Conditions d'obtention*:
-    - Pour les entreprises créées après le 1er janvier 2019, la réduction est automatique, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
-    - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+    - Les demandeurs d'emplois  (indemnisés ou non indemnisés mais ayant ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
   question: Votre entreprise bénéficie-t'elle de l'ACRE (anciennement ACCRE) ?
   par défaut: non
+  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, automatique et sans conditions, et actif pendant 3 années.
 
 entreprise . ACRE . année:
   question: Quel est l'âge de l'entreprise ?
@@ -4012,12 +4013,16 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ré
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
     variations:
+      # TODO : ce code fonctionne en 2020, mais en 2021 il faudra faire la
+      # distinction entre les entreprises créées en 2019 (qui ont le droit à
+      # l'ACRE pendant 3 ans) et celles créées en 2020 et après qui n'ont le
+      # droit qu'à une année de réduction.
       - si: entreprise . ACRE . année = 'moins d'un an'
-        alors: 75%
-      - si: entreprise . ACRE . année = 'moins de deux ans'
         alors: 50%
-      - si: entreprise . ACRE . année = 'moins de trois ans'
+      - si: entreprise . ACRE . année = 'moins de deux ans'
         alors: 25%
+      - si: entreprise . ACRE . année = 'moins de trois ans'
+        alors: 10%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
