@@ -51,8 +51,11 @@ const activitéReducer = reducerActivité =>
 		}
 	})
 
+// type ActivityTitle = string
+// type State = Record<ActivityTitle, ReturnType<ReturnType<typeof activitéReducer>>>
+
 let reducer = reduceReducers(
-	(state, { type, activité }: Action) => {
+	((state, { type, activité }: Action) => {
 		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
 			return getSousActivités(activité).reduce(
 				(newState, sousActivité) => ({
@@ -67,7 +70,7 @@ let reducer = reduceReducers(
 			)
 		}
 		return state
-	},
+	}) as any,
 	combineReducers(
 		flatActivités.reduce(
 			(reducers, { titre }) => ({
@@ -76,7 +79,7 @@ let reducer = reduceReducers(
 			}),
 			{}
 		)
-	)
+	) as any
 )
 
 export default reducer
