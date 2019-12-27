@@ -313,9 +313,10 @@ export let nextStepsSelector = createSelector(
 
 		// L'ajout de la réponse permet de traiter les questions dont la réponse est "une possibilité", exemple "contrat salarié . cdd"
 		let lastStep = last(foldedSteps),
-			lastStepWithAnswer = situation[lastStep]
-				? ([lastStep, situation[lastStep]].join(' . ') as DottedName)
-				: lastStep
+			lastStepWithAnswer =
+				lastStep && situation[lastStep]
+					? ([lastStep, situation[lastStep]].join(' . ') as DottedName)
+					: lastStep
 
 		nextSteps = sortBy(
 			question =>
