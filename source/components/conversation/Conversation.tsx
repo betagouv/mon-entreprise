@@ -4,11 +4,13 @@ import QuickLinks from 'Components/QuickLinks'
 import getInputComponent from 'Engine/getInputComponent'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	currentQuestionSelector,
-	flatRulesSelector
+	flatRulesSelector,
+	nextStepsSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'

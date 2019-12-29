@@ -1,12 +1,11 @@
+import GreatCircle from 'great-circle'
 import { take } from 'ramda'
 import React from 'react'
-import Highlighter from 'react-highlight-words'
-import GreatCircle from 'great-circle'
-import { FormDecorator } from '../FormDecorator'
-import Worker from 'worker-loader!./SearchAirports.js'
 import emoji from 'react-easy-emoji'
+import Highlighter from 'react-highlight-words'
+import Worker from 'worker-loader!./SearchAirports.js'
+import { FormDecorator } from '../FormDecorator'
 import SendButton from '../SendButton'
-import { ScrollToTop } from 'Components/utils/Scroll'
 
 const worker = new Worker()
 
@@ -33,10 +32,7 @@ export default FormDecorator('select')(
 				inputState = this.state[whichInput],
 				choice = inputState && inputState.choice
 
-			let {
-				input: { onChange },
-				submit
-			} = this.props
+			let { setFormValue, submit } = this.props
 
 			return (
 				<li
@@ -45,7 +41,7 @@ export default FormDecorator('select')(
 						padding: 0.2rem 0.6rem;
 						border-radius: 0.3rem;
 						${choice && choice.nom === nom
-							? 'background: var(--colour); color: var(--textColour)'
+							? 'background: var(--color); color: var(--textColor)'
 							: ''};
 					`}
 					onClick={() => {
@@ -55,10 +51,11 @@ export default FormDecorator('select')(
 						}
 						let distance = this.computeDistance(state)
 						if (distance) {
-							onChange(distance)
+							setFormValue(distance)
 						}
 						this.setState(state)
-					}}>
+					}}
+				>
 					<Highlighter searchWords={[inputValue]} textToHighlight={nom} />
 					<span style={{ opacity: 0.6, fontSize: '75%', marginLeft: '.6em' }}>
 						<Highlighter
@@ -97,7 +94,8 @@ export default FormDecorator('select')(
 								border-left: 1px solid #333;
 								max-width: 30em;
 							}
-						`}>
+						`}
+					>
 						<div>
 							<label>
 								<span>Départ {emoji('🛫')}</span>
@@ -143,7 +141,8 @@ export default FormDecorator('select')(
 						<div
 							css={`
 								margin: 1rem 0;
-							`}>
+							`}
+						>
 							Distance {emoji('📏')} : &nbsp;<strong>{distance + ' km'}</strong>
 						</div>
 					)}

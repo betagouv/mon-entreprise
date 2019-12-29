@@ -79,7 +79,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 		this.props.onStoreCreated?.(this.store)
 	}
 	componentWillUnmount() {
-		this.props.tracker.disconnectFromHistory()
+		this.props.tracker?.disconnectFromHistory()
 	}
 	render() {
 		const iframeCouleur =

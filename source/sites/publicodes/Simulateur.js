@@ -5,7 +5,7 @@ import ShareButton from 'Components/ShareButton'
 import Simulation from 'Components/Simulation'
 import { Markdown } from 'Components/utils/markdown'
 import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -21,13 +21,16 @@ const Simulateur = props => {
 	const objectif = props.match.params.name,
 		decoded = decodeRuleName(objectif),
 		rules = useSelector(flatRulesSelector),
-		scenario = useSelector(state => state.scenario),
 		rule = findRuleByDottedName(rules, decoded),
 		dispatch = useDispatch(),
 		config = {
 			objectifs: [decoded]
-		}
-	dispatch(setSimulationConfig(config))
+		},
+		configSet = useSelector(state => state.simulation?.config)
+	useEffect(() => dispatch(setSimulationConfig(config)), [])
+
+	if (!configSet) return null
+
 	return (
 		<div className="ui__ container" css="margin-bottom: 1em">
 			<Helmet>

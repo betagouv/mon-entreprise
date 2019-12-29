@@ -1,8 +1,8 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-export default props => {
+const DocumentationButton = props => {
 	const sitePaths = useContext(SitePathsContext)
 
 	return (
@@ -19,3 +19,5 @@ export default props => {
 		</div>
 	)
 }
+
+export default DocumentationButton

@@ -53,7 +53,7 @@ export default withRouter(({ location }) => {
 						text-align: center;
 						padding: 0.6rem 1rem !important;
 						margin-right: 0.6rem;
-						background: var(--colour);
+						background: var(--color) !important;
 						color: white;
 						a {
 							color: inherit;

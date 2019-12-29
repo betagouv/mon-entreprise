@@ -3,7 +3,7 @@ import Question from 'Components/conversation/Question'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import { serialiseUnit } from 'Engine/units'
 import { is, pick, prop, unless } from 'ramda'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { findRuleByDottedName, queryRule } from './rules'
 let SelectTwoAirports = React.lazy(() =>
 	import('Components/conversation/select/SelectTwoAirports')

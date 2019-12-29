@@ -20,7 +20,7 @@ export default ({ input }) => (
 					height: 2.5em;
 					width: 2.5em;
 					padding: 0em;
-					background: var(--colour);
+					background: var(--color);
 					color: white;
 					font-weight: 400;
 					font-size: 180%;

@@ -1,5 +1,5 @@
 import searchWeights from 'Components/searchWeights'
-import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import { encodeRuleName } from 'Engine/rules'
 import Fuse from 'fuse.js'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import React, { useEffect, useState } from 'react'
@@ -11,17 +11,14 @@ import ItemCard from './ItemCard'
 
 let ItemCardWithoutData = ItemCard()
 let buildFuse = rules =>
-	new Fuse(
-		rules.map(pick(['title', 'espace', 'description', 'name', 'dottedName'])),
-		{
-			keys: searchWeights,
-			threshold: 0.3
-		}
-	)
+	new Fuse(rules.map(pick(['title', 'description', 'name', 'dottedName'])), {
+		keys: searchWeights,
+		threshold: 0.3
+	})
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	({ input, rules }) => {
-		let exposedRules = rules.filter(rule => rule.exposé === 'oui')
+		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
 
 		let [fuse, setFuse] = useState(null)
 		useEffect(() => setFuse(buildFuse(exposedRules)), [])
@@ -40,14 +37,13 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 				)}
 				{filteredRules && (
 					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
-						{filteredRules.map(({ dottedName }) => {
-							let rule = findRuleByDottedName(rules, dottedName)
+						{filteredRules.map(rule => {
 							return (
-								<li css="list-style-type: none" key={dottedName}>
+								<li css="list-style-type: none" key={rule.dottedName}>
 									<Link
 										to={
 											rule.formule != null
-												? '/simulateur/' + encodeRuleName(dottedName)
+												? '/simulateur/' + encodeRuleName(rule.dottedName)
 												: '#'
 										}
 										css={`

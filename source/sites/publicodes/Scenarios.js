@@ -24,7 +24,7 @@ export default () => {
 					crédit carbone !
 				</em>
 			</p>
-			<h2 css="display: inline-block;background: var(--colour); padding: .1rem .4rem; margin-right: .4rem;  color: white">
+			<h2 css="display: inline-block;background: var(--color); padding: .1rem .4rem; margin-right: .4rem;  color: white">
 				Quel futur souhaitez vous ?
 			</h2>
 			<p>
@@ -75,7 +75,7 @@ export default () => {
 
 							${state.scenario === nom
 								? `
-								border: 4px solid var(--colour)
+								border: 4px solid var(--color)
 								
 							`
 								: `border: 4px solid white`}

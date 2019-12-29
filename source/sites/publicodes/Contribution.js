@@ -11,7 +11,7 @@ label input, label textarea {
 	display: block;
 	border-radius: .3em;
 	padding: .3em ;
-	border: 1px solid var(--colour);
+	border: 1px solid var(--color);
 	box-shadow: none;
 	margin-top: .6em;
 	font-size: 100%;

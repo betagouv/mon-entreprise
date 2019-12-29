@@ -32,8 +32,8 @@ export default withFigure => {
 					line-height: 1.2em;
 					${formule != null ? '' : 'filter: grayscale(70%); opacity: 0.6;'}
 
-					background-color: var(--lightestColour);
-					color: var(--darkColour);
+					background-color: var(--lightestColor);
+					color: var(--darkColor);
 					margin: 1rem 0;
 					border-radius: 0.3rem;
 					box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
@@ -62,7 +62,7 @@ export default withFigure => {
 								bottom: 0;
 								left: 0;
 								width: 100%;
-								background: var(--colour);
+								background: var(--color);
 								color: white;
 								font-size: 80%;
 							`}
