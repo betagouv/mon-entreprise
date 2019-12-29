@@ -16,7 +16,8 @@ module.exports.default = {
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
 			Images: path.resolve('source/images/')
-		}
+		},
+		extensions: ['.js', '.ts', '.tsx']
 	},
 	entry: {
 		publicodes: './source/sites/publicodes/entry.js'
@@ -69,7 +70,11 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 	}
 
 	return [
-		{ test: /\.js$/, loader: babelLoader, exclude: /node_modules|dist/ },
+		{
+			test: /\.(js|ts|tsx)$/,
+			loader: babelLoader,
+			exclude: /node_modules|dist/
+		},
 		{
 			test: /\.(jpe?g|png|svg)$/,
 			use: {
@@ -83,7 +88,10 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			test: /\.yaml$/,
 			use: ['json-loader', 'yaml-loader']
 		},
-
+		{
+			test: /\.toml$/,
+			use: ['toml-loader']
+		},
 		{
 			test: /\.ne$/,
 			use: [babelLoader, 'nearley-loader']

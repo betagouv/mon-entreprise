@@ -55,7 +55,7 @@
 	width: 18px;
 	border: 2px solid white;
 	background: none;
-	background-color: var(--colour);
+	background-color: var(--color);
 	cursor: pointer;
 }
 
@@ -67,7 +67,7 @@
 	-webkit-appearance: none !important;
 	border-radius: 100%;
 	border: 2px solid white;
-	background-color: var(--colour);
+	background-color: var(--color);
 	cursor: pointer;
 	height: 18px;
 	width: 18px;
@@ -86,7 +86,7 @@
 .range::-ms-thumb {
 	border-radius: 100%;
 	border: 2px solid white;
-	background-color: var(--colour);
+	background-color: var(--color);
 	cursor: pointer;
 	height: 18px;
 	width: 18px;

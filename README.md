@@ -13,6 +13,8 @@ Ici, c'est le code du site en Javascript. Tout le contenu et les discussions aut
 
 [Plus d'infos sur le projet](https://github.com/laem/futureco/blob/master/source/sites/publicodes/about.md).
 
+> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/betagouv/mon-entreprise/issues/new) if you are interested and do not speak French.
+
 ## Et techniquement ?
 
 C'est pour l'instant un _fork_ violent d'un simulateur de cotisations sociales, qui permet de coder en français des règles de calculs, dans un langage (qui se veut) simple et extensible. De ces règles de calcul, des simulateurs (pour l'utilisateur lambda) et des pages de documentation qui expliquent le calcul (pour l'expert ou le curieux) sont générés automatiquement.

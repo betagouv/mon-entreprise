@@ -1,0 +1,12 @@
+salarié:
+  - artiste-auteur . revenus . traitements et salaires: 1000
+  - artiste-auteur . revenus . traitements et salaires: 10000
+  - artiste-auteur . revenus . traitements et salaires: 100000
+
+bnc:
+  - artiste-auteur . revenus . BNC . recettes: 10000
+  - artiste-auteur . revenus . BNC . recettes: 10000
+    artiste-auteur . revenus . BNC . micro-bnc: false
+  - artiste-auteur . revenus . BNC . recettes: 10000
+    artiste-auteur . revenus . BNC . micro-bnc: false
+    artiste-auteur . revenus . BNC . frais réels: 5000

@@ -1,0 +1,30 @@
+échelle de rémunération:
+  - entreprise . rémunération totale du dirigeant: 1000
+  - entreprise . rémunération totale du dirigeant: 2000
+  - entreprise . rémunération totale du dirigeant: 5000
+  - entreprise . rémunération totale du dirigeant: 10000
+  - entreprise . rémunération totale du dirigeant: 20000
+  - entreprise . rémunération totale du dirigeant: 50000
+  - entreprise . rémunération totale du dirigeant: 100000
+
+avec charges:
+  - entreprise . rémunération totale du dirigeant: 10000
+    entreprise . charges: 2000
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . charges: 15000
+
+activités:
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . catégorie d'activité: libérale
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . catégorie d'activité: libérale
+    entreprise . catégorie d'activité . libérale règlementée: true
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . catégorie d'activité: artisanale
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . catégorie d'activité: commerciale ou industrielle
+    entreprise . catégorie d'activité . service ou vente: vente
+  - entreprise . rémunération totale du dirigeant: 20000
+    entreprise . catégorie d'activité: commerciale ou industrielle
+    entreprise . catégorie d'activité . service ou vente: service
+    entreprise . catégorie d'activité . restauration ou hébergement: true

@@ -1,5 +1,5 @@
 - nom: base
-  unité: £ 
+  unité: £
   formule: 300
 
 - nom: assiette
@@ -7,37 +7,36 @@
 
 - test: Simple
   formule:
-    barème continu: 
+    barème continu:
       assiette: assiette
       multiplicateur: base
-      points: 
+      points:
         0: 0%
         0.4: 3.16%
         1.1: 6.35%
   unité attendue: £
-  exemples: 
+  exemples:
     - nom: Premier point
-      situation: 
+      situation:
         assiette: 10
       valeur attendue: 0.026
     - nom: Deuxième point
-      situation: 
+      situation:
         assiette: 120
       valeur attendue: 3.792
-    - nom: Premier point 
-      situation: 
+    - nom: Premier point
+      situation:
         assiette: 150
       valeur attendue: 5.423
-    - nom: Troisième point 
-      situation: 
+    - nom: Troisième point
+      situation:
         assiette: 330
       valeur attendue: 20.955
-    - nom: Au-delà 
-      situation: 
+    - nom: Au-delà
+      situation:
         assiette: 1000
       valeur attendue: 63.5
-        
-        
+
 - nom: base deux
   unité: µ
   formule: 300
@@ -46,6 +45,7 @@
   unité: µ
 
 - test: Retour de taux, pas d'assiette
+  unité: '%'
   formule:
     barème continu:
       assiette: assiette deux
@@ -56,24 +56,24 @@
         1: 0%
       retourne seulement le taux: oui
   unité attendue: '%'
-  exemples: 
+  exemples:
     - nom: Premier point
-      situation: 
+      situation:
         assiette deux: 200
-      valeur attendue: 1
+      valeur attendue: 100
     - nom: Deuxième point
-      situation: 
+      situation:
         assiette deux: 225
-      valeur attendue: 1
+      valeur attendue: 100
     - nom: Troisième point
-      situation: 
+      situation:
         assiette deux: 262.5
-      valeur attendue: 0.5
+      valeur attendue: 50
     - nom: Quatrième point
-      situation: 
+      situation:
         assiette deux: 300
       valeur attendue: 0
     - nom: Cinquième point
-      situation: 
+      situation:
         assiette deux: 300
       valeur attendue: 0

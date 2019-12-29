@@ -5,9 +5,9 @@
 @import './reset.css';
 
 :root {
-	--colour: rgb(41, 117, 209);
-	--darkColour: rgb(24, 69, 123);
-	--textColour: rgb(24, 69, 123);
+	--color: rgb(41, 117, 209);
+	--darkColor: rgb(24, 69, 123);
+	--textColor: rgb(24, 69, 123);
 }
 html:fullscreen {
 	background-color: white;
@@ -23,7 +23,7 @@ button {
 }
 
 blockquote {
-	background: var(--lighterColour);
+	background: var(--lighterColor);
 	border-radius: 0.6em;
 	padding: 1.2em 1em 0.4em;
 	margin: 0.6em;
@@ -54,13 +54,32 @@ blockquote {
 	}
 }
 
-.ui__.choice-group {
-	background-color: var(--lightestColour);
+.ui__.light-bg {
+	background-color: var(--lighterColor) !important;
+}
+.ui__.lighter-bg {
+	background-color: var(--lightestColor) !important;
+}
+
+.ui__.center-flex {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.ui__.hide {
+	display: none;
+}
+@media (max-width: 850px) {
+	.ui__.hide-mobile {
+		display: none;
+	}
+}
+
+section {
 	padding: 1rem 0;
 }
-section.ui__:not(:first-of-type) {
-	margin-top: 2rem;
-}
+
 .ui__.container {
 	width: 100%;
 	max-width: 850px;
@@ -80,9 +99,6 @@ section.ui__:not(:first-of-type) {
 	}
 }
 
-.ui__ .colored-bg {
-	background: var(--lightestColour);
-}
 ul.ui__.no-bullet {
 	list-style: none;
 }
@@ -90,4 +106,17 @@ span.ui__.enumeration:not(:last-of-type)::after {
 	content: '·';
 	margin: 0 0.3rem;
 	display: inline-block;
+}
+
+.ui__.label {
+	font-size: 85%;
+	padding: 0.4rem 0.8rem;
+	color: white;
+	background: var(--lighterTextColor);
+	border-radius: 0.3rem;
+	text-align: center;
+}
+
+.no-scroll {
+	overflow: hidden;
 }

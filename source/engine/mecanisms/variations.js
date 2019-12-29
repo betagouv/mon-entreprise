@@ -80,6 +80,7 @@ export default (recurse, k, v, devariate) => {
 		return {
 			...node,
 			nodeValue,
+			...(satisfiedVariation && { unit: satisfiedVariation?.consequence.unit }),
 			explanation: resolvedExplanation,
 			missingVariables
 		}
@@ -93,7 +94,10 @@ export default (recurse, k, v, devariate) => {
 		category: 'mecanism',
 		name: 'variations',
 		type: 'numeric',
-		unit: inferUnit('+', explanation.map(r => r.consequence.unit))
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.consequence.unit)
+		)
 	}
 }
 

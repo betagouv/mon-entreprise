@@ -1,5 +1,5 @@
 objectifs:
-  - contrat salarié . rémunération . total
+  - contrat salarié . prix du travail
   - contrat salarié . aides employeur
   - contrat salarié . rémunération . brut de base . équivalent temps plein
   - contrat salarié . rémunération . brut de base
@@ -8,7 +8,7 @@ objectifs:
 
 objectifs secondaires:
   - contrat salarié . temps de travail
-  - contrat salarié . cotisations . patronales . à payer
+  - contrat salarié . cotisations
 
 questions:
   à l'affiche:
@@ -28,8 +28,6 @@ questions:
     - contrat salarié . statut JEI
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
+unités par défaut: [€/mois]
 situation:
-  contrat salarié . assimilé salarié: non
-  indépendant: non
-  auto-entrepreneur: non
-  période: mois
+  dirigeant: non

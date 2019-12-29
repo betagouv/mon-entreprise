@@ -22,13 +22,15 @@ let attributesToExternalize = [
 	'contrôles'
 ]
 
-let buildDottedName = rule =>
-	rule.espace ? rule.espace + ' . ' + rule.nom : rule.nom
-
-let resolved = rules
-	.map(rule => (!rule.titre ? { ...rule, titre: rule.nom } : rule))
-	.map(rule => ({
-		[buildDottedName(rule)]: R.mergeAll(
+let resolved = Object.entries(rules)
+	.map(([dottedName, rule]) => [
+		dottedName,
+		!rule || !rule.titre
+			? { ...rule, titre: dottedName.split(' . ').slice(-1)[0] }
+			: rule
+	])
+	.map(([dottedName, rule]) => ({
+		[dottedName]: R.mergeAll(
 			R.toPairs(rule)
 				.filter(([, v]) => !!v)
 				.map(([k, v]) => {
@@ -37,7 +39,7 @@ let resolved = rules
 					let enTrad = attrToTranslate + '.en',
 						frTrad = attrToTranslate + '.fr'
 
-					let currentTranslation = currentExternalization[buildDottedName(rule)]
+					let currentTranslation = currentExternalization[dottedName]
 					//Check if a human traduction exists already for this attribute
 					if (currentTranslation && currentTranslation[enTrad])
 						return {

@@ -34,10 +34,10 @@ function Row({ v, i, unit }) {
 	return [
 		<div
 			className="mecanism-somme__row"
-			key={v.name}
+			key={v.name || i}
 			// className={isSomme ? '' : 'noNest'}
-			onClick={() => setFolded(!folded)}>
-			<div className="operator blank">{i != 0 && '+'}</div>
+			onClick={() => setFolded(!folded)}
+		>
 			<div className="element">
 				{makeJsx(v)}
 				{isSomme && (
@@ -47,13 +47,13 @@ function Row({ v, i, unit }) {
 				)}
 			</div>
 			<div className="situationValue value">
-				<NodeValuePointer data={v.nodeValue} unit={unit} />
+				<NodeValuePointer data={v.nodeValue} unit={v.unit} />
 			</div>
 		</div>,
 		...(isSomme && !folded
 			? [
 					<div className="nested" key={v.name + '-nest'}>
-						<Table explanation={rowFormula.explanation} unit={unit} />
+						<Table explanation={rowFormula.explanation} unit={v.unit || unit} />
 					</div>
 			  ]
 			: [])

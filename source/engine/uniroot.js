@@ -79,7 +79,7 @@ export default function uniroot(
 
 			if (
 				p < 0.75 * cb * q - Math.abs(tol_act * q) / 2 &&
-				p < Math.abs(prev_step * q / 2)
+				p < Math.abs((prev_step * q) / 2)
 			) {
 				// If (b + p / q) falls in [b,c] and isn't too large it is accepted
 				new_step = p / q

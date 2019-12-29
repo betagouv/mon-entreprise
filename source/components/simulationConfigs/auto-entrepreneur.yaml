@@ -1,7 +1,7 @@
 objectifs:
   - entreprise . chiffre d'affaires
-  - auto-entrepreneur . cotisations et contributions
-  - auto-entrepreneur . revenu net de cotisations
+  - dirigeant . auto-entrepreneur . cotisations et contributions
+  - dirigeant . auto-entrepreneur . revenu net de cotisations
   - impôt
   - revenu net après impôt
 
@@ -11,11 +11,11 @@ questions:
     Versement libératoire: auto-entrepreneur . impôt . versement libératoire
     Impôt sur le revenu: impôt . méthode de calcul
     ACRE: entreprise . ACRE
+  non prioritaires:
+    - établissement . localisation
   liste noire:
     - entreprise . charges
 
+unités par défaut: [€/an]
 situation:
-  auto-entrepreneur: oui
-  indépendant: non
-  contrat salarié: non
-  période: année
+  dirigeant: 'auto-entrepreneur'

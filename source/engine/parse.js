@@ -2,12 +2,14 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
+import { formatValue } from 'Engine/format'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
 import correspondance from 'Engine/mecanisms/correspondance.js'
-import variations from 'Engine/mecanisms/variations'
+import encadrement from 'Engine/mecanisms/encadrement'
 import operation from 'Engine/mecanisms/operation'
+import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
 	add,
@@ -28,6 +30,7 @@ import {
 	without
 } from 'ramda'
 import React from 'react'
+import { syntaxError } from './error.ts'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -36,7 +39,6 @@ import {
 	mecanismInversion,
 	mecanismMax,
 	mecanismMin,
-	mecanismNumericalSwitch,
 	mecanismOneOf,
 	mecanismOnePossibility,
 	mecanismProduct,
@@ -68,8 +70,16 @@ export let parseString = (rules, rule, parsedRules) => rawNode => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
-	let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
-	return parseObject(rules, rule, parsedRules)(parseResult)
+	try {
+		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
+		return parseObject(rules, rule, parsedRules)(parseResult)
+	} catch (e) {
+		syntaxError(
+			rule.dottedName,
+			`\`${rawNode}\` n'est pas une formule valide`,
+			e
+		)
+	}
 }
 
 export let parseNumber = rawNode => ({
@@ -107,7 +117,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 		v = rawNode[k]
 
 	let knownOperations = {
-			'*': [multiply, '∗'],
+			'*': [multiply, '×'],
 			'/': [divide, '∕'],
 			'+': [add],
 			'-': [subtract, '−'],
@@ -128,12 +138,12 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 	let dispatch = {
 			'une de ces conditions': mecanismOneOf,
 			'toutes ces conditions': mecanismAllOf,
-			'aiguillage numérique': mecanismNumericalSwitch,
 			somme: mecanismSum,
 			multiplication: mecanismProduct,
 			barème,
 			'barème linéaire': barèmeLinéaire,
 			'barème continu': barèmeContinu,
+			encadrement,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
 			correspondance,
@@ -151,17 +161,29 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 				}),
 			variable: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
-			temporalTransform: () =>
+			unitConversion: () =>
 				parseReferenceTransforms(rules, rule, parsedRules)({
 					variable: v.explanation,
-					temporalTransform: v.temporalTransform
+					unit: v.unit
 				}),
 			constant: () => ({
 				type: v.type,
 				nodeValue: v.nodeValue,
 				unit: v.unit,
 				// eslint-disable-next-line
-				jsx: () => <span className={v.type}>{v.nodeValue}</span>
+				jsx: () => (
+					<span className={v.type}>
+						{formatValue({
+							unit: v.unit,
+							value: v.nodeValue,
+							// TODO : handle localization here
+							language: 'fr',
+							// We want to display constants with full precision,
+							// espacilly for percentages like APEC 0,036 %
+							maximumFractionDigits: 5
+						})}
+					</span>
+				)
 			})
 		},
 		action = propOr(mecanismError, k, dispatch)

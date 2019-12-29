@@ -1,13 +1,13 @@
 import { expect } from 'chai'
-import Syso from '../source/engine/index'
+import Lib from '../source/engine/index'
 import co2 from '../source/règles/co2.yaml'
 import sasuRules from '../source/règles/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
 		let target = 'contrat salarié . rémunération . net'
-		let value = Syso.evaluate(target, {
-			'contrat salarié': { rémunération: { 'brut de base': 2300 } }
+		let value = Lib.evaluate(target, {
+			'contrat salarié . rémunération . brut de base': 2300
 		})
 		expect(value).to.be.within(1798, 1800)
 	})
@@ -22,7 +22,7 @@ describe('library', function() {
   formule:  yo + 2
 `
 
-		let values = Syso.evaluate(['ya', 'yi'], {}, { base: rules })
+		let values = Lib.evaluate(['ya', 'yi'], {}, { base: rules })
 
 		expect(values[0]).to.equal(201)
 		expect(values[1]).to.equal(202)
@@ -32,11 +32,10 @@ describe('library', function() {
 - nom: yo
   formule: 1
 - nom: ya
-  période: flexible
   formule:  contrat salarié . rémunération . net + yo
 `
 
-		let value = Syso.evaluate(
+		let value = Lib.evaluate(
 			'ya',
 			{
 				'contrat salarié . rémunération . brut de base': 2300
@@ -48,7 +47,7 @@ describe('library', function() {
 	})
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let CA = 550 * 16
-		let salaireTotal = Syso.evaluate(
+		let salaireTotal = Lib.evaluate(
 			'salaire total',
 			{
 				'chiffre affaires': CA
@@ -56,14 +55,14 @@ describe('library', function() {
 			{ extra: sasuRules }
 		)
 
-		let salaireNetAprèsImpôt = Syso.evaluate(
+		let salaireNetAprèsImpôt = Lib.evaluate(
 			'contrat salarié . rémunération . net après impôt',
 			{
-				'contrat salarié': { rémunération: { total: salaireTotal } }
+				'contrat salarié . prix du travail': salaireTotal
 			}
 		)
 
-		let [revenuDisponible, dividendes] = Syso.evaluate(
+		let [revenuDisponible, dividendes] = Lib.evaluate(
 			['revenu net après impôt', 'dividendes . net'],
 			{
 				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
@@ -120,7 +119,7 @@ describe('library', function() {
 
 		let target = 'impôt sur le revenu à payer'
 
-		let value = Syso.evaluate(
+		let value = Lib.evaluate(
 			target,
 			{ 'revenu imposable': '48000' },
 			{ base: règles }
@@ -130,7 +129,7 @@ describe('library', function() {
 	it('should let let user define a rule base on a completely different subject', function() {
 		let targets = 'impact'
 
-		let value = Syso.evaluate(
+		let value = Lib.evaluate(
 			targets,
 			{
 				'nombre de douches': 30,

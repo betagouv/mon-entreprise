@@ -1,26 +1,19 @@
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
-import { inferUnit } from 'Engine/units'
+import { convertNodeToUnit } from 'Engine/nodeUnits'
+import { inferUnit, isPercentUnit } from 'Engine/units'
 import {
 	add,
 	any,
-	curry,
 	equals,
 	evolve,
-	filter,
-	find,
-	head,
 	is,
-	isEmpty,
-	keys,
 	map,
 	max,
 	mergeWith,
 	min,
 	path,
-	pipe,
 	pluck,
-	prop,
 	reduce,
 	subtract,
 	toPairs
@@ -28,8 +21,8 @@ import {
 import React from 'react'
 import { Trans } from 'react-i18next'
 import 'react-virtualized/styles.css'
+import { typeWarning } from './error'
 import {
-	bonus,
 	collectNodeMissing,
 	defaultNode,
 	evaluateArray,
@@ -37,7 +30,6 @@ import {
 	evaluateObject,
 	makeJsx,
 	mergeAllMissing,
-	mergeMissing,
 	parseObject
 } from './evaluation'
 import Allègement from './mecanismViews/Allègement'
@@ -48,6 +40,7 @@ import Somme from './mecanismViews/Somme'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
+import { parseUnit } from './units'
 
 export let mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
@@ -145,121 +138,6 @@ export let mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-export let mecanismNumericalSwitch = (recurse, k, v) => {
-	// Si "l'aiguillage" est une constante ou une référence directe à une variable;
-	// l'utilité de ce cas correspond à un appel récursif au mécanisme
-	if (is(String, v)) return recurse(v)
-
-	if (!is(Object, v) || keys(v).length == 0) {
-		throw new Error(
-			'Le mécanisme "aiguillage numérique" et ses sous-logiques doivent contenir au moins une proposition'
-		)
-	}
-
-	// les termes sont les couples (condition, conséquence) de l'aiguillage numérique
-	let terms = toPairs(v)
-
-	// la conséquence peut être un 'string' ou un autre aiguillage numérique
-	let parseCondition = ([condition, consequence]) => {
-		let conditionNode = recurse(condition), // can be a 'comparison', a 'variable'
-			consequenceNode = mecanismNumericalSwitch(recurse, condition, consequence)
-
-		let evaluate = (cache, situationGate, parsedRules, node) => {
-			let explanation = evolve(
-					{
-						condition: curry(evaluateNode)(cache, situationGate, parsedRules),
-						consequence: curry(evaluateNode)(cache, situationGate, parsedRules)
-					},
-					node.explanation
-				),
-				leftMissing = explanation.condition.missingVariables,
-				investigate = explanation.condition.nodeValue !== false,
-				rightMissing = investigate
-					? explanation.consequence.missingVariables
-					: {},
-				missingVariables = mergeMissing(bonus(leftMissing), rightMissing)
-
-			return {
-				...node,
-				explanation,
-				missingVariables,
-				nodeValue: explanation.consequence.nodeValue,
-				condValue: explanation.condition.nodeValue
-			}
-		}
-
-		let jsx = (nodeValue, { condition, consequence }) => (
-			<div className="condition">
-				{makeJsx(condition)}
-				<div>{makeJsx(consequence)}</div>
-			</div>
-		)
-
-		return {
-			evaluate,
-			jsx,
-			explanation: { condition: conditionNode, consequence: consequenceNode },
-			category: 'condition',
-			text: condition,
-			condition: conditionNode,
-			type: 'boolean'
-		}
-	}
-
-	let evaluateTerms = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child =>
-				evaluateNode(cache, situationGate, parsedRules, child),
-			explanation = map(evaluateOne, node.explanation),
-			nonFalsyTerms = filter(node => node.condValue !== false, explanation),
-			getFirst = o =>
-				pipe(
-					head,
-					prop(o)
-				)(nonFalsyTerms),
-			nodeValue =
-				// voilà le "numérique" dans le nom de ce mécanisme : il renvoie zéro si aucune condition n'est vérifiée
-				isEmpty(nonFalsyTerms)
-					? 0
-					: // c'est un 'null', on renvoie null car des variables sont manquantes
-					getFirst('condValue') == null
-					? null
-					: // c'est un true, on renvoie la valeur de la conséquence
-					  getFirst('nodeValue'),
-			choice = find(node => node.condValue, explanation),
-			missingVariables = choice
-				? choice.missingVariables
-				: mergeAllMissing(explanation)
-
-		return { ...node, nodeValue, explanation, missingVariables }
-	}
-
-	let explanation = map(parseCondition, terms)
-
-	let jsx = (nodeValue, explanation) => (
-		<Node
-			classes="mecanism numericalSwitch list"
-			name="aiguillage numérique"
-			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map(item => (
-						<li key={item.name || item.text}>{makeJsx(item)}</li>
-					))}
-				</ul>
-			}
-		/>
-	)
-
-	return {
-		evaluate: evaluateTerms,
-		jsx,
-		explanation,
-		category: 'mecanism',
-		name: 'aiguillage numérique',
-		type: 'boolean || numeric' // lol !
-	}
-}
-
 export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	let inversions = v.avec
 	if (!inversions)
@@ -308,7 +186,9 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 
 	let inversionCache = {}
 	let fx = x => {
-		inversionCache = { parseLevel: oldCache.parseLevel + 1, op: '<' }
+		inversionCache = {
+			_meta: oldCache._meta
+		}
 		let v = evaluateNode(
 			inversionCache, // with an empty cache
 			n =>
@@ -320,7 +200,6 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			parsedRules,
 			fixedObjectiveRule
 		)
-
 		return v
 	}
 
@@ -367,12 +246,12 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				? Number.parseFloat(situationGate(dottedName))
 				: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
-
-		if (nodeValue === undefined)
-			cache.inversionFail = {
+		if (nodeValue === undefined) {
+			cache._meta.inversionFail = {
 				given: inversion.inversedWith.rule.dottedName,
 				estimated: dottedName
 			}
+		}
 		let evaluatedNode = {
 			...node,
 			nodeValue,
@@ -414,7 +293,10 @@ export let mecanismSum = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'somme',
 		type: 'numeric',
-		unit: inferUnit('+', explanation.map(r => r.unit))
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.unit)
+		)
 	}
 }
 
@@ -426,11 +308,31 @@ export let mecanismReduction = (recurse, k, v) => {
 		franchise: defaultNode(0)
 	}
 
-	let effect = ({ assiette, abattement, plafond, franchise, décote }) => {
+	let effect = (
+		{ assiette, abattement, plafond, franchise, décote },
+		cache
+	) => {
 		let v_assiette = val(assiette)
-
 		if (v_assiette == null) return null
-
+		if (assiette.unit) {
+			try {
+				franchise = convertNodeToUnit(assiette.unit, franchise)
+				plafond = convertNodeToUnit(assiette.unit, plafond)
+				if (!isPercentUnit(abattement.unit)) {
+					abattement = convertNodeToUnit(assiette.unit, abattement)
+				}
+				if (décote) {
+					décote.plafond = convertNodeToUnit(assiette.unit, décote.plafond)
+					décote.taux = convertNodeToUnit(parseUnit(''), décote.taux)
+				}
+			} catch (e) {
+				typeWarning(
+					cache._meta.contextRule,
+					"Impossible de convertir les unités de l'allègement entre elles",
+					e
+				)
+			}
+		}
 		let montantFranchiséDécoté =
 			val(franchise) && v_assiette < val(franchise)
 				? 0
@@ -444,13 +346,12 @@ export let mecanismReduction = (recurse, k, v) => {
 							: max(0, (1 + taux) * v_assiette - taux * plafondDécote)
 				  })()
 				: v_assiette
-
-		return abattement
+		const nodeValue = abattement
 			? val(abattement) == null
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: abattement.type === 'percentage'
+				: isPercentUnit(abattement.unit)
 				? max(
 						0,
 						montantFranchiséDécoté -
@@ -458,6 +359,15 @@ export let mecanismReduction = (recurse, k, v) => {
 				  )
 				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
 			: montantFranchiséDécoté
+		return {
+			nodeValue,
+			additionalExplanation: {
+				unit: assiette.unit,
+				franchise,
+				plafond,
+				abattement
+			}
+		}
 	}
 
 	let base = parseObject(recurse, objectShape, v),
@@ -495,20 +405,39 @@ export let mecanismProduct = (recurse, k, v) => {
 		facteur: defaultNode(1),
 		plafond: defaultNode(Infinity)
 	}
-	let effect = ({ assiette, taux, facteur, plafond }) => {
+	let effect = ({ assiette, taux, facteur, plafond }, cache) => {
+		if (assiette.unit) {
+			try {
+				plafond = convertNodeToUnit(assiette.unit, plafond)
+			} catch (e) {
+				typeWarning(
+					cache._meta.contextRule,
+					"Impossible de convertir l'unité du plafond de la multiplication dans celle de l'assiette",
+					e
+				)
+			}
+		}
 		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond) * rate * facteur
+		const unit = inferUnit(
+			'*',
+			[assiette, taux, facteur].map(el => el.unit)
+		)
+		const nodeValue =
+			val(taux) === 0 ||
+			val(taux) === false ||
+			val(assiette) === 0 ||
+			val(facteur) === 0
+				? 0
+				: anyNull([taux, assiette, facteur, plafond])
+				? null
+				: mult(val(assiette), val(taux), val(facteur), val(plafond))
 		return {
-			nodeValue:
-				val(taux) === 0 ||
-				val(taux) === false ||
-				val(assiette) === 0 ||
-				val(facteur) === 0
-					? 0
-					: anyNull([taux, assiette, facteur, plafond])
-					? null
-					: mult(val(assiette), val(taux), val(facteur), val(plafond)),
-			additionalExplanation: { plafondActif: val(assiette) > val(plafond) }
+			nodeValue,
+			additionalExplanation: {
+				plafondActif: val(assiette) > val(plafond),
+				unit
+			}
 		}
 	}
 
@@ -560,7 +489,8 @@ export let mecanismMax = (recurse, k, v) => {
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
-		name: 'le maximum de'
+		name: 'le maximum de',
+		unit: explanation[0].unit
 	}
 }
 

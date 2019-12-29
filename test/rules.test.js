@@ -16,7 +16,7 @@ describe('enrichRule', function() {
 	})
 
 	it('should extract the dotted name of the rule', function() {
-		let rule = { espace: 'contrat salarié', nom: 'CDD' }
+		let rule = { nom: 'contrat salarié . CDD' }
 		expect(enrichRule(rule)).to.have.property('name', 'CDD')
 		expect(enrichRule(rule)).to.have.property(
 			'dottedName',
@@ -46,20 +46,6 @@ describe('rule checks', function() {
 		)
 		expect(rulesNeedingDefault).to.be.empty
 	})
-	it('rules with a period should not have a flexible period', function() {
-		let problems = rules.filter(
-			({ defaultValue, période }) => période === 'flexible' && defaultValue
-		)
-
-		problems.map(({ dottedName }) =>
-			console.log(
-				'La valeur règle ',
-				dottedName,
-				" a une période flexible et une valeur par défaut. C'est un problème, car on ne sait pas pour quelle période ce défaut est défini. "
-			)
-		)
-		expect(problems).to.be.empty
-	})
 })
 
 it('rules with a formula should not have defaults', function() {
@@ -77,8 +63,7 @@ describe('translateAll', function() {
 	it('should translate flat rules', function() {
 		let rules = [
 			{
-				espace: 'foo',
-				nom: 'bar',
+				nom: 'foo . bar',
 				titre: 'Titre',
 				description: 'Description',
 				question: 'Question'
@@ -115,16 +100,14 @@ describe('misc', function() {
 	it('should procude an array of the parents of a rule', function() {
 		let rawRules = [
 			{ nom: 'CDD', question: 'CDD ?' },
-			{ nom: 'taxe', formule: 'montant annuel / 12', espace: 'CDD' },
+			{ nom: 'CDD . taxe', formule: 'montant annuel / 12' },
 			{
-				nom: 'montant annuel',
-				formule: '20 - exonération annuelle',
-				espace: 'CDD . taxe'
+				nom: 'CDD . taxe . montant annuel',
+				formule: '20 - exonération annuelle'
 			},
 			{
-				nom: 'exonération annuelle',
-				formule: 20,
-				espace: 'CDD . taxe . montant annuel'
+				nom: 'CDD . taxe . montant annuel . exonération annuelle',
+				formule: 20
 			}
 		]
 
@@ -142,21 +125,15 @@ describe('misc', function() {
 			{ espace: 'A', nom: 'C' },
 
 			{ nom: 'CDD', question: 'CDD ?' },
-			{ espace: 'CDD', nom: 'taxe', formule: 'montant annuel / 12' },
+			{ nom: 'CDD . taxe', formule: 'montant annuel / 12' },
 			{
-				espace: 'CDD . taxe',
-				nom: 'montant annuel',
+				nom: 'CDD . taxe . montant annuel',
 				formule: '20 - exonération annuelle'
 			},
 			{
-				espace: 'CDD . taxe . montant annuel',
-				nom: 'exonération annuelle',
+				nom: 'CDD . taxe . montant annuel . exonération annuelle',
 				formule: 20
-			},
-			{ nom: 'transport' },
-			{ espace: 'transport', nom: 'impact' },
-			{ espace: 'transport', nom: 'trotinette', formule: 'impact * 10' },
-			{ espace: 'transport . trotinette', nom: 'impact' }
+			}
 		]
 
 		let enrichedRules = rawRules.map(enrichRule)

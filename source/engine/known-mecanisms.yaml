@@ -30,28 +30,36 @@ toutes ces conditions:
 
     Renvoie vrai si toutes les conditions vraies.
 
-aiguillage numérique:
-  type: numeric
-  description: |
-    Contient une liste de couples condition-conséquence.
-
-    Couple par couple, si la condition est vraie, alors on choisit la conséquence.
-
-    Cette conséquence peut elle-même être un mécanisme `aiguillage numérique` ou plus simplement un `taux`.
-
-    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable` (ce qui peut se traduire par la valeur `0` si nous sommes dans un contexte numérique).
-
 variations:
   type: numeric
   description: |
-    Contient une liste de couples condition-conséquence, sous une forme plus explicite que l'aiguillage numérique :
+    Contient une liste de conditions (`si`) et leurs conséquences associées (`alors`).
 
+    Pour la première condition vraie dans la liste, on retient la valeur qui lui est associée.
+
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement `non applicable`
+
+
+    Exemple:
     ```
-    si: condition
-    alors: valeur
+    - si: age < 18 ans
+      alors: 'mineur'
+    - sinon: 'majeur'
     ```
 
-    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel que la multiplication ou le barème. Par exemple, certains paramètres de la multiplication seront communs (ex. l'assiette) alors que d'autres (ex. le taux) variront selon une autre variable (ex. statut cadre).
+    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel que la multiplication ou le barème. 
+
+    Exemple (TVA):
+    ```
+    multiplication: 
+      assiette: total hors taxe
+      variations:
+        - si: restauration
+          alors: 
+            taux: 10%
+        - sinon: 
+            taux: 20%
+    ```
 
 multiplication:
   type: numeric
@@ -156,7 +164,7 @@ complément:
 composantes:
   type: numeric
   description: |
-    Beaucoup de cotisations sont composées de deux parties qui partage la méthode de calcul mais diffèrent par des paramètres différents.
+    Beaucoup de cotisations sont composées de deux parties qui partagent la méthode de calcul mais diffèrent par des paramètres différents.
 
     Pour ne pas définir deux variables presque redondantes, on utilise le mécanisme de composante. Il se comportera comme une somme dans les calculs, mais son affichage sur les pages /règle sera adapté.
 
@@ -168,7 +176,12 @@ allègement:
   type: numeric
   description: |
     Permet de réduire le montant d'une variable. 
-    Très utilisé dans le contexte des impôts. 
+    Très utilisé dans le contexte des impôts.
+
+encadrement:
+  type: numeric
+  description: |
+    Permet d'ajouter un plafond et/ou un plancher à une valeur.
 
 synchronisation:
   type: object
@@ -176,13 +189,6 @@ synchronisation:
     Pour éviter trop de saisies à l'utilisateur, certaines informations sont récupérées à partir de ce que l'on appelle des API. Ce sont des services auxquels ont fait appel pour obtenir des informations sur un sujet précis. Par exemple, l'État français fournit gratuitement l'API géo, qui permet à partir du nom d'une ville, d'obtenir son code postal, son département, la population etc.
     Ce mécanismes `synchronisation` permet de faire le lien entre les règles de notre système et les réponses de ces API.
 
-période:
-  description: |
-    Une régle qui a une période `mois` ou `année`, c'est une règle qui ne peut être calculée que sur cette période. La période est `flexible` quand le calcul est valable quelle que soit la période choisie. D'autres règles ne changent pas de valeur en fonction de la période.
-
-    Par exemple, dans une simulation mensuelle, si `indemnité kilométrique vélo` (de période flexible) appelle la règle `distance annuelle`, qui est définie sur l'année, alors la valeur de cette dernière sera divisée par 12 avant d'être passée à cette première. L'inverse est également vrai, en multipliant par 12.
-
-    Par défaut, la période de la simulation est mensuelle.
 correspondance:
   description: |
     C'est simplement un tableau de correspondance qui donne un nombre en fonction de la valeur d'une variable.

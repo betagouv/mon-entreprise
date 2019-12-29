@@ -1,11 +1,5 @@
 - test: Composantes
-  formule:
-    multiplication:
-      assiette: richesse
-      composantes:
-        - taux: 8%
-        - taux: 2%
-
+  formule: impôts
   unité attendue: crédits
   exemples:
     - nom:
@@ -15,3 +9,11 @@
 - nom: richesse
   unité: crédits
   formule: 100
+
+- nom: impôts
+  formule:
+    multiplication:
+      assiette: richesse
+      composantes:
+        - taux: 8%
+        - taux: 2%

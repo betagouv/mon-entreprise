@@ -13,10 +13,6 @@ objectifs:
       - entreprise . charges
       - entreprise . chiffre d'affaires minimum
 
-objectifs secondaires:
-  - contrat salarié . temps de travail
-  - contrat salarié . cotisations . patronales . à payer
-
 questions:
   à l'affiche:
     ACRE: entreprise . ACRE
@@ -38,10 +34,7 @@ questions:
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
 
+unités par défaut: [€/an]
 situation:
-  auto-entrepreneur: non
-  indépendant: non
-  contrat salarié . assimilé salarié: oui
-  contrat salarié . temps partiel: non
+  dirigeant: 'assimilé salarié'
   contrat salarié . ATMP . taux réduit: oui
-  période: année

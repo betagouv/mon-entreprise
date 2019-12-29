@@ -1,7 +1,4 @@
 rules:
-  linebreak-style:
-    - 2
-    - unix
   quotes:
     - 1 # While https://github.com/eslint/eslint/issues/9662#issuecomment-353958854 we don't enforce this
     - single
@@ -13,12 +10,14 @@ rules:
   react/prop-types: 0
   react/jsx-no-target-blank: 0
   react/no-unescaped-entities: 0
-  react/display-name: 0
+  react/display-name: 1
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
 parser: babel-eslint
 
 plugins:
   - react
-  - flowtype
+  - react-hooks
 env:
   browser: true
   commonjs: true
@@ -26,22 +25,19 @@ env:
 settings:
   react:
     version: 'detect'
-    flowVersion: '0.92'
 
 overrides:
-  files: ['*.test.js', 'cypress/integration/**/*.js']
-  env:
-    mocha: true
+  - files: ['*.test.js', 'cypress/integration/**/*.js']
+    env:
+      mocha: true
 
 globals:
   process: false
 
 extends:
   - eslint:recommended
-  - plugin:flowtype/recommended
   - plugin:react/recommended
   - prettier
-  - prettier/flowtype
   - prettier/react
 parserOptions:
   ecmaFeatures:

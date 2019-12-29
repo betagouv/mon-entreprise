@@ -43,7 +43,7 @@ function Controls({
 			<ul style={{ margin: 0, padding: 0 }}>
 				{messages.map(({ level, test, message, solution, evaluated }) =>
 					hiddenControls.includes(test) ? null : (
-						<animate.fromTop key={test}>
+						<animate.fromTop key={message}>
 							<li key={test}>
 								<div className="control">
 									{emoji(level == 'avertissement' ? '⚠️' : 'ℹ️')}
@@ -59,7 +59,8 @@ function Controls({
 												<button
 													key={solution.cible}
 													className="ui__ link-button"
-													onClick={() => goToQuestion(solution.cible)}>
+													onClick={() => goToQuestion(solution.cible)}
+												>
 													{solution.texte}
 												</button>
 											</div>
@@ -67,7 +68,8 @@ function Controls({
 										<button
 											className="hide"
 											aria-label="close"
-											onClick={() => hideControl(test)}>
+											onClick={() => hideControl(test)}
+										>
 											×
 										</button>
 									</div>
@@ -85,7 +87,8 @@ export default compose(
 		(state, props) => ({
 			foldedSteps: state.conversationSteps.foldedSteps,
 			controls: analysisWithDefaultsSelector(state)?.controls,
-			inversionFail: analysisWithDefaultsSelector(state)?.cache?.inversionFail,
+			inversionFail: analysisWithDefaultsSelector(state)?.cache._meta
+				.inversionFail,
 			key: props.language,
 			hiddenControls: state.simulation.hiddenControls
 		}),

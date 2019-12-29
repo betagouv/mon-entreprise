@@ -1,46 +1,86 @@
-const salaryInput = inputTitle => {
-	const inputContainer = cy
-		.contains(inputTitle)
-		.closest('.main')
-		.find('.targetInputOrValue')
-	inputContainer.click()
-	return inputContainer.find('input')
-}
+const fr = Cypress.env('language') === 'fr'
+const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
+describe('Simulateurs', function() {
+	if (!fr) {
+		return
+	}
+	;['indépendant', 'assimilé-salarié', 'auto-entrepreneur', 'salarié'].forEach(
+		simulateur =>
+			describe(simulateur, () => {
+				before(() => cy.visit(`/simulateurs/${simulateur}`))
+				it('should not crash', function() {
+					cy.get(inputSelector)
+				})
 
-describe('Simulateurs test', function() {
-	const fr = Cypress.env('language') === 'fr'
+				it('should display a result when entering a value in any of the currency input', () => {
+					cy.contains('€/an').click()
+					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
+						cy.get('input.currencyInput__input[name$="charges"]').type(1000)
+					}
+					cy.get(inputSelector).each((testedInput, i) => {
+						cy.wrap(testedInput).type('{selectall}60000')
+						cy.wait(600)
+						cy.contains('Cotisations')
+						cy.get(inputSelector).each(($input, j) => {
+							const val = $input.val().replace(/[\s,.]/g, '')
+							if (i != j) {
+								expect(val).not.to.be.eq('60000')
+							}
+							expect(val).to.match(/[1-9][\d]*$/)
+						})
+					})
+				})
 
-	it('should not crash', function() {
-		cy.visit(fr ? '/sécurité-sociale' : '/social-security')
-		cy.contains(
-			fr ? 'Que souhaitez-vous estimer ?' : 'What do you want to estimate?'
-		)
-	})
-	it('should display selection page', function() {
-		cy.visit(fr ? '/sécurité-sociale' : '/social-security')
-		cy.contains(fr ? 'Mon revenu' : 'My income').click()
-		cy.contains(
-			fr
-				? 'Quel régime souhaitez-vous explorer ?'
-				: 'Which social scheme would you like to explore?'
-		)
-		cy.contains('Indépendant').click({ force: true })
-		cy.contains(
-			fr
-				? 'Simulateur de revenus pour indépendants'
-				: 'Self-employed income simulator'
-		)
-	})
-	it('donne une estimation pour le revenu des indépendants', function() {
-		cy.visit(
-			fr ? '/sécurité-sociale/indépendant' : '/social-security/self-employed'
-		)
-		salaryInput(fr ? 'Rémunération totale' : 'Director total income').type(
-			100000,
-			{
-				force: true
-			}
-		)
-		cy.contains(fr ? 'Cotisations et contributions' : 'All contributions')
-	})
+				it('should allow to change period', function() {
+					cy.contains('€/an').click()
+					cy.wait(200)
+					cy.get(inputSelector)
+						.first()
+						.type('{selectall}12000')
+					cy.wait(600)
+					cy.contains('€/mois').click()
+					cy.get(inputSelector)
+						.first()
+						.invoke('val')
+						.should('match', /1[\s]000/)
+				})
+
+				it('should allow to navigate to a documentation page', function() {
+					cy.get(inputSelector)
+						.first()
+						.type('{selectall}2000')
+					cy.wait(700)
+					cy.contains('Cotisations').click()
+					cy.location().should(loc => {
+						expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
+					})
+				})
+
+				it('should allow to go back to the simulation', function() {
+					cy.contains('← ').click()
+					cy.get(inputSelector)
+						.first()
+						.invoke('val')
+						.should('be', '2 000')
+				})
+
+				if (simulateur === 'salarié') {
+					it('should save the current simulation', function() {
+						cy.get(inputSelector)
+							.first()
+							.type('{selectall}2137')
+						cy.contains('Passer').click()
+						cy.contains('Passer').click()
+						cy.contains('Passer').click()
+						cy.wait(1600)
+						cy.visit('/simulateurs/salarié')
+						cy.contains('Retrouver ma simulation').click()
+						cy.get(inputSelector)
+							.first()
+							.invoke('val')
+							.should('match', /2[\s]137/)
+					})
+				}
+			})
+	)
 })

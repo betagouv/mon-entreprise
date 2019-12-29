@@ -1,22 +1,19 @@
 # Ce petit ensemble de règles a été historiquement utilisé pour tester l'externalisation du moteur, et est en train d'être réintégré progressivement dans la base centrale
 
-- nom: chiffre affaires
-  période: flexible
-  unité: €
+chiffre affaires:
+  unité par défaut: €/mois
 
-- nom: charges
-  période: flexible
-  par défaut: 0
-  unité: €
+charges:
+  par défaut: 0 €/mois
 
-- nom: répartition salaire sur dividendes
-  par défaut: 0.5
+répartition salaire sur dividendes:
+  par défaut: 50
+  unité: '%'
 
-- nom: impôt sur les sociétés
-  période: année
+impôt sur les sociétés:
   formule:
     barème:
-      assiette: bénéfice
+      assiette: bénéfice [€/an]
       tranches:
         - en-dessous de: 38120
           taux: 15%
@@ -28,25 +25,18 @@
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-- nom: bénéfice
-  période: flexible
+bénéfice:
   formule: chiffre affaires - salaire total
 
-- nom: dividendes
+dividendes:
 
-- espace: dividendes
-  période: flexible
-  nom: brut
+dividendes . brut:
   formule: bénéfice - impôt sur les sociétés
 
-- espace: dividendes
-  période: flexible
-  nom: net
+dividendes . net:
   formule: brut - prélèvement forfaitaire unique
 
-- nom: prélèvement forfaitaire unique
-  période: flexible
-  espace: dividendes
+dividendes . prélèvement forfaitaire unique:
   formule:
     multiplication:
       assiette: brut
@@ -54,10 +44,8 @@
         - taux: 17.2%
         - taux: 12.8%
 
-- nom: salaire total
-  période: flexible
+salaire total:
   formule: chiffre affaires * répartition salaire sur dividendes
 
-- nom: revenu net après impôt
-  période: flexible
+revenu net après impôt:
   formule: contrat salarié . rémunération . net après impôt + dividendes . net

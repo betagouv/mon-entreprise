@@ -1,10 +1,12 @@
 {
 	"editor.formatOnSave": true,
-	"spellright.language": ["fr"],
-	"spellright.documentTypes": ["yaml"],
+	"spellright.language": ["fr", "en"],
+	"spellright.documentTypes": ["yaml", "git-commit"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": true
 	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"editor.tabSize": 2,
 	"files.exclude": {
 		"**/node_modules": true
 	}
