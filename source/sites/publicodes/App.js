@@ -1,18 +1,18 @@
+import Route404 from 'Components/Route404'
 import RulePage from 'Components/RulePage'
-import React, { Suspense, Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import Route404 from 'Components/Route404'
 import RulesList from '../mon-entreprise.fr/pages/Documentation/RulesList'
-import sitePaths from './sitePaths'
-import Landing from './Landing'
-import Simulateur from './Simulateur'
 import About from './About'
 import Contribution from './Contribution'
-import TopBar from './TopBar'
+import Landing from './Landing'
 import Scenarios from './Scenarios'
+import Simulateur from './Simulateur'
+import sitePaths from './sitePaths'
 import { StoreProvider } from './StoreContext'
+import TopBar from './TopBar'
 
 let Studio = React.lazy(() => import('./Studio'))
 
@@ -23,7 +23,8 @@ class App extends Component {
 				basename="publicodes"
 				rulesURL="https://futureco-data.netlify.com/co2.json"
 				sitePaths={sitePaths()}
-				reduxMiddlewares={[]}>
+				reduxMiddlewares={[]}
+			>
 				<StoreProvider>
 					<div className="ui__ container">
 						<TopBar />
@@ -53,9 +54,4 @@ class App extends Component {
 }
 
 let devMode = process.env.NODE_ENV !== 'production'
-export default devMode
-	? do {
-			let { hot } = require('react-hot-loader')
-			hot(module)(App)
-	  }
-	: App
+export default devMode ? require('react-hot-loader').hot(module)(App) : App

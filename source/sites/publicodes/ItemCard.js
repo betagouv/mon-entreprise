@@ -1,4 +1,5 @@
-import { emoji, React } from 'Components'
+import React from 'react'
+import emoji from 'react-easy-emoji'
 import HumanCarbonImpact from './HumanCarbonImpact'
 import withTarget from './withTarget'
 
@@ -45,7 +46,8 @@ export default withFigure => {
 							0px 4px 5px 0px rgba(41, 117, 209, 0.14),
 							0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 					}
-				`}>
+				`}
+			>
 				<div css="width: 100%; img { font-size: 150%}}">
 					{icônes && emoji(icônes + ' ')}
 				</div>
@@ -63,7 +65,8 @@ export default withFigure => {
 								background: var(--colour);
 								color: white;
 								font-size: 80%;
-							`}>
+							`}
+						>
 							<HumanCarbonImpact
 								{...{
 									nodeValue,

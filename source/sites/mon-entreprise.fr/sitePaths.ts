@@ -32,7 +32,7 @@ type SitePathsObject<T> = {
 	[key in keyof T]: string | SitePathsObject<T[key]>
 }
 
-function constructSitePaths<T extends SitePathsObject<HasIndex>>(
+export function constructSitePaths<T extends SitePathsObject<HasIndex>>(
 	root: string,
 	{ index, ...sitePaths }: T
 ): T {

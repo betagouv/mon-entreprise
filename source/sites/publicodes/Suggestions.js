@@ -1,9 +1,9 @@
-import { emoji, React } from 'Components'
 import searchWeights from 'Components/searchWeights'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import Fuse from 'fuse.js'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -55,7 +55,8 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 											:hover {
 												opacity: 1 !important;
 											}
-										`}>
+										`}
+									>
 										<ItemCardWithoutData {...rule} />
 									</Link>
 								</li>

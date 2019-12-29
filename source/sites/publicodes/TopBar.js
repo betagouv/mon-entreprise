@@ -1,5 +1,5 @@
-import { emoji, React } from 'Components'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
@@ -21,7 +21,8 @@ export default withRouter(({ location }) => {
 				align-items: center;
 				justify-content: space-between;
 				padding-top: ${displayIntro ? 3 : 1}rem;
-			`}>
+			`}
+		>
 			<Link to="/" title="Revenir à l'accueil">
 				<img
 					width="5em"
@@ -39,7 +40,8 @@ export default withRouter(({ location }) => {
 			{displayIntro && (
 				<p
 					id="intro"
-					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em; ">
+					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em; "
+				>
 					La catastrophe climatique n'est plus qu'une menace lointaine, c'est
 					une actualité.&nbsp;<Link to="/à-propos">En savoir plus</Link>.
 				</p>
@@ -56,14 +58,16 @@ export default withRouter(({ location }) => {
 						a {
 							color: inherit;
 						}
-					`}>
+					`}
+				>
 					Votre futur&nbsp;:
 					<div
 						css={`
 							img {
 								font-size: 250%;
 							}
-						`}>
+						`}
+					>
 						{emoji(scenario.icône)}
 					</div>
 					<Link to="/scénarios">changer</Link>

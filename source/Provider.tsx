@@ -77,7 +77,6 @@ export default class Provider extends PureComponent<ProviderProps> {
 		}
 		this.store = createStore(reducers, this.props.initialStore, storeEnhancer)
 		this.props.onStoreCreated?.(this.store)
-
 	}
 	componentWillUnmount() {
 		this.props.tracker.disconnectFromHistory()
@@ -91,9 +90,9 @@ export default class Provider extends PureComponent<ProviderProps> {
 			// If IE < 11 display nothing
 			<ReduxProvider store={this.store}>
 				<RulesProvider rulesURL={this.props.rulesURL}>
-				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
-				>
+					<ThemeColorsProvider
+						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+					>
 						<TrackerProvider value={this.props.tracker}>
 							<SitePathProvider value={this.props.sitePaths}>
 								<I18nextProvider i18n={i18next}>
@@ -103,7 +102,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 								</I18nextProvider>
 							</SitePathProvider>
 						</TrackerProvider>
-					</ThemeColoursProvider>
+					</ThemeColorsProvider>
 				</RulesProvider>
 			</ReduxProvider>
 		)

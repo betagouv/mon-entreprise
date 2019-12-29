@@ -1,6 +1,6 @@
-import { React, emoji } from 'Components'
-import { useState } from 'react'
 import { toPairs } from 'ramda'
+import React, { useState } from 'react'
+import emoji from 'react-easy-emoji'
 
 let formStyle = `
 label {
@@ -78,7 +78,8 @@ export default ({ match }) => {
 						onClick={e => {
 							e.preventDefault()
 							createIssue(sujet, source, setURL)
-						}}>
+						}}
+					>
 						Valider
 					</button>
 				</form>
