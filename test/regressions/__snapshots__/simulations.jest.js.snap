@@ -188,9 +188,9 @@ exports[`calculate simulations-salarié:  avantages 3`] = `"[2586,0,0,2000,1549,
 
 exports[`calculate simulations-salarié:  cadre 1`] = `"[4122,0,0,3000,2348,2171]"`;
 
-exports[`calculate simulations-salarié:  cdd 1`] = `"[2498,0,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié:  cdd 1`] = `"[2508,0,0,2000,1561,1524]"`;
 
-exports[`calculate simulations-salarié:  cdd 2`] = `"[2589,0,0,2000,1599,1557]"`;
+exports[`calculate simulations-salarié:  cdd 2`] = `"[2591,0,0,2000,1599,1557]"`;
 
 exports[`calculate simulations-salarié:  heures supplémentaires 1`] = `"[2583,0,0,2000,1636,1599]"`;
 
@@ -206,7 +206,7 @@ exports[`calculate simulations-salarié:  impôt sur le revenu 1`] = `"[4076,0,0
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 2`] = `"[41834,0,0,30000,24227,14588]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 3`] = `"[4106,0,0,3000,2353,2172]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 3`] = `"[4111,0,0,3000,2353,2172]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 4`] = `"[3896,0,0,3000,2353,2252]"`;
 
