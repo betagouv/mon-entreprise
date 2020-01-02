@@ -80,7 +80,7 @@ export default function SimulateurWarning({
 									Cette estimation est proposée à titre indicatif. Elle est
 									faite à partir des éléments réglementaires applicables et des
 									éléments que vous avez saisis, mais elle ne tient pas compte
-									de l'ensemble de votre situation . Le montant réel de vos
+									de l'ensemble de votre situation. Le montant réel de vos
 									cotisations peut donc être différent.
 								</T>
 							</li>
