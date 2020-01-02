@@ -112,6 +112,16 @@ function conversationSteps(
 	return state
 }
 
+function goalsFromAnalysis(analysis) {
+	return (
+		analysis &&
+		(Array.isArray(analysis) ? analysis[0] : analysis).targets
+			.map(target => target.explanation || target)
+			.filter(target => !!target.formule == !!target.question)
+			.map(({ dottedName }) => dottedName)
+	)
+}
+
 function updateSituation(
 	situation,
 	{
@@ -124,12 +134,7 @@ function updateSituation(
 		analysis: Analysis | Array<Analysis> | null
 	}
 ) {
-	const goals =
-		analysis &&
-		(Array.isArray(analysis) ? analysis[0] : analysis).targets
-			.map(target => target.explanation || target)
-			.filter(target => !!target.formule == !!target.question)
-			.map(({ dottedName }) => dottedName)
+	const goals = goalsFromAnalysis(analysis)
 	const removePreviousTarget = goals?.includes(fieldName)
 		? omit(goals)
 		: identity
@@ -138,6 +143,7 @@ function updateSituation(
 
 function updateDefaultUnit(situation, { toUnit, analysis }) {
 	const unit = parseUnit(toUnit)
+	const goals = goalsFromAnalysis(analysis)
 
 	const convertedSituation = Object.keys(situation)
 		.map(
@@ -147,6 +153,7 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 		)
 		.filter(
 			rule =>
+				goals?.includes(rule.dottedName) &&
 				(rule.unit || rule.defaultUnit) &&
 				!rule.unité &&
 				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
