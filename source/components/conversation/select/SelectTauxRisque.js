@@ -134,7 +134,7 @@ export default FormDecorator('select')(function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2019.json'
+			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2020.json'
 		)
 			.then(response => {
 				if (!response.ok) {

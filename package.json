@@ -67,7 +67,7 @@
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
-		"externalize": "node source/externalize.js",
+		"externalize": "node source/scripts/externalize.js",
 		"heroku-postbuild": "yarn install --production=false && yarn compile",
 		"pretest": "LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"start": "node source/server.js",
