@@ -1665,12 +1665,13 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       - apprentissage . ancienneté
 
   formule:
-    variations:
-      - si: apprentissage . ancienneté = 'moins d'un an'
-        alors: 4125 €/an
-      - si: apprentissage . ancienneté = 'moins de deux ans'
-        alors: 2000 €/an
-      - sinon: 1200 €/an
+    correspondance:
+      variable: apprentissage . ancienneté
+      tableau:
+        moins d'un an: 4125 €/an
+        moins de deux ans: 2000 €/an
+        moins de trois ans: 1200 €/an
+        moins de quatre ans: 1200 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
 
@@ -1681,17 +1682,16 @@ entreprise:
 entreprise . effectif:
   unité: employé
   formule:
-    variations:
-      - si: entreprise . effectif . seuil = 'moins de 11'
-        alors: 10 employés
-      - si: entreprise . effectif . seuil = 'moins de 20'
-        alors: 19 employés
-      - si: entreprise . effectif . seuil = 'moins de 50'
-        alors: 49 employés
-      - si: entreprise . effectif . seuil = 'moins de 250'
-        alors: 249 employés
-      - si: entreprise . effectif . seuil = '251 et plus'
-        alors: 251 employés
+    # TODO: this shouldn't be necessary, we should use the variable "seuil"
+    # directly instead of converting it to an arbitrary "effectif" number
+    correspondance:
+      variable: entreprise . effectif . seuil
+      tableau:
+        moins de 11: 10 employés
+        moins de 20: 19 employés
+        moins de 50: 49 employés
+        moins de 250: 249 employés
+        251 et plus: 251 employés
 
 entreprise . effectif . seuil:
   question: Quel est l'effectif de l'entreprise ?
@@ -4028,17 +4028,16 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ré
   applicable si: entreprise . ACRE
   description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
   formule:
-    variations:
+    correspondance:
       # TODO : ce code fonctionne en 2020, mais en 2021 il faudra faire la
       # distinction entre les entreprises créées en 2019 (qui ont le droit à
       # l'ACRE pendant 3 ans) et celles créées en 2020 et après qui n'ont le
       # droit qu'à une année de réduction.
-      - si: entreprise . ACRE . année = 'moins d'un an'
-        alors: 50%
-      - si: entreprise . ACRE . année = 'moins de deux ans'
-        alors: 25%
-      - si: entreprise . ACRE . année = 'moins de trois ans'
-        alors: 10%
+      variable: entreprise . ACRE . année
+      tableau:
+        moins d'un an: 50%
+        moins de deux ans: 25%
+        moins de trois ans: 10%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
@@ -4998,21 +4997,19 @@ contrat salarié . convention collective . sport . cotisations . régime frais d
     variations:
       - si: régime alsace moselle
         alors:
-          variations:
-            - si: option . R1
-              alors: 0.59%
-            - si: option . R2
-              alors: 0.77%
-            - si: option . R3
-              alors: 0.89%
+          correspondance:
+            variable: option
+            tableau:
+              R1: 0.59%
+              R2: 0.77%
+              R3: 0.89%
       - sinon:
-          variations:
-            - si: option . R1
-              alors: 0.92%
-            - si: option . R2
-              alors: 1.17%
-            - si: option . R3
-              alors: 1.32%
+          correspondance:
+            variable: option
+            tableau:
+              R1: 0.92%
+              R2: 1.17%
+              R3: 1.32%
   référence:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
     unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
