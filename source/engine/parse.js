@@ -35,6 +35,7 @@ import {
 	mecanismOneOf,
 	mecanismOnePossibility,
 	mecanismProduct,
+	mecanismRecalcul,
 	mecanismReduction,
 	mecanismSum,
 	mecanismSynchronisation
@@ -103,6 +104,7 @@ Cela vient probablement d'une erreur dans l'indentation
 		...statelessParseFunction,
 		'une possibilité': mecanismOnePossibility(rule.dottedName),
 		'inversion numérique': mecanismInversion(rule.dottedName),
+		recalcul: mecanismRecalcul(rule.dottedName),
 		filter: () =>
 			parseReferenceTransforms(
 				rules,

@@ -713,16 +713,10 @@ contrat salarié . SMIC temps plein:
   titre.en: full-time mimimum wage (SMIC)
   titre.fr: SMIC temps plein
 contrat salarié . SMIC temps plein . net imposable:
-  description.en: Amount of the net taxable minimum wage (SMIC net imposable)
-  description.fr: Montant du SMIC net imposable
-  note.en: >-
-    [automatic] This amount is hard-coded, it should be calculated from the
-    amount of the gross minimum wage.
-  note.fr: >-
-    Ce montant est codé en dur, il faudrait le calculer à partir du montant du
-    SMIC brut
-  titre.en: net taxable
-  titre.fr: net imposable
+  description.en: '[automatic] Amount of the net taxable SMIC for a full-time employee.'
+  description.fr: Montant du SMIC net imposable pour un temps plein.
+  titre.en: '[automatic] minimum net taxable income'
+  titre.fr: SMIC net imposable
 contrat salarié . aides employeur:
   description.en: >
     Some aids can be requested by the employer to help hires.
