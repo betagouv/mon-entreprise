@@ -6,6 +6,7 @@ import { formatValue } from 'Engine/format'
 import barème from 'Engine/mecanisms/barème'
 import barèmeContinu from 'Engine/mecanisms/barème-continu'
 import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
+import correspondance from 'Engine/mecanisms/correspondance'
 import encadrement from 'Engine/mecanisms/encadrement'
 import operation from 'Engine/mecanisms/operation'
 import variations from 'Engine/mecanisms/variations'
@@ -145,6 +146,7 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			encadrement,
 			'le maximum de': mecanismMax,
 			'le minimum de': mecanismMin,
+			correspondance,
 			complément: mecanismComplement,
 			'une possibilité': mecanismOnePossibility(rule.dottedName),
 			'inversion numérique': mecanismInversion(rule.dottedName),

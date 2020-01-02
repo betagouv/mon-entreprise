@@ -188,3 +188,12 @@ synchronisation:
   description: |
     Pour éviter trop de saisies à l'utilisateur, certaines informations sont récupérées à partir de ce que l'on appelle des API. Ce sont des services auxquels ont fait appel pour obtenir des informations sur un sujet précis. Par exemple, l'État français fournit gratuitement l'API géo, qui permet à partir du nom d'une ville, d'obtenir son code postal, son département, la population etc.
     Ce mécanismes `synchronisation` permet de faire le lien entre les règles de notre système et les réponses de ces API.
+
+correspondance:
+  description: |
+    C'est simplement un tableau de correspondance qui donne un nombre en fonction de la valeur d'une variable.
+    | La variable (ici la ville)       |     La valeur correspondante (ici la population) |
+    | :------------ | :-------------: | 
+    | Brest       |     200 000 |
+    | Marseille     |   1 000 000    |
+    | Paris        |   2 000 000     |
