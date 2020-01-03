@@ -232,6 +232,12 @@ exports[`calculate simulations-salarié:  temps partiel 1`] = `"[2591,0,2188,200
 
 exports[`calculate simulations-salarié:  temps partiel 2`] = `"[2533,0,2500,1857,1448,1428]"`;
 
+exports[`calculate simulations-salarié:  treizième mois 1`] = `"[3390,0,0,2300,1950,1856]"`;
+
+exports[`calculate simulations-salarié:  treizième mois 2`] = `"[3817,0,2965,2300,2216,2102]"`;
+
+exports[`calculate simulations-salarié:  treizième mois 3`] = `"[3044,0,0,2300,1799,1726]"`;
+
 exports[`calculate simulations-salarié:  échelle de salaires 1`] = `"[130,0,0,100,57,57]"`;
 
 exports[`calculate simulations-salarié:  échelle de salaires 2`] = `"[284,0,0,250,176,176]"`;

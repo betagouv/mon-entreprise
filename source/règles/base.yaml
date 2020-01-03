@@ -795,10 +795,13 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     SMIC: 1522
 
 contrat salarié . rémunération . heures supplémentaires . taux horaire:
-  description: Le taux horaire utilisé pour calculer la rémunération liée au heures supplémentaires. Il intègre les avantages en nature.
+  description: > 
+    Le taux horaire utilisé pour calculer la rémunération liée au heures
+    supplémentaires. Il intègre les avantages en nature et les primes
+    constituant la contrepartie d'un travail fourni.
   unité: €/heure
 
-  formule: assiette de vérification du SMIC / temps de travail . temps contractuel
+  formule: (assiette de vérification du SMIC + primes . fin d'année) / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
     rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
@@ -814,16 +817,31 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
       - brut de base
       - avantages en nature . montant
       - primes . activité
+  note: >
+    Les primes de fin d'année ou de 13ième mois sont prises en compte dans
+    l'assiette de vérification du SMIC mais seulement le mois où elles sont
+    payées (et non de manière lissée sur l'année), c'est pourquoi nous ne les
+    incluons pas dans cette formule.
 
 contrat salarié . rémunération . primes:
+  description: |
+    Les primes sont des compléments de salaire versés au salarié en vertu du
+    contrat de travail, de la convention collective, d'un usage d'entreprise, ou
+    bien à titre bénévole par l'employeur.
+
+    Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
+    sur le revenu.
   unité par défaut: €/mois
 
   formule:
     somme:
       - base
       - activité
+      - fin d'année
+
 contrat salarié . rémunération . primes . base:
   formule: 0€/mois
+
 contrat salarié . rémunération . primes . activité:
   unité: €/mois
 
@@ -848,6 +866,35 @@ contrat salarié . rémunération . primes . activité . conventionnelles:
   unité: €/mois
 
   formule: 0
+
+contrat salarié . rémunération . primes . fin d'année:
+  titre: Prime de fin d'année ou de treizième mois
+  description: |
+    Cette prime est le plus souvent versée en une seule fois à la fin de
+    l'année.
+
+    Les salariés à temps partiel ont dont à la prime de fin d'année dans les
+    mêmes conditions que les autres salariés en proportion de leur durée du
+    travail.
+  formule:
+    multiplication:
+      assiette: assiette de vérification du SMIC [€/mois] * temps de travail . quotité de travail / 1 an
+      facteur: prime de fin d'année en mois
+
+contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois:
+  applicable si: treizième mois
+  formule: 13 mois - 1 an
+  note: >
+    Certaines entreprises proposent une prime de fin d'année sur une base de
+    13,5 mois, 14 mois voire 15 mois.
+
+contrat salarié . rémunération . primes . fin d'année . treizième mois:
+  question: Le salarié bénéficie-t-il d'un treizième mois ?
+  description: >
+    La prime de treizième mois est un avantage accordé au salarié qui peut être
+    prévu par la convention collective ou le contrat de travail. Elle est
+    généralement versée en fin d'année.
+  par défaut: non
 
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
