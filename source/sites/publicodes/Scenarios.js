@@ -1,5 +1,4 @@
-import { emoji, React } from 'Components'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
@@ -25,7 +24,7 @@ export default () => {
 					crédit carbone !
 				</em>
 			</p>
-			<h2 css="display: inline-block;background: var(--colour); padding: .1rem .4rem; margin-right: .4rem;  color: white">
+			<h2 css="display: inline-block;background: var(--color); padding: .1rem .4rem; margin-right: .4rem;  color: white">
 				Quel futur souhaitez vous ?
 			</h2>
 			<p>
@@ -42,7 +41,8 @@ export default () => {
 					-webkit-overflow-scrolling: touch; /* [4] */
 					-ms-overflow-style: -ms-autohiding-scrollbar; /* [5] */
 					width: 100%;
-				`}>
+				`}
+			>
 				{Object.entries(scenarios).map(([nom, s]) => (
 					<li
 						className="ui__ card"
@@ -75,11 +75,12 @@ export default () => {
 
 							${state.scenario === nom
 								? `
-								border: 4px solid var(--colour)
+								border: 4px solid var(--color)
 								
 							`
 								: `border: 4px solid white`}
-						`}>
+						`}
+					>
 						<h2>
 							<span>{emoji(s.icône)}</span>&nbsp;
 							{s.titre}
@@ -106,7 +107,8 @@ export default () => {
 								img {
 									font-size: 200%;
 								}
-							`}>
+							`}
+						>
 							{state.scenario === nom ? (
 								<div>{emoji('☑️ ')}</div>
 							) : (
@@ -115,7 +117,8 @@ export default () => {
 									onClick={() => {
 										dispatch({ type: 'SET_SCENARIO', scenario: nom })
 										setTimeout(() => window.history.go(-1), 1000)
-									}}>
+									}}
+								>
 									Sélectionner
 								</button>
 							)}

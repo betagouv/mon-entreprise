@@ -1,0 +1,20 @@
+fr:
+  heure_plural: heures
+  jour_plural: jours
+  semaine_plural: semaines
+  trimestre_plural: trimestres
+  employé_plural: employés
+  point_plural: points
+en:
+  heure: hour
+  heure_plural: hours
+  jour: day
+  jour_plural: days
+  semaine: week
+  semaine_plural: weeks
+  trimestre: quarter
+  trimestre_plural: quarters
+  repas: meal
+  repas_plural: meals
+  employé: employee
+  employé_plural: employees

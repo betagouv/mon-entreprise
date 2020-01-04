@@ -1,9 +1,8 @@
 import { AssertionError } from 'chai'
-import { rules } from '../source/engine/rules'
-import rawRules from 'Règles/base.yaml'
-import { parseAll } from '../source/engine/traverse'
-import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
 import { merge } from 'ramda'
+import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
+import { rules } from '../source/engine/rules'
+import { parseAll } from '../source/engine/traverse'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -11,10 +10,11 @@ let runExamples = (examples, rule) =>
 	examples.map(ex => {
 		let runExample = exampleAnalysisSelector(
 				{
-					rules: rawRules,
+					rules,
 					currentExample: {
 						situation: ex.situation,
-						dottedName: rule.dottedName
+						dottedName: rule.dottedName,
+						defaultUnits: ex['unités par défaut']
 					}
 				},
 				{ dottedName: rule.dottedName }

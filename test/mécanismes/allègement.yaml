@@ -1,126 +1,121 @@
-- nom: montant 
+- nom: montant
   unité: €
 
 - test: montant franchisé
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       franchise: 1200
 
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 1000
       valeur attendue: 0
-    - situation: 
+    - situation:
       valeur attendue: null
       variables manquantes:
         - montant
 
-
 - test: montant décoté
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
-      décote: 
+      décote:
         plafond: 2040
         taux: 100%
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 1000
       valeur attendue: 0
 
 - test: montant franchisé et décoté
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       franchise: 1200
-      décote: 
+      décote:
         plafond: 2040
         taux: 75%
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 100
       valeur attendue: 0
-    - situation: 
+    - situation:
         montant: 1200
       valeur attendue: 570
-    - situation: 
+    - situation:
         montant: 1620
       valeur attendue: 1305
-    - situation: 
+    - situation:
         montant: 2040
       valeur attendue: 2040
 
-
 - test: montant abattu
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       abattement: 20507
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 10000
       valeur attendue: 0
-    - situation: 
+    - situation:
         montant: 80000
       valeur attendue: 59493
 
-
 - test: montant abattu en pourcentage
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       abattement: 15%
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 10000
       valeur attendue: 8500
-    - situation: 
+    - situation:
         montant: 80000
       valeur attendue: 68000
 
 - test: montant abattu avec plafond numérique
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       abattement: 15%
       plafond: 12000
-  exemples: 
-    - situation: 
+  exemples:
+    - situation:
         montant: 10000
       valeur attendue: 8500
-    - situation: 
+    - situation:
         montant: 100000
       valeur attendue: 88000 # 85000 s'il n'y avait pas de plafond à la somme abattue
 
 - test: montant franchisé, décote, abattu
   unité: €
-  formule: 
-    allègement: 
+  formule:
+    allègement:
       assiette: montant
       franchise: 1200
-      décote: 
+      décote:
         plafond: 2040
         taux: 75%
-      abattement: 20507    
-  exemples: 
-    - situation: 
+      abattement: 20507
+  exemples:
+    - situation:
         montant: 100
       valeur attendue: 0
-    - situation: 
+    - situation:
         montant: 1620
       valeur attendue: 0
-    - situation: 
+    - situation:
         montant: 3000
       valeur attendue: 0
-    - situation: 
+    - situation:
         montant: 21000
       valeur attendue: 493
-
-

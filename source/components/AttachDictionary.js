@@ -8,6 +8,7 @@ import Overlay from './Overlay'
 // Il suffit à la section d'appeler une fonction fournie en lui donnant du JSX
 export let AttachDictionary = dictionary => Decorated =>
 	function withDictionary(props) {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [{ explanation, term }, setState] = useState({
 			term: null,
 			explanation: null

@@ -5,13 +5,12 @@
 */
 
 import { expect } from 'chai'
+import { serialiseUnit } from 'Engine/units'
+import * as R from 'ramda'
+import { collectMissingVariables } from '../source/engine/generateQuestions'
 import { enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
-import { collectMissingVariables } from '../source/engine/generateQuestions'
 import testSuites from './load-mecanism-tests'
-import * as R from 'ramda'
-import { isNumeric } from '../source/utils'
-import { serialiseUnit } from 'Engine/units'
 
 describe('Mécanismes', () =>
 	testSuites.map(([suiteName, suite]) =>
@@ -24,6 +23,7 @@ describe('Mécanismes', () =>
 						({
 							nom: testTexte,
 							situation,
+							'unités par défaut': defaultUnits,
 							'valeur attendue': valeur,
 							'variables manquantes': expectedMissing
 						}) =>
@@ -39,11 +39,11 @@ describe('Mécanismes', () =>
 									),
 									state = situation || {},
 									stateSelector = name => state[name],
-									analysis = analyse(rules, test)(stateSelector),
+									analysis = analyse(rules, test, defaultUnits)(stateSelector),
 									missing = collectMissingVariables(analysis.targets),
 									target = analysis.targets[0]
 
-								if (isNumeric(valeur)) {
+								if (typeof valeur === 'number') {
 									expect(target.nodeValue).to.be.closeTo(valeur, 0.001)
 								} else if (valeur !== undefined) {
 									expect(target).to.have.property('nodeValue', valeur)

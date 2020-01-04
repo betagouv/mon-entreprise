@@ -1,6 +1,6 @@
 - nom: statut cadre
-  formule: 
-    variations: 
+  formule:
+    variations:
       - si: 3 > 2
         alors: oui
       - sinon: choix du statut cadre
@@ -14,13 +14,12 @@
     multiplication:
       assiette: 1500
       taux: 1.5%
-  exemples: 
+  exemples:
     - nom: Applicabilité
-      situation: 
+      situation:
         statut cadre: oui
       valeur attendue: 22.5
     - nom: Non Applicabilité
-      situation: 
+      situation:
         statut cadre: non
       valeur attendue: 0
-

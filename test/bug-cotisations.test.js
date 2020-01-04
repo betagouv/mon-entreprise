@@ -13,7 +13,7 @@ describe('bug-analyse-many', function() {
       - nom: cotisations
         formule:
           somme:
-            - cotisation a [salarié]
+            - cotisation a .salarié
             - cotisation b
 
       - nom: cotisation a
@@ -64,7 +64,7 @@ describe('bug-analyse-many', function() {
 				'contrat salarié . rémunération . net de cotisations': 3500,
 				'auto-entrepreneur': 'non',
 				'contrat salarié': 'oui',
-				'contrat salarié . assimilé salarié': 'oui',
+				dirigeant: 'assimilé salarié',
 				'contrat salarié . ATMP . taux réduit': 'oui',
 				'contrat salarié . CDD': 'non',
 				'contrat salarié . indemnité kilométrique vélo . indemnité vélo active':

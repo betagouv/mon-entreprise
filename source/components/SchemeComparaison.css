@@ -18,9 +18,9 @@
 		[indépendant] minmax(20%, 20rem) [auto-entrepreneur] minmax(20%, 20rem) [end];
 }
 .comparaison-grid > * {
-	border-bottom: 1px solid var(--lighterColour);
+	border-bottom: 1px solid var(--lighterColor);
 	padding: 0.6rem 1.2rem;
-	border-right: 1px solid var(--lighterColour);
+	border-right: 1px solid var(--lighterColor);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -66,7 +66,7 @@
 	grid-column: row-legend / end;
 }
 .comparaison-grid > .all.colored {
-	background-color: var(--lightestColour);
+	background-color: var(--lightestColor);
 }
 
 .comparaison-grid > .indep-et-auto {
@@ -82,7 +82,7 @@
 	display: none;
 }
 .comparaison-grid.hideAutoEntrepreneur > .indep-et-auto {
-	border-right: 1px solid var(--lighterColour);
+	border-right: 1px solid var(--lighterColor);
 }
 
 .comparaison-grid.hideAssimiléSalarié > .AS {
@@ -133,7 +133,7 @@
 		font-weight: normal;
 	}
 	.comparaison-grid > :not(.button)::before {
-		color: var(--darkestColour) !important;
+		color: var(--darkestColor) !important;
 		opacity: 0.6;
 	}
 	.comparaison-grid > .AS::before {
@@ -167,7 +167,7 @@
 		font-size: 1rem;
 		margin-top: 1rem;
 		content: 'vs';
-		color: var(--lightColour);
+		color: var(--lightColor);
 	}
 	.comparaison-grid > .legend {
 		justify-content: flex-start;

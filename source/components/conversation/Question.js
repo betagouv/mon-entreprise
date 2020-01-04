@@ -1,8 +1,8 @@
 import classnames from 'classnames'
-import withColours from 'Components/utils/withColours'
+import { T } from 'Components'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { compose, is } from 'ramda'
-import React from 'react'
-import { Trans } from 'react-i18next'
+import React, { useCallback, useContext, useState } from 'react'
 import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
@@ -26,49 +26,40 @@ import SendButton from './SendButton'
 
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
 // dont Question est un example
-export default compose(
-	FormDecorator('question'),
-	withColours
-)(function Question(props) {
-	let {
-		choices,
-		submit,
-		colours,
-		meta: { pristine }
-	} = props
+export default compose(FormDecorator('question'))(function Question({
+	choices,
+	submit,
+	name,
+	setFormValue,
+	value: currentValue
+}) {
+	const colors = useContext(ThemeColorsContext)
+	const [touched, setTouched] = useState(false)
+	const onChange = useCallback(
+		value => {
+			setFormValue(value)
+			setTouched(true)
+		},
+		[setFormValue]
+	)
 
 	const renderBinaryQuestion = () => {
-		let {
-			input, // vient de redux-form
-			submit,
-			choices,
-			setFormValue,
-			colours
-		} = props
-
 		return (
 			<div className="binaryQuestionList">
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, input, submit, colours, setFormValue }}
+						{...{ value, label, currentValue, submit, colors, onChange }}
 					/>
 				))}
 			</div>
 		)
 	}
 	const renderChildren = choices => {
-		let {
-				input, // vient de redux-form
-				submit,
-				setFormValue,
-				colours
-			} = props,
-			{ name } = input,
-			// seront stockées ainsi dans le state :
-			// [parent object path]: dotted name relative to parent
-			relativeDottedName = radioDottedName =>
-				radioDottedName.split(name + ' . ')[1]
+		// seront stockées ainsi dans le state :
+		// [parent object path]: dotted name relative to parent
+		const relativeDottedName = radioDottedName =>
+			radioDottedName.split(name + ' . ')[1]
 
 		return (
 			<ul
@@ -83,11 +74,11 @@ export default compose(
 							{...{
 								value: 'non',
 								label: 'Aucun',
-								input,
+								currentValue,
 								submit,
-								colours,
+								colors,
 								dottedName: null,
-								setFormValue
+								onChange
 							}}
 						/>
 					</li>
@@ -106,10 +97,10 @@ export default compose(
 										value: relativeDottedName(dottedName),
 										label: title,
 										dottedName,
-										input,
+										currentValue,
 										submit,
-										colours,
-										setFormValue
+										colors,
+										onChange
 									}}
 								/>
 							</li>
@@ -128,8 +119,8 @@ export default compose(
 			{choiceElements}
 			<SendButton
 				{...{
-					disabled: pristine,
-					colours,
+					disabled: !touched,
+					colors,
 					error: false,
 					submit
 				}}
@@ -145,32 +136,28 @@ let RadioLabel = props => (
 	</>
 )
 
-const RadioLabelContent = compose(withColours)(function RadioLabelContent({
-	value,
-	label,
-	input,
-	submit
-}) {
+function RadioLabelContent({ value, label, currentValue, onChange, submit }) {
 	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
-		selected = value === input.value
+		selected = value === currentValue
 
 	const click = value => () => {
-		if (input.value == value) submit('dblClick')
+		if (currentValue == value) submit('dblClick')
 	}
 
 	return (
 		<label
 			key={value}
 			style={labelStyle}
-			className={classnames('radio', 'userAnswerButton', { selected })}>
-			<Trans i18nKey={`radio_${label}`}>{label}</Trans>
+			className={classnames('radio', 'userAnswerButton', { selected })}
+		>
+			<T>{label}</T>
 			<input
 				type="radio"
-				{...input}
 				onClick={click(value)}
 				value={value}
-				checked={value === input.value ? 'checked' : ''}
+				onChange={evt => onChange(evt.target.value)}
+				checked={value === currentValue ? 'checked' : ''}
 			/>
 		</label>
 	)
-})
+}

@@ -6,7 +6,7 @@ export default ({
 	text,
 	onClick,
 	folded,
-	themeColours: { colour, textColourOnWhite }
+	themeColors: { color, textColorOnWhite }
 }) => (
 	<div className="group-title" onClick={onClick}>
 		{folded && (
@@ -30,11 +30,11 @@ export default ({
 					? {
 							cursor: 'pointer',
 							border: '1px solid #aaa'
-						}
+					  }
 					: {
-							border: '1px solid ' + colour,
-							color: textColourOnWhite
-						}
+							border: '1px solid ' + color,
+							color: textColorOnWhite
+					  }
 			}
 		>
 			{text}

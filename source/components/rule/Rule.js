@@ -1,7 +1,6 @@
 import { T } from 'Components'
-import PeriodSwitch from 'Components/PeriodSwitch'
-import withColours from 'Components/utils/withColours'
-import withSitePaths from 'Components/utils/withSitePaths'
+import { ThemeColorsContext } from 'Components/utils/colors'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {
@@ -9,12 +8,12 @@ import {
 	findRuleByDottedName,
 	findRuleByNamespace
 } from 'Engine/rules'
-import { compose, isEmpty } from 'ramda'
-import React, { Suspense, useState } from 'react'
+import { isEmpty } from 'ramda'
+import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
 	exampleAnalysisSelector,
@@ -34,39 +33,31 @@ import './Rule.css'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
-export default compose(
-	connect((state, props) => ({
-		currentExample: state.currentExample,
-		flatRules: flatRulesSelector(state),
-		valuesToShow: !noUserInputSelector(state),
-		analysedRule: ruleAnalysisSelector(state, props),
-		analysedExample: exampleAnalysisSelector(state, props)
-	})),
-	AttachDictionary(knownMecanisms),
-	withSitePaths
-)(function Rule({
-	dottedName,
-	currentExample,
-	flatRules,
-	valuesToShow,
-	sitePaths,
-	analysedExample,
-	analysedRule
-}) {
+export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
+	const currentExample = useSelector(state => state.currentExample)
+	const flatRules = useSelector(flatRulesSelector)
+	const valuesToShow = !useSelector(noUserInputSelector)
+	const analysedRule = useSelector(state =>
+		ruleAnalysisSelector(state, { dottedName })
+	)
+	const analysedExample = useSelector(state =>
+		exampleAnalysisSelector(state, { dottedName })
+	)
+	const sitePaths = useContext(SitePathsContext)
 	const [viewSource, setViewSource] = useState(false)
 	const { t } = useTranslation()
 
 	let flatRule = findRuleByDottedName(flatRules, dottedName)
-	let { type, name, title, description, question, ns, icon } = flatRule,
+	let { type, name, acronyme, title, description, question, icon } = flatRule,
 		namespaceRules = findRuleByNamespace(flatRules, dottedName)
 	let displayedRule = analysedExample || analysedRule
-
 	const renderToggleSourceButton = () => {
 		return (
 			<button
 				id="toggleRuleSource"
 				className="ui__ link-button"
-				onClick={() => setViewSource(!viewSource)}>
+				onClick={() => setViewSource(!viewSource)}
+			>
 				{emoji(
 					viewSource
 						? `📖 ${t('Revenir à la documentation')}`
@@ -109,13 +100,14 @@ export default compose(
 						/>
 						<RuleHeader
 							{...{
-								ns,
+								dottedName,
 								type,
 								description,
 								question,
 								flatRule,
 								flatRules,
 								name,
+								acronyme,
 								title,
 								icon,
 								valuesToShow
@@ -139,18 +131,13 @@ export default compose(
 									> * {
 										margin: 0 0.6em;
 									}
-								`}>
+								`}
+							>
 								<Value
 									{...displayedRule}
-									nilValueSymbol={
-										displayedRule.parentDependency?.nodeValue == false
-											? '-'
-											: null
-									}
-								/>
-								<Period
-									period={flatRule['période']}
-									valuesToShow={valuesToShow}
+									nilValueSymbol={displayedRule.parentDependencies.some(
+										parent => parent?.nodeValue == false
+									)}
 								/>
 							</div>
 							{displayedRule.defaultValue != null && (
@@ -159,6 +146,7 @@ export default compose(
 									<Value
 										{...displayedRule}
 										nodeValue={displayedRule.defaultValue}
+										unit={displayedRule.unit || displayedRule.defaultUnit}
 									/>
 								</div>
 							)}
@@ -169,14 +157,15 @@ export default compose(
 										target="_parent"
 										to={
 											dottedName.includes('contrat salarié')
-												? sitePaths.sécuritéSociale.salarié
+												? sitePaths.simulateurs.salarié
 												: dottedName.includes('auto-entrepreneur')
-												? sitePaths.sécuritéSociale['auto-entrepreneur']
+												? sitePaths.simulateurs['auto-entrepreneur']
 												: dottedName.includes('indépendant')
-												? sitePaths.sécuritéSociale.indépendant
+												? sitePaths.simulateurs.indépendant
 												: // otherwise
-												  sitePaths?.sécuritéSociale?.index
-										}>
+												  sitePaths?.simulateurs?.index
+										}
+									>
 										<T>Faire une simulation</T>
 									</Link>
 								</div>
@@ -223,10 +212,9 @@ export default compose(
 	)
 })
 
-let NamespaceRulesList = compose(
-	withColours,
-	withSitePaths
-)(({ namespaceRules, colours, sitePaths }) => {
+function NamespaceRulesList({ namespaceRules }) {
+	const colors = useContext(ThemeColorsContext)
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<section>
 			<h2>
@@ -237,14 +225,15 @@ let NamespaceRulesList = compose(
 					<li key={r.name}>
 						<Link
 							style={{
-								color: colours.textColourOnWhite,
+								color: colors.textColorOnWhite,
 								textDecoration: 'underline'
 							}}
 							to={
 								sitePaths.documentation.index +
 								'/' +
 								encodeRuleName(r.dottedName)
-							}>
+							}
+						>
 							{r.title || r.name}
 						</Link>
 					</li>
@@ -252,20 +241,4 @@ let NamespaceRulesList = compose(
 			</ul>
 		</section>
 	)
-})
-
-let Period = ({ period, valuesToShow }) =>
-	period ? (
-		valuesToShow && period === 'flexible' ? (
-			<PeriodSwitch />
-		) : (
-			<span className="inlineMecanism">
-				<span
-					className="name"
-					data-term-definition="période"
-					style={{ background: '#8e44ad' }}>
-					{period}
-				</span>
-			</span>
-		)
-	) : null
+}

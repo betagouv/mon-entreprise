@@ -9,19 +9,16 @@ export default compose(
 	connect(
 		state => ({
 			parsedRules: state.parsedRules,
-			themeColours: state.themeColours
+			themeColors: state.themeColors
 		}),
 		dispatch => ({
-			setExample: compose(
-				dispatch,
-				setExample
-			)
+			setExample: compose(dispatch, setExample)
 		})
 	)
 )(function Examples({
 	situationExists,
 	rule,
-	themeColours,
+	themeColors,
 	setExample,
 	currentExample
 }) {
@@ -42,7 +39,7 @@ export default compose(
 				{examples.map(ex => (
 					<Example
 						key={ex.nom}
-						{...{ ex, rule, currentExample, setExample, themeColours }}
+						{...{ ex, rule, currentExample, setExample, themeColors }}
 					/>
 				))}
 			</ul>
@@ -73,7 +70,8 @@ let Example = ({
 				}
 				className={classNames('ui__ button small', {
 					selected
-				})}>
+				})}
+			>
 				{nom}
 			</button>
 		</li>

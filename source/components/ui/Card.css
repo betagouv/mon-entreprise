@@ -1,24 +1,26 @@
 .ui__.card {
-	box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
-	padding: 1rem;
-	overflow: hidden;
+	box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
+		0 1px 2px rgba(41, 117, 209, 0.24);
+	padding-left: 1rem;
+	padding-right: 1rem;
+	background: white;
+	will-change: transform;
+	user-select: text;
 	border-radius: 0.3rem;
+	transition: box-shadow 0.2s;
 }
+
 .ui__.card.disabled .ui__.button.simple,
 .ui__.card.disabled a {
 	/* opacity: 0.7; */
-	color: var(--grayColour);
+	color: var(--grayColor);
 }
 
 .ui__.card.plain {
 	color: white;
-	color: var(--textColour);
+	color: var(--textColor);
 	background: linear-gradient(60deg, #215da6 0%, #297da1 100%);
-	background: linear-gradient(
-		60deg,
-		var(--darkColour) -100%,
-		var(--colour) 100%
-	);
+	background: linear-gradient(60deg, var(--darkColor) -100%, var(--color) 100%);
 }
 .ui__.card.plain h1,
 .ui__.card.plain h2,
@@ -27,7 +29,7 @@
 .ui__.card.plain h5,
 .ui__.card.plain h6 {
 	color: white;
-	color: var(--textColour);
+	color: var(--textColor);
 }
 
 .ui__.card.disabled img {
@@ -38,8 +40,8 @@
 .ui__.card.disabled.plain {
 	background: linear-gradient(
 		60deg,
-		var(--grayColour) -40%,
-		var(--grayColour) 70%
+		var(--grayColor) -40%,
+		var(--grayColor) 70%
 	);
 	opacity: 0.7;
 }
@@ -51,10 +53,56 @@
 .ui__.card.plain a:hover {
 	text-decoration: underline;
 }
-.ui__.card.coloured {
-	box-shadow: 0 1px 3px 0 var(--colour), 0 0 0 1px var(--colour);
+.ui__.card.colored {
+	box-shadow: 0 1px 3px 0 var(--color), 0 0 0 1px var(--color);
 }
 .ui__.card.plain small,
 .ui__.card.plain .notice {
 	color: rgba(255, 255, 255, 0.8);
+}
+
+.ui__.interactive.card {
+	user-select: text;
+	-webkit-user-drag: none;
+}
+.ui__.interactive.card:hover {
+	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
+		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
+		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
+	opacity: inherit !important;
+}
+.ui__.ui__.interactive.card:active {
+	animation: push-button-down 0.1s ease-out alternate-reverse 2;
+}
+
+.ui__.card.box {
+	min-width: 14.333rem;
+	flex: 0.3;
+	max-width: 17rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	text-decoration: none;
+	color: inherit;
+	font-size: inherit !important;
+}
+.ui__.card.box .ui__.box-icon > img {
+	margin: 0.8rem !important;
+	transform: scale(1.5) translateY(0.1rem);
+}
+.ui__.card.box:active .ui__.box-icon > img {
+	transform: scale(1.5) translateY(0.1rem);
+}
+.ui__.card.box .ui__.big.box-icon > img {
+	transform: scale(2.3) translateY(0.2rem);
+}
+
+@media (max-width: 500px) {
+	.ui__.card.box {
+		max-width: 100%;
+		flex: 1;
+	}
 }

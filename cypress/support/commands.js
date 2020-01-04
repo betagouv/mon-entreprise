@@ -25,6 +25,6 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 Cypress.Commands.add('iframe', { prevSubject: 'element' }, $iframe => {
 	return new Cypress.Promise(resolve => {
-		setTimeout(() => resolve($iframe.contents().find('body')), 5000)
+		setTimeout(() => resolve($iframe.contents().find('body')), 6000)
 	})
 })

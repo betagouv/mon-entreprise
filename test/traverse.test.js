@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import { analyse, parseAll } from '../source/engine/traverse'
 import { enrichRule } from '../source/engine/rules'
+import { analyse, parseAll } from '../source/engine/traverse'
 
-let stateSelector = () => null
+let stateSelector = () => undefined
 
 describe('analyse', function() {
 	it('should directly return simple numerical values', function() {
@@ -26,8 +26,8 @@ describe('analyse on raw rules', function() {
 	it('should handle direct referencing of a variable', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'dix', espace: 'top' },
-				{ nom: 'dix', formule: 10, espace: 'top' }
+				{ nom: 'top . startHere', formule: 'dix' },
+				{ nom: 'top . dix', formule: 10 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -38,8 +38,8 @@ describe('analyse on raw rules', function() {
 	it('should handle expressions referencing other rules', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: '3259 + dix', espace: 'top' },
-				{ nom: 'dix', formule: 10, espace: 'top' }
+				{ nom: 'top . startHere', formule: '3259 + dix' },
+				{ nom: 'top . dix', formule: 10 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -50,9 +50,9 @@ describe('analyse on raw rules', function() {
 	it('should handle applicability conditions', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: '3259 + dix', espace: 'top' },
-				{ nom: 'dix', formule: 10, espace: 'top', 'non applicable si': 'vrai' },
-				{ nom: 'vrai', formule: '2 > 1', espace: 'top' }
+				{ nom: 'top . startHere', formule: '3259 + dix' },
+				{ nom: 'top . dix', formule: 10, 'non applicable si': 'vrai' },
+				{ nom: 'top . vrai', formule: '2 > 1' }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -63,8 +63,8 @@ describe('analyse on raw rules', function() {
 	it('should handle comparisons', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: '3259 > dix', espace: 'top' },
-				{ nom: 'dix', formule: 10, espace: 'top' }
+				{ nom: 'top . startHere', formule: '3259 > dix' },
+				{ nom: 'top . dix', formule: 10 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -111,33 +111,8 @@ describe('analyse with mecanisms', function() {
 		).to.have.property('nodeValue', false)
 	})
 
-	it('should handle switch statements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'startHere',
-					formule: {
-						'aiguillage numérique': {
-							'1 > dix': '1000%',
-							'3 < dix': '1100%',
-							'3 > dix': '1200%'
-						}
-					},
-					espace: 'top'
-				},
-				{ nom: 'dix', formule: 10, espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 11)
-	})
-
 	it('should handle percentages', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'startHere', formule: '35%', espace: 'top' }
-			],
+		let rawRules = [{ nom: 'top' }, { nom: 'top . startHere', formule: '35%' }],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
 			analyse(rules, 'startHere')(stateSelector).targets[0]
@@ -323,11 +298,10 @@ describe('analyse with mecanisms', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{
-					nom: 'startHere',
-					formule: { complément: { cible: 'dix', montant: 93 } },
-					espace: 'top'
+					nom: 'top . startHere',
+					formule: { complément: { cible: 'dix', montant: 93 } }
 				},
-				{ nom: 'dix', formule: 17, espace: 'top' }
+				{ nom: 'top . dix', formule: 17 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -339,16 +313,15 @@ describe('analyse with mecanisms', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{
-					nom: 'startHere',
+					nom: 'top . startHere',
 					formule: {
 						complément: {
 							cible: 'dix',
 							composantes: [{ montant: 93 }, { montant: 93 }]
 						}
-					},
-					espace: 'top'
+					}
 				},
-				{ nom: 'dix', formule: 17, espace: 'top' }
+				{ nom: 'top . dix', formule: 17 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(
@@ -359,10 +332,9 @@ describe('analyse with mecanisms', function() {
 	it('should handle filtering on components', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', espace: 'top', formule: 'composed [salarié]' },
+				{ nom: 'top . startHere', formule: 'composed .salarié' },
 				{
-					nom: 'composed',
-					espace: 'top',
+					nom: 'top . composed',
 					formule: {
 						barème: {
 							assiette: 2008,
@@ -399,14 +371,12 @@ describe('analyse with mecanisms', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{
-					nom: 'startHere',
-					espace: 'top',
-					formule: 'composed [salarié] + composed [employeur]'
+					nom: 'top . startHere',
+					formule: 'composed .salarié + composed .employeur'
 				},
-				{ nom: 'orHere', espace: 'top', formule: 'composed' },
+				{ nom: 'top . orHere', formule: 'composed' },
 				{
-					nom: 'composed',
-					espace: 'top',
+					nom: 'top . composed',
 					formule: {
 						barème: {
 							assiette: 2008,
@@ -448,7 +418,7 @@ describe('Implicit parent applicability', function() {
 	it('should make a variable non applicable if one parent is input to false', function() {
 		let rawRules = [
 				{ nom: 'CDD', question: 'CDD ?' },
-				{ nom: 'surcoût', formule: 10, espace: 'CDD' }
+				{ nom: 'CDD . surcoût', formule: 10 }
 			],
 			rules = parseAll(rawRules.map(enrichRule))
 		expect(

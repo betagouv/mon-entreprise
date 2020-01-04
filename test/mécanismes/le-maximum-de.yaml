@@ -13,6 +13,16 @@
       situation:
       valeur attendue: 1
 
+- nom: a
+  applicable si: non
+  formule: 20
 
+- test: Maximum avec valeur non applicable
+  formule:
+    le maximum de:
+      - a
+      - 10
+  exemples:
+    - valeur attendue: 10
 # TODO
 # Pouvoir faire référence à une variable, ou mettre une valeur. Aujourd'hui il est seulement possible de lister des mécanismes numériques

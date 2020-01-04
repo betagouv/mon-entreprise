@@ -25,7 +25,7 @@ html {
 body {
 	font-weight: 400;
 	color: #040e19;
-	color: var(--darkColour);
+	color: var(--darkColor);
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -33,7 +33,7 @@ h1 {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	font-size: 1.9rem;
-	line-height: 3rem;
+	line-height: 2.6rem;
 }
 h2 {
 	margin-top: 2rem;
@@ -65,7 +65,7 @@ h3,
 h4,
 h5,
 h6 {
-	color: var(--darkColour);
+	color: var(--darkColor);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 }
@@ -75,18 +75,24 @@ button {
 }
 
 p,
+a,
 ul {
 	line-height: 1.7rem;
+}
+
+p,
+ul {
 	margin: 0 0 0.6rem;
 }
+
 p.ui__.lead {
 	font-size: 120%;
 	line-height: 2rem;
-	color: var(--darkColour);
+	color: var(--darkColor);
 }
 ul {
 	list-style: '› ';
-	padding-left: 0.7rem;
+	padding-left: 0.8rem;
 }
 ol {
 	margin: 0;
@@ -102,14 +108,14 @@ a {
 	padding: none;
 	text-decoration: underline;
 	color: rgb(41, 117, 209);
-	color: var(--colour);
+	color: var(--color);
 }
 
 p img {
 	max-width: 100%;
 }
 
-a:not(:disabled):not(.button):not(.inverted-button):hover {
+a:not(:disabled):not(.button):not(.button-choice):hover {
 	opacity: 0.8;
 }
 
@@ -125,6 +131,7 @@ textarea {
 small,
 .ui__.notice {
 	color: rgba(0, 0, 0, 0.6);
-	color: var(--lighterTextColour);
+	color: var(--lighterTextColor);
 	font-size: 85%;
+	line-height: 1.2rem;
 }

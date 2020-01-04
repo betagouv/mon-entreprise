@@ -52,12 +52,13 @@
   unité: '%'
 
 - test: soustraction
-  formule: 1 - taux
+  unité: '%'
+  formule: 100% - taux
   unité attendue: '%'
   exemples:
     - situation:
-        taux: 0.89
-      valeur attendue: 0.11
+        taux: 89
+      valeur attendue: 11
 
 - test: addition
   formule: salaire de base + 2000
@@ -137,11 +138,11 @@
       valeur attendue: false
 
 - nom: plafond sécurité sociale
+  unité: $
 
 - nom: CDD
 
-- espace: CDD
-  nom: poursuivi en CDI
+- nom: CDD . poursuivi en CDI
 
 - test: variable booléene
   formule: CDD . poursuivi en CDI
@@ -182,16 +183,31 @@
         salaire de base: 1000
       valeur attendue: 381
 
+- test: litéral avec unité
+  formule: 1 jour
+  unité attendue: jour
+
+- test: litéral avec unité €
+  formule: 2 €
+  unité attendue: €
+
+- test: litéral avec unité complexe
+  formule: 1 €/jour
+  unité attendue: €/jour
+
+- test: inférence d'unité littéraux
+  formule: 2 €/jour * 2 jour
+  valeur attendue: 4
+  unité attendue: €
+
 - nom: catégorie d'activité
   formule:
     une possibilité:
       - commerciale
       - artisanale
 
-- espace: catégorie d'activité
-  nom: artisanale
-- espace: catégorie d'activité
-  nom: commerciale
+- nom: catégorie d'activité . artisanale
+- nom: catégorie d'activité . commerciale
 
 - test: test de possibilités
   formule: catégorie d'activité = 'artisanale'
@@ -204,16 +220,14 @@
       valeur attendue: false
 
 - nom: revenu
-  période: mois
-  unité: €
+  unité: €/mois
 
-- test: variable modifiée temporellement
-  formule: revenu [annuel]
-  période: aucune
+- test: unité de variable modifiée
+  formule: revenu [k€/an]
   exemples:
     - situation:
         revenu: 1000
-      valeur attendue: 12000
+      valeur attendue: 12
 
 - test: opérations multiples
   formule: 4 * plafond sécurité sociale * 10%
@@ -234,3 +248,32 @@
   formule: -5 * -10
   exemples:
     - valeur attendue: 50
+
+- test: négation de variable
+  formule: '- salaire de base'
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -3000
+
+- test: négation d'expressions
+  formule: '- (10 * 3 + 5)'
+  exemples:
+    - valeur attendue: -35
+
+- test: variables négatives dans expression
+  formule: 10% * (- salaire de base)
+  exemples:
+    - situation:
+        salaire de base: 3000
+      valeur attendue: -300
+# TODO
+# - test: expression sur plusieurs lignes
+#   formule: >
+#     salaire de base
+#     + 2000
+#     = 3000
+#   exemples:
+#     - situation:
+#         salaire de base: 1000
+#     - valeur attendue: true

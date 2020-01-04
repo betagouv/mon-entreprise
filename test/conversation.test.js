@@ -9,23 +9,23 @@ import {
 } from '../source/selectors/analyseSelectors'
 let baseState = {
 	conversationSteps: { foldedSteps: [] },
-	form: { conversation: { values: {} } }
+	simulation: { situation: {} }
 }
 
 describe('conversation', function() {
 	it('should start with the first missing variable', function() {
 		let rawRules = [
 				// TODO - this won't work without the indirection, figure out why
-				{ nom: 'startHere', formule: { somme: ['a', 'b'] }, espace: 'top' },
-				{ nom: 'a', espace: 'top', formule: 'aa' },
-				{ nom: 'b', espace: 'top', formule: 'bb' },
-				{ nom: 'aa', question: '?', titre: 'a', espace: 'top' },
-				{ nom: 'bb', question: '?', titre: 'b', espace: 'top' }
+				{ nom: 'top . startHere', formule: { somme: ['a', 'b'] } },
+				{ nom: 'top . a', formule: 'aa' },
+				{ nom: 'top . b', formule: 'bb' },
+				{ nom: 'top . aa', question: '?', titre: 'a' },
+				{ nom: 'top . bb', question: '?', titre: 'b' }
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
-				simulation: { config: { objectifs: ['startHere'] } },
-				rules
+				rules,
+				simulation: { config: { objectifs: ['startHere'] } }
 			}),
 			currentQuestion = currentQuestionSelector(state)
 
@@ -35,29 +35,24 @@ describe('conversation', function() {
 		let rawRules = [
 				// TODO - this won't work without the indirection, figure out why
 				{
-					nom: 'startHere',
-					formule: { somme: ['a', 'b', 'c'] },
-					espace: 'top'
+					nom: 'top . startHere',
+					formule: { somme: ['a', 'b', 'c'] }
 				},
-				{ nom: 'a', espace: 'top', formule: 'aa' },
-				{ nom: 'b', espace: 'top', formule: 'bb' },
-				{ nom: 'c', espace: 'top', formule: 'cc' },
-				{ nom: 'aa', question: '?', titre: 'a', espace: 'top' },
-				{ nom: 'bb', question: '?', titre: 'b', espace: 'top' },
-				{ nom: 'cc', question: '?', titre: 'c', espace: 'top' }
+				{ nom: 'top . a', formule: 'aa' },
+				{ nom: 'top . b', formule: 'bb' },
+				{ nom: 'top . c', formule: 'cc' },
+				{ nom: 'top . aa', question: '?', titre: 'a' },
+				{ nom: 'top . bb', question: '?', titre: 'b' },
+				{ nom: 'top . cc', question: '?', titre: 'c' }
 			],
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			simulation: { config: { objectifs: ['startHere'] } },
-			rules
+			rules,
+			simulation: { config: { objectifs: ['startHere'] } }
 		})
 		let step2 = reducers(
-			assocPath(
-				['form', 'conversation', 'values'],
-				{ top: { aa: '1' } },
-				step1
-			),
+			assocPath(['simulation', 'situation'], { 'top . aa': '1' }, step1),
 			{
 				type: 'STEP_ACTION',
 				name: 'fold',
@@ -67,8 +62,8 @@ describe('conversation', function() {
 
 		let step3 = reducers(
 			assocPath(
-				['form', 'conversation', 'values'],
-				{ top: { bb: '1', aa: '1' } },
+				['simulation', 'situation'],
+				{ 'top . aa': '1', 'top . bb': '1' },
 				step2
 			),
 			{
@@ -131,13 +126,13 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule)
 
 		let step1 = merge(baseState, {
-			simulation: { config: { objectifs: ['net'] } },
-			rules
+			rules,
+			simulation: { config: { objectifs: ['net'] } }
 		})
-		expect(currentQuestionSelector(step1, { rules })).to.equal('brut')
+		expect(currentQuestionSelector(step1)).to.equal('brut')
 
 		let step2 = reducers(
-			assocPath(['form', 'conversation', 'values', 'brut'], '2300', step1),
+			assocPath(['simulation', 'situation', 'brut'], '2300', step1),
 			{
 				type: 'STEP_ACTION',
 				name: 'fold',
@@ -148,14 +143,14 @@ describe('conversation', function() {
 		expect(step2.conversationSteps).to.have.property('foldedSteps')
 		expect(step2.conversationSteps.foldedSteps).to.have.lengthOf(1)
 		expect(step2.conversationSteps.foldedSteps[0]).to.equal('brut')
-		expect(currentQuestionSelector(step2, { rules })).to.equal('cadre')
+		expect(currentQuestionSelector(step2)).to.equal('cadre')
 	})
 })
 describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
-				simulation: { config: salariéConfig },
-				rules
+				rules,
+				simulation: { config: salariéConfig }
 			}),
 			nextSteps = nextStepsSelector(state)
 

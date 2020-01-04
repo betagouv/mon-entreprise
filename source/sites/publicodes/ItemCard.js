@@ -1,4 +1,5 @@
-import { emoji, React } from 'Components'
+import React from 'react'
+import emoji from 'react-easy-emoji'
 import HumanCarbonImpact from './HumanCarbonImpact'
 import withTarget from './withTarget'
 
@@ -31,8 +32,8 @@ export default withFigure => {
 					line-height: 1.2em;
 					${formule != null ? '' : 'filter: grayscale(70%); opacity: 0.6;'}
 
-					background-color: var(--lightestColour);
-					color: var(--darkColour);
+					background-color: var(--lightestColor);
+					color: var(--darkColor);
 					margin: 1rem 0;
 					border-radius: 0.3rem;
 					box-shadow: 0 1px 3px rgba(41, 117, 209, 0.12),
@@ -45,7 +46,8 @@ export default withFigure => {
 							0px 4px 5px 0px rgba(41, 117, 209, 0.14),
 							0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 					}
-				`}>
+				`}
+			>
 				<div css="width: 100%; img { font-size: 150%}}">
 					{icônes && emoji(icônes + ' ')}
 				</div>
@@ -60,10 +62,11 @@ export default withFigure => {
 								bottom: 0;
 								left: 0;
 								width: 100%;
-								background: var(--colour);
+								background: var(--color);
 								color: white;
 								font-size: 80%;
-							`}>
+							`}
+						>
 							<HumanCarbonImpact
 								{...{
 									nodeValue,

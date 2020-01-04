@@ -1,5 +1,4 @@
-/* @flow */
-import { constructSitePaths } from '../../utils'
+import { constructSitePaths } from '../mon-entreprise.fr/sitePaths'
 
 const sitePath = constructSitePaths('', {
 	index: '',

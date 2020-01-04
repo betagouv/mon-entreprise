@@ -1,4 +1,5 @@
-import { React, emoji } from 'Components'
+import React from 'react'
+import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 export default ({ input }) => (
 	<div
@@ -6,7 +7,8 @@ export default ({ input }) => (
 			display: flex;
 			align-items: center;
 			justify-content: center;
-		`}>
+		`}
+	>
 		Contribuer
 		<Link to={'/contribuer/' + input}>
 			<button
@@ -18,12 +20,13 @@ export default ({ input }) => (
 					height: 2.5em;
 					width: 2.5em;
 					padding: 0em;
-					background: var(--colour);
+					background: var(--color);
 					color: white;
 					font-weight: 400;
 					font-size: 180%;
 					margin: 0.3em;
-				`}>
+				`}
+			>
 				{emoji('✍️')}
 			</button>
 		</Link>

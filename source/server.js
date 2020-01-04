@@ -7,6 +7,9 @@ const config = require('./webpack.dev.js')
 const compiler = webpack(config)
 const history = require('connect-history-api-fallback')
 
+const { watchDottedNames } = require('./scripts/dottednames')
+watchDottedNames()
+
 const rewrite = basename => ({
 	from: new RegExp(`^/${basename}/(.*)$|^/${basename}$`),
 	to: `/${basename}.html`
@@ -34,5 +37,6 @@ app.use(
 app.use(require('webpack-hot-middleware')(compiler))
 
 app.listen(8080, function() {
+	// eslint-disable-next-line no-console
 	console.log('Mon-entreprise listening on port 8080!\n')
 })

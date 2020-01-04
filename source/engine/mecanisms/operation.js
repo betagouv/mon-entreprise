@@ -1,42 +1,78 @@
+import { typeWarning } from 'Engine/error'
 import { evaluateNode, makeJsx, mergeMissing } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
-import { inferUnit } from 'Engine/units'
+import { convertNodeToUnit } from 'Engine/nodeUnits'
+import { inferUnit, serialiseUnit } from 'Engine/units'
 import { curry, map } from 'ramda'
 import React from 'react'
+import { convertToDateIfNeeded } from '../date.ts'
 
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
-		let explanation = map(
-				curry(evaluateNode)(cache, situation, parsedRules),
-				node.explanation
-			),
-			value1 = explanation[0].nodeValue,
-			value2 = explanation[1].nodeValue,
-			nodeValue =
-				value1 == null || value2 == null
-					? null
-					: operatorFunction(value1, value2),
-			missingVariables = mergeMissing(
-				explanation[0].missingVariables,
-				explanation[1].missingVariables
-			)
+		const explanation = map(
+			curry(evaluateNode)(cache, situation, parsedRules),
+			node.explanation
+		)
+		let [node1, node2] = explanation
+		const missingVariables = mergeMissing(
+			node1.missingVariables,
+			node2.missingVariables
+		)
 
-		return { ...node, nodeValue, explanation, missingVariables }
+		if (node1.nodeValue == null || node2.nodeValue == null) {
+			return { ...node, nodeValue: null, explanation, missingVariables }
+		}
+		if (!['∕', '×'].includes(node.operator)) {
+			try {
+				if (node1.unit) {
+					node2 = convertNodeToUnit(node1.unit, node2)
+				} else if (node2.unit) {
+					node1 = convertNodeToUnit(node2.unit, node1)
+				}
+			} catch (e) {
+				typeWarning(
+					cache._meta.contextRule,
+					`Dans l'expression '${
+						node.operator
+					}', la partie gauche (unité: ${serialiseUnit(
+						node1.unit
+					)}) n'est pas compatible avec la partie droite (unité: ${serialiseUnit(
+						node2.unit
+					)})`,
+					e
+				)
+			}
+		}
+		let nodeValue = operatorFunction(
+			...convertToDateIfNeeded(node1.nodeValue, node2.nodeValue)
+		)
+		let unit = inferUnit(k, [node1.unit, node2.unit])
+		return {
+			...node,
+			nodeValue,
+			unit,
+			explanation,
+			missingVariables
+		}
 	}
 
 	let explanation = v.explanation.map(recurse)
+	let [node1, node2] = explanation
+	let unit = inferUnit(k, [node1.unit, node2.unit])
 
-	let unit = inferUnit(k, [explanation[0].unit, explanation[1].unit])
-
-	let jsx = (nodeValue, explanation) => (
+	let jsx = (nodeValue, explanation, _, unit) => (
 		<Node
 			classes={'inlineExpression ' + k}
 			value={nodeValue}
 			unit={unit}
 			child={
 				<span className="nodeContent">
-					<span className="fa fa" />
-					{makeJsx(explanation[0])}
+					{(explanation[0].nodeValue !== 0 || symbol !== '−') && (
+						<>
+							<span className="fa fa" />
+							{makeJsx(explanation[0])}
+						</>
+					)}
 					<span className="operator">{symbol || k}</span>
 					{makeJsx(explanation[1])}
 				</span>

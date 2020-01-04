@@ -1,13 +1,13 @@
-import { React } from 'Components'
+import { setSimulationConfig } from 'Actions/actions'
 import { EndingCongratulations } from 'Components/conversation/Conversation'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import ShareButton from 'Components/ShareButton'
 import Simulation from 'Components/Simulation'
-import withSimulationConfig from 'Components/simulationConfigs/withSimulationConfig'
 import { Markdown } from 'Components/utils/markdown'
 import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import CarbonImpact from './CarbonImpact'
 import ItemCard from './ItemCard'
@@ -17,55 +17,60 @@ let CarbonImpactWithData = withTarget(CarbonImpact)
 
 let ItemCardWithData = ItemCard(true)
 
-export default connect(state => ({
-	rules: flatRulesSelector(state),
-	scenario: state.scenario
-}))(props => {
-	let objectif = props.match.params.name,
+const Simulateur = props => {
+	const objectif = props.match.params.name,
 		decoded = decodeRuleName(objectif),
-		rule = findRuleByDottedName(props.rules, decoded),
-		Simulateur = withSimulationConfig({
+		rules = useSelector(flatRulesSelector),
+		rule = findRuleByDottedName(rules, decoded),
+		dispatch = useDispatch(),
+		config = {
 			objectifs: [decoded]
-		})(() => (
-			<div className="ui__ container" css="margin-bottom: 1em">
-				<Helmet>
-					<title>{rule.title}</title>
-					{rule.description && (
-						<meta name="description" content={rule.description} />
-					)}
-				</Helmet>
-				<Simulation
-					noFeedback
-					noProgressMessage
-					showConversation
-					customEnd={
-						rule.description ? (
-							<Markdown source={rule.description} />
-						) : (
-							<EndingCongratulations />
-						)
-					}
-					targets={
-						<>
-							<ItemCardWithData />
-							{rule.period === 'flexible' && <PeriodBlock />}
-						</>
-					}
-				/>
-				<CarbonImpactWithData />
-				<ShareButton
-					text="Mesure ton impact sur Futur.eco !"
-					url={'https://' + window.location.hostname + props.match.url}
-					title={rule.title}
-				/>
-			</div>
-		))
+		},
+		configSet = useSelector(state => state.simulation?.config)
+	useEffect(() => dispatch(setSimulationConfig(config)), [])
 
-	return <Simulateur />
-})
+	if (!configSet) return null
+
+	return (
+		<div className="ui__ container" css="margin-bottom: 1em">
+			<Helmet>
+				<title>{rule.title}</title>
+				{rule.description && (
+					<meta name="description" content={rule.description} />
+				)}
+			</Helmet>
+			<Simulation
+				noFeedback
+				noProgressMessage
+				showConversation
+				customEnd={
+					rule.description ? (
+						<Markdown source={rule.description} />
+					) : (
+						<EndingCongratulations />
+					)
+				}
+				targets={
+					<>
+						<ItemCardWithData />
+						{rule.period === 'flexible' && <PeriodBlock />}
+					</>
+				}
+			/>
+			<CarbonImpactWithData />
+			<ShareButton
+				text="Mesure ton impact sur Futur.eco !"
+				url={'https://' + window.location.hostname + props.match.url}
+				title={rule.title}
+			/>
+		</div>
+	)
+}
 
 let PeriodBlock = () => (
 	<div css="display: flex; justify-content: center">
 		<PeriodSwitch />
 	</div>
 )
+
+export default Simulateur

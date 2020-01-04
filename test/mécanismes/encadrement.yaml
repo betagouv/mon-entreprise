@@ -1,0 +1,21 @@
+- test: Plafonnement
+  formule:
+    encadrement:
+      valeur: 1000 €
+      plafond: 250 €
+
+  exemples:
+    - nom:
+      situation:
+      valeur attendue: 250
+
+- test: Plancher
+  formule:
+    encadrement:
+      valeur: 1000 €
+      plancher: 2500 €
+
+  exemples:
+    - nom:
+      situation:
+      valeur attendue: 2500

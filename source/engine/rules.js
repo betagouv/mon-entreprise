@@ -3,7 +3,7 @@ import {
 	assoc,
 	chain,
 	dropLast,
-	find,
+	filter,
 	fromPairs,
 	has,
 	is,
@@ -29,6 +29,7 @@ import rawRules from 'Règles/base.yaml'
 import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
+import { syntaxError, warning } from './error'
 import possibleVariableTypes from './possibleVariableTypes.yaml'
 
 /***********************************
@@ -36,28 +37,41 @@ Functions working on one rule */
 
 export let enrichRule = rule => {
 	try {
+		const dottedName = rule.dottedName || rule.nom
+		const name = nameLeaf(dottedName)
 		let unit = rule.unité && parseUnit(rule.unité)
+		let defaultUnit =
+			rule['unité par défaut'] && parseUnit(rule['unité par défaut'])
+
+		if (defaultUnit && unit) {
+			warning(
+				dottedName,
+				'Le paramètre `unité` est plus contraignant que `unité par défaut`.',
+				'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
+			)
+		}
+
 		return {
 			...rule,
+			dottedName,
+			name,
 			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
-			name: rule['nom'],
-			title: capitalise0(rule['titre'] || rule['nom']),
-			ns: rule['espace'],
-			dottedName: buildDottedName(rule),
+			title: capitalise0(rule['titre'] || name),
 			defaultValue: rule['par défaut'],
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
-			unit
+			unit,
+			defaultUnit
 		}
 	} catch (e) {
-		console.log(e)
-		throw new Error('Problem enriching ' + JSON.stringify(rule))
+		syntaxError(
+			rule.dottedName || rule.nom,
+			'Problème dans la lecture des champs de la règle',
+			e
+		)
 	}
 }
-
-export let buildDottedName = rule =>
-	rule['espace'] ? [rule['espace'], rule['nom']].join(' . ') : rule['nom']
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -73,15 +87,8 @@ export let hasKnownRuleType = rule => rule && enrichRule(rule).type
 export let splitName = split(' . '),
 	joinName = join(' . ')
 
-export let parentName = pipe(
-	splitName,
-	dropLast(1),
-	joinName
-)
-export let nameLeaf = pipe(
-	splitName,
-	last
-)
+export let parentName = pipe(splitName, dropLast(1), joinName)
+export let nameLeaf = pipe(splitName, last)
 
 export let encodeRuleName = name =>
 	encodeURI(
@@ -119,9 +126,10 @@ export let disambiguateRuleReference = (
 		found = reduce(
 			(res, path) => {
 				let dottedNameToCheck = [...path, partialName].join(' . ')
-				return when(is(Object), reduced)(
-					findRuleByDottedName(allRules, dottedNameToCheck)
-				)
+				return when(
+					is(Object),
+					reduced
+				)(findRuleByDottedName(allRules, dottedNameToCheck))
 			},
 			null,
 			pathPossibilities
@@ -166,15 +174,13 @@ export let findRule = (rules, nameOrDottedName) =>
 		: findRuleByName(rules, nameOrDottedName)
 
 export let findRuleByNamespace = (allRules, ns) =>
-	allRules.filter(propEq('ns', ns))
+	allRules.filter(rule => parentName(rule.dottedName) === ns)
 
 /*********************************
  Autres */
 
 export let queryRule = rule => query => path(query.split(' . '))(rule)
 
-// Redux-form stores the form values as a nested object
-// This helper makes a dottedName => value Map
 export let nestedSituationToPathMap = situation => {
 	if (situation == undefined) return {}
 	let rec = (o, currentPath) =>
@@ -188,7 +194,7 @@ export let nestedSituationToPathMap = situation => {
 /* Traduction */
 
 export let translateAll = (translations, flatRules) => {
-	let translationsOf = rule => translations[buildDottedName(rule)],
+	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
 			if (prop === 'suggestions' && propTrans)
@@ -225,14 +231,19 @@ export let translateAll = (translations, flatRules) => {
 	return map(translateRule('en', translations, targets), flatRules)
 }
 
+const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
+	dottedName,
+	...rule
+}))
+
 // On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rawRules).map(rule =>
+export let rules = translateAll(translations, rulesList).map(rule =>
 	enrichRule(rule)
 )
 
-export let rulesFr = rawRules.map(rule => enrichRule(rule))
+export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
-export let findParentDependency = (rules, rule) => {
+export let findParentDependencies = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
 	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
 	// It lets those children omit obvious and repetitive parent applicability tests
@@ -240,12 +251,14 @@ export let findParentDependency = (rules, rule) => {
 	return pipe(
 		map(parent => findRuleByDottedName(rules, parent)),
 		reject(isNil),
-		find(
+		filter(
 			//Find the first "calculable" parent
 			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
-				(typeof formule === 'string' && formule.includes(' = ')) //implicitly, the format is boolean
+				(typeof formule === 'string' && formule.includes(' = ')) ||
+				formule === 'oui' ||
+				formule === 'non'
 		)
 	)(parentDependencies)
 }
@@ -254,6 +267,7 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
+
 	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
 		.map(
 			analysis =>
@@ -261,11 +275,8 @@ export let getRuleFromAnalysis = analysis => dottedName => {
 				analysis.targets.find(propEq('dottedName', dottedName))
 		)
 		.filter(Boolean)[0]
-
-	if (!rule) {
-		throw new Error(
-			`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`
-		)
+	if (process.env.NODE_ENV !== 'production' && !rule) {
+		console.warn(`[getRuleFromAnalysis] Unable to find the rule ${dottedName}`)
 	}
 
 	return rule

@@ -1,5 +1,5 @@
 import { evaluateNode } from 'Engine/evaluation'
-import { values, unnest, filter, map, pipe, path } from 'ramda'
+import { filter, map, path, pipe, unnest, values } from 'ramda'
 
 let getControls = path(['explanation', 'contrôles'])
 export let evaluateControls = (cache, situationGate, parsedRules) =>
@@ -7,18 +7,15 @@ export let evaluateControls = (cache, situationGate, parsedRules) =>
 		values,
 		filter(getControls),
 		map(rule =>
-			getControls(rule).map(
-				control =>
-					!rule.inactiveParent && {
-						...control,
-						evaluated: evaluateNode(
-							cache,
-							situationGate,
-							parsedRules,
-							control.testExpression
-						)
-					}
-			)
+			getControls(rule).map(control => ({
+				...control,
+				evaluated: evaluateNode(
+					{ ...cache, contextRule: [rule.dottedName] },
+					situationGate,
+					parsedRules,
+					control.testExpression
+				)
+			}))
 		),
 		unnest,
 		filter(control => control.evaluated.nodeValue === true)

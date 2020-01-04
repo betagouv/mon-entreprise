@@ -1,12 +1,11 @@
-import { React, Component } from 'Components'
+import React from 'react'
 import { connect } from 'react-redux'
-import { toPairs } from 'ramda'
 
 export default connect(
 	state => ({ rulesLoaded: state.rules != null }),
 	dispatch => ({ setRules: rules => dispatch({ type: 'SET_RULES', rules }) })
 )(
-	class extends Component {
+	class extends React.Component {
 		removeLoader() {
 			// Remove loader
 			var css = document.createElement('style')

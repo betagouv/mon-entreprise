@@ -45,11 +45,12 @@ export default ({
 		<div
 			css={`
 				border-radius: 6px;
-				background: var(--colour);
+				background: var(--color);
 				padding: 1em;
 				margin: 0 auto;
-				color: var(--textColour);
-			`}>
+				color: var(--textColor);
+			`}
+		>
 			{closestPeriodLabel === 'négligeable' ? (
 				<span>Impact négligeable {emoji('😎')}</span>
 			) : (
@@ -58,7 +59,8 @@ export default ({
 						css={`
 							font-size: 220%;
 							margin-bottom: 0.25rem;
-						`}>
+						`}
+					>
 						{factor +
 							' ' +
 							closestPeriodLabel +
@@ -103,7 +105,8 @@ let FirstEstimationStamp = ({ foldedSteps }) => (
 			border-radius: 4px;
 			top: 11.2em;
 			right: -2em;
-		`}>
+		`}
+	>
 		{!foldedSteps.length ? '1ère estimation' : 'estimation'}
 	</div>
 )

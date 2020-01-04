@@ -6,26 +6,24 @@ import {
 import { enrichRule, rules as realRules } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
 
-let stateSelector = () => null
+let stateSelector = () => undefined
 
 describe('collectMissingVariables', function() {
 	it('should identify missing variables', function() {
 		let rawRules = [
 				{ nom: 'sum' },
 				{
-					nom: 'startHere',
+					nom: 'sum . startHere',
 					formule: 2,
-					'non applicable si': 'sum . evt . ko',
-					espace: 'sum'
+					'non applicable si': 'sum . evt . ko'
 				},
 				{
-					nom: 'evt',
-					espace: 'sum',
+					nom: 'sum . evt',
 					formule: { 'une possibilité': ['ko'] },
 					titre: 'Truc',
 					question: '?'
 				},
-				{ nom: 'ko', espace: 'sum . evt' }
+				{ nom: 'sum . evt . ko' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -37,15 +35,14 @@ describe('collectMissingVariables', function() {
 	it('should identify missing variables mentioned in expressions', function() {
 		let rawRules = [
 				{ nom: 'sum' },
-				{ nom: 'evt', espace: 'sum' },
+				{ nom: 'sum . evt' },
 				{
-					nom: 'startHere',
+					nom: 'sum . startHere',
 					formule: 2,
-					'non applicable si': 'evt . nyet > evt . nope',
-					espace: 'sum'
+					'non applicable si': 'evt . nyet > evt . nope'
 				},
-				{ nom: 'nope', espace: 'sum . evt' },
-				{ nom: 'nyet', espace: 'sum . evt' }
+				{ nom: 'sum . evt . nope' },
+				{ nom: 'sum . evt . nyet' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -59,12 +56,11 @@ describe('collectMissingVariables', function() {
 		let rawRules = [
 				{ nom: 'sum' },
 				{
-					nom: 'startHere',
+					nom: 'sum . startHere',
 					formule: 'trois',
-					'non applicable si': '3 > 2',
-					espace: 'sum'
+					'non applicable si': '3 > 2'
 				},
-				{ nom: 'trois', espace: 'sum' }
+				{ nom: 'sum . trois' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -77,14 +73,13 @@ describe('collectMissingVariables', function() {
 		let rawRules = [
 				{ nom: 'sum' },
 				{
-					nom: 'startHere',
+					nom: 'sum . startHere',
 					formule: 'trois',
 					'non applicable si': {
 						'une de ces conditions': ['3 > 2', 'trois']
-					},
-					espace: 'sum'
+					}
 				},
-				{ nom: 'trois', espace: 'sum' }
+				{ nom: 'sum . trois' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -96,11 +91,10 @@ describe('collectMissingVariables', function() {
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
+				{ nom: 'top . startHere', formule: 'trois' },
 				{
-					nom: 'trois',
-					formule: { 'une possibilité': ['ko'] },
-					espace: 'top'
+					nom: 'top . trois',
+					formule: { 'une possibilité': ['ko'] }
 				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
@@ -113,12 +107,11 @@ describe('collectMissingVariables', function() {
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
+				{ nom: 'top . startHere', formule: 'trois' },
 				{
-					nom: 'trois',
+					nom: 'top . trois',
 					formule: { 'une possibilité': ['ko'] },
-					'non applicable si': 1,
-					espace: 'top'
+					'non applicable si': 1
 				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
@@ -134,11 +127,10 @@ describe('collectMissingVariables', function() {
 
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'startHere', formule: 'trois', espace: 'top' },
+				{ nom: 'top . startHere', formule: 'trois' },
 				{
-					nom: 'trois',
-					formule: { 'une possibilité': ['ko'] },
-					espace: 'top'
+					nom: 'top . trois',
+					formule: { 'une possibilité': ['ko'] }
 				}
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
@@ -148,41 +140,16 @@ describe('collectMissingVariables', function() {
 		expect(result).to.be.empty
 	})
 
-	it('should report missing variables in switch statements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'startHere',
-					formule: {
-						'aiguillage numérique': {
-							'11 > dix': '1000%',
-							'3 > dix': '1100%',
-							'1 > dix': '1200%'
-						}
-					},
-					espace: 'top'
-				},
-				{ nom: 'dix', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.include('top . dix')
-	})
-
 	// TODO : enlever ce test, depuis que l'on évalue plus les branches qui ne sont pas encore applicable
 	it.skip('should report missing variables in variations', function() {
 		let rawRules = [
 				{ nom: 'top' },
 				{
-					nom: 'startHere',
-					formule: { somme: ['variations'] },
-					espace: 'top'
+					nom: 'top . startHere',
+					formule: { somme: ['variations'] }
 				},
 				{
-					nom: 'variations',
-					espace: 'top',
+					nom: 'top . variations',
 					formule: {
 						barème: {
 							assiette: 2008,
@@ -213,10 +180,10 @@ describe('collectMissingVariables', function() {
 						}
 					}
 				},
-				{ nom: 'dix', espace: 'top' },
-				{ nom: 'deux', espace: 'top' },
-				{ nom: 'trois', espace: 'top' },
-				{ nom: 'quatre', espace: 'top' }
+				{ nom: 'top . dix' },
+				{ nom: 'top . deux' },
+				{ nom: 'top . trois' },
+				{ nom: 'top . quatre' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'startHere')(stateSelector),
@@ -228,94 +195,20 @@ describe('collectMissingVariables', function() {
 		// TODO
 		// expect(result).to.include('top . trois')
 	})
-
-	it('should not report missing variables in switch for consequences of false conditions', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'startHere',
-					formule: {
-						'aiguillage numérique': {
-							'8 > 10': '1000%',
-							'1 > 2': 'dix'
-						}
-					},
-					espace: 'top'
-				},
-				{ nom: 'dix', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-	})
-
-	it('should report missing variables in consequence when its condition is unresolved', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'startHere',
-					formule: {
-						'aiguillage numérique': {
-							'10 > 11': '1000%',
-							'3 > dix': {
-								douze: '560%',
-								'1 > 2': '75015%'
-							}
-						}
-					},
-					espace: 'top'
-				},
-				{ nom: 'douze', espace: 'top' },
-				{ nom: 'dix', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.include('top . dix')
-		expect(result).to.include('top . douze')
-	})
-
-	it('should not report missing variables when a switch short-circuits', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'startHere',
-					formule: {
-						'aiguillage numérique': {
-							'11 > 10': '1000%',
-							'3 > dix': '1100%',
-							'1 > dix': '1200%'
-						}
-					},
-					espace: 'top'
-				},
-				{ nom: 'dix', espace: 'top' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
-
-		expect(result).to.be.empty
-	})
 })
 
 describe('nextSteps', function() {
 	it('should generate questions for simple situations', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'sum', formule: 'deux', espace: 'top' },
+				{ nom: 'top . sum', formule: 'deux' },
 				{
-					nom: 'deux',
+					nom: 'top . deux',
 					formule: 2,
-					'non applicable si': 'top . sum . evt',
-					espace: 'top'
+					'non applicable si': 'top . sum . evt'
 				},
 				{
-					nom: 'evt',
-					espace: 'top . sum',
+					nom: 'top . sum . evt',
 					titre: 'Truc',
 					question: '?'
 				}
@@ -330,15 +223,13 @@ describe('nextSteps', function() {
 	it('should generate questions', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'sum', formule: 'deux', espace: 'top' },
+				{ nom: 'top . sum', formule: 'deux' },
 				{
-					nom: 'deux',
-					formule: 'sum . evt',
-					espace: 'top'
+					nom: 'top . deux',
+					formule: 'sum . evt'
 				},
 				{
-					nom: 'evt',
-					espace: 'top . sum',
+					nom: 'top . sum . evt',
 					question: '?'
 				}
 			],
@@ -355,21 +246,19 @@ describe('nextSteps', function() {
 	it.skip('should generate questions with more intricate situation', function() {
 		let rawRules = [
 				{ nom: 'top' },
-				{ nom: 'sum', formule: { somme: [2, 'deux'] }, espace: 'top' },
+				{ nom: 'top . sum', formule: { somme: [2, 'deux'] } },
 				{
-					nom: 'deux',
+					nom: 'top . deux',
 					formule: 2,
-					'non applicable si': "top . sum . evt = 'ko'",
-					espace: 'top'
+					'non applicable si': "top . sum . evt = 'ko'"
 				},
 				{
-					nom: 'evt',
-					espace: 'top . sum',
+					nom: 'top . sum . evt',
 					formule: { 'une possibilité': ['ko'] },
 					titre: 'Truc',
 					question: '?'
 				},
-				{ nom: 'ko', espace: 'top . sum . evt' }
+				{ nom: 'top . sum . evt . ko' }
 			],
 			rules = parseAll(rawRules.map(enrichRule)),
 			analysis = analyse(rules, 'sum')(stateSelector),
@@ -388,9 +277,10 @@ describe('nextSteps', function() {
 			}[name])
 
 		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(rules, 'contrat salarié . rémunération . net')(
-				stateSelector
-			),
+			analysis = analyse(
+				rules,
+				'contrat salarié . rémunération . net'
+			)(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
 		expect(result).to.include('contrat salarié . CDD . motif')

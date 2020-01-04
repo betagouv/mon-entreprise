@@ -1,85 +1,61 @@
-import classnames from 'classnames'
-import { React, T } from 'Components'
-import withColours from 'Components/utils/withColours'
+import { ThemeColorsContext } from 'Components/utils/colors'
+import { currencyFormat } from 'Engine/format'
 import { compose } from 'ramda'
-import { connect } from 'react-redux'
-import { formValueSelector } from 'redux-form'
+import React, { useCallback, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
+import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
 
-export default compose(
-	FormDecorator('input'),
-	withColours,
-	connect(state => ({
-		period: formValueSelector('conversation')(state, 'période')
-	}))
-)(function Input({
-	input,
+// TODO: fusionner Input.js et CurrencyInput.js
+export default compose(FormDecorator('input'))(function Input({
 	suggestions,
 	setFormValue,
 	submit,
-	rulePeriod,
 	dottedName,
-	meta: { dirty, error },
-	colours,
-	period,
+	value,
 	unit
 }) {
-	const debouncedOnChange = debounce(750, input.onChange)
-	let suffixed = unit != null,
-		inputError = dirty && error,
-		submitDisabled = !dirty || inputError
+	const colors = useContext(ThemeColorsContext)
+	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
+	const { language } = useTranslation().i18n
+
+	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
 
 	return (
 		<>
 			<div css="width: 100%">
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={value => setFormValue('' + value)}
+					onFirstClick={value => {
+						setFormValue(value)
+					}}
 					onSecondClick={() => submit('suggestion')}
-					rulePeriod={rulePeriod}
 				/>
 			</div>
 
 			<div className="answer">
-				<input
-					type="text"
-					key={input.value}
+				<NumberFormat
 					autoFocus
-					defaultValue={input.value}
-					onChange={e => {
-						e.persist()
-						debouncedOnChange(e)
-					}}
-					className={classnames({ suffixed })}
+					className={'suffixed'}
 					id={'step-' + dottedName}
-					inputMode="numeric"
-					style={{ border: `1px solid ${colours.textColourOnWhite}` }}
+					thousandSeparator={thousandSeparator}
+					decimalSeparator={decimalSeparator}
+					allowEmptyFormatting={true}
+					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
+					onValueChange={({ floatValue }) => {
+						debouncedSetFormValue(floatValue)
+					}}
+					value={value}
+					autoComplete="off"
 				/>
-				{suffixed && (
-					<label className="suffix" htmlFor={'step-' + dottedName}>
-						{unit}
-						{rulePeriod && (
-							<span>
-								{' '}
-								<T>par</T>{' '}
-								<T>
-									{
-										{ mois: 'mois', année: 'an' }[
-											rulePeriod === 'flexible' ? period : rulePeriod
-										]
-									}
-								</T>
-							</span>
-						)}
-					</label>
-				)}
-				<SendButton {...{ disabled: submitDisabled, error, submit }} />
+				<label className="suffix" htmlFor={'step-' + dottedName}>
+					{unit}
+				</label>
+				<SendButton {...{ disabled: value === undefined, submit }} />
 			</div>
-
-			{inputError && <span className="step-input-error">{error}</span>}
 		</>
 	)
 })
