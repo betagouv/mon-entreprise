@@ -17,6 +17,7 @@ questions:
     Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     Impôt: impôt . méthode de calcul
     Temps partiel: contrat salarié . temps de travail . temps partiel
+    Treizième mois: contrat salarié . rémunération . primes . fin d'année . treizième mois
     Commune: établissement . localisation
     JEI: contrat salarié . statut JEI
     Avantages: contrat salarié . rémunération . avantages en nature

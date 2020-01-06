@@ -74,6 +74,18 @@ temps partiel:
     contrat salarié . temps de travail . temps partiel: true
     contrat salarié . temps de travail . temps partiel . heures par semaine: 26
 
+treizième mois:
+  - contrat salarié . rémunération . brut de base: 2300
+    contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
+  - contrat salarié . rémunération . brut de base: 2300
+    contrat salarié . temps de travail . heures supplémentaires: 5
+    contrat salarié . rémunération . primes . activité . base: 200
+    contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
+    contrat salarié . temps de travail . temps partiel: true
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 26
+  - contrat salarié . rémunération . brut de base: 2300
+    contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois: 2
+
 impôt sur le revenu:
   - contrat salarié . rémunération . brut de base: 3000
     impôt . méthode de calcul: taux neutre
