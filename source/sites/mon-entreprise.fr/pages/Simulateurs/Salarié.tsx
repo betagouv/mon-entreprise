@@ -1,6 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
 import { T } from 'Components'
-import Banner from 'Components/Banner'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
@@ -41,15 +40,6 @@ export default function Salarié() {
 				<T k="simulateurs.salarié.titre">Simulateur de revenus pour salarié</T>
 			</h1>
 			<div style={{ margin: '2rem' }} />
-			{i18n.language === 'fr' && (
-				<Banner icon="⏰  ">
-					<strong>
-						Nouveau ! Vous pouvez renseigner des heures supplémentaires :
-					</strong>{' '}
-					les dispositifs rattachés sont pris en compte dans le calcul
-					(réduction vieillesse, défiscalisation, déduction forfaitaire)
-				</Banner>
-			)}
 			<SalarySimulation />
 			{!isEmbedded && (
 				<Markdown
