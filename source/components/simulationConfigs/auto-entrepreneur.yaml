@@ -19,3 +19,5 @@ questions:
 unités par défaut: [€/an]
 situation:
   dirigeant: 'auto-entrepreneur'
+  entreprise . catégorie d'activité: 'libérale'
+  entreprise . catégorie d'activité . libérale règlementée: non

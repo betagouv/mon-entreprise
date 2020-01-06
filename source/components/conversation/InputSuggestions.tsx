@@ -7,9 +7,9 @@ import { convertUnit, parseUnit, Unit } from '../../engine/units'
 
 type InputSuggestionsProps = {
 	suggestions: Record<string, number>
-	onFirstClick: (val: number) => void
-	onSecondClick?: (val: number) => void
-	unit: Unit
+	onFirstClick: (val: number | string) => void
+	onSecondClick?: (val: number | string) => void
+	unit?: Unit
 }
 
 export default function InputSuggestions({

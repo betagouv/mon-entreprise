@@ -1,4 +1,4 @@
-import { convertToDateIfNeeded } from 'Engine/date'
+import { convertToDateIfNeeded, normalizeDate } from 'Engine/date'
 import {
 	defaultNode,
 	evaluateNode,
@@ -31,11 +31,12 @@ function MecanismDurée({ nodeValue, explanation, unit }) {
 		/>
 	)
 }
-const pad = (n: number) => (n < 10 ? `0{n}` : +n)
 const today = new Date()
-const todayString = `${pad(today.getDate())}/${pad(
-	today.getMonth() + 1
-)}/${today.getFullYear()}`
+const todayString = normalizeDate(
+	today.getFullYear(),
+	today.getMonth() + 1,
+	today.getDate()
+)
 
 const objectShape = {
 	depuis: defaultNode(todayString),

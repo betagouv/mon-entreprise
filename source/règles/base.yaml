@@ -3152,7 +3152,7 @@ entreprise . date de création:
   question: Quand avez-vous créé votre entreprise ?
   par défaut: 01/01/2019
   suggestions:
-    Décembre 2019: 01/12/2019
+    Janvier 2020: 01/01/2020
     Janvier 2019: 01/01/2019
     Janvier 2018: 01/01/2018
   type: date
