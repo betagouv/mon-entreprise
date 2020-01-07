@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
 import { serializeUnit } from 'Engine/units'
 import React from 'react'
@@ -15,8 +14,14 @@ Read https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-comp
 to understand those precious higher order components.
 */
 
-export const FormDecorator = formType => RenderField =>
-	function FormStep({ fieldName, question, inversion, unit, ...otherProps }) {
+export default function FormDecorator(RenderField) {
+	return function FormStep({
+		fieldName,
+		question,
+		inversion,
+		unit,
+		...otherProps
+	}) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
 		const language = useTranslation().i18n.language
@@ -32,7 +37,7 @@ export const FormDecorator = formType => RenderField =>
 		}
 
 		return (
-			<div className={classNames('step', formType)}>
+			<div className="step">
 				<div className="unfoldedHeader">
 					<h3>
 						{question} {!inversion && <Explicable dottedName={fieldName} />}
@@ -41,14 +46,15 @@ export const FormDecorator = formType => RenderField =>
 
 				<fieldset>
 					<RenderField
+						{...otherProps}
 						name={fieldName}
 						value={situation[fieldName]}
-						setFormValue={setFormValue}
-						submit={submit}
+						onChange={setFormValue}
+						onSubmit={submit}
 						unit={serializeUnit(unit, situation[fieldName], language)}
-						{...otherProps}
 					/>
 				</fieldset>
 			</div>
 		)
 	}
+}

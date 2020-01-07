@@ -1,6 +1,6 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
-import getInputComponent from 'Engine/getInputComponent'
+import InputComponent from 'Engine/InputComponent'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -11,6 +11,7 @@ import { currentQuestionSelector, flatRulesSelector, nextStepsSelector } from 'S
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
+import FormDecorator from './FormDecorator'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -39,7 +40,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			setDefault()
 		}
 	}
-
+	const DecoratedInputComponent = FormDecorator(InputComponent)
 	return nextSteps.length ? (
 		<>
 			<Aide />
@@ -47,7 +48,10 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				{currentQuestion && (
 					<React.Fragment key={currentQuestion}>
 						<Animate.fadeIn>
-							{getInputComponent(flatRules)(currentQuestion)}
+							<DecoratedInputComponent
+								rules={flatRules}
+								dottedName={currentQuestion}
+							/>
 						</Animate.fadeIn>
 						<div className="ui__ answer-group">
 							{previousAnswers.length > 0 && (

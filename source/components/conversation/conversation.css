@@ -119,7 +119,6 @@
 }
 .step.question .variantLeaf {
 	display: flex;
-	justify-content: flex-end;
 	margin-bottom: 0.6em;
 }
 
@@ -134,8 +133,6 @@
 
 .step label.radio {
 	text-align: center;
-	margin-left: 1rem;
-	/* margin-top: 1em; */
 	cursor: pointer;
 	background: none;
 	border-radius: 1em;
@@ -266,7 +263,6 @@
 	margin-top: 0.6rem;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-end;
 	align-items: center;
 }
 

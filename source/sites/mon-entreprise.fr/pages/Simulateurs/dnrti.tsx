@@ -1,18 +1,21 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
-import { Field } from 'Engine/field'
 import { formatValue } from 'Engine/format'
-import React, { useCallback } from 'react'
+import InputComponent from 'Engine/InputComponent'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
 	flatRulesSelector,
-	ruleAnalysisSelector
+	nextStepsSelector,
+	ruleAnalysisSelector,
+	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
+import Animate from 'Ui/animate'
 import { useRule } from './ArtisteAuteur'
 
 const simulationConfig = {
@@ -95,29 +98,37 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 	const analysis = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
-	const update = (x: unknown) => {
-		dispatch(updateSituation(dottedName, x))
+	const rules = useSelector((state: RootState) => state.rules)
+	const update = (value: unknown) => {
+		dispatch(updateSituation(dottedName, value))
 	}
-	const onChange = useCallback(update, [])
-
+	const value = useSelector(situationSelector)[dottedName]
+	const nextSteps = useSelector(nextStepsSelector)
 	if (!analysis.isApplicable) {
 		return null
 	}
-
 	return (
-		<Question>
-			<p
-				css={`
-					border-left: 4px solid var(--lightColor);
-					border-radius: 3px;
-					padding-left: 12px;
-					margin-left: -12px;
-				`}
-			>
-				{question ?? analysis.question}
-			</p>
-			<Field dottedName={dottedName} onChange={onChange} />
-		</Question>
+		<Animate.fromTop>
+			<Question>
+				<p
+					css={`
+						border-left: 4px solid var(--lightColor);
+						border-radius: 3px;
+						padding-left: 12px;
+						margin-left: -12px;
+					`}
+				>
+					{question ?? analysis.question}
+				</p>
+				<InputComponent
+					rules={rules}
+					dottedName={dottedName}
+					onChange={update}
+					value={value}
+				/>
+				{/* <Field dottedName={dottedName} onChange={onChange} /> */}
+			</Question>
+		</Animate.fromTop>
 	)
 }
 
@@ -150,18 +161,20 @@ function Results() {
 	}
 
 	return (
-		<ResultBlock>
-			<ResultSubTitle>Vos cotisations</ResultSubTitle>
-			<Link cotisation={cotisationsRule} />
-			<ResultSubTitle>Vos revenus net</ResultSubTitle>
-			<Link cotisation={revenusNet} />
-			<ResultSubTitle>Cotisations non déductibles</ResultSubTitle>
-			<Modalités>
-				Ce montant doit être réintégré au revenu net dans votre déclaration
-				fiscale.
-			</Modalités>
-			<Link cotisation={nonDeductible} />
-		</ResultBlock>
+		<>
+			<ResultBlock>
+				<ResultSubTitle>Vos cotisations</ResultSubTitle>
+				<Link cotisation={cotisationsRule} />
+				<ResultSubTitle>Vos revenus net</ResultSubTitle>
+				<Link cotisation={revenusNet} />
+				<ResultSubTitle>Cotisations non déductibles</ResultSubTitle>
+				<Modalités>
+					Ce montant doit être réintégré au revenu net dans votre déclaration
+					fiscale.
+				</Modalités>
+				<Link cotisation={nonDeductible} />
+			</ResultBlock>
+		</>
 	)
 }
 

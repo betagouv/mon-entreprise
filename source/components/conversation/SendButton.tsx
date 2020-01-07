@@ -3,13 +3,13 @@ import { Trans } from 'react-i18next'
 
 type SendButtonProps = {
 	disabled: boolean
-	submit: (cause: string) => void
+	onSubmit: (cause: string) => void
 }
 
-export default function SendButton({ disabled, submit }: SendButtonProps) {
-	const getAction = useCallback(cause => (!disabled ? submit(cause) : null), [
+export default function SendButton({ disabled, onSubmit }: SendButtonProps) {
+	const getAction = useCallback(cause => (!disabled ? onSubmit(cause) : null), [
 		disabled,
-		submit
+		onSubmit
 	])
 	useEffect(() => {
 		const handleKeyDown = ({ key }: KeyboardEvent) => {

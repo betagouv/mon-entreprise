@@ -1,10 +1,9 @@
 import classnames from 'classnames'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { compose, is } from 'ramda'
+import { is } from 'ramda'
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
-import { FormDecorator } from './FormDecorator'
 import './Question.css'
 import SendButton from './SendButton'
 
@@ -26,21 +25,21 @@ import SendButton from './SendButton'
 
 // FormDecorator permet de factoriser du code partagé par les différents types de saisie,
 // dont Question est un example
-export default compose(FormDecorator('question'))(function Question({
+export default function Question({
 	choices,
-	submit,
-	name,
-	setFormValue,
+	onSubmit,
+	fieldName,
+	onChange,
 	value: currentValue
 }) {
 	const colors = useContext(ThemeColorsContext)
 	const [touched, setTouched] = useState(false)
-	const onChange = useCallback(
+	const handleChange = useCallback(
 		value => {
-			setFormValue(value)
+			onChange(value)
 			setTouched(true)
 		},
-		[setFormValue]
+		[onChange]
 	)
 
 	const renderBinaryQuestion = () => {
@@ -49,7 +48,15 @@ export default compose(FormDecorator('question'))(function Question({
 				{choices.map(({ value, label }) => (
 					<RadioLabel
 						key={value}
-						{...{ value, label, currentValue, submit, colors, onChange }}
+						{...{
+							value,
+							css: 'margin-right: 0.6rem',
+							label,
+							currentValue,
+							onSubmit,
+							colors,
+							onChange: handleChange
+						}}
 					/>
 				))}
 			</div>
@@ -57,9 +64,9 @@ export default compose(FormDecorator('question'))(function Question({
 	}
 	const renderChildren = choices => {
 		// seront stockées ainsi dans le state :
-		// [parent object path]: dotted name relative to parent
+		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = radioDottedName =>
-			radioDottedName.split(name + ' . ')[1]
+			radioDottedName.split(fieldName + ' . ')[1]
 
 		return (
 			<ul css="width: 100%">
@@ -70,32 +77,32 @@ export default compose(FormDecorator('question'))(function Question({
 								value: 'non',
 								label: 'Aucun',
 								currentValue,
-								submit,
+								onSubmit,
 								colors,
 								dottedName: null,
-								onChange
+								onChange: handleChange
 							}}
 						/>
 					</li>
 				)}
 				{choices.children &&
-					choices.children.map(({ name, title, dottedName, children }) =>
+					choices.children.map(({ fieldName, title, dottedName, children }) =>
 						children ? (
-							<li key={name} className="variant">
+							<li key={fieldName} className="variant">
 								<div>{title}</div>
 								{renderChildren({ children })}
 							</li>
 						) : (
-							<li key={name} className="variantLeaf">
+							<li key={fieldName} className="variantLeaf">
 								<RadioLabel
 									{...{
 										value: relativeDottedName(dottedName),
 										label: title,
 										dottedName,
 										currentValue,
-										submit,
+										onSubmit,
 										colors,
-										onChange
+										onChange: handleChange
 									}}
 								/>
 							</li>
@@ -110,19 +117,15 @@ export default compose(FormDecorator('question'))(function Question({
 		: renderChildren(choices)
 
 	return (
-		<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
+		<div
+			className="step question"
+			css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
+		>
 			{choiceElements}
-			<SendButton
-				{...{
-					disabled: !touched,
-					colors,
-					error: false,
-					submit
-				}}
-			/>
+			{onSubmit && <SendButton disabled={!touched} onSubmit={onSubmit} />}
 		</div>
 	)
-})
+}
 
 export let RadioLabel = props => (
 	<>
@@ -131,18 +134,26 @@ export let RadioLabel = props => (
 	</>
 )
 
-function RadioLabelContent({ value, label, currentValue, onChange, submit }) {
+function RadioLabelContent({
+	value,
+	label,
+	currentValue,
+	onChange,
+	onSubmit,
+	css
+}) {
 	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
 		selected = value === currentValue
 
 	const click = value => () => {
-		if (currentValue == value) submit('dblClick')
+		if (currentValue == value && onSubmit) onSubmit('dblClick')
 	}
 
 	return (
 		<label
 			key={value}
 			style={labelStyle}
+			css={css}
 			className={classnames('radio', 'userAnswerButton', { selected })}
 		>
 			<Trans>{label}</Trans>

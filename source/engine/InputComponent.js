@@ -15,25 +15,28 @@ export const binaryOptionChoices = [
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 
 // eslint-disable-next-line react/display-name
-export default rules => dottedName => {
+export default ({ rules, dottedName, onChange, value }) => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
 		key: dottedName,
 		fieldName: dottedName,
+		value,
+		onChange,
 		...pick(
 			['dottedName', 'title', 'question', 'defaultValue', 'suggestions'],
 			rule
 		)
 	}
 
-	if (getVariant(rule))
+	if (getVariant(rule)) {
 		return (
 			<Question
 				{...commonProps}
 				choices={buildVariantTree(rules, dottedName)}
 			/>
 		)
+	}
 	if (rule.API && rule.API === 'géo')
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")

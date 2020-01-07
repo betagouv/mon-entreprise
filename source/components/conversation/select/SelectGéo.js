@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { debounce } from '../../../utils'
-import { FormDecorator } from '../FormDecorator'
 
 async function tauxVersementTransport(codeCommune) {
 	const response = await fetch(
@@ -26,10 +25,7 @@ async function searchCommunes(input) {
 	return json
 }
 
-export default FormDecorator('select')(function Select({
-	setFormValue,
-	submit
-}) {
+export default function Select({ setFormValue, submit }) {
 	const [searchResults, setSearchResults] = useState()
 	const [isLoading, setLoadingState] = useState(false)
 
@@ -139,4 +135,4 @@ export default FormDecorator('select')(function Select({
 				})}
 		</>
 	)
-})
+}
