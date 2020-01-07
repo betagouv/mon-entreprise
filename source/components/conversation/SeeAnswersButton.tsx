@@ -7,7 +7,7 @@ import './conversation.css'
 
 export default function SeeAnswersButton() {
 	const arePreviousAnswers = !!useSelector(
-		(state: RootState) => state.conversationSteps.foldedSteps.length
+		(state: RootState) => state.simulation?.foldedSteps.length
 	)
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
 	return (

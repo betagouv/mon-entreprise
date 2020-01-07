@@ -10,11 +10,6 @@ import {
 } from '../source/engine/rules'
 
 describe('enrichRule', function() {
-	it('should extract the type of the rule', function() {
-		let rule = { nom: 'retraite', cotisation: {} }
-		expect(enrichRule(rule)).to.have.property('type', 'cotisation')
-	})
-
 	it('should extract the dotted name of the rule', function() {
 		let rule = { nom: 'contrat salarié . CDD' }
 		expect(enrichRule(rule)).to.have.property('name', 'CDD')

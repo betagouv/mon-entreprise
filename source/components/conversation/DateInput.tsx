@@ -1,6 +1,6 @@
 import { FormDecorator } from 'Components/conversation/FormDecorator'
 import { normalizeDate, normalizeDateString } from 'Engine/date'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import InputSuggestions from './InputSuggestions'
@@ -27,8 +27,8 @@ export default FormDecorator('input')(function DateInput({
 	const { language } = useTranslation().i18n
 
 	// Refs for focus handling
-	let monthInput = React.createRef()
-	let yearInput = React.createRef()
+	let monthInput = useRef<HTMLInputElement>(null)
+	let yearInput = useRef<HTMLInputElement>(null)
 
 	const [date, setDate] = useState({ day: '', month: '', year: '' })
 
@@ -89,7 +89,7 @@ export default FormDecorator('input')(function DateInput({
 								return
 							}
 							if (value.length == 2) {
-								monthInput.current.select()
+								monthInput.current?.select()
 							}
 							handleDateChange({ day: value })
 						}}
@@ -106,7 +106,7 @@ export default FormDecorator('input')(function DateInput({
 								return
 							}
 							if (value.length == 2) {
-								yearInput.current.select()
+								yearInput.current?.select()
 							}
 							handleDateChange({ month: value })
 						}}

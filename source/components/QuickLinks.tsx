@@ -17,7 +17,7 @@ export default function QuickLinks() {
 		(state: RootState) => state.simulation?.config.questions?.["à l'affiche"]
 	)
 	const quickLinksToHide = useSelector(
-		(state: RootState) => state.conversationSteps.foldedSteps
+		(state: RootState) => state.simulation?.foldedSteps || []
 	)
 	const dispatch = useDispatch()
 

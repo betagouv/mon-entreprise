@@ -19,6 +19,10 @@ export function normalizeDate(
 }
 
 const dateRegexp = /[\d]{2}\/[\d]{2}\/[\d]{4}/
+export function convertToDate(value: string): Date {
+	const [day, month, year] = normalizeDateString(value).split('/')
+	return new Date(+year, +month - 1, +day)
+}
 export function convertToDateIfNeeded(...values: string[]) {
 	const dateStrings = values.map(dateString => '' + dateString)
 	if (!dateStrings.some(dateString => dateString.match(dateRegexp))) {
@@ -31,7 +35,5 @@ export function convertToDateIfNeeded(...values: string[]) {
 			)
 		}
 	})
-	return dateStrings
-		.map(date => date.split('/'))
-		.map(([day, month, year]) => new Date(+year, +month - 1, +day))
+	return dateStrings.map(convertToDate)
 }

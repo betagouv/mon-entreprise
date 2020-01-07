@@ -100,7 +100,7 @@ function StepsTable({ rules, onClose }) {
 }
 
 const stepsToRules = createSelector(
-	(state: RootState) => state.conversationSteps.foldedSteps,
+	(state: RootState) => state.simulation?.foldedSteps || [],
 	nextStepsSelector,
 	analysisWithDefaultsSelector,
 	(folded, nextSteps, analysis) => ({

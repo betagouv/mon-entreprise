@@ -8,10 +8,12 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router'
 
 export default function AssimiléSalarié() {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(assimiléConfig))
+	const location = useLocation()
+	dispatch(setSimulationConfig(assimiléConfig, location.state?.fromGérer))
 
 	const { t } = useTranslation()
 

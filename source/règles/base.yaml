@@ -1746,6 +1746,7 @@ entreprise . effectif:
         alors: 251 employés
 
 entreprise . effectif . seuil:
+  titre: seuil d'effectif
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de

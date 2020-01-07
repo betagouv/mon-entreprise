@@ -1,25 +1,14 @@
 import { Action } from 'Actions/actions'
 import { Analysis } from 'Engine/traverse'
 import { areUnitConvertible, convertUnit, parseUnit, Unit } from 'Engine/units'
-import {
-	defaultTo,
-	dissoc,
-	identity,
-	lensPath,
-	omit,
-	over,
-	pipe,
-	set,
-	uniq,
-	without
-} from 'ramda'
+import { defaultTo, identity, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName, Rule } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
-import inFranceAppReducer from './inFranceAppReducer'
+import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
 function explainedVariable(state: DottedName | null = null, action: Action) {
@@ -79,37 +68,6 @@ function lang(
 		default:
 			return state
 	}
-}
-
-type ConversationSteps = {
-	foldedSteps: Array<DottedName>
-	unfoldedStep?: DottedName | null
-}
-
-function conversationSteps(
-	state: ConversationSteps = {
-		foldedSteps: [],
-		unfoldedStep: null
-	},
-	action: Action
-): ConversationSteps {
-	if (['RESET_SIMULATION', 'SET_SIMULATION'].includes(action.type))
-		return { foldedSteps: [], unfoldedStep: null }
-
-	if (action.type !== 'STEP_ACTION') return state
-	const { name, step } = action
-	if (name === 'fold')
-		return {
-			foldedSteps: [...state.foldedSteps, step],
-			unfoldedStep: null
-		}
-	if (name === 'unfold') {
-		return {
-			foldedSteps: without([step], state.foldedSteps),
-			unfoldedStep: step
-		}
-	}
-	return state
 }
 
 function goalsFromAnalysis(analysis) {
@@ -189,20 +147,41 @@ export type SimulationConfig = Partial<{
 	'unités par défaut': [string]
 }>
 
+type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
 	config: SimulationConfig
 	url: string
 	hiddenControls: Array<string>
-	situation: Partial<Record<DottedName, any>>
+	situation: Situation
+	initialSituation: Situation
 	defaultUnits: [string]
+	foldedSteps: Array<DottedName>
+	unfoldedStep?: DottedName | null
+}
+function getCompanySituation(company: Company): Situation {
+	return {
+		...(company.localisation && {
+			'établissement . localisation': JSON.stringify(company.localisation)
+		}),
+		...(company.dateDeCréation && {
+			'entreprise . date de création': company.dateDeCréation.replace(
+				/(.*)-(.*)-(.*)/,
+				'$3/$2/$1'
+			)
+		})
+	}
 }
 
 function simulation(
 	state: Simulation | null = null,
 	action: Action,
-	analysis: Analysis | Array<Analysis> | null
+	analysis: Analysis | Array<Analysis> | null,
+	existingCompany: Company
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
+		const companySituation = action.useCompanyDetails
+			? getCompanySituation(existingCompany)
+			: {}
 		const { config, url } = action
 		if (state && state.config === config) {
 			return state
@@ -211,8 +190,11 @@ function simulation(
 			config,
 			url,
 			hiddenControls: [],
-			situation: {},
-			defaultUnits: config['unités par défaut'] || ['€/mois']
+			situation: companySituation,
+			initialSituation: companySituation,
+			defaultUnits: config['unités par défaut'] || ['€/mois'],
+			foldedSteps: Object.keys(companySituation) as Array<DottedName>,
+			unfoldedStep: null
 		}
 	}
 	if (state === null) {
@@ -222,7 +204,13 @@ function simulation(
 		case 'HIDE_CONTROL':
 			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
 		case 'RESET_SIMULATION':
-			return { ...state, hiddenControls: [], situation: {} }
+			return {
+				...state,
+				hiddenControls: [],
+				situation: state.initialSituation,
+				foldedSteps: [],
+				unfoldedStep: null
+			}
 		case 'UPDATE_SITUATION':
 			return {
 				...state,
@@ -232,6 +220,22 @@ function simulation(
 					analysis
 				})
 			}
+		case 'STEP_ACTION':
+			const { name, step } = action
+			if (name === 'fold')
+				return {
+					...state,
+					foldedSteps: [...state.foldedSteps, step],
+					unfoldedStep: null
+				}
+			if (name === 'unfold') {
+				return {
+					...state,
+					foldedSteps: without([step], state.foldedSteps),
+					unfoldedStep: step
+				}
+			}
+			return state
 		case 'UPDATE_DEFAULT_UNIT':
 			return {
 				...state,
@@ -245,55 +249,19 @@ function simulation(
 	return state
 }
 
-const addAnswerToSituation = (
-	dottedName: DottedName,
-	value: unknown,
-	state: RootState
-) => {
-	return pipe(
-		over(lensPath(['conversationSteps', 'foldedSteps']), (steps = []) =>
-			uniq([...steps, dottedName])
-		),
-		set(lensPath(['simulation', 'situation', dottedName]), value)
-	)(state)
-}
-
-const removeAnswerFromSituation = (
-	dottedName: DottedName,
-	state: RootState
-) => {
-	return pipe(
-		over(lensPath(['conversationSteps', 'foldedSteps']), without([dottedName])),
-		over(lensPath(['simulation', 'situation']), dissoc(dottedName))
-	)(state)
-}
-
-const existingCompanyRootReducer = (state: RootState, action) => {
-	if (!action.type.startsWith('EXISTING_COMPANY::')) {
-		return state
-	}
-	if (action.type.endsWith('ADD_COMMUNE_DETAILS')) {
-		return addAnswerToSituation(
-			'établissement . localisation',
-			JSON.stringify(action.details.localisation),
-			state
-		)
-	}
-	if (action.type.endsWith('RESET')) {
-		removeAnswerFromSituation('établissement . localisation', state)
-	}
-	return state
-}
-
 const mainReducer = (state, action: Action) =>
 	combineReducers({
-		conversationSteps,
 		lang,
 		rules: defaultTo(null) as Reducer<Array<Rule>>,
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
-			simulation(a, b, a && analysisWithDefaultsSelector(state)),
+			simulation(
+				a,
+				b,
+				a && analysisWithDefaultsSelector(state),
+				state.inFranceApp?.existingCompany
+			),
 		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
 		currentExample,
 		situationBranch,
@@ -302,7 +270,6 @@ const mainReducer = (state, action: Action) =>
 	})(state, action)
 
 export default reduceReducers<RootState>(
-	existingCompanyRootReducer,
 	mainReducer as any,
 	storageRootReducer as any
 ) as Reducer<RootState>

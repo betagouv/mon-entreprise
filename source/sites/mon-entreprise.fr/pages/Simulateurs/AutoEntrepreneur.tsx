@@ -10,11 +10,15 @@ import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(autoEntrepreneurConfig))
+	const location = useLocation()
+	dispatch(
+		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
+	)
 
 	const { t } = useTranslation()
 

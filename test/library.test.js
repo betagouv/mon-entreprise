@@ -61,7 +61,6 @@ describe('library', function() {
 				'contrat salarié . prix du travail': salaireTotal
 			}
 		)
-
 		let [revenuDisponible, dividendes] = Lib.evaluate(
 			['revenu net après impôt', 'dividendes . net'],
 			{
@@ -71,7 +70,7 @@ describe('library', function() {
 			{ extra: sasuRules }
 		)
 
-		expect(revenuDisponible).to.be.closeTo(2324, 1)
+		expect(revenuDisponible / 12).to.be.closeTo(2324, 1)
 		expect(dividendes).to.be.closeTo(2507, 1)
 	}).timeout(5000)
 

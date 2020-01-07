@@ -85,7 +85,7 @@ function Controls({
 export default compose(
 	connect(
 		(state, props) => ({
-			foldedSteps: state.conversationSteps.foldedSteps,
+			foldedSteps: state.simulation?.foldedSteps,
 			controls: analysisWithDefaultsSelector(state)?.controls,
 			inversionFail: analysisWithDefaultsSelector(state)?.cache._meta
 				.inversionFail,

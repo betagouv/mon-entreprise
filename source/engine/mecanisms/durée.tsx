@@ -1,4 +1,4 @@
-import { convertToDateIfNeeded, normalizeDate } from 'Engine/date'
+import { convertToDate, normalizeDate } from 'Engine/date'
 import {
 	defaultNode,
 	evaluateNode,
@@ -47,14 +47,16 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	let evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
 	let from = evaluateAttribute(node.explanation.depuis)
 	let to = evaluateAttribute(node.explanation["jusqu'à"])
-	let nodeValue = 0
+	let nodeValue
 	if ([from, to].some(({ nodeValue }) => nodeValue === null)) {
 		nodeValue = null
 	} else {
-		let [fromDate, toDate] = convertToDateIfNeeded(from.nodeValue, to.nodeValue)
+		let [fromDate, toDate] = [from.nodeValue, to.nodeValue].map(convertToDate)
 		nodeValue = Math.max(
 			0,
-			Math.round((toDate - fromDate) / (1000 * 60 * 60 * 24))
+			Math.round(
+				(toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24)
+			)
 		)
 	}
 	return {

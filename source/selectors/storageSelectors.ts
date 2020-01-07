@@ -1,4 +1,5 @@
 import { RootState, Simulation } from 'Reducers/rootReducer'
+import { DottedName } from 'Types/rule'
 
 // Note: it is currently not possible to define SavedSimulation as the return
 // type of the currentSimulationSelector function because the type would then
@@ -6,7 +7,7 @@ import { RootState, Simulation } from 'Reducers/rootReducer'
 export type SavedSimulation = {
 	situation: Simulation['situation']
 	activeTargetInput: RootState['activeTargetInput']
-	foldedSteps: RootState['conversationSteps']['foldedSteps']
+	foldedSteps: Array<DottedName> | undefined
 }
 
 export const currentSimulationSelector = (
@@ -15,7 +16,7 @@ export const currentSimulationSelector = (
 	return {
 		situation: state.simulation?.situation ?? {},
 		activeTargetInput: state.activeTargetInput,
-		foldedSteps: state.conversationSteps.foldedSteps
+		foldedSteps: state.simulation?.foldedSteps
 	}
 }
 
@@ -27,11 +28,9 @@ export const createStateFromSavedSimulation = (
 				activeTargetInput: state.previousSimulation.activeTargetInput,
 				simulation: {
 					...state.simulation,
-					situation: state.previousSimulation.situation || {}
-				} as Simulation,
-				conversationSteps: {
+					situation: state.previousSimulation.situation || {},
 					foldedSteps: state.previousSimulation.foldedSteps
-				},
+				} as Simulation,
 				previousSimulation: null
 		  }
 		: {}

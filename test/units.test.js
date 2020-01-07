@@ -145,5 +145,3 @@ describe('areUnitConvertible', () => {
 		expect(areUnitConvertible(parseUnit('m'), parseUnit('s'))).to.eq(false)
 	})
 })
-
-describe('simplifyUnit', () => {})
