@@ -3154,15 +3154,24 @@ impôt . CEHR:
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 entreprise . date de création:
-  question: Quand avez-vous créé votre entreprise ?
-  par défaut: 01/01/2019
+  question: Quelle est la date de début d'activité ?
+  par défaut: 01/01/2020
+  description: |
+    La date de début d'activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.  
+
+    Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
+    automatiquement cette information.
+
+    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
   suggestions:
     Début 2020: 01/01/2020
     Début 2019: 01/01/2019
     Fin 2017: 31/12/2017
   type: date
   contrôles:
-    - si: date de création > 01/2020
+    - si: date de création > 01/2021
       niveau: avertissement
       message: Nous ne pouvons voir aussi loin dans le futur
     - si: date de création < 01/1900
@@ -4283,6 +4292,7 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . rémunération . primes
+    - contrat salarié . rémunération . primes . fin d'année
     - contrat salarié . rémunération . primes . activité
     - contrat salarié . chômage
     - contrat salarié . réduction générale
