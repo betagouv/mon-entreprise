@@ -1732,6 +1732,8 @@ entreprise . effectif:
   unité: employé
   formule:
     variations:
+      - si: entreprise . effectif . seuil = 'moins de 5'
+        alors: 4 employés
       - si: entreprise . effectif . seuil = 'moins de 11'
         alors: 10 employés
       - si: entreprise . effectif . seuil = 'moins de 20'
@@ -1755,13 +1757,15 @@ entreprise . effectif . seuil:
     une possibilité:
       choix obligatoire: oui
       possibilités:
+        - moins de 5
         - moins de 11
         - moins de 20
         - moins de 50
         - moins de 250
         - 251 et plus
-  par défaut: moins de 11
+  par défaut: moins de 5
 
+entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 11:
 entreprise . effectif . seuil . moins de 20:
 entreprise . effectif . seuil . moins de 50:
@@ -3152,9 +3156,9 @@ entreprise . date de création:
   question: Quand avez-vous créé votre entreprise ?
   par défaut: 01/01/2019
   suggestions:
-    Janvier 2020: 01/01/2020
-    Janvier 2019: 01/01/2019
-    Janvier 2018: 01/01/2018
+    Début 2020: 01/01/2020
+    Début 2019: 01/01/2019
+    Fin 2017: 31/12/2017
   type: date
   contrôles:
     - si: date de création > 01/2020
@@ -4205,7 +4209,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
       assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
       retourne seulement le taux: oui
       variations:
-        - si: entreprise . effectif
+        - si: entreprise . effectif < 5
           alors:     
             points:
               0: 100%

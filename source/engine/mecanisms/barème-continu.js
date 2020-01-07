@@ -1,15 +1,35 @@
 import { defaultNode, evaluateObject, parseObject } from 'Engine/evaluation'
+import { decompose } from 'Engine/mecanisms/utils'
+import variations from 'Engine/mecanisms/variations'
 import BarèmeContinu from 'Engine/mecanismViews/BarèmeContinu'
 import { anyNull, val } from 'Engine/traverse-common-functions'
 import { parseUnit } from 'Engine/units'
-import { aperture, last, pipe, reduce, reduced, sort, toPairs } from 'ramda'
-
+import {
+	aperture,
+	isEmpty,
+	last,
+	pipe,
+	reduce,
+	reduced,
+	sort,
+	toPairs
+} from 'ramda'
 export default (recurse, k, v) => {
+	if (v.composantes) {
+		return decompose(recurse, k, v)
+	}
+	if (v.variations) {
+		return variations(recurse, k, v, true)
+	}
+	if (!v.points || typeof v.points !== 'object' || isEmpty(v.points)) {
+		throw new Error(
+			'Le mécanisme `barème linéaire` doit avoir un paramètre `points` valide'
+		)
+	}
 	let objectShape = {
 		assiette: false,
 		multiplicateur: defaultNode(1)
 	}
-
 	let returnRate = v['retourne seulement le taux'] === 'oui'
 	let effect = ({ assiette, multiplicateur, points }) => {
 		if (anyNull([assiette, multiplicateur])) return null

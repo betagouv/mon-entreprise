@@ -1,7 +1,8 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
-import { formatPercentage, formatValue } from 'Engine/format'
+import { formatValue } from 'Engine/format'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
+import { serialiseUnit } from 'Engine/units'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { BarèmeAttributes } from './Barème'
@@ -37,8 +38,9 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 											<td key="tranche">
 												<SeuilFormatteur
 													value={Number(seuil)}
+													unit={explanation.assiette.unit}
 													multiplicateur={
-														explanation.multiplicateur.explanation
+														explanation.multiplicateur?.explanation
 													}
 												/>
 											</td>
@@ -52,7 +54,7 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 									<b>
 										<Trans>Votre taux </Trans> :{' '}
 									</b>
-									{formatPercentage(explanation.taux)}
+									<NodeValuePointer data={100 * explanation.taux} unit="%" />
 								</span>
 							)}
 							{explanation.returnRate && (
@@ -68,7 +70,7 @@ let Comp = function Barème({ nodeValue, explanation, unit }) {
 	)
 }
 
-function SeuilFormatteur({ value, multiplicateur }) {
+function SeuilFormatteur({ value, multiplicateur, unit }) {
 	const { language } = useTranslation().i18n
 	if (value === 0) {
 		return '0'
@@ -78,19 +80,20 @@ function SeuilFormatteur({ value, multiplicateur }) {
 				{formatValue({
 					value,
 					language
-				})}
+				})}{' '}
+				{serialiseUnit(unit)}
 				{multiplicateur && (
 					<>
 						&nbsp;
 						<RuleLink {...multiplicateur} title={multiplicateur.name}>
 							{multiplicateur.acronyme}
 						</RuleLink>
+						<NodeValuePointer
+							data={value * multiplicateur.nodeValue}
+							unit={multiplicateur.unit}
+						/>
 					</>
 				)}{' '}
-				<NodeValuePointer
-					data={value * multiplicateur.nodeValue}
-					unit={multiplicateur.unit}
-				/>
 			</>
 		)
 	}

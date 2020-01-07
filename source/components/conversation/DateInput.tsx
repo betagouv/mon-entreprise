@@ -8,7 +8,6 @@ import SendButton from './SendButton'
 
 const DateField = styled.input`
 	border: none;
-	text-align: center;
 	color: inherit;
 	font-size: inherit;
 	margin: 0 0.1rem;
@@ -83,6 +82,7 @@ export default FormDecorator('input')(function DateInput({
 					<DateField
 						autoFocus
 						placeholder="JJ"
+						css="text-align: right;"
 						type="tel"
 						onChange={({ target: { value } }) => {
 							if (+value > 31) {
@@ -99,6 +99,7 @@ export default FormDecorator('input')(function DateInput({
 					<DateField
 						type="tel"
 						placeholder="MM"
+						css="text-align: center;"
 						ref={monthInput}
 						onChange={({ target: { value } }) => {
 							if (+value > 12) {
@@ -114,6 +115,7 @@ export default FormDecorator('input')(function DateInput({
 					/
 					<DateField
 						type="tel"
+						css="text-align: left;"
 						ref={yearInput}
 						placeholder="AAAA"
 						onChange={({ target: { value } }) => {
