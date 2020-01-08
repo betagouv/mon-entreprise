@@ -14,9 +14,7 @@ let state = {
 		situation: {
 			'contrat salarié . rémunération . brut de base': '2300',
 			'entreprise . effectif': '50'
-		}
-	},
-	conversationSteps: {
+		},
 		foldedSteps: []
 	}
 }

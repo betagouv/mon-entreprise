@@ -12,9 +12,9 @@ exports[`calculate simulations-artiste-auteur:  salarié 2`] = `"[1603]"`;
 
 exports[`calculate simulations-artiste-auteur:  salarié 3`] = `"[12410]"`;
 
-exports[`calculate simulations-auto-entrepreneur:  aides 1`] = `"[5538,538,5000,0,5000]"`;
+exports[`calculate simulations-auto-entrepreneur:  aides 1`] = `"[5348,348,5000,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur:  aides 2`] = `"[55380,5380,50000,181,49819]"`;
+exports[`calculate simulations-auto-entrepreneur:  aides 2`] = `"[53485,3485,50000,93,49907]"`;
 
 exports[`calculate simulations-auto-entrepreneur:  impôt sur le revenu 1`] = `"[32092,7092,25000,706,24294]"`;
 
