@@ -81,8 +81,7 @@ function SeuilFormatteur({ value, multiplicateur, unit }) {
 					value,
 					language
 				})}{' '}
-				{serialiseUnit(unit)}
-				{multiplicateur && (
+				{multiplicateur ? (
 					<>
 						&nbsp;
 						<RuleLink {...multiplicateur} title={multiplicateur.name}>
@@ -93,6 +92,8 @@ function SeuilFormatteur({ value, multiplicateur, unit }) {
 							unit={multiplicateur.unit}
 						/>
 					</>
+				) : (
+					serialiseUnit(unit)
 				)}{' '}
 			</>
 		)

@@ -1,5 +1,3 @@
-début d'année:
-  formule: 01/01/2019
 
 période:
 période . jours ouvrés moyen par mois:
@@ -9,6 +7,10 @@ période . jours ouvrés moyen par mois:
 période . semaines par mois:
   unité: semaines/mois
   formule: 52 semaines/an / 12 mois/an
+période . début d'année:
+  formule: 01/01/2020
+période . fin d'année:
+  formule: 31/12/2020
 
 contrat salarié:
   icônes: 📄
@@ -3188,14 +3190,14 @@ entreprise . durée d'activité . en fin d'année:
   formule: 
     durée: 
       depuis: date de création
-      jusqu'à: 31/12/2019
+      jusqu'à: période . fin d'année
 
 entreprise . durée d'activité . en début d'année:
   titre: durée d'activité au début de l'année
   formule: 
     durée: 
       depuis: date de création
-      jusqu'à: 01/01/2019
+      jusqu'à: période . début d'année
 
 
 entreprise . chiffre d'affaires:
