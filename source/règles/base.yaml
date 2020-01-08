@@ -6006,10 +6006,10 @@ artiste-auteur:
 artiste-auteur . revenus:
 
 artiste-auteur . revenus . traitements et salaires:
+  titre: Revenu déclaré en traitements et salaires
   unité par défaut: €/an
   par défaut: 0
-  question: Traitements et salaires
-  résumé: Revenus en précompte
+  résumé: Le montant brut de vos droits d'auteur (recettes précomptées)
 
 artiste-auteur . revenus . BNC:
   formule:
@@ -6037,10 +6037,10 @@ artiste-auteur . revenus . BNC . micro-bnc:
   résumé: Évaluation forfaitaire des frais à 34% des recettes
 
 artiste-auteur . revenus . BNC . recettes:
+  titre: Revenu déclaré en BNC
   unité par défaut: €/an
   par défaut: 0
-  question: Recettes BNC HT
-  résumé: Le montant des ventes réalisées
+  résumé: Le montant de vos recettes hors TVA
 
 artiste-auteur . revenus . BNC . frais réels:
   unité par défaut: €/an
