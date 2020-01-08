@@ -3,7 +3,7 @@ import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/InputComponent'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
@@ -16,6 +16,7 @@ import {
 import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
+import { CompanySection } from '../Gérer/Home'
 import { useRule } from './ArtisteAuteur'
 
 const simulationConfig = {
@@ -32,7 +33,10 @@ const simulationConfig = {
 export default function DNRTI() {
 	const dispatch = useDispatch()
 	const analysis = useSelector(analysisWithDefaultsSelector)
-	dispatch(setSimulationConfig(simulationConfig))
+	const company = useSelector(
+		(state: RootState) => state.inFranceApp.existingCompany
+	)
+	dispatch(setSimulationConfig(simulationConfig, true))
 
 	return (
 		<>
@@ -46,25 +50,38 @@ export default function DNRTI() {
 						Cette outil vous permet de calculer les données à saisir dans votre
 						déclaration de revenus professionnels.
 					</p>
-					<h3>Revenus d'activité</h3>
+					<CompanySection company={company} />
+					<h2>Revenus d'activité</h2>
 					<SimpleField
 						dottedName="dirigeant . rémunération totale"
 						question="Quel est votre résultat fiscal ?"
 					/>
-					<SimpleField dottedName="entreprise . catégorie d'activité" />
 					<SimpleField dottedName="entreprise . date de création" />
 
+					<SubSection dottedName="entreprise . catégorie d'activité" />
+					{/* PLNR */}
+					<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
+					<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
+					<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
+
+					<h3>Situation personnelle</h3>
+					<SimpleField dottedName="situation personnelle . RSA" />
+					<SubSection dottedName="situation personnelle . IJSS" />
 					<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
-					<h3>ACRE - Aide à la Création et la Reprise d'Entreprise</h3>
+
+					<SubSection dottedName="dirigeant . indépendant . cotisations et contributions . exonérations" />
 					<SimpleField dottedName="entreprise . ACRE" />
-					<h3>ZFU - Zone Franche Urbaine</h3>
-					<h3>Professions Libérales non réglementées</h3>
-					<h3>Exonération age</h3>
-					<SubSection dottedName="entreprise . catégorie d'activité . débit de tabac" />
+					<SimpleField dottedName="établissement . ZFU" />
+					<h3>International</h3>
+					<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+					<SubSection
+						dottedName="dirigeant . indépendant . revenus étrangers"
+						sectionTitle={false}
+					/>
 					{/* <h3>DOM - Départements d'Outre-Mer</h3>
-					<p>
-						<em>Pas encore implémenté</em>
-					</p> */}
+						<p>
+							<em>Pas encore implémenté</em>
+						</p> */}
 				</FormBlock>
 				<Results />
 			</FormWrapper>
@@ -72,16 +89,28 @@ export default function DNRTI() {
 	)
 }
 
-function SubSection({ dottedName: sectionDottedName }) {
+function SubSection({ dottedName: sectionDottedName, sectionTitle }) {
 	const flatRules = useSelector(flatRulesSelector)
-	const sectionTitle = useRule(sectionDottedName).title
-	const subQuestions = flatRules.filter(
-		({ dottedName, question }) =>
-			Boolean(question) && dottedName.startsWith(sectionDottedName)
-	)
+	const title = sectionTitle ?? useRule(sectionDottedName)?.title
+	const nextSteps = useSelector(nextStepsSelector)
+	const situation = useSelector(situationSelector)
+
+	const subQuestions = flatRules
+		.filter(
+			({ dottedName, question }) =>
+				Boolean(question) &&
+				dottedName.startsWith(sectionDottedName) &&
+				(Object.keys(situation).includes(dottedName) ||
+					nextSteps.includes(dottedName))
+		)
+		.sort(
+			(rule1, rule2) =>
+				nextSteps.indexOf(rule1.dottedName) -
+				nextSteps.indexOf(rule2.dottedName)
+		)
 	return (
 		<>
-			<h3>{sectionTitle}</h3>
+			{!!subQuestions.length && title && <h3>{title}</h3>}
 			{subQuestions.map(({ dottedName }) => (
 				<SimpleField key={dottedName} dottedName={dottedName} />
 			))}
@@ -99,11 +128,17 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
 	const rules = useSelector((state: RootState) => state.rules)
+	const value = useSelector(situationSelector)[dottedName]
+	const [currentValue, setCurrentValue] = useState(value)
 	const update = (value: unknown) => {
 		dispatch(updateSituation(dottedName, value))
+		dispatch({
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: dottedName
+		})
+		setCurrentValue(value)
 	}
-	const value = useSelector(situationSelector)[dottedName]
-	const nextSteps = useSelector(nextStepsSelector)
 	if (!analysis.isApplicable) {
 		return null
 	}
@@ -124,7 +159,7 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 					rules={rules}
 					dottedName={dottedName}
 					onChange={update}
-					value={value}
+					value={currentValue}
 				/>
 				{/* <Field dottedName={dottedName} onChange={onChange} /> */}
 			</Question>
@@ -183,6 +218,10 @@ const FormWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
+
+	ul {
+		padding: 0;
+	}
 `
 
 const FormBlock = styled.section`

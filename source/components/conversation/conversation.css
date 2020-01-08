@@ -168,7 +168,7 @@
 	font-size: 120%;
 	padding: 0;
 	padding-right: 0.4em;
-	width: 8em;
+	width: 10rem;
 	text-align: right;
 	padding-left: 0.2em;
 }
@@ -188,7 +188,6 @@
 }
 
 .step input.suffixed {
-	width: 5rem;
 	margin: 0.6rem 0;
 	border-radius: 0.2em;
 }

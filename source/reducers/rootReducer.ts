@@ -199,6 +199,7 @@ function simulation(
 	if (state === null) {
 		return state
 	}
+
 	switch (action.type) {
 		case 'HIDE_CONTROL':
 			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
