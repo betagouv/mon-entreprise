@@ -160,10 +160,10 @@ export type Simulation = {
 }
 function getCompanySituation(company: Company): Situation {
 	return {
-		...(company.localisation && {
+		...(company?.localisation && {
 			'établissement . localisation': JSON.stringify(company.localisation)
 		}),
-		...(company.dateDeCréation && {
+		...(company?.dateDeCréation && {
 			'entreprise . date de création': company.dateDeCréation.replace(
 				/(.*)-(.*)-(.*)/,
 				'$3/$2/$1'

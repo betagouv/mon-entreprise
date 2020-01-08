@@ -2,7 +2,6 @@
 	animation: push-button-down 0.1s ease-out alternate-reverse 2;
 }
 
-
 .ui__.button:disabled,
 .ui__.button.disabled {
 	opacity: 0.5;
@@ -23,7 +22,7 @@
 	transition: all 0.15s;
 	text-align: center;
 	text-transform: uppercase;
-	
+
 	font-family: 'Roboto', sans-serif;
 	font-weight: normal;
 	cursor: pointer;
@@ -181,7 +180,7 @@
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 	position: relative;
-	min-width: 14.4rem;
+	min-width: 14rem;
 	margin-right: 1rem;
 	text-decoration: none;
 }
@@ -199,7 +198,6 @@
 .ui__.button-choice--soon img {
 	filter: saturate(0%);
 }
-
 
 @keyframes push-button-down {
 	from {
