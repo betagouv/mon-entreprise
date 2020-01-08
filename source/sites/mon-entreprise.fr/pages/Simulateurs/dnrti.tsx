@@ -3,7 +3,7 @@ import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/InputComponent'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
@@ -69,9 +69,14 @@ export default function DNRTI() {
 					<SubSection dottedName="situation personnelle . IJSS" />
 					<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-					<SubSection dottedName="dirigeant . indépendant . cotisations et contributions . exonérations" />
+					<h3>Exonérations</h3>
 					<SimpleField dottedName="entreprise . ACRE" />
 					<SimpleField dottedName="établissement . ZFU" />
+					<SubSection
+						dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+						sectionTitle={false}
+					/>
+
 					<h3>International</h3>
 					<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
 					<SubSection
@@ -139,6 +144,10 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 		})
 		setCurrentValue(value)
 	}
+	useEffect(() => {
+		setCurrentValue(value)
+	}, [value])
+
 	if (!analysis.isApplicable) {
 		return null
 	}
