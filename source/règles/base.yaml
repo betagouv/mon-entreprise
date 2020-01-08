@@ -6033,7 +6033,7 @@ artiste-auteur . revenus . BNC . micro-bnc:
       - recettes > 0 
       - recettes < 72500 €/an
   par défaut: oui
-  question: Opter pour le régime micro-BNC
+  titre: Régime micro-BNC
   résumé: Évaluation forfaitaire des frais à 34% des recettes
 
 artiste-auteur . revenus . BNC . recettes:
@@ -6045,8 +6045,8 @@ artiste-auteur . revenus . BNC . recettes:
 artiste-auteur . revenus . BNC . frais réels:
   unité par défaut: €/an
   par défaut: 0
-  question: Frais réels BNC
-  résumé: Vient s'imputer aux recettes pour déterminer le bénéfice
+  question: Régime frais réels
+  résumé: Notez le montant de vos dépenses (frais professionnels)
   applicable si: recettes > 0 €/an
   non applicable si: micro-bnc
 
