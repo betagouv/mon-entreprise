@@ -6046,7 +6046,7 @@ artiste-auteur . revenus . BNC . frais réels:
   unité par défaut: €/an
   par défaut: 0
   question: Régime frais réels
-  résumé: Notez le montant de vos dépenses (frais professionnels)
+  résumé: Le montant de vos dépenses (frais professionnels)
   applicable si: recettes > 0 €/an
   non applicable si: micro-bnc
 
