@@ -25,7 +25,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	const flatRules = useSelector(flatRulesSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const previousAnswers = useSelector(
-		(state: RootState) => state.conversationSteps.foldedSteps
+		(state: RootState) => state.simulation?.foldedSteps || []
 	)
 	const nextSteps = useSelector(nextStepsSelector)
 

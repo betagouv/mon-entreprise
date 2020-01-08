@@ -13,7 +13,7 @@ import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Salarié() {
 	const { t, i18n } = useTranslation()
@@ -94,7 +94,8 @@ There are deferred hiring aids that are not taken into account by our simulator,
 
 export let SalarySimulation = () => {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(salariéConfig))
+	const location = useLocation()
+	dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>

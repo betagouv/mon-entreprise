@@ -50,12 +50,14 @@ export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
 		'contrat salarié . rémunération . avantages en nature'
 	)
+	let impôt = getRule('impôt')
+	let netImposable = getRule('contrat salarié . rémunération . net imposable')
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<T>Salaire net</T>
 			</h4>
-			<Line rule={getRule('contrat salarié . rémunération . net imposable')} />
+			{netImposable && <Line rule={netImposable} />}
 			{avantagesEnNature.nodeValue && (
 				<>
 					{/* Salaire net de cotisations */}
@@ -74,11 +76,14 @@ export let SalaireNetSection = ({ getRule }) => {
 				</>
 			)}
 			<Line rule={getRule('contrat salarié . rémunération . net')} />
-
-			<Line negative rule={getRule('impôt')} />
-			<Line
-				rule={getRule('contrat salarié . rémunération . net après impôt')}
-			/>
+			{impôt && (
+				<>
+					<Line negative rule={impôt} />
+					<Line
+						rule={getRule('contrat salarié . rémunération . net après impôt')}
+					/>
+				</>
+			)}
 		</div>
 	)
 }

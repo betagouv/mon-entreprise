@@ -17,7 +17,7 @@ export const setEntreprise = siren => async dispatch => {
 	dispatch({
 		type: 'EXISTING_COMPANY::SET_DETAILS',
 		catégorieJuridique: companyDetails.categorie_juridique,
-		dateDébutActivité: companyDetails.date_debut
+		dateDeCréation: companyDetails.date_creation
 	})
 	const communeDetails = await fetchCommuneDetails(
 		companyDetails.etablissement_siege.code_commune

@@ -43,9 +43,22 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 				)
 			}
 		}
-		let nodeValue = operatorFunction(
-			...convertToDateIfNeeded(node1.nodeValue, node2.nodeValue)
-		)
+		let node1Value = node1.nodeValue
+		let node2Value = node2.nodeValue
+		try {
+			;[node1Value, node2Value] = convertToDateIfNeeded(
+				node1.nodeValue,
+				node2.nodeValue
+			)
+		} catch (e) {
+			typeWarning(
+				cache._meta.contextRule,
+				`Impossible de convertir une des valeur en date`,
+				e
+			)
+		}
+		let nodeValue = operatorFunction(node1Value, node2Value)
+
 		let unit = inferUnit(k, [node1.unit, node2.unit])
 		return {
 			...node,

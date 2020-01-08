@@ -119,6 +119,7 @@ describe('convertUnit', () => {
 describe('areUnitConvertible', () => {
 	it('should be true for temporel unit', () => {
 		expect(areUnitConvertible(parseUnit('mois'), parseUnit('an'))).to.eq(true)
+		expect(areUnitConvertible(parseUnit('jours'), parseUnit('ans'))).to.eq(true)
 		expect(areUnitConvertible(parseUnit('kg/an'), parseUnit('kg/mois'))).to.eq(
 			true
 		)
@@ -144,5 +145,3 @@ describe('areUnitConvertible', () => {
 		expect(areUnitConvertible(parseUnit('m'), parseUnit('s'))).to.eq(false)
 	})
 })
-
-describe('simplifyUnit', () => {})

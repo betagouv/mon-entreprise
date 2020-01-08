@@ -129,15 +129,6 @@ export default function SchemeComparaison({
 					<T k="comparaisonRégimes.status.auto">Auto-entreprise</T>
 				</div>
 
-				<T k="comparaisonRégimes.sécuritéSociale">
-					<h3 className="legend">Sécurité sociale</h3>
-					<div className="AS">
-						Régime général <small />
-					</div>
-					<div className="indep-et-auto">
-						Sécurité sociale des indépendants <small />
-					</div>
-				</T>
 				<T k="comparaisonRégimes.AT">
 					<h3 className="legend">Couverture accidents du travail</h3>
 				</T>
@@ -375,7 +366,7 @@ export default function SchemeComparaison({
 							<div className="AS">
 								<RuleValueLink
 									branch="assimilé"
-									rule="contrat salarié . rémunération . net"
+									rule="revenus net de cotisations"
 								/>
 							</div>
 							<div className="indep">
@@ -416,7 +407,7 @@ export default function SchemeComparaison({
 							</div>
 							<div className="indep">
 								{getRule('indépendant', 'protection sociale . retraite')
-									.applicable !== false ? (
+									.isApplicable !== false ? (
 									<span>
 										<RuleValueLink
 											branch="indépendant"
@@ -441,7 +432,7 @@ export default function SchemeComparaison({
 								) : getRule(
 										'auto-entrepreneur',
 										'protection sociale . retraite'
-								  ).applicable !== false ? (
+								  ).isApplicable !== false ? (
 									<span>
 										<RuleValueLink
 											branch="auto-entrepreneur"
@@ -522,15 +513,26 @@ export default function SchemeComparaison({
 							</div>
 							<div className="indep">
 								<span>
-									<RuleValueLink
-										appendText={
-											<>
-												/ <T>jour</T>
-											</>
-										}
-										branch="indépendant"
-										rule="protection sociale . santé . indemnités journalières"
-									/>
+									{getRule(
+										'indépendant',
+										'protection sociale . santé . indemnités journalières'
+									).isApplicable !== false ? (
+										<span>
+											<RuleValueLink
+												appendText={
+													<>
+														/ <T>jour</T>
+													</>
+												}
+												branch="indépendant"
+												rule="protection sociale . santé . indemnités journalières"
+											/>
+										</span>
+									) : (
+										<span className="ui__ notice">
+											<T>Pas implémenté</T>
+										</span>
+									)}
 								</span>
 							</div>
 							<div className="auto">

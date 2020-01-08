@@ -52,53 +52,55 @@ function StepsTable({ rules, onClose }) {
 	return (
 		<table>
 			<tbody>
-				{rules.map(rule => (
-					<tr
-						key={rule.dottedName}
-						css={`
-							background: var(--lightestColor);
-						`}
-					>
-						<td>
-							<RuleLink {...rule} />
-						</td>
-						<td>
-							<button
-								className="answer"
-								css={`
-									display: inline-block;
-									padding: 0.6rem;
-									color: inherit;
-									font-size: inherit;
-									width: 100%;
-									text-align: start;
-									font-weight: 500;
-									> span {
-										border-bottom: 1px dashed blue;
-										border-bottom-color: var(--textColorOnWhite);
-										padding: 0.05em 0em;
+				{rules
+					.filter(rule => rule.nodeValue !== undefined)
+					.map(rule => (
+						<tr
+							key={rule.dottedName}
+							css={`
+								background: var(--lightestColor);
+							`}
+						>
+							<td>
+								<RuleLink {...rule} />
+							</td>
+							<td>
+								<button
+									className="answer"
+									css={`
 										display: inline-block;
-									}
-								`}
-								onClick={() => {
-									dispatch(goToQuestion(rule.dottedName))
-									onClose()
-								}}
-							>
-								<span className="answerContent">
-									<Value {...rule} />
-								</span>
-							</button>{' '}
-						</td>
-					</tr>
-				))}
+										padding: 0.6rem;
+										color: inherit;
+										font-size: inherit;
+										width: 100%;
+										text-align: start;
+										font-weight: 500;
+										> span {
+											border-bottom: 1px dashed blue;
+											border-bottom-color: var(--textColorOnWhite);
+											padding: 0.05em 0em;
+											display: inline-block;
+										}
+									`}
+									onClick={() => {
+										dispatch(goToQuestion(rule.dottedName))
+										onClose()
+									}}
+								>
+									<span className="answerContent">
+										<Value {...rule} />
+									</span>
+								</button>{' '}
+							</td>
+						</tr>
+					))}
 			</tbody>
 		</table>
 	)
 }
 
 const stepsToRules = createSelector(
-	(state: RootState) => state.conversationSteps.foldedSteps,
+	(state: RootState) => state.simulation?.foldedSteps || [],
 	nextStepsSelector,
 	analysisWithDefaultsSelector,
 	(folded, nextSteps, analysis) => ({

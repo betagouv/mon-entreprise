@@ -103,8 +103,8 @@ export let firstStepCompletedSelector = createSelector(
 )
 
 let validatedStepsSelector = createSelector(
-	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
-	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
+	[state => state.simulation?.foldedSteps, targetNamesSelector],
+	(foldedSteps, targetNames) => [...(foldedSteps || []), ...targetNames]
 )
 export const defaultUnitsSelector = (state: RootState) =>
 	state.simulation?.defaultUnits || []
@@ -289,7 +289,7 @@ export let nextStepsSelector = createSelector(
 	[
 		currentMissingVariablesByTargetSelector,
 		configSelector,
-		(state: RootState) => state.conversationSteps.foldedSteps,
+		(state: RootState) => state.simulation?.foldedSteps,
 		situationSelector
 	],
 	(
@@ -320,8 +320,10 @@ export let nextStepsSelector = createSelector(
 
 		nextSteps = sortBy(
 			question =>
-				similarity(question, lastStepWithAnswer) +
-				notPriority.indexOf(question),
+				notPriority.includes(question)
+					? notPriority.indexOf(question)
+					: similarity(question, lastStepWithAnswer),
+
 			nextSteps
 		)
 
@@ -330,6 +332,6 @@ export let nextStepsSelector = createSelector(
 )
 
 export let currentQuestionSelector = createSelector(
-	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
+	[nextStepsSelector, state => state.simulation?.unfoldedStep],
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )

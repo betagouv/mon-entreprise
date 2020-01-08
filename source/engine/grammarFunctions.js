@@ -1,5 +1,6 @@
 /* Those are postprocessor functions for the Nearley grammar.ne.
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
+import { normalizeDateString } from 'Engine/date'
 import { parseUnit } from 'Engine/units'
 
 export let binaryOperation = operationType => ([A, , operator, , B]) => ({
@@ -50,18 +51,10 @@ export let numberWithUnit = ([number, , unit]) => ({
 })
 
 export let date = ([{ value }]) => {
-	let [jour, mois, année] = value.split('/')
-	if (!année) {
-		;[jour, mois, année] = ['01', jour, mois]
-	}
-	const date = new Date(année, +mois - 1, jour)
-	if (!+date || date.getDate() !== +jour) {
-		throw new SyntaxError(`La date ${value} n'est pas valide`)
-	}
 	return {
 		constant: {
 			type: 'date',
-			nodeValue: `${jour}/${mois}/${année}`
+			nodeValue: normalizeDateString(value)
 		}
 	}
 }

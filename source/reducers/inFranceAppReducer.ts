@@ -128,7 +128,7 @@ export type Company = {
 	siren: string
 	catégorieJuridique?: string
 	statutJuridique?: string
-	dateDébutActivité?: string
+	dateDeCréation?: string
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
 	localisation?: GeoDetails & {
@@ -154,7 +154,7 @@ function existingCompany(state: Company | null = null, action): Company | null {
 		return {
 			siren: state.siren,
 			statutJuridique,
-			dateDébutActivité: action.dateDébutActivité
+			dateDeCréation: action.dateDeCréation
 		}
 	}
 	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {

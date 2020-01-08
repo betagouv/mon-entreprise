@@ -72,8 +72,11 @@ export function formatValue({
 	if (typeof value !== 'number') {
 		return value
 	}
-	const serializedUnit = unit ? serialiseUnit(unit, value, language) : undefined
-
+	let serializedUnit = unit ? serialiseUnit(unit, value, language) : undefined
+	if (serializedUnit === '') {
+		serializedUnit = '%'
+		value *= 100
+	}
 	switch (serializedUnit) {
 		case '€':
 			return numberFormatter({

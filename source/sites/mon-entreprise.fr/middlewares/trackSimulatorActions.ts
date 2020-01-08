@@ -22,9 +22,7 @@ export default (tracker: Tracker) => {
 					'trackEvent',
 					'Simulator',
 					'simulation completed',
-					'after ' +
-						newState.conversationSteps.foldedSteps.length +
-						' questions'
+					'after ' + newState.simulation.foldedSteps.length + ' questions'
 				])
 			}
 		}

@@ -1,16 +1,4 @@
-import {
-	countBy,
-	equals,
-	flatten,
-	isEmpty,
-	keys,
-	map,
-	pipe,
-	remove,
-	uniq,
-	unnest,
-	without
-} from 'ramda'
+import { countBy, equals, flatten, isEmpty, keys, map, pipe, remove, uniq, unnest, without } from 'ramda'
 import i18n from '../i18n'
 
 type BaseUnit = string
@@ -258,7 +246,6 @@ export function areUnitConvertible(a: Unit, b: Unit) {
 		flatten,
 		uniq
 	)([numA, denomA, numB, denomB])
-
 	return unitClasses.every(
 		unitClass =>
 			(numA[unitClass] || 0) - (denomA[unitClass] || 0) ===

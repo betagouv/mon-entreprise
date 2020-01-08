@@ -1,3 +1,4 @@
+
 période:
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
@@ -6,6 +7,10 @@ période . jours ouvrés moyen par mois:
 période . semaines par mois:
   unité: semaines/mois
   formule: 52 semaines/an / 12 mois/an
+période . début d'année:
+  formule: 01/01/2020
+période . fin d'année:
+  formule: 31/12/2020
 
 contrat salarié:
   icônes: 📄
@@ -778,7 +783,7 @@ contrat salarié . rémunération . brut de base:
         - équivalent temps plein
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
-        - entreprise . rémunération totale du dirigeant
+        - dirigeant . rémunération totale
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -1729,6 +1734,8 @@ entreprise . effectif:
   unité: employé
   formule:
     variations:
+      - si: entreprise . effectif . seuil = 'moins de 5'
+        alors: 4 employés
       - si: entreprise . effectif . seuil = 'moins de 11'
         alors: 10 employés
       - si: entreprise . effectif . seuil = 'moins de 20'
@@ -1741,6 +1748,7 @@ entreprise . effectif:
         alors: 251 employés
 
 entreprise . effectif . seuil:
+  titre: seuil d'effectif
   question: Quel est l'effectif de l'entreprise ?
   description: |
     De nombreuses cotisations patronales varient selon l'effectif de
@@ -1752,13 +1760,15 @@ entreprise . effectif . seuil:
     une possibilité:
       choix obligatoire: oui
       possibilités:
+        - moins de 5
         - moins de 11
         - moins de 20
         - moins de 50
         - moins de 250
         - 251 et plus
-  par défaut: moins de 11
+  par défaut: moins de 5
 
+entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 11:
 entreprise . effectif . seuil . moins de 20:
 entreprise . effectif . seuil . moins de 50:
@@ -2777,6 +2787,7 @@ contrat salarié . taxe sur les salaires . barème:
 
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
+  non applicable si: situation personnelle . domiciliation fiscale à l'étranger
   par défaut: non
   description: |
     Si vous êtes salarié ou dirigeant fiscalement assimilé, et si vous avez été appelé par une entreprise étrangère à occuper un emploi dans une entreprise établie en France ayant un lien avec la première ou si vous avez été directement recruté à l’étranger par une entreprise établie en France, vous pouvez bénéficier du régime des impatriés.
@@ -3144,52 +3155,57 @@ impôt . CEHR:
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
-revenu net de cotisations:
-  résumé: Avant impôt
-  question: Quel revenu avant impôt voulez-vous toucher ?
-  description: |
-    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  formule:
-    somme:
-      - contrat salarié . rémunération . net
-      - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . auto-entrepreneur . revenu net de cotisations
-
-revenu net après impôt:
-  unité par défaut: €/mois
-  résumé: Versé sur le compte bancaire
-  question: Quel revenu voulez-vous toucher ?
-  description: |
-    Il s'agit du revenu net de charges, cotisations et d'impôts.
-    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
-  formule: revenu net de cotisations - impôt
-
 entreprise . date de création:
-  question: Quand avez-vous crée votre entreprise ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - avant 2018
-        - avant 2019
-        - après 2019
-  par défaut: après 2019
+  question: Quelle est la date de début d'activité ?
+  par défaut: 01/01/2020
+  description: |
+    La date de début d'activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.  
 
-entreprise . date de création . avant 2018:
-  titre: avant le 1er janvier 2018
+    Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
+    automatiquement cette information.
 
-entreprise . date de création . avant 2019:
-  titre: avant le 1er janvier 2019
+    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
+  suggestions:
+    Début 2020: 01/01/2020
+    Début 2019: 01/01/2019
+    Fin 2017: 31/12/2017
+  type: date
+  contrôles:
+    - si: date de création > 01/2021
+      niveau: avertissement
+      message: Nous ne pouvons voir aussi loin dans le futur
+    - si: date de création < 01/1900
+      niveau: avertissement
+      message: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
-entreprise . date de création . après 2019:
-  titre: après le 1er janvier 2019
+entreprise . durée d'activité:
+  formule: 
+    durée: 
+      depuis: date de création
+
+entreprise . durée d'activité . en fin d'année:
+  titre: durée d'activité à la fin de l'année
+  formule: 
+    durée: 
+      depuis: date de création
+      jusqu'à: période . fin d'année
+
+entreprise . durée d'activité . en début d'année:
+  titre: durée d'activité au début de l'année
+  formule: 
+    durée: 
+      depuis: date de création
+      jusqu'à: période . début d'année
+
 
 entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
   unité par défaut: €/an
-  formule: rémunération totale du dirigeant + charges
+  formule: dirigeant . rémunération totale + charges
 
 entreprise . chiffre d'affaires minimum:
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
@@ -3200,7 +3216,7 @@ entreprise . chiffre d'affaires minimum:
 entreprise . chiffre d'affaires de société:
   formule:
     somme:
-      - rémunération totale du dirigeant / rémunération du dirigeant
+      - dirigeant . rémunération totale / rémunération du dirigeant
       - charges
 
 entreprise . rémunération du dirigeant:
@@ -3234,9 +3250,9 @@ entreprise . impôt sur les sociétés:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
 entreprise . charges dont rémunération dirigeant:
-  formule: charges + rémunération totale du dirigeant
+  formule: charges + dirigeant . rémunération totale
 
-entreprise . rémunération totale du dirigeant:
+dirigeant . rémunération totale:
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
   unité par défaut: €/an
@@ -3246,17 +3262,21 @@ entreprise . rémunération totale du dirigeant:
     On peut aussi considérer que c'est la valeur monétaire du travail du dirigeant.
   formule:
     variations:
-      - si: dirigeant . indépendant
-        alors: revenu net de cotisations + dirigeant . indépendant . cotisations et contributions
-      - si: dirigeant . auto-entrepreneur
+      - si: indépendant
+        alors: 
+          somme:
+            - indépendant . revenu net de cotisations
+            - indépendant . cotisations et contributions
+            - (- situation personnelle . IJSS . total)
+      - si: auto-entrepreneur
         alors:
           inversion numérique:
             avec:
-              - dirigeant . auto-entrepreneur . revenu net de cotisations
+              - auto-entrepreneur . revenu net de cotisations
               - revenu net après impôt
               - entreprise . chiffre d'affaires
               - entreprise . chiffre d'affaires minimum
-      - si: dirigeant = 'assimilé salarié'
+      - si: assimilé salarié
         alors: contrat salarié . rémunération . total
 
 entreprise . charges:
@@ -3284,18 +3304,42 @@ entreprise . charges:
   par défaut: 0
   unité par défaut: €/an
 
-dirigeant . indépendant . cotisations et contributions . réduction ACRE:
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
   formule:
     multiplication:
       assiette: cotisations - cotisations . retraite complémentaire
-      taux: taux ACRE
+      taux: taux 
+      facteur: prorata sur l'année
 
-dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux ACRE:
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
+  formule: 
+    multiplication: 
+      assiette: plafond sécurité sociale temps plein
+      taux:
+        encadrement: 
+          valeur: entreprise . durée d'activité . en fin d'année / 1 an 
+          plafond: 100%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière, 
+    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+
+    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
+    cotisations 2019 sera le suivant :
+
+    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
+
+  formule: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
   formule:
     barème continu:
       assiette: revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein
+      multiplicateur: PSS proratisé
       points:
         0: 100%
         0.75: 100%
@@ -3303,7 +3347,11 @@ dirigeant . indépendant . cotisations et contributions . réduction ACRE . taux
       retourne seulement le taux: oui
 
 dirigeant . indépendant . revenu net de cotisations:
-  formule: revenu professionnel - cotisations et contributions . CSG et CRDS .non déductible
+  formule: 
+    somme: 
+      - revenu professionnel
+      - situation personnelle . IJSS . défiscalisées
+      - (- cotisations et contributions . CSG et CRDS .non déductible)
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -3324,10 +3372,161 @@ dirigeant . indépendant . revenu professionnel:
     inversion numérique:
       avec:
         - dirigeant . indépendant . revenu net de cotisations
-        - entreprise . rémunération totale du dirigeant
+        - dirigeant . rémunération totale
         - revenu net après impôt
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
+
+dirigeant . indépendant . conjoint collaborateur:
+  question: Avez-vous un conjoint collaborateur ?
+  description: |
+    Permet au conjoint du dirigeant d'être couvert par la protection sociale moyennant le paiement de cotisations sociales supplémantaires. 
+    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
+    - exercer une activité professionnelle régulière et habituelle dans l'entreprise 
+    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire des métiers (RM) pour les artisans 
+    - ne pas être rémunéré 
+    - ne pas être associé de la société.
+  par défaut: non
+  références: 
+    secu-indépendant.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
+  
+dirigeant . indépendant . conjoint collaborateur . assiette :
+  question: Sur quelle base le conjoint cotise-t'il ?
+  description: |
+    Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
+    - 1/3 du Plafond de Sécurité Sociale
+    - Option sur le revenu du chef avec partage ( ½ ou 1/3)
+    - Option sur le revenu du chef sans partage ( ½ ou 1/3)
+  par défaut: forfaitaire
+  formule:   
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - forfaitaire
+        - revenu sans partage
+        - revenu avec partage
+dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
+  description: Le conjoint collaborateur paiera des cotisations équivalentes à un revenu professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale.
+  formule: assiette = 'forfaitaire'
+  
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
+  description: |
+    Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
+    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
+  formule: assiette = 'revenu avec partage'
+  remplace: 
+    règle: revenu professionnel
+    par: revenu professionnel - cotisations . assiette
+    dans: 
+      - cotisations et contributions . cotisations . retraite de base
+      - cotisations et contributions . cotisations . retraite complémentaire
+      - cotisations et contributions . cotisations . invalidité et décès
+dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un tiers ou la moitié).
+  formule: assiette = 'revenu sans partage'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: 
+  question: À quel pourcentage du revenu le conjoint cotise-t'il ?
+  par défaut: tiers
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - tiers
+        - moitié
+        
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers: 
+  formule: pourcentage = 'tiers'
+  titre: '1/3'
+
+dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié: 
+  formule: pourcentage = 'moitié'
+  titre: '1/2'
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
+  titre: assiette conjoint collaborateur
+  formule: 
+    multiplication:
+        assiette: revenu professionnel
+        taux: 1 / 3
+        variations: 
+          - si: assiette . forfaitaire
+            alors: 
+              assiette: plafond sécurité sociale temps plein 
+          - si: assiette . pourcentage . moitié
+            alors: 
+              taux: 50%
+          - sinon: rien
+
+dirigeant . indépendant . conjoint collaborateur . cotisations: 
+  titre: Cotisations conjoint collaborateur
+  formule: 
+    somme:
+      - retraite de base
+      - retraite complémentaire
+      - invalidité et décès
+      - indemnités journalières maladie
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
+  formule: 
+    le maximum de: 
+      - cotisations . assiette
+      - 5.25% * plafond sécurité sociale temps plein
+      - 200 * SMIC horaire
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  formule: 
+    barème:
+      assiette: assiette retraite
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  formule:
+    barème:
+      assiette: retraite complémentaire . assiette [€/an]
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
+  titre: assiette retraite complémentaire
+  formule: 
+    le minimum de:
+      - variations:
+          - si: entreprise . catégorie d'activité = 'artisanale'
+            alors: 4 * plafond sécurité sociale temps plein
+          - sinon: 3 * plafond sécurité sociale temps plein
+      - assiette retraite
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès . assiette:
+  titre: assiette invalidité et décès
+  formule: 
+    le maximum de:
+      - cotisations . assiette
+      - 20% * plafond sécurité sociale temps plein
+dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  formule:
+    multiplication:
+      assiette: assiette 
+      plafond: plafond sécurité sociale temps plein
+      taux: 1.3%
+
+dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  formule: 
+    multiplication:
+      assiette: plafond sécurité sociale temps plein
+      facteur: 40%
+      taux: 0.85%
+
 
 entreprise . catégorie d'activité:
   question: Quelle est votre catégorie d'activité ?
@@ -3431,7 +3630,7 @@ entreprise . catégorie d'activité . libérale règlementée:
 
         - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
         - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
-        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
@@ -3478,6 +3677,11 @@ entreprise . catégorie d'activité . libérale règlementée . type d'activité
         - Psychothérapeute
         - Sage-femme
         - Vétérinaire
+
+entreprise . catégorie d'activité . débit de tabac:
+  applicable si: catégorie d'activité = 'commerciale ou industrielle'
+  question: Votre entreprise est-elle un débit de tabac ?
+  par défaut: non
 
 entreprise . rattachée à la CIPAV:
   # TODO implémenter un nouveau mécanisme
@@ -3534,14 +3738,38 @@ dirigeant . indépendant . cotisations et contributions:
       - cotisations
       - CSG et CRDS
       - formation professionnelle
-      - (- réduction ACRE)
+      - conjoint collaborateur . cotisations
+      - (- exonérations)
   unité par défaut: €/an
+  
 
-entreprise . rattachement libéral règlementé:
+dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac: 
+  applicable si: entreprise . catégorie d'activité . débit de tabac
+  question: Quel est le montant des revenus issus de la vente de tabac que vous souhaitez exonérer de cotisation vieillesse ?
+  description: |
+    Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.
+  par défaut: non
+
+dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits: 
+  titre: revenu professionnel (avec déduction tabac) 
+  applicable si: déduction tabac
+  unité par défaut: €/an
+  remplace: 
+    règle: revenu professionnel
+    dans: 
+      - retraite de base
+      - retraite complémentaire
+      - invalidité et décès
+      - conjoint collaborateur
+  formule: revenu professionnel - déduction tabac
+    
+
+dirigeant . rattachement CIPAV:
   description: |
     Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
+  note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -3549,30 +3777,36 @@ entreprise . rattachement libéral règlementé:
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
           - dirigeant = 'indépendant'
-          - entreprise . date de création = 'avant 2019'
+          - entreprise . date de création < 01/2019
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
           - dirigeant = 'auto-entrepreneur'
-          - entreprise . date de création = 'avant 2018'
+          - entreprise . date de création < 01/2018
           - entreprise . catégorie d'activité = 'libérale'
 
   rend non applicable:
     - protection sociale . retraite
+    - protection sociale . santé . indemnités journalières
     - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
+    - dirigeant . indépendant . conjoint collaborateur
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
-  formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors: libérale règlementée
+dirigeant . indépendant . PLNR régime général:
+  applicable si: 
+    toutes ces conditions: 
+      - entreprise . catégorie d'activité = 'libérale'
+      - entreprise . catégorie d'activité . libérale règlementée = non
+      - entreprise . date de création < 01/2019
+  question: Avez-vous opté pour le rattachement au régime général des indépendant ?
+  description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
+  rend non applicable: rattachement CIPAV
+  par défaut: non
 
-      - sinon: artisans commerçants libéraux
-
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . libérale règlementée:
+dirigeant . rattachement CIPAV . maladie:
+  remplace: indépendant . cotisations et contributions . cotisations . maladie
   titre: maladie libérale règlementée
   formule:
     barème continu:
-      assiette: revenu professionnel
+      assiette: indépendant . revenu professionnel
       multiplicateur: plafond sécurité sociale temps plein
       points:
         0: 1.5%
@@ -3580,7 +3814,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
-
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -3601,7 +3834,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations . indemnit
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux:
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   formule:
     barème:
       assiette: assiette
@@ -3620,14 +3854,15 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
     Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux variable:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux variable:
   formule:
     variations:
       - si: situation personnelle . RSA
         alors: taux RSA
       - sinon: taux
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA:
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA:
   formule:
     multiplication:
       assiette: taux RSA part variable + 1.35%
@@ -3635,16 +3870,19 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux RSA part variable:
-  formule: 5% * (revenu professionnel / seuil supérieur de réduction)
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable:
+  formule:
+    multiplication:
+      assiette: 5%
+      taux: revenu professionnel / seuil supérieur de réduction
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . seuil supérieur de réduction:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
   formule:
     multiplication:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . artisans commerçants libéraux . taux:
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux:
   formule:
     barème continu:
       retourne seulement le taux: oui
@@ -3662,88 +3900,113 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
+dirigeant . rattachement CIPAV . retraite de base:
+  remplace: indépendant . cotisations et contributions . cotisations . retraite de base
+  formule: 
+    multiplication:
+      assiette: indépendant . cotisations et contributions . cotisations . retraite de base . assiette
+      multiplicateur:
+      composantes:
+        - nom: tranche 1
+          plafond: plafond sécurité sociale temps plein
+          taux: 8.23%
+        - nom: tranche 2
+          plafond: 5 * plafond sécurité sociale temps plein
+          taux: 1.87%
+
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
-  unité par défaut: €/an
-  formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          multiplication:
-            assiette: assiette [€/an]
-            multiplicateur:
-            composantes:
-              - nom: tranche 1
-                plafond: plafond sécurité sociale temps plein
-                taux: 8.23%
-              - nom: tranche 2
-                plafond: 5 * plafond sécurité sociale temps plein
-                taux: 1.87%
-      - sinon:
-          barème:
-            assiette: assiette [€/an]
-            multiplicateur: plafond sécurité sociale temps plein
-            tranches:
-              - en-dessous de: 1
-                taux: 17.75%
-              - au-dessus de: 1
-                taux: 0.6%
+ formule:
+    barème:
+      assiette: assiette
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - en-dessous de: 1
+          taux: 17.75%
+        - au-dessus de: 1
+          taux: 0.6%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
   titre: assiette retraite de base
   formule:
     variations:
-      - si: situation personnelle . RSA != oui
-        alors:
+      - si: situation personnelle . RSA
+        alors: revenu professionnel
+      - sinon:
           encadrement:
             plancher: 11.5% * plafond sécurité sociale temps plein
             valeur: revenu professionnel
-      - sinon: revenu professionnel
+
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  unité par défaut: €/an
-  note: Pour les professions libérales, nous avons retenu un des 8 régimes de retraite, celui de la CIPAV, la caisse interprofessionnelle.
+dirigeant . rattachement CIPAV . retraite complémentaire:
+  remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
   formule:
-    variations:
-      - si: entreprise . rattachement libéral règlementé
-        alors:
-          barème linéaire:
-            assiette: revenu professionnel [€/an]
-            tranches:
-              - en-dessous de: 26580
-                montant: 1315
-              - de: 26581
-                à: 49280
-                montant: 2630
-              - de: 49281
-                à: 57850
-                montant: 3945
-              - de: 57851
-                à: 66400
-                montant: 6575
-              - de: 66401
-                à: 83060
-                montant: 9205
-              - de: 83061
-                à: 103180
-                montant: 14465
-              - de: 103181
-                à: 123300
-                montant: 15780
-              - au-dessus de: 123300
-                montant: 17095
-      - sinon:
-          barème:
-            assiette: revenu professionnel [€/an]
-            tranches:
-              - en-dessous de: 37960
-                taux: 7%
-              - de: 37960
-                à: 162096
-                taux: 8%
-              - au-dessus de: 162096
-                taux: 0%
+    barème linéaire:
+      assiette: indépendant . revenu professionnel [€/an]
+      tranches:
+        - en-dessous de: 26580
+          montant: 1315
+        - de: 26581
+          à: 49280
+          montant: 2630
+        - de: 49281
+          à: 57850
+          montant: 3945
+        - de: 57851
+          à: 66400
+          montant: 6575
+        - de: 66401
+          à: 83060
+          montant: 9205
+        - de: 83061
+          à: 103180
+          montant: 14465
+        - de: 103181
+          à: 123300
+          montant: 15780
+        - au-dessus de: 123300
+          montant: 17095
+
+
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR :
+  applicable si: 
+    toutes ces conditions: 
+      - entreprise . catégorie d'activité = 'libérale'
+      - rattachement CIPAV = non
+  titre: taux spécifique profession libérale non reglementée
+  question:
+    Avez-vous opté pour des taux spécifique de cotisation retraite complémentaire ?
+  description: |
+    Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019  et ont opté pour le régime général des travailleurs indépendants  ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.
+  références:
+    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR . taux:
+  titre: retraite complémentaire (taux PLNR)
+  description: la retraite complémentaire avec taux spécifiques
+  remplace: retraite complémentaire
+  formule: 
+    barème:
+      assiette: revenu professionnel
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - de: 1
+          à: 4
+          taux: 14%
+
+
+    
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  formule:
+    barème:
+      assiette: revenu professionnel [€/an]
+      tranches:
+        - en-dessous de: 37960
+          taux: 7%
+        - de: 37960
+          à: 162096
+          taux: 8%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
@@ -3752,18 +4015,19 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
       plafond: plafond sécurité sociale temps plein
       taux: 1.3%
 
+
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
   titre: assiette invalidité et décès
   formule:
     variations:
-      - si: situation personnelle . RSA != oui
-        alors:
+      - si: situation personnelle . RSA
+        alors: revenu professionnel
+      - sinon:
           encadrement:
             valeur: revenu professionnel
             plancher: 11.5% * plafond sécurité sociale temps plein
-      - sinon: revenu professionnel
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -3775,18 +4039,51 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
         - attributs:
             impôt sur le revenu: non déductible
           taux: 2.9%
-
         - attributs:
             impôt sur le revenu: déductible
           taux: 6.8%
+        - attributs:
+            nom: revenus de remplacement
+            impôt sur le revenu: non déductible
+          assiette: situation personnelle . IJSS . total
+          taux: 2.9%
+        - attributs:
+            nom: revenus de remplacement
+            impôt sur le revenu: déductible
+          assiette: situation personnelle . IJSS . total
+          taux: 3.8%
+
   références:
-    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
+    IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
+
+dirigeant . indépendant . revenus étrangers: 
+  description: |
+    Les revenus étrangers sont des revenus déclarés par les travailleurs indépendants pour des revenus perçus au titre de l’exercice d’une activité non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.  
+    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les déduire de l’assiette de la CSG/CRDS. 
+    Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous à la notice explicative sur le site [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+
+  question: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ? 
+  par défaut: non
+
+dirigeant . indépendant . revenus étrangers . montant:
+  unité par défaut: €/an
+  titre: revenus perçu à l'étranger
+  question: Quel est leur montant ?
+  par défaut: 0
+
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   formule:
     somme:
       - revenu professionnel
       - cotisations
+      - conjoint collaborateur . cotisations
+      - (- revenus étrangers . montant)
+      - (- situation personnelle . IJSS . fiscalisées)
+
+
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   formule:
@@ -3796,12 +4093,15 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
             alors: 0.29%
+          - si: conjoint collaborateur
+            alors: 0.34%
           - sinon: 0.25%
-  note: Pour les commerçants et professions libérales, le taux passe à 0,34 % si votre conjoint a le statut de conjoint collaborateur.
+  note: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
+
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
-    fiche URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
-    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/transfert-du-recouvrement-de-la.html
+    fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-a-la-formation-p/base-de-calcul-et-taux-de-la-con.html
+    brève URSSAF pour les artisans: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-indépendant/transfert-du-recouvrement-de-la.html
 
 dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales:
   formule:
@@ -3812,6 +4112,164 @@ dirigeant . indépendant . cotisations et contributions . cotisations . allocati
         0: 0%
         1.1: 0%
         1.4: 3.1%
+
+établissement . ZFU:
+  applicable si: entreprise . date de création < 01/2015
+  question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
+  par défaut: non
+
+établissement . ZFU . durée d'implantation en fin d'année:
+  formule:
+    durée: 
+      depuis: entreprise . date de création
+      jusqu'à: 31/12/2019
+
+dirigeant . indépendant . cotisations et contributions . exonérations:
+  période: flexible
+  formule:
+    somme:
+      - ZFU
+      - ACRE
+      
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
+  applicable si: établissement . ZFU
+  formule:
+    multiplication:
+      assiette: cotisations . maladie
+      # TODO : ceci n'est pas bon (le plafond est sur le revenu exonéré, et est proratisé en début / fin d'éxo)
+      plafond: 3042 heures/an * SMIC horaire
+      taux: taux
+          
+dirigeant . indépendant . cotisations et contributions . exonérations . âge:
+  question: Bénéficiez-vous du dispositif d'exonération "âge" 
+  description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiait avant son abbrogation.
+  par défaut: non
+  applicable si: entreprise . date de création < 01/2016
+  rend non applicable: cotisations . invalidité et décès
+
+dirigeant . indépendant . cotisations et contributions . exonérations . invalidité:
+  question: Êtes-vous titulaire d’une pension d’invalidité du régime des travailleurs indépendants ? 
+  description:  Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations maladie et retraite complémentaire.
+  par défaut: non
+  rend non applicable: 
+    - exonérations . ZFU
+    - cotisations . maladie
+    - cotisations . indemnités journalières maladie
+    - cotisations . retraite complémentaire
+  
+situation personnelle . IJSS:
+  titre: indemnités journalières de sécurité sociale
+  description: |
+    En cas de maladie, maternité, ou accident, le régime général de Sécurité sociale ainsi que les régimes spéciaux assurent le versement de prestations « en espèces ». Ce sont les indemnités journalières de Sécurité sociale (IJSS),
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
+
+    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
+  question: Avez-vous touché des indemnités journalières de sécurité sociale (maladie, maternité, paternité, etc.) ?
+  par défaut: non
+
+situation personnelle . IJSS . montant:
+  non applicable si: ALD
+  titre: indemnités journalières fiscalisées
+  par défaut: 0
+  question: Quel était leur montant total brut ?
+  unité par défaut: €/an
+
+situation personnelle . IJSS . ALD:
+  question: Avez-vous touché des indemnités dans le cas d'une affection longue durée (ALD) dite "exonérante" ?
+  description: 
+    L'affection longue durée (ALD) est mise en place par la loi du 13 août 2004 relative à l'assurance maladie. Ce statut offre aux personnes malades chroniques qui remplissent certaines conditions une prise en charge spécifique de leurs soins médicaux.
+    L'affection longue durée est une maladie de longue durée, présentant un caractère grave ou chronique et nécessitant un traitement long dont le coût est élevé.
+    La liste des ALD dites "exonérante" est disponible sur le site [ameli.fr](https://www.ameli.fr/assure/droits-demarches/maladie-accident-hospitalisation/affection-longue-duree-ald/affection-longue-duree-ald)
+    Les indemnité versée dans le cadre d'une ALD dites "éxonérante" ne sont pas imposable. 
+  par défaut: non
+
+
+situation personnelle . IJSS . ALD . autres indemnités:
+  question: Avez-vous également touché des indemnités non liées à votre ALD (maternité, paternité, autre maladie) ?
+  par défaut: non
+
+situation personnelle . IJSS . ALD . autres indemnités . montant:
+  question: Quel était le montant de vos autres indemnités ?
+  par défaut: 0
+  unité: €/an
+
+situation personnelle . IJSS . défiscalisées:
+  applicable si: ALD
+  titre: indemnités journalières défiscalisées
+  question: Quel était le montant de vos indemnités ALD ?
+  par défaut: 0
+  unité: €/an
+
+situation personnelle . IJSS . fiscalisées:
+  titre: indemnités journalières fiscalisées
+  formule: 
+    somme: 
+      - IJSS . montant
+      - ALD . autres indemnités . montant
+
+situation personnelle . IJSS . total:
+  titre: total indemnités journalières
+  formule:
+    somme: 
+      - fiscalisées
+      - défiscalisées
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
+  titre: taux exonération ZFU
+  formule:
+    barème continu:
+      assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
+      retourne seulement le taux: oui
+      variations:
+        - si: entreprise . effectif < 5
+          alors:     
+            points:
+              0: 100%
+              5: 100%
+              6: 60%
+              10: 60%
+              11: 40%
+              12: 40%
+              13: 20%
+              14: 20%
+              15: 0%
+        - sinon: 
+            points: 
+              0: 100%
+              5: 100%
+              6: 60%
+              7: 40%
+              8: 20%
+              9: 0%
+
+situation personnelle . domiciliation fiscale à l'étranger:
+  description: |
+    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
+  question: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
+  par défaut: non
+  rend non applicable: 
+    - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
+    - contrat salarié . CSG
+    - contrat salarié . CRDS
+    - impôt
+  références: 
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  titre: Maladie (domiciliation fiscale à l'étranger)
+  description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
+  remplace: maladie
+  formule: 
+    multiplication: 
+      assiette: maladie . assiette
+      taux: 14.5%
+
+contrat salarié . maladie . taux domiciliation fiscale étranger:
+  titre: taux salarié (domiciliation fiscale à l'étranger)
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  remplace: taux salarié
+  formule: 5.50%
 
 dirigeant:
   question: Quel est le régime social du dirigeant ?
@@ -3836,6 +4294,7 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - contrat salarié . convention collective
     - contrat salarié . rémunération . primes
+    - contrat salarié . rémunération . primes . fin d'année
     - contrat salarié . rémunération . primes . activité
     - contrat salarié . chômage
     - contrat salarié . réduction générale
@@ -3907,7 +4366,7 @@ dirigeant . auto-entrepreneur . revenu net de cotisations:
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
-  formule: entreprise . rémunération totale du dirigeant - cotisations et contributions
+  formule: dirigeant . rémunération totale - cotisations et contributions
   unité par défaut: €/mois
 
 dirigeant . auto-entrepreneur . cotisations et contributions:
@@ -4053,25 +4512,15 @@ entreprise . ACRE:
     - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
     - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
   question: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  applicable si:
+    une de ces conditions: 
+      - toutes ces conditions: 
+          - dirigeant = 'auto-entrepreneur'
+          - entreprise . durée d'activité < 3 ans
+          - entreprise . date de création < 01/01/2020
+      - entreprise . durée d'activité . en début d'année < 1 an
   par défaut: non
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
-
-entreprise . ACRE . année:
-  question: Quel est l'âge de l'entreprise ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - moins d'un an
-        - moins de deux ans
-        - moins de trois ans
-  par défaut: moins d'un an
-
-entreprise . ACRE . année . moins d'un an:
-
-entreprise . ACRE . année . moins de deux ans:
-
-entreprise . ACRE . année . moins de trois ans:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   formule: 100% - réduction ACRE
@@ -4079,21 +4528,21 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
   titre: réduction ACRE
   applicable si: entreprise . ACRE
-  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières année d'activité.
+  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
   formule:
     variations:
       # TODO : ce code fonctionne en 2020, mais en 2021 il faudra faire la
       # distinction entre les entreprises créées en 2019 (qui ont le droit à
       # l'ACRE pendant 3 ans) et celles créées en 2020 et après qui n'ont le
       # droit qu'à une année de réduction.
-      - si: entreprise . ACRE . année = 'moins d'un an'
+      - si: entreprise . durée d'activité < 1 an
         alors: 50%
-      - si: entreprise . ACRE . année = 'moins de deux ans'
+      - si: entreprise . durée d'activité < 2 ans
         alors: 25%
-      - si: entreprise . ACRE . année = 'moins de trois ans'
+      - si: entreprise . durée d'activité < 3 ans
         alors: 10%
   références:
-    Fiche URSSAF: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html
+    Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
@@ -4114,7 +4563,7 @@ dirigeant . auto-entrepreneur . impôt . abattement:
 
 dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
-  formule: 1 - taux
+  formule: 100% - taux
 
 dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre: taux d'abattement de l'impôt
@@ -4177,6 +4626,26 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
     allègement:
       assiette: base des cotisations
       abattement: abattement
+
+revenus net de cotisations:
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  formule:
+    somme:
+      - contrat salarié . rémunération . net
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . revenu net de cotisations
+
+revenu net après impôt:
+  unité par défaut: €/an
+  résumé: Versé sur le compte bancaire
+  question: Quel revenu voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
+    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
+  formule: revenus net de cotisations - impôt
 
 protection sociale:
   description: >
@@ -5543,7 +6012,6 @@ artiste-auteur . revenus . traitements et salaires:
   résumé: Revenus en précompte
 
 artiste-auteur . revenus . BNC:
-  période: flexible
   formule:
     encadrement:
       plancher: 0 €/an
@@ -5616,7 +6084,6 @@ artiste-auteur . cotisations . assiette surcotisation:
   formule: 900 heures/an * SMIC horaire 
   
 artiste-auteur . cotisations . surcotisation:
-  période: flexible
   applicable si: option surcotisation
   remplace:
     - règle: assiette

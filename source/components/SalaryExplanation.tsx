@@ -32,7 +32,7 @@ class ErrorBoundary extends React.Component {
 
 export default function SalaryExplanation() {
 	const showDistributionFirst = useSelector(
-		(state: RootState) => !state.conversationSteps.foldedSteps.length
+		(state: RootState) => !state.simulation?.foldedSteps.length
 	)
 	const distributionRef = useRef<HTMLDivElement>(null)
 	return (

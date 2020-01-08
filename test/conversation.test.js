@@ -8,8 +8,7 @@ import {
 	nextStepsSelector
 } from '../source/selectors/analyseSelectors'
 let baseState = {
-	conversationSteps: { foldedSteps: [] },
-	simulation: { situation: {} }
+	simulation: { situation: {}, foldedSteps: [] }
 }
 
 describe('conversation', function() {
@@ -25,7 +24,7 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
 				rules,
-				simulation: { config: { objectifs: ['startHere'] } }
+				simulation: { config: { objectifs: ['startHere'] }, foldedSteps: [] }
 			}),
 			currentQuestion = currentQuestionSelector(state)
 
@@ -49,7 +48,7 @@ describe('conversation', function() {
 
 		let step1 = merge(baseState, {
 			rules,
-			simulation: { config: { objectifs: ['startHere'] } }
+			simulation: { config: { objectifs: ['startHere'] }, foldedSteps: [] }
 		})
 		let step2 = reducers(
 			assocPath(['simulation', 'situation'], { 'top . aa': '1' }, step1),
@@ -84,8 +83,8 @@ describe('conversation', function() {
 		})
 
 		expect(currentQuestionSelector(lastStep)).to.equal('top . bb')
-		expect(lastStep.conversationSteps).to.have.property('foldedSteps')
-		expect(lastStep.conversationSteps.foldedSteps).to.have.lengthOf(0)
+		expect(lastStep.simulation).to.have.property('foldedSteps')
+		expect(lastStep.simulation.foldedSteps).to.have.lengthOf(0)
 	})
 
 	it('should first ask for questions without defaults, then those with defaults', function() {
@@ -93,8 +92,7 @@ describe('conversation', function() {
 				{ nom: 'net', formule: 'brut - cotisation' },
 				{
 					nom: 'brut',
-					question: 'Quel est le salaire brut ?',
-					unité: '€'
+					question: 'Quel est le salaire brut ?'
 				},
 				{
 					nom: 'cotisation',
@@ -127,7 +125,7 @@ describe('conversation', function() {
 
 		let step1 = merge(baseState, {
 			rules,
-			simulation: { config: { objectifs: ['net'] } }
+			simulation: { config: { objectifs: ['net'] }, foldedSteps: [] }
 		})
 		expect(currentQuestionSelector(step1)).to.equal('brut')
 
@@ -140,9 +138,9 @@ describe('conversation', function() {
 			}
 		)
 
-		expect(step2.conversationSteps).to.have.property('foldedSteps')
-		expect(step2.conversationSteps.foldedSteps).to.have.lengthOf(1)
-		expect(step2.conversationSteps.foldedSteps[0]).to.equal('brut')
+		expect(step2.simulation).to.have.property('foldedSteps')
+		expect(step2.simulation.foldedSteps).to.have.lengthOf(1)
+		expect(step2.simulation.foldedSteps[0]).to.equal('brut')
 		expect(currentQuestionSelector(step2)).to.equal('cadre')
 	})
 })
@@ -150,7 +148,7 @@ describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
 				rules,
-				simulation: { config: salariéConfig }
+				simulation: { config: salariéConfig, foldedSteps: [] }
 			}),
 			nextSteps = nextStepsSelector(state)
 

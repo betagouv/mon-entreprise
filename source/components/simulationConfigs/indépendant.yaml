@@ -2,7 +2,7 @@ objectifs:
   - icône: 👩‍💼
     nom: Mon revenu
     objectifs:
-      - entreprise . rémunération totale du dirigeant
+      - dirigeant . rémunération totale
       - dirigeant . indépendant . cotisations et contributions
       - dirigeant . indépendant . revenu net de cotisations
       - dirigeant . indépendant . revenu professionnel
@@ -17,10 +17,26 @@ objectifs:
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité
-    Impôt sur le revenu: impôt . méthode de calcul
+    Date de création: entreprise . date de création
     ACRE: entreprise . ACRE
+    Impôt sur le revenu: impôt . méthode de calcul
   liste noire:
     - entreprise . charges
+    # TODO : quand les questions indeps sont validés, enlever le block ci-dessous de la liste noire
+    - entreprise . catégorie d'activité . débit de tabac
+    - entreprise . ZFU
+    - dirigeant . indépendant . cotisations et contributions . exonérations . âge
+    - dirigeant . indépendant . conjoint collaborateur
+    - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR
+    - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
+    - dirigeant . indépendant . revenus étrangers
+    - situation personnelle . IJSS
+    - situation personnelle . domiciliation fiscale à l'étranger
+  non prioritaires:
+    - entreprise . catégorie d'activité . débit de tabac
+    - entreprise . ZFU
+    - dirigeant . indépendant . cotisations et contributions . exonérations . âge
+    - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
 
 unités par défaut: [€/an]
 situation:

@@ -10,11 +10,13 @@ import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function Indépendant() {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(indépendantConfig))
+	const location = useLocation()
+	dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
 	const { t } = useTranslation()
 	return (
 		<>
