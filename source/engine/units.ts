@@ -1,16 +1,4 @@
-import {
-	countBy,
-	equals,
-	flatten,
-	isEmpty,
-	keys,
-	map,
-	pipe,
-	remove,
-	uniq,
-	unnest,
-	without
-} from 'ramda'
+import { countBy, equals, flatten, isEmpty, keys, map, pipe, remove, uniq, unnest, without } from 'ramda'
 import i18n from '../i18n'
 
 type BaseUnit = string

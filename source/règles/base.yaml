@@ -4563,7 +4563,7 @@ dirigeant . auto-entrepreneur . impôt . abattement:
 
 dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description: C'est le taux à appliquer pour savoir ce qu'il reste après application de l'abattement
-  formule: 1 - taux
+  formule: 100% - taux
 
 dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre: taux d'abattement de l'impôt
