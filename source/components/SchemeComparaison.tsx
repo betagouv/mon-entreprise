@@ -129,15 +129,6 @@ export default function SchemeComparaison({
 					<T k="comparaisonRégimes.status.auto">Auto-entreprise</T>
 				</div>
 
-				<T k="comparaisonRégimes.sécuritéSociale">
-					<h3 className="legend">Sécurité sociale</h3>
-					<div className="AS">
-						Régime général <small />
-					</div>
-					<div className="indep-et-auto">
-						Sécurité sociale des indépendants <small />
-					</div>
-				</T>
 				<T k="comparaisonRégimes.AT">
 					<h3 className="legend">Couverture accidents du travail</h3>
 				</T>
