@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
+import emoji from 'react-easy-emoji'
 
 export default () => {
 	let { state, dispatch } = useContext(StoreContext)
