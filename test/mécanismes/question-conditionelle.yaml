@@ -1,12 +1,12 @@
-- nom: enfants
+enfants:
 
-- nom: nombre enfants
-  applicable si: enfants 
+nombre enfants:
+  applicable si: enfants
   question: Combien d'enfants avez vous ?
   par défaut: 4
-  
-- nom: famille nombreuse
-  test: question conditionnelle
+
+famille nombreuse:
+  titre: question conditionnelle
   formule: nombre enfants > 3
   exemples:
     - nom: question posée
@@ -18,4 +18,4 @@
       situation:
         enfants: non
       variables manquantes: []
-      valeur attendue: false      
+      valeur attendue: false

@@ -1,14 +1,14 @@
-- nom: statut cadre
+statut cadre:
   formule:
     variations:
       - si: 3 > 2
         alors: oui
       - sinon: choix du statut cadre
 
-- nom: choix du statut cadre
+choix du statut cadre:
   par défaut: non
 
-- test: prévoyance obligatoire cadre
+prévoyance obligatoire cadre:
   applicable si: statut cadre
   formule:
     multiplication:

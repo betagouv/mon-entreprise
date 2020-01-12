@@ -1,7 +1,7 @@
-- nom: ma cotisation
+ma cotisation:
   unité: €
 
-- test: Complément
+Complément:
   formule:
     complément:
       cible: ma cotisation
@@ -13,10 +13,10 @@
         ma cotisation: 33
       valeur attendue: 67
 
-- nom: autre cotisation
+autre cotisation:
   unité: €
 
-- test: Complément à composantes
+Complément à composantes:
   formule:
     complément:
       composantes:

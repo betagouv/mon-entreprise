@@ -1,11 +1,11 @@
-- nom: farine
+farine:
   unité: kg
 
-- nom: sucre
+sucre:
   unité: kg
 
-- nom: poids total
-  test: Somme
+poids total:
+  titre: Somme
   formule:
     somme:
       - farine

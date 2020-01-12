@@ -1,4 +1,4 @@
-- test: Composantes
+Composantes:
   formule: impôts
   unité attendue: crédits
   exemples:
@@ -6,11 +6,11 @@
       situation:
       valeur attendue: 10
 
-- nom: richesse
+richesse:
   unité: crédits
   formule: 100
 
-- nom: impôts
+impôts:
   formule:
     multiplication:
       assiette: richesse

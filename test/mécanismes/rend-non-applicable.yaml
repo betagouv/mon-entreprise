@@ -1,13 +1,13 @@
-- nom: impôt
+impôt:
   formule: 1000
 
-- nom: exilé fiscal
+exilé fiscal:
   rend non applicable:
     - impôt
 
-- nom: contribution
+contribution:
   formule: impôt
-  test: règle désactivée
+  titre: règle désactivée
   exemples:
     - nom: evasion fiscale
       situation:

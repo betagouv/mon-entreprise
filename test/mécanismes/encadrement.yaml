@@ -1,4 +1,4 @@
-- test: Plafonnement
+Plafonnement:
   formule:
     encadrement:
       valeur: 1000 €
@@ -9,7 +9,7 @@
       situation:
       valeur attendue: 250
 
-- test: Plancher
+Plancher:
   formule:
     encadrement:
       valeur: 1000 €

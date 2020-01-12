@@ -1,16 +1,14 @@
+dégradation mineure:
 
-- nom: dégradation mineure
+dégradation majeure:
 
-- nom: dégradation majeure
-
-- nom: remboursement dépot de garantie
-  test: Toutes ces conditions
+remboursement dépot de garantie:
+  titre: Toutes ces conditions
   non applicable si:
     toutes ces conditions:
       - dégradation mineure
       - dégradation majeure
-  formule:
-    3000
+  formule: 3000
 
   exemples:
     - nom: A
