@@ -1,11 +1,11 @@
-- nom: base
+base:
   unité: £
   formule: 300
 
-- nom: assiette
+assiette:
   unité: £
 
-- test: Simple
+Simple:
   formule:
     barème continu:
       assiette: assiette
@@ -37,14 +37,14 @@
         assiette: 1000
       valeur attendue: 63.5
 
-- nom: base deux
+base deux:
   unité: µ
   formule: 300
 
-- nom: assiette deux
+assiette deux:
   unité: µ
 
-- test: Retour de taux, pas d'assiette
+Retour de taux, pas d'assiette:
   unité: '%'
   formule:
     barème continu:

@@ -1,7 +1,7 @@
-- nom: mon assiette
+mon assiette:
   unité: €
 
-- test: Multiplication simple
+Multiplication simple:
   formule:
     multiplication:
       assiette: mon assiette
@@ -17,7 +17,7 @@
         mon assiette: 333.33
       valeur attendue: 9.999
 
-- test: Multiplication à taux flottant
+Multiplication à taux flottant:
   formule:
     multiplication:
       assiette: 300
@@ -27,10 +27,10 @@
       situation:
       valeur attendue: 9.9
 
-- nom: mon plafond
+mon plafond:
   unité: €
 
-- test: Multiplication plafonnée
+Multiplication plafonnée:
   formule:
     multiplication:
       assiette: mon assiette
@@ -49,10 +49,10 @@
         mon plafond: 50
       valeur attendue: 1.5
 
-- nom: mon facteur
+mon facteur:
   unité: patates
 
-- test: Multiplication à facteur
+Multiplication à facteur:
   unité attendue: patates
   formule:
     multiplication:
@@ -65,7 +65,7 @@
         mon facteur: 3
       valeur attendue: 300
 
-- test: Multiplication complète
+Multiplication complète:
   formule:
     multiplication:
       assiette: mon assiette
@@ -82,7 +82,7 @@
         mon plafond: 100
       valeur attendue: 1
 # This should work, but with the use of objectShape & co, the short circuits are not performed
-#- test: Multiplication complète
+#Multiplication complète:
 #  formule:
 #    multiplication:
 #      assiette: mon assiette

@@ -1,4 +1,4 @@
-- test: Minimum
+Minimum:
   formule:
     le minimum de:
       - multiplication:
@@ -10,12 +10,11 @@
 
   exemples:
     - valeur attendue: 0.9
-      
 
-- nom: assiette
+assiette:
   question: Mon assiette
 
-- test: Minimum avec variables
+Minimum avec variables:
   formule:
     le minimum de:
       - multiplication:
@@ -29,7 +28,5 @@
     - situation:
         assiette: 1000
       valeur attendue: 10
-
-
 # TODO
 # Pouvoir faire référence à une variable, ou mettre une valeur. Aujourd'hui il est seulement possible de lister des mécanismes numériques

@@ -1,7 +1,7 @@
-- nom: assiette
+assiette:
   unité: €
 
-- test: Barème linéaire en taux
+Barème linéaire en taux:
   formule:
     barème linéaire:
       assiette: assiette
@@ -38,7 +38,7 @@
         assiette: 999.6
       valeur attendue: 99.96
 
-- test: Barème linéaire en montant
+Barème linéaire en montant:
   formule:
     barème linéaire:
       assiette: assiette

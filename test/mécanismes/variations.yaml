@@ -1,22 +1,21 @@
-- nom: ma condition
+ma condition:
 
-- test: taux variable
+taux variable:
   formule:
     variations:
       - si: ma condition
         alors: 29%
       - sinon: 56%
 
-  exemples: 
+  exemples:
     - nom: variable manquante
-      situation: 
-      variables manquantes: 
+      situation:
+      variables manquantes:
         - ma condition
 
-- nom: statut cadre
+statut cadre:
 
-
-- test: variations renvoyant une valeur
+variations renvoyant une valeur:
   formule:
     variations:
       - si: statut cadre
@@ -36,11 +35,10 @@
     - nom: Information manquante
       situation:
       valeur attendue: null
-      variables manquantes: 
+      variables manquantes:
         - statut cadre
 
-
-- test: variations avec cas défaut
+variations avec cas défaut:
   formule:
     variations:
       - si: statut cadre
@@ -55,14 +53,13 @@
     - nom: Information manquante
       situation:
       valeur attendue: null
-      variables manquantes: 
+      variables manquantes:
         - statut cadre
 
-
-- nom: base
+base:
   unité: €
 
-- test: variations avec cas défaut calculé
+variations avec cas défaut calculé:
   formule:
     variations:
       - si: statut cadre
@@ -76,21 +73,21 @@
       valeur attendue: null
       variables manquantes:
         - base
-    - nom: Cas défaut ignoré si variation résolue 
+    - nom: Cas défaut ignoré si variation résolue
       situation:
         statut cadre: oui
       valeur attendue: 2300
       variables manquantes: []
 
-- nom: effectif
+effectif:
   unité: _
 
-- nom: effectif plafond
+effectif plafond:
   unité: _
 
-- test: plusieurs variations et un cas défaut
-  formule: 
-    variations: 
+plusieurs variations et un cas défaut:
+  formule:
+    variations:
       - si: effectif > 100
         alors: 5%
       - si: effectif > effectif plafond
@@ -99,49 +96,49 @@
         alors: 2%
       - sinon: 1%
 
-  exemples: 
+  exemples:
     - nom: 1er cas
-      situation: 
+      situation:
         effectif: 300
       valeur attendue: 0.05
     - nom: 2ème cas, non résolu
-      situation: 
+      situation:
         effectif: 40
       valeur attendue: null
-      variables manquantes: 
+      variables manquantes:
         - effectif plafond
     - nom: Cas par défaut
-      situation: 
+      situation:
         effectif: 20
         effectif plafond: 60
-      valeur attendue: 0.01 
+      valeur attendue: 0.01
 
-- test: Variations menant à un booleén 
-  formule: 
-    variations: 
+Variations menant à un booleén:
+  formule:
+    variations:
       - si: statut cadre
         alors: non
       - sinon: oui
-  exemples: 
+  exemples:
     - nom: Positif
-      situation: 
+      situation:
         statut cadre: non
       valeur attendue: true
     - nom: Négatif
-      situation: 
+      situation:
         statut cadre: oui
       valeur attendue: false
     - nom: Non résolu
-      situation: 
+      situation:
       valeur attendue: null
 
-- test: variations au sein d'un mécanisme 
+variations au sein d'un mécanisme:
   formule:
     multiplication:
       assiette: 100
       variations:
         - si: statut cadre
-          alors: 
+          alors:
             taux: 8%
         - si: statut cadre != oui
           alors:
@@ -157,17 +154,13 @@
         statut cadre: oui
       valeur attendue: 8
 
-
-
-
-
-- test: variations au sein d'un mécanisme avec sinon
+variations au sein d'un mécanisme avec sinon:
   formule:
     multiplication:
       assiette: 100
       variations:
         - si: statut cadre
-          alors: 
+          alors:
             taux: 8%
         - sinon:
             taux: 5%
@@ -181,6 +174,3 @@
       situation:
         statut cadre: oui
       valeur attendue: 8
-
-
-

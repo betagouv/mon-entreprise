@@ -1,17 +1,17 @@
 # This is not a mecanism test, but we make use of the simplicity of declaring tests in YAML, only available for mecanisms for now
 
-- nom: douches par mois
+douches par mois:
   question: Combien prenez-vous de douches par mois ?
   unité: douche/mois
 
-- test: Conversion de reference
+Conversion de reference:
   formule: douches par mois [douche/an]
   exemples:
     - situation:
         douches par mois: 30
       valeur attendue: 360
 
-- test: Conversion de reference 2
+Conversion de reference 2:
   unité: douche/an
   formule: douches par mois
   exemples:
@@ -24,7 +24,7 @@
       unités par défaut: [douche/mois]
       valeur attendue: 360
 
-- test: Conversion de variable
+Conversion de variable:
   formule: 1.5 kCo2/douche * douches par mois
   exemples:
     - situation:
@@ -38,25 +38,25 @@
       unité attendue: kCo2/an
       valeur attendue: 360
 
-- test: Conversion de variable et expressions
+Conversion de variable et expressions:
   unité: kCo2/an
   formule: 1 kCo2/douche * 10 douche/mois
   exemples:
     - valeur attendue: 120
 
-- test: Conversion de pourcentage
+Conversion de pourcentage:
   unité: €/an
   formule: 1000€ * 1% /mois
   exemples:
     - valeur attendue: 120
 
-- test: Conversion en pourcentage
+Conversion en pourcentage:
   unité: '%'
   formule: 28h / 35h
   exemples:
     - valeur attendue: 80
 
-- test: Conversion dans un mécanisme
+Conversion dans un mécanisme:
   unité: €/an
   formule:
     le minimum de:
@@ -65,10 +65,10 @@
   exemples:
     - valeur attendue: 1120
 
-- nom: assiette mensuelle
+assiette mensuelle:
   unité: €/mois
 
-- test: Conversion de mécanisme 1
+Conversion de mécanisme 1:
   unité: €/an
   formule:
     barème:
@@ -87,10 +87,10 @@
         assiette mensuelle: 3000
       valeur attendue: 1575
 
-- nom: assiette annuelle
+assiette annuelle:
   unité: €/an
 
-- test: Conversion de mécanisme 2
+Conversion de mécanisme 2:
   formule:
     barème:
       assiette: assiette annuelle [€/mois]
@@ -108,28 +108,28 @@
       valeur attendue: 131.25
       unités par défaut: [€/mois]
 
-- test: Conversion dans une expression
+Conversion dans une expression:
   unité: €/an
   formule: 80 €/mois + 1120 €/an + 20 €/mois
   exemples:
     - valeur attendue: 2320
 
-- test: Conversion dans une comparaison
+Conversion dans une comparaison:
   formule: 100€/mois = 1.2k€/an
   exemples:
     - valeur attendue: true
 
-- nom: mutuelle
+mutuelle:
   formule: 30 €/mois
 
-- nom: retraite
+retraite:
   formule:
     multiplication:
       assiette: assiette annuelle
       plafond: 12 k€/an
       taux: 10%
 
-- test: Conversion dans une somme compliquée
+Conversion dans une somme compliquée:
   formule:
     somme:
       - mutuelle
@@ -140,7 +140,7 @@
       unités par défaut: [€/mois]
       valeur attendue: 130
 
-- nom: maladie
+maladie:
   formule:
     multiplication:
       assiette: assiette annuelle
@@ -153,7 +153,7 @@
           taux: 5%
           plafond: 1000 €/mois
 
-- test: Conversion avec composantes
+Conversion avec composantes:
   unité: €/mois
   formule:
     somme:
@@ -165,7 +165,7 @@
         assiette annuelle: 20000
       valeur attendue: 180
 
-- test: Conversion dans un allègement
+Conversion dans un allègement:
   formule:
     allègement:
       assiette: 1000€/an
@@ -174,7 +174,7 @@
     - unités par défaut: [€/an]
       valeur attendue: 880
 
-- test: Conversion dans avec un abattement en %
+Conversion dans avec un abattement en %:
   unité par défaut: €/an
   formule:
     allègement:
@@ -183,19 +183,19 @@
   exemples:
     - valeur attendue: 900
 
-- nom: assiette cotisations
+assiette cotisations:
   formule:
     allègement:
       assiette: assiette mensuelle
       abattement: 1200 €/an
 
-- nom: prévoyance cadre
+prévoyance cadre:
   formule:
     multiplication:
       assiette: assiette cotisations
       taux: 1.5%
 
-- test: Conversion avec plusieurs échelons
+Conversion avec plusieurs échelons:
   formule:
     somme:
       - prévoyance cadre
@@ -206,7 +206,7 @@
         assiette mensuelle: 1100
       valeur attendue: 600
 
-- test: Conversion de situation
+Conversion de situation:
   formule:
     somme:
       - retraite
@@ -217,10 +217,10 @@
         retraite: 4000
       valeur attendue: 4360
 
-- nom: rémunération brute
+rémunération brute:
   unité par défaut: €/mois
 
-- test: Conversion de situation avec unité
+Conversion de situation avec unité:
   unité: €/an
   formule:
     multiplication:

@@ -1,4 +1,4 @@
-- test: Maximum
+Maximum:
   formule:
     le maximum de:
       - multiplication:
@@ -13,11 +13,11 @@
       situation:
       valeur attendue: 1
 
-- nom: a
+a:
   applicable si: non
   formule: 20
 
-- test: Maximum avec valeur non applicable
+Maximum avec valeur non applicable:
   formule:
     le maximum de:
       - a

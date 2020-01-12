@@ -1,7 +1,7 @@
-- nom: montant
+montant:
   unité: €
 
-- test: montant franchisé
+montant franchisé:
   unité: €
   formule:
     allègement:
@@ -17,7 +17,7 @@
       variables manquantes:
         - montant
 
-- test: montant décoté
+montant décoté:
   unité: €
   formule:
     allègement:
@@ -30,7 +30,7 @@
         montant: 1000
       valeur attendue: 0
 
-- test: montant franchisé et décoté
+montant franchisé et décoté:
   unité: €
   formule:
     allègement:
@@ -53,7 +53,7 @@
         montant: 2040
       valeur attendue: 2040
 
-- test: montant abattu
+montant abattu:
   unité: €
   formule:
     allègement:
@@ -67,7 +67,7 @@
         montant: 80000
       valeur attendue: 59493
 
-- test: montant abattu en pourcentage
+montant abattu en pourcentage:
   unité: €
   formule:
     allègement:
@@ -81,7 +81,7 @@
         montant: 80000
       valeur attendue: 68000
 
-- test: montant abattu avec plafond numérique
+montant abattu avec plafond numérique:
   unité: €
   formule:
     allègement:
@@ -96,7 +96,7 @@
         montant: 100000
       valeur attendue: 88000 # 85000 s'il n'y avait pas de plafond à la somme abattue
 
-- test: montant franchisé, décote, abattu
+montant franchisé, décote, abattu:
   unité: €
   formule:
     allègement:

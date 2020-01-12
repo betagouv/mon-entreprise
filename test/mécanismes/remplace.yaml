@@ -1,26 +1,26 @@
-- nom: restaurant . prix du repas
+restaurant . prix du repas:
   formule: 10 €/repas
 
-- nom: restaurant . client gourmand
+restaurant . client gourmand:
   formule: oui
 
-- nom: restaurant . client enfant
+restaurant . client enfant:
   rend non applicable:
     - client gourmand
   formule: non
 
-- nom: restaurant . prix du repas gourmand
+restaurant . prix du repas gourmand:
   applicable si: client gourmand
   remplace: prix du repas
   formule: 15 €/repas
 
-- nom: restaurant . menu enfant
+restaurant . menu enfant:
   applicable si: client enfant
   remplace:
     règle: prix du repas
     par: 8 €/repas
 
-- test: modifie une règle
+modifie une règle:
   formule: restaurant . prix du repas
   exemples:
     - nom: prix du repas modifié
@@ -34,10 +34,10 @@
         restaurant . client enfant: oui
       valeur attendue: 8
 
-- nom: cotisations . assiette
+cotisations . assiette:
   formule: 1000 €
 
-- nom: cotisations
+cotisations:
   formule:
     somme:
       - retraite .salarié
@@ -45,7 +45,7 @@
       - chômage
       - maladie
 
-- nom: cotisations . retraite
+cotisations . retraite:
   formule:
     multiplication:
       composantes:
@@ -57,19 +57,19 @@
           taux: 2%
       assiette: assiette
 
-- nom: cotisations . chômage
+cotisations . chômage:
   formule:
     multiplication:
       taux: 10%
       assiette: assiette
 
-- nom: cotisations . maladie
+cotisations . maladie:
   formule:
     multiplication:
       taux: 10%
       assiette: assiette
 
-- test: remplacement sans boucle infinie si il n'y a pas de dépendances cycliques
+remplacement sans boucle infinie si il n'y a pas de dépendances cycliques:
   applicable si: exemple1
   formule: cotisations
   remplace:
@@ -80,7 +80,7 @@
         exemple1: oui
       valeur attendue: 30
 
-- test: remplacement contextuel par inclusion
+remplacement contextuel par inclusion:
   formule: cotisations
   remplace:
     règle: cotisations . assiette
@@ -97,7 +97,7 @@
       valeur attendue: 70
   applicable si: exemple2
 
-- test: remplacement contextuel par exclusion
+remplacement contextuel par exclusion:
   formule: cotisations
   remplace:
     règle: cotisations . assiette
@@ -111,7 +111,7 @@
       valeur attendue: 210
   applicable si: exemple3
 
-- test: remplacement d'une variable avec composante
+remplacement d'une variable avec composante:
   formule: cotisations
   remplace:
     règle: cotisations . retraite
@@ -136,7 +136,7 @@
       valeur attendue: 40
   applicable si: exemple4
 
-- test: remplacement de plusieurs variables d'un coup
+remplacement de plusieurs variables d'un coup:
   formule: cotisations
   remplace:
     - règle: cotisations . chômage
@@ -149,39 +149,39 @@
       valeur attendue: 110
   applicable si: exemple5
 
-- nom: exemple1
-- nom: exemple2
-- nom: exemple3
-- nom: exemple4
-- nom: exemple5
+exemple1:
+exemple2:
+exemple3:
+exemple4:
+exemple5:
 
-- nom: A
+A:
   formule: 1
 
-- nom: B
+B:
   remplace: A
   formule: 2
 
-- nom: C
+C:
   remplace: B
   formule: 3
 
-- test: remplacement associatif
+remplacement associatif:
   formule: A
   exemples:
     - valeur attendue: 3
 
-- nom: x
+x:
   formule: non
 
-- nom: x . y
+x . y:
   remplace: z
   formule: 10
 
-- nom: z
+z:
   formule: 1
 
-- test: remplacement non applicable (branche desactivée)
+remplacement non applicable (branche desactivée):
   formule: z
   exemples:
     - valeur attendue: 1

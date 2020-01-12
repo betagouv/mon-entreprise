@@ -1,20 +1,21 @@
-- test: Parse correctement les dates
+Parse correctement les dates:
   formule: 08/02/2015
   exemples:
     - valeur attendue: 08/02/2015
 
-- test: Défaut au premier jour du mois
+Défaut au premier jour du mois:
   formule: 01/02/2015
   exemples:
     - valeur attendue: 01/02/2015
 
-- test: Comparaison sur les dates
+Comparaison sur les dates:
   formule: 02/03/2019 > 21/02/2019
   exemples:
     - valeur attendue: true
 
-- nom: date de création
-- test: Comparaison sur les dates avec référence
+date de création:
+
+Comparaison sur les dates avec référence:
   formule: date de création < 01/01/2010
   exemples:
     - situation:
@@ -24,7 +25,7 @@
         date de création: 09/02/2019
       valeur attendue: false
 
-- test: Applicable si
+Applicable si:
   applicable si: date de création < 01/01/2010
   formule: 10 €
   exemples:

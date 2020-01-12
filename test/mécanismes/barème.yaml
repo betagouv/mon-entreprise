@@ -1,10 +1,10 @@
-- nom: assiette
+assiette:
   unité: €
 
-- nom: base
+base:
   unité: €
 
-- test: Barème en taux marginaux
+Barème en taux marginaux:
   formule:
     barème:
       assiette: assiette
@@ -35,7 +35,7 @@
         base: 5000
       valeur attendue: 682.5
 
-- test: Barème à composantes
+Barème à composantes:
   formule:
     barème:
       assiette: assiette
@@ -60,9 +60,9 @@
         base: 5000
       valeur attendue: 1580
 
-- nom: ma condition
+ma condition:
 
-- test: taux variable
+taux variable:
   formule:
     variations:
       - si: ma condition
@@ -71,8 +71,8 @@
   unité attendue: '%'
   exemples: []
 
-- nom: deuxième barème
-  test: Barème à taux variable
+deuxième barème:
+  titre: Barème à taux variable
   formule:
     barème:
       assiette: assiette
