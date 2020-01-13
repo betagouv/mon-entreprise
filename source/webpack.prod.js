@@ -115,7 +115,17 @@ module.exports = {
 		new PrerenderSPAPlugin({
 			...prerenderConfig(),
 			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: ['/', '/simulateurs/salarié', '/iframes/simulateur-embauche'],
+			routes: [
+				'/',
+				'/simulateurs/salarié',
+				'/simulateurs/auto-entrepreneur',
+				'/simulateurs/artiste-auteur',
+				'/simulateurs/assimilé-salarié',
+				'/simulateurs/indépendant',
+				'/créer',
+				'/gérer',
+				'/iframes/simulateur-embauche'
+			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
 		})
 	]
