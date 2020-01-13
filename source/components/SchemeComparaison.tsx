@@ -173,12 +173,8 @@ export default function SchemeComparaison({
 					<>
 						<T k="comparaisonRégimes.ACRE">
 							<h3 className="legend">ACRE</h3>
-							<div className="AS-et-indep">
-								1 an <small>(exonération partielle de cotisations)</small>
-							</div>
-							<div className="auto">
-								3 ans
-								<small>(application de taux réduits de cotisations)</small>
+							<div className="all">
+								1 an <small>(sous conditions d'éligibilité)</small>
 							</div>
 						</T>
 						<T k="comparaisonRégimes.déduction">

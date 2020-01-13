@@ -186,8 +186,38 @@
   status = 200
 
 [[redirects]]
-  from = "/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  to = "/prerender/mon-entreprise/s%C3%A9curit%C3%A9-sociale/salari%C3%A9/index.html"
+  from = "/cr%C3%A9er"
+  to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/g%C3%A9rer"
+  to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/salari%C3%A9"
+  to = "/prerender/mon-entreprise/simulateurs/salari%C3%A9/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/auto-entrepreneur"
+  to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/ind%C3%A9pendant"
+  to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/assimil%C3%A9-salari%C3%A9"
+  to = "/prerender/mon-entreprise/simulateurs/assimil%C3%A9-salari%C3%A9/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/artiste-auteur"
+  to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
   status = 200
 
 [[redirects]]
