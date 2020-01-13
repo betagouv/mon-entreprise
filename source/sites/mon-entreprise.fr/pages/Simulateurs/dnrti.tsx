@@ -43,13 +43,15 @@ export default function DNRTI() {
 			<h1>
 				Aide à la déclaration de revenus{' '}
 				<img src="https://img.shields.io/badge/-beta-blue" />
+				<br />
+				<small>Travailleurs indépendants</small>
 			</h1>
+			<p>
+				Cette outil vous permet de calculer les données à saisir dans votre
+				déclaration de revenus professionnels.
+			</p>
 			<FormWrapper>
 				<FormBlock>
-					<p>
-						Cette outil vous permet de calculer les données à saisir dans votre
-						déclaration de revenus professionnels.
-					</p>
 					<CompanySection company={company} />
 					<h2>Revenus d'activité</h2>
 					<SimpleField
@@ -189,7 +191,7 @@ function Results() {
 
 	function Link({ cotisation }) {
 		return (
-			<ResultNumber>
+			<p className="ui__ lead">
 				<RuleLink dottedName={cotisation.dottedName}>
 					{cotisation.nodeValue
 						? formatValue({
@@ -200,30 +202,31 @@ function Results() {
 						  })
 						: '-'}
 				</RuleLink>
-			</ResultNumber>
+			</p>
 		)
 	}
-
+	if (!cotisationsRule.nodeValue) {
+		return null
+	}
 	return (
-		<>
-			<ResultBlock>
+		<ResultBlock>
+			<Animate.fromTop>
 				<ResultSubTitle>Vos cotisations</ResultSubTitle>
 				<Link cotisation={cotisationsRule} />
 				<ResultSubTitle>Vos revenus net</ResultSubTitle>
 				<Link cotisation={revenusNet} />
 				<ResultSubTitle>Cotisations non déductibles</ResultSubTitle>
-				<Modalités>
+				<p className="ui__ notice">
 					Ce montant doit être réintégré au revenu net dans votre déclaration
 					fiscale.
-				</Modalités>
+				</p>
 				<Link cotisation={nonDeductible} />
-			</ResultBlock>
-		</>
+			</Animate.fromTop>
+		</ResultBlock>
 	)
 }
 
 const FormWrapper = styled.div`
-	margin-top: 40px;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -260,17 +263,7 @@ const ResultBlock = styled.section`
 	background: var(--lightestColor);
 `
 
-const Modalités = styled.p`
-	font-size: 0.8em;
-	font-family: 'Montserrat', sans-serif;
-	color: grey;
-	line-height: 1.2em;
-`
-
 const ResultSubTitle = styled.h4`
-	font-size: 0.9em;
-	font-weight: normal;
-
 	&:not(:first-child) {
 		margin-top: 2em;
 	}
@@ -278,5 +271,5 @@ const ResultSubTitle = styled.h4`
 
 const ResultNumber = styled.strong`
 	display: block;
-	font-size: 1em;
+	text-align: right;
 `
