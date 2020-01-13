@@ -251,7 +251,6 @@ let TargetInputOrValue = ({
 							color: colors.textColor,
 							borderColor: colors.textColor
 						}}
-						debounce={600}
 						name={target.dottedName}
 						value={situationValue || value}
 						className={

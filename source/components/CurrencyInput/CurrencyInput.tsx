@@ -1,8 +1,7 @@
 import classnames from 'classnames'
 import { currencyFormat } from 'Engine/format'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useTransition } from 'react'
 import NumberFormat, { NumberFormatProps } from 'react-number-format'
-import { debounce } from '../../utils'
 import './CurrencyInput.css'
 
 type CurrencyInputProps = NumberFormatProps & {
@@ -24,9 +23,7 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
-	const onChangeDebounced = useRef(
-		debounceTimeout && onChange ? debounce(debounceTimeout, onChange) : onChange
-	)
+	const [startTransition] = useTransition()
 	// We need some mutable reference because the <NumberFormat /> component doesn't provide
 	// the DOM `event` in its custom `onValueChange` handler
 	const nextValue = useRef('')
@@ -51,8 +48,10 @@ export default function CurrencyInput({
 			...event.target,
 			value: nextValue.current
 		}
+		startTransition(() => {
+			onChange?.(event)
+		})
 		nextValue.current = ''
-		onChangeDebounced.current?.(event)
 	}
 
 	const {
