@@ -79,7 +79,7 @@ export default function CurrencyInput({
 				{...forwardedProps}
 				thousandSeparator={thousandSeparator}
 				decimalSeparator={decimalSeparator}
-				allowNegative={!valueHasChanged}
+				allowNegative
 				className="currencyInput__input"
 				inputMode="numeric"
 				getInputRef={inputRef}
