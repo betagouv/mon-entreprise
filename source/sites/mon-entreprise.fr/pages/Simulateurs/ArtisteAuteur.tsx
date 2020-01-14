@@ -10,7 +10,11 @@ import React, { useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { analysisWithDefaultsSelector, ruleAnalysisSelector, situationSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	ruleAnalysisSelector,
+	situationSelector
+} from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
@@ -169,10 +173,11 @@ const ResultLabel = styled.div`
 
 function CotisationsResult() {
 	const [display, setDisplay] = useState(false)
+	const situation = useSelector(situationSelector)
 	const cotisationRule = useRule('artiste-auteur . cotisations')
 	const value = cotisationRule.nodeValue
 
-	if (value && !display) {
+	if (Object.keys(situation).length && !display) {
 		setDisplay(true)
 	}
 
