@@ -33,7 +33,8 @@ export default function CurrencyInput({
 
 	const inputRef = useRef<HTMLInputElement>()
 
-	// When the component is rendered with a new "value" prop, we reset our local state
+	// When the component is rendered with a new "value" prop, we reset our local
+	// state
 	if (valueProp !== initialValue) {
 		setCurrentValue(valueProp)
 		setInitialValue(valueProp)

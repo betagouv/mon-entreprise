@@ -212,7 +212,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	}
 
 	let tolerance = 0.1,
-		// cette fonction détermine la racine d'une fonction sans faire trop d'itérations
+		// cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
 		nodeValue = uniroot(
 			x => {
 				let y = fx(x)
@@ -223,6 +223,14 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			tolerance,
 			10
 		)
+
+	// Si aucune des valeurs ne fonctionne, on test la valeur 0.
+	if (nodeValue == null) {
+		attempt = fx(0)
+		if (Math.abs(attempt.nodeValue - fixedObjectiveValue) < 0.1) {
+			nodeValue = 0
+		}
+	}
 
 	return {
 		nodeValue,
@@ -242,9 +250,10 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 				situationGate(dottedName) == undefined &&
 				doInversion(cache, situationGate, parsedRules, v, dottedName),
 			// TODO - ceci n'est pas vraiment satisfaisant
-			nodeValue = situationGate(dottedName)
-				? Number.parseFloat(situationGate(dottedName))
-				: inversion.nodeValue,
+			nodeValue =
+				situationGate(dottedName) != null
+					? Number.parseFloat(situationGate(dottedName))
+					: inversion.nodeValue,
 			missingVariables = inversion.missingVariables
 		if (nodeValue === undefined) {
 			cache._meta.inversionFail = {

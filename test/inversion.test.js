@@ -53,6 +53,30 @@ describe('inversions', () => {
 		)
 	})
 
+	it('should handle inversion with value at 0', () => {
+		let fakeState = { net: 0 }
+		let stateSelector = name => fakeState[name]
+
+		let rawRules = dedent`
+        - nom: net
+          formule:
+            multiplication:
+              assiette: brut
+              taux: 77%
+
+        - nom: brut
+          unité: €
+          formule:
+            inversion numérique:
+              avec:
+                - net
+      `,
+			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
+			analysis = analyse(rules, 'brut')(stateSelector)
+
+		expect(analysis.targets[0].nodeValue).to.be.closeTo(0, 0.0001)
+	})
+
 	it('should ask the input of one of the possible inversions', () => {
 		let rawRules = dedent`
         - nom: net

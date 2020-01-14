@@ -3,8 +3,8 @@ objectifs:
   - dirigeant . auto-entrepreneur . cotisations et contributions
   - dirigeant . auto-entrepreneur . revenu net de cotisations
   - impôt
-  - revenu net après impôt
-
+  - dirigeant . auto-entrepreneur . dépenses liées à l'activité
+  - dirigeant . auto-entrepreneur . revenu disponible
 questions:
   à l'affiche:
     Type d'activité: entreprise . catégorie d'activité

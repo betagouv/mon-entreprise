@@ -226,18 +226,17 @@ let TargetInputOrValue = ({
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
-	const situationValue = Math.round(
-		useSelector(situationSelector)[target.dottedName]
-	)
+	const situationValue = useSelector(situationSelector)[target.dottedName]
+
 	const targetWithValue = useTarget(target.dottedName)
-	const value = targetWithValue?.nodeValue
-		? Math.round(targetWithValue?.nodeValue)
-		: undefined
 	const inversionFail = useSelector(analysisWithDefaultsSelector)?.cache._meta
 		.inversionFail
+	const value =
+		targetWithValue?.nodeValue != null && !inversionFail
+			? Math.round(targetWithValue?.nodeValue)
+			: undefined
 
 	const blurValue = inversionFail && !isActiveInput
-
 	return (
 		<span
 			className="targetInputOrValue"
@@ -253,7 +252,7 @@ let TargetInputOrValue = ({
 						}}
 						debounce={600}
 						name={target.dottedName}
-						value={situationValue || value}
+						value={situationValue ? Math.round(situationValue) : value}
 						className={
 							isActiveInput || isNil(value) ? 'targetInput' : 'editableTarget'
 						}
