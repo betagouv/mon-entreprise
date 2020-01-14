@@ -43,17 +43,30 @@ export default function SimulateurWarning({
 				>
 					<ul>
 						{simulateur == 'auto-entrepreneur' && (
-							<li>
-								<T k="simulateurs.warning.cfe">
-									Le simulateur n'intègre pas la cotisation foncière des
-									entreprise (CFE) qui est dûe dès la deuxième année d'exercice.
-									Son montant varie fortement en fonction du chiffre d'affaire
-									et de la domiciliation de l'entreprise.{' '}
-									<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
-										Plus d'infos.
-									</a>
-								</T>
-							</li>
+							<>
+								<li>
+									<T k="simulateurs.warning.auto-entrepreneur">
+										{' '}
+										Les auto-entrepreneurs ne peuvent pas déduire leurs charges
+										de leur chiffre d'affaires. Il faut donc{' '}
+										<strong>
+											retrancher au net tous les coûts liés à l'entreprise pour
+											obtenir le revenu réellement perçu.
+										</strong>
+									</T>
+								</li>
+								<li>
+									<T k="simulateurs.warning.cfe">
+										Le simulateur n'intègre pas la cotisation foncière des
+										entreprise (CFE) qui est dûe dès la deuxième année
+										d'exercice. Son montant varie fortement en fonction du
+										chiffre d'affaire et de la domiciliation de l'entreprise.{' '}
+										<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
+											Plus d'infos.
+										</a>
+									</T>
+								</li>
+							</>
 						)}
 						{simulateur !== 'artiste-auteur' && (
 							<li>
@@ -63,17 +76,7 @@ export default function SimulateurWarning({
 								</T>
 							</li>
 						)}
-						{simulateur == 'auto-entrepreneur' && (
-							<li>
-								<T k="simulateurs.warning.auto-entrepreneur">
-									{' '}
-									Les auto-entrepreneurs ne peuvent pas déduire leurs charges de
-									leur chiffre d'affaires. Il faut donc retrancher au net tous
-									les coûts liés à l'entreprise pour obtenir le revenu
-									réellement perçu.
-								</T>
-							</li>
-						)}
+
 						{simulateur === 'artiste-auteur' && (
 							<>
 								<li>
@@ -87,9 +90,8 @@ export default function SimulateurWarning({
 								</li>
 								<li>
 									<T k="simlateurs.warning.artiste-auteur">
-										Ce simulateur permet d'estimer le montant de vos
-										cotisations pour l'année 2020 à partir de votre revenu
-										projeté
+										Ce simulateur permet d'estimer le montant de vos cotisations
+										pour l'année 2020 à partir de votre revenu projeté
 									</T>
 								</li>
 							</>

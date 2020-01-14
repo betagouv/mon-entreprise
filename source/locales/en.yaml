@@ -635,7 +635,7 @@ simulateurs:
     titre: Before starting...
     plus: Read explanations
     urssaf: The figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
-    auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from their turnover. Therefore, all costs related to the business must be deducted on a net basis to obtain the actual income received.
+    auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from their turnover. Therefore, <3>all costs related to the business must be deducted on a net basis to obtain the actual income received</3>.
   précision:
     défaut: 'Refine the simulation by answering the following questions:'
     faible: Low accuracy

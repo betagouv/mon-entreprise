@@ -3273,9 +3273,8 @@ dirigeant . rémunération totale:
           inversion numérique:
             avec:
               - auto-entrepreneur . revenu net de cotisations
-              - revenu net après impôt
               - entreprise . chiffre d'affaires
-              - entreprise . chiffre d'affaires minimum
+              - auto-entrepreneur . revenu disponible
       - si: assimilé salarié
         alors: contrat salarié . rémunération . total
 
@@ -4626,6 +4625,35 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
     allègement:
       assiette: base des cotisations
       abattement: abattement
+dirigeant . auto-entrepreneur . dépenses liées à l'activité:
+  question: Quelle est le montant des dépenses reliées à l'activité ?
+  par défaut: 0
+  unité par défaut: €/an
+  description: |
+    Le montant des dépenses que l'auto-entrepreneur doit engager dans le cadre de
+    son activité.
+    
+    Cela peut inclure par exemple : 
+    - L'achat des matière premières
+    - L'achat des outils / materiel
+    - L'abonnement à des services payants
+    - La location d'un local 
+    - etc...  
+
+    L'auto-entrepreneur ne peut pas déduire ces charges du chiffre d'affaire. En
+    effet, une déduction forfaitaire est déjà appliqué pour calculer son taux de
+    cotisations et son revenu imposable. Cette déduction dépend de son type d'activité.
+
+dirigeant . auto-entrepreneur . revenu disponible:
+  résumé: Ce que l'activité rapporte au final
+  question: Quel est le revenu disponible souhaité ?
+  description: |
+    Ce qui reste à l'auto-entrepreneur une fois que l'on a retranché de son
+    revenu les dépenses liées à son activité.
+
+    Autrement dit, c'est le revenu disponible qu'il reste pour vivre, payer les
+    factures, les loisirs, et toutes les dépenses du ménage.
+  formule: revenu net après impôt - dépenses liées à l'activité
 
 revenus net de cotisations:
   résumé: Avant impôt
