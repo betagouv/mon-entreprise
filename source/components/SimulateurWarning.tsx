@@ -75,15 +75,24 @@ export default function SimulateurWarning({
 							</li>
 						)}
 						{simulateur === 'artiste-auteur' && (
-							<li>
-								<T k="simulateurs.warning.artiste-auteur">
-									Cette estimation est proposée à titre indicatif. Elle est
-									faite à partir des éléments réglementaires applicables et des
-									éléments que vous avez saisis, mais elle ne tient pas compte
-									de l'ensemble de votre situation. Le montant réel de vos
-									cotisations peut donc être différent.
-								</T>
-							</li>
+							<>
+								<li>
+									<T k="simulateurs.warning.artiste-auteur">
+										Cette estimation est proposée à titre indicatif. Elle est
+										faite à partir des éléments réglementaires applicables et
+										des éléments que vous avez saisis, mais elle ne tient pas
+										compte de l'ensemble de votre situation. Le montant réel de
+										vos cotisations peut donc être différent.
+									</T>
+								</li>
+								<li>
+									<T k="simlateurs.warning.artiste-auteur">
+										Ce simulateur permet d'estimer le montant de vos
+										cotisations pour l'année 2020 à partir de votre revenu
+										projeté
+									</T>
+								</li>
+							</>
 						)}
 					</ul>
 					<div className="ui__ answer-group">
