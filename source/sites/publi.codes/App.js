@@ -55,11 +55,4 @@ const App = () => {
 	)
 }
 
-let ExportedApp = Router
-
-if (process.env.NODE_ENV !== 'production') {
-	const { hot } = require('react-hot-loader')
-	ExportedApp = hot(module)(Router)
-}
-
-export default ExportedApp
+export default Router

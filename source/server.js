@@ -31,8 +31,7 @@ app.use(
 // configuration file as a base.
 app.use(
 	webpackDevMiddleware(compiler, {
-		publicPath: config.output.publicPath,
-		hot: true
+		publicPath: config.output.publicPath
 	})
 )
 

@@ -139,11 +139,4 @@ const App = () => {
 	)
 }
 
-let ExportedApp = InFranceRoute
-
-if (process.env.NODE_ENV !== 'production') {
-	const { hot } = require('react-hot-loader')
-	ExportedApp = hot(module)(InFranceRoute)
-}
-
-export default ExportedApp
+export default InFranceRoute
