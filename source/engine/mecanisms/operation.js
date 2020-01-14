@@ -80,7 +80,9 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 			unit={unit}
 			child={
 				<span className="nodeContent">
-					{(explanation[0].nodeValue !== 0 || symbol !== '−') && (
+					{(explanation[0].nodeValue !== 0 ||
+						symbol !== '−' ||
+						!v.explanation[0].constant) && (
 						<>
 							<span className="fa fa" />
 							{makeJsx(explanation[0])}

@@ -84,21 +84,17 @@ export let noUserInputSelector = (state: RootState) =>
 
 export let firstStepCompletedSelector = createSelector(
 	[situationSelector, targetNamesSelector, parsedRulesSelector, configSelector],
-	(situation, targetNames, parsedRules, config) => {
+	(situation, targetNames, parsedRules) => {
 		if (!situation) {
 			return true
 		}
-		const situations = Object.keys(situation)
-		const allBlockingAreAnswered =
-			config.bloquant &&
-			config.bloquant.every(rule => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
 			targetNames.some(targetName => {
 				const rule = findRuleByDottedName(parsedRules, targetName)
 				return rule && rule.formule && targetName in situation
 			})
-		return allBlockingAreAnswered || targetIsAnswered
+		return targetIsAnswered
 	}
 )
 

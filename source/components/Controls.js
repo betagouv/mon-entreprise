@@ -9,6 +9,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
 import './Controls.css'
 import { Markdown } from './utils/markdown'
+import { ScrollToElement } from './utils/Scroll'
 
 function Controls({
 	controls,
@@ -75,6 +76,7 @@ function Controls({
 									</div>
 								</div>
 							</li>
+							<ScrollToElement />
 						</animate.fromTop>
 					)
 				)}
