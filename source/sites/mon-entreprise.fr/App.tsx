@@ -1,37 +1,44 @@
-import Route404 from 'Components/Route404';
-import { SitePathsContext } from 'Components/utils/withSitePaths';
-import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules';
-import 'iframe-resizer';
-import createRavenMiddleware from 'raven-for-redux';
-import Raven from 'raven-js';
-import React, { useContext, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import { useTranslation } from 'react-i18next';
-import { Route, Switch } from 'react-router-dom';
-import 'Ui/index.css';
-import Provider from '../../Provider';
-import { persistEverything, retrievePersistedState } from '../../storage/persistEverything';
-import { persistSimulation, retrievePersistedSimulation } from '../../storage/persistSimulation';
-import Tracker, { devTracker } from '../../Tracker';
-import { getSessionStorage, inIframe } from '../../utils';
-import './App.css';
-import Footer from './layout/Footer/Footer';
-import Header from './layout/Header';
-import trackSimulatorActions from './middlewares/trackSimulatorActions';
-import Créer from './pages/Créer';
-import Couleur from './pages/Dev/Couleur';
-import IntegrationTest from './pages/Dev/IntegrationTest';
-import Personas from './pages/Dev/Personas';
-import Sitemap from './pages/Dev/Sitemap';
-import Documentation from './pages/Documentation';
-import Gérer from './pages/Gérer';
-import Iframes from './pages/Iframes';
-import Integration from './pages/integration/index';
-import Landing from './pages/Landing/Landing';
-import Simulateurs from './pages/Simulateurs';
-import ÉconomieCollaborative from './pages/ÉconomieCollaborative';
-import redirects from './redirects';
-import { constructLocalizedSitePath } from './sitePaths';
+import Route404 from 'Components/Route404'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
+import 'iframe-resizer'
+import createRavenMiddleware from 'raven-for-redux'
+import Raven from 'raven-js'
+import React, { useContext, useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { useTranslation } from 'react-i18next'
+import { Route, Switch } from 'react-router-dom'
+import 'Ui/index.css'
+import Provider from '../../Provider'
+import {
+	persistEverything,
+	retrievePersistedState
+} from '../../storage/persistEverything'
+import {
+	persistSimulation,
+	retrievePersistedSimulation
+} from '../../storage/persistSimulation'
+import Tracker, { devTracker } from '../../Tracker'
+import { getSessionStorage, inIframe } from '../../utils'
+import './App.css'
+import Footer from './layout/Footer/Footer'
+import Header from './layout/Header'
+import trackSimulatorActions from './middlewares/trackSimulatorActions'
+import Créer from './pages/Créer'
+import Couleur from './pages/Dev/Couleur'
+import IntegrationTest from './pages/Dev/IntegrationTest'
+import Personas from './pages/Dev/Personas'
+import Sitemap from './pages/Dev/Sitemap'
+import Documentation from './pages/Documentation'
+import Gérer from './pages/Gérer'
+import Iframes from './pages/Iframes'
+import Integration from './pages/integration/index'
+import Landing from './pages/Landing/Landing'
+import Nouveautés from './pages/Nouveautés/Nouveautés'
+import Simulateurs from './pages/Simulateurs'
+import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
+import redirects from './redirects'
+import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -70,7 +77,8 @@ function InFranceRoute({ basename, language }) {
 				...retrievePersistedState(),
 				previousSimulation: retrievePersistedSimulation(),
 				rules
-			}}>
+			}}
+		>
 			<RouterSwitch />
 		</Provider>
 	)
@@ -113,6 +121,7 @@ const App = () => {
 							component={Documentation}
 						/>
 						<Route path={sitePaths.integration.index} component={Integration} />
+						<Route path={sitePaths.nouveautés} component={Nouveautés} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

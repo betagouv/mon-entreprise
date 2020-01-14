@@ -56,6 +56,10 @@ module.exports.default = {
 				to: 'images'
 			},
 			{
+				from: './source/data',
+				to: 'data'
+			},
+			{
 				from: './source/sites/mon-entreprise.fr/favicon',
 				to: 'favicon'
 			}

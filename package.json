@@ -21,6 +21,7 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.4.0",
 		"@babel/runtime": "^7.3.4",
+		"@rehooks/local-storage": "^2.1.1",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
@@ -59,6 +60,7 @@
 		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
 		"screenfull": "^3.3.2",
+		"swr": "^0.1.16",
 		"whatwg-fetch": "^3.0.0"
 	},
 	"scripts": {
@@ -135,6 +137,7 @@
 		"csv-loader": "^2.1.1",
 		"daggy": "^1.3.0",
 		"dedent-js": "^1.0.1",
+		"dotenv": "=8.1.0",
 		"enzyme": "^3.3.0",
 		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^6.5.1",
@@ -148,6 +151,7 @@
 		"http-server": "^0.11.1",
 		"intl": "^1.2.5",
 		"intl-locales-supported": "^1.0.0",
+		"isomorphic-fetch": "^2.2.1",
 		"isomorphic-style-loader": "^5.1.0",
 		"jest": "^24.9.0",
 		"jest-transform-nearley": "^1.0.0",
