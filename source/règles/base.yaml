@@ -3426,7 +3426,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans parta
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: 
-  question: À quel pourcentage du revenu le conjoint cotise-t'il ?
+  question: À quelle proportion du revenu le conjoint cotise-t'il ?
   par défaut: tiers
   formule:
     une possibilité:
