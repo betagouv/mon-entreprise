@@ -47,7 +47,7 @@ export default function DNRTI() {
 				<small>Travailleurs indépendants</small>
 			</h1>
 			<p>
-				Cette outil vous permet de calculer les données à saisir dans votre
+				Cet outil vous permet de calculer les données à saisir dans votre
 				déclaration de revenus professionnels.
 			</p>
 			<FormWrapper>
