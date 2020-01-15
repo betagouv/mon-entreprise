@@ -30,7 +30,7 @@ export const Markdown = ({
 	<ReactMarkdown
 		source={source}
 		className={`markdown ${className}`}
-		renderers={{ ...renderers, link: LinkRenderer, text: TextRenderer }}
+		renderers={{ link: LinkRenderer, text: TextRenderer, ...renderers }}
 		{...otherProps}
 	/>
 )

@@ -84,13 +84,15 @@ const Footer = () => {
 						<LegalNotice />
 						{'  •  '}
 						<Privacy />
-						{'  •  '}
-						<a href="https://github.com/betagouv/mon-entreprise/releases">
-							Nouveautés
-						</a>
+						{i18n.language === 'fr' && (
+							<>
+								{'  •  '}
+								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
+							</>
+						)}
 						{'  •  '}
 						<a href="https://mon-entreprise.fr/stats">Stats</a>
-						{'  •  '}{' '}
+						{'  •  '}
 						<Link to={sitePaths.integration.index}>
 							Intégrer nos simulateurs
 						</Link>

@@ -1,5 +1,7 @@
 .tags*
 .tmp
+.env
+source/data
 node_modules/
 dist/
 .DS_Store

@@ -4,5 +4,6 @@ declare module NodeJS {
 		FR_SITE: string
 		NODE_ENV: 'development' | 'production'
 		MASTER: boolean
+		GITHUB_API_SECRET: string
 	}
 }
