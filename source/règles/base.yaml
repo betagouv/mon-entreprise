@@ -5687,19 +5687,19 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
           unité: heures/mois
           tranches:
             - en-dessous de: 45
-              montant: 5 * SMIC horaire
+              montant: 5
             - de: 45
               à: 60
-              montant: 15 * SMIC horaire
+              montant: 15
             - de: 60
               à: 80
-              montant: 25 * SMIC horaire
+              montant: 25
             - de: 80
               à: 100
-              montant: 35 * SMIC horaire
+              montant: 35
             - de: 100
               à: 115
-              montant: 50 * SMIC horaire
+              montant: 50
 
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
@@ -6008,6 +6008,8 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
     - assiette CSG et CRDS . assiette abattue
     - règle: réduction générale
       par: non
+    - règle: plafond sécurité sociale 
+      par: plafond sécurité sociale temps plein
   formule:
     encadrement:
       valeur: assiette forfaitaire
@@ -6015,6 +6017,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane 
 
 contrat salarié . cotisations . assiette forfaitaire . minimum:
   description: >

@@ -231,7 +231,6 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 			nodeValue = 0
 		}
 	}
-
 	return {
 		nodeValue,
 		missingVariables: {},
