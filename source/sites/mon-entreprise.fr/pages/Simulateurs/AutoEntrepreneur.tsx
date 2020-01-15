@@ -56,9 +56,6 @@ function ExplanationSection() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
-	const dépenses = getRule(
-		"dirigeant . auto-entrepreneur . dépenses liées à l'activité"
-	)
 	const impôt = getRule('impôt')
 	return (
 		<section>
@@ -66,19 +63,14 @@ function ExplanationSection() {
 			<StackedBarChart
 				data={[
 					{
-						...getRule('dirigeant . auto-entrepreneur . revenu disponible'),
+						...getRule('dirigeant . auto-entrepreneur . net après impôt'),
+						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: palettes[0][0]
 					},
-					...(dépenses.nodeValue
-						? [
-								{
-									...dépenses,
-									title: t('Dépenses'),
-									color: palettes[0][1]
-								}
-						  ]
+
+					...(impôt.nodeValue
+						? [{ ...impôt, title: t('impôt'), color: palettes[1][0] }]
 						: []),
-					...(impôt.nodeValue ? [{ ...impôt, color: palettes[1][0] }] : []),
 					{
 						...getRule(
 							'dirigeant . auto-entrepreneur . cotisations et contributions'

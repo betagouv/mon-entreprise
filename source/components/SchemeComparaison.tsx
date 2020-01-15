@@ -1,8 +1,5 @@
 import { setSimulationConfig, setSituationBranch } from 'Actions/actions'
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur
-} from 'Actions/companyStatusActions'
+import { defineDirectorStatus, isAutoentrepreneur } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import { T } from 'Components'
 import Conversation from 'Components/conversation/Conversation'
@@ -18,10 +15,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	branchAnalyseSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector, branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
@@ -316,7 +310,8 @@ export default function SchemeComparaison({
 					)}
 				</div>
 				{conversationStarted &&
-					!!getRule('assimilé', 'revenu net après impôt')?.nodeValue && (
+					!!getRule('assimilé', 'revenu net après impôt')
+						?.nodeValue && (
 						<>
 							<T k="comparaisonRégimes.revenuNetApresImpot">
 								<h3 className="legend">Revenu net après impôt</h3>
@@ -377,7 +372,7 @@ export default function SchemeComparaison({
 								) : (
 									<RuleValueLink
 										branch="auto-entrepreneur"
-										rule="dirigeant . auto-entrepreneur . revenu net de cotisations"
+										rule="dirigeant . auto-entrepreneur . net de cotisations"
 									/>
 								)}
 							</div>

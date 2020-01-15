@@ -3048,7 +3048,7 @@ dirigeant . auto-entrepreneur . plafond:
     calcul des cotisations)
   titre.en: upper limit
   titre.fr: plafond
-dirigeant . auto-entrepreneur . revenu net de cotisations:
+dirigeant . auto-entrepreneur . net de cotisations:
   résumé.en: Before taxes
   résumé.fr: Avant impôt
   question.en: What pre-tax income do you want to receive?

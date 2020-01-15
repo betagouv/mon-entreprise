@@ -1,6 +1,5 @@
 const fr = Cypress.env('language') === 'fr'
-const inputSelector =
-	'input.currencyInput__input:not([name$="charges"]):not([name*="dépenses"])'
+const inputSelector = 'input.currencyInput__input:not([name$="charges"])'
 describe('Simulateurs', function() {
 	if (!fr) {
 		return
@@ -17,9 +16,6 @@ describe('Simulateurs', function() {
 					cy.contains('€/an').click()
 					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
 						cy.get('input.currencyInput__input[name$="charges"]').type(1000)
-					}
-					if (simulateur === 'auto-entrepreneur') {
-						cy.get('input.currencyInput__input[name*="dépenses"]').type(1000)
 					}
 					cy.get(inputSelector).each((testedInput, i) => {
 						cy.wrap(testedInput).type('{selectall}60000')

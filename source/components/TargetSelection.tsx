@@ -232,13 +232,11 @@ let TargetInputOrValue = ({
 	const inversionFail = useSelector(analysisWithDefaultsSelector)?.cache._meta
 		.inversionFail
 	const value =
-		targetWithValue.nodeValue != null && !inversionFail
+		targetWithValue?.nodeValue != null && !inversionFail
 			? Math.round(targetWithValue.nodeValue)
 			: undefined
 	const blurValue = inversionFail && !isActiveInput
-	if (Number.isNaN(value)) {
-		return null
-	}
+
 	return (
 		<span
 			className="targetInputOrValue"
