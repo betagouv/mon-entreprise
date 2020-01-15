@@ -233,10 +233,10 @@ let TargetInputOrValue = ({
 		.inversionFail
 	const value =
 		targetWithValue?.nodeValue != null && !inversionFail
-			? Math.round(targetWithValue?.nodeValue)
+			? Math.round(targetWithValue.nodeValue)
 			: undefined
-
 	const blurValue = inversionFail && !isActiveInput
+
 	return (
 		<span
 			className="targetInputOrValue"

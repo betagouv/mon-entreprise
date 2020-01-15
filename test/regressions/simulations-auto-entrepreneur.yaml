@@ -1,22 +1,22 @@
 échelle de revenus:
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 500
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 1000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 2000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 5000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 10000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 20000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 50000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 70000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 100000
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 1000000
+  - dirigeant . auto-entrepreneur . net de cotisations: 500
+  - dirigeant . auto-entrepreneur . net de cotisations: 1000
+  - dirigeant . auto-entrepreneur . net de cotisations: 2000
+  - dirigeant . auto-entrepreneur . net de cotisations: 5000
+  - dirigeant . auto-entrepreneur . net de cotisations: 10000
+  - dirigeant . auto-entrepreneur . net de cotisations: 20000
+  - dirigeant . auto-entrepreneur . net de cotisations: 50000
+  - dirigeant . auto-entrepreneur . net de cotisations: 70000
+  - dirigeant . auto-entrepreneur . net de cotisations: 100000
+  - dirigeant . auto-entrepreneur . net de cotisations: 1000000
 
 aides:
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 5000
+  - dirigeant . auto-entrepreneur . net de cotisations: 5000
     entreprise . ACRE: true
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 50000
+  - dirigeant . auto-entrepreneur . net de cotisations: 50000
     entreprise . ACRE: true
 
 impôt sur le revenu:
-  - dirigeant . auto-entrepreneur . revenu net de cotisations: 25000
+  - dirigeant . auto-entrepreneur . net de cotisations: 25000
     entreprise . catégorie d'activité: 'libérale'
     dirigeant . auto-entrepreneur . impôt . versement libératoire: true

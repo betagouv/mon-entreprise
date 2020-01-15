@@ -62,7 +62,7 @@ describe('library', function() {
 			}
 		)
 		let [revenuDisponible, dividendes] = Lib.evaluate(
-			['revenu net après impôt', 'dividendes . net'],
+			['net après impôt', 'dividendes . net'],
 			{
 				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
 				'chiffre affaires': CA
@@ -70,7 +70,7 @@ describe('library', function() {
 			{ extra: sasuRules }
 		)
 
-		expect(revenuDisponible / 12).to.be.closeTo(2324, 1)
+		expect(revenuDisponible).to.be.closeTo(2324, 1)
 		expect(dividendes).to.be.closeTo(2507, 1)
 	}).timeout(5000)
 

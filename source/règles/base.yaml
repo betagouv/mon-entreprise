@@ -3272,9 +3272,9 @@ dirigeant . rémunération totale:
         alors:
           inversion numérique:
             avec:
-              - auto-entrepreneur . revenu net de cotisations
+              - auto-entrepreneur . net de cotisations
               - entreprise . chiffre d'affaires
-              - auto-entrepreneur . revenu disponible
+              - auto-entrepreneur . net après impôt
       - si: assimilé salarié
         alors: contrat salarié . rémunération . total
 
@@ -3351,7 +3351,7 @@ dirigeant . indépendant . revenu net de cotisations:
       - revenu professionnel
       - situation personnelle . IJSS . défiscalisées
       - (- cotisations et contributions . CSG et CRDS .non déductible)
-  résumé: Avant impôt
+  résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   unité par défaut: €/an
@@ -4361,7 +4361,8 @@ dirigeant . auto-entrepreneur . plafond:
         alors: 176200 €/an
       - sinon: 72500 €/an
 
-dirigeant . auto-entrepreneur . revenu net de cotisations:
+dirigeant . auto-entrepreneur . net de cotisations:
+  titre: Revenu net de cotisations
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -4625,35 +4626,25 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
     allègement:
       assiette: base des cotisations
       abattement: abattement
-dirigeant . auto-entrepreneur . dépenses liées à l'activité:
-  question: Quelle est le montant des dépenses reliées à l'activité ?
-  par défaut: 0
+
+dirigeant . auto-entrepreneur . net après impôt:
+  titre: revenu net après impôt
+  résumé: Avant déduction des dépenses liées à l'activité
   unité par défaut: €/an
+  question: Quel est le revenu net après impôt souhaité ?
   description: |
-    Le montant des dépenses que l'auto-entrepreneur doit engager dans le cadre de
-    son activité.
-    
-    Cela peut inclure par exemple : 
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le revenu et des cotisations
+    sociales. 
+
+    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas
+    oublier de retrancher à ce montant les dépenses engagées dans le cadre de
+    l'activité. Cela peut inclure par exemple : 
     - L'achat des matière premières
     - L'achat des outils / materiel
     - L'abonnement à des services payants
     - La location d'un local 
     - etc...  
-
-    L'auto-entrepreneur ne peut pas déduire ces charges du chiffre d'affaire. En
-    effet, une déduction forfaitaire est déjà appliquée pour calculer son taux de
-    cotisations et son revenu imposable. Cette déduction dépend de son type d'activité.
-
-dirigeant . auto-entrepreneur . revenu disponible:
-  résumé: Ce que l'activité rapporte au final
-  question: Quel est le revenu disponible souhaité ?
-  description: |
-    Ce qui reste à l'auto-entrepreneur une fois que l'on a retranché de son
-    revenu les dépenses liées à son activité.
-
-    Autrement dit, c'est le revenu disponible qu'il reste pour vivre, payer les
-    factures, les loisirs, et toutes les dépenses du ménage.
-  formule: revenu net après impôt - dépenses liées à l'activité
+  formule: revenu net après impôt
 
 revenus net de cotisations:
   résumé: Avant impôt
@@ -4664,11 +4655,11 @@ revenus net de cotisations:
     somme:
       - contrat salarié . rémunération . net
       - dirigeant . indépendant . revenu net de cotisations
-      - dirigeant . auto-entrepreneur . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . net de cotisations
 
 revenu net après impôt:
   unité par défaut: €/an
-  résumé: Versé sur le compte bancaire
+  résumé: Disponible sur votre compte en banque
   question: Quel revenu voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de charges, cotisations et d'impôts.
@@ -5687,19 +5678,19 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
           unité: heures/mois
           tranches:
             - en-dessous de: 45
-              montant: 5 * SMIC horaire
+              montant: 5
             - de: 45
               à: 60
-              montant: 15 * SMIC horaire
+              montant: 15
             - de: 60
               à: 80
-              montant: 25 * SMIC horaire
+              montant: 25
             - de: 80
               à: 100
-              montant: 35 * SMIC horaire
+              montant: 35
             - de: 100
               à: 115
-              montant: 50 * SMIC horaire
+              montant: 50
 
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
@@ -5802,6 +5793,7 @@ contrat salarié . convention collective . sport . cotisations . franchise:
       - primes . manifestation 3 . franchise
       - primes . manifestation 4 . franchise
       - primes . manifestation 5 . franchise
+
 
 contrat salarié . intermittents du spectacle:
   applicable si:
@@ -6008,6 +6000,16 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
     - assiette CSG et CRDS . assiette abattue
     - règle: réduction générale
       par: non
+    - règle: plafond sécurité sociale 
+      par: plafond sécurité sociale temps plein
+      sauf dans:
+        - chômage
+        - retraite complémentaire
+        - contribution d'équilibre général
+        - contribution d'équilibre technique
+        - convention collective
+        # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
+        - assiette . salariale
   formule:
     encadrement:
       valeur: assiette forfaitaire
@@ -6015,6 +6017,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane 
 
 contrat salarié . cotisations . assiette forfaitaire . minimum:
   description: >

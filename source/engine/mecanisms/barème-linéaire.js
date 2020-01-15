@@ -2,6 +2,7 @@ import { defaultNode, evaluateObject, parseObject } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
+import { evaluateNode } from 'Engine/evaluation'
 import { val } from 'Engine/traverse-common-functions'
 import { parseUnit } from 'Engine/units'
 import { desugarScale } from './barème'
@@ -31,7 +32,7 @@ export default (recurse, k, v) => {
 			multiplicateur: defaultNode(1)
 		}
 
-	let effect = ({ assiette, multiplicateur, tranches }) => {
+	let effect = ({ assiette, multiplicateur, tranches }, cache, situationGate, parsedRules) => {
 		if (val(assiette) === null) return null
 
 		let roundedAssiette = Math.round(val(assiette))
@@ -49,11 +50,14 @@ export default (recurse, k, v) => {
 				? matchedTranche.taux.nodeValue
 				: (matchedTranche.taux.nodeValue / 100) * val(assiette)
 		} else {
+			matchedTranche.montant = evaluateNode(cache, situationGate, parsedRules, matchedTranche.montant)
 			nodeValue = matchedTranche.montant.nodeValue
 		}
+
 		return {
 			nodeValue,
 			additionalExplanation: {
+				matchedTranche,
 				unit: returnRate
 					? parseUnit('%')
 					: (v['unité'] && parseUnit(v['unité'])) || explanation.assiette.unit
