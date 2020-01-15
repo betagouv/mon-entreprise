@@ -5,7 +5,6 @@ import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { lastRelease } from '../../../data/last-release.json'
-import { inIframe } from '../../../utils'
 
 const localStorageKey = 'last-viewed-release'
 
@@ -16,14 +15,14 @@ export default function NewsBanner() {
 	const sitePaths = useContext(SitePathsContext)
 	const { i18n } = useTranslation()
 
-	const showBanner =
-		lastViewedRelease !== lastRelease && i18n.language === 'fr' && !inIframe()
-
 	// We only want to show the banner to returning visitors, so we initiate the
 	// local storage value with the last release.
-	if (showBanner && lastViewedRelease === undefined) {
+	if (lastViewedRelease === undefined) {
 		hideNewsBanner()
+		return null
 	}
+
+	const showBanner = lastViewedRelease !== lastRelease && i18n.language === 'fr'
 
 	return showBanner ? (
 		<div className="ui__ banner news">
