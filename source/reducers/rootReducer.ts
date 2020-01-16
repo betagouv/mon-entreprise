@@ -101,6 +101,7 @@ function updateSituation(
 
 function updateDefaultUnit(situation, { toUnit, analysis }) {
 	const unit = parseUnit(toUnit)
+	const goals = goalsFromAnalysis(analysis)
 	const convertedSituation = Object.keys(situation)
 		.map(
 			dottedName =>
@@ -109,6 +110,7 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 		)
 		.filter(
 			rule =>
+				goals?.includes(rule.dottedName) &&
 				(rule.unit || rule.defaultUnit) &&
 				!rule.unité &&
 				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
