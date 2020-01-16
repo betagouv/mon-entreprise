@@ -4,15 +4,25 @@ import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { Link } from 'react-router-dom'
 
 function LinkRenderer({ href, children }) {
-	if (href.startsWith('http')) {
-		return (
-			<a target="_blank" href={href}>
-				{children}
-			</a>
-		)
-	} else {
+	if (!href.startsWith('http')) {
 		return <Link to={href}>{children}</Link>
 	}
+
+	// Convert absolute links that reload the full app into in-app links handled
+	// by react-router.
+	const domain = 'mon-entreprise.fr'
+	if (
+		href.startsWith(`https://${domain}`) &&
+		(location.hostname === 'localhost' || location.hostname === domain)
+	) {
+		return <Link to={href.replace(`https://${domain}`, '')}>{children}</Link>
+	}
+
+	return (
+		<a target="_blank" href={href}>
+			{children}
+		</a>
+	)
 }
 const TextRenderer = ({ children }) => <>{emoji(children)}</>
 

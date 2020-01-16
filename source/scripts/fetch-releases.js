@@ -5,6 +5,8 @@
 //
 // GITHUB_API_SECRET=f4336c82cb1e494752d06e610614eab12b65f1d1
 //
+// If you want to fetch unpublished "draft" release, you should check the
+// "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
 const fs = require('fs')
