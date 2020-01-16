@@ -6,9 +6,9 @@
 
 import { expect } from 'chai'
 import { serialiseUnit } from 'Engine/units'
+import { enrichRules } from '../source/engine'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
-import { enrichRule } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
+import { analyse } from '../source/engine/traverse'
 import testSuites from './load-mecanism-tests'
 
 describe('Mécanismes', () =>
@@ -28,14 +28,7 @@ describe('Mécanismes', () =>
 								'variables manquantes': expectedMissing
 							}) =>
 								it(testTexte == null ? '' : testTexte + '', () => {
-									let rules = parseAll(
-											Object.entries(suite)
-												.map(([dottedName, rule]) => ({
-													dottedName,
-													...rule
-												}))
-												.map(enrichRule)
-										),
+									let rules = enrichRules(suite),
 										state = situation || {},
 										stateSelector = name => state[name],
 										analysis = analyse(

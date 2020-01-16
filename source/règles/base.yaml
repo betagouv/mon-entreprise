@@ -1,11 +1,9 @@
-
 période:
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
   note: On retient 21 comme nombre de jours ouvrés moyen par mois
 
 période . semaines par mois:
-  unité: semaines/mois
   formule: 52 semaines/an / 12 mois/an
 période . début d'année:
   formule: 01/01/2020
@@ -53,8 +51,6 @@ contrat salarié . indemnité kilométrique vélo:
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
 
     Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
-  unité: €/an
-
   applicable si: active
   formule:
     encadrement:
@@ -76,7 +72,6 @@ contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
   formule: 0.25 €/km
 
 contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  unité: km/an
   formule: distance journalière * jours travaillés
 
 contrat salarié . indemnité kilométrique vélo . distance journalière:
@@ -172,8 +167,6 @@ contrat salarié . CDD . compensation pour congés non pris:
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses congés avant le terme de son contrat, il bénéficie alors d'une indemnité compensatrice de congés payés versée par l'employeur.
-  unité: €/mois
-
   non applicable si:
     une de ces conditions:
       - événement . poursuite du CDD en CDI
@@ -235,7 +228,6 @@ contrat salarié . CDD . compensation pour congés non pris:
     assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
 
 contrat salarié . CDD . compensation pour congés non pris . proportion congés non pris:
-  unité: '%'
   formule: congés non pris / congés dus en jours ouvrés
 
 contrat salarié . CDD . congés dus en jours ouvrés:
@@ -245,13 +237,9 @@ contrat salarié . congés dus par mois:
   formule: 25 jour ouvré / 12 mois
 
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
-  unité: €/mois
-
   formule: rémunération . brut de base + prime de fin de contrat
 
 contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
-  unité: €/jour ouvré
-
   formule: assiette mensuelle / période . jours ouvrés moyen par mois
 
 contrat salarié . CDD . prime de fin de contrat:
@@ -548,7 +536,7 @@ contrat salarié . CDD . durée contrat:
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
-  unité: mois
+  unité par défaut: mois
   suggestions:
     18 mois: 18
     1 an: 12
@@ -562,7 +550,7 @@ contrat salarié . CDD . congés non pris:
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  unité: jour ouvré
+  unité par défaut: jour ouvré
   suggestions:
     3: 3
     10: 10
@@ -804,8 +792,6 @@ contrat salarié . rémunération . heures supplémentaires . taux horaire:
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature et les primes
     constituant la contrepartie d'un travail fourni.
-  unité: €/heure
-
   formule: (assiette de vérification du SMIC + primes . fin d'année) / temps de travail . temps contractuel
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
@@ -815,8 +801,6 @@ contrat salarié . rémunération . heures supplémentaires . taux horaire:
 contrat salarié . rémunération . assiette de vérification du SMIC:
   description: >
     C'est le salaire pris en compte pour vérifier que le SMIC est atteint.
-  unité: €/mois
-
   formule:
     somme:
       - brut de base
@@ -848,8 +832,6 @@ contrat salarié . rémunération . primes . base:
   formule: 0€/mois
 
 contrat salarié . rémunération . primes . activité:
-  unité: €/mois
-
   titre: primes d'activité
   description: >
     Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
@@ -862,15 +844,12 @@ contrat salarié . rémunération . primes . activité:
 
 contrat salarié . rémunération . primes . activité . base:
   titre: primes d'activité
-  unité: €/mois
-
+  unité par défaut: €/mois
   question: Quel est le montant des primes liées à l'activité du salarié ?
   par défaut: 0
 
 contrat salarié . rémunération . primes . activité . conventionnelles:
-  unité: €/mois
-
-  formule: 0
+  formule: 0 €/mois
 
 contrat salarié . rémunération . primes . fin d'année:
   titre: Prime de fin d'année ou de treizième mois
@@ -931,8 +910,6 @@ contrat salarié . avantages sociaux:
   description: >
     Ce sont les avantages sociaux payés par l'employeur. Ils sont spécifiques à l'entreprise, et fournis par des structures privées (mutuelle, assurance...).
     Ils sont soumis à l'impôt sur le revenu.
-  unité: €/mois
-
   formule:
     somme:
       - prévoyance obligatoire cadre
@@ -1007,7 +984,7 @@ contrat salarié . rémunération . avantages en nature . ntic . montant:
 contrat salarié . rémunération . avantages en nature . ntic . coût appareils:
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
-  unité: €
+  unité par défaut: €
 
   par défaut: 800
   # TODO : vérifier et documenter les chiffres
@@ -1019,7 +996,7 @@ contrat salarié . rémunération . avantages en nature . ntic . coût appareils
 
 contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
-  unité: €/mois
+  unité par défaut: €/mois
 
   par défaut: 20
   suggestions:
@@ -1037,17 +1014,13 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
-  unité: €/mois
-
   formule:
     multiplication:
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
-  unité: €/repas
-
-  formule: 4.85
+  formule: 4.85 €/repas
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
@@ -1055,7 +1028,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
   question: >
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21
-  unité: repas/mois
+  unité par défaut: repas/mois
   suggestions:
     1 par jour: 21
     2 par jour: 42
@@ -1089,22 +1062,16 @@ plafond sécurité sociale temps plein:
 plafond horaire sécurité sociale:
   acronyme: PHSS
   formule: plafond sécurité sociale temps plein / 132 heures/mois
-  unité: €/heure
 
 plafond journalier sécurité sociale:
   acronyme: PJSS
   formule: plafond sécurité sociale temps plein / 18.15 jours/mois
-  unité: €/jour
 
 contrat salarié . plafond sécurité sociale:
   acronyme: PSS
-  unité: €/mois
-
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC temps plein:
-  unité: €/mois
-
   formule:
     multiplication:
       assiette: temps de travail . base légale * période . semaines par mois
@@ -1192,8 +1159,6 @@ contrat salarié . rémunération:
 contrat salarié . rémunération . net de cotisations:
   titre: Salaire net de cotisations
   type: rémunération
-  unité: €/mois
-
   formule: brut - cotisations . salariales
 
 contrat salarié . rémunération . net imposable:
@@ -1564,7 +1529,7 @@ impôt . taux personnalisé:
       - une fiche de paie
       - un avis d'imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
-  unité: '%'
+  unité par défaut: '%'
 
 contrat salarié . prix du travail:
   titre: Coût total
@@ -1652,7 +1617,6 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
 
 contrat salarié . cotisations . salariales . réduction heures supplémentaires . taux des cotisations réduites:
-  unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
     encadrement:
@@ -1731,7 +1695,6 @@ entreprise:
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 entreprise . effectif:
-  unité: employé
   formule:
     variations:
       - si: entreprise . effectif . seuil = 'moins de 5'
@@ -1780,7 +1743,7 @@ entreprise . ratio alternants:
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
-  unité: '%'
+  unité par défaut: '%'
   suggestions:
     1%: 0.01
     5%: 0.05
@@ -1856,7 +1819,6 @@ entreprise . établissement bancaire:
       - établissement . localisation . département = 'Mayotte'
 
 contrat salarié . temps de travail:
-  unité: heures/mois
   formule:
     somme:
       - temps contractuel
@@ -1864,14 +1826,12 @@ contrat salarié . temps de travail:
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 contrat salarié . temps de travail . temps contractuel:
-  unité: heures/mois
   formule:
     multiplication:
       assiette: temps hebdomadaire
       facteur: période . semaines par mois
 
 contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
-  unité: heures/semaine
   formule:
     variations:
       - si: temps partiel
@@ -1891,7 +1851,7 @@ contrat salarié . temps de travail . temps partiel:
 
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   par défaut: 32
-  unité: heures/semaine
+  unité par défaut: heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
     - si: heures par semaine < 24
@@ -1907,14 +1867,13 @@ contrat salarié . temps de travail . quotité de travail:
     encadrement:
       valeur: temps de travail / (base légale * période . semaines par mois)
       plafond: 100%
-  unité: '%'
 
 contrat salarié . temps de travail . heures supplémentaires:
   description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
   titre: Nombre d'heures supplémentaires
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
-  unité: heure/mois
+  unité par défaut: heure/mois
   suggestions:
     aucune: 0
     39h / semaine: 17.33
@@ -1948,7 +1907,6 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
   note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
-  unité: heure/mois
   formule:
     barème:
       assiette: heures supplémentaires
@@ -1982,9 +1940,6 @@ contrat salarié . statut JEI . exonération de cotisations:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-
-  unité: €/mois
-
   formule:
     # TODO - le plafonnement à 4,5 SMIC, précalculé pour 09/2017; cette approximation n'est bien sûr pas satisfaisante,
     # il faut fournir un mécanisme "exonération" capable de recalculer une règle en introduisant un plafond
@@ -2040,7 +1995,7 @@ contrat salarié . réduction générale . multiplicateur:
   formule: paramètre T / 0.6
 
 contrat salarié . réduction générale . paramètre T:
-  unité: ''
+  unité par défaut: ''
   formule:
     variations:
       - si: entreprise . effectif < 20
@@ -2350,9 +2305,7 @@ contrat salarié . complémentaire santé . forfait . en alsace moselle:
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70% du prix moyen en France.
   références:
     étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
-  unité: €/mois
-
-  par défaut: 30
+  formule: 30 €/mois
   suggestions:
     basique: 30
     élevé: 70
@@ -2360,9 +2313,7 @@ contrat salarié . complémentaire santé . forfait . en alsace moselle:
 contrat salarié . complémentaire santé . forfait . en france:
   titre: forfait complémentaire santé en France
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
-  unité: €/mois
-
-  par défaut: 40
+  formule: 40 €/mois
   suggestions:
     basique: 40
     élevé: 100
@@ -2765,8 +2716,6 @@ contrat salarié . taxe sur les salaires . assiette:
 contrat salarié . taxe sur les salaires . barème:
   références:
     barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
-  unité: €/an
-
   formule:
     barème:
       assiette: assiette [€/an]
@@ -3038,8 +2987,6 @@ impôt . revenu imposable:
       abattement: abattement contrat court / 1 an
 
 impôt . revenu imposable . abattement contrat court:
-  unité: €
-
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
   applicable si:
     toutes ces conditions:
@@ -3124,8 +3071,6 @@ impôt . impôt sur le revenu à payer:
   note: Le calcul utilisé pour la décôte concerne uniquement les foyers célibataires, le calcul est différent pour les couples.
 
 impôt . revenu fiscal de référence:
-  unité: €/an
-
   description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
   formule:
     somme:
@@ -3136,8 +3081,6 @@ impôt . revenu fiscal de référence:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
 
 impôt . CEHR:
-  unité: €/an
-
   note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
   formule:
     barème:
@@ -3204,7 +3147,6 @@ entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
-  unité par défaut: €/an
   formule: dirigeant . rémunération totale + charges
 
 entreprise . chiffre d'affaires minimum:
@@ -3223,7 +3165,7 @@ entreprise . rémunération du dirigeant:
   description: |
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  unité: '%'
+  unité par défaut: '%'
   par défaut: 1
 
 entreprise . bénéfice:
@@ -3234,7 +3176,6 @@ entreprise . résultat net:
   formule: bénéfice - impôt sur les sociétés
 
 entreprise . impôt sur les sociétés:
-  unité: €/an
   formule:
     barème:
       assiette: bénéfice [€/an]
@@ -4190,14 +4131,14 @@ situation personnelle . IJSS . ALD . autres indemnités:
 situation personnelle . IJSS . ALD . autres indemnités . montant:
   question: Quel était le montant de vos autres indemnités ?
   par défaut: 0
-  unité: €/an
+  unité par défaut: €/an
 
 situation personnelle . IJSS . défiscalisées:
   applicable si: ALD
   titre: indemnités journalières défiscalisées
   question: Quel était le montant de vos indemnités ALD ?
   par défaut: 0
-  unité: €/an
+  unité par défaut: €/an
 
 situation personnelle . IJSS . fiscalisées:
   titre: indemnités journalières fiscalisées
@@ -4351,7 +4292,6 @@ dirigeant . auto-entrepreneur . plafond:
     Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html 
     Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
     autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
-  unité: €/an
   formule:
     variations:
       - si: 
@@ -4381,7 +4321,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
-  unité: €/mois
 
   note: |
     Nous n'avons pas intégré les exceptions suivantes :
@@ -4397,12 +4336,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre: taxe pour frais de chambre de commerce
-  unité: €/mois
-
   applicable si: entreprise . catégorie d'activité = 'commerciale ou industrielle'
   formule:
     multiplication:
-      assiette: base des cotisations
+      assiette: base des cotisations [€/mois]
       taux:
         variations:
           - si:
@@ -4413,13 +4350,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
           - sinon: 0.044%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
-  unité: €/mois
-
   titre: taxe pour frais de chambre des métiers
   applicable si: entreprise . catégorie d'activité = 'artisanale'
   formule:
     multiplication:
-      assiette: base des cotisations
+      assiette: base des cotisations [€/mois]
       taux:
         variations:
           - si: entreprise . catégorie d'activité . service ou vente = 'vente'
@@ -4736,7 +4671,6 @@ protection sociale . retraite . base . taux de la pension:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
 protection sociale . retraite . trimestres validés par an:
-  unité: trimestres validés/an
   formule:
     encadrement:
       valeur:
@@ -4747,12 +4681,10 @@ protection sociale . retraite . trimestres validés par an:
       plafond: 4
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
-  unité: trimestres validés/an
   applicable si: contrat salarié
   formule: barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . trimestres indépendant:
-  unité: trimestres validés/an
   applicable si: dirigeant = 'indépendant'
   formule:
     variations:
@@ -4764,7 +4696,6 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
             valeur: barème trimestres générique
 
 protection sociale . retraite . trimestres validés par an . barème trimestres générique:
-  unité: trimestres validés/an
   formule:
     barème linéaire:
       unité: trimestres validés/an
@@ -4790,7 +4721,6 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
 protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
   applicable si: dirigeant = 'auto-entrepreneur'
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
-  unité: trimestres validés/an
   formule:
     variations:
       - si: entreprise . catégorie d'activité = 'libérale'
@@ -4858,8 +4788,6 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
 protection sociale . revenu moyen:
   description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
   notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
-  unité: €/an
-
   formule:
     le maximum de:
       - dirigeant . indépendant . revenu professionnel
@@ -4867,7 +4795,6 @@ protection sociale . revenu moyen:
       - contrat salarié . rémunération . brut
 
 protection sociale . retraite . mois cotisés:
-  unité: mois
   formule: 172 trimestres * 3 mois/trimestre
   notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
 
@@ -4884,13 +4811,11 @@ protection sociale . retraite . complémentaire salarié . valeur du point:
 
 protection sociale . retraite . complémentaire salarié . points acquis:
   formule: points acquis par mois * mois cotisés
-  unité: points
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
 protection sociale . retraite . complémentaire salarié . points acquis par mois:
-  unité: points/mois
-  formule: contrat salarié . retraite complémentaire / prix d'achat du point
+  formule: contrat salarié . retraite complémentaire [€/mois] / prix d'achat du point
 
 protection sociale . retraite . complémentaire salarié . prix d'achat du point:
   formule: 16.7226 €/point
@@ -4911,13 +4836,12 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
   formule: points acquis par mois * mois cotisés
 
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
-  unité: points/mois
   formule:
     multiplication:
       assiette:
         somme:
-          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
-          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire [€/mois]
+          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire [€/mois]
       facteur: 1 / prix d'achat du point
 
 protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
@@ -4952,9 +4876,7 @@ protection sociale . santé . indemnités journalières:
     Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
     votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
     brut et versées tous les 14 jours en moyenne.
-  # TODO : période : jour
   unité: €/jour
-
   formule:
     somme:
       - indemnités journalières . auto-entrepreneur
@@ -4963,8 +4885,6 @@ protection sociale . santé . indemnités journalières:
 
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
   applicable si: dirigeant = 'auto-entrepreneur'
-  unité: €/jour
-
   formule:
     variations:
       - si: revenu moyen < 3919.20 €/an
@@ -4981,8 +4901,6 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
 
 protection sociale . santé . indemnités journalières . indépendant:
   applicable si: dirigeant = 'indépendant'
-  unité: €/jour
-
   formule:
     encadrement:
       valeur:
@@ -4995,9 +4913,6 @@ protection sociale . santé . indemnités journalières . indépendant:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
 protection sociale . santé . indemnités journalières . salarié:
-  unité: €/jour
-
-  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
     multiplication:
@@ -5331,7 +5246,7 @@ contrat salarié . lodeom . éligible barème innovation et croissance:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
 
 contrat salarié . lodeom . borne inférieure:
-  unité: ''
+  unité par défaut: ''
   formule:
     variations:
       - si: éligible barème compétitivité
@@ -5339,7 +5254,7 @@ contrat salarié . lodeom . borne inférieure:
       - sinon: 1.7
 
 contrat salarié . lodeom . borne supérieure:
-  unité: ''
+  unité par défaut: ''
   formule:
     variations:
       - si: éligible barème compétitivité
@@ -5354,7 +5269,7 @@ contrat salarié . lodeom . multiplicateur:
   formule: (borne inférieure * paramètre T) / (borne supérieure - borne inférieure)
 
 contrat salarié . lodeom . paramètre T:
-  unité: ''
+  unité par défaut: ''
   formule:
     variations:
       - si:
@@ -5444,8 +5359,6 @@ contrat salarié . convention collective . SVP . FCAP:
     - De couvrir les frais engagés par les organisations syndicales,
     - De couvrir les frais relatifs au dispositif des Conseillers Conventionnels des Salariés, au nombre de 28
     - De financer le rapport de branche du spectacle vivant privé.
-
-  unité: €/an
 
   # TODO :
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
@@ -5694,98 +5607,98 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
 
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
-  #TODO : gérer la période
-  unité: manifestations
+  unité par défaut: manifestations/mois
   par défaut: 0
 
 contrat salarié . convention collective . sport . primes:
   titre: primes de manifestation
   #TODO non applicable si: période = 'année'
   remplace: rémunération . primes . activité . conventionnelles
-  unité: €/mois
   formule:
-    somme:
-      - manifestation 1
-      - manifestation 2
-      - manifestation 3
-      - manifestation 4
-      - manifestation 5
-      - autres manifestations
+    multiplication:
+      assiette:
+        somme:
+          - manifestation 1
+          - manifestation 2
+          - manifestation 3
+          - manifestation 4
+          - manifestation 5
+          - autres manifestations
+      facteur: 1 manifestation/mois
 
 contrat salarié . convention collective . sport . primes . manifestation 1:
   question: Quelle prime pour la première manifestation ?
   applicable si: nombre de manifestations > 0
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1
   formule:
     encadrement:
-      valeur: manifestation 1
+      valeur: manifestation 1 * 1 manifestation/mois
       plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 2:
   question: Quelle prime pour la deuxième manifestation ?
   applicable si: nombre de manifestations > 1
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2
   formule:
     encadrement:
-      valeur: manifestation 2
+      valeur: manifestation 2 * 1 manifestation/mois
       plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 3:
   question: Quelle prime pour la troisième manifestation ?
   applicable si: nombre de manifestations > 2
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3
   formule:
     encadrement:
-      valeur: manifestation 3
+      valeur: manifestation 3 * 1 manifestation/mois
       plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 4:
   question: Quelle prime pour la quatrième manifestation ?
   applicable si: nombre de manifestations > 3
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4
   formule:
     encadrement:
-      valeur: manifestation 4
+      valeur: manifestation 4 * 1 manifestation/mois
       plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
   applicable si: nombre de manifestations > 4
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5
   formule:
     encadrement:
-      valeur: manifestation 5
+      valeur: manifestation 5 * 1 manifestation/mois
       plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . autres manifestations:
   question: Quelles primes pour les autres manifestations ?
   applicable si: nombre de manifestations > 5
   par défaut: 100
-  unité: €
+  unité par défaut: €/manifestation
 
 contrat salarié . convention collective . sport . cotisations . franchise:
   applicable si: entreprise . effectif < 10
-  unité: €/mois
   formule:
     somme:
       - primes . manifestation 1 . franchise
@@ -5942,13 +5855,11 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux . A
 
 contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
   question: Pour combien de jours continus l'artiste est-il engagé ?
-  unité: jours
+  unité par défaut: jours/mois
   par défaut: 5
 
 contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
   applicable si: nombre jours travaillés < 5
-  unité: €/mois
-
   remplace:
     règle: plafond sécurité sociale
     dans:
@@ -5957,7 +5868,7 @@ contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
   formule:
     multiplication:
       assiette: plafond horaire sécurité sociale
-      facteur: 12 * nombre jours travaillés
+      facteur: 12 heures/jour * nombre jours travaillés
 
 contrat salarié . intermittents du spectacle . artiste . acteur de complément:
   non applicable si: activité accessoire
