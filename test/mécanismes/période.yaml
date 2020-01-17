@@ -1,0 +1,76 @@
+contrat salarié . date d'embauche:
+  type: date
+  formule: 25/04/2018
+
+contrat salarié . salaire . brut de base:
+  formule:
+    calendrier:
+      - depuis: date d'embauche
+        montant: 2000€/mois
+      - depuis: 09/08/2019
+        montant: 2200€/mois
+
+salaire . primes:
+  formule:
+    calendrier:
+      - en: décembre 2019
+        montant: 2000€/mois
+
+salaire . brut:
+  formules:
+    - brut de base
+    - primes
+
+test . calcul brut et prime:
+  formule: salaire brut [décembre 2019]
+  exemples:
+    - valeur attendue: 4200 # 2000 + 2200
+
+test . proratisation du salaire avec entrée en cours de mois:
+  formule: salaire brut [avril 2019]
+  exemples:
+    - valeur attendue: 400 # (2000 * 6)/30
+
+test . proratisation du salaire avec augmentation en cours de mois:
+  formule: salaire brut [juillet 2019]
+  exemples:
+    - valeur attendue: 2148.39 # (2000 * 8 + 2200 * 23)/31
+
+PSS:
+  formule:
+    calendrier:
+      - en: 2019
+        montant: 3377 €/mois
+      - en: 2020
+        montant: 3428 €/mois
+
+contrat salarié . PSS proratisé:
+  période:
+    depuis: date d'embauche
+  formule: PSS
+
+test . proratisation du PSS pour le mois d'embauche:
+  période:
+    en: avril 2019
+  formule: PSS proratisé
+  exemples:
+    - valeur attendue: 2183
+
+cotisations . retraite employeur plafonnée:
+  formule:
+    multiplication:
+      taux: 8.55%
+      assiette: salaire brut
+      plafond: PSS proratisé
+      régularisation: progressive sur l'année civile
+
+test . régularisation:
+  description: >-
+    Bien que le salaire du mois de décembre soit supérieur au
+    plafond, le taux effectif reste 8.55% du fait de la
+    régularisation des mois précédents
+  période:
+    en: décembre 2019
+  formule: retraite employeur plafonnée
+  exemples:
+    - valeur attendue: 359.1 #4200 * 8.55%

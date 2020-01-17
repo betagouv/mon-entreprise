@@ -26,12 +26,16 @@ export type ValueProps = Partial<
 			children: number
 			negative: boolean
 			customCSS: string
+			defaultUnit?: string
+			printedUnit?: string
 		}
 >
 
 export default function Value({
 	nodeValue: value,
 	unit,
+	defaultUnit,
+	printedUnit,
 	nilValueSymbol,
 	maximumFractionDigits,
 	minimumFractionDigits,

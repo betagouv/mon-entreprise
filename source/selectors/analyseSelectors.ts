@@ -110,8 +110,8 @@ let validatedStepsSelector = createSelector(
 	[state => state.simulation?.foldedSteps, targetNamesSelector],
 	(foldedSteps, targetNames) => [...(foldedSteps || []), ...targetNames]
 )
-export const defaultUnitsSelector = (state: RootState) =>
-	state.simulation?.defaultUnits || []
+export const defaultUnitSelector = (state: RootState) =>
+	state.simulation?.defaultUnit
 let branchesSelector = (state: RootState) => configSelector(state).branches
 let configSituationSelector = (state: RootState) =>
 	configSelector(state).situation || {}

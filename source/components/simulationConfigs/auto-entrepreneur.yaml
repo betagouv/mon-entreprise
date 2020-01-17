@@ -16,6 +16,6 @@ questions:
   liste noire:
     - entreprise . charges
 
-unités par défaut: [€/an]
+unité par défaut: €/an
 situation:
   dirigeant: 'auto-entrepreneur'

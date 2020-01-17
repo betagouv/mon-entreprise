@@ -103,13 +103,13 @@ export default function PaySlip() {
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . patronales')}
-					unit="€"
+					printedUnit="€"
 					className="payslip__total"
 				/>
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . salariales')}
-					unit="€"
+					printedUnit="€"
 					className="payslip__total"
 				/>
 				{/* Salaire chargé */}

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
-	defaultUnitsSelector
+	defaultUnitSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
@@ -51,9 +51,9 @@ export default function SalaryExplanation() {
 							{emoji('📊')} <Trans>Voir la répartition des cotisations</Trans>
 						</button>
 					</div>
-					<PaySlipSection />
 					<div ref={distributionRef}>
 						<DistributionSection />
+						<PaySlipSection />
 					</div>
 				</>
 			)}
@@ -117,7 +117,7 @@ function RevenueRepatitionSection() {
 }
 
 function PaySlipSection() {
-	const unit = useSelector(defaultUnitsSelector)[0]
+	const unit = useSelector(defaultUnitSelector)
 	return (
 		<section>
 			<h2>
