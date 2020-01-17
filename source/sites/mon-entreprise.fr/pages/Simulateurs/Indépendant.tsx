@@ -54,7 +54,7 @@ function ExplanationSection() {
 
 	return (
 		<section>
-			<h2>Répartition du chiffre d'affaire</h2>
+			<h2>Répartition de la rémunération totale</h2>
 			<StackedBarChart
 				data={[
 					{
