@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const titre = t('simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
 		<>
@@ -92,21 +92,23 @@ export default function Simulateurs() {
 							</p>
 						</T>
 					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['artiste-auteur']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-						<T k="simulateurs.accueil.salarié">
-							<h3>Artiste-auteur</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Estimer les cotisations sociales d'un artiste ou auteur
-							</p>
-						</T>
-					</Link>
+					{i18n.language === 'fr' && (
+						<Link
+							className="ui__ interactive card box"
+							to={{
+								state: { fromSimulateurs: true },
+								pathname: sitePaths.simulateurs['artiste-auteur']
+							}}
+						>
+							<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
+							<T k="simulateurs.accueil.salarié">
+								<h3>Artiste-auteur</h3>
+								<p className="ui__ notice" css="flex: 1">
+									Estimer les cotisations sociales d'un artiste ou auteur
+								</p>
+							</T>
+						</Link>
+					)}
 					<Link
 						className="ui__ interactive card box"
 						to={{
