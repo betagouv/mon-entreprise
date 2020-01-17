@@ -3,7 +3,7 @@
 # dans la base centrale
 
 chiffre affaires:
-  unité par défaut: €/mois
+  unité: €/mois
   par défaut: 0
 
 charges:

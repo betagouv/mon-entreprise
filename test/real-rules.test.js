@@ -13,8 +13,7 @@ let runExamples = (examples, rule) =>
 					rules,
 					currentExample: {
 						situation: ex.situation,
-						dottedName: rule.dottedName,
-						defaultUnits: ex['unités par défaut']
+						dottedName: rule.dottedName
 					}
 				},
 				{ dottedName: rule.dottedName }

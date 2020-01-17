@@ -163,29 +163,23 @@ export let situationsWithDefaultsSelector = createSelector(
 		mapOrApply(situation => ({ ...defaults, ...situation }), situations)
 )
 
-let analyseRule = (parsedRules, ruleDottedName, situationGate, defaultUnits) =>
-	analyse(parsedRules, ruleDottedName, defaultUnits)(situationGate).targets[0]
+let analyseRule = (parsedRules, ruleDottedName, situationGate) =>
+	analyse(parsedRules, ruleDottedName)(situationGate).targets[0]
 
 export let ruleAnalysisSelector = createSelector(
 	[
 		parsedRulesSelector,
 		(_, props: { dottedName: DottedName }) => props.dottedName,
 		situationsWithDefaultsSelector,
-		state => state.situationBranch || 0,
-		defaultUnitSelector
+		state => state.situationBranch || 0
 	],
-	(rules, dottedName, situations, situationBranch, defaultUnit) => {
-		return analyseRule(
-			rules,
-			dottedName,
-			dottedName => {
-				const currentSituation = Array.isArray(situations)
-					? situations[situationBranch]
-					: situations
-				return currentSituation[dottedName]
-			},
-			[defaultUnit]
-		)
+	(rules, dottedName, situations, situationBranch) => {
+		return analyseRule(rules, dottedName, dottedName => {
+			const currentSituation = Array.isArray(situations)
+				? situations[situationBranch]
+				: situations
+			return currentSituation[dottedName]
+		})
 	}
 )
 
@@ -216,27 +210,22 @@ export let exampleAnalysisSelector = createSelector(
 		analyseRule(
 			rules,
 			dottedName,
-			(dottedName: DottedName) => situation[dottedName],
-			example?.defaultUnit
+			(dottedName: DottedName) => situation[dottedName]
 		)
 )
 
 let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 	createDeepEqualSelector(
-		[
-			parsedRulesSelector,
-			targetNamesSelector,
-			situationSelector,
-			defaultUnitSelector
-		],
-		(parsedRules, targetNames, situations, defaultUnit) => {
+		[parsedRulesSelector, targetNamesSelector, situationSelector],
+		(parsedRules, targetNames, situations) => {
 			return mapOrApply(
 				situation =>
-					analyseMany(parsedRules, targetNames, [defaultUnit])(
-						(dottedName: DottedName) => {
-							return situation[dottedName]
-						}
-					),
+					analyseMany(
+						parsedRules,
+						targetNames
+					)((dottedName: DottedName) => {
+						return situation[dottedName]
+					}),
 				situations
 			)
 		}

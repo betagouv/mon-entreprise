@@ -125,7 +125,7 @@ impôt . impôt sur le revenu:
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
-  unité par défaut: €/an
+  unité: €/an
   formule:
     barème:
       assiette: revenu abattu
@@ -149,7 +149,7 @@ impôt . impôt sur le revenu:
 
 impôt . impôt sur le revenu à payer:
   description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
-  unité par défaut: €/an
+  unité: €/an
   formule:
     allègement:
       assiette: impôt sur le revenu
@@ -368,7 +368,7 @@ revenus net de cotisations:
       - dirigeant . auto-entrepreneur . net de cotisations
 
 revenu net après impôt:
-  unité par défaut: €/an
+  unité: €/an
   résumé: Disponible sur votre compte en banque
   question: Quel revenu voulez-vous toucher ?
   description: |

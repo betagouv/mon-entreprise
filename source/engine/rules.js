@@ -28,7 +28,7 @@ import {
 import translations from '../locales/rules-en.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
-import { syntaxError, warning } from './error'
+import { syntaxError } from './error'
 
 /***********************************
 Functions working on one rule */
@@ -38,16 +38,6 @@ export let enrichRule = rule => {
 		const dottedName = rule.dottedName || rule.nom
 		const name = nameLeaf(dottedName)
 		let unit = rule.unité && parseUnit(rule.unité)
-		let defaultUnit =
-			rule['unité par défaut'] && parseUnit(rule['unité par défaut'])
-
-		if (defaultUnit && unit) {
-			warning(
-				dottedName,
-				'Le paramètre `unité` est plus contraignant que `unité par défaut`.',
-				'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
-			)
-		}
 
 		return {
 			...rule,
@@ -59,8 +49,7 @@ export let enrichRule = rule => {
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
-			unit,
-			defaultUnit
+			unit
 		}
 	} catch (e) {
 		syntaxError(

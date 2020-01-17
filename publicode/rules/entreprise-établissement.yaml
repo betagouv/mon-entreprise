@@ -50,13 +50,13 @@ entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
-  unité par défaut: €/an
+  unité: €/an
   formule: dirigeant . rémunération totale + charges
 
 entreprise . chiffre d'affaires minimum:
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   question: Quel est votre chiffre d'affaires minimum envisagé ?
-  unité par défaut: €/an
+  unité: €/an
   formule: chiffre d'affaires
 
 entreprise . chiffre d'affaires de société:
@@ -119,7 +119,7 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0
-  unité par défaut: €/an
+  unité: €/an
 
 entreprise . ACRE:
   description: >-

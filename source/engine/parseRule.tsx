@@ -137,7 +137,6 @@ export default (rules, rule, parsedRules) => {
 		...parsedRoot,
 		evaluate,
 		parsed: true,
-		defaultUnit: parsedRoot.defaultUnit || parsedRoot.formule?.unit,
 		isDisabledBy: [],
 		replacedBy: []
 	}

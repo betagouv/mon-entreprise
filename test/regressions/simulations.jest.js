@@ -24,14 +24,13 @@ const runSimulations = (
 	situations,
 	targets,
 	baseSituation = {},
-	defaultUnits,
 	namePrefix = ''
 ) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach(situation => {
-			engine.setSituation({ ...baseSituation, ...situation })
-			engine.setDefaultUnits(defaultUnits)
-			const res = engine.evaluate(targets).map(node => node.nodeValue)
+			const res = engine.evaluate(targets, {
+				situation: { ...baseSituation, ...situation }
+			})
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
@@ -45,8 +44,7 @@ it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,
-		employeeConfig.situation,
-		['€/mois']
+		employeeConfig.situation
 	)
 })
 
@@ -55,17 +53,14 @@ it('calculate simulations-indépendant', () => {
 		(acc, cur) => [...acc, ...cur.objectifs],
 		[]
 	)
-	runSimulations(independentSituations, targets, independantConfig.situation, [
-		'€/an'
-	])
+	runSimulations(independentSituations, targets, independantConfig.situation)
 })
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
 		autoEntrepreneurSituations,
 		autoentrepreneurConfig.objectifs,
-		autoentrepreneurConfig.situation,
-		['€/an']
+		autoentrepreneurConfig.situation
 	)
 })
 
@@ -76,7 +71,6 @@ it('calculate simulations-rémunération-dirigeant', () => {
 			remunerationDirigeantSituations,
 			remunerationDirigeantConfig.objectifs,
 			{ ...baseSituation, ...situation },
-			['€/an'],
 			`${nom} - `
 		)
 	})
@@ -86,7 +80,6 @@ it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
 		artisteAuteurSituations,
 		artisteAuteurConfig.objectifs,
-		artisteAuteurConfig.situation,
-		['€/an']
+		artisteAuteurConfig.situation
 	)
 })

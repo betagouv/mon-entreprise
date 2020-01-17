@@ -3,7 +3,6 @@ import { map, mergeAll, pick, pipe } from 'ramda'
 import { Rule } from 'Types/rule'
 import { typeWarning } from './error'
 import { convertNodeToUnit } from './nodeUnits'
-import { areUnitConvertible } from './units'
 
 export const evaluateApplicability = (
 	cache,
@@ -56,51 +55,41 @@ export const evaluateApplicability = (
 
 export default (cache, situationGate, parsedRules, node) => {
 	cache._meta.contextRule.push(node.dottedName)
-	const applicabilityEvaluation = evaluateApplicability(
-		cache,
-		situationGate,
-		parsedRules,
-		node
-	)
-	const {
-		missingVariables: condMissing,
-		nodeValue: isApplicable
-	} = applicabilityEvaluation
+	let applicabilityEvaluation = evaluateApplicability(
+			cache,
+			situationGate,
+			parsedRules,
+			node
+		),
+		{
+			missingVariables: condMissing,
+			nodeValue: isApplicable
+		} = applicabilityEvaluation,
+		evaluateFormula = () =>
+			node.formule
+				? evaluateNode(cache, situationGate, parsedRules, node.formule)
+				: {},
+		// evaluate the formula lazily, only if the applicability is known and true
+		evaluatedFormula = isApplicable
+			? evaluateFormula()
+			: isApplicable === false
+			? {
+					...node.formule,
+					missingVariables: {},
+					nodeValue: 0
+			  }
+			: {
+					...node.formule,
+					missingVariables: {},
+					nodeValue: null
+			  },
+		{ missingVariables: formulaMissingVariables, nodeValue } = evaluatedFormula,
+		missingVariables = mergeMissing(
+			bonus(condMissing, !!Object.keys(condMissing).length),
+			formulaMissingVariables
+		)
 
-	const evaluateFormula = () =>
-		node.formule
-			? evaluateNode(cache, situationGate, parsedRules, node.formule)
-			: {}
-	// evaluate the formula lazily, only if the applicability is known and true
-	const evaluatedFormula = isApplicable
-		? evaluateFormula()
-		: isApplicable === false
-		? {
-				...node.formule,
-				missingVariables: {},
-				nodeValue: 0
-		  }
-		: {
-				...node.formule,
-				missingVariables: {},
-				nodeValue: null
-		  }
-	let {
-		missingVariables: formulaMissingVariables,
-		nodeValue
-	} = evaluatedFormula
-	const missingVariables = mergeMissing(
-		bonus(condMissing, !!Object.keys(condMissing).length),
-		formulaMissingVariables
-	)
-	const unit =
-		node.unit ||
-		(node.defaultUnit &&
-			cache._meta.defaultUnits.find(unit =>
-				areUnitConvertible(node.defaultUnit, unit)
-			)) ||
-		node.defaultUnit ||
-		evaluatedFormula.unit
+	const unit = node.unit || evaluatedFormula.unit
 
 	const temporalValue = evaluatedFormula.temporalValue
 	if (unit) {

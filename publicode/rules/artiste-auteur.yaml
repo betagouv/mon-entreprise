@@ -6,7 +6,7 @@ artiste-auteur . revenus:
 
 artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
-  unité par défaut: €/an
+  unité: €/an
   par défaut: 0
   résumé: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
 
@@ -37,12 +37,12 @@ artiste-auteur . revenus . BNC . micro-bnc:
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
-  unité par défaut: €/an
+  unité: €/an
   par défaut: 0
   résumé: Le montant de vos recettes brutes hors TVA
 
 artiste-auteur . revenus . BNC . frais réels:
-  unité par défaut: €/an
+  unité: €/an
   par défaut: 0
   question: Régime des frais réels BNC
   résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui seront imputés à vos recettes afin d’établir vos bénéfices ou déficits

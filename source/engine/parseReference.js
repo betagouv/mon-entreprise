@@ -79,7 +79,7 @@ const getApplicableReplacements = (
 				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
 		.map(replacementNode => {
-			const replacedRuleUnit = getNodeDefaultUnit(rule, cache)
+			const replacedRuleUnit = getNodeDefaultUnit(rule)
 			if (!areUnitConvertible(replacementNode.unit, replacedRuleUnit)) {
 				typeWarning(
 					contextRuleName,
@@ -171,7 +171,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	}
 	const situationValue = getSituationValue(situation, dottedName, rule)
 	if (situationValue !== undefined) {
-		const unit = getNodeDefaultUnit(rule, cache)
+		const unit = getNodeDefaultUnit(rule)
 		return cacheNode(situationValue, condMissingVariables, {
 			...rule,
 			nodeValue: situationValue,
@@ -207,8 +207,7 @@ export let parseReference = (
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula &&
 			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
-	const unit =
-		parsedRule.unit || parsedRule.formule?.unit || parsedRule.defaultUnit
+	const unit = parsedRule.unit || parsedRule.formule?.unit
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
 		//eslint-disable-next-line react/display-name

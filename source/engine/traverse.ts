@@ -9,7 +9,6 @@ import {
 	findRule,
 	findRuleByDottedName
 } from './rules'
-import { parseUnit, Unit } from './units'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -124,23 +123,19 @@ export let getTargets = (target, rules) => {
 
 type CacheMeta = {
 	contextRule: Array<string>
-	defaultUnits: Array<Unit>
 	inversionFail?: {
 		given: string
 		estimated: string
 	}
 }
 
-export let analyseMany = (
-	parsedRules,
-	targetNames,
-	defaultUnits: Array<string> = []
-) => (situationGate: (name: DottedName) => any) => {
+export let analyseMany = (parsedRules, targetNames) => (
+	situationGate: (name: DottedName) => any
+) => {
 	// TODO: we should really make use of namespaces at this level, in particular
 	// setRule in Rule.js needs to get smarter and pass dottedName
-	const defaultParsedUnits = defaultUnits.map(unit => parseUnit(unit))
 	let cache = {
-		_meta: { contextRule: [], defaultUnits: defaultParsedUnits } as CacheMeta
+		_meta: { contextRule: [] } as CacheMeta
 	}
 
 	let parsedTargets = targetNames.map(t => {
@@ -163,6 +158,6 @@ export let analyseMany = (
 
 export type Analysis = ReturnType<ReturnType<typeof analyse>>
 
-export let analyse = (parsedRules, target, defaultUnits = []) => {
-	return analyseMany(parsedRules, [target], defaultUnits)
+export let analyse = (parsedRules, target) => {
+	return analyseMany(parsedRules, [target])
 }

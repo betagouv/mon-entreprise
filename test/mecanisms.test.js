@@ -24,7 +24,6 @@ describe('Mécanismes', () =>
 							({
 								nom: testTexte,
 								situation,
-								'unités par défaut': defaultUnits,
 								'valeur attendue': valeur,
 								'variables manquantes': expectedMissing
 							}) =>
@@ -39,11 +38,7 @@ describe('Mécanismes', () =>
 										),
 										state = situation || {},
 										stateSelector = name => state[name],
-										analysis = analyse(
-											rules,
-											name,
-											defaultUnits
-										)(stateSelector),
+										analysis = analyse(rules, name)(stateSelector),
 										missing = collectMissingVariables(analysis.targets),
 										target = analysis.targets[0]
 

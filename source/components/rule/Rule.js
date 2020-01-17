@@ -141,7 +141,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 									<Value
 										{...displayedRule}
 										nodeValue={displayedRule.defaultValue}
-										unit={displayedRule.unit || displayedRule.defaultUnit}
+										unit={displayedRule.unit}
 									/>
 								</div>
 							)}

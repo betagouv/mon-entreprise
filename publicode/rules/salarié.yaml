@@ -529,7 +529,7 @@ contrat salarié . ATMP . taux collectif ATMP:
     ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
     concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
   par défaut: 2.22
-  unité par défaut: '%'
+  unité: '%'
   references:
     taux moyen national: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=4702534627E4A8CF240B990E28C81AF4.tplgfr30s_3?idArticle=JORFARTI000033735834&cidTexte=JORFTEXT000033735824&dateTexte=29990101&categorieLien=id
 
@@ -885,7 +885,7 @@ contrat salarié . cotisations . assiette:
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
-  unité par défaut: €/mois
+  unité: €/mois
   formule:
     allègement:
       assiette: rémunération . brut
@@ -927,7 +927,7 @@ contrat salarié . rémunération . brut de base:
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
-  unité par défaut: €/mois
+  unité: €/mois
   suggestions:
     salaire médian: 2300
     SMIC: 1539
@@ -979,7 +979,7 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre: Salaire brut équivalent temps plein
   résumé: Le salaire si l'embauche se faisait à temps plein
   question: Quel est le salaire en équivalent temps plein ?
-  unité par défaut: €/mois
+  unité: €/mois
   formule: brut de base / temps de travail . quotité de travail
   suggestions:
     salaire médian: 2300
@@ -1022,7 +1022,7 @@ contrat salarié . rémunération . primes:
 
     Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
     sur le revenu.
-  unité par défaut: €/mois
+  unité: €/mois
 
   formule:
     somme:
@@ -1092,7 +1092,7 @@ contrat salarié . rémunération . primes . fin d'année . treizième mois:
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
-  unité par défaut: €/mois
+  unité: €/mois
   formule:
     # Pour les frais professionnels, et les cotisations de prévoyance facultative
     # et de retraite complémentaire on ne ré-intègre ici que la part employeur
@@ -1112,7 +1112,7 @@ contrat salarié . rémunération . brut:
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
-  unité par défaut: €/mois
+  unité: €/mois
 
   formule:
     produit:
@@ -1125,7 +1125,7 @@ contrat salarié . rémunération . heures supplémentaires:
 contrat salarié . rémunération . heures complémentaires:
   titre: rémunération heures complémentaires
   description: La rémunération relative aux heures complémentaires
-  unité par défaut: €/mois
+  unité: €/mois
 
   formule:
     produit:
@@ -1192,7 +1192,7 @@ contrat salarié . rémunération . avantages en nature . autres . montant:
   par défaut: 0
   suggestions:
     🚗 véhicule: 260
-  unité par défaut: €/mois
+  unité: €/mois
 
 contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre: outils NTIC
@@ -1404,7 +1404,7 @@ contrat salarié . rémunération . net de cotisations:
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
   type: salaire
-  unité par défaut: €/mois
+  unité: €/mois
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   formule:
@@ -1487,7 +1487,7 @@ contrat salarié . rémunération . net après impôt:
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
-  unité par défaut: €/mois
+  unité: €/mois
   description: |
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
@@ -1515,14 +1515,14 @@ contrat salarié . prix du travail:
       - rémunération . total
       - (- aides employeur)
       - médecine du travail
-  unité par défaut: €/mois
+  unité: €/mois
 
 contrat salarié . rémunération . total:
   titre: Total chargé
   question: Quel est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
-  unité par défaut: €/mois
+  unité: €/mois
   description: |
     C'est le total que l'employeur doit verser pour employer un salarié.
   formule:
@@ -1614,13 +1614,13 @@ contrat salarié . cotisations:
 contrat salarié . cotisations . salariales . conventionnelles:
   titre: cotisations salariales conventionnelles
   description: Cotisations spécifiques à la convention collective
-  unité par défaut: €/mois
+  unité: €/mois
   formule: 0
 
 contrat salarié . cotisations . patronales . conventionnelles:
   titre: cotisations patronales conventionnelles
   description: Cotisations spécifiques à la convention collective
-  unité par défaut: €/mois
+  unité: €/mois
   formule: 0
 
 contrat salarié . aides employeur:
@@ -2273,7 +2273,7 @@ contrat salarié . complémentaire santé . part salarié:
 
 contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
-  unité par défaut: €/mois
+  unité: €/mois
   description: |
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il doit prendre en charge la moitié du montant,
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est libre, tant qu'elle couvre un panier légal de soins.
@@ -2747,7 +2747,7 @@ contrat salarié . taxe sur les salaires . assiette de base:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 contrat salarié . taxe sur les salaires . assiette:
-  unité par défaut: €/mois
+  unité: €/mois
   formule:
     allègement:
       assiette: assiette de base
