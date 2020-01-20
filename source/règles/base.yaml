@@ -4414,7 +4414,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   unité: €/mois
-
   titre: taxe pour frais de chambre des métiers
   applicable si: entreprise . catégorie d'activité = 'artisanale'
   formule:
@@ -4449,16 +4448,18 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
 
-    Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
+    Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de
+    l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   formule:
     barème:
-      assiette: base des cotisations
+      assiette: base des cotisations 
       multiplicateur: plafond ACRE
       tranches:
         - en-dessous de: 1
-          taux: taux ACRE * taux de cotisation
+          taux: taux de cotisation * (100% - taux ACRE)
         - au-dessus de: 1
           taux: taux de cotisation
+
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
@@ -4523,26 +4524,26 @@ entreprise . ACRE:
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  formule: 100% - réduction ACRE
-
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . réduction ACRE:
-  titre: réduction ACRE
+  titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . ACRE
-  description: Ce taux peut dans certains cas réduire le montant des cotisations sociales de l'auto-entrepreneur pour l'aider dans ses premières années d'activité.
+  description: |
+    Ce taux correspond à la réduction de cotisations qui s'applique pour
+    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 25% signifie que
+    l'auto-entrepreneur bénéficie de 25% de réduction sur le montant des cotisations dûes.
   formule:
     variations:
-      # TODO : ce code fonctionne en 2020, mais en 2021 il faudra faire la
-      # distinction entre les entreprises créées en 2019 (qui ont le droit à
-      # l'ACRE pendant 3 ans) et celles créées en 2020 et après qui n'ont le
-      # droit qu'à une année de réduction.
-      - si: entreprise . durée d'activité < 1 an
+      - si: entreprise . date de création >= 01/2020
         alors: 50%
+      - si: entreprise . durée d'activité < 1 an
+        alors: 75%
       - si: entreprise . durée d'activité < 2 ans
         alors: 25%
       - si: entreprise . durée d'activité < 3 ans
         alors: 10%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
+    FAQ Urssaf depuis 01/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
+    FAQ Urssaf avant 01/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
