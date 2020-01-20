@@ -6,7 +6,8 @@ import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {
 	encodeRuleName,
 	findRuleByDottedName,
-	findRuleByNamespace
+	findRuleByNamespace,
+	parentName
 } from 'Engine/rules'
 import { isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
@@ -174,6 +175,35 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 								rule={displayedRule}
 								showValues={valuesToShow || currentExample}
 							/>
+							{displayedRule['replacedBy'].length > 0 && (
+								<>
+									Cette règle existe en plusieurs versions
+									<ul>
+										<li>Droit commun</li>
+										{displayedRule['replacedBy'].map(
+											({ referenceNode: { dottedName } }) => (
+												<li key={dottedName}>
+													<RuleLink dottedName={dottedName}>
+														{parentName(dottedName)}
+													</RuleLink>
+												</li>
+											)
+										)}
+									</ul>
+								</>
+							)}
+							{displayedRule['remplace']?.length > 0 && (
+								<>
+									Cette règle modifie les règles suivantes :{' '}
+									<ul>
+										{displayedRule['remplace'].map(({ referenceName }) => (
+											<li key={referenceName}>
+												<RuleLink dottedName={referenceName} />
+											</li>
+										))}
+									</ul>
+								</>
+							)}
 							{displayedRule['rend non applicable'] && (
 								<section id="non-applicable">
 									<h3>
