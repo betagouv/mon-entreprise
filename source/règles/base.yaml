@@ -6041,7 +6041,7 @@ artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
   unité par défaut: €/an
   par défaut: 0
-  résumé: Le montant HT de vos droits d'auteur (recettes précomptées)
+  résumé: Le montant hors TVA de vos droits d'auteur (recettes précomptées)
 
 artiste-auteur . revenus . BNC:
   formule:
@@ -6065,20 +6065,20 @@ artiste-auteur . revenus . BNC . micro-bnc:
       - recettes > 0 
       - recettes < 72500 €/an
   par défaut: oui
-  titre: Régime micro-BNC
-  résumé: Évaluation forfaitaire des frais à 34% des recettes
+  titre: Souhaitez-vous opter pour le régime micro-BNC ?
+  résumé: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
   unité par défaut: €/an
   par défaut: 0
-  résumé: Le montant de vos recettes hors TVA
+  résumé: Le montant de vos recettes brutes hors TVA
 
 artiste-auteur . revenus . BNC . frais réels:
   unité par défaut: €/an
   par défaut: 0
-  question: Régime frais réels
-  résumé: Le montant de vos dépenses (frais professionnels)
+  question: Régime des frais réels BNC
+  résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
   applicable si: recettes > 0 €/an
   non applicable si: micro-bnc
 
