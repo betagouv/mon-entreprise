@@ -37,7 +37,13 @@ jobs:
       - install
       - run: |
           yarn run type-check
-
+  i18n-check:
+    docker:
+      - image: node
+    steps:
+      - install
+      - run: |
+          yarn run i18n:check-rules
   unit-test:
     docker:
       - image: node
@@ -91,6 +97,7 @@ workflows:
   test:
     jobs:
       - type-check
+      - i18n-check
       - unit-test
       - end-to-end-test
       - production-end-to-end-test:

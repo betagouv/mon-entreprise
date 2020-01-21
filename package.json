@@ -89,6 +89,8 @@
 		"type-check": "tsc --noEmit",
 		"compile-lib": "yarn webpack --config source/webpack.lib.js",
 		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
+		"i18n:check-rules": "node source/scripts/check-missing-translation.js",
+		"i18n:translate-rules": "node source/scripts/automatic-translate.js",
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"mon-entreprise:test": "cypress open --browser chromium",
 		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
