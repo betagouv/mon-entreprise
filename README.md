@@ -1,4 +1,5 @@
 ![logo mon-entreprise.fr](https://mon-entreprise.fr/images/logo.svg)
+> [🙋 We're hiring !](https://beta.gouv.fr/recrutement/2020/01/13/mon-entreprise-JS-senior.html)
 
 This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [mon-entreprise.fr](https://mon-entreprise.fr).
 
