@@ -103,7 +103,7 @@ function RevenueRepatitionSection() {
 	return (
 		<section>
 			<h2>
-				<Trans key="payslip.repartition">Répartition du total chargé</Trans>
+				<Trans i18nKey="payslip.repartition">Répartition du total chargé</Trans>
 			</h2>
 			<StackedBarChart
 				data={[
@@ -112,7 +112,11 @@ function RevenueRepatitionSection() {
 						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), title: t('Impôts'), color: palettes[1][0] },
+					{
+						...getRule('impôt'),
+						title: t('quicklinks.Impôt'),
+						color: palettes[1][0]
+					},
 					{
 						...getRule('contrat salarié . cotisations'),
 

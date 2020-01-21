@@ -92,3 +92,35 @@ Enfin pour les tests d'intégration :
 ```sh
 $ yarn run test-cypress
 ```
+
+### Traduction 👽
+
+Le site est disponible en français, et en anglais sur https://mycompanyinfrance.com
+
+Les traductions de la base de règle se trouvent dans
+`source/règles/externalized.yaml`. Celles de l'Ui sont dans le fichier
+`source/locales/en.yaml`
+
+La librairie utilisée pour la traduction de l'Ui est
+[react-i18next](https://react.i18next.com/).
+
+Lorsque l'on introduit une nouvelle chaîne de caractère dans l'UI il faut
+systématiquement penser à gérer sa traduction, via un composant `<Trans>`, ou
+via la fonction `t`
+
+Le circle-ci fait une analyse statique du code pour repérer les chaînes non
+traduites, dans le moteur et l'UI :
+
+```sh
+$ yarn run i18n:rules:check
+$ yarn run i18n:ui:check
+```
+
+Pour traduire automatiquement les chaînes manquantes via l'api deepl :
+
+```sh
+$ yarn run i18n:rules:translate
+$ yarn run i18n:ui:translate
+```
+
+N'oubliez pas de vérifier le diff que rien n'est choquant.

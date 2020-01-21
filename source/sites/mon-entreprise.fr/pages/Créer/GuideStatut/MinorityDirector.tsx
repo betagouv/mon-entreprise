@@ -25,11 +25,11 @@ export default function MinorityDirector() {
 				/>
 			</Helmet>
 			<h2>
-				<Trans key="gérant minoritaire.titre">
+				<Trans i18nKey="gérant minoritaire.titre">
 					Gérant majoritaire ou minoritaire
 				</Trans>{' '}
 			</h2>
-			<Trans key="gérant minoritaire.description">
+			<Trans i18nKey="gérant minoritaire.description">
 				<p>
 					Certaines règles spéciales s'appliquent selon le nombre d'actions
 					détenues.

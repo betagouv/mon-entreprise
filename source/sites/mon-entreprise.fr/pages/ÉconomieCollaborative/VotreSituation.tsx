@@ -54,7 +54,7 @@ export default function VotreSituation() {
 			<section>
 				{déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE.length > 0 && (
 					<>
-						<Trans key="économieCollaborative.obligations.pro">
+						<Trans i18nKey="économieCollaborative.obligations.pro">
 							<h2>Déclarer en tant qu'activité professionnelle</h2>
 							<p>
 								Vos revenus sont considérés comme revenus professionnels, ils
@@ -64,7 +64,7 @@ export default function VotreSituation() {
 							</p>
 						</Trans>
 						<ActivitéList activités={déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE} />
-						<Trans key="économieCollaborative.obligations.entreprise">
+						<Trans i18nKey="économieCollaborative.obligations.entreprise">
 							<h3>Avec une entreprise</h3>
 							<p>
 								Si vous possédez déjà une activité déclarée, vous pouvez ajouter
@@ -83,7 +83,7 @@ export default function VotreSituation() {
 						</Trans>
 
 						{régimeGénéralDisponible && (
-							<Trans key="économieCollaborative.obligations.régimeGénéral">
+							<Trans i18nKey="économieCollaborative.obligations.régimeGénéral">
 								<h3>Avec l'option régime général</h3>
 								<p>
 									Pour certaines activités, vous pouvez déclarer vos revenus
@@ -105,7 +105,7 @@ export default function VotreSituation() {
 				)}
 				{déclarations.IMPOSITION.length > 0 && (
 					<>
-						<Trans key="économieCollaborative.obligations.impôts">
+						<Trans i18nKey="économieCollaborative.obligations.impôts">
 							<h2>Déclarer vos revenus aux impôts</h2>
 							<p>
 								Pour ces activités, vous avez uniquement besoin de déclarer vos
@@ -123,7 +123,7 @@ export default function VotreSituation() {
 
 				{déclarations.AUCUN.length > 0 && (
 					<>
-						<Trans key="économieCollaborative.obligations.aucune">
+						<Trans i18nKey="économieCollaborative.obligations.aucune">
 							<h2>Rien à faire</h2>
 							<p>
 								Vous n'avez pas besoin de déclarer vos revenus pour ces
@@ -150,7 +150,7 @@ const ActivitéList = ({ activités }) => {
 					answered
 					label={
 						régimeGénéralDisponibleSelector(state, title) ? (
-							<Trans key="économieCollaborative.obligations.régimeGénéralDisponible">
+							<Trans i18nKey="économieCollaborative.obligations.régimeGénéralDisponible">
 								Régime général disponible
 							</Trans>
 						) : null

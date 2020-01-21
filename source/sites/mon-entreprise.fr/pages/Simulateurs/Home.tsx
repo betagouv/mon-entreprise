@@ -35,7 +35,7 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('☂️')}</div>
-						<Trans key="simulateurs.accueil.assimilé">
+						<Trans i18nKey="simulateurs.accueil.assimilé">
 							<h3>Assimilé salarié</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu d'un dirigeant de SAS, SASU ou SARL
@@ -51,7 +51,7 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🃏')}</div>
-						<Trans key="simulateurs.accueil.indépendant">
+						<Trans i18nKey="simulateurs.accueil.indépendant">
 							<h3>Indépendant</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu d'un dirigeant de EURL, EI, ou SARL
@@ -67,7 +67,7 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🧢')}</div>
-						<Trans key="simulateurs.accueil.auto">
+						<Trans i18nKey="simulateurs.accueil.auto">
 							<h3>Auto-entrepreneur</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu (ou le chiffre d'affaires) d'un
@@ -83,7 +83,7 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🤝')}</div>
-						<Trans key="simulateurs.accueil.salarié">
+						<Trans i18nKey="simulateurs.accueil.salarié">
 							<h3>Salarié</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le salaire net, brut, ou total d'un salarié, stagiaire,
@@ -100,7 +100,7 @@ export default function Simulateurs() {
 							}}
 						>
 							<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-							<Trans key="simulateurs.accueil.salarié">
+							<Trans i18nKey="simulateurs.accueil.salarié">
 								<h3>Artiste-auteur</h3>
 								<p className="ui__ notice" css="flex: 1">
 									Estimer les cotisations sociales d'un artiste ou auteur
@@ -116,7 +116,7 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('📊')}</div>
-						<Trans key="simulateurs.accueil.comparaison">
+						<Trans i18nKey="simulateurs.accueil.comparaison">
 							<h3>Comparaison statuts</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Simulez les différences entre les régimes (cotisations,
@@ -127,7 +127,7 @@ export default function Simulateurs() {
 				</div>
 			</section>
 			<section>
-				<Trans key="simulateurs.accueil.description">
+				<Trans i18nKey="simulateurs.accueil.description">
 					<p>Tous les simulateurs sur ce site sont :</p>
 					<ul>
 						<li>

@@ -20,9 +20,9 @@ const requirementToText = (
 			)
 		case 'soleProprietorship':
 			return value ? (
-				<Trans key="responsabilité.bouton2">Entreprise individuelle</Trans>
+				<Trans i18nKey="responsabilité.bouton2">Entreprise individuelle</Trans>
 			) : (
-				<Trans key="responsabilité.bouton1">Société</Trans>
+				<Trans i18nKey="responsabilité.bouton1">Société</Trans>
 			)
 		case 'directorStatus':
 			return value === 'SELF_EMPLOYED' ? (

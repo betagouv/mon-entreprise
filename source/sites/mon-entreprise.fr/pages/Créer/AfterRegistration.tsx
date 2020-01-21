@@ -30,10 +30,10 @@ export default function AfterRegistration() {
 				</NavLink>
 			</div>
 			<h1>
-				<Trans key="après.titre">Après la création</Trans>
+				<Trans i18nKey="après.titre">Après la création</Trans>
 			</h1>
 			<p>
-				<Trans key="après.intro">
+				<Trans i18nKey="après.intro">
 					Une fois votre{' '}
 					{{
 						statutChoisi: isAutoentrepreneur
@@ -44,10 +44,10 @@ export default function AfterRegistration() {
 				</Trans>
 			</p>
 			<h2>
-				<Trans key="après.siret.titre">Le numéro SIRET</Trans>
+				<Trans i18nKey="après.siret.titre">Le numéro SIRET</Trans>
 			</h2>
 			<p>
-				<Trans key="après.siret.description">
+				<Trans i18nKey="après.siret.description">
 					Le numéro SIREN <strong>est l'identifiant de votre entreprise</strong>{' '}
 					tandis que le numéro SIRET identifie chaque établissement de la même
 					entreprise. Le SIRET commence par le SIREN, auquel on ajoute le numéro
@@ -61,10 +61,10 @@ export default function AfterRegistration() {
 				/>
 			</p>
 			<h2>
-				<Trans key="après.ape.titre">Le code APE</Trans>
+				<Trans i18nKey="après.ape.titre">Le code APE</Trans>
 			</h2>
 			<p>
-				<Trans key="après.ape.description">
+				<Trans i18nKey="après.ape.description">
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise
 					dans la nomenclature nationale d'activités françaises « NAF » (
@@ -95,10 +95,10 @@ export default function AfterRegistration() {
 			{statutChoisi && !statutChoisi.includes('auto-entrepreneur') && (
 				<>
 					<h2>
-						<Trans key="après.kbis.titre">Le Kbis</Trans>
+						<Trans i18nKey="après.kbis.titre">Le Kbis</Trans>
 					</h2>
 					<p>
-						<Trans key="après.kbis.description.1">
+						<Trans i18nKey="après.kbis.description.1">
 							C'est le document officiel qui atteste de{' '}
 							<strong>l'existence légale d'une entreprise commerciale</strong>.
 							Le plus souvent, pour être valable par les procédures
@@ -109,7 +109,7 @@ export default function AfterRegistration() {
 						</Trans>
 					</p>
 					<p>
-						<Trans key="après.kbis.description.2">
+						<Trans i18nKey="après.kbis.description.2">
 							Ce document est généralement demandé lors de la candidature à un
 							appel d'offre public, de l'ouverture d'un compte bancaire,
 							d'achats d'équipement professionnel auprès de fournisseurs, etc.

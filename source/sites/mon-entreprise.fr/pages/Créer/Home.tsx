@@ -26,12 +26,12 @@ export default function Créer() {
 			</Helmet>
 
 			<h1>
-				<Trans key="créer.titre">Créer une entreprise</Trans>
+				<Trans i18nKey="créer.titre">Créer une entreprise</Trans>
 			</h1>
 			<div css="display: flex; align-items: flex-start; justify-content: space-between">
 				<div>
 					<p className="ui__ lead">
-						<Trans key="créer.description">
+						<Trans i18nKey="créer.description">
 							Avant d'entamer les démarches administratives pour créer votre
 							entreprise, vous devez choisir un statut juridique adapté à votre
 							activité
@@ -50,7 +50,7 @@ export default function Créer() {
 							: t('créer.cta.continue', 'Continuer le guide')}
 					</Link>
 					<p className="ui__ notice">
-						<Trans key="créer.warningPL">
+						<Trans i18nKey="créer.warningPL">
 							Le cas des professions libérales réglementées n'est pas encore
 							traité
 						</Trans>
@@ -80,8 +80,8 @@ export default function Créer() {
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.guideStatut.liste}
 				>
-					<Trans key="créer.ressources.listeStatuts">
-						<p>Liste des statuts juridiques </p>
+					<Trans i18nKey="créer.ressources.listeStatuts">
+						<p>Liste des statuts juridiques</p>
 						<small>
 							Vous savez déjà quel statut choisir ? Accédez directement à la
 							liste des démarches associées
@@ -95,7 +95,7 @@ export default function Créer() {
 						state: { fromCréer: true }
 					}}
 				>
-					<Trans key="créer.ressources.comparaison">
+					<Trans i18nKey="créer.ressources.comparaison">
 						<p>Comparateur de régimes</p>
 						<small>
 							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
@@ -108,7 +108,7 @@ export default function Créer() {
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
-					<Trans key="créer.ressources.autoEntrepreneur">
+					<Trans i18nKey="créer.ressources.autoEntrepreneur">
 						<p>Démarche auto-entrepreneur</p>
 						<small>
 							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes

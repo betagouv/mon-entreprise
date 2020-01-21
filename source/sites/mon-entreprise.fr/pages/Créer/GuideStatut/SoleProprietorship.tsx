@@ -30,12 +30,12 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 				/>
 			</Helmet>
 			<h2>
-				<Trans key="responsabilité.titre">
+				<Trans i18nKey="responsabilité.titre">
 					Entreprise individuelle ou société ?
 				</Trans>
 			</h2>
 			<p>
-				<Trans key="responsabilité.intro">
+				<Trans i18nKey="responsabilité.intro">
 					Ce choix determine votre degré de responsabilité et votre capacité à
 					accueillir de nouveaux associés dans le futur{' '}
 				</Trans>
@@ -43,7 +43,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 			</p>
 			<ul>
 				<li>
-					<Trans key="responsabilité.entreprise-individuelle">
+					<Trans i18nKey="responsabilité.entreprise-individuelle">
 						<strong>Entreprise individuelle : </strong>
 						Une activité économique exercée par une seule personne physique, en
 						son nom propre. Moins de formalités, mais plus de risques en cas de
@@ -57,7 +57,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 				</li>
 
 				<li>
-					<Trans key="responsabilité.société">
+					<Trans i18nKey="responsabilité.société">
 						<strong>Société : </strong>
 						Vous ne pouvez pas être tenu personnellement responsable des dettes
 						ou obligations de la société. En revanche, les démarches de création
@@ -73,7 +73,9 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 					}}
 					className="ui__ button"
 				>
-					<Trans key="responsabilité.bouton2">Entreprise individuelle</Trans>
+					<Trans i18nKey="responsabilité.bouton2">
+						Entreprise individuelle
+					</Trans>
 				</button>
 				<button
 					onClick={() => {
@@ -81,7 +83,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 					}}
 					className="ui__ button"
 				>
-					<Trans key="responsabilité.bouton1">Société</Trans>
+					<Trans i18nKey="responsabilité.bouton1">Société</Trans>
 				</button>
 			</div>
 			{/* this is an economic activity conducted by a single natural person, in his own name ; */}

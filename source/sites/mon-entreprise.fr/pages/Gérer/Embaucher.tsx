@@ -35,10 +35,12 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="embauche.tâches.titre">Les formalités pour embaucher</Trans>
+				<Trans i18nKey="embauche.tâches.titre">
+					Les formalités pour embaucher
+				</Trans>
 			</h1>
 			<p>
-				<Trans key="embauche.tâches.description">
+				<Trans i18nKey="embauche.tâches.description">
 					Toutes les étapes nécessaires à l'embauche de votre premier employé.
 				</Trans>
 			</p>
@@ -50,7 +52,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="contract"
 					title={
-						<Trans key="embauche.tâches.contrat.titre">
+						<Trans i18nKey="embauche.tâches.contrat.titre">
 							Signer un contrat de travail avec votre employé
 						</Trans>
 					}
@@ -70,13 +72,13 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="dpae"
 					title={
-						<Trans key="embauche.tâches.dpae.titre">
+						<Trans i18nKey="embauche.tâches.dpae.titre">
 							Déclarer l'embauche à l'administration sociale
 						</Trans>
 					}
 					explanations={
 						<p>
-							<Trans key="embauche.tâches.dpae.description">
+							<Trans i18nKey="embauche.tâches.dpae.description">
 								Ceci peut être fait par le biais du formulaire appelé DPAE, doit
 								être complété dans les 8 jours avant toute embauche, et peut{' '}
 								<a href="https://www.due.urssaf.fr" target="_blank">
@@ -90,13 +92,13 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="paySoftware"
 					title={
-						<Trans key="embauche.tâches.logiciel de paie.titre">
+						<Trans i18nKey="embauche.tâches.logiciel de paie.titre">
 							Choisir un logiciel de paie
 						</Trans>
 					}
 					explanations={
 						<p>
-							<Trans key="embauche.tâches.logiciel de paie.description">
+							<Trans i18nKey="embauche.tâches.logiciel de paie.description">
 								Les fiches de paie et les déclarations peuvent être traitées en
 								ligne gratuitement par le{' '}
 								<a href="http://www.letese.urssaf.fr" target="_blank">
@@ -116,7 +118,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="registre"
 					title={
-						<Trans key="embauche.tâches.registre.titre">
+						<Trans i18nKey="embauche.tâches.registre.titre">
 							Tenir un registre des employés à jour
 						</Trans>
 					}
@@ -135,7 +137,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="complementaryPension"
 					title={
-						<Trans key="embauche.tâches.pension.titre">
+						<Trans i18nKey="embauche.tâches.pension.titre">
 							Prendre contact avec l'institution de prévoyance complémentaire
 							obligatoire qui vous est assignée
 						</Trans>
@@ -147,7 +149,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								target="_blank"
 							>
-								<Trans key="embauche.tâches.pension.description">
+								<Trans i18nKey="embauche.tâches.pension.description">
 									Trouver mon institution de prévoyance
 								</Trans>
 							</a>
@@ -158,13 +160,13 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="complementaryHealth"
 					title={
-						<Trans key="embauche.tâches.complémentaire santé.titre">
+						<Trans i18nKey="embauche.tâches.complémentaire santé.titre">
 							Choisir une complémentaire santé
 						</Trans>
 					}
 					explanations={
 						<p>
-							<Trans key="embauche.tâches.complémentaire santé.description">
+							<Trans i18nKey="embauche.tâches.complémentaire santé.description">
 								Vous devez couvrir vos salariés avec l'assurance complémentaire
 								santé privée de votre choix (aussi appelée "mutuelle"), pour
 								autant qu'elle offre un ensemble de garanties minimales.
@@ -176,13 +178,13 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="workMedicine"
 					title={
-						<Trans key="embauche.tâches.medecine.titre">
+						<Trans i18nKey="embauche.tâches.medecine.titre">
 							S'inscrire à un bureau de médecine du travail
 						</Trans>
 					}
 					explanations={
 						<p>
-							<Trans key="embauche.tâches.medecine.description">
+							<Trans i18nKey="embauche.tâches.medecine.description">
 								N'oubliez pas de planifier un rendez-vous initial pour chaque
 								nouvelle embauche.{' '}
 								<a href="https://www.service-public.fr/particuliers/vosdroits/F2211">
@@ -193,7 +195,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					}
 				/>
 			</Checklist>
-			<Trans key="embauche.chaque mois">
+			<Trans i18nKey="embauche.chaque mois">
 				<h2>Tous les mois</h2>
 				<ul>
 					<li>

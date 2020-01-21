@@ -20,11 +20,11 @@ export default function DefineDirectorStatus() {
 				/>
 			</Helmet>
 			<h2>
-				<Trans key="statut du dirigeant.titre">
+				<Trans i18nKey="statut du dirigeant.titre">
 					Définir le statut du dirigeant
 				</Trans>
 			</h2>
-			<Trans key="statut du dirigeant.description">
+			<Trans i18nKey="statut du dirigeant.description">
 				<p>
 					Ce choix est important car il détermine le régime de sécurité sociale
 					et la couverture sociale du dirigeant. Le montant et les modalités de

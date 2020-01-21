@@ -24,9 +24,9 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 				/>
 			</Helmet>
 			<h2>
-				<Trans key="associés.titre">Seul ou à plusieurs</Trans>
+				<Trans i18nKey="associés.titre">Seul ou à plusieurs</Trans>
 			</h2>
-			<Trans key="associés.description">
+			<Trans i18nKey="associés.description">
 				<p>
 					Une entreprise avec un seul associé est plus simple à créer et gérer.
 					Un associé peut-être une personne physique (un individu) ou une
@@ -46,7 +46,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 					}}
 					className="ui__ button"
 				>
-					<Trans key="associés.choix1">Seul</Trans>
+					<Trans i18nKey="associés.choix1">Seul</Trans>
 				</button>
 				<button
 					onClick={() => {
@@ -54,7 +54,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 					}}
 					className="ui__ button"
 				>
-					<Trans key="associés.choix2">Plusieurs personnes</Trans>
+					<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
 				</button>
 			</div>
 		</>

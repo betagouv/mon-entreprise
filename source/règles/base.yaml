@@ -4426,7 +4426,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
           - sinon: 0.48%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
-  titre: Contribution à la formation professionnelleyay
+  titre: Contribution à la formation professionnelle
   unité par défaut: €/mois
   références:
     shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/

@@ -35,7 +35,7 @@ export default function ActivitésSelection() {
 				<ScrollToTop />
 				<h1>{titre}</h1>
 				<section css="margin-bottom: 2rem">
-					<Trans key="économieCollaborative.accueil.contenu">
+					<Trans i18nKey="économieCollaborative.accueil.contenu">
 						<p>
 							Vous avez des revenus issus des{' '}
 							<strong>plateformes en ligne</strong> (Airbnb, Abritel, Drivy,
@@ -56,13 +56,13 @@ export default function ActivitésSelection() {
 
 				<section className="ui__ full-width light-bg">
 					<h2 className="ui__ container" css="text-align: center">
-						<Trans key="économieCollaborative.accueil.question">
+						<Trans i18nKey="économieCollaborative.accueil.question">
 							Quels types d'activités avez-vous exercé ?
 						</Trans>
 					</h2>
 					<ActivitéSelection activités={activités.map(({ titre }) => titre)} />
 					<p className="ui__ container notice" css="text-align: center">
-						<Trans key="économieCollaborative.accueil.réassurance">
+						<Trans i18nKey="économieCollaborative.accueil.réassurance">
 							PS : cet outil est là uniquement pour vous informer, aucune donnée
 							ne sera transmise aux administrations
 						</Trans>{' '}

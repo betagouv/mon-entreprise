@@ -7,12 +7,12 @@ type Props = {
 
 const StatutDescription = ({ statut }: Props) =>
 	statut === 'EI' ? (
-		<Trans key="formeJuridique.EI">
+		<Trans i18nKey="formeJuridique.EI">
 			Aucun apport en capital n'est nécessaire. Le capital privé et le capital
 			de l'entreprise ne font qu'un.
 		</Trans>
 	) : statut === 'EIRL' ? (
-		<Trans key="formeJuridique.EIRL">
+		<Trans i18nKey="formeJuridique.EIRL">
 			Permet de protéger son patrimoine personnel en attribuant un capital
 			spécifique à son activité professionnelle. La société et l'individu
 			constituent la même personne. Ne convient pas si l'associé unique est une
@@ -20,13 +20,13 @@ const StatutDescription = ({ statut }: Props) =>
 			associés au cours de votre développement (choisissez EURL dans ce cas).
 		</Trans>
 	) : statut === 'EURL' ? (
-		<Trans key="formeJuridique.EURL">
+		<Trans i18nKey="formeJuridique.EURL">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
 			de l'apport de capital. Evolue en SARL lors de l'arrivée de nouveaux
 			associés dans la société.
 		</Trans>
 	) : statut.includes('SARL') ? (
-		<Trans key="formeJuridique.SARL">
+		<Trans i18nKey="formeJuridique.SARL">
 			Société ayant au moins deux associés dont la responsabilité financière est
 			limitée au montant de leur apport au capital. Le capital minimum est fixé
 			librement dans les statuts. Les associés se répartissent des parts
@@ -35,7 +35,7 @@ const StatutDescription = ({ statut }: Props) =>
 			d'une SARL est encadré par le code du commerce.
 		</Trans>
 	) : statut === 'SAS' ? (
-		<Trans key="formeJuridique.SAS">
+		<Trans i18nKey="formeJuridique.SAS">
 			Société ayant au moins deux associés. La responsabilité financière des
 			associés est limitée au montant de leur apport au capital de la société.
 			Le capital minimum est fixé librement dans les statuts. Les associés se
@@ -45,31 +45,31 @@ const StatutDescription = ({ statut }: Props) =>
 			fonctionnement (statuts sur mesure).
 		</Trans>
 	) : statut === 'SASU' ? (
-		<Trans key="formeJuridique.SASU">
+		<Trans i18nKey="formeJuridique.SASU">
 			L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
 			de l'apport de capital de l'unique associé (qui peut être une personne
 			morale).
 		</Trans>
 	) : statut === 'SA' ? (
-		<Trans key="formeJuridique.SA">
+		<Trans i18nKey="formeJuridique.SA">
 			Société ayant au moins deux actionnaires. C'est le seul statut qui permet
 			d'être coté en bourse (à partir de 7 actionnaires). Le capital social
 			minimum est de 37.000 €.
 		</Trans>
 	) : (statut as string) === 'SNC' ? (
-		<Trans key="formeJuridique.SNC">
+		<Trans i18nKey="formeJuridique.SNC">
 			La responsabilité des associés pour les dettes de la société est solidaire
 			(un seul associé peut être poursuivi pour la totalité de la dette) et
 			indéfinie (responsable sur la totalité de son patrimoine personnel).
 		</Trans>
 	) : statut === 'auto-entrepreneur' ? (
-		<Trans key="formeJuridique.micro">
+		<Trans i18nKey="formeJuridique.micro">
 			Un auto-entrepreneur exerce son activité en entreprise individuelle, avec
 			un régime forfaitaire pour ses cotisations sociales et un calcul
 			spécifique de l'impôt.
 		</Trans>
 	) : statut === 'auto-entrepreneur-EIRL' ? (
-		<Trans key="formeJuridique.micro-EIRL">
+		<Trans i18nKey="formeJuridique.micro-EIRL">
 			Un auto-entrepreneur option EIRL exerce son activité en entreprise
 			individuelle en choisissant l'option "Entrepreneur individuel à
 			responsabilité limitée", avec à un régime forfaitaire pour le calcul des

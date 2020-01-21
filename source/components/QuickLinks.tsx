@@ -4,10 +4,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	currentQuestionSelector,
-	nextStepsSelector
-} from 'Selectors/analyseSelectors'
+import { currentQuestionSelector, nextStepsSelector } from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 
 export default function QuickLinks() {
@@ -46,7 +43,7 @@ export default function QuickLinks() {
 					css="margin: 0 0.4rem !important"
 					onClick={() => dispatch(goToQuestion(dottedName))}
 				>
-					<Trans key={'quicklinks.' + label}>{label}</Trans>
+					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
 				</button>
 			))}{' '}
 			{/* <button className="ui__ link-button">Voir la liste</button> */}

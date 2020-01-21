@@ -46,7 +46,7 @@ export default function Créer() {
 				</NavLink>
 			</div>
 			<h1>
-				<Trans key="formeJuridique.titre">Choix du statut juridique</Trans>
+				<Trans i18nKey="formeJuridique.titre">Choix du statut juridique</Trans>
 			</h1>
 			<PreviousAnswers />
 			<Animate.fromBottom key={location.pathname}>

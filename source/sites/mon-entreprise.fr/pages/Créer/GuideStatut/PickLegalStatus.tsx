@@ -99,7 +99,7 @@ export default function SetMainStatus() {
 			</Helmet>
 			<h2>
 				{Object.keys(possibleStatus).every(Boolean) ? (
-					<Trans> Liste des statuts juridiques </Trans>
+					<Trans>Liste des statuts juridiques</Trans>
 				) : (
 					<Trans>Votre forme juridique</Trans>
 				)}

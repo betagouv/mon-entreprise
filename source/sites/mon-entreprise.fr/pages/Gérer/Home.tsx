@@ -59,13 +59,13 @@ export default function SocialSecurity() {
 			<ScrollToTop />
 			<Animate.fromBottom>
 				<h1>
-					<Trans key="gérer.titre">Gérer mon activité</Trans>
+					<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>
 				</h1>
 				<div css="display: flex; align-items: flex-start; justify-content: space-between">
 					<div>
 						{!company && (
 							<p className="ui__ lead">
-								<Trans key="gérer.description">
+								<Trans i18nKey="gérer.description">
 									Vous souhaitez vous verser un revenu ou embaucher ? <br />
 									Vous aurez à payer des cotisations et des impôts. <br />
 									Anticipez leurs montants grâce aux simulateurs adaptés à votre
@@ -85,7 +85,9 @@ export default function SocialSecurity() {
 
 				<>
 					<h2>
-						<Trans key="gérer.choix.titre">Que souhaitez-vous faire ?</Trans>
+						<Trans i18nKey="gérer.choix.titre">
+							Que souhaitez-vous faire ?
+						</Trans>
 					</h2>
 					{!!régime && (
 						<Link
@@ -98,7 +100,7 @@ export default function SocialSecurity() {
 								}
 							}}
 						>
-							<Trans key="gérer.choix.revenus">
+							<Trans i18nKey="gérer.choix.revenus">
 								<p>Calculer mon revenu net</p>
 								<small>
 									Estimez précisément le montant de vos cotisations grâce au
@@ -118,7 +120,7 @@ export default function SocialSecurity() {
 								}
 							}}
 						>
-							<Trans key="gérer.choix.embauche">
+							<Trans i18nKey="gérer.choix.embauche">
 								<p>Estimer le montant d’une embauche</p>
 								<small>
 									Calculez le montant total que votre entreprise devra dépenser
@@ -146,7 +148,7 @@ export default function SocialSecurity() {
 								className="ui__ interactive card button-choice lighter-bg"
 								to={sitePaths.gérer.embaucher}
 							>
-								<Trans key="gérer.ressources.embaucher">
+								<Trans i18nKey="gérer.ressources.embaucher">
 									<p>Découvrir les démarches d’embauche </p>
 									<small>
 										La liste des choses à faire pour être sûr de ne rien oublier
@@ -160,7 +162,7 @@ export default function SocialSecurity() {
 								className="ui__ interactive card button-choice lighter-bg"
 								href="https://autoentrepreneur.urssaf.fr"
 							>
-								<Trans key="gérer.ressources.autoEntrepreneur">
+								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
 									<p>Accéder au site officiel auto-entrepreneur</p>
 									<small>
 										Vous pourrez effectuer votre déclaration de chiffre
@@ -175,7 +177,7 @@ export default function SocialSecurity() {
 							className="ui__ interactive card button-choice lighter-bg"
 							to={sitePaths.gérer.sécuritéSociale}
 						>
-							<Trans key="gérer.ressources.sécuritéSociale">
+							<Trans i18nKey="gérer.ressources.sécuritéSociale">
 								<p>Comprendre la sécurité sociale </p>
 								<small>
 									A quoi servent les cotisations sociales ? Le point sur le
@@ -241,7 +243,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 					<ScrollToTop />
 					<Overlay>
 						<h2>
-							<Trans key="gérer.entreprise.auto">
+							<Trans i18nKey="gérer.entreprise.auto">
 								Êtes-vous auto-entrepreneur ?{' '}
 							</Trans>
 						</h2>
@@ -266,7 +268,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 				<>
 					<ScrollToTop />
 					<Overlay>
-						<Trans key="gérer.entreprise.dirigeant">
+						<Trans i18nKey="gérer.entreprise.dirigeant">
 							<h2> Êtes-vous dirigeant majoritaire ? </h2>
 							<p>
 								Si vous êtes administrateur majoritaire ou si vous faites partie
@@ -314,11 +316,11 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 								{company.isDirigeantMajoritaire != null && (
 									<span css="margin-left: 1rem" className="ui__ label">
 										{company.isDirigeantMajoritaire ? (
-											<Trans key="gérer.entreprise.majoritaire">
+											<Trans i18nKey="gérer.entreprise.majoritaire">
 												Dirigeant majoritaire
 											</Trans>
 										) : (
-											<Trans key="gérer.entreprise.minoritaire">
+											<Trans i18nKey="gérer.entreprise.minoritaire">
 												Dirigeant minoritaire
 											</Trans>
 										)}
@@ -334,7 +336,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 							showSearchModal(true)
 						}}
 					>
-						<Trans key="gérer.entreprise.changer">
+						<Trans i18nKey="gérer.entreprise.changer">
 							Changer l'entreprise sélectionnée
 						</Trans>
 					</button>
@@ -345,7 +347,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 						onClick={() => showSearchModal(true)}
 						className="ui__ plain cta button"
 					>
-						<Trans key="gérer.cta">Renseigner mon entreprise</Trans>
+						<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
 					</button>
 				</p>
 			)}

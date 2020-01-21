@@ -34,7 +34,7 @@ export default function AssimiléSalarié() {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="simulateurs.assimilé-salarié.titre">
+				<Trans i18nKey="simulateurs.assimilé-salarié.titre">
 					Simulateur de revenus assimilé salarié
 				</Trans>
 			</h1>

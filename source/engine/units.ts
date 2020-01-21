@@ -112,7 +112,7 @@ export let inferUnit = (
 	return undefined
 }
 
-export let removeOnce = <Trans>(
+export let removeOnce = <T>(
 	element: T,
 	eqFn: (a: T, b: T) => boolean = equals
 ) => (list: Array<T>): Array<T> => {

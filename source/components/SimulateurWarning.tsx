@@ -25,14 +25,14 @@ export default function SimulateurWarning({
 			<p>
 				{emoji('🚩 ')}
 				<strong>
-					<Trans key="simulateurs.warning.titre">Avant de commencer...</Trans>
+					<Trans i18nKey="simulateurs.warning.titre">Avant de commencer...</Trans>
 				</strong>{' '}
 				{folded && (
 					<button
 						className="ui__ button simple small"
 						onClick={() => fold(false)}
 					>
-						<Trans key="simulateurs.warning.plus">Lire les précisions</Trans>
+						<Trans i18nKey="simulateurs.warning.plus">Lire les précisions</Trans>
 					</button>
 				)}
 			</p>
@@ -45,7 +45,7 @@ export default function SimulateurWarning({
 						{simulateur == 'auto-entrepreneur' && (
 							<>
 								<li>
-									<Trans key="simulateurs.warning.auto-entrepreneur">
+									<Trans i18nKey="simulateurs.warning.auto-entrepreneur">
 										{' '}
 										Les auto-entrepreneurs ne peuvent pas déduire leurs charges
 										de leur chiffre d'affaires. Il faut donc{' '}
@@ -56,7 +56,7 @@ export default function SimulateurWarning({
 									</Trans>
 								</li>
 								<li>
-									<Trans key="simulateurs.warning.cfe">
+									<Trans i18nKey="simulateurs.warning.cfe">
 										Le simulateur n'intègre pas la cotisation foncière des
 										entreprise (CFE) qui est dûe dès la deuxième année
 										d'exercice. Son montant varie fortement en fonction du
@@ -70,7 +70,7 @@ export default function SimulateurWarning({
 						)}
 						{simulateur !== 'artiste-auteur' && (
 							<li>
-								<Trans key="simulateurs.warning.urssaf">
+								<Trans i18nKey="simulateurs.warning.urssaf">
 									Les calculs sont indicatifs et ne se substituent pas aux
 									décomptes réels des Urssaf, impots.gouv.fr, ou autres.
 								</Trans>
@@ -80,7 +80,7 @@ export default function SimulateurWarning({
 						{simulateur === 'artiste-auteur' && (
 							<>
 								<li>
-									<Trans key="simulateurs.warning.artiste-auteur">
+									<Trans i18nKey="simulateurs.warning.artiste-auteur">
 										Cette estimation est proposée à titre indicatif. Elle est
 										faite à partir des éléments réglementaires applicables et
 										des éléments que vous avez saisis, mais elle ne tient pas
@@ -89,7 +89,7 @@ export default function SimulateurWarning({
 									</Trans>
 								</li>
 								<li>
-									<Trans key="simlateurs.warning.artiste-auteur">
+									<Trans i18nKey="simlateurs.warning.artiste-auteur">
 										Ce simulateur permet d'estimer le montant de vos cotisations
 										pour l'année 2020 à partir de votre revenu projeté
 									</Trans>

@@ -195,6 +195,9 @@ export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
+			if (typeof propTrans === 'string') {
+				propTrans.replace(/^\[automatic\] /, '')
+			}
 			if (prop === 'suggestions' && propTrans)
 				return assoc(
 					'suggestions',
@@ -251,7 +254,7 @@ export let findParentDependencies = (rules, rule) => {
 		reject(isNil),
 		filter(
 			//Find the first "calculable" parent
-			({ question, unit, formule, dottedName }) =>
+			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) ||

@@ -31,7 +31,7 @@ export default function Privacy() {
 
 export let PrivacyContent = ({ language }: { language: string }) => (
 	<>
-		<Trans key="privacyContent">
+		<Trans i18nKey="privacyContent">
 			<h1>Vie privée</h1>
 			<p>
 				Nous recueillons des statistiques anonymes sur l'utilisation du site,

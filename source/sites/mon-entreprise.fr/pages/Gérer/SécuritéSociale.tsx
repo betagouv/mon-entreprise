@@ -13,7 +13,7 @@ export default function SocialSecurity() {
 			</Helmet>
 
 			<Animate.fromBottom>
-				<Trans key="sécu.contenu">
+				<Trans i18nKey="sécu.contenu">
 					<h1>Protection sociale </h1>
 					<p>
 						En France, tous les travailleurs bénéficient d'une protection

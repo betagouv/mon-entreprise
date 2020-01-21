@@ -1,8 +1,5 @@
 import { setSimulationConfig, setSituationBranch } from 'Actions/actions'
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur
-} from 'Actions/companyStatusActions'
+import { defineDirectorStatus, isAutoentrepreneur } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
@@ -18,10 +15,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	branchAnalyseSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector, branchAnalyseSelector } from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
@@ -77,7 +71,7 @@ export default function SchemeComparaison({
 				<h2 className="AS">
 					{emoji('☂')} <Trans>Assimilé salarié</Trans>
 					<small>
-						<Trans key="comparaisonRégimes.AS.tagline">
+						<Trans i18nKey="comparaisonRégimes.AS.tagline">
 							Le régime tout compris
 						</Trans>
 					</small>
@@ -90,7 +84,7 @@ export default function SchemeComparaison({
 						<Trans>Indépendant</Trans>
 					)}
 					<small>
-						<Trans key="comparaisonRégimes.indep.tagline">
+						<Trans i18nKey="comparaisonRégimes.indep.tagline">
 							La protection sociale à la carte
 						</Trans>
 					</small>
@@ -98,20 +92,20 @@ export default function SchemeComparaison({
 				<h2 className="auto">
 					{emoji('🚶‍♂️')} <Trans>Auto-entrepreneur</Trans>
 					<small>
-						<Trans key="comparaisonRégimes.auto.tagline">
+						<Trans i18nKey="comparaisonRégimes.auto.tagline">
 							Pour commencer sans risques
 						</Trans>
 					</small>
 				</h2>
 
 				<h3 className="legend">
-					<Trans key="comparaisonRégimes.status.legend">
+					<Trans i18nKey="comparaisonRégimes.status.legend">
 						Statuts juridiques possibles
 					</Trans>
 				</h3>
 				<div className="AS">
 					<div>
-						<Trans key="comparaisonRégimes.status.AS">
+						<Trans i18nKey="comparaisonRégimes.status.AS">
 							SAS, SASU ou SARL avec gérant minoritaire
 						</Trans>
 					</div>
@@ -119,19 +113,19 @@ export default function SchemeComparaison({
 				<div className="indep">
 					<div>
 						{hideAssimiléSalarié ? (
-							<Trans key="comparaisonRégimes.status.indep.2">EI ou EIRL</Trans>
+							<Trans i18nKey="comparaisonRégimes.status.indep.2">EI ou EIRL</Trans>
 						) : (
-							<Trans key="comparaisonRégimes.status.indep.1">
+							<Trans i18nKey="comparaisonRégimes.status.indep.1">
 								EI, EIRL, EURL ou SARL avec gérant majoritaire
 							</Trans>
 						)}
 					</div>
 				</div>
 				<div className="auto">
-					<Trans key="comparaisonRégimes.status.auto">Auto-entreprise</Trans>
+					<Trans i18nKey="comparaisonRégimes.status.auto">Auto-entreprise</Trans>
 				</div>
 
-				<Trans key="comparaisonRégimes.AT">
+				<Trans i18nKey="comparaisonRégimes.AT">
 					<h3 className="legend">Couverture accidents du travail</h3>
 				</Trans>
 				<div className="AS">
@@ -142,14 +136,14 @@ export default function SchemeComparaison({
 				<div className="indep-et-auto">
 					<Trans>Non</Trans>
 				</div>
-				<Trans key="comparaisonRégimes.assuranceMaladie">
+				<Trans i18nKey="comparaisonRégimes.assuranceMaladie">
 					<h3 className="legend">
 						Assurance maladie{' '}
 						<small>(médicaments, soins, hospitalisations)</small>
 					</h3>
 					<div className="AS-indep-et-auto">Identique pour tous</div>
 				</Trans>
-				<Trans key="comparaisonRégimes.mutuelle">
+				<Trans i18nKey="comparaisonRégimes.mutuelle">
 					<h3 className="legend">
 						Mutuelle santé
 						<small />
@@ -158,13 +152,13 @@ export default function SchemeComparaison({
 					<div className="indep-et-auto">Fortement conseillée</div>
 				</Trans>
 
-				<Trans key="comparaisonRégimes.indemnités">
+				<Trans i18nKey="comparaisonRégimes.indemnités">
 					<h3 className="legend">Indemnités journalières</h3>
 				</Trans>
 				<div className="green AS">++</div>
 				<div className="green indep">++</div>
 				<div className="green auto">+</div>
-				<Trans key="comparaisonRégimes.retraite">
+				<Trans i18nKey="comparaisonRégimes.retraite">
 					<h3 className="legend">Retraite</h3>
 				</Trans>
 				<div className="green AS">+++</div>
@@ -173,13 +167,13 @@ export default function SchemeComparaison({
 
 				{showMore ? (
 					<>
-						<Trans key="comparaisonRégimes.ACRE">
+						<Trans i18nKey="comparaisonRégimes.ACRE">
 							<h3 className="legend">ACRE</h3>
 							<div className="all">
 								1 an <small>(sous conditions d'éligibilité)</small>
 							</div>
 						</Trans>
-						<Trans key="comparaisonRégimes.déduction">
+						<Trans i18nKey="comparaisonRégimes.déduction">
 							<h3 className="legend">Déduction des charges</h3>
 							<div className="AS-et-indep">
 								Oui <small>(régime fiscal du réel)</small>
@@ -193,7 +187,7 @@ export default function SchemeComparaison({
 							</div>
 						</Trans>
 
-						<Trans key="comparaisonRégimes.cotisations">
+						<Trans i18nKey="comparaisonRégimes.cotisations">
 							<h3 className="legend">Paiement des cotisations</h3>
 							<div className="AS">Mensuel</div>
 							<div className="indep">
@@ -204,7 +198,7 @@ export default function SchemeComparaison({
 							</div>
 							<div className="auto">Mensuel ou trimestriel</div>
 						</Trans>
-						<Trans key="comparaisonRégimes.complémentaireDeductible">
+						<Trans i18nKey="comparaisonRégimes.complémentaireDeductible">
 							<h3 className="legend">
 								Contrats prévoyance et retraite facultatives déductibles
 							</h3>
@@ -218,7 +212,7 @@ export default function SchemeComparaison({
 						<div className="auto">
 							<Trans>Non</Trans>
 						</div>
-						<Trans key="comparaisonRégimes.cotisationMinimale">
+						<Trans i18nKey="comparaisonRégimes.cotisationMinimale">
 							<h3 className="legend">Paiement de cotisations minimales</h3>
 						</Trans>
 						<div className="AS">
@@ -230,7 +224,7 @@ export default function SchemeComparaison({
 						<div className="auto">
 							<Trans>Non</Trans>
 						</div>
-						<Trans key="comparaisonRégimes.seuil">
+						<Trans i18nKey="comparaisonRégimes.seuil">
 							<h3 className="legend">
 								Revenu minimum pour l'ouverture des droits aux prestations
 							</h3>
@@ -241,7 +235,7 @@ export default function SchemeComparaison({
 							<div className="auto">Oui</div>
 						</Trans>
 						{!hideAutoEntrepreneur && (
-							<Trans key="comparaisonRégimes.plafondCA">
+							<Trans i18nKey="comparaisonRégimes.plafondCA">
 								<h3 className="legend">Plafond de chiffre d'affaires</h3>
 								<div className="AS-et-indep">
 									<Trans>Non</Trans>
@@ -255,7 +249,7 @@ export default function SchemeComparaison({
 								</div>
 							</Trans>
 						)}
-						<Trans key="comparaisonRégimes.comptabilité">
+						<Trans i18nKey="comparaisonRégimes.comptabilité">
 							<h3 className="legend">
 								Gestion comptable, sociale, juridique...
 							</h3>
@@ -273,7 +267,7 @@ export default function SchemeComparaison({
 						</Trans>
 					</>
 				) : (
-					<Trans key="comparaisonRégimes.comparaisonDétaillée">
+					<Trans i18nKey="comparaisonRégimes.comparaisonDétaillée">
 						<div className="all">
 							<button
 								onClick={() => setShowMore(true)}
@@ -286,7 +280,7 @@ export default function SchemeComparaison({
 				)}
 				{conversationStarted && (
 					<>
-						<Trans key="comparaisonRégimes.période">
+						<Trans i18nKey="comparaisonRégimes.période">
 							<h3 className="legend">Unité</h3>
 						</Trans>
 						<div className="AS-indep-et-auto" style={{ alignSelf: 'start' }}>
@@ -297,7 +291,7 @@ export default function SchemeComparaison({
 				<div className="all colored">
 					{!conversationStarted ? (
 						<>
-							<Trans key="comparaisonRégimes.simulationText">
+							<Trans i18nKey="comparaisonRégimes.simulationText">
 								<h3>
 									Comparer mes revenus, pension de retraite et indemnité maladie
 								</h3>
@@ -320,7 +314,7 @@ export default function SchemeComparaison({
 				{conversationStarted &&
 					!!getRule('assimilé', 'revenu net après impôt')?.nodeValue && (
 						<>
-							<Trans key="comparaisonRégimes.revenuNetApresImpot">
+							<Trans i18nKey="comparaisonRégimes.revenuNetApresImpot">
 								<h3 className="legend">Revenu net après impôt</h3>
 							</Trans>
 							<div className="AS">
@@ -356,7 +350,7 @@ export default function SchemeComparaison({
 									)}
 								</Animate.appear>
 							</div>
-							<Trans key="comparaisonRégimes.revenuNetAvantImpot">
+							<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
 								<h3 className="legend">
 									Revenu net de cotisations <small>(avant impôts)</small>
 								</h3>
@@ -384,7 +378,7 @@ export default function SchemeComparaison({
 								)}
 							</div>
 							<h3 className="legend">
-								<Trans key="comparaisonRégimes.retraiteEstimation.legend">
+								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
 									<span>Pension de retraite</span>
 									<small>(avant impôts)</small>
 								</Trans>
@@ -396,7 +390,7 @@ export default function SchemeComparaison({
 										rule="protection sociale . retraite"
 									/>{' '}
 									<InfoBulle>
-										<Trans key="comparaisonRégimes.retraiteEstimation.infobulles.AS">
+										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
 											Pension calculée pour 172 trimestres cotisés au régime
 											général sans variations de revenus.
 										</Trans>
@@ -412,7 +406,7 @@ export default function SchemeComparaison({
 											rule="protection sociale . retraite"
 										/>{' '}
 										<InfoBulle>
-											<Trans key="comparaisonRégimes.retraiteEstimation.infobulles.indep">
+											<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
 												Pension calculée pour 172 trimestres cotisés au régime
 												des indépendants sans variations de revenus.
 											</Trans>
@@ -437,7 +431,7 @@ export default function SchemeComparaison({
 											rule="protection sociale . retraite"
 										/>{' '}
 										<InfoBulle>
-											<Trans key="comparaisonRégimes.retraiteEstimation.infobulles.auto">
+											<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
 												Pension calculée pour 172 trimestres cotisés en
 												auto-entrepreneur sans variations de revenus.
 											</Trans>
@@ -449,7 +443,7 @@ export default function SchemeComparaison({
 									</span>
 								)}
 							</div>
-							<Trans key="comparaisonRégimes.trimestreValidés">
+							<Trans i18nKey="comparaisonRégimes.trimestreValidés">
 								<h3 className="legend">
 									Nombre de trimestres validés <small>(pour la retraite)</small>
 								</h3>
@@ -482,7 +476,7 @@ export default function SchemeComparaison({
 									/>
 								)}
 							</div>
-							<Trans key="comparaisonRégimes.indemnités">
+							<Trans i18nKey="comparaisonRégimes.indemnités">
 								<h3 className="legend">
 									Indemnités journalières{' '}
 									<small>(en cas d'arrêt maladie)</small>
@@ -559,7 +553,7 @@ export default function SchemeComparaison({
 			<div className="ui__ container">
 				<br />
 				<h3>
-					<Trans key="comparaisonRégimes.titreSelection">
+					<Trans i18nKey="comparaisonRégimes.titreSelection">
 						Créer mon entreprise en tant que :
 					</Trans>
 				</h3>
@@ -572,7 +566,7 @@ export default function SchemeComparaison({
 								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 							}}
 						>
-							<Trans key="comparaisonRégimes.choix.AS">
+							<Trans i18nKey="comparaisonRégimes.choix.AS">
 								Assimilé&nbsp;salarié
 							</Trans>
 						</button>
@@ -586,11 +580,11 @@ export default function SchemeComparaison({
 						}}
 					>
 						{hideAssimiléSalarié ? (
-							<Trans key="comparaisonRégimes.choix.EI">
+							<Trans i18nKey="comparaisonRégimes.choix.EI">
 								Entreprise individuelle
 							</Trans>
 						) : (
-							<Trans key="comparaisonRégimes.choix.indep">Indépendant</Trans>
+							<Trans i18nKey="comparaisonRégimes.choix.indep">Indépendant</Trans>
 						)}
 					</button>
 					{!hideAutoEntrepreneur && (
@@ -602,7 +596,7 @@ export default function SchemeComparaison({
 								dispatch(isAutoentrepreneur(true))
 							}}
 						>
-							<Trans key="comparaisonRégimes.choix.auto">
+							<Trans i18nKey="comparaisonRégimes.choix.auto">
 								Auto-entrepreneur
 							</Trans>
 						</button>

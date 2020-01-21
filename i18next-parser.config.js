@@ -4,7 +4,7 @@ module.exports = {
 	contextSeparator: '_',
 	// Key separator used in your translation keys
 
-	createOldCatalogs: true,
+	createOldCatalogs: false,
 	// Save the \_old files
 
 	defaultNamespace: 'translation',
@@ -19,7 +19,7 @@ module.exports = {
 	keepRemoved: false,
 	// Keep keys from the catalog that are no longer in code
 
-	keySeparator: '.',
+	keySeparator: false,
 	// Key separator used in your translation keys
 	// If you want to use plain english keys, separators such as `.` and `:` will conflict. You might want to set `keySeparator: false` and `namespaceSeparator: false`. That way, `t('Status: Loading...')` will not think that there are a namespace and three separator dots for instance.
 
@@ -43,19 +43,19 @@ module.exports = {
 	lineEnding: 'auto',
 	// Control the line ending. See options at https://github.com/ryanve/eol
 
-	locales: ['en', 'fr'],
+	locales: ['fr'],
 	// An array of the locales in your applications
 
-	namespaceSeparator: ':',
+	namespaceSeparator: false,
 	// Namespace separator used in your translation keys
 	// If you want to use plain english keys, separators such as `.` and `:` will conflict. You might want to set `keySeparator: false` and `namespaceSeparator: false`. That way, `t('Status: Loading...')` will not think that there are a namespace and three separator dots for instance.
 
-	output: 'locales/$LOCALE.yaml',
+	output: 'source/locales/static-analysis-$LOCALE.json',
 	// Supports $LOCALE and $NAMESPACE injection
 	// Supports JSON (.json) and YAML (.yml) file formats
 	// Where to write the locale files relative to process.cwd()
 
-	input: undefined,
+	input: './source/**/*.{jsx,tsx,js,ts}',
 	// An array of globs that describe where to look for source files
 	// relative to the location of the configuration file
 
@@ -63,7 +63,7 @@ module.exports = {
 	// For react file, extract the defaultNamespace - https://react.i18next.com/components/translate-hoc.html
 	// Ignored when parsing a `.jsx` file and namespace is extracted from that file.
 
-	sort: false,
+	sort: true,
 	// Whether or not to sort the catalog
 
 	useKeysAsDefaultValue: false,

@@ -35,7 +35,7 @@ export default function Indépendant() {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="simulateurs.indépendant.titre">
+				<Trans i18nKey="simulateurs.indépendant.titre">
 					Simulateur de revenus pour indépendants
 				</Trans>
 			</h1>

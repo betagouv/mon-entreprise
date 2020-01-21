@@ -21,7 +21,7 @@ export default function ÉconomieCollaborative() {
 					className="ui__ simple small push-left button "
 				>
 					←{' '}
-					<Trans key="économieCollaborative.retourAccueil">
+					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités
 					</Trans>
 				</NavLink>

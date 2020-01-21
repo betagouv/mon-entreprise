@@ -42,8 +42,8 @@ jobs:
       - image: node
     steps:
       - install
-      - run: |
-          yarn run i18n:check-rules
+      - run: yarn run i18n:rules:check
+      - run: yarn run i18n:ui:check
   unit-test:
     docker:
       - image: node

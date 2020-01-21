@@ -24,11 +24,11 @@ export default function Newsletter() {
 		<>
 			{' '}
 			<h2>
-				<Trans key="newsletter.register.titre">Restez informé</Trans>
+				<Trans i18nKey="newsletter.register.titre">Restez informé</Trans>
 			</h2>
 			<div className="footer__newsletterContainer">
 				<p>
-					<Trans key="newsletter.register.description">
+					<Trans i18nKey="newsletter.register.description">
 						Inscrivez-vous à notre newsletter mensuelle pour recevoir des{' '}
 						<strong>conseils officiels sur la création d’entreprise</strong> et
 						accéder aux nouvelles fonctionnalités en avant-première.

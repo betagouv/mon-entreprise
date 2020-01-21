@@ -1,7 +1,5 @@
 import Controls from 'Components/Controls'
-import Conversation, {
-	ConversationProps
-} from 'Components/conversation/Conversation'
+import Conversation, { ConversationProps } from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
@@ -43,7 +41,7 @@ export default function Simulation({
 						>
 							{progress < 1 ? (
 								<small css="padding: 0.4rem 0">
-									<Trans key="simulateurs.précision.défaut">
+									<Trans i18nKey="simulateurs.précision.défaut">
 										Affinez la simulation en répondant aux questions :
 									</Trans>
 								</small>
@@ -64,7 +62,7 @@ export default function Simulation({
 						<br />
 						<PageFeedback
 							customMessage={
-								<Trans key="feedback.simulator">
+								<Trans i18nKey="feedback.simulator">
 									Êtes-vous satisfait de ce simulateur ?
 								</Trans>
 							}

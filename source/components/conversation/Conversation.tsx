@@ -7,11 +7,7 @@ import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	currentQuestionSelector,
-	flatRulesSelector,
-	nextStepsSelector
-} from 'Selectors/analyseSelectors'
+import { currentQuestionSelector, flatRulesSelector, nextStepsSelector } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
@@ -80,7 +76,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		<div style={{ textAlign: 'center' }}>
 			<h3>
 				{emoji('🌟')}{' '}
-				<Trans key="simulation-end.title">
+				<Trans i18nKey="simulation-end.title">
 					Vous avez complété cette simulation
 				</Trans>{' '}
 			</h3>
@@ -88,7 +84,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				{customEndMessages ? (
 					customEndMessages
 				) : (
-					<Trans key="simulation-end.text">
+					<Trans i18nKey="simulation-end.text">
 						Vous avez maintenant accès à l'estimation la plus précise possible.
 					</Trans>
 				)}

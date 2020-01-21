@@ -18,11 +18,11 @@ export default function Autoentrepreneur() {
 				/>
 			</Helmet>
 			<h2>
-				<Trans key="autoentrepreneur.titre">
+				<Trans i18nKey="autoentrepreneur.titre">
 					Entreprise individuelle ou auto-entrepreneur
 				</Trans>
 			</h2>
-			<Trans key="autoentrepreneur.description">
+			<Trans i18nKey="autoentrepreneur.description">
 				<p>
 					À la différence de l'entreprise individuelle, l'auto-entrepreneur
 					bénéficie d'un régime simplifié de déclaration et de paiement : les

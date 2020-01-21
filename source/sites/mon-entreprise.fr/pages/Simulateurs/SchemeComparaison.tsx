@@ -23,14 +23,14 @@ export default function SchemeComparaisonPage() {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="comparaisonRégimes.titre">
+				<Trans i18nKey="comparaisonRégimes.titre">
 					Indépendant, assimilé salarié ou{' '}
 					<span style={{ whiteSpace: 'nowrap' }}>auto-entrepreneur</span> : quel
 					régime choisir ?
 				</Trans>
 			</h1>
 			<p>
-				<Trans key="comparaisonRégimes.description">
+				<Trans i18nKey="comparaisonRégimes.description">
 					Lorsque vous créez votre société, le choix du statut juridique va
 					déterminer à quel régime social le dirigeant est affilié. Il en existe
 					trois différents, avec chacun ses avantages et inconvénients. Avec ce

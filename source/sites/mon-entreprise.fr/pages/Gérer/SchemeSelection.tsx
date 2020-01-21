@@ -15,7 +15,7 @@ export default function SchemeChoice() {
 				<title>{t('selectionRégime.page.titre', 'Selection du régime')}</title>
 			</Helmet>
 			<h1>
-				<Trans key="selectionRégime.titre">
+				<Trans i18nKey="selectionRégime.titre">
 					Quel régime souhaitez-vous explorer ?
 				</Trans>
 			</h1>
@@ -29,7 +29,7 @@ export default function SchemeChoice() {
 						<Trans>Assimilé salarié</Trans>
 						<small>
 							(
-							<Trans key="comparaisonRégimes.status.AS">
+							<Trans i18nKey="comparaisonRégimes.status.AS">
 								SAS, SASU ou SARL avec gérant minoritaire
 							</Trans>
 							)
@@ -45,7 +45,7 @@ export default function SchemeChoice() {
 						<Trans>Indépendant</Trans>
 						<small>
 							(
-							<Trans key="comparaisonRégimes.status.indep.1">
+							<Trans i18nKey="comparaisonRégimes.status.indep.1">
 								EI, EIRL, EURL ou SARL avec gérant majoritaire
 							</Trans>
 							)
@@ -61,7 +61,7 @@ export default function SchemeChoice() {
 				</Link>
 			</p>
 			<h2>
-				<Trans key="selectionRégime.comparer.titre">
+				<Trans i18nKey="selectionRégime.comparer.titre">
 					Vous ne savez pas lequel choisir ?
 				</Trans>
 			</h2>
@@ -70,7 +70,9 @@ export default function SchemeChoice() {
 					className="ui__  plain cta button"
 					to={sitePaths.simulateurs.comparaison}
 				>
-					<Trans key="selectionRégime.comparer.cta">Comparer les régimes</Trans>
+					<Trans i18nKey="selectionRégime.comparer.cta">
+						Comparer les régimes
+					</Trans>
 				</Link>
 			</p>
 		</animate.fromBottom>

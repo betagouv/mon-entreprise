@@ -77,7 +77,7 @@ function CreateCompany({
 					onClick={onStatusChange}
 					className="ui__ simple small push-left button"
 				>
-					<Trans key="entreprise.retour">← Choisir un autre statut</Trans>
+					<Trans i18nKey="entreprise.retour">← Choisir un autre statut</Trans>
 				</button>
 			</div>
 
@@ -88,12 +88,12 @@ function CreateCompany({
 
 			<h2>
 				{emoji('📋')}{' '}
-				<Trans key="entreprise.tâches.titre">
+				<Trans i18nKey="entreprise.tâches.titre">
 					À faire pour créer votre entreprise
 				</Trans>
 			</h2>
 			<p className="ui__ notice">
-				<Trans key="entreprise.tâches.avancement">
+				<Trans i18nKey="entreprise.tâches.avancement">
 					Utilisez cette liste pour suivre votre avancement dans les démarches.
 					Votre progression est automatiquement sauvegardée dans votre
 					navigateur.
@@ -109,7 +109,7 @@ function CreateCompany({
 					name="legalStatus"
 					defaultChecked={true}
 					title={
-						<Trans key="entreprise.tâches.formeJuridique.titre">
+						<Trans i18nKey="entreprise.tâches.formeJuridique.titre">
 							Choisir la forme juridique
 						</Trans>
 					}
@@ -118,12 +118,12 @@ function CreateCompany({
 					<CheckItem
 						name="corporateName"
 						title={
-							<Trans key="entreprise.tâches.nom.titre">
+							<Trans i18nKey="entreprise.tâches.nom.titre">
 								Trouver un nom d'entreprise
 							</Trans>
 						}
 						explanations={
-							<Trans key="entreprise.tâches.nom.description">
+							<Trans i18nKey="entreprise.tâches.nom.description">
 								<p>
 									<strong>La dénomination sociale</strong> est le nom de votre
 									entreprise aux yeux de la loi, écrit sur tous vos documents
@@ -145,13 +145,13 @@ function CreateCompany({
 				<CheckItem
 					name="corporatePurpose"
 					title={
-						<Trans key="entreprise.tâches.objetSocial.titre">
+						<Trans i18nKey="entreprise.tâches.objetSocial.titre">
 							Déterminer l'objet social
 						</Trans>
 					}
 					explanations={
 						<p>
-							<Trans key="entreprise.tâches.objetSocial.description">
+							<Trans i18nKey="entreprise.tâches.objetSocial.description">
 								L'
 								<strong>objet social</strong> est l'activité principale de
 								l'entreprise. Une activité secondaire peut être enregistrée.
@@ -163,12 +163,12 @@ function CreateCompany({
 					<CheckItem
 						name="companyAddress"
 						title={
-							<Trans key="entreprise.tâches.adresse.titre">
+							<Trans i18nKey="entreprise.tâches.adresse.titre">
 								Choisir une adresse pour le siège
 							</Trans>
 						}
 						explanations={
-							<Trans key="entreprise.tâches.adresse.description">
+							<Trans i18nKey="entreprise.tâches.adresse.description">
 								<p>
 									<strong>L'adresse</strong> est l'espace physique où votre
 									entreprise sera incorporée. Dans certains lieux et certaines
@@ -186,13 +186,13 @@ function CreateCompany({
 					<CheckItem
 						name="statut"
 						title={
-							<Trans key="entreprise.tâches.statuts.titre">
+							<Trans i18nKey="entreprise.tâches.statuts.titre">
 								Écrire les statuts
 							</Trans>
 						}
 						explanations={
 							<p>
-								<Trans key="entreprise.tâches.statuts.description">
+								<Trans i18nKey="entreprise.tâches.statuts.description">
 									Il s'agit d'un document officiel qui intègre la forme
 									juridique, nomme les associés et leurs contributions au
 									capital.{' '}
@@ -216,29 +216,29 @@ function CreateCompany({
 				<CheckItem
 					name="openBankAccount"
 					title={
-						<Trans key="entreprise.tâches.banque.titre">
+						<Trans i18nKey="entreprise.tâches.banque.titre">
 							Ouvrir un compte bancaire
 						</Trans>
 					}
 					explanations={
 						<>
 							<p>
-								<Trans key="entreprise.tâches.banque.description.1">
+								<Trans i18nKey="entreprise.tâches.banque.description.1">
 									Le but d'un <strong>compte bancaire d'entreprise</strong> est
 									de séparer les actifs de l'entreprise des vôtres.
 								</Trans>{' '}
 								{statut === 'EI' && (
-									<Trans key="entreprise.tâches.banque.description.EI">
+									<Trans i18nKey="entreprise.tâches.banque.description.EI">
 										Si son ouverture n'est pas obligatoire pour un IE, elle
 										reste fortement recommandée.{' '}
 									</Trans>
 								)}
-								<Trans key="entreprise.tâches.banque.description.2">
+								<Trans i18nKey="entreprise.tâches.banque.description.2">
 									Le compte d'entreprise vous permet de :
 								</Trans>
 							</p>
 							<ul>
-								<Trans key="entreprise.tâches.banque.description.liste">
+								<Trans i18nKey="entreprise.tâches.banque.description.liste">
 									<li>
 										Différencier vos opérations privées et professionnelles
 									</li>
@@ -252,12 +252,12 @@ function CreateCompany({
 					<CheckItem
 						name="fundsDeposit"
 						title={
-							<Trans key="entreprise.tâches.capital.titre">
+							<Trans i18nKey="entreprise.tâches.capital.titre">
 								Déposer le capital
 							</Trans>
 						}
 						explanations={
-							<Trans key="entreprise.tâches.capital.description">
+							<Trans i18nKey="entreprise.tâches.capital.description">
 								<p>
 									Le <strong>dépôt du capital social</strong> doit être fait au
 									moment de la constitution d'une société par une personne
@@ -282,12 +282,12 @@ function CreateCompany({
 					<CheckItem
 						name="declarationOfAssignement"
 						title={
-							<Trans key="entreprise.tâches.affectation.titre">
+							<Trans i18nKey="entreprise.tâches.affectation.titre">
 								Effectuer une déclaration d'affectation de patrimoine
 							</Trans>
 						}
 						explanations={
-							<Trans key="entreprise.tâches.affectation.description">
+							<Trans i18nKey="entreprise.tâches.affectation.description">
 								<p>
 									La <strong>déclaration d'affectation du patrimoine</strong>{' '}
 									permet de séparer le patrimoine professionnel de votre
@@ -316,13 +316,13 @@ function CreateCompany({
 				{!isEI && (
 					<CheckItem
 						title={
-							<Trans key="entreprise.tâches.journal.titre">
+							<Trans i18nKey="entreprise.tâches.journal.titre">
 								Publier une annonce de création dans un journal
 							</Trans>
 						}
 						name="publishCreationNotice"
 						explanations={
-							<Trans key="entreprise.tâches.journal.description">
+							<Trans i18nKey="entreprise.tâches.journal.description">
 								<p>
 									Vous devez publier la création de votre entreprise dans un
 									journal d'annonces légales (« JAL »), pour un coût de
@@ -360,12 +360,12 @@ function CreateCompany({
 				<CheckItem
 					name="registerCompanyOnline"
 					title={
-						<Trans key="entreprise.tâches.formulaire.titre">
+						<Trans i18nKey="entreprise.tâches.formulaire.titre">
 							Créer mon entreprise en ligne
 						</Trans>
 					}
 					explanations={
-						<Trans key="entreprise.tâches.formulaire.description">
+						<Trans i18nKey="entreprise.tâches.formulaire.description">
 							<p>
 								Vous pouvez faire votre inscription en ligne à tout moment,
 								l'enregistrer et y revenir comme vous le souhaitez.
@@ -389,7 +389,7 @@ function CreateCompany({
 			</Checklist>
 			<h2>
 				{emoji('💭')}{' '}
-				<Trans key="entreprise.tâches.titre2">
+				<Trans i18nKey="entreprise.tâches.titre2">
 					Recommandé avant le début de l'activité
 				</Trans>
 			</h2>
@@ -399,13 +399,13 @@ function CreateCompany({
 					<CheckItem
 						name="chooseCertifiedAccountant"
 						title={
-							<Trans key="entreprise.tâches.comptable.titre">
+							<Trans i18nKey="entreprise.tâches.comptable.titre">
 								Choisir un comptable
 							</Trans>
 						}
 						explanations={
 							<p>
-								<Trans key="entreprise.tâches.comptable.description">
+								<Trans i18nKey="entreprise.tâches.comptable.description">
 									La gestion d'une entreprise impose un certain nombre d'
 									<a href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
 										obligations comptables
@@ -420,12 +420,12 @@ function CreateCompany({
 				<CheckItem
 					name="checkoutProfessionalAssuranceNeeds"
 					title={
-						<Trans key="entreprise.tâches.assurance.titre">
+						<Trans i18nKey="entreprise.tâches.assurance.titre">
 							Juger de la nécessité de prendre une assurance
 						</Trans>
 					}
 					explanations={
-						<Trans key="entreprise.tâches.assurance.description">
+						<Trans i18nKey="entreprise.tâches.assurance.description">
 							<p>
 								Une PME ou un travailleur indépendant doit se protéger contre
 								les principaux risques auxquels il est exposé et souscrire des
@@ -463,7 +463,7 @@ function CreateCompany({
 							state: { fromCréer: true }
 						}}
 					>
-						<Trans key="entreprise.ressources.simu.autoEntrepreneur">
+						<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur">
 							<p>Simulateur de revenus auto-entrepreneur</p>
 							<small>
 								Simuler le montant de vos cotisations sociales et de votre impôt
@@ -480,7 +480,7 @@ function CreateCompany({
 							state: { fromCréer: true }
 						}}
 					>
-						<Trans key="entreprise.ressources.simu.indépendant">
+						<Trans i18nKey="entreprise.ressources.simu.indépendant">
 							<p>Simulateur de cotisations indépendant</p>
 							<small>
 								Simuler le montant de vos cotisations sociales pour bien
@@ -497,7 +497,7 @@ function CreateCompany({
 							state: { fromCréer: true }
 						}}
 					>
-						<Trans key="entreprise.ressources.simu.assimilé">
+						<Trans i18nKey="entreprise.ressources.simu.assimilé">
 							<p>Simulateur de cotisations assimilé-salarié</p>
 							<small>
 								Simuler le montant de vos cotisations sociales pour bien
@@ -510,7 +510,7 @@ function CreateCompany({
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.après}
 				>
-					<Trans key="entreprise.ressources.après">
+					<Trans i18nKey="entreprise.ressources.après">
 						<p>Après la création</p>
 						<small>
 							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
@@ -557,7 +557,7 @@ let StatutsExample = ({ statut }) => {
 
 	return (
 		<a target="_blank" href={links[statut]}>
-			<Trans key="entreprise.tâches.statuts.exemple">
+			<Trans i18nKey="entreprise.tâches.statuts.exemple">
 				Exemple de statuts pour votre
 			</Trans>{' '}
 			{statut}

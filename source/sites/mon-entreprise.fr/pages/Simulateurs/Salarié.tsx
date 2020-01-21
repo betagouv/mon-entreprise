@@ -36,7 +36,7 @@ export default function Salarié() {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="simulateurs.salarié.titre">
+				<Trans i18nKey="simulateurs.salarié.titre">
 					Simulateur de revenus pour salarié
 				</Trans>
 			</h1>
@@ -104,7 +104,7 @@ export let SalarySimulation = () => {
 				explanations={<SalaryExplanation />}
 				customEndMessages={
 					<>
-						<Trans key="simulation-end.hiring.text">
+						<Trans i18nKey="simulation-end.hiring.text">
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
 						<div style={{ textAlign: 'center', margin: '1rem' }}>
@@ -112,7 +112,9 @@ export let SalarySimulation = () => {
 								className="ui__ plain button"
 								to={sitePaths.gérer.embaucher}
 							>
-								<Trans key="simulation-end.cta">Connaître les démarches</Trans>
+								<Trans i18nKey="simulation-end.cta">
+									Connaître les démarches
+								</Trans>
 							</Link>
 						</div>
 					</>

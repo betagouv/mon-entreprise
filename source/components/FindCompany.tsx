@@ -28,10 +28,10 @@ export default function Search() {
 	return (
 		<>
 			<h1>
-				<Trans key="trouver.titre">Retrouver mon entreprise</Trans>
+				<Trans i18nKey="trouver.titre">Retrouver mon entreprise</Trans>
 			</h1>
 			<p>
-				<Trans key="trouver.description">
+				<Trans i18nKey="trouver.description">
 					Grâce à la base SIREN, les données publiques sur votre entreprise
 					seront automatiquement disponibles pour la suite du parcours sur le
 					site.

@@ -25,12 +25,12 @@ export default function Landing() {
 				/>
 				<header>
 					<h1>
-						<Trans key="landing.title">
+						<Trans i18nKey="landing.title">
 							L'assistant officiel du créateur d'entreprise
 						</Trans>
 					</h1>
 					<p className="ui__ lead">
-						<Trans key="landing.subtitle">
+						<Trans i18nKey="landing.subtitle">
 							Les ressources nécessaires pour développer votre activité, du
 							statut juridique à l'embauche.
 						</Trans>
@@ -46,7 +46,7 @@ export default function Landing() {
 					}
 				>
 					<div className="ui__ big box-icon">{emoji('💡')}</div>
-					<Trans key="landing.choice.create">
+					<Trans i18nKey="landing.choice.create">
 						<h3>Créer une entreprise</h3>
 						<p className="ui__ notice" css="flex: 1">
 							Un accompagnement au choix du statut juridique et la liste
@@ -59,7 +59,7 @@ export default function Landing() {
 				</Link>
 				<Link className="ui__ interactive card box " to={sitePaths.gérer.index}>
 					<div className="ui__ big box-icon">{emoji('💶')}</div>
-					<Trans key="landing.choice.manage">
+					<Trans i18nKey="landing.choice.manage">
 						<h3>Gérer mon activité</h3>
 						<p className="ui__ notice" css="flex: 1">
 							Des simulateurs pour anticiper le montant des cotisations sociales
@@ -75,7 +75,7 @@ export default function Landing() {
 					to={sitePaths.économieCollaborative.index}
 				>
 					<div className="ui__ big box-icon">{emoji('🙋')}</div>
-					<Trans key="landing.choice.declare">
+					<Trans i18nKey="landing.choice.declare">
 						<h3>Que dois-je déclarer ?</h3>
 						<p className="ui__ notice" css="flex: 1">
 							Un guide pour savoir comment déclarer vos revenus issus de
@@ -92,14 +92,14 @@ export default function Landing() {
 						className="ui__  small button "
 					>
 						{emoji('🧮')}{' '}
-						<Trans key="landing.seeSimulators">
+						<Trans i18nKey="landing.seeSimulators">
 							Voir la liste des simulateurs
 						</Trans>
 					</Link>
 				</div>
 			</section>
 			<section className="ui__ container">
-				<Trans key="landing.aboutUs">
+				<Trans i18nKey="landing.aboutUs">
 					<h2>Qui sommes-nous ?</h2>
 					<p>
 						Nous avons développé ce site pour{' '}

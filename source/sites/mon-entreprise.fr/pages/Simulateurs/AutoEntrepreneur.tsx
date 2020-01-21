@@ -39,7 +39,7 @@ export default function AutoEntrepreneur() {
 				/>
 			</Helmet>
 			<h1>
-				<Trans key="simulateurs.auto-entrepreneur.titre">
+				<Trans i18nKey="simulateurs.auto-entrepreneur.titre">
 					Simulateur de revenus auto-entrepreneur
 				</Trans>
 			</h1>

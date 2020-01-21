@@ -35,7 +35,7 @@ export default function Activité({
 				<h1>{activité.titre}</h1>
 				<p>{activité.explication}</p>
 				<p>
-					<Trans key="économieCollaborative.activité.choix">
+					<Trans i18nKey="économieCollaborative.activité.choix">
 						Quelles sont plus précisément les activités exercées ?
 					</Trans>
 				</p>
@@ -71,7 +71,7 @@ export default function Activité({
 				/>
 
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
-					<Trans key="économieCollaborative.activité.pro">
+					<Trans i18nKey="économieCollaborative.activité.pro">
 						<h2>Il s'agit d'une activité professionnelle</h2>
 						<p>
 							Les revenus de cette activité sont considérés comme des{' '}
@@ -79,13 +79,13 @@ export default function Activité({
 						</p>
 					</Trans>
 				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
-					<Trans key="économieCollaborative.activité.impôt">
+					<Trans i18nKey="économieCollaborative.activité.impôt">
 						<h2>Vous devez déclarez vos revenus aux impôts</h2>
 						<p>Les revenus de cette activité sont imposables.</p>
 					</Trans>
 				) : (
 					<>
-						<Trans key="économieCollaborative.activité.revenusAnnuels">
+						<Trans i18nKey="économieCollaborative.activité.revenusAnnuels">
 							<h2>Revenus annuels</h2>
 							<p>Vos revenus annuels pour cette activité sont :</p>
 						</Trans>

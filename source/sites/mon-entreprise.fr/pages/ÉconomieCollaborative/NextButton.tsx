@@ -33,7 +33,7 @@ export default function NextButton({ activité, disabled }) {
 				{nextActivité || disabled ? (
 					<Trans>Continuer</Trans>
 				) : (
-					<Trans key="économieCollaborative.activité.voirObligations">
+					<Trans i18nKey="économieCollaborative.activité.voirObligations">
 						Voir mes obligations
 					</Trans>
 				)}

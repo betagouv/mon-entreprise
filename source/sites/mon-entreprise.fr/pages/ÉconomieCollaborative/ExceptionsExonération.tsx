@@ -17,7 +17,7 @@ export default function ExceptionsExonération({
 	return (
 		<>
 			<h2>
-				<Trans key="économieCollaborative.exonération.question">
+				<Trans i18nKey="économieCollaborative.exonération.question">
 					Êtes-vous dans un des cas suivants ?
 				</Trans>
 			</h2>
@@ -37,7 +37,7 @@ export default function ExceptionsExonération({
 				))}
 			</Checklist>
 			<p className="ui__ notice">
-				<Trans key="économieCollaborative.exonération.notice">
+				<Trans i18nKey="économieCollaborative.exonération.notice">
 					Si aucun de ces cas ne s'appliquent à vous, vous n'aurez rien à
 					déclarer.
 				</Trans>

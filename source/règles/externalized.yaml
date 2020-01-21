@@ -3363,8 +3363,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
 dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
-  titre.fr: Contribution à la formation professionnelleyay
   titre.en: Contribution to vocational trainingyay
+  titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
     Social security contributions give the self-employed entrepreneur access to
@@ -4444,32 +4444,32 @@ artiste-auteur . revenus:
 artiste-auteur . revenus . traitements et salaires:
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
-  résumé.fr: Le montant hors TVA de vos droits d'auteur (recettes précomptées)
   résumé.en: The amount excluding VAT of your royalties (pre-deducted revenue)
+  résumé.fr: Le montant hors TVA de vos droits d'auteur (recettes précomptées)
 artiste-auteur . revenus . BNC:
   titre.en: BNC
   titre.fr: BNC
 artiste-auteur . revenus . BNC . micro-bnc:
-  titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
-  résumé.fr: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
   titre.en: Would you like to opt for the micro-BNC diet?
+  titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé.en: 34% flat-rate tax allowance for business expenses
+  résumé.fr: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 artiste-auteur . revenus . BNC . recettes:
   titre.en: Income in NBC
   titre.fr: Revenu en BNC
-  résumé.fr: Le montant de vos recettes brutes hors TVA
   résumé.en: The amount of your gross revenue excluding VAT
+  résumé.fr: Le montant de vos recettes brutes hors TVA
 artiste-auteur . revenus . BNC . frais réels:
+  question.en: NBC actual cost regime
   question.fr: Régime des frais réels BNC
+  résumé.en: >-
+    Amount of your expenses (business expenses, depreciation, etc.) which will
+    be charged to your income in order to establish your profits or deficits.
   résumé.fr: >-
     Montant de vos dépenses (frais professionnels, amortissements…) qui seront
     imputés à vos recettes afin d’établir vos bénéfices ou déficits
   titre.en: real costs
   titre.fr: frais réels
-  question.en: NBC actual cost regime
-  résumé.en: >-
-    Amount of your expenses (business expenses, depreciation, etc.) which will
-    be charged to your income in order to establish your profits or deficits.
 artiste-auteur . revenus . BNC . charges forfaitaires:
   titre.en: fixed expenses
   titre.fr: charges forfaitaires
