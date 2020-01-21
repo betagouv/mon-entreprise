@@ -1,4 +1,3 @@
-import { T } from 'Components'
 import Controls from 'Components/Controls'
 import Conversation, {
 	ConversationProps
@@ -8,6 +7,7 @@ import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
 import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import { simulationProgressSelector } from 'Selectors/progressSelectors'
@@ -43,9 +43,9 @@ export default function Simulation({
 						>
 							{progress < 1 ? (
 								<small css="padding: 0.4rem 0">
-									<T k="simulateurs.précision.défaut">
+									<Trans key="simulateurs.précision.défaut">
 										Affinez la simulation en répondant aux questions :
-									</T>
+									</Trans>
 								</small>
 							) : (
 								<span />
@@ -64,9 +64,9 @@ export default function Simulation({
 						<br />
 						<PageFeedback
 							customMessage={
-								<T k="feedback.simulator">
+								<Trans key="feedback.simulator">
 									Êtes-vous satisfait de ce simulateur ?
-								</T>
+								</Trans>
 							}
 							customEventName="rate simulator"
 						/>{' '}

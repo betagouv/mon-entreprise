@@ -1,4 +1,16 @@
-import { countBy, equals, flatten, isEmpty, keys, map, pipe, remove, uniq, unnest, without } from 'ramda'
+import {
+	countBy,
+	equals,
+	flatten,
+	isEmpty,
+	keys,
+	map,
+	pipe,
+	remove,
+	uniq,
+	unnest,
+	without
+} from 'ramda'
 import i18n from '../i18n'
 
 type BaseUnit = string
@@ -100,7 +112,7 @@ export let inferUnit = (
 	return undefined
 }
 
-export let removeOnce = <T>(
+export let removeOnce = <Trans>(
 	element: T,
 	eqFn: (a: T, b: T) => boolean = equals
 ) => (list: Array<T>): Array<T> => {

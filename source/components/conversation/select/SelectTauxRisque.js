@@ -1,5 +1,5 @@
-import { T } from 'Components'
 import React, { useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
 import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
 import { FormDecorator } from '../FormDecorator'
 const worker = new Worker()
@@ -50,7 +50,7 @@ function SelectComponent({ setFormValue, submit, options }) {
 			/>
 			{searchResults && searchResults.length === 0 && (
 				<p>
-					<T>Aucun résultat</T>
+					<Trans>Aucun résultat</Trans>
 				</p>
 			)}
 

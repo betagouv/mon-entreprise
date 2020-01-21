@@ -2,10 +2,9 @@ import {
 	checkHiringItem,
 	initializeHiringChecklist
 } from 'Actions/hiringChecklistAction'
-import { T } from 'Components'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import Animate from 'Ui/animate'
@@ -36,12 +35,12 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				/>
 			</Helmet>
 			<h1>
-				<T k="embauche.tâches.titre">Les formalités pour embaucher</T>
+				<Trans key="embauche.tâches.titre">Les formalités pour embaucher</Trans>
 			</h1>
 			<p>
-				<T k="embauche.tâches.description">
+				<Trans key="embauche.tâches.description">
 					Toutes les étapes nécessaires à l'embauche de votre premier employé.
-				</T>
+				</Trans>
 			</p>
 			<Checklist
 				onInitialization={onChecklistInitialization}
@@ -51,9 +50,9 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="contract"
 					title={
-						<T k="embauche.tâches.contrat.titre">
+						<Trans key="embauche.tâches.contrat.titre">
 							Signer un contrat de travail avec votre employé
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
@@ -63,7 +62,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								target="_blank"
 							>
 								{' '}
-								<T>Plus d'informations</T>
+								<Trans>Plus d'informations</Trans>
 							</a>
 						</p>
 					}
@@ -71,33 +70,33 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="dpae"
 					title={
-						<T k="embauche.tâches.dpae.titre">
+						<Trans key="embauche.tâches.dpae.titre">
 							Déclarer l'embauche à l'administration sociale
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
-							<T k="embauche.tâches.dpae.description">
+							<Trans key="embauche.tâches.dpae.description">
 								Ceci peut être fait par le biais du formulaire appelé DPAE, doit
 								être complété dans les 8 jours avant toute embauche, et peut{' '}
 								<a href="https://www.due.urssaf.fr" target="_blank">
 									être effectué en ligne
 								</a>
 								.
-							</T>
+							</Trans>
 						</p>
 					}
 				/>
 				<CheckItem
 					name="paySoftware"
 					title={
-						<T k="embauche.tâches.logiciel de paie.titre">
+						<Trans key="embauche.tâches.logiciel de paie.titre">
 							Choisir un logiciel de paie
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
-							<T k="embauche.tâches.logiciel de paie.description">
+							<Trans key="embauche.tâches.logiciel de paie.description">
 								Les fiches de paie et les déclarations peuvent être traitées en
 								ligne gratuitement par le{' '}
 								<a href="http://www.letese.urssaf.fr" target="_blank">
@@ -110,16 +109,16 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								>
 									logiciel de paie privé.
 								</a>
-							</T>
+							</Trans>
 						</p>
 					}
 				/>
 				<CheckItem
 					name="registre"
 					title={
-						<T k="embauche.tâches.registre.titre">
+						<Trans key="embauche.tâches.registre.titre">
 							Tenir un registre des employés à jour
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
@@ -128,7 +127,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								target="_blank"
 							>
-								<T>Plus d'informations</T>
+								<Trans>Plus d'informations</Trans>
 							</a>
 						</p>
 					}
@@ -136,10 +135,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="complementaryPension"
 					title={
-						<T k="embauche.tâches.pension.titre">
+						<Trans key="embauche.tâches.pension.titre">
 							Prendre contact avec l'institution de prévoyance complémentaire
 							obligatoire qui vous est assignée
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
@@ -148,9 +147,9 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 								className="ui__ button"
 								target="_blank"
 							>
-								<T k="embauche.tâches.pension.description">
+								<Trans key="embauche.tâches.pension.description">
 									Trouver mon institution de prévoyance
-								</T>
+								</Trans>
 							</a>
 							{/* // The AGIRC-ARRCO complementary pension is mandatory. Those are only federations,{' '} */}
 						</p>
@@ -159,42 +158,42 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 				<CheckItem
 					name="complementaryHealth"
 					title={
-						<T k="embauche.tâches.complémentaire santé.titre">
+						<Trans key="embauche.tâches.complémentaire santé.titre">
 							Choisir une complémentaire santé
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
-							<T k="embauche.tâches.complémentaire santé.description">
+							<Trans key="embauche.tâches.complémentaire santé.description">
 								Vous devez couvrir vos salariés avec l'assurance complémentaire
 								santé privée de votre choix (aussi appelée "mutuelle"), pour
 								autant qu'elle offre un ensemble de garanties minimales.
 								L'employeur doit payer au moins la moitié du forfait.
-							</T>
+							</Trans>
 						</p>
 					}
 				/>
 				<CheckItem
 					name="workMedicine"
 					title={
-						<T k="embauche.tâches.medecine.titre">
+						<Trans key="embauche.tâches.medecine.titre">
 							S'inscrire à un bureau de médecine du travail
-						</T>
+						</Trans>
 					}
 					explanations={
 						<p>
-							<T k="embauche.tâches.medecine.description">
+							<Trans key="embauche.tâches.medecine.description">
 								N'oubliez pas de planifier un rendez-vous initial pour chaque
 								nouvelle embauche.{' '}
 								<a href="https://www.service-public.fr/particuliers/vosdroits/F2211">
 									Plus d'infos.
 								</a>
-							</T>
+							</Trans>
 						</p>
 					}
 				/>
 			</Checklist>
-			<T k="embauche.chaque mois">
+			<Trans key="embauche.chaque mois">
 				<h2>Tous les mois</h2>
 				<ul>
 					<li>
@@ -213,7 +212,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					</li>
 					<li>Remettre la fiche de paie à votre employé</li>
 				</ul>
-			</T>
+			</Trans>
 		</Animate.fromBottom>
 	)
 }

@@ -1,8 +1,7 @@
-import { T } from 'Components'
-import * as Animate from 'Ui/animate'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import * as Animate from 'Ui/animate'
 import Video from './Video'
 
 export default function SocialSecurity() {
@@ -14,7 +13,7 @@ export default function SocialSecurity() {
 			</Helmet>
 
 			<Animate.fromBottom>
-				<T k="sécu.contenu">
+				<Trans key="sécu.contenu">
 					<h1>Protection sociale </h1>
 					<p>
 						En France, tous les travailleurs bénéficient d'une protection
@@ -27,7 +26,7 @@ export default function SocialSecurity() {
 						<strong>contributions sociales</strong>, le cotisant est couvert sur
 						la maladie, les accidents du travail, chômage ou encore la retraite.
 					</p>
-				</T>
+				</Trans>
 
 				<section style={{ marginTop: '2rem' }}>
 					<Video />

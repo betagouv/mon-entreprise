@@ -1,7 +1,7 @@
-import { T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { Route, Switch } from 'react-router'
 import { NavLink, useLocation } from 'react-router-dom'
 import Embaucher from './Embaucher'
@@ -21,7 +21,7 @@ export default function Gérer() {
 					activeClassName="ui__ hide"
 					className="ui__ simple push-left small button"
 				>
-					← <T>Retour à mon activité</T>
+					← <Trans>Retour à mon activité</Trans>
 				</NavLink>
 			</div>
 			<Switch>

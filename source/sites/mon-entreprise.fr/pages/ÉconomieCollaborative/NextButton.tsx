@@ -1,7 +1,7 @@
 import classnames from 'classnames'
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { activitéVue } from './actions'
 import { nextActivitéSelector } from './selectors'
@@ -31,11 +31,11 @@ export default function NextButton({ activité, disabled }) {
 				}
 			>
 				{nextActivité || disabled ? (
-					<T>Continuer</T>
+					<Trans>Continuer</Trans>
 				) : (
-					<T k="économieCollaborative.activité.voirObligations">
+					<Trans key="économieCollaborative.activité.voirObligations">
 						Voir mes obligations
-					</T>
+					</Trans>
 				)}
 			</Link>
 		</p>

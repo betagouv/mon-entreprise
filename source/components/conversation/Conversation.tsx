@@ -1,10 +1,10 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
-import { T } from 'Components'
 import QuickLinks from 'Components/QuickLinks'
 import getInputComponent from 'Engine/getInputComponent'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
@@ -60,7 +60,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 										onClick={goToPrevious}
 										className="ui__ simple small push-left button"
 									>
-										← <T>Précédent</T>
+										← <Trans>Précédent</Trans>
 									</button>
 								</>
 							)}
@@ -68,7 +68,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 								onClick={setDefault}
 								className="ui__ simple small push-right button"
 							>
-								<T>Passer</T> →
+								<Trans>Passer</Trans> →
 							</button>
 						</div>
 					</React.Fragment>
@@ -80,15 +80,17 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		<div style={{ textAlign: 'center' }}>
 			<h3>
 				{emoji('🌟')}{' '}
-				<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
+				<Trans key="simulation-end.title">
+					Vous avez complété cette simulation
+				</Trans>{' '}
 			</h3>
 			<p>
 				{customEndMessages ? (
 					customEndMessages
 				) : (
-					<T k="simulation-end.text">
+					<Trans key="simulation-end.text">
 						Vous avez maintenant accès à l'estimation la plus précise possible.
-					</T>
+					</Trans>
 				)}
 			</p>
 		</div>

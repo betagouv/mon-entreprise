@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function Privacy() {
 	const [opened, setOpened] = useState(false)
@@ -18,7 +17,7 @@ export default function Privacy() {
 	return (
 		<>
 			<button onClick={handleOpen} className="ui__ link-button">
-				<T>Vie privée</T>
+				<Trans>Vie privée</Trans>
 			</button>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
@@ -32,7 +31,7 @@ export default function Privacy() {
 
 export let PrivacyContent = ({ language }: { language: string }) => (
 	<>
-		<T k="privacyContent">
+		<Trans key="privacyContent">
 			<h1>Vie privée</h1>
 			<p>
 				Nous recueillons des statistiques anonymes sur l'utilisation du site,
@@ -48,7 +47,7 @@ export let PrivacyContent = ({ language }: { language: string }) => (
 				Vous pouvez vous soustraire de cette mesure d'utilisation du site
 				ci-dessous.
 			</p>
-		</T>
+		</Trans>
 		<iframe
 			style={{
 				border: 0,

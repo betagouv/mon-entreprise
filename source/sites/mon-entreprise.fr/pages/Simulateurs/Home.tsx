@@ -1,9 +1,8 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 export default function Simulateurs() {
@@ -36,13 +35,13 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('☂️')}</div>
-						<T k="simulateurs.accueil.assimilé">
+						<Trans key="simulateurs.accueil.assimilé">
 							<h3>Assimilé salarié</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu d'un dirigeant de SAS, SASU ou SARL
 								minoritaire
 							</p>
-						</T>
+						</Trans>
 					</Link>
 					<Link
 						className="ui__ interactive card box"
@@ -52,13 +51,13 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🃏')}</div>
-						<T k="simulateurs.accueil.indépendant">
+						<Trans key="simulateurs.accueil.indépendant">
 							<h3>Indépendant</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu d'un dirigeant de EURL, EI, ou SARL
 								majoritaire
 							</p>
-						</T>
+						</Trans>
 					</Link>
 					<Link
 						className="ui__ interactive card box"
@@ -68,13 +67,13 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🧢')}</div>
-						<T k="simulateurs.accueil.auto">
+						<Trans key="simulateurs.accueil.auto">
 							<h3>Auto-entrepreneur</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le revenu (ou le chiffre d'affaires) d'un
 								auto-entrepreneur
 							</p>
-						</T>
+						</Trans>
 					</Link>
 					<Link
 						className="ui__ interactive card box"
@@ -84,13 +83,13 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('🤝')}</div>
-						<T k="simulateurs.accueil.salarié">
+						<Trans key="simulateurs.accueil.salarié">
 							<h3>Salarié</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Calculer le salaire net, brut, ou total d'un salarié, stagiaire,
 								ou assimilé
 							</p>
-						</T>
+						</Trans>
 					</Link>
 					{i18n.language === 'fr' && (
 						<Link
@@ -101,12 +100,12 @@ export default function Simulateurs() {
 							}}
 						>
 							<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-							<T k="simulateurs.accueil.salarié">
+							<Trans key="simulateurs.accueil.salarié">
 								<h3>Artiste-auteur</h3>
 								<p className="ui__ notice" css="flex: 1">
 									Estimer les cotisations sociales d'un artiste ou auteur
 								</p>
-							</T>
+							</Trans>
 						</Link>
 					)}
 					<Link
@@ -117,18 +116,18 @@ export default function Simulateurs() {
 						}}
 					>
 						<div className="ui__ big box-icon">{emoji('📊')}</div>
-						<T k="simulateurs.accueil.comparaison">
+						<Trans key="simulateurs.accueil.comparaison">
 							<h3>Comparaison statuts</h3>
 							<p className="ui__ notice" css="flex: 1">
 								Simulez les différences entre les régimes (cotisations,
 								retraite, maternité, maladie, etc.)
 							</p>
-						</T>
+						</Trans>
 					</Link>
 				</div>
 			</section>
 			<section>
-				<T k="simulateurs.accueil.description">
+				<Trans key="simulateurs.accueil.description">
 					<p>Tous les simulateurs sur ce site sont :</p>
 					<ul>
 						<li>
@@ -143,7 +142,7 @@ export default function Simulateurs() {
 							Développés en <strong>partenariat avec l'Urssaf</strong>
 						</li>
 					</ul>
-				</T>
+				</Trans>
 			</section>
 		</>
 	)

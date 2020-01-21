@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import { usePersistingState } from 'Components/utils/persistState'
 import { TrackerContext } from 'Components/utils/withTracker'
 import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function Newsletter() {
 	const [registered, setUserRegistered] = usePersistingState(
@@ -25,15 +24,15 @@ export default function Newsletter() {
 		<>
 			{' '}
 			<h2>
-				<T k="newsletter.register.titre">Restez informé</T>
+				<Trans key="newsletter.register.titre">Restez informé</Trans>
 			</h2>
 			<div className="footer__newsletterContainer">
 				<p>
-					<T k="newsletter.register.description">
+					<Trans key="newsletter.register.description">
 						Inscrivez-vous à notre newsletter mensuelle pour recevoir des{' '}
 						<strong>conseils officiels sur la création d’entreprise</strong> et
 						accéder aux nouvelles fonctionnalités en avant-première.
-					</T>
+					</Trans>
 				</p>
 
 				<form
@@ -47,7 +46,7 @@ export default function Newsletter() {
 				>
 					<div>
 						<label htmlFor="mce-EMAIL">
-							<T>Votre adresse e-mail</T>
+							<Trans>Votre adresse e-mail</Trans>
 						</label>
 						<div className="footer__registerField">
 							<input type="email" name="EMAIL" id="mce-EMAIL" />

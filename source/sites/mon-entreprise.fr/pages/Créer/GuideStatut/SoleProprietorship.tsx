@@ -1,9 +1,8 @@
 import { isSoleProprietorship } from 'Actions/companyStatusActions'
-import { T } from 'Components'
 import { compose } from 'ramda'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 
 const SoleProprietorship = ({ isSoleProprietorship }) => {
@@ -31,18 +30,20 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 				/>
 			</Helmet>
 			<h2>
-				<T k="responsabilité.titre">Entreprise individuelle ou société ?</T>
+				<Trans key="responsabilité.titre">
+					Entreprise individuelle ou société ?
+				</Trans>
 			</h2>
 			<p>
-				<T k="responsabilité.intro">
+				<Trans key="responsabilité.intro">
 					Ce choix determine votre degré de responsabilité et votre capacité à
 					accueillir de nouveaux associés dans le futur{' '}
-				</T>
+				</Trans>
 				:
 			</p>
 			<ul>
 				<li>
-					<T k="responsabilité.entreprise-individuelle">
+					<Trans key="responsabilité.entreprise-individuelle">
 						<strong>Entreprise individuelle : </strong>
 						Une activité économique exercée par une seule personne physique, en
 						son nom propre. Moins de formalités, mais plus de risques en cas de
@@ -52,17 +53,17 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 							Vous ne pouvez pas accueillir de nouveaux associés en entreprise
 							individuelle.
 						</strong>
-					</T>
+					</Trans>
 				</li>
 
 				<li>
-					<T k="responsabilité.société">
+					<Trans key="responsabilité.société">
 						<strong>Société : </strong>
 						Vous ne pouvez pas être tenu personnellement responsable des dettes
 						ou obligations de la société. En revanche, les démarches de création
 						sont un peu plus lourdes, puisqu'elles incluent notamment la
 						rédaction de statuts et le dépôt d'un capital.
-					</T>
+					</Trans>
 				</li>
 			</ul>
 			<div className="ui__ answer-group">
@@ -72,7 +73,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 					}}
 					className="ui__ button"
 				>
-					<T k="responsabilité.bouton2">Entreprise individuelle</T>
+					<Trans key="responsabilité.bouton2">Entreprise individuelle</Trans>
 				</button>
 				<button
 					onClick={() => {
@@ -80,7 +81,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 					}}
 					className="ui__ button"
 				>
-					<T k="responsabilité.bouton1">Société</T>
+					<Trans key="responsabilité.bouton1">Société</Trans>
 				</button>
 			</div>
 			{/* this is an economic activity conducted by a single natural person, in his own name ; */}

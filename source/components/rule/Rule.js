@@ -1,4 +1,3 @@
-import { T } from 'Components'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
@@ -166,7 +165,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 												  sitePaths.simulateurs.index
 										}
 									>
-										<T>Faire une simulation</T>
+										<Trans>Faire une simulation</Trans>
 									</Link>
 								</div>
 							)}
@@ -177,7 +176,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 							{displayedRule['rend non applicable'] && (
 								<section id="non-applicable">
 									<h3>
-										<T>Rend non applicable les règles suivantes</T> :{' '}
+										<Trans>Rend non applicable les règles suivantes</Trans> :{' '}
 									</h3>
 									<ul>
 										{displayedRule['rend non applicable'].map(ruleName => (

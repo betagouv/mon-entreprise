@@ -1,5 +1,5 @@
-import { T } from 'Components'
 import React, { useCallback, useMemo, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { debounce } from '../../../utils'
 import { FormDecorator } from '../FormDecorator'
 
@@ -101,9 +101,9 @@ export default FormDecorator('select')(function Select({
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && (searchResults && searchResults.length === 0) && (
+			{!isLoading && searchResults && searchResults.length === 0 && (
 				<p>
-					<T>Aucun résultat</T>
+					<Trans>Aucun résultat</Trans>
 				</p>
 			)}
 

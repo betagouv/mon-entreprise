@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { T } from 'Components'
 import { makeJsx } from 'Engine/evaluation'
 import { any, identity, path } from 'ramda'
 import React from 'react'
@@ -15,10 +14,15 @@ let Conditions = ({
 	'non applicable si': notApplicable
 }) => {
 	let listElements = [
-		...parentDependencies.map(parentDependency =>
-		parentDependency.nodeValue === false && (
-			<ShowIfDisabled dependency={parentDependency} key="parent dependency" />
-		)),
+		...parentDependencies.map(
+			parentDependency =>
+				parentDependency.nodeValue === false && (
+					<ShowIfDisabled
+						dependency={parentDependency}
+						key="parent dependency"
+					/>
+				)
+		),
 		...disabledBy?.explanation?.isDisabledBy?.map(
 			(dependency, i) =>
 				dependency?.nodeValue === true && (
@@ -43,9 +47,9 @@ function ShowIfDisabled({ dependency }) {
 	return (
 		<li>
 			<span css="background: yellow">
-				<T>Désactivée</T>
+				<Trans>Désactivée</Trans>
 			</span>{' '}
-			<T>car dépend de</T> {makeJsx(dependency)}
+			<Trans>car dépend de</Trans> {makeJsx(dependency)}
 		</li>
 	)
 }

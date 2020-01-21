@@ -1,7 +1,7 @@
 import { setEntreprise } from 'Actions/existingCompanyActions'
-import { T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
 import React, { useCallback, useMemo, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
@@ -28,17 +28,17 @@ export default function Search() {
 	return (
 		<>
 			<h1>
-				<T k="trouver.titre">Retrouver mon entreprise</T>
+				<Trans key="trouver.titre">Retrouver mon entreprise</Trans>
 			</h1>
 			<p>
-				<T k="trouver.description">
+				<Trans key="trouver.description">
 					Grâce à la base SIREN, les données publiques sur votre entreprise
 					seront automatiquement disponibles pour la suite du parcours sur le
 					site.
-				</T>
+				</Trans>
 			</p>
 			<label className="ui__ notice">
-				<T>Nom de l'entreprise ou SIREN </T>:{' '}
+				<Trans>Nom de l'entreprise ou SIREN </Trans>:{' '}
 			</label>
 			<br />
 			<input
@@ -69,7 +69,7 @@ export default function Search() {
 			/>
 			{!isLoading && searchResults === null && (
 				<p>
-					<T>Aucun résultat</T>
+					<Trans>Aucun résultat</Trans>
 				</p>
 			)}
 

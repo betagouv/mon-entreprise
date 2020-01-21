@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import SchemeComparaison from 'Components/SchemeComparaison'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function DefineDirectorStatus() {
 	const { t } = useTranslation()
@@ -21,9 +20,11 @@ export default function DefineDirectorStatus() {
 				/>
 			</Helmet>
 			<h2>
-				<T k="statut du dirigeant.titre">Définir le statut du dirigeant</T>
+				<Trans key="statut du dirigeant.titre">
+					Définir le statut du dirigeant
+				</Trans>
 			</h2>
-			<T k="statut du dirigeant.description">
+			<Trans key="statut du dirigeant.description">
 				<p>
 					Ce choix est important car il détermine le régime de sécurité sociale
 					et la couverture sociale du dirigeant. Le montant et les modalités de
@@ -32,7 +33,7 @@ export default function DefineDirectorStatus() {
 				<div className="ui__ full-width">
 					<SchemeComparaison hideAutoEntrepreneur />
 				</div>
-			</T>
+			</Trans>
 		</>
 	)
 }

@@ -1,7 +1,7 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import illustration from './illustration.png'
 
@@ -22,7 +22,7 @@ export default function Options() {
 					habituels de vos utilisateurs.
 				</p>
 				<Link className="ui__ button-choice" to={sitePaths.integration.iframe}>
-					{emoji('📱')} <T>Intégrer l'interface de simulation</T>
+					{emoji('📱')} <Trans>Intégrer l'interface de simulation</Trans>
 				</Link>
 				<p>Intégrer l'un de nos simulateurs en un clic dans votre site Web.</p>
 				<br />
@@ -30,7 +30,7 @@ export default function Options() {
 					className="ui__ button-choice "
 					to={sitePaths.integration.library}
 				>
-					{emoji('🧰')} <T>Intégrer la bibliothèque de calcul</T>
+					{emoji('🧰')} <Trans>Intégrer la bibliothèque de calcul</Trans>
 				</Link>
 				<p css="margin-top: -1em">
 					Intégrer les calculs sans l'interface dans votre site Web ou sur votre

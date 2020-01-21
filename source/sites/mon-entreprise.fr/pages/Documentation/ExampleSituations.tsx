@@ -1,9 +1,9 @@
 // Page listing the engine's currently implemented mecanisms and their tests
-import { T } from 'Components'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { analyseMany } from 'Engine/traverse'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import examples from 'Règles/cas-types.yaml'
 import {
@@ -18,7 +18,7 @@ export default function ExampleSituations() {
 		<div className="ui__ container" id="exampleSituations">
 			<h1>
 				{emoji('💡 ')}
-				<T>Quelques exemples de salaires</T>
+				<Trans>Quelques exemples de salaires</Trans>
 			</h1>
 			<ul>
 				{examples.map((ex: any) => (

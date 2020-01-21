@@ -1,11 +1,11 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { T } from 'Components'
-import Animate from 'Ui/animate'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { toPairs } from 'ramda'
 import React, { useContext, useEffect } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
+import Animate from 'Ui/animate'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import DirectorStatus from './DirectorStatus'
 import MinorityDirector from './MinorityDirector'
@@ -40,12 +40,13 @@ export default function Créer() {
 					to={sitePaths.créer.index}
 					exact
 					activeClassName="ui__ hide"
-					className="ui__ simple push-left small button">
-					← <T>Retour</T>
+					className="ui__ simple push-left small button"
+				>
+					← <Trans>Retour</Trans>
 				</NavLink>
 			</div>
 			<h1>
-				<T k="formeJuridique.titre">Choix du statut juridique</T>
+				<Trans key="formeJuridique.titre">Choix du statut juridique</Trans>
 			</h1>
 			<PreviousAnswers />
 			<Animate.fromBottom key={location.pathname}>

@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -27,14 +26,14 @@ export default function AfterRegistration() {
 					activeClassName="ui__ hide"
 					className="ui__ simple small button"
 				>
-					← <T>Retour à la création</T>
+					← <Trans>Retour à la création</Trans>
 				</NavLink>
 			</div>
 			<h1>
-				<T k="après.titre">Après la création</T>
+				<Trans key="après.titre">Après la création</Trans>
 			</h1>
 			<p>
-				<T k="après.intro">
+				<Trans key="après.intro">
 					Une fois votre{' '}
 					{{
 						statutChoisi: isAutoentrepreneur
@@ -42,18 +41,18 @@ export default function AfterRegistration() {
 							: statutChoisi || t(['après.entreprise', 'entreprise'])
 					}}{' '}
 					créée, vous recevez les informations suivantes :
-				</T>
+				</Trans>
 			</p>
 			<h2>
-				<T k="après.siret.titre">Le numéro SIRET</T>
+				<Trans key="après.siret.titre">Le numéro SIRET</Trans>
 			</h2>
 			<p>
-				<T k="après.siret.description">
+				<Trans key="après.siret.description">
 					Le numéro SIREN <strong>est l'identifiant de votre entreprise</strong>{' '}
 					tandis que le numéro SIRET identifie chaque établissement de la même
 					entreprise. Le SIRET commence par le SIREN, auquel on ajoute le numéro
 					d'établissement (NIC).
-				</T>
+				</Trans>
 				<br />
 				<img
 					src={siret}
@@ -62,10 +61,10 @@ export default function AfterRegistration() {
 				/>
 			</p>
 			<h2>
-				<T k="après.ape.titre">Le code APE</T>
+				<Trans key="après.ape.titre">Le code APE</Trans>
 			</h2>
 			<p>
-				<T k="après.ape.description">
+				<Trans key="après.ape.description">
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise
 					dans la nomenclature nationale d'activités françaises « NAF » (
@@ -91,15 +90,15 @@ export default function AfterRegistration() {
 						</a>{' '}
 						à l'INSEE.
 					</p>
-				</T>
+				</Trans>
 			</p>
 			{statutChoisi && !statutChoisi.includes('auto-entrepreneur') && (
 				<>
 					<h2>
-						<T k="après.kbis.titre">Le Kbis</T>
+						<Trans key="après.kbis.titre">Le Kbis</Trans>
 					</h2>
 					<p>
-						<T k="après.kbis.description.1">
+						<Trans key="après.kbis.description.1">
 							C'est le document officiel qui atteste de{' '}
 							<strong>l'existence légale d'une entreprise commerciale</strong>.
 							Le plus souvent, pour être valable par les procédures
@@ -107,14 +106,14 @@ export default function AfterRegistration() {
 							<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
 								Plus d'infos.
 							</a>
-						</T>
+						</Trans>
 					</p>
 					<p>
-						<T k="après.kbis.description.2">
+						<Trans key="après.kbis.description.2">
 							Ce document est généralement demandé lors de la candidature à un
 							appel d'offre public, de l'ouverture d'un compte bancaire,
 							d'achats d'équipement professionnel auprès de fournisseurs, etc.
-						</T>
+						</Trans>
 					</p>
 				</>
 			)}

@@ -1,5 +1,4 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { T } from 'Components'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
@@ -8,7 +7,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
@@ -36,9 +35,9 @@ export default function Indépendant() {
 				/>
 			</Helmet>
 			<h1>
-				<T k="simulateurs.indépendant.titre">
+				<Trans key="simulateurs.indépendant.titre">
 					Simulateur de revenus pour indépendants
-				</T>
+				</Trans>
 			</h1>
 			<Warning simulateur="indépendant" />
 			<Simulation explanations={<ExplanationSection />} />

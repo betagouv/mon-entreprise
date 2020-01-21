@@ -1,12 +1,11 @@
 import classnames from 'classnames'
-import { T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import Checkbox from 'Ui/Checkbox'
@@ -36,7 +35,7 @@ export default function ActivitésSelection() {
 				<ScrollToTop />
 				<h1>{titre}</h1>
 				<section css="margin-bottom: 2rem">
-					<T k="économieCollaborative.accueil.contenu">
+					<Trans key="économieCollaborative.accueil.contenu">
 						<p>
 							Vous avez des revenus issus des{' '}
 							<strong>plateformes en ligne</strong> (Airbnb, Abritel, Drivy,
@@ -52,21 +51,21 @@ export default function ActivitésSelection() {
 							À partir de 2020, ces revenus seront communiqués automatiquement
 							par les plateformes à l’administration fiscale et à l’Urssaf.
 						</p>
-					</T>
+					</Trans>
 				</section>
 
 				<section className="ui__ full-width light-bg">
 					<h2 className="ui__ container" css="text-align: center">
-						<T k="économieCollaborative.accueil.question">
+						<Trans key="économieCollaborative.accueil.question">
 							Quels types d'activités avez-vous exercé ?
-						</T>
+						</Trans>
 					</h2>
 					<ActivitéSelection activités={activités.map(({ titre }) => titre)} />
 					<p className="ui__ container notice" css="text-align: center">
-						<T k="économieCollaborative.accueil.réassurance">
+						<Trans key="économieCollaborative.accueil.réassurance">
 							PS : cet outil est là uniquement pour vous informer, aucune donnée
 							ne sera transmise aux administrations
-						</T>{' '}
+						</Trans>{' '}
 						{emoji('😌')}
 					</p>
 				</section>
@@ -168,7 +167,7 @@ export const ActivitéCard = ({
 					className="ui__ small simple button"
 					to={sitePaths.économieCollaborative.index + '/' + title}
 				>
-					<T>Modifier</T>
+					<Trans>Modifier</Trans>
 				</Link>
 			)}
 		</div>
