@@ -32,6 +32,14 @@
 	color: var(--textColor);
 }
 
+.ui__.card.light {
+	background: linear-gradient(
+		60deg,
+		var(--lighterColor) -100%,
+		var(--lightestColor) 100%
+	);
+}
+
 .ui__.card.disabled img {
 	filter: saturate(0);
 }
