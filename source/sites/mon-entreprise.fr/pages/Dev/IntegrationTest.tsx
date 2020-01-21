@@ -5,7 +5,8 @@ const integrableModuleNames = [
 	'simulateur-embauche',
 	'simulateur-autoentrepreneur',
 	'simulateur-independant',
-	'simulateur-assimilesalarie'
+	'simulateur-assimilesalarie',
+	'simulateur-artiste-auteur'
 ]
 
 export default function IntegrationTest() {

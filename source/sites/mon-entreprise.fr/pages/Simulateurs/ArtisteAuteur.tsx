@@ -43,7 +43,7 @@ export default function ArtisteAuteur() {
 		<>
 			<h1>Estimer mes cotisations d’artiste-auteur</h1>
 			<SimulateurWarning simulateur="artiste-auteur" />
-			<section className="ui__ plain card">
+			<section className="ui__ light card">
 				<div id="targetSelection">
 					<ul className="targets">
 						<SimpleField
@@ -120,8 +120,6 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 								autoComplete="off"
 								className="targetInput"
 								css={`
-									color: white;
-									border-color: white;
 									padding: 10px;
 								`}
 							/>
