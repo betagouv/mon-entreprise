@@ -40,7 +40,7 @@ exports[`calculate simulations-auto-entrepreneur:  échelle de revenus 10`] = `"
 
 exports[`calculate simulations-indépendant:  acre 1`] = `"[73028,23028,50000,51980,8052,41948,null,73028]"`;
 
-exports[`calculate simulations-indépendant:  activité 1`] = `"[29085,9085,20000,20787,604,19396,null,29085]"`;
+exports[`calculate simulations-indépendant:  activité 1`] = `"[28923,8923,20000,20783,604,19396,null,28923]"`;
 
 exports[`calculate simulations-indépendant:  activité 2`] = `"[29101,9101,20000,20787,604,19396,null,29101]"`;
 
@@ -136,7 +136,7 @@ exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  é
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 7`] = `"[84367,87085,20465,4,40,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 1`] = `"[13769,13769,10084,4,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 1`] = `"[13886,13886,10166,4,21,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 2`] = `"[14573,14573,0,4,0,0]"`;
 
