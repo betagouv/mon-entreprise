@@ -1,5 +1,4 @@
 import LangSwitcher from 'Components/LangSwitcher'
-import NewsletterRegister from 'Components/NewsletterRegister'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -16,7 +15,6 @@ export default function IframeFooter() {
 
 	return (
 		<>
-			<NewsletterRegister />
 			<div
 				className="ui__ container"
 				style={{
