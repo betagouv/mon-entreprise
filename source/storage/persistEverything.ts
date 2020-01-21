@@ -5,7 +5,7 @@ import { Store } from 'redux'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 
-const VERSION = 4
+const VERSION = 5
 
 const LOCAL_STORAGE_KEY = 'app::global-state:v' + VERSION
 
