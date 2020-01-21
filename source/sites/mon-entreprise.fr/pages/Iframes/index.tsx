@@ -1,6 +1,7 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import React from 'react'
 import { Route } from 'react-router'
+import SimulateurArtisteAuteur from '../Simulateurs/ArtisteAuteur'
 import SimulateurAssimiléSalarié from '../Simulateurs/AssimiléSalarié'
 import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
 import SimulateurIndépendant from '../Simulateurs/Indépendant'
@@ -30,6 +31,10 @@ export default function Iframes() {
 				<Route
 					path="/iframes/simulateur-assimilesalarie"
 					component={SimulateurAssimiléSalarié}
+				/>
+				<Route
+					path="/iframes/simulateur-artiste-auteur"
+					component={SimulateurArtisteAuteur}
 				/>
 				<IframeFooter />
 			</div>
