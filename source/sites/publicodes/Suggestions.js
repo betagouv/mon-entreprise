@@ -1,5 +1,5 @@
 import searchWeights from 'Components/searchWeights'
-import { encodeRuleName } from 'Engine/rules'
+import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import Fuse from 'fuse.js'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import React, { useEffect, useState } from 'react'
@@ -37,15 +37,12 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 				)}
 				{filteredRules && (
 					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
-						{filteredRules.map(rule => {
+						{filteredRules.map(({ dottedName }) => {
+							let rule = findRuleByDottedName(exposedRules, dottedName)
 							return (
 								<li css="list-style-type: none" key={rule.dottedName}>
 									<Link
-										to={
-											rule.formule != null
-												? '/simulateur/' + encodeRuleName(rule.dottedName)
-												: '#'
-										}
+										to={'/simulateur/' + encodeRuleName(rule.dottedName)}
 										css={`
 											text-decoration: none !important;
 											:hover {
