@@ -10,7 +10,7 @@ export default function Options() {
 	return (
 		<>
 			<h1 css="margin-bottom: 0">
-				<Trans i18nKey="page.développeurs.titre">
+				<Trans i18nKey="pages.développeurs.home.titre">
 					Intégrez le droit de la sécurité sociale au coeur de vos outils
 				</Trans>
 			</h1>
@@ -18,7 +18,7 @@ export default function Options() {
 				<img css="height: 250px" src={illustration} />
 			</div>
 			<p>
-				<Trans i18nKey="pages.développeurs.description">
+				<Trans i18nKey="pages.développeurs.home.description">
 					En plus du site mon-entreprise.fr, nous développons des outils
 					gratuits et libres à intégrer directement chez vous, dans les parcours
 					habituels de vos utilisateurs.
@@ -31,7 +31,7 @@ export default function Options() {
 					to={sitePaths.integration.iframe}
 				>
 					<div className="ui__ big box-icon">{emoji('📱')}</div>
-					<Trans i18nKey="pages.développeurs.choice.iframe">
+					<Trans i18nKey="pages.développeurs.home.choice.iframe">
 						<h3>Intégrer un simulateur</h3>
 						<p className="ui__ notice" css="flex: 1">
 							Intégrer l'un de nos simulateurs en un clic dans votre site Web,

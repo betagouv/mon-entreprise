@@ -1135,20 +1135,36 @@ simlateurs:
 impôt: tax
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Outils pour les développeurs: Tools for developers
-page:
-  développeurs:
-    titre: Integrate social security law at the heart of your tools
 pages:
   développeurs:
+    home:
+      titre: Integrate social security law at the heart of your tools
+      choice:
+        iframe: >-
+          <0>Integrating a simulator</0><1>Integrate one of our simulators in
+          one click into your website, via a turnkey script.</1>
+        library: >-
+          <0>Using the calculation engine</0><1>The entire socio-fiscal
+          calculation engine developed by URSSAF, freely available in the form
+          of an NPM library.</1>
+      description: >-
+        In addition to the site mon-entreprise.fr, we develop free and open
+        source tools to be integrated seemlessly in the usual journey of your
+        users.
     choice:
-      iframe: >-
-        <0>Integrating a simulator</0><1>Integrate one of our simulators in one
-        click into your website, via a turnkey script.</1>
       library: >-
         <0>Using the calculation engine</0><1>The entire socio-fiscal
         calculation engine developed by URSSAF, freely available in the form of
         an NPM library.</1>
-    description: >-
-      In addition to the site mon-entreprise.fr, we develop free and open source
-      tools to be integrated seemlessly in the usual journey of your users.
+    iframe: >-
+      <0>Integrate the Web module</0><1>By adding a line to your web page
+      :</1><2></2><3>You can <2>choose the main color of the module</2> to blend
+      it into the visual theme of your page: just change the <4>data-color</4>
+      value above. To choose it, use our <7>interactive tool</7>.</3><4>The
+      attribute <1>data-lang="en"</1> allows you to choose English as the
+      default language of the simulator (it will remain modifiable by the
+      user).</4>
+  dévelopeurs:
+    bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your site or service would benefit from displaying salary calculations, for example switching from gross salary to net salary, good news: all the contribution and tax calculations behind my-company.fr are free and <2>can be integrated in the form of an <2>NPM library</2></2>.</1><2>Put simply, your team's developers are able to integrate the calculation into your interface in 5 minutes{emoji('⌚')}, without having to deal with the complexity of payroll and the regular updating of calculation rules.</2><3>This library is a common digital library developed by the State and ACOSS. It is based on a new programming language, <2>publicodes</2>.</3><4>How to use it?</4><5>The following examples show you how to use the library on a very simple ReactJs site.</5><6>1) Make a very simple calculation: from gross to net</6><7><0></0></7><8>2) Browse online documentation</8><9>As you can see from the previous example, the recipe for a calculation is simple: input variables (gross wage), one or more output variables (net wage).</9><10>All these variables are listed and explained in our <2>online documentation</2>.</10><11>Use the search engine to find the right variable, then click on \"View source code\" to get all the documentation: default value, possible values when it's an enumeration of choice, unit when it's a number, description, associated user question, etc.</11><12>Let's run a calculation closer to a payslip: Here is a description of the input situation with links to the corresponding pages of the documentation :</12><13> An <3>executive</3> earning <7>€3,400 gross</7>, who benefits from the<10> bicycle mileage allowance</10> and works in a company with <14>12 employees</14>.</13><14>The calculation for this more complete example is as follows:</14><15><0></0></15><16>{emoji('ℹ️ ')} Note that in the previous example we have to specify the transport payment rate ourselves.</16><17>Whereas in the <2>employee</2> simulator, it is sufficient to fill in the municipality and the corresponding rate is automatically determined. It's intentional: to keep the library (and the site) light, we use two online APIs. The<4> Geo API - communes</4> to switch from the commune name to the common code. Then the<7> transport payout API</7>, developed and maintained by us, which is not documented but its use is very simple and understandable <10>in this React component that calls it</10>, a component that also uses the common API.</17><18>Making economic charts{emoji(' \U0001F4C8')}</18><19>It is also possible to use the library for economic or political analysis calculations. Here, the price of labour and the net wage is plotted against the gross wage.</19><20>We can see the progressiveness of the total wage, which is in percent lower for a minimum wage than for a high income. In other words, high-wage earners pay part of the social security contributions of low-wage earners.</20><21>{emoji('⚠️ ')}Beware, this example does a lot of calculations in one go, which can block your browser for a few seconds. To overcome this problem, you would have to call the library in a Web Worker, but this is not possible for the <3>moment</3> in these demos.</21><22><0></0></22>"
 Montant des cotisations: Amount of contributions
+Quelques intégrations: Some integrations
