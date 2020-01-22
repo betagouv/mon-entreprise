@@ -501,9 +501,9 @@ contrat salarié . CDD . congés non pris:
   suggestions.10.fr: '10'
   suggestions.10.en: '[automatic] 10'
   contrôles.0.fr: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
+  contrôles.0.en: '[automatic] An employee normally earns 2.08 working days off per month.'
   titre.en: Untaken paid leave
   titre.fr: congés non pris
-  contrôles.0.en: '[automatic] An employee normally earns 2.08 working days off per month.'
 contrat salarié . CDD . contrat jeune vacances:
   titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
@@ -974,22 +974,6 @@ contrat salarié . indemnités salarié:
 contrat salarié . statut cadre:
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
-  description.en: >
-    [automatic] An executive is an employee or officer of an enterprise
-    belonging to the upper category of employees. This is a status recognized by
-    collective agreements, which determines membership of a specific pension
-    fund, AGIRC, and some specific terms of the employment contract.
-
-
-    Initially recognising the technical skills and managerial role of the
-    employee, the status was gradually extended to an increasing number of
-    positions, and eventually covered a wide population, mixing managers,
-    experts and executives.
-
-
-    It is an ill-defined concept, meaning different concepts depending on the
-    point of view considered - whether in terms of status, social
-    representation, role in the company or culture.
   description.fr: >
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
@@ -1006,9 +990,25 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture.
+    représentation sociale, de rôle dans l'entreprise ou de culture. 
   titre.en: cadre status
   titre.fr: statut cadre
+  description.en: >
+    [automatic] An executive is an employee or officer of an enterprise
+    belonging to the upper category of employees. This is a status recognized by
+    collective agreements, which determines membership of a specific pension
+    fund, AGIRC, and some specific terms of the employment contract.
+
+
+    Initially recognising the technical skills and managerial role of the
+    employee, the status was gradually extended to an increasing number of
+    positions, and eventually covered a wide population, mixing managers,
+    experts and executives.
+
+
+    It is an ill-defined concept, meaning different concepts depending on the
+    point of view considered - whether in terms of status, social
+    representation, role in the company or culture. 
 plafond sécurité sociale temps plein:
   description.en: >-
     The social security ceiling is the maximum amount of remuneration to be
@@ -1292,7 +1292,7 @@ contrat salarié . aides employeur:
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   description.en: >
     Some aids can be requested by the employer to help hires.
 
@@ -1338,14 +1338,22 @@ entreprise . effectif . seuil:
   titre.fr: seuil d'effectif
   question.en: What is the workforce of the company?
   question.fr: Quel est l'effectif de l'entreprise ?
-  description.en: |
-    l'entreprise.
   description.fr: |
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
 
     Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
     atteint ou dépassé pendant 5 années civiles consécutives.
+  description.en: >
+    [automatic] Many employer contributions vary depending on the size of the
+    workforce.
+
+    the company.
+
+
+    The crossing of a threshold upwards is only taken into account if it is
+
+    reached or exceeded for 5 consecutive calendar years.
 entreprise . effectif . seuil . moins de 5:
   titre.en: less than 5
   titre.fr: moins de 5
@@ -1398,7 +1406,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 établissement:
@@ -2314,7 +2322,7 @@ entreprise . date de création:
   suggestions.Fin 2017.fr: Fin 2017
   suggestions.Fin 2017.en: '[automatic] End 2017'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.1.fr: >-
     Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être
     trompé dans la saisie ?
@@ -2780,7 +2788,7 @@ entreprise . catégorie d'activité . artisanale:
   titre.fr: artisanale
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . vente:
@@ -3250,9 +3258,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre.en: ZFU exemption rate
   titre.fr: taux exonération ZFU
 situation personnelle . domiciliation fiscale à l'étranger:
-  description.en: >
-    ils sont redevables de la cotisation maladie sur la base d’un taux plus
-    elevé.
   description.fr: >
     Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils
     sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
@@ -3260,18 +3265,22 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
   titre.en: tax domicile abroad
   titre.fr: domiciliation fiscale à l'étranger
+  description.en: >
+    [automatic] These insured persons are not liable for the CSG/CRDS but, in
+    return, they are liable for the health contribution at a higher rate.
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
   titre.en: Illness (tax domicile abroad)
   titre.fr: Maladie (domiciliation fiscale à l'étranger)
-  description.en: >-
-    plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne
-    bénéficient pas de la réduction du taux de la cotisation maladie en fonction
-    du revenu déclaré.
   description.fr: >-
     En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie
     plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne
     bénéficient pas de la réduction du taux de la cotisation maladie en fonction
     du revenu déclaré.
+  description.en: >-
+    [automatic] In return for the CSG exemption, contributors have a higher
+    sickness rate. Unlike other insured tradesmen/artisans, they do not benefit
+    from the reduction of the health contribution rate according to their
+    declared income.
 contrat salarié . maladie . taux domiciliation fiscale étranger:
   titre.en: employee rate (tax domicile abroad)
   titre.fr: taux salarié (domiciliation fiscale à l'étranger)
@@ -3602,29 +3611,6 @@ dirigeant . auto-entrepreneur . net après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   question.en: What is the desired net after-tax income?
   question.fr: Quel est le revenu net après impôt souhaité ?
-  description.en: >
-    [automatic] The self-employed person's net income after income tax and
-    contributions are deducted.
-
-    social. 
-
-
-    **Caution:** To properly assess the profitability of the business, you
-    should not
-
-    forget to subtract from this amount the expenses incurred in the context of
-
-    activity. This may include, for example: 
-
-    - The purchase of raw materials
-
-    - The purchase of tools / equipment
-
-    - Subscription to paid services
-
-    - Renting a room 
-
-    - and so on.
   description.fr: >
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
     revenu et des cotisations
@@ -3647,7 +3633,30 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - La location d'un local 
 
-    - etc...
+    - etc...  
+  description.en: >
+    [automatic] The self-employed person's net income after income tax and
+    contributions are deducted.
+
+    social. 
+
+
+    **Caution:** To properly assess the profitability of the business, you
+    should not
+
+    forget to subtract from this amount the expenses incurred in the context of
+
+    activity. This may include, for example: 
+
+    - The purchase of raw materials
+
+    - The purchase of tools / equipment
+
+    - Subscription to paid services
+
+    - Renting a room 
+
+    - and so on.  
 revenus net de cotisations:
   résumé.en: Before tax
   résumé.fr: Avant impôt
@@ -4091,7 +4100,7 @@ entreprise . convention collective:
   titre.fr: convention collective
 contrat salarié . convention collective:
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   contrôles.0.fr: |
     Attention, l'implémentation des conventions collective est encore
     partielle et non vérifiée.
@@ -4111,7 +4120,7 @@ contrat salarié . convention collective . HCR:
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
 contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
