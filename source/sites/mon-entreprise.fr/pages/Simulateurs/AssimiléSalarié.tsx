@@ -1,12 +1,11 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { T } from 'Components'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
 
@@ -35,9 +34,9 @@ export default function AssimiléSalarié() {
 				/>
 			</Helmet>
 			<h1>
-				<T k="simulateurs.assimilé-salarié.titre">
+				<Trans i18nKey="simulateurs.assimilé-salarié.titre">
 					Simulateur de revenus assimilé salarié
-				</T>
+				</Trans>
 			</h1>
 			<Warning simulateur="assimilé-salarié" />
 			<Simulation explanations={<SalaryExplanation />} />

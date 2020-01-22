@@ -6,9 +6,12 @@ fr:
   an_plural: ans
   employé_plural: employés
   point_plural: points
+  mois_plural: mois
 en:
   heure: hour
   heure_plural: hours
+  point: point
+  points_plural: points
   jour: day
   jour_plural: days
   semaine: week
@@ -21,3 +24,5 @@ en:
   employé_plural: employees
   an: year
   an_plural: years
+  mois: month
+  mois_plural: months

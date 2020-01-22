@@ -1,9 +1,8 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { filter } from 'ramda'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -23,9 +22,9 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 		<div className="ui__ answer-group">
 			<Link to={sitePaths.créer[statut]} className="ui__ button">
 				{statut.includes('auto-entrepreneur') ? (
-					<T>Devenir</T>
+					<Trans>Devenir</Trans>
 				) : (
-					<T>Créer une</T>
+					<Trans>Créer une</Trans>
 				)}{' '}
 				{t(statut)}
 			</Link>
@@ -74,12 +73,12 @@ const StatutTitle = ({ statut, language }: StatutTitleProps) =>
 		<>SNC - Société en nom collectif {language !== 'fr' && '(Partnership)'}: </>
 	) : statut === 'auto-entrepreneur' ? (
 		<>
-			<T>Auto-entrepreneur</T>
+			<Trans>Auto-entrepreneur</Trans>
 			{language === 'fr' && ' '}:{' '}
 		</>
 	) : statut === 'auto-entrepreneur-EIRL' ? (
 		<>
-			<T>Auto-entrepreneur en EIRL</T>
+			<Trans>Auto-entrepreneur en EIRL</Trans>
 			{language === 'fr' && ' '}
 			{':'}
 		</>
@@ -100,9 +99,9 @@ export default function SetMainStatus() {
 			</Helmet>
 			<h2>
 				{Object.keys(possibleStatus).every(Boolean) ? (
-					<T> Liste des statuts juridiques </T>
+					<Trans>Liste des statuts juridiques</Trans>
 				) : (
-					<T>Votre forme juridique</T>
+					<Trans>Votre forme juridique</Trans>
 				)}
 			</h2>
 

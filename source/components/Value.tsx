@@ -1,7 +1,6 @@
-import { T } from 'Components'
 import { formatValue, formatValueOptions } from 'Engine/format'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { EvaluatedRule } from 'Types/rule'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
@@ -58,7 +57,7 @@ export default function Value({
 	let valueType = typeof nodeValue,
 		formattedValue =
 			valueType === 'string' ? (
-				<T>{nodeValue}</T>
+				<Trans>{nodeValue}</Trans>
 			) : valueType === 'object' ? (
 				(nodeValue as any).nom
 			) : valueType === 'boolean' ? (

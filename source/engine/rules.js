@@ -190,24 +190,45 @@ export let nestedSituationToPathMap = situation => {
 }
 
 /* Traduction */
+const translateContrôle = (prop, rule, translation, lang) =>
+	assoc(
+		'contrôles',
+		rule.contrôles.map((control, i) => ({
+			...control,
+			message: translation[`${prop}.${i}.${lang}`]?.replace(
+				/^\[automatic\] /,
+				''
+			)
+		})),
+		rule
+	)
+const translateSuggestion = (prop, rule, translation, lang) =>
+	assoc(
+		'suggestions',
+		Object.entries(rule.suggestions).reduce(
+			(acc, [name, value]) => ({
+				...acc,
+				[translation[`${prop}.${name}.${lang}`]?.replace(
+					/^\[automatic\] /,
+					''
+				)]: value
+			}),
+			{}
+		),
+		rule
+	)
 
 export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
+			if (prop === 'contrôles' && rule?.contrôles) {
+				return translateContrôle(prop, rule, translation, lang)
+			}
+			if (prop === 'suggestions' && rule?.suggestions) {
+				return translateSuggestion(prop, rule, translation, lang)
+			}
 			let propTrans = translation[prop + '.' + lang]
-			if (prop === 'suggestions' && propTrans)
-				return assoc(
-					'suggestions',
-					pipe(
-						toPairs,
-						map(([key, translatedKey]) => [
-							translatedKey,
-							rule.suggestions[key]
-						]),
-						fromPairs
-					)(propTrans),
-					rule
-				)
+			propTrans = propTrans?.replace(/^\[automatic\] /, '')
 			return propTrans ? assoc(prop, propTrans, rule) : rule
 		},
 		translateRule = (lang, translations, props) => rule => {
@@ -238,7 +259,6 @@ const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
 export let rules = translateAll(translations, rulesList).map(rule =>
 	enrichRule(rule)
 )
-
 export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
 export let findParentDependencies = (rules, rule) => {
@@ -251,7 +271,7 @@ export let findParentDependencies = (rules, rule) => {
 		reject(isNil),
 		filter(
 			//Find the first "calculable" parent
-			({ question, unit, formule, dottedName }) =>
+			({ question, unit, formule }) =>
 				(question && !unit && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) ||

@@ -1,9 +1,8 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import animate from 'Ui/animate'
 
@@ -16,7 +15,9 @@ export default function SchemeChoice() {
 				<title>{t('selectionRégime.page.titre', 'Selection du régime')}</title>
 			</Helmet>
 			<h1>
-				<T k="selectionRégime.titre">Quel régime souhaitez-vous explorer ?</T>
+				<Trans i18nKey="selectionRégime.titre">
+					Quel régime souhaitez-vous explorer ?
+				</Trans>
 			</h1>
 			<p>
 				<Link
@@ -25,12 +26,12 @@ export default function SchemeChoice() {
 				>
 					{emoji('☂')}
 					<span>
-						<T>Assimilé salarié</T>
+						<Trans>Assimilé salarié</Trans>
 						<small>
 							(
-							<T k="comparaisonRégimes.status.AS">
+							<Trans i18nKey="comparaisonRégimes.status.AS">
 								SAS, SASU ou SARL avec gérant minoritaire
-							</T>
+							</Trans>
 							)
 						</small>
 					</span>
@@ -41,12 +42,12 @@ export default function SchemeChoice() {
 				>
 					{emoji('👩‍🔧')}
 					<span>
-						<T>Indépendant</T>
+						<Trans>Indépendant</Trans>
 						<small>
 							(
-							<T k="comparaisonRégimes.status.indep.1">
+							<Trans i18nKey="comparaisonRégimes.status.indep.1">
 								EI, EIRL, EURL ou SARL avec gérant majoritaire
-							</T>
+							</Trans>
 							)
 						</small>
 					</span>
@@ -60,16 +61,18 @@ export default function SchemeChoice() {
 				</Link>
 			</p>
 			<h2>
-				<T k="selectionRégime.comparer.titre">
+				<Trans i18nKey="selectionRégime.comparer.titre">
 					Vous ne savez pas lequel choisir ?
-				</T>
+				</Trans>
 			</h2>
 			<p style={{ textAlign: 'center', marginTop: '1rem' }}>
 				<Link
 					className="ui__  plain cta button"
 					to={sitePaths.simulateurs.comparaison}
 				>
-					<T k="selectionRégime.comparer.cta">Comparer les régimes</T>
+					<Trans i18nKey="selectionRégime.comparer.cta">
+						Comparer les régimes
+					</Trans>
 				</Link>
 			</p>
 		</animate.fromBottom>

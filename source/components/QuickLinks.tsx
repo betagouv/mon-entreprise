@@ -1,7 +1,7 @@
 import { goToQuestion } from 'Actions/actions'
-import { T } from 'Components'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
@@ -46,7 +46,7 @@ export default function QuickLinks() {
 					css="margin: 0 0.4rem !important"
 					onClick={() => dispatch(goToQuestion(dottedName))}
 				>
-					<T k={'quicklinks.' + label}>{label}</T>
+					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
 				</button>
 			))}{' '}
 			{/* <button className="ui__ link-button">Voir la liste</button> */}

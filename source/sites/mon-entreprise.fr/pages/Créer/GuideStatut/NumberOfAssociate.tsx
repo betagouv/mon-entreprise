@@ -1,8 +1,7 @@
 import { companyHasMultipleAssociates } from 'Actions/companyStatusActions'
-import { T } from 'Components'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 
 const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
@@ -25,9 +24,9 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 				/>
 			</Helmet>
 			<h2>
-				<T k="associés.titre">Seul ou à plusieurs</T>
+				<Trans i18nKey="associés.titre">Seul ou à plusieurs</Trans>
 			</h2>
-			<T k="associés.description">
+			<Trans i18nKey="associés.description">
 				<p>
 					Une entreprise avec un seul associé est plus simple à créer et gérer.
 					Un associé peut-être une personne physique (un individu) ou une
@@ -38,29 +37,30 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 					votre société seul, et accueillir de nouveaux associés au cours de
 					votre développement.
 				</p>
-			</T>
+			</Trans>
 
 			<div className="ui__ answer-group">
 				<button
 					onClick={() => {
 						companyHasMultipleAssociates(false)
 					}}
-					className="ui__ button">
-					<T k="associés.choix1">Seul</T>
+					className="ui__ button"
+				>
+					<Trans i18nKey="associés.choix1">Seul</Trans>
 				</button>
 				<button
 					onClick={() => {
 						companyHasMultipleAssociates(true)
 					}}
-					className="ui__ button">
-					<T k="associés.choix2">Plusieurs personnes</T>
+					className="ui__ button"
+				>
+					<Trans i18nKey="associés.choix2">Plusieurs personnes</Trans>
 				</button>
 			</div>
 		</>
 	)
 }
 
-export default connect(
-	null,
-	{ companyHasMultipleAssociates }
-)(NumberOfAssociates)
+export default connect(null, { companyHasMultipleAssociates })(
+	NumberOfAssociates
+)

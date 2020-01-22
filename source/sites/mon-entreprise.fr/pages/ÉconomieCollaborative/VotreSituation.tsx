@@ -1,9 +1,8 @@
-import { T } from 'Components'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link, Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { ActivitéCard } from './ActivitésSelection'
@@ -55,7 +54,7 @@ export default function VotreSituation() {
 			<section>
 				{déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE.length > 0 && (
 					<>
-						<T k="économieCollaborative.obligations.pro">
+						<Trans i18nKey="économieCollaborative.obligations.pro">
 							<h2>Déclarer en tant qu'activité professionnelle</h2>
 							<p>
 								Vos revenus sont considérés comme revenus professionnels, ils
@@ -63,9 +62,9 @@ export default function VotreSituation() {
 								ouvrent vos droit à des prestations sociales (retraite,
 								assurance maladie, maternité, etc.).
 							</p>
-						</T>
+						</Trans>
 						<ActivitéList activités={déclarations.RÉGIME_GÉNÉRAL_DISPONIBLE} />
-						<T k="économieCollaborative.obligations.entreprise">
+						<Trans i18nKey="économieCollaborative.obligations.entreprise">
 							<h3>Avec une entreprise</h3>
 							<p>
 								Si vous possédez déjà une activité déclarée, vous pouvez ajouter
@@ -81,10 +80,10 @@ export default function VotreSituation() {
 							>
 								Créer une entreprise
 							</Link>
-						</T>
+						</Trans>
 
 						{régimeGénéralDisponible && (
-							<T k="économieCollaborative.obligations.régimeGénéral">
+							<Trans i18nKey="économieCollaborative.obligations.régimeGénéral">
 								<h3>Avec l'option régime général</h3>
 								<p>
 									Pour certaines activités, vous pouvez déclarer vos revenus
@@ -100,13 +99,13 @@ export default function VotreSituation() {
 								>
 									Déclarer au régime général
 								</a>
-							</T>
+							</Trans>
 						)}
 					</>
 				)}
 				{déclarations.IMPOSITION.length > 0 && (
 					<>
-						<T k="économieCollaborative.obligations.impôts">
+						<Trans i18nKey="économieCollaborative.obligations.impôts">
 							<h2>Déclarer vos revenus aux impôts</h2>
 							<p>
 								Pour ces activités, vous avez uniquement besoin de déclarer vos
@@ -117,20 +116,20 @@ export default function VotreSituation() {
 								</a>
 								.
 							</p>
-						</T>
+						</Trans>
 						<ActivitéList activités={déclarations.IMPOSITION} />
 					</>
 				)}
 
 				{déclarations.AUCUN.length > 0 && (
 					<>
-						<T k="économieCollaborative.obligations.aucune">
+						<Trans i18nKey="économieCollaborative.obligations.aucune">
 							<h2>Rien à faire</h2>
 							<p>
 								Vous n'avez pas besoin de déclarer vos revenus pour ces
 								activités.
 							</p>
-						</T>
+						</Trans>
 						<ActivitéList activités={déclarations.AUCUN} />
 					</>
 				)}
@@ -151,9 +150,9 @@ const ActivitéList = ({ activités }) => {
 					answered
 					label={
 						régimeGénéralDisponibleSelector(state, title) ? (
-							<T k="économieCollaborative.obligations.régimeGénéralDisponible">
+							<Trans i18nKey="économieCollaborative.obligations.régimeGénéralDisponible">
 								Régime général disponible
-							</T>
+							</Trans>
 						) : null
 					}
 				/>

@@ -1,5 +1,4 @@
 import { setActiveTarget, updateSituation } from 'Actions/actions'
-import { T } from 'Components'
 import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
@@ -10,7 +9,7 @@ import { encodeRuleName } from 'Engine/rules'
 import { isEmpty, isNil } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -84,7 +83,7 @@ export default function TargetSelection() {
 							<div style={{ flex: 1 }}>
 								{nom && (
 									<h2 style={{ marginBottom: 0 }}>
-										{emoji(icône)} <T>{nom}</T>
+										{emoji(icône)} <Trans>{nom}</Trans>
 									</h2>
 								)}
 							</div>
@@ -298,13 +297,13 @@ function AidesGlimpse() {
 		<Animate.appear>
 			<div className="aidesGlimpse">
 				<RuleLink {...aideLink}>
-					<T>en incluant</T>{' '}
+					<Trans>en incluant</Trans>{' '}
 					<strong>
 						<AnimatedTargetValue value={aides.nodeValue}>
 							<span>{formatCurrency(aides.nodeValue, language)}</span>
 						</AnimatedTargetValue>
 					</strong>{' '}
-					<T>d'aides</T> {emoji(aides.explanation.icons)}
+					<Trans>d'aides</Trans> {emoji(aides.explanation.icons)}
 				</RuleLink>
 			</div>
 		</Animate.appear>

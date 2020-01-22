@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import SchemeComparaison from 'Components/SchemeComparaison'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function Autoentrepreneur() {
 	const { t } = useTranslation()
@@ -19,11 +18,11 @@ export default function Autoentrepreneur() {
 				/>
 			</Helmet>
 			<h2>
-				<T k="autoentrepreneur.titre">
+				<Trans i18nKey="autoentrepreneur.titre">
 					Entreprise individuelle ou auto-entrepreneur
-				</T>
+				</Trans>
 			</h2>
-			<T k="autoentrepreneur.description">
+			<Trans i18nKey="autoentrepreneur.description">
 				<p>
 					À la différence de l'entreprise individuelle, l'auto-entrepreneur
 					bénéficie d'un régime simplifié de déclaration et de paiement : les
@@ -44,7 +43,7 @@ export default function Autoentrepreneur() {
 					</a>
 					).
 				</p>
-			</T>
+			</Trans>
 			<div className="ui__ full-width">
 				<SchemeComparaison hideAssimiléSalarié />
 			</div>

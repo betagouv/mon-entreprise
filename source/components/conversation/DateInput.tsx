@@ -81,7 +81,7 @@ export default FormDecorator('input')(function DateInput({
 				<div className="ui__ input">
 					<DateField
 						autoFocus
-						placeholder="JJ"
+						placeholder={language === 'fr' ? 'JJ' : 'DD'}
 						css="text-align: right;"
 						type="tel"
 						onChange={({ target: { value } }) => {
@@ -117,7 +117,7 @@ export default FormDecorator('input')(function DateInput({
 						type="tel"
 						css="text-align: left;"
 						ref={yearInput}
-						placeholder="AAAA"
+						placeholder={language === 'fr' ? 'AAAA' : 'YYYY'}
 						onChange={({ target: { value } }) => {
 							handleDateChange({ year: value })
 						}}

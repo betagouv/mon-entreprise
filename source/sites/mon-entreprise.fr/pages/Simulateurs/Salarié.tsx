@@ -1,5 +1,4 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { T } from 'Components'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
@@ -11,7 +10,7 @@ import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -37,7 +36,9 @@ export default function Salarié() {
 				/>
 			</Helmet>
 			<h1>
-				<T k="simulateurs.salarié.titre">Simulateur de revenus pour salarié</T>
+				<Trans i18nKey="simulateurs.salarié.titre">
+					Simulateur de revenus pour salarié
+				</Trans>
 			</h1>
 			<div style={{ margin: '2rem' }} />
 			<SalarySimulation />
@@ -103,15 +104,17 @@ export let SalarySimulation = () => {
 				explanations={<SalaryExplanation />}
 				customEndMessages={
 					<>
-						<T k="simulation-end.hiring.text">
+						<Trans i18nKey="simulation-end.hiring.text">
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
-						</T>
+						</Trans>
 						<div style={{ textAlign: 'center', margin: '1rem' }}>
 							<Link
 								className="ui__ plain button"
 								to={sitePaths.gérer.embaucher}
 							>
-								<T k="simulation-end.cta">Connaître les démarches</T>
+								<Trans i18nKey="simulation-end.cta">
+									Connaître les démarches
+								</Trans>
 							</Link>
 						</div>
 					</>

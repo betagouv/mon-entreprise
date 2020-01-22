@@ -1,4 +1,16 @@
-import { countBy, equals, flatten, isEmpty, keys, map, pipe, remove, uniq, unnest, without } from 'ramda'
+import {
+	countBy,
+	equals,
+	flatten,
+	isEmpty,
+	keys,
+	map,
+	pipe,
+	remove,
+	uniq,
+	unnest,
+	without
+} from 'ramda'
 import i18n from '../i18n'
 
 type BaseUnit = string
@@ -9,39 +21,38 @@ export type Unit = {
 }
 
 //TODO this function does not handle complex units like passenger-kilometer/flight
-export let parseUnit = (string: string): Unit => {
+export let parseUnit = (string: string, lng: string = 'fr'): Unit => {
 	let [a, ...b] = string.split('/'),
 		result = {
 			numerators: a
 				.split('.')
 				.filter(Boolean)
-				.map(getUnitKey),
-			denominators: b.map(getUnitKey)
+				.map(unit => getUnitKey(unit, lng)),
+			denominators: b.map(unit => getUnitKey(unit, lng))
 		}
 	return result
 }
 
-const translations = Object.entries(
-	i18n.getResourceBundle(i18n.language, 'units')
-)
-function getUnitKey(unit: string): string {
-	const key = translations
+const translations = (lng: string) =>
+	Object.entries(i18n.getResourceBundle(lng, 'units'))
+function getUnitKey(unit: string, lng: string): string {
+	const key = translations(lng)
 		.find(([, trans]) => trans === unit)?.[0]
 		.replace(/_plural$/, '')
 	return key || unit
 }
 
-let printUnits = (units: Array<string>, count: number): string =>
+let printUnits = (units: Array<string>, count: number, lng): string =>
 	units
 		.filter(unit => unit !== '%')
-		.map(unit => i18n.t(`units:${unit}`, { count }))
+		.map(unit => i18n.t(`units:${unit}`, { count, lng: lng }))
 		.join('.')
 
 const plural = 2
-export let serialiseUnit = (
+export let serializeUnit = (
 	rawUnit: Unit | null | string,
 	count: number = plural,
-	lng?: string
+	lng: string = 'fr'
 ) => {
 	if (rawUnit === null || typeof rawUnit !== 'object') {
 		return typeof rawUnit === 'string'
@@ -60,10 +71,14 @@ export let serialiseUnit = (
 		!n && !d
 			? ''
 			: n && !d
-			? printUnits(numerators, count)
+			? printUnits(numerators, count, lng)
 			: !n && d
-			? `/${printUnits(denominators, 1)}`
-			: `${printUnits(numerators, plural)} / ${printUnits(denominators, 1)}`
+			? `/${printUnits(denominators, 1, lng)}`
+			: `${printUnits(numerators, plural, lng)} / ${printUnits(
+					denominators,
+					1,
+					lng
+			  )}`
 
 	return string
 }
@@ -170,9 +185,9 @@ function unitsConversionFactor(from: string[], to: string[]): number {
 export function convertUnit(from: Unit, to: Unit, value: number) {
 	if (!areUnitConvertible(from, to)) {
 		throw new Error(
-			`Impossible de convertir l'unité '${serialiseUnit(
+			`Impossible de convertir l'unité '${serializeUnit(
 				from
-			)}' en '${serialiseUnit(to)}'`
+			)}' en '${serializeUnit(to)}'`
 		)
 	}
 	if (!value) {

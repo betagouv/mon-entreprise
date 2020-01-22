@@ -1,16 +1,16 @@
-import { T } from 'Components';
-import { SitePathsContext } from 'Components/utils/withSitePaths';
-import React, { useContext } from 'react';
-import { Route, Switch } from 'react-router';
-import { NavLink } from 'react-router-dom';
-import Activité from './Activité';
-import ActivitésSelection from './ActivitésSelection';
-import reducer from './reducer';
-import { StoreProvider } from './StoreContext';
-import VotreSituation from './VotreSituation';
+import { SitePathsContext } from 'Components/utils/withSitePaths'
+import React, { useContext } from 'react'
+import { Trans } from 'react-i18next'
+import { Route, Switch } from 'react-router'
+import { NavLink } from 'react-router-dom'
+import Activité from './Activité'
+import ActivitésSelection from './ActivitésSelection'
+import reducer from './reducer'
+import { StoreProvider } from './StoreContext'
+import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
-	const sitePaths = useContext(SitePathsContext);
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<div css="transform: translateY(2rem)">
@@ -18,13 +18,18 @@ export default function ÉconomieCollaborative() {
 					to={sitePaths.économieCollaborative.index}
 					exact
 					activeClassName="ui__ hide"
-					className="ui__ simple small push-left button ">
-					← <T k="économieCollaborative.retourAccueil">Retour à la selection d'activités</T>
+					className="ui__ simple small push-left button "
+				>
+					←{' '}
+					<Trans i18nKey="économieCollaborative.retourAccueil">
+						Retour à la selection d'activités
+					</Trans>
 				</NavLink>
 			</div>
 			<StoreProvider
 				reducer={reducer}
-				localStorageKey="app::économie-collaborative:v1">
+				localStorageKey="app::économie-collaborative:v1"
+			>
 				<Switch>
 					<Route
 						exact

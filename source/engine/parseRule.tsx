@@ -1,10 +1,10 @@
-import { T } from 'Components'
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
 import evaluate from 'Engine/evaluateRule'
 import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { coerceArray } from '../utils'
 import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
 import { Node } from './mecanismViews/common'
@@ -153,7 +153,7 @@ export default (rules, rule, parsedRules) => {
 					<>
 						<h3>Exception{isDisabledBy.length > 1 && 's'}</h3>
 						<p>
-							<T>Cette règle ne s'applique pas pour</T> :{' '}
+							<Trans>Cette règle ne s'applique pas pour</Trans> :{' '}
 							{isDisabledBy.map((rule, i) => (
 								<React.Fragment key={i}>
 									{i > 0 && ', '}

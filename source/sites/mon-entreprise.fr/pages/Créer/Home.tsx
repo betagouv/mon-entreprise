@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -27,16 +26,16 @@ export default function Créer() {
 			</Helmet>
 
 			<h1>
-				<T k="créer.titre">Créer une entreprise</T>
+				<Trans i18nKey="créer.titre">Créer une entreprise</Trans>
 			</h1>
 			<div css="display: flex; align-items: flex-start; justify-content: space-between">
 				<div>
 					<p className="ui__ lead">
-						<T k="créer.description">
+						<Trans i18nKey="créer.description">
 							Avant d'entamer les démarches administratives pour créer votre
 							entreprise, vous devez choisir un statut juridique adapté à votre
 							activité
-						</T>
+						</Trans>
 					</p>
 					<Link
 						className="ui__ button plain cta"
@@ -51,10 +50,10 @@ export default function Créer() {
 							: t('créer.cta.continue', 'Continuer le guide')}
 					</Link>
 					<p className="ui__ notice">
-						<T k="créer.warningPL">
+						<Trans i18nKey="créer.warningPL">
 							Le cas des professions libérales réglementées n'est pas encore
 							traité
-						</T>
+						</Trans>
 					</p>
 				</div>
 
@@ -65,7 +64,7 @@ export default function Créer() {
 				/>
 			</div>
 			<h2>
-				<T>Ressources utiles</T>
+				<Trans>Ressources utiles</Trans>
 			</h2>
 			<div
 				css={`
@@ -81,13 +80,13 @@ export default function Créer() {
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.guideStatut.liste}
 				>
-					<T k="créer.ressources.listeStatuts">
-						<p>Liste des statuts juridiques </p>
+					<Trans i18nKey="créer.ressources.listeStatuts">
+						<p>Liste des statuts juridiques</p>
 						<small>
 							Vous savez déjà quel statut choisir ? Accédez directement à la
 							liste des démarches associées
 						</small>
-					</T>
+					</Trans>
 				</Link>
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
@@ -96,26 +95,26 @@ export default function Créer() {
 						state: { fromCréer: true }
 					}}
 				>
-					<T k="créer.ressources.comparaison">
+					<Trans i18nKey="créer.ressources.comparaison">
 						<p>Comparateur de régimes</p>
 						<small>
 							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
 							différences en terme de revenus, cotisations, retraite, etc
 						</small>
-					</T>
+					</Trans>
 				</Link>
 
 				<Link
 					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
-					<T k="créer.ressources.autoEntrepreneur">
+					<Trans i18nKey="créer.ressources.autoEntrepreneur">
 						<p>Démarche auto-entrepreneur</p>
 						<small>
 							Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes
 							pour bien démarrer votre activité
 						</small>
-					</T>
+					</Trans>
 				</Link>
 			</div>
 		</Animate.fromBottom>

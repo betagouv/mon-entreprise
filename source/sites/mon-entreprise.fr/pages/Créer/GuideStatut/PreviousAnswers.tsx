@@ -1,7 +1,7 @@
-import { T } from 'Components'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { isNil } from 'ramda'
 import React, { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -13,23 +13,35 @@ const requirementToText = (
 ) => {
 	switch (key) {
 		case 'multipleAssociates':
-			return value ? <T>Plusieurs associés</T> : <T>Un seul associé</T>
+			return value ? (
+				<Trans>Plusieurs associés</Trans>
+			) : (
+				<Trans>Un seul associé</Trans>
+			)
 		case 'soleProprietorship':
 			return value ? (
-				<T k="responsabilité.bouton2">Entreprise individuelle</T>
+				<Trans i18nKey="responsabilité.bouton2">Entreprise individuelle</Trans>
 			) : (
-				<T k="responsabilité.bouton1">Société</T>
+				<Trans i18nKey="responsabilité.bouton1">Société</Trans>
 			)
 		case 'directorStatus':
 			return value === 'SELF_EMPLOYED' ? (
-				<T>Indépendant</T>
+				<Trans>Indépendant</Trans>
 			) : (
-				<T>Assimilé salarié</T>
+				<Trans>Assimilé salarié</Trans>
 			)
 		case 'autoEntrepreneur':
-			return value ? <T>Auto-entrepreneur</T> : <T>Pas en auto-entrepreneur</T>
+			return value ? (
+				<Trans>Auto-entrepreneur</Trans>
+			) : (
+				<Trans>Pas en auto-entrepreneur</Trans>
+			)
 		case 'minorityDirector':
-			return value ? <T>Gérant minoritaire</T> : <T>Gérant majoritaire</T>
+			return value ? (
+				<Trans>Gérant minoritaire</Trans>
+			) : (
+				<Trans>Gérant majoritaire</Trans>
+			)
 	}
 }
 

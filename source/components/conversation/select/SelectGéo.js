@@ -1,5 +1,5 @@
-import { T } from 'Components'
 import React, { useCallback, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { debounce } from '../../../utils'
 import { FormDecorator } from '../FormDecorator'
 
@@ -45,6 +45,7 @@ export default FormDecorator('select')(function Select({
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
 		handleSearch
 	])
+	const { t } = useTranslation()
 
 	let submitOnChange = option => {
 		tauxVersementTransport(option.code)
@@ -91,7 +92,7 @@ export default FormDecorator('select')(function Select({
 						border-color: var(--color);
 					}
 				`}
-				placeholder="Saisissez le nom d'une commune"
+				placeholder={t("Saisissez le nom d'une commune")}
 				onChange={e => {
 					if (e.target.value.length < 2) {
 						setSearchResults(undefined)
@@ -101,9 +102,9 @@ export default FormDecorator('select')(function Select({
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && (searchResults && searchResults.length === 0) && (
+			{!isLoading && searchResults && searchResults.length === 0 && (
 				<p>
-					<T>Aucun résultat</T>
+					<Trans>Aucun résultat</Trans>
 				</p>
 			)}
 

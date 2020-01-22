@@ -1,3 +1,6 @@
+'404':
+  message: This page does not exist or no longer exists
+  action: Return to safe place
 previousSimulationBanner:
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation
@@ -5,10 +8,10 @@ Modifier: Modify
 Échap: Esc
 Entrée: Enter
 Plein écran: Fullscreen
-Oui: Yes
-oui: yes
-Non: No
-non: no
+Oui: 'Yes'
+oui: 'yes'
+Non: 'No'
+non: 'no'
 déplier: show more
 replier: show less
 Pages associées: Related pages
@@ -65,9 +68,15 @@ Cotisations: Contributions
 Revenu disponible: Disposable income
 Impôts: Taxes
 payslip:
-  notice: This simulation helps you understand your French payslip, but it should not be used as one. For further details, check <1>service-public.fr (French)</1>.
+  notice: >-
+    This simulation helps you understand your French payslip, but it should not
+    be used as one. For further details, check <1>service-public.fr
+    (French)</1>.
   heures: 'Hours worked per month: '
-  disclaimer: It takes into account national law but not union negotiated rules. Lots of financial aids for your enterprise exist, explore them on <1>aides-entreprises.fr (French)</1>.
+  disclaimer: >-
+    It takes into account national law but not union negotiated rules. Lots of
+    financial aids for your enterprise exist, explore them on
+    <1>aides-entreprises.fr (French)</1>.
   repartition: Distribution of total amount
 A quoi servent mes cotisations ?: What's included in my contributions?
 Effacer: Reset
@@ -76,6 +85,8 @@ Changer: Change
 Continuer: Continue
 quicklinks:
   CDI: Permanent
+  Impôt sur le revenu: Income tax
+  Date de création: Creation date
   Commune: Town
   JEI: Innovating company (JEI)
   CDD: Fixed-term
@@ -95,15 +106,20 @@ simulation-end:
   hiring:
     text: You can now turn your hiring project into reality.
     cta: Know the procedures
+  cta: Know the steps to take
 feedback:
   simulator: Do you like this simulator ?
   reportError: Make a suggestion
   question: Was this page useful to you?
   bad:
     form:
-      headline: Your feedback is valuable to us in order to continuously improve this site. What should we work on to better meet your expectations?
+      headline: >-
+        Your feedback is valuable to us in order to continuously improve this
+        site. What should we work on to better meet your expectations?
       email: Your email (if you would like an answer from us)
-  thanks: Thank for your feedback! You can contact us directly at <1> </1><2>contact@mon-entreprise.beta.gouv.fr</2>
+  thanks: >-
+    Thank for your feedback! You can contact us directly at <1>
+    </1><2>contact@mon-entreprise.beta.gouv.fr</2>
 Janvier 2019: January 2019
 en incluant: including
 d'aides: of aid
@@ -112,33 +128,28 @@ Retour: Back
 Retour à mon activité: Back to my business
 Retour à la création: Back to creation
 Voir les autres simulateurs: See the other simulators
-
 legalNotice:
   title: Legal notice
   editeur:
     title: Publisher
     content: >
-      Incubator of digital services,<1></1>
-      Direction interministérielle du numérique et du système
-      d'information et de communication de l'Etat (DINSIC),<3></3>
-      Services of the Prime Minister
+      Incubator of digital services,<1></1> Direction interministérielle du
+      numérique et du système d'information et de communication de l'Etat
+      (DINSIC),<3></3> Services of the Prime Minister
   publication:
     title: Director of publication
-    content: M. Yann-Gaël Amghar, Director of Acoss
+    content: 'M. Yann-Gaël Amghar, Director of Acoss'
   hosting:
     title: Hosting provider
     content: >
-      Netlify, <1></1>
-      610 22nd Street, Suite 315, <3></3>
-      San Francisco, CA 94107 <5></5>
-      Website : <7>https://www.netlify.com</7>
+      Netlify, <1></1> 610 22nd Street, Suite 315, <3></3> San Francisco, CA
+      94107 <5></5> Website : <7>https://www.netlify.com</7>
   contact:
     title: Contact
-    content: >
+    content: |
       <0>
         contact@mon-entreprise.beta.gouv.fr
       </0>
-
 La somme de: This rule is the sum of
 Si: If
 Sinon: Else
@@ -151,116 +162,182 @@ Au-dessus de: Above
 Taux moyen: Average rate
 Commencer: Get started
 Passer: Skip
-
 entreprise:
   page:
     autoEntrepreneur:
-      description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
-      titre: How to become {{autoEntrepreneur}}
+      description: 'A complete todo list to help you become {{autoEntrepreneur}} in France.`'
+      titre: 'How to become {{autoEntrepreneur}}'
     entreprise:
-      description: A complete todo list to help you create a {{status}} with the French administration.`
-      titre: Create an {{status}}
+      description: >-
+        A complete todo list to help you create a {{status}} with the French
+        administration.`
+      titre: 'Create an {{status}}'
   tâches:
     nom:
       titre: Find a corporate name
-      description: |
-        <0><0>The corporate name</0> ("dénomination sociale") is the legal name of your company, written on all of your administrative papers. It can be different from the trade name (used for commercial purpose).</0>
-        <1>It is advisable to check that the name is available, i.e. that it does not infringe a name already protected by a trademark, a company name, a trade name, an Internet domain name, etc. You can check on the <2>INPI database</2>.</1>
+      description: >
+        <0><0>The corporate name</0> ("dénomination sociale") is the legal name
+        of your company, written on all of your administrative papers. It can be
+        different from the trade name (used for commercial purpose).</0>
+
+        <1>It is advisable to check that the name is available, i.e. that it
+        does not infringe a name already protected by a trademark, a company
+        name, a trade name, an Internet domain name, etc. You can check on the
+        <2>INPI database</2>.</1>
     formeJuridique:
       titre: Choose the legal status
     objetSocial:
       titre: Write the corporate purpose of the company
-      description: The <1>corporate purpose</1> of the company ("objet social") is the main activity run. A secondary activity can be registered.
+      description: >-
+        The <1>corporate purpose</1> of the company ("objet social") is the main
+        activity run. A secondary activity can be registered.
     adresse:
       titre: Find an address to incorporate the company
-      description: <0><0>The address</0> is the physical space where your company will be incorporated. In certain places and situations, you can benefit from substantial public financing (exemption from charges, taxes, etc.). <2>More information (Fr)</2></0>
+      description: >-
+        <0><0>The address</0> is the physical space where your company will be
+        incorporated. In certain places and situations, you can benefit from
+        substantial public financing (exemption from charges, taxes, etc.).
+        <2>More information (Fr)</2></0>
     statuts:
       titre: Write the company's articles
       exemple: Example articles for your
-      description: The company's articles of association ( "les statuts"), is an official document written in French, describing the status choice, naming the associate(s) and the contributed capital. <2>For more than one associate, it is recommended to ask for the help of a lawyer to write them.</2>
+      description: >-
+        The company's articles of association ( "les statuts"), is an official
+        document written in French, describing the status choice, naming the
+        associate(s) and the contributed capital. <2>For more than one
+        associate, it is recommended to ask for the help of a lawyer to write
+        them.</2>
     banque:
       titre: Open a business bank account
       description:
-        1: The purpose of a <1>professional bank account</1> is to separate your company's assets from your personal assets.
-        2: 'The professional bank account allows you to:'
-        EI: If its opening is not obligatory for an EI, it is strongly recommended.
-        liste: |
-          <0>Differentiate your private and professional operations and simplify your cash management</0>
+        '1': >-
+          The purpose of a <1>professional bank account</1> is to separate your
+          company's assets from your personal assets.
+        '2': 'The professional bank account allows you to:'
+        EI: >-
+          If its opening is not obligatory for an EI, it is strongly
+          recommended.
+        liste: >
+          <0>Differentiate your private and professional operations and simplify
+          your cash management</0>
+
           <1>Facilitate any tax audit operations.</1>
     capital:
       titre: Deposit capital funds
-      description: <0>The <1>deposit of share capital</1>  must be made at the time of the incorporation of a company by any person acting on behalf of the company and having received funds from contributions in cash (sum of money) from the creditors of the company (shareholder or partner).</0><1>The deposit consists of a transfer of a sum of money to a blocked account with a bank or the public <2>Caisse des dépôts et consignations</2> or a notary, who must then provide a certificate of deposit of capital.</1>
+      description: >-
+        <0>The <1>deposit of share capital</1>  must be made at the time of the
+        incorporation of a company by any person acting on behalf of the company
+        and having received funds from contributions in cash (sum of money) from
+        the creditors of the company (shareholder or partner).</0><1>The deposit
+        consists of a transfer of a sum of money to a blocked account with a
+        bank or the public <2>Caisse des dépôts et consignations</2> or a
+        notary, who must then provide a certificate of deposit of capital.</1>
     journal:
       titre: Publish a notice of creation in a newspaper
-      description: |
-        <0>A notice of incorporation of the company must be published in a newspaper of legal announcements (« JAL » in French), for a cost of publication that depends on the size of the announcement and the rates charged by the chosen newspaper.</0><1><0>Find a newspaper of legal announcements</0></1><2>The notice must contain the following information:</2>
+      description: >
+        <0>A notice of incorporation of the company must be published in a
+        newspaper of legal announcements (« JAL » in French), for a cost of
+        publication that depends on the size of the announcement and the rates
+        charged by the chosen newspaper.</0><1><0>Find a newspaper of legal
+        announcements</0></1><2>The notice must contain the following
+        information:</2>
+
         <3>
+
         <0>The company's name and possibly its acronym</0>
+
         <1>The legal form</1>
+
         <2>The amount of the company's capital</2>
+
         <3>The address of the registered office</3>
+
         <4>The corporate purpose</4>
+
         <5>The duration of the company</5>
+
         <6>
           The full name and address of the manager and of the persons
           with general authority to bind the company to third parties,
           and of the statutory auditors (if appointed)
         </6>
+
         <7>
           The place and number of the RCS with which the company is
           registered
         </7>
-        </3>
 
+        </3>
     formulaire:
       titre: Register my company online
-      description: <0>You can start your online registration process anytime, save it and come back to it as you wish.</0><1><0>Start registration process</0></1>
+      description: >-
+        <0>You can start your online registration process anytime, save it and
+        come back to it as you wish.</0><1><0>Start registration process</0></1>
     titre2: Recommended before starting your activity
     comptable:
       titre: Choose a certified accountant
-      description: Managing a company brings a number of <1>accounting obligations</1>. It is advisable to call in a competent person or use a website that can handle accounting for you.
+      description: >-
+        Managing a company brings a number of <1>accounting obligations</1>. It
+        is advisable to call in a competent person or use a website that can
+        handle accounting for you.
     assurance:
       titre: Check out the need for professional insurance
-      description: <0>An SME or self-employed person must protect themselves against the main risks to which they are exposed and take out guarantee contracts. Whether it is a tenant or owner of its walls, the company must insure its buildings, its professional equipment, its goods, its raw materials, its vehicles, as well as in terms of civil liability of the company and its managers or in terms of operating loss.</0><1>More information (Fr)</1>
+      description: >-
+        <0>An SME or self-employed person must protect themselves against the
+        main risks to which they are exposed and take out guarantee contracts.
+        Whether it is a tenant or owner of its walls, the company must insure
+        its buildings, its professional equipment, its goods, its raw materials,
+        its vehicles, as well as in terms of civil liability of the company and
+        its managers or in terms of operating loss.</0><1>More information
+        (Fr)</1>
     affectation:
       titre: Make a declaration of asset allocation
-      description: >
+      description: |
         <0>
           The <1>declaration of asset allocation</1> allows you to separate professional
           assets from your personal assets, which then becomes unseizable. This procedure
           is free of charge if it is carried out at the time of the creation
           of a company.
-        </0>
-        <1>
+        </0> <1>
           To do so, simply declare which assets are allocated to the patrimony of your company.
           All the contributions necessary for your professional activity must be included
           (for example: goodwill, trademark, patent, or professional equipment). You can do
           the valuation of the asset yourself if it does not exceed €30,000.
-        </1>
-        <2>
+        </1> <2>
           <0>$t(Plus d'informations)</0>
         </2>
-    avancement: Use these lists to track down your advancement in the business creation process. It is automatically saved in your browser.
+    avancement: >-
+      Use these lists to track down your advancement in the business creation
+      process. It is automatically saved in your browser.
     titre: The to-do list for creating your business
   retour: Choose another status
   ressources:
     simu:
-      indépendant: |
+      indépendant: >
         <0>Independent: contribution simulator </0>
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
-      assimilé: |
-        <0>Assimilé-salarié: contribution simulator </0>
-        <1>Simulate the amount of your social security contributions to prepare your business plan.</1>
-      autoEntrepreneur: |
-        <0>Auto-entrepreneur: income simulator</0>
-        <1>Simulate the amount of your social security contributions and taxes and estimate your future net income.</1>
-    après: |
-      <0>After registration</0>
-      <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may (possibly) encounter after creation.</1>
 
+        <1>Simulate the amount of your social security contributions to prepare
+        your business plan.</1>
+      assimilé: >
+        <0>Assimilé-salarié: contribution simulator </0>
+
+        <1>Simulate the amount of your social security contributions to prepare
+        your business plan.</1>
+      autoEntrepreneur: >
+        <0>Auto-entrepreneur: income simulator</0>
+
+        <1>Simulate the amount of your social security contributions and taxes
+        and estimate your future net income.</1>
+    après: >
+      <0>After registration</0>
+
+      <1>SIREN, SIRET, code APE, KBis. A small glossary of terms that you may
+      (possibly) encounter after creation.</1>
 créer:
   titre: Create a company
-  description: Before starting the administrative procedures to create your company, you must choose a legal status adapted to your activity
+  description: >-
+    Before starting the administrative procedures to create your company, you
+    must choose a legal status adapted to your activity
   warningPL: 'Note: the case of regulated liberal professions is not covered'
   cta:
     default: Find the right status
@@ -269,184 +346,280 @@ créer:
     listeStatuts: |
       <0>List of legal statuses</0>
       <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
-    comparaison: |
+    comparaison: >
       <0> SASU, EURL or auto-entrepreneur?</0>
-      <1>Discover the differences in terms of income, contributions, retirement, etc.</1>
-    autoEntrepreneur: <0>Become auto-entrepreneur</0>
-      <1>Go to the simplified creation process for starting a business</1>
 
+      <1>Discover the differences in terms of income, contributions, retirement,
+      etc.</1>
+    autoEntrepreneur: >-
+      <0>Become auto-entrepreneur</0> <1>Go to the simplified creation process
+      for starting a business</1>
 gérer:
   titre: Manage my business
-  description: Do you want to earn an income or hire? You will have to pay contributions and taxes. Anticipate their amounts thanks to simulators adapted to your situation.
+  description: >-
+    Do you want to earn an income or hire? You will have to pay contributions
+    and taxes. Anticipate their amounts thanks to simulators adapted to your
+    situation.
   cta: Find my company
   choix:
     titre: What do you want to do?
-    embauche: |
+    embauche: >
       <0>Estimate the amount spent for hiring</0>
-      <1>Calculate how much your company will have to spend to pay your next employee</1>
-    revenus: |
+
+      <1>Calculate how much your company will have to spend to pay your next
+      employee</1>
+    revenus: >
       <0>Calculate my net income</0>
-      <1>Estimate precisely the amount of your contributions thanks to the URSSAF simulator for {{régime}}</1>
+
+      <1>Estimate precisely the amount of your contributions thanks to the
+      URSSAF simulator for {{régime}}</1>
   ressources:
-    embaucher: |
+    embaucher: >
       <0>Discover the hiring process</0>
-      <1>The list of things to do to make sure you don't forget anything when hiring a new employee</1>
-    sécuritéSociale: <0>Understanding social security</0>
-      <1>What are social security contributions used for? Update on the social protection system enjoyed by all workers in France</1>
-    autoEntrepreneur: <0>Access the official auto-entrepreneur website</0>
-      <1>You will be able to make your turnover declaration, pay your contributions, and more widely find all the information relating to the status of auto-entrepreneur</1>
+
+      <1>The list of things to do to make sure you don't forget anything when
+      hiring a new employee</1>
+    sécuritéSociale: >-
+      <0>Understanding social security</0> <1>What are social security
+      contributions used for? Update on the social protection system enjoyed by
+      all workers in France</1>
+    autoEntrepreneur: >-
+      <0>Access the official auto-entrepreneur website</0> <1>You will be able
+      to make your turnover declaration, pay your contributions, and more widely
+      find all the information relating to the status of auto-entrepreneur</1>
   entreprise:
     auto: Are you auto-entrepreneur?
-    dirigeant: |
+    dirigeant: >
       <0>Are you the majority director?</0>
-      <1>If you are a majority director or a member of a majority board of directors, you will not have the same social security system as if you are a minority.</1>
+
+      <1>If you are a majority director or a member of a majority board of
+      directors, you will not have the same social security system as if you are
+      a minority.</1>
     majoritaire: Majority director
     minoritaire: Minority director
     changer: Change the selected company
-
 sécu:
   titre: Social security in France
-  contenu: |
+  contenu: >
     <0> Social protection</0>
-    <1>In France, all workers benefit from quality social protection. This mandatory system is based on solidarity and aims to ensure the <2>general well-being of the population</2>.</1>
-    <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
 
+    <1>In France, all workers benefit from quality social protection. This
+    mandatory system is based on solidarity and aims to ensure the <2>general
+    well-being of the population</2>.</1>
+
+    <2>In return for the payment of <2>social security contributions</2>, the
+    contributor is covered for illness, accidents at work, unemployment or
+    retirement.</2>
+  page:
+    titre: Social Security
 Mon entreprise: My company
 Mon revenu: My income
-
 formeJuridique:
   titre: Choice of legal status
-  EI: Also called company in own name or company in a personal name. No capital contribution is necessary. Private wealth and corporate wealth are one.
-  EIRL: Allows you to protect your personal assets by allocating specific capital to your professional activity. Society and the individual are the same person. Not suitable if the sole shareholder is a legal entity (company) or if you plan to welcome other shareholders during the development of your company (choose EURL in this case).
-  EURL: The company has only one partner. Liability is limited to the amount of the capital contribution of the sole shareholder. Evolves into a SARL when new partners join the company.
-  SARL: Composed of at least 2 partners whose financial responsibility is limited to the amount of their contribution to the company's capital. The minimum capital is freely fixed in the articles of association.
-  SAS: Company with at least 2 partners. The financial liability of the shareholders is limited to the amount of their contribution to the company's capital. The minimum capital is freely set in the Articles of Association. An SAS is characterised by a high degree of flexibility in terms of functioning (tailor-made statutes).
-  SASU: Composed of only one partner. The financial responsibility is limited to the amount of his contribution to the company's capital. The minimum capital is freely fixed in the Articles of Association.
-  SA: Composed of at least 2 shareholders. This is the only status that allows you to be listed on the stock exchange (from 7 shareholders). The minimum share capital is €37.000.
-  SNC: The liability of the partners for the debts of the company is unified (one  partner only can be sued for the entire debt) and indefinite (responsible on the entirety of their personnal wealth).
-  micro: The auto-entrepreneur is a sole proprietorship company, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
-  micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited liability, subject to a flat-rate scheme for the calculation of taxes and the payment of social security contributions.
-
+  EI: >-
+    Also called company in own name or company in a personal name. No capital
+    contribution is necessary. Private wealth and corporate wealth are one.
+  EIRL: >-
+    Allows you to protect your personal assets by allocating specific capital to
+    your professional activity. Society and the individual are the same person.
+    Not suitable if the sole shareholder is a legal entity (company) or if you
+    plan to welcome other shareholders during the development of your company
+    (choose EURL in this case).
+  EURL: >-
+    The company has only one partner. Liability is limited to the amount of the
+    capital contribution of the sole shareholder. Evolves into a SARL when new
+    partners join the company.
+  SARL: >-
+    Composed of at least 2 partners whose financial responsibility is limited to
+    the amount of their contribution to the company's capital. The minimum
+    capital is freely fixed in the articles of association.
+  SAS: >-
+    Company with at least 2 partners. The financial liability of the
+    shareholders is limited to the amount of their contribution to the company's
+    capital. The minimum capital is freely set in the Articles of Association.
+    An SAS is characterised by a high degree of flexibility in terms of
+    functioning (tailor-made statutes).
+  SASU: >-
+    Composed of only one partner. The financial responsibility is limited to the
+    amount of his contribution to the company's capital. The minimum capital is
+    freely fixed in the Articles of Association.
+  SA: >-
+    Composed of at least 2 shareholders. This is the only status that allows you
+    to be listed on the stock exchange (from 7 shareholders). The minimum share
+    capital is €37.000.
+  SNC: >-
+    The liability of the partners for the debts of the company is unified (one 
+    partner only can be sued for the entire debt) and indefinite (responsible on
+    the entirety of their personnal wealth).
+  micro: >-
+    The auto-entrepreneur is a sole proprietorship company, subject to a
+    flat-rate scheme for the calculation of taxes and the payment of social
+    security contributions.
+  micro-EIRL: >-
+    The EIRL auto-entrepreneur is a sole proprietorship with limited liability,
+    subject to a flat-rate scheme for the calculation of taxes and the payment
+    of social security contributions.
 Votre forme juridique: Your legal status
 Créer une: Create a
 Devenir: Become
 Choisir la forme juridique: Choose your legal status
-
 responsabilité:
   page:
     titre: Choose between Sole Proprietorship and Limited Liability Company in France
   titre: Limited liability company or sole proprietorship
-  description: Sole proprietorship or limited liability? Each option has legal implications, and leads to a different status for creating your company in France
-  intro: This choice determines your degree of responsibility and your ability to welcome new partners in the future
-  entreprise-individuelle: |
+  description: >-
+    Sole proprietorship or limited liability? Each option has legal
+    implications, and leads to a different status for creating your company in
+    France
+  intro: >-
+    This choice determines your degree of responsibility and your ability to
+    welcome new partners in the future
+  entreprise-individuelle: >
     <0>Sole proprietorship:</0>
-    An economic activity carried out by a single natural person in his or her own name. Less formalities, but more risks in the event of bankruptcy, because your personal assets can be put to use.
+
+    An economic activity carried out by a single natural person in his or her
+    own name. Less formalities, but more risks in the event of bankruptcy,
+    because your personal assets can be put to use.
+
     <3>You cannot welcome new partners into a sole proprietorship.</3>
-  société: |
+  société: >
     <0>Limited liability company:</0>
-    You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
+
+    You cannot be held personally liable for the company's debts or obligations.
+    On the other hand, the creation process is a little more cumbersome, since
+    it includes the drafting of statutes and the deposit of capital.
   bouton1: Limited liability company
   bouton2: Sole proprietorship
-
 autoentrepreneur:
   page:
     titre: Auto-entrepreneur
-    description: |
-      The auto-entrepreneur benefits from a simplified scheme of declaration and payment,
+    description: >
+      The auto-entrepreneur benefits from a simplified scheme of declaration and
+      payment,
+
       for which tax and social contributions are based on the turnover achieved
-      each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
+
+      each month. It's an interesting choice if you do not need a lot of
+      capital, and want to get started quickly.
   titre: Auto-entrepeneur
-  description: >
+  description: |
     <0>
       The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
       are based on the turnover achieved each month.
-    </0>
-    <1>
+    </0> <1>
       <0>Note:</0>
       Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
       are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
     </1>
-
 associés:
   page:
     titre: Number of partners to start a business in France
-    description: Find out which status to choose based on the number of partners involved in the creation of a company in France.
+    description: >-
+      Find out which status to choose based on the number of partners involved
+      in the creation of a company in France.
   titre: Number of partners
-  description: >
+  description: |
     <0>
       A company with only one partner is easier to create and manage. A shareholder
       may be a natural person (an individual) or a legal person (for example,
       another company).
-    </0>
-    <1>
+    </0> <1>
       Note: this choice is not final. You can start your company on your own,
       and welcome new partners as your business grows.
     </1>
   choix1: Alone
   choix2: Several partners
-
 trouver:
   page:
-    description: Find your existing company, and start simulate hiring cost customized to your situation
+    description: >-
+      Find your existing company, and start simulate hiring cost customized to
+      your situation
   titre: Find your company
   non: I don't have a company yet
-  description: Thanks to the SIREN database, the public information of your company will be used automatically in the next steps.
+  description: >-
+    Thanks to the SIREN database, the public information of your company will be
+    used automatically in the next steps.
   ok: Confirm and simulate hiring costs
-
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Recherche en cours...: Searching...
-
 après:
   titre: After registration
   entreprise: company
-  intro: Once your <2>{{companyStatusChoice}}</2> has been successfully registered, you'll have access to the following
+  intro: >-
+    Once your <2>{{companyStatusChoice}}</2> has been successfully registered,
+    you'll have access to the following
   siret:
     titre: The SIRET number
-    description: The SIREN number <1>identifies your company</1> while the SIRET number identifies each place of business operated by the same company. The SIRET is composed by the SIREN followed by the establishment number (NIC).
+    description: >-
+      The SIREN number <1>identifies your company</1> while the SIRET number
+      identifies each place of business operated by the same company. The SIRET
+      is composed by the SIREN followed by the establishment number (NIC).
   ape:
     titre: The APE code
-    description: The APE code corresponds to the <1>business sector</1> of your company. The APE classifies your company’s main operations in relation to the French business nomenclature system (« NAF » code). <3>It also determines the applicable collective agreement, and hints at the industrial accident rate of contribution that the company will have to pay for each hire.</3>
+    description: >-
+      The APE code corresponds to your company's <1>sector of activity</1>. It
+      classifies the main branch of your company in the French national
+      classification of activities "NAF" (<3>see list</3>). <6>It also
+      determines the collective agreement applicable to the company, and in part
+      the rate of the occupational injury and disease contribution to be paid.
+      </6><7>In case of an erroneous APE code, you can <2>request a
+      modification</2> from INSEE.</7>
   kbis:
     titre: The Kbis
     description:
-      1: It is the official document attesting to <2>the legal existence of a commercial enterprise</2>. In most cases, to be opposable and authentic for administrative procedures, the extract must be less than 3 months old.
-      2: This document is generally requested when applying for a public tender, opening a professional bank account, purchasing professional equipment from distributors, etc.
-
+      '1': >-
+        It is the official document attesting to <2>the legal existence of a
+        commercial enterprise</2>. In most cases, to be opposable and authentic
+        for administrative procedures, the extract must be less than 3 months
+        old.
+      '2': >-
+        This document is generally requested when applying for a public tender,
+        opening a professional bank account, purchasing professional equipment
+        from distributors, etc.
   actions:
     retour: Creation checklist
     avance: Go to social security
-
 Protection sociale: Social security
 Rémunération du dirigeant: Director's remuneration
 Simulateur de salaire: Employee salary simulation
 Exemples de simulation de salaire: Examples of salary simulations
 Quelques exemples de salaires: Some salary exemples
 Embauche: Hiring process
-
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
 statut du dirigeant:
   page:
-    description: This choice is important because it determines the director's Social Security scheme and coverage. Each option has legal implications, and leads to a different status when creating your company in France
+    description: >-
+      This choice is important because it determines the director's Social
+      Security scheme and coverage. Each option has legal implications, and
+      leads to a different status when creating your company in France
   titre: Defining the director's status
-
+  description: >-
+    <0>This choice is important because it determines the social security regime
+    and the social coverage of the manager. The amount and terms of payment of
+    social security contributions are also impacted.</0><1><0></0></1>
 gérant minoritaire:
   page:
-    description: Some special rules apply depending on the amount of shares owned by the director and this can lead to a different status when creating your company in France
+    description: >-
+      Some special rules apply depending on the amount of shares owned by the
+      director and this can lead to a different status when creating your
+      company in France
     titre: Chairman or managing director in France
   titre: Chairman or managing director
   description: >
-    <0>Some special rules apply depending on the amount of shares owned by the director.</0><1><0><0>Chairman</0>: The director is in majority, or is part of a managing board that is in majority.</0><1><0>Managing director</0>: The director is in minority (or equality), or is part of a managing board that is in minority (or equality).</1></1>
+    <0>Some special rules apply depending on the amount of shares owned by the
+    director.</0><1><0><0>Chairman</0>: The director is in majority, or is part
+    of a managing board that is in majority.</0><1><0>Managing director</0>: The
+    director is in minority (or equality), or is part of a managing board that
+    is in minority (or equality).</1></1>
 Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
-
 Plus d'informations: More information (fr)
-
 embauche:
   tâches:
     page:
-      titre: >
+      titre: |
         Hiring procedure in France
       description: All the necessary steps to hire your first employee in France.
     titre: Hiring process checklist
@@ -456,14 +629,14 @@ embauche:
     dpae:
       titre: Declare your hiring t  o the social administration
       description: >
-        This can be done through the form called DPAE, must be completed
-        within 8 days before any hiring, and can <2>be done online (Fr)</2>
+        This can be done through the form called DPAE, must be completed within
+        8 days before any hiring, and can <2>be done online (Fr)</2>
     logiciel de paie:
       titre: Choose a payslip software
       description: >
-        With fewer than 20 employees, payslips and declarations can be
-        handled online by the <2> Tese (Fr)</2>, a tool developped by the french
-        social administration. You can also use <5>a private payslip software (Fr)</5>
+        With fewer than 20 employees, payslips and declarations can be handled
+        online by the <2> Tese (Fr)</2>, a tool developped by the french social
+        administration. You can also use <5>a private payslip software (Fr)</5>
     registre:
       titre: Keep an updated staff register
     pension:
@@ -473,85 +646,76 @@ embauche:
       titre: Pick a private complementary health insurance
       description: >
         You must cover your employees with the private complementary health
-        insurance ("complémentaire santé" or colloquially "mutuelle" in
-        French) of your choice as long as it provides a set of minimum
-        guarantees. The employer must pay at least half of the package.
+        insurance ("complémentaire santé" or colloquially "mutuelle" in French)
+        of your choice as long as it provides a set of minimum guarantees. The
+        employer must pay at least half of the package.
     medecine:
       titre: Register to a work medicine office
       description: Don't forget to plan an initial appointment for each new hire.
-  chaque mois: >
-    <0>Then each month</0>
-    <1>
+  chaque mois: |
+    <0>Then each month</0> <1>
       <0>Compute the individual social contributions (using the chosen payslip software)</0>
       <1>Declare the contributions through the DSN, the new online declaration system</1>
       <2>Deliver the standardised payslip to your employee</2>
-    </1>
-    <2>Get an example payslip</2>
-
+    </1> <2>Get an example payslip</2>
 Guide du statut juridique: Legal status guide
 Démarches de création: Creation process checklist
-
 path:
   créer:
-    index: '/create'
-    après: '/after-registration'
+    index: /create
+    après: /after-registration
     guideStatut:
-      index: '/legal-status'
-      liste: '/list'
-      gérantMinoritaire: '/chairman-or-managing-director'
-      responsabilité: '/liability'
-      statutDirigeant: '/director'
-      nombreAssociés: '/multiple-associates'
-      autoEntrepreneur: '/auto-entrepreneur'
+      index: /legal-status
+      liste: /list
+      gérantMinoritaire: /chairman-or-managing-director
+      responsabilité: /liability
+      statutDirigeant: /director
+      nombreAssociés: /multiple-associates
+      autoEntrepreneur: /auto-entrepreneur
   gérer:
-    index: '/manage'
-    embaucher: '/hiring'
-    sécuritéSociale: '/social-security'
+    index: /manage
+    embaucher: /hiring
+    sécuritéSociale: /social-security
   simulateurs:
     index: /simulators
-    assimilé-salarié: '/assimile-salarie'
-    indépendant: '/independant'
-    auto-entrepreneur: '/auto-entrepreneur'
-    salarié: '/salaried'
-    comparaison: '/social-scheme-comparaison'
+    assimilé-salarié: /assimile-salarie
+    indépendant: /independant
+    auto-entrepreneur: /auto-entrepreneur
+    salarié: /salaried
+    comparaison: /social-scheme-comparaison
+    artiste-auteur: /artist-author
   documentation:
-    exemples: '/examples'
+    exemples: /examples
+    index: /documentation
   integration:
-    index: '/integration'
-    iframe: '/iframe'
-    library: '/library'
-
+    index: /integration
+    iframe: /iframe
+    library: /library
   économieCollaborative:
-    index: '/sharing-economy'
-    votreSituation: '/your-situation'
-
+    index: /sharing-economy
+    votreSituation: /your-situation
+  nouveautés: /What's new
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
-privacyContent: >
-  <0>$t(Vie privée)</0>
-  <1>
+privacyContent: |
+  <0>$t(Vie privée)</0> <1>
     We do not store any personal data on our servers. All the information
     you provide (salaries, company postal code, SIREN etc.) is saved only
     on your browser. No one else can have access to it but you.
-  </1>
-  <2>
+  </1> <2>
     However, we do collect anonymous statistics on site usage, which we use
     for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the DPRG directive.
-  </2>
-  <3>You can opt out below.</3>
+  </2> <3>You can opt out below.</3>
 Vie privée: Privacy
-
 Recommencer: Start again
 Plusieurs associés: Several partners
 Un seul associé: Only one partner
 Responsabilité limitée: Limited liability
 Sans responsabilité limitée: Without limited liability
 Pas en auto-entrepreneur: Not in auto-entrepreneur
-
 Précédent: Previous
 Choisir plus tard: Choose later
-
 mois: month
 heures: hours
 heure: hour
@@ -559,53 +723,64 @@ année: year
 an: year
 par: per
 Explorez notre documentation: Explore our documentation
-
 maj2019: The simulation is up-to-date in 2019.
 siteName: My company in France
-
 Faire une simulation: Launch a simulation
 Exemples: Examples
 Intégrer nos simulateurs: Integrate our simulators
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
-
 landing:
   title: The official assistant for entrepreneurs
-  subtitle: All the resources you need to develop your business, from legal status to hiring.
+  subtitle: >-
+    All the resources you need to develop your business, from legal status to
+    hiring.
   choice:
-    create: <0>Create a company</0><1>Assistance in choosing the status and the complete list of creation steps</1>
-    manage: <0>Manage my business</0><1>Simulators to anticipate the amount of contributions and better manage your cash flow</1>
-    declare: <0>What income should I declare?</0><1>How to report your income from online platforms (AirBnb, leboncoin, blablacar, etc.)</1>
+    create: >-
+      <0>Create a company</0><1>Assistance in choosing the status and the
+      complete list of creation steps</1>
+    manage: >-
+      <0>Manage my business</0><1>Simulators to anticipate the amount of
+      contributions and better manage your cash flow</1>
+    declare: >-
+      <0>What income should I declare?</0><1>How to report your income from
+      online platforms (AirBnb, leboncoin, blablacar, etc.)</1>
   seeSimulators: See the simulators list
-  aboutUs: |
+  aboutUs: >
     <0>About us</0>
-    <1>This website is developed by the administration to <2>support entrepreneurs in the development of their business</2>.</1>
-    <2>We start from the premise that it is difficult to navigate through all the online documentation: there is a lack of clear, up-to-date and relevant information on starting a business.</2>
-    <3>Our objective is to <2>remove all uncertainties regarding the administration tasks</2> so that you can focus on what matters: your business.</3>
-    <4>We are a small, autonomous and multidisciplinary team within the <4>URSSAF</4>. We are committed to being as close as possible to our users in order to continuously improve this site in accordance with the <7>Startup d'État</7> method.</4>
-    <5>Feel free to send us your comments and suggestions at <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
 
+    <1>This website is developed by the administration to <2>support
+    entrepreneurs in the development of their business</2>.</1>
+
+    <2>We start from the premise that it is difficult to navigate through all
+    the online documentation: there is a lack of clear, up-to-date and relevant
+    information on starting a business.</2>
+
+    <3>Our objective is to <2>remove all uncertainties regarding the
+    administration tasks</2> so that you can focus on what matters: your
+    business.</3>
+
+    <4>We are a small, autonomous and multidisciplinary team within the
+    <4>URSSAF</4>. We are committed to being as close as possible to our users
+    in order to continuously improve this site in accordance with the <7>Startup
+    d'État</7> method.</4>
+
+    <5>Feel free to send us your comments and suggestions at
+    <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Accueil: Home
-
-404:
-  message: This page does not exist or no longer exists
-  action: Return to safe place
-
 newsletter:
   register:
     titre: Stay informed
-    description: |
-      Subscribe to our monthly newsletter to receive <2>official advice on starting a business</2> and access new features in advance.
+    description: >
+      Subscribe to our monthly newsletter to receive <2>official advice on
+      starting a business</2> and access new features in advance.
 S'inscrire: Register
 Votre adresse e-mail: Your email address
-
 Renseigner mon entreprise: Find my company
 Simulations personnalisées: Customized simulations
-
 indicationTempsPlein: in full-time gross salary equivalent
 auto-entreprise: auto-enterprise
-
 simulateurs:
   accueil:
     titre: Available simulators
@@ -618,24 +793,49 @@ simulateurs:
     auto: |
       <0>Auto-entrepreneur</0>
       <1>Calculate the income (or turnover) of an auto-entrepreneur</1>
-    salarié: |
+    salarié: >
       <0>Employee</0>
-      <1>Calculate the net, gross, or total salary of an employee, trainee, or similar</1>
-    comparaison: |
-      <0>Status comparison</0>
-      <1>Simulate the differences between the plans (contributions, retirement, maternity, illness, etc.)</1>
-    description: <0>All the simulators on this site are:</0>
 
-      <1><0>Maintained with the latest legislation</0>
-      <1>Continuously improved to increase the number of devices taken into account</1>
-      <2>Developed in partnership with the Urssaf (the contribution collector entity in France)<2>
-      </1>
-  inversionFail: The amount entered is too small or results in an impossible situation, try another one
+      <1>Calculate the net, gross, or total salary of an employee, trainee, or
+      similar</1>
+    comparaison: >
+      <0>Status comparison</0>
+
+      <1>Simulate the differences between the plans (contributions, retirement,
+      maternity, illness, etc.)</1>
+    description: >-
+      <0>All the simulators on this site are:</0>
+
+      <1><0>Maintained with the latest legislation</0> <1>Continuously improved
+      to increase the number of devices taken into account</1> <2>Developed in
+      partnership with the Urssaf (the contribution collector entity in
+      France)<2> </1>
+    artiste-auteur: >-
+      <0>Artist-author</0><1>Estimating the social security contributions of an
+      artist or author</1>
+  inversionFail: >-
+    The amount entered is too small or results in an impossible situation, try
+    another one
   warning:
     titre: Before starting...
     plus: Read explanations
-    urssaf: The figures are indicative and do not replace the actual accounts of the Urssaf, impots.gouv.fr, etc
-    auto-entrepreneur: Self-employed entrepreneurs cannot deduct their expenses from their turnover. Therefore, <3>all costs related to the business must be deducted on a net basis to obtain the actual income received</3>.
+    urssaf: >-
+      The figures are indicative and do not replace the actual accounts of the
+      Urssaf, impots.gouv.fr, etc
+    auto-entrepreneur: >-
+      Self-employed entrepreneurs cannot deduct their expenses from their
+      turnover. Therefore, <3>all costs related to the business must be deducted
+      on a net basis to obtain the actual income received</3>.
+    artiste-auteur: >-
+      This estimate is proposed for information only. It is based on the
+      applicable regulatory elements and the elements that you have entered, but
+      it does not take into account your entire situation. The actual amount of
+      your contributions may therefore be different.
+    cfe: >-
+      The simulator does not include the corporate property tax (CFE), which is
+      due from the second year of the fiscal year. Its amount varies greatly
+      depending on the company's turnover and the company's domiciliation.
+      <2>More info.</2>
   précision:
     défaut: 'Refine the simulation by answering the following questions:'
     faible: Low accuracy
@@ -644,45 +844,82 @@ simulateurs:
   salarié:
     page:
       titre: 'Calculation of net and gross salary: official simulator'
-      description: Estimate the contributions for an employee based on gross, net or "super gross" salary. All contributions from the general system and income tax are taken into account. Discover the counterparties guaranteed by social security'.
+      description: >-
+        Estimate the contributions for an employee based on gross, net or "super
+        gross" salary. All contributions from the general system and income tax
+        are taken into account. Discover the counterparties guaranteed by social
+        security'.
     titre: Income simulator for employees
   assimilé-salarié:
     page:
       titre: Official salary simulator for SASU and SAS directors
-      description: Estimate your income as a SASU or SAS director based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator
+      description: >-
+        Estimate your income as a SASU or SAS director based on your turnover.
+        All contributions and income tax are taken into account. Official URSSAF
+        simulator
     titre: SAS and SASU directors income simulator
-    explications: The equal or minority directors of SARL or the directors of SA and SAS are considered as "assimilé salarié" and are subject to the general regime. Consequently, the director has the same social protection as an employee, apart from unemployment coverage.
+    explications: >-
+      The equal or minority directors of SARL or the directors of SA and SAS are
+      considered as "assimilé salarié" and are subject to the general regime.
+      Consequently, the director has the same social protection as an employee,
+      apart from unemployment coverage.
   indépendant:
     page:
       titre: Official income simulator for self-employed person
-      description: Estimate your income as a self-employed person based on your turnover (for EI, EURL and SARL majority directors). All contributions and income tax are taken into account. Official URSSAF simulator
+      description: >-
+        Estimate your income as a self-employed person based on your turnover
+        (for EI, EURL and SARL majority directors). All contributions and income
+        tax are taken into account. Official URSSAF simulator
     titre: Self-employed income simulator
-    explication1: Our estimate takes into account the <1>actual contributions</1> due by the self-employed person. During the first year of his activity, he will pay a reduced flat rate (a sum of around 1300€ / year for a craftsman benefiting from ACRE)... but it will be regularized the following year according to this real amount.
-    explication2: Unemployment and occupational accident insurance are not covered by the Social Security for the self-employed. Retirement based on professional income is generally lower. To be covered, the professional may take out additional insurance.
+    explication1: >-
+      Our estimate takes into account the <1>actual contributions</1> due by the
+      self-employed person. During the first year of his activity, he will pay a
+      reduced flat rate (a sum of around 1300€ / year for a craftsman benefiting
+      from ACRE)... but it will be regularized the following year according to
+      this real amount.
+    explication2: >-
+      Unemployment and occupational accident insurance are not covered by the
+      Social Security for the self-employed. Retirement based on professional
+      income is generally lower. To be covered, the professional may take out
+      additional insurance.
   auto-entrepreneur:
     page:
       titre: Official income simulator for auto-entrepreneur
-      description: Estimate your income as an auto-entrepreneur based on your turnover. All contributions and income tax are taken into account. Official URSSAF simulator.
-    titre: 'Auto-entrepreneur income simulator'
-
+      description: >-
+        Estimate your income as an auto-entrepreneur based on your turnover. All
+        contributions and income tax are taken into account. Official URSSAF
+        simulator.
+    titre: Auto-entrepreneur income simulator
+  artiste-auteur:
+    titre: Estimate my artist/author contributions
 selectionRégime:
   page:
     titre: Social scheme selection
   titre: Which social scheme would you like to explore?
   comparer:
     titre: Not sure which one to choose?
-    description: The executive's social scheme has a very strong influence on the level of social protection and the perceived income. To help you see more clearly and choose the plan that suits you best, we have designed a quick comparator.
+    description: >-
+      The executive's social scheme has a very strong influence on the level of
+      social protection and the perceived income. To help you see more clearly
+      and choose the plan that suits you best, we have designed a quick
+      comparator.
     cta: Compare social schemes
 comparaisonRégimes:
   page:
-    titre: |
-      Self-employed, assimilated employee or auto-entrepreneur: discover the social scheme that best suits you
-    description: |
-      What is the best scheme for your situation? Discover their differences and simulate your income and retirement in one minute for each of the options.
-  titre: |
-    Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which scheme to choose?
-  description: |
-    When you create your company, the choice of legal status will determine to which social scheme the executive is affiliated. There are three different ones, each with its advantages and disadvantages. Thanks to this comparison, you will be able to select the one that best suits you.
+    titre: >
+      Self-employed, assimilated employee or auto-entrepreneur: discover the
+      social scheme that best suits you
+    description: >
+      What is the best scheme for your situation? Discover their differences and
+      simulate your income and retirement in one minute for each of the options.
+  titre: >
+    Self-employed, assimilated employee or <2>auto-entrepreneur</2>: which
+    scheme to choose?
+  description: >
+    When you create your company, the choice of legal status will determine to
+    which social scheme the executive is affiliated. There are three different
+    ones, each with its advantages and disadvantages. Thanks to this comparison,
+    you will be able to select the one that best suits you.
   AS:
     tagline: The all-inclusive plan
   indep:
@@ -691,10 +928,10 @@ comparaisonRégimes:
     tagline: Start without risk
   status:
     legend: Possible legal status
-    AS: SAS, SASU or SARL with minority director
+    AS: 'SAS, SASU or SARL with minority director'
     indep:
-      1: EI, EIRL, EURL or SARL with majority director
-      2: EI or EIRL
+      '1': 'EI, EIRL, EURL or SARL with majority director'
+      '2': EI or EIRL
     auto: Auto-entreprise
   sécuritéSociale: |
     <0> Social security</0>
@@ -710,29 +947,19 @@ comparaisonRégimes:
     <2> Highly recommended </2>
   indemnités: |
     <0> Sickness allowances</0>
-  plafondCA: |
-    <0> Turnover ceiling</0>
-    <1>No</1>
-    <2>
-      Yes<1>(€70,000  in services, €170,000 for sale of properties, food or accommodation)</1>
-    </2>
   période: |
     <0>Period</0>
   retraite: |
     <0>Retirement pay</0>
-
   comparaisonDétaillée: |
     <0><0> View more information </0></0>
-
-  comptabilité: |
+  comptabilité: >
     <0> Accounting, social, legal management....</0>
-    <1> Support strongly recommended <1>(chartered accountant, accountant, chartered management centre...)</1></1>
-    <2> Simplified <1>(can be managed by the auto-entrepreneur)</1></1>
 
-  ACRE: |
-    <0>ACRE</0>
-    <1>1 year<1>(partial contribution exemption)</1></1>
-    <2>3 years<1>(application of reduced contribution rates)</1></2>
+    <1> Support strongly recommended <1>(chartered accountant, accountant,
+    chartered management centre...)</1></1>
+
+    <2> Simplified <1>(can be managed by the auto-entrepreneur)</1></1>
   déduction: |
     <0> Deduction of expenses</0>
     <1>Yes <1>(tax regime of the actual)</1></1>
@@ -743,10 +970,14 @@ comparaisonRégimes:
     </0>
     <1/>
     <2>Start simulation</2>
-  cotisations: |
+  cotisations: >
     <0> Payment of social contributions</0>
+
     <1> Monthly</1>
-    <2> Monthly or quaterly advance <1>(with posterior regularization based on real income)</1></2>
+
+    <2> Monthly or quaterly advance <1>(with posterior regularization based on
+    real income)</1></2>
+
     <3> Montly or quaterly</3>
   complémentaireDeductible: |
     <0> Optional health and pension policies deductible</0>
@@ -761,12 +992,27 @@ comparaisonRégimes:
       <0>Retirement pay</0>
       <1>(before taxes)</1>
     infobulle:
-      AS: Pension calculated for 172 quarters contributed to the general scheme with no change in income.
-      indep: Pension calculated for 172 quarters contributed to the self-employed scheme with no change in income.
-      auto: Pension calculated for 172 quarters contributed as auto-entrepreneur with no change in income.
+      AS: >-
+        Pension calculated for 172 quarters contributed to the general scheme
+        with no change in income.
+      indep: >-
+        Pension calculated for 172 quarters contributed to the self-employed
+        scheme with no change in income.
+      auto: >-
+        Pension calculated for 172 quarters contributed as auto-entrepreneur
+        with no change in income.
+    infobulles:
+      auto: >-
+        Pension calculated for 172 quarters of self-employed contributions with
+        no change in income.
+      indep: >-
+        Pension calculated for 172 quarters of contributions to the
+        self-employed scheme with no change in income.
+      AS: >-
+        Pension calculated for 172 quarters contributed to the general scheme
+        with no change in income.
   cotisationMinimale: |
     <0> Minimum contributions</0>
-
   seuil: |
     <0> Minimum income for eligibility for benefits</0>
     <1>Yes</1>
@@ -774,18 +1020,25 @@ comparaisonRégimes:
     <3>Yes</3>
   titreSelection: |
     Create my company as:
-
+  choix:
+    AS: '"Assimilé-salarié"'
+    auto: Auto-entrepreneur
+    indep: Independent
+    EI: Sole proprietorship
+  trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
+  ACRE: <0>ACRE</0><1>1 year <1>(subject to eligibility requirements)</1></1>
+  plafondCA: >-
+    <0>Turnover ceiling</0><1><0>No</0></1><2><0>Yes</0><1>(72,500 € in services
+    / 176,200 € in the sale of goods, catering or accommodation)</1></2>
 J'ai compris: understood
 trimestres validés: validated quarters
-
 Année d'activité: Years of activity
-Commerçant, artisan, ou libéral ?: Trader, craftsman, or liberal?
+'Commerçant, artisan, ou libéral ?': 'Trader, craftsman, or liberal?'
 Revenir à la documentation: Go back to documentation
 Voir le code source: See the source code
 Rend non applicable les règles suivantes: Makes the following rules not applicable
 Cette règle ne s'applique pas pour: This rule does not apply for
-
-pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
+pour les accidents de trajet/travail et maladie pro: 'for commuting accidents, work accidents and professional illness'
 jour: day
 Pas implémenté: Not implemented
 Votre entreprise: Your company
@@ -796,22 +1049,29 @@ Ressources utiles: Helpful resources
 Aucun résultat: No result$
 inférieurs à: lower than
 supérieurs à: higher than
-
 économieCollaborative:
   retourAccueil: Back to the selection of activities
   accueil:
     titre: How to declare income from digital platforms?
-    contenu: <0> You have revenues from online platforms (Airbnb, Abritel, Drivy, Blablacar, Leboncoin, etc.)? You must report them in most cases. However, it can be difficult to find your way around.</0>
-      <1>Follow this guide to find out in a few clicks how to be in good standing.</1>
-      <2>From 2020 onwards, these revenues will be automatically reported by the platforms to the tax authorities and Urssaf.</2>
+    contenu: >-
+      <0> You have revenues from online platforms (Airbnb, Abritel, Drivy,
+      Blablacar, Leboncoin, etc.)? You must report them in most cases. However,
+      it can be difficult to find your way around.</0> <1>Follow this guide to
+      find out in a few clicks how to be in good standing.</1> <2>From 2020
+      onwards, these revenues will be automatically reported by the platforms to
+      the tax authorities and Urssaf.</2>
     question: What types of activity did you undertake?
-    réassurance: 'PS: this tool is only there to inform you, no data will be transmitted to the administrations'
+    réassurance: >-
+      PS: this tool is only there to inform you, no data will be transmitted to
+      the administrations
   activité:
     choix: What are more precisely the activities carried out?
     voirObligations: See my obligations
-    pro: |
+    pro: >
       <0>This is a professional activity</0>
-      <1>The income from this activity is considered as professional income from the first euro earned.</1>
+
+      <1>The income from this activity is considered as professional income from
+      the first euro earned.</1>
     impôt: |
       <0>You must declare your income to the tax authorities</0>
       <1>Income from this activity is taxable.</1>
@@ -820,21 +1080,89 @@ supérieurs à: higher than
       <1>Your annual income for this activity is: </1>
   exonération:
     question: Are you in one of the following situations?
-    notice: If none of these cases apply to you, you will have nothing to worry about.
+    notice: 'If none of these cases apply to you, you will have nothing to worry about.'
   obligations:
     titre: What do I have to do to be in good standing?
-    pro: <0>Declare as a professional activity</0>
-      <1>Your income is considered as professional income and is subject to social security contributions. In return, they entitle you to social benefits (pension, health insurance, maternity, etc.).</1>
-    entreprise: <0>With a company</0>
-      <1>If you already have a declared activity, you can add this income to the company's income. You will only have to check that its corporate purpose is compatible with the activities concerned (and change it if necessary). Otherwise, you will have to start a new business.</1>
-      <2>Create a company</2>
-    régimeGénéral: |
+    pro: >-
+      <0>Declare as a professional activity</0> <1>Your income is considered as
+      professional income and is subject to social security contributions. In
+      return, they entitle you to social benefits (pension, health insurance,
+      maternity, etc.).</1>
+    entreprise: >-
+      <0>With a company</0> <1>If you already have a declared activity, you can
+      add this income to the company's income. You will only have to check that
+      its corporate purpose is compatible with the activities concerned (and
+      change it if necessary). Otherwise, you will have to start a new
+      business.</1> <2>Create a company</2>
+    régimeGénéral: >
       <0>With the general regime option</0>
-      <1>For some activities, you can declare your income directly on the Urssaf website. This is an interesting option if you do not want to create a new company or modify an existing one. In any case, you will have to declare this income for tax purposes.</1>
+
+      <1>For some activities, you can declare your income directly on the Urssaf
+      website. This is an interesting option if you do not want to create a new
+      company or modify an existing one. In any case, you will have to declare
+      this income for tax purposes.</1>
+
       <2>Declare to the general regime</2>
-    impôts: <0>Declare your income to the tax autorities</0>
-      <1>For these activities, you only need to report your income on your tax return. For more information, you can visit the <2>dedicated page on impots.gouv.fr</2>.</1>
+    impôts: >-
+      <0>Declare your income to the tax autorities</0> <1>For these activities,
+      you only need to report your income on your tax return. For more
+      information, you can visit the <2>dedicated page on
+      impots.gouv.fr</2>.</1>
     aucune: |
       <0>Nothing to do</0>
       <1>You do not need to report your income for these activities.</1>
     régimeGénéralDisponible: General regime available
+<0>Oui</0>: <0>Yes</0>
+Assimilé salarié: '"Assimilé-salarié"'
+back: Resume simulation
+Auto-entrepreneur: Auto-entrepreneur
+Entreprise Individuelle: Sole Proprietorship
+Imprimer: Print
+Indépendant: Independent
+Part salarié: Employee share
+Liste des statuts juridiques: List of legal statutes
+Tout effacer: Delete all
+trimestres: quarters
+simlateurs:
+  warning:
+    artiste-auteur: >-
+      This simulator allows you to estimate the amount of your contributions for
+      the year 2020 based on your projected income.
+impôt: tax
+Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
+Outils pour les développeurs: Tools for developers
+pages:
+  développeurs:
+    home:
+      titre: Integrate social security law at the heart of your tools
+      choice:
+        iframe: >-
+          <0>Integrating a simulator</0><1>Integrate one of our simulators in
+          one click into your website, via a turnkey script.</1>
+        library: >-
+          <0>Using the calculation engine</0><1>The entire socio-fiscal
+          calculation engine developed by URSSAF, freely available in the form
+          of an NPM library.</1>
+      description: >-
+        In addition to the site mon-entreprise.fr, we develop free and open
+        source tools to be integrated seemlessly in the usual journey of your
+        users.
+    choice:
+      library: >-
+        <0>Using the calculation engine</0><1>The entire socio-fiscal
+        calculation engine developed by URSSAF, freely available in the form of
+        an NPM library.</1>
+    iframe: >-
+      <0>Integrate the Web module</0><1>By adding a line to your web page
+      :</1><2></2><3>You can <2>choose the main color of the module</2> to blend
+      it into the visual theme of your page: just change the <4>data-color</4>
+      value above. To choose it, use our <7>interactive tool</7>.</3><4>The
+      attribute <1>data-lang="en"</1> allows you to choose English as the
+      default language of the simulator (it will remain modifiable by the
+      user).</4>
+  dévelopeurs:
+    bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your site or service would benefit from displaying salary calculations, for example switching from gross salary to net salary, good news: all the contribution and tax calculations behind my-company.fr are free and <2>can be integrated in the form of an <2>NPM library</2></2>.</1><2>Put simply, your team's developers are able to integrate the calculation into your interface in 5 minutes{emoji('⌚')}, without having to deal with the complexity of payroll and the regular updating of calculation rules.</2><3>This library is a common digital library developed by the State and ACOSS. It is based on a new programming language, <2>publicodes</2>.</3><4>How to use it?</4><5>The following examples show you how to use the library on a very simple ReactJs site.</5><6>1) Make a very simple calculation: from gross to net</6><7><0></0></7><8>2) Browse online documentation</8><9>As you can see from the previous example, the recipe for a calculation is simple: input variables (gross wage), one or more output variables (net wage).</9><10>All these variables are listed and explained in our <2>online documentation</2>.</10><11>Use the search engine to find the right variable, then click on \"View source code\" to get all the documentation: default value, possible values when it's an enumeration of choice, unit when it's a number, description, associated user question, etc.</11><12>Let's run a calculation closer to a payslip: Here is a description of the input situation with links to the corresponding pages of the documentation :</12><13> An <3>executive</3> earning <7>€3,400 gross</7>, who benefits from the<10> bicycle mileage allowance</10> and works in a company with <14>12 employees</14>.</13><14>The calculation for this more complete example is as follows:</14><15><0></0></15><16>{emoji('ℹ️ ')} Note that in the previous example we have to specify the transport payment rate ourselves.</16><17>Whereas in the <2>employee</2> simulator, it is sufficient to fill in the municipality and the corresponding rate is automatically determined. It's intentional: to keep the library (and the site) light, we use two online APIs. The<4> Geo API - communes</4> to switch from the commune name to the common code. Then the<7> transport payout API</7>, developed and maintained by us, which is not documented but its use is very simple and understandable <10>in this React component that calls it</10>, a component that also uses the common API.</17><18>Making economic charts{emoji(' \U0001F4C8')}</18><19>It is also possible to use the library for economic or political analysis calculations. Here, the price of labour and the net wage is plotted against the gross wage.</19><20>We can see the progressiveness of the total wage, which is in percent lower for a minimum wage than for a high income. In other words, high-wage earners pay part of the social security contributions of low-wage earners.</20><21>{emoji('⚠️ ')}Beware, this example does a lot of calculations in one go, which can block your browser for a few seconds. To overcome this problem, you would have to call the library in a Web Worker, but this is not possible for the <3>moment</3> in these demos.</21><22><0></0></22>"
+Montant des cotisations: Amount of contributions
+Quelques intégrations: Some integrations
+Saisissez votre domaine d'activité: Enter your business area
+Saisissez le nom d'une commune: Enter the name of a municipality

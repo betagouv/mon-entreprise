@@ -1,4 +1,3 @@
-import { T } from 'Components'
 import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
@@ -57,7 +56,7 @@ export default function SalaryExplanation() {
 									})
 								}
 							>
-								{emoji('📊')} <T>Voir la répartition des cotisations</T>
+								{emoji('📊')} <Trans>Voir la répartition des cotisations</Trans>
 							</button>
 						</div>
 						<PaySlipSection />
@@ -104,7 +103,7 @@ function RevenueRepatitionSection() {
 	return (
 		<section>
 			<h2>
-				<T k="payslip.repartition">Répartition du total chargé</T>
+				<Trans i18nKey="payslip.repartition">Répartition du total chargé</Trans>
 			</h2>
 			<StackedBarChart
 				data={[
@@ -113,7 +112,11 @@ function RevenueRepatitionSection() {
 						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), title: t('Impôts'), color: palettes[1][0] },
+					{
+						...getRule('impôt'),
+						title: t('quicklinks.Impôt'),
+						color: palettes[1][0]
+					},
 					{
 						...getRule('contrat salarié . cotisations'),
 

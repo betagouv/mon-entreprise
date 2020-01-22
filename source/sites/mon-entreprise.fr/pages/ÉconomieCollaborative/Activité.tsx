@@ -1,11 +1,10 @@
-import { T } from 'Components'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Redirect } from 'react-router-dom'
 import Animate from 'Ui/animate'
 import { selectSeuilRevenus } from './actions'
@@ -36,9 +35,9 @@ export default function Activité({
 				<h1>{activité.titre}</h1>
 				<p>{activité.explication}</p>
 				<p>
-					<T k="économieCollaborative.activité.choix">
+					<Trans i18nKey="économieCollaborative.activité.choix">
 						Quelles sont plus précisément les activités exercées ?
-					</T>
+					</Trans>
 				</p>
 				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
@@ -72,24 +71,24 @@ export default function Activité({
 				/>
 
 				{estExonérée ? null : activité['seuil pro'] === 0 ? (
-					<T k="économieCollaborative.activité.pro">
+					<Trans i18nKey="économieCollaborative.activité.pro">
 						<h2>Il s'agit d'une activité professionnelle</h2>
 						<p>
 							Les revenus de cette activité sont considérés comme des{' '}
 							<strong>revenus professionnels dès le 1er euro gagné</strong>.
 						</p>
-					</T>
+					</Trans>
 				) : activité['seuil déclaration'] === 0 && !activité['seuil pro'] ? (
-					<T k="économieCollaborative.activité.impôt">
+					<Trans i18nKey="économieCollaborative.activité.impôt">
 						<h2>Vous devez déclarez vos revenus aux impôts</h2>
 						<p>Les revenus de cette activité sont imposables.</p>
-					</T>
+					</Trans>
 				) : (
 					<>
-						<T k="économieCollaborative.activité.revenusAnnuels">
+						<Trans i18nKey="économieCollaborative.activité.revenusAnnuels">
 							<h2>Revenus annuels</h2>
 							<p>Vos revenus annuels pour cette activité sont :</p>
-						</T>
+						</Trans>
 						<ul
 							key={title}
 							css="
@@ -110,7 +109,7 @@ export default function Activité({
 												value="AUCUN"
 												defaultChecked={seuilRevenus === 'AUCUN'}
 											/>{' '}
-											<T>inférieurs à</T>{' '}
+											<Trans>inférieurs à</Trans>{' '}
 											<Value maximumFractionDigits={0} unit="€">
 												{activité['seuil déclaration']}
 											</Value>
@@ -125,7 +124,7 @@ export default function Activité({
 										value="IMPOSITION"
 										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
-									<T>inférieurs à</T>{' '}
+									<Trans>inférieurs à</Trans>{' '}
 									<Value maximumFractionDigits={0} unit="€">
 										{activité['seuil pro']}
 									</Value>
@@ -142,7 +141,7 @@ export default function Activité({
 												seuilRevenus === 'RÉGIME_GÉNÉRAL_DISPONIBLE'
 											}
 										/>{' '}
-										<T>supérieurs à</T>{' '}
+										<Trans>supérieurs à</Trans>{' '}
 										<Value maximumFractionDigits={0} unit="€">
 											{activité['seuil pro']}
 										</Value>
@@ -160,7 +159,7 @@ export default function Activité({
 											seuilRevenus === 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
 										}
 									/>{' '}
-									<T>supérieurs à</T>{' '}
+									<Trans>supérieurs à</Trans>{' '}
 									<Value maximumFractionDigits={0} unit="€">
 										{activité['seuil régime général'] || activité['seuil pro']}
 									</Value>

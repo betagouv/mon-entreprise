@@ -1,6 +1,6 @@
-import { T } from 'Components'
 import SearchBar from 'Components/SearchBar'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import './RulesList.css'
@@ -10,7 +10,7 @@ export default function RulesList() {
 	return (
 		<div id="RulesList" className="ui__ container">
 			<h1>
-				<T>Explorez notre documentation</T>
+				<Trans>Explorez notre documentation</Trans>
 			</h1>
 			<SearchBar showDefaultList={true} rules={flatRules} />
 		</div>

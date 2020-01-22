@@ -13,7 +13,7 @@ describe('Simulateurs', function() {
 				})
 
 				it('should display a result when entering a value in any of the currency input', () => {
-					cy.contains('€/an').click()
+					cy.contains('€ / an').click()
 					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
 						cy.get('input.currencyInput__input[name$="charges"]').type(1000)
 					}
@@ -32,13 +32,13 @@ describe('Simulateurs', function() {
 				})
 
 				it('should allow to change period', function() {
-					cy.contains('€/an').click()
+					cy.contains('€ / an').click()
 					cy.wait(200)
 					cy.get(inputSelector)
 						.first()
 						.type('{selectall}12000')
 					cy.wait(600)
-					cy.contains('€/mois').click()
+					cy.contains('€ / mois').click()
 					cy.get(inputSelector)
 						.first()
 						.invoke('val')

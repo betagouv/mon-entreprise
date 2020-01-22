@@ -1,6 +1,6 @@
-import { T } from 'Components'
 import Value from 'Components/Value'
 import React from 'react'
+import { Trans } from 'react-i18next'
 import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
@@ -17,7 +17,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
-				<T>Salaire</T>
+				<Trans>Salaire</Trans>
 			</h4>
 			<Line rule={salaireDeBase} />
 			{!!avantagesEnNature?.nodeValue && (
@@ -55,7 +55,7 @@ export let SalaireNetSection = ({ getRule }) => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
-				<T>Salaire net</T>
+				<Trans>Salaire net</Trans>
 			</h4>
 			{netImposable && <Line rule={netImposable} />}
 			{avantagesEnNature.nodeValue && (

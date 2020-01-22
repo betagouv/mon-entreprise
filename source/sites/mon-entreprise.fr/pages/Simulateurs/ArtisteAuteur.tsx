@@ -7,6 +7,7 @@ import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -41,7 +42,11 @@ export default function ArtisteAuteur() {
 
 	return (
 		<>
-			<h1>Estimer mes cotisations d’artiste-auteur</h1>
+			<h1>
+				<Trans i18nKey="simulateurs.artiste-auteur.titre">
+					Estimer mes cotisations d’artiste-auteur
+				</Trans>
+			</h1>
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<section className="ui__ light card">
 				<div id="targetSelection">
@@ -171,6 +176,7 @@ const ResultLabel = styled.div`
 
 function CotisationsResult() {
 	const [display, setDisplay] = useState(false)
+	const { i18n } = useTranslation()
 	const situation = useSelector(situationSelector)
 	const cotisationRule = useRule('artiste-auteur . cotisations')
 	const value = cotisationRule.nodeValue
@@ -186,11 +192,13 @@ function CotisationsResult() {
 	return (
 		<Animate.appear>
 			<ResultBlock className="ui__ card">
-				<ResultLabel>Montant des cotisations</ResultLabel>
+				<ResultLabel>
+					<Trans>Montant des cotisations</Trans>
+				</ResultLabel>
 				<RuleLink dottedName={cotisationRule.dottedName}>
 					{formatValue({
 						value: cotisationRule.nodeValue,
-						language: 'fr',
+						language: i18n.language,
 						unit: '€',
 						maximumFractionDigits: 0
 					})}
@@ -229,7 +237,9 @@ function RepartitionCotisations() {
 	const total = cotisations.map(x => x.value).reduce((a = 0, b) => a + b)
 	return (
 		<section>
-			<h2>À quoi servent mes cotisations ?</h2>
+			<h2>
+				<Trans>À quoi servent mes cotisations ?</Trans>
+			</h2>
 			<div className="distribution-chart__container">
 				{cotisations.map(cotisation => (
 					<DistributionBranch

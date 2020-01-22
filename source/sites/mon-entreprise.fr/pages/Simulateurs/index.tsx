@@ -1,8 +1,8 @@
-import { T } from 'Components'
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect } from 'react'
+import { Trans } from 'react-i18next'
 import { Route, Switch } from 'react-router'
 import { Link, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
@@ -34,7 +34,7 @@ export default function Simulateurs() {
 							to={sitePaths.gérer.index}
 							className="ui__ simple small push-left button"
 						>
-							← <T>Retour à mon activité</T>
+							← <Trans>Retour à mon activité</Trans>
 						</Link>
 					)}
 					{lastState?.fromCréer && (
@@ -42,7 +42,7 @@ export default function Simulateurs() {
 							to={sitePaths.créer.index}
 							className="ui__ simple small push-left button"
 						>
-							← <T>Retour à la création</T>
+							← <Trans>Retour à la création</Trans>
 						</Link>
 					)}
 					{!lastState ||
@@ -51,7 +51,7 @@ export default function Simulateurs() {
 								to={sitePaths.simulateurs.index}
 								className="ui__ simple small push-left button"
 							>
-								← <T>Voir les autres simulateurs</T>
+								← <Trans>Voir les autres simulateurs</Trans>
 							</Link>
 						))}
 				</div>

@@ -2,7 +2,6 @@ import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import { serialiseUnit } from 'Engine/units'
 import { is, pick, prop, unless } from 'ramda'
 import React from 'react'
 import DateInput from '../components/conversation/DateInput'
@@ -35,7 +34,8 @@ export default rules => dottedName => {
 		return <SelectGéo {...{ ...commonProps }} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
-	if (rule.suggestions == 'atmp-2017') return <SelectAtmp {...commonProps} />
+	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
+		return <SelectAtmp {...commonProps} />
 
 	if (rule.type === 'date') {
 		return <DateInput {...commonProps} />
@@ -54,12 +54,7 @@ export default rules => dottedName => {
 
 	// Now the numeric input case
 
-	return (
-		<Input
-			{...commonProps}
-			unit={serialiseUnit(rule.unit || rule.defaultUnit)}
-		/>
-	)
+	return <Input {...commonProps} unit={rule.unit || rule.defaultUnit} />
 }
 
 let getVariant = rule => queryRule(rule)('formule . une possibilité')

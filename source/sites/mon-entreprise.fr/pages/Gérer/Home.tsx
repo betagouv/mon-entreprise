@@ -3,7 +3,6 @@ import {
 	specifyIfAutoEntrepreneur,
 	specifyIfDirigeantMajoritaire
 } from 'Actions/existingCompanyActions'
-import { T } from 'Components'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
 import Overlay from 'Components/Overlay'
@@ -11,7 +10,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Company } from 'Reducers/inFranceAppReducer'
@@ -60,18 +59,18 @@ export default function SocialSecurity() {
 			<ScrollToTop />
 			<Animate.fromBottom>
 				<h1>
-					<T k="gérer.titre">Gérer mon activité</T>
+					<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>
 				</h1>
 				<div css="display: flex; align-items: flex-start; justify-content: space-between">
 					<div>
 						{!company && (
 							<p className="ui__ lead">
-								<T k="gérer.description">
+								<Trans i18nKey="gérer.description">
 									Vous souhaitez vous verser un revenu ou embaucher ? <br />
 									Vous aurez à payer des cotisations et des impôts. <br />
 									Anticipez leurs montants grâce aux simulateurs adaptés à votre
 									situation.
-								</T>
+								</Trans>
 							</p>
 						)}
 						<CompanySection company={company} />
@@ -86,7 +85,9 @@ export default function SocialSecurity() {
 
 				<>
 					<h2>
-						<T k="gérer.choix.titre">Que souhaitez-vous faire ?</T>
+						<Trans i18nKey="gérer.choix.titre">
+							Que souhaitez-vous faire ?
+						</Trans>
 					</h2>
 					{!!régime && (
 						<Link
@@ -99,13 +100,13 @@ export default function SocialSecurity() {
 								}
 							}}
 						>
-							<T k="gérer.choix.revenus">
+							<Trans i18nKey="gérer.choix.revenus">
 								<p>Calculer mon revenu net</p>
 								<small>
 									Estimez précisément le montant de vos cotisations grâce au
 									simulateur {{ régime }} de l'Urssaf
 								</small>
-							</T>
+							</Trans>
 						</Link>
 					)}
 					{régime !== 'auto-entrepreneur' && (
@@ -119,18 +120,18 @@ export default function SocialSecurity() {
 								}
 							}}
 						>
-							<T k="gérer.choix.embauche">
+							<Trans i18nKey="gérer.choix.embauche">
 								<p>Estimer le montant d’une embauche</p>
 								<small>
 									Calculez le montant total que votre entreprise devra dépenser
 									pour rémunérer votre prochain employé
 								</small>
-							</T>
+							</Trans>
 						</Link>
 					)}
 					<AideOrganismeLocal />
 					<h2>
-						<T>Ressources utiles</T>
+						<Trans>Ressources utiles</Trans>
 					</h2>
 					<div
 						css={`
@@ -147,13 +148,13 @@ export default function SocialSecurity() {
 								className="ui__ interactive card button-choice lighter-bg"
 								to={sitePaths.gérer.embaucher}
 							>
-								<T k="gérer.ressources.embaucher">
+								<Trans i18nKey="gérer.ressources.embaucher">
 									<p>Découvrir les démarches d’embauche </p>
 									<small>
 										La liste des choses à faire pour être sûr de ne rien oublier
 										lors de l’embauche d’un nouveau salarié
 									</small>
-								</T>
+								</Trans>
 							</Link>
 						)}
 						{company?.isAutoEntrepreneur && (
@@ -161,7 +162,7 @@ export default function SocialSecurity() {
 								className="ui__ interactive card button-choice lighter-bg"
 								href="https://autoentrepreneur.urssaf.fr"
 							>
-								<T k="gérer.ressources.autoEntrepreneur">
+								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
 									<p>Accéder au site officiel auto-entrepreneur</p>
 									<small>
 										Vous pourrez effectuer votre déclaration de chiffre
@@ -169,21 +170,21 @@ export default function SocialSecurity() {
 										toutes les informations relatives au statut
 										d'auto-entrepreneur
 									</small>
-								</T>
+								</Trans>
 							</a>
 						)}
 						<Link
 							className="ui__ interactive card button-choice lighter-bg"
 							to={sitePaths.gérer.sécuritéSociale}
 						>
-							<T k="gérer.ressources.sécuritéSociale">
+							<Trans i18nKey="gérer.ressources.sécuritéSociale">
 								<p>Comprendre la sécurité sociale </p>
 								<small>
 									A quoi servent les cotisations sociales ? Le point sur le
 									système de protection sociale dont bénéficient tous les
 									travailleurs en France
 								</small>
-							</T>
+							</Trans>
 						</Link>
 					</div>
 				</>
@@ -242,20 +243,22 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 					<ScrollToTop />
 					<Overlay>
 						<h2>
-							<T k="gérer.entreprise.auto">Êtes-vous auto-entrepreneur ? </T>
+							<Trans i18nKey="gérer.entreprise.auto">
+								Êtes-vous auto-entrepreneur ?{' '}
+							</Trans>
 						</h2>
 						<div className="ui__ answer-group">
 							<button
 								className="ui__ button"
 								onClick={() => handleAnswerAutoEntrepreneur(true)}
 							>
-								<T>Oui</T>
+								<Trans>Oui</Trans>
 							</button>
 							<button
 								className="ui__ button"
 								onClick={() => handleAnswerAutoEntrepreneur(false)}
 							>
-								<T>Non</T>
+								<Trans>Non</Trans>
 							</button>
 						</div>
 					</Overlay>
@@ -265,26 +268,26 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 				<>
 					<ScrollToTop />
 					<Overlay>
-						<T k="gérer.entreprise.dirigeant">
+						<Trans i18nKey="gérer.entreprise.dirigeant">
 							<h2> Êtes-vous dirigeant majoritaire ? </h2>
 							<p>
 								Si vous êtes administrateur majoritaire ou si vous faites partie
 								d'un conseil d'administration majoritaire, vous n'aurez pas le
 								même régime de sécurité sociale que si vous êtes minoritaire.
 							</p>
-						</T>
+						</Trans>
 						<div className="ui__ answer-group">
 							<button
 								className="ui__ button"
 								onClick={() => handleAnswerDirigeantMajoritaire(true)}
 							>
-								<T>Oui</T>
+								<Trans>Oui</Trans>
 							</button>
 							<button
 								className="ui__ button"
 								onClick={() => handleAnswerDirigeantMajoritaire(false)}
 							>
-								<T>Non</T>
+								<Trans>Non</Trans>
 							</button>
 						</div>
 					</Overlay>
@@ -313,13 +316,13 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 								{company.isDirigeantMajoritaire != null && (
 									<span css="margin-left: 1rem" className="ui__ label">
 										{company.isDirigeantMajoritaire ? (
-											<T k="gérer.entreprise.majoritaire">
+											<Trans i18nKey="gérer.entreprise.majoritaire">
 												Dirigeant majoritaire
-											</T>
+											</Trans>
 										) : (
-											<T k="gérer.entreprise.minoritaire">
+											<Trans i18nKey="gérer.entreprise.minoritaire">
 												Dirigeant minoritaire
-											</T>
+											</Trans>
 										)}
 									</span>
 								)}
@@ -333,9 +336,9 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 							showSearchModal(true)
 						}}
 					>
-						<T k="gérer.entreprise.changer">
+						<Trans i18nKey="gérer.entreprise.changer">
 							Changer l'entreprise sélectionnée
-						</T>
+						</Trans>
 					</button>
 				</>
 			) : (
@@ -344,7 +347,7 @@ const CompanySection = ({ company }: CompanySectionProps) => {
 						onClick={() => showSearchModal(true)}
 						className="ui__ plain cta button"
 					>
-						<T k="gérer.cta">Renseigner mon entreprise</T>
+						<Trans i18nKey="gérer.cta">Renseigner mon entreprise</Trans>
 					</button>
 				</p>
 			)}

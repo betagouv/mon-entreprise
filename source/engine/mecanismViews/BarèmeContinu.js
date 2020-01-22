@@ -2,7 +2,7 @@ import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
 import { formatValue } from 'Engine/format'
 import { sortObjectByKeys } from 'Engine/mecanismViews/common'
-import { serialiseUnit } from 'Engine/units'
+import { serializeUnit } from 'Engine/units'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { BarèmeAttributes } from './Barème'
@@ -93,7 +93,7 @@ function SeuilFormatteur({ value, multiplicateur, unit }) {
 						/>
 					</>
 				) : (
-					serialiseUnit(unit)
+					serializeUnit(unit)
 				)}{' '}
 			</>
 		)

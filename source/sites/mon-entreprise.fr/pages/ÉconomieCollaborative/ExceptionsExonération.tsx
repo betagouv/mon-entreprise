@@ -1,5 +1,5 @@
-import { T } from 'Components'
 import React, { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import { changeCritèreExonération } from './actions'
 import { StoreContext } from './StoreContext'
@@ -17,9 +17,9 @@ export default function ExceptionsExonération({
 	return (
 		<>
 			<h2>
-				<T k="économieCollaborative.exonération.question">
+				<Trans i18nKey="économieCollaborative.exonération.question">
 					Êtes-vous dans un des cas suivants ?
-				</T>
+				</Trans>
 			</h2>
 			<Checklist
 				onItemCheck={(index, checked) =>
@@ -37,10 +37,10 @@ export default function ExceptionsExonération({
 				))}
 			</Checklist>
 			<p className="ui__ notice">
-				<T k="économieCollaborative.exonération.notice">
+				<Trans i18nKey="économieCollaborative.exonération.notice">
 					Si aucun de ces cas ne s'appliquent à vous, vous n'aurez rien à
 					déclarer.
-				</T>
+				</Trans>
 			</p>
 		</>
 	)

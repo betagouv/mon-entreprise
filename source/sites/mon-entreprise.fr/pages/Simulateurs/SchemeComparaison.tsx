@@ -1,8 +1,7 @@
-import { T } from 'Components'
 import SchemeComparaison from 'Components/SchemeComparaison'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function SchemeComparaisonPage() {
 	const { t } = useTranslation()
@@ -24,19 +23,19 @@ export default function SchemeComparaisonPage() {
 				/>
 			</Helmet>
 			<h1>
-				<T k="comparaisonRégimes.titre">
+				<Trans i18nKey="comparaisonRégimes.titre">
 					Indépendant, assimilé salarié ou{' '}
 					<span style={{ whiteSpace: 'nowrap' }}>auto-entrepreneur</span> : quel
 					régime choisir ?
-				</T>
+				</Trans>
 			</h1>
 			<p>
-				<T k="comparaisonRégimes.description">
+				<Trans i18nKey="comparaisonRégimes.description">
 					Lorsque vous créez votre société, le choix du statut juridique va
 					déterminer à quel régime social le dirigeant est affilié. Il en existe
 					trois différents, avec chacun ses avantages et inconvénients. Avec ce
 					comparatif, trouvez celui qui vous correspond le mieux.
-				</T>
+				</Trans>
 			</p>
 			<br />
 			<div className="ui__ full-width">

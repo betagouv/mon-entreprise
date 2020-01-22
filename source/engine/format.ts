@@ -1,4 +1,4 @@
-import { serialiseUnit } from 'Engine/units'
+import { serializeUnit } from 'Engine/units'
 import { memoizeWith } from 'ramda'
 import { Unit } from './units'
 
@@ -72,7 +72,7 @@ export function formatValue({
 	if (typeof value !== 'number') {
 		return value
 	}
-	let serializedUnit = unit ? serialiseUnit(unit, value, language) : undefined
+	let serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
 	if (serializedUnit === '') {
 		serializedUnit = '%'
 		value *= 100

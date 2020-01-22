@@ -1,8 +1,7 @@
 import { directorIsInAMinority } from 'Actions/companyStatusActions'
-import { T } from 'Components'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 export default function MinorityDirector() {
@@ -26,9 +25,11 @@ export default function MinorityDirector() {
 				/>
 			</Helmet>
 			<h2>
-				<T k="gérant minoritaire.titre">Gérant majoritaire ou minoritaire</T>{' '}
+				<Trans i18nKey="gérant minoritaire.titre">
+					Gérant majoritaire ou minoritaire
+				</Trans>{' '}
 			</h2>
-			<T k="gérant minoritaire.description">
+			<Trans i18nKey="gérant minoritaire.description">
 				<p>
 					Certaines règles spéciales s'appliquent selon le nombre d'actions
 					détenues.
@@ -45,22 +46,24 @@ export default function MinorityDirector() {
 						d'administration minoritaire ou égalitaire).
 					</li>
 				</ul>
-			</T>
+			</Trans>
 
 			<div className="ui__ answer-group">
 				<button
 					onClick={() => {
 						dispatch(directorIsInAMinority(false))
 					}}
-					className="ui__ button">
-					<T>Gérant majoritaire</T>
+					className="ui__ button"
+				>
+					<Trans>Gérant majoritaire</Trans>
 				</button>
 				<button
 					onClick={() => {
 						dispatch(directorIsInAMinority(true))
 					}}
-					className="ui__ button">
-					<T>Gérant minoritaire</T>
+					className="ui__ button"
+				>
+					<Trans>Gérant minoritaire</Trans>
 				</button>
 			</div>
 		</>
