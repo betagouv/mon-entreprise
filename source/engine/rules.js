@@ -190,27 +190,45 @@ export let nestedSituationToPathMap = situation => {
 }
 
 /* Traduction */
+const translateContrôle = (prop, rule, translation, lang) =>
+	assoc(
+		'contrôles',
+		rule.contrôles.map((control, i) => ({
+			...control,
+			message: translation[`${prop}.${i}.${lang}`]?.replace(
+				/^\[automatic\] /,
+				''
+			)
+		})),
+		rule
+	)
+const translateSuggestion = (prop, rule, translation, lang) =>
+	assoc(
+		'suggestions',
+		Object.entries(rule.suggestions).reduce(
+			(acc, [name, value]) => ({
+				...acc,
+				[translation[`${prop}.${name}.${lang}`]?.replace(
+					/^\[automatic\] /,
+					''
+				)]: value
+			}),
+			{}
+		),
+		rule
+	)
 
 export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
-			let propTrans = translation[prop + '.' + lang]
-			if (typeof propTrans === 'string') {
-				propTrans.replace(/^\[automatic\] /, '')
+			if (prop === 'contrôles' && rule?.contrôles) {
+				return translateContrôle(prop, rule, translation, lang)
 			}
-			if (prop === 'suggestions' && propTrans)
-				return assoc(
-					'suggestions',
-					pipe(
-						toPairs,
-						map(([key, translatedKey]) => [
-							translatedKey,
-							rule.suggestions[key]
-						]),
-						fromPairs
-					)(propTrans),
-					rule
-				)
+			if (prop === 'suggestions' && rule?.suggestions) {
+				return translateSuggestion(prop, rule, translation, lang)
+			}
+			let propTrans = translation[prop + '.' + lang]
+			propTrans = propTrans?.replace(/^\[automatic\] /, '')
 			return propTrans ? assoc(prop, propTrans, rule) : rule
 		},
 		translateRule = (lang, translations, props) => rule => {

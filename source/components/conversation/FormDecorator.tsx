@@ -1,7 +1,9 @@
 import { updateSituation } from 'Actions/actions'
 import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
+import { serializeUnit } from 'Engine/units'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/analyseSelectors'
 
@@ -17,7 +19,7 @@ export const FormDecorator = formType => RenderField =>
 	function FormStep({ fieldName, question, inversion, unit, ...otherProps }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
-
+		const language = useTranslation().i18n.language
 		const submit = source =>
 			dispatch({
 				type: 'STEP_ACTION',
@@ -43,7 +45,7 @@ export const FormDecorator = formType => RenderField =>
 						value={situation[fieldName]}
 						setFormValue={setFormValue}
 						submit={submit}
-						unit={unit}
+						unit={serializeUnit(unit, situation[fieldName], language)}
 						{...otherProps}
 					/>
 				</fieldset>

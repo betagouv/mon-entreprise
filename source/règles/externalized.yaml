@@ -39,28 +39,40 @@ contrat salarié:
     certains cas. C’est le cas du Contrat de travail à Durée Indéterminée,
     considéré comme la forme normale et générale de la relation de travail entre
     un salarié et un employeur (Art. L1221-2 du Code du travail).
-  contrôles.fr:
-    - si: CDD
-      niveau: information
-      message: >
-        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
-        temporaire de l'entreprise.
+  contrôles.0.fr: >
+    Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de
+    l'entreprise.
 
-        [Code du travail - Article
-        L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
-    - si: stage
-      niveau: avertissement
-      message: >
-        Une convention de stage **n'est pas un contrat de travail**, et ne peut
-        pas être conclue pour réaliser une tâche régulière correspondant à un
-        poste de travail permanent, ou à un accroissement temporaire de
-        l'activité de l'entreprise. [Code de l'éducation - Article
-        L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+    [Code du travail - Article
+    L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+  contrôles.0.en: >
+    [automatic] Remember that a fixed-term contract must always correspond to a
+    temporary business need.
+
+    [Labour Code - Article
+    A1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194idTexte=LEGITEXT000006072050)
+  contrôles.1.fr: >
+    Une convention de stage **n'est pas un contrat de travail**, et ne peut pas
+    être conclue pour réaliser une tâche régulière correspondant à un poste de
+    travail permanent, ou à un accroissement temporaire de l'activité de
+    l'entreprise. [Code de l'éducation - Article
+    L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
 
 
-        Par ailleurs, une entreprise de moins de 20 salariés ne peut pas
-        accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de
-        l’effectif** pour les entreprises de plus de 20 salariés.
+    Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir
+    plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les
+    entreprises de plus de 20 salariés.
+  contrôles.1.en: >
+    [automatic] An internship agreement **is not an employment contract**, and
+    cannot be concluded to carry out a regular task corresponding to a permanent
+    job, or a temporary increase in the company's activity. [Education Code -
+    Article
+    A124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119idTexte=LEGITEXT000006071191)
+
+
+    Furthermore, a company with less than 20 employees may not take on more than
+    **3 trainees**, and no more than **15% of the workforce** for companies with
+    more than 20 employees.
   titre.en: employment contract
   titre.fr: contrat salarié
 contrat salarié . CDI:
@@ -270,8 +282,6 @@ contrat salarié . ATMP . taux collectif ATMP:
 
     concerne en ligne sur
     [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  suggestions.en: atmp-2017
-  suggestions.fr: atmp-2017
 contrat salarié . CDD . événement:
   titre.en: Contract related event
   titre.fr: Événement de contrat
@@ -461,11 +471,14 @@ contrat salarié . CDD . durée contrat:
     [Cliquez
     ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
     pour connaître la durée maximale d'un CDD.
-  suggestions.fr:
-    18 mois: 18
-    1 an: 12
-    6 mois: 6
-    3 mois: 3
+  suggestions.18 mois.fr: 18 mois
+  suggestions.18 mois.en: '[automatic] 18 months'
+  suggestions.1 an.fr: 1 an
+  suggestions.1 an.en: '[automatic] 1 year'
+  suggestions.6 mois.fr: 6 mois
+  suggestions.6 mois.en: '[automatic] 6 months'
+  suggestions.3 mois.fr: 3 mois
+  suggestions.3 mois.en: '[automatic] 3 months'
 contrat salarié . CDD . congés non pris:
   question.en: How many working days of paid leave will not be taken?
   question.fr: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
@@ -483,18 +496,14 @@ contrat salarié . CDD . congés non pris:
     contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4,
     donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la
     fin du contrat.
-  suggestions.fr:
-    '3': 3
-    '10': 10
-  contrôles.fr:
-    - si: congés non pris > congés dus en jours ouvrés
-      message: 'Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.'
-      niveau: avertissement
-      solution:
-        cible: contrat salarié . CDD . durée contrat
-        texte: Définir la durée de contrat
+  suggestions.3.fr: '3'
+  suggestions.3.en: '[automatic] 3'
+  suggestions.10.fr: '10'
+  suggestions.10.en: '[automatic] 10'
+  contrôles.0.fr: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
   titre.en: Untaken paid leave
   titre.fr: congés non pris
+  contrôles.0.en: '[automatic] An employee normally earns 2.08 working days off per month.'
 contrat salarié . CDD . contrat jeune vacances:
   titre.en: Young holiday contract
   titre.fr: Contrat jeune vacances
@@ -550,12 +559,12 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
 contrat salarié . apprentissage . ancienneté:
   question.en: How long has the apprentice been employed?
   question.fr: Depuis combien de temps l'apprenti est-il employé ?
-  contrôles.fr:
-    - si: moins de quatre ans
-      niveau: information
-      message: >-
-        La durée maximale du contrat peut être portée à 4 ans lorsque la qualité
-        de travailleur handicapé est reconnue à l'apprenti.
+  contrôles.0.fr: >-
+    La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
+    travailleur handicapé est reconnue à l'apprenti.
+  contrôles.0.en: >-
+    [automatic] The maximum duration of the contract can be extended to 4 years
+    when the apprentice is recognised as a disabled worker.
   titre.en: age
   titre.fr: ancienneté
 contrat salarié . apprentissage . ancienneté . moins d'un an:
@@ -646,37 +655,27 @@ contrat salarié . rémunération . brut de base:
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
     primes...
-  suggestions.fr:
-    salaire médian: 2300
-    SMIC: 1539
-  contrôles.fr:
-    - si:
-        toutes ces conditions:
-          - >-
-            rémunération . assiette de vérification du SMIC < (SMIC contractuel
-            - 1)
-          - dirigeant != 'assimilé salarié'
-          - stage != oui
-          - apprentissage != oui
-      niveau: avertissement
-      message: |
-        Le salaire saisi est inférieur au SMIC.
-    - si:
-        toutes ces conditions:
-          - stage
-          - brut de base < stage . gratification minimale
-      niveau: avertissement
-      message: >
-        La rémunération du stage est inférieure à la [gratification
-        minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
-    - si:
-        toutes ces conditions:
-          - brut de base > 10000 €/mois
-          - dirigeant = non
-      niveau: information
-      message: >
-        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
-        période de calcul ?
+  suggestions.salaire médian.fr: salaire médian
+  suggestions.salaire médian.en: '[automatic] median earnings'
+  suggestions.SMIC.fr: SMIC
+  suggestions.SMIC.en: '[automatic] SMIC'
+  contrôles.0.fr: |
+    Le salaire saisi est inférieur au SMIC.
+  contrôles.0.en: |
+    [automatic] The wage entered is less than the minimum wage.
+  contrôles.1.fr: >
+    La rémunération du stage est inférieure à la [gratification
+    minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+  contrôles.1.en: >
+    [automatic] The remuneration for the traineeship is less than the [minimum
+    bonus]
+    (https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+  contrôles.2.fr: >
+    Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période
+    de calcul ?
+  contrôles.2.en: >
+    [automatic] The monthly salary entered is high. Didn't you have the wrong
+    calculation period?
 contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
@@ -684,9 +683,10 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   résumé.fr: Le salaire si l'embauche se faisait à temps plein
   question.en: What is the full-time equivalent salary?
   question.fr: Quel est le salaire en équivalent temps plein ?
-  suggestions.fr:
-    salaire médian: 2300
-    SMIC: 1522
+  suggestions.salaire médian.fr: salaire médian
+  suggestions.salaire médian.en: '[automatic] median earnings'
+  suggestions.SMIC.fr: SMIC
+  suggestions.SMIC.en: '[automatic] SMIC'
 contrat salarié . rémunération . heures supplémentaires . taux horaire:
   description.en: >-
     The hourly rate used to calculate overtime compensation. It includes
@@ -876,8 +876,8 @@ contrat salarié . rémunération . avantages en nature . autres . montant:
     How much is the amount of these other benefits?
   question.fr: |
     Quel est le montant de ces autres avantages ?
-  suggestions.fr:
-    "\U0001F697 véhicule": 260
+  "suggestions.\U0001F697 véhicule.fr": "\U0001F697 véhicule"
+  "suggestions.\U0001F697 véhicule.en": "[automatic] \U0001F697 vehicle"
   titre.en: amount
   titre.fr: montant
 contrat salarié . rémunération . avantages en nature . ntic . montant:
@@ -915,11 +915,14 @@ contrat salarié . rémunération . avantages en nature . ntic . coût appareils
     What is the total new cost of the equipment provided?
   question.fr: |
     Quel est le coût total neuf des appareils mis à disposition ?
-  suggestions.fr:
-    "\U0001F4F1": 400
-    "\U0001F4F1✨ (haut de gamme)": 850
-    "\U0001F4BB": 1200
-    "\U0001F4BB + \U0001F4F1✨": 2050
+  "suggestions.\U0001F4F1.fr": "\U0001F4F1"
+  "suggestions.\U0001F4F1.en": "[automatic] \U0001F4F1"
+  "suggestions.\U0001F4F1✨ (haut de gamme).fr": "\U0001F4F1✨ (haut de gamme)"
+  "suggestions.\U0001F4F1✨ (haut de gamme).en": "[automatic] \U0001F4F1✨ (high-end)"
+  "suggestions.\U0001F4BB.fr": "\U0001F4BB"
+  "suggestions.\U0001F4BB.en": "[automatic] \U0001F4BB"
+  "suggestions.\U0001F4BB + \U0001F4F1✨.fr": "\U0001F4BB + \U0001F4F1✨"
+  "suggestions.\U0001F4BB + \U0001F4F1✨.en": "[automatic] \U0001F4BB + \U0001F4F1✨"
   titre.en: devices cost
   titre.fr: coût appareils
 contrat salarié . rémunération . avantages en nature . ntic . abonnements:
@@ -927,10 +930,12 @@ contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question.fr: >-
     Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par
     l'employeur ?
-  suggestions.fr:
-    aucun: 0
-    standard: 20
-    international: 40
+  suggestions.aucun.fr: aucun
+  suggestions.aucun.en: '[automatic] none'
+  suggestions.standard.fr: standard
+  suggestions.standard.en: '[automatic] standard'
+  suggestions.international.fr: international
+  suggestions.international.en: '[automatic] international'
   titre.en: subscription
   titre.fr: abonnements
 contrat salarié . rémunération . avantages en nature . nourriture:
@@ -957,9 +962,10 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
     How many meals per month are paid for by the employer?
   question.fr: |
     Combien de repas par mois sont payés par l'employeur ?
-  suggestions.fr:
-    1 par jour: 21
-    2 par jour: 42
+  suggestions.1 par jour.fr: 1 par jour
+  suggestions.1 par jour.en: '[automatic] 1 per day'
+  suggestions.2 par jour.fr: 2 par jour
+  suggestions.2 par jour.en: '[automatic] 2 per day'
   titre.en: meal per month
   titre.fr: repas par mois
 contrat salarié . indemnités salarié:
@@ -969,10 +975,10 @@ contrat salarié . statut cadre:
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >
-    A "cadre" is an employee or officer of an enterprise belonging to the upper
-    category of employees. This is a status recognized by collective agreements,
-    which determines membership of a specific pension fund, AGIRC, and some
-    specific terms of the employment contract.
+    [automatic] An executive is an employee or officer of an enterprise
+    belonging to the upper category of employees. This is a status recognized by
+    collective agreements, which determines membership of a specific pension
+    fund, AGIRC, and some specific terms of the employment contract.
 
 
     Initially recognising the technical skills and managerial role of the
@@ -1000,7 +1006,7 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture. 
+    représentation sociale, de rôle dans l'entreprise ou de culture.
   titre.en: cadre status
   titre.fr: statut cadre
 plafond sécurité sociale temps plein:
@@ -1286,7 +1292,7 @@ contrat salarié . aides employeur:
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   description.en: >
     Some aids can be requested by the employer to help hires.
 
@@ -1373,9 +1379,10 @@ entreprise . ratio alternants:
   description.fr: >
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage
     pour les entreprises concernées.
-  suggestions.fr:
-    1%: 0.01
-    5%: 0.05
+  suggestions.1%.fr: 1%
+  suggestions.1%.en: '[automatic] 1%'
+  suggestions.5%.fr: 5%
+  suggestions.5%.en: '[automatic] 5%'
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -1391,7 +1398,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
 établissement:
@@ -1487,18 +1494,16 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
   question.fr: >-
     Quel est le nombre d'heures travaillées par semaine dans le cadre du temps
     partiel ?
-  contrôles.fr:
-    - si: heures par semaine < 24
-      niveau: avertissement
-      message: >-
-        Le nombre minimum d'heures par semaine est 24. Il est possible de
-        descendre plus bas dans certains cas seulement. [Plus
-        d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine >= 35
-      niveau: avertissement
-      message: >-
-        Un temps partiel doit être en dessous de la durée de travail légale
-        (35h)
+  contrôles.0.fr: >-
+    Le nombre minimum d'heures par semaine est 24. Il est possible de descendre
+    plus bas dans certains cas seulement. [Plus
+    d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+  contrôles.0.en: >-
+    [automatic] The minimum number of hours per week is 24, although it is
+    possible to go lower in some cases only. [More
+    info](https://www.service-public.fr/particuliers/vosdroits/F32428).
+  contrôles.1.fr: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+  contrôles.1.en: '[automatic] Part-time work must be below the legal working hours (35 hours).'
   titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . temps de travail . quotité de travail:
@@ -1522,33 +1527,24 @@ contrat salarié . temps de travail . heures supplémentaires:
   question.fr: >-
     Combien d'heures supplémentaires (non récupérées en repos) sont effectuées
     par mois ?
-  suggestions.fr:
-    aucune: 0
-    39h / semaine: 17.33
-    42h / semaine: 30.33
-  contrôles.fr:
-    - si:
-        toutes ces conditions:
-          - >-
-            heures supplémentaires > 9 heures/semaine * période . semaines par
-            mois
-          - >-
-            heures supplémentaires <= 13 heures/semaine * période . semaines par
-            mois
-      niveau: info
-      message: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
-    - si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
-      niveau: avertissement
-      message: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
-    - si:
-        toutes ces conditions:
-          - temps partiel
-          - heures supplémentaires > 0 heure/mois
-      niveau: info
-      message: >-
-        Le simulateur ne prends pas encore en compte les heures complémentaires
-        pour les temps partiels. Si cette fonctionnalité vous manque,
-        envoyez-nous un mail à contact@mon-entreprise.beta.gouv.fr
+  suggestions.aucune.fr: aucune
+  suggestions.aucune.en: '[automatic] none'
+  suggestions.39h / semaine.fr: 39h / semaine
+  suggestions.39h / semaine.en: '[automatic] 39h / week'
+  suggestions.42h / semaine.fr: 42h / semaine
+  suggestions.42h / semaine.en: '[automatic] 42h / week'
+  contrôles.0.fr: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+  contrôles.0.en: '[automatic] The average working week may not exceed 44 hours.'
+  contrôles.1.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+  contrôles.1.en: '[automatic] The maximum weekly working time may not exceed 48 hours.'
+  contrôles.2.fr: >-
+    Le simulateur ne prends pas encore en compte les heures complémentaires pour
+    les temps partiels. Si cette fonctionnalité vous manque, envoyez-nous un
+    mail à contact@mon-entreprise.beta.gouv.fr
+  contrôles.2.en: >-
+    [automatic] The simulator does not yet take into account overtime for
+    part-time work. If you miss this feature, send us an email at
+    contact@mon-entreprise.beta.gouv.fr.
 contrat salarié . temps de travail . heures supplémentaires . majoration:
   description.en: >-
     Overtime pay is subject to one or more increase rates, fixed by collective
@@ -1743,13 +1739,14 @@ contrat salarié . complémentaire santé . part employeur:
     minimum
   question.en: What is the part of the complementary health insurance paid by the employer?
   question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
-  suggestions.fr:
-    50%: 50
-    100%: 100
-  contrôles.fr:
-    - si: part employeur < 50%
-      niveau: avertissement
-      message: La part employeur de la complémentaire santé doit être de 50% au minimum
+  suggestions.50%.fr: 50%
+  suggestions.50%.en: '[automatic] 50%'
+  suggestions.100%.fr: 100%
+  suggestions.100%.en: '[automatic] 100%'
+  contrôles.0.fr: La part employeur de la complémentaire santé doit être de 50% au minimum
+  contrôles.0.en: >-
+    [automatic] The employer's share of the supplementary health insurance must
+    be at least 50%.
   titre.en: employer share
   titre.fr: part employeur
 contrat salarié . complémentaire santé . part salarié:
@@ -1775,12 +1772,12 @@ contrat salarié . complémentaire santé . forfait:
 
     ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
     libre, tant qu'elle couvre un panier légal de soins.
-  contrôles.fr:
-    - si: complémentaire santé . forfait < 15 €/mois
-      message: >-
-        Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier
-        de soin minimal défini dans la loi.
-      niveau: avertissement
+  contrôles.0.fr: >-
+    Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de
+    soin minimal défini dans la loi.
+  contrôles.0.en: >-
+    [automatic] Make sure that such an inexpensive health supplement covers the
+    minimum care basket defined in the law.
 contrat salarié . complémentaire santé . forfait . en alsace moselle:
   titre.en: Complementary health insurance plan (Alsace-Moselle)
   titre.fr: forfait complémentaire santé en Alsace-Moselle
@@ -1806,9 +1803,10 @@ contrat salarié . complémentaire santé . forfait . en alsace moselle:
 
     Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en
     moyenne ~ 70% du prix moyen en France.
-  suggestions.fr:
-    basique: 30
-    élevé: 70
+  suggestions.basique.fr: basique
+  suggestions.basique.en: '[automatic] basic'
+  suggestions.élevé.fr: élevé
+  suggestions.élevé.en: '[automatic] high'
 contrat salarié . complémentaire santé . forfait . en france:
   titre.en: Complementary health insurance plan (France)
   titre.fr: forfait complémentaire santé en France
@@ -1818,9 +1816,10 @@ contrat salarié . complémentaire santé . forfait . en france:
   question.fr: >-
     Quel est le montant mensuel total (salarié et employeur) de la
     complémentaire santé entreprise ?
-  suggestions.fr:
-    basique: 40
-    élevé: 100
+  suggestions.basique.fr: basique
+  suggestions.basique.en: '[automatic] basic'
+  suggestions.élevé.fr: élevé
+  suggestions.élevé.en: '[automatic] high'
 contrat salarié . régime alsace moselle:
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
@@ -2021,24 +2020,35 @@ contrat salarié . régime des impatriés:
     complémentaire) à condition de justifier d'une contribution minimale versée
     par ailleurs (par exemple dans une caisse de retraite ou un fond de pension
     étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
-  contrôles.fr:
-    - si: contrat salarié . régime des impatriés
-      niveau: information
-      message: >
-        Pour bénéficier de l'exonération de cotisations vieillesse, il faut
-        remplir les conditions suivantes :
+  contrôles.0.fr: >
+    Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir
+    les conditions suivantes :
 
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une
-        assurance vieillesse
+    - Pouvoir justifier d'une contribution minimale versée ailleurs pour une
+    assurance vieillesse
 
-        - Ne pas avoir été affilié, au cours des cinq années civiles précédant
-        celle de la prise de fonctions, à un régime français obligatoire
-        d'assurance vieillesse, sauf pour des activités accessoires, de
-        caractère saisonnier ou pour les études.
+    - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle
+    de la prise de fonctions, à un régime français obligatoire d'assurance
+    vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou
+    pour les études.
 
 
-        [Lire le texte de
-        loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+    [Lire le texte de
+    loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+  contrôles.0.en: >
+    [automatic] The following conditions must be met in order to benefit from
+    the old-age contribution exemption:
+
+    - To be able to prove a minimum contribution paid elsewhere for old-age
+    insurance
+
+    - Not having been affiliated, during the five calendar years preceding that
+    of taking up his duties, to a compulsory French old-age insurance scheme,
+    except for ancillary activities of a seasonal nature or for studies.
+
+
+    [Read the text of the
+    law](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&amp;cidTexte=LEGITEXT000006073189&amp;dateTexte=20190626)
   titre.en: impatriate scheme
   titre.fr: régime des impatriés
 entreprise . taxe sur les salaires . barème:
@@ -2297,19 +2307,20 @@ entreprise . date de création:
 
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
-  suggestions.fr:
-    Début 2020: 01/01/2020
-    Début 2019: 01/01/2019
-    Fin 2017: 31/12/2017
-  contrôles.fr:
-    - si: date de création > 01/2021
-      niveau: avertissement
-      message: Nous ne pouvons voir aussi loin dans le futur
-    - si: date de création < 01/1900
-      niveau: avertissement
-      message: >-
-        Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous
-        être trompé dans la saisie ?
+  suggestions.Début 2020.fr: Début 2020
+  suggestions.Début 2020.en: '[automatic] Early 2020'
+  suggestions.Début 2019.fr: Début 2019
+  suggestions.Début 2019.en: '[automatic] Early 2019'
+  suggestions.Fin 2017.fr: Fin 2017
+  suggestions.Fin 2017.en: '[automatic] End 2017'
+  contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
+  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.1.fr: >-
+    Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être
+    trompé dans la saisie ?
+  contrôles.1.en: >-
+    [automatic] This is a very old company! Are you sure you didn't make a
+    mistake in the seizure?
   titre.en: Creation date
   titre.fr: date de création
 entreprise . durée d'activité:
@@ -2769,7 +2780,7 @@ entreprise . catégorie d'activité . artisanale:
   titre.fr: artisanale
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
+  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . vente:
@@ -2841,26 +2852,40 @@ entreprise . catégorie d'activité . libérale règlementée:
 
     > Exemples de professions non-règlementées : développeur, historien,
     urbaniste...
-  contrôles.fr:
-    - si: libérale règlementée
-      niveau: avertissement
-      message: >
-        Attention, le simulateur n'est pas encore complet pour les professions
-        libérales règlementées :
+  contrôles.0.fr: >
+    Attention, le simulateur n'est pas encore complet pour les professions
+    libérales règlementées :
 
 
-        - pour la retraite complémentaire, seul le barème interprofessionnel,
-        celui de la CIPAV, a été intégré pour l'instant.
+    - pour la retraite complémentaire, seul le barème interprofessionnel, celui
+    de la CIPAV, a été intégré pour l'instant.
 
-        - assurez-vous que le statut auto-entrepreneur est bien compatible avec
-        votre profession règlementée
+    - assurez-vous que le statut auto-entrepreneur est bien compatible avec
+    votre profession règlementée
 
-        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités
-        de calcul des
-        cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html)
-        et la
-        [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html)
-        ne sont pas encore intégrées.
+    - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de
+    calcul des
+    cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html)
+    et la
+    [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html)
+    ne sont pas encore intégrées.
+  contrôles.0.en: >
+    [automatic] Attention, the simulator is not yet complete for regulated
+    professions:
+
+
+    - for the supplementary pension, only the inter-professional scale, that of
+    the CIPAV, has been integrated for the moment.
+
+    - make sure that the auto-entrepreneur status is compatible with your
+    regulated profession
+
+    - for medical practitioners and medical auxiliaries (PAM), [the
+    specificities for calculating
+    contributions](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html)
+    and the
+    [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html)
+    are not yet integrated.
   titre.en: regulated liberal
   titre.fr: libérale règlementée
 entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
@@ -3285,13 +3310,13 @@ dirigeant . auto-entrepreneur:
   titre.en: auto-entrepreneur
   titre.fr: auto-entrepreneur
 dirigeant . auto-entrepreneur . base des cotisations:
-  contrôles.fr:
-    - si: base des cotisations > plafond
-      message: >-
-        Le seuil annuel de chiffre d'affaires pour le régime de
-        l'auto-entreprise est dépassé. [En savoir
-        plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
-      niveau: avertissement
+  contrôles.0.fr: >-
+    Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise
+    est dépassé. [En savoir
+    plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
+  contrôles.0.en: >-
+    [automatic] The annual turnover threshold for the self-employment plan is
+    exceeded. Read more](/documentation/manager/self-contractor/ceiling)
   titre.en: contribution basis
   titre.fr: base des cotisations
 dirigeant . auto-entrepreneur . plafond:
@@ -3525,15 +3550,12 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     2018
   question.en: Do you benefit from the discharge payment of income tax?
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
-  contrôles.fr:
-    - si:
-        toutes ces conditions:
-          - impôt . revenu fiscal de référence > 27086 €/an
-          - versement libératoire
-      message: >-
-        Le versement libératoire n'est pas disponible si les revenus de votre
-        ménage sont supérieurs à 27 086 € par part en 2018
-      niveau: info
+  contrôles.0.fr: >-
+    Le versement libératoire n'est pas disponible si les revenus de votre ménage
+    sont supérieurs à 27 086 € par part en 2018
+  contrôles.0.en: >-
+    [automatic] The payment in full discharge is not available if your household
+    income exceeds €27,086 per unit in 2018.
   titre.en: discharge payment
   titre.fr: versement libératoire
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
@@ -3581,18 +3603,18 @@ dirigeant . auto-entrepreneur . net après impôt:
   question.en: What is the desired net after-tax income?
   question.fr: Quel est le revenu net après impôt souhaité ?
   description.en: >
-    The self-employed person's net income after income tax and contributions are
-    deducted.
+    [automatic] The self-employed person's net income after income tax and
+    contributions are deducted.
 
-    social.
+    social. 
 
 
-    **Caution:** To properly assess the profitability of the business, you must
-    not
+    **Caution:** To properly assess the profitability of the business, you
+    should not
 
     forget to subtract from this amount the expenses incurred in the context of
 
-    activity. This may include, for example:
+    activity. This may include, for example: 
 
     - The purchase of raw materials
 
@@ -3600,9 +3622,9 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - Subscription to paid services
 
-    - Renting a room
+    - Renting a room 
 
-    - and so on.  
+    - and so on.
   description.fr: >
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
     revenu et des cotisations
@@ -3625,7 +3647,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - La location d'un local 
 
-    - etc...  
+    - etc...
 revenus net de cotisations:
   résumé.en: Before tax
   résumé.fr: Avant impôt
@@ -4068,19 +4090,18 @@ entreprise . convention collective:
   titre.en: union contract
   titre.fr: convention collective
 contrat salarié . convention collective:
-  question.en: 'Which "convention collective" is applicable à l''entreprise ? [beta] '
-  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
-  contrôles.fr:
-    - si:
-        toutes ces conditions:
-          - convention collective != non
-          - convention collective != 'droit commun'
-      niveau: avertissement
-      message: |
-        Attention, l'implémentation des conventions collective est encore
-        partielle et non vérifiée.
-        Néanmoins, cela permet d'obtenir une première estimation, plus précise
-        que le régime général.
+  question.en: 'Which "convention collective" is applicable to the company ? [beta] '
+  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  contrôles.0.fr: |
+    Attention, l'implémentation des conventions collective est encore
+    partielle et non vérifiée.
+    Néanmoins, cela permet d'obtenir une première estimation, plus précise
+    que le régime général.
+  contrôles.0.en: |
+    [automatic] Caution, the implementation of collective agreements is still
+    partial and unverified.
+    Nevertheless, this allows a first, more accurate estimate to be obtained.
+    than the general regime.
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . droit commun:
@@ -4090,7 +4111,7 @@ contrat salarié . convention collective . HCR:
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
+  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
 contrat salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: fixed amount of a meal
   titre.fr: montant forfaitaire d'un repas
@@ -4491,16 +4512,16 @@ artiste-auteur . cotisations . assiette:
 artiste-auteur . cotisations . option surcotisation:
   question.en: Would you like to over-contribute?
   question.fr: Souhaitez-vous surcotiser ?
+  résumé.en: >-
+    [automatic] Your income is below the thresholds allowing you to validate 4
+    quarters of retirement. You can choose to overcontribute to increase your
+    entitlements.
   résumé.fr: >-
     Vos revenus sont en dessous des seuils vous permettant de valider 4
     trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos
     droits.
   titre.en: overcontribution option
   titre.fr: option surcotisation
-  résumé.en: >-
-    [automatic] Your income is below the thresholds allowing you to validate 4
-    quarters of retirement. You can choose to overcontribute to increase your
-    entitlements.
 artiste-auteur . cotisations . assiette surcotisation:
   titre.en: over-contribution base
   titre.fr: assiette surcotisation

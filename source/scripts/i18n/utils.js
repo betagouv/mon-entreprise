@@ -26,6 +26,7 @@ function getRulesMissingTranslations() {
 		'suggestions',
 		'contrôles'
 	]
+
 	let missingTranslations = []
 	let resolved = Object.entries(rules)
 		.map(([dottedName, rule]) => [
@@ -45,6 +46,50 @@ function getRulesMissingTranslations() {
 							frTrad = attrToTranslate + '.fr'
 
 						let currentTranslation = currentExternalization[dottedName]
+
+						if ('suggestions' === attrToTranslate) {
+							return Object.keys(v).reduce((acc, suggestion) => {
+								const enTrad = `suggestions.${suggestion}.en`
+								const frTrad = `suggestions.${suggestion}.fr`
+								if (
+									currentTranslation[enTrad] &&
+									currentTranslation[frTrad] === suggestion
+								) {
+									return {
+										...acc,
+										[frTrad]: currentTranslation[frTrad],
+										[enTrad]: currentTranslation[enTrad]
+									}
+								}
+								missingTranslations.push([dottedName, enTrad, suggestion])
+								return {
+									...acc,
+									[frTrad]: suggestion
+								}
+							}, {})
+						}
+						if ('contrôles' === attrToTranslate) {
+							return v.reduce((acc, control, i) => {
+								const enTrad = `contrôles.${i}.en`
+								const frTrad = `contrôles.${i}.fr`
+								if (
+									currentTranslation[enTrad] &&
+									currentTranslation[frTrad] === control.message
+								) {
+									return {
+										...acc,
+										[frTrad]: currentTranslation[frTrad],
+										[enTrad]: currentTranslation[enTrad]
+									}
+								}
+								missingTranslations.push([dottedName, enTrad, control.message])
+								return {
+									...acc,
+									[frTrad]: control.message
+								}
+							}, {})
+						}
+
 						// Check if a human traduction exists already for this attribute and if
 						// it does need to be updated
 						if (
@@ -56,11 +101,7 @@ function getRulesMissingTranslations() {
 								[enTrad]: currentTranslation[enTrad],
 								[frTrad]: v
 							}
-						if (['contrôles', 'suggestions'].includes(attrToTranslate)) {
-							return {
-								[frTrad]: v
-							}
-						}
+
 						missingTranslations.push([dottedName, enTrad, v])
 						return {
 							[frTrad]: v

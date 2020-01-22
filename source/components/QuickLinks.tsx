@@ -4,7 +4,10 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { currentQuestionSelector, nextStepsSelector } from 'Selectors/analyseSelectors'
+import {
+	currentQuestionSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 
 export default function QuickLinks() {

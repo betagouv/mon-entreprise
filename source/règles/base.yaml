@@ -351,7 +351,6 @@ contrat salarié . ATMP . taux collectif ATMP:
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
     ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
     concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  suggestions: atmp-2017
   par défaut: 2.22
   unité par défaut: '%'
   references:
@@ -569,7 +568,7 @@ contrat salarié . CDD . congés non pris:
   par défaut: 0
   contrôles:
     - si: congés non pris > congés dus en jours ouvrés
-      message: Attention, un salarié acquiert 2.08 jours de congés ouvrés par mois.
+      message: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
       niveau: avertissement
       solution:
         cible: contrat salarié . CDD . durée contrat

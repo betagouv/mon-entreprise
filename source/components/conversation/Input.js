@@ -21,7 +21,6 @@ export default compose(FormDecorator('input'))(function Input({
 	const colors = useContext(ThemeColorsContext)
 	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
 	const { language } = useTranslation().i18n
-
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
 
 	return (

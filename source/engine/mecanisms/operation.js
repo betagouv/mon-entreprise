@@ -30,8 +30,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 					node1 = convertNodeToUnit(node2.unit, node1)
 				}
 			} catch (e) {
-				console.log(serializeUnit(node1.unit), node1.unit)
-
 				typeWarning(
 					cache._meta.contextRule,
 					`Dans l'expression '${

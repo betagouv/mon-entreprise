@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
 import { FormDecorator } from '../FormDecorator'
 const worker = new Worker()
@@ -11,6 +11,7 @@ function SelectComponent({ setFormValue, submit, options }) {
 		setFormValue(option.text)
 		submit()
 	}
+	const { t } = useTranslation()
 	useEffect(() => {
 		worker.postMessage({
 			options
@@ -38,7 +39,7 @@ function SelectComponent({ setFormValue, submit, options }) {
 						border-color: var(--color);
 					}
 				`}
-				placeholder="Saisissez votre domaine d'activité"
+				placeholder={t("Saisissez votre domaine d'activité")}
 				onChange={e => {
 					let input = e.target.value
 					if (input.length < 2) {
