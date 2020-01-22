@@ -50,35 +50,20 @@ const Footer = () => {
 					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 				/>
 				<div className="ui__ container">
-					{i18n.language === 'fr' && <NewsletterRegister />}
-					<hr className="footer__separator" />
-					{i18n.language === 'en' && (
-						<p className="ui__ notice">
-							This website is provided by the{' '}
-							<a href="https://www.urssaf.fr">Urssaf</a>, the French social
-							security contributions collector, and the government’s public
-							startup incubator, <a href="https://beta.gouv.fr">beta.gouv.fr</a>
-							.
-						</p>
+					{i18n.language === 'fr' && (
+						<>
+							<NewsletterRegister />
+							<hr className="footer__separator" />
+						</>
 					)}
 
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<a href="https://www.facebook.com/monentreprisefr/">
-							<SocialIcon media="facebook" />
-						</a>
-						<a href="https://twitter.com/monentreprisefr">
-							<SocialIcon media="twitter" />
-						</a>
-						<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
-							<SocialIcon media="linkedin" />
-						</a>
-						<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-							<SocialIcon media="email" />
-						</a>
-						<a href="https://github.com/betagouv/mon-entreprise/">
-							<SocialIcon media="github" />
-						</a>
-					</div>
+					{i18n.language === 'en' && (
+						<p className="ui__ notice" css="text-align: center">
+							This website is provided by the{' '}
+							<a href="https://www.urssaf.fr">Urssaf</a>, the French social
+							security contributions collector.
+						</p>
+					)}
 					<p className="ui__ notice" style={{ textAlign: 'center' }}>
 						<LegalNotice />
 						{'  •  '}
@@ -123,6 +108,24 @@ const Footer = () => {
 							</a>
 						))}
 					</p>
+
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
+						<a href="https://www.facebook.com/monentreprisefr/">
+							<SocialIcon media="facebook" />
+						</a>
+						<a href="https://twitter.com/monentreprisefr">
+							<SocialIcon media="twitter" />
+						</a>
+						<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
+							<SocialIcon media="linkedin" />
+						</a>
+						<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+							<SocialIcon media="email" />
+						</a>
+						<a href="https://github.com/betagouv/mon-entreprise/">
+							<SocialIcon media="github" />
+						</a>
+					</div>
 				</div>
 			</footer>
 		</div>
