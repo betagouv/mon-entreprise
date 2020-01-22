@@ -1,5 +1,8 @@
 import { setSimulationConfig, setSituationBranch } from 'Actions/actions'
-import { defineDirectorStatus, isAutoentrepreneur } from 'Actions/companyStatusActions'
+import {
+	defineDirectorStatus,
+	isAutoentrepreneur
+} from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
@@ -15,7 +18,10 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import { analysisWithDefaultsSelector, branchAnalyseSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	branchAnalyseSelector
+} from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
@@ -113,7 +119,9 @@ export default function SchemeComparaison({
 				<div className="indep">
 					<div>
 						{hideAssimiléSalarié ? (
-							<Trans i18nKey="comparaisonRégimes.status.indep.2">EI ou EIRL</Trans>
+							<Trans i18nKey="comparaisonRégimes.status.indep.2">
+								EI ou EIRL
+							</Trans>
 						) : (
 							<Trans i18nKey="comparaisonRégimes.status.indep.1">
 								EI, EIRL, EURL ou SARL avec gérant majoritaire
@@ -122,7 +130,9 @@ export default function SchemeComparaison({
 					</div>
 				</div>
 				<div className="auto">
-					<Trans i18nKey="comparaisonRégimes.status.auto">Auto-entreprise</Trans>
+					<Trans i18nKey="comparaisonRégimes.status.auto">
+						Auto-entreprise
+					</Trans>
 				</div>
 
 				<Trans i18nKey="comparaisonRégimes.AT">
@@ -169,7 +179,7 @@ export default function SchemeComparaison({
 					<>
 						<Trans i18nKey="comparaisonRégimes.ACRE">
 							<h3 className="legend">ACRE</h3>
-							<div className="all">
+							<div className="AS-indep-et-auto">
 								1 an <small>(sous conditions d'éligibilité)</small>
 							</div>
 						</Trans>
@@ -243,7 +253,7 @@ export default function SchemeComparaison({
 								<div className="auto">
 									<Trans>Oui</Trans>
 									<small>
-										(70 000 € en services / 170 000 € en vente de biens,
+										(72 500 € en services / 176 200 € en vente de biens,
 										restauration ou hébergement)
 									</small>
 								</div>
@@ -584,7 +594,9 @@ export default function SchemeComparaison({
 								Entreprise individuelle
 							</Trans>
 						) : (
-							<Trans i18nKey="comparaisonRégimes.choix.indep">Indépendant</Trans>
+							<Trans i18nKey="comparaisonRégimes.choix.indep">
+								Indépendant
+							</Trans>
 						)}
 					</button>
 					{!hideAutoEntrepreneur && (

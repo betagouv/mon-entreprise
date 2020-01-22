@@ -945,12 +945,6 @@ comparaisonRégimes:
     <2> Highly recommended </2>
   indemnités: |
     <0> Sickness allowances</0>
-  plafondCA: |
-    <0> Turnover ceiling</0>
-    <1>No</1>
-    <2>
-      Yes<1>(€70,000  in services, €170,000 for sale of properties, food or accommodation)</1>
-    </2>
   période: |
     <0>Period</0>
   retraite: |
@@ -964,10 +958,6 @@ comparaisonRégimes:
     chartered management centre...)</1></1>
 
     <2> Simplified <1>(can be managed by the auto-entrepreneur)</1></1>
-  ACRE: |
-    <0>ACRE</0>
-    <1>1 year<1>(partial contribution exemption)</1></1>
-    <2>3 years<1>(application of reduced contribution rates)</1></2>
   déduction: |
     <0> Deduction of expenses</0>
     <1>Yes <1>(tax regime of the actual)</1></1>
@@ -1034,6 +1024,10 @@ comparaisonRégimes:
     indep: Independent
     EI: Sole proprietorship
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
+  ACRE: <0>ACRE</0><1>1 year <1>(subject to eligibility requirements)</1></1>
+  plafondCA: >-
+    <0>Turnover ceiling</0><1><0>No</0></1><2><0>Yes</0><1>(72,500 € in services
+    / 176,200 € in the sale of goods, catering or accommodation)</1></2>
 J'ai compris: understood
 trimestres validés: validated quarters
 Année d'activité: Years of activity
@@ -1048,7 +1042,7 @@ Pas implémenté: Not implemented
 Votre entreprise: Your company
 Crée le: Created on
 domiciliée à: domiciled in
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Ressources utiles: Helpful resources
 Aucun résultat: No result$
 inférieurs à: lower than
