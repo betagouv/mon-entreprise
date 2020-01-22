@@ -5,7 +5,7 @@
 */
 
 import { expect } from 'chai'
-import { serialiseUnit } from 'Engine/units'
+import { serializeUnit } from 'Engine/units'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import { enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
@@ -58,7 +58,7 @@ describe('Mécanismes', () =>
 
 									if (unit) {
 										expect(target.unit).not.to.be.equal(undefined)
-										expect(serialiseUnit(target.unit)).to.eql(unit)
+										expect(serializeUnit(target.unit)).to.eql(unit)
 									}
 								})
 						))

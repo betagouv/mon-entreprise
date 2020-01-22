@@ -1,5 +1,7 @@
 import { updateUnit } from 'Actions/actions'
+import { parseUnit, serializeUnit } from 'Engine/units'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { defaultUnitsSelector } from 'Selectors/analyseSelectors'
 import './PeriodSwitch.css'
@@ -7,9 +9,8 @@ import './PeriodSwitch.css'
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
 	const currentUnit = useSelector(defaultUnitsSelector)[0]
-
+	const language = useTranslation().i18n.language
 	let units = ['€/mois', '€/an']
-
 	return (
 		<span id="PeriodSwitch">
 			<span className="base ui__ small toggle">
@@ -22,7 +23,7 @@ export default function PeriodSwitch() {
 							onChange={() => dispatch(updateUnit(unit))}
 							checked={currentUnit === unit}
 						/>
-						<span>{unit}</span>
+						<span>{serializeUnit(parseUnit(unit), 1, language)}</span>
 					</label>
 				))}
 			</span>

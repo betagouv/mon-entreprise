@@ -241,7 +241,6 @@ const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
 export let rules = translateAll(translations, rulesList).map(rule =>
 	enrichRule(rule)
 )
-
 export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
 export let findParentDependencies = (rules, rule) => {

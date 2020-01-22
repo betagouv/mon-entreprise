@@ -2,7 +2,7 @@ import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
 import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
-import { serialiseUnit } from 'Engine/units'
+import { serializeUnit } from 'Engine/units'
 import { is, pick, prop, unless } from 'ramda'
 import React from 'react'
 import DateInput from '../components/conversation/DateInput'
@@ -57,7 +57,7 @@ export default rules => dottedName => {
 	return (
 		<Input
 			{...commonProps}
-			unit={serialiseUnit(rule.unit || rule.defaultUnit)}
+			unit={serializeUnit(rule.unit || rule.defaultUnit)}
 		/>
 	)
 }

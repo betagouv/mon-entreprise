@@ -3,7 +3,7 @@ import { ShowValuesContext } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
 import { numberFormatter } from 'Engine/format'
 import { trancheValue } from 'Engine/mecanisms/barème'
-import { inferUnit, serialiseUnit } from 'Engine/units'
+import { inferUnit, serializeUnit } from 'Engine/units'
 import { identity } from 'ramda'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
@@ -208,7 +208,7 @@ function TrancheFormatter({
 	if (!multiplicateurAcronym) {
 		return numberFormatter({
 			language,
-			style: serialiseUnit(tranchesUnit) === '€' ? 'currency' : undefined
+			style: serializeUnit(tranchesUnit) === '€' ? 'currency' : undefined
 		})(value)
 	} else {
 		return (

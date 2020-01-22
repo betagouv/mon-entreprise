@@ -2,7 +2,7 @@ import { typeWarning } from 'Engine/error'
 import { evaluateNode, makeJsx, mergeMissing } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
-import { inferUnit, serialiseUnit } from 'Engine/units'
+import { inferUnit, serializeUnit } from 'Engine/units'
 import { curry, map } from 'ramda'
 import React from 'react'
 import { convertToDateIfNeeded } from '../date.ts'
@@ -30,13 +30,15 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 					node1 = convertNodeToUnit(node2.unit, node1)
 				}
 			} catch (e) {
+				console.log(serializeUnit(node1.unit), node1.unit)
+
 				typeWarning(
 					cache._meta.contextRule,
 					`Dans l'expression '${
 						node.operator
-					}', la partie gauche (unité: ${serialiseUnit(
+					}', la partie gauche (unité: ${serializeUnit(
 						node1.unit
-					)}) n'est pas compatible avec la partie droite (unité: ${serialiseUnit(
+					)}) n'est pas compatible avec la partie droite (unité: ${serializeUnit(
 						node2.unit
 					)})`,
 					e
