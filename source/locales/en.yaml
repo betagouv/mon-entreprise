@@ -85,6 +85,8 @@ Changer: Change
 Continuer: Continue
 quicklinks:
   CDI: Permanent
+  Impôt sur le revenu: Income tax
+  Date de création: Creation date
   Commune: Town
   JEI: Innovating company (JEI)
   CDD: Fixed-term
@@ -1042,7 +1044,7 @@ Pas implémenté: Not implemented
 Votre entreprise: Your company
 Crée le: Created on
 domiciliée à: domiciled in
-'Nom de l''entreprise ou SIREN ': Company name or SIREN code
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Ressources utiles: Helpful resources
 Aucun résultat: No result$
 inférieurs à: lower than

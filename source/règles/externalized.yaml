@@ -1338,12 +1338,6 @@ entreprise . effectif . seuil:
   titre.fr: seuil d'effectif
   question.en: What is the workforce of the company?
   question.fr: Quel est l'effectif de l'entreprise ?
-  description.fr: |
-    De nombreuses cotisations patronales varient selon l'effectif de
-    l'entreprise.
-
-    Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
-    atteint ou dépassé pendant 5 années civiles consécutives.
   description.en: >
     [automatic] Many employer contributions vary depending on the size of the
     workforce.
@@ -1354,6 +1348,12 @@ entreprise . effectif . seuil:
     The crossing of a threshold upwards is only taken into account if it is
 
     reached or exceeded for 5 consecutive calendar years.
+  description.fr: |
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+
+    Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
+    atteint ou dépassé pendant 5 années civiles consécutives.
 entreprise . effectif . seuil . moins de 5:
   titre.en: less than 5
   titre.fr: moins de 5
@@ -2298,14 +2298,6 @@ impôt . CEHR:
 entreprise . date de création:
   question.en: When did you create your company?
   question.fr: Quelle est la date de début d'activité ?
-  description.en: |
-    déclaration de votre entreprise.  
-
-    Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
-    automatiquement cette information.
-
-    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
-    approximation.
   description.fr: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.  
@@ -2331,6 +2323,22 @@ entreprise . date de création:
     mistake in the seizure?
   titre.en: Creation date
   titre.fr: date de création
+  description.en: >
+    [automatic] The activity start date (or creation date) is set at the time of
+    the
+
+    declaration of your company.  
+
+
+    You can [fill in your company](/manage), in order to pre-fill in the
+    following fields
+
+    automatically this information.
+
+
+    If you don't have the exact day, the month is usually enough for a good
+
+    approximation.
 entreprise . durée d'activité:
   titre.en: length of service
   titre.fr: durée d'activité
@@ -2571,20 +2579,6 @@ dirigeant . indépendant . revenu professionnel:
 dirigeant . indépendant . conjoint collaborateur:
   question.en: Do you have a collaborating spouse?
   question.fr: Avez-vous un conjoint collaborateur ?
-  description.en: >
-    moyennant le paiement de cotisations sociales supplémantaires. 
-
-    Pour en bénéficier, l'époux(se) ou partenaire de Pacs du dirigeant doit:
-
-    - exercer une activité professionnelle régulière et habituelle dans
-    l'entreprise 
-
-    - faire l'objet d'une mention au RCS pour les commerçants ou au répertoire
-    des métiers (RM) pour les artisans 
-
-    - ne pas être rémunéré 
-
-    - ne pas être associé de la société.
   description.fr: >
     Permet au conjoint du dirigeant d'être couvert par la protection sociale
     moyennant le paiement de cotisations sociales supplémantaires. 
@@ -2602,6 +2596,20 @@ dirigeant . indépendant . conjoint collaborateur:
     - ne pas être associé de la société.
   titre.en: collaborating spouse
   titre.fr: conjoint collaborateur
+  description.en: >
+    [automatic] Allows the executive's spouse to be covered by social protection
+    by paying additional social security contributions. 
+
+    In order to benefit from it, the officer's spouse or Pacs partner must:
+
+    - carry out a regular and customary professional activity in the company 
+
+    - be listed in the RCS for merchants or in the Répertoire des métiers (RM)
+    for craftspeople 
+
+    - go unremunerated 
+
+    - not be a partner in the company.
 dirigeant . indépendant . conjoint collaborateur . assiette:
   question.en: On what basis does the spouse contribute?
   question.fr: Sur quelle base le conjoint cotise-t'il ?
@@ -2641,15 +2649,16 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
   titre.en: split income
   titre.fr: revenu avec partage
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description.en: >-
-    une base d'un pourcentage du revenu professionnel du gérant de l'entreprise
-    (un tiers ou la moitié).
   description.fr: >-
     Le conjoint collaborateur paiera des cotisations sociales calculées sur une
     base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un
     tiers ou la moitié).
   titre.en: undivided income
   titre.fr: revenu sans partage
+  description.en: >-
+    [automatic] The collaborating spouse will pay social security contributions
+    calculated on the basis of a percentage of the professional income of the
+    manager of the company (one third or one half).
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
   question.en: What proportion of income does the spouse contribute?
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
@@ -3258,6 +3267,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre.en: ZFU exemption rate
   titre.fr: taux exonération ZFU
 situation personnelle . domiciliation fiscale à l'étranger:
+  description.en: >
+    [automatic] These insured persons are not liable for the CSG/CRDS but, in
+    return, they are liable for the health contribution at a higher rate.
   description.fr: >
     Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils
     sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
@@ -3265,22 +3277,19 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
   titre.en: tax domicile abroad
   titre.fr: domiciliation fiscale à l'étranger
-  description.en: >
-    [automatic] These insured persons are not liable for the CSG/CRDS but, in
-    return, they are liable for the health contribution at a higher rate.
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
   titre.en: Illness (tax domicile abroad)
   titre.fr: Maladie (domiciliation fiscale à l'étranger)
-  description.fr: >-
-    En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie
-    plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne
-    bénéficient pas de la réduction du taux de la cotisation maladie en fonction
-    du revenu déclaré.
   description.en: >-
     [automatic] In return for the CSG exemption, contributors have a higher
     sickness rate. Unlike other insured tradesmen/artisans, they do not benefit
     from the reduction of the health contribution rate according to their
     declared income.
+  description.fr: >-
+    En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie
+    plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne
+    bénéficient pas de la réduction du taux de la cotisation maladie en fonction
+    du revenu déclaré.
 contrat salarié . maladie . taux domiciliation fiscale étranger:
   titre.en: employee rate (tax domicile abroad)
   titre.fr: taux salarié (domiciliation fiscale à l'étranger)
@@ -4507,10 +4516,6 @@ artiste-auteur . cotisations:
   titre.en: contributions
   titre.fr: cotisations
 artiste-auteur . cotisations . assiette:
-  description.en: >-
-    traitements et salaires, soit comme des bénéfices non commerciaux. Les
-    cotisations sociales sont payées sur la somme des revenus de ces deux
-    catégories.
   description.fr: >-
     Les revenus des artistes-auteurs peuvent être catégorisés soit comme des
     traitements et salaires, soit comme des bénéfices non commerciaux. Les
@@ -4518,6 +4523,10 @@ artiste-auteur . cotisations . assiette:
     catégories.
   titre.en: base
   titre.fr: assiette
+  description.en: >-
+    [automatic] Artists' earnings can be categorized either as wages and
+    salaries or as non-commercial profits. Social security contributions are
+    paid on the sum of the incomes of these two categories.
 artiste-auteur . cotisations . option surcotisation:
   question.en: Would you like to over-contribute?
   question.fr: Souhaitez-vous surcotiser ?
