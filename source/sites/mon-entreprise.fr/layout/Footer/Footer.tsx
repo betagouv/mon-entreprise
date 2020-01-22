@@ -6,6 +6,7 @@ import { lensPath, view } from 'ramda'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import SocialIcon from 'Ui/SocialIcon'
 import i18n, { AvailableLangs } from '../../../../i18n'
@@ -49,10 +50,8 @@ const Footer = () => {
 					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 				/>
 				<div className="ui__ container">
-					<NewsletterRegister />
-
+					{i18n.language === 'fr' && <NewsletterRegister />}
 					<hr className="footer__separator" />
-
 					{i18n.language === 'en' && (
 						<p className="ui__ notice">
 							This website is provided by the{' '}
@@ -104,7 +103,7 @@ const Footer = () => {
 						<a href="https://mon-entreprise.fr/stats">Stats</a>
 						{'  •  '}
 						<Link to={sitePaths.integration.index}>
-							Intégrer nos simulateurs
+							<Trans>Intégrer nos simulateurs</Trans>
 						</Link>
 
 						{!!hrefLink.length && '  •  '}

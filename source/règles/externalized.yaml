@@ -969,10 +969,10 @@ contrat salarié . statut cadre:
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   description.en: >
-    An executive is an employee or officer of an enterprise belonging to the
-    upper category of employees. This is a status recognized by collective
-    agreements, which determines membership of a specific pension fund, AGIRC,
-    and some specific terms of the employment contract.
+    A "cadre" is an employee or officer of an enterprise belonging to the upper
+    category of employees. This is a status recognized by collective agreements,
+    which determines membership of a specific pension fund, AGIRC, and some
+    specific terms of the employment contract.
 
 
     Initially recognising the technical skills and managerial role of the
@@ -4455,7 +4455,7 @@ artiste-auteur . revenus . BNC . micro-bnc:
   résumé.en: 34% flat-rate tax allowance for business expenses
   résumé.fr: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 artiste-auteur . revenus . BNC . recettes:
-  titre.en: Income in NBC
+  titre.en: Income in "NBC"
   titre.fr: Revenu en BNC
   résumé.en: The amount of your gross revenue excluding VAT
   résumé.fr: Le montant de vos recettes brutes hors TVA
@@ -4491,15 +4491,16 @@ artiste-auteur . cotisations . assiette:
 artiste-auteur . cotisations . option surcotisation:
   question.en: Would you like to over-contribute?
   question.fr: Souhaitez-vous surcotiser ?
-  résumé.en: >-
-    trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos
-    droits.
   résumé.fr: >-
     Vos revenus sont en dessous des seuils vous permettant de valider 4
     trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos
     droits.
   titre.en: overcontribution option
   titre.fr: option surcotisation
+  résumé.en: >-
+    [automatic] Your income is below the thresholds allowing you to validate 4
+    quarters of retirement. You can choose to overcontribute to increase your
+    entitlements.
 artiste-auteur . cotisations . assiette surcotisation:
   titre.en: over-contribution base
   titre.fr: assiette surcotisation

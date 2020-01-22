@@ -91,23 +91,21 @@ export default function Simulateurs() {
 							</p>
 						</Trans>
 					</Link>
-					{i18n.language === 'fr' && (
-						<Link
-							className="ui__ interactive card box"
-							to={{
-								state: { fromSimulateurs: true },
-								pathname: sitePaths.simulateurs['artiste-auteur']
-							}}
-						>
-							<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-							<Trans i18nKey="simulateurs.accueil.salarié">
-								<h3>Artiste-auteur</h3>
-								<p className="ui__ notice" css="flex: 1">
-									Estimer les cotisations sociales d'un artiste ou auteur
-								</p>
-							</Trans>
-						</Link>
-					)}
+					<Link
+						className="ui__ interactive card box"
+						to={{
+							state: { fromSimulateurs: true },
+							pathname: sitePaths.simulateurs['artiste-auteur']
+						}}
+					>
+						<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
+						<Trans i18nKey="simulateurs.accueil.artiste-auteur">
+							<h3>Artiste-auteur</h3>
+							<p className="ui__ notice" css="flex: 1">
+								Estimer les cotisations sociales d'un artiste ou auteur
+							</p>
+						</Trans>
+					</Link>
 					<Link
 						className="ui__ interactive card box"
 						to={{

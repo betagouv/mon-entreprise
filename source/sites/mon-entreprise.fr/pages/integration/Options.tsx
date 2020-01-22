@@ -8,35 +8,59 @@ import illustration from './illustration.png'
 export default function Options() {
 	const sitePaths = useContext(SitePathsContext)
 	return (
-		<section id="integration">
-			<div>
-				<h1 css="margin-bottom: 0">
+		<>
+			<h1 css="margin-bottom: 0">
+				<Trans i18nKey="page.développeurs.titre">
 					Intégrez le droit de la sécurité sociale au coeur de vos outils
-				</h1>
-				<div css="text-align: center; ">
-					<img css="height: 250px" src={illustration} />
-				</div>
-				<p>
+				</Trans>
+			</h1>
+			<div css="text-align: center; ">
+				<img css="height: 250px" src={illustration} />
+			</div>
+			<p>
+				<Trans i18nKey="pages.développeurs.description">
 					En plus du site mon-entreprise.fr, nous développons des outils
 					gratuits et libres à intégrer directement chez vous, dans les parcours
 					habituels de vos utilisateurs.
-				</p>
-				<Link className="ui__ button-choice" to={sitePaths.integration.iframe}>
-					{emoji('📱')} <Trans>Intégrer l'interface de simulation</Trans>
-				</Link>
-				<p>Intégrer l'un de nos simulateurs en un clic dans votre site Web.</p>
-				<br />
+				</Trans>
+			</p>
+			<section className="ui__ center-flex">
 				<Link
-					className="ui__ button-choice "
+					className="ui__ interactive card box light-bg"
+					css="flex: 1"
+					to={sitePaths.integration.iframe}
+				>
+					<div className="ui__ big box-icon">{emoji('📱')}</div>
+					<Trans i18nKey="pages.développeurs.choice.iframe">
+						<h3>Intégrer un simulateur</h3>
+						<p className="ui__ notice" css="flex: 1">
+							Intégrer l'un de nos simulateurs en un clic dans votre site Web,
+							via un script clé en main.
+						</p>
+					</Trans>
+					<div className="ui__ small simple button">
+						<Trans>Commencer</Trans>
+					</div>
+				</Link>
+				<Link
+					className="ui__ interactive card box light-bg"
+					css="flex: 1"
 					to={sitePaths.integration.library}
 				>
-					{emoji('🧰')} <Trans>Intégrer la bibliothèque de calcul</Trans>
+					<div className="ui__ big box-icon">{emoji('🧰')}</div>
+					<Trans i18nKey="pages.développeurs.choice.library">
+						<h3>Utiliser le moteur de calcul</h3>
+						<p className="ui__ notice" css="flex: 1">
+							L'intégralité du moteur de calcul socio-fiscal développé par
+							l'Urssaf, mis à disposition librement sous forme de bibliothèque
+							NPM.
+						</p>
+					</Trans>
+					<div className="ui__ small simple button">
+						<Trans>Commencer</Trans>
+					</div>
 				</Link>
-				<p css="margin-top: -1em">
-					Intégrer les calculs sans l'interface dans votre site Web ou sur votre
-					serveur, via une bibliothèque NPM.
-				</p>
-			</div>
-		</section>
+			</section>
+		</>
 	)
 }
