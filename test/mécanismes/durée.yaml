@@ -1,8 +1,8 @@
-- nom: date de création
+date de création:
   type: date
   question: quelle est la date de création ?
 
-- test: durée entre deux dates
+durée entre deux dates:
   unité: jours
   formule:
     durée:

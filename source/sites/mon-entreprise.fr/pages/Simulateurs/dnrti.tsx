@@ -98,9 +98,10 @@ export default function DNRTI() {
 
 function SubSection({ dottedName: sectionDottedName, sectionTitle }) {
 	const flatRules = useSelector(flatRulesSelector)
-	const title = sectionTitle ?? useRule(sectionDottedName)?.title
+	const ruleTitle = useRule(sectionDottedName)?.title
 	const nextSteps = useSelector(nextStepsSelector)
 	const situation = useSelector(situationSelector)
+	const title = sectionTitle || ruleTitle
 
 	const subQuestions = flatRules
 		.filter(
