@@ -8,10 +8,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	defaultUnitsSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector, defaultUnitsSelector } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 
 class ErrorBoundary extends React.Component {
@@ -44,27 +41,27 @@ export default function SalaryExplanation() {
 						<PaySlipSection />
 					</>
 				) : (
-					<>
-						<RevenueRepatitionSection />
-						<div css="text-align: center">
-							<button
-								className="ui__ small simple button"
-								onClick={() =>
-									distributionRef.current?.scrollIntoView({
-										behavior: 'smooth',
-										block: 'start'
-									})
-								}
-							>
-								{emoji('📊')} <Trans>Voir la répartition des cotisations</Trans>
-							</button>
-						</div>
-						<PaySlipSection />
-						<div ref={distributionRef}>
-							<DistributionSection />
-						</div>
-					</>
-				)}
+						<>
+							<RevenueRepatitionSection />
+							<div css="text-align: center">
+								<button
+									className="ui__ small simple button"
+									onClick={() =>
+										distributionRef.current?.scrollIntoView({
+											behavior: 'smooth',
+											block: 'start'
+										})
+									}
+								>
+									{emoji('📊')} <Trans>Voir la répartition des cotisations</Trans>
+								</button>
+							</div>
+							<PaySlipSection />
+							<div ref={distributionRef}>
+								<DistributionSection />
+							</div>
+						</>
+					)}
 				<br />
 				<p className="ui__ notice">
 					<Trans i18nKey="payslip.notice">
@@ -114,7 +111,7 @@ function RevenueRepatitionSection() {
 					},
 					{
 						...getRule('impôt'),
-						title: t('quicklinks.Impôt'),
+						title: t('impôt'),
 						color: palettes[1][0]
 					},
 					{
@@ -136,8 +133,8 @@ function PaySlipSection() {
 				{unit?.endsWith('mois') ? (
 					<Trans>Fiche de paie</Trans>
 				) : (
-					<Trans>Détail annuel des cotisations</Trans>
-				)}
+						<Trans>Détail annuel des cotisations</Trans>
+					)}
 			</h2>
 			<PaySlip />
 		</section>
