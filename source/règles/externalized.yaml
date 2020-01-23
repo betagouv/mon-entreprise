@@ -326,7 +326,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -409,7 +409,30 @@ contrat salarié . CDD . motif . classique . mission:
   titre.en: Mission contract
   titre.fr: Contrat de mission
 contrat salarié . CDD . motif . classique . remplacement:
-  description.en: Replacement of an employee. A list of precise cases is defined by the law.
+  description.en: >
+    [automatic] We group the following cases in this category.
+
+
+    - Replacing an employee in case of :
+      - Absence;
+      - A temporary changeover to part-time work, concluded by an amendment to the contract of employment or by a written exchange between the employee and his employer;
+      - Suspension of his employment contract;
+      - Permanent departure prior to the elimination of his workstation after consultation with the works council or, failing that, with the employee delegates, if any;
+      - Waiting for the actual entry into service of the employee recruited on a permanent contract to replace him/her;
+
+    - Replacement of the head of a craft, industrial or commercial undertaking,
+    of a person exercising a liberal profession, of his or her spouse actually
+    participating in the activity of the undertaking in a professional and usual
+    capacity, or of a self-employed member of a professional partnership, of a
+    partnership of means of a company exercising a liberal profession or of any
+    other legal person exercising a liberal profession ;
+
+
+    - Replacement of the head of a farm or business mentioned in 1° to 4° of
+    Article L. 722-1 of the Rural and Maritime Fishing Code, of a family helper,
+    of a farm partner, or of their spouse mentioned in Article L. 722-10 of the
+    same Code, as long as he or she actually participates in the activity of the
+    farm or business;
   description.fr: >
     Nous regroupons dans cette catégorie les cas suivants.
 
@@ -509,12 +532,19 @@ contrat salarié . CDD . prime de fin de contrat:
   titre.en: End of contract bonus
   titre.fr: prime de fin de contrat
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
-  description.en: |
-    forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
-    taxe est de décourager le recours excessif aux contrats courts.
+  description.en: >
+    [automatic] As of January 1, 2020, the employer must pay a tax
 
-    Certains secteurs d'activités définis dans le code du travail ne sont pas
-    concernés par cette taxe.
+    for each conclusion of a customary fixed-term contract. The objective of
+    this
+
+    tax is to discourage the excessive use of short contracts.
+
+
+    Certain sectors of activity defined in the Labour Code are not defined in
+    the Labour Code.
+
+    concerned by this tax.
   description.fr: |
     À compter du 1er janvier 2020, l'employeur doit s'acquiter d'une taxe
     forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
@@ -674,7 +704,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -766,7 +796,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
+  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -961,12 +991,12 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -1823,7 +1853,7 @@ contrat salarié . réduction générale . assiette:
   titre.fr: Assiette de la réduction générale
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
   note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: "En pratique, l'ATMP est toujours supérieure à 0.78%"
+  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
   titre.en: share of ATMP contribution
   titre.fr: part de la cotisation ATMP
 contrat salarié . réduction générale . multiplicateur:
@@ -2419,7 +2449,7 @@ contrat salarié . statut cadre:
 
     It is an ill-defined concept, meaning different concepts depending on the
     point of view considered - whether in terms of status, social
-    representation, role in the company or culture.
+    representation, role in the company or culture. 
   description.fr: >
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
@@ -2436,7 +2466,7 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture.
+    représentation sociale, de rôle dans l'entreprise ou de culture. 
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   titre.en: cadre status
@@ -2883,8 +2913,8 @@ dirigeant . auto-entrepreneur . net après impôt:
     social. 
 
 
-    **Caution:** To properly assess the profitability of the business, you
-    should not
+    **Caution:** To properly assess the profitability of the business, you must
+    not
 
     forget to subtract from this amount the expenses incurred in the context of
 
@@ -2898,7 +2928,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - Renting a room 
 
-    - and so on.
+    - and so on.  
   description.fr: >
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
     revenu et des cotisations
@@ -2921,7 +2951,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - La location d'un local 
 
-    - etc...
+    - etc...  
   question.en: What is the desired net after-tax income?
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: Before deducting expenses related to the activity
@@ -3276,14 +3306,14 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   titre.fr: Maladie (domiciliation fiscale à l'étranger)
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie profession libérale:
   note.en: >-
-    The liberal professions do not pay the part corresponding to the
-    daily allowances and are therefore not entitled to these allowances in the
-    event of illness.
+    The liberal professions do not pay the part corresponding to the daily
+    allowances and are therefore not entitled to these allowances in the event
+    of illness.
   note.fr: >-
     Les professions libérales ne cotisent pour la part correspondante aux
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas
     de maladie.
-  titre.en: 'health contribution liberal profession'
+  titre.en: health contribution liberal profession
   titre.fr: maladie profession libérale
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   titre.en: supplementary pension
@@ -3323,19 +3353,20 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
   titre.fr: PSS proratisé
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
   description.en: >
-    entière, 
+    [automatic] Since the calculation of self-employed contributions is made
+    over the entire year, 
 
-    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur
-    l'année courante.
-
-
-    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du
-    prorata pour les
-
-    cotisations 2019 sera le suivant :
+    the exemption is prorated according to the effective duration of the ACRE
+    over the current year.
 
 
-    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
+    For example, for a company created on February 1, 2018, the prorated
+    calculation for the
+
+    2019 dues will be as follows :
+
+
+    31 days of acreage remaining in 2019 / 365 days = 8.5%.
   description.fr: >
     Comme le calcul des cotisations indépendants s'effectue sur l'année
     entière, 
@@ -3375,7 +3406,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . invali
   titre.en: disability
   titre.fr: invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
-  description.en: personnes qui en bénéficiait avant son abbrogation.
+  description.en: >-
+    [automatic] This scheme was discontinued in 2015, but is still active for
+    those who benefited from it before its repeal.
   description.fr: >-
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour les
     personnes qui en bénéficiait avant son abbrogation.
@@ -3436,16 +3469,17 @@ dirigeant . indépendant . revenu professionnel:
   titre.fr: revenu professionnel (net imposable)
 dirigeant . indépendant . revenus étrangers:
   description.en: >
-    indépendants pour des revenus perçus au titre de l’exercice d’une activité
-    non salariée dans un autre Etat de l’UE, EEE ou en Suisse à l’étranger.  
+    [automatic] Foreign income is income declared by self-employed persons in
+    respect of income received from self-employment in another EU/EEA country or
+    in Switzerland abroad.  
 
-    Ces revenus ne sont soumis qu’aux cotisations et sont intégrés à l’assiette
-    sociale. Par contre, ces revenus sont identifiés spécifiquement afin de les
-    déduire de l’assiette de la CSG/CRDS. 
+    This income is subject only to contributions and is included in the social
+    security base. However, these revenues are specifically identified in order
+    to deduct them from the CSG/CRDS base. 
 
-    Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous
-    à la notice explicative sur le site
-    [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
+    To find out whether this income is subject to income tax, please refer to
+    the explanatory note on the website
+    [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere).
   description.fr: >
     Les revenus étrangers sont des revenus déclarés par les travailleurs
     indépendants pour des revenus perçus au titre de l’exercice d’une activité
@@ -3469,10 +3503,11 @@ dirigeant . indépendant . revenus étrangers . montant:
   titre.fr: revenus perçu à l'étranger
 dirigeant . rattachement CIPAV:
   description.en: >
-    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
-    plus le cas pour les auto-entrepreneurs (2019 pour les entreprise
-    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
-    donc dépendent de la sécurité sociale des indépendants.
+    [automatic] The unregulated liberal enterprises created were attached to the
+    regulated ones for the calculation of social security contributions. Since
+    2018 this is no longer the case for self-employed people (2019 for sole
+    proprietorships). They are now attached to the craftsmen-traders, therefore
+    dependent on the social security of the self-employed.
   description.fr: >
     Les entreprises libérales non règlementées créées étaient rattachées aux
     règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
@@ -3482,7 +3517,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . retraite complémentaire:
@@ -3795,7 +3830,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -3917,7 +3952,7 @@ entreprise . convention collective:
   titre.en: union contract
   titre.fr: convention collective
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -4111,7 +4146,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
@@ -4775,17 +4810,15 @@ situation personnelle:
   titre.fr: situation personnelle
 situation personnelle . IJSS:
   description.en: >
-    sociale ainsi que les régimes spéciaux assurent le versement de prestations
-    « en espèces ». Ce sont les indemnités journalières de Sécurité sociale
-    (IJSS),
+    [automatic] In the event of illness, maternity or accident, the general
+    social security system and special schemes provide "cash" benefits. These
+    are per diems from Social Security (IJSS),
 
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité
-    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
-    des revenus de remplacement.
+    Compensation in addition to the Social Security daily allowances paid under
+    a provident fund contract does not constitute replacement income.
 
 
-    Note: Les prestations d’invalidité versées par les régimes
-    d’invalidité-décès ne sont pas concernées
+    Note: Disability benefits paid by disability/death plans are not affected.
   description.fr: >
     En cas de maladie, maternité, ou accident, le régime général de Sécurité
     sociale ainsi que les régimes spéciaux assurent le versement de prestations
@@ -4807,15 +4840,13 @@ situation personnelle . IJSS:
   titre.fr: indemnités journalières de sécurité sociale
 situation personnelle . IJSS . ALD:
   description.en: >-
-    2004 relative à l'assurance maladie. Ce statut offre aux personnes malades
-    chroniques qui remplissent certaines conditions une prise en charge
-    spécifique de leurs soins médicaux. L'affection longue durée est une maladie
-    de longue durée, présentant un caractère grave ou chronique et nécessitant
-    un traitement long dont le coût est élevé. La liste des ALD dites
-    "exonérante" est disponible sur le site
+    [automatic] Long-term affection (ALD) is introduced by the Law of 13 August
+    2004 on health insurance. This status offers chronically ill people who meet
+    certain conditions specific medical care. Long-term condition is a
+    long-term, severe or chronic illness requiring long-term treatment at high
+    cost. The list of "exempt" DTAs is available on the website
     [ameli.fr](https://www.ameli.fr/assure/droits-demarches/maladie-accident-hospitalisation/affection-longue-duree-ald/affection-longue-duree-ald)
-    Les indemnité versée dans le cadre d'une ALD dites "éxonérante" ne sont pas
-    imposable.
+    Compensation paid under an "exempt" DTA is not taxable.
   description.fr: >-
     L'affection longue durée (ALD) est mise en place par la loi du 13 août 2004
     relative à l'assurance maladie. Ce statut offre aux personnes malades
