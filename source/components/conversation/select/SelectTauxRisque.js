@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
-import { FormDecorator } from '../FormDecorator'
 const worker = new Worker()
 
-function SelectComponent({ setFormValue, submit, options }) {
+function SelectComponent({ onChange, onSubmit, options }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = option => {
 		option.text = +option['Taux net'].replace(',', '.')
-		setFormValue(option.text)
-		submit()
+		onChange(option.text)
+		onSubmit()
 	}
 	const { t } = useTranslation()
 	useEffect(() => {
@@ -131,7 +130,7 @@ function SelectComponent({ setFormValue, submit, options }) {
 	)
 }
 
-export default FormDecorator('select')(function Select(props) {
+export default function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
@@ -154,4 +153,4 @@ export default FormDecorator('select')(function Select(props) {
 
 	if (!options) return null
 	return <SelectComponent {...props} options={options} />
-})
+}
