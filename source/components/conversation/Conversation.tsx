@@ -1,6 +1,6 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
-import InputComponent from 'Engine/InputComponent'
+import InputComponent from 'Engine/RuleInput'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'

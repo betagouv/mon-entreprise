@@ -4,14 +4,16 @@ import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import 'Components/TargetSelection.css'
-import { Field } from 'Engine/field'
 import { formatValue } from 'Engine/format'
+import InputComponent from 'Engine/RuleInput'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
+	flatRulesSelector,
 	parsedRulesSelector,
 	ruleAnalysisSelector,
 	situationSelector
@@ -78,6 +80,8 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
 	const initialRender = useContext(InitialRenderContext)
+	const flatRules = useSelector(flatRulesSelector)
+	const value = useSelector(situationSelector)[dottedName]
 
 	const onChange = x => dispatch(updateSituation(dottedName, x))
 
@@ -96,10 +100,14 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 						</label>
 					</div>
 					<div className="targetInputOrValue">
-						<Field
+						<InputComponent
+							className="targetInput"
+							isTarget
 							dottedName={dottedName}
+							rules={flatRules}
+							value={value}
 							onChange={onChange}
-							useSwitch={true}
+							useSwitch
 						/>
 					</div>
 				</div>

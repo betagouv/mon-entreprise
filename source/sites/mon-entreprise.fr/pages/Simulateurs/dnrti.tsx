@@ -2,7 +2,7 @@ import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
-import InputComponent from 'Engine/InputComponent'
+import InputComponent from 'Engine/RuleInput'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -76,14 +76,14 @@ export default function DNRTI() {
 					<SimpleField dottedName="établissement . ZFU" />
 					<SubSection
 						dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-						sectionTitle={false}
+						hideTitle
 					/>
 
 					<h3>International</h3>
 					<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
 					<SubSection
 						dottedName="dirigeant . indépendant . revenus étrangers"
-						sectionTitle={false}
+						hideTitle
 					/>
 					{/* <h3>DOM - Départements d'Outre-Mer</h3>
 						<p>
@@ -96,12 +96,19 @@ export default function DNRTI() {
 	)
 }
 
-function SubSection({ dottedName: sectionDottedName, sectionTitle }) {
+type SubSectionProp = {
+	dottedName: DottedName
+	hideTitle?: boolean
+}
+function SubSection({
+	dottedName: sectionDottedName,
+	hideTitle = false
+}: SubSectionProp) {
 	const flatRules = useSelector(flatRulesSelector)
 	const ruleTitle = useRule(sectionDottedName)?.title
 	const nextSteps = useSelector(nextStepsSelector)
 	const situation = useSelector(situationSelector)
-	const title = sectionTitle || ruleTitle
+	const title = hideTitle ? null : ruleTitle
 
 	const subQuestions = flatRules
 		.filter(

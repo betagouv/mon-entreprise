@@ -8,7 +8,7 @@ import './CurrencyInput.css'
 type CurrencyInputProps = NumberFormatProps & {
 	value?: string | number
 	debounce?: number
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 	currencySymbol?: string
 	language?: Parameters<typeof currencyFormat>[0]
 }
@@ -18,6 +18,7 @@ export default function CurrencyInput({
 	debounce: debounceTimeout,
 	currencySymbol = '€',
 	onChange,
+	onSubmit,
 	language,
 	className,
 	...forwardedProps

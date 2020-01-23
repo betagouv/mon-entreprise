@@ -25,7 +25,7 @@ import SendButton from './SendButton'
 export default function Question({
 	choices,
 	onSubmit,
-	fieldName,
+	dottedName,
 	onChange,
 	value: currentValue
 }) {
@@ -57,7 +57,7 @@ export default function Question({
 		// seront stockées ainsi dans le state :
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = radioDottedName =>
-			radioDottedName.split(fieldName + ' . ')[1]
+			radioDottedName.split(dottedName + ' . ')[1]
 
 		return (
 			<ul css="width: 100%">
