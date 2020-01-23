@@ -21,7 +21,10 @@ Object.entries(missingTranslations)
 				translation,
 				translatedKeys
 			)
-			fs.writeFileSync(UiTranslationPath, safeDump(translatedKeys))
+			fs.writeFileSync(
+				UiTranslationPath,
+				safeDump(translatedKeys, { sortKeys: true })
+			)
 		} catch (e) {
 			console.log(e)
 		}

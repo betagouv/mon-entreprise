@@ -9,6 +9,19 @@ let { safeLoad } = require('js-yaml')
 let rulesTranslationPath = path.resolve('source/règles/externalized.yaml')
 let UiTranslationPath = path.resolve('source/locales/en.yaml')
 
+// TODO: This should be shared with the variable exported by Engine/rules, but
+// it's currently not possible because a NodeJS script can't use "import"
+// statements
+let attributesToTranslate = [
+	'titre',
+	'description',
+	'question',
+	'résumé',
+	'suggestions',
+	'contrôles',
+	'note'
+]
+
 function getRulesMissingTranslations() {
 	let rules = safeLoad(
 		fs.readFileSync(path.resolve('source/règles/base.yaml'), 'utf-8')
@@ -17,15 +30,6 @@ function getRulesMissingTranslations() {
 	let currentExternalization = safeLoad(
 		fs.readFileSync(rulesTranslationPath, 'utf-8')
 	)
-
-	let attributesToExternalize = [
-		'titre',
-		'description',
-		'question',
-		'résumé',
-		'suggestions',
-		'contrôles'
-	]
 
 	let missingTranslations = []
 	let resolved = Object.entries(rules)
@@ -40,7 +44,7 @@ function getRulesMissingTranslations() {
 				R.toPairs(rule)
 					.filter(([, v]) => !!v)
 					.map(([k, v]) => {
-						let attrToTranslate = attributesToExternalize.find(R.equals(k))
+						let attrToTranslate = attributesToTranslate.find(R.equals(k))
 						if (!attrToTranslate) return {}
 						let enTrad = attrToTranslate + '.en',
 							frTrad = attrToTranslate + '.fr'

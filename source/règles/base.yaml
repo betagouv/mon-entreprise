@@ -1749,7 +1749,7 @@ entreprise . effectif:
 entreprise . effectif . seuil:
   titre: seuil d'effectif
   question: Quel est l'effectif de l'entreprise ?
-  description: |
+  description: >
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
 

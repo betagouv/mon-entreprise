@@ -218,6 +218,16 @@ const translateSuggestion = (prop, rule, translation, lang) =>
 		rule
 	)
 
+export const attributesToTranslate = [
+	'titre',
+	'description',
+	'question',
+	'résumé',
+	'suggestions',
+	'contrôles',
+	'note'
+]
+
 export let translateAll = (translations, flatRules) => {
 	let translationsOf = rule => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
@@ -237,17 +247,10 @@ export let translateAll = (translations, flatRules) => {
 				? reduce(translateProp(lang, ruleTrans), rule, props)
 				: rule
 		}
-
-	let targets = [
-		'titre',
-		'description',
-		'question',
-		'résumé',
-		'suggestions',
-		'contrôles'
-	]
-
-	return map(translateRule('en', translations, targets), flatRules)
+	return map(
+		translateRule('en', translations, attributesToTranslate),
+		flatRules
+	)
 }
 
 const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({

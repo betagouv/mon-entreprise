@@ -9,14 +9,17 @@ const {
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
 
-fs.writeFileSync(rulesTranslationPath, safeDump(resolved))
+fs.writeFileSync(rulesTranslationPath, safeDump(resolved, { sortKeys: true }))
 
 missingTranslations.forEach(async ([dottedName, attr, value]) => {
 	try {
 		const translation = await fetchTranslation(value)
 		resolved[dottedName][attr] = '[automatic] ' + translation
 		// C'est très bourrin, mais on ne veut pas perdre une traduction qu'on a payé
-		fs.writeFileSync(rulesTranslationPath, safeDump(resolved))
+		fs.writeFileSync(
+			rulesTranslationPath,
+			safeDump(resolved, { sortKeys: true })
+		)
 	} catch (e) {
 		console.log(e)
 	}
