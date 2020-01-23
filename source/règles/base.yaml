@@ -1749,7 +1749,7 @@ entreprise . effectif:
 entreprise . effectif . seuil:
   titre: seuil d'effectif
   question: Quel est l'effectif de l'entreprise ?
-  description: |
+  description: >
     De nombreuses cotisations patronales varient selon l'effectif de
     l'entreprise.
 
@@ -3785,7 +3785,6 @@ dirigeant . rattachement CIPAV:
   rend non applicable:
     - protection sociale . retraite
     - protection sociale . santé . indemnités journalières
-    - dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
     - dirigeant . indépendant . conjoint collaborateur
 
 dirigeant . indépendant . PLNR régime général:
@@ -3799,9 +3798,10 @@ dirigeant . indépendant . PLNR régime général:
   rend non applicable: rattachement CIPAV
   par défaut: non
 
-dirigeant . rattachement CIPAV . maladie:
-  remplace: indépendant . cotisations et contributions . cotisations . maladie
-  titre: maladie libérale règlementée
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie profession libérale:
+  applicable si: entreprise . catégorie d'activité = 'libérale'
+  remplace: maladie
+  rend non applicable: indemnités journalières maladie
   formule:
     barème continu:
       assiette: indépendant . revenu professionnel
@@ -3809,6 +3809,9 @@ dirigeant . rattachement CIPAV . maladie:
       points:
         0: 1.5%
         1.1: 6.5%
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
+  note: Les professions libérales ne cotisent pour la part correspondante aux indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de maladie.
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
   titre: assiette maladie
