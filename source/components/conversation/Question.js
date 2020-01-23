@@ -1,10 +1,9 @@
 import classnames from 'classnames'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { is } from 'ramda'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
-import './Question.css'
 import SendButton from './SendButton'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
@@ -23,8 +22,6 @@ import SendButton from './SendButton'
 
 */
 
-// FormDecorator permet de factoriser du code partagé par les différents types de saisie,
-// dont Question est un example
 export default function Question({
 	choices,
 	onSubmit,
@@ -33,34 +30,28 @@ export default function Question({
 	value: currentValue
 }) {
 	const colors = useContext(ThemeColorsContext)
-	const [touched, setTouched] = useState(false)
 	const handleChange = useCallback(
 		value => {
 			onChange(value)
-			setTouched(true)
 		},
 		[onChange]
 	)
 
 	const renderBinaryQuestion = () => {
-		return (
-			<div className="binaryQuestionList">
-				{choices.map(({ value, label }) => (
-					<RadioLabel
-						key={value}
-						{...{
-							value,
-							css: 'margin-right: 0.6rem',
-							label,
-							currentValue,
-							onSubmit,
-							colors,
-							onChange: handleChange
-						}}
-					/>
-				))}
-			</div>
-		)
+		return choices.map(({ value, label }) => (
+			<RadioLabel
+				key={value}
+				{...{
+					value,
+					css: 'margin-right: 0.6rem',
+					label,
+					currentValue,
+					onSubmit,
+					colors,
+					onChange: handleChange
+				}}
+			/>
+		))
 	}
 	const renderChildren = choices => {
 		// seront stockées ainsi dans le state :
@@ -122,7 +113,7 @@ export default function Question({
 			css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
 		>
 			{choiceElements}
-			{onSubmit && <SendButton disabled={!touched} onSubmit={onSubmit} />}
+			{onSubmit && <SendButton disabled={!currentValue} onSubmit={onSubmit} />}
 		</div>
 	)
 }
@@ -154,7 +145,9 @@ function RadioLabelContent({
 			key={value}
 			style={labelStyle}
 			css={css}
-			className={classnames('radio', 'userAnswerButton', { selected })}
+			className={classnames('radio', 'userAnswerButton', 'ui__', 'button', {
+				selected
+			})}
 		>
 			<Trans>{label}</Trans>
 			<input

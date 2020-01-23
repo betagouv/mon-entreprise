@@ -14,8 +14,13 @@ export const binaryOptionChoices = [
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 
-// eslint-disable-next-line react/display-name
-export default ({ rules, dottedName, onChange, value }) => {
+export default function InputComponent({
+	rules,
+	dottedName,
+	onChange,
+	onSubmit,
+	value
+}) {
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
@@ -23,6 +28,7 @@ export default ({ rules, dottedName, onChange, value }) => {
 		fieldName: dottedName,
 		value,
 		onChange,
+		onSubmit,
 		...pick(
 			['dottedName', 'title', 'question', 'defaultValue', 'suggestions'],
 			rule

@@ -25,7 +25,7 @@ export default function SendButton({ disabled, onSubmit }: SendButtonProps) {
 
 	return (
 		<button
-			className="ui__ button plain"
+			className="ui__ plain button "
 			css="margin-left: 1.2rem"
 			disabled={disabled}
 			onClick={() => getAction('accept')}

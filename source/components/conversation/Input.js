@@ -1,5 +1,6 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { currencyFormat } from 'Engine/format'
+import { serializeUnit } from 'Engine/units'
 import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
@@ -49,7 +50,7 @@ export default function Input({
 					autoComplete="off"
 				/>
 				<label className="suffix" htmlFor={'step-' + dottedName}>
-					{unit}
+					{serializeUnit(unit, value, language)}
 				</label>
 				{onSubmit && (
 					<SendButton disabled={value === undefined} onSubmit={onSubmit} />
