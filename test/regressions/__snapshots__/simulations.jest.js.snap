@@ -308,7 +308,7 @@ exports[`calculate simulations-salarié:  frais pro - DFS 2`] = `"[2335,0,0,2000
 
 exports[`calculate simulations-salarié:  frais pro - DFS 3`] = `"[2265,0,0,2000,1606,1563]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1613,1569]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1613,1567]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2437,0,0,2000,1590,1590]"`;
 
@@ -344,19 +344,35 @@ exports[`calculate simulations-salarié:  heures supplémentaires et complément
 
 exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 8`] = `"[3286,0,2286,2000,1889,1859]"`;
 
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 1`] = `"[4076,0,0,3000,2353,2265]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 2`] = `"[4076,0,0,3000,2353,2332]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 3`] = `"[4076,0,0,3000,2353,2353]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 4`] = `"[4076,0,0,3000,2353,2137]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 5`] = `"[4076,0,0,3000,2353,2294]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 6`] = `"[12890,0,0,9000,7156,6146]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 7`] = `"[12890,0,0,9000,7156,6277]"`;
+
+exports[`calculate simulations-salarié:  impôt sur le revenu - quotient familial 8`] = `"[12890,0,0,9000,7156,6538]"`;
+
 exports[`calculate simulations-salarié:  impôt sur le revenu 1`] = `"[4076,0,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 2`] = `"[41834,0,0,30000,24227,14588]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 2`] = `"[41834,0,0,30000,24227,14685]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 3`] = `"[4111,0,0,3000,2353,2172]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 4`] = `"[3896,0,0,3000,2353,2252]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 5`] = `"[41834,0,0,30000,24227,14588]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 5`] = `"[41834,0,0,30000,24227,14685]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 6`] = `"[4076,0,0,3000,2626,2481]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 7`] = `"[41834,0,0,30000,26966,16204]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 7`] = `"[41834,0,0,30000,26966,16383]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 8`] = `"[4076,0,0,3000,2353,2107]"`;
 

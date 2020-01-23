@@ -11,6 +11,8 @@ fr:
   mois_plural: mois
   manifestation_plural: manifestations
   titre-restaurant_plural: titres-restaurant
+  part_plural: parts
+  enfant_plural: enfants
 en:
   heure: hour
   heure_plural: hours
@@ -39,3 +41,7 @@ en:
   manifestation_plural: events
   titre-restaurant: meal voucher
   titre-restaurant_plural: meal vouchers
+  part: share
+  part_plural: shares
+  enfant: child
+  enfant_plural: children

@@ -81,7 +81,7 @@ function SeoExplanations() {
 			/>
 			<p>
 				Par ailleurs depuis 2019, l'
-				<Link to={sitePaths.documentation.rule('impôt . impôt sur le revenu')}>
+				<Link to={sitePaths.documentation.rule('impôt')}>
 					impôt sur le revenu
 				</Link>{' '}
 				est prélevé à la source. Pour ce faire, la direction générale des
