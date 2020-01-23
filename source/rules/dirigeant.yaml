@@ -284,7 +284,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
   contrôles:
     - si:
         toutes ces conditions:
-          - impôt . revenu fiscal de référence > 27086 €/an
+          - impôt . foyer fiscal . revenu fiscal de référence > 27086 €/an
           - versement libératoire
       message: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
       niveau: info

@@ -4,24 +4,20 @@ impôt:
   titre: impôts sur le revenu
   formule:
     somme:
-      - variations:
-          - si: méthode de calcul . barème standard
-            alors: impôt sur le revenu à payer
-          - si: méthode de calcul . prélèvement à la source
-            alors:
-              produit:
-                assiette: revenu imposable
-                taux: taux du prélèvement à la source
-      - CEHR
+      - produit:
+          assiette: revenu imposable
+          taux: taux d'imposition
       - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
 
-impôt . taux du prélèvement à la source:
+impôt . taux d'imposition:
   formule:
     variations:
       - si: méthode de calcul . taux neutre
         alors: taux neutre d'impôt sur le revenu
       - si: méthode de calcul . taux personnalisé
         alors: taux personnalisé
+      - si: méthode de calcul . barème standard
+        alors: foyer fiscal . taux effectif
 
 impôt . méthode de calcul:
   description: |
@@ -95,103 +91,6 @@ impôt . revenu imposable . abattement contrat court:
   note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
   références:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
-
-impôt . revenu abattu:
-  description: |
-    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée.
-    Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
-  formule:
-    somme:
-      - revenu abattu par défaut
-      - dirigeant . auto-entrepreneur . impôt . revenu imposable
-
-impôt . revenu abattu par défaut:
-  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
-  formule:
-    allègement:
-      assiette:
-        somme:
-          - contrat salarié . rémunération . net imposable
-          - dirigeant . indépendant . résultat fiscal
-      abattement: 10%
-      plafond: 12502 €/an
-  note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
-  références:
-    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
-
-impôt . impôt sur le revenu:
-  description: |
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
-    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
-
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
-  unité par défaut: €/an
-  formule:
-    barème:
-      assiette: revenu abattu
-      tranches:
-        - taux: 0%
-          plafond: 10064 €/an
-        - taux: 11%
-          plafond: 25659 €/an
-        - taux: 30%
-          plafond: 73369 €/an
-        - taux: 41%
-          plafond: 157806 €/an
-        - taux: 45%
-  exemples:
-    - nom: Haut salaire de ~ 10 000€ mensuels
-      situation:
-        contrat salarié . rémunération . net imposable: 120000
-      valeur attendue: 30227
-  références:
-    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
-
-impôt . impôt sur le revenu à payer:
-  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
-  unité par défaut: €/an
-  formule:
-    allègement:
-      assiette: impôt sur le revenu
-      décote:
-        taux: 45.25%
-        plafond: 1717 €/an
-  exemples:
-    - nom: Salaire d'un cadre
-      situation:
-        contrat salarié . rémunération . net imposable: 48000
-      valeur attendue: 6977
-  note: Le calcul utilisé pour la décôte concerne uniquement les foyers célibataires, le calcul est différent pour les couples.
-
-impôt . revenu fiscal de référence:
-  unité: €/an
-
-  description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
-  formule:
-    somme:
-      - revenu abattu par défaut
-      - dirigeant . auto-entrepreneur . impôt . revenu abattu
-      - contrat salarié . prime d'impatriation
-  références:
-    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
-
-impôt . CEHR:
-  unité: €/an
-
-  note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
-  formule:
-    barème:
-      assiette: revenu fiscal de référence
-      tranches:
-        - taux: 0%
-          plafond: 250000 €/an
-        - taux: 3%
-          plafond: 500000 €/an
-        - taux: 4%
-  références:
-    contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
-    Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
-    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
   icônes: 🇬🇵🇷🇪 🇲🇶
@@ -375,3 +274,197 @@ revenu net après impôt:
     Il s'agit du revenu net de charges, cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
   formule: revenus net de cotisations - impôt
+
+# TODO: "foyer fiscal" should be in its own top level namespace, but we put it
+# in the "impôt" namespace to have a better questions ordering
+impôt . foyer fiscal:
+  icônes: 👨‍👩‍👧‍👦
+
+impôt . foyer fiscal . situation de famille:
+  question: Quelle est votre situation familiale ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - célibataire
+        - couple
+  par défaut: célibataire
+
+impôt . foyer fiscal . situation de famille . célibataire:
+  titre: Célibataire / Divorcé(e) / Veuf(ve) / Union libre
+
+impôt . foyer fiscal . situation de famille . couple:
+  titre: Marié(e)s / Pacsé(e)s
+
+impôt . foyer fiscal . enfants à charge:
+  question: Combien d'enfants sont à charge du foyer fiscal ?
+  unité: enfants
+  par défaut: 0
+
+impôt . foyer fiscal . nombre de parts:
+  unité: parts
+  formule:
+    somme:
+      - principales
+      - rattachées
+
+impôt . foyer fiscal . nombre de parts . principales:
+  formule:
+    variations:
+      - si: situation de famille = 'couple'
+        alors: 2 parts
+      - sinon: 1 part
+
+impôt . foyer fiscal . nombre de parts . rattachées:
+  formule:
+    variations:
+      - si: enfants à charge <= 2 enfants
+        alors: 0.5 part/enfant * enfants à charge
+      - sinon: (1 part/enfant * enfants à charge) - 1 part
+
+impôt . foyer fiscal . taux effectif:
+  formule: impôt à payer / impôt . revenu imposable
+
+impôt . foyer fiscal . revenu imposable:
+  formule:
+    somme:
+      - revenu d'activité abattu
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
+      - autres revenus imposables
+
+impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
+  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  formule:
+    allègement:
+      assiette:
+        somme:
+          - contrat salarié . rémunération . net imposable
+          - dirigeant . indépendant . résultat fiscal
+      abattement: 10%
+      plafond: 12502 €/an
+  note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
+  références:
+    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
+
+impôt . foyer fiscal . revenu imposable . autres revenus imposables:
+  question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
+  unité: €/an
+  par défaut: 0
+
+impôt . foyer fiscal . revenu fiscal de référence:
+  description: >-
+    Le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
+    avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
+    Ces dernières sont réintégrées dans le calcul.
+  formule:
+    somme:
+      - revenu imposable
+      - contrat salarié . prime d'impatriation
+  références:
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
+
+impôt . foyer fiscal . impôt à payer:
+  formule:
+    somme:
+      - impôt sur le revenu
+      - CEHR
+
+impôt . foyer fiscal . impôt sur le revenu:
+  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
+  unité: €/an
+  formule:
+    allègement:
+      assiette: impôt brut
+      décote:
+        taux: 45.25%
+        plafond: 1717 €/an
+  exemples:
+    - nom: Salaire d'un cadre
+      situation:
+        contrat salarié . rémunération . net imposable: 4000
+      valeur attendue: 6977
+  note: Le calcul utilisé pour la décôte concerne uniquement les foyers célibataires, le calcul est différent pour les couples.
+
+impôt . foyer fiscal . impôt sur le revenu . quotient familial:
+  unité: €/part/an
+  formule: revenu imposable / nombre de parts
+
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
+  formule:
+    produit:
+      assiette: nombre de parts . rattachées
+      facteur: 1567 €/part/an
+  référendes:
+    Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041464047&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20190608
+
+impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
+  description: |
+    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
+    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
+
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+  formule:
+    barème:
+      assiette: quotient familial
+      tranches:
+        - taux: 0%
+          plafond: 10064 €/part/an
+        - taux: 11%
+          plafond: 25659 €/part/an
+        - taux: 30%
+          plafond: 73369 €/part/an
+        - taux: 41%
+          plafond: 157806 €/part/an
+        - taux: 45%
+  exemples:
+    - nom: Haut salaire de ~ 10 000€ mensuels
+      situation:
+        contrat salarié . rémunération . net imposable: 10000
+      valeur attendue: 30227
+  références:
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+
+impôt . foyer fiscal . impôt sur le revenu . impôt brut:
+  formule:
+    le maximum de:
+      - impôt brut . sans plafonnement
+      - somme:
+          - recalcul:
+              règle: impôt brut . sans plafonnement
+              avec:
+                nombre de parts . rattachées: 0
+          - (- quotient familial . plafond avantage)
+
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
+  formule:
+    produit:
+      assiette: impôt brut par part
+      facteur: nombre de parts
+
+impôt . foyer fiscal . CEHR:
+  unité: €/an
+  formule:
+    variations:
+      - si: foyer fiscal . situation de famille = 'couple'
+        alors:
+          barème:
+            assiette: revenu imposable
+            tranches:
+              - taux: 0%
+                plafond: 500000 €/an
+              - taux: 3%
+                plafond: 1000000 €/an
+              - taux: 4%
+      - sinon:
+          barème:
+            assiette: revenu imposable
+            tranches:
+              - taux: 0%
+                plafond: 250000 €/an
+              - taux: 3%
+                plafond: 500000 €/an
+              - taux: 4%
+  références:
+    contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
+    Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
+    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP

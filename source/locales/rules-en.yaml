@@ -5378,26 +5378,49 @@ impôt:
     revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre.en: income tax
   titre.fr: impôts sur le revenu
-impôt . CEHR:
-  note.en: >-
-    [automatic] Be careful, this scale is for single households. For couples,
-    the scale is adapted so as not to apply the same taxation to them when they
-    are individually half as wealthy.
-  note.fr: >-
-    Attention, ce barème concerne les foyers célibataires. Pour les couples, le
-    barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils
-    sont individuellement deux fois moins riches.
-  titre.en: CEHR
+impôt . foyer fiscal:
+  titre.en: '[automatic] fiscal family'
+  titre.fr: foyer fiscal
+impôt . foyer fiscal . CEHR:
+  titre.en: '[automatic] CEHR'
   titre.fr: CEHR
-impôt . impôt sur le revenu:
+impôt . foyer fiscal . enfants à charge:
+  question.en: '[automatic] How many children are dependent on the tax household?'
+  question.fr: Combien d'enfants sont à charge du foyer fiscal ?
+  titre.en: '[automatic] dependent children'
+  titre.fr: enfants à charge
+impôt . foyer fiscal . impôt sur le revenu:
+  description.en: >-
+    [automatic] A discount is applied after the income tax scale to reduce the
+    tax for low income earners.
+  description.fr: >-
+    Une décote est appliquée après le barème de l'impôt sur le revenu, pour
+    réduire l'impôt des bas revenus.
+  note.en: >-
+    [automatic] The calculation used for the discount is for single households
+    only, the calculation is different for couples.
+  note.fr: >-
+    Le calcul utilisé pour la décôte concerne uniquement les foyers
+    célibataires, le calcul est différent pour les couples.
+  titre.en: '[automatic] personal income tax'
+  titre.fr: impôt sur le revenu
+impôt . foyer fiscal . impôt sur le revenu . impôt brut:
+  titre.en: '[automatic] gross tax'
+  titre.fr: impôt brut
+impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:
+  titre.en: '[automatic] uncapped'
+  titre.fr: sans plafonnement
+impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   description.en: >
-    This is the famous income tax schedule. It is a marginal scale with 5
-    slices.
+    [automatic] This is the famous income tax schedule. It's a five-bracket
+    marginal scale.
+
+    A contribution on high incomes adds two more brackets.
 
 
-    Attention: for an income of 100 000€ per year, the taxpayer will only pay 41
-    000€ of tax (the rate of the 4th bracket is 41%)! This 41% is applied only
-    to the portion of his income exceeding €72,617.
+    Attention: for an annual income of 100 000€, the taxpayer will only pay 41
+    000€ tax (the rate of the 4th bracket is 41%)! This 41% is only applied to
+    the part of his income above 72 617€.
   description.fr: >
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à
     5 tranches.
@@ -5408,23 +5431,79 @@ impôt . impôt sur le revenu:
     Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41
     000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
     uniquement à la part de ses revenus supérieure à 72 617€.
-  titre.en: income tax
-  titre.fr: impôt sur le revenu
-impôt . impôt sur le revenu à payer:
+  titre.en: '[automatic] gross tax per unit'
+  titre.fr: impôt brut par part
+impôt . foyer fiscal . impôt sur le revenu . quotient familial:
+  titre.en: '[automatic] family quotient'
+  titre.fr: quotient familial
+impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
+  titre.en: '[automatic] advantage ceiling'
+  titre.fr: plafond avantage
+impôt . foyer fiscal . impôt à payer:
+  titre.en: '[automatic] tax payable'
+  titre.fr: impôt à payer
+impôt . foyer fiscal . nombre de parts:
+  titre.en: '[automatic] number of shares'
+  titre.fr: nombre de parts
+impôt . foyer fiscal . nombre de parts . principales:
+  titre.en: '[automatic] main'
+  titre.fr: principales
+impôt . foyer fiscal . nombre de parts . rattachées:
+  titre.en: '[automatic] related'
+  titre.fr: rattachées
+impôt . foyer fiscal . revenu fiscal de référence:
   description.en: >-
-    A discount is applied after the income tax rate, to reduce the tax on low
-    incomes.
+    [automatic] The reference tax income corresponds to the household's
+    slaughtered income adjusted with a quotient mechanism and increased by a
+    certain number of exemptions. The latter are reintegrated into the
+    calculation.
   description.fr: >-
-    Une décote est appliquée après le barème de l'impôt sur le revenu, pour
-    réduire l'impôt des bas revenus.
+    Le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
+    avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
+    Ces dernières sont réintégrées dans le calcul.
+  titre.en: '[automatic] benchmark tax revenue'
+  titre.fr: revenu fiscal de référence
+impôt . foyer fiscal . revenu imposable:
+  titre.en: '[automatic] chargeable income'
+  titre.fr: revenu imposable
+impôt . foyer fiscal . revenu imposable . autres revenus imposables:
+  question.en: '[automatic] What is the total amount of other taxable household income?'
+  question.fr: Quel est le montant total des autres revenus imposables du foyer fiscal ?
+  titre.en: '[automatic] other taxable income'
+  titre.fr: autres revenus imposables
+impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
+  description.en: >-
+    [automatic] In the general case, the tax is calculated after the application
+    of a fixed lump-sum allowance. However, everyone can opt to declare their
+    "actual expenses", which will replace this default lump-sum deduction.
+  description.fr: >-
+    Dans le cas général, l'impôt est calculé après l'application d'un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
   note.en: >-
-    [automatic] The calculation used for the discount is for single households
-    only, the calculation is different for couples.
+    [automatic] The allowance also has a minimum fixed at 437€ per person (see
+    reference below), but this only impacts couples, and our income tax
+    implementation is currently limited to singles.
   note.fr: >-
-    Le calcul utilisé pour la décôte concerne uniquement les foyers
-    célibataires, le calcul est différent pour les couples.
-  titre.en: income tax
-  titre.fr: impôt sur le revenu à payer
+    L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence
+    ci-dessous), mais cela n'impacte que les couples, or notre implémentation de
+    l'impôt sur le revenu est pour l'instant limitée aux célibataires.
+  titre.en: '[automatic] earned income slaughtered'
+  titre.fr: revenu d'activité abattu
+impôt . foyer fiscal . situation de famille:
+  question.en: '[automatic] What is your family situation?'
+  question.fr: Quelle est votre situation familiale ?
+  titre.en: '[automatic] marital status'
+  titre.fr: situation de famille
+impôt . foyer fiscal . situation de famille . couple:
+  titre.en: '[automatic] Married / Pacsé(e)s'
+  titre.fr: Marié(e)s / Pacsé(e)s
+impôt . foyer fiscal . situation de famille . célibataire:
+  titre.en: '[automatic] Single / Divorced / Widowed / Common-law union'
+  titre.fr: Célibataire / Divorcé(e) / Veuf(ve) / Union libre
+impôt . foyer fiscal . taux effectif:
+  titre.en: '[automatic] yield rate'
+  titre.fr: taux effectif
 impôt . méthode de calcul:
   description.en: >
     We have implemented three ways to calculate income tax:
@@ -5503,55 +5582,6 @@ impôt . méthode de calcul . taux personnalisé:
     personnel](https://impots.gouv.fr).
   titre.en: with the personalized rate
   titre.fr: avec votre taux personnalisé
-impôt . revenu abattu:
-  description.en: >
-    The tax is calculated on a reduced income: it is reduced (for example by
-    10%) to take into account an estimate of the *professional expenses* of the
-    paid activity.
-
-    For example, an employee can be considered to use his shoes to go at work.
-    These shoes, he bought them with his money, which means it's an income on
-    which he unfairly paid taxes.
-  description.fr: >
-    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de
-    10%) pour prendre en compte une estimation des *frais professionnels* de
-    l'activité rémunérée.
-
-    Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller
-    au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu
-    sur lequel il a injustement payé de l'impôt.
-  titre.en: reduced income
-  titre.fr: revenu abattu
-impôt . revenu abattu par défaut:
-  description.en: >-
-    In the general case, the tax is calculated after the application of a fixed
-    lump-sum allowance. However, anyone can opt for the declaration of its *real
-    costs*, which will replace this default package.
-  description.fr: >-
-    Dans le cas général, l'impôt est calculé après l'application d'un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
-    *frais réels*, qui viendront remplacer ce forfait par défaut.
-  note.en: >-
-    [automatic] The allowance also has a minimum fixed at 437€ per person (see
-    reference below), but this only impacts couples, and our income tax
-    implementation is currently limited to singles.
-  note.fr: >-
-    L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence
-    ci-dessous), mais cela n'impacte que les couples, or notre implémentation de
-    l'impôt sur le revenu est pour l'instant limitée aux célibataires.
-  titre.en: default reduced income
-  titre.fr: revenu abattu par défaut
-impôt . revenu fiscal de référence:
-  description.en: >-
-    The reference tax income corresponds to the household's reduced income
-    adjusted with a quotient mechanism and increased by a certain number of
-    exemptions. The latter are reinstated in the calculation.
-  description.fr: >-
-    le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
-    avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
-    Ces dernières sont réintégrées dans le calcul.
-  titre.en: reference taxable income
-  titre.fr: revenu fiscal de référence
 impôt . revenu imposable:
   description.en: >
     This is the income to be taken into account when calculating tax with an
@@ -5577,9 +5607,9 @@ impôt . revenu imposable . abattement contrat court:
     contrats de mission (intérim) de moins de 2 mois.
   titre.en: short contract allowance
   titre.fr: abattement contrat court
-impôt . taux du prélèvement à la source:
-  titre.en: withholding tax rate
-  titre.fr: taux du prélèvement à la source
+impôt . taux d'imposition:
+  titre.en: '[automatic] tax rate'
+  titre.fr: taux d'imposition
 impôt . taux neutre d'impôt sur le revenu:
   description.en: >
     This is the scale to be applied on the taxable monthly salary to obtain the

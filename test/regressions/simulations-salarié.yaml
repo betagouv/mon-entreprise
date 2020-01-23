@@ -136,6 +136,27 @@ impôt sur le revenu:
     impôt . méthode de calcul: taux personnalisé
     impôt . taux personnalisé: 10
 
+impôt sur le revenu - quotient familial:
+  - contrat salarié . rémunération . brut de base: 3000
+    impôt . foyer fiscal . enfants à charge: 1
+  - contrat salarié . rémunération . brut de base: 3000
+    impôt . foyer fiscal . enfants à charge: 2
+  - contrat salarié . rémunération . brut de base: 3000
+    impôt . foyer fiscal . enfants à charge: 3
+  - contrat salarié . rémunération . brut de base: 3000
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 2000
+  - contrat salarié . rémunération . brut de base: 3000
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 2000
+    impôt . foyer fiscal . enfants à charge: 2
+  - contrat salarié . rémunération . brut de base: 9000
+    impôt . foyer fiscal . situation de famille: couple
+  - contrat salarié . rémunération . brut de base: 9000
+    impôt . foyer fiscal . situation de famille: couple
+    impôt . foyer fiscal . enfants à charge: 2
+  - contrat salarié . rémunération . brut de base: 9000
+    impôt . foyer fiscal . situation de famille: couple
+    impôt . foyer fiscal . enfants à charge: 4
+
 heures supplémentaires et complémentaires:
   - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . heures supplémentaires: 5
