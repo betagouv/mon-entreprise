@@ -197,7 +197,7 @@ type CompanySectionProps = {
 	company: Company | null
 }
 
-export const CompanySection = ({ company }: CompanySectionProps) => {
+const CompanySection = ({ company }: CompanySectionProps) => {
 	const [searchModal, showSearchModal] = useState(false)
 	const [autoEntrepreneurModal, showAutoEntrepreneurModal] = useState(false)
 	const [DirigeantMajoritaireModal, showDirigeantMajoritaireModal] = useState(

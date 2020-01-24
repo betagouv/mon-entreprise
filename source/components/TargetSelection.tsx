@@ -180,15 +180,13 @@ const Target = ({ target, initialRender }) => {
 					</div>
 					{isActiveInput && (
 						<Animate.fromTop>
-							<div css="display: flex; justify-content: flex-end">
-								<InputSuggestions
-									suggestions={target.suggestions}
-									onFirstClick={value => {
-										dispatch(updateSituation(target.dottedName, value))
-									}}
-									unit={target.defaultUnit}
-								/>
-							</div>
+							<InputSuggestions
+								suggestions={target.suggestions}
+								onFirstClick={value => {
+									dispatch(updateSituation(target.dottedName, value))
+								}}
+								unit={target.defaultUnit}
+							/>
 						</Animate.fromTop>
 					)}
 				</div>

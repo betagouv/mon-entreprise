@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { debounce } from '../../../utils'
+import { FormDecorator } from '../FormDecorator'
 
 async function tauxVersementTransport(codeCommune) {
 	const response = await fetch(
@@ -25,7 +26,10 @@ async function searchCommunes(input) {
 	return json
 }
 
-export default function Select({ onChange, onSubmit }) {
+export default FormDecorator('select')(function Select({
+	setFormValue,
+	submit
+}) {
 	const [searchResults, setSearchResults] = useState()
 	const [isLoading, setLoadingState] = useState(false)
 
@@ -47,7 +51,7 @@ export default function Select({ onChange, onSubmit }) {
 		tauxVersementTransport(option.code)
 			.then(({ taux }) => {
 				// serialize to not mix our data schema and the API response's
-				onChange(
+				setFormValue(
 					JSON.stringify({
 						...option,
 						...(taux != undefined
@@ -57,15 +61,15 @@ export default function Select({ onChange, onSubmit }) {
 							: {})
 					})
 				)
-				onSubmit()
+				submit()
 			})
 			.catch(error => {
 				//eslint-disable-next-line no-console
 				console.log(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
-				) || onChange(JSON.stringify({ option }))
-				onSubmit() // eslint-disable-line no-console
+				) || setFormValue(JSON.stringify({ option }))
+				submit() // eslint-disable-line no-console
 			})
 	}
 
@@ -135,4 +139,4 @@ export default function Select({ onChange, onSubmit }) {
 				})}
 		</>
 	)
-}
+})

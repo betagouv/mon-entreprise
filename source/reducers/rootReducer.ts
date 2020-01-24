@@ -199,7 +199,6 @@ function simulation(
 	if (state === null) {
 		return state
 	}
-
 	switch (action.type) {
 		case 'HIDE_CONTROL':
 			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
@@ -248,21 +247,7 @@ function simulation(
 	}
 	return state
 }
-const existingCompanyReducer = (state, action: Action) => {
-	if (action.type.startsWith('EXISTING_COMPANY::') && state.simulation) {
-		return {
-			...state,
-			simulation: {
-				...state.simulation,
-				situation: {
-					...state.simulation.situation,
-					...getCompanySituation(state.inFranceApp.existingCompany)
-				}
-			}
-		}
-	}
-	return state
-}
+
 const mainReducer = (state, action: Action) =>
 	combineReducers({
 		lang,
@@ -285,7 +270,6 @@ const mainReducer = (state, action: Action) =>
 
 export default reduceReducers<RootState>(
 	mainReducer as any,
-	existingCompanyReducer as any,
 	storageRootReducer as any
 ) as Reducer<RootState>
 

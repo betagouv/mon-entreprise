@@ -152,7 +152,6 @@ function existingCompany(state: Company | null = null, action): Company | null {
 			action.catégorieJuridique
 		)
 		return {
-			...state,
 			siren: state.siren,
 			statutJuridique,
 			dateDeCréation: action.dateDeCréation

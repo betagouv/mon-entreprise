@@ -24,7 +24,7 @@ export default function InputSuggestions({
 	if (!suggestions) return null
 
 	return (
-		<div css="display: flex; align-items: baseline; ">
+		<div css="display: flex; align-items: baseline; justify-content: flex-end;">
 			<small>Suggestions :</small>
 
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {
