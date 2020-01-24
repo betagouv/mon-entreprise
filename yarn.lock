@@ -1135,13 +1135,6 @@
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.9.tgz#d868b6febb02666330410fe7f58f3c4b8258be7b"
   integrity sha512-MNl+rT5UmZeilaPxAVs6YaPC2m6aA8rofviZbhbxpPpl61uKodfdQVsBtgJGTqGizEf02oW3tsVe7FYB8kK14A==
 
-"@types/cleave.js@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@types/cleave.js/-/cleave.js-1.4.1.tgz#1eaa12dcbd1f2187fc580f0bf84dbc9f8834e333"
-  integrity sha512-53CbLKtK58uTfOCFOT1FMVKF5Zt1Onpk5sm37hY5cO3Uy4DfXzhQaU1PNMf53S7DJpEq1hWxZ+d2uN/W6YZh5w==
-  dependencies:
-    "@types/react" "*"
-
 "@types/color-convert@^1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-1.9.0.tgz#bfa8203e41e7c65471e9841d7e306a7cd8b5172d"

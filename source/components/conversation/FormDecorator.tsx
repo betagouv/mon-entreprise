@@ -1,13 +1,11 @@
 import { updateSituation } from 'Actions/actions'
+import classNames from 'classnames'
 import Explicable from 'Components/conversation/Explicable'
-import { findRuleByDottedName } from 'Engine/rules'
+import { serializeUnit } from 'Engine/units'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	flatRulesSelector,
-	situationSelector
-} from 'Selectors/analyseSelectors'
+import { situationSelector } from 'Selectors/analyseSelectors'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -17,41 +15,40 @@ Read https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-comp
 to understand those precious higher order components.
 */
 
-export default function FormDecorator(RenderField) {
-	return function FormStep({ dottedName }) {
+export const FormDecorator = formType => RenderField =>
+	function FormStep({ fieldName, question, inversion, unit, ...otherProps }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
-		const flatRules = useSelector(flatRulesSelector)
-
 		const language = useTranslation().i18n.language
 		const submit = source =>
 			dispatch({
 				type: 'STEP_ACTION',
 				name: 'fold',
-				step: dottedName,
+				step: fieldName,
 				source
 			})
 		const setFormValue = value => {
-			dispatch(updateSituation(dottedName, value))
+			dispatch(updateSituation(fieldName, value))
 		}
 
 		return (
-			<div className="step">
-				<h3>
-					{findRuleByDottedName(flatRules, dottedName).question}{' '}
-					<Explicable dottedName={dottedName} />
-				</h3>
+			<div className={classNames('step', formType)}>
+				<div className="unfoldedHeader">
+					<h3>
+						{question} {!inversion && <Explicable dottedName={fieldName} />}
+					</h3>
+				</div>
 
 				<fieldset>
 					<RenderField
-						dottedName={dottedName}
-						value={situation[dottedName]}
-						onChange={setFormValue}
-						onSubmit={submit}
-						rules={flatRules}
+						name={fieldName}
+						value={situation[fieldName]}
+						setFormValue={setFormValue}
+						submit={submit}
+						unit={serializeUnit(unit, situation[fieldName], language)}
+						{...otherProps}
 					/>
 				</fieldset>
 			</div>
 		)
 	}
-}

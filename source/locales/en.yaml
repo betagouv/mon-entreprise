@@ -678,7 +678,6 @@ path:
     sécuritéSociale: /social-security
   simulateurs:
     index: /simulators
-    dnrti: /dnrti
     assimilé-salarié: /assimile-salarie
     indépendant: /independant
     auto-entrepreneur: /auto-entrepreneur

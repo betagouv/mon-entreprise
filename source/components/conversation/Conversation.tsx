@@ -1,21 +1,16 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
-import InputComponent from 'Engine/RuleInput'
+import getInputComponent from 'Engine/getInputComponent'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	currentQuestionSelector,
-	flatRulesSelector,
-	nextStepsSelector
-} from 'Selectors/analyseSelectors'
+import { currentQuestionSelector, flatRulesSelector, nextStepsSelector } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
-import FormDecorator from './FormDecorator'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -44,16 +39,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			setDefault()
 		}
 	}
-	const DecoratedInputComponent = FormDecorator(InputComponent)
 
-	return flatRules && nextSteps.length ? (
+	return nextSteps.length ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				{currentQuestion && (
 					<React.Fragment key={currentQuestion}>
 						<Animate.fadeIn>
-							<DecoratedInputComponent dottedName={currentQuestion} />
+							{getInputComponent(flatRules)(currentQuestion)}
 						</Animate.fadeIn>
 						<div className="ui__ answer-group">
 							{previousAnswers.length > 0 && (

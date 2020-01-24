@@ -1,36 +1,37 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { currencyFormat } from 'Engine/format'
-import { serializeUnit } from 'Engine/units'
+import { compose } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
+import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
 
 // TODO: fusionner Input.js et CurrencyInput.js
-export default function Input({
+export default compose(FormDecorator('input'))(function Input({
 	suggestions,
-	onChange,
-	onSubmit,
+	setFormValue,
+	submit,
 	dottedName,
 	value,
 	unit
 }) {
 	const colors = useContext(ThemeColorsContext)
-	const debouncedOnChange = useCallback(debounce(750, onChange), [])
+	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
 	const { language } = useTranslation().i18n
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
 
 	return (
-		<div className="step input">
+		<>
 			<div css="width: 100%">
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
-						onChange(value)
+						setFormValue(value)
 					}}
-					onSecondClick={() => onSubmit && onSubmit('suggestion')}
+					onSecondClick={() => submit('suggestion')}
 				/>
 			</div>
 
@@ -44,18 +45,16 @@ export default function Input({
 					allowEmptyFormatting={true}
 					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
 					onValueChange={({ floatValue }) => {
-						debouncedOnChange(floatValue)
+						debouncedSetFormValue(floatValue)
 					}}
 					value={value}
 					autoComplete="off"
 				/>
 				<label className="suffix" htmlFor={'step-' + dottedName}>
-					{serializeUnit(unit, value, language)}
+					{unit}
 				</label>
-				{onSubmit && (
-					<SendButton disabled={value === undefined} onSubmit={onSubmit} />
-				)}
+				<SendButton {...{ disabled: value === undefined, submit }} />
 			</div>
-		</div>
+		</>
 	)
-}
+})
