@@ -10,9 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
 
-// eslint-disable-next-line no-undef
 const sourcePath = path.resolve(__dirname, '../règles/base.yaml')
-// eslint-disable-next-line no-undef
 const outPath = path.resolve(__dirname, '../types/dottednames.json')
 
 function persistJsonFileFromYaml() {

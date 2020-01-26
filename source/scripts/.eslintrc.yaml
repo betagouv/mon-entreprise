@@ -1,0 +1,5 @@
+# We overwrite the default ESLint configuration for NodeJS scripts
+env:
+  node: true
+rules:
+  no-console: 0
