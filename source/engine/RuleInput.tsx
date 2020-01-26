@@ -76,7 +76,14 @@ export default function InputComponent({
 		return <SelectAtmp {...commonProps} />
 
 	if (rule.type === 'date') {
-		return <DateInput {...commonProps} />
+		return (
+			<DateInput
+				value={commonProps.value}
+				onChange={commonProps.onChange}
+				onSubmit={commonProps.onSubmit}
+				suggestions={commonProps.suggestions}
+			/>
+		)
 	}
 
 	if (unit == null) {
