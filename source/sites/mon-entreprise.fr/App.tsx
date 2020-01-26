@@ -70,7 +70,7 @@ function InFranceRoute({ basename, language }) {
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}
 			onStoreCreated={store => {
-				persistEverything({ except: ['rules'] })(store)
+				persistEverything({ except: ['rules', 'simulation'] })(store)
 				persistSimulation(store)
 			}}
 			initialStore={{
