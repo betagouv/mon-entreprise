@@ -101,6 +101,7 @@ S'inscrire: Register
 Saisissez le nom d'une commune: Enter the name of a municipality
 Saisissez votre domaine d'activité: Enter your business area
 Salaire: Salary
+Salaire net et brut: Net and gross salary
 Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
@@ -1041,17 +1042,17 @@ simulateurs:
         withheld at source. To do this, the “Direction Générale des Finances
         Publiques” (DGFiP) sends the employer the tax rate calculated from the
         employee's tax return. If this rate is unknown, for example in the first
-        year of employment, the employer uses the <5>neutral rate</5>.</4>
-        <5>Cost of hiring</5><6>If you are looking to hire, you can calculate
-        the total cost of your employee's remuneration, as well as the
+        year of employment, the employer uses the <5>neutral
+        rate</5>.</4><5>Cost of hiring</5><6>If you are looking to hire, you can
+        calculate the total cost of your employee's remuneration, as well as the
         corresponding employer and employee contribution amounts. This enables
         you to define the pay level in knowledge of the overall amount of
         expense this represents for your company.</6><7>In addition to salary,
         our simulator takes into account the calculation of benefits in kind
         (telephone, company car, etc.), as well as the compulsory health
-        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> that are
+        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
         not all taken into account by our simulator, you can find them on the
-        <5>official portal</5>.</8>
+        <6>official portal</6>.</8>
       titre: 'Calculation of net and gross salary: official simulator'
     titre: Income simulator for employees
   warning:

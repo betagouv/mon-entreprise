@@ -134,11 +134,7 @@ export function Leaf({
 		<span className={classNames(classes, 'leaf')}>
 			{dottedName && (
 				<span className="nodeHead">
-					<Link
-						to={
-							sitePaths.documentation.index + '/' + encodeRuleName(dottedName)
-						}
-					>
+					<Link to={sitePaths.documentation.rule(dottedName)}>
 						<span className="name">
 							{rule.title || capitalise0(name)} {filter}
 						</span>

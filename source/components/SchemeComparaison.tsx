@@ -10,7 +10,7 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
-import { encodeRuleName, getRuleFromAnalysis } from 'Engine/rules.js'
+import { getRuleFromAnalysis } from 'Engine/rules.js'
 import revenusSVG from 'Images/revenus.svg'
 import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -639,7 +639,7 @@ function RuleValueLink({
 	return !rule ? null : (
 		<Link
 			onClick={() => dispatch(setSituationBranch(getBranchIndex(branch)))}
-			to={sitePaths.documentation.index + '/' + encodeRuleName(rule.dottedName)}
+			to={sitePaths.documentation.rule(rule.dottedName)}
 		>
 			<Value
 				maximumFractionDigits={0}

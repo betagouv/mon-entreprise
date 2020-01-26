@@ -2,11 +2,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import knownMecanisms from 'Engine/known-mecanisms.yaml'
-import {
-	encodeRuleName,
-	findRuleByDottedName,
-	findRuleByNamespace
-} from 'Engine/rules'
+import { findRuleByDottedName, findRuleByNamespace } from 'Engine/rules'
 import { isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -227,11 +223,7 @@ function NamespaceRulesList({ namespaceRules }) {
 								color: colors.textColorOnWhite,
 								textDecoration: 'underline'
 							}}
-							to={
-								sitePaths.documentation.index +
-								'/' +
-								encodeRuleName(r.dottedName)
-							}
+							to={sitePaths.documentation.rule(r.dottedName)}
 						>
 							{r.title || r.name}
 						</Link>

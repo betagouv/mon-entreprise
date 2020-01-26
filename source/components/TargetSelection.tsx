@@ -5,7 +5,6 @@ import RuleLink from 'Components/RuleLink'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatCurrency } from 'Engine/format'
-import { encodeRuleName } from 'Engine/rules'
 import { isEmpty, isNil } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -199,13 +198,13 @@ const Target = ({ target, initialRender }) => {
 
 let Header = ({ target }) => {
 	const sitePaths = useContext(SitePathsContext)
-	const ruleLink =
-		sitePaths.documentation.index + '/' + encodeRuleName(target.dottedName)
 	return (
 		<span className="header">
 			<span className="texts">
 				<span className="optionTitle">
-					<Link to={ruleLink}>{target.title || target.name}</Link>
+					<Link to={sitePaths.documentation.rule(target.dottedName)}>
+						{target.title || target.name}
+					</Link>
 				</span>
 				<p>{target.summary}</p>
 			</span>

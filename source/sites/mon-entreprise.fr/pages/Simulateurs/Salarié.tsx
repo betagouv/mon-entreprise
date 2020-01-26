@@ -48,6 +48,7 @@ export default function Salarié() {
 
 function SeoExplanations() {
 	const { t, i18n } = useTranslation()
+	const sitePaths = useContext(SitePathsContext)
 
 	return (
 		<Trans i18nKey="simulateurs.salarié.page.explication seo">
@@ -78,7 +79,7 @@ function SeoExplanations() {
 			/>
 			<p>
 				Par ailleurs depuis 2019, l'
-				<Link to="/documentation/impôt/impôt-sur-le-revenu">
+				<Link to={sitePaths.documentation.rule('impôt . impôt sur le revenu')}>
 					impôt sur le revenu
 				</Link>{' '}
 				est prélevé à la source. Pour ce faire, la direction générale des
@@ -86,7 +87,11 @@ function SeoExplanations() {
 				calculé à partir de la déclaration de revenu du salarié. Si ce taux est
 				inconnu, par exemple lors d'une première année d'activité, l'employeur
 				utilise le{' '}
-				<Link to="/documentation/impôt/impôt-sur-le-revenu-au-taux-neutre">
+				<Link
+					to={sitePaths.documentation.rule(
+						"impôt . taux neutre d'impôt sur le revenu"
+					)}
+				>
 					taux neutre
 				</Link>
 				.
@@ -110,10 +115,17 @@ function SeoExplanations() {
 
 			<p>
 				Il existe des{' '}
-				<Link to="/documentation/aides-employeur">aides différées</Link> à
-				l'embauche qui ne sont pas toutes prises en compte par notre simulateur,
-				vous pouvez les retrouver sur{' '}
-				<Link to="http://www.aides-entreprises.fr">le portail officiel</Link>.
+				<Link
+					to={sitePaths.documentation.rule('contrat salarié . aides employeur')}
+				>
+					aides différées
+				</Link>{' '}
+				à l'embauche qui ne sont pas toutes prises en compte par notre
+				simulateur, vous pouvez les retrouver sur{' '}
+				<a href="http://www.aides-entreprises.fr" target="_blank">
+					le portail officiel
+				</a>
+				.
 			</p>
 		</Trans>
 	)

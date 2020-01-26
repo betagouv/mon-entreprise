@@ -1,5 +1,7 @@
+import { encodeRuleName } from 'Engine/rules'
 import { map, reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
+import { DottedName } from 'Types/rule'
 import i18n from '../../i18n'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
@@ -29,7 +31,7 @@ interface HasIndex {
 }
 
 type SitePathsObject<T> = {
-	[key in keyof T]: string | SitePathsObject<T[key]>
+	[key in keyof T]: string | Function | SitePathsObject<T[key]>
 }
 
 function constructSitePaths<T extends SitePathsObject<HasIndex>>(
@@ -41,6 +43,8 @@ function constructSitePaths<T extends SitePathsObject<HasIndex>>(
 		...map(value =>
 			typeof value === 'string'
 				? root + index + value
+				: typeof value === 'function'
+				? (...args: any) => root + index + String(value(...args))
 				: constructSitePaths(root + index, value as any)
 		)(sitePaths as any)
 	} as any
@@ -115,7 +119,8 @@ export const constructLocalizedSitePath = (language: string) => {
 		nouveautés: t('path.nouveautés', '/nouveautés'),
 		documentation: {
 			exemples: t('path.documentation.exemples', '/exemples'),
-			index: t('path.documentation.index', '/documentation')
+			index: t('path.documentation.index', '/documentation'),
+			rule: (dottedName: DottedName) => '/' + encodeRuleName(dottedName)
 		},
 		integration: {
 			index: t('path.integration.index', '/intégration'),
