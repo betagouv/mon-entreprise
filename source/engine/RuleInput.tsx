@@ -105,7 +105,7 @@ export default function InputComponent({
 					{...commonProps}
 					language={language}
 					debounce={600}
-					value={value}
+					value={value as string}
 					name={dottedName}
 					className="targetInput"
 					onChange={evt => onChange(evt.target.value)}

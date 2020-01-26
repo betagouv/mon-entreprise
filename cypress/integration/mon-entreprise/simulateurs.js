@@ -91,7 +91,7 @@ describe('Simulateurs', function() {
 						cy.contains('Passer').click()
 						cy.contains('Début 2020').click()
 						cy.contains('Suivant').click()
-						cy.contains('Acre')
+						cy.contains('ACRE')
 					})
 				}
 			})
