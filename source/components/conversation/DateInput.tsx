@@ -1,4 +1,3 @@
-import { FormDecorator } from 'Components/conversation/FormDecorator'
 import { normalizeDate, normalizeDateString } from 'Engine/date'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -18,12 +17,7 @@ const DateField = styled.input`
 	`}
 `
 
-export default FormDecorator('input')(function DateInput({
-	suggestions,
-	setFormValue,
-	submit,
-	value
-}) {
+export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 	const { language } = useTranslation().i18n
 
 	// Refs for focus handling
@@ -53,7 +47,7 @@ export default FormDecorator('input')(function DateInput({
 		if (!normalizedDate) {
 			return
 		}
-		setFormValue(normalizedDate)
+		onChange(normalizedDate)
 	}, [normalizedDate])
 
 	// If value change, replace state
@@ -71,9 +65,9 @@ export default FormDecorator('input')(function DateInput({
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
-						setFormValue(normalizeDateString(value as string))
+						onChange(normalizeDateString(value as string))
 					}}
-					onSecondClick={() => submit('suggestion')}
+					onSecondClick={() => onSubmit('suggestion')}
 				/>
 			</div>
 
@@ -124,8 +118,10 @@ export default FormDecorator('input')(function DateInput({
 						value={date.year}
 					/>
 				</div>
-				<SendButton {...{ disabled: !normalizedDate, submit }} />
+				{onSubmit && (
+					<SendButton disabled={!normalizedDate} onSubmit={onSubmit} />
+				)}
 			</div>
 		</>
 	)
-})
+}

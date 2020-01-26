@@ -69,6 +69,13 @@
 	color: rgba(255, 255, 255, 0.8);
 }
 
+.ui__.card.plain .targetInput {
+	border-color: white;
+	border-color: var(--textColor);
+	color: white;
+	color: var(--textColor);
+}
+
 .ui__.interactive.card {
 	user-select: text;
 	-webkit-user-drag: none;
