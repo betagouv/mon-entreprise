@@ -98,7 +98,7 @@ export default function InputComponent({
 			<Question {...commonProps} choices={binaryOptionChoices} />
 		)
 	}
-	if (unit?.numerators.includes('€') && isTarget && typeof value === 'number') {
+	if (unit?.numerators.includes('€') && isTarget) {
 		return (
 			<>
 				<CurrencyInput

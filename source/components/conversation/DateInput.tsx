@@ -6,7 +6,6 @@ import SendButton from './SendButton'
 
 export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 	const dateValue = useMemo(() => {
-		console.log(value)
 		if (!value) return undefined
 		const [day, month, year] = normalizeDateString(value).split('/')
 		return `${year}-${month}-${day}`
@@ -14,9 +13,8 @@ export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 
 	const handleDateChange = useCallback(
 		evt => {
-			console.log(evt.target.value)
 			if (!evt.target.value) {
-				return onChange(undefined)
+				return onChange(null)
 			}
 			const [year, month, day] = evt.target.value.split('-')
 			onChange(`${day}/${month}/${year}`)
