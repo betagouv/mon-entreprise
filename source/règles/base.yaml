@@ -3474,7 +3474,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retra
     le maximum de: 
       - cotisations . assiette
       - 5.25% * plafond sécurité sociale temps plein
-      - 200 * SMIC horaire
+      - 200 heures/an * SMIC horaire
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
   formule: 
