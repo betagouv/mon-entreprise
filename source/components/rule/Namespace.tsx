@@ -1,5 +1,5 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
+import { findRuleByDottedName } from 'Engine/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
@@ -33,12 +33,7 @@ export default function Namespace({ dottedName, flatRules, color }) {
 
 					return (
 						<li style={style} key={fragments.join()}>
-							<Link
-								style={style}
-								to={
-									sitePaths.documentation.index + '/' + encodeRuleName(ruleName)
-								}
-							>
+							<Link style={style} to={sitePaths.documentation.rule(ruleName)}>
 								{rule.icons && <span>{emoji(rule.icons)} </span>}
 								{ruleText}
 							</Link>

@@ -23,7 +23,7 @@ export default function Targets() {
 				<Link
 					title="Quel est calcul ?"
 					style={{ color: colors.color }}
-					to={sitePaths.documentation.index + '/' + dottedName}
+					to={sitePaths.documentation.rule(dottedName)}
 					className="explanation"
 				>
 					{emoji('📖')}

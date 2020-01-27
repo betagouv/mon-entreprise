@@ -48,7 +48,6 @@ const fakeData = [
 	}
 ]
 
-// eslint-disable-next-line no-undef
 const dataDir = path.resolve(__dirname, '../data/')
 
 async function main() {

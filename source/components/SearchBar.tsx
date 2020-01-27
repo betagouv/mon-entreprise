@@ -1,5 +1,5 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { encodeRuleName, parentName } from 'Engine/rules.js'
+import { parentName } from 'Engine/rules.js'
 import { pick, sortBy, take } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
@@ -83,9 +83,7 @@ export default function SearchBar({
 						}
 					/>
 				</div>
-				<Link
-					to={sitePaths.documentation.index + '/' + encodeRuleName(dottedName)}
-				>
+				<Link to={sitePaths.documentation.rule(dottedName)}>
 					<Highlighter
 						searchWords={[input]}
 						textToHighlight={title || capitalise0(name) || ''}
@@ -98,13 +96,7 @@ export default function SearchBar({
 	if (selectedOption !== null) {
 		finallyCallback && finallyCallback()
 		return (
-			<Redirect
-				to={
-					sitePaths.documentation.index +
-					'/' +
-					encodeRuleName(selectedOption.dottedName)
-				}
-			/>
+			<Redirect to={sitePaths.documentation.rule(selectedOption.dottedName)} />
 		)
 	}
 

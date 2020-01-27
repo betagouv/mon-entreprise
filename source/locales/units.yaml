@@ -1,12 +1,15 @@
 fr:
   heure_plural: heures
   jour_plural: jours
+  jour ouvré_plural: jours ouvrés
   semaine_plural: semaines
   trimestre_plural: trimestres
+  trimestre validé_plural: trimestres validés
   an_plural: ans
   employé_plural: employés
   point_plural: points
   mois_plural: mois
+  manifestation_plural: manifestations
 en:
   heure: hour
   heure_plural: hours
@@ -14,10 +17,15 @@ en:
   points_plural: points
   jour: day
   jour_plural: days
+  jour ouvré: working day
+  jour ouvré_plural: working days
   semaine: week
   semaine_plural: weeks
   trimestre: quarter
   trimestre_plural: quarters
+  trimestre validé: validated quarter
+  trimestre validé_plural: validated quarters
+  km: km
   repas: meal
   repas_plural: meals
   employé: employee
@@ -26,3 +34,5 @@ en:
   an_plural: years
   mois: month
   mois_plural: months
+  manifestation: event
+  manifestation_plural: events

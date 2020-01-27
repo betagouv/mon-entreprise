@@ -71,7 +71,7 @@ artiste-auteur . revenus . BNC . charges forfaitaires:
   titre.en: fixed expenses
   titre.fr: charges forfaitaires
 artiste-auteur . revenus . BNC . frais réels:
-  question.en: NBC actual cost regime
+  question.en: BNC real cost regime
   question.fr: Régime des frais réels BNC
   résumé.en: >-
     Amount of your expenses (business expenses, depreciation, etc.) which will
@@ -84,12 +84,12 @@ artiste-auteur . revenus . BNC . frais réels:
 artiste-auteur . revenus . BNC . micro-bnc:
   résumé.en: 34% flat-rate tax allowance for business expenses
   résumé.fr: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
-  titre.en: Would you like to opt for the micro-BNC diet?
+  titre.en: Would you like to opt-in for the micro-BNC regime?
   titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
 artiste-auteur . revenus . BNC . recettes:
   résumé.en: The amount of your gross revenue excluding VAT
   résumé.fr: Le montant de vos recettes brutes hors TVA
-  titre.en: Income in "NBC"
+  titre.en: Income in "BNC" category
   titre.fr: Revenu en BNC
 artiste-auteur . revenus . traitements et salaires:
   résumé.en: The amount excluding VAT of your royalties (pre-deducted revenue)
