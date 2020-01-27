@@ -326,7 +326,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -704,7 +704,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -796,7 +796,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
+  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -991,12 +991,12 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -1853,7 +1853,7 @@ contrat salarié . réduction générale . assiette:
   titre.fr: Assiette de la réduction générale
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
   note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: "En pratique, l'ATMP est toujours supérieure à 0.78%"
+  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
   titre.en: share of ATMP contribution
   titre.fr: part de la cotisation ATMP
 contrat salarié . réduction générale . multiplicateur:
@@ -2449,7 +2449,7 @@ contrat salarié . statut cadre:
 
     It is an ill-defined concept, meaning different concepts depending on the
     point of view considered - whether in terms of status, social
-    representation, role in the company or culture.
+    representation, role in the company or culture. 
   description.fr: >
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
@@ -2466,7 +2466,7 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture.
+    représentation sociale, de rôle dans l'entreprise ou de culture. 
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   titre.en: cadre status
@@ -2921,8 +2921,8 @@ dirigeant . auto-entrepreneur . net après impôt:
     social. 
 
 
-    **Caution:** To properly assess the profitability of the business, you
-    should not
+    **Caution:** To properly assess the profitability of the business, you must
+    not
 
     forget to subtract from this amount the expenses incurred in the context of
 
@@ -2936,7 +2936,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - Renting a room 
 
-    - and so on.
+    - and so on.  
   description.fr: >
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
     revenu et des cotisations
@@ -2959,7 +2959,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - La location d'un local 
 
-    - etc...
+    - etc...  
   question.en: What is the desired net after-tax income?
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: Before deducting expenses related to the activity
@@ -3525,7 +3525,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . retraite complémentaire:
@@ -3838,7 +3838,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -3960,7 +3960,7 @@ entreprise . convention collective:
   titre.en: union contract
   titre.fr: convention collective
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -4177,7 +4177,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
