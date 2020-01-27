@@ -1,0 +1,23 @@
+date de création:
+  type: date
+  question: quelle est la date de création ?
+
+durée entre deux dates:
+  unité: jours
+  formule:
+    durée:
+      depuis: date de création
+      jusqu'à: 01/01/2020
+  exemples:
+    - nom: Un an
+      situation:
+        date de création: 01/01/2019
+      valeur attendue: 365
+    - nom: Longtemps
+      situation:
+        date de création: 06/11/2012
+      valeur attendue: 2612
+    - nom: Un mois
+      situation:
+        date de création: 01/12/2019
+      valeur attendue: 31

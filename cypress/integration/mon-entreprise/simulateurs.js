@@ -81,6 +81,19 @@ describe('Simulateurs', function() {
 							.should('match', /2[\s]137/)
 					})
 				}
+
+				if (simulateur === 'auto-entrepreneur') {
+					it.only('should allow to enter the date of creation', () => {
+						cy.get(inputSelector)
+							.first()
+							.type('{selectall}50000')
+						cy.contains('Passer').click()
+						cy.contains('Passer').click()
+						cy.contains('Début 2020').click()
+						cy.contains('Suivant').click()
+						cy.contains('ACRE')
+					})
+				}
 			})
 	)
 })

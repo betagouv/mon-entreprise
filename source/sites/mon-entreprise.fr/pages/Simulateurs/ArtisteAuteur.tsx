@@ -5,21 +5,22 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import 'Components/TargetSelection.css'
 import { formatValue } from 'Engine/format'
+import InputComponent from 'Engine/RuleInput'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
+	flatRulesSelector,
+	parsedRulesSelector,
 	ruleAnalysisSelector,
 	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
 import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
-import ToggleSwitch from 'Ui/ToggleSwitch'
 
 export function useRule(dottedName: DottedName) {
 	const analysis = useSelector(analysisWithDefaultsSelector)
@@ -27,6 +28,7 @@ export function useRule(dottedName: DottedName) {
 	return getRule(dottedName)
 }
 
+const InitialRenderContext = createContext(false)
 function useInitialRender() {
 	const [initialRender, setInitialRender] = useState(true)
 	useEffect(() => {
@@ -51,27 +53,14 @@ export default function ArtisteAuteur() {
 			<section className="ui__ light card">
 				<div id="targetSelection">
 					<ul className="targets">
-						<SimpleField
-							dottedName="artiste-auteur . revenus . traitements et salaires"
-							initialRender={initialRender}
-						/>
-						<SimpleField
-							dottedName="artiste-auteur . revenus . BNC . recettes"
-							initialRender={initialRender}
-						/>
-						<SimpleField
-							dottedName="artiste-auteur . revenus . BNC . micro-bnc"
-							initialRender={initialRender}
-						/>
-						<WarningRegimeSpecial />
-						<SimpleField
-							dottedName="artiste-auteur . revenus . BNC . frais réels"
-							initialRender={initialRender}
-						/>
-						<SimpleField
-							dottedName="artiste-auteur . cotisations . option surcotisation"
-							initialRender={initialRender}
-						/>
+						<InitialRenderContext.Provider value={initialRender}>
+							<SimpleField dottedName="artiste-auteur . revenus . traitements et salaires" />
+							<SimpleField dottedName="artiste-auteur . revenus . BNC . recettes" />
+							<SimpleField dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
+							<WarningRegimeSpecial />
+							<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
+							<SimpleField dottedName="artiste-auteur . cotisations . option surcotisation" />
+						</InitialRenderContext.Provider>
 					</ul>
 				</div>
 			</section>
@@ -82,17 +71,19 @@ export default function ArtisteAuteur() {
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	initialRender: boolean
 }
 
-function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
-	const rule = useRule(dottedName)
+function SimpleField({ dottedName }: SimpleFieldProps) {
+	const rule = useSelector(parsedRulesSelector)[dottedName]
 	const dispatch = useDispatch()
-	const analysis = useSelector((state: RootState) =>
-		ruleAnalysisSelector(state, { dottedName })
-	)
-	const situation = useSelector(situationSelector)
-	const [value, setValue] = useState(situation[dottedName])
+	const analysis = useSelector((state: RootState) => {
+		return ruleAnalysisSelector(state, { dottedName })
+	})
+	const initialRender = useContext(InitialRenderContext)
+	const flatRules = useSelector(flatRulesSelector)
+	const value = useSelector(situationSelector)[dottedName]
+
+	const onChange = x => dispatch(updateSituation(dottedName, x))
 
 	if (!analysis.isApplicable) {
 		return null
@@ -109,36 +100,15 @@ function SimpleField({ dottedName, initialRender }: SimpleFieldProps) {
 						</label>
 					</div>
 					<div className="targetInputOrValue">
-						{/* Super hacky */}
-						{analysis.unit !== undefined ? (
-							<NumberFormat
-								autoFocus
-								id={'step-' + dottedName}
-								thousandSeparator={' '}
-								suffix=" €"
-								allowEmptyFormatting={true}
-								onValueChange={({ floatValue }) => {
-									setValue(floatValue)
-									dispatch(updateSituation(dottedName, floatValue || 0))
-								}}
-								value={value}
-								autoComplete="off"
-								className="targetInput"
-								css={`
-									padding: 10px;
-								`}
-							/>
-						) : (
-							<ToggleSwitch
-								id={`step-${dottedName}`}
-								defaultChecked={rule.nodeValue}
-								onChange={evt =>
-									dispatch(
-										updateSituation(dottedName, evt.currentTarget.checked)
-									)
-								}
-							/>
-						)}
+						<InputComponent
+							className="targetInput"
+							isTarget
+							dottedName={dottedName}
+							rules={flatRules}
+							value={value}
+							onChange={onChange}
+							useSwitch
+						/>
 					</div>
 				</div>
 			</Animate.appear>
