@@ -17,6 +17,9 @@ export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 				return onChange(null)
 			}
 			const [year, month, day] = evt.target.value.split('-')
+			if (+year < 1700) {
+				return
+			}
 			onChange(`${day}/${month}/${year}`)
 		},
 		[onChange]
