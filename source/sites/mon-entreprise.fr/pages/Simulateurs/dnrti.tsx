@@ -1,7 +1,6 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
 import React, { useEffect, useState } from 'react'
@@ -207,21 +206,17 @@ function Results() {
 	const results = simulationConfig.objectifs
 		.map(objectif => useRule(objectif))
 		.filter(r => r.nodeValue)
-
-	const [intersectionRef, displayResults] = useDisplayOnIntersecting({
-		threshold: 0.5
-	})
-
 	if (!results.length) {
 		return null
 	}
-
 	return (
 		<div
 			className="ui__ card lighter-bg"
 			css="margin-top: 3rem; padding: 1rem 0"
-			ref={intersectionRef}
 		>
+			<h1 css="text-align: center; margin-bottom: 2rem">
+				Aide à la déclaration 📄
+			</h1>
 			<Animate.fromTop>
 				{results.map(r => (
 					<>
@@ -229,7 +224,7 @@ function Results() {
 							{r.title} <small>{r.summary}</small>
 						</h4>
 						{r.description && <p className="ui__ notice">{r.description}</p>}
-						<p className="ui__ lead">
+						<p className="ui__ lead" css="margin-bottom: 1rem;">
 							<RuleLink dottedName={r.dottedName}>
 								{r.nodeValue
 									? formatValue({
@@ -244,6 +239,10 @@ function Results() {
 					</>
 				))}
 			</Animate.fromTop>
+			<div css="text-align: center">
+				<button className="ui__ simple button">🔗 Obtenir le lien</button>
+				<button className="ui__ simple button"> 🖨 Imprimer</button>
+			</div>
 		</div>
 	)
 }
