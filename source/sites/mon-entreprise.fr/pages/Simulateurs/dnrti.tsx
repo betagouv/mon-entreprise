@@ -1,6 +1,7 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
 import React, { useEffect, useState } from 'react'
@@ -21,11 +22,14 @@ import { useRule } from './ArtisteAuteur'
 
 const simulationConfig = {
 	objectifs: [
-		'dirigeant . indépendant . cotisations et contributions',
-		'dirigeant . rémunération totale'
+		'aide déclaration revenu indépendant 2019 . revenu net fiscal',
+		'aide déclaration revenu indépendant 2019 . CSG déductible',
+		'aide déclaration revenu indépendant 2019 . cotisations sociales déductible',
+		'aide déclaration revenu indépendant 2019 . total charges sociales déductible',
+		'aide déclaration revenu indépendant 2019 . assiette sociale'
 	],
 	situation: {
-		dirigeant: 'indépendant'
+		'aide déclaration revenu indépendant 2019': 'oui'
 	},
 	'unités par défaut': ['€/an']
 }
@@ -67,9 +71,9 @@ export default function DNRTI() {
 				<CompanySection company={company} />
 				<h2>Revenus d'activité</h2>
 				<SimpleField
-					dottedName="dirigeant . rémunération totale"
+					dottedName="dirigeant . indépendant . rémunération totale"
 					question="Quel est votre revenu professionnel en 2019 ?"
-					// summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
+					summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
 				/>
 				<SimpleField dottedName="entreprise . date de création" />
 
@@ -147,9 +151,10 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
+	summary?: Rule['summary']
 	question?: Rule['question']
 }
-function SimpleField({ dottedName, question }: SimpleFieldProps) {
+function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const analysis = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
@@ -176,16 +181,16 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 	return (
 		<Animate.fromTop>
 			<Question>
-				<p
+				<div
 					css={`
-						border-left: 4px solid var(--lightColor);
-						border-radius: 3px;
+						border-left: 3px solid var(--lightColor);
 						padding-left: 12px;
-						margin-left: -12px;
+						margin-left: -15px;
 					`}
 				>
-					{question ?? analysis.question}
-				</p>
+					<p>{question ?? analysis.question}</p>
+					<p className="ui__ notice">{summary ?? analysis.summary}</p>
+				</div>
 				<InputComponent
 					rules={rules}
 					dottedName={dottedName}
@@ -199,65 +204,52 @@ function SimpleField({ dottedName, question }: SimpleFieldProps) {
 }
 
 function Results() {
-	const cotisationsRule = useRule(
-		'dirigeant . indépendant . cotisations et contributions'
-	)
-	const revenusNet = useRule(
-		'dirigeant . indépendant . revenu net de cotisations'
-	)
-	const nonDeductible = useRule(
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS'
-	)
+	const results = simulationConfig.objectifs
+		.map(objectif => useRule(objectif))
+		.filter(r => r.nodeValue)
 
-	function Link({ cotisation }) {
-		return (
-			<p className="ui__ lead">
-				<RuleLink dottedName={cotisation.dottedName}>
-					{cotisation.nodeValue
-						? formatValue({
-								value: cotisation.nodeValue,
-								language: 'fr',
-								unit: '€',
-								maximumFractionDigits: 0
-						  })
-						: '-'}
-				</RuleLink>
-			</p>
-		)
-	}
-	if (!cotisationsRule.nodeValue) {
+	const [intersectionRef, displayResults] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
+
+	if (!results.length) {
 		return null
 	}
+
 	return (
-		<ResultBlock>
+		<div
+			className="ui__ card lighter-bg"
+			css="margin-top: 3rem; padding: 1rem 0"
+			ref={intersectionRef}
+		>
 			<Animate.fromTop>
-				<ResultSubTitle>Vos cotisations</ResultSubTitle>
-				<Link cotisation={cotisationsRule} />
-				<ResultSubTitle>Vos revenus net</ResultSubTitle>
-				<Link cotisation={revenusNet} />
-				<ResultSubTitle>Cotisations non déductibles</ResultSubTitle>
-				<p className="ui__ notice">
-					Ce montant doit être réintégré au revenu net dans votre déclaration
-					fiscale.
-				</p>
-				<Link cotisation={nonDeductible} />
+				{results.map(r => (
+					<>
+						<h4>
+							{r.title} <small>{r.summary}</small>
+						</h4>
+						{r.description && <p className="ui__ notice">{r.description}</p>}
+						<p className="ui__ lead">
+							<RuleLink dottedName={r.dottedName}>
+								{r.nodeValue
+									? formatValue({
+											value: r.nodeValue,
+											language: 'fr',
+											unit: '€',
+											maximumFractionDigits: 0
+									  })
+									: '-'}
+							</RuleLink>
+						</p>
+					</>
+				))}
 			</Animate.fromTop>
-		</ResultBlock>
+		</div>
 	)
 }
 
-const FormWrapper = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
-
-	ul {
-		padding: 0;
-	}
-`
-
 const FormBlock = styled.section`
-	width: 63%;
+	max-width: 500px;
 	padding: 0;
 
 	h3 {
@@ -269,27 +261,11 @@ const FormBlock = styled.section`
 		font-size: 1.05em;
 		padding: 5px 10px;
 	}
+	ul {
+		padding: 0;
+	}
 `
 
 const Question = styled.div`
 	margin-top: 1em;
-`
-
-const ResultBlock = styled.section`
-	position: sticky;
-	top: 3%;
-	padding: 3%;
-	width: 34%;
-	background: var(--lightestColor);
-`
-
-const ResultSubTitle = styled.h4`
-	&:not(:first-child) {
-		margin-top: 2em;
-	}
-`
-
-const ResultNumber = styled.strong`
-	display: block;
-	text-align: right;
 `
