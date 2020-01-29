@@ -1,6 +1,7 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Value from 'Components/Value'
 import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
+import { Analysis } from 'Engine/traverse'
 import React, { Fragment, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -8,15 +9,34 @@ import {
 	analysisWithDefaultsSelector,
 	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
-import { analysisToCotisationsSelector } from 'Selectors/ficheDePaieSelectors'
+import { analysisToCotisations } from 'Selectors/ficheDePaieSelectors'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 import RuleLink from './RuleLink'
 
+export function PaySlip2({ analysis }: { analysis?: Analysis }) {
+	let getRule = getRuleFromAnalysis(analysis)
+	return (
+		<div
+			className="payslip__container"
+			css={`
+				.value {
+					display: flex;
+					align-items: flex-end;
+					justify-content: flex-end;
+					padding-right: 0.2em;
+				}
+			`}
+		>
+			<Line rule={getRule('contrat salarié . maladie')} />
+		</div>
+	)
+}
+
 export default function PaySlip() {
 	const { lightestColor } = useContext(ThemeColorsContext)
-	const cotisations = useSelector(analysisToCotisationsSelector)
 	const analysis = useSelector(analysisWithDefaultsSelector)
+	const cotisations = analysisToCotisations(analysis)
 	const parsedRules = useSelector(parsedRulesSelector)
 	let getRule = getRuleFromAnalysis(analysis)
 

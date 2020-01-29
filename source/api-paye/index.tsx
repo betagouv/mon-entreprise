@@ -1,37 +1,70 @@
-import PaySlip from 'Components/PaySlip'
+import { PaySlip2 } from 'Components/PaySlip'
+import Engine from 'Engine'
 import { safeDump, safeLoad } from 'js-yaml'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import casTypes from './cas-types.yaml'
 
-const defaultRules = `
-- période:
-    du: 01/01/2020
-    au: 31/01/2020
-  contrat salarié . rémunération . brut de base: 1500€
-
-- période:
-    du: 01/02/2020
-    au: 28/02/2020
-  contrat salarié . rémunération . brut de base: 2500€
-
-- période:
-    du: 01/03/2020
-    au: 31/03/2020
-  contrat salarié . rémunération . brut de base: 1500€
-`
+const defaultRules = safeDump(Object.values(casTypes)[0]) as string
+const engine = new Engine.Engine()
+const output = ['contrat salarié . maladie']
 
 export default function APIPayeApp() {
 	const [rules, setRules] = useState(defaultRules)
-	const [periods, setPeriods] = useState<string[]>([])
+	const [segments, setSegments] = useState([])
+	const [currentPayfit, setCurrentPayFit] = useState(0)
 
 	function calculate() {
 		const parsedRules = safeLoad(rules)
-		const buildPeriods: string[] = []
-		parsedRules.forEach(({ période: { du, au } }) => {
-			buildPeriods.push(`du ${du} au ${au}`)
-		})
-		setPeriods(buildPeriods)
+		let situationAcc = {}
+		let cotisationsVerséesAcc = Array(1).fill(0)
+		const baseSituation = parsedRules['contrat']
+		setSegments(
+			parsedRules['périodes'].map(
+				({ période: { du, au }, ...situationModifier }, index) => {
+					const situation = { ...baseSituation, ...situationModifier }
+					situationAcc = { ...situationAcc }
+					cotisationsVerséesAcc = [...cotisationsVerséesAcc]
+					const cotisationsVerséesCeMois = engine.evaluate(output, {
+						defaultUnits: [],
+						situation
+					})
+					const analysis = engine.getLastEvaluationExplanations()
+					Object.keys(situation).forEach(name => {
+						situationAcc[name] = situation[name] + (situationAcc[name] ?? 0)
+					})
+					const q = index + 1 // durée depuis le début de l'année (ou le début du contrat si démarrage en cours d'année) en mois
+					const situationTotaleParMois = Object.fromEntries(
+						Object.entries(situationAcc).map(([a, b]) => [a, b / q])
+					)
+					cotisationsVerséesCeMois.forEach((cotis, index) => {
+						cotisationsVerséesAcc[index] += cotis
+					})
+					const cotisationsDuesTotal = engine
+						.evaluate(output, {
+							defaultUnits: [],
+							situation: situationTotaleParMois
+						})
+						.map(x => x * q)
+					const regularisations = cotisationsDuesTotal.map(
+						(x, index) => x - cotisationsVerséesAcc[index]
+					)
+					cotisationsVerséesCeMois.forEach((_, index) => {
+						cotisationsVerséesAcc[index] += regularisations[index]
+					})
+					analysis.targets = [
+						{
+							...analysis.targets[0],
+							nodeValue: analysis.targets[0].nodeValue + regularisations[0]
+						}
+					]
+					return {
+						periodLabel: `du ${du} au ${au}`,
+						analysis
+					}
+				}
+			)
+		)
 	}
 
 	return (
@@ -63,13 +96,19 @@ export default function APIPayeApp() {
 					width: 60%;
 				`}
 			>
-				<select>
-					{periods.map(period => (
-						<option key={period}>{period}</option>
+				{/* <select onChange={evt => setCurrentPayFit(Number(evt.target.value))}>
+					{segments?.map(({ periodLabel }, index) => (
+						<option value={index} key={periodLabel}>
+							{periodLabel}
+						</option>
 					))}
-				</select>
-
-				{periods.length !== 0 && <PaySlip />}
+				</select> */}
+				{segments.map(({ periodLabel, analysis }) => (
+					<>
+						<h2>{periodLabel}</h2>
+						<PaySlip2 analysis={analysis} />
+					</>
+				))}
 			</div>
 		</APIPayeLayout>
 	)
