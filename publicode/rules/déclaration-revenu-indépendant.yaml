@@ -1,0 +1,60 @@
+# AIDE A LA DECLARATION DES INDEPENDANTS
+
+aide déclaration revenu indépendant 2019:
+  description: Ces règles sont écrites pour aider à remplir les déclarations sociale et
+    fiscale des indépendant de 2020 sur les revenus 2019
+  remplace:
+    - règle: dirigeant
+      par: "'indépendant'"
+    - règle: entreprise . catégorie d'activité . libérale règlementée
+      par: non
+  par défaut: non
+
+aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
+  remplace: plafond sécurité sociale temps plein
+  formule: 3377 €/mois
+
+aide déclaration revenu indépendant 2019 . revenu net fiscal:
+  titre: revenu net fiscal
+  résumé: avant déduction des charges sociales et exonérations fiscales [A]
+  unité par défaut: €/an
+  formule: dirigeant . indépendant . rémunération totale
+
+aide déclaration revenu indépendant 2019 . CSG déductible:
+  titre: CSG déductible
+  résumé: '[B]'
+  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS .déductible
+
+aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
+  titre: cotisations sociales obligatoire déductible
+  résumé: y compris CFP [C]
+  description: >-
+    Montant à reporter dans la case XI de votre déclaration sociale et rubrique
+    326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique A5 du
+    formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
+  formule:
+    somme:
+      - dirigeant . indépendant . cotisations et contributions . cotisations
+      - dirigeant . indépendant . cotisations et contributions . formation professionnelle
+      - dirigeant . indépendant . conjoint collaborateur . cotisations
+      - (- dirigeant . indépendant . cotisations et contributions . exonérations)
+
+aide déclaration revenu indépendant 2019 . total charges sociales déductible:
+  titre: total charges sociales obligatoires déductible fiscalement
+  résumé: '[B + C]'
+  formule:
+    somme:
+      - CSG déductible
+      - cotisations sociales déductible
+  description: >-
+    Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD (pour le
+    réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le réel
+    normal) de votre déclaration fiscale.
+
+aide déclaration revenu indépendant 2019 . assiette sociale:
+  titre: assiette sociale
+  résumé: 'pour information [A - (B + C)]'
+  formule:
+    somme:
+      - revenu net fiscal
+      - (- cotisations sociales déductible)
