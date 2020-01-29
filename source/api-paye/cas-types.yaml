@@ -1,0 +1,37 @@
+cas 1:
+  - période:
+      du: 01/01/2020
+      au: 31/01/2020
+    contrat salarié . rémunération . brut de base: 1500€
+
+  - période:
+      du: 01/02/2020
+      au: 28/02/2020
+    contrat salarié . rémunération . brut de base: 2500€
+
+  - période:
+      du: 01/03/2020
+      au: 31/03/2020
+    contrat salarié . rémunération . brut de base: 1500€
+
+cas 2:
+  - période:
+      du: 01/01/2020
+      au: 31/01/2020
+    contrat salarié . rémunération . brut de base: 4000€
+
+  - période:
+      du: 01/02/2020
+      au: 28/02/2020
+    contrat salarié . rémunération . brut de base: 5000€
+
+cas 3:
+  - période:
+      du: 01/01/2020
+      au: 31/01/2020
+    contrat salarié . rémunération . brut de base: 100€
+
+  - période:
+      du: 01/02/2020
+      au: 28/02/2020
+    contrat salarié . rémunération . brut de base: 200€

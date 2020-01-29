@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
+import APIPaye from '../../api-paye'
 import Provider from '../../Provider'
 import {
 	persistEverything,
@@ -85,14 +86,11 @@ function InFranceRoute({ basename, language }) {
 
 let RouterSwitch = () => {
 	return (
-		<>
-			{!inIframe() && <Header />}
-			<Switch>
-				<Route exact path="/" component={Landing} />
-				<Route path="/iframes" component={Iframes} />
-				<Route component={App} />
-			</Switch>
-		</>
+		<Switch>
+			<Route path="/iframes" component={Iframes} />
+			<Route path="/api-paye" component={APIPaye} />
+			<Route component={App} />
+		</Switch>
 	)
 }
 
@@ -101,6 +99,7 @@ const App = () => {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<div className="app-container">
+			<Header />
 			<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
 			{/* Passing location down to prevent update blocking */}
 
@@ -108,6 +107,7 @@ const App = () => {
 				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
 					<Switch>
 						{redirects}
+						<Route exact path="/" component={Landing} />
 						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route path={sitePaths.gérer.index} component={Gérer} />
 						<Route

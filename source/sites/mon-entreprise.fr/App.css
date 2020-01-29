@@ -1,3 +1,9 @@
+html,
+body,
+#js {
+	height: 100%;
+}
+
 .app-container {
 	position: relative;
 	width: 100%;
