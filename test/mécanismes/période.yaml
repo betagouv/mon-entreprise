@@ -1,0 +1,63 @@
+dépenses:
+  formule:
+    calendrier:
+      - le: 05/01/2018
+        montant: 100 €
+      - le: 08/01/2018
+        montant: 50 €
+      - le: 04/02/2018
+        montant: 200 €
+
+filtre par période . sur un mois:
+  période: 
+    depuis: 01/01/2018
+    jusqu'à: 31/01/2018
+  formule: dépense
+  exemples:
+    - valeur attendue: 150€
+
+filtre par période . sur un mois (infix):
+  formule: dépenses [depuis le 01/01/2018 jusqu'au 31/01/2018]
+  exemples:
+    - valeur attendue: 150€
+
+
+# salaire . brut de base:
+#   formule:
+#     calendrier:
+#       - depuis: 01/04/2018
+#         montant: 2000€/mois
+#       - depuis: 01/08/2019
+#         montant: 2200€/mois
+# salaire . primes:
+#   par défaut: 0 €/mois
+
+# salaire . primes . décembre 2019:
+#   remplace:
+#     règle: primes
+#   période:
+#     depuis: 01/12/2019
+#     jusqu'à: 31/12/2019
+#   formule: 1200€
+
+# salaire . brut:
+#   formules:
+#     - brut de base
+#     - primes
+
+# salaire . brut . en 2019:
+#   période:
+#     depuis: 01/01/2019
+#     jusqu'à: 31/12/2019
+#   formule: salaire brut
+#   exemples:
+#     - valeur attendue: 26200€
+
+# salaire . brut . mensuel en 2019:
+#   unité: €/mois
+#   période:
+#     depuis: 01/01/2019
+#     jusqu'à: 31/12/2019
+#   formule: salaire brut
+#   exemples:
+#     - valeur attendue: 2183 €/mois
