@@ -58,7 +58,9 @@ function ExplanationSection() {
 	const impôt = getRule('impôt')
 	return (
 		<section>
-			<h2>Répartition du chiffre d'affaire</h2>
+			<h2>
+				<Trans>Répartition du chiffre d'affaires</Trans>
+			</h2>
 			<StackedBarChart
 				data={[
 					{

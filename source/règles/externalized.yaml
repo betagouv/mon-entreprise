@@ -3940,7 +3940,7 @@ entreprise . charges dont rémunération dirigeant:
 entreprise . chiffre d'affaires:
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
-  résumé.en: The amount of sales made
+  résumé.en: The amount of sales
   résumé.fr: Le montant des ventes réalisées
   titre.en: Turnover
   titre.fr: chiffre d'affaires (H.T.)

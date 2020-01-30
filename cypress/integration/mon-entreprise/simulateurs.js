@@ -83,7 +83,7 @@ describe('Simulateurs', function() {
 				}
 
 				if (simulateur === 'auto-entrepreneur') {
-					it.only('should allow to enter the date of creation', () => {
+					it('should allow to enter the date of creation', () => {
 						cy.get(inputSelector)
 							.first()
 							.type('{selectall}50000')

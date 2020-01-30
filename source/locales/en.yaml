@@ -62,7 +62,7 @@ Modifier mes réponses: Change my answers
 Mon entreprise: My company
 Mon revenu: My income
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -96,6 +96,7 @@ Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
 Rémunération du dirigeant: Director's remuneration
+Répartition du chiffre d'affaires: Breakdown of turnover
 Résultat: Result
 S'inscrire: Register
 Saisissez le nom d'une commune: Enter the name of a municipality
@@ -845,8 +846,8 @@ path:
     artiste-auteur: /artist-author
     assimilé-salarié: /assimile-salarie
     auto-entrepreneur: /auto-entrepreneur
-    dnrti: /dnrti
     comparaison: /social-scheme-comparaison
+    dnrti: /dnrti
     index: /simulators
     indépendant: /independant
     salarié: /salaried
