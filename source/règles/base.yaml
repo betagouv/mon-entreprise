@@ -3796,7 +3796,7 @@ dirigeant . indépendant . PLNR régime général:
       - entreprise . catégorie d'activité = 'libérale'
       - entreprise . catégorie d'activité . libérale règlementée = non
       - entreprise . date de création < 01/2019
-  question: Avez-vous opté pour le rattachement au régime général des indépendant ?
+  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
   rend non applicable: rattachement CIPAV
   par défaut: non

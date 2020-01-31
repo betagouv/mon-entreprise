@@ -102,10 +102,17 @@ export default function Landing() {
 				<Trans i18nKey="landing.aboutUs">
 					<h2>Qui sommes-nous ?</h2>
 					<p>
+						Nous sommes une petite{' '}
+						<strong>équipe autonome et pluridisciplinaire</strong> au sein de l’
+						<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à coeur
+						d’être au près de vos besoins afin d’améliorer en permanence ce site
+						conformément à la méthode des{' '}
+						<a href="https://beta.gouv.fr">Startup d’État</a>.
+					</p>
+					<p>
 						Nous avons développé ce site pour{' '}
 						<strong>accompagner les créateurs d’entreprise</strong> dans le
-						développement de leur activité, en leur fournissant des informations
-						claires, à jour et pertinente.
+						développement de leur activité.
 					</p>
 
 					<p>
@@ -115,21 +122,6 @@ export default function Landing() {
 						</strong>{' '}
 						afin que vous puissiez vous concentrer sur ce qui compte : votre
 						activité.
-					</p>
-					<p>
-						Nous sommes une petite{' '}
-						<strong>équipe autonome et pluridisciplinaire</strong> au sein de l’
-						<a href="https://www.urssaf.fr">Urssaf</a>, nous avons à coeur
-						d’être au plus proche de nos usagers afin d’améliorer en permanence
-						ce site conformément à la méthode des{' '}
-						<a href="https://beta.gouv.fr">Startup d’État</a>.
-					</p>
-					<p>
-						N’hésitez pas à nous remonter vos remarques et suggestions à{' '}
-						<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-							contact@mon-entreprise.beta.gouv.fr
-						</a>
-						.
 					</p>
 				</Trans>
 			</section>
