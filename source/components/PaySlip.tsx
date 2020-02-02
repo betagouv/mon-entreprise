@@ -16,10 +16,35 @@ import RuleLink from './RuleLink'
 
 export function PaySlip2({ analysis }: { analysis?: Analysis }) {
 	let getRule = getRuleFromAnalysis(analysis)
+	function Line({ rule }) {
+		return (
+			<tr>
+				<td
+					css={`
+						display: table-cell;
+					`}
+				>
+					{rule.title}
+				</td>
+				<td>
+					<Value
+						{...rule}
+						nilValueSymbol="—"
+						unit="€"
+						css={`
+							display: table-cell;
+						`}
+					/>
+				</td>
+			</tr>
+		)
+	}
+
 	return (
-		<div
+		<table
 			className="payslip__container"
 			css={`
+				width: 100%;
 				.value {
 					display: flex;
 					align-items: flex-end;
@@ -29,7 +54,9 @@ export function PaySlip2({ analysis }: { analysis?: Analysis }) {
 			`}
 		>
 			<Line rule={getRule('contrat salarié . maladie')} />
-		</div>
+			<Line rule={getRule('contrat salarié . vieillesse')} />
+			<Line rule={getRule('contrat salarié . allocations familiales')} />
+		</table>
 	)
 }
 

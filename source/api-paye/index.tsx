@@ -1,5 +1,5 @@
 import { PaySlip2 } from 'Components/PaySlip'
-import Engine from 'Engine'
+import Engine from 'Engine/index'
 import { safeDump, safeLoad } from 'js-yaml'
 import React, { useState } from 'react'
 import styled from 'styled-components'
@@ -7,57 +7,77 @@ import casTypes from './cas-types.yaml'
 
 const defaultRules = safeDump(Object.values(casTypes)[0]) as string
 const engine = new Engine.Engine()
-const output = ['contrat salarié . maladie']
+const output = [
+	'contrat salarié . maladie',
+	'contrat salarié . vieillesse',
+	'contrat salarié . allocations familiales'
+]
 
 export default function APIPayeApp() {
 	const [rules, setRules] = useState(defaultRules)
 	const [segments, setSegments] = useState([])
-	const [currentPayfit, setCurrentPayFit] = useState(0)
 
 	function calculate() {
 		const parsedRules = safeLoad(rules)
 		let situationAcc = {}
-		let cotisationsVerséesAcc = Array(1).fill(0)
+		let cotisationsVerséesAcc = Array(output.length).fill(0)
 		const baseSituation = parsedRules['contrat']
 		setSegments(
 			parsedRules['périodes'].map(
-				({ période: { du, au }, ...situationModifier }, index) => {
+				({ du, au, situation: situationModifier }, index) => {
 					const situation = { ...baseSituation, ...situationModifier }
 					situationAcc = { ...situationAcc }
 					cotisationsVerséesAcc = [...cotisationsVerséesAcc]
+					// Ce premier calcul semble redondant, il devrait être possible de
+					// calculer les cotisation vérsées directement comme la régularisation
+					// = cotisation dûes (sur l'année) - cotisation versées (sur l'année
+					// jusqu'au mois précédent).
 					const cotisationsVerséesCeMois = engine.evaluate(output, {
 						defaultUnits: [],
 						situation
 					})
 					const analysis = engine.getLastEvaluationExplanations()
 					Object.keys(situation).forEach(name => {
-						situationAcc[name] = situation[name] + (situationAcc[name] ?? 0)
+						situationAcc[name] =
+							typeof situation[name] === 'string'
+								? situation[name]
+								: situation[name] + (situationAcc[name] ?? 0)
 					})
 					const q = index + 1 // durée depuis le début de l'année (ou le début du contrat si démarrage en cours d'année) en mois
-					const situationTotaleParMois = Object.fromEntries(
-						Object.entries(situationAcc).map(([a, b]) => [a, b / q])
-					)
 					cotisationsVerséesCeMois.forEach((cotis, index) => {
 						cotisationsVerséesAcc[index] += cotis
 					})
 					const cotisationsDuesTotal = engine
 						.evaluate(output, {
 							defaultUnits: [],
-							situation: situationTotaleParMois
+							situation: Object.fromEntries(
+								Object.entries(situationAcc).map(([a, b]) => [
+									a,
+									typeof b === 'number' ? b / q : b
+								])
+							)
 						})
-						.map(x => x * q)
+						.map(x => x && x * q)
 					const regularisations = cotisationsDuesTotal.map(
-						(x, index) => x - cotisationsVerséesAcc[index]
+						(x, index) => x && x - cotisationsVerséesAcc[index]
 					)
 					cotisationsVerséesCeMois.forEach((_, index) => {
 						cotisationsVerséesAcc[index] += regularisations[index]
 					})
-					analysis.targets = [
-						{
-							...analysis.targets[0],
-							nodeValue: analysis.targets[0].nodeValue + regularisations[0]
-						}
-					]
+					// console.log({
+					// 	q,
+					// 	situation,
+					// 	situationAcc,
+					// 	cotisationsVerséesCeMois,
+					// 	cotisationsVerséesAcc,
+					// 	regularisations
+					// })
+					if (analysis) {
+						analysis.targets = analysis.targets.map((a, i) => ({
+							...a,
+							nodeValue: (a.nodeValue ?? 0) + (regularisations[i] ?? 0)
+						}))
+					}
 					return {
 						periodLabel: `du ${du} au ${au}`,
 						analysis
@@ -96,13 +116,6 @@ export default function APIPayeApp() {
 					width: 60%;
 				`}
 			>
-				{/* <select onChange={evt => setCurrentPayFit(Number(evt.target.value))}>
-					{segments?.map(({ periodLabel }, index) => (
-						<option value={index} key={periodLabel}>
-							{periodLabel}
-						</option>
-					))}
-				</select> */}
 				{segments.map(({ periodLabel, analysis }) => (
 					<>
 						<h2>{periodLabel}</h2>
