@@ -2436,8 +2436,8 @@ contrat salarié . statut JEI . exonération de cotisations:
   titre.en: JEI Exemption
   titre.fr: Exonération JEI
 contrat salarié . statut cadre:
-  description.en: >
-    [automatic] An executive is an employee or officer of an enterprise
+  description.en: >-
+    A "cadre" is an employee or officer of an enterprise
     belonging to the upper category of employees. This is a status recognized by
     collective agreements, which determines membership of a specific pension
     fund, AGIRC, and some specific terms of the employment contract.
@@ -2452,7 +2452,7 @@ contrat salarié . statut cadre:
     It is an ill-defined concept, meaning different concepts depending on the
     point of view considered - whether in terms of status, social
     representation, role in the company or culture. 
-  description.fr: >
+  description.fr: >-
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
     reconnu par les conventions collectives, qui détermine l'appartenance à une
@@ -2771,18 +2771,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
-    Social security contributions give the self-employed entrepreneur access to
-    a minimum social protection: a pension, health care, social security, social
-    security, etc. family allowances, etc.
+    [automatic] Social security contributions give the self-employed person
+    access to a minimum social protection: a pension, health care, family
+    allowances, etc.
 
 
-    Self-employed is a simplified system: rather than a pay slip complex, all
+    Self-employment is a simplified plan: rather than a complex payslip, all
     contributions are grouped into a *package* whose rate depends on the
     activity category.
-
-
-    Since January 2019, any new auto-enterprise can benefit from ACRE, a
-    reduction in contributions, degressive over 3 years.
   description.fr: >
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une
     protection sociale minimale : une retraite, des soins de santé, des
@@ -2792,11 +2788,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
     complexe, toutes les cotisations sont groupées dans un *forfait* dont le
     taux dépend de la catégorie d'activité.
-
-
-    Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de
-
-    l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   titre.en: contributions
   titre.fr: cotisations
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
@@ -2916,19 +2907,14 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre.en: discharge payment for auto-entrepreneur
   titre.fr: versement libératoire auto-entrepreneur
 dirigeant . auto-entrepreneur . net après impôt:
-  description.en: >
-    [automatic] The self-employed person's net income after income tax and
-    contributions are deducted.
-
-    social. 
+  description.en: >-
+    [automatic] The net income of the auto-entrepreneur after deduction of
+    income tax and social security contributions.
 
 
-    **Caution:** To properly assess the profitability of the business, you must
-    not
-
-    forget to subtract from this amount the expenses incurred in the context of
-
-    activity. This may include, for example: 
+    **Caution: To properly assess the profitability of the business, do not
+    forget to subtract from this amount the expenses incurred for the activity.
+    This may include, for example: 
 
     - The purchase of raw materials
 
@@ -2939,19 +2925,14 @@ dirigeant . auto-entrepreneur . net après impôt:
     - Renting a room 
 
     - and so on.  
-  description.fr: >
-    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
-    revenu et des cotisations
-
-    sociales. 
+  description.fr: >-
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt  sur le
+    revenu et des cotisations sociales.
 
 
     **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut
-    pas
-
-    oublier de retrancher à ce montant les dépenses engagées dans le cadre de
-
-    l'activité. Cela peut inclure par exemple : 
+    pas oublier de retrancher à ce montant les dépenses engagées dans le cadre
+    de l'activité. Cela peut inclure par exemple : 
 
     - L'achat des matière premières
 
@@ -3032,8 +3013,8 @@ dirigeant . indépendant . PLNR régime général:
   description.fr: >-
     En tant que profession libéral non reglementée, vous pouvez choisir d'être
     rattaché au régime général plutôt que la CIPAV
-  question.en: Have you opted to join the general self-employed scheme?
-  question.fr: Avez-vous opté pour le rattachement au régime général des indépendant ?
+  question.en: '[automatic] Have you opted to join the general scheme for the self-employed?'
+  question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
   titre.en: PLNR general scheme
   titre.fr: PLNR régime général
 dirigeant . indépendant . conjoint collaborateur:
@@ -3563,31 +3544,51 @@ entreprise:
   titre.en: company
   titre.fr: entreprise
 entreprise . ACRE:
-  description.en: >
-    The aid for the creation or takeover of a company (Acre) consists of a
-    partial exemption from social security contributions, known as the start-up
-    exemption.
+  description.en: >-
+    The aid for the creation or takeover of a firm (Acre) consists of a partial
+    exemption from social security contributions from the start of activity for
+    12 months. 
 
-    *Duration*:
+    It is automatic for companies and sole proprietorships (provided they have
+    not benefited from it in the last three years).
 
-    - 12 months** for companies and sole proprietorships - 3 years** for
-    self-employed companies
+    For auto-entrepreneurs, on the other hand, it must be requested and is
+    reserved for the following beneficiaries: 
 
-    *Conditions for obtaining*:
+    - Jobseekers (compensated or not compensated but with at least 6 months of
+    registration with Pôle Emploi in the last 18 months).
 
-    - For companies created after 2019, the reduction is automatic, unless you
-    have already obtained the ACCRE in the previous three years - For companies
-    created before 2019, the contribution reduction was called ACCRE was subject
-    to conditions and was not automatic: it you should have asked for it.
-  description.fr: >
+    - Recipients of social assistance (RSA, ASS, ATA)
+
+    - Young people between 18 and 25 years old (up to 29 years old for persons
+    recognized as disabled)
+
+    - People starting a micro-enterprise in a priority district of the city
+    (QPPV)
+
+
+    *Historical*:
+
+    - For self-employed persons established from 1 January 2020, the reduction
+    is again subject to conditions.
+
+    - For companies created between January 1, 2019 and December 31, 2019, the
+    reduction is generalized to all creators, unless you have already obtained
+    the ACCRE in the three previous years.
+
+    - For companies created before January 1, 2019, the contribution reduction
+    was called ACCRE was subject to conditions and was not automatic: it had to
+    be applied for.
+  description.fr: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
-
     exonération partielle de charges sociales, dite exonération de début
+    d'activité pendant 12 mois. 
 
-    d'activité pendant 12 mois. Elle doit être demandée et est réservée aux
+    Elle est automatique pour les société et les entreprise individuelle (à
+    condition de ne pas en avoir bénéficier les trois dernières années)
 
-    bénéficiaires suivants: 
-
+    Pour les auto-entrepreneurs en revanche, elle doit être demandée et est
+    réservée aux bénéficiaires suivants: 
 
     - Les demandeurs d'emplois  (indemnisés ou non indemnisés mais ayant ayant
     au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
@@ -3600,15 +3601,12 @@ entreprise . ACRE:
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de
     la ville (QPPV)
 
-    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d'activité.
 
 
     *Historique*:
 
-    - Pour les entreprises créées à partir du 1er janvier 2020, la réduction est
-    de nouveau soumise à condition.
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, la réduction
+    est de nouveau soumise à condition.
 
     - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre
     2019, la réduction est généralisée à tous les créateurs, sauf si vous avez

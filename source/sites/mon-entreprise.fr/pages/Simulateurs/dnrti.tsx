@@ -69,7 +69,7 @@ export default function DNRTI() {
 				<SimpleField
 					dottedName="dirigeant . rémunération totale"
 					question="Quel est votre revenu professionnel en 2019 ?"
-					summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
+					// summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
 				/>
 				<SimpleField dottedName="entreprise . date de création" />
 
