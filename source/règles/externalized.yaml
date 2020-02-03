@@ -82,8 +82,8 @@ artiste-auteur . revenus . BNC . frais réels:
   titre.en: real costs
   titre.fr: frais réels
 artiste-auteur . revenus . BNC . micro-bnc:
-  résumé.en: 34% flat-rate tax allowance for business expenses
-  résumé.fr: Abattement forfaitaire fiscal de 34 % au titre des frais professionnels
+  résumé.en: '[automatic] With a flat-rate tax allowance of 34% for business expenses.'
+  résumé.fr: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
   titre.en: Would you like to opt-in for the micro-BNC regime?
   titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
 artiste-auteur . revenus . BNC . recettes:
@@ -92,8 +92,10 @@ artiste-auteur . revenus . BNC . recettes:
   titre.en: Income in "BNC" category
   titre.fr: Revenu en BNC
 artiste-auteur . revenus . traitements et salaires:
-  résumé.en: The amount excluding VAT of your royalties (pre-deducted revenue)
-  résumé.fr: Le montant hors TVA de vos droits d'auteur (recettes précomptées)
+  résumé.en: >-
+    [automatic] The gross amount excluding VAT of your royalties (pre-deducted
+    revenue)
+  résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
 contrat salarié:
