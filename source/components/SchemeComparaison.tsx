@@ -179,8 +179,12 @@ export default function SchemeComparaison({
 					<>
 						<Trans i18nKey="comparaisonRégimes.ACRE">
 							<h3 className="legend">ACRE</h3>
-							<div className="AS-indep-et-auto">
-								1 an <small>(sous conditions d'éligibilité)</small>
+							<div className="AS-et-indep">
+								1 an <small>(automatique et inconditionnelle)</small>
+							</div>
+							<div className="auto">
+								Entre 3 et 4 trimestres{' '}
+								<small>(sous conditions d'éligibilité)</small>
 							</div>
 						</Trans>
 						<Trans i18nKey="comparaisonRégimes.déduction">

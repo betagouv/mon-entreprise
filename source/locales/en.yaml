@@ -62,7 +62,7 @@ Modifier mes réponses: Change my answers
 Mon entreprise: My company
 Mon revenu: My income
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -96,6 +96,7 @@ Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
 Rémunération du dirigeant: Director's remuneration
+Répartition du chiffre d'affaires: Breakdown of turnover
 Résultat: Result
 S'inscrire: Register
 Saisissez le nom d'une commune: Enter the name of a municipality
@@ -212,7 +213,9 @@ cible: target
 clickexample: Click on a situation to see the result
 cliquez pour insérer cette suggestion: click to insert this suggestion
 comparaisonRégimes:
-  ACRE: <0>ACRE</0><1>1 year <1>(subject to eligibility requirements)</1></1>
+  ACRE: >-
+    <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
+    and 4 quarters <2>(subject to eligibility requirements)</2></2>
   AS:
     tagline: The all-inclusive plan
   AT: <0> Work-related accidents covered</0>
@@ -709,27 +712,14 @@ indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
 landing:
-  aboutUs: >
-    <0>About us</0>
-
-    <1>This website is developed by the administration to <2>support
-    entrepreneurs in the development of their business</2>.</1>
-
-    <2>We start from the premise that it is difficult to navigate through all
-    the online documentation: there is a lack of clear, up-to-date and relevant
-    information on starting a business.</2>
-
-    <3>Our objective is to <2>remove all uncertainties regarding the
-    administration tasks</2> so that you can focus on what matters: your
-    business.</3>
-
-    <4>We are a small, autonomous and multidisciplinary team within the
-    <4>URSSAF</4>. We are committed to being as close as possible to our users
-    in order to continuously improve this site in accordance with the <7>Startup
-    d'État</7> method.</4>
-
-    <5>Feel free to send us your comments and suggestions at
-    <2>contact@mon-entreprise.beta.gouv.fr </2>.</5>
+  aboutUs: >-
+    <0>Who are we?</0><1>We are a small<2>, autonomous and multidisciplinary
+    team</2> within<4> USSAF</4>. We have at heart to be close to your needs in
+    order to continuously improve this site in accordance with the <7>State
+    Startup</7> method.</1><2>We have developed this site to <2>support
+    entrepreneurs</2> in the development of their business.</2><3>Our goal is to
+    <2>remove all uncertainties with regard to administration</2> so that you
+    can concentrate on what matters: your business.</3>
   choice:
     create: >-
       <0>Create a company</0><1>Assistance in choosing the status and the
@@ -845,8 +835,8 @@ path:
     artiste-auteur: /artist-author
     assimilé-salarié: /assimile-salarie
     auto-entrepreneur: /auto-entrepreneur
-    dnrti: /dnrti
     comparaison: /social-scheme-comparaison
+    dnrti: /dnrti
     index: /simulators
     indépendant: /independant
     salarié: /salaried

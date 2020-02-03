@@ -1067,12 +1067,24 @@ contrat salarié . indemnités salarié:
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
-  description: |
-    Un cadre d'entreprise est un employé ou dirigeant d'une entreprise appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut reconnu par les conventions collectives, qui détermine l'appartenance à une caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du contrat de travail.
+  description: >-
+    Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
+    appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
+    reconnu par les conventions collectives, qui détermine l'appartenance à une
+    caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du
+    contrat de travail.
+    
 
-    Reconnaissant initialement les compétences techniques et le rôle d'encadrement du salarié, le statut s'est progressivement élargi à un ensemble de postes de plus en plus nombreux, et a fini par recouvrir une large population, mêlant managers, experts et dirigeants.
+    Reconnaissant initialement les compétences techniques et le rôle
+    d'encadrement du salarié, le statut s'est progressivement élargi à un
+    ensemble de postes de plus en plus nombreux, et a fini par recouvrir une
+    large population, mêlant managers, experts et dirigeants.
+    
 
-    Il s'agit d'une notion mal définie désignant des concepts différents selon le point de vue envisagé — que ce soit en termes de statut, de représentation sociale, de rôle dans l'entreprise ou de culture. 
+    Il s'agit d'une notion mal définie désignant des concepts différents selon
+    le point de vue envisagé — que ce soit en termes de statut, de
+    représentation sociale, de rôle dans l'entreprise ou de culture. 
+    
   par défaut: non
   références: 
     wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise
@@ -3796,7 +3808,7 @@ dirigeant . indépendant . PLNR régime général:
       - entreprise . catégorie d'activité = 'libérale'
       - entreprise . catégorie d'activité . libérale règlementée = non
       - entreprise . date de création < 01/2019
-  question: Avez-vous opté pour le rattachement au régime général des indépendant ?
+  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
   rend non applicable: rattachement CIPAV
   par défaut: non
@@ -4487,8 +4499,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
 
-    Depuis janvier 2019, toute nouvelle auto-entreprise peut bénéficier de
-    l'ACRE, une réduction de cotisations, dégressive sur 3 ans.
   formule:
     barème:
       assiette: base des cotisations 
@@ -4535,21 +4545,34 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
       - sinon: 22%
 
 entreprise . ACRE:
-  description: |
+  description: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois. Elle doit être demandée et est réservée aux
+    d'activité pendant 12 mois. 
+    
+    Elle est automatique pour les société et les entreprise individuelle (à
+    condition de ne pas en avoir bénéficier les trois dernières années)
+
+    Pour les auto-entrepreneurs en revanche, elle doit être demandée et est réservée aux
     bénéficiaires suivants: 
 
     - Les demandeurs d'emplois  (indemnisés ou non indemnisés mais ayant ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+    
     - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+    
     - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+    
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
-    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une exonération partielle de charges sociales, dite exonération de début d'activité.
+    
+
 
     *Historique*:
-    - Pour les entreprises créées à partir du 1er janvier 2020, la réduction est de nouveau soumise à condition.
+    
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, la réduction est
+    de nouveau soumise à condition.
+    
     - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
+    
     - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
   question: Votre entreprise bénéficie-t'elle de l'ACRE ?
   applicable si:
@@ -4672,17 +4695,23 @@ dirigeant . auto-entrepreneur . net après impôt:
   résumé: Avant déduction des dépenses liées à l'activité
   unité par défaut: €/an
   question: Quel est le revenu net après impôt souhaité ?
-  description: |
-    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le revenu et des cotisations
-    sociales. 
+  description: >-
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt 
+    sur le revenu et des cotisations sociales.
+
 
     **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas
     oublier de retrancher à ce montant les dépenses engagées dans le cadre de
     l'activité. Cela peut inclure par exemple : 
+
     - L'achat des matière premières
+
     - L'achat des outils / materiel
+
     - L'abonnement à des services payants
+
     - La location d'un local 
+
     - etc...  
   formule: revenu net après impôt
 

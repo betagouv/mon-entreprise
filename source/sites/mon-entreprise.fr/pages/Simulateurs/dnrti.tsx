@@ -41,57 +41,69 @@ export default function DNRTI() {
 	return (
 		<>
 			<h1>
-				Aide à la déclaration de revenus{' '}
+				Aide à la déclaration de revenus au titre de l'année 2019{' '}
 				<img src="https://img.shields.io/badge/-beta-blue" />
 				<br />
 				<small>Travailleurs indépendants</small>
 			</h1>
 			<p>
-				Cet outil vous permet de calculer les données à saisir dans votre
-				déclaration de revenus professionnels.
+				Nous mettons à disposition un outil d'aide aux déclarations fiscale
+				(revenu) et sociale (DSI). Il vous permet de connaître le montant des
+				charges sociales déductibles à partir de votre résultat net fiscal.
 			</p>
-			<FormWrapper>
-				<FormBlock>
-					<CompanySection company={company} />
-					<h2>Revenus d'activité</h2>
-					<SimpleField
-						dottedName="dirigeant . rémunération totale"
-						question="Quel est votre résultat fiscal ?"
-					/>
-					<SimpleField dottedName="entreprise . date de création" />
+			<p>
+				Cet outil vous concerne <strong>uniquement</strong> si vous êtes dans
+				les cas suivants :
+			</p>
+			<ul>
+				<li>vous cotisez au régime général des travailleurs indépendants</li>
+				<li>
+					votre entreprise est au régime réel d'imposition et en comptabilité
+					d'engagement
+				</li>
+			</ul>
 
-					<SubSection dottedName="entreprise . catégorie d'activité" />
-					{/* PLNR */}
-					<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
-					<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
-					<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
+			<FormBlock>
+				<CompanySection company={company} />
+				<h2>Revenus d'activité</h2>
+				<SimpleField
+					dottedName="dirigeant . rémunération totale"
+					question="Quel est votre revenu professionnel en 2019 ?"
+					// summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
+				/>
+				<SimpleField dottedName="entreprise . date de création" />
 
-					<h3>Situation personnelle</h3>
-					<SimpleField dottedName="situation personnelle . RSA" />
-					<SubSection dottedName="situation personnelle . IJSS" />
-					<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+				<SubSection dottedName="entreprise . catégorie d'activité" />
+				{/* PLNR */}
+				<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
+				<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
+				<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
 
-					<h3>Exonérations</h3>
-					<SimpleField dottedName="entreprise . ACRE" />
-					<SimpleField dottedName="établissement . ZFU" />
-					<SubSection
-						dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-						hideTitle
-					/>
+				<h3>Situation personnelle</h3>
+				<SimpleField dottedName="situation personnelle . RSA" />
+				<SubSection dottedName="situation personnelle . IJSS" />
+				<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-					<h3>International</h3>
-					<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-					<SubSection
-						dottedName="dirigeant . indépendant . revenus étrangers"
-						hideTitle
-					/>
-					{/* <h3>DOM - Départements d'Outre-Mer</h3>
+				<h3>Exonérations</h3>
+				<SimpleField dottedName="entreprise . ACRE" />
+				<SimpleField dottedName="établissement . ZFU" />
+				<SubSection
+					dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+					hideTitle
+				/>
+
+				<h3>International</h3>
+				<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+				<SubSection
+					dottedName="dirigeant . indépendant . revenus étrangers"
+					hideTitle
+				/>
+				{/* <h3>DOM - Départements d'Outre-Mer</h3>
 						<p>
 							<em>Pas encore implémenté</em>
 						</p> */}
-				</FormBlock>
-				<Results />
-			</FormWrapper>
+			</FormBlock>
+			<Results />
 		</>
 	)
 }
