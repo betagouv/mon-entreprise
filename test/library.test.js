@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import Lib from '../source/engine/index'
-import co2 from '../source/règles/co2.yaml'
-import sasuRules from '../source/règles/sasu.yaml'
+import co2 from './rules/co2.yaml'
+import sasuRules from './rules/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {

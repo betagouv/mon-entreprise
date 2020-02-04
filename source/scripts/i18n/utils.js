@@ -6,7 +6,7 @@ let R = require('ramda')
 var querystring = require('querystring')
 
 let { safeLoad } = require('js-yaml')
-let rulesTranslationPath = path.resolve('source/règles/externalized.yaml')
+let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
 let UiTranslationPath = path.resolve('source/locales/en.yaml')
 
 // TODO: This should be shared with the variable exported by Engine/rules, but
@@ -24,7 +24,7 @@ let attributesToTranslate = [
 
 function getRulesMissingTranslations() {
 	let rules = safeLoad(
-		fs.readFileSync(path.resolve('source/règles/base.yaml'), 'utf-8')
+		fs.readFileSync(path.resolve('publicode/base.yaml'), 'utf-8')
 	)
 
 	let currentExternalization = safeLoad(

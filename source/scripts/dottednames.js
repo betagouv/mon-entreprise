@@ -10,7 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
 
-const sourcePath = path.resolve(__dirname, '../règles/base.yaml')
+const sourcePath = path.resolve(__dirname, '../../publicode/base.yaml')
 const outPath = path.resolve(__dirname, '../types/dottednames.json')
 
 function persistJsonFileFromYaml() {

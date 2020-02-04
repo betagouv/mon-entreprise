@@ -8,13 +8,13 @@ module.exports.default = {
 	resolve: {
 		alias: {
 			Engine: path.resolve('source/engine/'),
-			Règles: path.resolve('source/règles/'),
 			Actions: path.resolve('source/actions/'),
 			Ui: path.resolve('source/components/ui/'),
 			Components: path.resolve('source/components/'),
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
+			Publicode: path.resolve('publicode/'),
 			Images: path.resolve('source/images/')
 		},
 		extensions: ['.js', '.ts', '.tsx']

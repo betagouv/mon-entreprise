@@ -1,6 +1,6 @@
+import possiblesDestinataires from 'Images/destinataires/destinataires.yaml'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import possiblesDestinataires from 'Règles/ressources/destinataires/destinataires.yaml'
 import './Destinataire.css'
 
 export default function Rule({ destinataire }) {
@@ -16,8 +16,7 @@ export default function Rule({ destinataire }) {
 				<a href={destinataireData.lien} target="_blank">
 					{destinataireData.image && (
 						<img
-							src={require('Règles/ressources/destinataires/' +
-								destinataireData.image)}
+							src={require('Images/destinataires/' + destinataireData.image)}
 						/>
 					)}
 					{!destinataireData.image && (

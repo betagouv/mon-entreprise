@@ -118,7 +118,6 @@ export const constructLocalizedSitePath = (language: string) => {
 		},
 		nouveautés: t('path.nouveautés', '/nouveautés'),
 		documentation: {
-			exemples: t('path.documentation.exemples', '/exemples'),
 			index: t('path.documentation.index', '/documentation'),
 			rule: (dottedName: DottedName) => '/' + encodeRuleName(dottedName)
 		},

@@ -1,7 +1,7 @@
 import { safeDump } from 'js-yaml'
+import rules from 'Publicode/base.yaml'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import rules from 'Règles/base.yaml'
 import { Rule } from 'Types/rule'
 import ColoredYaml from './ColoredYaml'
 

@@ -648,10 +648,7 @@ function RuleValueLink({
 			<Value
 				maximumFractionDigits={0}
 				{...rule}
-				unit={
-					/* //TODO the unit should be integrated in the leaf rules of base.yaml and infered by mecanisms. Will be done in a future release*/
-					unit !== undefined ? unit : '€'
-				}
+				unit={unit !== undefined ? unit : '€'}
 			/>
 			{appendText && <> {appendText}</>}
 		</Link>
