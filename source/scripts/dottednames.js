@@ -8,16 +8,17 @@
 
 const fs = require('fs')
 const path = require('path')
-const yaml = require('js-yaml')
+const { readRules } = require('./rules')
 
-const sourcePath = path.resolve(__dirname, '../../publicode/base.yaml')
+const sourceDirPath = path.resolve(__dirname, '../../publicode/rules')
 const outPath = path.resolve(__dirname, '../types/dottednames.json')
 
 function persistJsonFileFromYaml() {
-	const source = fs.readFileSync(sourcePath)
-	const jsonString = JSON.stringify(yaml.safeLoad(source.toString()), null, 2)
+	const rules = readRules()
+	const jsonString = JSON.stringify(rules, null, 2)
 	fs.writeFileSync(outPath, jsonString)
 }
 
 persistJsonFileFromYaml()
-exports.watchDottedNames = () => fs.watch(sourcePath, persistJsonFileFromYaml)
+exports.watchDottedNames = () =>
+	fs.watch(sourceDirPath, persistJsonFileFromYaml)

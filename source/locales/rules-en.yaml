@@ -2437,10 +2437,10 @@ contrat salarié . statut JEI . exonération de cotisations:
   titre.fr: Exonération JEI
 contrat salarié . statut cadre:
   description.en: >-
-    A "cadre" is an employee or officer of an enterprise
-    belonging to the upper category of employees. This is a status recognized by
-    collective agreements, which determines membership of a specific pension
-    fund, AGIRC, and some specific terms of the employment contract.
+    A "cadre" is an employee or officer of an enterprise belonging to the upper
+    category of employees. This is a status recognized by collective agreements,
+    which determines membership of a specific pension fund, AGIRC, and some
+    specific terms of the employment contract.
 
 
     Initially recognising the technical skills and managerial role of the
@@ -2924,7 +2924,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - Renting a room 
 
-    - and so on.  
+    - and so on.
   description.fr: >-
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt  sur le
     revenu et des cotisations sociales.
@@ -2942,7 +2942,7 @@ dirigeant . auto-entrepreneur . net après impôt:
 
     - La location d'un local 
 
-    - etc...  
+    - etc...
   question.en: What is the desired net after-tax income?
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: Before deducting expenses related to the activity
@@ -3956,9 +3956,6 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
-entreprise . convention collective:
-  titre.en: union contract
-  titre.fr: convention collective
 entreprise . date de création:
   contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur

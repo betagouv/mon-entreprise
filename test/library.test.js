@@ -29,9 +29,9 @@ describe('library', function() {
 	})
 	it('should let the user add rules to the default ones', function() {
 		let rules = `
-- nom: yo
+yo:
   formule: 1
-- nom: ya
+ya:
   formule:  contrat salarié . rémunération . net + yo
 `
 
@@ -62,7 +62,7 @@ describe('library', function() {
 			}
 		)
 		let [revenuDisponible, dividendes] = Lib.evaluate(
-			['net après impôt', 'dividendes . net'],
+			['contrat salarié . rémunération . net après impôt', 'dividendes . net'],
 			{
 				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
 				'chiffre affaires': CA

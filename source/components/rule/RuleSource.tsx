@@ -1,5 +1,5 @@
 import { safeDump } from 'js-yaml'
-import rules from 'Publicode/base.yaml'
+import rules from 'Publicode/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Rule } from 'Types/rule'

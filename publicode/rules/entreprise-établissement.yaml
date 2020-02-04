@@ -1,0 +1,544 @@
+entreprise:
+  description: |
+    Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
+
+entreprise . date de création:
+  question: Quelle est la date de début d'activité ?
+  par défaut: 01/01/2020
+  description: |
+    La date de début d'activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.  
+
+    Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
+    automatiquement cette information.
+
+    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
+  suggestions:
+    Début 2020: 01/01/2020
+    Début 2019: 01/01/2019
+    Fin 2017: 31/12/2017
+  type: date
+  contrôles:
+    - si: date de création > 01/2021
+      niveau: avertissement
+      message: Nous ne pouvons voir aussi loin dans le futur
+    - si: date de création < 01/1900
+      niveau: avertissement
+      message: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
+
+entreprise . durée d'activité:
+  formule:
+    durée:
+      depuis: date de création
+
+entreprise . durée d'activité . en fin d'année:
+  titre: durée d'activité à la fin de l'année
+  formule:
+    durée:
+      depuis: date de création
+      jusqu'à: période . fin d'année
+
+entreprise . durée d'activité . en début d'année:
+  titre: durée d'activité au début de l'année
+  formule:
+    durée:
+      depuis: date de création
+      jusqu'à: période . début d'année
+
+entreprise . chiffre d'affaires:
+  titre: chiffre d'affaires (H.T.)
+  question: Quel est votre chiffre d'affaires envisagé ?
+  résumé: Le montant des ventes réalisées
+  unité par défaut: €/an
+  formule: dirigeant . rémunération totale + charges
+
+entreprise . chiffre d'affaires minimum:
+  description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
+  question: Quel est votre chiffre d'affaires minimum envisagé ?
+  unité par défaut: €/an
+  formule: chiffre d'affaires
+
+entreprise . chiffre d'affaires de société:
+  formule:
+    somme:
+      - dirigeant . rémunération totale / rémunération du dirigeant
+      - charges
+
+entreprise . rémunération du dirigeant:
+  description: |
+    C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
+  question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
+  unité: '%'
+  par défaut: 1
+
+entreprise . bénéfice:
+  formule: chiffre d'affaires - charges dont rémunération dirigeant
+
+entreprise . résultat net:
+  résumé: Ce qu'il reste après impôt sur les sociétés
+  formule: bénéfice - impôt sur les sociétés
+
+entreprise . impôt sur les sociétés:
+  unité: €/an
+  formule:
+    barème:
+      assiette: bénéfice [€/an]
+      tranches:
+        - en-dessous de: 38120
+          taux: 15%
+        - de: 38120
+          à: 500000
+          taux: 28%
+        - au-dessus de: 500000
+          taux: 33.3%
+  références:
+    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+
+entreprise . charges dont rémunération dirigeant:
+  formule: charges + dirigeant . rémunération totale
+
+entreprise . charges:
+  titre: charges de fonctionnement
+  résumé: Toutes les dépenses nécessaires à l'entreprise
+  question: Quelles sont les charges de l'entreprise ?
+  description: |
+
+    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaire encaissé.
+
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
+
+    Par exemple, les charges peuvent être :
+
+    - achat de matières premières pour une activité de production
+    - achat de produits en vue de leur revente, pour une activité commerciale
+    - frais de repas : le supplément par rapport au coût d'un repas à domicile
+
+    Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
+
+    A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une charge sans immobilisation.
+
+  références:
+    Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
+  par défaut: 0
+  unité par défaut: €/an
+
+entreprise . ACRE:
+  description: >-
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d'activité pendant 12 mois. 
+
+    Elle est automatique pour les société et les entreprise individuelle (à
+    condition de ne pas en avoir bénéficier les trois dernières années)
+
+    Pour les auto-entrepreneurs en revanche, elle doit être demandée et est réservée aux
+    bénéficiaires suivants: 
+
+    - Les demandeurs d'emplois  (indemnisés ou non indemnisés mais ayant ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+
+    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+
+    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+
+
+
+    *Historique*:
+
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, la réduction est
+    de nouveau soumise à condition.
+
+    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
+
+    - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+  question: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  applicable si:
+    une de ces conditions:
+      - toutes ces conditions:
+          - dirigeant = 'auto-entrepreneur'
+          - entreprise . durée d'activité < 3 ans
+          - entreprise . date de création < 01/01/2020
+      - entreprise . durée d'activité . en début d'année < 1 an
+  par défaut: non
+  note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
+
+entreprise . franchise de TVA:
+  description: |
+    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
+    chiffre d'affaire annuel dépendant de l'activité.
+
+    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
+    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
+  formule:
+    variations:
+      - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+        alors:
+          variations:
+            - si: entreprise . catégorie d'activité . service ou vente = 'service'
+              alors: 60000 €/an
+            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
+              alors: 110000 €/an
+      - sinon:
+          variations:
+            - si: entreprise . catégorie d'activité . service ou vente = 'vente'
+              alors: 94300 €/an
+            - si: entreprise . catégorie d'activité . service ou vente = 'service'
+              alors: 36500 €/an
+            - si: entreprise . catégorie d'activité = 'libérale'
+              alors: 36500 €/an
+  note: >
+    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
+    "minoré" n'a pas été dépassé en année `n - 2`)
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . effectif:
+  unité: employé
+  formule:
+    variations:
+      - si: entreprise . effectif . seuil = 'moins de 5'
+        alors: 4 employés
+      - si: entreprise . effectif . seuil = 'moins de 11'
+        alors: 10 employés
+      - si: entreprise . effectif . seuil = 'moins de 20'
+        alors: 19 employés
+      - si: entreprise . effectif . seuil = 'moins de 50'
+        alors: 49 employés
+      - si: entreprise . effectif . seuil = 'moins de 250'
+        alors: 249 employés
+      - si: entreprise . effectif . seuil = '251 et plus'
+        alors: 251 employés
+
+entreprise . effectif . seuil:
+  titre: seuil d'effectif
+  question: Quel est l'effectif de l'entreprise ?
+  description: >
+    De nombreuses cotisations patronales varient selon l'effectif de
+    l'entreprise.
+
+    Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
+    atteint ou dépassé pendant 5 années civiles consécutives.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - moins de 5
+        - moins de 11
+        - moins de 20
+        - moins de 50
+        - moins de 250
+        - 251 et plus
+  par défaut: moins de 5
+
+entreprise . effectif . seuil . moins de 5:
+entreprise . effectif . seuil . moins de 11:
+entreprise . effectif . seuil . moins de 20:
+entreprise . effectif . seuil . moins de 50:
+entreprise . effectif . seuil . moins de 250:
+entreprise . effectif . seuil . 251 et plus:
+
+entreprise . ratio alternants:
+  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
+  titre: Fraction d'alternants
+  description: |
+    Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
+  unité: '%'
+  suggestions:
+    1%: 0.01
+    5%: 0.05
+  par défaut: 0
+
+entreprise . association non lucrative:
+  description: L'entreprise est une association non lucrative
+  question: S'agit-il d'une association à but non lucratif ?
+  par défaut: non
+  # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+  # -> pas de taxe ni contribution d'apprentissage
+  rend non applicable:
+    - contrat salarié . taxe d'apprentissage
+
+entreprise . établissement bancaire:
+  description: L'entreprise est un établissement bancaire, financier ou d'assurance. Elle est non assujettie à la TVA.
+  question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
+  par défaut: non
+
+entreprise . taxe sur les salaires . barème:
+  formule: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
+
+entreprise . taxe sur les salaires . abattement associations:
+  applicable si: entreprise . association non lucrative
+  # TODO : 20835
+  formule: 20507 €/an
+
+entreprise . taxe sur les salaires:
+  formule:
+    allègement:
+      assiette: barème
+      franchise: 1200 €/an
+      décote:
+        plafond: 2040 €/an
+        taux: 75%
+      abattement: abattement associations
+
+entreprise . catégorie d'activité:
+  question: Quelle est votre catégorie d'activité ?
+  description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
+  par défaut: commerciale ou industrielle
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - libérale
+        - commerciale ou industrielle
+        - artisanale
+  références:
+    Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+    Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
+
+entreprise . catégorie d'activité . libérale:
+  description: |
+    Ce sont les professions "intellectuelles" : médecins, sage-femme, kiné, avocat, mais aussi consultant, développeur, designer...
+
+    Selon la loi, ce sont des personnes exerçant à titre habituel, de manière indépendante et sous leur responsabilité, une activité :
+      - de nature généralement civile,
+      - ayant pour objet d'assurer des prestations principalement intellectuelles, techniques ou de soins, mises en œuvre au moyen de qualifications professionnelles appropriées et dans le respect de principes éthiques ou d'une déontologie professionnelle.
+  références:
+    fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
+    liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . catégorie d'activité . commerciale ou industrielle:
+  description: |
+    ### Activité commerciale
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
+
+    ### Activité industrielle
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+
+entreprise . catégorie d'activité . artisanale:
+  description: |
+    C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
+
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
+
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
+    - Les activités artisanales sont répertoriées par un décret
+  références:
+    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
+
+entreprise . catégorie d'activité . service ou vente:
+  applicable si:
+    une de ces conditions:
+      - catégorie d'activité = 'artisanale'
+      - catégorie d'activité = 'commerciale ou industrielle'
+  question: Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - service
+        - vente
+  par défaut: vente
+
+entreprise . catégorie d'activité . service ou vente . vente:
+  titre: vente de biens
+  description: |
+    Il s’agit de toute opération comportant transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une existence matérielle. Toute autre activité relève des prestations de services.
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . catégorie d'activité . service ou vente . service:
+  titre: prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de biens corporels (c'est-à-dire ayant une existence matérielle).
+  références:
+    page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
+
+entreprise . catégorie d'activité . restauration ou hébergement:
+  applicable si: service ou vente = 'service'
+  description: Vos bénéfices sont classés en BIC - fourniture de logement ou de nourriture.
+  question: Est-ce une activité de restauration ou d'hébergement ?
+  par défaut: non
+
+entreprise . catégorie d'activité . libérale règlementée:
+  question: Est-ce une activité libérale règlementée ?
+  par défaut: non
+  applicable si: catégorie d'activité = 'libérale'
+  description: |
+    Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+
+    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+  contrôles:
+    - si: libérale règlementée
+      niveau: avertissement
+      message: |
+        Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées :
+
+        - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
+        - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
+        - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
+
+  références:
+    Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - Administrateur judiciaire
+        - Agent général d'assurance
+        - Architecte
+        - Architecte d'intérieur
+        - Avocat
+        - Avocat au conseil d'Etat et à la Cour de Cassation
+        - Avoué auprès des cours d'appel
+        - Chiropracteur
+        - Chirurgien-dentiste
+        - Commissaire aux comptes
+        - Commissaire-priseur
+        - Conseil en investissements financiers
+        - Conseil en propriété industrielle
+        - Diététicien
+        - Ergothérapeute
+        - Expert agricole, foncier et expert forestier
+        - Expert devant les tribunaux
+        - Expert-comptable
+        - Géomètre-expert
+        - Greffier auprès des tribunaux de commerce
+        - Huissier de justice
+        - Infirmier libéral
+        - Directeur de laboratoire d'analyses médicales
+        - Mandataire judiciaire
+        - Mandataire judiciaire à la protecion des majeurs
+        - Masseur-kinésithérapeute
+        - Médecin
+        - Notaire
+        - Orthophoniste
+        - Orthoptiste
+        - Ostéopathe
+        - Pédicure-podologue
+        - Psychologue
+        - Psychomotricien
+        - Psychothérapeute
+        - Sage-femme
+        - Vétérinaire
+
+entreprise . catégorie d'activité . débit de tabac:
+  applicable si: catégorie d'activité = 'commerciale ou industrielle'
+  question: Votre entreprise est-elle un débit de tabac ?
+  par défaut: non
+
+entreprise . rattachée à la CIPAV:
+  # TODO implémenter un nouveau mécanisme
+  # TODO consolider la formule :
+  # Nous avons deux listes possibles
+  # A) Voilà la liste de l'URSSAF
+  question: La profession libérale règlementée est-elle rattachée à la CIPAV ?
+  par défaut: non
+  description: |
+    Les auto-entrepreneurs exerçant une activité de profession libérale règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces professions libérales règlementées sont : architectes, architectes d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les artistes-auteurs, experts devant les tribunaux, experts automobiles, mandataires judiciaires à la protection des majeurs, courtiers en valeur, guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne montagne et moniteurs de ski.
+
+    formule:
+      inclusion:
+        de: entreprise . catégorie d'activité . type d'activité libérale règlementée
+        dans: # B) voilà la liste obtenue sur https://www.afecreation.fr/pid14832/liste-des-activites-liberales.html
+          - Architecte
+          - Architecte d'intérieur
+          - Chiropracteur
+          - Diététicien
+          - Ergothérapeute
+          - Expert devant les tribunaux
+          - Géomètre-expert
+          - Mandataire judiciaire à la protecion des majeurs
+          - Ostéopathe
+          - Psychologue
+          - Psychothérapeute
+
+entreprise . auto entreprise impossible:
+  formule:
+    toutes ces conditions:
+      - entreprise . catégorie d'activité . libérale règlementée
+      - rattachée à la CIPAV != oui
+  note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
+
+établissement:
+  description: |
+    Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
+
+établissement . localisation:
+  icônes: 🌍
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  question: Dans quelle commune l'établissement est-il implanté ?
+  API: géo
+  par défaut:
+    code: 29019
+    nom: Non renseignée
+    departement:
+      nom: Non renseigné
+    taux du versement transport: 0.018
+
+établissement . localisation . code commune:
+  formule:
+    synchronisation:
+      API: localisation
+      chemin: code
+
+établissement . localisation . commune:
+  description: |
+    Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
+    calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
+  formule:
+    synchronisation:
+      API: localisation
+      chemin: nom
+
+établissement . taux du versement transport:
+  formule:
+    synchronisation:
+      API: localisation
+      chemin: taux du versement transport
+
+établissement . localisation . département:
+  formule:
+    synchronisation:
+      API: localisation
+      chemin: departement . nom
+
+établissement . localisation . outre-mer:
+  applicable si:
+    une de ces conditions:
+      - département = 'Guadeloupe'
+      - département = 'Martinique'
+      - département = 'Guyane'
+      - département = 'La Réunion'
+      - département = 'Mayotte'
+
+établissement . localisation . outre-mer . Guadeloupe Réunion Martinique:
+  formule:
+    une de ces conditions:
+      - département = 'Guadeloupe'
+      - département = 'Martinique'
+      - département = 'La Réunion'
+
+établissement . ZFU:
+  applicable si: entreprise . date de création < 01/2015
+  question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
+  par défaut: non
+
+établissement . ZFU . durée d'implantation en fin d'année:
+  formule:
+    durée:
+      depuis: entreprise . date de création
+      jusqu'à: 31/12/2019
