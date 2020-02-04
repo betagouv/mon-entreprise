@@ -3,12 +3,9 @@ import React from 'react'
 import { makeJsx } from '../evaluation'
 import { Node } from './common'
 
-export default function Allègement(nodeValue, rawExplanation, ...other) {
-	// properties with a nodeValue of 0 are not interesting to display
-	let explanation = map(
-		k => (k && k.nodeValue !== 0 ? k : null),
-		rawExplanation
-	)
+export default function Allègement(nodeValue, rawExplanation) {
+	// Don't display attributes with default values
+	let explanation = map(k => (k && !k.isDefault ? k : null), rawExplanation)
 	return (
 		<div>
 			<Node
