@@ -50,7 +50,6 @@ jobs:
     steps:
       - install
       - run: |
-          git config --global core.quotepath false
           yarn test
           yarn test-regressions
 

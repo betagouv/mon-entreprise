@@ -1,4 +1,5 @@
 import { parseUnit } from 'Engine/units'
+import rawRules from 'Publicode/base.yaml'
 import {
 	assoc,
 	chain,
@@ -24,8 +25,7 @@ import {
 	trim,
 	when
 } from 'ramda'
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
+import translations from '../locales/rules-en.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
 import { syntaxError, warning } from './error'

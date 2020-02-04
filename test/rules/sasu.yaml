@@ -1,4 +1,6 @@
-# Ce petit ensemble de règles a été historiquement utilisé pour tester l'externalisation du moteur, et est en train d'être réintégré progressivement dans la base centrale
+# Ce petit ensemble de règles a été historiquement utilisé pour tester
+# l'externalisation du moteur, et est en train d'être réintégré progressivement
+# dans la base centrale
 
 chiffre affaires:
   unité par défaut: €/mois

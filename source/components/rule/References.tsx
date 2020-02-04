@@ -1,6 +1,6 @@
+import references from 'Images/références/références.yaml'
 import { toPairs } from 'ramda'
 import React from 'react'
-import references from 'Règles/ressources/références/références.yaml'
 import { capitalise0 } from '../../utils'
 import './References.css'
 
@@ -21,7 +21,7 @@ function Ref({ name, link }) {
 		<li key={name}>
 			<span className="imageWrapper">
 				{refData.image && (
-					<img src={require('Règles/ressources/références/' + refData.image)} />
+					<img src={require('Images/références/' + refData.image)} />
 				)}
 			</span>
 			<a href={link} target="_blank">

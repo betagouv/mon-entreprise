@@ -97,9 +97,7 @@ $ yarn run test-cypress
 
 Le site est disponible en français, et en anglais sur https://mycompanyinfrance.com
 
-Les traductions de la base de règle se trouvent dans
-`source/règles/externalized.yaml`. Celles de l'Ui sont dans le fichier
-`source/locales/en.yaml`
+Les traductions se trouvent dans le répertoire `source/locales`.
 
 La librairie utilisée pour la traduction de l'Ui est
 [react-i18next](https://react.i18next.com/).

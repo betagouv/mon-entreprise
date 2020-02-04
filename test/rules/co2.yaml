@@ -81,7 +81,6 @@ chauffage . impact par kWh:
   notes: |
     La base carbone de l'ADEME ne permet malheureusement pas de faire des liens profonds vers les chiffres utilisés.
     Pour l'électricité, nous retenons le chiffre de l'ADEME "Electricité - 2016 - usage : Eau Chaude Sanitaire - consommation".
-
   références:
     base carbone ADEME: http://www.bilans-ges.ademe.fr/fr/accueil
     électricité: https://www.electricitymap.org/?page=country&solar=false&remote=true&wind=false&countryCode=FR
