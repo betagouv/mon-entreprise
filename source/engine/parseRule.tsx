@@ -83,8 +83,15 @@ export default (rules, rule, parsedRules) => {
 						parsedRules,
 						node.explanation
 					),
-					{ nodeValue, unit, missingVariables } = explanation
-				return { ...node, nodeValue, unit, missingVariables, explanation }
+					{ nodeValue, unit, missingVariables, period } = explanation
+				return {
+					...node,
+					nodeValue,
+					unit,
+					missingVariables,
+					explanation,
+					period
+				}
 			}
 
 			let child = parse(rules, rule, parsedRules)(value)
@@ -147,6 +154,7 @@ export default (rules, rule, parsedRules) => {
 				missingVariables: mergeAllMissing(isDisabledBy)
 			}
 		},
+
 		jsx: (_nodeValue, { isDisabledBy }) => {
 			return (
 				isDisabledBy.length > 0 && (

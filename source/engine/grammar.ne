@@ -6,25 +6,33 @@
 # @preprocessor esmodule
 
 @{%
-const {string, filteredVariable, date, variable, variableWithConversion,  binaryOperation, unaryOperation, boolean, number, numberWithUnit } = require('./grammarFunctions')
+const {
+  string, filteredVariable, date, variable, variableWithConversion,
+  temporalNumericValue, binaryOperation, unaryOperation, boolean, number,
+  numberWithUnit 
+} = require('./grammarFunctions')
 
 const moo = require("moo");
 
-const dateRegexp = /(?:(?:0?[1-9]|[12][0-9]|3[01])\/)?(?:0?[1-9]|1[012])\/\d{4}/
+const dateRegexp = `(?:(?:0?[1-9]|[12][0-9]|3[01])\\/)?(?:0?[1-9]|1[012])\\/\\d{4}`
 const letter = '[a-zA-Z\u00C0-\u017F€$%]';
 const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
-const word = `${letter}(?:[\-']?${letterOrNumber}+)*`;
+const word = `${letter}(?:[-']?${letterOrNumber}+)*`;
 const wordOrNumber = `(?:${word}|${letterOrNumber}+)`
 const words = `${word}(?:[\\s]?${wordOrNumber}+)*`
+const periodWord = `\\| ${word}(?:[\\s]${word})*`
+
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\\.[0-9]+)?';
 const lexer = moo.compile({
-  date: dateRegexp,
   '(': '(',
   ')': ')',
   '[': '[',
   ']': ']',
   comparison: ['>','<','>=','<=','=','!='],
   infinity: 'Infinity',
+  colon: " : ",
+  date: new RegExp(dateRegexp),
+  periodWord: new RegExp(periodWord),
   words: new RegExp(words),
   number: new RegExp(numberRegExp),
   string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
@@ -33,7 +41,7 @@ const lexer = moo.compile({
   dot: ' . ',
   '.': '.',
   letterOrNumber: new RegExp(letterOrNumber),
-  space: { match: /[\s]+/, lineBreaks: true }
+  space: { match: /[\s]+/, lineBreaks: true },
 });
 
 const join = (args) => ({value: (args.map(x => x && x.value).join(""))})
@@ -43,12 +51,20 @@ const flattenJoin = ([a, b]) => Array.isArray(b) ? join([a, ...b]) : a
 @lexer lexer
 
 main ->
-    AdditionSubstraction {% id %}
-  | Comparison {% id %}
-  | NonNumericTerminal {% id %}
-  | Negation {% id %}
+    Comparison {% id %}
+  | NumericValue {% id %}
   | Date {% id %}
+  | NonNumericTerminal {% id %}
 
+NumericValue -> 
+    AdditionSubstraction {% id %}
+  | Negation {% id %}
+  | TemporalNumericValue {% id %}
+
+TemporalNumericValue -> 
+    NumericValue %space %periodWord %space %date {% ([value,,word,,dateString]) => temporalNumericValue(value, word, date([dateString])) %}
+  | NumericValue %space %periodWord %colon Date {% ([value,,word,,date]) => temporalNumericValue(value, word, date) %}
+  
 NumericTerminal ->
 	 	Variable {% id %}
   | VariableWithUnitConversion {% id %}
@@ -91,6 +107,7 @@ VariableWithUnitConversion ->
 
 Filter -> "." %words {% ([,filter]) => filter %}
 FilteredVariable -> Variable %space Filter {% filteredVariable %}
+
 
 AdditionSubstraction ->
     AdditionSubstraction %space %additionSubstraction %space MultiplicationDivision  {%  binaryOperation('calculation') %}

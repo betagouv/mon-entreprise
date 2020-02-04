@@ -121,6 +121,7 @@ export default (cache, situationGate, parsedRules, node) => {
 		...(node.formule && { formule: evaluatedFormula }),
 		nodeValue,
 		unit,
+		period,
 		isApplicable,
 		missingVariables
 	}

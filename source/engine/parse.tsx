@@ -10,6 +10,7 @@ import encadrement from 'Engine/mecanisms/encadrement'
 import grille from 'Engine/mecanisms/grille'
 import operation from 'Engine/mecanisms/operation'
 import tauxProgressif from 'Engine/mecanisms/tauxProgressif'
+import variableTemporelle from 'Engine/mecanisms/variableTemporelle'
 import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
@@ -166,6 +167,7 @@ const statelessParseFunction = {
 	somme: mecanismSum,
 	multiplication: mecanismProduct,
 	produit: mecanismProduct,
+	temporalValue: variableTemporelle,
 	arrondi: mecanismRound,
 	barème,
 	grille,

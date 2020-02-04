@@ -1032,7 +1032,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . allocati
               taux: 3.1%
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
-  période: flexible
   formule:
     somme:
       - ZFU
