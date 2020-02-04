@@ -1,30 +1,6 @@
 import { parseUnit } from 'Engine/units'
-import rawRules from 'Publicode/base.yaml'
-import {
-	assoc,
-	chain,
-	dropLast,
-	filter,
-	fromPairs,
-	is,
-	isNil,
-	join,
-	last,
-	map,
-	path,
-	pipe,
-	propEq,
-	props,
-	range,
-	reduce,
-	reduced,
-	reject,
-	split,
-	take,
-	toPairs,
-	trim,
-	when
-} from 'ramda'
+import rawRules from 'Publicode/rules'
+import { assoc, chain, dropLast, filter, fromPairs, is, isNil, join, last, map, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda'
 import translations from '../locales/rules-en.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'

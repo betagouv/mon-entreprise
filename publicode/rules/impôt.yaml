@@ -1,0 +1,503 @@
+impôt:
+  icônes: 🏛️
+  description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
+  titre: impôts sur le revenu
+  formule:
+    somme:
+      - variations:
+          - si: méthode de calcul . barème standard
+            alors: impôt sur le revenu à payer
+          - si: méthode de calcul . prélèvement à la source
+            alors:
+              multiplication:
+                assiette: revenu imposable
+                taux: taux du prélèvement à la source
+          - sinon: 0
+      - CEHR
+      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
+
+impôt . taux du prélèvement à la source:
+  formule:
+    variations:
+      - si: méthode de calcul . taux neutre
+        alors: taux neutre d'impôt sur le revenu
+      - si: méthode de calcul . taux personnalisé
+        alors: taux personnalisé
+
+impôt . méthode de calcul:
+  description: |
+    Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+    - *Le taux neutre* : pour un célibataire sans enfants
+    - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
+  question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+  # applicable si: revenu imposable > 0
+  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
+  non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
+  par défaut: barème standard
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - taux neutre
+        - taux personnalisé
+        - barème standard
+  références:
+    différence taux neutre / personnalisé: https://www.impots.gouv.fr/portail/particulier/questions/quelles-sont-les-differences-entre-les-taux-de-prelevement-la-source-proposes
+    calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+
+impôt . méthode de calcul . taux neutre:
+  titre: avec le taux neutre
+  description: Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez connaître votre impôt à la source dans le cas où vous avez choisi de ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre correspond à une imposition pour un célibataire sans enfants et sans autres revenus / charges.
+  formule: impôt . méthode de calcul = 'taux neutre'
+
+impôt . méthode de calcul . taux personnalisé:
+  titre: avec votre taux personnalisé
+  description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscal pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
+  formule: impôt . méthode de calcul = 'taux personnalisé'
+
+impôt . méthode de calcul . barème standard:
+  titre: avec le barème standard
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
+  formule: impôt . méthode de calcul = 'barème standard'
+
+impôt . méthode de calcul . prélèvement à la source:
+  formule:
+    une de ces conditions:
+      - taux neutre
+      - taux personnalisé
+
+impôt . revenu imposable:
+  description: |
+    C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
+  formule:
+    allègement:
+      assiette:
+        somme:
+          - contrat salarié . rémunération . net imposable
+          - dirigeant . indépendant . revenu professionnel
+          - dirigeant . auto-entrepreneur . impôt . revenu imposable
+      abattement: abattement contrat court / 1 an
+
+impôt . revenu imposable . abattement contrat court:
+  unité: €
+
+  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
+  applicable si:
+    toutes ces conditions:
+      - méthode de calcul . taux neutre
+      - contrat salarié
+      - contrat salarié . CDD
+      - contrat salarié . CDD . durée contrat <= 2
+  formule: 50% * contrat salarié . SMIC temps plein . net imposable * 1 mois
+  note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
+  références:
+    Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
+
+impôt . revenu abattu:
+  description: |
+    L'impôt est calculé sur un revenu abattu : il est diminué (par exemple de 10%) pour prendre en compte une estimation des *frais professionnels* de l'activité rémunérée.
+    Par exemple, on peut considérer qu'un salarié use ses chaussures pour aller au travail. Ces chaussures, il les a acheté avec son argent, donc du revenu sur lequel il a injustement payé de l'impôt.
+  formule:
+    somme:
+      - revenu abattu par défaut
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
+
+impôt . revenu abattu par défaut:
+  description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+  formule:
+    allègement:
+      assiette:
+        somme:
+          - contrat salarié . rémunération . net imposable
+          - dirigeant . indépendant . revenu professionnel
+      abattement: 10%
+      plafond: 12502 €/an
+  note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
+  références:
+    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
+
+impôt . impôt sur le revenu:
+  description: |
+    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
+    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
+
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+  unité par défaut: €/an
+  formule:
+    barème:
+      assiette: revenu abattu [€/an]
+      tranches:
+        - en-dessous de: 10064
+          taux: 0%
+        - de: 10064
+          à: 25659
+          taux: 11%
+        - de: 25659
+          à: 73369
+          taux: 30%
+        - de: 73369
+          à: 157806
+          taux: 41%
+        - au-dessus de: 157806
+          taux: 45%
+  exemples:
+    - nom: Haut salaire de ~ 10 000€ mensuels
+      situation:
+        contrat salarié . rémunération . net imposable: 10000
+      valeur attendue: 30227
+  références:
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+
+impôt . impôt sur le revenu à payer:
+  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
+  unité par défaut: €/an
+  formule:
+    allègement:
+      assiette: impôt sur le revenu
+      décote:
+        plafond: 1717 €/an
+        taux: 45.25%
+  exemples:
+    - nom: Salaire d'un cadre
+      situation:
+        contrat salarié . rémunération . net imposable: 4000
+      valeur attendue: 6977
+  note: Le calcul utilisé pour la décôte concerne uniquement les foyers célibataires, le calcul est différent pour les couples.
+
+impôt . revenu fiscal de référence:
+  unité: €/an
+
+  description: le revenu fiscal de référence correspond au revenu abattu du foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations. Ces dernières sont réintégrées dans le calcul.
+  formule:
+    somme:
+      - revenu abattu par défaut
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
+      - contrat salarié . prime d'impatriation
+  références:
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
+
+impôt . CEHR:
+  unité: €/an
+
+  note: Attention, ce barème concerne les foyers célibataires. Pour les couples, le barème est adapté pour ne pas leur appliquer la même imposition alors qu'ils sont individuellement deux fois moins riches.
+  formule:
+    barème:
+      assiette: revenu fiscal de référence [€/an]
+      tranches:
+        - en-dessous de: 250000
+          taux: 0%
+        - de: 250000
+          à: 500000
+          taux: 3%
+        - au-dessus de: 500000
+          taux: 4%
+  références:
+    contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
+    Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
+    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
+
+impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
+  icônes: 🇬🇵🇷🇪 🇲🇶
+  formule:
+    barème linéaire:
+      assiette: revenu imposable [€/mois]
+      retourne seulement le taux: oui
+      tranches:
+        - de: 0
+          à: 1625
+          taux: 0%
+
+        - de: 1626
+          à: 1723
+          taux: 0.5%
+
+        - de: 1724
+          à: 1899
+          taux: 1.3%
+
+        - de: 1900
+          à: 2074
+          taux: 2.1%
+
+        - de: 2075
+          à: 2291
+          taux: 2.9%
+
+        - de: 2292
+          à: 2416
+          taux: 3.5%
+
+        - de: 2417
+          à: 2499
+          taux: 4.1%
+
+        - de: 2500
+          à: 2749
+          taux: 5.3%
+
+        - de: 2750
+          à: 3399
+          taux: 7.5%
+
+        - de: 3400
+          à: 4349
+          taux: 9.9%
+
+        - de: 4350
+          à: 4941
+          taux: 11.9%
+
+        - de: 4942
+          à: 5724
+          taux: 13.8%
+
+        - de: 5725
+          à: 6857
+          taux: 15.8%
+
+        - de: 6858
+          à: 7624
+          taux: 17.9%
+
+        - de: 7625
+          à: 8666
+          taux: 20%
+
+        - de: 8667
+          à: 11916
+          taux: 24%
+
+        - de: 11917
+          à: 15832
+          taux: 28%
+
+        - de: 15833
+          à: 24166
+          taux: 33%
+
+        - de: 24167
+          à: 52824
+          taux: 38%
+
+        - au-dessus de: 52825
+          taux: 43%
+
+impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
+  icônes: 🇬🇾 🇾🇹
+  formule:
+    barème linéaire:
+      assiette: revenu imposable [€/mois]
+      retourne seulement le taux: oui
+      tranches:
+        - de: 0
+          à: 1740
+          taux: 0%
+
+        - de: 1741
+          à: 1882
+          taux: 0.5%
+
+        - de: 1883
+          à: 2099
+          taux: 1.3%
+
+        - de: 2100
+          à: 2366
+          taux: 2.1%
+
+        - de: 2367
+          à: 2457
+          taux: 2.9%
+
+        - de: 2458
+          à: 2541
+          taux: 3.5%
+
+        - de: 2542
+          à: 2624
+          taux: 4.1%
+
+        - de: 2625
+          à: 2916
+          taux: 5.3%
+
+        - de: 2917
+          à: 4024
+          taux: 7.5%
+
+        - de: 4025
+          à: 5207
+          taux: 9.9%
+
+        - de: 5208
+          à: 5874
+          taux: 11.9%
+
+        - de: 5875
+          à: 6816
+          taux: 13.8%
+
+        - de: 6817
+          à: 7499
+          taux: 15.8%
+
+        - de: 7500
+          à: 8307
+          taux: 17.9%
+
+        - de: 8308
+          à: 9641
+          taux: 20%
+
+        - de: 9642
+          à: 12970
+          taux: 24%
+
+        - de: 12971
+          à: 16499
+          taux: 28%
+
+        - de: 16500
+          à: 26442
+          taux: 33%
+
+        - de: 26443
+          à: 55814
+          taux: 38%
+
+        - au-dessus de: 55815
+          taux: 43%
+
+impôt . taux neutre d'impôt sur le revenu:
+  description: >
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
+  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
+  formule:
+    variations:
+      - si: établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+        alors: barème Guadeloupe Réunion Martinique
+
+      - si:
+          une de ces conditions:
+            - établissement . localisation . département = 'Guyane'
+            - établissement . localisation . département = 'Mayotte'
+        alors: barème Guyane Mayotte
+      - sinon:
+          barème linéaire:
+            assiette: revenu imposable [€/mois]
+            retourne seulement le taux: oui
+            tranches:
+              - de: 0
+                à: 1417
+                taux: 0%
+
+              - de: 1418
+                à: 1471
+                taux: 0.5%
+
+              - de: 1472
+                à: 1566
+                taux: 1.3%
+
+              - de: 1567
+                à: 1672
+                taux: 2.1%
+
+              - de: 1673
+                à: 1786
+                taux: 2.9%
+
+              - de: 1787
+                à: 1882
+                taux: 3.5%
+
+              - de: 1883
+                à: 2007
+                taux: 4.1%
+
+              - de: 2008
+                à: 2375
+                taux: 5.3%
+
+              - de: 2376
+                à: 2719
+                taux: 7.5%
+
+              - de: 2720
+                à: 3097
+                taux: 9.9%
+
+              - de: 3098
+                à: 3486
+                taux: 11.9%
+
+              - de: 3487
+                à: 4068
+                taux: 13.8%
+
+              - de: 4069
+                à: 4877
+                taux: 15.8%
+
+              - de: 4878
+                à: 6103
+                taux: 17.9%
+
+              - de: 6104
+                à: 7624
+                taux: 20%
+
+              - de: 7625
+                à: 10582
+                taux: 24%
+
+              - de: 10583
+                à: 14332
+                taux: 28%
+
+              - de: 14333
+                à: 22499
+                taux: 33%
+
+              - de: 22500
+                à: 48195
+                taux: 38%
+
+              - au-dessus de: 48196
+                taux: 43%
+
+  références:
+    Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
+    BOFIP: http://bofip.impots.gouv.fr/bofip/11255-PGP.html
+
+impôt . taux personnalisé:
+  question: Quel est votre taux de prélèvement à la source ?
+  description: |
+    Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d'imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  unité: '%'
+
+revenus net de cotisations:
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  formule:
+    somme:
+      - contrat salarié . rémunération . net
+      - dirigeant . indépendant . revenu net de cotisations
+      - dirigeant . auto-entrepreneur . net de cotisations
+
+revenu net après impôt:
+  unité par défaut: €/an
+  résumé: Disponible sur votre compte en banque
+  question: Quel revenu voulez-vous toucher ?
+  description: |
+    Il s'agit du revenu net de charges, cotisations et d'impôts.
+    Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.
+  formule: revenus net de cotisations - impôt

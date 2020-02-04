@@ -1,0 +1,448 @@
+protection sociale:
+  description: >
+    La protection sociale est composée de 5 branches principales : maladie, famille, accidents
+    du travail et maladies professionnelles, retraite et chômage. A cela s'ajoutent
+    aussi les cotisations pour la formation professionnelle et le transport.
+
+protection sociale . retraite:
+  icônes: 👵
+  type: branche
+  résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
+  description: |
+    Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
+
+    Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
+
+    ## La retraite en France en quelques chiffres
+      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)
+      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)
+      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
+
+    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+
+    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+
+  références:
+    CNAV: https://www.lassuranceretraite.fr
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
+    INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
+
+  formule:
+    somme:
+      - base
+      - complémentaire salarié
+      - complémentaire sécurité des indépendants
+
+  note: |
+    Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
+    On se limite notamment aux hypothèses suivantes :
+      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestres requis (172), ou en partant à l'âge taux plein (67 ans)
+      - On considère que le travailleur a eu le même revenu tout au long de sa carrière
+      - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
+      - On ne prend pas en compte les minorations / majorations
+      - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
+      - On ne calcule pas le nombre de trimestres validés par année
+
+    Ces limites seront amenées à évoluer au fur et à mesure du développement du simulateur
+
+protection sociale . retraite . base:
+  titre: pension de retraite de base
+  formule:
+    multiplication:
+      plafond: plafond sécurité sociale temps plein
+      taux: taux de la pension
+      assiette: revenu moyen
+  note: Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
+
+protection sociale . retraite . base . taux de la pension:
+  description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
+  formule:
+    variations:
+      - si: trimestres validés par an = 0
+        alors: 0%
+      - sinon: 50%
+  note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
+
+protection sociale . retraite . trimestres validés par an:
+  unité: trimestres validés/an
+  formule:
+    encadrement:
+      valeur:
+        somme:
+          - trimestres salarié
+          - trimestres indépendant
+          - trimestres auto-entrepreneur
+      plafond: 4
+
+protection sociale . retraite . trimestres validés par an . trimestres salarié:
+  unité: trimestres validés/an
+  applicable si: contrat salarié
+  formule: barème trimestres générique
+
+protection sociale . retraite . trimestres validés par an . trimestres indépendant:
+  unité: trimestres validés/an
+  applicable si: dirigeant = 'indépendant'
+  formule:
+    variations:
+      - si: situation personnelle . RSA
+        alors: barème trimestres générique
+      - sinon:
+          encadrement:
+            plancher: 3
+            valeur: barème trimestres générique
+
+protection sociale . retraite . trimestres validés par an . barème trimestres générique:
+  unité: trimestres validés/an
+  formule:
+    barème linéaire:
+      unité: trimestres validés/an
+      assiette: revenu moyen [€/an]
+      multiplicateur: SMIC horaire
+      tranches:
+        - en-dessous de: 150
+          montant: 0
+        - de: 150
+          à: 300
+          montant: 1
+        - de: 300
+          à: 450
+          montant: 2
+        - de: 450
+          à: 600
+          montant: 3
+        - au-dessus de: 600
+          montant: 4
+  références:
+    cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
+
+protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
+  applicable si: dirigeant = 'auto-entrepreneur'
+  description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
+  unité: trimestres validés/an
+  formule:
+    variations:
+      - si: entreprise . catégorie d'activité = 'libérale'
+        alors:
+          barème linéaire:
+            unité: trimestres validés/an
+            assiette: entreprise . chiffre d'affaires [€/an]
+            tranches:
+              - en-dessous de: 2880
+                montant: 0
+              - de: 2880
+                à: 5062
+                montant: 1
+              - de: 5062
+                à: 7266
+                montant: 2
+              - de: 7266
+                à: 9675
+                montant: 3
+              - au-dessus de: 9675
+                montant: 4
+      - si:
+          une de ces conditions:
+            - entreprise . catégorie d'activité . service ou vente = 'vente'
+            - entreprise . catégorie d'activité . restauration ou hébergement
+        alors:
+          barème linéaire:
+            unité: trimestres validés/an
+            assiette: entreprise . chiffre d'affaires [€/an]
+            tranches:
+              - en-dessous de: 4137
+                montant: 0
+              - de: 4137
+                à: 7286
+                montant: 1
+              - de: 7286
+                à: 10426
+                montant: 2
+              - de: 10426
+                à: 20740
+                montant: 3
+              - au-dessus de: 20740
+                montant: 4
+      - sinon:
+          barème linéaire:
+            unité: trimestres validés/an
+            assiette: entreprise . chiffre d'affaires [€/an]
+            tranches:
+              - en-dessous de: 2412
+                montant: 0
+              - de: 2412
+                à: 4239
+                montant: 1
+              - de: 4239
+                à: 6071
+                montant: 2
+              - de: 6071
+                à: 12030
+                montant: 3
+              - au-dessus de: 12030
+                montant: 4
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
+
+protection sociale . revenu moyen:
+  description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
+  notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
+  unité: €/an
+
+  formule:
+    le maximum de:
+      - dirigeant . indépendant . revenu professionnel
+      - dirigeant . auto-entrepreneur . impôt . revenu abattu
+      - contrat salarié . rémunération . brut
+
+protection sociale . retraite . mois cotisés:
+  unité: mois
+  formule: 172 trimestres * 3 mois/trimestre
+  notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
+
+protection sociale . retraite . complémentaire salarié:
+  formule: points acquis * valeur du point
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+
+protection sociale . retraite . complémentaire salarié . valeur du point:
+  formule: 1.2588 €/point/an
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+    agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
+
+protection sociale . retraite . complémentaire salarié . points acquis:
+  formule: points acquis par mois * mois cotisés
+  unité: points
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+
+protection sociale . retraite . complémentaire salarié . points acquis par mois:
+  unité: points/mois
+  formule: contrat salarié . retraite complémentaire / prix d'achat du point
+
+protection sociale . retraite . complémentaire salarié . prix d'achat du point:
+  formule: 16.7226 €/point
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+
+protection sociale . retraite . complémentaire sécurité des indépendants:
+  formule: points acquis * valeur du point
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/retraite/calcul-retraite/retraite-complementaire/
+
+protection sociale . retraite . complémentaire sécurité des indépendants . valeur du point:
+  formule: 1.187 €/point/an
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/baremes/prestations-vieillesse-et-invalidite-deces
+
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis:
+  formule: points acquis par mois * mois cotisés
+
+protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
+  unité: points/mois
+  formule:
+    multiplication:
+      assiette:
+        somme:
+          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
+      facteur: 1 / prix d'achat du point
+
+protection sociale . retraite . complémentaire sécurité des indépendants . prix d'achat du point:
+  formule: 17.456 €/point
+  notes: il s'agit du prix d'achat 2018 (la valeur pour 2019 sur le site secu-independants.fr est marquée comme N.C)
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/baremes/baremes-2018/baremesprestations-maladie-maternite/?reg=ile-de-france-centre&ae=oui
+
+protection sociale . santé:
+  icônes: 🏥
+  type: branche
+  résumé: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
+  description: |
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    ## L'assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
+      - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+
+  références:
+    ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+protection sociale . santé . indemnités journalières:
+  description: >-
+    Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
+    votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
+    brut et versées tous les 14 jours en moyenne.
+  # TODO : période : jour
+  unité: €/jour
+
+  formule:
+    somme:
+      - indemnités journalières . auto-entrepreneur
+      - indemnités journalières . indépendant
+      - indemnités journalières . salarié
+
+protection sociale . santé . indemnités journalières . auto-entrepreneur:
+  applicable si: dirigeant = 'auto-entrepreneur'
+  unité: €/jour
+
+  formule:
+    variations:
+      - si: revenu moyen < 3919.20 €/an
+        alors: 0 €/jour
+      - sinon:
+          encadrement:
+            valeur:
+              multiplication:
+                assiette: revenu moyen [€/jour]
+                taux: 50%
+            plafond: 55.51 €/jour
+  reférences:
+    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+
+protection sociale . santé . indemnités journalières . indépendant:
+  applicable si: dirigeant = 'indépendant'
+  unité: €/jour
+
+  formule:
+    encadrement:
+      valeur:
+        multiplication:
+          assiette: revenu moyen [€/jour]
+          taux: 50%
+      plancher: 21 €/jour
+      plafond: 55.51 €/jour
+  reférences:
+    - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
+
+protection sociale . santé . indemnités journalières . salarié:
+  unité: €/jour
+
+  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
+  applicable si: contrat salarié
+  formule:
+    multiplication:
+      assiette: revenu moyen [€/jour]
+      plafond: 1.8 * contrat salarié . SMIC temps plein [€/jour]
+      taux: 50%
+  reférences:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
+
+protection sociale . assurance chômage:
+  icônes: 💸
+  type: assurance
+  résumé: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
+  description: >
+    Depuis 1958, l’Assurance chômage protège tous les salariés du privé et certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse une allocation et favorise leur retour à l’emploi grâce à des aides.
+
+    Fonctionnant comme une assurance,  elle indemnise ceux qui ont cotisé, en fonction de leur ancien salaire. Mais elle est aussi solidaire, puisqu’elle mutualise les risques et compense mieux la perte d’un bas salaire que d’un haut revenu.
+
+    Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
+
+    ## L'assurance chômage en France en quelques chiffres
+      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne
+      - **2,7 millions** de chômeurs indemnisés chaque mois
+      - **1 020 €** : montant de l'allocation nette moyenne par mois
+      - **51 %** des allocataires cumulent allocation et salaire
+
+  références:
+    Pôle-emploi: https://www.pole-emploi.fr/accueil
+    Unédic: https://www.unedic.org/a-propos/quest-ce-que-lassurance-chomage
+
+protection sociale . famille:
+  icônes: 👶
+  type: branche
+  résumé: |
+    Assure des prestations en soutien aux familles : garde d'enfants, aide au logement...
+  description: |
+    Créée en 1945, la branche Famille est l’un des principaux acteurs de la politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle
+      - Développer la solidarité envers les plus vulnérables, dont les personnes handicapées
+
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
+      - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active)
+      - L’accompagnement des familles et la mise en place ou le cofinancement de différents
+      services et équipements collectifs qui leur sont destinés (comme les crèches)
+
+    ## Les allocations familiales en France en quelques chiffres
+      - **19 %** part des dépenses allouées à la petite enfance
+      - **860 € / mois** : montant de l'allocation aux adultes handicapés
+      - **75 %** des mères avec un enfant à charge travaillent (dont 70% à temps plein)
+
+  références:
+    CAF: https://www.caf.fr/sites/default/files/plaquette branche famille francais.pdf
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F12242
+
+protection sociale . accidents du travail et maladies professionnelles:
+  icônes: ☣️
+  résumé: Offre une couverture complète des maladies ou accidents du travail.
+  description: |
+    L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.
+
+    [🎞️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )
+
+    La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
+
+    Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
+
+    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
+
+    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
+
+  unité: €/jour
+
+  applicable si: contrat salarié
+  formule:
+    encadrement:
+      valeur:
+        multiplication:
+          assiette: revenu moyen [€/jour]
+          taux: 60%
+      plafond: 202.78 €/jour
+
+      # TODO
+      # - 0.834% * plafond sécurité sociale temps plein [€/an]
+
+  références:
+    ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
+    service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
+    service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
+
+protection sociale . formation:
+  icônes: 👩‍🎓
+  résumé: Donne aux employés la possibilité de suivre des formations professionnelles.
+  description: |
+    La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
+
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation, rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+
+protection sociale . autres:
+  icônes: 🔧
+  résumé: Autres contributions au système social.
+  description: |
+    Toutes les contributions transverses au système social.
+
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette sociale) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
+
+protection sociale . transport:
+  icônes: 🚌
+  résumé: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
+  description: |
+    Cette contribution est reversée intégralement à l'[autorité organisatrice de la mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9) de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser pour subventionner les transports en commun existants ou pour développer de nouvelles infrastructures de transport (tramway, métro, bus...).
+
+    ## Le versement transport en quelques chiffres
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France.
+    - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
+  références:
+    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport

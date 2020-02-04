@@ -1,0 +1,138 @@
+artiste-auteur:
+  description: Le régime des artistes-auteurs
+  icônes: 👩‍🎨
+
+artiste-auteur . revenus:
+
+artiste-auteur . revenus . traitements et salaires:
+  titre: Revenu en traitements et salaires
+  unité par défaut: €/an
+  par défaut: 0
+  résumé: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
+
+artiste-auteur . revenus . BNC:
+  formule:
+    encadrement:
+      plancher: 0 €/an
+      valeur:
+        variations:
+          - si: micro-bnc
+            alors:
+              somme:
+                - recettes
+                - (- charges forfaitaires)
+          - sinon:
+              somme:
+                - recettes
+                - (- frais réels)
+
+artiste-auteur . revenus . BNC . micro-bnc:
+  applicable si:
+    toutes ces conditions:
+      - recettes > 0
+      - recettes < 72500 €/an
+  par défaut: oui
+  titre: Souhaitez-vous opter pour le régime micro-BNC ?
+  résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
+
+artiste-auteur . revenus . BNC . recettes:
+  titre: Revenu en BNC
+  unité par défaut: €/an
+  par défaut: 0
+  résumé: Le montant de vos recettes brutes hors TVA
+
+artiste-auteur . revenus . BNC . frais réels:
+  unité par défaut: €/an
+  par défaut: 0
+  question: Régime des frais réels BNC
+  résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
+  applicable si: recettes > 0 €/an
+  non applicable si: micro-bnc
+
+artiste-auteur . revenus . BNC . charges forfaitaires:
+  formule: 34% * recettes
+
+artiste-auteur . cotisations:
+  formule:
+    somme:
+      - vieillesse
+      - CSG-CRDS
+      - formation professionnelle
+  références:
+    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/taux-des-cotisations.html
+
+artiste-auteur . cotisations . assiette:
+  description: Les revenus des artistes-auteurs peuvent être catégorisés soit comme des traitements et salaires, soit comme des bénéfices non commerciaux. Les cotisations sociales sont payées sur la somme des revenus de ces deux catégories.
+  formule:
+    somme:
+      - revenus . traitements et salaires
+      - revenus . BNC * 1.15
+
+artiste-auteur . cotisations . option surcotisation:
+  applicable si:
+    toutes ces conditions:
+      - assiette > 0
+      - assiette < assiette surcotisation
+  question: Souhaitez-vous surcotiser ?
+  résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
+  par défaut: non
+  références:
+    URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
+
+artiste-auteur . cotisations . assiette surcotisation:
+  formule: 900 heures/an * SMIC horaire
+
+artiste-auteur . cotisations . surcotisation:
+  applicable si: option surcotisation
+  remplace:
+    - règle: assiette
+      dans: vieillesse
+      par: assiette surcotisation
+
+artiste-auteur . cotisations . vieillesse:
+  formule:
+    multiplication:
+      assiette: assiette
+      composantes:
+        - nom: plafonnée
+          plafond: contrat salarié . plafond sécurité sociale
+          taux: contrat salarié . vieillesse . taux salarié plafonné - 0.75%
+        - nom: non plafonnée
+          taux: contrat salarié . vieillesse . taux salarié non plafonné - 0.4%
+
+artiste-auteur . cotisations . CSG-CRDS:
+  formule:
+    somme:
+      - CSG
+      - CRDS
+
+artiste-auteur . cotisations . CSG-CRDS . assiette:
+  formule:
+    somme:
+      - cotisations . assiette
+      - (- CSG-CRDS . abattement)
+
+artiste-auteur . cotisations . CSG-CRDS . abattement:
+  formule:
+    multiplication:
+      assiette: revenus . traitements et salaires
+      plafond: 4 * contrat salarié . plafond sécurité sociale
+      taux: 1.75%
+
+artiste-auteur . cotisations . CSG-CRDS . CSG:
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      taux: 9.20%
+
+artiste-auteur . cotisations . CSG-CRDS . CRDS:
+  formule:
+    multiplication:
+      assiette: CSG-CRDS . assiette
+      taux: 0.50%
+
+artiste-auteur . cotisations . formation professionnelle:
+  formule:
+    multiplication:
+      assiette: assiette
+      taux: 0.35%

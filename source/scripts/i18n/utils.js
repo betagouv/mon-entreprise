@@ -4,6 +4,7 @@ var fs = require('fs')
 var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
+let { readRules } = require('../rules')
 
 let { safeLoad } = require('js-yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
@@ -23,9 +24,7 @@ let attributesToTranslate = [
 ]
 
 function getRulesMissingTranslations() {
-	let rules = safeLoad(
-		fs.readFileSync(path.resolve('publicode/base.yaml'), 'utf-8')
-	)
+	let rules = readRules()
 
 	let currentExternalization = safeLoad(
 		fs.readFileSync(rulesTranslationPath, 'utf-8')
