@@ -1374,7 +1374,34 @@ contrat salarié . formation professionnelle:
     entreprises de travail temporaire)
   titre.en: professional training
   titre.fr: formation professionnelle
-contrat salarié . indemnité kilométrique vélo:
+contrat salarié . frais professionnels:
+  description.en: >-
+    [automatic] Business expenses correspond to expenses incurred by the
+    employee for the needs of his professional activity. These costs are then
+    reimbursed by the employer.
+
+    Compensation for these costs may take the form of :
+      - reimbursement of actual expenditure on the basis of supporting documents;
+      - a lump-sum payment ;
+      - the application of a specific lump-sum deduction on the salary subject to contributions; this possibility is only open to certain professions.
+
+    Business expenses are excluded from the basis for calculating Social
+    Security contributions. They are also excluded from the CSG-CRDS database.
+  description.fr: >-
+    Les frais professionnels correspondent à des dépenses engagées par le
+    salarié pour les besoins de son activité professionnelle. Ces frais sont
+    ensuite remboursés par l’employeur.
+
+    Le dédommagement de ces frais peut prendre la forme :
+      - d’un remboursement des dépenses réelles sur justificatifs ;
+      - d’un versement d’allocations forfaitaires ;
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+
+    Les frais professionnels sont exclus de la base de calcul des cotisations de
+    Sécurité sociale. Ils sont aussi exclus de la base CSG-CRDS.
+  titre.en: '[automatic] business expenses'
+  titre.fr: frais professionnels
+contrat salarié . frais professionnels . indemnité kilométrique vélo:
   description.en: >-
     Employer's incitation to the use of bicycles for commuting. This financial
     aid is not taxed.
@@ -1392,7 +1419,7 @@ contrat salarié . indemnité kilométrique vélo:
     part au-dessus de 200€ devient une prime classique.
   titre.en: kilometric bicycle allowance
   titre.fr: indemnité kilométrique vélo
-contrat salarié . indemnité kilométrique vélo . active:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . active:
   description.en: >
     This allowance is not mandatory at this time.
 
@@ -1440,25 +1467,62 @@ contrat salarié . indemnité kilométrique vélo . active:
     travail ?
   titre.en: active bicycle allowance
   titre.fr: indemnité vélo active
-contrat salarié . indemnité kilométrique vélo . distance annuelle:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance annuelle:
   titre.en: annual distance
   titre.fr: distance annuelle
-contrat salarié . indemnité kilométrique vélo . distance journalière:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance journalière:
   description.en: A low estimate of the distance an employee bikes to work.
   description.fr: >-
     Une estimation basse de la distance parcourue à vélo par un salarié pour se
     rendre à son travail.
   titre.en: daily distance
   titre.fr: distance journalière
-contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . indemnité kilométrique:
   titre.en: kilometre allowance
   titre.fr: indemnité kilométrique
-contrat salarié . indemnité kilométrique vélo . jours travaillés:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . jours travaillés:
   titre.en: days worked
   titre.fr: jours travaillés
-contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . plafond d'exonération:
   titre.en: exemption cap
   titre.fr: plafond d'exonération
+contrat salarié . frais professionnels . titres-restaurant:
+  description.en: >-
+    [automatic] The meal voucher is a special "meal" payment voucher issued by
+    the employer to the employee.
+
+    The employee may only use the meal vouchers in his or her possession to pay
+    for consumption:
+      - of a meal,
+      - of directly consumable food preparations,
+      - of fruits and vegetables.
+
+    This voucher can be issued in paper or dematerialised form.
+  description.fr: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
+    régler la consommation :
+      - d’un repas,
+      - de préparations alimentaires directement consommables,
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  question.en: '[automatic] Does the employee receive luncheon vouchers?'
+  question.fr: Le salarié reçoit-il des titres-restaurant ?
+  titre.en: '[automatic] restaurant vouchers'
+  titre.fr: titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question.en: '[automatic] How many restaurant vouchers do you receive per month?'
+  question.fr: Combien de titres-restaurant recevez-vous par mois ?
+  titre.en: '[automatic] meal vouchers per month'
+  titre.fr: titres-restaurant par mois
+contrat salarié . frais professionnels . titres-restaurant . valeur:
+  question.en: '[automatic] What is the value of the restaurant voucher?'
+  question.fr: Quelle est la valeur du titre-restaurant ?
+  titre.en: '[automatic] value'
+  titre.fr: valeur
 contrat salarié . indemnités salarié:
   titre.en: Employee benefits
   titre.fr: indemnités salarié
@@ -2032,10 +2096,10 @@ contrat salarié . rémunération . avantages en nature . montant:
   titre.fr: Avantages en nature (montant)
 contrat salarié . rémunération . avantages en nature . nourriture:
   description.en: >
-    Lunch vouchers("tickets restaurants") are not considered as a benefit in
-    kind but as a reimbursement of expenses.
+    [automatic] Restaurant vouchers are not considered a benefit in kind but a
+    reimbursement of expenses.
   description.fr: >
-    Les tickets restaurants ne sont pas considérés comme un avantage en nature
+    Les titres-restaurant ne sont pas considérés comme un avantage en nature
     mais comme un remboursement de frais.
   question.en: |
     Does the employer provide free meals?

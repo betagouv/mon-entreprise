@@ -21,7 +21,7 @@ questions:
     JEI: contrat salarié . statut JEI
     Avantages: contrat salarié . rémunération . avantages en nature
   non prioritaires:
-    - contrat salarié . indemnité kilométrique vélo . active
+    - contrat salarié . frais professionnels . indemnité kilométrique vélo . active
     - contrat salarié . rémunération . avantages en nature
     - entreprise . établissement bancaire
     - entreprise . association non lucrative
