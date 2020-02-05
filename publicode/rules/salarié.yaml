@@ -59,7 +59,13 @@ contrat salarié . frais professionnels . titres-restaurant:
       - de fruits et légumes.
 
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  question: Le salarié reçoit-il des titres-restaurant ?
+  par défaut: non
 
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question: Combien de titres-restaurant recevez-vous par mois ?
+  par défaut: 19
+  unité: titres-restaurant/mois
   formule:
     multiplication:
       facteur: titres-restaurant par mois
@@ -67,11 +73,6 @@ contrat salarié . frais professionnels . titres-restaurant:
         encadrement:
           valeur: 50% * valeur
           plafond: 5.55 €
-
-contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
-  question: Combien de titres-restaurant recevez-vous par mois ?
-  par défaut: 19
-  unité: titres-restaurant/mois
 
 contrat salarié . frais professionnels . titres-restaurant . valeur:
   question: Quelle est la valeur du titre-restaurant ?
@@ -1084,7 +1085,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     L'employeur fournit-il gratuitement les repas ?
   par défaut: non
   description: >
-    Les tickets restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+    Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
