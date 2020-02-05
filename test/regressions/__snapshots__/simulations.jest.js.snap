@@ -216,15 +216,19 @@ exports[`calculate simulations-salarié:  cdd 1`] = `"[2508,0,0,2000,1561,1524]"
 
 exports[`calculate simulations-salarié:  cdd 2`] = `"[2591,0,0,2000,1599,1557]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires 1`] = `"[2583,0,0,2000,1636,1599]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 1`] = `"[2583,0,0,2000,1636,1599]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires 2`] = `"[3105,0,0,2000,2009,1965]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 2`] = `"[3105,0,0,2000,2009,1965]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires 3`] = `"[2653,0,0,2000,1636,1599]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 3`] = `"[2653,0,0,2000,1636,1599]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires 4`] = `"[2564,0,0,2000,1627,1590]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 4`] = `"[2564,0,0,2000,1627,1590]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires 5`] = `"[3024,0,0,2000,1970,1932]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 5`] = `"[3024,0,0,2000,1970,1932]"`;
+
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 6`] = `"[3336,0,2446,2000,1919,1889]"`;
+
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 7`] = `"[3286,0,2286,2000,1889,1859]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 1`] = `"[4076,0,0,3000,2353,2168]"`;
 
@@ -258,7 +262,7 @@ exports[`calculate simulations-salarié:  temps partiel 2`] = `"[2533,0,2500,185
 
 exports[`calculate simulations-salarié:  treizième mois 1`] = `"[3390,0,0,2300,1950,1856]"`;
 
-exports[`calculate simulations-salarié:  treizième mois 2`] = `"[3817,0,2965,2300,2216,2102]"`;
+exports[`calculate simulations-salarié:  treizième mois 2`] = `"[3800,0,2965,2300,2186,2073]"`;
 
 exports[`calculate simulations-salarié:  treizième mois 3`] = `"[3044,0,0,2300,1799,1726]"`;
 

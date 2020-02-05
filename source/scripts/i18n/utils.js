@@ -76,6 +76,7 @@ function getRulesMissingTranslations() {
 								const enTrad = `contrôles.${i}.en`
 								const frTrad = `contrôles.${i}.fr`
 								if (
+									currentTranslation &&
 									currentTranslation[enTrad] &&
 									currentTranslation[frTrad] === control.message
 								) {

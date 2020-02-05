@@ -328,7 +328,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
+  note.en: "[automatic] That's not a reason for a fixed-term contract."
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -623,9 +623,9 @@ contrat salarié . CSG:
 contrat salarié . CSG . assiette CSG déductible:
   titre.en: deductible CSG base
   titre.fr: assiette CSG déductible
-contrat salarié . CSG . assiette heures supplémentaires défiscalisées:
-  titre.en: tax-free overtime hours base
-  titre.fr: assiette heures supplémentaires défiscalisées
+contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
+  titre.en: '[automatic] tax-free overtime and additional hours base'
+  titre.fr: assiette heures supplémentaires et complémentaires défiscalisées
 contrat salarié . FNAL:
   description.en: >-
     The National Housing Fund (Fnal) is a contribution to ensure the financing
@@ -640,17 +640,17 @@ contrat salarié . FNAL . taux:
   titre.fr: taux
 contrat salarié . SMIC:
   description.en: >
-    générale](/documentation/contrat-salarié/réduction-générale), taux réduit
-    d'[allocations
-    familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
-    et de
-    [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
-    réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de
-    plusieurs ajustements pour prendre en compte le temps de travail effectif.
+    [automatic] Several contribution reductions ([general
+    reduction](/documentation/employee contract/general reduction), reduced
+    rates of [family allowances](/documentation/employee contract/family
+    allowance/reduced rate) and [sickness](/documentation/employee
+    contract/sickness/employer rate/reduced rate), overseas reduction) are based
+    on a minimum wage parameter which is subject to several adjustments to take
+    account of actual working time.
 
 
-    Les heures supplémentaires sont prises en compte sans tenir compte de la
-    majoration.
+    Overtime and overtime are taken into account without taking the surcharge
+    into account.
   description.fr: >
     Plusieurs réductions de cotisations ([réduction
     générale](/documentation/contrat-salarié/réduction-générale), taux réduit
@@ -662,8 +662,8 @@ contrat salarié . SMIC:
     plusieurs ajustements pour prendre en compte le temps de travail effectif.
 
 
-    Les heures supplémentaires sont prises en compte sans tenir compte de la
-    majoration.
+    Les heures supplémentaires et les heures complémentaires sont prises en
+    compte sans tenir compte de la majoration.
   titre.en: minimum wage (SMIC)
   titre.fr: SMIC
 contrat salarié . SMIC contractuel:
@@ -706,7 +706,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -798,7 +798,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
+  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -993,12 +993,12 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
+  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
+  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -1855,7 +1855,7 @@ contrat salarié . réduction générale . assiette:
   titre.fr: Assiette de la réduction générale
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
   note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
+  note.fr: "En pratique, l'ATMP est toujours supérieure à 0.78%"
   titre.en: share of ATMP contribution
   titre.fr: part de la cotisation ATMP
 contrat salarié . réduction générale . multiplicateur:
@@ -2215,21 +2215,16 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   suggestions.salaire médian.fr: salaire médian
   titre.en: Full-time equivalent gross salary
   titre.fr: Salaire brut équivalent temps plein
+contrat salarié . rémunération . heures complémentaires:
+  description.en: '[automatic] Compensation for overtime'
+  description.fr: La rémunération relative aux heures complémentaires
+  titre.en: '[automatic] overtime pay'
+  titre.fr: rémunération heures complémentaires
 contrat salarié . rémunération . heures supplémentaires:
   description.en: Overtime compensation
   description.fr: La rémunération relative aux heures supplémentaires
   titre.en: overtime compensation
   titre.fr: rémunération heures supplémentaires
-contrat salarié . rémunération . heures supplémentaires . taux horaire:
-  description.en: >-
-    The hourly rate used to calculate overtime compensation. It includes
-    benefits in kind.
-  description.fr: >
-    Le taux horaire utilisé pour calculer la rémunération liée au heures
-    supplémentaires. Il intègre les avantages en nature et les primes
-    constituant la contrepartie d'un travail fourni.
-  titre.en: hourly rate
-  titre.fr: taux horaire
 contrat salarié . rémunération . net:
   description.en: >
     The gross salary minus the social contributions.
@@ -2301,10 +2296,10 @@ contrat salarié . rémunération . net imposable . base:
   description.fr: Le net imposable avant les exonérations et déductions
   titre.en: base
   titre.fr: base
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
+contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   titre.en: tax-free overtime hours
-  titre.fr: heures supplémentaires défiscalisées
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
+  titre.fr: heures supplémentaires et complémentaires défiscalisées
+contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées . plafond brut:
   titre.en: gross cap
   titre.fr: plafond brut
 contrat salarié . rémunération . primes:
@@ -2387,6 +2382,16 @@ contrat salarié . rémunération . primes . fin d'année . treizième mois:
   question.fr: Le salarié bénéficie-t-il d'un treizième mois ?
   titre.en: thirteenth month
   titre.fr: treizième mois
+contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
+  description.en: >
+    [automatic] The hourly rate used to calculate overtime pay. It includes
+    benefits in kind and bonuses for work performed.
+  description.fr: >
+    Le taux horaire utilisé pour calculer la rémunération liée au heures
+    supplémentaires. Il intègre les avantages en nature et les primes
+    constituant la contrepartie d'un travail fourni.
+  titre.en: '[automatic] hourly rate for overtime and overtime'
+  titre.fr: taux horaire des heures supplémentaires et complémentaires
 contrat salarié . rémunération . total:
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
@@ -2549,19 +2554,68 @@ contrat salarié . temps de travail:
 contrat salarié . temps de travail . base légale:
   titre.en: legal base
   titre.fr: base légale
+contrat salarié . temps de travail . heures complémentaires:
+  contrôles.0.en: >-
+    [automatic] Unless otherwise provided by agreement, the number of overtime
+    hours may not exceed one tenth of the contractual duration of the part-time
+    contract.
+  contrôles.0.fr: >-
+    Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut
+    être supérieur à un dixième de la durée contractuelle du temps partiel.
+  contrôles.1.en: >-
+    [automatic] Overtime must not cause the employee to work for a period
+    greater than or equal to the legal working time (35 hours).
+  contrôles.1.fr: >-
+    Les heures complémentaires ne doivent pas amener le salarié à travailler
+    pour une durée supérieure ou égale à la durée légale du travail (35h)
+  description.en: >
+    [automatic] Overtime hours are the hours worked by a part-time employee in
+    excess of his or her contractual working hours. Overtime must not cause the
+    employee to work longer than the statutory or agreed working time.
+  description.fr: >
+    Les heures complémentaires sont les heures effectuées par un salarié à temps
+    partiel au delà de son horaire contractuel. Les heures complémentaires ne
+    doivent pas amener le salarié à travailler pour une durée supérieur à la
+    durée légale ou conventionnelle du travail.
+  question.en: >-
+    [automatic] How many additional hours (not recovered in rest) are worked per
+    month?
+  question.fr: >-
+    Combien d'heures complémentaires (non récupérées en repos) sont effectuées
+    par mois ?
+  titre.en: '[automatic] additional hours'
+  titre.fr: heures complémentaires
+contrat salarié . temps de travail . heures complémentaires . majoration:
+  description.en: >
+    [automatic] Compensation for overtime shall be subject to one or more rates
+    of increase, set by a company or establishment collective bargaining
+    agreement or agreement (or, failing that, by a branch agreement or
+    agreement). Each rate is set at a minimum of 10%.
+
+    In the absence of agreement or convention, the hourly rates of increase
+    shall be set at : - 10 % for hours worked up to one tenth of the contractual
+    period - 25 % for subsequent hours.
+  description.fr: >
+    La rémunération des heures complémentaire fait l'objet d'un ou plusieurs
+    taux de majoration, fixés par convention ou accord collectif d'entreprise ou
+    d'établissement (ou, à défaut, par convention ou accord de branche). Chaque
+    taux est au minimum fixé à 10%.
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont
+    fixés à : - 10 % pour les heures effectuées dans la limite d'un dixième de
+    la durée contractuelle - 25 % pour les heures suivantes.
+  note.en: '[automatic] We do not implement standard rates.'
+  note.fr: Nous n'implémentons pas les taux conventionnels
+  titre.en: '[automatic] overtime premium'
+  titre.fr: majoration heures complémentaires
+contrat salarié . temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents:
+  titre.en: '[automatic] legal threshold of 10 percent'
+  titre.fr: seuil légal de 10 pourcents
 contrat salarié . temps de travail . heures supplémentaires:
   contrôles.0.en: '[automatic] The average working week may not exceed 44 hours.'
   contrôles.0.fr: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
   contrôles.1.en: '[automatic] The maximum weekly working time may not exceed 48 hours.'
   contrôles.1.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
-  contrôles.2.en: >-
-    [automatic] The simulator does not yet take into account overtime for
-    part-time work. If you miss this feature, send us an email at
-    contact@mon-entreprise.beta.gouv.fr.
-  contrôles.2.fr: >-
-    Le simulateur ne prends pas encore en compte les heures complémentaires pour
-    les temps partiels. Si cette fonctionnalité vous manque, envoyez-nous un
-    mail à contact@mon-entreprise.beta.gouv.fr
   description.en: >-
     Any hour of work performed, at the employer's request, beyond the legal
     35-hour limit (or equivalent) is considered overtime. Overtime work entitles
@@ -3506,7 +3560,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
+  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . retraite complémentaire:
@@ -3836,7 +3890,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
+  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -3955,7 +4009,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: '[automatic] We can''t see that far into the future'
+  contrôles.0.en: "[automatic] We can't see that far into the future"
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -4172,7 +4226,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
