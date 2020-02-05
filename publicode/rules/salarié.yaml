@@ -46,7 +46,7 @@ contrat salarié . frais professionnels:
   formule:
     somme:
       - indemnité kilométrique vélo
-      - titres-restaurant
+      - titres-restaurant . montant
 
 contrat salarié . frais professionnels . titres-restaurant:
   icônes: 🍽️
@@ -62,10 +62,7 @@ contrat salarié . frais professionnels . titres-restaurant:
   question: Le salarié reçoit-il des titres-restaurant ?
   par défaut: non
 
-contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
-  question: Combien de titres-restaurant recevez-vous par mois ?
-  par défaut: 19
-  unité: titres-restaurant/mois
+contrat salarié . frais professionnels . titres-restaurant . montant:
   formule:
     multiplication:
       facteur: titres-restaurant par mois
@@ -73,6 +70,11 @@ contrat salarié . frais professionnels . titres-restaurant . titres-restaurant 
         encadrement:
           valeur: 50% * valeur
           plafond: 5.55 €
+
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question: Combien de titres-restaurant recevez-vous par mois ?
+  par défaut: 19
+  unité: titres-restaurant/mois
 
 contrat salarié . frais professionnels . titres-restaurant . valeur:
   question: Quelle est la valeur du titre-restaurant ?

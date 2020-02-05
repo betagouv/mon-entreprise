@@ -1513,6 +1513,9 @@ contrat salarié . frais professionnels . titres-restaurant:
   question.fr: Le salarié reçoit-il des titres-restaurant ?
   titre.en: '[automatic] restaurant vouchers'
   titre.fr: titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question.en: '[automatic] How many restaurant vouchers do you receive per month?'
   question.fr: Combien de titres-restaurant recevez-vous par mois ?
