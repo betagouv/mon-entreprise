@@ -84,6 +84,9 @@ prix total:
   formule: nombre de repas * (prix d'un repas + frais de réservation)
 ```
 
+> **Attention:** Il ne faut pas insérer d'espace autour de la barre oblique dans
+> les unités, l'unité ~`€ / mois`~ doit être notée `€/mois`
+
 ## Titre, description et références
 
 Plusieurs propriétés permettent de documenter les règles et sont utilisées dans
