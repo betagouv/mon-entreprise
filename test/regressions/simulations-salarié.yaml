@@ -78,11 +78,11 @@ treizième mois:
   - contrat salarié . rémunération . brut de base: 2300
     contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
   - contrat salarié . rémunération . brut de base: 2300
-    contrat salarié . temps de travail . heures supplémentaires: 5
     contrat salarié . rémunération . primes . activité . base: 200
     contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
     contrat salarié . temps de travail . temps partiel: true
     contrat salarié . temps de travail . temps partiel . heures par semaine: 26
+    contrat salarié . temps de travail . heures complémentaires: 5
   - contrat salarié . rémunération . brut de base: 2300
     contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois: 2
 
@@ -111,7 +111,7 @@ impôt sur le revenu:
     impôt . méthode de calcul: taux personnalisé
     impôt . taux personnalisé: 10
 
-heures supplémentaires:
+heures supplémentaires et complémentaires:
   - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . heures supplémentaires: 5
   - contrat salarié . rémunération . brut de base: 2000
@@ -125,6 +125,14 @@ heures supplémentaires:
   - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . heures supplémentaires: 30
     contrat salarié . convention collective: 'HCR'
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . temps de travail . temps partiel: true
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 24
+    contrat salarié . temps de travail . heures complémentaires: 20
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . temps de travail . temps partiel: true
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 26
+    contrat salarié . temps de travail . heures complémentaires: 20
 
 avantages:
   - contrat salarié . rémunération . brut de base: 2000

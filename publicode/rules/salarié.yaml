@@ -784,7 +784,7 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     salaire médian: 2300
     SMIC: 1522
 
-contrat salarié . rémunération . heures supplémentaires . taux horaire:
+contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description: >
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature et les primes
@@ -898,6 +898,7 @@ contrat salarié . rémunération . brut:
       - primes
       - indemnités salarié
       - heures supplémentaires
+      - heures complémentaires
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -906,11 +907,24 @@ contrat salarié . rémunération . heures supplémentaires:
 
   formule:
     multiplication:
-      assiette: taux horaire
+      assiette: taux horaire des heures supplémentaires et complémentaires
       facteur:
         somme:
           - temps de travail . heures supplémentaires
           - temps de travail . heures supplémentaires . majoration
+
+contrat salarié . rémunération . heures complémentaires:
+  titre: rémunération heures complémentaires
+  description: La rémunération relative aux heures complémentaires
+  unité par défaut: €/mois
+
+  formule:
+    multiplication:
+      assiette: taux horaire des heures supplémentaires et complémentaires
+      facteur:
+        somme:
+          - temps de travail . heures complémentaires
+          - temps de travail . heures complémentaires . majoration
 
 contrat salarié . avantages sociaux:
   description: >
@@ -1070,7 +1084,6 @@ contrat salarié . statut cadre:
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
     représentation sociale, de rôle dans l'entreprise ou de culture.
-
   par défaut: non
   références:
     wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise
@@ -1107,7 +1120,7 @@ contrat salarié . SMIC:
   description: |
     Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
 
-    Les heures supplémentaires sont prises en compte sans tenir compte de la majoration.
+    Les heures supplémentaires et les heures complémentaires sont prises en compte sans tenir compte de la majoration.
   formule: temps de travail * SMIC horaire
   références:
     Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
@@ -1183,7 +1196,7 @@ contrat salarié . rémunération . net imposable:
           - indemnité kilométrique vélo
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
-          - heures supplémentaires défiscalisées
+          - heures supplémentaires et complémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1196,15 +1209,18 @@ contrat salarié . rémunération . net imposable . base:
       - CSG .non déductible
       - CRDS
 
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées:
+contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   formule:
     encadrement:
-      valeur: heures supplémentaires
+      valeur:
+        somme:
+          - heures supplémentaires
+          - heures complémentaires
       plafond: plafond brut
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . rémunération . net imposable . heures supplémentaires défiscalisées . plafond brut:
+contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées . plafond brut:
   formule: 5358 €/an
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -1418,6 +1434,7 @@ contrat salarié . temps de travail:
     somme:
       - temps contractuel
       - heures supplémentaires
+      - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
 contrat salarié . temps de travail . temps contractuel:
@@ -1454,7 +1471,7 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
     - si: heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine >= 35
+    - si: heures par semaine >= base légale
       niveau: avertissement
       message: Un temps partiel doit être en dessous de la durée de travail légale (35h)
 
@@ -1469,6 +1486,7 @@ contrat salarié . temps de travail . quotité de travail:
 contrat salarié . temps de travail . heures supplémentaires:
   description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
   titre: Nombre d'heures supplémentaires
+  non applicable si: temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0
   unité: heure/mois
@@ -1486,12 +1504,6 @@ contrat salarié . temps de travail . heures supplémentaires:
     - si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
       niveau: avertissement
       message: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
-    - si:
-        toutes ces conditions:
-          - temps partiel
-          - heures supplémentaires > 0 heure/mois
-      niveau: info
-      message: Le simulateur ne prends pas encore en compte les heures complémentaires pour les temps partiels. Si cette fonctionnalité vous manque, envoyez-nous un mail à contact@mon-entreprise.beta.gouv.fr
 
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
@@ -1515,6 +1527,57 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
           taux: 25%
         - au-dessus de: 8
           taux: 50%
+
+contrat salarié . temps de travail . heures complémentaires:
+  description: >
+    Les heures complémentaires sont les heures effectuées par un salarié à temps
+    partiel au delà de son horaire contractuel. Les heures complémentaires ne
+    doivent pas amener le salarié à travailler pour une durée supérieur à la
+    durée légale ou conventionnelle du travail.
+  question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
+  unité: heure/mois
+  par défaut: 0
+  contrôles:
+    - si: heures complémentaires > temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents
+      niveau: information
+      message: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
+    - si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale
+      niveau: avertissement
+      message: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
+
+contrat salarié . temps de travail . heures complémentaires . majoration:
+  description: >
+    La rémunération des heures complémentaire fait l'objet d'un ou plusieurs
+    taux de majoration, fixés par convention ou accord collectif d'entreprise ou
+    d'établissement (ou, à défaut, par convention ou accord de branche). Chaque
+    taux est au minimum fixé à 10%.
+
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
+    - 10 % pour les heures effectuées dans la limite d'un dixième de la durée contractuelle
+    - 25 % pour les heures suivantes.
+  titre: majoration heures complémentaires
+  note: Nous n'implémentons pas les taux conventionnels
+  # TODO: Le mécanisme barème ne supporte pas l'utilisation de variables dans
+  # les tranches, c'est pourquoi on ré-implémente une logique de barème avec les
+  # mécanismes somme, multiplication et encadrement.
+  formule:
+    somme:
+      - multiplication:
+          assiette:
+            encadrement:
+              valeur: heures complémentaires
+              plafond: seuil légal de 10 pourcents
+          taux: 10%
+      - multiplication:
+          assiette:
+            encadrement:
+              valeur: heures complémentaires - seuil légal de 10 pourcents
+              plancher: 0 heures/mois
+          taux: 25%
+
+contrat salarié . temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents:
+  formule:
+    arrondi: 1 / 10 * temps partiel . heures par semaine * période . semaines par mois
 
 contrat salarié . statut JEI:
   titre: Statut JEI
@@ -1977,16 +2040,16 @@ contrat salarié . assiette CSG et CRDS . assiette abattue:
         - au-dessus de: 4
           taux: 100%
 
-contrat salarié . CSG . assiette heures supplémentaires défiscalisées:
+contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
     multiplication:
-      assiette: rémunération . net imposable . heures supplémentaires défiscalisées
+      assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
       taux: 98.25%
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . CSG . assiette CSG déductible:
-  formule: assiette CSG et CRDS - assiette heures supplémentaires défiscalisées
+  formule: assiette CSG et CRDS - assiette heures supplémentaires et complémentaires défiscalisées
 
 contrat salarié . CSG:
   cotisation:
@@ -2007,9 +2070,9 @@ contrat salarié . CSG:
           assiette: assiette CSG déductible
           taux: 6.8%
         - attributs:
-            nom: heures supplémentaires défiscalisées
+            nom: heures supplémentaires et complémentaires défiscalisées
             impôt sur le revenu: non déductible
-          assiette: assiette heures supplémentaires défiscalisées
+          assiette: assiette heures supplémentaires et complémentaires défiscalisées
           taux: 6.8%
 
   exemples:
