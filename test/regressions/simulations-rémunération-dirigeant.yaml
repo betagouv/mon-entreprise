@@ -13,6 +13,17 @@ avec charges:
   - dirigeant . rémunération totale: 20000
     entreprise . charges: 15000
 
+ACRE:
+  - dirigeant . rémunération totale: 10000
+    entreprise . date de création: 01/01/2020
+    entreprise . ACRE: oui
+  - dirigeant . rémunération totale: 20000
+    entreprise . date de création: 01/01/2020
+    entreprise . ACRE: oui
+  - dirigeant . rémunération totale: 30000
+    entreprise . date de création: 01/06/2020
+    entreprise . ACRE: oui
+
 activités:
   - dirigeant . rémunération totale: 20000
     entreprise . catégorie d'activité: libérale
