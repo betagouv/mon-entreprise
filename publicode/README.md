@@ -32,9 +32,8 @@ prix total:
   formule: 5 * prix d'un repas
 ```
 
-Il s'agit d'un langage déclaratif : comme dans une formule Excel le `prix total`
-sera recalculé automatiquement si le prix d'un repas change. L'ordre de
-défintion des règles n'a pas d'importance.
+Il s'agit d'un langage déclaratif : comme dans une formule d'un tableur le `prix total` sera recalculé automatiquement si le prix d'un repas change. L'ordre de
+définition des règles n'a pas d'importance.
 
 ## Unités
 
@@ -83,6 +82,34 @@ de factoriser la variable "nombre de repas" dans la formule du "prix total".
 ```yaml
 prix total:
   formule: nombre de repas * (prix d'un repas + frais de réservation)
+```
+
+## Titre, description et références
+
+Plusieurs propriétés permettent de documenter les règles et sont utilisées dans
+les pages d'explications générées automatiquement :
+
+- le **titre**, qui s'affiche en haut de la page de documentation. Par défaut on
+  utilise le nom de la règle, mais l'attribut `titre` permet de choisir un titre
+  plus approprié ;
+- la **description** qui peut être rédigée en Markdown et est généralement
+  affichée comme paragraphe d'introduction sur la page. On utilise le caractère `>`
+  pour indiquer au parseur Yaml que la description utilise du Markdown ;
+- les **références** généralement affichées en bas de page et qui sont
+  constituées d'une liste de liens avec une description.
+
+```yaml
+ticket resto:
+  titre: Prise en charge des titres-restaurants
+  formule: 4 €/repas
+  description: >
+    L'employeur peut remettre des titres restaurants sous plusieurs formats:
+    - ticket *papier*
+    - carte à *puce*
+    - appli *mobile*
+  références:
+    Fiche service public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21059
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 ```
 
 ## Espaces de noms
