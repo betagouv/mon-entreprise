@@ -33,7 +33,53 @@ contrat salarié:
 contrat salarié . CDI:
   formule: contrat salarié = 'CDI'
 
-contrat salarié . indemnité kilométrique vélo:
+contrat salarié . frais professionnels:
+  description: >-
+    Les frais professionnels correspondent à des dépenses engagées par le salarié pour les besoins de son activité professionnelle. Ces frais sont ensuite remboursés par l’employeur.
+    
+    Le dédommagement de ces frais peut prendre la forme :
+      - d’un remboursement des dépenses réelles sur justificatifs ;
+      - d’un versement d’allocations forfaitaires ;
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+    
+    Les frais professionnels sont exclus de la base de calcul des cotisations de Sécurité sociale. Ils sont aussi exclus de la base CSG-CRDS.
+  formule:
+    somme:
+      - indemnité kilométrique vélo
+      - titres-restaurant
+
+contrat salarié . frais professionnels . titres-restaurant:
+  icônes: 🍽️
+  description: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par l’employeur au salarié.
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
+      - d’un repas,
+      - de préparations alimentaires directement consommables,
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+
+  formule:
+    multiplication:
+      facteur: titres-restaurant par mois
+      assiette:
+        encadrement:
+          valeur: 50% * valeur
+          plafond: 5.55 €
+
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question: Combien de titres-restaurant recevez-vous par mois ?
+  par défaut: 19
+  unité: titres-restaurant/mois
+
+contrat salarié . frais professionnels . titres-restaurant . valeur:
+  question: Quelle est la valeur du titre-restaurant ?
+  par défaut: 8
+  unité: €/titre-restaurant
+
+
+contrat salarié . frais professionnels . indemnité kilométrique vélo:
   icônes: 🚴
   description: |
     Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
@@ -55,24 +101,24 @@ contrat salarié . indemnité kilométrique vélo:
         active: oui
       valeur attendue: 200
 
-contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . plafond d'exonération:
   formule: 200 €/an
 
-contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . indemnité kilométrique:
   formule: 0.25 €/km
 
-contrat salarié . indemnité kilométrique vélo . distance annuelle:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance annuelle:
   unité: km/an
   formule: distance journalière * jours travaillés
 
-contrat salarié . indemnité kilométrique vélo . distance journalière:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance journalière:
   description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
   formule: 4 km/jour
 
-contrat salarié . indemnité kilométrique vélo . jours travaillés:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . jours travaillés:
   formule: 218 jours/an
 
-contrat salarié . indemnité kilométrique vélo . active:
+contrat salarié . frais professionnels . indemnité kilométrique vélo . active:
   titre: indemnité vélo active
   question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
   description: |
@@ -279,7 +325,7 @@ contrat salarié . CDD . prime de fin de contrat:
           - rémunération . avantages en nature . montant
           - rémunération . primes
           - rémunération . heures supplémentaires
-          - indemnité kilométrique vélo
+          - frais professionnels . indemnité kilométrique vélo
       taux: 10%
 
   exemples:
@@ -705,7 +751,7 @@ contrat salarié . cotisations . assiette:
       assiette: rémunération . brut
       abattement:
         somme:
-          - indemnité kilométrique vélo
+          - frais professionnels
           - stage . gratification minimale
 
 contrat salarié . cotisations . assiette . salariale:
@@ -1069,7 +1115,7 @@ contrat salarié . indemnités salarié:
   formule:
     somme:
       - CDD . indemnités salarié CDD
-      - indemnité kilométrique vélo
+      - frais professionnels . indemnité kilométrique vélo
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
@@ -1199,7 +1245,7 @@ contrat salarié . rémunération . net imposable:
       assiette: base
       abattement:
         somme:
-          - indemnité kilométrique vélo
+          - frais professionnels . indemnité kilométrique vélo
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
