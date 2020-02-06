@@ -102,6 +102,7 @@ function updateSituation(
 function updateDefaultUnit(situation, { toUnit, analysis }) {
 	const unit = parseUnit(toUnit)
 	const goals = goalsFromAnalysis(analysis)
+	console.log(goals)
 	const convertedSituation = Object.keys(situation)
 		.map(
 			dottedName =>
