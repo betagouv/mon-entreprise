@@ -20,3 +20,14 @@ impôt sur le revenu:
   - dirigeant . auto-entrepreneur . net de cotisations: 25000
     entreprise . catégorie d'activité: 'libérale'
     dirigeant . auto-entrepreneur . impôt . versement libératoire: true
+
+ACRE:
+  - dirigeant . auto-entrepreneur . net de cotisations: 20000
+    entreprise . date de création: 01/01/2020
+    entreprise . ACRE: oui
+  - dirigeant . auto-entrepreneur . net de cotisations: 30000
+    entreprise . date de création: 01/06/2019
+    entreprise . ACRE: oui
+  - dirigeant . auto-entrepreneur . net de cotisations: 40000
+    entreprise . date de création: 01/06/2018
+    entreprise . ACRE: oui

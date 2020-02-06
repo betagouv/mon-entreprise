@@ -3,6 +3,7 @@ import {
 	defaultNode,
 	evaluateNode,
 	makeJsx,
+	mergeMissing,
 	parseObject
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
@@ -59,8 +60,13 @@ const evaluate = (cache, situation, parsedRules, node) => {
 			)
 		)
 	}
+	const missingVariables = mergeMissing(
+		from.missingVariables,
+		to.missingVariables
+	)
 	return {
 		...node,
+		missingVariables,
 		nodeValue,
 		explanation: {
 			depuis: from,
