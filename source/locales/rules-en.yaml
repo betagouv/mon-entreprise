@@ -2451,7 +2451,7 @@ contrat salarié . statut cadre:
 
     It is an ill-defined concept, meaning different concepts depending on the
     point of view considered - whether in terms of status, social
-    representation, role in the company or culture. 
+    representation, role in the company or culture.
   description.fr: >-
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
@@ -2468,7 +2468,7 @@ contrat salarié . statut cadre:
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture. 
+    représentation sociale, de rôle dans l'entreprise ou de culture.
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   titre.en: cadre status
@@ -2735,13 +2735,11 @@ dirigeant . auto-entrepreneur . base des cotisations:
     est dépassé. [En savoir
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
   contrôles.1.en: >-
-    [automatic] The annual turnover threshold for VAT exemption is exceeded.
-    Read
-    more](/documentation/documentation/manager/self-contractor/vat-franchise)
+    The annual turnover threshold for VAT exemption is exceeded.
+    [Read more](/documentation/entreprise/franchise-de-TVA)
   contrôles.1.fr: >-
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
-    [En savoir
-    plus](/documentation/dirigeant/auto‑entrepreneur/franchise-de-tva)
+    [En savoir plus](/documentation/entreprise/franchise-de-TVA)
   titre.en: contribution basis
   titre.fr: base des cotisations
 dirigeant . auto-entrepreneur . cotisations et contributions:
