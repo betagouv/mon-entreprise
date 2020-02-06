@@ -77,7 +77,7 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
-					choices.children.map(({ fieldName, title, dottedName, children }) =>
+					choices.children.map(({ title, dottedName, children }) =>
 						children ? (
 							<li key={dottedName} className="variant">
 								<div>{title}</div>
