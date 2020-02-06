@@ -36,17 +36,17 @@ contrat salarié . CDI:
 contrat salarié . frais professionnels:
   description: >-
     Les frais professionnels correspondent à des dépenses engagées par le salarié pour les besoins de son activité professionnelle. Ces frais sont ensuite remboursés par l’employeur.
-    
+
     Le dédommagement de ces frais peut prendre la forme :
       - d’un remboursement des dépenses réelles sur justificatifs ;
       - d’un versement d’allocations forfaitaires ;
       - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
-    
+
     Les frais professionnels sont exclus de la base de calcul des cotisations de Sécurité sociale. Ils sont aussi exclus de la base CSG-CRDS.
   formule:
     somme:
       - indemnité kilométrique vélo
-      - titres-restaurant . montant
+      - titres-restaurant . participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant:
   icônes: 🍽️
@@ -62,14 +62,29 @@ contrat salarié . frais professionnels . titres-restaurant:
   question: Le salarié reçoit-il des titres-restaurant ?
   par défaut: non
 
-contrat salarié . frais professionnels . titres-restaurant . montant:
+contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
+  formule:
+    multiplication:
+      facteur:
+        encadrement:
+          valeur: taux participation employeur * valeur - participation employeur . plafond
+          plancher: 0€
+      assiette: titres-restaurant par mois
+
+contrat salarié . frais professionnels . titres-restaurant . participation employeur . plafond:
+  formule: 5.36€
+
+contrat salarié . frais professionnels . titres-restaurant . participation employeur:
   formule:
     multiplication:
       facteur: titres-restaurant par mois
       assiette:
         encadrement:
-          valeur: 50% * valeur
-          plafond: 5.55 €
+          valeur: taux participation employeur * valeur
+          plafond: plafond
+
+contrat salarié . frais professionnels . titres-restaurant . participation salarié:
+  formule: valeur * titres-restaurant par mois - participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question: Combien de titres-restaurant recevez-vous par mois ?
@@ -81,6 +96,21 @@ contrat salarié . frais professionnels . titres-restaurant . valeur:
   par défaut: 8
   unité: €/titre-restaurant
 
+contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
+  description: Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et de 60% maximum
+  question: Quelle est la participation de l'employeur ?
+  par défaut: 50
+  unité: '%'
+  suggestions:
+    50%: 50
+    60%: 60
+  contrôles:
+    - si: taux participation employeur < 50%
+      niveau: avertissement
+      message: La part employeur du titre-restaurant doit être de 50% au minimum
+    - si: taux participation employeur > 60%
+      niveau: avertissement
+      message: La part employeur du titre-restaurant doit être de 60% au maximum
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
   icônes: 🚴
@@ -755,6 +785,7 @@ contrat salarié . cotisations . assiette:
       abattement:
         somme:
           - frais professionnels
+          - (- frais professionnels . titres-restaurant . part non exonérée de cotisation)
           - stage . gratification minimale
 
 contrat salarié . cotisations . assiette . salariale:
@@ -1249,6 +1280,8 @@ contrat salarié . rémunération . net imposable:
       abattement:
         somme:
           - frais professionnels . indemnité kilométrique vélo
+          - (- frais professionnels . titres-restaurant . participation employeur)
+          - frais professionnels . titres-restaurant . participation salarié
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
