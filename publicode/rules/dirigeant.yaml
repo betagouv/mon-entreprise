@@ -53,7 +53,7 @@ dirigeant . auto-entrepreneur . base des cotisations:
       message: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
       niveau: avertissement
     - si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
-      message: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/franchise-de-tva)
+      message: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
       niveau: information
 
 dirigeant . auto-entrepreneur . plafond:
@@ -1028,7 +1028,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
       retourne seulement le taux: oui
       variations:
         - si: entreprise . effectif < 5
-          alors:     
+          alors:
             points:
               0: 100%
               5: 100%
@@ -1039,8 +1039,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
               13: 20%
               14: 20%
               15: 0%
-        - sinon: 
-            points: 
+        - sinon:
+            points:
               0: 100%
               5: 100%
               6: 60%
@@ -1053,7 +1053,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   titre: Maladie (domiciliation fiscale à l'étranger)
   description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
   remplace: maladie
-  formule: 
-    multiplication: 
+  formule:
+    multiplication:
       assiette: maladie . assiette
       taux: 14.5%

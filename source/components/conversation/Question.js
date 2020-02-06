@@ -79,12 +79,12 @@ export default function Question({
 				{choices.children &&
 					choices.children.map(({ fieldName, title, dottedName, children }) =>
 						children ? (
-							<li key={fieldName} className="variant">
+							<li key={dottedName} className="variant">
 								<div>{title}</div>
 								{renderChildren({ children })}
 							</li>
 						) : (
-							<li key={fieldName} className="variantLeaf">
+							<li key={dottedName} className="variantLeaf">
 								<RadioLabel
 									{...{
 										value: relativeDottedName(dottedName),

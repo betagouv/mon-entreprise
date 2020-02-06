@@ -733,7 +733,7 @@ contrat salarié . rémunération . brut de base:
   contrôles:
     - si:
         toutes ces conditions:
-          - rémunération . assiette de vérification du SMIC < (SMIC contractuel - 1)
+          - rémunération . assiette de vérification du SMIC < (SMIC contractuel - 1 €/mois)
           - dirigeant != 'assimilé salarié'
           - stage != oui
           - apprentissage != oui
@@ -749,7 +749,7 @@ contrat salarié . rémunération . brut de base:
       message: |
         La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
 
-    - si: 
+    - si:
         toutes ces conditions:
           - brut de base > 10000 €/mois
           - dirigeant = non
@@ -785,7 +785,7 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     SMIC: 1522
 
 contrat salarié . rémunération . heures supplémentaires . taux horaire:
-  description: > 
+  description: >
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature et les primes
     constituant la contrepartie d'un travail fourni.
@@ -1059,20 +1059,20 @@ contrat salarié . statut cadre:
     reconnu par les conventions collectives, qui détermine l'appartenance à une
     caisse de retraite spécifique, l'AGIRC, et quelques modalités spécifiques du
     contrat de travail.
-    
+
 
     Reconnaissant initialement les compétences techniques et le rôle
     d'encadrement du salarié, le statut s'est progressivement élargi à un
     ensemble de postes de plus en plus nombreux, et a fini par recouvrir une
     large population, mêlant managers, experts et dirigeants.
-    
+
 
     Il s'agit d'une notion mal définie désignant des concepts différents selon
     le point de vue envisagé — que ce soit en termes de statut, de
-    représentation sociale, de rôle dans l'entreprise ou de culture. 
-    
+    représentation sociale, de rôle dans l'entreprise ou de culture.
+
   par défaut: non
-  références: 
+  références:
     wikipedia.fr: https://fr.wikipedia.org/wiki/Cadre_d%27entreprise
 
 contrat salarié . plafond sécurité sociale:
@@ -2765,7 +2765,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
     - assiette CSG et CRDS . assiette abattue
     - règle: réduction générale
       par: non
-    - règle: plafond sécurité sociale 
+    - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
       sauf dans:
         - chômage
@@ -2782,7 +2782,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
-    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane 
+    plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane
 
 contrat salarié . cotisations . assiette forfaitaire . minimum:
   description: >

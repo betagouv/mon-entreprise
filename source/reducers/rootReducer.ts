@@ -110,10 +110,11 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 		)
 		.filter(
 			rule =>
-				goals?.includes(rule.dottedName) &&
-				(rule.unit || rule.defaultUnit) &&
-				!rule.unité &&
-				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
+				rule.dottedName === 'entreprise . charges' || // HACK en attendant de revoir le fonctionnement des unités
+				(goals?.includes(rule.dottedName) &&
+					(rule.unit || rule.defaultUnit) &&
+					!rule.unité &&
+					areUnitConvertible(rule.unit || rule.defaultUnit, unit))
 		)
 		.reduce(
 			(convertedSituation, rule) => ({
