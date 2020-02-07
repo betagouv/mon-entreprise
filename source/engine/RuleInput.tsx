@@ -24,6 +24,7 @@ type Props = {
 	onChange: (value: Value) => void
 	useSwitch?: boolean
 	isTarget?: boolean
+	autoFocus?: boolean
 	value?: Value
 	className?: string
 	onSubmit?: (value: Value) => void
@@ -40,6 +41,7 @@ export default function InputComponent({
 	value,
 	useSwitch = false,
 	isTarget = false,
+	autoFocus = false,
 	className,
 	onSubmit
 }: Props) {
@@ -53,6 +55,7 @@ export default function InputComponent({
 		value,
 		onChange,
 		onSubmit,
+		autoFocus,
 		className,
 		title: rule.title,
 		question: rule.question,
