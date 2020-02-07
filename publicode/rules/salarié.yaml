@@ -1468,7 +1468,10 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
   unité: heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
-    - si: heures par semaine < 24
+    - si: 
+        toutes ces conditions:
+          - temps partiel
+          - heures par semaine < 24
       niveau: avertissement
       message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
     - si: heures par semaine >= base légale
