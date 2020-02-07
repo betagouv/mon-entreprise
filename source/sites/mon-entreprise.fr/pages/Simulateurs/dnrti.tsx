@@ -1,6 +1,7 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
+import Warning from 'Components/ui/WarningBlock'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
@@ -36,12 +37,14 @@ const simulationConfig = {
 	'unités par défaut': ['€/an']
 }
 const lauchComputationWhenResultsInViewport = () => {
+	const dottedName = 'dirigeant . rémunération totale'
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
-		threshold: 0,
+		threshold: 0.5,
 		unobserve: false
 	})
-	const [currentIncome, setCurrentIncome] = useState(null)
-	const [displayForm, setDisplayForm] = useState(false)
+	const value = useSelector(situationSelector)[dottedName]
+	const [currentIncome, setCurrentIncome] = useState(value)
+	const [displayForm, setDisplayForm] = useState(currentIncome != null)
 	const updateIncome = useCallback(
 		income => {
 			setDisplayForm(income != null)
@@ -52,15 +55,13 @@ const lauchComputationWhenResultsInViewport = () => {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		if (resultsInViewPort && displayForm) {
-			dispatch(
-				updateSituation('dirigeant . rémunération totale', currentIncome)
-			)
+			dispatch(updateSituation(dottedName, currentIncome))
 		} else {
-			dispatch(updateSituation('dirigeant . rémunération totale', null))
+			dispatch(updateSituation(dottedName, null))
 		}
 	}, [resultsInViewPort, displayForm, currentIncome])
 
-	return { updateIncome, resultsRef, displayForm }
+	return { updateIncome, resultsRef, displayForm, currentIncome }
 }
 
 export default function DNRTI() {
@@ -74,32 +75,40 @@ export default function DNRTI() {
 	const {
 		resultsRef,
 		displayForm,
-		updateIncome
+		updateIncome,
+		currentIncome
 	} = lauchComputationWhenResultsInViewport()
 	return (
 		<>
 			<h1>
+				<small>Travailleurs indépendants</small>
+				<br />
 				Aide à la déclaration de revenus au titre de l'année 2019{' '}
 				<img src="https://img.shields.io/badge/-beta-blue" />
-				<br />
-				<small>Travailleurs indépendants</small>
 			</h1>
 			<p>
-				Nous mettons à disposition un outil d'aide aux déclarations fiscale
-				(revenu) et sociale (DSI). Il vous permet de connaître le montant des
-				charges sociales déductibles à partir de votre résultat net fiscal.
+				Cet outil est une aide aux déclarations fiscale (revenu) et sociale
+				(DSI). Il vous permet de connaître le montant des charges sociales
+				déductibles à partir de votre résultat net fiscal.
 			</p>
-			<p>
-				Cet outil vous concerne <strong>uniquement</strong> si vous êtes dans
-				les cas suivants :
-			</p>
-			<ul>
-				<li>vous cotisez au régime général des travailleurs indépendants</li>
-				<li>
-					votre entreprise est au régime réel d'imposition et en comptabilité
-					d'engagement
-				</li>
-			</ul>
+			<Warning key="dnrti-warning">
+				<h3>
+					Cet outil vous concerne si vous êtes dans tous les cas suivants :
+				</h3>
+				<ul>
+					<li>vous cotisez au régime général des travailleurs indépendants</li>
+					<li>
+						votre entreprise est au régime réel d'imposition et en comptabilité
+						d'engagement
+					</li>
+				</ul>
+				<h3>Il ne vous concerne pas si vous êtes dans un des cas suivants :</h3>
+				<ul>
+					<li>vous êtes une profession libérale reglementée</li>
+					<li>vous êtes une profession libérale cotisant à la CIPAV</li>
+					<li>votre entreprise est domicilié dans les DOM</li>
+				</ul>
+			</Warning>
 			<h2>Quel est votre revenu professionnel en 2019 ?</h2>
 			<p>
 				Indiquez votre résultat net fiscal avant déduction des charges sociales
@@ -110,6 +119,7 @@ export default function DNRTI() {
 					rules={rules}
 					dottedName="dirigeant . rémunération totale"
 					onChange={updateIncome}
+					value={currentIncome}
 					autoFocus
 				/>
 			</BigInput>
@@ -133,7 +143,7 @@ export default function DNRTI() {
 
 							<h3>Situation personnelle</h3>
 							<SimpleField dottedName="situation personnelle . RSA" />
-							<SubSection dottedName="situation personnelle . IJSS" />
+							<SubSection dottedName="dirigeant . indépendant . IJSS" />
 							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
 							<h3>Exonérations</h3>
@@ -175,19 +185,18 @@ function SubSection({
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
 
-	const subQuestions = flatRules
-		.filter(
-			({ dottedName, question }) =>
-				Boolean(question) &&
-				dottedName.startsWith(sectionDottedName) &&
-				(Object.keys(situation).includes(dottedName) ||
-					nextSteps.includes(dottedName))
-		)
-		.sort(
-			(rule1, rule2) =>
-				nextSteps.indexOf(rule1.dottedName) -
-				nextSteps.indexOf(rule2.dottedName)
-		)
+	const subQuestions = flatRules.filter(
+		({ dottedName, question }) =>
+			Boolean(question) &&
+			dottedName.startsWith(sectionDottedName) &&
+			(Object.keys(situation).includes(dottedName) ||
+				nextSteps.includes(dottedName))
+	)
+	// .sort(
+	// 	(rule1, rule2) =>
+	// 		nextSteps.indexOf(rule1.dottedName) -
+	// 		nextSteps.indexOf(rule2.dottedName)
+	// )
 	return (
 		<>
 			{!!subQuestions.length && title && <h3>{title}</h3>}
@@ -289,9 +298,9 @@ function Results() {
 							{r.description && <p className="ui__ notice">{r.description}</p>}
 							<p className="ui__ lead" css="margin-bottom: 1rem;">
 								<RuleLink dottedName={r.dottedName}>
-									{r.nodeValue ? (
+									{r.nodeValue != null ? (
 										formatValue({
-											value: r.nodeValue,
+											value: r.nodeValue || 0,
 											language: 'fr',
 											unit: '€',
 											maximumFractionDigits: 0
@@ -303,11 +312,13 @@ function Results() {
 							</p>
 						</React.Fragment>
 					))}
+					{!onGoingComputation && (
+						<div css="text-align: center">
+							<button className="ui__ simple button">🔗 Obtenir le lien</button>
+							<button className="ui__ simple button"> 🖨 Imprimer</button>
+						</div>
+					)}
 				</Animate.fromTop>
-				<div css="text-align: center">
-					<button className="ui__ simple button">🔗 Obtenir le lien</button>
-					<button className="ui__ simple button"> 🖨 Imprimer</button>
-				</div>
 			</>
 		</div>
 	)
