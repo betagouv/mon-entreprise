@@ -9,6 +9,7 @@ import Overlay from 'Components/Overlay'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect, useRef, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -79,58 +80,81 @@ export default function SocialSecurity() {
 					<img
 						className="ui__ hide-mobile"
 						src={businessPlan}
-						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) scale(1.4);"
+						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(-2.3rem) scale(1.4);"
 					/>
 				</div>
-
 				<>
-					<h2>
-						<Trans i18nKey="gérer.choix.titre">
-							Que souhaitez-vous faire ?
-						</Trans>
-					</h2>
-					{!!régime && (
-						<Link
-							className="ui__ interactive card button-choice lighter-bg"
-							css="width: 100%"
-							to={{
-								pathname: sitePaths.simulateurs[régime],
-								state: {
-									fromGérer: true
-								}
-							}}
-						>
-							<Trans i18nKey="gérer.choix.revenus">
-								<p>Calculer mon revenu net</p>
-								<small>
-									Estimez précisément le montant de vos cotisations grâce au
-									simulateur {{ régime }} de l'Urssaf
-								</small>
+					<section className="ui__ full-width light-bg">
+						<h2 className="ui__ center-flex">
+							<Trans i18nKey="gérer.choix.titre">
+								Que souhaitez-vous faire ?
 							</Trans>
-						</Link>
-					)}
-					{régime !== 'auto-entrepreneur' && (
-						<Link
-							className="ui__ interactive card button-choice lighter-bg "
-							css="width: 100%"
-							to={{
-								pathname: sitePaths.simulateurs.salarié,
-								state: {
-									fromGérer: true
-								}
-							}}
-						>
-							<Trans i18nKey="gérer.choix.embauche">
-								<p>Estimer le montant d’une embauche</p>
-								<small>
-									Calculez le montant total que votre entreprise devra dépenser
-									pour rémunérer votre prochain employé
-								</small>
-							</Trans>
-						</Link>
-					)}
+						</h2>
+						<div className="ui__ center-flex">
+							{régime === 'indépendant' && (
+								<Link
+									className="ui__ interactive card box"
+									to={{
+										pathname: sitePaths.gérer.déclarationIndépendant
+									}}
+								>
+									<div className="ui__ big box-icon">{emoji('✍')}</div>
+									<Trans i18nKey="gérer.choix.déclaration">
+										<h3>Remplir ma déclaration de revenus</h3>
+										<p className="ui__ notice">
+											Calculez facilement les montants à reporter dans votre
+											déclaration de revenu au titre de 2019
+										</p>
+									</Trans>
+								</Link>
+							)}
+
+							{!!régime && (
+								<Link
+									className="ui__ interactive card box"
+									to={{
+										pathname: sitePaths.simulateurs[régime],
+										state: {
+											fromGérer: true
+										}
+									}}
+								>
+									<div className="ui__ big box-icon">{emoji('💶')}</div>
+									<Trans i18nKey="gérer.choix.revenus">
+										<h3>Calculer mon revenu net de cotisations</h3>
+										<p className="ui__ notice">
+											Estimez précisément le montant de vos cotisations grâce au
+											simulateur {{ régime }} de l'Urssaf
+										</p>
+									</Trans>
+								</Link>
+							)}
+							{régime !== 'auto-entrepreneur' && (
+								<Link
+									className="ui__ interactive card box"
+									css="width: 100%"
+									to={{
+										pathname: sitePaths.simulateurs.salarié,
+										state: {
+											fromGérer: true
+										}
+									}}
+								>
+									<div className="ui__ big box-icon">{emoji('🤝')}</div>
+									<Trans i18nKey="gérer.choix.embauche">
+										<h3>Estimer le montant d’une embauche</h3>
+										<p className="ui__ notice">
+											Calculez le montant total que votre entreprise devra
+											dépenser pour rémunérer votre prochain employé
+										</p>
+									</Trans>
+								</Link>
+							)}
+						</div>
+					</section>
 					<AideOrganismeLocal />
 					<h2>
+						{emoji('🧰 ')}
 						<Trans>Ressources utiles</Trans>
 					</h2>
 					<div
@@ -150,10 +174,10 @@ export default function SocialSecurity() {
 							>
 								<Trans i18nKey="gérer.ressources.embaucher">
 									<p>Découvrir les démarches d’embauche </p>
-									<small>
+									<p className="ui__ notice">
 										La liste des choses à faire pour être sûr de ne rien oublier
 										lors de l’embauche d’un nouveau salarié
-									</small>
+									</p>
 								</Trans>
 							</Link>
 						)}
@@ -164,12 +188,12 @@ export default function SocialSecurity() {
 							>
 								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
 									<p>Accéder au site officiel auto-entrepreneur</p>
-									<small>
+									<p className="ui__ notice">
 										Vous pourrez effectuer votre déclaration de chiffre
 										d'affaire, payer vos cotisations, et plus largement trouver
 										toutes les informations relatives au statut
 										d'auto-entrepreneur
-									</small>
+									</p>
 								</Trans>
 							</a>
 						)}
@@ -179,11 +203,11 @@ export default function SocialSecurity() {
 						>
 							<Trans i18nKey="gérer.ressources.sécuritéSociale">
 								<p>Comprendre la sécurité sociale </p>
-								<small>
+								<p className="ui__ notice">
 									A quoi servent les cotisations sociales ? Le point sur le
 									système de protection sociale dont bénéficient tous les
 									travailleurs en France
-								</small>
+								</p>
 							</Trans>
 						</Link>
 					</div>

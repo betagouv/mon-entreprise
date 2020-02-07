@@ -7,11 +7,16 @@ aide déclaration revenu indépendant 2019:
 
 aide déclaration revenu indépendant 2019 . professions libérale:
   remplace:
-    - règle: entreprise . catégorie d'activité . libérale règlementée
+    - règle: dirigeant . rattachement CIPAV
       par: non
+
   contrôles:
-    - si: entreprise . date de création < 01/01/2019
-      avertissement: >-
+    - si:
+        toutes ces conditions:
+          - entreprise . date de création < 01/01/2019
+          - entreprise . catégorie d'activité = 'libérale'
+      niveau: avertissement
+      message: >-
         Cette aide à la déclaration ne prends pas en compte les professions
         libérales affiliées à la CIPAV.
 

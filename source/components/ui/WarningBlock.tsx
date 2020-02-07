@@ -1,11 +1,11 @@
 import { usePersistingState } from 'Components/utils/persistState'
-import React, { ReactChildren } from 'react'
+import React, { ReactNode } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 type WarningProps = {
 	localStorageKey: string
-	children: ReactChildren
+	children: ReactNode
 }
 
 export default function Warning({ localStorageKey, children }: WarningProps) {

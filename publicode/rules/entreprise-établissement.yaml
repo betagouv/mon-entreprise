@@ -282,6 +282,7 @@ entreprise . taxe sur les salaires:
       abattement: abattement associations
 
 entreprise . catégorie d'activité:
+  titre: nature de l'activité
   question: Quelle est la nature de votre activité ?
   description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
   par défaut: commerciale ou industrielle
