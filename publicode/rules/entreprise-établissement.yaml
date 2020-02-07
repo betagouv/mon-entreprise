@@ -3,7 +3,7 @@ entreprise:
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
 entreprise . date de création:
-  question: Quelle est la date de début d'activité ?
+  question: Quelle est votre date de début d'activité ?
   par défaut: 01/01/2020
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
@@ -284,16 +284,16 @@ entreprise . taxe sur les salaires:
       abattement: abattement associations
 
 entreprise . catégorie d'activité:
-  question: Quelle est votre catégorie d'activité ?
+  question: Quelle est la nature de votre activité ?
   description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
   par défaut: commerciale ou industrielle
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - libérale
-        - commerciale ou industrielle
         - artisanale
+        - commerciale ou industrielle
+        - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
@@ -435,7 +435,7 @@ entreprise . catégorie d'activité . libérale règlementée . type d'activité
 
 entreprise . catégorie d'activité . débit de tabac:
   applicable si: catégorie d'activité = 'commerciale ou industrielle'
-  question: Votre entreprise est-elle un débit de tabac ?
+  question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 
 entreprise . rattachée à la CIPAV:
