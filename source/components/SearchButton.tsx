@@ -17,8 +17,8 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (!(e.ctrlKey && e.key === 'k')) return
 			setVisible(true)
+
 			e.preventDefault()
-			e.stopPropagation()
 			return false
 		}
 		window.addEventListener('keydown', handleKeyDown)

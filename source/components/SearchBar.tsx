@@ -4,7 +4,7 @@ import { pick, sortBy, take } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { useTranslation } from 'react-i18next'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { Rule } from 'Types/rule'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
@@ -29,8 +29,18 @@ export default function SearchBar({
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
 	const [results, setResults] = useState([])
 	const { i18n } = useTranslation()
+	const history = useHistory()
 
 	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'Enter' && results.length > 0) {
+				finallyCallback && finallyCallback()
+				history.push(sitePaths.documentation.rule(results[0].dottedName))
+			}
+			return true
+		}
+		window.addEventListener('keydown', handleKeyDown)
+
 		worker.postMessage({
 			rules: rules.map(
 				pick(['title', 'espace', 'description', 'name', 'dottedName'])
@@ -38,7 +48,7 @@ export default function SearchBar({
 		})
 
 		worker.onmessage = ({ data: results }) => setResults(results)
-	}, [rules])
+	}, [rules, results])
 
 	let renderOptions = (rules?: Array<Rule>) => {
 		let options =
