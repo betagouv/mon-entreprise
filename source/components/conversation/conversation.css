@@ -123,12 +123,13 @@
 .step label.userAnswerButton.selected {
 	background: var(--color);
 	border: 1px solid var(--color);
+	color: var(--textColor) !important;
 }
 @media (hover) {
 	.step label.userAnswerButton:hover:not(.selected) {
 		background: var(--color);
 		border: 1px solid var(--color);
-		color: var(--textColor);
+		color: var(--textColor) !important;
 		transition: all 0.05s;
 	}
 }
