@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch } from 'react-router'
 import { NavLink, useLocation } from 'react-router-dom'
+import AideDéclarationIndépendant from './AideDéclarationIndépendants'
 import Embaucher from './Embaucher'
 import Home from './Home'
 import SécuritéSociale from './SécuritéSociale'
@@ -31,6 +32,10 @@ export default function Gérer() {
 					component={SécuritéSociale}
 				/>
 				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
+				<Route
+					path={sitePaths.gérer.déclarationIndépendant}
+					component={AideDéclarationIndépendant}
+				/>
 			</Switch>
 		</>
 	)

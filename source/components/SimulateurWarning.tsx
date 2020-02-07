@@ -11,7 +11,9 @@ export default function SimulateurWarning({
 	simulateur
 }: SimulateurWarningProps) {
 	return (
-		<Warning key={'app::simulateurs:warning-folded:v1:' + simulateur}>
+		<Warning
+			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
+		>
 			<ul>
 				{simulateur == 'auto-entrepreneur' && (
 					<>
