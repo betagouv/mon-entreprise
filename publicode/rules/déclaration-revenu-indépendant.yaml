@@ -3,12 +3,17 @@
 aide déclaration revenu indépendant 2019:
   description: Ces règles sont écrites pour aider à remplir les déclarations sociale et
     fiscale des indépendant de 2020 sur les revenus 2019
+  par défaut: non
+
+aide déclaration revenu indépendant 2019 . professions libérale:
   remplace:
-    - règle: dirigeant
-      par: "'indépendant'"
     - règle: entreprise . catégorie d'activité . libérale règlementée
       par: non
-  formule: non
+  contrôles:
+    - si: entreprise . date de création < 01/01/2019
+      avertissement: >-
+        Cette aide à la déclaration ne prends pas en compte les professions
+        libérales affiliées à la CIPAV.
 
 aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
   remplace: plafond sécurité sociale temps plein

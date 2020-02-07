@@ -18,14 +18,14 @@ const rules = {
 	// TODO: rule order shouldn't matter but there is a bug if "impot" is after
 	// "dirigeant".
 	...impot,
+	...déclarationIndépendant,
 	...artisteAuteur,
 	...dirigeant,
 	...entrepriseEtablissement,
 	...protectionSociale,
 	...salarié,
 	...conventionsCollectives,
-	...situationPersonnelle,
-	...déclarationIndépendant
+	...situationPersonnelle
 }
 
 export default rules
