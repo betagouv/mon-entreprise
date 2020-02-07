@@ -66,13 +66,15 @@ contrat salarié . frais professionnels . titres-restaurant . part non exonéré
   formule:
     multiplication:
       facteur:
-        encadrement:
-          valeur: taux participation employeur * valeur - participation employeur . plafond
-          plancher: 0€
+        allègement:
+          assiette: taux participation employeur * montant unitaire
+          abattement: participation employeur . plafond
       assiette: titres-restaurant par mois
 
 contrat salarié . frais professionnels . titres-restaurant . participation employeur . plafond:
-  formule: 5.36€
+  formule: 5.55€
+  références: 
+    urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
 contrat salarié . frais professionnels . titres-restaurant . participation employeur:
   formule:
@@ -80,19 +82,20 @@ contrat salarié . frais professionnels . titres-restaurant . participation empl
       facteur: titres-restaurant par mois
       assiette:
         encadrement:
-          valeur: taux participation employeur * valeur
+          valeur: taux participation employeur * montant unitaire
           plafond: plafond
 
 contrat salarié . frais professionnels . titres-restaurant . participation salarié:
-  formule: valeur * titres-restaurant par mois - participation employeur
+  titre: Titres-restaurant
+  formule: montant unitaire * titres-restaurant par mois - participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question: Combien de titres-restaurant recevez-vous par mois ?
   par défaut: 19
   unité: titres-restaurant/mois
 
-contrat salarié . frais professionnels . titres-restaurant . valeur:
-  question: Quelle est la valeur du titre-restaurant ?
+contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
+  question: Quelle est le montant du titre-restaurant ?
   par défaut: 8
   unité: €/titre-restaurant
 
@@ -1281,7 +1284,6 @@ contrat salarié . rémunération . net imposable:
         somme:
           - frais professionnels . indemnité kilométrique vélo
           - (- frais professionnels . titres-restaurant . participation employeur)
-          - frais professionnels . titres-restaurant . participation salarié
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
@@ -1335,7 +1337,7 @@ contrat salarié . rémunération . net:
     Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  formule: rémunération . net de cotisations - avantages en nature . montant
+  formule: rémunération . net de cotisations - avantages en nature . montant - frais professionnels . titres-restaurant . participation salarié
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
