@@ -109,7 +109,7 @@ export default function SearchBar({
 				onChange={e => {
 					let input = e.target.value
 					setInput(input)
-					if (input.length > 2) worker.postMessage({ input })
+					if (input.length > 0) worker.postMessage({ input })
 				}}
 			/>
 			{input.length > 2 &&
