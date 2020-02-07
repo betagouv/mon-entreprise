@@ -3,8 +3,12 @@ import { useEffect, useRef, useState } from 'react'
 export default function({
 	root = null,
 	rootMargin,
-	threshold = 0
-}: IntersectionObserverInit): [React.RefObject<HTMLDivElement>, boolean] {
+	threshold = 0,
+	unobserve = true
+}: IntersectionObserverInit & { unobserve?: boolean }): [
+	React.RefObject<HTMLDivElement>,
+	boolean
+] {
 	const ref = useRef<HTMLDivElement>(null)
 	const [wasOnScreen, setWasOnScreen] = useState(false)
 
@@ -13,7 +17,10 @@ export default function({
 			([entry]) => {
 				if (entry.isIntersecting) {
 					setWasOnScreen(entry.isIntersecting)
-					ref.current && observer.unobserve(ref.current)
+					ref.current && unobserve && observer.unobserve(ref.current)
+				}
+				if (!entry.isIntersecting && !unobserve) {
+					setWasOnScreen(entry.isIntersecting)
 				}
 			},
 			{
@@ -27,9 +34,9 @@ export default function({
 			observer.observe(node)
 		}
 		return () => {
-			node && observer.unobserve(node)
+			node && unobserve && observer.unobserve(node)
 		}
-	}, [root, rootMargin, threshold])
+	}, [root, rootMargin, threshold, ref.current])
 
 	return [ref, wasOnScreen]
 }

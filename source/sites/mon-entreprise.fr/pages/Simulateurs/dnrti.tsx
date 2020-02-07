@@ -1,9 +1,11 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
@@ -28,19 +30,52 @@ const simulationConfig = {
 		'aide déclaration revenu indépendant 2019 . assiette sociale'
 	],
 	situation: {
+		dirigeant: 'indépendant',
 		'aide déclaration revenu indépendant 2019': 'oui'
 	},
 	'unités par défaut': ['€/an']
+}
+const lauchComputationWhenResultsInViewport = () => {
+	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
+		threshold: 0,
+		unobserve: false
+	})
+	const [currentIncome, setCurrentIncome] = useState(null)
+	const [displayForm, setDisplayForm] = useState(false)
+	const updateIncome = useCallback(
+		income => {
+			setDisplayForm(income != null)
+			setCurrentIncome(income)
+		},
+		[setDisplayForm, setCurrentIncome]
+	)
+	const dispatch = useDispatch()
+	useEffect(() => {
+		if (resultsInViewPort && displayForm) {
+			dispatch(
+				updateSituation('dirigeant . rémunération totale', currentIncome)
+			)
+		} else {
+			dispatch(updateSituation('dirigeant . rémunération totale', null))
+		}
+	}, [resultsInViewPort, displayForm, currentIncome])
+
+	return { updateIncome, resultsRef, displayForm }
 }
 
 export default function DNRTI() {
 	const dispatch = useDispatch()
 	const analysis = useSelector(analysisWithDefaultsSelector)
+	const rules = useSelector(flatRulesSelector)
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
 	dispatch(setSimulationConfig(simulationConfig, true))
-
+	const {
+		resultsRef,
+		displayForm,
+		updateIncome
+	} = lauchComputationWhenResultsInViewport()
 	return (
 		<>
 			<h1>
@@ -65,48 +100,63 @@ export default function DNRTI() {
 					d'engagement
 				</li>
 			</ul>
-
-			<FormBlock>
-				<CompanySection company={company} />
-				<h2>Revenus d'activité</h2>
-				<SimpleField
-					dottedName="dirigeant . indépendant . rémunération totale"
-					question="Quel est votre revenu professionnel en 2019 ?"
-					summary="Indiquez votre résultat net fiscal avant déduction des charges sociales et exonérations fiscales."
+			<h2>Quel est votre revenu professionnel en 2019 ?</h2>
+			<p>
+				Indiquez votre résultat net fiscal avant déduction des charges sociales
+				et exonérations fiscales.
+			</p>
+			<BigInput>
+				<InputComponent
+					rules={rules}
+					dottedName="dirigeant . rémunération totale"
+					onChange={updateIncome}
+					autoFocus
 				/>
-				<SimpleField dottedName="entreprise . date de création" />
-
-				<SubSection dottedName="entreprise . catégorie d'activité" />
-				{/* PLNR */}
-				<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
-				<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
-				<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
-
-				<h3>Situation personnelle</h3>
-				<SimpleField dottedName="situation personnelle . RSA" />
-				<SubSection dottedName="situation personnelle . IJSS" />
-				<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
-
-				<h3>Exonérations</h3>
-				<SimpleField dottedName="entreprise . ACRE" />
-				<SimpleField dottedName="établissement . ZFU" />
-				<SubSection
-					dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-					hideTitle
-				/>
-
-				<h3>International</h3>
-				<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
-				<SubSection
-					dottedName="dirigeant . indépendant . revenus étrangers"
-					hideTitle
-				/>
-				{/* <h3>DOM - Départements d'Outre-Mer</h3>
+			</BigInput>
+			{displayForm && (
+				<>
+					<Animate.fromTop>
+						<h3>Votre entreprise</h3>
 						<p>
-							<em>Pas encore implémenté</em>
-						</p> */}
-			</FormBlock>
-			<Results />
+							Vous pouvez renseigner votre entreprise pour pré-remplir le
+							formulaire
+						</p>
+						<CompanySection company={company} />
+
+						<FormBlock>
+							<SimpleField dottedName="entreprise . date de création" />
+							<SubSection dottedName="entreprise . catégorie d'activité" />
+							{/* PLNR */}
+							<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
+							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
+							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
+
+							<h3>Situation personnelle</h3>
+							<SimpleField dottedName="situation personnelle . RSA" />
+							<SubSection dottedName="situation personnelle . IJSS" />
+							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
+
+							<h3>Exonérations</h3>
+							<SimpleField dottedName="entreprise . ACRE" />
+							<SimpleField dottedName="établissement . ZFU" />
+							<SubSection
+								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
+								hideTitle
+							/>
+
+							<h3>International</h3>
+							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
+							<SubSection
+								dottedName="dirigeant . indépendant . revenus étrangers"
+								hideTitle
+							/>
+						</FormBlock>
+					</Animate.fromTop>
+					<div ref={resultsRef}>
+						<Results />
+					</div>
+				</>
+			)}
 		</>
 	)
 }
@@ -161,13 +211,19 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const rules = useSelector((state: RootState) => state.rules)
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
+	const dispatchValue = useCallback(
+		value => {
+			dispatch(updateSituation(dottedName, value))
+			dispatch({
+				type: 'STEP_ACTION',
+				name: 'fold',
+				step: dottedName
+			})
+		},
+		[dispatch, dottedName]
+	)
 	const update = (value: unknown) => {
-		dispatch(updateSituation(dottedName, value))
-		dispatch({
-			type: 'STEP_ACTION',
-			name: 'fold',
-			step: dottedName
-		})
+		dispatchValue(value)
 		setCurrentValue(value)
 	}
 	useEffect(() => {
@@ -203,12 +259,13 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 }
 
 function Results() {
-	const results = simulationConfig.objectifs
-		.map(objectif => useRule(objectif))
-		.filter(r => r.nodeValue)
-	if (!results.length) {
-		return null
-	}
+	const results = simulationConfig.objectifs.map(dottedName =>
+		useSelector((state: RootState) => {
+			return ruleAnalysisSelector(state, { dottedName })
+		})
+	)
+	const onGoingComputation = !results.filter(node => node.nodeValue != null)
+		.length
 	return (
 		<div
 			className="ui__ card lighter-bg"
@@ -217,32 +274,41 @@ function Results() {
 			<h1 css="text-align: center; margin-bottom: 2rem">
 				Aide à la déclaration 📄
 			</h1>
-			<Animate.fromTop>
-				{results.map(r => (
-					<>
-						<h4>
-							{r.title} <small>{r.summary}</small>
-						</h4>
-						{r.description && <p className="ui__ notice">{r.description}</p>}
-						<p className="ui__ lead" css="margin-bottom: 1rem;">
-							<RuleLink dottedName={r.dottedName}>
-								{r.nodeValue
-									? formatValue({
+			{onGoingComputation && (
+				<h2>
+					<small>Calcul en cours...</small>
+				</h2>
+			)}
+			<>
+				<Animate.fromTop>
+					{results.map(r => (
+						<React.Fragment key={r.title}>
+							<h4>
+								{r.title} <small>{r.summary}</small>
+							</h4>
+							{r.description && <p className="ui__ notice">{r.description}</p>}
+							<p className="ui__ lead" css="margin-bottom: 1rem;">
+								<RuleLink dottedName={r.dottedName}>
+									{r.nodeValue ? (
+										formatValue({
 											value: r.nodeValue,
 											language: 'fr',
 											unit: '€',
 											maximumFractionDigits: 0
-									  })
-									: '-'}
-							</RuleLink>
-						</p>
-					</>
-				))}
-			</Animate.fromTop>
-			<div css="text-align: center">
-				<button className="ui__ simple button">🔗 Obtenir le lien</button>
-				<button className="ui__ simple button"> 🖨 Imprimer</button>
-			</div>
+										})
+									) : (
+										<Skeleton width={80} />
+									)}
+								</RuleLink>
+							</p>
+						</React.Fragment>
+					))}
+				</Animate.fromTop>
+				<div css="text-align: center">
+					<button className="ui__ simple button">🔗 Obtenir le lien</button>
+					<button className="ui__ simple button"> 🖨 Imprimer</button>
+				</div>
+			</>
 		</div>
 	)
 }
@@ -267,4 +333,7 @@ const FormBlock = styled.section`
 
 const Question = styled.div`
 	margin-top: 1em;
+`
+const BigInput = styled.div`
+	font-size: 130%;
 `
