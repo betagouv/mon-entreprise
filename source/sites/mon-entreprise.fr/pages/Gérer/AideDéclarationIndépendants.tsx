@@ -6,6 +6,7 @@ import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
 import React, { useCallback, useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -19,8 +20,8 @@ import {
 import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
-import { CompanySection } from '../Gérer/Home'
-import { useRule } from './ArtisteAuteur'
+import { useRule } from '../Simulateurs/ArtisteAuteur'
+import { CompanySection } from './Home'
 
 const simulationConfig = {
 	objectifs: [
@@ -29,10 +30,10 @@ const simulationConfig = {
 		'aide déclaration revenu indépendant 2019 . cotisations sociales déductible',
 		'aide déclaration revenu indépendant 2019 . total charges sociales déductible',
 		'aide déclaration revenu indépendant 2019 . assiette sociale'
-	],
+	] as Array<DottedName>,
 	situation: {
 		dirigeant: 'indépendant',
-		'aide déclaration revenu indépendant 2019': 'oui'
+		'aide déclaration revenu indépendant 2019': true
 	},
 	'unités par défaut': ['€/an']
 }
@@ -64,7 +65,7 @@ const lauchComputationWhenResultsInViewport = () => {
 	return { updateIncome, resultsRef, displayForm, currentIncome }
 }
 
-export default function DNRTI() {
+export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const rules = useSelector(flatRulesSelector)
@@ -80,40 +81,42 @@ export default function DNRTI() {
 	} = lauchComputationWhenResultsInViewport()
 	return (
 		<>
-			<h1>
-				<small>Travailleurs indépendants</small>
-				<br />
-				Aide à la déclaration de revenus au titre de l'année 2019{' '}
-				<img src="https://img.shields.io/badge/-beta-blue" />
-			</h1>
-			<p>
-				Cet outil est une aide aux déclarations fiscale (revenu) et sociale
-				(DSI). Il vous permet de connaître le montant des charges sociales
-				déductibles à partir de votre résultat net fiscal.
-			</p>
-			<Warning key="dnrti-warning">
-				<h3>
-					Cet outil vous concerne si vous êtes dans tous les cas suivants :
-				</h3>
-				<ul>
-					<li>vous cotisez au régime général des travailleurs indépendants</li>
-					<li>
-						votre entreprise est au régime réel d'imposition et en comptabilité
-						d'engagement
-					</li>
-				</ul>
-				<h3>Il ne vous concerne pas si vous êtes dans un des cas suivants :</h3>
-				<ul>
-					<li>vous êtes une profession libérale reglementée</li>
-					<li>vous êtes une profession libérale cotisant à la CIPAV</li>
-					<li>votre entreprise est domicilié dans les DOM</li>
-				</ul>
-			</Warning>
-			<h2>Quel est votre revenu professionnel en 2019 ?</h2>
-			<p>
-				Indiquez votre résultat net fiscal avant déduction des charges sociales
-				et exonérations fiscales.
-			</p>
+			<Trans i18nKey="aide-déclaration-indépendant.description">
+				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
+				<p>
+					Cet outil est une aide aux déclarations fiscale (revenu) et sociale
+					(DSI) à destination des travailleurs indépendants. Il vous permet de
+					connaître le montant des charges sociales déductibles à partir de
+					votre résultat net fiscal.
+				</p>
+				<Warning localStorageKey="aide-déclaration-indépendant.warning">
+					<h3>
+						Cet outil vous concerne si vous êtes dans tous les cas suivants :
+					</h3>
+					<ul>
+						<li>
+							vous cotisez au régime général des travailleurs indépendants
+						</li>
+						<li>
+							votre entreprise est au régime réel d'imposition et en
+							comptabilité d'engagement
+						</li>
+					</ul>
+					<h3>
+						Il ne vous concerne pas si vous êtes dans un des cas suivants :
+					</h3>
+					<ul>
+						<li>vous êtes une profession libérale réglementée</li>
+						<li>vous êtes une profession libérale cotisant à la CIPAV</li>
+						<li>votre entreprise est domiciliée dans les DOM</li>
+					</ul>
+				</Warning>
+				<h2>Quel est votre revenu professionnel en 2019 ?</h2>
+				<p className="ui__ notice">
+					Indiquez votre résultat net fiscal avant déduction des charges
+					sociales et exonérations fiscales.
+				</p>
+			</Trans>
 			<BigInput>
 				<InputComponent
 					rules={rules}
@@ -126,27 +129,35 @@ export default function DNRTI() {
 			{displayForm && (
 				<>
 					<Animate.fromTop>
-						<h3>Votre entreprise</h3>
-						<p>
-							Vous pouvez renseigner votre entreprise pour pré-remplir le
-							formulaire
-						</p>
-						<CompanySection company={company} />
-
 						<FormBlock>
+							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
+								<h2>Entreprise et activité</h2>
+							</Trans>
+							{!company && (
+								<p className="ui__ notice">
+									<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
+										Vous pouvez renseigner votre entreprise pour pré-remplir le
+										formulaire
+									</Trans>
+								</p>
+							)}
+							<CompanySection company={company} />
 							<SimpleField dottedName="entreprise . date de création" />
 							<SubSection dottedName="entreprise . catégorie d'activité" />
 							{/* PLNR */}
-							<SimpleField dottedName="dirigeant . indépendant . PLNR régime général" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
 
-							<h3>Situation personnelle</h3>
+							<h2>
+								<Trans>Situation personnelle</Trans>
+							</h2>
 							<SimpleField dottedName="situation personnelle . RSA" />
 							<SubSection dottedName="dirigeant . indépendant . IJSS" />
 							<SubSection dottedName="dirigeant . indépendant . conjoint collaborateur" />
 
-							<h3>Exonérations</h3>
+							<h2>
+								<Trans>Exonérations</Trans>
+							</h2>
 							<SimpleField dottedName="entreprise . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
@@ -154,7 +165,9 @@ export default function DNRTI() {
 								hideTitle
 							/>
 
-							<h3>International</h3>
+							<h2>
+								<Trans>International</Trans>
+							</h2>
 							<SimpleField dottedName="situation personnelle . domiciliation fiscale à l'étranger" />
 							<SubSection
 								dottedName="dirigeant . indépendant . revenus étrangers"
@@ -162,6 +175,7 @@ export default function DNRTI() {
 							/>
 						</FormBlock>
 					</Animate.fromTop>
+
 					<div ref={resultsRef}>
 						<Results />
 					</div>
@@ -184,7 +198,6 @@ function SubSection({
 	const nextSteps = useSelector(nextStepsSelector)
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
-
 	const subQuestions = flatRules.filter(
 		({ dottedName, question }) =>
 			Boolean(question) &&
@@ -192,11 +205,6 @@ function SubSection({
 			(Object.keys(situation).includes(dottedName) ||
 				nextSteps.includes(dottedName))
 	)
-	// .sort(
-	// 	(rule1, rule2) =>
-	// 		nextSteps.indexOf(rule1.dottedName) -
-	// 		nextSteps.indexOf(rule2.dottedName)
-	// )
 	return (
 		<>
 			{!!subQuestions.length && title && <h3>{title}</h3>}
@@ -214,7 +222,7 @@ type SimpleFieldProps = {
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const analysis = useSelector((state: RootState) => {
+	const evaluatedRule = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
 	const rules = useSelector((state: RootState) => state.rules)
@@ -239,7 +247,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 		setCurrentValue(value)
 	}, [value])
 
-	if (!analysis.isApplicable) {
+	if (!evaluatedRule.isApplicable) {
 		return null
 	}
 	return (
@@ -248,12 +256,11 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 				<div
 					css={`
 						border-left: 3px solid var(--lightColor);
-						padding-left: 12px;
-						margin-left: -15px;
+						padding-left: 0.6rem;
 					`}
 				>
-					<p>{question ?? analysis.question}</p>
-					<p className="ui__ notice">{summary ?? analysis.summary}</p>
+					<p>{question ?? evaluatedRule.question}</p>
+					<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
 				</div>
 				<InputComponent
 					rules={rules}
@@ -269,9 +276,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 
 function Results() {
 	const results = simulationConfig.objectifs.map(dottedName =>
-		useSelector((state: RootState) => {
-			return ruleAnalysisSelector(state, { dottedName })
-		})
+		useRule(dottedName)
 	)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
@@ -281,11 +286,17 @@ function Results() {
 			css="margin-top: 3rem; padding: 1rem 0"
 		>
 			<h1 css="text-align: center; margin-bottom: 2rem">
-				Aide à la déclaration 📄
+				<Trans i18nKey="aide-déclaration-indépendant.results.title">
+					Aide à la déclaration 📄
+				</Trans>
 			</h1>
 			{onGoingComputation && (
 				<h2>
-					<small>Calcul en cours...</small>
+					<small>
+						<Trans i18nKey="aide-déclaration-indépendant.results.ongoing">
+							Calcul en cours...
+						</Trans>
+					</small>
 				</h2>
 			)}
 			<>
@@ -329,7 +340,11 @@ const FormBlock = styled.section`
 	padding: 0;
 
 	h3 {
-		margin-top: 50px;
+		margin-top: 2rem;
+	}
+	h2 {
+		border-top: 1px solid var(--lighterColor);
+		padding-top: 2rem;
 	}
 
 	select,
@@ -339,6 +354,7 @@ const FormBlock = styled.section`
 	}
 	ul {
 		padding: 0;
+		margin: 0;
 	}
 `
 
