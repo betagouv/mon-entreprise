@@ -20,6 +20,10 @@ module.exports = {
 		...HTMLPlugins(),
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.HotModuleReplacementPlugin(),
-		new MonacoWebpackPlugin({ languages: ['yaml'] })
+		new MonacoWebpackPlugin({
+			languages: ['yaml'],
+
+			features: ['!gotoSymbol']
+		})
 	]
 }
