@@ -61,6 +61,14 @@ blockquote {
 	background-color: var(--lightestColor) !important;
 }
 
+.ui__.dark-bg {
+	background-color: #3b3945;
+}
+
+.ui__.dark-bg * {
+	color: #f3f3f3;
+}
+
 .ui__.center-flex {
 	display: flex;
 	justify-content: center;
