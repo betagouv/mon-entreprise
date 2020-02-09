@@ -72,16 +72,6 @@ const Footer = () => {
 							<>
 								{'  •  '}
 								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
-								{'  •  '}
-								<strong>
-									<a
-										href={
-											'https://beta.gouv.fr/recrutement/2020/01/13/mon-entreprise-JS-senior.html'
-										}
-									>
-										🙋 On recrute !{' '}
-									</a>
-								</strong>
 							</>
 						)}
 						{'  •  '}
