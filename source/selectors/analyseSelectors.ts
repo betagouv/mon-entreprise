@@ -34,8 +34,7 @@ import { mapOrApply } from '../utils'
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
-let configSelector = (state: RootState) =>
-	(state.simulation && state.simulation.config) || {}
+let configSelector = (state: RootState) => state.simulation?.config || {}
 
 // We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
 export let flatRulesSelector = (state: RootState) => state.rules
@@ -88,12 +87,10 @@ export let firstStepCompletedSelector = createSelector(
 		if (!situation) {
 			return true
 		}
-		const targetIsAnswered =
-			targetNames &&
-			targetNames.some(targetName => {
-				const rule = findRuleByDottedName(parsedRules, targetName)
-				return rule && rule.formule && targetName in situation
-			})
+		const targetIsAnswered = targetNames?.some(targetName => {
+			const rule = findRuleByDottedName(parsedRules, targetName)
+			return rule?.formule && targetName in situation
+		})
 		return targetIsAnswered
 	}
 )

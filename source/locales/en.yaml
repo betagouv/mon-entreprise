@@ -62,7 +62,7 @@ Modifier mes réponses: Change my answers
 Mon entreprise: My company
 Mon revenu: My income
 Montant des cotisations: Amount of contributions
-'Nom de l''entreprise ou SIREN ': Company name or SIREN code
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -1005,8 +1005,8 @@ simulateurs:
       titre: Official income simulator for self-employed person
     titre: Self-employed income simulator
   inversionFail: >-
-    The amount entered is too small or results in an impossible situation, try
-    another one
+    The amount entered does not enable us to calculate a result, we invite you
+    to try another value.
   précision:
     bonne: Good accuracy
     défaut: 'Refine the simulation by answering the following questions:'
