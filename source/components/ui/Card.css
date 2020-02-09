@@ -115,6 +115,14 @@
 	transform: scale(2.3) translateY(0.2rem);
 }
 
+.ui__.card.box.inverted-colors {
+	background: #4e575b;
+}
+
+.ui__.card.box.inverted-colors * {
+	color: #f3f3f3;
+}
+
 @media (max-width: 500px) {
 	.ui__.card.box {
 		max-width: 100%;
