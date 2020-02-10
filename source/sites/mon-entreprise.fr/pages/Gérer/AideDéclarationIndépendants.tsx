@@ -6,6 +6,7 @@ import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
 import React, { useCallback, useEffect, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
@@ -287,7 +288,7 @@ function Results() {
 		>
 			<h1 css="text-align: center; margin-bottom: 2rem">
 				<Trans i18nKey="aide-déclaration-indépendant.results.title">
-					Aide à la déclaration 📄
+					Aide à la déclaration <>{emoji('📄')}</>
 				</Trans>
 			</h1>
 			{onGoingComputation && (
@@ -325,8 +326,12 @@ function Results() {
 					))}
 					{!onGoingComputation && (
 						<div css="text-align: center">
-							<button className="ui__ simple button">🔗 Obtenir le lien</button>
-							<button className="ui__ simple button"> 🖨 Imprimer</button>
+							<button className="ui__ simple button">
+								{emoji('🔗')} Obtenir le lien
+							</button>
+							<button className="ui__ simple button">
+								{emoji('🖨')} Imprimer
+							</button>
 						</div>
 					)}
 				</Animate.fromTop>
