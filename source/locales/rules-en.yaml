@@ -1487,6 +1487,9 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . plafo
   titre.en: exemption cap
   titre.fr: plafond d'exonération
 contrat salarié . frais professionnels . titres-restaurant:
+  titre.en: '[automatic] restaurant vouchers'
+  titre.fr: titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . actif:
   description.en: >-
     [automatic] The meal voucher is a special "meal" payment voucher issued by
     the employer to the employee.
@@ -1511,8 +1514,8 @@ contrat salarié . frais professionnels . titres-restaurant:
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
   question.en: '[automatic] Does the employee receive luncheon vouchers?'
   question.fr: Le salarié reçoit-il des titres-restaurant ?
-  titre.en: '[automatic] restaurant vouchers'
-  titre.fr: titres-restaurant
+  titre.en: '[automatic] active'
+  titre.fr: actif
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question.en: '[automatic] How much is the restaurant voucher?'
   question.fr: Quelle est le montant du titre-restaurant ?
@@ -1521,15 +1524,12 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
 contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
   titre.en: '[automatic] non-exempt portion'
   titre.fr: part non exonérée de cotisation
-contrat salarié . frais professionnels . titres-restaurant . participation employeur:
-  titre.en: '[automatic] employer contribution'
-  titre.fr: participation employeur
-contrat salarié . frais professionnels . titres-restaurant . participation employeur . plafond:
-  titre.en: '[automatic] ceiling'
-  titre.fr: plafond
-contrat salarié . frais professionnels . titres-restaurant . participation salarié:
-  titre.en: '[automatic] Restaurant vouchers'
-  titre.fr: Titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . part salarié:
+  titre.en: '[automatic] employee share'
+  titre.fr: part salarié
+contrat salarié . frais professionnels . titres-restaurant . plafond d'exonération employeur:
+  titre.en: '[automatic] employer exemption limit'
+  titre.fr: plafond d'exonération employeur
 contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
   contrôles.0.en: >-
     [automatic] The Employer-paid portion of the meal voucher must be at least

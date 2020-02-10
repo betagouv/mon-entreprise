@@ -163,3 +163,14 @@ JEI:
   - contrat salarié . rémunération . brut de base: 4000
     dirigeant: 'assimilé salarié'
     contrat salarié . statut JEI: true
+frais pro:
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . frais professionnels . titres-restaurant . actif: true
+    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 10
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . frais professionnels . titres-restaurant . actif: true
+    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 10
+    contrat salarié . frais professionnels . titres-restaurant . montant unitaire: 10
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . frais professionnels . titres-restaurant . actif: true
+    contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 75

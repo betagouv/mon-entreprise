@@ -46,9 +46,27 @@ contrat salarié . frais professionnels:
   formule:
     somme:
       - indemnité kilométrique vélo
-      - titres-restaurant . participation employeur
+      - titres-restaurant .employeur
 
 contrat salarié . frais professionnels . titres-restaurant:
+  applicable si: actif
+  formule:
+    multiplication:
+      assiette: montant unitaire
+      facteur: titres-restaurant par mois
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: taux participation employeur
+        - attributs:
+            dû par: salarié
+          taux: 100% - taux participation employeur
+
+# Hack: le filtre .salarié ne fonctionne pas dans la méthode getRule dans l'UI. On crée une règle spécifique juste pour pouvoir récupérer la valeur dans l'UI
+contrat salarié . frais professionnels . titres-restaurant . part salarié:
+  formule: titres-restaurant .salarié
+
+contrat salarié . frais professionnels . titres-restaurant . actif:
   icônes: 🍽️
   description: >-
     Le titre-restaurant est un titre spécial de paiement « des repas » remis par l’employeur au salarié.
@@ -62,32 +80,19 @@ contrat salarié . frais professionnels . titres-restaurant:
   question: Le salarié reçoit-il des titres-restaurant ?
   par défaut: non
 
-contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
+contrat salarié . frais professionnels . titres-restaurant . plafond d'exonération employeur:
   formule:
     multiplication:
-      facteur:
-        allègement:
-          assiette: taux participation employeur * montant unitaire
-          abattement: participation employeur . plafond
       assiette: titres-restaurant par mois
-
-contrat salarié . frais professionnels . titres-restaurant . participation employeur . plafond:
-  formule: 5.55€
-  références: 
+      facteur: 5.55 €/titres-restaurant
+  références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
-contrat salarié . frais professionnels . titres-restaurant . participation employeur:
+contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
   formule:
-    multiplication:
-      facteur: titres-restaurant par mois
-      assiette:
-        encadrement:
-          valeur: taux participation employeur * montant unitaire
-          plafond: plafond
-
-contrat salarié . frais professionnels . titres-restaurant . participation salarié:
-  titre: Titres-restaurant
-  formule: montant unitaire * titres-restaurant par mois - participation employeur
+    allègement:
+      assiette: titres-restaurant .employeur
+      abattement: plafond d'exonération employeur
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question: Combien de titres-restaurant recevez-vous par mois ?
@@ -1283,7 +1288,7 @@ contrat salarié . rémunération . net imposable:
       abattement:
         somme:
           - frais professionnels . indemnité kilométrique vélo
-          - (- frais professionnels . titres-restaurant . participation employeur)
+          - (- frais professionnels . titres-restaurant .employeur)
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
@@ -1337,7 +1342,11 @@ contrat salarié . rémunération . net:
     Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  formule: rémunération . net de cotisations - avantages en nature . montant - frais professionnels . titres-restaurant . participation salarié
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - (- avantages en nature . montant)
+      - (- frais professionnels . titres-restaurant .salarié)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
