@@ -18,6 +18,7 @@ type SearchBarProps = {
 }
 
 type Option = Pick<Rule, 'dottedName' | 'name' | 'title'>
+type Result = Pick<Rule, 'dottedName'>
 
 export default function SearchBar({
 	rules,
@@ -27,7 +28,7 @@ export default function SearchBar({
 	const sitePaths = useContext(SitePathsContext)
 	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
-	const [results, setResults] = useState([])
+	const [results, setResults] = useState<Array<Result>>([])
 	const { i18n } = useTranslation()
 	const history = useHistory()
 
