@@ -22,7 +22,6 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			return false
 		}
 		window.addEventListener('keydown', handleKeyDown)
-
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown)
 		}

@@ -2,7 +2,7 @@ import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { parentName } from 'Engine/rules.js'
 import { pick, sortBy, take } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
-import Highlighter from 'react-highlight-words'
+import FuzzyHighlighter, { Highlighter } from 'react-fuzzy-highlighter'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import { Rule } from 'Types/rule'
@@ -59,6 +59,12 @@ export default function SearchBar({
 
 	let renderOption = (option: Option) => {
 		let { title, dottedName, name } = option
+		let espace = parentName(dottedName)
+			? parentName(dottedName)
+					.split(' . ')
+					.map(capitalise0)
+					.join(' - ')
+			: ''
 		return (
 			<li
 				key={dottedName}
@@ -82,24 +88,76 @@ export default function SearchBar({
 						lineHeight: '.9em'
 					}}
 				>
-					<Highlighter
-						searchWords={[input]}
-						textToHighlight={
-							parentName(dottedName)
-								? parentName(dottedName)
-										.split(' . ')
-										.map(capitalise0)
-										.join(' - ')
-								: ''
-						}
-					/>
+					<FuzzyHighlighter
+						query={input}
+						data={[
+							{
+								title: espace
+							}
+						]}
+						options={{
+							includeMatches: true,
+							threshold: 0.2,
+							minMatchCharLength: 1,
+							keys: ['title']
+						}}
+					>
+						{({ results, formattedResults, timing }) => {
+							return (
+								<>
+									{formattedResults.length === 0 && <span>{espace}</span>}
+									{formattedResults.map((formattedResult, resultIndex) => {
+										if (formattedResult.formatted.title === undefined) {
+											return null
+										}
+
+										return (
+											<span key={resultIndex}>
+												<Highlighter text={formattedResult.formatted.title} />
+											</span>
+										)
+									})}
+								</>
+							)
+						}}
+					</FuzzyHighlighter>
 				</div>
-				<Link to={sitePaths.documentation.rule(dottedName)}>
-					<Highlighter
-						searchWords={[input]}
-						textToHighlight={title || capitalise0(name) || ''}
-					/>
-				</Link>
+
+				<FuzzyHighlighter
+					query={input}
+					data={[{ title: title || capitalise0(name) || '' }]}
+					options={{
+						includeMatches: true,
+						threshold: 0.3,
+						keys: ['title', 'name']
+					}}
+				>
+					{({ results, formattedResults, timing }) => {
+						return (
+							<>
+								{formattedResults.length === 0 && (
+									<Link to={sitePaths.documentation.rule(dottedName)}>
+										{title || capitalise0(name) || ''}
+									</Link>
+								)}
+								{formattedResults.map((formattedResult, resultIndex) => {
+									if (formattedResult.formatted.title === undefined) {
+										return null
+									}
+
+									return (
+										<Link
+											to={sitePaths.documentation.rule(dottedName)}
+											key={resultIndex}
+										>
+											<Highlighter text={formattedResult.formatted.title} />
+										</Link>
+									)
+								})}
+							</>
+						)
+					}}
+				</FuzzyHighlighter>
 			</li>
 		)
 	}
