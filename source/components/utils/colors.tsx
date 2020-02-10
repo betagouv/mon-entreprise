@@ -1,6 +1,5 @@
 import convert from 'color-convert'
-import SetCssColor from 'Components/utils/SetCssColor'
-import React, { createContext } from 'react'
+import React, { createContext, useEffect, useRef } from 'react'
 
 /*
 	Hex to RGB conversion:
@@ -101,10 +100,17 @@ type ProviderProps = {
 
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	const colors = generateTheme(color)
+	const divRef = useRef<HTMLDivElement>(null)
+	useEffect(() => {
+		Object.entries(colors).forEach(([key, value]) => {
+			if (typeof value === 'string') {
+				divRef.current?.style.setProperty(`--${key}`, value)
+			}
+		}, colors)
+	}, [colors])
 	return (
 		<ThemeColorsContext.Provider value={colors}>
-			<SetCssColor colors={colors} />
-			{children}
+			<div ref={divRef}>{children}</div>
 		</ThemeColorsContext.Provider>
 	)
 }

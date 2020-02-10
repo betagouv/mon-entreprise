@@ -3,7 +3,8 @@ import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import assimiléConfig from 'Components/simulationConfigs/assimilé.yaml'
-import React from 'react'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -13,8 +14,8 @@ export default function AssimiléSalarié() {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	dispatch(setSimulationConfig(assimiléConfig, location.state?.fromGérer))
-
 	const { t } = useTranslation()
+	const inIframe = useContext(IsEmbeddedContext)
 
 	return (
 		<>
@@ -33,11 +34,13 @@ export default function AssimiléSalarié() {
 					)}
 				/>
 			</Helmet>
-			<h1>
-				<Trans i18nKey="simulateurs.assimilé-salarié.titre">
-					Simulateur de revenus assimilé salarié
-				</Trans>
-			</h1>
+			{!inIframe && (
+				<h1>
+					<Trans i18nKey="simulateurs.assimilé-salarié.titre">
+						Simulateur de revenus assimilé salarié
+					</Trans>
+				</h1>
+			)}
 			<Warning simulateur="assimilé-salarié" />
 			<Simulation explanations={<SalaryExplanation />} />
 		</>

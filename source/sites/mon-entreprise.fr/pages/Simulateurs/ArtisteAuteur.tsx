@@ -4,6 +4,7 @@ import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import 'Components/TargetSelection.css'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
 import { getRuleFromAnalysis } from 'Engine/rules'
@@ -41,14 +42,17 @@ export default function ArtisteAuteur() {
 	const dispatch = useDispatch()
 	dispatch(setSimulationConfig(config))
 	const initialRender = useInitialRender()
+	const inIframe = useContext(IsEmbeddedContext)
 
 	return (
 		<>
-			<h1>
-				<Trans i18nKey="simulateurs.artiste-auteur.titre">
-					Estimer mes cotisations d’artiste-auteur
-				</Trans>
-			</h1>
+			{!inIframe && (
+				<h1>
+					<Trans i18nKey="simulateurs.artiste-auteur.titre">
+						Estimer mes cotisations d’artiste-auteur
+					</Trans>
+				</h1>
+			)}
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<section className="ui__ light card">
 				<div id="targetSelection">
