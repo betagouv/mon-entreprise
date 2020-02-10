@@ -25,7 +25,6 @@ import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import Créer from './pages/Créer'
-import Couleur from './pages/Dev/Couleur'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Sitemap from './pages/Dev/Sitemap'
@@ -128,7 +127,6 @@ const App = () => {
 							path="/dev/integration-test"
 							component={IntegrationTest}
 						/>
-						<Route exact path="/dev/couleur" component={Couleur} />
 						<Route exact path="/dev/personas" component={Personas} />
 
 						<Route component={Route404} />

@@ -4,6 +4,7 @@ import Simulation from 'Components/Simulation'
 import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -15,6 +16,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
 	const location = useLocation()
+	const inIframe = useContext(IsEmbeddedContext)
 	dispatch(
 		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
 	)
@@ -38,11 +40,13 @@ export default function AutoEntrepreneur() {
 					)}
 				/>
 			</Helmet>
-			<h1>
-				<Trans i18nKey="simulateurs.auto-entrepreneur.titre">
-					Simulateur de revenus auto-entrepreneur
-				</Trans>
-			</h1>
+			{!inIframe && (
+				<h1>
+					<Trans i18nKey="simulateurs.auto-entrepreneur.titre">
+						Simulateur de revenus auto-entrepreneur
+					</Trans>
+				</h1>
+			)}
 			<Warning simulateur="auto-entrepreneur" />
 			<Simulation explanations={<ExplanationSection />} />
 		</>

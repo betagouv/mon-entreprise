@@ -1,6 +1,7 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import React from 'react'
 import { Route } from 'react-router'
+import { inIframe } from '../../../../utils'
 import SimulateurArtisteAuteur from '../Simulateurs/ArtisteAuteur'
 import SimulateurAssimiléSalarié from '../Simulateurs/AssimiléSalarié'
 import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
@@ -36,7 +37,7 @@ export default function Iframes() {
 					path="/iframes/simulateur-artiste-auteur"
 					component={SimulateurArtisteAuteur}
 				/>
-				<IframeFooter />
+				{inIframe() && <IframeFooter />}
 			</div>
 		</IsEmbeddedContext.Provider>
 	)

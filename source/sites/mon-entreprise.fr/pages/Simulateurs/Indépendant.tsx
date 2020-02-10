@@ -4,6 +4,7 @@ import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -17,6 +18,8 @@ export default function Indépendant() {
 	const location = useLocation()
 	dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
 	const { t } = useTranslation()
+	const inIframe = useContext(IsEmbeddedContext)
+
 	return (
 		<>
 			<Helmet>
@@ -34,11 +37,13 @@ export default function Indépendant() {
 					)}
 				/>
 			</Helmet>
-			<h1>
-				<Trans i18nKey="simulateurs.indépendant.titre">
-					Simulateur de revenus pour indépendants
-				</Trans>
-			</h1>
+			{!inIframe && (
+				<h1>
+					<Trans i18nKey="simulateurs.indépendant.titre">
+						Simulateur de revenus pour indépendants
+					</Trans>
+				</h1>
+			)}
 			<Warning simulateur="indépendant" />
 			<Simulation explanations={<ExplanationSection />} />
 		</>
