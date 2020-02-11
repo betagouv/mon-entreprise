@@ -1591,9 +1591,29 @@ contrat salarié . temps de travail . heures complémentaires . majoration . seu
 
 contrat salarié . statut JEI:
   titre: Statut JEI
-  question: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
-  description: |
-    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au moins de leurs charges à de la Recherche et Développement de bénéficier de certaines exonérations.
+  question: >-
+    La personne bénéficie-t'elle de l'exonération Jeune Entreprise Innovante (JEI) ?
+  description: >-
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier
+    d'une éxonération de cotisations sociale.
+
+
+    L’exonération peut s’appliquer sur les rémunérations versées :
+
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation
+    d’assurance chômage
+
+    - aux mandataires sociaux qui participent, à titre principal, au projet
+    de recherche et de développement de l’entreprise
+
+
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    considéré comme acquis dès lors que la moitié de son temps de travail au
+    moins est consacrée à un ou des projets de recherche et de développement et
+    l’exonération ne pourra être remise en cause.
+
   par défaut: non
   rend non applicable:
     - réduction générale
@@ -1612,7 +1632,6 @@ contrat salarié . statut JEI . exonération de cotisations:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
     calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-
   unité: €/mois
 
   formule:
