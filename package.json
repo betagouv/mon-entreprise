@@ -64,7 +64,8 @@
 		"reselect": "^4.0.0",
 		"screenfull": "^3.3.2",
 		"whatwg-fetch": "^3.0.0",
-		"worker-loader": "^2.0.0"
+		"worker-loader": "^2.0.0",
+		"yaml": "^1.7.2"
 	},
 	"scripts": {
 		"postinstall": "node source/scripts/postinstall.js",

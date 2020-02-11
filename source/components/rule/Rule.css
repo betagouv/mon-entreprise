@@ -20,12 +20,11 @@ h2 small {
 	font-size: 75%;
 }
 
-
 #rule #ruleDefault {
 	text-align: center;
 	opacity: 0.75;
 }
 
 #toggleRuleSource {
-	margin-top: 1em;
+	margin: 1rem 0;
 }

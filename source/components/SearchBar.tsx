@@ -14,7 +14,7 @@ const worker = new Worker()
 type SearchBarProps = {
 	rules: Array<Rule>
 	showDefaultList: boolean
-	finally?: () => void
+	finallyCallback?: () => void
 }
 
 type Option = Pick<Rule, 'dottedName' | 'name' | 'title'>
@@ -22,7 +22,7 @@ type Option = Pick<Rule, 'dottedName' | 'name' | 'title'>
 export default function SearchBar({
 	rules,
 	showDefaultList,
-	finally: finallyCallback
+	finallyCallback
 }: SearchBarProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const [input, setInput] = useState('')
