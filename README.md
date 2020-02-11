@@ -1,6 +1,6 @@
 ## Futureco
 
-On discute ensemble sur [ce salon public](https://matrix.to/#/!fsVPsWWOjvdAvfuTMn:matrix.org?via=matrix.org).
+💬 Venez discuter du projet sur [ce salon public](https://matrix.to/#/!fsVPsWWOjvdAvfuTMn:matrix.org?via=matrix.org).
 
 ## C'est quoi ?
 
