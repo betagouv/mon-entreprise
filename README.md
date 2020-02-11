@@ -1,5 +1,7 @@
 ## Futureco
 
+On discute ensemble sur [ce salon public](https://matrix.to/#/!fsVPsWWOjvdAvfuTMn:matrix.org?via=matrix.org).
+
 ## C'est quoi ?
 
 La catastrophe climatique n'est plus une menace lointaine et incertaine, c'est une actualité. Comment éviter le pire ? Chaque aspect de notre vie moderne a un impact.
