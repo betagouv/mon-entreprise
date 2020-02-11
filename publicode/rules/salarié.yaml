@@ -1551,7 +1551,8 @@ contrat salarié . temps de travail . heures complémentaires:
     - si: heures complémentaires > temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents
       niveau: information
       message: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
-    - si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale
+    # TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
+    - si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale * période . semaines par mois
       niveau: avertissement
       message: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
 
