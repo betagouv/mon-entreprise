@@ -273,7 +273,13 @@ contrat salarié . CDD . prime de fin de contrat:
   # Ici elle est étalée sur un mois moyen
   formule:
     multiplication:
-      assiette: rémunération . brut de base
+      assiette:
+        somme:
+          - rémunération . brut de base
+          - rémunération . avantages en nature . montant
+          - rémunération . primes
+          - rémunération . heures supplémentaires
+          - indemnité kilométrique vélo
       taux: 10%
 
   exemples:
