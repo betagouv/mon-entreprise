@@ -188,6 +188,12 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échell
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 7`] = `"[56271,69892,36442,4,56,0]"`;
 
+exports[`calculate simulations-salarié:  JEI 1`] = `"[3440,0,0,3000,2353,2187]"`;
+
+exports[`calculate simulations-salarié:  JEI 2`] = `"[26710,0,0,20000,15969,10681]"`;
+
+exports[`calculate simulations-salarié:  JEI 3`] = `"[4517,0,0,4000,3141,2741]"`;
+
 exports[`calculate simulations-salarié:  aides 1`] = `"[2302,0,0,2000,1561,1524]"`;
 
 exports[`calculate simulations-salarié:  aides 2`] = `"[12823,0,0,10000,8911,7667]"`;
@@ -215,6 +221,8 @@ exports[`calculate simulations-salarié:  cadre 1`] = `"[4122,0,0,3000,2348,2171
 exports[`calculate simulations-salarié:  cdd 1`] = `"[2508,0,0,2000,1561,1524]"`;
 
 exports[`calculate simulations-salarié:  cdd 2`] = `"[2591,0,0,2000,1599,1557]"`;
+
+exports[`calculate simulations-salarié:  cdd 3`] = `"[3410,0,0,2400,1984,1900]"`;
 
 exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 1`] = `"[2583,0,0,2000,1636,1599]"`;
 
