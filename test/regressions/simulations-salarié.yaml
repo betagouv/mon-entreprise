@@ -46,6 +46,12 @@ cdd:
     contrat salarié . rémunération . brut de base: 2000
     contrat salarié . CDD . durée contrat: 6
     contrat salarié . CDD . congés non pris: 3
+  - contrat salarié: CDD
+    contrat salarié . rémunération . brut de base: 2400
+    contrat salarié . CDD . durée contrat: 10
+    contrat salarié . temps de travail . heures supplémentaires: 5
+    contrat salarié . indemnité kilométrique vélo . active: true
+    contrat salarié . avantages en nature . montant: 200
 
 atmp:
   - contrat salarié . rémunération . brut de base: 2000
@@ -148,3 +154,12 @@ avantages:
     contrat salarié . rémunération . avantages en nature: true
     contrat salarié . rémunération . avantages en nature . nourriture: true
     contrat salarié . rémunération . avantages en nature . nourriture . repas par mois: 10
+
+JEI:
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . statut JEI: true
+  - contrat salarié . rémunération . brut de base: 20000
+    contrat salarié . statut JEI: true
+  - contrat salarié . rémunération . brut de base: 4000
+    dirigeant: 'assimilé salarié'
+    contrat salarié . statut JEI: true

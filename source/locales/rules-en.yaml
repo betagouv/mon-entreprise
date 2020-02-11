@@ -328,7 +328,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -706,7 +706,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -798,7 +798,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
+  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -993,12 +993,12 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -1855,7 +1855,7 @@ contrat salarié . réduction générale . assiette:
   titre.fr: Assiette de la réduction générale
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
   note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: "En pratique, l'ATMP est toujours supérieure à 0.78%"
+  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
   titre.en: share of ATMP contribution
   titre.fr: part de la cotisation ATMP
 contrat salarié . réduction générale . multiplicateur:
@@ -2420,17 +2420,51 @@ contrat salarié . stage . gratification minimale:
   titre.fr: gratification minimale
 contrat salarié . statut JEI:
   description.en: >-
-    The status of young innovative company (JEI) was created by the Finance Act
-    for 2004 and allows small companies (PME) under 8 years of age, which devote
-    at least 15% of their expenses to Research and Development to benefit from
-    certain exemptions.
-  description.fr: >
+    [automatic] The status of Young Innovative Company (JEI) was created by the
+    2004 Finance Law and allows SMEs under 8 years old devoting at least 15% of
+    their expenses to Research and Development to benefit from an exemption from
+    social contributions.
+
+
+    The exemption may apply to remuneration paid :
+
+    - employees for whom the employer is subject to the obligation of
+    unemployment insurance
+
+    - corporate officers who participate, in a principal capacity, in the
+    company's research and development project
+
+
+    For the sake of simplicity, the benefit of the exemption for an employee
+    will be considered as acquired when at least half of his working time is
+    devoted to one or more research and development projects and the exemption
+    cannot be called into question.
+  description.fr: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
-    moins de leurs charges à de la Recherche et Développement de bénéficier de
-    certaines exonérations.
-  question.en: Do you benefit from the young innovative company status (JEI) for this job?
-  question.fr: Profitez-vous du statut Jeune Entreprise Innovante pour cette embauche ?
+    moins de leurs charges à de la Recherche et Développement de bénéficier
+    d'une éxonération de cotisations sociale.
+
+
+    L’exonération peut s’appliquer sur les rémunérations versées :
+
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation
+    d’assurance chômage
+
+    - aux mandataires sociaux qui participent, à titre principal, au projet de
+    recherche et de développement de l’entreprise
+
+
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    considéré comme acquis dès lors que la moitié de son temps de travail au
+    moins est consacrée à un ou des projets de recherche et de développement et
+    l’exonération ne pourra être remise en cause.
+  question.en: >-
+    [automatic] Does the person benefit from the Young Innovative Company (JEI)
+    exemption?
+  question.fr: >-
+    La personne bénéficie-t'elle de l'exonération Jeune Entreprise Innovante
+    (JEI) ?
   titre.en: JEI status
   titre.fr: Statut JEI
 contrat salarié . statut JEI . exonération de cotisations:
@@ -2789,8 +2823,8 @@ dirigeant . auto-entrepreneur . base des cotisations:
     est dépassé. [En savoir
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
   contrôles.1.en: >-
-    The annual turnover threshold for VAT exemption is exceeded.
-    [Read more](/documentation/entreprise/franchise-de-TVA)
+    The annual turnover threshold for VAT exemption is exceeded. [Read
+    more](/documentation/entreprise/franchise-de-TVA)
   contrôles.1.fr: >-
     Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
     [En savoir plus](/documentation/entreprise/franchise-de-TVA)
@@ -3560,7 +3594,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . retraite complémentaire:
@@ -3890,7 +3924,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -4009,7 +4043,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -4226,7 +4260,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
