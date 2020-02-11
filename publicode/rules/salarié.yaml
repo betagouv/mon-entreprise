@@ -1468,7 +1468,7 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
   unité: heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
-    - si: 
+    - si:
         toutes ces conditions:
           - temps partiel
           - heures par semaine < 24
@@ -1537,6 +1537,7 @@ contrat salarié . temps de travail . heures complémentaires:
     partiel au delà de son horaire contractuel. Les heures complémentaires ne
     doivent pas amener le salarié à travailler pour une durée supérieur à la
     durée légale ou conventionnelle du travail.
+  applicable si: temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
   unité: heure/mois
   par défaut: 0
