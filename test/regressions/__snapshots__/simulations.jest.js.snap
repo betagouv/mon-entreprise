@@ -230,17 +230,11 @@ exports[`calculate simulations-salarié:  frais pro - IKV 2`] = `"[4346,0,0,3200
 
 exports[`calculate simulations-salarié:  frais pro - IKV 3`] = `"[2774,0,0,2157,1685,1630]"`;
 
-exports[`calculate simulations-salarié:  frais pro - titres restaurant 1`] = `"[2518,0,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié:  frais pro - titres restaurant 1`] = `"[2518,0,0,2000,1521,1484]"`;
 
-exports[`calculate simulations-salarié:  frais pro - titres restaurant 2`] = `"[4307,0,0,3000,2334,2149]"`;
+exports[`calculate simulations-salarié:  frais pro - titres restaurant 2`] = `"[4307,0,0,3000,2134,1949]"`;
 
-exports[`calculate simulations-salarié:  frais pro - titres restaurant 3`] = `"[2562,0,0,2000,1576,1540]"`;
-
-exports[`calculate simulations-salarié:  frais pro 1`] = `"[2443,0,0,2000,1530,1486]"`;
-
-exports[`calculate simulations-salarié:  frais pro 2`] = `"[2434,0,0,2000,1522,1476]"`;
-
-exports[`calculate simulations-salarié:  frais pro 3`] = `"[2385,0,0,2000,1545,1489]"`;
+exports[`calculate simulations-salarié:  frais pro - titres restaurant 3`] = `"[2562,0,0,2000,1493,1456]"`;
 
 exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 1`] = `"[2583,0,0,2000,1636,1599]"`;
 
