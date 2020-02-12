@@ -7,7 +7,8 @@ export let SalaireBrutSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
 			'contrat salarié . rémunération . avantages en nature'
 		),
-		indemnitésSalarié = getRule('contrat salarié . indemnités salarié'),
+		indemnitésSalarié = getRule('contrat salarié . CDD . indemnités salarié'),
+		remboursementDeFrais = getRule('contrat salarié . frais professionnels'),
 		heuresSupplémentaires = getRule(
 			'contrat salarié . rémunération . heures supplémentaires'
 		),
@@ -27,11 +28,14 @@ export let SalaireBrutSection = ({ getRule }) => {
 					)}
 				/>
 			)}
-			{!!indemnitésSalarié?.nodeValue && <Line rule={indemnitésSalarié} />}
 			{!!heuresSupplémentaires?.nodeValue && (
 				<Line rule={heuresSupplémentaires} />
 			)}
 			{!!primes?.nodeValue && <Line rule={primes} />}
+			{!!remboursementDeFrais?.nodeValue && (
+				<Line rule={remboursementDeFrais} />
+			)}
+			{!!indemnitésSalarié?.nodeValue && <Line rule={indemnitésSalarié} />}
 			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
 				<Line rule={rémunérationBrute} />
 			)}
@@ -48,35 +52,33 @@ export let Line = ({ rule, ...props }) => (
 
 export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(
-		'contrat salarié . rémunération . avantages en nature'
+		'contrat salarié . rémunération . avantages en nature . montant'
 	)
 	let impôt = getRule('impôt')
 	let netImposable = getRule('contrat salarié . rémunération . net imposable')
+	const retenueTitresRestaurant = getRule(
+		'contrat salarié . frais professionnels . titres-restaurant . montant'
+	)
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
 			</h4>
 			{netImposable && <Line rule={netImposable} />}
-			{avantagesEnNature.nodeValue && (
-				<>
-					{/* Salaire net de cotisations */}
-					<Line
-						rule={getRule(
-							'contrat salarié . rémunération . net de cotisations'
-						)}
-					/>
-					{/* Avantages en nature */}
-					<Line
-						negative
-						rule={getRule(
-							'contrat salarié . rémunération . avantages en nature . montant'
-						)}
-					/>
-				</>
+			{(avantagesEnNature.nodeValue || retenueTitresRestaurant.nodeValue) && (
+				<Line
+					rule={getRule('contrat salarié . rémunération . net de cotisations')}
+				/>
 			)}
+			{!!avantagesEnNature.nodeValue && (
+				<Line negative rule={avantagesEnNature} />
+			)}
+			{!!retenueTitresRestaurant.nodeValue && (
+				<Line negative rule={retenueTitresRestaurant} />
+			)}
+
 			<Line rule={getRule('contrat salarié . rémunération . net')} />
-			{impôt && (
+			{!!impôt && (
 				<>
 					<Line negative rule={impôt} />
 					<Line

@@ -33,47 +33,126 @@ contrat salarié:
 contrat salarié . CDI:
   formule: contrat salarié = 'CDI'
 
-contrat salarié . indemnité kilométrique vélo:
-  icônes: 🚴
-  description: |
-    Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au travail.
+contrat salarié . frais professionnels:
+  titre: remboursement de frais
+  description: >-
+    Les frais professionnels correspondent à des dépenses engagées par le
+    salarié pour les besoins de son activité professionnelle. Ces frais sont
+    ensuite remboursés par l’employeur.
 
-    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant tout à fait accessible, correspondant approximativement à 2km aller et 2km retour pour 218 jours travaillés dans l'année. Elle peut être supérieure, mais l'employeur n'a alors aucune incitation à verser ce supplément : la part au-dessus de 200€ devient une prime classique.
-  unité: €/an
 
-  applicable si: active
+    Le dédommagement de ces frais peut prendre la forme :
+
+      - d’un remboursement des dépenses réelles sur justificatifs ;
+
+      - d’un versement d’allocations forfaitaires ;
+
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+
+
+    Les frais professionnels sont généralement exclus de la base de calcul des
+    cotisations de Sécurité sociale et de la CSG-CRDS, sauf en cas de
+    dépassement de plafond pour les remboursement forfaitaires (indemnité
+    kilométrique vélo, frais de panier, titre-restaurants...).
+  formule:
+    somme:
+      - indemnité kilométrique vélo . montant
+      - titres-restaurant . montant .employeur
+
+contrat salarié . frais professionnels . part déductible:
+  titre: Frais professionnels déductibles
+  description: >-
+    Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
+    de l'impôt sur le revenu.
+  formule:
+    somme:
+      - indemnité kilométrique vélo . part déductible
+      - titres-restaurant . part déductible
+
+contrat salarié . frais professionnels . titres-restaurant:
+  icônes: 🍽️
+  description: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
+    régler la consommation :
+
+      - d’un repas,
+
+      - de préparations alimentaires directement consommables,
+      
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  question: Le salarié reçoit-il des titres-restaurant ?
+  par défaut: non
+
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre: Titres-restaurant
+  formule:
+    multiplication:
+      assiette: montant unitaire
+      facteur: titres-restaurant par mois
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: taux participation employeur
+        - attributs:
+            dû par: salarié
+          taux: 100% - taux participation employeur
+
+contrat salarié . frais professionnels . titres-restaurant . part déductible:
+  titre: Titres-restaurant (déductible)
   formule:
     encadrement:
-      valeur: distance annuelle * indemnité kilométrique
-      plafond: plafond d'exonération
+      valeur: montant .employeur
+      plafond:
+        multiplication:
+          assiette: titres-restaurant par mois
+          facteur: 5.55 €/titres-restaurant
   références:
-    fiche URSSAF: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/indemnites-kilometriques-velo.html
-    fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33808
-  exemples:
-    - nom: active
-      situation:
-        active: oui
-      valeur attendue: 200
+    urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
-contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
-  formule: 200 €/an
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question: Combien de titres-restaurants sont distribués au salarié ?
+  par défaut: 19
+  unité: titres-restaurant/mois
 
-contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
-  formule: 0.25 €/km
+contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
+  question: Quelle est la valeur unitaire du titre-restaurant ?
+  description: >-
+    Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
+    revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
+    dépasser 11,10€ par titre en 2020.
+  par défaut: 8
+  suggestions:
+    faible: 6
+    moyenne: 8
+    max exonéré: 11.10
+  unité: €/titre-restaurant
 
-contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  unité: km/an
-  formule: distance journalière * jours travaillés
+contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
+  description: >-
+    Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
+    de 60% maximum.
+  question: Quelle est la participation de l'employeur ?
+  par défaut: 50
+  unité: '%'
+  suggestions:
+    50%: 50
+    60%: 60
+  contrôles:
+    - si: taux participation employeur < 50%
+      niveau: avertissement
+      message: La part employeur du titre-restaurant doit être de 50% au minimum
+    - si: taux participation employeur > 60%
+      niveau: avertissement
+      message: La part employeur du titre-restaurant doit être de 60% au maximum
 
-contrat salarié . indemnité kilométrique vélo . distance journalière:
-  description: Une estimation basse de la distance parcourue à vélo par un salarié pour se rendre à son travail.
-  formule: 4 km/jour
-
-contrat salarié . indemnité kilométrique vélo . jours travaillés:
-  formule: 218 jours/an
-
-contrat salarié . indemnité kilométrique vélo . active:
-  titre: indemnité vélo active
+contrat salarié . frais professionnels . indemnité kilométrique vélo:
+  icônes: 🚴
   question: Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au travail ?
   description: |
     Cette indemnité n'est pour l'instant pas obligatoire.
@@ -86,6 +165,31 @@ contrat salarié . indemnité kilométrique vélo . active:
 
     Cette indemnité est exonérée de cotisations sociales et d'impôt sur le revenu. Pour verser une prime de salaire équivalente à son salarié sans ce dispositif, **l'employeur devrait débourser près de 500€ pour un salaire médian**.
   par défaut: non
+
+contrat salarié . frais professionnels . indemnité kilométrique vélo . montant:
+  titre: indemnité kilométrique vélo
+  unité: €/an
+  formule:
+    multiplication:
+      assiette: distance mensuelle
+      facteur: 0.25 €/km
+
+contrat salarié . frais professionnels . indemnité kilométrique vélo . part déductible:
+  titre: indemnité kilométrique vélo (déductible)
+  formule:
+    encadrement:
+      valeur: montant
+      plafond: 200 €/an
+
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle:
+  unité: km/mois
+  question: >-
+    Quelle est la distance parcourue en vélo chaque mois pour le trajet domicile / travail ?
+  suggestions:
+    2 km/jour: 40
+    5 km/jour: 100
+    10 km/jour: 200
+  par défaut: 80
 
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description: |
@@ -279,7 +383,6 @@ contrat salarié . CDD . prime de fin de contrat:
           - rémunération . avantages en nature . montant
           - rémunération . primes
           - rémunération . heures supplémentaires
-          - indemnité kilométrique vélo
       taux: 10%
 
   exemples:
@@ -573,7 +676,7 @@ contrat salarié . CDD . contrat jeune vacances:
   note: Ce n'est pas un motif de CDD.
   par défaut: non
 
-contrat salarié . CDD . indemnités salarié CDD:
+contrat salarié . CDD . indemnités salarié:
   description: Cotisations employeur spécifiques au CDD
   formule:
     somme:
@@ -705,7 +808,7 @@ contrat salarié . cotisations . assiette:
       assiette: rémunération . brut
       abattement:
         somme:
-          - indemnité kilométrique vélo
+          - frais professionnels . part déductible
           - stage . gratification minimale
 
 contrat salarié . cotisations . assiette . salariale:
@@ -874,7 +977,7 @@ contrat salarié . rémunération . primes . fin d'année:
     travail.
   formule:
     multiplication:
-      assiette: assiette de vérification du SMIC [€/mois] * temps de travail . quotité de travail / 1 an
+      assiette: assiette de vérification du SMIC * temps de travail . quotité de travail / 1 an
       facteur: prime de fin d'année en mois
 
 contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois:
@@ -896,15 +999,15 @@ contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
   unité par défaut: €/mois
-
   formule:
     somme:
       - rémunération . brut de base
       - avantages en nature . montant
       - primes
-      - indemnités salarié
+      - CDD . indemnités salarié
       - heures supplémentaires
       - heures complémentaires
+      - frais professionnels
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -953,11 +1056,10 @@ contrat salarié . rémunération . avantages en nature:
   par défaut: non
 
 contrat salarié . rémunération . avantages en nature . montant:
-  titre: Avantages en nature (montant)
+  titre: Avantages en nature
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
   unité par défa: €/mois
-
   formule:
     somme:
       - nourriture . montant
@@ -982,6 +1084,7 @@ contrat salarié . rémunération . avantages en nature . autres:
   par défaut: non
 
 contrat salarié . rémunération . avantages en nature . autres . montant:
+  titre: autres
   question: >
     Quel est le montant de ces autres avantages ?
   par défaut: 0
@@ -1038,7 +1141,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     L'employeur fournit-il gratuitement les repas ?
   par défaut: non
   description: >
-    Les tickets restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+    Les titres-restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
@@ -1064,12 +1167,6 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
   suggestions:
     1 par jour: 21
     2 par jour: 42
-
-contrat salarié . indemnités salarié:
-  formule:
-    somme:
-      - CDD . indemnités salarié CDD
-      - indemnité kilométrique vélo
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
@@ -1199,7 +1296,7 @@ contrat salarié . rémunération . net imposable:
       assiette: base
       abattement:
         somme:
-          - indemnité kilométrique vélo
+          - frais professionnels . part déductible
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
@@ -1247,13 +1344,25 @@ contrat salarié . rémunération . net:
   type: salaire
   question: Quel est le salaire net ?
   résumé: Salaire net avant impôt
-  description: |
-    C'est le montant que le salarié toucherait à la fin du mois avant de payer l'impôt sur le revenu.
+  description: >-
+    C'est le montant que le salarié toucherait à la fin du mois avant de payer
+    l'impôt sur le revenu.
 
-    Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la source).
+    Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la
+    source).
 
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  formule: rémunération . net de cotisations - avantages en nature . montant
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou
+    diminution des cotisations) alors que le salaire brut est contractuel (pour
+    le changer, il faut signer un avenant au contrat).
+
+  formule:
+    allègement:
+      assiette: rémunération . net de cotisations
+      abattement:
+        somme:
+          - avantages en nature . montant
+          - frais professionnels . titres-restaurant . montant
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt

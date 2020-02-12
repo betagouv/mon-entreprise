@@ -50,7 +50,7 @@ cdd:
     contrat salarié . rémunération . brut de base: 2400
     contrat salarié . CDD . durée contrat: 10
     contrat salarié . temps de travail . heures supplémentaires: 5
-    contrat salarié . indemnité kilométrique vélo . active: true
+    contrat salarié . indemnité kilométrique vélo: true
     contrat salarié . avantages en nature . montant: 200
 
 atmp:
@@ -163,3 +163,23 @@ JEI:
   - contrat salarié . rémunération . brut de base: 4000
     dirigeant: 'assimilé salarié'
     contrat salarié . statut JEI: true
+
+frais pro - titres restaurant:
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . frais professionnels . titres-restaurant: true
+    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 10
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . frais professionnels . titres-restaurant: true
+    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 20
+    contrat salarié . frais professionnels . titres-restaurant . montant unitaire: 20
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . frais professionnels . titres-restaurant: true
+    contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 55
+
+frais pro - IKV:
+  - contrat salarié . rémunération . brut de base: 3200
+    contrat salarié . frais professionnels . indemnité kilométrique vélo: true
+  - contrat salarié . rémunération . brut de base: 3200
+    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 200
+  - contrat salarié . rémunération . net après impôt: 1630
+    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 30

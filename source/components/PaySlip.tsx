@@ -23,6 +23,7 @@ export default function PaySlip() {
 	const heuresSupplémentaires = getRule(
 		'contrat salarié . temps de travail . heures supplémentaires'
 	)
+
 	return (
 		<div
 			className="payslip__container"

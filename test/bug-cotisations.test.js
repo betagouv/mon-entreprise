@@ -5,7 +5,7 @@ import { safeLoad } from 'js-yaml'
 import { rules as realRules } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
 
-describe('bug-analyse-many', function() {
+describe('bug-analyse-many', function () {
 	it('complex inversion with composantes', () => {
 		let rawRules = dedent`
       - nom: net
@@ -58,7 +58,7 @@ describe('bug-analyse-many', function() {
 		//console.log(many[0].nodeValue, many[1].nodeValue, one.nodeValue)
 		expect(many[1].nodeValue).to.be.closeTo(one.nodeValue, 0.1)
 	})
-	it('should compute the same contributions if asked with analyseMany or analyse', function() {
+	it('should compute the same contributions if asked with analyseMany or analyse', function () {
 		const situationSelector = dottedName =>
 			({
 				'contrat salarié . rémunération . net de cotisations': 3500,
@@ -67,7 +67,7 @@ describe('bug-analyse-many', function() {
 				dirigeant: 'assimilé salarié',
 				'contrat salarié . ATMP . taux réduit': 'oui',
 				'contrat salarié . CDD': 'non',
-				'contrat salarié . indemnité kilométrique vélo . indemnité vélo active':
+				'contrat salarié . frais professionnels . indemnité kilométrique vélo . indemnité vélo active':
 					'non',
 				'contrat salarié . rémunération . avantages en nature . montant': 0,
 				'contrat salarié . temps partiel': 'non',

@@ -10,6 +10,7 @@ fr:
   point_plural: points
   mois_plural: mois
   manifestation_plural: manifestations
+  titre-restaurant_plural: titres-restaurant
 en:
   heure: hour
   heure_plural: hours
@@ -36,3 +37,5 @@ en:
   mois_plural: months
   manifestation: event
   manifestation_plural: events
+  titre-restaurant: meal voucher
+  titre-restaurant_plural: meal vouchers

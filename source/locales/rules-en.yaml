@@ -355,11 +355,11 @@ contrat salarié . CDD . durée contrat:
   suggestions.6 mois.fr: 6 mois
   titre.en: contract duration
   titre.fr: durée du contrat
-contrat salarié . CDD . indemnités salarié CDD:
-  description.en: Employer contributions specific to the fixed-term contract
+contrat salarié . CDD . indemnités salarié:
+  description.en: '[automatic] Employer contributions specific to the CDD'
   description.fr: Cotisations employeur spécifiques au CDD
-  titre.en: fixed-term contrat employee compensations
-  titre.fr: indemnités salarié CDD
+  titre.en: '[automatic] employee compensation'
+  titre.fr: indemnités salarié
 contrat salarié . CDD . motif:
   description.en: >-
     The CDD is an exceptional contract: the reason for its use must be one of
@@ -1374,43 +1374,66 @@ contrat salarié . formation professionnelle:
     entreprises de travail temporaire)
   titre.en: professional training
   titre.fr: formation professionnelle
-contrat salarié . indemnité kilométrique vélo:
+contrat salarié . frais professionnels:
   description.en: >-
-    Employer's incitation to the use of bicycles for commuting. This financial
-    aid is not taxed.
-  description.fr: >
-    Indemnité introduite en 2015 pour inciter l'usage du vélo pour aller au
-    travail.
+    [automatic] Business expenses correspond to expenses incurred by the
+    employee for the needs of his professional activity. These costs are then
+    reimbursed by the employer.
 
 
-    Nous avons retenu une implémentation simplifiée de cette règle : nous fixons
-    cette indemnité à 200€ annuels, car c'est le montant maximum donnant lieu
-    aux exonérations de cotisations sociales et d'impôt. C'est aussi un montant
-    tout à fait accessible, correspondant approximativement à 2km aller et 2km
-    retour pour 218 jours travaillés dans l'année. Elle peut être supérieure,
-    mais l'employeur n'a alors aucune incitation à verser ce supplément : la
-    part au-dessus de 200€ devient une prime classique.
-  titre.en: kilometric bicycle allowance
-  titre.fr: indemnité kilométrique vélo
-contrat salarié . indemnité kilométrique vélo . active:
+    Compensation for these costs may take the form of :
+
+      - reimbursement of actual expenditure on the basis of supporting documents;
+
+      - a lump sum payment ;
+
+      - the application of a specific lump-sum deduction on the salary subject to contributions; this possibility is only open to certain professions.
+
+
+    Professional expenses are generally excluded from the basis of calculation
+    of Social Security and CSG-CRDS contributions, except in the case of
+    exceeding the ceiling for lump-sum reimbursements (bicycle mileage
+    allowance, basket costs, restaurant vouchers, etc.).
+  description.fr: >-
+    Les frais professionnels correspondent à des dépenses engagées par le
+    salarié pour les besoins de son activité professionnelle. Ces frais sont
+    ensuite remboursés par l’employeur.
+
+
+    Le dédommagement de ces frais peut prendre la forme :
+
+      - d’un remboursement des dépenses réelles sur justificatifs ;
+
+      - d’un versement d’allocations forfaitaires ;
+
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+
+
+    Les frais professionnels sont généralement exclus de la base de calcul des
+    cotisations de Sécurité sociale et de la CSG-CRDS, sauf en cas de
+    dépassement de plafond pour les remboursement forfaitaires (indemnité
+    kilométrique vélo, frais de panier, titre-restaurants...).
+  titre.en: '[automatic] reimbursement of expenses'
+  titre.fr: remboursement de frais
+contrat salarié . frais professionnels . indemnité kilométrique vélo:
   description.en: >
-    This allowance is not mandatory at this time.
+    [automatic] This allowance is currently not mandatory.
 
 
     The employer has the choice to implement it in his company.
 
 
-    To benefit from the €200 compensation deducted in this calculation, the
-    employee must cycle 4km (round trip) to work each day worked.
+    To benefit from the €200 allowance deducted in this calculation, the
+    employee must cycle 4km (round trip) to work each working day.
 
 
-    This allowance can be combined with the reimbursement of transport costs if
-    it is a bike trip to a transport station.
+    This allowance can be combined with the reimbursement of public transit
+    costs if the trip is a feeder bike ride to a transit station.
 
 
-    This allowance is exempt from social security contributions and tax on the
-    income. To pay a salary bonus equivalent to his employee without this
-    device, **the employer should pay nearly 500€ for a salary median**.
+    This allowance is exempt from social security contributions and income tax.
+    To pay an equivalent salary bonus to his employee without this scheme, **the
+    employer would have to pay nearly €500 for a median salary**.
   description.fr: >
     Cette indemnité n'est pour l'instant pas obligatoire.
 
@@ -1433,35 +1456,129 @@ contrat salarié . indemnité kilométrique vélo . active:
     dispositif, **l'employeur devrait débourser près de 500€ pour un salaire
     médian**.
   question.en: >-
-    Does the employee take advantage of the bicycle mileage allowance to commute
-    to work?
+    [automatic] Does the employee take advantage of the bicycle mileage
+    allowance to get to work?
   question.fr: >-
     Le salarié profite-t-il de l'indemnité kilométrique vélo pour se rendre au
     travail ?
-  titre.en: active bicycle allowance
-  titre.fr: indemnité vélo active
-contrat salarié . indemnité kilométrique vélo . distance annuelle:
-  titre.en: annual distance
-  titre.fr: distance annuelle
-contrat salarié . indemnité kilométrique vélo . distance journalière:
-  description.en: A low estimate of the distance an employee bikes to work.
+  titre.en: kilometric bicycle allowance
+  titre.fr: indemnité kilométrique vélo
+contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle:
+  question.en: '[automatic] What is the distance cycled each month between home and work?'
+  question.fr: >-
+    Quelle est la distance parcourue en vélo chaque mois pour le trajet domicile
+    / travail ?
+  suggestions.10 km/jour.en: '[automatic] 10 km/day'
+  suggestions.10 km/jour.fr: 10 km/jour
+  suggestions.2 km/jour.en: '[automatic] 2 km/day'
+  suggestions.2 km/jour.fr: 2 km/jour
+  suggestions.5 km/jour.en: '[automatic] 5 km/day'
+  suggestions.5 km/jour.fr: 5 km/jour
+  titre.en: '[automatic] monthly distance'
+  titre.fr: distance mensuelle
+contrat salarié . frais professionnels . indemnité kilométrique vélo . montant:
+  titre.en: '[automatic] bicycle kilometre allowance'
+  titre.fr: indemnité kilométrique vélo
+contrat salarié . frais professionnels . indemnité kilométrique vélo . part déductible:
+  titre.en: '[automatic] bicycle kilometre allowance (deductible)'
+  titre.fr: indemnité kilométrique vélo (déductible)
+contrat salarié . frais professionnels . part déductible:
+  description.en: >-
+    [automatic] Share of expenses deducted from the social contribution base and
+    for income tax calculation.
   description.fr: >-
-    Une estimation basse de la distance parcourue à vélo par un salarié pour se
-    rendre à son travail.
-  titre.en: daily distance
-  titre.fr: distance journalière
-contrat salarié . indemnité kilométrique vélo . indemnité kilométrique:
-  titre.en: kilometre allowance
-  titre.fr: indemnité kilométrique
-contrat salarié . indemnité kilométrique vélo . jours travaillés:
-  titre.en: days worked
-  titre.fr: jours travaillés
-contrat salarié . indemnité kilométrique vélo . plafond d'exonération:
-  titre.en: exemption cap
-  titre.fr: plafond d'exonération
-contrat salarié . indemnités salarié:
-  titre.en: Employee benefits
-  titre.fr: indemnités salarié
+    Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
+    de l'impôt sur le revenu.
+  titre.en: '[automatic] Deductible business expenses'
+  titre.fr: Frais professionnels déductibles
+contrat salarié . frais professionnels . titres-restaurant:
+  description.en: >-
+    [automatic] The meal voucher is a special "meal" payment voucher issued by
+    the employer to the employee.
+
+
+    The employee may only use the meal vouchers in his or her possession to pay
+    for consumption:
+
+      - of a meal,
+
+      - of directly consumable food preparations,
+      
+      - of fruits and vegetables.
+
+    This security can be issued in paper or dematerialised form.
+  description.fr: >-
+    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+    l’employeur au salarié.
+
+
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
+    régler la consommation :
+
+      - d’un repas,
+
+      - de préparations alimentaires directement consommables,
+      
+      - de fruits et légumes.
+
+    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+  question.en: '[automatic] Does the employee receive luncheon vouchers?'
+  question.fr: Le salarié reçoit-il des titres-restaurant ?
+  titre.en: '[automatic] restaurant vouchers'
+  titre.fr: titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre.en: '[automatic] Restaurant vouchers'
+  titre.fr: Titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
+  description.en: >-
+    [automatic] There is no maximum or minimum value for restaurant vouchers. On
+    the other hand, in order to benefit from the contribution exemption, you
+    must not exceed €11.10 per title in 2020.
+  description.fr: >-
+    Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
+    revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
+    dépasser 11,10€ par titre en 2020.
+  question.en: '[automatic] What is the unit value of the restaurant voucher?'
+  question.fr: Quelle est la valeur unitaire du titre-restaurant ?
+  suggestions.faible.en: '[automatic] low'
+  suggestions.faible.fr: faible
+  suggestions.max exonéré.en: '[automatic] max exonerated'
+  suggestions.max exonéré.fr: max exonéré
+  suggestions.moyenne.en: '[automatic] average'
+  suggestions.moyenne.fr: moyenne
+  titre.en: '[automatic] unitary amount'
+  titre.fr: montant unitaire
+contrat salarié . frais professionnels . titres-restaurant . part déductible:
+  titre.en: '[automatic] Restaurant vouchers (deductible)'
+  titre.fr: Titres-restaurant (déductible)
+contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
+  contrôles.0.en: >-
+    [automatic] The Employer-paid portion of the meal voucher must be at least
+    50%.
+  contrôles.0.fr: La part employeur du titre-restaurant doit être de 50% au minimum
+  contrôles.1.en: >-
+    [automatic] Employer-paid portion of the meal voucher must be a maximum of
+    60%.
+  contrôles.1.fr: La part employeur du titre-restaurant doit être de 60% au maximum
+  description.en: >-
+    [automatic] Employer-paid portion of the meal voucher. Must be a minimum of
+    50% and a maximum of 60%.
+  description.fr: >-
+    Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
+    de 60% maximum.
+  question.en: '[automatic] What is the employer''s paid portion?'
+  question.fr: Quelle est la participation de l'employeur ?
+  suggestions.50%.en: '[automatic] 50%'
+  suggestions.50%.fr: 50%
+  suggestions.60%.en: '[automatic] 60%'
+  suggestions.60%.fr: 60%
+  titre.en: '[automatic] employer contribution rate'
+  titre.fr: taux participation employeur
+contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+  question.en: '[automatic] How many restaurant vouchers are distributed to the employee?'
+  question.fr: Combien de titres-restaurants sont distribués au salarié ?
+  titre.en: '[automatic] meal vouchers per month'
+  titre.fr: titres-restaurant par mois
 contrat salarié . intermittents du spectacle:
   question.en: To which "intermittent" status is the employee attached?
   question.fr: A quel statut d'intermittent est rattaché l'employé ?
@@ -2018,8 +2135,8 @@ contrat salarié . rémunération . avantages en nature . autres . montant:
     Quel est le montant de ces autres avantages ?
   "suggestions.\U0001F697 véhicule.en": "[automatic] \U0001F697 vehicle"
   "suggestions.\U0001F697 véhicule.fr": "\U0001F697 véhicule"
-  titre.en: amount
-  titre.fr: montant
+  titre.en: '[automatic] others'
+  titre.fr: autres
 contrat salarié . rémunération . avantages en nature . montant:
   description.en: >
     Benefits in kind are subject to contributions and income tax. They are taken
@@ -2028,14 +2145,14 @@ contrat salarié . rémunération . avantages en nature . montant:
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
     revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
     atteint.
-  titre.en: Benefits in kind (amount)
-  titre.fr: Avantages en nature (montant)
+  titre.en: '[automatic] Benefits in kind'
+  titre.fr: Avantages en nature
 contrat salarié . rémunération . avantages en nature . nourriture:
   description.en: >
-    Lunch vouchers("tickets restaurants") are not considered as a benefit in
-    kind but as a reimbursement of expenses.
+    [automatic] Restaurant vouchers are not considered a benefit in kind but a
+    reimbursement of expenses.
   description.fr: >
-    Les tickets restaurants ne sont pas considérés comme un avantage en nature
+    Les titres-restaurants ne sont pas considérés comme un avantage en nature
     mais comme un remboursement de frais.
   question.en: |
     Does the employer provide free meals?
@@ -2226,16 +2343,19 @@ contrat salarié . rémunération . heures supplémentaires:
   titre.en: overtime compensation
   titre.fr: rémunération heures supplémentaires
 contrat salarié . rémunération . net:
-  description.en: >
-    The gross salary minus the social contributions.
+  description.en: >-
+    [automatic] This is the amount the employee would receive at the end of the
+    month before paying income tax.
 
-    This amount can vary according to political decisions (increase or decrease
-    in contributions) while the gross salary is contractual: to change it, an
-    amendment to the contract must be signed.
-  description.fr: >
+    Also known as take-home pay (at least it was before withholding tax).
+
+
+    This amount may vary according to political decisions (increase or decrease
+    in contributions) while the gross salary is contractual (to change it, an
+    amendment to the contract must be signed).
+  description.fr: >-
     C'est le montant que le salarié toucherait à la fin du mois avant de payer
     l'impôt sur le revenu.
-
 
     Aussi appelé salaire net à payer (c'était du moins le cas avant l'impôt à la
     source).

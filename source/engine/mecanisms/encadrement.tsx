@@ -79,6 +79,11 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	return {
 		...node,
 		nodeValue,
+		missingVariables: {
+			...valeur?.missingVariables,
+			...plafond?.missingVariables,
+			...plancher?.missingVariables
+		},
 		unit: valeur.unit,
 		explanation: {
 			valeur,
