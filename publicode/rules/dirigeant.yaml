@@ -23,7 +23,8 @@ dirigeant . assimilé salarié:
     - contrat salarié . rémunération . primes
     - contrat salarié . rémunération . primes . fin d'année
     - contrat salarié . rémunération . primes . activité
-    - contrat salarié . frais professionnels
+    - contrat salarié . frais professionnels . titres-restaurant
+    - contrat salarié . frais professionnels . indemnité kilométrique vélo
     - contrat salarié . chômage
     - contrat salarié . réduction générale
     - contrat salarié . allocations familiales . taux réduit
