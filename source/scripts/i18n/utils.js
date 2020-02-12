@@ -55,6 +55,7 @@ function getRulesMissingTranslations() {
 								const enTrad = `suggestions.${suggestion}.en`
 								const frTrad = `suggestions.${suggestion}.fr`
 								if (
+									currentTranslation &&
 									currentTranslation[enTrad] &&
 									currentTranslation[frTrad] === suggestion
 								) {
