@@ -23,9 +23,6 @@ export default function PaySlip() {
 	const heuresSupplémentaires = getRule(
 		'contrat salarié . temps de travail . heures supplémentaires'
 	)
-	const retenueTitresRestaurant = getRule(
-		'contrat salarié . frais professionnels . titres-restaurant . montant.salarié'
-	)
 
 	return (
 		<div
@@ -98,30 +95,6 @@ export default function PaySlip() {
 						</Fragment>
 					)
 				})}
-
-				{/* Titres-restaurant */}
-				{retenueTitresRestaurant?.nodeValue > 0 && (
-					<Fragment>
-						<RuleLink
-							style={{ backgroundColor: lightestColor }}
-							{...retenueTitresRestaurant}
-						/>
-						<Value
-							nilValueSymbol="—"
-							unit="€"
-							customCSS="background-color: var(--lightestColor)"
-						>
-							{0}
-						</Value>
-						<Value
-							nilValueSymbol="—"
-							unit="€"
-							customCSS="background-color: var(--lightestColor)"
-						>
-							{retenueTitresRestaurant.nodeValue}
-						</Value>
-					</Fragment>
-				)}
 
 				{/* Total cotisation */}
 				<div className="payslip__total">

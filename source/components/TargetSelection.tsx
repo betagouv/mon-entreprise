@@ -277,10 +277,32 @@ let TargetInputOrValue = ({
 				</span>
 			)}
 			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
+			{target.dottedName === 'contrat salarié . rémunération . net' && (
+				<TitreRestaurant />
+			)}
 		</span>
 	)
 }
-
+function TitreRestaurant() {
+	const titresRestaurant = useTarget(
+		'contrat salarié . frais professionnels . titres-restaurant . montant'
+	)
+	const { language } = useTranslation().i18n
+	if (!titresRestaurant?.nodeValue) return null
+	return (
+		<Animate.fromTop>
+			<div className="aidesGlimpse">
+				<RuleLink {...titresRestaurant}>
+					+{' '}
+					<strong>
+						{formatCurrency(titresRestaurant.nodeValue, language)}
+					</strong>{' '}
+					<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
+				</RuleLink>
+			</div>
+		</Animate.fromTop>
+	)
+}
 function AidesGlimpse() {
 	const aides = useTarget('contrat salarié . aides employeur')
 	const { language } = useTranslation().i18n
@@ -295,7 +317,7 @@ function AidesGlimpse() {
 
 	if (!aides?.nodeValue) return null
 	return (
-		<Animate.appear>
+		<Animate.fromTop>
 			<div className="aidesGlimpse">
 				<RuleLink {...aideLink}>
 					<Trans>en incluant</Trans>{' '}
@@ -307,6 +329,6 @@ function AidesGlimpse() {
 					<Trans>d'aides</Trans> {emoji(aides.explanation.icons)}
 				</RuleLink>
 			</div>
-		</Animate.appear>
+		</Animate.fromTop>
 	)
 }
