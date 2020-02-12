@@ -24,9 +24,9 @@ export default function PaySlip() {
 		'contrat salarié . temps de travail . heures supplémentaires'
 	)
 	const retenueTitresRestaurant = getRule(
-		'contrat salarié . frais professionnels . titres-restaurant'
+		'contrat salarié . frais professionnels . titres-restaurant . montant.salarié'
 	)
-	console.log(retenueTitresRestaurant)
+
 	return (
 		<div
 			className="payslip__container"

@@ -46,27 +46,9 @@ contrat salarié . frais professionnels:
   formule:
     somme:
       - indemnité kilométrique vélo
-      - titres-restaurant .employeur
+      - titres-restaurant . montant .employeur
 
 contrat salarié . frais professionnels . titres-restaurant:
-  applicable si: actif
-  formule:
-    multiplication:
-      assiette: montant unitaire
-      facteur: titres-restaurant par mois
-      composantes:
-        - attributs:
-            dû par: employeur
-          taux: taux participation employeur
-        - attributs:
-            dû par: salarié
-          taux: 100% - taux participation employeur
-
-# Hack: le filtre .salarié ne fonctionne pas dans la méthode getRule dans l'UI. On crée une règle spécifique juste pour pouvoir récupérer la valeur dans l'UI
-contrat salarié . frais professionnels . titres-restaurant . part salarié:
-  formule: titres-restaurant .salarié
-
-contrat salarié . frais professionnels . titres-restaurant . actif:
   icônes: 🍽️
   description: >-
     Le titre-restaurant est un titre spécial de paiement « des repas » remis par l’employeur au salarié.
@@ -80,6 +62,20 @@ contrat salarié . frais professionnels . titres-restaurant . actif:
   question: Le salarié reçoit-il des titres-restaurant ?
   par défaut: non
 
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre: Titres-restaurant
+  formule:
+    multiplication:
+      assiette: montant unitaire
+      facteur: titres-restaurant par mois
+      composantes:
+        - attributs:
+            dû par: employeur
+          taux: taux participation employeur
+        - attributs:
+            dû par: salarié
+          taux: 100% - taux participation employeur
+
 contrat salarié . frais professionnels . titres-restaurant . plafond d'exonération employeur:
   formule:
     multiplication:
@@ -91,16 +87,16 @@ contrat salarié . frais professionnels . titres-restaurant . plafond d'exonéra
 contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
   formule:
     allègement:
-      assiette: titres-restaurant .employeur
+      assiette: montant .employeur
       abattement: plafond d'exonération employeur
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
-  question: Combien de titres-restaurant recevez-vous par mois ?
+  question: Combien de titres-restaurants recevez-vous par mois ?
   par défaut: 19
   unité: titres-restaurant/mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
-  question: Quelle est le montant du titre-restaurant ?
+  question: Quelle est la valeur unitaire du titre-restaurant ?
   par défaut: 8
   unité: €/titre-restaurant
 
@@ -1126,7 +1122,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     L'employeur fournit-il gratuitement les repas ?
   par défaut: non
   description: >
-    Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+    Les titres-restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
@@ -1346,7 +1342,7 @@ contrat salarié . rémunération . net:
     somme:
       - rémunération . net de cotisations
       - (- avantages en nature . montant)
-      - (- frais professionnels . titres-restaurant .salarié)
+      - (- frais professionnels . titres-restaurant . montant .salarié)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt

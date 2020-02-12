@@ -1487,9 +1487,6 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . plafo
   titre.en: exemption cap
   titre.fr: plafond d'exonération
 contrat salarié . frais professionnels . titres-restaurant:
-  titre.en: '[automatic] restaurant vouchers'
-  titre.fr: titres-restaurant
-contrat salarié . frais professionnels . titres-restaurant . actif:
   description.en: >-
     [automatic] The meal voucher is a special "meal" payment voucher issued by
     the employer to the employee.
@@ -1500,7 +1497,7 @@ contrat salarié . frais professionnels . titres-restaurant . actif:
       - of directly consumable food preparations,
       - of fruits and vegetables.
 
-    This voucher can be issued in paper or dematerialised form.
+    This security can be issued in paper or dematerialised form.
   description.fr: >-
     Le titre-restaurant est un titre spécial de paiement « des repas » remis par
     l’employeur au salarié.
@@ -1514,19 +1511,19 @@ contrat salarié . frais professionnels . titres-restaurant . actif:
     Ce titre peut être émis sur support papier ou sous forme dématérialisée.
   question.en: '[automatic] Does the employee receive luncheon vouchers?'
   question.fr: Le salarié reçoit-il des titres-restaurant ?
-  titre.en: '[automatic] active'
-  titre.fr: actif
+  titre.en: '[automatic] restaurant vouchers'
+  titre.fr: titres-restaurant
+contrat salarié . frais professionnels . titres-restaurant . montant:
+  titre.en: '[automatic] Restaurant vouchers'
+  titre.fr: Titres-restaurant
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
-  question.en: '[automatic] How much is the restaurant voucher?'
-  question.fr: Quelle est le montant du titre-restaurant ?
+  question.en: '[automatic] What is the unit value of the restaurant voucher?'
+  question.fr: Quelle est la valeur unitaire du titre-restaurant ?
   titre.en: '[automatic] unitary amount'
   titre.fr: montant unitaire
 contrat salarié . frais professionnels . titres-restaurant . part non exonérée de cotisation:
   titre.en: '[automatic] non-exempt portion'
   titre.fr: part non exonérée de cotisation
-contrat salarié . frais professionnels . titres-restaurant . part salarié:
-  titre.en: '[automatic] employee share'
-  titre.fr: part salarié
 contrat salarié . frais professionnels . titres-restaurant . plafond d'exonération employeur:
   titre.en: '[automatic] employer exemption limit'
   titre.fr: plafond d'exonération employeur
@@ -1555,7 +1552,7 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   titre.fr: taux participation employeur
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question.en: '[automatic] How many restaurant vouchers do you receive per month?'
-  question.fr: Combien de titres-restaurant recevez-vous par mois ?
+  question.fr: Combien de titres-restaurants recevez-vous par mois ?
   titre.en: '[automatic] meal vouchers per month'
   titre.fr: titres-restaurant par mois
 contrat salarié . indemnités salarié:
@@ -2134,7 +2131,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     [automatic] Restaurant vouchers are not considered a benefit in kind but a
     reimbursement of expenses.
   description.fr: >
-    Les titres-restaurant ne sont pas considérés comme un avantage en nature
+    Les titres-restaurants ne sont pas considérés comme un avantage en nature
     mais comme un remboursement de frais.
   question.en: |
     Does the employer provide free meals?

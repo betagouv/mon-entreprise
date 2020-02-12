@@ -222,7 +222,7 @@ exports[`calculate simulations-salarié:  cdd 1`] = `"[2508,0,0,2000,1561,1524]"
 
 exports[`calculate simulations-salarié:  cdd 2`] = `"[2591,0,0,2000,1599,1557]"`;
 
-exports[`calculate simulations-salarié:  cdd 3`] = `"[3410,0,0,2400,1984,1900]"`;
+exports[`calculate simulations-salarié:  cdd 3`] = `"[3394,0,0,2400,1967,1883]"`;
 
 exports[`calculate simulations-salarié:  frais pro 1`] = `"[2443,0,0,2000,1530,1486]"`;
 
