@@ -8,6 +8,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
+	currentQuestionGroupSelector,
 	currentQuestionSelector,
 	flatRulesSelector,
 	nextStepsSelector
@@ -25,6 +26,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	const dispatch = useDispatch()
 	const flatRules = useSelector(flatRulesSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
+	const currentQuestionGroup = useSelector(currentQuestionGroupSelector)
 	const previousAnswers = useSelector(
 		(state: RootState) => state.simulation?.foldedSteps || []
 	)
@@ -46,15 +48,19 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	}
 	const DecoratedInputComponent = FormDecorator(InputComponent)
 
+	console.log({ currentQuestionGroup })
+
 	return flatRules && nextSteps.length ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
-				{currentQuestion && (
+				{currentQuestionGroup.length && (
 					<React.Fragment key={currentQuestion}>
-						<Animate.fadeIn>
-							<DecoratedInputComponent dottedName={currentQuestion} />
-						</Animate.fadeIn>
+						{currentQuestionGroup.map(currentQuestionX => (
+							<Animate.fadeIn key={currentQuestionX}>
+								<DecoratedInputComponent dottedName={currentQuestionX} />
+							</Animate.fadeIn>
+						))}
 						<div className="ui__ answer-group">
 							{previousAnswers.length > 0 && (
 								<>

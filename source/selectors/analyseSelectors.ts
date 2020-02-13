@@ -6,6 +6,7 @@ import {
 	collectDefaults,
 	disambiguateExampleSituation,
 	findRuleByDottedName,
+	parentName,
 	splitName
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
@@ -327,4 +328,24 @@ export let nextStepsSelector = createSelector(
 export let currentQuestionSelector = createSelector(
 	[nextStepsSelector, state => state.simulation?.unfoldedStep],
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
+)
+
+export let currentQuestionGroupSelector = createSelector(
+	[
+		currentQuestionSelector,
+		nextStepsSelector,
+		(state: RootState) => state.simulation?.foldedSteps
+	],
+	(currentQuestion, nextSteps, foldedSteps = []) => {
+		const allQuestions = [...nextSteps, ...foldedSteps]
+		if (!foldedSteps.includes(parentName(currentQuestion))) {
+			return [currentQuestion]
+		}
+		return [
+			parentName(currentQuestion),
+			...allQuestions.filter(
+				name => parentName(currentQuestion) === parentName(name)
+			)
+		]
+	}
 )

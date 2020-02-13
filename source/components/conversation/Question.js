@@ -4,7 +4,6 @@ import { is } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
-import SendButton from './SendButton'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -113,7 +112,7 @@ export default function Question({
 			css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
 		>
 			{choiceElements}
-			{onSubmit && <SendButton disabled={!currentValue} onSubmit={onSubmit} />}
+			{/* {onSubmit && <SendButton disabled={!currentValue} onSubmit={onSubmit} />} */}
 		</div>
 	)
 }
