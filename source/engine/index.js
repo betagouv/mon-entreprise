@@ -28,12 +28,16 @@ class Engine {
 		this.parsedRules = parseAll(rules)
 		this.defaultValues = collectDefaults(rules)
 	}
-	evaluate(targets, { defaultUnits, situation }) {
+	evaluate(targets, { defaultUnits, situation, withDefaultValues = true }) {
 		this.evaluation = analyseMany(
 			this.parsedRules,
 			targets,
 			defaultUnits
-		)(dottedName => situation[dottedName] || this.defaultValues[dottedName])
+		)(
+			dottedName =>
+				situation[dottedName] ||
+				(withDefaultValues && this.defaultValues[dottedName])
+		)
 		return this.evaluation.targets.map(({ nodeValue }) => nodeValue)
 	}
 	getLastEvaluationExplanations() {
