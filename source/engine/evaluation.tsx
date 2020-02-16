@@ -12,9 +12,13 @@ import {
 	reduce,
 	values
 } from 'ramda'
-import React from 'react'
 import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
+import {
+	createTemporalValue,
+	mergeTemporalValuesWith,
+	periodAverage
+} from './period'
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
@@ -70,10 +74,34 @@ export let evaluateArray = (reducer, start) => (
 	parsedRules,
 	node
 ) => {
-	let evaluateOne = child =>
-			evaluateNode(cache, situationGate, parsedRules, child),
-		explanation = map(evaluateOne, node.explanation),
-		[unit, values] = sameUnitValues(
+	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const explanation = node.explanation.map(evaluate)
+	if (explanation.some(node => node.temporalValue)) {
+		const reducerWithNull = (value1, value2) =>
+			value1 === null || value2 === null ? null : reducer(value1, value2)
+		const temporalValue = explanation.reduce((acc, node) => {
+			if (!node.temporalValue && !Array.isArray(acc)) {
+				return reducerWithNull(acc, node.nodeValue)
+			}
+			const temporalValue =
+				node.temporalValue ?? createTemporalValue(node.nodeValue)
+			const temporalAcc = Array.isArray(acc) ? acc : createTemporalValue(acc)
+
+			return mergeTemporalValuesWith(
+				reducerWithNull,
+				temporalAcc,
+				temporalValue
+			)
+		}, start)
+		return {
+			...node,
+			nodeValue: periodAverage(temporalValue),
+			temporalValue,
+			explanation
+		}
+	}
+
+	const [unit, values] = sameUnitValues(
 			explanation,
 			cache._meta.contextRule,
 			node.name

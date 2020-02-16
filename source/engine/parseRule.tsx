@@ -83,14 +83,14 @@ export default (rules, rule, parsedRules) => {
 						parsedRules,
 						node.explanation
 					),
-					{ nodeValue, unit, missingVariables, period } = explanation
+					{ nodeValue, unit, missingVariables, temporalValue } = explanation
 				return {
 					...node,
 					nodeValue,
 					unit,
 					missingVariables,
 					explanation,
-					period
+					temporalValue
 				}
 			}
 

@@ -1,14 +1,16 @@
 import { coerceArray } from '../utils'
+
+export class EngineError extends Error {}
 export function syntaxError(
 	rules: string[] | string,
 	message: string,
 	originalError?: Error
 ) {
-	throw new Error(
+	throw new EngineError(
 		`\n[ Erreur syntaxique ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-✖️ ${message}
-  ${originalError && originalError.message}
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+✖️  ${message}
+    ${originalError ? originalError.message : ''}
 `
 	)
 }
@@ -18,11 +20,11 @@ export function evaluationError(
 	message: string,
 	originalError?: Error
 ) {
-	throw new Error(
+	throw new EngineError(
 		`\n[ Erreur d'évaluation ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-✖️ ${message}
-  ${originalError && originalError.message}
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+✖️  ${message}
+    ${originalError ? originalError.message : ''}
 `
 	)
 }
@@ -34,9 +36,9 @@ export function typeWarning(
 ) {
 	console.warn(
 		`\n[ Erreur de type ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-✖️ ${message}
-  ${originalError && originalError.message}
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+✖️  ${message}
+    ${originalError ? originalError.message : ''}
 `
 	)
 }
@@ -48,9 +50,9 @@ export function warning(
 ) {
 	console.warn(
 		`\n[ Avertissement ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-⚠️ ${message}
-💡${solution}
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+⚠️  ${message}
+💡  ${solution}
 `
 	)
 }

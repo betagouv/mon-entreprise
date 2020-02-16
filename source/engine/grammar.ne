@@ -75,8 +75,7 @@ Negation ->
     "-" %space Parentheses {% unaryOperation('calculation') %}
 
 Parentheses ->
-    "(" AdditionSubstraction ")"  {% ([,e]) => e %}
-  | "(" Negation ")" {% ([,e]) => e %}
+    "(" NumericValue ")"  {% ([,e]) => e %}
   |  NumericTerminal               {% id %}
 
 Date -> 

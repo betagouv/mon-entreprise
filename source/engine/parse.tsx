@@ -26,7 +26,7 @@ import {
 	subtract
 } from 'ramda'
 import React from 'react'
-import { syntaxError } from './error'
+import { EngineError, syntaxError } from './error'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -87,6 +87,17 @@ export const parseExpression = (rule, rawNode) => {
 }
 
 const parseMecanism = (rules, rule, parsedRules) => rawNode => {
+	if (Array.isArray(rawNode)) {
+		syntaxError(
+			rule.dottedName,
+			`
+Il manque le nom du mécanisme pour le tableau : [${rawNode
+				.map(x => `'${x}'`)
+				.join(', ')}]
+Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'toutes ces conditions', 'une de ces conditions'.
+		`
+		)
+	}
 	if (Object.keys(rawNode).length > 1) {
 		syntaxError(
 			rule.dottedName,
@@ -137,7 +148,14 @@ Le mécanisme ${mecanismName} est inconnu.
 Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 		)
 	}
-	return parseFn(parse(rules, rule, parsedRules), mecanismName, values)
+	try {
+		return parseFn(parse(rules, rule, parsedRules), mecanismName, values)
+	} catch (e) {
+		if (e instanceof EngineError) {
+			throw e
+		}
+		syntaxError(rule.dottedName, e.message)
+	}
 }
 
 const knownOperations = {

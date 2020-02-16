@@ -1,5 +1,10 @@
-import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
-import { isValidPeriod, periodIntersection } from 'Engine/period'
+import { evaluateNode } from 'Engine/evaluation'
+import {
+	createTemporalValue,
+	narrowTemporalValue,
+	periodAverage
+} from 'Engine/period'
+import { TemporalValue } from './../period'
 
 function evaluate(
 	cache: any,
@@ -16,27 +21,22 @@ function evaluate(
 	const start = node.period.start && evaluateAttribute(node.period.start)
 	const end = node.period.end && evaluateAttribute(node.period.end)
 	const explanation = evaluateAttribute(node.explanation)
-	const period = periodIntersection(explanation.period, { start, end })
-	let nodeValue: any = null
-	let missingVariables = mergeMissing(
-		period.start?.missingVariables,
-		period.end?.missingVariables
-	)
-	if (isValidPeriod(period)) {
-		nodeValue = explanation.nodeValue
-		missingVariables = mergeMissing(
-			bonus(missingVariables, true),
-			explanation.missingVariables
-		)
-	} else {
-		nodeValue = false
+	const period = {
+		start: start?.nodeValue ?? null,
+		end: end?.nodeValue ?? null
 	}
+
+	const temporalValue = explanation.temporalValue
+		? narrowTemporalValue(period, explanation.temporalValue)
+		: createTemporalValue(explanation.nodeValue, period)
+	// TODO explanation missingVariables / period missing variables
+
 	return {
 		...node,
-		nodeValue,
-		period,
-		explanation,
-		missingVariables
+		nodeValue: periodAverage(temporalValue as TemporalValue<number>),
+		temporalValue,
+		period: { start, end },
+		explanation
 	}
 }
 

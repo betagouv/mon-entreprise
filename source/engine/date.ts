@@ -37,3 +37,13 @@ export function convertToDateIfNeeded(...values: string[]) {
 	})
 	return dateStrings.map(convertToDate)
 }
+
+export function convertToString(date: Date): string {
+	return normalizeDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+}
+
+export function getRelativeDate(date: string, dayDifferential: number): string {
+	const relativeDate = new Date(convertToDate(date))
+	relativeDate.setDate(relativeDate.getDate() + dayDifferential)
+	return convertToString(relativeDate)
+}
