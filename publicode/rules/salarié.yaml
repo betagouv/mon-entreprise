@@ -827,6 +827,8 @@ contrat salarié . cotisations . assiette:
         somme:
           - frais professionnels . part déductible
           - stage . gratification minimale
+          - prévoyance . part déductible
+          - retraite supplémentaire . part déductible
 
 contrat salarié . cotisations . assiette . salariale:
   titre: Assiette des cotisations sociales
@@ -1017,6 +1019,10 @@ contrat salarié . rémunération . brut:
   titre: Rémunération brute
   unité par défaut: €/mois
   formule:
+    # Pour les frais professionnels, et les cotisations de prévoyance facultative
+    # et de retraite complémentaire on ne ré-intègre ici que la part employeur
+    # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
+    # base` dont elle vient en déduction).
     somme:
       - rémunération . brut de base
       - avantages en nature . montant
@@ -1025,6 +1031,8 @@ contrat salarié . rémunération . brut:
       - heures supplémentaires
       - heures complémentaires
       - frais professionnels
+      - prévoyance . employeur
+      - retraite supplémentaire . employeur
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1060,6 +1068,8 @@ contrat salarié . avantages sociaux:
 
   formule:
     somme:
+      - prévoyance . employeur
+      - retraite supplémentaire . employeur
       - prévoyance obligatoire cadre
       - complémentaire santé .employeur
 
@@ -1213,6 +1223,17 @@ contrat salarié . plafond sécurité sociale:
   unité: €/mois
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
+contrat salarié . plafond sécurité sociale . renonciation proratisation:
+  description: >-
+    D'un commun accord, l'employeur et l'employé peuvent renoncer à la réduction
+    du plafond de la sécurité sociale (applicable pour les salariés à temps
+    partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
+  par défaut: non
+  applicable si: temps de travail . quotité de travail < 100%
+  remplace:
+    - règle: plafond sécurité sociale
+      par: plafond sécurité sociale temps plein
+
 contrat salarié . SMIC temps plein:
   unité: €/mois
 
@@ -1320,6 +1341,8 @@ contrat salarié . rémunération . net imposable:
           - prime d'impatriation
           - exonération d'impôt des stagiaires et apprentis
           - heures supplémentaires et complémentaires défiscalisées
+          - retraite supplémentaire . exonération fiscale
+          - prévoyance . exonération fiscale
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1968,6 +1991,48 @@ contrat salarié . retraite complémentaire . taux salarié tranche 1:
 contrat salarié . retraite complémentaire . taux salarié tranche 2:
   formule: 8.64%
 
+contrat salarié . retraite supplémentaire:
+  formule:
+    somme:
+      - employeur
+      - salarié
+
+contrat salarié . retraite supplémentaire . employeur:
+  titre: Retraite supplémentaire employeur
+  formule: 0€/mois
+
+contrat salarié . retraite supplémentaire . salarié:
+  formule: 0€/mois
+
+contrat salarié . retraite supplémentaire . part déductible:
+  formule:
+    allègement:
+      assiette: retraite supplémentaire . employeur
+      abbatement: plafond d'exonération sociale employeur
+
+contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
+  formule:
+    encadrement:
+      valeur: 5% * cotisations . assiette
+      plafond: 5% * plafond sécurité sociale
+  références:
+    Article D242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037456320&cidTexte=LEGITEXT000006073189&dateTexte=20180930
+
+contrat salarié . retraite supplémentaire . exonération fiscale:
+  titre: retraite supplémentaire exonérée d'impôt
+  formule:
+    encadrement:
+      valeur: retraite supplémentaire
+      plafond:
+        multiplication:
+          taux: 8%
+          assiette:
+            encadrement:
+              valeur: rémunération . brut
+              plafond: 8 * plafond sécurité sociale temps plein
+  références:
+    Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
+
 contrat salarié . AGS:
   description: Cotisation au Régime de Garantie des Salaires
   cotisation:
@@ -2436,11 +2501,37 @@ contrat salarié . participation effort de construction:
       assiette: cotisations . assiette
       taux: 0.45%
 
-  # TODO cas agricole, et autres statuts spécifiques
-# TODO: cette contribution est un minimum légal (méconnu semble-t-il), il faudrait pouvoir
-# indiquer le taux appliqué par l'entreprise
-#
+contrat salarié . prévoyance:
+  formule:
+    somme:
+      - employeur
+      - salarié
 
+contrat salarié . prévoyance . employeur:
+  titré: Prévoyance employeur
+  formule: 0 €/mois
+
+contrat salarié . prévoyance . salarié:
+  formule: 0 €/mois
+
+contrat salarié . prévoyance . part déductible:
+  formule:
+    allègement:
+      assiette: prévoyance . employeur
+      abbatement: plafond exonération sociale employeur
+
+contrat salarié . prévoyance . plafond exonération sociale employeur:
+  formule:
+    encadrement:
+      valeur:
+        somme:
+          - 6% * plafond sécurité sociale
+          - 1.5% * cotisations . assiette
+      plafond: 12% * plafond sécurité sociale
+
+# TODO: À fusionner avec `contrat salarié . prévoyance`. Pour l'instant pas
+# gênant d'avoir deux cotisations séparées car `contrat salarié . prévoyance`
+# est toujours nulle (pas de question associée)
 contrat salarié . prévoyance obligatoire cadre:
   titre: Prévoyance obligatoire pour les cadres
   cotisation:
@@ -2452,9 +2543,26 @@ contrat salarié . prévoyance obligatoire cadre:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      taux: 1.5%
       plafond: plafond sécurité sociale
-      # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
+      taux: 1.5%
+      # TODO attention : il semblerait que ce 1.5% englobe aussi la
+      # complémentaire santé ! La confusion serait entretenue par les organismes
+      # de prévoyance...
+
+contrat salarié . prévoyance . exonération fiscale:
+  titre: prévoyance exonérée d'impôt
+  formule:
+    encadrement:
+      valeur: prévoyance
+      plafond:
+        encadrement:
+          valeur:
+            somme:
+              - 5% * plafond sécurité sociale temps plein
+              - 2% * rémunération . brut
+          plafond: 2% * 8 * plafond sécurité sociale temps plein
+  références:
+    Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
 contrat salarié . taxe d'apprentissage:
   cotisation:
