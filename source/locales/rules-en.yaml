@@ -1927,6 +1927,18 @@ contrat salarié . participation effort de construction:
 contrat salarié . plafond sécurité sociale:
   titre.en: social security ceiling
   titre.fr: plafond sécurité sociale
+contrat salarié . plafond sécurité sociale . renonciation proratisation:
+  description.en: >-
+    [automatic] By mutual agreement, the employer and the employee may waive the
+    reduction of the social security ceiling (applicable for part-time
+    employees), in particular in order to increase the amount of old-age
+    contributions.
+  description.fr: >-
+    D'un commun accord, l'employeur et l'employé peuvent renoncer à la réduction
+    du plafond de la sécurité sociale (applicable pour les salariés à temps
+    partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
+  titre.en: '[automatic] proration waiver'
+  titre.fr: renonciation proratisation
 contrat salarié . prime d'impatriation:
   description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
   description.fr: >-
@@ -1961,6 +1973,24 @@ contrat salarié . prix du travail:
   résumé.fr: Dépensé par l'entreprise
   titre.en: labor cost
   titre.fr: Coût total
+contrat salarié . prévoyance:
+  titre.en: '[automatic] foresight'
+  titre.fr: prévoyance
+contrat salarié . prévoyance . employeur:
+  titre.en: '[automatic] employer'
+  titre.fr: employeur
+contrat salarié . prévoyance . exonération fiscale:
+  titre.en: '[automatic] tax-exempt pension'
+  titre.fr: prévoyance exonérée d'impôt
+contrat salarié . prévoyance . part déductible:
+  titre.en: '[automatic] deductible portion'
+  titre.fr: part déductible
+contrat salarié . prévoyance . plafond exonération sociale employeur:
+  titre.en: '[automatic] ceiling employer''s social security exemption'
+  titre.fr: plafond exonération sociale employeur
+contrat salarié . prévoyance . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
 contrat salarié . prévoyance obligatoire cadre:
   titre.en: mandatory life insurance for "cadres"
   titre.fr: Prévoyance obligatoire pour les cadres
@@ -1984,6 +2014,24 @@ contrat salarié . retraite complémentaire . taux salarié tranche 1:
 contrat salarié . retraite complémentaire . taux salarié tranche 2:
   titre.en: employee rate tranche 2
   titre.fr: taux salarié tranche 2
+contrat salarié . retraite supplémentaire:
+  titre.en: '[automatic] additional pension'
+  titre.fr: retraite supplémentaire
+contrat salarié . retraite supplémentaire . employeur:
+  titre.en: '[automatic] Employer Supplementary Retirement'
+  titre.fr: Retraite supplémentaire employeur
+contrat salarié . retraite supplémentaire . exonération fiscale:
+  titre.en: '[automatic] tax-exempt supplementary pension'
+  titre.fr: retraite supplémentaire exonérée d'impôt
+contrat salarié . retraite supplémentaire . part déductible:
+  titre.en: '[automatic] deductible portion'
+  titre.fr: part déductible
+contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
+  titre.en: '[automatic] employer''s social security ceiling'
+  titre.fr: plafond d'exonération sociale employeur
+contrat salarié . retraite supplémentaire . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
 contrat salarié . réduction ACRE:
   titre.en: ACRE reduction
   titre.fr: réduction ACRE
