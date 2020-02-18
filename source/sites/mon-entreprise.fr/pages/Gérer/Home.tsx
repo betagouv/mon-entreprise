@@ -91,23 +91,25 @@ export default function SocialSecurity() {
 							</Trans>
 						</h2>
 						<div className="ui__ center-flex">
-							{régime === 'indépendant' && (
-								<Link
-									className="ui__ interactive card box"
-									to={{
-										pathname: sitePaths.gérer.déclarationIndépendant
-									}}
-								>
-									<div className="ui__ big box-icon">{emoji('✍')}</div>
-									<Trans i18nKey="gérer.choix.déclaration">
-										<h3>Remplir ma déclaration de revenus</h3>
-										<p className="ui__ notice">
-											Calculez facilement les montants à reporter dans votre
-											déclaration de revenu au titre de 2019
-										</p>
-									</Trans>
-								</Link>
-							)}
+							{company?.statutJuridique === 'EI' &&
+								!company.isAutoEntrepreneur && (
+									<Link
+										className="ui__ interactive card box"
+										to={{
+											pathname: sitePaths.gérer.déclarationIndépendant
+										}}
+									>
+										<div className="ui__ big box-icon">{emoji('✍')}</div>
+										<Trans i18nKey="gérer.choix.déclaration">
+											<h3>Remplir ma déclaration de revenus</h3>
+											<p className="ui__ notice">
+												Calculez facilement les montants des charges sociales à
+												reporter dans votre déclaration de revenu au titre de
+												2019
+											</p>
+										</Trans>
+									</Link>
+								)}
 
 							{!!régime && (
 								<Link
