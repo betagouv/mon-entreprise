@@ -193,7 +193,22 @@ export default function SearchBar({
 	return (
 		<>
 			<input
-				type="text"
+				type="search"
+				css={`
+					padding: 0.4rem;
+					margin: 0.2rem 0;
+					width: 100%;
+					border: 1px solid var(--lighterTextColor);
+					border-radius: 0.3rem;
+					color: inherit;
+					font-size: inherit;
+					transition: border-color 0.1s;
+					position: relative;
+
+					:focus {
+						border-color: var(--color);
+					}
+				`}
 				value={input}
 				placeholder={i18n.t('Entrez des mots clefs ici')}
 				onKeyDown={e => handleKeyDown(e)}

@@ -31,9 +31,9 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 
 	return visible ? (
 		<Overlay onClose={close}>
-			<h2>
+			<h1>
 				<Trans>Chercher dans la documentation</Trans>
-			</h2>
+			</h1>
 			<SearchBar showDefaultList={false} finally={close} rules={flatRules} />
 		</Overlay>
 	) : invisibleButton ? null : (
