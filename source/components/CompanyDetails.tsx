@@ -43,12 +43,17 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 						<Skeleton width={80} />
 					)}
 				</strong>
-				, <Trans>domiciliée à</Trans>{' '}
+				,&nbsp;
 				{company ? (
-					<>
-						<strong>{company.etablissement_siege.libelle_commune}</strong> (
-						{company.etablissement_siege.code_postal})
-					</>
+					company?.etablissement_siege ? (
+						<>
+							<Trans>domiciliée à</Trans>{' '}
+							<strong>{company.etablissement_siege.libelle_commune}</strong> (
+							{company.etablissement_siege.code_postal})
+						</>
+					) : (
+						<Trans>domiciliation inconnue</Trans>
+					)
 				) : (
 					<Skeleton width={100} />
 				)}
