@@ -419,9 +419,10 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 
 dirigeant . indépendant . revenu net de cotisations:
   formule:
-    somme:
-      - revenu professionnel
-      - (- cotisations et contributions . CSG et CRDS .non déductible)
+    allègement:
+      assiette: revenu professionnel
+      abattement: cotisations et contributions . CSG et CRDS .non déductible
+
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -855,7 +856,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
       - entreprise . catégorie d'activité = 'libérale'
       - rattachement CIPAV = non
   titre: taux spécifique profession libérale non reglementée
-  question: Avez-vous opté pour des taux spécifique de cotisation retraite complémentaire ?
+  question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
   description: |
     Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019  et ont opté pour le régime général des travailleurs indépendants  ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.
   références:
@@ -921,12 +922,12 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
         - attributs:
             nom: revenus de remplacement
             impôt sur le revenu: non déductible
-          assiette: dirigeant . indépendant . IJSS . non précomptés de la CSG-CRDS
+          assiette: dirigeant . indépendant . IJSS . total
           taux: 2.9%
         - attributs:
             nom: revenus de remplacement
             impôt sur le revenu: déductible
-          assiette: dirigeant . indépendant . IJSS . non précomptés de la CSG-CRDS
+          assiette: dirigeant . indépendant . IJSS . total
           taux: 3.8%
 
   références:
@@ -950,13 +951,20 @@ dirigeant . indépendant . revenus étrangers . montant:
   par défaut: 0
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
+  note: >-
+    Seule la partie imposable des IJSS est retranchée de l'assiette de la CSG,
+    puisque la partie non imposable a déjà été retranchée du revenu net fiscal fourni
   formule:
-    somme:
-      - revenu professionnel
-      - cotisations
-      - conjoint collaborateur . cotisations
-      - (- revenus étrangers . montant)
-      - (- dirigeant . indépendant . IJSS . imposable)
+    allègement:
+      assiette:
+        somme:
+          - revenu professionnel
+          - cotisations
+          - conjoint collaborateur . cotisations
+      abattement:
+        somme:
+          - revenus étrangers . montant
+          - dirigeant . indépendant . IJSS . imposable
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   formule:
@@ -1076,19 +1084,16 @@ dirigeant . indépendant . IJSS:
   question: Avez-vous perçu des indemnités journalières de maladie, maternité ou paternité au titre de votre activité indépendante ?
   par défaut: non
 
-dirigeant . indépendant . IJSS . non précomptés de la CSG-CRDS:
-  titre: indemnités journalières défiscalisées
+dirigeant . indépendant . IJSS . total:
+  titre: indemnités journalières
   question: >-
-    Quel est le montant des indemnités journalières perçues qui n’ont pas été
-    précomptées de la CSG-CRDS ?
+    Quel est le montant total brut de toutes vos indemnités journalières ?
   description: >-
     Indiquez uniquement le montant brut de vos revenus de remplacement,
     imposables et non imposables qui figure sur le relevé de prestations fourni
-    pas votre caisse d'assurance maladie. Ce montant est à saisir uniquement
-    lorsque ces revenus de remplacement n'ont pas été précomptés de la CSG-CRDS
-    ce afin que la CSG-CRDS puisse être calculée au taux réduit de 6,70%. 
+    pas votre caisse d'assurance maladie.
 
-    Les revenus de remplacement sont : l'allocation forfaitaire de repos
+    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
     maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
     l'indemnité de remplacement pour maternité, paternité ou adoption et
     l'indemnité journalière maladie.
@@ -1098,7 +1103,7 @@ dirigeant . indépendant . IJSS . non précomptés de la CSG-CRDS:
 dirigeant . indépendant . IJSS . imposable:
   titre: indemnités journalières imposable
   résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
-  question: Quel est le montant des indemnités journalières imposables perçues ?
+  question: Quel est le montant brut des indemnités journalières imposables perçues?
   description: >-
     Indiquez uniquement les revenus de remplacement imposables perçus, donc tous
     les revenus de remplacement perçus **sauf les indemnités journalières en
@@ -1114,7 +1119,7 @@ dirigeant . indépendant . IJSS . imposable:
     -  Les revenus de remplacement qui n’ont pas été précomptés de la CSG-CRDS
     doivent être indiqués pour leur montant brut tel que perçu. 
 
-    Les revenus de remplacement sont : l'allocation forfaitaire de repos
+    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
     maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
     l’indemnité de remplacement pour maternité, paternité ou adoption et
     l'indemnité journalière maladie.
