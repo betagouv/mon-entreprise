@@ -8,6 +8,7 @@ import { Link, Redirect, useHistory } from 'react-router-dom'
 import { Rule } from 'Types/rule'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
+import './SearchBar.css'
 
 const worker = new Worker()
 
@@ -29,19 +30,35 @@ export default function SearchBar({
 	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
 	const [results, setResults] = useState<Array<Result>>([])
+	let [focusElem, setFocusElem] = useState(-1)
 	const { i18n } = useTranslation()
 	const history = useHistory()
 
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'Enter' && results.length > 0) {
-				finallyCallback && finallyCallback()
-				history.push(sitePaths.documentation.rule(results[0].dottedName))
-			}
-			return true
+	const handleKeyDown = e => {
+		if (e.key === 'Enter' && results.length > 0) {
+			finallyCallback && finallyCallback()
+			history.push(
+				sitePaths.documentation.rule(
+					results[focusElem > 0 ? focusElem : 0].dottedName
+				)
+			)
 		}
-		window.addEventListener('keydown', handleKeyDown)
 
+		if (
+			e.key === 'ArrowDown' &&
+			focusElem < (results.length > 5 ? 4 : results.length - 1)
+		) {
+			if (focusElem === -1) {
+				setFocusElem(0)
+			}
+			setFocusElem(focusElem + 1)
+		} else if (e.key === 'ArrowUp' && focusElem > 0) {
+			setFocusElem(focusElem - 1)
+		}
+		return true
+	}
+
+	useEffect(() => {
 		worker.postMessage({
 			rules: rules.map(
 				pick(['title', 'espace', 'description', 'name', 'dottedName'])
@@ -49,15 +66,17 @@ export default function SearchBar({
 		})
 
 		worker.onmessage = ({ data: results }) => setResults(results)
-	}, [rules, results])
+	}, [rules, results, focusElem])
+
+	let onMouseOverHandler = () => setFocusElem(-1)
 
 	let renderOptions = (rules?: Array<Rule>) => {
 		let options =
 			(rules && sortBy(rule => rule.dottedName, rules)) || take(5)(results)
-		return <ul>{options.map(option => renderOption(option))}</ul>
+		return <ul>{options.map((option, idx) => renderOption(option, idx))}</ul>
 	}
 
-	let renderOption = (option: Option) => {
+	let renderOption = (option: Option, idx: number) => {
 		let { title, dottedName, name } = option
 		let espace = parentName(dottedName)
 			? parentName(dottedName)
@@ -68,6 +87,7 @@ export default function SearchBar({
 		return (
 			<li
 				key={dottedName}
+				className={focusElem === idx ? 'active' : `${focusElem}-inactive`}
 				css={`
 					padding: 0.4rem;
 					border-radius: 0.3rem;
@@ -80,6 +100,7 @@ export default function SearchBar({
 					}
 				`}
 				onClick={() => setSelectedOption(option)}
+				onMouseOver={() => onMouseOverHandler()}
 			>
 				<div
 					style={{
@@ -175,6 +196,7 @@ export default function SearchBar({
 				type="text"
 				value={input}
 				placeholder={i18n.t('Entrez des mots clefs ici')}
+				onKeyDown={e => handleKeyDown(e)}
 				onChange={e => {
 					let input = e.target.value
 					setInput(input)
