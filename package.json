@@ -26,7 +26,7 @@
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",
-		"fuse.js": "^3.4.2",
+		"fuse.js": "3.4.1",
 		"i18next": "^18.0.1",
 		"iframe-resizer": "^4.1.1",
 		"js-yaml": "^3.13.1",
@@ -195,5 +195,8 @@
 	"optionalDependencies": {
 		"cypress": "^3.6.1",
 		"prerender-spa-plugin": "^3.4.0"
+	},
+	"resolutions": {
+		"react-fuzzy-highlighter/**/fuse.js": "3.4.1"
 	}
 }
