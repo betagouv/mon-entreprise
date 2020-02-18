@@ -3,21 +3,26 @@ SMIC horaire:
   titre.fr: SMIC horaire
 aide déclaration revenu indépendant 2019:
   description.en: >-
-    [automatic] These rules are written to assist in completing the 2020
-    self-employed social and tax returns on the 2019 income 2019
+    [automatic] These rules calculate the amounts claimed in the 2020 social and
+    tax returns of self-employed persons on the 2019 income 2019
   description.fr: >-
-    Ces règles sont écrites pour aider à remplir les déclarations sociale et
-    fiscale des indépendant de 2020 sur les revenus 2019
+    Ces règles calculent les montants demandés dans les déclarations sociale et
+    fiscale des indépendants de 2020 sur les revenus 2019
   titre.en: '[automatic] self-employment income assistance 2019'
   titre.fr: aide déclaration revenu indépendant 2019
+aide déclaration revenu indépendant 2019 . CFP:
+  résumé.en: '[automatic] contribution to vocational training [D]'
+  résumé.fr: 'contribution à la formation professionnelle [D]'
+  titre.en: '[automatic] PSC'
+  titre.fr: CFP
 aide déclaration revenu indépendant 2019 . CSG déductible:
   résumé.en: '[automatic] [B]'
   résumé.fr: '[B]'
   titre.en: '[automatic] deductible MSA'
   titre.fr: CSG déductible
 aide déclaration revenu indépendant 2019 . assiette sociale:
-  résumé.en: '[automatic] for your information [A - (B + C)].'
-  résumé.fr: 'pour information [A - (B + C)]'
+  résumé.en: '[automatic] for information [A - (B + C + D)].'
+  résumé.fr: 'pour information [A - (B + C + D)]'
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
 aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
@@ -29,22 +34,104 @@ aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
     Montant à reporter dans la case XI de votre déclaration sociale et rubrique
     326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique A5 du
     formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
-  résumé.en: '[automatic] including PSC [C]'
-  résumé.fr: 'y compris CFP [C]'
+  résumé.en: '[automatic] [C]'
+  résumé.fr: '[C]'
   titre.en: '[automatic] deductible compulsory social security contributions'
-  titre.fr: cotisations sociales obligatoire déductible
+  titre.fr: cotisations sociales obligatoires déductibles
+aide déclaration revenu indépendant 2019 . nature de l'activité:
+  question.en: '[automatic] What is the nature of your business?'
+  question.fr: Quelle est la nature de votre activité ?
+  titre.en: '[automatic] nature of business'
+  titre.fr: nature de l'activité
+aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+  description.en: >
+    [automatic] It is a service, production, transformation, or repair activity
+    carried out by a qualified professional, and which requires specific skills
+    and know-how.
+
+
+    &gt; For example: works, activities related to the building, repair of
+    products supplied by the client, hairdressers, etc.
+
+
+    - The company must not employ more than 10 employees (the activity becomes
+    commercial beyond that).
+
+    - Craft activities are listed by a decree.
+  description.fr: >
+    C'est une activité de service, de production, de transformation, ou de
+    réparation exercée par un professionnel qualifié, et qui nécessite des
+    compétences et un savoir-faire spécifiques.
+
+
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation
+    de produits fournis par le client, les coiffeurs...
+
+
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient
+    commerciale au-delà)
+
+    - Les activités artisanales sont répertoriées par un décret
+  titre.en: '[automatic] artisanal'
+  titre.fr: artisanale
+aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
+  description.en: >
+    [automatic] ### Commercial activity
+
+    - Purchases of goods for resale in the same condition (wholesale or retail
+    trade)
+
+    - Sale of commercial services (equipment rental, transport, real estate
+    agency, hotel and catering, entertainment business, private security
+    activity, rental, etc.).
+
+
+    ### Industrial activity
+
+
+    Production or processing activity through the use of industrial tools,
+    extraction, mining, handling, storage and warehousing
+  description.fr: >
+    ### Activité commerciale
+
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de
+    détail)
+
+    - Vente de prestations de services commerciales (location de matériel,
+    transport, agence immobilière, hôtellerie-restauration, entreprise de
+    spectacles, activité de sécurité privée, location, etc.)
+
+
+    ### Activité industrielle
+
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils
+    industriels, extraction, industries minières, manutention, magasinage et
+    stockage
+  titre.en: '[automatic] commercial or industrial'
+  titre.fr: commerciale ou industrielle
+aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
+  description.en: >
+    [automatic] These are the "intellectual" professions, which are not attached
+    to any
+
+    specific pension fund.
+
+
+    This has been the case for all unregulated professions since the
+
+    January 1, 2019.
+  description.fr: |
+    Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
+    caisse spécifique de retraite.
+
+    C'est le cas de toutes les professions libérale non reglementée depuis le
+    1er janvier 2019.
+  titre.en: '[automatic] Liberal attached to the general regime'
+  titre.fr: Libérale rattachée au régime général
 aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
   titre.en: '[automatic] social security ceiling 2019'
   titre.fr: plafond sécurité sociale 2019
-aide déclaration revenu indépendant 2019 . professions libérale:
-  contrôles.0.en: >-
-    [automatic] This declaration aid does not take into account the liberal
-    professions affiliated to the CIPAV.
-  contrôles.0.fr: >-
-    Cette aide à la déclaration ne prends pas en compte les professions
-    libérales affiliées à la CIPAV.
-  titre.en: '[automatic] liberal professions'
-  titre.fr: professions libérale
 aide déclaration revenu indépendant 2019 . revenu net fiscal:
   résumé.en: >-
     [automatic] before deduction of social security charges and tax exemptions
@@ -61,10 +148,10 @@ aide déclaration revenu indépendant 2019 . total charges sociales déductible:
     Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD (pour le
     réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le réel
     normal) de votre déclaration fiscale.
-  résumé.en: '[automatic] [B + C]'
-  résumé.fr: '[B + C]'
+  résumé.en: '[automatic] [B + C + D]'
+  résumé.fr: '[B + C + D]'
   titre.en: '[automatic] total tax-deductible compulsory social security charges'
-  titre.fr: total charges sociales obligatoires déductible fiscalement
+  titre.fr: total charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
@@ -3358,46 +3445,40 @@ dirigeant . indépendant . IJSS . imposable:
     - Replacement income that has not been deducted from the CSG-CRDS must be
     shown for the gross amount as received. 
 
-    The replacement income is: the flat-rate maternity rest allowance, the
+    &gt; Replacement income is: the flat-rate maternal rest allowance, the
     flat-rate daily allowance for interruption of activity, the replacement
     allowance for maternity, paternity or adoption and the daily sickness
     allowance.
-  description.fr: "Indiquez uniquement les revenus de remplacement imposables perçus, donc tous les revenus de remplacement perçus **sauf les indemnités journalières en lien avec une Affection de Longue Durée (ALD)**. \n\nCes revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS\_:\n-  Les revenus de remplacement qui ont été précomptés de la CSG-CRDS doivent être indiqués pour leur montant net de la part de CSG déductible. \n-  Les revenus de remplacement qui n’ont pas été précomptés de la CSG-CRDS doivent être indiqués pour leur montant brut tel que perçu. \nLes revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie."
-  question.en: '[automatic] What is the amount of taxable per diems received?'
-  question.fr: "Quel est le montant des indemnités journalières imposables perçues\_?"
+  description.fr: "Indiquez uniquement les revenus de remplacement imposables perçus, donc tous les revenus de remplacement perçus **sauf les indemnités journalières en lien avec une Affection de Longue Durée (ALD)**. \n\nCes revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS\_:\n-  Les revenus de remplacement qui ont été précomptés de la CSG-CRDS doivent être indiqués pour leur montant net de la part de CSG déductible. \n-  Les revenus de remplacement qui n’ont pas été précomptés de la CSG-CRDS doivent être indiqués pour leur montant brut tel que perçu. \n> Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie."
+  question.en: '[automatic] What is the gross amount of taxable daily allowances received?'
+  question.fr: Quel est le montant brut des indemnités journalières imposables perçues?
   résumé.en: '[automatic] Only if you do not fall under the micro-fiscal regime.'
   résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
   titre.en: '[automatic] taxable per diems'
   titre.fr: indemnités journalières imposable
-dirigeant . indépendant . IJSS . non précomptés de la CSG-CRDS:
+dirigeant . indépendant . IJSS . total:
   description.en: >-
     [automatic] Indicate only the gross amount of your replacement income,
     taxable and non-taxable, as shown on the statement of benefits provided by
-    your health insurance fund. This amount is to be entered only when the
-    replacement income has not been deducted from the CSG-CRDS so that the
-    CSG-CRDS can be calculated at the reduced rate of 6.70%. 
+    your health insurance fund.
 
-    The replacement income is: the flat-rate maternity rest allowance, the
+    &gt; Replacement income is: the flat-rate maternal rest allowance, the
     flat-rate daily allowance for interruption of activity, the replacement
     allowance for maternity, paternity or adoption and the daily sickness
     allowance.
   description.fr: >-
     Indiquez uniquement le montant brut de vos revenus de remplacement,
     imposables et non imposables qui figure sur le relevé de prestations fourni
-    pas votre caisse d'assurance maladie. Ce montant est à saisir uniquement
-    lorsque ces revenus de remplacement n'ont pas été précomptés de la CSG-CRDS
-    ce afin que la CSG-CRDS puisse être calculée au taux réduit de 6,70%. 
+    pas votre caisse d'assurance maladie.
 
-    Les revenus de remplacement sont : l'allocation forfaitaire de repos
+    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
     maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
     l'indemnité de remplacement pour maternité, paternité ou adoption et
     l'indemnité journalière maladie.
-  question.en: >-
-    [automatic] What is the amount of per diems received that have not been
-    deducted in advance from the CSG-CRDS?
-  question.fr: "Quel est le montant des indemnités journalières perçues qui n’ont pas été précomptées de la CSG-CRDS\_?"
-  titre.en: '[automatic] tax-free per diems'
-  titre.fr: indemnités journalières défiscalisées
+  question.en: '[automatic] What is the total gross amount of all your per diems?'
+  question.fr: "Quel est le montant total brut de toutes vos indemnités journalières\_?"
+  titre.en: '[automatic] sick pay'
+  titre.fr: indemnités journalières
 dirigeant . indépendant . PLNR régime général:
   description.en: rattaché au régime général plutôt que la CIPAV
   description.fr: >-
@@ -3538,6 +3619,14 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
   titre.fr: CSG et CRDS
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
+  note.en: >-
+    [automatic] Only the taxable portion of the IJSS is deducted from the MSA
+    base, since the non-taxable portion has already been deducted from the net
+    tax income provided.
+  note.fr: >-
+    Seule la partie imposable des IJSS est retranchée de l'assiette de la CSG,
+    puisque la partie non imposable a déjà été retranchée du revenu net fiscal
+    fourni
   titre.en: basis
   titre.fr: assiette
 dirigeant . indépendant . cotisations et contributions . cotisations:
@@ -3712,9 +3801,11 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
     and opted for the general scheme for self-employed persons have the
     possibility to opt for specific rates of supplementary pension contribution.
   description.fr: "Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019\_ et ont opté pour le régime général des travailleurs indépendants\_ ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.\n"
-  question.en: complémentaire ?
+  question.en: >-
+    [automatic] Have you opted for specific supplementary pension contribution
+    rates?
   question.fr: >-
-    Avez-vous opté pour des taux spécifique de cotisation retraite
+    Avez-vous opté pour des taux spécifiques de cotisation retraite
     complémentaire ?
   titre.en: unregulated specific rate for unregulated professions
   titre.fr: taux spécifique profession libérale non reglementée
