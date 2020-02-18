@@ -2,6 +2,7 @@ import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
@@ -29,6 +30,7 @@ const simulationConfig = {
 		'aide déclaration revenu indépendant 2019 . revenu net fiscal',
 		'aide déclaration revenu indépendant 2019 . CSG déductible',
 		'aide déclaration revenu indépendant 2019 . cotisations sociales déductible',
+		'aide déclaration revenu indépendant 2019 . CFP',
 		'aide déclaration revenu indépendant 2019 . total charges sociales déductible',
 		'aide déclaration revenu indépendant 2019 . assiette sociale'
 	] as Array<DottedName>,
@@ -82,6 +84,7 @@ export default function AideDéclarationIndépendant() {
 	} = lauchComputationWhenResultsInViewport()
 	return (
 		<>
+			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
 				<p>
@@ -108,14 +111,21 @@ export default function AideDéclarationIndépendant() {
 					</h3>
 					<ul>
 						<li>vous êtes une profession libérale réglementée</li>
+						<li>
+							vous êtes gérants de société relevant de l’impôt sur les sociétés
+						</li>
+						<li>vous avez opté pour le régime micro-fiscal</li>
 						<li>vous êtes une profession libérale cotisant à la CIPAV</li>
 						<li>votre entreprise est domiciliée dans les DOM</li>
 					</ul>
 				</Warning>
-				<h2>Quel est votre revenu professionnel en 2019 ?</h2>
+				<h2>
+					Quel est votre résultat fiscal en 2019 ?<br />
+					<small>Charges sociales et exonérations fiscales non incluses</small>
+				</h2>
 				<p className="ui__ notice">
-					Indiquez votre résultat net fiscal avant déduction des charges
-					sociales et exonérations fiscales.
+					Le résultat fiscal correspond aux produits moins les charges. Il peut
+					être positif (bénéfice) ou négatif (pertes).
 				</p>
 			</Trans>
 			<BigInput>
@@ -137,14 +147,14 @@ export default function AideDéclarationIndépendant() {
 							{!company && (
 								<p className="ui__ notice">
 									<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
-										Vous pouvez renseigner votre entreprise pour pré-remplir le
-										formulaire
+										<strong>Facultatif : </strong>Vous pouvez renseigner votre
+										entreprise pour pré-remplir le formulaire
 									</Trans>
 								</p>
 							)}
 							<CompanySection company={company} />
 							<SimpleField dottedName="entreprise . date de création" />
-							<SubSection dottedName="entreprise . catégorie d'activité" />
+							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
 							{/* PLNR */}
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
@@ -288,7 +298,7 @@ function Results() {
 		>
 			<h1 css="text-align: center; margin-bottom: 2rem">
 				<Trans i18nKey="aide-déclaration-indépendant.results.title">
-					Aide à la déclaration <>{emoji('📄')}</>
+					Aide à la déclaration {emoji('📄')}
 				</Trans>
 			</h1>
 			{onGoingComputation && (

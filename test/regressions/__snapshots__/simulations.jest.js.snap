@@ -174,7 +174,7 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec ch
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec charges 2`] = `"[13769,13769,10084,4,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 1`] = `"[null,null,0,3,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 1`] = `"[0,0,0,3,21,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 2`] = `"[616,616,470,3,21,0]"`;
 

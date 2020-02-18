@@ -4,22 +4,61 @@ aide déclaration revenu indépendant 2019:
   description: >-
     Ces règles calculent les montants demandés dans les déclarations sociale et
     fiscale des indépendants de 2020 sur les revenus 2019
-  par défaut: non
+  formule: non
 
-aide déclaration revenu indépendant 2019 . professions libérale:
+aide déclaration revenu indépendant 2019 . nature de l'activité:
+  remplace: entreprise . catégorie d'activité
+  question: Quelle est la nature de votre activité ?
+  par défaut: commerciale ou industrielle
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - artisanale
+        - commerciale ou industrielle
+        - libérale
+  références:
+    Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+
+aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
   remplace:
     - règle: dirigeant . rattachement CIPAV
       par: non
+    - entreprise . catégorie d'activité . libérale
+  titre: Libérale rattachée au régime général
+  description: |
+    Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
+    caisse spécifique de retraite.
 
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - entreprise . date de création < 01/01/2019
-          - entreprise . catégorie d'activité = 'libérale'
-      niveau: avertissement
-      message: >-
-        Cette aide à la déclaration ne prends pas en compte les professions
-        libérales affiliées à la CIPAV.
+    C'est le cas de toutes les professions libérale non reglementée depuis le
+    1er janvier 2019.
+
+  références:
+    fiche Wikipedia: https://fr.m.wikipedia.org/wiki/Profession_libérale
+
+aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
+  remplace: entreprise . catégorie d'activité . commerciale ou industrielle
+  description: |
+    ### Activité commerciale
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
+    - Vente de prestations de services commerciales (location de matériel, transport, agence immobilière, hôtellerie-restauration, entreprise de spectacles, activité de sécurité privée, location, etc.)
+
+    ### Activité industrielle
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
+
+aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+  remplace: entreprise . catégorie d'activité . artisanale
+  description: |
+    C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
+
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation de produits fournis par le client, les coiffeurs...
+
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
+    - Les activités artisanales sont répertoriées par un décret
+  références:
+    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
 
 aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
   remplace: plafond sécurité sociale temps plein
@@ -38,7 +77,7 @@ aide déclaration revenu indépendant 2019 . CSG déductible:
 
 aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
   titre: cotisations sociales obligatoires déductibles
-  résumé: y compris CFP [C]
+  résumé: '[C]'
   description: >-
     Montant à reporter dans la case XI de votre déclaration sociale et rubrique
     326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique A5 du
@@ -46,16 +85,19 @@ aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
   formule:
     somme:
       - dirigeant . indépendant . cotisations et contributions . cotisations
-      - dirigeant . indépendant . cotisations et contributions . formation professionnelle
       - dirigeant . indépendant . conjoint collaborateur . cotisations
       - (- dirigeant . indépendant . cotisations et contributions . exonérations)
+aide déclaration revenu indépendant 2019 . CFP:
+  résumé: contribution à la formation professionnelle [D]
+  formule: dirigeant . indépendant . cotisations et contributions . formation professionnelle
 
 aide déclaration revenu indépendant 2019 . total charges sociales déductible:
   titre: total charges sociales obligatoires déductibles fiscalement
-  résumé: '[B + C]'
+  résumé: '[B + C + D]'
   formule:
     somme:
       - CSG déductible
+      - CFP
       - cotisations sociales déductible
   description: >-
     Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD (pour le
@@ -64,8 +106,8 @@ aide déclaration revenu indépendant 2019 . total charges sociales déductible:
 
 aide déclaration revenu indépendant 2019 . assiette sociale:
   titre: assiette sociale
-  résumé: 'pour information [A - (B + C)]'
+  résumé: 'pour information [A - (B + C + D)]'
   formule:
-    somme:
-      - revenu net fiscal
-      - (- cotisations sociales déductible)
+    allègement:
+      assiette: revenu net fiscal
+      abattement: total charges sociales déductible
