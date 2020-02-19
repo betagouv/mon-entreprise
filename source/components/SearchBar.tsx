@@ -70,10 +70,44 @@ export default function SearchBar({
 
 	let onMouseOverHandler = () => setFocusElem(-1)
 
+	const getDottedName = (href: String) => {
+		const currentSlug = decodeURI(href.substring(href.lastIndexOf('/') + 1))
+		return (
+			[
+				{
+					slugs: ['salarié', 'assimilé-salarié'],
+					dottedName: 'contrat salarié'
+				},
+				{
+					slugs: ['indépendant', 'auto-entrepreneur'],
+					dottedName: 'dirigeant'
+				}
+			].find(
+				item => item.slugs.find(slug => slug === currentSlug) !== undefined
+			)?.dottedName || ''
+		)
+	}
+
 	let renderOptions = (rules?: Array<Rule>) => {
+		const currentPage = getDottedName(window.location.href)
 		let options =
 			(rules && sortBy(rule => rule.dottedName, rules)) || take(5)(results)
-		return <ul>{options.map((option, idx) => renderOption(option, idx))}</ul>
+		let currentOptions: Array<Pick<Rule, 'dottedName'>> = []
+		let notCurrentOptions: Array<Pick<Rule, 'dottedName'>> = []
+		options.forEach(option => {
+			if (option.dottedName.startsWith(currentPage)) {
+				currentOptions.push(option)
+			} else {
+				notCurrentOptions.push(option)
+			}
+		})
+		return (
+			<ul>
+				{[...currentOptions, ...notCurrentOptions].map((option, idx) =>
+					renderOption(option, idx)
+				)}
+			</ul>
+		)
 	}
 
 	let renderOption = (option: Option, idx: number) => {
