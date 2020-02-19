@@ -134,37 +134,41 @@ rend non applicable:
 
 barème:
   type: numeric
-  description: |
-    C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation dans le calcul de l'impôt sur le revenu.
+  description: >-
+    C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation
+    dans le calcul de l'impôt sur le revenu.
 
-    L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un taux spécifique.
+    L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un
+    taux spécifique.
 
-    Les tranches sont souvent exprimées sous forme de facteurs d'une variable que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la sécurité sociale`.
+    Les tranches sont souvent exprimées sous forme de facteurs d'une variable
+    que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la
+    sécurité sociale`.
 
-barème linéaire:
+grille:
   type: numeric
-  description: |
-    C'est un barème en taux non marginaux, très simple. C'est le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
-    Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette qui correspond à la tranche, et de multiplier le taux associé avec l'assiette.
-    Un montant fixe pour chaque tranche peut aussi remplacer le taux, rendant le barème encore plus simple, mais moins "juste", car moins continu.
+  description: >-
+    C'est un barème sous la forme d'une grille de correspondance. C'est le
+    mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
 
-barème continu:
+    Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette
+    qui correspond à la tranche, et de selectionner le montant associé à
+    l'assiette.
+
+taux progressif:
   type: numeric
-  description: |
-    Désolé, ce mécanisme est quelque peu compliqué, accrochez-vous !
+  description: >-
+    Ce mécanisme permet de calculer un taux progressif. On spécifie pour chaque
+    tranche le plafond et le taux associé. Le taux effectif renvoyé est calculé
+    en lissant la différence de taux entre la borne inférieure et supérieure de
+    l'assiette
+      
+    > Par exemple, si nous nous avons les tranches suivantes : 
+      - taux: 50% / plafond: 0
+      - taux: 100% / plafond: 1000
 
-    Le barème définit des points, constitués d'un seuil et d'un taux correspondant. Par exemple `1 : 6%` et `2 : 8%`. L'assiette du barème est placée au bon endroit entre ces seuils, et on en déduit le taux qui lui correspond. 
-
-    Dans notre exemple, si l'assiette vaut 1, le taux est 6%. Si elle vaut 2, le taux est 8%. Et si elle est entre les deux, par exemple 1.5, alors le taux est 7%. Et ainsi de suite.
-
-    Dans ce type de barème, il y a souvent un multiplicateur de l'assiette, par exemple le plafond de la sécurité sociale : les seuils sont des petits nombres comme 1 ou 1.5, mais ils correspondent en réalité à `1 * 3311€` et `1.5 * 3311€`.
-
-    L'option `retourne seulement le taux: oui` permet d'obtenir un taux pour une assiette donnée, pour l'appliquer ensuite à une autre assiette.
-
-complément:
-  type: numeric
-  description: |
-    Complète une base pour atteindre un seuil minimal
+    > Pour une assiette de 500, le taux retourné sera 75%, car il correspond au
+    taux situé à la moitié de la tranche correspondante.
 
 composantes:
   type: numeric
@@ -196,5 +200,12 @@ durée:
 synchronisation:
   type: object
   description: |
-    Pour éviter trop de saisies à l'utilisateur, certaines informations sont récupérées à partir de ce que l'on appelle des API. Ce sont des services auxquels ont fait appel pour obtenir des informations sur un sujet précis. Par exemple, l'État français fournit gratuitement l'API géo, qui permet à partir du nom d'une ville, d'obtenir son code postal, son département, la population etc.
-    Ce mécanismes `synchronisation` permet de faire le lien entre les règles de notre système et les réponses de ces API.
+    Pour éviter trop de saisies à l'utilisateur, certaines informations sont
+    récupérées à partir de ce que l'on appelle des API. Ce sont des services
+    auxquels ont fait appel pour obtenir des informations sur un sujet précis.
+    Par exemple, l'État français fournit gratuitement l'API géo, qui permet à
+    partir du nom d'une ville, d'obtenir son code postal, son département, la
+    population etc.
+
+    Ce mécanismes `synchronisation` permet de faire le lien entre les règles de
+    notre système et les réponses de ces API.

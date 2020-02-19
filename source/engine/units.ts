@@ -50,7 +50,7 @@ let printUnits = (units: Array<string>, count: number, lng): string =>
 
 const plural = 2
 export let serializeUnit = (
-	rawUnit: Unit | null | string,
+	rawUnit: Unit | undefined | string,
 	count: number = plural,
 	lng: string = 'fr'
 ) => {
@@ -88,7 +88,7 @@ type SupportedOperators = '*' | '/' | '+' | '-'
 let noUnit = { numerators: [], denominators: [] }
 export let inferUnit = (
 	operator: SupportedOperators,
-	rawUnits: Array<Unit>
+	rawUnits: Array<Unit | undefined>
 ): Unit | undefined => {
 	let units = rawUnits.map(u => u || noUnit)
 	if (operator === '*')
@@ -182,7 +182,11 @@ function unitsConversionFactor(from: string[], to: string[]): number {
 	return factor
 }
 
-export function convertUnit(from: Unit, to: Unit, value: number) {
+export function convertUnit(
+	from: Unit | undefined,
+	to: Unit | undefined,
+	value: number
+) {
 	if (!areUnitConvertible(from, to)) {
 		throw new Error(
 			`Impossible de convertir l'unité '${serializeUnit(
@@ -193,8 +197,8 @@ export function convertUnit(from: Unit, to: Unit, value: number) {
 	if (!value) {
 		return value
 	}
-	const [fromSimplified, factorTo] = simplifyUnitWithValue(from)
-	const [toSimplified, factorFrom] = simplifyUnitWithValue(to)
+	const [fromSimplified, factorTo] = simplifyUnitWithValue(from || noUnit)
+	const [toSimplified, factorFrom] = simplifyUnitWithValue(to || noUnit)
 	return round(
 		((value * factorTo) / factorFrom) *
 			unitsConversionFactor(
@@ -239,7 +243,7 @@ export function simplifyUnitWithValue(
 		value ? round(value * factor) : value
 	]
 }
-export function areUnitConvertible(a: Unit, b: Unit) {
+export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 	if (a == null || b == null) {
 		return true
 	}

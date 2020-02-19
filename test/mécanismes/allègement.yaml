@@ -23,8 +23,8 @@ montant décoté:
     allègement:
       assiette: montant
       décote:
-        plafond: 2040
         taux: 100%
+        plafond: 2040
   exemples:
     - situation:
         montant: 1000
@@ -37,8 +37,8 @@ montant franchisé et décoté:
       assiette: montant
       franchise: 1200
       décote:
-        plafond: 2040
         taux: 75%
+        plafond: 2040
   exemples:
     - situation:
         montant: 100
@@ -103,8 +103,8 @@ montant franchisé, décote, abattu:
       assiette: montant
       franchise: 1200
       décote:
-        plafond: 2040
         taux: 75%
+        plafond: 2040
       abattement: 20507
   exemples:
     - situation:

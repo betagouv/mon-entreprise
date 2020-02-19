@@ -70,8 +70,8 @@ Multiplication complète:
     multiplication:
       assiette: mon assiette
       facteur: mon facteur
-      plafond: mon plafond
       taux: 0.5%
+      plafond: mon plafond
 
   unité attendue: €.patates
   exemples:

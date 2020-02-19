@@ -3223,6 +3223,9 @@ dirigeant . indépendant . PLNR régime général:
   question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
   titre.en: PLNR general scheme
   titre.fr: PLNR régime général
+dirigeant . indépendant . assiette des cotisations:
+  titre.en: '[automatic] contribution base'
+  titre.fr: assiette des cotisations
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the executive's spouse to be covered by social protection
@@ -3309,12 +3312,12 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
   description.en: >-
     [automatic] The collaborating spouse will pay social security contributions
-    calculated on the basis of a percentage of the professional income of the
-    manager of the company (one third or one half).
+    calculated on the basis of a percentage of the contribution base of the
+    company manager (one third or one half).
   description.fr: >-
     Le conjoint collaborateur paiera des cotisations sociales calculées sur une
-    base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un
-    tiers ou la moitié).
+    base d'un pourcentage du assiette des cotisations du gérant de l'entreprise
+    (un tiers ou la moitié).
   titre.en: undivided income
   titre.fr: revenu sans partage
 dirigeant . indépendant . conjoint collaborateur . cotisations:
@@ -3384,8 +3387,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
   titre.en: tobacco deduction
   titre.fr: déduction tabac
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits:
-  titre.en: professional income (with tobacco deduction)
-  titre.fr: revenu professionnel (avec déduction tabac)
+  titre.en: '[automatic] contribution base (with tobacco deduction)'
+  titre.fr: assiette des cotisations (avec déduction tabac)
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   description.en: >-
     Contributions for the daily allowances of self-employed people. If the state
@@ -3515,6 +3518,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond:
+  titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
+  titre.fr: plafond retraite complémentaire des indépendants
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
   description.en: >
     Non-regulated liberal professions who started their activity as of 1 January
@@ -3634,36 +3640,8 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
-  description.en: >
-    It is the net income of the self-employed person from deductible
-    contributions that is used as the basis for calculating contributions and
-    taxes for the self-employed.
-
-    Attention, **our calculation is valid for a standard scheme**:
-
-    The self-employed person who starts out will pay a fixed contributions
-    during his first months. He will then have to regularize this situation in
-    relation to the income he actually received.
-
-    This calculation should therefore be seen as *the amount that should in any
-    case be paid* in the short term after several months of activity.
-  description.fr: >
-    C'est le revenu net de cotisations déductibles du travailleur indépendant,
-    qui sert de base au calcul des cotisations et de l'impôt pour les
-    indépendants.
-
-
-    Attention, **notre calcul est fait au régime de croisière**:
-
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait
-    relativement réduit de cotisations sociales. Il devra ensuite régulariser
-    cette situation par rapport au revenu qu'il a vraiment perçu.
-
-
-    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être
-    payé* à court terme après 2 ans d'exercice.
-  titre.en: Professional income
-  titre.fr: revenu professionnel (net imposable)
+  titre.en: '[automatic] occupational income'
+  titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
     [automatic] Foreign income is income declared by self-employed persons in

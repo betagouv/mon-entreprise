@@ -19,7 +19,7 @@ let Conditions = ({
 				parentDependency.nodeValue === false && (
 					<ShowIfDisabled
 						dependency={parentDependency}
-						key="parent dependency"
+						key={parentDependency.dottedName}
 					/>
 				)
 		),
@@ -63,7 +63,6 @@ export default function Algorithm({ rule, showValues }) {
 			!!Object.keys(formula).length &&
 			!path(['formule', 'explanation', 'une possibilité'], rule) &&
 			formula.explanation?.category !== 'number'
-
 	return (
 		<div id="algorithm">
 			<section id="rule-rules" className={classNames({ showValues })}>

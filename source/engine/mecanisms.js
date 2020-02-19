@@ -54,8 +54,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(item => (
-						<li key={item.name || item.text}>{makeJsx(item)}</li>
+					{explanation.map((item, i) => (
+						<li key={i}>{makeJsx(item)}</li>
 					))}
 				</ul>
 			}
@@ -105,8 +105,8 @@ export let mecanismAllOf = (recurse, k, v) => {
 			value={nodeValue}
 			child={
 				<ul>
-					{explanation.map(item => (
-						<li key={item.name || item.text}>{makeJsx(item)}</li>
+					{explanation.map((item, i) => (
+						<li key={i}>{makeJsx(item)}</li>
 					))}
 				</ul>
 			}
@@ -623,9 +623,6 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	}
 }
 
-export let mecanismError = (recurse, k, v) => {
-	throw new Error("Le mécanisme '" + k + "' est inconnu !" + v)
-}
 export let mecanismOnePossibility = dottedName => (recurse, k, v) => ({
 	...v,
 	'une possibilité': 'oui',

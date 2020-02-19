@@ -159,9 +159,9 @@ describe('collectMissingVariables', function() {
 									alors: {
 										multiplicateur: 'deux',
 										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 'trois' },
-											{ 'au-dessus de': 2, taux: 10 }
+											{ plafond: 1, taux: 0.1 },
+											{ plafond: 2, taux: 'trois' },
+											{ taux: 10 }
 										]
 									}
 								},
@@ -170,8 +170,8 @@ describe('collectMissingVariables', function() {
 									alors: {
 										multiplicateur: 'quatre',
 										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 1.8 },
+											{ plafond: 1, taux: 0.1 },
+											{ plafond: 2, taux: 1.8 },
 											{ 'au-dessus de': 2, taux: 10 }
 										]
 									}

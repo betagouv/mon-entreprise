@@ -182,10 +182,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       assiette: base des cotisations
       multiplicateur: plafond ACRE
       tranches:
-        - en-dessous de: 1
-          taux: taux de cotisation * (100% - taux ACRE)
-        - au-dessus de: 1
-          taux: taux de cotisation
+        - taux: taux de cotisation * (100% - taux ACRE)
+          plafond: 1
+        - taux: taux de cotisation
 
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
@@ -409,14 +408,14 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
   formule:
-    barème continu:
-      assiette: revenu professionnel
+    taux progressif:
+      assiette: assiette des cotisations
       multiplicateur: PSS proratisé
-      points:
-        0: 100%
-        0.75: 100%
-        1: 0%
-      retourne seulement le taux: oui
+      tranches:
+        - taux: 100%
+          plafond: 75%
+        - taux: 0%
+          plafond: 100%
 
 dirigeant . indépendant . revenu net de cotisations:
   formule:
@@ -430,16 +429,7 @@ dirigeant . indépendant . revenu net de cotisations:
   unité par défaut: €/an
 
 dirigeant . indépendant . revenu professionnel:
-  titre: revenu professionnel (net imposable)
   unité par défaut: €/an
-  description: |
-    C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
-
-    Attention, **notre calcul est fait au régime de croisière**:
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
-
-    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être payé* à court terme après 2 ans d'exercice.
-
   formule:
     inversion numérique:
       avec:
@@ -448,6 +438,13 @@ dirigeant . indépendant . revenu professionnel:
         - revenu net après impôt
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
+
+dirigeant . indépendant . assiette des cotisations:
+  unité par défaut: €/an
+  formule:
+    encadrement:
+      plancher: 0
+      valeur: revenu professionnel
 
 dirigeant . indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
@@ -488,14 +485,14 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
     **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
   formule: assiette = 'revenu avec partage'
   remplace:
-    règle: revenu professionnel
-    par: revenu professionnel - cotisations . assiette
+    règle: assiette des cotisations
+    par: assiette des cotisations - cotisations . assiette
     dans:
       - cotisations et contributions . cotisations . retraite de base
       - cotisations et contributions . cotisations . retraite complémentaire
       - cotisations et contributions . cotisations . invalidité et décès
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un tiers ou la moitié).
+  description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise (un tiers ou la moitié).
   formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
@@ -520,7 +517,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
   titre: assiette conjoint collaborateur
   formule:
     multiplication:
-      assiette: revenu professionnel
+      assiette: assiette des cotisations
       taux: 1 / 3
       variations:
         - si: assiette . forfaitaire
@@ -553,21 +550,20 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de ba
       assiette: assiette retraite
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
-        - en-dessous de: 1
-          taux: 17.75%
-        - au-dessus de: 1
-          taux: 0.6%
+        - taux: 17.75%
+          plafond: 1
+        - taux: 0.6%
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   formule:
     barème:
-      assiette: retraite complémentaire . assiette [€/an]
+      multiplicateur: cotisations et contributions . cotisations . retraite complémentaire . plafond
+      assiette: retraite complémentaire . assiette
       tranches:
-        - en-dessous de: 37960
-          taux: 7%
-        - de: 37960
-          à: 162096
-          taux: 8%
+        - taux: 7%
+          plafond: 1
+        - taux: 8%
+          plafond: 4
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
@@ -589,8 +585,8 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
   formule:
     multiplication:
       assiette: assiette
-      plafond: plafond sécurité sociale temps plein
       taux: 1.3%
+      plafond: plafond sécurité sociale temps plein
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
   formule:
@@ -634,16 +630,19 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
   par défaut: 0
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits:
-  titre: revenu professionnel (avec déduction tabac)
+  titre: assiette des cotisations (avec déduction tabac)
   applicable si: déduction tabac
   remplace:
-    règle: revenu professionnel
+    règle: assiette des cotisations
     dans:
       - retraite de base
       - retraite complémentaire
       - invalidité et décès
       - conjoint collaborateur
-  formule: revenu professionnel - déduction tabac
+  formule:
+    allègement:
+      assiette: assiette des cotisations
+      abattement: déduction tabac
 
 dirigeant . rattachement CIPAV:
   description: |
@@ -686,12 +685,17 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   remplace: maladie
   rend non applicable: indemnités journalières maladie
   formule:
-    barème continu:
-      assiette: indépendant . revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein
-      points:
-        0: 1.5%
-        1.1: 6.5%
+    multiplication:
+      assiette: indépendant . assiette des cotisations
+      taux:
+        taux progressif:
+          assiette: indépendant . assiette des cotisations
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - plafond: 0%
+              taux: 1.5%
+            - plafond: 110%
+              taux: 6.5%
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
     guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
@@ -702,11 +706,11 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   formule:
     variations:
       - si: situation personnelle . RSA
-        alors: revenu professionnel
+        alors: assiette des cotisations
       - sinon:
           encadrement:
             plancher: 40% * plafond sécurité sociale temps plein
-            valeur: revenu professionnel
+            valeur: assiette des cotisations
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -725,10 +729,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
       assiette: assiette
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
-        - en-dessous de: 5
-          taux: taux variable
-        - au-dessus de: 5
-          taux: 6.5%
+        - taux: taux variable
+          plafond: 5
+        - taux: 6.5%
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
   note: |
@@ -757,7 +760,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   formule:
     multiplication:
       assiette: 5%
-      taux: revenu professionnel / seuil supérieur de réduction
+      taux: assiette des cotisations / seuil supérieur de réduction
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
   formule:
@@ -767,14 +770,16 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux:
   formule:
-    barème continu:
-      retourne seulement le taux: oui
-      assiette: revenu professionnel
+    taux progressif:
+      assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
-      points:
-        0: 0%
-        0.4: 3.168%
-        1.1: 6.35%
+      tranches:
+        - plafond: 0%
+          taux: 0%
+        - plafond: 40%
+          taux: 3.168%
+        - plafond: 110%
+          taux: 6.35%
   note: |
     Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant :
     - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
@@ -791,11 +796,11 @@ dirigeant . rattachement CIPAV . retraite de base:
       multiplicateur:
       composantes:
         - nom: tranche 1
-          plafond: plafond sécurité sociale temps plein
           taux: 8.23%
+          plafond: plafond sécurité sociale temps plein
         - nom: tranche 2
-          plafond: 5 * plafond sécurité sociale temps plein
           taux: 1.87%
+          plafond: 5 * plafond sécurité sociale temps plein
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   formule:
@@ -803,21 +808,20 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
       assiette: assiette
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
-        - en-dessous de: 1
-          taux: 17.75%
-        - au-dessus de: 1
-          taux: 0.6%
+        - taux: 17.75%
+          plafond: 1
+        - taux: 0.6%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
   titre: assiette retraite de base
   formule:
     variations:
       - si: situation personnelle . RSA
-        alors: revenu professionnel
+        alors: assiette des cotisations
       - sinon:
           encadrement:
             plancher: 11.5% * plafond sécurité sociale temps plein
-            valeur: revenu professionnel
+            valeur: assiette des cotisations
 
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -825,31 +829,25 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 dirigeant . rattachement CIPAV . retraite complémentaire:
   remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
   formule:
-    barème linéaire:
-      assiette: indépendant . revenu professionnel [€/an]
+    grille:
+      assiette: indépendant . assiette des cotisations
+      unité: €/an
       tranches:
-        - en-dessous de: 26580
-          montant: 1315
-        - de: 26581
-          à: 49280
-          montant: 2630
-        - de: 49281
-          à: 57850
-          montant: 3945
-        - de: 57851
-          à: 66400
-          montant: 6575
-        - de: 66401
-          à: 83060
-          montant: 9205
-        - de: 83061
-          à: 103180
-          montant: 14465
-        - de: 103181
-          à: 123300
-          montant: 15780
-        - au-dessus de: 123300
-          montant: 17095
+        - montant: 1315
+          plafond: 26581 €/an
+        - montant: 2630
+          plafond: 49281 €/an
+        - montant: 3945
+          plafond: 57851 €/an
+        - montant: 6575
+          plafond: 66401 €/an
+        - montant: 9205
+          plafond: 83061 €/an
+        - montant: 14465
+          plafond: 103181 €/an
+        - montant: 15780
+          plafond: 123301 €/an
+        - montant: 17095
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
   applicable si:
@@ -869,30 +867,36 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
   remplace: retraite complémentaire
   formule:
     barème:
-      assiette: revenu professionnel
+      assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
-        - de: 1
-          à: 4
-          taux: 14%
+        - taux: 0%
+          plafond: 1
+        - taux: 14%
+          plafond: 4
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   formule:
     barème:
-      assiette: revenu professionnel [€/an]
+      assiette: assiette des cotisations
       tranches:
-        - en-dessous de: 37960
-          taux: 7%
-        - de: 37960
-          à: 162096
-          taux: 8%
+        - taux: 7%
+          plafond: plafond
+        - taux: 8%
+          plafond: 4 * plafond sécurité sociale temps plein
+
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond:
+  acronyme: PRCI
+  titre: plafond retraite complémentaire des indépendants
+  formule: 37960 €/an
+  # formule: 38340 €/an (2020)
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
     multiplication:
       assiette: assiette
-      plafond: plafond sécurité sociale temps plein
       taux: 1.3%
+      plafond: plafond sécurité sociale temps plein
 
       # TODO invalidité décès pour les libéraux
       # 3 classes, 76, 228, 380€
@@ -901,10 +905,10 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
   formule:
     variations:
       - si: situation personnelle . RSA
-        alors: revenu professionnel
+        alors: assiette des cotisations
       - sinon:
           encadrement:
-            valeur: revenu professionnel
+            valeur: assiette des cotisations
             plancher: 11.5% * plafond sécurité sociale temps plein
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -980,13 +984,17 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
 
 dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales:
   formule:
-    barème continu:
-      assiette: revenu professionnel
-      multiplicateur: plafond sécurité sociale temps plein
-      points:
-        0: 0%
-        1.1: 0%
-        1.4: 3.1%
+    multiplication:
+      assiette: assiette des cotisations
+      taux:
+        taux progressif:
+          assiette: assiette des cotisations
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - plafond: 110%
+              taux: 0%
+            - plafond: 140%
+              taux: 3.1%
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
   période: flexible
@@ -1001,8 +1009,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
     multiplication:
       assiette: cotisations . maladie
       # TODO : ceci n'est pas bon (le plafond est sur le revenu exonéré, et est proratisé en début / fin d'éxo)
-      plafond: 3042 heures/an * SMIC horaire
       taux: taux
+      plafond: 3042 heures/an * SMIC horaire
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"
@@ -1024,30 +1032,41 @@ dirigeant . indépendant . cotisations et contributions . exonérations . invali
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   titre: taux exonération ZFU
   formule:
-    barème continu:
+    taux progressif:
       assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
       retourne seulement le taux: oui
       variations:
         - si: entreprise . effectif < 5
           alors:
-            points:
-              0: 100%
-              5: 100%
-              6: 60%
-              10: 60%
-              11: 40%
-              12: 40%
-              13: 20%
-              14: 20%
-              15: 0%
+            tranches:
+              - plafond: 5 ans
+                taux: 100%
+              - plafond: 6 ans
+                taux: 60%
+              - plafond: 10 ans
+                taux: 60%
+              - plafond: 11 ans
+                taux: 40%
+              - plafond: 12 ans
+                taux: 40%
+              - plafond: 13 ans
+                taux: 20%
+              - plafond: 14 ans
+                taux: 20%
+              - plafond: 15 ans
+                taux: 0%
         - sinon:
-            points:
-              0: 100%
-              5: 100%
-              6: 60%
-              7: 40%
-              8: 20%
-              9: 0%
+            tranches:
+              - plafond: 5 ans
+                taux: 100%
+              - plafond: 6 ans
+                taux: 60%
+              - plafond: 7 ans
+                taux: 40%
+              - plafond: 8 ans
+                taux: 20%
+              - plafond: 9 ans
+                taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
   applicable si: situation personnelle . domiciliation fiscale à l'étranger

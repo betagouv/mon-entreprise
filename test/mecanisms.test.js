@@ -6,10 +6,10 @@
 */
 
 import { expect } from 'chai'
-import { serializeUnit } from 'Engine/units'
 import { collectMissingVariables } from '../source/engine/generateQuestions'
 import { enrichRule } from '../source/engine/rules'
 import { analyse, parseAll } from '../source/engine/traverse'
+import { parseUnit } from '../source/engine/units'
 import testSuites from './load-mecanism-tests'
 
 describe('Mécanismes', () =>
@@ -59,7 +59,7 @@ describe('Mécanismes', () =>
 
 									if (unit) {
 										expect(target.unit).not.to.be.equal(undefined)
-										expect(serializeUnit(target.unit)).to.eql(unit)
+										expect(target.unit).to.deep.equal(parseUnit(unit))
 									}
 								})
 						))

@@ -62,11 +62,11 @@ function integerAndDecimalParts(value: number) {
 // returned values is always 100. For instance: [60, 30, 10].
 export function roundedPercentages(values: Array<number>) {
 	const sum = (a: number = 0, b: number) => a + b
-	const total = values.reduce(sum)
+	const total = values.reduce(sum, 0)
 	const percentages = values.map(value =>
 		integerAndDecimalParts((value / total) * 100)
 	)
-	const totalRoundedPercentage = percentages.map(v => v.integer).reduce(sum)
+	const totalRoundedPercentage = percentages.map(v => v.integer).reduce(sum, 0)
 	const indexesToIncrement = percentages
 		.map((percentage, index) => ({ ...percentage, index }))
 		.sort((a, b) => b.decimal - a.decimal)

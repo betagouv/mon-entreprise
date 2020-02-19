@@ -39,15 +39,13 @@ contrat salarié . convention collective . HCR . majoration heures supplémentai
   formule:
     barème:
       assiette: temps de travail . heures supplémentaires
-      multiplicateur: 1 heure/semaine * période . semaines par mois
+      multiplicateur: période . semaines par mois
       tranches:
-        - en-dessous de: 4
-          taux: 10%
-        - de: 4
-          à: 8
-          taux: 20%
-        - au-dessus de: 8
-          taux: 50%
+        - taux: 10%
+          plafond: 4 heures/semaine
+        - taux: 20%
+          plafond: 8 heures/semaine
+        - taux: 50%
 
 contrat salarié . convention collective . SVP:
   titre: Spectacle vivant privé (beta)
@@ -298,28 +296,21 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
   applicable si: assiette franchisée < SMIC horaire * 115 heures/mois
   remplace: contrat salarié . cotisations . assiette forfaitaire
   formule:
-    multiplication:
-      assiette: SMIC horaire
-      facteur:
-        barème linéaire:
-          assiette: assiette franchisée [€/mois]
-          multiplicateur: SMIC horaire
-          unité: heures/mois
-          tranches:
-            - en-dessous de: 45
-              montant: 5
-            - de: 45
-              à: 60
-              montant: 15
-            - de: 60
-              à: 80
-              montant: 25
-            - de: 80
-              à: 100
-              montant: 35
-            - de: 100
-              à: 115
-              montant: 50
+    grille:
+      assiette: assiette franchisée [€/mois]
+      multiplicateur: SMIC horaire / 1 mois
+      unité: €/mois
+      tranches:
+        - montant: 5 * SMIC horaire
+          plafond: 45 heures
+        - montant: 15 * SMIC horaire
+          plafond: 60 heures
+        - montant: 25 * SMIC horaire
+          plafond: 80 heures
+        - montant: 35 * SMIC horaire
+          plafond: 100 heures
+        - montant: 50 * SMIC horaire
+          plafond: 115 heures
 
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
