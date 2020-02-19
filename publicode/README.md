@@ -144,19 +144,15 @@ impôt sur le revenu:
     barème:
       assiette: revenu imposable
       tranches:
-        - en-dessous de: 9807
-          taux: 0%
-        - de: 9807
-          à: 27086
-          taux: 14%
-        - de: 27086
-          à: 72617
-          taux: 30%
-        - de: 72617
-          à: 153783
-          taux: 41%
-        - au-dessus de: 153783
-          taux: 45%
+        - taux: 0%
+          plafond: 9807
+        - taux: 14%
+          plafond: 27086
+        - taux: 30%
+          plafond: 72617
+        - taux: 41%
+          plafond: 153783
+        - taux: 45%
 ```
 
 La syntaxe hiérarchique de Yaml permet d'imbriquer les mécanismes :

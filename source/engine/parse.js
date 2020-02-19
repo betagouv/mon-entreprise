@@ -5,11 +5,11 @@
 import { formatValue } from 'Engine/format'
 import mecanismRound from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
-import barèmeContinu from 'Engine/mecanisms/barème-continu'
-import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
 import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'
+import grille from 'Engine/mecanisms/grille'
 import operation from 'Engine/mecanisms/operation'
+import tauxProgressif from 'Engine/mecanisms/tauxProgressif'
 import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
@@ -143,8 +143,8 @@ export let parseObject = (rules, rule, parsedRules) => rawNode => {
 			multiplication: mecanismProduct,
 			arrondi: mecanismRound,
 			barème,
-			'barème linéaire': barèmeLinéaire,
-			'barème continu': barèmeContinu,
+			grille,
+			'taux progressif': tauxProgressif,
 			encadrement,
 			durée,
 			'le maximum de': mecanismMax,

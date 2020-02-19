@@ -72,15 +72,13 @@ Conversion de mécanisme 1:
   unité: €/an
   formule:
     barème:
-      assiette: assiette mensuelle [€/an]
+      assiette: assiette mensuelle
       tranches:
-        - en-dessous de: 30000
-          taux: 4.65%
-        - de: 30000
-          à: 90000
-          taux: 3%
-        - au-dessus de: 90000
-          taux: 1%
+        - taux: 4.65%
+          plafond: 30000 €/an
+        - taux: 3%
+          plafond: 90000 €/an
+        - taux: 1%
 
   exemples:
     - situation:
@@ -93,15 +91,13 @@ assiette annuelle:
 Conversion de mécanisme 2:
   formule:
     barème:
-      assiette: assiette annuelle [€/mois]
+      assiette: assiette annuelle
       tranches:
-        - en-dessous de: 2500
-          taux: 4.65%
-        - de: 2500
-          à: 7500
-          taux: 3%
-        - au-dessus de: 7500
-          taux: 1%
+        - taux: 4.65%
+          plafond: 2500 €/mois
+        - taux: 3%
+          plafond: 7500 €/mois
+        - taux: 1%
   exemples:
     - situation:
         assiette annuelle: 36000
@@ -126,8 +122,8 @@ retraite:
   formule:
     multiplication:
       assiette: assiette annuelle
-      plafond: 12 k€/an
       taux: 10%
+      plafond: 12 k€/an
 
 Conversion dans une somme compliquée:
   formule:

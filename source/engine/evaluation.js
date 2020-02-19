@@ -144,7 +144,12 @@ export let evaluateObject = (objectShape, effect) => (
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		automaticExplanation = evolve(fromPairs(transforms))(node.explanation)
 	// the result of effect can either be just a nodeValue, or an object {additionalExplanation, nodeValue}. The latter is useful for a richer JSX visualisation of the mecanism : the view should not duplicate code to recompute intermediate values (e.g. for a marginal 'barème', the marginal 'tranche')
-	let evaluated = effect(automaticExplanation, cache, situationGate, parsedRules),
+	let evaluated = effect(
+			automaticExplanation,
+			cache,
+			situationGate,
+			parsedRules
+		),
 		explanation = is(Object, evaluated)
 			? { ...automaticExplanation, ...evaluated.additionalExplanation }
 			: automaticExplanation,

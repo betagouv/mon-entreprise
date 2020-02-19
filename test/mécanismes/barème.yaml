@@ -1,8 +1,8 @@
 assiette:
-  unité: €
+  unité: €/mois
 
 base:
-  unité: €
+  unité: €/mois
 
 Barème en taux marginaux:
   formule:
@@ -10,14 +10,12 @@ Barème en taux marginaux:
       assiette: assiette
       multiplicateur: base
       tranches:
-        - en-dessous de: 1
-          taux: 4.65%
-        - de: 1
-          à: 3
-          taux: 3%
-        - au-dessus de: 3
-          taux: 1%
-  unité attendue: €
+        - taux: 4.65%
+          plafond: 1
+        - taux: 3%
+          plafond: 3
+        - taux: 1%
+  unité attendue: €/mois
   exemples:
     - nom: 'petite assiette'
       situation:
@@ -42,16 +40,14 @@ Barème à composantes:
       multiplicateur: base
       composantes:
         - tranches:
-            - en-dessous de: 1
-              taux: 2%
-            - au-dessus de: 1
-              taux: 0%
+            - taux: 2%
+              plafond: 1
+            - taux: 0%
         - tranches:
-            - en-dessous de: 2
-              taux: 9%
-            - au-dessus de: 2
-              taux: 29%
-  unité attendue: €
+            - taux: 9%
+              plafond: 2
+            - taux: 29%
+  unité attendue: €/mois
 
   exemples:
     - nom:
@@ -78,11 +74,10 @@ deuxième barème:
       assiette: assiette
       multiplicateur: base
       tranches:
-        - en-dessous de: 1
-          taux: taux variable
-        - au-dessus de: 1
-          taux: 90%
-  unité attendue: €
+        - taux: taux variable
+          plafond: 1
+        - taux: 90%
+  unité attendue: '€/mois'
 
   exemples:
     - nom: taux faible
@@ -109,3 +104,37 @@ deuxième barème:
         base: 100
       variables manquantes:
         - ma condition
+
+tranche 1:
+  formule: 100 €/mois
+tranche 2:
+  unité: €/an
+tranches variables:
+  formule:
+    barème:
+      assiette: assiette
+      tranches:
+        - taux: 10%
+          plafond: tranche 1
+        - taux: 50%
+          plafond: tranche 2
+  exemples:
+    - nom: tranche 2 manquante non active
+      situation:
+        assiette: 40
+      valeur attendue: 4
+    - nom: tranche 2 manquante active
+      situation:
+        assiette: 200
+      variables manquantes:
+        - tranche 2
+    - nom: tranche 2 active
+      situation:
+        assiette: 200
+        tranche 2: 12000
+      valeur attendue: 60 # 10% * 100 + 50% * 100
+    - nom: tranche 2 dépassée
+      situation:
+        assiette: 2000
+        tranche 2: 12000
+      valeur attendue: 460 # 10% * 100 + 50% * 900

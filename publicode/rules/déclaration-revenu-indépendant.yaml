@@ -64,6 +64,10 @@ aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
   remplace: plafond sécurité sociale temps plein
   formule: 3377 €/mois
 
+aide déclaration revenu indépendant 2019 . plafond retraite complémentaire 2019:
+  remplace: dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond
+  formule: 37960 €/an
+
 aide déclaration revenu indépendant 2019 . revenu net fiscal:
   titre: revenu net fiscal
   résumé: avant déduction des charges sociales et exonérations fiscales [A]

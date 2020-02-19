@@ -1,12 +1,26 @@
 import { coerceArray } from '../utils'
 export function syntaxError(
-	dottedName: string,
+	rules: string[] | string,
 	message: string,
 	originalError: Error
 ) {
 	throw new Error(
-		`[ Erreur syntaxique ]
-➡️ Dans la règle \`${dottedName}\`,
+		`\n[ Erreur syntaxique ]
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+✖️ ${message}
+  ${originalError && originalError.message}
+`
+	)
+}
+
+export function evaluationError(
+	rules: string[] | string,
+	message: string,
+	originalError?: Error
+) {
+	throw new Error(
+		`\n[ Erreur d'évaluation ]
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ✖️ ${message}
   ${originalError && originalError.message}
 `
@@ -19,18 +33,22 @@ export function typeWarning(
 	originalError?: Error
 ) {
 	console.warn(
-		`[ Erreur de type ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`,
+		`\n[ Erreur de type ]
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ✖️ ${message}
   ${originalError && originalError.message}
 `
 	)
 }
 
-export function warning(dottedName: string, message: string, solution: string) {
+export function warning(
+	rules: string[] | string,
+	message: string,
+	solution: string
+) {
 	console.warn(
-		`[ Avertissement ]
-➡️ Dans la règle \`${dottedName}\`,
+		`\n[ Avertissement ]
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ⚠️ ${message}
 💡${solution}
 `

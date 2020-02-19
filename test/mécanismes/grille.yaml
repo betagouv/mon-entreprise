@@ -1,0 +1,33 @@
+assiette:
+  unité: €
+
+Grille:
+  formule:
+    grille:
+      assiette: assiette
+      unité: €
+      tranches:
+        - montant: 50
+          plafond: 1000 €
+        - montant: 170
+          plafond: 2000 €
+        - montant: 400
+
+  unité attendue: €
+  exemples:
+    - nom: 'petite assiette'
+      situation:
+        assiette: 200
+      valeur attendue: 50
+    - nom: 'moyenne assiette'
+      situation:
+        assiette: 1500
+      valeur attendue: 170
+    - nom: 'grande assiette'
+      situation:
+        assiette: 10000
+      valeur attendue: 400
+    - nom: 'assiette limite'
+      situation:
+        assiette: 999.3
+      valeur attendue: 50

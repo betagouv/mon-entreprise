@@ -1449,14 +1449,14 @@ contrat salarié . réduction ACRE:
 contrat salarié . réduction ACRE . taux:
   titre: taux ACRE
   formule:
-    barème continu:
+    taux progressif:
       assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale temps plein
-      points:
-        0: 100%
-        0.75: 100%
-        1: 0%
-      retourne seulement le taux: oui
+      tranches:
+        - plafond: 75%
+          taux: 100%
+        - plafond: 100%
+          taux: 0%
 
 contrat salarié . cotisations . salariales . réduction heures supplémentaires:
   cotisation:
@@ -1639,12 +1639,11 @@ contrat salarié . temps de travail . heures supplémentaires . majoration:
   formule:
     barème:
       assiette: heures supplémentaires
-      multiplicateur: 1 heure/semaine * période . semaines par mois
+      multiplicateur: période . semaines par mois
       tranches:
-        - en-dessous de: 8
-          taux: 25%
-        - au-dessus de: 8
-          taux: 50%
+        - taux: 25%
+          plafond: 8 heures/semaine
+        - taux: 50%
 
 contrat salarié . temps de travail . heures complémentaires:
   description: >
@@ -1686,8 +1685,8 @@ contrat salarié . temps de travail . heures complémentaires . majoration:
           assiette:
             encadrement:
               valeur: heures complémentaires
-              plafond: seuil légal de 10 pourcents
-          taux: 10%
+              taux: 10%
+          plafond: seuil légal de 10 pourcents
       - multiplication:
           assiette:
             encadrement:
@@ -1848,21 +1847,19 @@ contrat salarié . contribution d'équilibre général:
         - attributs:
             dû par: employeur
           tranches:
-            - en-dessous de: 1
-              taux: 1.29%
-            - de: 1
-              à: 8
-              taux: 1.62%
+            - taux: 1.29%
+              plafond: 1
+            - taux: 1.62%
+              plafond: 8
 
         - attributs:
             dû par: salarié
           assiette: cotisations . assiette . salariale
           tranches:
-            - en-dessous de: 1
-              taux: 0.86%
-            - de: 1
-              à: 8
-              taux: 1.08%
+            - taux: 0.86%
+              plafond: 1
+            - taux: 1.08%
+              plafond: 8
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -1902,20 +1899,18 @@ contrat salarié . retraite complémentaire:
         - attributs:
             dû par: employeur
           tranches:
-            - en-dessous de: 1
-              taux: taux employeur tranche 1
-            - de: 1
-              à: 8
-              taux: taux employeur tranche 2
+            - taux: taux employeur tranche 1
+              plafond: 1
+            - taux: taux employeur tranche 2
+              plafond: 8
         - attributs:
             dû par: salarié
           assiette: cotisations . assiette . salariale
           tranches:
-            - en-dessous de: 1
-              taux: taux salarié tranche 1
-            - de: 1
-              à: 8
-              taux: taux salarié tranche 2
+            - taux: taux salarié tranche 1
+              plafond: 1
+            - taux: taux salarié tranche 2
+              plafond: 8
 
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -1941,8 +1936,8 @@ contrat salarié . AGS:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      plafond: 4 * plafond sécurité sociale
       taux: 0.15%
+      plafond: 4 * plafond sécurité sociale
 
 contrat salarié . allocations familiales:
   cotisation:
@@ -2170,14 +2165,13 @@ contrat salarié . assiette CSG et CRDS:
 contrat salarié . assiette CSG et CRDS . assiette abattue:
   formule:
     barème:
-      assiette: cotisations . assiette [€/mois]
+      assiette: cotisations . assiette
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
-        - en-dessous de: 4
-          taux: 98.25%
-        - au-dessus de: 4
-          taux: 100%
+        - taux: 98.25%
+          plafond: 4
+        - taux: 100%
 
 contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
@@ -2410,8 +2404,8 @@ contrat salarié . prévoyance obligatoire cadre:
   formule:
     multiplication:
       assiette: cotisations . assiette
-      plafond: plafond sécurité sociale
       taux: 1.5%
+      plafond: plafond sécurité sociale
       # TODO attention : il semblerait que ce 1.5% englobe aussi la complémentaire santé ! La confusion serait entretenue par les organismes de prévoyance...
 
 contrat salarié . taxe d'apprentissage:
@@ -2528,15 +2522,13 @@ contrat salarié . taxe sur les salaires . barème:
 
   formule:
     barème:
-      assiette: assiette [€/an]
+      assiette: assiette
       tranches:
-        - en-dessous de: 7799
-          taux: 4.25%
-        - de: 7799
-          à: 15572
-          taux: 8.5%
-        - au-dessus de: 15572
-          taux: 13.6%
+        - taux: 4.25%
+          plafond: 7799 €/an
+        - taux: 8.5%
+          plafond: 15572 €/an
+        - taux: 13.6%
   exemples:
     - nom: salaire médian
       situation:
@@ -2641,16 +2633,16 @@ contrat salarié . vieillesse:
               taux: taux salarié non plafonné
 
             - nom: plafonnée
-              plafond: plafond sécurité sociale
               taux: taux salarié plafonné
+              plafond: plafond sécurité sociale
         - attributs:
             dû par: employeur
           composantes:
             - nom: non plafonnée
               taux: taux employeur non plafonné
             - nom: plafonnée
-              plafond: plafond sécurité sociale
               taux: taux employeur plafonné
+              plafond: plafond sécurité sociale
 
   exemples:
     - nom: SMIC
