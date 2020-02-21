@@ -248,42 +248,76 @@ contrat salarié . CDD . CPF:
   titre.fr: CPF
 contrat salarié . CDD . compensation pour congés non pris:
   description.en: >-
-    The employee on a fixed-term contract has the same rights for paid leave as
-    the employee on a permanent contract. He acquires and takes his paid leave
-    under the same conditions.
+    [automatic] The employee with a fixed-term contract has the same paid
+    vacation entitlements as the employee with a permanent contract. He acquires
+    and takes his paid leave under the same conditions.
 
+    However, it is common that the employee may not take all of his or her leave
+    before the end of the contract, in which case he or she will receive a
+    compensatory allowance for paid leave paid by the employer.
 
-    It is however common that the employee can not take all his leave before the
-    end of his contract. In that case, he receives a compensatory alowance paid
-    by the employer.
-  description.fr: >
+    There are two methods of calculating the allowance for leave without pay.
+
+    ### Tenths method
+
+    This method of calculation will most often be favourable to the employee
+    when he or she has worked overtime. An allowance equal to one tenth of the
+    total gross remuneration received by the employee during the reference
+    period.
+
+    ## Salary continuance method ## 
+
+    This method will most often be favourable to the employee when he or she has
+    received a salary increase.
+
+    In making the calculation, the employer may take into account either : - the
+    actual time of the month, - the average number of working days (or working
+    days), - the actual number of working days (or working days).
+  description.fr: >-
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
-
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses
     congés avant le terme de son contrat, il bénéficie alors d'une indemnité
     compensatrice de congés payés versée par l'employeur.
+
+    Il existe deux méthodes pour calculer l'indemnité de congés non pris.
+
+    ### Méthode "du dixième"
+
+    Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci
+    a accompli des heures supplémentaires. Une indemnité égale au dixième de la
+    rémunération brute totale perçue par le salarié au cours de la période de
+    référence.
+
+    ### Méthode "maintien du salaire" 
+
+    Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
+    bénéficié d’une augmentation de salaire.
+
+    Pour effectuer le calcul, l'employeur peut tenir compte soit : - de
+    l'horaire réel du mois, - du nombre moyen de jours ouvrables (ou ouvrés), -
+    du nombre réel de jours ouvrables (ou ouvrés).
   note.en: >
     [automatic] The indemnity is paid at the end of the contract, unless the
     fixed-term contract is continued by a permanent contract.
 
     Note that the El Khomri law modifies article L3141-12:
 
-    - before: Leave can be taken as soon as you become entitled....
+    - before: Leave can be taken as soon as the entitlement arises. 
 
-    - now: Leaves can be taken as soon as you are hired...
+    - now: Leaves can be taken as soon as you are hired.
   note.fr: >
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par
     un CDI.
 
     À noter, la loi El Khomri modifie l'article L3141-12:
 
-    - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
+    - avant : Les congés peuvent être pris dès l'ouverture des droits 
 
-    - maintenant : Les congés peuvent être pris dès l’embauche [...]
-  titre.en: untaken vacation compensation
-  titre.fr: compensation pour congés non pris
+    - maintenant : Les congés peuvent être pris dès l’embauche
+  titre.en: '[automatic] holiday pay'
+  titre.fr: indemnité de congés payés
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   titre.en: monthly basis
   titre.fr: assiette mensuelle
@@ -328,7 +362,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -706,7 +740,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -798,7 +832,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
+  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -993,12 +1027,12 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
   titre.en: 'hotels, cafés restaurants HCR (beta)'
   titre.fr: 'hôtels, cafés restaurants HCR (beta)'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -1566,7 +1600,7 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   description.fr: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
-  question.en: "[automatic] What is the employer's paid portion?"
+  question.en: '[automatic] What is the employer''s paid portion?'
   question.fr: Quelle est la participation de l'employeur ?
   suggestions.50%.en: '[automatic] 50%'
   suggestions.50%.fr: 50%
@@ -1972,7 +2006,7 @@ contrat salarié . réduction générale . assiette:
   titre.fr: Assiette de la réduction générale
 contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
   note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: "En pratique, l'ATMP est toujours supérieure à 0.78%"
+  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
   titre.en: share of ATMP contribution
   titre.fr: part de la cotisation ATMP
 contrat salarié . réduction générale . multiplicateur:
@@ -3692,7 +3726,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . retraite complémentaire:
@@ -4022,7 +4056,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -4141,7 +4175,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -4358,7 +4392,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
