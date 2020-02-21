@@ -557,13 +557,12 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de ba
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   formule:
     barème:
-      multiplicateur: cotisations et contributions . cotisations . retraite complémentaire . plafond
       assiette: retraite complémentaire . assiette
       tranches:
         - taux: 7%
-          plafond: 1
+          plafond: cotisations et contributions . cotisations . retraite complémentaire . plafond
         - taux: 8%
-          plafond: 4
+          plafond: 4 * plafond sécurité sociale temps plein
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
@@ -888,8 +887,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond:
   acronyme: PRCI
   titre: plafond retraite complémentaire des indépendants
-  formule: 37960 €/an
-  # formule: 38340 €/an (2020)
+  formule: 38340 €/an
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
