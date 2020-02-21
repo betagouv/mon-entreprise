@@ -90,9 +90,7 @@ export const TrancheTable = ({ tranches, multiplicateur }) => {
 }
 
 const Tranche = ({ tranche, multiplicateur }) => {
-	const isHighlighted =
-		tranche.isActive || (tranche.nodeValue != null && tranche.nodeValue)
-
+	const isHighlighted = tranche.isActive
 	return (
 		<tr className={classNames('tranche', { activated: isHighlighted })}>
 			<td key="tranche">

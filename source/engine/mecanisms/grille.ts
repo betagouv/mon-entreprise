@@ -73,9 +73,11 @@ const evaluate = (
 
 	return {
 		...node,
-		tranches,
-		assiette,
-		multiplicateur,
+		explanation: {
+			tranches,
+			assiette,
+			multiplicateur
+		},
 		missingVariables,
 		nodeValue,
 		unit: activeTranches[0]?.unit ?? node.unit
