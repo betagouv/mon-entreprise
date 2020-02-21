@@ -44,15 +44,18 @@ export let evaluateNode = (cache, situationGate, parsedRules, node) => {
 }
 const sameUnitValues = (explanation, contextRule, mecanismName) => {
 	const firstNodeWithUnit = explanation.find(node => !!node.unit)
+	if (!firstNodeWithUnit) {
+		return [undefined, explanation.map(({ nodeValue }) => nodeValue)]
+	}
 	const values = explanation.map(node => {
 		try {
-			return convertNodeToUnit(firstNodeWithUnit.unit, node).nodeValue
+			return convertNodeToUnit(firstNodeWithUnit?.unit, node).nodeValue
 		} catch (e) {
 			typeWarning(
 				contextRule,
-				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${node.name ||
-					node.rawNode}\n\t\t${firstNodeWithUnit.name ||
-					firstNodeWithUnit.rawNode}'`,
+				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${node?.name ||
+					node?.rawNode}\n\t\t${firstNodeWithUnit?.name ||
+					firstNodeWithUnit?.rawNode}'`,
 				e
 			)
 			return node.nodeValue

@@ -294,41 +294,6 @@ describe('analyse with mecanisms', function() {
 		).to.have.property('nodeValue', 3200)
 	})
 
-	it('should handle complements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: { complément: { cible: 'dix', montant: 93 } }
-				},
-				{ nom: 'top . dix', formule: 17 }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 93 - 17)
-	})
-
-	it('should handle components in complements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						complément: {
-							cible: 'dix',
-							composantes: [{ montant: 93 }, { montant: 93 }]
-						}
-					}
-				},
-				{ nom: 'top . dix', formule: 17 }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 2 * (93 - 17))
-	})
-
 	it('should handle filtering on components', function() {
 		let rawRules = [
 				{ nom: 'top' },
