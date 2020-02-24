@@ -64,7 +64,7 @@ export default function Landing() {
 			<button className="ui__ button small">Lancer le calcul ⚡</button>
 			<p>
 				En plus du site Web, Mon-entreprise est disponible comme une{' '}
-				<a href="/intégration/bibliothèque-de-calcul">
+				<a href="https://mon-entreprise.fr/intégration/bibliothèque-de-calcul">
 					bibliothèque de calcul autonome
 				</a>
 				.
