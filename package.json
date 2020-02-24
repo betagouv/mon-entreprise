@@ -1,7 +1,7 @@
 {
 	"name": "mon-entreprise",
 	"license": "MIT",
-	"version": "1.2.6",
+	"version": "1.2.8",
 	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build cool forms that asks the question needed to compute an objective.",
 	"main": "./dist/engine.js",
 	"files": [
@@ -63,7 +63,7 @@
 		"whatwg-fetch": "^3.0.0"
 	},
 	"scripts": {
-		"postinstall": "node source/scripts/postinstall.js",
+		"prepare": "node source/scripts/prepare.js",
 		"compile": "yarn run webpack --config source/webpack.prod.js && yarn run webpack --config source/webpack.prod.legacyBrowser.js",
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
