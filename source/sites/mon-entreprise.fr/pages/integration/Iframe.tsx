@@ -93,6 +93,15 @@ function IntegrationCustomizer() {
 						className="ui__ right-side"
 						css={`
 							overflow: hidden;
+
+							/* The .full-width class is implemented using the calc() function
+							and rely on the width of the page, which doesn't work in this case
+							because the width of the preview "page" is smaller than the width
+							of the actual screen. */
+							.ui__.full-width {
+								margin-left: initial !important;
+								margin-right: initial !important;
+							}
 						`}
 					>
 						<h3>
