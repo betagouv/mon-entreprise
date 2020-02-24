@@ -2,12 +2,36 @@ import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import { inferUnit, isPercentUnit } from 'Engine/units'
-import { add, any, equals, evolve, is, map, max, mergeWith, min, path, pluck, reduce, subtract, toPairs } from 'ramda'
+import {
+	add,
+	any,
+	equals,
+	evolve,
+	is,
+	map,
+	max,
+	mergeWith,
+	min,
+	path,
+	pluck,
+	reduce,
+	subtract,
+	toPairs
+} from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import 'react-virtualized/styles.css'
 import { typeWarning } from './error'
-import { collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, parseObject } from './evaluation'
+import {
+	collectNodeMissing,
+	defaultNode,
+	evaluateArray,
+	evaluateNode,
+	evaluateObject,
+	makeJsx,
+	mergeAllMissing,
+	parseObject
+} from './evaluation'
 import Allègement from './mecanismViews/Allègement'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'

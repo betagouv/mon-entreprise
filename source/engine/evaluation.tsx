@@ -5,19 +5,20 @@ import {
 	evolve,
 	filter,
 	fromPairs,
-	is,
 	keys,
 	map,
 	mergeWith,
-	reduce,
-	values
+	reduce
 } from 'ramda'
 import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import {
-	createTemporalValue,
-	mergeTemporalValuesWith,
-	periodAverage
+	concatTemporals,
+	liftTemporalNode,
+	mapTemporal,
+	periodAverage,
+	pure,
+	zipTemporals
 } from './period'
 
 export let makeJsx = node =>
@@ -75,48 +76,37 @@ export let evaluateArray = (reducer, start) => (
 	node
 ) => {
 	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
-	const explanation = node.explanation.map(evaluate)
-	if (explanation.some(node => node.temporalValue)) {
-		const reducerWithNull = (value1, value2) =>
-			value1 === null || value2 === null ? null : reducer(value1, value2)
-		const temporalValue = explanation.reduce((acc, node) => {
-			if (!node.temporalValue && !Array.isArray(acc)) {
-				return reducerWithNull(acc, node.nodeValue)
-			}
-			const temporalValue =
-				node.temporalValue ?? createTemporalValue(node.nodeValue)
-			const temporalAcc = Array.isArray(acc) ? acc : createTemporalValue(acc)
-
-			return mergeTemporalValuesWith(
-				reducerWithNull,
-				temporalAcc,
-				temporalValue
-			)
-		}, start)
-		return {
-			...node,
-			nodeValue: periodAverage(temporalValue),
-			temporalValue,
-			explanation
-		}
-	}
-
-	const [unit, values] = sameUnitValues(
+	const temporalExplanation = concatTemporals(
+		node.explanation.map(evaluate).map(liftTemporalNode)
+	)
+	const temporalEvaluations = mapTemporal(explanation => {
+		explanation
+		const [unit, values] = sameUnitValues(
 			explanation,
 			cache._meta.contextRule,
 			node.name
-		),
-		nodeValue = values.some(value => value === null)
+		)
+		const nodeValue = values.some(value => value === null)
 			? null
-			: reduce(reducer, start, values),
-		missingVariables =
+			: reduce(reducer, start, values)
+		const missingVariables =
 			node.nodeValue == null ? mergeAllMissing(explanation) : {}
+		return {
+			...node,
+			nodeValue,
+			explanation,
+			missingVariables,
+			unit
+		}
+	}, temporalExplanation)
+	if (temporalEvaluations.length === 1) {
+		return temporalEvaluations[0]
+	}
+	const temporalValue = mapTemporal(node => node.nodeValue, temporalEvaluations)
 	return {
 		...node,
-		nodeValue,
-		explanation,
-		missingVariables,
-		unit
+		temporalValue,
+		nodeValue: periodAverage(temporalValue)
 	}
 }
 
@@ -171,28 +161,42 @@ export let evaluateObject = (objectShape, effect) => (
 	parsedRules,
 	node
 ) => {
-	let evaluateOne = child =>
-		evaluateNode(cache, situationGate, parsedRules, child)
+	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const evaluations = map(evaluate, node.explanation)
+	const temporalExplanations = mapTemporal(
+		Object.fromEntries,
+		concatTemporals(
+			Object.entries(evaluations).map(([key, node]) =>
+				zipTemporals(pure(key), liftTemporalNode(node))
+			)
+		)
+	)
+	const temporalEvaluations = mapTemporal(
+		explanations => effect(explanations, cache, situationGate, parsedRules),
+		temporalExplanations
+	)
 
-	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
-		automaticExplanation = evolve(fromPairs(transforms))(node.explanation)
-	// the result of effect can either be just a nodeValue, or an object {additionalExplanation, nodeValue}. The latter is useful for a richer JSX visualisation of the mecanism : the view should not duplicate code to recompute intermediate values (e.g. for a marginal 'barème', the marginal 'tranche')
-	let evaluated = effect(
-			automaticExplanation,
-			cache,
-			situationGate,
-			parsedRules
-		),
-		explanation = is(Object, evaluated)
-			? { ...automaticExplanation, ...evaluated.additionalExplanation }
-			: automaticExplanation,
-		nodeValue = is(Object, evaluated) ? evaluated.nodeValue : evaluated,
-		missingVariables = mergeAllMissing(values(explanation))
+	const temporalValue = mapTemporal(
+		evaluation =>
+			evaluation !== null && typeof evaluation === 'object'
+				? evaluation.nodeValue
+				: evaluation,
+		temporalEvaluations
+	)
+	const nodeValue = periodAverage(temporalValue)
+
 	return simplifyNodeUnit({
 		...node,
 		nodeValue,
-		explanation,
-		missingVariables,
-		unit: explanation.unit
+		...(temporalEvaluations.length > 1
+			? { temporalValue }
+			: {
+					missingVariables: mergeAllMissing(Object.values(evaluations)),
+					explanation: {
+						...evaluations,
+						...temporalEvaluations[0].additionalExplanation
+					},
+					unit: temporalEvaluations[0].unit
+			  })
 	})
 }

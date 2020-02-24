@@ -59,28 +59,31 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 // Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
 // Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
 type Evaluation<T> = T | false | null
+
 type EvaluatedNode<T> = {
 	nodeValue: Evaluation<T>
-	temporalValue?: TemporalValue<Evaluation<T>>
+	temporalValue?: Temporal<Evaluation<T>>
 }
-export type TemporalValue<T> = Array<Period<string> & { value: T }>
+
+type TemporalNode<T> = Temporal<{ nodeValue: Evaluation<T> }>
+export type Temporal<T> = Array<Period<string> & { value: T }>
 
 export function narrowTemporalValue<T>(
 	period: Period<string>,
-	temporalValue: TemporalValue<Evaluation<T>>
-): TemporalValue<Evaluation<T>> {
-	return mergeTemporalValuesWith(
+	temporalValue: Temporal<Evaluation<T>>
+): Temporal<Evaluation<T>> {
+	return liftTemporal2(
 		(value, filter) => filter && value,
 		temporalValue,
-		createTemporalValue(true, period)
+		createTemporalEvaluation(true, period)
 	)
 }
 
 // Returns a temporal value that's true for the given period and false otherwise.
-export function createTemporalValue<T>(
+export function createTemporalEvaluation<T>(
 	value: Evaluation<T>,
 	period: Period<string> = { start: null, end: null }
-): TemporalValue<Evaluation<T>> {
+): Temporal<Evaluation<T>> {
 	let temporalValue = [{ ...period, value }]
 	if (period.start != null) {
 		temporalValue.unshift({
@@ -99,10 +102,14 @@ export function createTemporalValue<T>(
 	return temporalValue
 }
 
-export function mapTemporalValue<T1, T2>(
+export function pure<T>(value: T): Temporal<T> {
+	return [{ start: null, end: null, value }]
+}
+
+export function mapTemporal<T1, T2>(
 	fn: (value: T1) => T2,
-	temporalValue: TemporalValue<T1>
-): TemporalValue<T2> {
+	temporalValue: Temporal<T1>
+): Temporal<T2> {
 	return temporalValue.map(({ start, end, value }) => ({
 		start,
 		end,
@@ -110,22 +117,45 @@ export function mapTemporalValue<T1, T2>(
 	}))
 }
 
-export function mergeTemporalValuesWith<T1, T2, T3>(
+function liftTemporal2<T1, T2, T3>(
 	fn: (value1: T1, value2: T2) => T3,
-	temporalValue1: TemporalValue<T1>,
-	temporalValue2: TemporalValue<T2>
-): TemporalValue<T3> {
-	return mapTemporalValue(
+	temporalValue1: Temporal<T1>,
+	temporalValue2: Temporal<T2>
+): Temporal<T3> {
+	return mapTemporal(
 		([a, b]) => fn(a, b),
-		concatTemporalValues(temporalValue1, temporalValue2)
+		zipTemporals(temporalValue1, temporalValue2)
 	)
 }
 
-export function concatTemporalValues<T1, T2>(
-	temporalValue1: TemporalValue<T1>,
-	temporalValue2: TemporalValue<T2>,
-	acc: TemporalValue<[T1, T2]> = []
-): TemporalValue<[T1, T2]> {
+export function concatTemporals<T, U>(
+	temporalValues: Array<Temporal<T>>
+): Temporal<Array<T>> {
+	return temporalValues.reduce(
+		(values, value) => liftTemporal2((a, b) => [...a, b], values, value),
+		pure([]) as Temporal<Array<T>>
+	)
+}
+
+export function liftTemporalNode<T>(node: EvaluatedNode<T>): TemporalNode<T> {
+	const { temporalValue, ...baseNode } = node
+	if (!temporalValue) {
+		return pure(baseNode)
+	}
+	return mapTemporal(
+		nodeValue => ({
+			...baseNode,
+			nodeValue
+		}),
+		temporalValue
+	)
+}
+
+export function zipTemporals<T1, T2>(
+	temporalValue1: Temporal<T1>,
+	temporalValue2: Temporal<T2>,
+	acc: Temporal<[T1, T2]> = []
+): Temporal<[T1, T2]> {
 	if (!temporalValue1.length && !temporalValue2.length) {
 		return acc
 	}
@@ -136,7 +166,7 @@ export function concatTemporalValues<T1, T2>(
 
 	// End dates are equals
 	if (endDateComparison === 0) {
-		return concatTemporalValues(rest1, rest2, [
+		return zipTemporals(rest1, rest2, [
 			...acc,
 			{ ...value1, value: [value1.value, value2.value] }
 		])
@@ -144,7 +174,7 @@ export function concatTemporalValues<T1, T2>(
 	// Value1 lasts longuer than value1
 	if (endDateComparison > 0) {
 		console.assert(value2.end !== null)
-		return concatTemporalValues(
+		return zipTemporals(
 			[
 				{ ...value1, start: getRelativeDate(value2.end as string, 1) },
 				...rest1
@@ -163,7 +193,7 @@ export function concatTemporalValues<T1, T2>(
 	// Value2 lasts longuer than value1
 	if (endDateComparison < 0) {
 		console.assert(value1.end !== null)
-		return concatTemporalValues(
+		return zipTemporals(
 			rest1,
 			[
 				{ ...value2, start: getRelativeDate(value1.end as string, 1) },
@@ -181,7 +211,7 @@ export function concatTemporalValues<T1, T2>(
 	throw new EvalError('All case should have been covered')
 }
 
-function simplify<T>(temporalValue: TemporalValue<T>): TemporalValue<T> {
+function simplify<T>(temporalValue: Temporal<T>): Temporal<T> {
 	return temporalValue
 }
 
@@ -218,7 +248,7 @@ function compareEndDate(
 }
 
 export function periodAverage(
-	temporalValue: TemporalValue<Evaluation<number>>
+	temporalValue: Temporal<Evaluation<number>>
 ): Evaluation<number> {
 	temporalValue = temporalValue.filter(({ value }) => value !== false)
 	const first = temporalValue[0]

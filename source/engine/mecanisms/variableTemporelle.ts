@@ -1,10 +1,10 @@
 import { evaluateNode } from 'Engine/evaluation'
 import {
-	createTemporalValue,
+	createTemporalEvaluation,
 	narrowTemporalValue,
 	periodAverage
 } from 'Engine/period'
-import { TemporalValue } from './../period'
+import { Temporal } from './../period'
 
 function evaluate(
 	cache: any,
@@ -18,6 +18,7 @@ function evaluate(
 		situation,
 		parsedRules
 	)
+
 	const start = node.period.start && evaluateAttribute(node.period.start)
 	const end = node.period.end && evaluateAttribute(node.period.end)
 	const explanation = evaluateAttribute(node.explanation)
@@ -28,12 +29,12 @@ function evaluate(
 
 	const temporalValue = explanation.temporalValue
 		? narrowTemporalValue(period, explanation.temporalValue)
-		: createTemporalValue(explanation.nodeValue, period)
+		: createTemporalEvaluation(explanation.nodeValue, period)
 	// TODO explanation missingVariables / period missing variables
 
 	return {
 		...node,
-		nodeValue: periodAverage(temporalValue as TemporalValue<number>),
+		nodeValue: periodAverage(temporalValue as Temporal<number>),
 		temporalValue,
 		period: { start, end },
 		explanation
