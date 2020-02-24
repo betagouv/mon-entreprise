@@ -15,11 +15,9 @@ import {
 	path,
 	pluck,
 	reduce,
-	subtract,
 	toPairs
 } from 'ramda'
 import React from 'react'
-import { Trans } from 'react-i18next'
 import 'react-virtualized/styles.css'
 import { typeWarning } from './error'
 import {
@@ -281,7 +279,7 @@ export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 	let evaluate = (currentCache, situationGate, parsedRules, node) => {
 		let defaultRuleToEvaluate = dottedNameContext
 		let nodeToEvaluate = recurse(node?.règle ?? defaultRuleToEvaluate)
-		let cache = { _meta: currentCache._meta, _metaInRecalcul: true } // Create an empty cache
+		let cache = { _meta: { ...currentCache._meta, inRecalcul: true } } // Create an empty cache
 		let amendedSituation = Object.fromEntries(
 			Object.keys(node.avec).map(dottedName => [
 				disambiguateRuleReference(
@@ -293,7 +291,7 @@ export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 			])
 		)
 
-		if (currentCache._metaInRecalcul) {
+		if (currentCache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
 
@@ -376,7 +374,7 @@ export let mecanismReduction = (recurse, k, v) => {
 		cache
 	) => {
 		let v_assiette = assiette.nodeValue
-		if (v_assiette == null) return null
+		if (v_assiette == null) return { nodeValue: null }
 		if (assiette.unit) {
 			try {
 				franchise = convertNodeToUnit(assiette.unit, franchise)
@@ -431,8 +429,8 @@ export let mecanismReduction = (recurse, k, v) => {
 			: montantFranchiséDécoté
 		return {
 			nodeValue,
-			additionalExplanation: {
-				unit: assiette.unit,
+			unit: assiette.unit,
+			explanation: {
 				franchise,
 				plafond,
 				abattement
@@ -509,9 +507,10 @@ export let mecanismProduct = (recurse, k, v) => {
 				  )
 		return {
 			nodeValue,
-			additionalExplanation: {
-				plafondActif: assiette.nodeValue > plafond.nodeValue,
-				unit
+
+			unit,
+			explanation: {
+				plafondActif: assiette.nodeValue > plafond.nodeValue
 			}
 		}
 	}
@@ -598,53 +597,6 @@ export let mecanismMin = (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'le minimum de',
 		unit: explanation[0].unit
-	}
-}
-
-export let mecanismComplement = (recurse, k, v) => {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
-		return decompose(recurse, k, v)
-	}
-
-	let objectShape = { cible: false, montant: false }
-	let effect = ({ cible, montant }) => {
-		let nulled = cible.nodeValue == null
-		return nulled
-			? null
-			: subtract(montant.nodeValue, min(cible.nodeValue, montant.nodeValue))
-	}
-	let explanation = parseObject(recurse, objectShape, v)
-
-	return {
-		evaluate: evaluateObject(objectShape, effect),
-		explanation,
-		type: 'numeric',
-		category: 'mecanism',
-		name: 'complément pour atteindre',
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<Node
-				classes="mecanism list complement"
-				name="complément"
-				value={nodeValue}
-			>
-				<ul className="properties">
-					<li key="cible">
-						<span className="key">
-							<Trans>cible</Trans>:{' '}
-						</span>
-						<span className="value">{makeJsx(explanation.cible)}</span>
-					</li>
-					<li key="mini">
-						<span className="key">
-							<Trans>montant à atteindre</Trans>:{' '}
-						</span>
-						<span className="value">{makeJsx(explanation.montant)}</span>
-					</li>
-				</ul>
-			</Node>
-		)
 	}
 }
 

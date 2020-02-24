@@ -164,15 +164,15 @@ variable temporelle numérique . multiplication avec valeur au dessus du plafond
   exemples:
     - valeur attendue: 337.7 # (2000 * 8 + 2200 * 23)/31
 
-# variable temporelle numérique . multiplication avec valeur sur l'année:
-#   formule: contrat salarié . cotisations . retraite | du 01/01/2019 | au 31/12/2019
-#   exemples:
-#     #   200 * 6 [janvier-juin]
-#     # + 214.839 [juillet]
-#     # + 220 * 4 [aout-novembre]
-#     # + 337.7 [décembre]
-#     # /12 mois
-#     - valeur attendue: 219.378
+variable temporelle numérique . multiplication avec valeur sur l'année:
+  formule: contrat salarié . cotisations . retraite | du 01/01/2019 | au 31/12/2019
+  exemples:
+    #   200 * 6 [janvier-juin]
+    # + 214.839 [juillet]
+    # + 220 * 4 [aout-novembre]
+    # + 337.7 [décembre]
+    # /12 mois
+    - valeur attendue: 219.378
 # test . proratisation du salaire avec entrée en cours de mois:
 #   formule: salaire brut [avril 2019]
 #   exemples:

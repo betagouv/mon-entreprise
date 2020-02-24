@@ -1,7 +1,5 @@
 import {
 	add,
-	any,
-	equals,
 	evolve,
 	filter,
 	fromPairs,
@@ -16,8 +14,8 @@ import {
 	concatTemporals,
 	liftTemporalNode,
 	mapTemporal,
-	periodAverage,
-	pure,
+	pureTemporal,
+	temporalAverage,
 	zipTemporals
 } from './period'
 
@@ -47,14 +45,15 @@ export let evaluateNode = (cache, situationGate, parsedRules, node) => {
 		: simplifyNodeUnit(evaluatedNode)
 	return evaluatedNode
 }
-const sameUnitValues = (explanation, contextRule, mecanismName) => {
-	const firstNodeWithUnit = explanation.find(node => !!node.unit)
+
+function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
+	const firstNodeWithUnit = nodes.find(node => !!node.unit)
 	if (!firstNodeWithUnit) {
-		return [undefined, explanation.map(({ nodeValue }) => nodeValue)]
+		return nodes
 	}
-	const values = explanation.map(node => {
+	return nodes.map(node => {
 		try {
-			return convertNodeToUnit(firstNodeWithUnit?.unit, node).nodeValue
+			return convertNodeToUnit(firstNodeWithUnit.unit, node)
 		} catch (e) {
 			typeWarning(
 				contextRule,
@@ -63,77 +62,66 @@ const sameUnitValues = (explanation, contextRule, mecanismName) => {
 					firstNodeWithUnit?.rawNode}'`,
 				e
 			)
-			return node.nodeValue
+			return node
 		}
 	})
-	return [firstNodeWithUnit.unit, values]
 }
 
-export let evaluateArray = (reducer, start) => (
+export const evaluateArray = (reducer, start) => (
 	cache,
 	situationGate,
 	parsedRules,
 	node
 ) => {
 	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
-	const temporalExplanation = concatTemporals(
-		node.explanation.map(evaluate).map(liftTemporalNode)
+	const evaluatedNodes = convertNodesToSameUnit(
+		node.explanation.map(evaluate),
+		cache._meta.contextRule,
+		node.name
 	)
-	const temporalEvaluations = mapTemporal(explanation => {
-		explanation
-		const [unit, values] = sameUnitValues(
-			explanation,
-			cache._meta.contextRule,
-			node.name
-		)
-		const nodeValue = values.some(value => value === null)
-			? null
-			: reduce(reducer, start, values)
-		const missingVariables =
-			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-		return {
-			...node,
-			nodeValue,
-			explanation,
-			missingVariables,
-			unit
-		}
-	}, temporalExplanation)
-	if (temporalEvaluations.length === 1) {
-		return temporalEvaluations[0]
+	if (!evaluatedNodes.every(Boolean)) {
+		console.log(node.explanation)
 	}
-	const temporalValue = mapTemporal(node => node.nodeValue, temporalEvaluations)
-	return {
+	const temporalValues = concatTemporals(
+		evaluatedNodes.map(
+			({ temporalValue, nodeValue }) => temporalValue ?? pureTemporal(nodeValue)
+		)
+	)
+	const temporalValue = mapTemporal(values => {
+		if (values.some(value => value === null)) {
+			return null
+		}
+		return reduce(reducer, start, values)
+	}, temporalValues)
+
+	const baseEvaluation = {
 		...node,
+		explanation: evaluatedNodes,
+		unit: evaluatedNodes[0].unit
+	}
+	if (temporalValue.length === 1) {
+		return {
+			...baseEvaluation,
+			nodeValue: temporalValue[0].value
+		}
+	}
+	return {
+		...baseEvaluation,
 		temporalValue,
-		nodeValue: periodAverage(temporalValue)
+		nodeValue: temporalAverage(temporalValue)
 	}
 }
 
-export let evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
+export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	cache,
 	situationGate,
 	parsedRules,
 	node
 ) => {
-	let evaluateOne = child =>
-			evaluateNode(cache, situationGate, parsedRules, child),
-		explanation = map(
-			evaluateOne,
-			filter(evaluationFilter(situationGate), node.explanation)
-		),
-		[unit, values] = sameUnitValues(
-			explanation,
-			cache._meta.contextRule,
-			node.name
-		),
-		nodeValue = any(equals(null), values)
-			? null
-			: reduce(reducer, start, values),
-		missingVariables =
-			node.nodeValue == null ? mergeAllMissing(explanation) : {}
-
-	return { ...node, nodeValue, explanation, missingVariables, unit }
+	return evaluateArray(reducer, start)(cache, situationGate, parsedRules, {
+		...node,
+		explanation: filter(evaluationFilter(situationGate), node.explanation)
+	})
 }
 
 export let defaultNode = nodeValue => ({
@@ -167,36 +155,53 @@ export let evaluateObject = (objectShape, effect) => (
 		Object.fromEntries,
 		concatTemporals(
 			Object.entries(evaluations).map(([key, node]) =>
-				zipTemporals(pure(key), liftTemporalNode(node))
+				zipTemporals(pureTemporal(key), liftTemporalNode(node))
 			)
 		)
 	)
-	const temporalEvaluations = mapTemporal(
-		explanations => effect(explanations, cache, situationGate, parsedRules),
-		temporalExplanations
-	)
+	const temporalExplanation = mapTemporal(explanations => {
+		const evaluation = effect(explanations, cache, situationGate, parsedRules)
+		return {
+			...evaluation,
+			explanation: {
+				...explanations,
+				...evaluation.explanation
+			}
+		}
+	}, temporalExplanations)
+
+	const sameUnitTemporalExplanation = convertNodesToSameUnit(
+		temporalExplanation.map(x => x.value),
+		cache._meta.contextRule,
+		node.name
+	).map((node, i) => ({
+		...temporalExplanation[i],
+		value: simplifyNodeUnit(node)
+	}))
 
 	const temporalValue = mapTemporal(
-		evaluation =>
-			evaluation !== null && typeof evaluation === 'object'
-				? evaluation.nodeValue
-				: evaluation,
-		temporalEvaluations
+		({ nodeValue }) => nodeValue,
+		sameUnitTemporalExplanation
 	)
-	const nodeValue = periodAverage(temporalValue)
-
-	return simplifyNodeUnit({
+	const nodeValue = temporalAverage(temporalValue)
+	if (nodeValue === 495) {
+		console.log(temporalValue)
+	}
+	const baseEvaluation = {
 		...node,
 		nodeValue,
-		...(temporalEvaluations.length > 1
-			? { temporalValue }
-			: {
-					missingVariables: mergeAllMissing(Object.values(evaluations)),
-					explanation: {
-						...evaluations,
-						...temporalEvaluations[0].additionalExplanation
-					},
-					unit: temporalEvaluations[0].unit
-			  })
-	})
+		unit: sameUnitTemporalExplanation[0].value.unit,
+		explanation: evaluations
+	}
+	if (sameUnitTemporalExplanation.length === 1) {
+		return {
+			...baseEvaluation,
+			explanation: sameUnitTemporalExplanation[0].value.explanation
+		}
+	}
+	return {
+		...baseEvaluation,
+		temporalValue,
+		temporalExplanation
+	}
 }

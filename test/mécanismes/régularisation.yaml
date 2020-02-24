@@ -1,0 +1,40 @@
+salaire:
+  unité: €/mois
+  formule:
+    somme:
+      - 3300 €/mois | du 01/01/2020 | au 29/02/2020
+      - 3600 €/mois | du 01/03/2020 | au 31/12/2020
+
+plafond sécurité sociale:
+  unité: €/mois
+  formule: 3500 €/mois | du 01/01/2020 | au 31/12/2020
+
+retraite:
+  formule:
+    multiplication:
+      assiette: salaire
+      plafond: plafond sécurité sociale
+      taux: 10%
+
+retraite . avec régularisation:
+  formule:
+    régularisation:
+      règle: retraite
+      valeurs cumulées:
+        - salaire
+        - plafond sécurité sociale
+
+régularisation . avant passage:
+  formule: retraite . avec régularisation | du 01/01/2020 | au 29/02/2020
+  exemples:
+    - valeur attendue: 330
+
+régularisation . test mois régularisés:
+  formule: retraite . avec régularisation | du 01/03/2020 | au 30/06/2020
+  exemples:
+    - valeur attendue: 360
+
+régularisation . test mois après régularisation:
+  formule: retraite . avec régularisation | du 01/07/2020 | au 31/12/2020
+  exemples:
+    - valeur attendue: 350

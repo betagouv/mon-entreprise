@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import {
 	concatTemporals,
 	createTemporalEvaluation,
+	groupByYear,
 	zipTemporals
 } from '../source/engine/period'
 
@@ -67,5 +68,65 @@ describe('Periods : concat', () => {
 			{ start: '15/04/2019', end: '08/08/2019', value: [10, 2000] },
 			{ start: '09/08/2019', end: null, value: [10, 200] }
 		])
+	})
+})
+
+describe('Periods : groupByYear', () => {
+	const invariants = temporalYear => {
+		const startDate = temporalYear[0].start
+		const endDate = temporalYear.slice(-1)[0].end
+		expect(
+			startDate === null || startDate.startsWith('01/01'),
+			'starts at the beginning of a year'
+		)
+		expect(
+			endDate === null || endDate.startsWith('31/12'),
+			'stops at the end of a year'
+		)
+	}
+	it('should handle constant value', () => {
+		const value = createTemporalEvaluation(10)
+		expect(groupByYear(value)).to.deep.equal([value])
+	})
+	it('should handle changing value', () => {
+		const value = createTemporalEvaluation(10, {
+			start: '06/06/2020',
+			end: '20/12/2020'
+		})
+		const result = groupByYear(value)
+		expect(result).to.have.length(3)
+		result.forEach(invariants)
+	})
+	it('should handle changing value over several years', () => {
+		const value = createTemporalEvaluation(10, {
+			start: '06/06/2020',
+			end: '20/12/2022'
+		})
+		const result = groupByYear(value)
+		expect(result).to.have.length(5)
+		result.forEach(invariants)
+	})
+	it('should handle complex case', () => {
+		const result = groupByYear(
+			concatTemporals([
+				createTemporalEvaluation(1, {
+					start: '06/06/2020',
+					end: '20/12/2022'
+				}),
+				createTemporalEvaluation(2, {
+					start: '01/01/1991',
+					end: '20/12/1992'
+				}),
+				createTemporalEvaluation(3, {
+					start: '31/01/1990',
+					end: '20/12/2021'
+				}),
+				createTemporalEvaluation(4, {
+					start: '31/12/2020',
+					end: '01/01/2021'
+				})
+			])
+		)
+		result.forEach(invariants)
 	})
 })

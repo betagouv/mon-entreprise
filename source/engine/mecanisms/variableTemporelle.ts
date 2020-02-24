@@ -2,7 +2,7 @@ import { evaluateNode } from 'Engine/evaluation'
 import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
-	periodAverage
+	temporalAverage
 } from 'Engine/period'
 import { Temporal } from './../period'
 
@@ -19,35 +19,46 @@ function evaluate(
 		parsedRules
 	)
 
-	const start = node.period.start && evaluateAttribute(node.period.start)
-	const end = node.period.end && evaluateAttribute(node.period.end)
-	const explanation = evaluateAttribute(node.explanation)
+	const start =
+		node.explanation.period.start &&
+		evaluateAttribute(node.explanation.period.start)
+	const end =
+		node.explanation.period.end &&
+		evaluateAttribute(node.explanation.period.end)
+	const value = evaluateAttribute(node.explanation.value)
 	const period = {
 		start: start?.nodeValue ?? null,
 		end: end?.nodeValue ?? null
 	}
 
-	const temporalValue = explanation.temporalValue
-		? narrowTemporalValue(period, explanation.temporalValue)
-		: createTemporalEvaluation(explanation.nodeValue, period)
+	const temporalValue = value.temporalValue
+		? narrowTemporalValue(period, value.temporalValue)
+		: createTemporalEvaluation(value.nodeValue, period)
 	// TODO explanation missingVariables / period missing variables
 
 	return {
 		...node,
-		nodeValue: periodAverage(temporalValue as Temporal<number>),
+		nodeValue: temporalAverage(temporalValue as Temporal<number>, value.unit),
 		temporalValue,
-		period: { start, end },
-		explanation
+		explanation: {
+			period: { start, end },
+			value
+		},
+		unit: value.unit
 	}
 }
 
 export default function parseVariableTemporelle(parse, __, v: any) {
+	const explanation = parse(v.explanation)
 	return {
 		evaluate,
-		explanation: parse(v.explanation),
-		period: {
-			start: v.period.start && parse(v.period.start),
-			end: v.period.end && parse(v.period.end)
-		}
+		explanation: {
+			period: {
+				start: v.period.start && parse(v.period.start),
+				end: v.period.end && parse(v.period.end)
+			},
+			value: explanation
+		},
+		unit: explanation.unit
 	}
 }

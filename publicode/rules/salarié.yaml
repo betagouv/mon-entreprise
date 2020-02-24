@@ -1876,11 +1876,6 @@ contrat salarié . statut JEI . exonération de cotisations:
           - vieillesse .employeur
 
 contrat salarié . réduction générale:
-  aide:
-    type: réduction de cotisations
-    thème: aide bas salaires
-    démarches: non
-  alias: réduction fillon
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
   références:

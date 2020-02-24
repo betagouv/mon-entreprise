@@ -1,8 +1,16 @@
-import { convertToDate, getRelativeDate } from 'Engine/date'
+import {
+	convertToDate,
+	getDifferenceInDays,
+	getDifferenceInMonths,
+	getDifferenceInYears,
+	getRelativeDate,
+	getYear
+} from 'Engine/date'
+import { Unit } from './units'
 
-export type Period<Date> = {
-	start: Date | null
-	end: Date | null
+export type Period<T> = {
+	start: T | null
+	end: T | null
 }
 
 export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
@@ -38,7 +46,6 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 		}
 	}
 	if (word === 'en') {
-		console.log(word, date)
 		return { start: null, end: null }
 	}
 	if (startWords.includes(word)) {
@@ -58,14 +65,14 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 
 // Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
 // Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
-type Evaluation<T> = T | false | null
+export type Evaluation<T> = T | false | null
 
-type EvaluatedNode<T> = {
+export type EvaluatedNode<T> = {
 	nodeValue: Evaluation<T>
 	temporalValue?: Temporal<Evaluation<T>>
 }
 
-type TemporalNode<T> = Temporal<{ nodeValue: Evaluation<T> }>
+export type TemporalNode<T> = Temporal<{ nodeValue: Evaluation<T> }>
 export type Temporal<T> = Array<Period<string> & { value: T }>
 
 export function narrowTemporalValue<T>(
@@ -102,7 +109,7 @@ export function createTemporalEvaluation<T>(
 	return temporalValue
 }
 
-export function pure<T>(value: T): Temporal<T> {
+export function pureTemporal<T>(value: T): Temporal<T> {
 	return [{ start: null, end: null, value }]
 }
 
@@ -117,7 +124,7 @@ export function mapTemporal<T1, T2>(
 	}))
 }
 
-function liftTemporal2<T1, T2, T3>(
+export function liftTemporal2<T1, T2, T3>(
 	fn: (value1: T1, value2: T2) => T3,
 	temporalValue1: Temporal<T1>,
 	temporalValue2: Temporal<T2>
@@ -133,14 +140,14 @@ export function concatTemporals<T, U>(
 ): Temporal<Array<T>> {
 	return temporalValues.reduce(
 		(values, value) => liftTemporal2((a, b) => [...a, b], values, value),
-		pure([]) as Temporal<Array<T>>
+		pureTemporal([]) as Temporal<Array<T>>
 	)
 }
 
 export function liftTemporalNode<T>(node: EvaluatedNode<T>): TemporalNode<T> {
 	const { temporalValue, ...baseNode } = node
 	if (!temporalValue) {
-		return pure(baseNode)
+		return pureTemporal(baseNode)
 	}
 	return mapTemporal(
 		nodeValue => ({
@@ -211,6 +218,84 @@ export function zipTemporals<T1, T2>(
 	throw new EvalError('All case should have been covered')
 }
 
+function beginningOfNextYear(date: string): string {
+	return `01/01/${getYear(date) + 1}`
+}
+
+function endsOfPreviousYear(date: string): string {
+	return `31/12/${getYear(date) - 1}`
+}
+
+function splitStartsAt<T>(
+	fn: (date: string) => string,
+	temporal: Temporal<T>
+): Temporal<T> {
+	return temporal.reduce((acc, period) => {
+		const { start, end } = period
+		const newStart = start === null ? start : fn(start)
+		if (compareEndDate(newStart, end) !== -1) {
+			return [...acc, period]
+		}
+		console.assert(newStart !== null)
+		return [
+			...acc,
+			{ ...period, end: getRelativeDate(newStart as string, -1) },
+			{ ...period, start: newStart }
+		]
+	}, [] as Temporal<T>)
+}
+
+function splitEndsAt<T>(
+	fn: (date: string) => string,
+	temporal: Temporal<T>
+): Temporal<T> {
+	return temporal.reduce((acc, period) => {
+		const { start, end } = period
+		const newEnd = end === null ? end : fn(end)
+		if (compareStartDate(start, newEnd) !== -1) {
+			return [...acc, period]
+		}
+		console.assert(newEnd !== null)
+		return [
+			...acc,
+			{ ...period, end: newEnd },
+			{ ...period, start: getRelativeDate(newEnd as string, 1) }
+		]
+	}, [] as Temporal<T>)
+}
+
+export function groupByYear<T>(temporalValue: Temporal<T>): Array<Temporal<T>> {
+	return (
+		// First step: split period by year if needed
+		splitEndsAt(
+			endsOfPreviousYear,
+			splitStartsAt(beginningOfNextYear, temporalValue)
+		)
+			// Second step: group period by year
+			.reduce((acc, period) => {
+				const [currentTemporal, ...otherTemporal] = acc
+				if (currentTemporal === undefined) {
+					return [[period]]
+				}
+				const firstPeriod = currentTemporal[0]
+				console.assert(
+					firstPeriod !== undefined &&
+						firstPeriod.end !== null &&
+						period.start !== null,
+					'invariant non verifié'
+				)
+				if (
+					(firstPeriod.end as string).slice(-4) !==
+					(period.start as string).slice(-4)
+				) {
+					return [[period], ...acc]
+				}
+				return [[...currentTemporal, period], ...otherTemporal]
+			}, [] as Array<Temporal<T>>)
+			.reverse()
+	)
+}
+
 function simplify<T>(temporalValue: Temporal<T>): Temporal<T> {
 	return temporalValue
 }
@@ -247,8 +332,9 @@ function compareEndDate(
 	return convertToDate(dateA) < convertToDate(dateB) ? -1 : 1
 }
 
-export function periodAverage(
-	temporalValue: Temporal<Evaluation<number>>
+export function temporalAverage(
+	temporalValue: Temporal<Evaluation<number>>,
+	unit?: Unit
 ): Evaluation<number> {
 	temporalValue = temporalValue.filter(({ value }) => value !== false)
 	const first = temporalValue[0]
@@ -265,7 +351,7 @@ export function periodAverage(
 		if (last.end != null) {
 			return first.value
 		}
-		return first.value + last.value / 2
+		return (first.value + last.value) / 2
 	}
 
 	if (temporalValue.some(({ value }) => value == null)) {
@@ -273,11 +359,14 @@ export function periodAverage(
 	}
 	let totalWeight = 0
 	const weights = temporalValue.map(({ start, end, value }) => {
-		const day = 1000 * 60 * 60 * 24
-		const weight =
-			convertToDate(end as string).getTime() -
-			convertToDate(start as string).getTime() +
-			day
+		let weight = 0
+		if (unit?.denominators.includes('mois')) {
+			weight = getDifferenceInMonths(start, end)
+		} else if (unit?.denominators.includes('année')) {
+			weight = getDifferenceInYears(start, end)
+		} else {
+			weight = getDifferenceInDays(start, end)
+		}
 		totalWeight += weight
 		return (value as number) * weight
 	})
@@ -285,4 +374,42 @@ export function periodAverage(
 		(average, weightedValue) => average + weightedValue / totalWeight,
 		0
 	)
+}
+
+export function temporalCumul(
+	temporalValue: Temporal<Evaluation<number>>,
+	unit: Unit
+): Evaluation<number> {
+	temporalValue = temporalValue.filter(({ value }) => value !== false)
+	const first = temporalValue[0]
+	const last = temporalValue[temporalValue.length - 1]
+	if (!temporalValue.length) {
+		return false
+	}
+
+	// La variable est définie sur un interval infini
+	if (first.start == null || last.end == null) {
+		if (first.start != null) {
+			return !last.value ? last.value : last.value > 0 ? Infinity : -Infinity
+		}
+		if (last.end != null) {
+			return !last.value ? last.value : last.value > 0 ? Infinity : -Infinity
+		}
+		return null
+	}
+	if (temporalValue.some(({ value }) => value == null)) {
+		return null
+	}
+
+	return temporalValue.reduce((acc, { start, end, value }) => {
+		let weight = 1
+		if (unit?.denominators.includes('mois')) {
+			weight = getDifferenceInMonths(start, end)
+		} else if (unit?.denominators.includes('année')) {
+			weight = getDifferenceInYears(start, end)
+		} else if (unit?.denominators.includes('jour')) {
+			weight = getDifferenceInDays(start, end)
+		}
+		return value * weight + acc
+	}, 0)
 }

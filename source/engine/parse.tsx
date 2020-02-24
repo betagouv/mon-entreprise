@@ -9,6 +9,7 @@ import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'
 import grille from 'Engine/mecanisms/grille'
 import operation from 'Engine/mecanisms/operation'
+import régularisation from 'Engine/mecanisms/régularisation'
 import tauxProgressif from 'Engine/mecanisms/tauxProgressif'
 import variableTemporelle from 'Engine/mecanisms/variableTemporelle'
 import variations from 'Engine/mecanisms/variations'
@@ -183,6 +184,7 @@ const statelessParseFunction = {
 	'une de ces conditions': mecanismOneOf,
 	'toutes ces conditions': mecanismAllOf,
 	somme: mecanismSum,
+	régularisation,
 	multiplication: mecanismProduct,
 	produit: mecanismProduct,
 	temporalValue: variableTemporelle,
