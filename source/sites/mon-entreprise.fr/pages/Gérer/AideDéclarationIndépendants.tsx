@@ -48,10 +48,13 @@ const lauchComputationWhenResultsInViewport = () => {
 	})
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentIncome, setCurrentIncome] = useState(value)
-	const [displayForm, setDisplayForm] = useState(currentIncome != null)
+	const [displayForm, setDisplayForm] = useState(currentIncome !== null)
 	const updateIncome = useCallback(
 		income => {
-			setDisplayForm(income != null)
+			if (income === undefined) {
+				income = null
+			}
+			setDisplayForm(income !== null)
 			setCurrentIncome(income)
 		},
 		[setDisplayForm, setCurrentIncome]
