@@ -1,15 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-export const Header = ({ noSubtitle }) => (
+export const Header = ({ noSubtitle, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
 			<h1>
-				<span css="border: 3px solid var(--colour); color: var(--colour); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
+				<span css="border: 3px solid var(--color); color: var(--color); padding: 0.1rem 0.4rem 0.1rem 0.6rem ; width: 5rem">
 					publi
 				</span>
-				<span css="background: var(--colour); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--colour)">
+				<span css="background: var(--color); color: white; padding: 0.1rem 0.6rem 0.1rem 0.3rem; width: 5rem; border: 3px solid var(--color)">
 					codes
 				</span>
+				{sectionName && (
+					<span css="margin-left: 20px; font-weight: lighter; color: var(--lighterInverseTextColor);">
+						{sectionName}
+					</span>
+				)}
 			</h1>
 		</Link>
 		{!noSubtitle && (

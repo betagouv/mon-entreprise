@@ -1,13 +1,11 @@
 import { ControlledEditor } from '@monaco-editor/react'
 import { buildFlatRules } from 'Engine/rules'
+import { serializeUnit } from 'Engine/units'
 import { safeLoad } from 'js-yaml'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	analysisWithDefaultsSelector,
-	flatRulesSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { setSimulationConfig } from '../../actions/actions'
 import { Header } from './Header'
 
@@ -28,7 +26,7 @@ d:
 export default function SafeStudio() {
 	return (
 		<div className="app-content ui__ container" css="margin-bottom: 2rem">
-			<Header noSubtitle />
+			<Header noSubtitle sectionName="Studio" />
 			<ErrorBoundary>
 				<Studio />
 			</ErrorBoundary>
@@ -42,7 +40,6 @@ export function Studio() {
 	const [target, setTarget] = useState(defaultTarget)
 
 	const dispatch = useDispatch()
-	const flatRules = useSelector(state => flatRulesSelector(state))
 
 	const setRules = rulesString =>
 		dispatch({
@@ -63,8 +60,8 @@ export function Studio() {
 	}
 
 	function updateRules() {
-		setRules(value)
 		setTargets([target])
+		setRules(value)
 	}
 
 	return (
@@ -98,10 +95,18 @@ export function Studio() {
 }
 export const Results = () => {
 	const analysis = useSelector(state => analysisWithDefaultsSelector(state))
+		?.targets[0]
+	console.log(analysis)
 	return (
 		<div>
 			<h2>Résultats</h2>
-			{analysis.targets[0].nodeValue}
+			<ul>
+				<li>Valeur : {analysis.nodeValue}</li>
+				<li>
+					Unité : {analysis.unit ? serializeUnit(analysis.unit) : 'Sans unité'}
+				</li>
+				<li>Applicable : {analysis.isApplicable ? '✅' : '❌'}</li>
+			</ul>
 		</div>
 	)
 }

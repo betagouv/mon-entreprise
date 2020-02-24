@@ -23,7 +23,7 @@ function Router({ language }) {
 				rules,
 				simulation: {
 					config: {
-						objectifs: ['a']
+						objectifs: []
 					}
 				}
 			}}
