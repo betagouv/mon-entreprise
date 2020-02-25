@@ -1,21 +1,38 @@
-Plafonnement:
+plafonnement:
   formule:
     encadrement:
       valeur: 1000 €
       plafond: 250 €
 
   exemples:
-    - nom:
-      situation:
-      valeur attendue: 250
+    - valeur attendue: 250
 
-Plancher:
+plafonnement inactif:
+  formule:
+    encadrement:
+      valeur: 1000 €
+      plafond: false
+
+  exemples:
+    - valeur attendue: 1000
+
+plafonnement reference inactive:
+  formule:
+    encadrement:
+      valeur: 1000 €
+      plafond: plafond
+
+  exemples:
+    - valeur attendue: 1000
+
+plafonnement reference inactive . plafond:
+  formule: non
+
+plancher:
   formule:
     encadrement:
       valeur: 1000 €
       plancher: 2500 €
 
   exemples:
-    - nom:
-      situation:
-      valeur attendue: 2500
+    - valeur attendue: 2500
