@@ -90,8 +90,7 @@ export default function SearchBar({
 
 	let renderOptions = (rules?: Array<Rule>) => {
 		const currentPage = getDottedName(window.location.href)
-		let options =
-			(rules && sortBy(rule => rule.dottedName, rules)) || take(5)(results)
+		let options = (rules && sortBy(rule => rule.dottedName, rules)) || results
 		let currentOptions: Array<Pick<Rule, 'dottedName'>> = []
 		let notCurrentOptions: Array<Pick<Rule, 'dottedName'>> = []
 		options.forEach(option => {
@@ -103,7 +102,7 @@ export default function SearchBar({
 		})
 		return (
 			<ul>
-				{[...currentOptions, ...notCurrentOptions].map((option, idx) =>
+				{take(5)([...currentOptions, ...notCurrentOptions]).map((option, idx) =>
 					renderOption(option, idx)
 				)}
 			</ul>
