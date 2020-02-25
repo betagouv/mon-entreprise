@@ -1,5 +1,11 @@
 cotisation retraite:
 
+demie part:
+  formule:
+    arrondi: 50% * 100.2€
+  exemples:
+    - valeur attendue: 50
+
 Arrondi:
   formule:
     arrondi: cotisation retraite
