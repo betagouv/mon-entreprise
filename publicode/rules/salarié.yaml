@@ -1669,7 +1669,7 @@ contrat salarié . temps de travail . heures complémentaires:
   unité: heure/mois
   par défaut: 0
   contrôles:
-    - si: heures complémentaires > temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents
+    - si: heures complémentaires > seuil légal
       niveau: information
       message: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
     # TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
@@ -1689,27 +1689,29 @@ contrat salarié . temps de travail . heures complémentaires . majoration:
     - 25 % pour les heures suivantes.
   titre: majoration heures complémentaires
   note: Nous n'implémentons pas les taux conventionnels
-  # TODO: Le mécanisme barème ne supporte pas l'utilisation de variables dans
-  # les tranches, c'est pourquoi on ré-implémente une logique de barème avec les
-  # mécanismes somme, multiplication et encadrement.
   formule:
-    somme:
-      - multiplication:
-          assiette:
-            encadrement:
-              valeur: heures complémentaires
-              plafond: seuil légal de 10 pourcents
-          taux: 10%
-      - multiplication:
-          assiette:
-            encadrement:
-              valeur: heures complémentaires - seuil légal de 10 pourcents
-              plancher: 0 heures/mois
-          taux: 25%
+    barème:
+      assiette: heures complémentaires
+      mutliplicateur:
+      tranches:
+        - taux: 10%
+          plafond: seuil légal
+        - taux: 25%
 
-contrat salarié . temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents:
+contrat salarié . temps de travail . heures complémentaires . seuil légal:
+  description: >-
+    Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut
+    être supérieur à un dixième de la durée contractuelle du temps partiel.
+
+    Si la convention le permet, les heures complémentaire au delà de ce seuil
+    sont rémunérée avec une majoration de 25%
+  unité: heures/mois
   formule:
-    arrondi: 1 / 10 * temps partiel . heures par semaine * période . semaines par mois
+    arrondi:
+      multiplication:
+        assiette: temps partiel . heures par semaine
+        taux: 10%
+        facteur: période . semaines par mois
 
 contrat salarié . statut JEI:
   titre: Statut JEI
