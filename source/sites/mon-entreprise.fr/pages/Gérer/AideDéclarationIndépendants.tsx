@@ -298,8 +298,9 @@ function Results() {
 		>
 			<h1 css="text-align: center; margin-bottom: 2rem">
 				<Trans i18nKey="aide-déclaration-indépendant.results.title">
-					Aide à la déclaration {emoji('📄')}
+					Aide à la déclaration
 				</Trans>
+				{emoji('📄')}
 			</h1>
 			{onGoingComputation && (
 				<h2>
@@ -337,10 +338,8 @@ function Results() {
 					{!onGoingComputation && (
 						<div css="text-align: center">
 							<button className="ui__ simple button">
-								{emoji('🔗')} Obtenir le lien
-							</button>
-							<button className="ui__ simple button">
-								{emoji('🖨')} Imprimer
+								{emoji('🖨')}&nbsp;
+								<Trans i18nKey="imprimer">Imprimer</Trans>
 							</button>
 						</div>
 					)}
