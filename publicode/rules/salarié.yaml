@@ -436,6 +436,14 @@ contrat salarié . ATMP . taux:
         alors: 1%
       - sinon: ATMP . taux collectif ATMP
 
+contrat salarié . ATMP . taux minimum:
+  description: >-
+    Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour le
+    calcul de la réduction générale de cotisations
+  formule: 0.69 %
+  références:
+    Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041460928&cidTexte=LEGITEXT000006073189&dateTexte=20200101
+
 contrat salarié . ATMP . taux réduit:
   titre: taux réduit pour activité sans risque
   question: L'activité de l'établissement ou du salarié est-elle sans aucun risque ?
@@ -1203,7 +1211,6 @@ contrat salarié . statut cadre:
 contrat salarié . plafond sécurité sociale:
   acronyme: PSS
   unité: €/mois
-
   formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
 
 contrat salarié . SMIC temps plein:
@@ -1780,77 +1787,87 @@ contrat salarié . réduction générale:
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation, hormis l'assurance chômage. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
-    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
+    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction.html
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-  applicable si: cotisations . assiette <= plafond de l'assiette
+  non applicable si: cotisations . assiette forfaitaire . montant
   formule:
-    encadrement:
-      valeur: assiette
-      plafond: multiplicateur * écart au plafond de l'assiette
-  note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
+    multiplication:
+      assiette: cotisations . assiette
+      facteur: coefficient
   exemples:
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
       situation:
-        cotisations . assiette: 1521.22
-      valeur attendue: 488.91
+        rémunération . brut: 1521.22
+      valeur attendue: 487.55
     - nom: 'Salaire proche du SMIC'
       situation:
-        cotisations . assiette: 1530
-      valeur attendue: 491.74
+        rémunération . brut: 1530
+      valeur attendue: 490.37
     - nom: 'Résiduelle pour un salaire médian'
       situation:
-        cotisations . assiette: 2300
-      valeur attendue: 87.34
+        rémunération . brut: 2300
+      valeur attendue: 87.10
     - nom: 'Nulle au-dessus du plafond'
       situation:
-        cotisations . assiette: 2464
+        rémunération . brut: 2464
       valeur attendue: 0
 
-contrat salarié . réduction générale . écart au plafond de l'assiette:
-  formule: plafond de l'assiette - cotisations . assiette
+contrat salarié . réduction générale . coefficient:
+  formule:
+    encadrement:
+      valeur:
+        multiplication:
+          assiette: SMIC / cotisations . assiette * 1.6 - 1
+          facteur: T / 0.6
+      plancher: 0%
+      plafond: T
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
 
-contrat salarié . réduction générale . multiplicateur:
-  formule: paramètre T / 0.6
-
-contrat salarié . réduction générale . paramètre T:
+contrat salarié . réduction générale . T:
+  titre: Coefficient T
   unité: ''
   formule:
-    variations:
-      - si: entreprise . effectif < 20
-        alors: 0.3214
-      - sinon: 0.3254
+    somme:
+      - T sécurité sociale et chômage
+      - encadrement:
+          valeur: retraite complémentaire . taux employeur tranche 1
+          plafond: 4.72%
+      - encadrement:
+          valeur: contribution d'équilibre général . taux employeur tranche 1
+          plafond: 1.29%
 
-contrat salarié . réduction générale . assiette:
-  titre: Assiette de la réduction générale
+contrat salarié . réduction générale . T sécurité sociale et chômage:
+  unité: ''
   formule:
     somme:
-      - allocations familiales
-      - FNAL .employeur
-      - maladie .employeur
-      - vieillesse .employeur
-      - part de la cotisation ATMP
-      - retraite complémentaire .employeur
-      - contribution d'équilibre général .employeur
-      - chômage .employeur
-  références:
-    changements 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/la-reduction-generale-des-cotisa.html
+      - maladie . taux employeur
+      - allocations familiales . taux
+      - vieillesse . taux employeur déplafonné
+      - vieillesse . taux employeur plafonné
+      - maladie . taux solidarité autonomie
+      - ATMP . taux minimum
+      - FNAL . taux
+      - chômage . taux employeur
 
-contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
+contrat salarié . réduction générale . imputation sécurité sociale:
   formule:
     multiplication:
-      assiette: cotisations . assiette
-      taux: 0.78%
-  note: En pratique, l'ATMP est toujours supérieure à 0.78%
-  références:
-    Code de la sécurité sociale - Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036467594
-    Code de la sécurité sociale - Mise à jour du taux: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B2573099C91B1ACDA218B214D650C071.tplgfr25s_3?idArticle=JORFARTI000037884643&cidTexte=JORFTEXT000037884638&dateTexte=29990101&categorieLien=id
+      assiette: réduction générale
+      facteur: T sécurité sociale et chômage / T
 
-contrat salarié . réduction générale . plafond de l'assiette:
-  formule: 1.6 * SMIC
+contrat salarié . réduction générale . imputation retraite complémentaire:
+  formule: réduction générale - imputation sécurité sociale
 
 contrat salarié . contribution d'équilibre général:
-  description: Cette cotisation créée en 2019 permet à la fois de compenser les charges résultant des départs à la retraite avant 67 ans et d’honorer les engagements retraite des personnes qui ont cotisé à la GMP, une ancienne cotisation de compensation pour les cadres.
+  description: >-
+    Cette cotisation créée en 2019 permet à la fois de compenser les
+    charges résultant des départs à la retraite avant 67 ans et d’honorer les
+    engagements retraite des personnes qui ont cotisé à la GMP, une ancienne
+    cotisation de compensation pour les cadres.
+  acronyme: CEG
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -1863,7 +1880,7 @@ contrat salarié . contribution d'équilibre général:
         - attributs:
             dû par: employeur
           tranches:
-            - taux: 1.29%
+            - taux: taux employeur tranche 1
               plafond: 1
             - taux: 1.62%
               plafond: 8
@@ -1880,7 +1897,11 @@ contrat salarié . contribution d'équilibre général:
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
 
+contrat salarié . contribution d'équilibre général . taux employeur tranche 1:
+  formule: 1.29%
+
 contrat salarié . contribution d'équilibre technique:
+  acronyme: CET
   cotisation:
     branche: retraite
     type de retraite: complémentaire
@@ -1893,12 +1914,15 @@ contrat salarié . contribution d'équilibre technique:
       composantes:
         - attributs:
             dû par: employeur
-          taux: 0.21%
+          taux: taux employeur
         - attributs:
             dû par: salarié
           taux: 0.14%
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+
+contrat salarié . contribution d'équilibre technique . taux employeur:
+  formule: 0.21%
 
 contrat salarié . retraite complémentaire:
   cotisation:
@@ -1927,7 +1951,6 @@ contrat salarié . retraite complémentaire:
               plafond: 1
             - taux: taux salarié tranche 2
               plafond: 8
-
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
     régime des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
@@ -2264,7 +2287,7 @@ contrat salarié . FNAL:
       assiette: cotisations . assiette
       taux: taux
       variations:
-        - si: entreprise . effectif < 50
+        - si: éligible taux réduit
           alors:
             plafond: plafond sécurité sociale
         - sinon: rien
@@ -2275,10 +2298,12 @@ contrat salarié . FNAL:
         entreprise . effectif: 10
       valeur attendue: 1.5
 
+contrat salarié . FNAL . éligible taux réduit:
+  formule: entreprise . effectif < 50
 contrat salarié . FNAL . taux:
   formule:
     variations:
-      - si: entreprise . effectif < 50
+      - si: éligible taux réduit
         alors: 0.1%
       - sinon: 0.5%
 
@@ -2342,12 +2367,15 @@ contrat salarié . maladie:
           taux: taux salarié
         - attributs:
             nom: Contribution Solidarité Autonomie
-            abbréviation: CSA
             dû par: employeur
-          références:
-            - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
-            - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
-          taux: 0.3%
+          taux: taux solidarité autonomie
+
+contrat salarié . maladie . taux solidarité autonomie:
+  acronyme: CSA
+  formule: 0.3%
+  références:
+    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
+    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
 
 contrat salarié . maladie . taux employeur:
   formule:
@@ -2645,8 +2673,8 @@ contrat salarié . vieillesse:
             dû par: salarié
           assiette: cotisations . assiette . salariale
           composantes:
-            - nom: non plafonnée
-              taux: taux salarié non plafonné
+            - nom: déplafonnée
+              taux: taux salarié déplafonné
 
             - nom: plafonnée
               taux: taux salarié plafonné
@@ -2654,8 +2682,8 @@ contrat salarié . vieillesse:
         - attributs:
             dû par: employeur
           composantes:
-            - nom: non plafonnée
-              taux: taux employeur non plafonné
+            - nom: déplafonnée
+              taux: taux employeur déplafonné
             - nom: plafonnée
               taux: taux employeur plafonné
               plafond: plafond sécurité sociale
@@ -2674,11 +2702,11 @@ contrat salarié . vieillesse:
 
 contrat salarié . vieillesse . taux salarié plafonné:
   formule: 6.90%
-contrat salarié . vieillesse . taux salarié non plafonné:
+contrat salarié . vieillesse . taux salarié déplafonné:
   formule: 0.4%
 contrat salarié . vieillesse . taux employeur plafonné:
   formule: 8.55%
-contrat salarié . vieillesse . taux employeur non plafonné:
+contrat salarié . vieillesse . taux employeur déplafonné:
   formule: 1.9%
 
 contrat salarié . forfait social:
@@ -2724,6 +2752,7 @@ contrat salarié . lodeom . zone un:
       - établissement . localisation . département = 'Martinique'
       - établissement . localisation . département = 'Guyane'
 
+# TODO : reformuler comme pour la réduction générale
 contrat salarié . lodeom . réduction outre-mer:
   aide:
     type: réduction de cotisations
@@ -2741,7 +2770,19 @@ contrat salarié . lodeom . réduction outre-mer:
 
   formule:
     encadrement:
-      valeur: contrat salarié . réduction générale . assiette
+      valeur:
+        somme:
+          - allocations familiales
+          - FNAL .employeur
+          - maladie .employeur
+          - vieillesse .employeur
+          - multiplication:
+              assiette: cotisations . assiette
+              taux: ATMP . taux minimum
+          - retraite complémentaire .employeur
+          - contribution d'équilibre général .employeur
+          - chômage .employeur
+
       plafond:
         variations:
           - si:
@@ -2759,93 +2800,6 @@ contrat salarié . lodeom . réduction outre-mer:
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   références:
     Estimateur URSSAF: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
-  exemples:
-    # Barème 1
-    - nom: "Maximale dans le cas d'un SMIC"
-      situation:
-        zone un: oui
-        cotisations . assiette: 1521.22
-      valeur attendue: 488.92
-    - nom: 'Salaire proche du SMIC'
-      situation:
-        zone un: oui
-        cotisations . assiette: 1530
-      valeur attendue: 491.74
-    - nom: 'Résiduelle pour un salaire médian'
-      situation:
-        zone un: oui
-        cotisations . assiette: 2300
-      valeur attendue: 504.50
-    - nom: 'Nulle au-dessus du plafond'
-      situation:
-        zone un: oui
-        cotisations . assiette: 3400
-      valeur attendue: 0
-
-    # Barème 2
-    - nom: "Maximale dans le cas d'un SMIC"
-      situation:
-        zone un: oui
-        éligible barème compétitivité renforcée: oui
-        cotisations . assiette: 1521.22
-      valeur attendue: 488.92
-    - nom: 'Salaire proche du SMIC'
-      situation:
-        zone un: oui
-        éligible barème compétitivité renforcée: oui
-        cotisations . assiette: 2565
-      valeur attendue: 824.39
-    - nom: 'Résiduelle pour un salaire médian'
-      situation:
-        zone un: oui
-        éligible barème compétitivité renforcée: oui
-        cotisations . assiette: 3900
-      valeur attendue: 140.11
-    - nom: 'Résiduelle pour un salaire médian'
-      situation:
-        zone un: oui
-        éligible barème compétitivité renforcée: oui
-        cotisations . assiette: 3000
-      valeur attendue: 631.85
-    - nom: 'Nulle au-dessus du plafond'
-      situation:
-        zone un: oui
-        éligible barème compétitivité renforcée: oui
-        cotisations . assiette: 4200
-      valeur attendue: 0
-
-    # Barème 3
-    - nom: "Barème 3 Maximale dans le cas d'un SMIC"
-      situation:
-        zone un: oui
-        éligible barème innovation et croissance: oui
-        cotisations . assiette: 1521.22
-      valeur attendue: 488.92
-    - nom: 'Barème 3'
-      situation:
-        zone un: oui
-        éligible barème innovation et croissance: oui
-        cotisations . assiette: 2565
-      valeur attendue: 824.39
-    - nom: 'Barème 3'
-      situation:
-        zone un: oui
-        éligible barème innovation et croissance: oui
-        cotisations . assiette: 2800
-      valeur attendue: 841.11
-    - nom: 'Barème 3'
-      situation:
-        zone un: oui
-        éligible barème innovation et croissance: oui
-        cotisations . assiette: 4000
-      valeur attendue: 758.35
-
-    - nom: 'Barème 3 Nulle au-dessus du plafond'
-      situation:
-        zone un: oui
-        éligible barème innovation et croissance: oui
-        cotisations . assiette: 5500
-      valeur attendue: 0
 
 contrat salarié . lodeom . plafond de l'assiette:
   formule: borne supérieure * SMIC
@@ -2972,9 +2926,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         - assiette . salariale
     - règle: assiette . salariale
       dans: vieillesse
-    - assiette CSG et CRDS . assiette abattue
-    - règle: réduction générale
-      par: non
+    - règle: assiette CSG et CRDS . assiette abattue
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
       sauf dans:

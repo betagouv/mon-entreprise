@@ -129,7 +129,7 @@ export let parseObject = (recurse, objectShape, value) => {
 	let recurseOne = key => defaultValue => {
 		if (!value[key] && !defaultValue)
 			throw new Error(
-				`Il manque une valeur '${key}' dans ${JSON.stringify(value)} `
+				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
 			)
 		return value[key] ? recurse(value[key]) : defaultValue
 	}

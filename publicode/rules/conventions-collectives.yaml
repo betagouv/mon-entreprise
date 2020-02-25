@@ -537,12 +537,12 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux:
       par: maladie . taux salarié * réduction de taux
     - règle: vieillesse . taux employeur plafonné
       par: vieillesse . taux employeur plafonné * réduction de taux
-    - règle: vieillesse . taux employeur non plafonné
-      par: vieillesse . taux employeur non plafonné * réduction de taux
+    - règle: vieillesse . taux employeur déplafonné
+      par: vieillesse . taux employeur déplafonné * réduction de taux
     - règle: vieillesse . taux salarié plafonné
       par: vieillesse . taux salarié plafonné * réduction de taux
-    - règle: vieillesse . taux salarié non plafonné
-      par: vieillesse . taux salarié non plafonné * réduction de taux
+    - règle: vieillesse . taux salarié déplafonné
+      par: vieillesse . taux salarié déplafonné * réduction de taux
     - règle: allocations familiales . taux
       par: allocations familiales . taux * réduction de taux
     - règle: établissement . taux du versement transport
