@@ -26,7 +26,7 @@
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",
-		"fuse.js": "^3.4.2",
+		"fuse.js": "3.4.1",
 		"i18next": "^18.0.1",
 		"iframe-resizer": "^4.1.1",
 		"js-yaml": "^3.13.1",
@@ -40,8 +40,8 @@
 		"react-color": "^2.14.0",
 		"react-dom": "npm:@hot-loader/react-dom",
 		"react-easy-emoji": "^1.2.0",
+		"react-fuzzy-highlighter": "^0.3.1",
 		"react-helmet": "6.0.0-beta",
-		"react-highlight-words": "^0.11.0",
 		"react-i18next": "^11.0.0",
 		"react-loading-skeleton": "^1.1.2",
 		"react-markdown": "^4.1.0",
@@ -195,5 +195,8 @@
 	"optionalDependencies": {
 		"cypress": "^3.6.1",
 		"prerender-spa-plugin": "^3.4.0"
+	},
+	"resolutions": {
+		"react-fuzzy-highlighter/**/fuse.js": "3.4.1"
 	}
 }

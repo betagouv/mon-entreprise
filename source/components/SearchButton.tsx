@@ -17,12 +17,11 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (!(e.ctrlKey && e.key === 'k')) return
 			setVisible(true)
+
 			e.preventDefault()
-			e.stopPropagation()
 			return false
 		}
 		window.addEventListener('keydown', handleKeyDown)
-
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown)
 		}
@@ -32,9 +31,9 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 
 	return visible ? (
 		<Overlay onClose={close}>
-			<h2>
+			<h1>
 				<Trans>Chercher dans la documentation</Trans>
-			</h2>
+			</h1>
 			<SearchBar showDefaultList={false} finally={close} rules={flatRules} />
 		</Overlay>
 	) : invisibleButton ? null : (

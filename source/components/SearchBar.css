@@ -1,0 +1,8 @@
+li.active {
+	background: var(--color);
+	color: var(--textColor);
+}
+
+li.active a {
+	color: var(--textColor);
+}
