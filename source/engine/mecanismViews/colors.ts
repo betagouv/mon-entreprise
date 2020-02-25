@@ -7,9 +7,9 @@ const colors = {
 	'toutes ces conditions': '#3498db',
 	composantes: '#3498db',
 	variations: '#FF9800',
-	complément: '#795548',
+	'taux progressif': '#795548',
 	barème: '#607D8B',
-	barèmeLinéaire: '#AD1457'
+	grille: '#AD1457'
 }
 
 export default (name: string) => colors[name] || '#34495e'

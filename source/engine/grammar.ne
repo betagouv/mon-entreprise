@@ -24,6 +24,7 @@ const lexer = moo.compile({
   '[': '[',
   ']': ']',
   comparison: ['>','<','>=','<=','=','!='],
+  infinity: 'Infinity',
   words: new RegExp(words),
   number: new RegExp(numberRegExp),
   string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
@@ -106,6 +107,7 @@ boolean ->
 
 number ->
     %number {% number %}
+  | %infinity {% number %}
   | %number (%space):? Unit {% numberWithUnit %}
 
 string -> %string {% string %}

@@ -89,7 +89,7 @@ export default function CurrencyInput({
 				}
 				onValueChange={({ value }) => {
 					setCurrentValue(value)
-					nextValue.current = value.toString().replace(/^-/, '')
+					nextValue.current = value.toString().replace('-', '')
 				}}
 				onChange={handleChange}
 				value={currentValue.toString().replace('.', decimalSeparator)}

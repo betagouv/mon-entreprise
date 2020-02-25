@@ -95,8 +95,8 @@ artiste-auteur . cotisations . vieillesse:
       assiette: assiette
       composantes:
         - nom: plafonnée
-          plafond: contrat salarié . plafond sécurité sociale
           taux: contrat salarié . vieillesse . taux salarié plafonné - 0.75%
+          plafond: contrat salarié . plafond sécurité sociale
         - nom: non plafonnée
           taux: contrat salarié . vieillesse . taux salarié non plafonné - 0.4%
 
@@ -116,8 +116,8 @@ artiste-auteur . cotisations . CSG-CRDS . abattement:
   formule:
     multiplication:
       assiette: revenus . traitements et salaires
-      plafond: 4 * contrat salarié . plafond sécurité sociale
       taux: 1.75%
+      plafond: 4 * contrat salarié . plafond sécurité sociale
 
 artiste-auteur . cotisations . CSG-CRDS . CSG:
   formule:

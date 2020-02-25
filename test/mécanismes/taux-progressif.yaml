@@ -1,0 +1,47 @@
+base:
+  unité: £
+  formule: 300
+
+assiette:
+  unité: £
+
+base deux:
+  unité: µ
+  formule: 300
+
+assiette deux:
+  unité: µ
+
+Simple:
+  unité: '%'
+  formule:
+    taux progressif:
+      assiette: assiette deux
+      multiplicateur: base deux
+      tranches:
+        - plafond: 0.75
+          taux: 100%
+        - plafond: 1
+          taux: 0%
+  unité attendue: '%'
+  exemples:
+    - nom: Premier point
+      situation:
+        assiette deux: 200
+      valeur attendue: 100
+    - nom: Deuxième point
+      situation:
+        assiette deux: 225
+      valeur attendue: 100
+    - nom: Troisième point
+      situation:
+        assiette deux: 262.5
+      valeur attendue: 50
+    - nom: Quatrième point
+      situation:
+        assiette deux: 300
+      valeur attendue: 0
+    - nom: Cinquième point
+      situation:
+        assiette deux: 300
+      valeur attendue: 0

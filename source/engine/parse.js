@@ -5,38 +5,30 @@
 import { formatValue } from 'Engine/format'
 import mecanismRound from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
-import barèmeContinu from 'Engine/mecanisms/barème-continu'
-import barèmeLinéaire from 'Engine/mecanisms/barème-linéaire'
 import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'
+import grille from 'Engine/mecanisms/grille'
 import operation from 'Engine/mecanisms/operation'
+import tauxProgressif from 'Engine/mecanisms/tauxProgressif'
 import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
 	add,
-	cond,
 	divide,
 	equals,
 	fromPairs,
 	gt,
 	gte,
-	is,
-	keys,
 	lt,
 	lte,
 	multiply,
-	propOr,
-	subtract,
-	T,
-	without
+	subtract
 } from 'ramda'
 import React from 'react'
 import { syntaxError } from './error.ts'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
-	mecanismComplement,
-	mecanismError,
 	mecanismInversion,
 	mecanismMax,
 	mecanismMin,
@@ -49,154 +41,156 @@ import {
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
 
-export let parse = (rules, rule, parsedRules) => rawNode => {
-	let onNodeType = cond([
-		[is(String), parseString(rules, rule, parsedRules)],
-		[is(Number), parseNumber],
-		[is(Object), parseObject(rules, rule, parsedRules)],
-		[T, parseOther]
-	])
+export const parse = (rules, rule, parsedRules) => rawNode => {
+	if (rawNode == null) {
+		syntaxError(
+			rule.dottedName,
+			`
+Une des valeurs de la formule est vide.
+Vérifiez que tous les champs à droite des deux points sont remplis`
+		)
+	}
+	if (typeof rawNode === 'boolean') {
+		syntaxError(
+			rule.dottedName,
+			`
+Les valeure booléenes true / false ne sont acceptée.
+Utilisez leur contrepartie française : 'oui' / 'non'`
+		)
+	}
+	const node =
+		typeof rawNode === 'object' ? rawNode : parseExpression(rule, '' + rawNode)
 
-	let defaultEvaluate = (cache, situationGate, parsedRules, node) => node
-	let parsedNode = onNodeType(rawNode)
-
-	return parsedNode.evaluate
-		? parsedNode
-		: { ...parsedNode, evaluate: defaultEvaluate }
+	const parsedNode = parseMecanism(rules, rule, parsedRules)(node)
+	parsedNode.evaluate = parsedNode.evaluate ?? ((_, __, ___, node) => node)
+	return parsedNode
 }
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
 
-export let parseString = (rules, rule, parsedRules) => rawNode => {
+const parseExpression = (rule, rawNode) => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 	try {
 		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
-		return parseObject(rules, rule, parsedRules)(parseResult)
+		return parseResult
 	} catch (e) {
 		syntaxError(
 			rule.dottedName,
-			`\`${rawNode}\` n'est pas une formule valide`,
+			`\`${rawNode}\` n'est pas une expression valide`,
 			e
 		)
 	}
 }
 
-export let parseNumber = rawNode => ({
-	text: '' + rawNode,
-	category: 'number',
-	nodeValue: rawNode,
-	type: 'numeric',
-	jsx: <span className="number">{rawNode}</span>
-})
+const parseMecanism = (rules, rule, parsedRules) => rawNode => {
+	if (Object.keys(rawNode).length > 1) {
+		syntaxError(
+			rule.dottedName,
+			`
+Les mécanismes suivants se situent au même niveau : ${Object.keys(rawNode)
+				.map(x => `'${x}'`)
+				.join(', ')}
+Cela vient probablement d'une erreur dans l'indentation
+		`
+		)
+	}
+	const mecanismName = Object.keys(rawNode)[0]
+	const values = rawNode[mecanismName]
 
-export let parseOther = rawNode => {
-	throw new Error(
-		'Cette donnée : ' + rawNode + ' doit être un Number, String ou Object'
-	)
+	const parseFunctions = {
+		...statelessParseFunction,
+		'une possibilité': mecanismOnePossibility(rule.dottedName),
+		'inversion numérique': mecanismInversion(rule.dottedName),
+		filter: () =>
+			parseReferenceTransforms(
+				rules,
+				rule,
+				parsedRules
+			)({
+				filter: values.filter,
+				variable: values.explanation
+			}),
+		variable: () =>
+			parseReferenceTransforms(rules, rule, parsedRules)({ variable: values }),
+		unitConversion: () =>
+			parseReferenceTransforms(
+				rules,
+				rule,
+				parsedRules
+			)({
+				variable: values.explanation,
+				unit: values.unit
+			})
+	}
+
+	const parseFn = parseFunctions[mecanismName]
+	if (!parseFn) {
+		syntaxError(
+			rule.dottedName,
+			`
+Le mécanisme ${mecanismName} est inconnu.
+Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
+		)
+	}
+	return parseFn(parse(rules, rule, parsedRules), mecanismName, values)
 }
 
-export let parseObject = (rules, rule, parsedRules) => rawNode => {
-	/* TODO instead of describing mecanisms in knownMecanisms.yaml, externalize the mecanisms themselves in an individual file and describe it
-	let mecanisms = intersection(keys(rawNode), keys(knownMecanisms))
+const knownOperations = {
+	'*': [multiply, '×'],
+	'/': [divide, '∕'],
+	'+': [add],
+	'-': [subtract, '−'],
+	'<': [lt],
+	'<=': [lte, '≤'],
+	'>': [gt],
+	'>=': [gte, '≥'],
+	'=': [equals],
+	'!=': [(a, b) => !equals(a, b), '≠']
+}
 
-	if (mecanisms.length != 1) {
-	}
-	*/
+const operationDispatch = fromPairs(
+	Object.entries(knownOperations).map(([k, [f, symbol]]) => [
+		k,
+		operation(k, f, symbol)
+	])
+)
 
-	let attributes = keys(rawNode),
-		descriptiveAttributes = ['description', 'note', 'référence'],
-		relevantAttributes = without(descriptiveAttributes, attributes)
-	if (relevantAttributes.length !== 1)
-		throw new Error(`OUPS : On ne devrait reconnaître que un et un seul mécanisme dans cet objet (au-delà des attributs descriptifs tels que "description", "commentaire", etc.)
-			Objet YAML : ${JSON.stringify(rawNode)}
-			Cette liste doit avoir un et un seul élément.
-			Si vous venez tout juste d'ajouter un nouveau mécanisme, vérifier qu'il est bien intégré dans le dispatch de parse.js
-		`)
-	let k = relevantAttributes[0],
-		v = rawNode[k]
-
-	let knownOperations = {
-			'*': [multiply, '×'],
-			'/': [divide, '∕'],
-			'+': [add],
-			'-': [subtract, '−'],
-			'<': [lt],
-			'<=': [lte, '≤'],
-			'>': [gt],
-			'>=': [gte, '≥'],
-			'=': [equals],
-			'!=': [(a, b) => !equals(a, b), '≠']
-		},
-		operationDispatch = fromPairs(
-			Object.entries(knownOperations).map(([k, [f, symbol]]) => [
-				k,
-				operation(k, f, symbol)
-			])
+const statelessParseFunction = {
+	...operationDispatch,
+	'une de ces conditions': mecanismOneOf,
+	'toutes ces conditions': mecanismAllOf,
+	somme: mecanismSum,
+	multiplication: mecanismProduct,
+	arrondi: mecanismRound,
+	barème,
+	grille,
+	'taux progressif': tauxProgressif,
+	encadrement,
+	durée,
+	'le maximum de': mecanismMax,
+	'le minimum de': mecanismMin,
+	allègement: mecanismReduction,
+	variations,
+	synchronisation: mecanismSynchronisation,
+	constant: (_, __, v) => ({
+		type: v.type,
+		nodeValue: v.nodeValue,
+		unit: v.unit,
+		// eslint-disable-next-line
+		jsx: (nodeValue, _, __, unit) => (
+			<span className={v.type}>
+				{formatValue({
+					unit: unit,
+					value: nodeValue,
+					// TODO : handle localization here
+					language: 'fr',
+					// We want to display constants with full precision,
+					// espacilly for percentages like APEC 0,036 %
+					maximumFractionDigits: 5
+				})}
+			</span>
 		)
-
-	let dispatch = {
-			'une de ces conditions': mecanismOneOf,
-			'toutes ces conditions': mecanismAllOf,
-			somme: mecanismSum,
-			multiplication: mecanismProduct,
-			arrondi: mecanismRound,
-			barème,
-			'barème linéaire': barèmeLinéaire,
-			'barème continu': barèmeContinu,
-			encadrement,
-			durée,
-			'le maximum de': mecanismMax,
-			'le minimum de': mecanismMin,
-			complément: mecanismComplement,
-			'une possibilité': mecanismOnePossibility(rule.dottedName),
-			'inversion numérique': mecanismInversion(rule.dottedName),
-			allègement: mecanismReduction,
-			variations,
-			synchronisation: mecanismSynchronisation,
-			...operationDispatch,
-			filter: () =>
-				parseReferenceTransforms(
-					rules,
-					rule,
-					parsedRules
-				)({
-					filter: v.filter,
-					variable: v.explanation
-				}),
-			variable: () =>
-				parseReferenceTransforms(rules, rule, parsedRules)({ variable: v }),
-			unitConversion: () =>
-				parseReferenceTransforms(
-					rules,
-					rule,
-					parsedRules
-				)({
-					variable: v.explanation,
-					unit: v.unit
-				}),
-			constant: () => ({
-				type: v.type,
-				nodeValue: v.nodeValue,
-				unit: v.unit,
-				// eslint-disable-next-line
-				jsx: () => (
-					<span className={v.type}>
-						{formatValue({
-							unit: v.unit,
-							value: v.nodeValue,
-							// TODO : handle localization here
-							language: 'fr',
-							// We want to display constants with full precision,
-							// espacilly for percentages like APEC 0,036 %
-							maximumFractionDigits: 5
-						})}
-					</span>
-				)
-			})
-		},
-		action = propOr(mecanismError, k, dispatch)
-
-	return action(parse(rules, rule, parsedRules), k, v)
+	})
 }

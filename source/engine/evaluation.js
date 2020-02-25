@@ -43,20 +43,25 @@ export let evaluateNode = (cache, situationGate, parsedRules, node) => {
 	return evaluatedNode
 }
 const sameUnitValues = (explanation, contextRule, mecanismName) => {
-	const unit = explanation.map(n => n.unit).find(Boolean)
+	const firstNodeWithUnit = explanation.find(node => !!node.unit)
+	if (!firstNodeWithUnit) {
+		return [undefined, explanation.map(({ nodeValue }) => nodeValue)]
+	}
 	const values = explanation.map(node => {
 		try {
-			return convertNodeToUnit(unit, node).nodeValue
+			return convertNodeToUnit(firstNodeWithUnit?.unit, node).nodeValue
 		} catch (e) {
 			typeWarning(
 				contextRule,
-				`'${node.name}' a une unité incompatible avec celle du mécanisme ${mecanismName}`,
+				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${node?.name ||
+					node?.rawNode}\n\t\t${firstNodeWithUnit?.name ||
+					firstNodeWithUnit?.rawNode}'`,
 				e
 			)
 			return node.nodeValue
 		}
 	})
-	return [unit, values]
+	return [firstNodeWithUnit.unit, values]
 }
 
 export let evaluateArray = (reducer, start) => (
@@ -144,7 +149,12 @@ export let evaluateObject = (objectShape, effect) => (
 	let transforms = map(k => [k, evaluateOne], keys(objectShape)),
 		automaticExplanation = evolve(fromPairs(transforms))(node.explanation)
 	// the result of effect can either be just a nodeValue, or an object {additionalExplanation, nodeValue}. The latter is useful for a richer JSX visualisation of the mecanism : the view should not duplicate code to recompute intermediate values (e.g. for a marginal 'barème', the marginal 'tranche')
-	let evaluated = effect(automaticExplanation, cache, situationGate, parsedRules),
+	let evaluated = effect(
+			automaticExplanation,
+			cache,
+			situationGate,
+			parsedRules
+		),
 		explanation = is(Object, evaluated)
 			? { ...automaticExplanation, ...evaluated.additionalExplanation }
 			: automaticExplanation,

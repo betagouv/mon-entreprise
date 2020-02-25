@@ -83,15 +83,13 @@ entreprise . impôt sur les sociétés:
   unité: €/an
   formule:
     barème:
-      assiette: bénéfice [€/an]
+      assiette: bénéfice
       tranches:
-        - en-dessous de: 38120
-          taux: 15%
-        - de: 38120
-          à: 500000
-          taux: 28%
-        - au-dessus de: 500000
-          taux: 33.3%
+        - taux: 15%
+          plafond: 38120 €/an
+        - taux: 28%
+          plafond: 500000 €/an
+        - taux: 33.3%
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
@@ -279,8 +277,8 @@ entreprise . taxe sur les salaires:
       assiette: barème
       franchise: 1200 €/an
       décote:
-        plafond: 2040 €/an
         taux: 75%
+        plafond: 2040 €/an
       abattement: abattement associations
 
 entreprise . catégorie d'activité:

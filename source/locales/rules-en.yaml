@@ -248,42 +248,76 @@ contrat salarié . CDD . CPF:
   titre.fr: CPF
 contrat salarié . CDD . compensation pour congés non pris:
   description.en: >-
-    The employee on a fixed-term contract has the same rights for paid leave as
-    the employee on a permanent contract. He acquires and takes his paid leave
-    under the same conditions.
+    [automatic] The employee with a fixed-term contract has the same paid
+    vacation entitlements as the employee with a permanent contract. He acquires
+    and takes his paid leave under the same conditions.
 
+    However, it is common that the employee may not take all of his or her leave
+    before the end of the contract, in which case he or she will receive a
+    compensatory allowance for paid leave paid by the employer.
 
-    It is however common that the employee can not take all his leave before the
-    end of his contract. In that case, he receives a compensatory alowance paid
-    by the employer.
-  description.fr: >
+    There are two methods of calculating the allowance for leave without pay.
+
+    ### Tenths method
+
+    This method of calculation will most often be favourable to the employee
+    when he or she has worked overtime. An allowance equal to one tenth of the
+    total gross remuneration received by the employee during the reference
+    period.
+
+    ## Salary continuance method ## 
+
+    This method will most often be favourable to the employee when he or she has
+    received a salary increase.
+
+    In making the calculation, the employer may take into account either : - the
+    actual time of the month, - the average number of working days (or working
+    days), - the actual number of working days (or working days).
+  description.fr: >-
     Le salarié en CDD bénéficie des mêmes droits à congés payés que le salarié
     en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
-
 
     Il est cependant courant que le salarié ne puisse pas prendre tous ses
     congés avant le terme de son contrat, il bénéficie alors d'une indemnité
     compensatrice de congés payés versée par l'employeur.
+
+    Il existe deux méthodes pour calculer l'indemnité de congés non pris.
+
+    ### Méthode "du dixième"
+
+    Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci
+    a accompli des heures supplémentaires. Une indemnité égale au dixième de la
+    rémunération brute totale perçue par le salarié au cours de la période de
+    référence.
+
+    ### Méthode "maintien du salaire" 
+
+    Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
+    bénéficié d’une augmentation de salaire.
+
+    Pour effectuer le calcul, l'employeur peut tenir compte soit : - de
+    l'horaire réel du mois, - du nombre moyen de jours ouvrables (ou ouvrés), -
+    du nombre réel de jours ouvrables (ou ouvrés).
   note.en: >
     [automatic] The indemnity is paid at the end of the contract, unless the
     fixed-term contract is continued by a permanent contract.
 
     Note that the El Khomri law modifies article L3141-12:
 
-    - before: Leave can be taken as soon as you become entitled....
+    - before: Leave can be taken as soon as the entitlement arises. 
 
-    - now: Leaves can be taken as soon as you are hired...
+    - now: Leaves can be taken as soon as you are hired.
   note.fr: >
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par
     un CDI.
 
     À noter, la loi El Khomri modifie l'article L3141-12:
 
-    - avant : Les congés peuvent être pris dès l'ouverture des droits [...]
+    - avant : Les congés peuvent être pris dès l'ouverture des droits 
 
-    - maintenant : Les congés peuvent être pris dès l’embauche [...]
-  titre.en: untaken vacation compensation
-  titre.fr: compensation pour congés non pris
+    - maintenant : Les congés peuvent être pris dès l’embauche
+  titre.en: '[automatic] holiday pay'
+  titre.fr: indemnité de congés payés
 contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
   titre.en: monthly basis
   titre.fr: assiette mensuelle
@@ -3223,6 +3257,9 @@ dirigeant . indépendant . PLNR régime général:
   question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
   titre.en: PLNR general scheme
   titre.fr: PLNR régime général
+dirigeant . indépendant . assiette des cotisations:
+  titre.en: '[automatic] contribution base'
+  titre.fr: assiette des cotisations
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the executive's spouse to be covered by social protection
@@ -3309,12 +3346,12 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec parta
 dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
   description.en: >-
     [automatic] The collaborating spouse will pay social security contributions
-    calculated on the basis of a percentage of the professional income of the
-    manager of the company (one third or one half).
+    calculated on the basis of a percentage of the contribution base of the
+    company manager (one third or one half).
   description.fr: >-
     Le conjoint collaborateur paiera des cotisations sociales calculées sur une
-    base d'un pourcentage du revenu professionnel du gérant de l'entreprise (un
-    tiers ou la moitié).
+    base d'un pourcentage du assiette des cotisations du gérant de l'entreprise
+    (un tiers ou la moitié).
   titre.en: undivided income
   titre.fr: revenu sans partage
 dirigeant . indépendant . conjoint collaborateur . cotisations:
@@ -3384,8 +3421,8 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
   titre.en: tobacco deduction
   titre.fr: déduction tabac
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits:
-  titre.en: professional income (with tobacco deduction)
-  titre.fr: revenu professionnel (avec déduction tabac)
+  titre.en: '[automatic] contribution base (with tobacco deduction)'
+  titre.fr: assiette des cotisations (avec déduction tabac)
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   description.en: >-
     Contributions for the daily allowances of self-employed people. If the state
@@ -3515,6 +3552,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
+dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond:
+  titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
+  titre.fr: plafond retraite complémentaire des indépendants
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
   description.en: >
     Non-regulated liberal professions who started their activity as of 1 January
@@ -3634,36 +3674,8 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
-  description.en: >
-    It is the net income of the self-employed person from deductible
-    contributions that is used as the basis for calculating contributions and
-    taxes for the self-employed.
-
-    Attention, **our calculation is valid for a standard scheme**:
-
-    The self-employed person who starts out will pay a fixed contributions
-    during his first months. He will then have to regularize this situation in
-    relation to the income he actually received.
-
-    This calculation should therefore be seen as *the amount that should in any
-    case be paid* in the short term after several months of activity.
-  description.fr: >
-    C'est le revenu net de cotisations déductibles du travailleur indépendant,
-    qui sert de base au calcul des cotisations et de l'impôt pour les
-    indépendants.
-
-
-    Attention, **notre calcul est fait au régime de croisière**:
-
-    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait
-    relativement réduit de cotisations sociales. Il devra ensuite régulariser
-    cette situation par rapport au revenu qu'il a vraiment perçu.
-
-
-    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être
-    payé* à court terme après 2 ans d'exercice.
-  titre.en: Professional income
-  titre.fr: revenu professionnel (net imposable)
+  titre.en: '[automatic] occupational income'
+  titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
     [automatic] Foreign income is income declared by self-employed persons in

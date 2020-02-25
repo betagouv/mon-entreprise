@@ -129,14 +129,19 @@ export function Leaf({
 	const sitePaths = useContext(SitePathsContext)
 	const flatRules = useSelector(flatRulesSelector)
 	let rule = findRuleByDottedName(flatRules, dottedName)
-
+	const title = rule.title || capitalise0(name)
 	return (
 		<span className={classNames(classes, 'leaf')}>
 			{dottedName && (
 				<span className="nodeHead">
 					<Link to={sitePaths.documentation.rule(dottedName)}>
 						<span className="name">
-							{rule.title || capitalise0(name)} {filter}
+							{rule.acronyme ? (
+								<abbr title={title}>{rule.acronyme}</abbr>
+							) : (
+								title
+							)}{' '}
+							{filter}
 						</span>
 					</Link>
 					{!isNil(nodeValue) && (

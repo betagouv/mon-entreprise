@@ -18,8 +18,8 @@ describe('conversation', function() {
 				{ nom: 'top . startHere', formule: { somme: ['a', 'b'] } },
 				{ nom: 'top . a', formule: 'aa' },
 				{ nom: 'top . b', formule: 'bb' },
-				{ nom: 'top . aa', question: '?', titre: 'a' },
-				{ nom: 'top . bb', question: '?', titre: 'b' }
+				{ nom: 'top . aa', question: '?', titre: 'a', unité: '€' },
+				{ nom: 'top . bb', question: '?', titre: 'b', unité: '€' }
 			],
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
@@ -40,9 +40,9 @@ describe('conversation', function() {
 				{ nom: 'top . a', formule: 'aa' },
 				{ nom: 'top . b', formule: 'bb' },
 				{ nom: 'top . c', formule: 'cc' },
-				{ nom: 'top . aa', question: '?', titre: 'a' },
-				{ nom: 'top . bb', question: '?', titre: 'b' },
-				{ nom: 'top . cc', question: '?', titre: 'c' }
+				{ nom: 'top . aa', question: '?', titre: 'a', unité: '€' },
+				{ nom: 'top . bb', question: '?', titre: 'b', unité: '€' },
+				{ nom: 'top . cc', question: '?', titre: 'c', unité: '€' }
 			],
 			rules = rawRules.map(enrichRule)
 

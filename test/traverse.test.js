@@ -196,9 +196,9 @@ describe('analyse with mecanisms', function() {
 							assiette: 2008,
 							multiplicateur: 1000,
 							tranches: [
-								{ 'en-dessous de': 1, taux: 0.1 },
-								{ de: 1, à: 2, taux: 1.2 },
-								{ 'au-dessus de': 2, taux: 10 }
+								{ plafond: 1, taux: 0.1 },
+								{ plafond: 2, taux: 1.2 },
+								{ taux: 10 }
 							]
 						}
 					}
@@ -221,16 +221,16 @@ describe('analyse with mecanisms', function() {
 							composantes: [
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.4 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.4 },
+										{ taux: 5 }
 									]
 								},
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.8 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.8 },
+										{ taux: 5 }
 									]
 								}
 							]
@@ -257,9 +257,9 @@ describe('analyse with mecanisms', function() {
 									si: '3 > 4',
 									alors: {
 										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 1.2 },
-											{ 'au-dessus de': 2, taux: 10 }
+											{ plafond: 1, taux: 0.1 },
+											{ plafond: 2, taux: 1.2 },
+											{ taux: 10 }
 										]
 									}
 								},
@@ -267,9 +267,9 @@ describe('analyse with mecanisms', function() {
 									si: '3 > 2',
 									alors: {
 										tranches: [
-											{ 'en-dessous de': 1, taux: 0.1 },
-											{ de: 1, à: 2, taux: 1.8 },
-											{ 'au-dessus de': 2, taux: 10 }
+											{ plafond: 1, taux: 0.1 },
+											{ plafond: 2, taux: 1.8 },
+											{ taux: 10 }
 										]
 									}
 								}
@@ -294,41 +294,6 @@ describe('analyse with mecanisms', function() {
 		).to.have.property('nodeValue', 3200)
 	})
 
-	it('should handle complements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: { complément: { cible: 'dix', montant: 93 } }
-				},
-				{ nom: 'top . dix', formule: 17 }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 93 - 17)
-	})
-
-	it('should handle components in complements', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: {
-						complément: {
-							cible: 'dix',
-							composantes: [{ montant: 93 }, { montant: 93 }]
-						}
-					}
-				},
-				{ nom: 'top . dix', formule: 17 }
-			],
-			rules = parseAll(rawRules.map(enrichRule))
-		expect(
-			analyse(rules, 'startHere')(stateSelector).targets[0]
-		).to.have.property('nodeValue', 2 * (93 - 17))
-	})
-
 	it('should handle filtering on components', function() {
 		let rawRules = [
 				{ nom: 'top' },
@@ -342,17 +307,17 @@ describe('analyse with mecanisms', function() {
 							composantes: [
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.4 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.4 },
+										{ taux: 5 }
 									],
 									attributs: { 'dû par': 'salarié' }
 								},
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.8 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.8 },
+										{ taux: 5 }
 									],
 									attributs: { 'dû par': 'employeur' }
 								}
@@ -384,17 +349,17 @@ describe('analyse with mecanisms', function() {
 							composantes: [
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.4 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.4 },
+										{ taux: 5 }
 									],
 									attributs: { 'dû par': 'salarié' }
 								},
 								{
 									tranches: [
-										{ 'en-dessous de': 1, taux: 0.05 },
-										{ de: 1, à: 2, taux: 0.8 },
-										{ 'au-dessus de': 2, taux: 5 }
+										{ plafond: 1, taux: 0.05 },
+										{ plafond: 2, taux: 0.8 },
+										{ taux: 5 }
 									],
 									attributs: { 'dû par': 'employeur' }
 								}
