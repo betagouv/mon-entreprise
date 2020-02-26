@@ -1816,15 +1816,19 @@ contrat salarié . réduction générale:
 
 contrat salarié . réduction générale . coefficient:
   formule:
-    encadrement:
+    arrondi:
+      décimales: 4
       valeur:
-        multiplication:
-          assiette: SMIC / cotisations . assiette * 1.6 - 1
-          facteur: T / 0.6
-      plancher: 0%
-      plafond: T
+        encadrement:
+          valeur:
+            multiplication:
+              assiette: SMIC / cotisations . assiette * 1.6 - 1
+              facteur: T / 0.6
+          plancher: 0%
+          plafond: T
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
+    Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
 
 contrat salarié . réduction générale . T:
   titre: Coefficient T
