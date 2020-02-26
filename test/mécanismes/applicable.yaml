@@ -8,6 +8,14 @@ statut cadre:
 choix du statut cadre:
   par défaut: non
 
+statut cadre . montant de la voiture de fonction:
+  formule: 50000
+  exemples:
+    - nom: Applicabilité règle enfant
+      situation:
+        statut cadre: non
+      valeur attendue: false
+
 prévoyance obligatoire cadre:
   applicable si: statut cadre
   formule:

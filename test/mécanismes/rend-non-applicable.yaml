@@ -1,6 +1,14 @@
 impôt:
   formule: 1000
 
+impôt . redevance télé:
+  formule: 100
+  exemples:
+    - nom: règle enfant désactivée
+      situation:
+        exilé fiscal: oui
+      valeur attendue: false
+
 exilé fiscal:
   rend non applicable:
     - impôt
