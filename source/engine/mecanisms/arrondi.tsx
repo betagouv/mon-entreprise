@@ -21,7 +21,7 @@ export default (recurse, k, v) => {
 		const child = evaluateNode(cache, situation, parsedRules, node.explanation)
 		const nodeValue =
 			child.nodeValue === null ? null : Math.round(child.nodeValue)
-		return { ...node, nodeValue, explanation: child }
+		return { ...node, unit: child.unit, nodeValue, explanation: child }
 	}
 
 	return {

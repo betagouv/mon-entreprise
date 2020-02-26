@@ -1,0 +1,28 @@
+salaire brut:
+  formule: 2000€
+
+salaire net:
+  formule: 0.5 * salaire brut
+
+SMIC brut:
+  formule: 1000€
+
+SMIC net:
+  formule:
+    recalcul:
+      règle: salaire net
+      avec:
+        salaire brut: SMIC brut
+  exemples:
+    - valeur attendue: 500
+
+Recalcule règle courante:
+  formule:
+    encadrement:
+      valeur: 10% * salaire brut
+      plafond:
+        recalcul:
+          avec:
+            salaire brut: 100€
+  exemples:
+    - valeur attendue: 10

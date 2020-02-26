@@ -36,6 +36,7 @@ import Allègement from './mecanismViews/Allègement'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
+import Recalcul from './mecanismViews/Recalcul'
 import Somme from './mecanismViews/Somme'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
 import { anyNull, val } from './traverse-common-functions'
@@ -283,6 +284,70 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 		category: 'mecanism',
 		name: 'inversion numérique',
 		type: 'numeric'
+	}
+}
+
+export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
+	let evaluate = (currentCache, situationGate, parsedRules, node) => {
+		let defaultRuleToEvaluate = dottedNameContext
+		let nodeToEvaluate = recurse(node?.règle ?? defaultRuleToEvaluate)
+		let cache = { _meta: currentCache._meta, _metaInRecalcul: true } // Create an empty cache
+		let amendedSituation = Object.fromEntries(
+			Object.keys(node.avec).map(dottedName => [
+				disambiguateRuleReference(
+					parsedRules,
+					{ dottedName: dottedNameContext },
+					dottedName
+				),
+				node.avec[dottedName]
+			])
+		)
+
+		if (currentCache._metaInRecalcul) {
+			return defaultNode(false)
+		}
+
+		let amendedSituationGate = dottedName =>
+			Object.keys(amendedSituation).includes(dottedName)
+				? evaluateNode(
+						cache,
+						amendedSituationGate,
+						parsedRules,
+						recurse(amendedSituation[dottedName])
+				  ).nodeValue
+				: situationGate(dottedName)
+
+		let evaluatedNode = evaluateNode(
+			cache,
+			amendedSituationGate,
+			parsedRules,
+			nodeToEvaluate
+		)
+
+		return {
+			...evaluatedNode,
+			explanation: {
+				...evaluateNode.explanation,
+				unit: evaluatedNode.unit,
+				amendedSituation: Object.fromEntries(
+					Object.keys(amendedSituation).map(dottedName => [
+						dottedName,
+						evaluateNode(
+							cache,
+							amendedSituationGate,
+							parsedRules,
+							recurse(amendedSituation[dottedName])
+						)
+					])
+				)
+			},
+			jsx: Recalcul
+		}
+	}
+
+	return {
+		...v,
+		evaluate
 	}
 }
 

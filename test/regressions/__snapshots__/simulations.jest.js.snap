@@ -190,7 +190,7 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échell
 
 exports[`calculate simulations-salarié:  JEI 1`] = `"[3440,0,0,3000,2353,2187]"`;
 
-exports[`calculate simulations-salarié:  JEI 2`] = `"[26710,0,0,20000,15969,10681]"`;
+exports[`calculate simulations-salarié:  JEI 2`] = `"[26635,0,0,20000,15969,10681]"`;
 
 exports[`calculate simulations-salarié:  JEI 3`] = `"[4517,0,0,4000,3141,2741]"`;
 

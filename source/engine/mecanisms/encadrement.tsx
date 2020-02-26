@@ -62,6 +62,9 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	let evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
 	const valeur = evaluateAttribute(node.explanation.valeur)
 	let plafond = evaluateAttribute(node.explanation.plafond)
+	if (val(plafond) === false) {
+		plafond = objectShape.plafond
+	}
 	let plancher = evaluateAttribute(node.explanation.plancher)
 	if (valeur.unit) {
 		try {

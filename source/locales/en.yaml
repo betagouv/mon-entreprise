@@ -217,6 +217,7 @@ autoentrepreneur:
   titre: Auto-entrepeneur
 back: Resume simulation
 barème: scale
+calcul-avec: 'Calculation from <1></1>with :'
 cancelExample: Back to your situation
 car dépend de: because it depends on
 cible: target

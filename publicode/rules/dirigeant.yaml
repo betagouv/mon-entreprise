@@ -1006,9 +1006,12 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   formule:
     multiplication:
       assiette: cotisations . maladie
-      # TODO : ceci n'est pas bon (le plafond est sur le revenu exonéré, et est proratisé en début / fin d'éxo)
       taux: taux
-      plafond: 3042 heures/an * SMIC horaire
+      # TODO : Le plafond est proratisé en début / fin d'exonération
+      plafond:
+        recalcul:
+          avec:
+            indépendant . revenu net de cotisations: 3042 heures/an * SMIC horaire
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"
