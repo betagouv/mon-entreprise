@@ -4,16 +4,17 @@ import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
-	analysisWithDefaultsSelector,
 	flatRulesSelector,
 	nextStepsSelector,
 	ruleAnalysisSelector,
@@ -40,6 +41,7 @@ const simulationConfig = {
 	},
 	'unités par défaut': ['€/an']
 }
+
 const lauchComputationWhenResultsInViewport = () => {
 	const dottedName = 'dirigeant . rémunération totale'
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
@@ -70,7 +72,6 @@ const lauchComputationWhenResultsInViewport = () => {
 
 export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
-	const analysis = useSelector(analysisWithDefaultsSelector)
 	const rules = useSelector(flatRulesSelector)
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
@@ -281,7 +282,6 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 					onChange={update}
 					value={currentValue}
 				/>
-				{/* <Field dottedName={dottedName} onChange={onChange} /> */}
 			</Question>
 		</Animate.fromTop>
 	)
@@ -293,6 +293,7 @@ function Results() {
 	)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<div
 			className="ui__ card lighter-bg"
@@ -340,8 +341,16 @@ function Results() {
 					{!onGoingComputation && (
 						<div css="text-align: center">
 							<button className="ui__ simple button">
-								{emoji('🖨')}&nbsp;
-								<Trans i18nKey="imprimer">Imprimer</Trans>
+								{emoji('🔗')} Obtenir le lien
+							</button>
+							<Link
+								className="ui__ simple button"
+								to={sitePaths.gérer.déclarationIndépendant.récapitulatif}
+							>
+								{emoji('📋')} Récapitulatif
+							</Link>
+							<button className="ui__ simple button">
+								{emoji('🖨')} Imprimer
 							</button>
 						</div>
 					)}

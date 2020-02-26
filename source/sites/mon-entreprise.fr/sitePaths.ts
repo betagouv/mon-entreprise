@@ -89,10 +89,16 @@ export const constructLocalizedSitePath = (language: string) => {
 			index: t('path.gérer.index', '/gérer'),
 			embaucher: t('path.gérer.embaucher', '/embaucher'),
 			sécuritéSociale: t('path.gérer.sécuritéSociale', '/sécurité-sociale'),
-			déclarationIndépendant: t(
-				'path.gérer.déclaration-indépendant',
-				'/aide-declaration-independants'
-			)
+			déclarationIndépendant: {
+				index: t(
+					'path.gérer.déclaration-indépendant.index',
+					'/aide-declaration-independants'
+				),
+				récapitulatif: t(
+					'path.gérer.déclaration-indépendant.récapitulatif',
+					'/récapitulatif'
+				)
+			}
 		},
 		simulateurs: {
 			index: t('path.simulateurs.index', '/simulateurs'),

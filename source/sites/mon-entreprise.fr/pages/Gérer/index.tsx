@@ -2,9 +2,12 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router'
 import { NavLink, useLocation } from 'react-router-dom'
+import { situationSelector } from 'Selectors/analyseSelectors'
 import AideDéclarationIndépendant from './AideDéclarationIndépendants'
+import { AideDéclarationIndépendantsRécapitulatif } from './AideDéclarationIndépendantsRécapitulatif'
 import Embaucher from './Embaucher'
 import Home from './Home'
 import SécuritéSociale from './SécuritéSociale'
@@ -12,6 +15,7 @@ import SécuritéSociale from './SécuritéSociale'
 export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
 	const location = useLocation()
+	const situation = useSelector(situationSelector)
 	return (
 		<>
 			<ScrollToTop key={location.pathname} />
@@ -33,8 +37,15 @@ export default function Gérer() {
 				/>
 				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
 				<Route
-					path={sitePaths.gérer.déclarationIndépendant}
+					exact
+					path={sitePaths.gérer.déclarationIndépendant.index}
 					component={AideDéclarationIndépendant}
+				/>
+				<Route
+					path={sitePaths.gérer.déclarationIndépendant.récapitulatif}
+					render={() => (
+						<AideDéclarationIndépendantsRécapitulatif situation={situation} />
+					)}
 				/>
 			</Switch>
 		</>
