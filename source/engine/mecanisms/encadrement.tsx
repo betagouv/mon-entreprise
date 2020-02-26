@@ -3,6 +3,7 @@ import {
 	defaultNode,
 	evaluateNode,
 	makeJsx,
+	mergeAllMissing,
 	parseObject
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
@@ -20,7 +21,7 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 			child={
 				<>
 					{makeJsx(explanation.valeur)}
-					<p>
+					<p css="margin-top: 1rem">
 						{!explanation.plancher.isDefault && (
 							<span
 								css={
@@ -34,16 +35,19 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 							</span>
 						)}
 						{!explanation.plafond.isDefault && (
-							<span
-								css={
-									nodeValue === val(explanation.plafond)
-										? 'background: yellow'
-										: {}
-								}
-							>
-								<strong className="key">Plafonné à : </strong>
-								<span className="value">{makeJsx(explanation.plafond)}</span>
-							</span>
+							<>
+								<br />
+								<span
+									css={
+										nodeValue === val(explanation.plafond)
+											? 'background: yellow'
+											: {}
+									}
+								>
+									<strong className="key">Plafonné à : </strong>
+									<span className="value">{makeJsx(explanation.plafond)}</span>
+								</span>
+							</>
 						)}
 					</p>
 				</>
@@ -59,7 +63,12 @@ const objectShape = {
 }
 
 const evaluate = (cache, situation, parsedRules, node) => {
-	let evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
+	const evaluateAttribute = evaluateNode.bind(
+		null,
+		cache,
+		situation,
+		parsedRules
+	)
 	const valeur = evaluateAttribute(node.explanation.valeur)
 	let plafond = evaluateAttribute(node.explanation.plafond)
 	if (val(plafond) === false) {
@@ -78,15 +87,12 @@ const evaluate = (cache, situation, parsedRules, node) => {
 			)
 		}
 	}
+
 	const nodeValue = Math.max(val(plancher), Math.min(val(plafond), val(valeur)))
 	return {
 		...node,
 		nodeValue,
-		missingVariables: {
-			...valeur?.missingVariables,
-			...plafond?.missingVariables,
-			...plancher?.missingVariables
-		},
+		missingVariables: mergeAllMissing([valeur, plafond, plancher]),
 		unit: valeur.unit,
 		explanation: {
 			valeur,
@@ -95,7 +101,6 @@ const evaluate = (cache, situation, parsedRules, node) => {
 		}
 	}
 }
-
 export default (recurse, k, v) => {
 	const explanation = parseObject(recurse, objectShape, v)
 

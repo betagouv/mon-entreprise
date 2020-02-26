@@ -208,6 +208,15 @@ contrat salarié . ATMP . taux collectif ATMP:
     l'entreprise ?
   titre.en: ATMP collective rate
   titre.fr: Taux collectif ATMP
+contrat salarié . ATMP . taux minimum:
+  description.en: >-
+    [automatic] The existing minimum rate for the ATMP contribution. Used in
+    particular for the calculation of the general reduction in contributions
+  description.fr: >-
+    Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour le
+    calcul de la réduction générale de cotisations
+  titre.en: '[automatic] minimum level'
+  titre.fr: taux minimum
 contrat salarié . ATMP . taux réduit:
   description.en: |
     This rate corresponds to:
@@ -672,6 +681,9 @@ contrat salarié . FNAL:
 contrat salarié . FNAL . taux:
   titre.en: rate
   titre.fr: taux
+contrat salarié . FNAL . éligible taux réduit:
+  titre.en: '[automatic] eligible reduced rate'
+  titre.fr: éligible taux réduit
 contrat salarié . SMIC:
   description.en: >
     [automatic] Several contribution reductions ([general
@@ -1006,9 +1018,15 @@ contrat salarié . contribution d'équilibre général:
     cotisation de compensation pour les cadres.
   titre.en: general equilibrium contribution
   titre.fr: contribution d'équilibre général
+contrat salarié . contribution d'équilibre général . taux employeur tranche 1:
+  titre.en: '[automatic] employer rate tranche 1'
+  titre.fr: taux employeur tranche 1
 contrat salarié . contribution d'équilibre technique:
   titre.en: technical equilibrium contribution
   titre.fr: contribution d'équilibre technique
+contrat salarié . contribution d'équilibre technique . taux employeur:
+  titre.en: '[automatic] employer rate'
+  titre.fr: taux employeur
 contrat salarié . convention collective:
   contrôles.0.en: |
     [automatic] Caution, the implementation of collective agreements is still
@@ -1868,6 +1886,9 @@ contrat salarié . maladie . taux employeur . taux réduit:
 contrat salarié . maladie . taux salarié:
   titre.en: employee rate
   titre.fr: taux salarié
+contrat salarié . maladie . taux solidarité autonomie:
+  titre.en: '[automatic] solidarity rate autonomy'
+  titre.fr: taux solidarité autonomie
 contrat salarié . médecine du travail:
   description.en: >-
     The employer has the obligation to organize an occupational health service,
@@ -1970,51 +1991,35 @@ contrat salarié . réduction ACRE . taux:
   titre.en: ACRE rate
   titre.fr: taux ACRE
 contrat salarié . réduction générale:
-  description.en: >-
-    As part of the "liability and solidarity pact", the zero-contribution URSSAF
-    scheme allows the employer of an employee with the minimul legal salary
-    (SMIC) to no longer pay any contributions, except for unemployment
-    insurance. The amount of the reduction is equal to the product of the gross
-    annual remuneration by a coefficient. No particular formality is required to
-    obtain apply it.
+  description.en: >
+    [automatic] Within the framework of the responsibility and solidarity pact,
+    the URSSAF zero-contribution scheme allows the employer of an employee with
+    a minimum wage to no longer pay any contributions. The amount of the relief
+    is equal to the product of the gross annual remuneration by a coefficient.
+    There are no special formalities to be carried out.
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
     zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
-    payer aucune cotisation, hormis l'assurance chômage. Le montant de
-    l'allègement est égal au produit de la rémunération annuelle brute par un
-    coefficient. Il n'y a pas de formalité particulière à effectuer.
-  note.en: >-
-    [automatic] We use the official social security calculation method. It would
-    be preferable here to reduce the contributions concerned directly, which
-    would avoid the calculation being based on the 'T' parameters published each
-    year (they depend directly on the reduced contributions).
-  note.fr: >-
-    Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il
-    serait préférable ici de réduire directement les cotisations concernées, ce
-    qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque
-    année (ils dépendent directement des cotisaitons réduites).
+    payer aucune cotisation. Le montant de l'allègement est égal au produit de
+    la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
+    particulière à effectuer.
   titre.en: general reduction
   titre.fr: réduction générale
-contrat salarié . réduction générale . assiette:
-  titre.en: Basis for the general reduction
-  titre.fr: Assiette de la réduction générale
-contrat salarié . réduction générale . assiette . part de la cotisation ATMP:
-  note.en: '[automatic] In practice, the ATMP is always higher than 0.78%.'
-  note.fr: 'En pratique, l''ATMP est toujours supérieure à 0.78%'
-  titre.en: share of ATMP contribution
-  titre.fr: part de la cotisation ATMP
-contrat salarié . réduction générale . multiplicateur:
-  titre.en: multiplier
-  titre.fr: multiplicateur
-contrat salarié . réduction générale . paramètre T:
-  titre.en: T parameter
-  titre.fr: paramètre T
-contrat salarié . réduction générale . plafond de l'assiette:
-  titre.en: upper limit of the basis
-  titre.fr: plafond de l'assiette
-contrat salarié . réduction générale . écart au plafond de l'assiette:
-  titre.en: deviation from the upper limit of the basis
-  titre.fr: écart au plafond de l'assiette
+contrat salarié . réduction générale . T:
+  titre.en: '[automatic] Coefficient T'
+  titre.fr: Coefficient T
+contrat salarié . réduction générale . T sécurité sociale et chômage:
+  titre.en: '[automatic] T social security and unemployment'
+  titre.fr: T sécurité sociale et chômage
+contrat salarié . réduction générale . coefficient:
+  titre.en: '[automatic] coefficient'
+  titre.fr: coefficient
+contrat salarié . réduction générale . imputation retraite complémentaire:
+  titre.en: '[automatic] supplementary pension allocation'
+  titre.fr: imputation retraite complémentaire
+contrat salarié . réduction générale . imputation sécurité sociale:
+  titre.en: '[automatic] social security allocation'
+  titre.fr: imputation sécurité sociale
 contrat salarié . régime alsace moselle:
   description.en: >
     We consider that an employee is affiliated to the Alsace-Moselle regime when
@@ -2790,9 +2795,22 @@ contrat salarié . temps de travail . heures complémentaires . majoration:
   note.fr: Nous n'implémentons pas les taux conventionnels
   titre.en: '[automatic] overtime premium'
   titre.fr: majoration heures complémentaires
-contrat salarié . temps de travail . heures complémentaires . majoration . seuil légal de 10 pourcents:
-  titre.en: '[automatic] legal threshold of 10 percent'
-  titre.fr: seuil légal de 10 pourcents
+contrat salarié . temps de travail . heures complémentaires . seuil légal:
+  description.en: >-
+    [automatic] Unless otherwise provided by agreement, the number of overtime
+    hours may not exceed one tenth of the contractual duration of the part-time
+    contract.
+
+    If the agreement so permits, overtime above this threshold is remunerated
+    with a 25% bonus.
+  description.fr: >-
+    Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut
+    être supérieur à un dixième de la durée contractuelle du temps partiel.
+
+    Si la convention le permet, les heures complémentaire au delà de ce seuil
+    sont rémunérée avec une majoration de 25%
+  titre.en: '[automatic] statutory threshold'
+  titre.fr: seuil légal
 contrat salarié . temps de travail . heures supplémentaires:
   contrôles.0.en: '[automatic] The average working week may not exceed 44 hours.'
   contrôles.0.fr: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
@@ -2916,15 +2934,15 @@ contrat salarié . vieillesse:
   description.fr: Cotisation au régime de retraite de base des salariés.
   titre.en: Basic pension contribution
   titre.fr: vieillesse
-contrat salarié . vieillesse . taux employeur non plafonné:
+contrat salarié . vieillesse . taux employeur déplafonné:
   titre.en: not capped employer rate
-  titre.fr: taux employeur non plafonné
+  titre.fr: taux employeur déplafonné
 contrat salarié . vieillesse . taux employeur plafonné:
   titre.en: capped employer rate
   titre.fr: taux employeur plafonné
-contrat salarié . vieillesse . taux salarié non plafonné:
+contrat salarié . vieillesse . taux salarié déplafonné:
   titre.en: not capped employee rate
-  titre.fr: taux salarié non plafonné
+  titre.fr: taux salarié déplafonné
 contrat salarié . vieillesse . taux salarié plafonné:
   titre.en: capped employee rate
   titre.fr: taux salarié plafonné

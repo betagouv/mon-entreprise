@@ -16,6 +16,16 @@
   - contrat salarié . rémunération . brut de base: 100000
   - contrat salarié . rémunération . brut de base: 1000000
 
+effectif:
+  - contrat salarié . rémunération . brut de base: 2000
+    entreprise . effectif: 10
+  - contrat salarié . rémunération . brut de base: 2000
+    entreprise . effectif: 20
+  - contrat salarié . rémunération . brut de base: 2000
+    entreprise . effectif: 50
+  - contrat salarié . rémunération . brut de base: 2000
+    entreprise . effectif: 100
+
 inversions:
   - contrat salarié . prix du travail: 2000
   - contrat salarié . rémunération . net: 2000
@@ -79,6 +89,9 @@ temps partiel:
   - contrat salarié . rémunération . brut de base . équivalent temps plein: 2500
     contrat salarié . temps de travail . temps partiel: true
     contrat salarié . temps de travail . temps partiel . heures par semaine: 26
+  - contrat salarié . rémunération . brut de base: 1000
+    contrat salarié . temps de travail . temps partiel: true
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 20
 
 treizième mois:
   - contrat salarié . rémunération . brut de base: 2300
@@ -183,3 +196,63 @@ frais pro - IKV:
     contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 200
   - contrat salarié . rémunération . net après impôt: 1630
     contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 30
+
+lodeom:
+  - contrat salarié . rémunération . brut de base: 1521.22
+    contrat salarié . lodeom . zone un: true
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . lodeom . zone un: true
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . lodeom . zone un: true
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . lodeom . zone un: true
+  - contrat salarié . rémunération . brut de base: 5500
+    contrat salarié . lodeom . zone un: true
+
+lodeom compétitivité renforcée:
+  - contrat salarié . rémunération . brut de base: 1521.22
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème compétitivité renforcée: true
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème compétitivité renforcée: true
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème compétitivité renforcée: true
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème compétitivité renforcée: true
+  - contrat salarié . rémunération . brut de base: 5500
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème compétitivité renforcée: true
+
+lodeom innovation et croissance:
+  - contrat salarié . rémunération . brut de base: 1521.22
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème innovation et croissance: true
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème innovation et croissance: true
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème innovation et croissance: true
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème innovation et croissance: true
+  - contrat salarié . rémunération . brut de base: 5500
+    contrat salarié . lodeom . zone un: true
+    contrat salarié . lodeom . éligible barème innovation et croissance: true
+
+taux spécifiques retraite complémentaire:
+  - contrat salarié . rémunération . brut de base: 1521.22
+    contrat salarié . retraite complémentaire . taux employeur tranche 1: 5.59
+    contrat salarié . retraite complémentaire . taux salarié tranche 1: 2.28
+  - contrat salarié . rémunération . brut de base: 2500
+    contrat salarié . retraite complémentaire . taux employeur tranche 1: 5.59
+    contrat salarié . retraite complémentaire . taux salarié tranche 1: 2.28
+  - contrat salarié . rémunération . brut de base: 1521.22
+    contrat salarié . retraite complémentaire . taux employeur tranche 1: 3.94
+    contrat salarié . retraite complémentaire . taux salarié tranche 1: 3.93
+  - contrat salarié . rémunération . brut de base: 2500
+    contrat salarié . retraite complémentaire . taux employeur tranche 1: 3.94
+    contrat salarié . retraite complémentaire . taux salarié tranche 1: 3.93
