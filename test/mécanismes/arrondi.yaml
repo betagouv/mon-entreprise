@@ -19,3 +19,22 @@ Arrondi:
       situation:
         cotisation retraite: 1200.50
       valeur attendue: 1201
+
+nombre de décimales:
+
+Arrondi avec precision:
+  formule:
+    arrondi:
+      valeur: cotisation retraite
+      décimales: nombre de décimales
+  exemples:
+    - nom: pas de décimales
+      situation:
+        cotisation retraite: 1200.21
+        nombre de décimales: 0
+      valeur attendue: 1200
+    - nom: deux décimales
+      situation:
+        cotisation retraite: 1200.21
+        nombre de décimales: 2
+      valeur attendue: 1200.21

@@ -173,6 +173,7 @@ après:
       is composed by the SIREN followed by the establishment number (NIC).
     titre: The SIRET number
   titre: After registration
+arrondi-to-decimals: 'Rounding to {explanation.decimals.nodeValue} decimals'
 assiette: base
 associés:
   choix1: Alone
