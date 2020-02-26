@@ -864,7 +864,9 @@ path:
     exemples: /examples
     index: /documentation
   gérer:
-    déclaration-indépendant: /declaration-aid-independent
+    déclaration-indépendant:
+      index: /declaration-aid-independent
+      récapitulatif: /summary
     embaucher: /hiring
     index: /manage
     sécuritéSociale: /social-security
