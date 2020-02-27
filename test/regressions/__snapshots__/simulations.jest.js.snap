@@ -162,7 +162,7 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  ACRE 3`
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 1`] = `"[13886,13886,10166,4,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 2`] = `"[14573,14573,0,4,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 2`] = `"[14645,14645,0,4,0,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 3`] = `"[13758,13758,10075,4,21,0]"`;
 

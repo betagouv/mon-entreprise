@@ -3741,6 +3741,39 @@ dirigeant . rattachement CIPAV:
   note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
+dirigeant . rattachement CIPAV . invalidité et décès:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation:
+  description.en: >-
+    [automatic] Cipav manages a pension scheme that pays a pension in the event
+    of permanent disability and a death benefit, as well as a pension for
+    surviving spouses and children in the event of the death of the insured. By
+    default, members contribute in "class A" but it is possible to contribute in
+    class B or C in order to benefit from a better disability and death cover.
+  description.fr: >-
+    La Cipav gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
+    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
+    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
+  question.en: >-
+    [automatic] In which class do you contribute to the CIPAV Disability Death
+    Plan?
+  question.fr: >-
+    Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV
+    ?
+  titre.en: '[automatic] contribution class'
+  titre.fr: classe de cotisation
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . A:
+  titre.en: '[automatic] class A'
+  titre.fr: classe A
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . B:
+  titre.en: '[automatic] class B'
+  titre.fr: classe B
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . C:
+  titre.en: '[automatic] class C'
+  titre.fr: classe C
 dirigeant . rattachement CIPAV . retraite complémentaire:
   titre.en: retirement supplement
   titre.fr: retraite complémentaire

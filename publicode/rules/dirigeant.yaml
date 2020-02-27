@@ -801,6 +801,64 @@ dirigeant . rattachement CIPAV . retraite de base:
           taux: 1.87%
           plafond: 5 * plafond sécurité sociale temps plein
 
+dirigeant . rattachement CIPAV . retraite complémentaire:
+  remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
+  formule:
+    grille:
+      assiette: indépendant . assiette des cotisations
+      unité: €/an
+      tranches:
+        - montant: 1353
+          plafond: 26581 €/an
+        - montant: 2705
+          plafond: 49281 €/an
+        - montant: 4058
+          plafond: 57851 €/an
+        - montant: 6763
+          plafond: 66401 €/an
+        - montant: 9468
+          plafond: 83061 €/an
+        - montant: 14878
+          plafond: 103181 €/an
+        - montant: 16231
+          plafond: 123301 €/an
+        - montant: 17583
+
+dirigeant . rattachement CIPAV . invalidité et décès:
+  remplace: indépendant . cotisations et contributions . cotisations . invalidité et décès
+  formule:
+    variations:
+      - si: classe de cotisation = 'A'
+        alors: 76 €/an
+      - si: classe de cotisation = 'B'
+        alors: 228 €/an
+      - si: classe de cotisation = 'C'
+        alors: 380 €/an
+
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation:
+  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
+  description: >-
+    La Cipav gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
+    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
+    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - A
+        - B
+        - C
+  par défaut: A
+
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . A:
+  titre: classe A
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . B:
+  titre: classe B
+dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . C:
+  titre: classe C
+
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   formule:
     barème:
@@ -824,29 +882,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-
-dirigeant . rattachement CIPAV . retraite complémentaire:
-  remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
-  formule:
-    grille:
-      assiette: indépendant . assiette des cotisations
-      unité: €/an
-      tranches:
-        - montant: 1315
-          plafond: 26581 €/an
-        - montant: 2630
-          plafond: 49281 €/an
-        - montant: 3945
-          plafond: 57851 €/an
-        - montant: 6575
-          plafond: 66401 €/an
-        - montant: 9205
-          plafond: 83061 €/an
-        - montant: 14465
-          plafond: 103181 €/an
-        - montant: 15780
-          plafond: 123301 €/an
-        - montant: 17095
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
   applicable si:
@@ -896,8 +931,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
 
-      # TODO invalidité décès pour les libéraux
-      # 3 classes, 76, 228, 380€
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
   titre: assiette invalidité et décès
   formule:
