@@ -137,3 +137,18 @@ span.ui__.enumeration:not(:last-of-type)::after {
 .no-scroll {
 	overflow: hidden;
 }
+
+.markdown table {
+	text-align: left;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+.markdown table tbody tr:nth-child(2n + 1) {
+	background-color: var(--lighterColor);
+}
+
+.markdown table td,
+.markdown table th {
+	padding: 5px 10px;
+}

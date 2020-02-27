@@ -61,7 +61,7 @@ Gérant minoritaire: Managing director
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
-"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
+'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
 Indépendant: Independent
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
@@ -78,7 +78,7 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -143,7 +143,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-"Total payé par l'entreprise :": 'Total paid by the company :'
+'Total payé par l''entreprise :': 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -891,6 +891,7 @@ pages:
     module: What module?
 par: per
 path:
+  budget: /budget
   coronavirus: /coronavirus
   créer:
     après: /after-registration

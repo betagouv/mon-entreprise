@@ -65,10 +65,12 @@ const Footer = () => {
 							<>
 								{'  •  '}
 								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
+								{'  •  '}
+								<a href="https://mon-entreprise.fr/stats">Stats</a>
+								{'  •  '}
+								<Link to={sitePaths.budget}>Budget</Link>
 							</>
 						)}
-						{'  •  '}
-						<a href="https://mon-entreprise.fr/stats">Stats</a>
 						{'  •  '}
 						<Link to={sitePaths.integration.index}>
 							<Trans>Intégrer nos simulateurs</Trans>

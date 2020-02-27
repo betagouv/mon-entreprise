@@ -1,0 +1,11 @@
+# Ces données sont optenues avec la commande suivante depuis le repo privé
+# `compa-mon-entreprise` :
+#
+# $ hledger bal charges -p 2020 -Q -B --depth 2
+
+2020:
+  T1:
+    Développement: 73500
+    Logiciels et hébergement: 170
+    Déplacements: 742
+    Documentation: 286
