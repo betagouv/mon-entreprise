@@ -23,6 +23,7 @@ import './App.css'
 import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
+import Budget from './pages/Budget/Budget'
 import Coronavirus from './pages/Coronavirus'
 import Créer from './pages/Créer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
@@ -127,6 +128,7 @@ const App = () => {
 						<Route path={sitePaths.integration.index} component={Integration} />
 						<Route path={sitePaths.nouveautés} component={Nouveautés} />
 						<Route path={sitePaths.coronavirus} component={Coronavirus} />
+						<Route path={sitePaths.budget} component={Budget} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact

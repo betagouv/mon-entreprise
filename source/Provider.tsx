@@ -96,7 +96,7 @@ export default function Provider({
 	onStoreCreated?.(store)
 
 	// Remove loader
-	const css = document.createElement('style')
+	var css = document.createElement('style')
 	css.type = 'text/css'
 	css.innerHTML = `
 #js {

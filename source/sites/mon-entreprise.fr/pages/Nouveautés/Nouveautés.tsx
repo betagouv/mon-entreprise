@@ -1,3 +1,4 @@
+import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
@@ -50,20 +51,17 @@ export default function Nouveautés() {
 				les{' '}
 				{selectedRelease === 0
 					? 'dernières nouveautés'
-					: `nouveautés de ${data[selectedRelease].name.toLowerCase()}`}{' '}
-				:
+					: `nouveautés de ${data[selectedRelease].name.toLowerCase()}`}
+				&nbsp;:
 			</p>
 			<SmallScreenSelect
+				value={selectedRelease}
 				onChange={evt => {
 					history.push(getPath(Number(evt.target.value)))
 				}}
 			>
 				{data.map(({ name }, index) => (
-					<option
-						key={index}
-						value={index}
-						selected={index === selectedRelease}
-					>
+					<option key={index} value={index}>
 						{name}
 					</option>
 				))}
@@ -100,6 +98,7 @@ export default function Nouveautés() {
 					</NavigationButtons>
 				</MainBlock>
 			</NewsSection>
+			<MoreInfosOnUs />
 		</>
 	)
 }
