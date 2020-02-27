@@ -50,7 +50,7 @@ export default function Simulateurs() {
 							pathname: sitePaths.simulateurs.indépendant
 						}}
 					>
-						<div className="ui__ big box-icon">{emoji('🃏')}</div>
+						<div className="ui__ big box-icon">{emoji('👩‍🔧')}</div>
 						<Trans i18nKey="simulateurs.accueil.indépendant">
 							<h3>Indépendant</h3>
 							<p className="ui__ notice" css="flex: 1">
@@ -66,7 +66,7 @@ export default function Simulateurs() {
 							pathname: sitePaths.simulateurs['auto-entrepreneur']
 						}}
 					>
-						<div className="ui__ big box-icon">{emoji('🧢')}</div>
+						<div className="ui__ big box-icon">{emoji('🚶‍♂️')}</div>
 						<Trans i18nKey="simulateurs.accueil.auto">
 							<h3>Auto-entrepreneur</h3>
 							<p className="ui__ notice" css="flex: 1">
