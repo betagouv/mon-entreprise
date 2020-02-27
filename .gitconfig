@@ -1,0 +1,3 @@
+# Required because some file names use UTF-8 characters
+[core]
+    quotepath = false
