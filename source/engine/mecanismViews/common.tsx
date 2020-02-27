@@ -45,10 +45,10 @@ type NodeProps = {
 	value: NodeValuePointerProps['data']
 	unit: NodeValuePointerProps['unit']
 	inline?: boolean
-	child: React.ReactNode
+	children: React.ReactNode
 }
 
-export function Node({ classes, name, value, child, inline, unit }: NodeProps) {
+export function Node({ classes, name, value, children, inline, unit }: NodeProps) {
 	let termDefinition = contains('mecanism', classes) && name
 
 	return (
@@ -67,7 +67,7 @@ export function Node({ classes, name, value, child, inline, unit }: NodeProps) {
 					</LinkButton>
 				</div>
 			)}
-			{child}{' '}
+			{children}{' '}
 			{name ? (
 				!isNil(value) && (
 					<div className="mecanism-result">

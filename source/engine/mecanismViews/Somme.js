@@ -5,13 +5,9 @@ import { Node, NodeValuePointer } from './common'
 import './Somme.css'
 
 const SommeNode = ({ explanation, nodeValue, unit }) => (
-	<Node
-		classes="mecanism somme"
-		name="somme"
-		value={nodeValue}
-		unit={unit}
-		child={<Table explanation={explanation} unit={unit} />}
-	/>
+	<Node classes="mecanism somme" name="somme" value={nodeValue} unit={unit}>
+		<Table explanation={explanation} unit={unit} />
+	</Node>
 )
 export default SommeNode
 

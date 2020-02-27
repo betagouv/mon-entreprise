@@ -7,33 +7,27 @@ import { Node, NodeValuePointer } from './common'
 
 export default function Barème(nodeValue, explanation, _, unit) {
 	return (
-		<Node
-			classes="mecanism barème"
-			name="barème"
-			value={nodeValue}
-			unit={unit}
-			child={
-				<ul className="properties">
-					<BarèmeAttributes explanation={explanation} />
-					<TrancheTable
-						tranches={explanation.tranches}
-						multiplicateur={explanation.multiplicateur}
-					/>
-					{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
-					{nodeValue !== null && explanation.tranches.length > 2 && (
-						<>
-							<b>
-								<Trans>Taux moyen</Trans> :{' '}
-							</b>
-							<NodeValuePointer
-								data={(100 * nodeValue) / explanation.assiette.nodeValue}
-								unit="%"
-							/>
-						</>
-					)}
-				</ul>
-			}
-		/>
+		<Node classes="mecanism barème" name="barème" value={nodeValue} unit={unit}>
+			<ul className="properties">
+				<BarèmeAttributes explanation={explanation} />
+				<TrancheTable
+					tranches={explanation.tranches}
+					multiplicateur={explanation.multiplicateur}
+				/>
+				{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
+				{nodeValue !== null && explanation.tranches.length > 2 && (
+					<>
+						<b>
+							<Trans>Taux moyen</Trans> :{' '}
+						</b>
+						<NodeValuePointer
+							data={(100 * nodeValue) / explanation.assiette.nodeValue}
+							unit="%"
+						/>
+					</>
+				)}
+			</ul>
+		</Node>
 	)
 }
 

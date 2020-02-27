@@ -11,23 +11,22 @@ export default function TauxProgressif(nodeValue, explanation, _, unit) {
 			name="taux progressif"
 			value={nodeValue}
 			unit={unit}
-			child={
-				<ul className="properties">
-					<BarèmeAttributes explanation={explanation} />
-					<TrancheTable
-						tranches={explanation.tranches}
-						multiplicateur={explanation.multiplicateur}
-					/>
-					{nodeValue != null && (
-						<>
-							<b>
-								<Trans>Taux calculé</Trans> :{' '}
-							</b>{' '}
-							<NodeValuePointer data={nodeValue * 100} unit="%" />
-						</>
-					)}
-				</ul>
-			}
-		/>
+		>
+			<ul className="properties">
+				<BarèmeAttributes explanation={explanation} />
+				<TrancheTable
+					tranches={explanation.tranches}
+					multiplicateur={explanation.multiplicateur}
+				/>
+				{nodeValue != null && (
+					<>
+						<b>
+							<Trans>Taux calculé</Trans> :{' '}
+						</b>{' '}
+						<NodeValuePointer data={nodeValue * 100} unit="%" />
+					</>
+				)}
+			</ul>
+		</Node>
 	)
 }

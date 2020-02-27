@@ -21,89 +21,96 @@ let Comp = function Variations({ nodeValue, explanation, unit }) {
 					inline
 					unit={unit}
 					value={nodeValue}
-					child={
-						<>
-							<p css="text-transform: capitalize">
-								<Trans>
-									{writtenNumbers[i18n.language][explanation.length]}{' '}
-								</Trans>
-								<InlineMecanism name="variations" /> :
-							</p>
-							<ol>
-								{explanation.map(({ condition, consequence, satisfied }, i) => (
-									<li
-										key={i}
-										style={{
-											transition: 'all 0.2s',
-											opacity:
-												expandedVariation === i || satisfied || !showValues
-													? 1
-													: 0.8
-										}}>
-										{!satisfied && showValues && (
-											<>
-												<em>non applicable </em>
-												{expandedVariation !== i ? (
-													<button
-														className="ui__ link-button"
-														onClick={() => toggleVariation(i)}>
-														détails {emoji('▶️')}
-													</button>
-												) : (
-													<button
-														className="ui__ link-button"
-														onClick={() => toggleVariation(null)}>
-														replier {emoji('🔽')}
-													</button>
-												)}
-											</>
-										)}
-										{(expandedVariation === i || satisfied || !showValues) && (
-											<div style={{ margin: '1rem 0' }}>
-												{condition && (
-													<div
-														style={{
-															display: 'flex',
-															flexWrap: 'wrap',
-															alignItems: 'baseline',
-															marginBottom: '0.4rem'
-														}}>
-														<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
-													</div>
-												)}
+				>
+					{' '}
+					<>
+						<p css="text-transform: capitalize">
+							<Trans>
+								{writtenNumbers[i18n.language][explanation.length]}{' '}
+							</Trans>
+							<InlineMecanism name="variations" /> :
+						</p>
+						<ol>
+							{explanation.map(({ condition, consequence, satisfied }, i) => (
+								<li
+									key={i}
+									style={{
+										transition: 'all 0.2s',
+										opacity:
+											expandedVariation === i || satisfied || !showValues
+												? 1
+												: 0.8
+									}}
+								>
+									{!satisfied && showValues && (
+										<>
+											<em>non applicable </em>
+											{expandedVariation !== i ? (
+												<button
+													className="ui__ link-button"
+													onClick={() => toggleVariation(i)}
+												>
+													détails {emoji('▶️')}
+												</button>
+											) : (
+												<button
+													className="ui__ link-button"
+													onClick={() => toggleVariation(null)}
+												>
+													replier {emoji('🔽')}
+												</button>
+											)}
+										</>
+									)}
+									{(expandedVariation === i || satisfied || !showValues) && (
+										<div style={{ margin: '1rem 0' }}>
+											{condition && (
 												<div
 													style={{
 														display: 'flex',
-														width: 'fit-content',
 														flexWrap: 'wrap',
-														alignItems: 'flex-start'
-													}}>
-													<span
-														className={classnames('consequenceType', {
-															satisfied
-														})}>
-														{condition ? (
-															<Trans>Alors</Trans>
-														) : (
-															<Trans>Sinon</Trans>
-														)}{' '}
-														:&nbsp;
-													</span>
-													<span
-														className={classnames('consequenceContent', {
-															satisfied
-														})}>
-														{consequence && makeJsx(consequence)}
-													</span>
+														alignItems: 'baseline',
+														marginBottom: '0.4rem'
+													}}
+												>
+													<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
 												</div>
+											)}
+											<div
+												style={{
+													display: 'flex',
+													width: 'fit-content',
+													flexWrap: 'wrap',
+													alignItems: 'flex-start'
+												}}
+											>
+												<span
+													className={classnames('consequenceType', {
+														satisfied
+													})}
+												>
+													{condition ? (
+														<Trans>Alors</Trans>
+													) : (
+														<Trans>Sinon</Trans>
+													)}{' '}
+													:&nbsp;
+												</span>
+												<span
+													className={classnames('consequenceContent', {
+														satisfied
+													})}
+												>
+													{consequence && makeJsx(consequence)}
+												</span>
 											</div>
-										)}
-									</li>
-								))}
-							</ol>
-						</>
-					}
-				/>
+										</div>
+									)}
+								</li>
+							))}
+						</ol>
+					</>
+				</Node>
 			)}
 		</ShowValuesConsumer>
 	)

@@ -12,24 +12,18 @@ import React from 'react'
 
 function MecanismDurée({ nodeValue, explanation, unit }) {
 	return (
-		<Node
-			classes="mecanism durée"
-			name="durée"
-			value={nodeValue}
-			unit={unit}
-			child={
-				<>
-					<p>
-						<strong className="key">Depuis : </strong>
-						<span className="value">{makeJsx(explanation.depuis)}</span>
-					</p>
-					<p>
-						<strong className="key">Jusqu'à : </strong>
-						<span className="value">{makeJsx(explanation["jusqu'à"])}</span>
-					</p>
-				</>
-			}
-		/>
+		<Node classes="mecanism durée" name="durée" value={nodeValue} unit={unit}>
+			<>
+				<p>
+					<strong className="key">Depuis : </strong>
+					<span className="value">{makeJsx(explanation.depuis)}</span>
+				</p>
+				<p>
+					<strong className="key">Jusqu'à : </strong>
+					<span className="value">{makeJsx(explanation["jusqu'à"])}</span>
+				</p>
+			</>
+		</Node>
 	)
 }
 const today = new Date()
