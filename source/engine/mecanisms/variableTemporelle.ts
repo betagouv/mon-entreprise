@@ -35,7 +35,6 @@ function evaluate(
 		? narrowTemporalValue(period, value.temporalValue)
 		: createTemporalEvaluation(value.nodeValue, period)
 	// TODO explanation missingVariables / period missing variables
-
 	return {
 		...node,
 		nodeValue: temporalAverage(temporalValue as Temporal<number>, value.unit),

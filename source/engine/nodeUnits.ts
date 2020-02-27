@@ -1,3 +1,4 @@
+import { mapTemporal } from './period'
 import {
 	areUnitConvertible,
 	convertUnit,
@@ -41,6 +42,13 @@ export function convertNodeToUnit(to: Unit, node) {
 		nodeValue: node.unit
 			? convertUnit(node.unit, to, node.nodeValue)
 			: node.nodeValue,
+		temporalValue:
+			node.temporalValue && node.unit
+				? mapTemporal(
+						value => convertUnit(node.unit, to, value),
+						node.temporalValue
+				  )
+				: node.temporalValue,
 		unit: to
 	}
 }

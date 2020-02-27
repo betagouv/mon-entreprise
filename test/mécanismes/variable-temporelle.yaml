@@ -74,7 +74,7 @@ variable temporelle numérique . variable . test date applicable 2:
     - valeur attendue: 40
 
 variable temporelle numérique . addition . valeur:
-  formule: (20 €/mois | à partir du 15/11/2019) + (10 €/mois | à partir du 12/09/2020)
+  formule: (20 €/mois | à partir du 15/11/2019) + (10 €/mois | à partir du 01/02/2020)
 
 date:
 variable temporelle numérique . addition . test date:
@@ -89,25 +89,23 @@ variable temporelle numérique . addition . test date:
     - situation:
         date: 12/09/2020
         valeur attendue: 30
-
-# variable temporelle numérique . somme . valeur 2:
-#   formule: valeur - (120 €/an | jusqu'au 04/03/2020)
-# variable temporelle numérique . test date non applicable:
-#   formule: valeur
-#   exemples:
-#     - valeur attendue: non
-
-# variable temporelle numérique . test date applicable:
-#   formule: valeur [le 12/02/2020]
-#   exemples:
-#     - valeur attendue: 40
-
-# variable temporelle numérique . test date applicable avec unité:
-#   formule: valeur [en 2019, en 2020, €/mois]
-#   unité: €/mois
-#   exemples:
-#     - valeur attendue: 40
-
+début:
+fin:
+variable temporelle numérique . expression:
+  formule: "(addition . valeur * (50% | du 01/01/2020 | au 31/01/2020)) | depuis : début | jusqu'à : fin"
+  exemples:
+    - situation:
+        début: 01/01/2020
+        fin: 31/01/2020
+      valeur attendue: 10
+    - situation:
+        début: 01/01/2020
+        fin: 29/02/2020
+      valeur attendue: 20
+    - situation:
+        début: 01/02/2020
+        fin: 31/03/2020
+      valeur attendue: 30
 contrat salarié . date d'embauche:
   formule: 12/09/2018
 
@@ -167,49 +165,13 @@ variable temporelle numérique . multiplication avec valeur au dessus du plafond
 variable temporelle numérique . multiplication avec valeur sur l'année:
   formule: contrat salarié . cotisations . retraite | du 01/01/2019 | au 31/12/2019
   exemples:
-    #   200 * 6 [janvier-juin]
+    #   200 * 7 [janvier-juin]
     # + 214.839 [juillet]
-    # + 220 * 4 [aout-novembre]
+    # + 220 * 3 [aout-novembre]
     # + 337.7 [décembre]
     # /12 mois
-    - valeur attendue: 219.378
+    - valeur attendue: 217.7115
 # test . proratisation du salaire avec entrée en cours de mois:
 #   formule: salaire brut [avril 2019]
 #   exemples:
 #     - valeur attendue: 400 # (2000 * 6)/30
-
-# test . proratisation du salaire avec augmentation en cours de mois:
-#   formule: salaire brut [juillet 2019]
-#   exemples:
-#     - valeur attendue: 2148.39 # (2000 * 8 + 2200 * 23)/31
-
-# variable temporelle numérique . test proratisation du PSS pour le mois d'embauche:
-#   formule: contrat salarié . PSS proratisé | du 01/04/2019 | au 30/04/2019
-#   exemples:
-#     - valeur attendue: 1688.5
-# cotisations . tranche 1 . montant :
-#   formule:
-#     PSS - salaire brut
-
-# cotisations . tranche 1 . régularisation :
-#   formule:
-#     '(PSS - salaire brut) | depuis le 01/01/2020'
-
-# cotisations . retraite employeur plafonnée:
-#   formule:
-#     multiplication:
-#       taux: 8.55%
-#       assiette: salaire brut
-#       plafond: PSS proratisé
-#       régularisation: progressive sur l'année civile
-
-# test . régularisation:
-#   description: >-
-#     Bien que le salaire du mois de décembre soit supérieur au
-#     plafond, le taux effectif reste 8.55% du fait de la
-#     régularisation des mois précédents
-#   période:
-#     en: décembre 2019
-#   formule: retraite employeur plafonnée
-#   exemples:
-#     - valeur attendue: 359.1 #4200 * 8.55%

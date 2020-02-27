@@ -18,7 +18,6 @@ export function normalizeDate(
 	return `${pad(day)}/${pad(month)}/${pad(year)}`
 }
 
-const dateRegexp = /[\d]{2}\/[\d]{2}\/[\d]{4}/
 export function convertToDate(value: string): Date {
 	const [day, month, year] = normalizeDateString(value).split('/')
 	var result = new Date(+year, +month - 1, +day)
@@ -26,20 +25,6 @@ export function convertToDate(value: string): Date {
 	// daylight saving effect)
 	result.setMinutes(result.getMinutes() - result.getTimezoneOffset())
 	return result
-}
-export function convertToDateIfNeeded(...values: string[]) {
-	const dateStrings = values.map(dateString => '' + dateString)
-	if (!dateStrings.some(dateString => dateString.match(dateRegexp))) {
-		return values
-	}
-	dateStrings.forEach(dateString => {
-		if (!dateString.match(dateRegexp)) {
-			throw new TypeError(
-				`'${dateString}' n'est pas une date valide (format attendu: mm/aaaa ou jj/mm/aaaa)`
-			)
-		}
-	})
-	return dateStrings.map(convertToDate)
 }
 
 export function convertToString(date: Date): string {
