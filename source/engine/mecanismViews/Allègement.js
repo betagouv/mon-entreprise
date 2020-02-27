@@ -13,41 +13,40 @@ export default function Allègement(nodeValue, rawExplanation) {
 				name="allègement"
 				value={nodeValue}
 				unit={explanation.unit}
-				child={
-					<ul className="properties">
-						<li key="assiette">
-							<span className="key">assiette: </span>
-							<span className="value">{makeJsx(explanation.assiette)}</span>
+			>
+				<ul className="properties">
+					<li key="assiette">
+						<span className="key">assiette: </span>
+						<span className="value">{makeJsx(explanation.assiette)}</span>
+					</li>
+					{explanation.franchise && (
+						<li key="franchise">
+							<span className="key">franchise: </span>
+							<span className="value">{makeJsx(explanation.franchise)}</span>
 						</li>
-						{explanation.franchise && (
-							<li key="franchise">
-								<span className="key">franchise: </span>
-								<span className="value">{makeJsx(explanation.franchise)}</span>
-							</li>
-						)}
-						{explanation.décote && (
-							<li key="décote">
-								<span className="key">décote: </span>
-								<span className="value">
-									<ObjectView data={explanation.décote} />
-								</span>
-							</li>
-						)}
-						{explanation.abattement && (
-							<li key="abattement">
-								<span className="key">abattement: </span>
-								<span className="value">{makeJsx(explanation.abattement)}</span>
-							</li>
-						)}
-						{explanation.plafond && (
-							<li key="abattement">
-								<span className="key">plafond: </span>
-								<span className="value">{makeJsx(explanation.plafond)}</span>
-							</li>
-						)}
-					</ul>
-				}
-			/>
+					)}
+					{explanation.décote && (
+						<li key="décote">
+							<span className="key">décote: </span>
+							<span className="value">
+								<ObjectView data={explanation.décote} />
+							</span>
+						</li>
+					)}
+					{explanation.abattement && (
+						<li key="abattement">
+							<span className="key">abattement: </span>
+							<span className="value">{makeJsx(explanation.abattement)}</span>
+						</li>
+					)}
+					{explanation.plafond && (
+						<li key="abattement">
+							<span className="key">plafond: </span>
+							<span className="value">{makeJsx(explanation.plafond)}</span>
+						</li>
+					)}
+				</ul>
+			</Node>
 		</div>
 	)
 }

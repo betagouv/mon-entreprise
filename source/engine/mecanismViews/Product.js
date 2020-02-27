@@ -12,65 +12,64 @@ export default function ProductView(nodeValue, explanation, _, unit) {
 			name="multiplication"
 			value={nodeValue}
 			unit={unit}
-			child={
-				<div
-					style={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						flexWrap: 'wrap'
-					}}>
-					<div style={{ textAlign: 'right' }}>
-						{makeJsx(explanation.assiette)}
-						{!explanation.plafond.isDefault && (
-							<div
-								className="ui__ notice"
+		>
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					flexWrap: 'wrap'
+				}}
+			>
+				<div style={{ textAlign: 'right' }}>
+					{makeJsx(explanation.assiette)}
+					{!explanation.plafond.isDefault && (
+						<div
+							className="ui__ notice"
+							style={{
+								display: 'flex',
+								alignItems: 'baseline',
+								flexWrap: 'wrap'
+							}}
+						>
+							<span
 								style={{
-									display: 'flex',
-									alignItems: 'baseline',
-									flexWrap: 'wrap'
-								}}>
-								<span
-									style={{
-										...(explanation.plafondActif
-											? { background: 'yellow' }
-											: {})
-									}}>
-									<Trans>Plafonnée à :</Trans>&nbsp;
-									{makeJsx(explanation.plafond)}
-								</span>
-							</div>
-						)}
-					</div>
-					{!explanation.facteur.isDefault && (
-						<div
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								alignItems: 'center',
-								justifyContent: 'center'
-							}}>
-							<div style={{ fontSize: '1.6rem', margin: '0.5rem 1rem' }}>
-								{' '}
-								×{' '}
-							</div>
-							<div>{makeJsx(explanation.facteur)}</div>
-						</div>
-					)}
-					{!explanation.taux.isDefault && (
-						<div
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								alignItems: 'center',
-								justifyContent: 'center'
-							}}>
-							<div style={{ fontSize: '1.6rem', margin: '0 1rem' }}> × </div>
-							{makeJsx(explanation.taux)}
+									...(explanation.plafondActif ? { background: 'yellow' } : {})
+								}}
+							>
+								<Trans>Plafonnée à :</Trans>&nbsp;
+								{makeJsx(explanation.plafond)}
+							</span>
 						</div>
 					)}
 				</div>
-			}
-		/>
+				{!explanation.facteur.isDefault && (
+					<div
+						style={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							alignItems: 'center',
+							justifyContent: 'center'
+						}}
+					>
+						<div style={{ fontSize: '1.6rem', margin: '0.5rem 1rem' }}> × </div>
+						<div>{makeJsx(explanation.facteur)}</div>
+					</div>
+				)}
+				{!explanation.taux.isDefault && (
+					<div
+						style={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							alignItems: 'center',
+							justifyContent: 'center'
+						}}
+					>
+						<div style={{ fontSize: '1.6rem', margin: '0 1rem' }}> × </div>
+						{makeJsx(explanation.taux)}
+					</div>
+				)}
+			</div>
+		</Node>
 	)
 }

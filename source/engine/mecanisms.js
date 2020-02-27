@@ -53,14 +53,13 @@ export let mecanismOneOf = (recurse, k, v) => {
 			classes="mecanism conditions list"
 			name="une de ces conditions"
 			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map((item, i) => (
-						<li key={i}>{makeJsx(item)}</li>
-					))}
-				</ul>
-			}
-		/>
+		>
+			<ul>
+				{explanation.map((item, i) => (
+					<li key={i}>{makeJsx(item)}</li>
+				))}
+			</ul>
+		</Node>
 	)
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -104,14 +103,13 @@ export let mecanismAllOf = (recurse, k, v) => {
 			classes="mecanism conditions list"
 			name="toutes ces conditions"
 			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map((item, i) => (
-						<li key={i}>{makeJsx(item)}</li>
-					))}
-				</ul>
-			}
-		/>
+		>
+			<ul>
+				{explanation.map((item, i) => (
+					<li key={i}>{makeJsx(item)}</li>
+				))}
+			</ul>
+		</Node>
 	)
 
 	let evaluate = (cache, situationGate, parsedRules, node) => {
@@ -543,17 +541,16 @@ export let mecanismMax = (recurse, k, v) => {
 			classes="mecanism list maximum"
 			name="le maximum de"
 			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map((item, i) => (
-						<li key={i}>
-							<div className="description">{v[i].description}</div>
-							{makeJsx(item)}
-						</li>
-					))}
-				</ul>
-			}
-		/>
+		>
+			<ul>
+				{explanation.map((item, i) => (
+					<li key={i}>
+						<div className="description">{v[i].description}</div>
+						{makeJsx(item)}
+					</li>
+				))}
+			</ul>
+		</Node>
 	)
 
 	return {
@@ -577,17 +574,16 @@ export let mecanismMin = (recurse, k, v) => {
 			classes="mecanism list minimum"
 			name="le minimum de"
 			value={nodeValue}
-			child={
-				<ul>
-					{explanation.map((item, i) => (
-						<li key={i}>
-							<div className="description">{v[i].description}</div>
-							{makeJsx(item)}
-						</li>
-					))}
-				</ul>
-			}
-		/>
+		>
+			<ul>
+				{explanation.map((item, i) => (
+					<li key={i}>
+						<div className="description">{v[i].description}</div>
+						{makeJsx(item)}
+					</li>
+				))}
+			</ul>
+		</Node>
 	)
 
 	return {
@@ -626,23 +622,22 @@ export let mecanismComplement = (recurse, k, v) => {
 				classes="mecanism list complement"
 				name="complément"
 				value={nodeValue}
-				child={
-					<ul className="properties">
-						<li key="cible">
-							<span className="key">
-								<Trans>cible</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.cible)}</span>
-						</li>
-						<li key="mini">
-							<span className="key">
-								<Trans>montant à atteindre</Trans>:{' '}
-							</span>
-							<span className="value">{makeJsx(explanation.montant)}</span>
-						</li>
-					</ul>
-				}
-			/>
+			>
+				<ul className="properties">
+					<li key="cible">
+						<span className="key">
+							<Trans>cible</Trans>:{' '}
+						</span>
+						<span className="value">{makeJsx(explanation.cible)}</span>
+					</li>
+					<li key="mini">
+						<span className="key">
+							<Trans>montant à atteindre</Trans>:{' '}
+						</span>
+						<span className="value">{makeJsx(explanation.montant)}</span>
+					</li>
+				</ul>
+			</Node>
 		)
 	}
 }

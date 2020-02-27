@@ -18,41 +18,40 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 			name="encadrement"
 			value={nodeValue}
 			unit={unit}
-			child={
-				<>
-					{makeJsx(explanation.valeur)}
-					<p css="margin-top: 1rem">
-						{!explanation.plancher.isDefault && (
+		>
+			<>
+				{makeJsx(explanation.valeur)}
+				<p css="margin-top: 1rem">
+					{!explanation.plancher.isDefault && (
+						<span
+							css={
+								nodeValue === val(explanation.plancher)
+									? 'background: yellow'
+									: {}
+							}
+						>
+							<strong className="key">Minimum : </strong>
+							<span className="value">{makeJsx(explanation.plancher)}</span>
+						</span>
+					)}
+					{!explanation.plafond.isDefault && (
+						<>
+							<br />
 							<span
 								css={
-									nodeValue === val(explanation.plancher)
+									nodeValue === val(explanation.plafond)
 										? 'background: yellow'
 										: {}
 								}
 							>
-								<strong className="key">Minimum : </strong>
-								<span className="value">{makeJsx(explanation.plancher)}</span>
+								<strong className="key">Plafonné à : </strong>
+								<span className="value">{makeJsx(explanation.plafond)}</span>
 							</span>
-						)}
-						{!explanation.plafond.isDefault && (
-							<>
-								<br />
-								<span
-									css={
-										nodeValue === val(explanation.plafond)
-											? 'background: yellow'
-											: {}
-									}
-								>
-									<strong className="key">Plafonné à : </strong>
-									<span className="value">{makeJsx(explanation.plafond)}</span>
-								</span>
-							</>
-						)}
-					</p>
-				</>
-			}
-		/>
+						</>
+					)}
+				</p>
+			</>
+		</Node>
 	)
 }
 

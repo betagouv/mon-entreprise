@@ -12,30 +12,29 @@ export default function Recalcul(nodeValue, explanation) {
 			name="recalcul"
 			value={nodeValue}
 			unit={explanation.unit}
-			child={
-				<>
-					{explanation.règle && (
-						<Trans i18nKey="calcul-avec">
-							Calcul de <RuleLink dottedName={explanation.règle} /> avec :
-						</Trans>
-					)}
-					<ul>
-						{Object.keys(explanation.amendedSituation).map(dottedName => (
-							<li
-								key={dottedName}
-								css={`
-									.node.inlineExpression {
-										display: inline !important;
-									}
-								`}
-							>
-								<RuleLink dottedName={dottedName as DottedName} /> ={' '}
-								{makeJsx(explanation.amendedSituation[dottedName])}
-							</li>
-						))}
-					</ul>
-				</>
-			}
-		/>
+		>
+			<>
+				{explanation.règle && (
+					<Trans i18nKey="calcul-avec">
+						Calcul de <RuleLink dottedName={explanation.règle} /> avec :
+					</Trans>
+				)}
+				<ul>
+					{Object.keys(explanation.amendedSituation).map(dottedName => (
+						<li
+							key={dottedName}
+							css={`
+								.node.inlineExpression {
+									display: inline !important;
+								}
+							`}
+						>
+							<RuleLink dottedName={dottedName as DottedName} /> ={' '}
+							{makeJsx(explanation.amendedSituation[dottedName])}
+						</li>
+					))}
+				</ul>
+			</>
+		</Node>
 	)
 }

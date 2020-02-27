@@ -27,19 +27,18 @@ function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
 			name="arrondi"
 			value={nodeValue}
 			unit={explanation.value.unit}
-			child={
-				<>
-					{makeJsx(explanation.value)}
-					{explanation.decimals.isDefault !== false && (
-						<p>
-							<Trans i18nKey="arrondi-to-decimals">
-								Arrondi à {explanation.decimals.nodeValue} décimales
-							</Trans>
-						</p>
-					)}
-				</>
-			}
-		/>
+		>
+			<>
+				{makeJsx(explanation.value)}
+				{explanation.decimals.isDefault !== false && (
+					<p>
+						<Trans i18nKey="arrondi-to-decimals">
+							Arrondi à {explanation.decimals.nodeValue} décimales
+						</Trans>
+					</p>
+				)}
+			</>
+		</Node>
 	)
 }
 

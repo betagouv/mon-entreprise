@@ -196,14 +196,13 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 			name={name}
 			value={nodeValue}
 			unit={undefined}
-			child={
-				explanation.category === 'variable' ? (
-					<div className="node">{makeJsx(explanation)}</div>
-				) : (
-					makeJsx(explanation)
-				)
-			}
-		/>
+		>
+			{explanation.category === 'variable' ? (
+				<div className="node">{makeJsx(explanation)}</div>
+			) : (
+				makeJsx(explanation)
+			)}
+		</Node>
 	)
 
 	return {
