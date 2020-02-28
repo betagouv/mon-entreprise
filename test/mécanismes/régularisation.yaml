@@ -25,7 +25,7 @@ retraite . avec régularisation:
           plafond: plafond sécurité sociale
           taux: 10%
 
-      valeurs annualisée:
+      valeurs cumulées:
         - salaire
         - plafond sécurité sociale
 

@@ -123,6 +123,12 @@ export function mapTemporal<T1, T2>(
 		value: fn(value)
 	}))
 }
+export function sometime<T1>(
+	fn: (value: T1) => boolean,
+	temporalValue: Temporal<T1>
+): boolean {
+	return temporalValue.some(({ start, end, value }) => fn(value))
+}
 
 export function liftTemporal2<T1, T2, T3>(
 	fn: (value1: T1, value2: T2) => T3,
@@ -341,6 +347,9 @@ export function temporalAverage(
 	const last = temporalValue[temporalValue.length - 1]
 	if (!temporalValue.length) {
 		return false
+	}
+	if (temporalValue.length === 1) {
+		return temporalValue[0].value
 	}
 
 	// La variable est définie sur un interval infini

@@ -73,12 +73,12 @@ variable temporelle numérique . variable . test date applicable 2:
   exemples:
     - valeur attendue: 40
 
-variable temporelle numérique . addition . valeur:
+prix:
   formule: (20 €/mois | à partir du 15/11/2019) + (10 €/mois | à partir du 01/02/2020)
 
 date:
-variable temporelle numérique . addition . test date:
-  formule: 'valeur | le : date'
+variable temporelle numérique . test addition:
+  formule: 'prix | le : date'
   exemples:
     - situation:
         date: 01/01/2019
@@ -89,10 +89,15 @@ variable temporelle numérique . addition . test date:
     - situation:
         date: 12/09/2020
         valeur attendue: 30
+
+prix avec variations:
+  formule: prix * (50% | du 01/01/2020 | au 31/01/2020)
+
 début:
 fin:
-variable temporelle numérique . expression:
-  formule: "(addition . valeur * (50% | du 01/01/2020 | au 31/01/2020)) | depuis : début | jusqu'à : fin"
+variable temporelle numérique . expression . multiplication:
+  formule: "prix avec variations | depuis : début | jusqu'à : fin"
+  # 20 [avant janvier] / 10 [pendant janvier] | 30 [pendant et après février]
   exemples:
     - situation:
         début: 01/01/2020
@@ -106,6 +111,37 @@ variable temporelle numérique . expression:
         début: 01/02/2020
         fin: 31/03/2020
       valeur attendue: 30
+
+taux associé:
+  formule:
+    variations:
+      - si: prix avec variations >= 20 €/mois
+        alors: 10%/mois
+      - si: prix avec variations < 20 €/mois
+        alors: 60%/mois
+      # Cette formule peut paraître bizarre, mais lorsque multiplication est non
+      # applicable, c'est bien le sinon qui s'applique
+      - sinon: 5%/mois
+variable temporelle numérique . variation:
+  formule: "taux associé | depuis : début | jusqu'à : fin"
+  exemples:
+    - situation:
+        début: 01/01/2020
+        fin: 31/01/2020
+      valeur attendue: 60
+    - situation:
+        début: 01/01/2020
+        fin: 29/02/2020
+      valeur attendue: 35
+    - situation:
+        début: 01/02/2020
+        fin: 31/03/2020
+      valeur attendue: 10
+    - situation:
+        début: 01/10/2019
+        fin: 30/10/2019
+      valeur attendue: 5
+
 contrat salarié . date d'embauche:
   formule: 12/09/2018
 
