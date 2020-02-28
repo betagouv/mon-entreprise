@@ -6,14 +6,16 @@ import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import { Link } from 'react-router-dom'
+import ReactToPrint from 'react-to-print'
 import Animate from 'Ui/animate'
 import { useRule } from '../Simulateurs/ArtisteAuteur'
 import { simulationConfig } from './AideDéclarationIndépendantsSimulationConfig'
 
 type ResultsProp = {
 	récapitulatif: boolean
+	componentRef?: any
 }
-export function Results({ récapitulatif }: ResultsProp) {
+export function Results({ récapitulatif, componentRef }: ResultsProp) {
 	const results = simulationConfig.objectifs.map(dottedName =>
 		useRule(dottedName)
 	)
@@ -74,12 +76,20 @@ export function Results({ récapitulatif }: ResultsProp) {
 									{emoji('📋')} Récapitulatif
 								</Link>
 							)}
-							<button
-								className="ui__ simple button"
-								onClick={() => window.print()}
-							>
-								{emoji('🖨')} Imprimer
-							</button>
+							<style>{`@media print {.button.print{display: none;} body {margin: 40px;}}`}</style>
+							{!récapitulatif && (
+								<ReactToPrint
+									trigger={() => (
+										<button
+											className="ui__ simple button print"
+											onClick={() => window.print()}
+										>
+											{emoji('🖨')} Imprimer
+										</button>
+									)}
+									content={() => componentRef.current}
+								/>
+							)}
 						</div>
 					)}
 				</Animate.fromTop>
