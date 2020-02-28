@@ -1,18 +1,12 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
-import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { formatValue } from 'Engine/format'
 import InputComponent from 'Engine/RuleInput'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
-import Skeleton from 'react-loading-skeleton'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	flatRulesSelector,
@@ -24,23 +18,9 @@ import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
 import { useRule } from '../Simulateurs/ArtisteAuteur'
+import { simulationConfig } from './AideDéclarationIndépendantsSimulationConfig'
+import { Results } from './AideDéclarationIndépentantsResult'
 import { CompanySection } from './Home'
-
-const simulationConfig = {
-	objectifs: [
-		'aide déclaration revenu indépendant 2019 . revenu net fiscal',
-		'aide déclaration revenu indépendant 2019 . CSG déductible',
-		'aide déclaration revenu indépendant 2019 . cotisations sociales déductible',
-		'aide déclaration revenu indépendant 2019 . CFP',
-		'aide déclaration revenu indépendant 2019 . total charges sociales déductible',
-		'aide déclaration revenu indépendant 2019 . assiette sociale'
-	] as Array<DottedName>,
-	situation: {
-		dirigeant: 'indépendant',
-		'aide déclaration revenu indépendant 2019': true
-	},
-	'unités par défaut': ['€/an']
-}
 
 const lauchComputationWhenResultsInViewport = () => {
 	const dottedName = 'dirigeant . rémunération totale'
@@ -191,7 +171,7 @@ export default function AideDéclarationIndépendant() {
 					</Animate.fromTop>
 
 					<div ref={resultsRef}>
-						<Results />
+						<Results récapitulatif={true} />
 					</div>
 				</>
 			)}
@@ -284,79 +264,6 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 				/>
 			</Question>
 		</Animate.fromTop>
-	)
-}
-
-function Results() {
-	const results = simulationConfig.objectifs.map(dottedName =>
-		useRule(dottedName)
-	)
-	const onGoingComputation = !results.filter(node => node.nodeValue != null)
-		.length
-	const sitePaths = useContext(SitePathsContext)
-	return (
-		<div
-			className="ui__ card lighter-bg"
-			css="margin-top: 3rem; padding: 1rem 0"
-		>
-			<h1 css="text-align: center; margin-bottom: 2rem">
-				<Trans i18nKey="aide-déclaration-indépendant.results.title">
-					Aide à la déclaration
-				</Trans>
-				{emoji('📄')}
-			</h1>
-			{onGoingComputation && (
-				<h2>
-					<small>
-						<Trans i18nKey="aide-déclaration-indépendant.results.ongoing">
-							Calcul en cours...
-						</Trans>
-					</small>
-				</h2>
-			)}
-			<>
-				<Animate.fromTop>
-					{results.map(r => (
-						<React.Fragment key={r.title}>
-							<h4>
-								{r.title} <small>{r.summary}</small>
-							</h4>
-							{r.description && <p className="ui__ notice">{r.description}</p>}
-							<p className="ui__ lead" css="margin-bottom: 1rem;">
-								<RuleLink dottedName={r.dottedName}>
-									{r.nodeValue != null ? (
-										formatValue({
-											value: r.nodeValue || 0,
-											language: 'fr',
-											unit: '€',
-											maximumFractionDigits: 0
-										})
-									) : (
-										<Skeleton width={80} />
-									)}
-								</RuleLink>
-							</p>
-						</React.Fragment>
-					))}
-					{!onGoingComputation && (
-						<div css="text-align: center">
-							<button className="ui__ simple button">
-								{emoji('🔗')} Obtenir le lien
-							</button>
-							<Link
-								className="ui__ simple button"
-								to={sitePaths.gérer.déclarationIndépendant.récapitulatif}
-							>
-								{emoji('📋')} Récapitulatif
-							</Link>
-							<button className="ui__ simple button">
-								{emoji('🖨')} Imprimer
-							</button>
-						</div>
-					)}
-				</Animate.fromTop>
-			</>
-		</div>
 	)
 }
 

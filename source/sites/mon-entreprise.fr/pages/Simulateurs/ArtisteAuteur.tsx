@@ -25,6 +25,7 @@ import Animate from 'Ui/animate'
 
 export function useRule(dottedName: DottedName) {
 	const analysis = useSelector(analysisWithDefaultsSelector)
+	console.log(analysis)
 	const getRule = getRuleFromAnalysis(analysis)
 	return getRule(dottedName)
 }
