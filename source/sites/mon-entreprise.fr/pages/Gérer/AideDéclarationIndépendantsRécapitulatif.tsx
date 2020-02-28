@@ -1,6 +1,6 @@
 import CompanyDetails from 'Components/CompanyDetails'
 import { formatValue } from 'Engine/format'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -12,9 +12,9 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 	const siren = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany?.siren
 	)
-
+	const componentRef = useRef<HTMLDivElement>(null)
 	return (
-		<>
+		<div ref={componentRef}>
 			<h1>
 				<Trans>Aide à la déclaration de revenus au titre de l'année 2019</Trans>
 			</h1>
@@ -104,8 +104,8 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 				dottedName={'dirigeant . indépendant . revenus étrangers'}
 			/>
 
-			<Results récapitulatif={false} />
-		</>
+			<Results récapitulatif={false} componentRef={componentRef} />
+		</div>
 	)
 }
 
