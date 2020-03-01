@@ -32,8 +32,11 @@ function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
 				{makeJsx(explanation.value)}
 				{explanation.decimals.isDefault !== false && (
 					<p>
-						<Trans i18nKey="arrondi-to-decimals">
-							Arrondi à {explanation.decimals.nodeValue} décimales
+						<Trans
+							i18nKey="arrondi-to-decimals"
+							count={explanation.decimals.nodeValue}
+						>
+							Arrondi à {{ count: explanation.decimals.nodeValue }} décimales
 						</Trans>
 					</p>
 				)}

@@ -65,7 +65,7 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-'Nom de l''entreprise ou SIREN ': Company name or SIREN code
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -173,7 +173,8 @@ après:
       is composed by the SIREN followed by the establishment number (NIC).
     titre: The SIRET number
   titre: After registration
-arrondi-to-decimals: 'Rounding to {explanation.decimals.nodeValue} decimals'
+arrondi-to-decimals: 'Rounding to {explanation.decimals.nodeValue} decimal'
+arrondi-to-decimals_plural: 'Rounding to {explanation.decimals.nodeValue} decimals'
 assiette: base
 associés:
   choix1: Alone
