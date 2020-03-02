@@ -1,9 +1,3 @@
-html,
-body,
-#js {
-	min-height: 100%;
-}
-
 .app-container {
 	position: relative;
 	width: 100%;
