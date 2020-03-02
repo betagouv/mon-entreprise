@@ -21,8 +21,8 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.4.0",
 		"@babel/runtime": "^7.3.4",
+		"@monaco-editor/react": "^3.1.1",
 		"@rehooks/local-storage": "^2.1.1",
-		"@monaco-editor/react": "^2.3.0",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
@@ -31,6 +31,7 @@
 		"i18next": "^18.0.1",
 		"iframe-resizer": "^4.1.1",
 		"js-yaml": "^3.13.1",
+		"monaco-editor": "^0.20.0",
 		"moo": "^0.5.0",
 		"nearley": "^2.19.0",
 		"ramda": "^0.25.0",
@@ -62,6 +63,9 @@
 		"reselect": "^4.0.0",
 		"swr": "^0.1.16",
 		"whatwg-fetch": "^3.0.0"
+	},
+	"peerDependencies": {
+		"monaco-editor": "^0.20.0"
 	},
 	"scripts": {
 		"prepare": "node source/scripts/prepare.js",

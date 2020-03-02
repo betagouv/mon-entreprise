@@ -1039,10 +1039,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@monaco-editor/react@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-2.3.0.tgz#ef1e09c408bb3119e2dc0d369b132e82b2d3ade7"
-  integrity sha512-jmmZCQ4iSMfwelWGRV4HWUOJchkN4MOx9vhx1DWvC6ERpvK5DXrcwJBBzuayVtiK7cyCVOGKB7mgjT7KOdUkJw==
+"@monaco-editor/react@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@monaco-editor/react/-/react-3.1.1.tgz#35338643f8350d37f508596b02970bcc2ecf8ea9"
+  integrity sha512-c2XMTEu5SxOahcmvZ6AorDZLWrl3Q6Cax4G2fr5rC55jCYN2b8hpjXu8BlH/Q3blKHEk8e/bahF/i2GeQukLzA==
 
 "@prerenderer/prerenderer@^0.7.2":
   version "0.7.2"
@@ -7365,6 +7365,11 @@ moment@2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
+monaco-editor@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.20.0.tgz#5d5009343a550124426cb4d965a4d27a348b4dea"
+  integrity sha512-hkvf4EtPJRMQlPC3UbMoRs0vTAFAYdzFQ+gpMb8A+9znae1c43q8Mab9iVsgTcg/4PNiLGGn3SlDIa8uvK1FIQ==
 
 moo@^0.4.3:
   version "0.4.3"

@@ -1,5 +1,5 @@
-import exemple1 from '!!raw-loader!./exemple1.yaml'
-import exemple2 from '!!raw-loader!./exemple2.yaml'
+import exemple1 from '!!raw-loader!./exemples/bareme-ir.yaml'
+import exemple2 from '!!raw-loader!./exemples/douche.yaml'
 import ColoredYaml from 'Components/rule/ColoredYaml'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -61,7 +61,9 @@ export default function Landing() {
 			<div className="ui__ card">
 				<ColoredYaml source={exemple1} />
 			</div>
-			<button className="ui__ button small">Lancer le calcul ⚡</button>
+			<Link to="/studio?exemple=bareme-ir" className="ui__ button small">
+				Lancer le calcul ⚡
+			</Link>
 			<p>
 				En plus du site Web, Mon-entreprise est disponible comme une{' '}
 				<a href="https://mon-entreprise.fr/intégration/bibliothèque-de-calcul">
@@ -76,7 +78,9 @@ export default function Landing() {
 			<div className="ui__ card">
 				<ColoredYaml source={exemple2} />
 			</div>
-			<button className="ui__ button small ">Lancer le calcul ⚡</button>
+			<Link to="/studio?exemple=douche" className="ui__ button small">
+				Lancer le calcul ⚡
+			</Link>
 			<br />
 		</div>
 	)

@@ -1,18 +1,23 @@
+import baremeIr from '!!raw-loader!./exemples/bareme-ir.yaml'
+import douche from '!!raw-loader!./exemples/douche.yaml'
 import { ControlledEditor } from '@monaco-editor/react'
+import Engine from 'Engine/index'
 import { buildFlatRules } from 'Engine/rules'
 import { serializeUnit } from 'Engine/units'
 import { safeLoad } from 'js-yaml'
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useDispatch, useSelector } from 'react-redux'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { setSimulationConfig } from '../../actions/actions'
+import { useLocation } from 'react-router'
 import { Header } from './Header'
 
-let initialInput = `
-a: 
+let examples = {
+	'bareme-ir': baremeIr,
+	douche
+}
+
+let initialInput = `a:
   formule: 10
-b: 
+b:
   formule: a + 18
 c:
   formule:
@@ -34,34 +39,29 @@ export default function SafeStudio() {
 	)
 }
 export function Studio() {
-	const defaultTarget = 'b'
-	const [ready, setReady] = useState(false)
-	const [value, setValue] = useState(initialInput)
-	const [target, setTarget] = useState(defaultTarget)
+	const { search } = useLocation()
+	const currentExample = new URLSearchParams(search ?? '').get('exemple')
+	const [editorValue, setEditorValue] = useState(
+		currentExample && Object.keys(examples).includes(currentExample)
+			? examples[currentExample]
+			: initialInput
+	)
+	const [targets, setTargets] = useState<string[]>([])
+	const [currentTarget, setCurrentTarget] = useState('')
+	const [analysis, setAnalysis] = useState()
+	const engine = useRef<any>(null)
 
-	const dispatch = useDispatch()
+	try {
+		setTargets(Object.keys(safeLoad(editorValue) ?? {}))
+	} catch {}
 
-	const setRules = rulesString =>
-		dispatch({
-			type: 'SET_RULES',
-			rules: buildFlatRules(safeLoad(rulesString))
-		})
-	const setTargets = targets =>
-		dispatch(setSimulationConfig({ objectifs: targets }))
-
-	useEffect(() => {
-		setRules(initialInput)
-		setTargets([defaultTarget])
-		setReady(true)
-	}, [])
-
-	function onChange(ev, newValue) {
-		setValue(newValue)
-	}
-
-	function updateRules() {
-		setTargets([target])
-		setRules(value)
+	function updateResult() {
+		engine.current = new Engine.Engine(buildFlatRules(safeLoad(editorValue)))
+		engine.current.evaluate(
+			[targets.includes(currentTarget) ? currentTarget : targets[0]],
+			{ defaultUnits: [], situation: {} }
+		)
+		setAnalysis(engine.current.getLastEvaluationExplanations()?.targets?.[0])
 	}
 
 	return (
@@ -70,34 +70,37 @@ export function Studio() {
 			<ControlledEditor
 				height="40vh"
 				language="yaml"
-				value={value}
-				onChange={onChange}
+				value={editorValue}
+				onChange={(ev, newValue) => setEditorValue(newValue ?? '')}
 				options={{ minimap: { enabled: false } }}
 			/>
 			<div>
 				<label htmlFor="objectif">Que voulez-vous calculer ? </label>
-				<input
-					id="objectif"
-					value={target}
-					onChange={e => setTarget(e.target.value)}
-				/>
+				<select
+					onChange={e => {
+						setCurrentTarget(e.target.value)
+					}}
+				>
+					{targets.map(target => (
+						<option key={target} value={target}>
+							{target}
+						</option>
+					))}
+				</select>
 			</div>
 			<button
 				css="display: block; margin-top: 1rem"
 				className="ui__ button small"
-				onClick={() => updateRules()}
+				onClick={() => updateResult()}
 			>
 				{emoji('▶️')} Mettre à jour
 			</button>
-			{ready && <Results />}
+			<Results analysis={analysis} />
 		</div>
 	)
 }
-export const Results = () => {
-	const analysis = useSelector(state => analysisWithDefaultsSelector(state))
-		?.targets[0]
-	console.log(analysis)
-	return (
+export const Results = ({ analysis }) => {
+	return analysis ? (
 		<div>
 			<h2>Résultats</h2>
 			<ul>
@@ -108,12 +111,12 @@ export const Results = () => {
 				<li>Applicable : {analysis.isApplicable ? '✅' : '❌'}</li>
 			</ul>
 		</div>
-	)
+	) : null
 }
 
 class ErrorBoundary extends React.Component {
 	state = {
-		error: false
+		error: false as false | { message: string }
 	}
 	static getDerivedStateFromError(error) {
 		// Mettez à jour l'état, de façon à montrer l'UI de repli au prochain rendu.
@@ -123,7 +126,7 @@ class ErrorBoundary extends React.Component {
 	render() {
 		return (
 			<>
-				{this.state.error && (
+				{this.state.error ? (
 					<p css="max-height: 4rem; overflow: hidden; border: 3px solid red;">
 						Erreur :{' '}
 						{
@@ -132,8 +135,9 @@ class ErrorBoundary extends React.Component {
 							)[0]
 						}
 					</p>
+				) : (
+					this.props.children
 				)}
-				{this.props.children}
 			</>
 		)
 	}

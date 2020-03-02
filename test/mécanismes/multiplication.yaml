@@ -98,3 +98,13 @@ Multiplication complète:
 #      valeur attendue: 0
 #      variables manquantes: []
 
+a:
+  formule:
+    multiplication:
+      assiette: 1000
+      taux: 3%
+
+b:
+  formule: a
+  exemples:
+    - valeur attendue: 30
