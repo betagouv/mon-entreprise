@@ -1,5 +1,5 @@
 revenu imposable:
-  formule: 30000 €
+  formule: 18000 €
 
 revenu abattu:
   formule:
@@ -21,11 +21,3 @@ impôt sur le revenu:
         - taux: 41%
           plafond: 153783€
         - taux: 45%
-
-impôt final:
-  formule:
-    allègement:
-      assiette: impôt sur le revenu
-      décote:
-        taux: 75%
-        plafond: 1177€

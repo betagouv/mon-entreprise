@@ -9,6 +9,13 @@
 	--darkColor: rgb(24, 69, 123);
 	--textColor: rgb(24, 69, 123);
 }
+
+html,
+body,
+#js {
+	height: 100%;
+}
+
 html:fullscreen {
 	background-color: white;
 	overflow: auto !important;
