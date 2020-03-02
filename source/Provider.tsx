@@ -42,7 +42,7 @@ if (
 }
 
 type ProviderProps = {
-	tracker: Tracker
+	tracker?: Tracker
 	basename: string
 	sitePaths: SitePaths
 	language: AvailableLangs
@@ -92,7 +92,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 		document.body.appendChild(css)
 	}
 	componentWillUnmount() {
-		this.props.tracker.disconnectFromHistory()
+		this.props.tracker?.disconnectFromHistory()
 	}
 	render() {
 		const iframeCouleur =
@@ -105,7 +105,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 				<ThemeColorsProvider
 					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
-					<TrackerProvider value={this.props.tracker}>
+					<TrackerProvider value={this.props.tracker as Tracker}>
 						<SitePathProvider value={this.props.sitePaths}>
 							<I18nextProvider i18n={i18next}>
 								<Router history={this.history}>

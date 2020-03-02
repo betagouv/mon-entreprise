@@ -1,6 +1,8 @@
+douche:
+  icônes: 🚿
+
 douche . impact par douche:
   titre: Une douche
-  icônes: 🚿
   formule: impact par litre * litres d'eau
 
 douche . impact par litre:
@@ -74,6 +76,9 @@ chauffage . énergie consommée par litre:
 chauffage . impact par litre:
   titre: impact par litre chauffé
   formule: impact par kWh * énergie consommée par litre
+
+eau:
+  icônes: 🌊
 
 eau . impact par litre froid:
   unité: kgCO₂e/l
