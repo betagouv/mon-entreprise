@@ -12,6 +12,7 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 	const siren = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany?.siren
 	)
+	console.log(useSelector((state: RootState) => state.rules))
 	const componentRef = useRef<HTMLDivElement>(null)
 
 	return (
@@ -29,43 +30,30 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 				<Trans>Récapitulatif</Trans>
 			</h2>
 
-			<SimpleField
-				label="Rémunération totale"
-				dottedName={'dirigeant . rémunération totale'}
-				unit="€"
-			/>
+			<SimpleField dottedName={'dirigeant . rémunération totale'} unit="€" />
 
 			{siren && <CompanyDetails siren={siren} />}
 
 			<SimpleField
-				label="Nature de votre activité"
 				dottedName={
 					"aide déclaration revenu indépendant 2019 . nature de l'activité"
 				}
 			/>
 
-			<SimpleField
-				label="Vous êtes bénéficiaire du RSA ou de la prime d’activité"
-				dottedName={'situation personnelle . RSA'}
-			/>
+			<SimpleField dottedName={'situation personnelle . RSA'} />
 
 			{!situation[
 				"situation personnelle . domiciliation fiscale à l'étranger"
 			] && (
 				<>
-					<SimpleField
-						label="Vous avez perçu des indemnités journalières de maladie, maternité ou paternité au titre de votre activité indépendante"
-						dottedName={'dirigeant . indépendant . IJSS'}
-					/>
+					<SimpleField dottedName={'dirigeant . indépendant . IJSS'} />
 
 					<SimpleField
-						label="Le montant total brut de toutes vos indemnités journalières est de"
 						dottedName={'dirigeant . indépendant . IJSS . total'}
 						unit="€"
 					/>
 
 					<SimpleField
-						label="Le montant brut des indemnités journalières imposables perçues est de"
 						dottedName={'dirigeant . indépendant . IJSS . imposable'}
 						unit="€"
 					/>
@@ -73,7 +61,6 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 			)}
 
 			<SimpleField
-				label="Vous avez un conjoint collaborateur"
 				dottedName={'dirigeant . indépendant . conjoint collaborateur'}
 			/>
 
@@ -85,23 +72,18 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 			/>
 
 			<SimpleField
-				label="Vous êtes titulaire d’une pension d’invalidité à titre de travailleur indépendant"
 				dottedName={
 					'dirigeant . indépendant . cotisations et contributions . exonérations . invalidité'
 				}
 			/>
 
 			<SimpleField
-				label="La résidence fiscale est située à l'étranger"
 				dottedName={
 					"situation personnelle . domiciliation fiscale à l'étranger"
 				}
 			/>
 
-			<SimpleField
-				label="Vous avez perçu des revenus à l'étranger dans le cadre de votre activité"
-				dottedName={'dirigeant . indépendant . revenus étrangers'}
-			/>
+			<SimpleField dottedName={'dirigeant . indépendant . revenus étrangers'} />
 
 			<Results récapitulatif={false} componentRef={componentRef} />
 		</div>
@@ -115,24 +97,27 @@ type SimpleFieldProps = {
 }
 function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
 	const situation = useSelector(situationSelector)
+	const rules = useSelector((state: RootState) => state.rules)
 	const value = situation[dottedName]
 	return value && (value === 'oui' || unit === '€') ? (
 		<p>
 			<span>
-				<Trans>{label}</Trans>
-			</span>{' '}
+				{rules.find(rule => rule.dottedName === dottedName)?.question}
+			</span>
 			<span>
-				{value !== null &&
-					unit === '€' &&
-					' : ' +
+				&nbsp;
+				<strong>
+					{value !== null && unit === '€' ? (
 						formatValue({
 							value: value || 0,
 							language: 'fr',
 							unit: unit,
 							maximumFractionDigits: 0
-						})}
-
-				{value !== null && unit === undefined && ' : ' + value}
+						})
+					) : (
+						<>{value}</>
+					)}
+				</strong>
 			</span>
 		</p>
 	) : null
