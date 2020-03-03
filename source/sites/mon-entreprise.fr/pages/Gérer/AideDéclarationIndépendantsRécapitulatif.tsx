@@ -12,6 +12,7 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 	const siren = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany?.siren
 	)
+	console.log(situation)
 	const componentRef = useRef<HTMLDivElement>(null)
 	return (
 		<div ref={componentRef}>
@@ -41,7 +42,6 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 				dottedName={
 					"aide déclaration revenu indépendant 2019 . nature de l'activité"
 				}
-				unit="text"
 			/>
 
 			<SimpleField
@@ -82,7 +82,6 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 				dottedName={
 					'dirigeant . indépendant . conjoint collaborateur . assiette'
 				}
-				unit="text"
 			/>
 
 			<SimpleField
@@ -117,7 +116,8 @@ type SimpleFieldProps = {
 function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
 	const situation = useSelector(situationSelector)
 	const value = situation[dottedName]
-	return value ? (
+	console.log(situation)
+	return value && (value === 'oui' || unit === '€') ? (
 		<p>
 			<span>
 				<Trans>{label}</Trans>
@@ -129,14 +129,12 @@ function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
 						formatValue({
 							value: value || 0,
 							language: 'fr',
-							unit: '€',
+							unit: unit,
 							maximumFractionDigits: 0
 						})}
 
-				{value !== null && unit === 'text' && ' : ' + value}
+				{value !== null && unit === undefined && ' : ' + value}
 			</span>
 		</p>
-	) : (
-		<></>
-	)
+	) : null
 }
