@@ -98,6 +98,24 @@ export default function Options() {
 						<Trans>Commencer</Trans>
 					</div>
 				</a>
+				<a
+					className="ui__ interactive card box inverted-colors"
+					css="flex: 1"
+					target="_blank"
+					href="https://publi.codes"
+				>
+					<div className="ui__ big box-icon">{emoji('📚')}</div>
+					<Trans i18nKey="pages.développeurs.choice.publicode">
+						<h3>Publicodes</h3>
+						<p className="ui__ notice" css="flex: 1">
+							Nos outils sont propulsés par Publicodes, un nouveau langage pour
+							encoder des algorithmes “explicables”.
+						</p>
+					</Trans>
+					<div className="ui__ small simple button">
+						<Trans>Découvrir</Trans>
+					</div>
+				</a>
 			</section>
 		</>
 	)

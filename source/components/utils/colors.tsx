@@ -115,7 +115,6 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 				ref={divRef}
 				css={`
 					height: inherit;
-					width: inherit;
 				`}
 			>
 				{children}

@@ -30,6 +30,7 @@ De: From
 Destinataire: Levied by
 Devenir: Become
 Déclenchement: Applicability
+Découvrir: Discover
 Démarches de création: Creation process checklist
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
@@ -65,7 +66,7 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -802,6 +803,9 @@ pages:
         <0>Using the calculation engine</0><1>The entire socio-fiscal
         calculation engine developed by URSSAF, freely available in the form of
         an NPM library.</1>
+      publicode: >-
+        <0>Publicodes</0><1>Our tools are powered by Publicodes, a new language
+        for encoding "explainable" algorithms.</1>
     code à copier: 'Here is the code to copy and paste on your site:'
     home:
       choice:
