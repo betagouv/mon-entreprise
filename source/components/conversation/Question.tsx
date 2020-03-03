@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { is } from 'ramda'
 import React, { useCallback, useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Explicable from './Explicable'
 import SendButton from './SendButton'
@@ -77,7 +78,7 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
-					choices.children.map(({ title, dottedName, children }) =>
+					choices.children.map(({ title, dottedName, children, icons }) =>
 						children ? (
 							<li key={dottedName} className="variant">
 								<div>{title}</div>
@@ -91,6 +92,7 @@ export default function Question({
 										label: title,
 										dottedName,
 										currentValue,
+										icons,
 										onSubmit,
 										colors,
 										onChange: handleChange
@@ -129,12 +131,13 @@ function RadioLabelContent({
 	value,
 	label,
 	currentValue,
+	icons,
 	onChange,
 	onSubmit,
 	css
 }) {
-	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
-		selected = value === currentValue
+	const labelStyle = value === '_' ? ({ fontWeight: 'bold' } as const) : {}
+	const selected = value === currentValue
 
 	const click = value => () => {
 		if (currentValue == value && onSubmit) onSubmit('dblClick')
@@ -149,13 +152,14 @@ function RadioLabelContent({
 				selected
 			})}
 		>
+			{icons && <>{emoji(icons)}&nbsp;</>}
 			<Trans>{label}</Trans>
 			<input
 				type="radio"
 				onClick={click(value)}
 				value={value}
 				onChange={evt => onChange(evt.target.value)}
-				checked={value === currentValue ? 'checked' : ''}
+				checked={selected}
 			/>
 		</label>
 	)
