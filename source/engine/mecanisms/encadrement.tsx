@@ -70,7 +70,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	)
 	const valeur = evaluateAttribute(node.explanation.valeur)
 	let plafond = evaluateAttribute(node.explanation.plafond)
-	if (val(plafond) === false) {
+	if (val(plafond) === false || val(plafond) === null) {
 		plafond = objectShape.plafond
 	}
 	let plancher = evaluateAttribute(node.explanation.plancher)

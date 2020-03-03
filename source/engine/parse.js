@@ -2,7 +2,7 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
-import { formatValue } from 'Engine/format'
+import Value from 'Components/Value'
 import mecanismRound from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
 import durée from 'Engine/mecanisms/durée'
@@ -183,15 +183,15 @@ const statelessParseFunction = {
 		// eslint-disable-next-line
 		jsx: (nodeValue, _, __, unit) => (
 			<span className={v.type}>
-				{formatValue({
-					unit: unit,
-					value: nodeValue,
-					// TODO : handle localization here
-					language: 'fr',
-					// We want to display constants with full precision,
-					// espacilly for percentages like APEC 0,036 %
-					maximumFractionDigits: 5
-				})}
+				<Value
+					{...{
+						unit,
+						nodeValue,
+						// We want to display constants with full precision,
+						// espacilly for percentages like APEC 0,036 %
+						maximumFractionDigits: 5
+					}}
+				/>
 			</span>
 		)
 	})

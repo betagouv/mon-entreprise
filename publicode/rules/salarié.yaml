@@ -191,6 +191,57 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . dista
     10 km/jour: 200
   par défaut: 80
 
+contrat salarié . déduction forfaitaire spécifique:
+  description: >-
+    Pour une liste précise de professions, l'employeur peut pratiquer une
+    déduction forfaitaire spécifique pour frais professionnels sur la base de
+    calcul des cotisations sociales.
+  applicable si:
+    toutes ces conditions:
+      - application
+      - taux > 0%
+  titre: assiette avec DFS
+  remplace:
+    règle: cotisations . assiette
+    sauf dans: contrat salarié . CSG
+    # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
+    # pour les journalistes. Nécessite probablement de faire un re-remplacement
+    # inverse.
+  formule:
+    encadrement:
+      valeur:
+        allègement:
+          assiette: cotisations . assiette
+          abattement: taux
+          plafond: 7600 €/an
+      plancher: cotisations . assiette minimale
+  références:
+    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
+
+contrat salarié . déduction forfaitaire spécifique . taux:
+  formule:
+    variations:
+      - si: profession = 'journaliste'
+        alors: 20%
+      - si: profession = 'ouvrier du bâtiment'
+        alors: 10%
+      - si: profession = 'artiste musicien'
+        alors: 20%
+      - si: profession = 'pilote de ligne ou personnel navigant'
+        alors: 30%
+      - sinon: 0%
+  références:
+    Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
+
+contrat salarié . déduction forfaitaire spécifique . application:
+  description: >-
+    La déduction forfaitaire spécifique consiste en un abattement sur l'assiette
+    des cotisations sociales. L'employeur peut renoncer à appliquer cette
+    déduction afin d'accorder plus de droits au salarié, notamment en terme de
+    retraite et d'assurance chômage.
+  titre: application de la DFS
+  par défaut: oui
+
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description: |
     À compter du 1er janvier 2020, l'employeur doit s'acquiter d'une taxe
@@ -777,6 +828,7 @@ contrat salarié . stage:
     - AGS
     - complémentaire santé
     - contribution au dialogue social
+    - déduction forfaitaire spécifique
     - temps de travail . temps partiel
     - temps de travail . heures supplémentaires
     - régime des impatriés
@@ -844,6 +896,13 @@ contrat salarié . cotisations . assiette . salariale:
             assiette: cotisations . assiette
             abattement: 79% * SMIC
       - sinon: cotisations . assiette
+
+contrat salarié . cotisations . assiette minimale:
+  formule:
+    recalcul:
+      règle: rémunération . assiette de vérification du SMIC
+      avec:
+        rémunération . brut de base: SMIC
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
@@ -1815,9 +1874,12 @@ contrat salarié . réduction générale:
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   non applicable si: cotisations . assiette forfaitaire . montant
   formule:
-    multiplication:
-      assiette: cotisations . assiette
-      facteur: coefficient
+    encadrement:
+      valeur:
+        multiplication:
+          assiette: cotisations . assiette
+          facteur: coefficient
+      plafond: plafond avec application de la DFS
   exemples:
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
@@ -1887,6 +1949,18 @@ contrat salarié . réduction générale . imputation sécurité sociale:
 
 contrat salarié . réduction générale . imputation retraite complémentaire:
   formule: réduction générale - imputation sécurité sociale
+
+contrat salarié . réduction générale . plafond avec application de la DFS:
+  applicable si: déduction forfaitaire spécifique > 0
+  unité: €/mois
+  formule:
+    multiplication:
+      taux: 130%
+      assiette:
+        recalcul:
+          règle: réduction générale
+          avec:
+            déduction forfaitaire spécifique . application: non
 
 contrat salarié . contribution d'équilibre général:
   description: >-
@@ -2691,6 +2765,72 @@ contrat salarié . taxe sur les salaires . barème:
         contrat salarié . taxe sur les salaires: oui
         assiette: 2300
       valeur attendue: 2627.97
+
+contrat salarié . profession:
+  question: Le salarié exerce t-il l'une des professions suivantes ?
+  formule:
+    une possibilité:
+      possibilités:
+        - journaliste
+        - ouvrier du bâtiment
+        - artiste musicien
+        - pilote de ligne ou personnel navigant
+
+contrat salarié . profession . journaliste:
+  icônes: ✒
+  description: >-
+    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
+    Critiques dramatiques et musicaux.
+
+contrat salarié . profession . journaliste . réduction de taux:
+  applicable si: profession = 'journaliste'
+  remplace:
+    - règle: vieillesse . taux employeur plafonné
+      par: vieillesse . taux employeur plafonné * réduction de taux
+    - règle: vieillesse . taux employeur déplafonné
+      par: vieillesse . taux employeur déplafonné * réduction de taux
+    - règle: vieillesse . taux salarié plafonné
+      par: vieillesse . taux salarié plafonné * réduction de taux
+    - règle: vieillesse . taux salarié déplafonné
+      par: vieillesse . taux salarié déplafonné * réduction de taux
+
+    - règle: allocations familiales . taux
+      par: allocations familiales . taux * réduction de taux
+    - règle: établissement . taux du versement transport
+      par: établissement . taux du versement transport * réduction de taux
+    - règle: ATMP . taux
+      par: ATMP . taux * réduction de taux
+  formule: 80%
+
+contrat salarié . profession . journaliste . abattement fiscal:
+  applicable si: profession = 'journaliste'
+  remplace: rémunération . net imposable
+  titre: net imposable journaliste
+  formule:
+    allègement:
+      assiette: rémunération . net imposable
+      abattement: 7650€/an
+
+contrat salarié . profession . ouvrier du bâtiment:
+  icônes: 👷‍♂️
+  description: >-
+    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
+    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
+    travaillent en usine ou en atelier.
+
+contrat salarié . profession . artiste musicien:
+  icônes: 🎼
+  description: >-
+    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
+    théâtre
+
+contrat salarié . profession . pilote de ligne ou personnel navigant:
+  icônes: ✈
+  description: >-
+    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
+    transports aériens ; pilotes et mécaniciens employés par les maisons de
+    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
+    moniteurs d’aéro-clubs et des écoles d’aviation civile
 
 contrat salarié . régime des impatriés:
   question: Le salarié bénéficie-t-il du régime des impatriés ?
