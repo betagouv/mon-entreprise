@@ -4,7 +4,7 @@ import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import InputComponent from 'Engine/RuleInput'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -18,6 +18,7 @@ import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
 import { useRule } from '../Simulateurs/ArtisteAuteur'
+import { AideDéclarationIndépendantsRécapitulatif } from './AideDéclarationIndépendantsRécapitulatif'
 import { simulationConfig } from './AideDéclarationIndépendantsSimulationConfig'
 import { Results } from './AideDéclarationIndépentantsResult'
 import { CompanySection } from './Home'
@@ -63,6 +64,7 @@ export default function AideDéclarationIndépendant() {
 		updateIncome,
 		currentIncome
 	} = lauchComputationWhenResultsInViewport()
+	const printComponentRef = useRef<HTMLDivElement>(null)
 	return (
 		<>
 			<ScrollToTop />
@@ -171,7 +173,12 @@ export default function AideDéclarationIndépendant() {
 					</Animate.fromTop>
 
 					<div ref={resultsRef}>
-						<Results récapitulatif={true} />
+						<div style={{ display: 'none' }}>
+							<div ref={printComponentRef}>
+								<AideDéclarationIndépendantsRécapitulatif />
+							</div>
+						</div>
+						<Results récapitulatif={true} componentRef={printComponentRef} />
 					</div>
 				</>
 			)}
