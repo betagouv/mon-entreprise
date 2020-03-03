@@ -12,8 +12,8 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 	const siren = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany?.siren
 	)
-	console.log(situation)
 	const componentRef = useRef<HTMLDivElement>(null)
+
 	return (
 		<div ref={componentRef}>
 			<h1>
@@ -116,7 +116,6 @@ type SimpleFieldProps = {
 function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
 	const situation = useSelector(situationSelector)
 	const value = situation[dottedName]
-	console.log(situation)
 	return value && (value === 'oui' || unit === '€') ? (
 		<p>
 			<span>

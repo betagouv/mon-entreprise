@@ -69,27 +69,24 @@ export function Results({ récapitulatif, componentRef }: ResultsProp) {
 					{!onGoingComputation && (
 						<div css="text-align: center">
 							{récapitulatif && (
-								<Link
-									className="ui__ simple button"
-									to={sitePaths.gérer.déclarationIndépendant.récapitulatif}
-								>
-									{emoji('📋')} Récapitulatif
-								</Link>
+								<>
+									<Link
+										className="ui__ simple button"
+										to={sitePaths.gérer.déclarationIndépendant.récapitulatif}
+									>
+										{emoji('📋')} Récapitulatif
+									</Link>
+								</>
 							)}
 							<style>{`@media print {.button.print{display: none;} body {margin: 40px;}}`}</style>
-							{!récapitulatif && (
-								<ReactToPrint
-									trigger={() => (
-										<button
-											className="ui__ simple button print"
-											onClick={() => window.print()}
-										>
-											{emoji('🖨')} Imprimer
-										</button>
-									)}
-									content={() => componentRef.current}
-								/>
-							)}
+							<ReactToPrint
+								trigger={() => (
+									<button className="ui__ simple button print">
+										{emoji('🖨')} Imprimer
+									</button>
+								)}
+								content={() => componentRef.current}
+							/>
 						</div>
 					)}
 				</Animate.fromTop>
