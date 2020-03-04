@@ -110,12 +110,14 @@ export default function AideDéclarationIndépendant() {
 						Il ne vous concerne pas si vous êtes dans un des cas suivants :
 					</h3>
 					<ul>
-						<li>vous êtes une profession libérale réglementée</li>
+						<li>
+							vous exercez une activité libérale relevant d’un régime de
+							retraite des professions libérales
+						</li>
 						<li>
 							vous êtes gérants de société relevant de l’impôt sur les sociétés
 						</li>
 						<li>vous avez opté pour le régime micro-fiscal</li>
-						<li>vous êtes une profession libérale cotisant à la CIPAV</li>
 						<li>votre entreprise est domiciliée dans les DOM</li>
 					</ul>
 				</Warning>
