@@ -1,5 +1,7 @@
 import Controls from 'Components/Controls'
-import Conversation, { ConversationProps } from 'Components/conversation/Conversation'
+import Conversation, {
+	ConversationProps
+} from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
@@ -26,7 +28,7 @@ export default function Simulation({
 	return (
 		<>
 			<TargetSelection />
-			<SearchButton invisibleButton />
+			<SearchButton invisibleButton={false} />
 			{firstStepCompleted && (
 				<>
 					<Animate.fromTop>

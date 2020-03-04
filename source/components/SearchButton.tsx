@@ -39,6 +39,9 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 	) : invisibleButton ? null : (
 		<button
 			className="ui__ simple small button"
+			style={{
+				marginTop: '20px'
+			}}
 			onClick={() => setVisible(true)}
 		>
 			{emoji('🔍')} <Trans>Rechercher</Trans>
