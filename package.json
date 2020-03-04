@@ -102,7 +102,7 @@
 		"i18n:ui:check": "yarn run i18next && node source/scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next && node source/scripts/i18n/translate-ui.js",
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
-		"mon-entreprise:test": "cypress open --browser chromium",
+		"mon-entreprise:test": "cypress open --browser firefox",
 		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
 		"mycompanyinfrance:test": "cypress open --browser chromium --env language=en --config baseUrl=http://localhost:8080/infrance",
 		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
@@ -203,7 +203,7 @@
 		"yaml-loader": "^0.5.0"
 	},
 	"optionalDependencies": {
-		"cypress": "^3.6.1",
+		"cypress": "4.1.0",
 		"prerender-spa-plugin": "^3.4.0"
 	},
 	"resolutions": {
