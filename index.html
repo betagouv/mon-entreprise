@@ -297,7 +297,7 @@
 		-->
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en%2CIntl.~locale.fr%2CIntersectionObserver"></script>
 		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-		<script nomodule src="<%= chunk %>.legacy.bundle.js"></script>
+		<!-- <script nomodule src="<%= chunk %>.legacy.bundle.js"></script> -->
 		<% } %>
 	</body>
 </html>
