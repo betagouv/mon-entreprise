@@ -1306,6 +1306,9 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
     la base forfaitaire) ?
   titre.en: real remuneration
   titre.fr: rémunération réelle
+contrat salarié . cotisations . assiette minimale:
+  titre.en: '[automatic] minimum base'
+  titre.fr: assiette minimale
 contrat salarié . cotisations . patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales
@@ -1340,6 +1343,33 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     salarié
   titre.en: reduced contribution rates
   titre.fr: taux des cotisations réduites
+contrat salarié . déduction forfaitaire spécifique:
+  description.en: >-
+    [automatic] For a specific list of professions, the employer may make a
+    specific flat-rate deduction for professional expenses on the basis of the
+    calculation of social security contributions.
+  description.fr: >-
+    Pour une liste précise de professions, l'employeur peut pratiquer une
+    déduction forfaitaire spécifique pour frais professionnels sur la base de
+    calcul des cotisations sociales.
+  titre.en: '[automatic] plate with DFS'
+  titre.fr: assiette avec DFS
+contrat salarié . déduction forfaitaire spécifique . application:
+  description.en: >-
+    [automatic] The specific flat-rate deduction consists of a deduction from
+    the social security contribution base. The employer may waive this deduction
+    in order to grant more rights to the employee, in particular in terms of
+    pension and unemployment insurance.
+  description.fr: >-
+    La déduction forfaitaire spécifique consiste en un abattement sur l'assiette
+    des cotisations sociales. L'employeur peut renoncer à appliquer cette
+    déduction afin d'accorder plus de droits au salarié, notamment en terme de
+    retraite et d'assurance chômage.
+  titre.en: '[automatic] DFS implementation'
+  titre.fr: application de la DFS
+contrat salarié . déduction forfaitaire spécifique . taux:
+  titre.en: '[automatic] rates'
+  titre.fr: taux
 contrat salarié . exonération d'impôt des stagiaires et apprentis:
   description.en: >
     Wages paid to apprentices and internship bonuses are exempt from income tax
@@ -1973,6 +2003,59 @@ contrat salarié . prix du travail:
   résumé.fr: Dépensé par l'entreprise
   titre.en: labor cost
   titre.fr: Coût total
+contrat salarié . profession:
+  question.en: '[automatic] Does the employee work in one of the following professions?'
+  question.fr: Le salarié exerce t-il l'une des professions suivantes ?
+  titre.en: '[automatic] profession'
+  titre.fr: profession
+contrat salarié . profession . artiste musicien:
+  description.en: >-
+    [automatic] Concerns musicians, choir members, conductors, theatre managers,
+    etc.
+  description.fr: >-
+    Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
+    théâtre
+  titre.en: '[automatic] musical artist'
+  titre.fr: artiste musicien
+contrat salarié . profession . journaliste:
+  description.en: >-
+    [automatic] Concerns journalists, editors, photographers, newspaper
+    directors Dramatic and music critics.
+  description.fr: >-
+    Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
+    Critiques dramatiques et musicaux.
+  titre.en: '[automatic] journalist'
+  titre.fr: journaliste
+contrat salarié . profession . journaliste . abattement fiscal:
+  titre.en: '[automatic] net taxable journalist'
+  titre.fr: net imposable journaliste
+contrat salarié . profession . journaliste . réduction de taux:
+  titre.en: '[automatic] rate reduction'
+  titre.fr: réduction de taux
+contrat salarié . profession . ouvrier du bâtiment:
+  description.en: >-
+    [automatic] Concerns the construction workers referred to in paragraphs 1
+    and 2 of Article 1 of the Decree of 17 November 1936, excluding those
+    working in factories or workshops.
+  description.fr: >-
+    Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
+    l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
+    travaillent en usine ou en atelier.
+  titre.en: '[automatic] construction worker'
+  titre.fr: ouvrier du bâtiment
+contrat salarié . profession . pilote de ligne ou personnel navigant:
+  description.en: >-
+    [automatic] Concerns pilots, radios, flight engineers of air transport
+    companies; pilots and mechanics employed by aircraft and engine construction
+    companies for testing prototypes; pilot instructors of flying clubs and
+    civil aviation schools.
+  description.fr: >-
+    Concerne les pilotes, radios, mécaniciens navigants des compagnies de
+    transports aériens ; pilotes et mécaniciens employés par les maisons de
+    construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
+    moniteurs d’aéro-clubs et des écoles d’aviation civile
+  titre.en: '[automatic] airline pilot or flight crew'
+  titre.fr: pilote de ligne ou personnel navigant
 contrat salarié . prévoyance:
   titre.en: '[automatic] foresight'
   titre.fr: prévoyance
@@ -2068,6 +2151,9 @@ contrat salarié . réduction générale . imputation retraite complémentaire:
 contrat salarié . réduction générale . imputation sécurité sociale:
   titre.en: '[automatic] social security allocation'
   titre.fr: imputation sécurité sociale
+contrat salarié . réduction générale . plafond avec application de la DFS:
+  titre.en: '[automatic] ceiling with DFS application'
+  titre.fr: plafond avec application de la DFS
 contrat salarié . régime alsace moselle:
   description.en: >
     We consider that an employee is affiliated to the Alsace-Moselle regime when
