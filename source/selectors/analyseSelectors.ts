@@ -6,6 +6,8 @@ import {
 	collectDefaults,
 	disambiguateExampleSituation,
 	findRuleByDottedName,
+	rules as rulesEn,
+	rulesFr,
 	splitName
 } from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
@@ -31,14 +33,23 @@ import { RootState, Simulation } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
 import { DottedName } from 'Types/rule'
 import { mapOrApply } from '../utils'
+
 // create a "selector creator" that uses deep equal instead of ===
 const createDeepEqualSelector = createSelectorCreator(defaultMemoize, equals)
 
 let configSelector = (state: RootState) => state.simulation?.config || {}
 
-// We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
-export let flatRulesSelector = (state: RootState) => state.rules
+// We used to systematically put the rules in the Redux state but it broke hot
+// reloading (the Redux store was re-created every time we changed the rules,
+// and the situation was reseted). We now support both putting the rules in the
+// state (for tests, library, etc.), and we default to a side-effect value (for
+// hot-reloading on developement). See
+// https://github.com/betagouv/mon-entreprise/issues/912
+export let flatRulesSelector = (state: RootState) =>
+	state.rules ?? (state.lang === 'en' ? rulesEn : rulesFr)
 
+// We must here compute parsedRules, flatRules, analyse which contains both
+// targets and cache objects
 export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
 	parseAll(rules)
 )
