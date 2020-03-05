@@ -92,7 +92,7 @@ export default function AfterRegistration() {
 					</p>
 				</Trans>
 			</p>
-			{statutChoisi && !statutChoisi.includes('auto-entrepreneur') && (
+			{statutChoisi && (
 				<>
 					<h2>
 						<Trans i18nKey="après.kbis.titre">Le Kbis</Trans>
