@@ -203,7 +203,7 @@
 		"yaml-loader": "^0.5.0"
 	},
 	"optionalDependencies": {
-		"cypress": "4.1.0",
+		"cypress": "^4.1.0",
 		"prerender-spa-plugin": "^3.4.0"
 	},
 	"resolutions": {
