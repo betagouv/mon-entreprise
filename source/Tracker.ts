@@ -33,6 +33,7 @@ export default class Tracker {
 		if (iOSSafari && inIframe) {
 			pushFunction(['disableCookies'])
 		}
+		pushFunction(['trackPageView'])
 	}
 
 	connectToHistory(history: History) {
