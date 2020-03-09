@@ -34,7 +34,7 @@ type Props = {
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function InputComponent({
+export default function RuleInput({
 	rules,
 	dottedName,
 	onChange,

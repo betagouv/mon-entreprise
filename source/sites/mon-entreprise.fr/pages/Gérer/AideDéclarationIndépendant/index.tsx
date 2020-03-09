@@ -1,9 +1,11 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
+import Aide from 'Components/conversation/Aide'
+import Explicable from 'Components/conversation/Explicable'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import InputComponent from 'Engine/RuleInput'
+import RuleInput from 'Engine/RuleInput'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -122,7 +124,7 @@ export default function AideDéclarationIndépendant() {
 				</p>
 			</Trans>
 			<BigInput>
-				<InputComponent
+				<RuleInput
 					rules={rules}
 					dottedName="dirigeant . rémunération totale"
 					onChange={updateIncome}
@@ -191,6 +193,7 @@ export default function AideDéclarationIndépendant() {
 					<div ref={resultsRef}>
 						<Results componentRef={printComponentRef} />
 					</div>
+					<Aide />
 				</>
 			)}
 		</div>
@@ -279,10 +282,13 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 							}
 						`}
 					>
-						<p>{question ?? evaluatedRule.question}</p>
+						<p>
+							{question ?? evaluatedRule.question}
+							<Explicable dottedName={dottedName} />
+						</p>
 						<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
 					</div>
-					<InputComponent
+					<RuleInput
 						rules={rules}
 						dottedName={dottedName}
 						onChange={update}
