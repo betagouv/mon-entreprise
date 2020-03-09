@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { situationSelector } from 'Selectors/analyseSelectors'
-import { Results } from './AideDéclarationIndépentantsResult'
+import { Results } from './Result'
 
 export function AideDéclarationIndépendantsRécapitulatif() {
 	const situation = useSelector(situationSelector)

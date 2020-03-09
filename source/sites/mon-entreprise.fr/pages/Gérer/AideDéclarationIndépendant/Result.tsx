@@ -5,14 +5,13 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
-import { Link } from 'react-router-dom'
 import ReactToPrint from 'react-to-print'
 import Animate from 'Ui/animate'
-import { useRule } from '../Simulateurs/ArtisteAuteur'
-import { simulationConfig } from './AideDéclarationIndépendantsSimulationConfig'
+import { useRule } from '../../Simulateurs/ArtisteAuteur'
+import simulationConfig from './config.yaml'
 
 type ResultsProp = {
-	récapitulatif: boolean
+	// récapitulatif: boolean
 	componentRef?: any
 }
 export function Results({ récapitulatif, componentRef }: ResultsProp) {
@@ -66,9 +65,12 @@ export function Results({ récapitulatif, componentRef }: ResultsProp) {
 							</p>
 						</React.Fragment>
 					))}
+					<p className="ui__ notice">
+						Résultats calculés le {new Date().toLocaleDateString()}
+					</p>
 					{!onGoingComputation && (
 						<div css="text-align: center">
-							{récapitulatif && (
+							{/* {récapitulatif && (
 								<>
 									<Link
 										className="ui__ simple button"
@@ -77,7 +79,7 @@ export function Results({ récapitulatif, componentRef }: ResultsProp) {
 										{emoji('📋')} Récapitulatif
 									</Link>
 								</>
-							)}
+							)} */}
 							<style>{`@media print {.button.print{display: none;} body {margin: 40px;}}`}</style>
 							<ReactToPrint
 								trigger={() => (

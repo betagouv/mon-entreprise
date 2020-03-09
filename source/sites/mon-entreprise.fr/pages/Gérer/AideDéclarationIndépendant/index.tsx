@@ -17,11 +17,10 @@ import {
 import styled from 'styled-components'
 import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
-import { useRule } from '../Simulateurs/ArtisteAuteur'
-import { AideDéclarationIndépendantsRécapitulatif } from './AideDéclarationIndépendantsRécapitulatif'
-import { simulationConfig } from './AideDéclarationIndépendantsSimulationConfig'
-import { Results } from './AideDéclarationIndépentantsResult'
-import { CompanySection } from './Home'
+import { useRule } from '../../Simulateurs/ArtisteAuteur'
+import { CompanySection } from '../Home'
+import simulationConfig from './config.yaml'
+import { Results } from './Result'
 
 const lauchComputationWhenResultsInViewport = () => {
 	const dottedName = 'dirigeant . rémunération totale'
@@ -66,7 +65,7 @@ export default function AideDéclarationIndépendant() {
 	} = lauchComputationWhenResultsInViewport()
 	const printComponentRef = useRef<HTMLDivElement>(null)
 	return (
-		<>
+		<div ref={printComponentRef}>
 			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
@@ -76,34 +75,43 @@ export default function AideDéclarationIndépendant() {
 					connaître le montant des charges sociales déductibles à partir de
 					votre résultat net fiscal.
 				</p>
-				<Warning localStorageKey="aide-déclaration-indépendant.warning">
-					<h3>
-						Cet outil vous concerne si vous êtes dans tous les cas suivants :
-					</h3>
-					<ul>
-						<li>
-							vous cotisez au régime général des travailleurs indépendants
-						</li>
-						<li>
-							votre entreprise est au régime réel d'imposition et en
-							comptabilité d'engagement
-						</li>
-					</ul>
-					<h3>
-						Il ne vous concerne pas si vous êtes dans un des cas suivants :
-					</h3>
-					<ul>
-						<li>
-							vous exercez une activité libérale relevant d’un régime de
-							retraite des professions libérales
-						</li>
-						<li>
-							vous êtes gérants de société relevant de l’impôt sur les sociétés
-						</li>
-						<li>vous avez opté pour le régime micro-fiscal</li>
-						<li>votre entreprise est domiciliée dans les DOM</li>
-					</ul>
-				</Warning>
+				<div
+					css={`
+						@media print {
+							display: none;
+						}
+					`}
+				>
+					<Warning localStorageKey="aide-déclaration-indépendant.warning">
+						<h3>
+							Cet outil vous concerne si vous êtes dans tous les cas suivants :
+						</h3>
+						<ul>
+							<li>
+								vous cotisez au régime général des travailleurs indépendants
+							</li>
+							<li>
+								votre entreprise est au régime réel d'imposition et en
+								comptabilité d'engagement
+							</li>
+						</ul>
+						<h3>
+							Il ne vous concerne pas si vous êtes dans un des cas suivants :
+						</h3>
+						<ul>
+							<li>
+								vous exercez une activité libérale relevant d’un régime de
+								retraite des professions libérales
+							</li>
+							<li>
+								vous êtes gérants de société relevant de l’impôt sur les
+								sociétés
+							</li>
+							<li>vous avez opté pour le régime micro-fiscal</li>
+							<li>votre entreprise est domiciliée dans les DOM</li>
+						</ul>
+					</Warning>
+				</div>
 				<h2>
 					Quel est votre résultat fiscal en 2019 ?<br />
 					<small>Charges sociales et exonérations fiscales non incluses</small>
@@ -129,15 +137,23 @@ export default function AideDéclarationIndépendant() {
 							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
 								<h2>Entreprise et activité</h2>
 							</Trans>
-							{!company && (
-								<p className="ui__ notice">
-									<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
-										<strong>Facultatif : </strong>Vous pouvez renseigner votre
-										entreprise pour pré-remplir le formulaire
-									</Trans>
-								</p>
-							)}
-							<CompanySection company={company} />
+							<div
+								css={`
+									@media print {
+										display: none;
+									}
+								`}
+							>
+								{!company && (
+									<p className="ui__ notice">
+										<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
+											<strong>Facultatif : </strong>Vous pouvez renseigner votre
+											entreprise pour pré-remplir le formulaire
+										</Trans>
+									</p>
+								)}
+								<CompanySection company={company} />
+							</div>
 							<SimpleField dottedName="entreprise . date de création" />
 							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
 							{/* PLNR */}
@@ -173,16 +189,11 @@ export default function AideDéclarationIndépendant() {
 					</Animate.fromTop>
 
 					<div ref={resultsRef}>
-						<div style={{ display: 'none' }}>
-							<div ref={printComponentRef}>
-								<AideDéclarationIndépendantsRécapitulatif />
-							</div>
-						</div>
-						<Results récapitulatif={true} componentRef={printComponentRef} />
+						<Results componentRef={printComponentRef} />
 					</div>
 				</>
 			)}
-		</>
+		</div>
 	)
 }
 
@@ -226,7 +237,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const evaluatedRule = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
-	const rules = useSelector((state: RootState) => state.rules)
+	const rules = useSelector(flatRulesSelector)
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
 	const dispatchValue = useCallback(
@@ -252,25 +263,34 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 		return null
 	}
 	return (
-		<Animate.fromTop>
-			<Question>
-				<div
-					css={`
-						border-left: 3px solid var(--lightColor);
-						padding-left: 0.6rem;
-					`}
-				>
-					<p>{question ?? evaluatedRule.question}</p>
-					<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
-				</div>
-				<InputComponent
-					rules={rules}
-					dottedName={dottedName}
-					onChange={update}
-					value={currentValue}
-				/>
-			</Question>
-		</Animate.fromTop>
+		<div
+			css={`
+				break-inside: avoid;
+			`}
+		>
+			<Animate.fromTop>
+				<Question>
+					<div
+						css={`
+							border-left: 3px solid var(--lightColor);
+							padding-left: 0.6rem;
+							@media print {
+								padding-left: 0 !important;
+							}
+						`}
+					>
+						<p>{question ?? evaluatedRule.question}</p>
+						<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
+					</div>
+					<InputComponent
+						rules={rules}
+						dottedName={dottedName}
+						onChange={update}
+						value={currentValue}
+					/>
+				</Question>
+			</Animate.fromTop>
+		</div>
 	)
 }
 
@@ -284,6 +304,7 @@ const FormBlock = styled.section`
 	h2 {
 		border-top: 1px solid var(--lighterColor);
 		padding-top: 2rem;
+		break-after: avoid;
 	}
 
 	select,
