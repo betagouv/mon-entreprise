@@ -92,31 +92,28 @@ export default function AfterRegistration() {
 					</p>
 				</Trans>
 			</p>
-			{statutChoisi && (
-				<>
-					<h2>
-						<Trans i18nKey="après.kbis.titre">Le Kbis</Trans>
-					</h2>
-					<p>
-						<Trans i18nKey="après.kbis.description.1">
-							C'est le document officiel qui atteste de{' '}
-							<strong>l'existence légale d'une entreprise commerciale</strong>.
-							Le plus souvent, pour être valable par les procédures
-							administratives, il doit dater de moins de 3 mois.{' '}
-							<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
-								Plus d'infos.
-							</a>
-						</Trans>
-					</p>
-					<p>
-						<Trans i18nKey="après.kbis.description.2">
-							Ce document est généralement demandé lors de la candidature à un
-							appel d'offre public, de l'ouverture d'un compte bancaire,
-							d'achats d'équipement professionnel auprès de fournisseurs, etc.
-						</Trans>
-					</p>
-				</>
-			)}
+
+			<h2>
+				<Trans i18nKey="après.kbis.titre">Le Kbis</Trans>
+			</h2>
+			<p>
+				<Trans i18nKey="après.kbis.description.1">
+					C'est le document officiel qui atteste de{' '}
+					<strong>l'existence légale d'une entreprise commerciale</strong>. Le
+					plus souvent, pour être valable par les procédures administratives, il
+					doit dater de moins de 3 mois.{' '}
+					<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F21000">
+						Plus d'infos.
+					</a>
+				</Trans>
+			</p>
+			<p>
+				<Trans i18nKey="après.kbis.description.2">
+					Ce document est généralement demandé lors de la candidature à un appel
+					d'offre public, de l'ouverture d'un compte bancaire, d'achats
+					d'équipement professionnel auprès de fournisseurs, etc.
+				</Trans>
+			</p>
 		</Animate.fromBottom>
 	)
 }
