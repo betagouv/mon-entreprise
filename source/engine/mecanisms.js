@@ -482,7 +482,7 @@ export let mecanismProduct = (recurse, k, v) => {
 			}
 		}
 		let mult = (base, rate, facteur, plafond) =>
-			Math.min(base, plafond) * rate * facteur
+			Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
 		const unit = inferUnit(
 			'*',
 			[assiette, taux, facteur].map(el => el.unit)

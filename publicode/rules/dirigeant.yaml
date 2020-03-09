@@ -1047,7 +1047,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
       plafond:
         recalcul:
           avec:
-            indépendant . revenu net de cotisations: 3042 heures/an * SMIC horaire
+            dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"

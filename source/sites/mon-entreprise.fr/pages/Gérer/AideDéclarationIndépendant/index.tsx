@@ -175,6 +175,11 @@ export default function AideDéclarationIndépendant() {
 							<SimpleField dottedName="entreprise . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
+								hideTitle
+								dottedName="entreprise . effectif . seuil"
+							/>
+
+							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
 								hideTitle
 							/>
