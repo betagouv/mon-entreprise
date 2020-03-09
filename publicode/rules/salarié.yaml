@@ -33,6 +33,20 @@ contrat salarié:
 contrat salarié . CDI:
   formule: contrat salarié = 'CDI'
 
+contrat salarié . ancienneté:
+  formule:
+    durée:
+      depuis: date d'embauche
+
+contrat salarié . ancienneté . date d'embauche:
+  question: Quelle est la date d'embauche du salarié ?
+  par défaut: 01/01/2020
+  suggestions:
+    Début 2020: 01/01/2020
+    Début 2019: 01/01/2019
+    Fin 2017: 31/12/2017
+  type: date
+
 contrat salarié . frais professionnels:
   titre: remboursement de frais
   description: >-
@@ -1014,6 +1028,7 @@ contrat salarié . rémunération . primes:
     somme:
       - base
       - activité
+      - primes . ancienneté
       - fin d'année
 
 contrat salarié . rémunération . primes . base:
@@ -1040,9 +1055,10 @@ contrat salarié . rémunération . primes . activité . base:
   par défaut: 0
 
 contrat salarié . rémunération . primes . activité . conventionnelles:
-  unité: €/mois
+  formule: 0 €/mois
 
-  formule: 0
+contrat salarié . rémunération . primes . ancienneté:
+  formule: 0 €/mois
 
 contrat salarié . rémunération . primes . fin d'année:
   titre: Prime de fin d'année ou de treizième mois
