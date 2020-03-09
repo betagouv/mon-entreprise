@@ -48,10 +48,7 @@ dirigeant . auto-entrepreneur:
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
 
 dirigeant . auto-entrepreneur . base des cotisations:
-  formule:
-    encadrement:
-      plancher: 0
-      valeur: entreprise . chiffre d'affaires
+  formule: entreprise . chiffre d'affaires
   contrôles:
     - si: base des cotisations > plafond
       message: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
