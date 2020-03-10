@@ -23,14 +23,6 @@ questions:
   liste noire:
     - entreprise . charges
     # TODO : quand les questions indeps sont validés, enlever le block ci-dessous de la liste noire
-    - entreprise . catégorie d'activité . débit de tabac
-    - établissement . ZFU
-    - dirigeant . indépendant . cotisations et contributions . exonérations . âge
-    - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR
-    - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
-    - dirigeant . indépendant . revenus étrangers
-    - situation personnelle . IJSS
-    - situation personnelle . domiciliation fiscale à l'étranger
   non prioritaires:
     - entreprise . catégorie d'activité . débit de tabac
     - entreprise . ZFU

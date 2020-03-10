@@ -127,11 +127,11 @@ export let defaultNode = nodeValue => ({
 
 export let parseObject = (recurse, objectShape, value) => {
 	let recurseOne = key => defaultValue => {
-		if (!value[key] && !defaultValue)
+		if (value[key] == null && !defaultValue)
 			throw new Error(
 				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
 			)
-		return value[key] ? recurse(value[key]) : defaultValue
+		return value[key] != null ? recurse(value[key]) : defaultValue
 	}
 	let transforms = fromPairs(map(k => [k, recurseOne(k)], keys(objectShape)))
 	return evolve(transforms, objectShape)

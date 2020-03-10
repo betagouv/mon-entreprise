@@ -202,10 +202,10 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		return v
 	}
 
-	// si fx renvoie null pour une valeur numérique standard, disons 1000, on peut
+	// si fx renvoie null pour une valeur numérique standard, disons 2000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-	let attempt = fx(1000)
+	let attempt = fx(2000)
 	if (attempt.nodeValue == null) {
 		return attempt
 	}
@@ -217,19 +217,12 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 				let y = fx(x)
 				return y.nodeValue - fixedObjectiveValue
 			},
-			0.1,
-			1000000000,
+			v['valeurs négatives possibles'] === 'oui' ? -1000000 : 0,
+			10000000,
 			tolerance,
 			10
 		)
 
-	// Si aucune des valeurs ne fonctionne, on test la valeur 0.
-	if (nodeValue == null) {
-		attempt = fx(0)
-		if (Math.abs(attempt.nodeValue - fixedObjectiveValue) < 0.1) {
-			nodeValue = 0
-		}
-	}
 	return {
 		nodeValue,
 		missingVariables: {},
@@ -489,7 +482,7 @@ export let mecanismProduct = (recurse, k, v) => {
 			}
 		}
 		let mult = (base, rate, facteur, plafond) =>
-			Math.min(base, plafond) * rate * facteur
+			Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
 		const unit = inferUnit(
 			'*',
 			[assiette, taux, facteur].map(el => el.unit)

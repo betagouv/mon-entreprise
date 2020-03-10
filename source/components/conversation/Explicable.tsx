@@ -1,5 +1,4 @@
 import { explainVariable } from 'Actions/actions'
-import classNames from 'classnames'
 import { findRuleByDottedName } from 'Engine/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -25,23 +24,22 @@ export default function Explicable({ dottedName }: { dottedName: DottedName }) {
 
 	//TODO montrer les variables de type 'une possibilité'
 
-	return dottedName === explained ? null : (
-		<span
-			className={classNames('explicable', {
-				explained: dottedName === explained
-			})}
+	return (
+		<button
+			className="ui__ link-button"
+			onClick={e => {
+				tracker.push(['trackEvent', 'help', dottedName])
+				dispatch(explainVariable(dottedName))
+				e.preventDefault()
+				e.stopPropagation()
+			}}
+			css={`
+				margin-left: 0.3rem !important;
+				vertical-align: middle;
+				font-size: 110% !important;
+			`}
 		>
-			<span
-				className="icon"
-				onClick={e => {
-					tracker.push(['trackEvent', 'help', dottedName])
-					dispatch(explainVariable(dottedName))
-					e.preventDefault()
-					e.stopPropagation()
-				}}
-			>
-				{emoji('ℹ️')}
-			</span>
-		</span>
+			{emoji('ℹ️')}
+		</button>
 	)
 }

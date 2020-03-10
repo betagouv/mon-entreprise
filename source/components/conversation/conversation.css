@@ -125,6 +125,15 @@
 	border: 1px solid var(--color);
 	color: var(--textColor) !important;
 }
+@media print {
+	.step label.userAnswerButton.selected {
+		border: none;
+	}
+
+	.step label.userAnswerButton:not(.selected) {
+		display: none;
+	}
+}
 @media (hover) {
 	.step label.userAnswerButton:hover:not(.selected) {
 		background: var(--color);
