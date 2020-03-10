@@ -1,0 +1,125 @@
+contrat salarié . convention collective . BTP:
+  formule: convention collective = 'BTP'
+  titre: Bâtiment
+  icônes: 👷‍♀️
+  description: >-
+    L'entreprise dépend de la convention collective nationale du bâtiment. Cette
+    convention définit trois catégories de salariés : les ouvriers, les ETAM
+    (employés, techniciens et agents de maîtrise) et les cadres.
+
+contrat salarié . convention collective . BTP . catégorie du salarié:
+  question: À quelle catégorie la salarié appartient-t'il ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - ouvrier
+        - etam
+        - cadre
+
+contrat salarié . convention collective . BTP . catégorie du salarié . ouvrier:
+  titre: Ouvrier
+  icônes: 👨‍🔧
+
+contrat salarié . convention collective . BTP . catégorie du salarié . etam:
+  titre: ETAM
+  description: Employé, technicien, angent de maîtrise
+  icônes: 👷‍♂️
+
+contrat salarié . convention collective . BTP . catégorie du salarié . cadre:
+  applicable si: catégorie du salarié = 'cadre'
+  titre: Cadre
+  icônes: 👩‍💼
+  remplace:
+    - règle: statut cadre
+      par: oui
+
+contrat salarié . convention collective . BTP . retraite complémentaire:
+  non applicable si: catégorie du salarié = 'etam'
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 4.72%
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 12.95%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 3.15%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 8.64%
+
+contrat salarié . convention collective . BTP . retraite complémentaire . etam:
+  applicable si: catégorie du salarié = 'etam'
+  description: >-
+    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
+  remplace:
+    - règle: retraite complémentaire . taux employeur tranche 1
+      par: 4.47%
+    - règle: retraite complémentaire . taux employeur tranche 2
+      par: 12.70%
+    - règle: retraite complémentaire . taux salarié tranche 1
+      par: 3.40%
+    - règle: retraite complémentaire . taux salarié tranche 2
+      par: 8.89%
+
+contrat salarié . convention collective . BTP . prévoyance complémentaire:
+
+contrat salarié . convention collective . BTP . prévoyance complémentaire . ouvrier:
+  applicable si: catégorie du salarié = 'ouvrier'
+  remplace:
+    - règle: prévoyance . employeur
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 1.72%
+              plafond: 3 * plafond sécurité sociale
+    - règle: prévoyance . salarié
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 0.87%
+              plafond: 3 * plafond sécurité sociale
+
+contrat salarié . convention collective . BTP . prévoyance complémentaire . etam:
+  applicable si: catégorie du salarié = 'etam'
+  remplace:
+    - règle: prévoyance . employeur
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 1.25%
+              plafond: 3 * plafond sécurité sociale
+    - règle: prévoyance . salarié
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 0.60%
+              plafond: 3 * plafond sécurité sociale
+
+contrat salarié . convention collective . BTP . prévoyance complémentaire . cadre:
+  applicable si: catégorie du salarié = 'cadre'
+  remplace:
+    - règle: prévoyance . employeur
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 1.50%
+              plafond: plafond sécurité sociale
+            - taux: 50% * 2.40%
+              plafond: 4 * plafond sécurité sociale
+            - taux: 50% * 3.60%
+              plafond: 8 * plafond sécurité sociale
+    - règle: prévoyance . salarié
+      par:
+        barème:
+          assiette: rémunération . brut de base
+          tranches:
+            - taux: 0%
+              plafond: plafond sécurité sociale
+            - taux: 50% * 2.40%
+              plafond: 4 * plafond sécurité sociale
+            - taux: 50% * 3.60%
+              plafond: 8 * plafond sécurité sociale
