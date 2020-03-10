@@ -55,7 +55,7 @@ jobs:
 
   end-to-end-test:
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:10
         environment:
           TERM: xterm
     steps:
@@ -70,9 +70,20 @@ jobs:
           base_url: http://localhost:5001
           language: en
 
+  bundlesize-test:
+    docker:
+      - image: cypress/base:10
+        environment:
+          TERM: xterm
+    steps:
+      - install
+      - run: |
+          yarn run simple-compile
+          yarn test-bundlesize
+
   production-end-to-end-test:
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:10
         environment:
           TERM: xterm
     parallelism: 3
@@ -99,6 +110,7 @@ workflows:
       - i18n-check
       - unit-test
       - end-to-end-test
+      - bundlesize-test
       - production-end-to-end-test:
           filters:
             branches:
