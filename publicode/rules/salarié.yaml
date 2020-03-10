@@ -2800,6 +2800,8 @@ contrat salarié . profession . journaliste . réduction de taux:
       par: établissement . taux du versement transport * réduction de taux
     - règle: ATMP . taux
       par: ATMP . taux * réduction de taux
+    - règle: ATMP . taux minimum
+      par: ATMP . taux minimum * réduction de taux
   formule: 80%
 
 contrat salarié . profession . journaliste . abattement fiscal:
