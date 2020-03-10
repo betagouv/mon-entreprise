@@ -1,13 +1,13 @@
 import { ShowValuesConsumer } from 'Components/rule/ShowValuesContext'
 import RuleLink from 'Components/RuleLink'
-import evaluate from 'Engine/evaluateRule'
-import { parse } from 'Engine/parse'
 import { evolve, map } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { coerceArray } from '../utils'
+import evaluate from './evaluateRule'
 import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
 import { Node } from './mecanismViews/common'
+import { parse } from './parse'
 import { disambiguateRuleReference, findParentDependencies } from './rules'
 
 export default (rules, rule, parsedRules) => {

@@ -2,7 +2,7 @@ import { coerceArray } from '../utils'
 export function syntaxError(
 	rules: string[] | string,
 	message: string,
-	originalError: Error
+	originalError?: Error
 ) {
 	throw new Error(
 		`\n[ Erreur syntaxique ]

@@ -11,7 +11,7 @@ import autoentrepreneurConfig from '../../source/components/simulationConfigs/au
 import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
 import remunerationDirigeantConfig from '../../source/components/simulationConfigs/rémunération-dirigeant.yaml'
 import employeeConfig from '../../source/components/simulationConfigs/salarié.yaml'
-import Lib from '../../source/engine/index'
+import Engine from '../../source/engine'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import independentSituations from './simulations-indépendant.yaml'
@@ -19,7 +19,7 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
-const engine = new Lib.Engine()
+const engine = new Engine()
 const runSimulations = (
 	situations,
 	targets,
@@ -29,10 +29,9 @@ const runSimulations = (
 ) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach(situation => {
-			const res = engine.evaluate(targets, {
-				situation: { ...baseSituation, ...situation },
-				defaultUnits
-			})
+			engine.setSituation({ ...baseSituation, ...situation })
+			engine.setDefaultUnits(defaultUnits)
+			const res = engine.evaluate(targets).map(node => node.nodeValue)
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.

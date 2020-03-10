@@ -25,7 +25,7 @@ import {
 	subtract
 } from 'ramda'
 import React from 'react'
-import { syntaxError } from './error.ts'
+import { syntaxError } from './error'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -69,7 +69,7 @@ Utilisez leur contrepartie française : 'oui' / 'non'`
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
 
-const parseExpression = (rule, rawNode) => {
+export const parseExpression = (rule, rawNode) => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */

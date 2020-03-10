@@ -1,32 +1,33 @@
 import { expect } from 'chai'
-import Lib from '../source/engine/index'
+import Engine from '../source/engine/index'
 import co2 from './rules/co2.yaml'
 import sasuRules from './rules/sasu.yaml'
 
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
 		let target = 'contrat salarié . rémunération . net'
-		let value = Lib.evaluate(target, {
+		let engine = new Engine()
+		engine.setSituation({
 			'contrat salarié . rémunération . brut de base': 2300
 		})
-		expect(value).to.be.within(1798, 1800)
+		expect(engine.evaluate(target).nodeValue).to.be.within(1798, 1800)
 	})
 
 	it('should let the user replace the default rules', function() {
 		let rules = `
-- nom: yo
+yo:
   formule: 200
-- nom: ya
+ya:
   formule:  yo + 1
-- nom: yi
+yi:
   formule:  yo + 2
 `
+		let engine = new Engine({ rules })
 
-		let values = Lib.evaluate(['ya', 'yi'], {}, { base: rules })
-
-		expect(values[0]).to.equal(201)
-		expect(values[1]).to.equal(202)
+		expect(engine.evaluate('ya').nodeValue).to.equal(201)
+		expect(engine.evaluate('yi').nodeValue).to.equal(202)
 	})
+
 	it('should let the user add rules to the default ones', function() {
 		let rules = `
 yo:
@@ -34,60 +35,54 @@ yo:
 ya:
   formule:  contrat salarié . rémunération . net + yo
 `
-
-		let value = Lib.evaluate(
-			'ya',
-			{
-				'contrat salarié . rémunération . brut de base': 2300
-			},
-			{ extra: rules }
-		)
-
-		expect(value).to.be.closeTo(1799, 1)
+		let engine = new Engine({ extra: rules })
+		engine.setSituation({
+			'contrat salarié . rémunération . brut de base': 2300
+		})
+		expect(engine.evaluate('ya').nodeValue).to.be.closeTo(1799, 1)
 	})
+
 	it('should let the user extend the rules constellation in a serious manner', function() {
 		let CA = 550 * 16
-		let salaireTotal = Lib.evaluate(
-			'salaire total',
-			{
-				'chiffre affaires': CA
-			},
-			{ extra: sasuRules }
-		)
+		let engine = new Engine({ extra: sasuRules })
+		engine.setSituation({
+			'chiffre affaires': CA
+		})
+		let salaireTotal = engine.evaluate('salaire total').nodeValue
 
-		let salaireNetAprèsImpôt = Lib.evaluate(
+		engine.setSituation({
+			'contrat salarié . prix du travail': salaireTotal
+		})
+		let salaireNetAprèsImpôt = engine.evaluate(
+			'contrat salarié . rémunération . net après impôt'
+		).nodeValue
+
+		engine.setSituation({
+			'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
+			'chiffre affaires': CA
+		})
+		let [revenuDisponible, dividendes] = engine.evaluate([
 			'contrat salarié . rémunération . net après impôt',
-			{
-				'contrat salarié . prix du travail': salaireTotal
-			}
-		)
-		let [revenuDisponible, dividendes] = Lib.evaluate(
-			['contrat salarié . rémunération . net après impôt', 'dividendes . net'],
-			{
-				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
-				'chiffre affaires': CA
-			},
-			{ extra: sasuRules }
-		)
+			'dividendes . net'
+		])
 
-		expect(revenuDisponible).to.be.closeTo(2324, 1)
-		expect(dividendes).to.be.closeTo(2507, 1)
+		expect(revenuDisponible.nodeValue).to.be.closeTo(2324, 1)
+		expect(dividendes.nodeValue).to.be.closeTo(2507, 1)
 	}).timeout(5000)
 
 	it('should let the user define a simplified revenue tax system', function() {
-		let règles = `
-- nom:  revenu imposable
+		let rules = `
+revenu imposable:
   question: Quel est votre revenu imposable ?
   unité: €
 
-- nom: revenu abattu
+revenu abattu:
   formule:
     allègement:
       assiette: revenu imposable
       abattement: 10%
 
-
-- nom: impôt sur le revenu
+impôt sur le revenu:
   formule:
     barème:
       assiette: revenu abattu
@@ -102,8 +97,7 @@ ya:
           plafond: 153783
         - taux: 45%
 
-
-- nom: impôt sur le revenu à payer
+impôt sur le revenu à payer:
   formule:
     allègement:
       assiette: impôt sur le revenu
@@ -112,28 +106,22 @@ ya:
         plafond: 1177
 `
 
-		let target = 'impôt sur le revenu à payer'
-
-		let value = Lib.evaluate(
-			target,
-			{ 'revenu imposable': '48000' },
-			{ base: règles }
-		)
-		expect(value).to.equal(7253.26)
+		let engine = new Engine({ rules })
+		engine.setSituation({
+			'revenu imposable': '48000'
+		})
+		let value = engine.evaluate('impôt sur le revenu à payer')
+		expect(value.nodeValue).to.equal(7253.26)
 	})
-	it('should let let user define a rule base on a completely different subject', function() {
-		let targets = 'impact'
 
-		let value = Lib.evaluate(
-			targets,
-			{
-				'nombre de douches': 30,
-				'chauffage . type': 'gaz',
-				'durée de la douche': 10
-			},
-			{ base: co2, debug: false }
-		)
-		//console.log(JSON.stringify(value.targets[0], null, 4))
-		expect(value).to.be.within(20, 21)
+	it('should let the user define a rule base on a completely different subject', function() {
+		let engine = new Engine({ rules: co2 })
+		engine.setSituation({
+			'nombre de douches': 30,
+			'chauffage . type': 'gaz',
+			'durée de la douche': 10
+		})
+		let value = engine.evaluate('douche . impact')
+		expect(value.nodeValue).to.be.within(20, 21)
 	})
 })
