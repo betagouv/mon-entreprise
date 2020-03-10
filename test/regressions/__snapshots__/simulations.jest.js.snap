@@ -238,7 +238,7 @@ exports[`calculate simulations-salarié:  effectif 3`] = `"[2539,0,0,2000,1561,1
 
 exports[`calculate simulations-salarié:  effectif 4`] = `"[2539,0,0,2000,1561,1524]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2241,0,0,2000,1668,1668]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2242,0,0,2000,1668,1668]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 2`] = `"[2335,0,0,2000,1603,1561]"`;
 
@@ -246,9 +246,9 @@ exports[`calculate simulations-salarié:  frais pro - DFS 3`] = `"[2265,0,0,2000
 
 exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1657,1608]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2436,0,0,2000,1590,1590]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2437,0,0,2000,1590,1590]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1765,0,0,1700,1380,1380]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1767,0,0,1700,1380,1380]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 7`] = `"[3287,0,0,2600,2175,2141]"`;
 
