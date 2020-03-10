@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
 commands:
   install:
     steps:
@@ -103,7 +105,6 @@ jobs:
             curl -H 'Content-Type: application/json' --request POST -d '{"success": false}' https://hooks.zapier.com/hooks/catch/3746650/qsp818/;
 
 workflows:
-  version: 2
   test:
     jobs:
       - type-check
@@ -115,3 +116,17 @@ workflows:
           filters:
             branches:
               only: master
+  nightly:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - cypress/run:
+          executor: cypress/browsers-chrome73-ff68
+          browser: firefox
+          start: yarn run serve-dev
+          wait-on: http://localhost:5000
