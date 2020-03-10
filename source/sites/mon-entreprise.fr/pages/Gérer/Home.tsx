@@ -92,7 +92,8 @@ export default function SocialSecurity() {
 						</h2>
 						<div className="ui__ center-flex">
 							{company?.statutJuridique === 'EI' &&
-								!company.isAutoEntrepreneur && (
+								!company.isAutoEntrepreneur &&
+								process.env.MASTER === false && (
 									<Link
 										className="ui__ interactive card box"
 										to={{

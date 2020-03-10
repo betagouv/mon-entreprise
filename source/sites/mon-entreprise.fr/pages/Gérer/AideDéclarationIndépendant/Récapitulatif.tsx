@@ -85,7 +85,7 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 
 			<SimpleField dottedName={'dirigeant . indépendant . revenus étrangers'} />
 
-			<Results récapitulatif={false} componentRef={componentRef} />
+			<Results componentRef={componentRef} />
 		</div>
 	)
 }

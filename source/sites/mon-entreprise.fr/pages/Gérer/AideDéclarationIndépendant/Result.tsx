@@ -11,10 +11,9 @@ import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import simulationConfig from './config.yaml'
 
 type ResultsProp = {
-	// récapitulatif: boolean
 	componentRef?: any
 }
-export function Results({ récapitulatif, componentRef }: ResultsProp) {
+export function Results({ componentRef }: ResultsProp) {
 	const results = simulationConfig.objectifs.map(dottedName =>
 		useRule(dottedName)
 	)
@@ -70,16 +69,6 @@ export function Results({ récapitulatif, componentRef }: ResultsProp) {
 					</p>
 					{!onGoingComputation && (
 						<div css="text-align: center">
-							{/* {récapitulatif && (
-								<>
-									<Link
-										className="ui__ simple button"
-										to={sitePaths.gérer.déclarationIndépendant.récapitulatif}
-									>
-										{emoji('📋')} Récapitulatif
-									</Link>
-								</>
-							)} */}
 							<style>{`@media print {.button.print{display: none;} body {margin: 40px;}}`}</style>
 							<ReactToPrint
 								trigger={() => (

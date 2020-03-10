@@ -20,6 +20,9 @@ aide déclaration revenu indépendant 2019 . CSG déductible:
   résumé.fr: '[B]'
   titre.en: '[automatic] deductible MSA'
   titre.fr: CSG déductible
+aide déclaration revenu indépendant 2019 . SMIC 2019:
+  titre.en: '[automatic] MINIMUM WAGE 2019'
+  titre.fr: SMIC 2019
 aide déclaration revenu indépendant 2019 . assiette sociale:
   résumé.en: '[automatic] for information [A - (B + C + D)].'
   résumé.fr: 'pour information [A - (B + C + D)]'
