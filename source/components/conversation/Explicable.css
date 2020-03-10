@@ -1,3 +1,8 @@
+@media print {
+	.explicable {
+		display: none;
+	}
+}
 .explicable .icon {
 	display: inline-block;
 	padding: 0.15rem 0.6rem;
@@ -11,7 +16,6 @@
 .explicable .icon:hover {
 	filter: brightness(90%);
 }
-
 
 .variantLeaf .explicable .icon img {
 	width: 1.5em !important;

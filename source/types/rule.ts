@@ -7,6 +7,7 @@ export type Rule = {
 	unité: string
 	unit: string
 	name?: string
+	summary?: string
 	title?: string
 	defaultValue: any
 	icons: string

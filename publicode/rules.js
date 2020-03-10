@@ -6,6 +6,7 @@ import artisteAuteur from './rules/artiste-auteur.yaml'
 import base from './rules/base.yaml'
 import conventionsCollectives from './rules/conventions-collectives.yaml'
 import dirigeant from './rules/dirigeant.yaml'
+import déclarationIndépendant from './rules/déclaration-revenu-indépendant.yaml'
 import entrepriseEtablissement from './rules/entreprise-établissement.yaml'
 import impot from './rules/impôt.yaml'
 import protectionSociale from './rules/protection-sociale.yaml'
@@ -17,6 +18,7 @@ const rules = {
 	// TODO: rule order shouldn't matter but there is a bug if "impot" is after
 	// "dirigeant".
 	...impot,
+	...déclarationIndépendant,
 	...artisteAuteur,
 	...dirigeant,
 	...entrepriseEtablissement,

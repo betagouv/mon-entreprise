@@ -11,7 +11,7 @@ plafonnement inactif:
   formule:
     encadrement:
       valeur: 1000 €
-      plafond: false
+      plafond: non
 
   exemples:
     - valeur attendue: 1000

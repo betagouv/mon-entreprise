@@ -1,6 +1,160 @@
 SMIC horaire:
   titre.en: hourly minimum wage (SMIC)
   titre.fr: SMIC horaire
+aide déclaration revenu indépendant 2019:
+  description.en: >-
+    [automatic] These rules calculate the amounts claimed in the 2020 social and
+    tax returns of self-employed persons on the 2019 income 2019
+  description.fr: >-
+    Ces règles calculent les montants demandés dans les déclarations sociale et
+    fiscale des indépendants de 2020 sur les revenus 2019
+  titre.en: '[automatic] self-employment income assistance 2019'
+  titre.fr: aide déclaration revenu indépendant 2019
+aide déclaration revenu indépendant 2019 . CFP:
+  résumé.en: '[automatic] contribution to vocational training [D]'
+  résumé.fr: 'contribution à la formation professionnelle [D]'
+  titre.en: '[automatic] PSC'
+  titre.fr: CFP
+aide déclaration revenu indépendant 2019 . CSG déductible:
+  résumé.en: '[automatic] [B]'
+  résumé.fr: '[B]'
+  titre.en: '[automatic] deductible MSA'
+  titre.fr: CSG déductible
+aide déclaration revenu indépendant 2019 . SMIC 2019:
+  titre.en: '[automatic] MINIMUM WAGE 2019'
+  titre.fr: SMIC 2019
+aide déclaration revenu indépendant 2019 . assiette sociale:
+  résumé.en: '[automatic] for information [A - (B + C + D)].'
+  résumé.fr: 'pour information [A - (B + C + D)]'
+  titre.en: '[automatic] social base'
+  titre.fr: assiette sociale
+aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
+  description.en: >-
+    [automatic] Amount to be reported in Box XI of your social security return
+    and Item 326 of Form 2033-D-SD (for the simplified actual) or Item A5 of
+    Form 2053-SD (for the normal actual) of your tax return.
+  description.fr: >-
+    Montant à reporter dans la case XI de votre déclaration sociale et rubrique
+    326 du formulaire 2033-D-SD (pour le réel simplifié) ou rubrique A5 du
+    formulaire 2053-SD (pour le réel normal) de votre déclaration fiscale.
+  résumé.en: '[automatic] [C]'
+  résumé.fr: '[C]'
+  titre.en: '[automatic] deductible compulsory social security contributions'
+  titre.fr: cotisations sociales obligatoires déductibles
+aide déclaration revenu indépendant 2019 . nature de l'activité:
+  question.en: '[automatic] What is the nature of your business?'
+  question.fr: Quelle est la nature de votre activité ?
+  titre.en: '[automatic] nature of business'
+  titre.fr: nature de l'activité
+aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+  description.en: >
+    [automatic] It is a service, production, transformation, or repair activity
+    carried out by a qualified professional, and which requires specific skills
+    and know-how.
+
+
+    &gt; For example: works, activities related to the building, repair of
+    products supplied by the client, hairdressers, etc.
+
+
+    - The company must not employ more than 10 employees (the activity becomes
+    commercial beyond that).
+
+    - Craft activities are listed by a decree.
+  description.fr: >
+    C'est une activité de service, de production, de transformation, ou de
+    réparation exercée par un professionnel qualifié, et qui nécessite des
+    compétences et un savoir-faire spécifiques.
+
+
+    >  Par exemple : les travaux, les activités liées au bâtiment, la réparation
+    de produits fournis par le client, les coiffeurs...
+
+
+    - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient
+    commerciale au-delà)
+
+    - Les activités artisanales sont répertoriées par un décret
+  titre.en: '[automatic] artisanal'
+  titre.fr: artisanale
+aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
+  description.en: >
+    [automatic] ### Commercial activity
+
+    - Purchases of goods for resale in the same condition (wholesale or retail
+    trade)
+
+    - Sale of commercial services (equipment rental, transport, real estate
+    agency, hotel and catering, entertainment business, private security
+    activity, rental, etc.).
+
+
+    ### Industrial activity
+
+
+    Production or processing activity through the use of industrial tools,
+    extraction, mining, handling, storage and warehousing
+  description.fr: >
+    ### Activité commerciale
+
+    - Achats de biens pour leur revente en l'état (commerce en gros ou de
+    détail)
+
+    - Vente de prestations de services commerciales (location de matériel,
+    transport, agence immobilière, hôtellerie-restauration, entreprise de
+    spectacles, activité de sécurité privée, location, etc.)
+
+
+    ### Activité industrielle
+
+
+    Activité de production ou de transformation grâce à l'utilisation d'outils
+    industriels, extraction, industries minières, manutention, magasinage et
+    stockage
+  titre.en: '[automatic] commercial or industrial'
+  titre.fr: commerciale ou industrielle
+aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
+  description.en: >
+    [automatic] These are the "intellectual" professions, which are not attached
+    to any
+
+    specific pension fund.
+
+
+    This has been the case for all unregulated professions since the
+
+    January 1, 2019.
+  description.fr: |
+    Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
+    caisse spécifique de retraite.
+
+    C'est le cas de toutes les professions libérale non reglementée depuis le
+    1er janvier 2019.
+  titre.en: '[automatic] Liberal attached to the general regime'
+  titre.fr: Libérale rattachée au régime général
+aide déclaration revenu indépendant 2019 . plafond sécurité sociale 2019:
+  titre.en: '[automatic] social security ceiling 2019'
+  titre.fr: plafond sécurité sociale 2019
+aide déclaration revenu indépendant 2019 . revenu net fiscal:
+  résumé.en: >-
+    [automatic] before deduction of social security charges and tax exemptions
+    [A].
+  résumé.fr: 'avant déduction des charges sociales et exonérations fiscales [A]'
+  titre.en: '[automatic] net taxable income'
+  titre.fr: revenu net fiscal
+aide déclaration revenu indépendant 2019 . total charges sociales déductible:
+  description.en: >-
+    [automatic] Amount to be reported in Item 252 of Form 2033-B-SD (for
+    Simplified Actual) or Item FZ of Form 2052-SD (for Regular Actual) on your
+    tax return.
+  description.fr: >-
+    Montant à reporter dans la rubrique 252 du formulaire 2033-B-SD (pour le
+    réel simplifié) ou en rubrique FZ du formulaire 2052-SD (pour le réel
+    normal) de votre déclaration fiscale.
+  résumé.en: '[automatic] [B + C + D]'
+  résumé.fr: '[B + C + D]'
+  titre.en: '[automatic] total tax-deductible compulsory social security charges'
+  titre.fr: total charges sociales obligatoires déductibles fiscalement
 artiste-auteur:
   description.en: The artist-author regime
   description.fr: Le régime des artistes-auteurs
@@ -3394,6 +3548,86 @@ dirigeant . auto-entrepreneur . plafond:
 dirigeant . indépendant:
   titre.en: indépendant
   titre.fr: indépendant
+dirigeant . indépendant . IJSS:
+  description.en: >-
+    [automatic] In the event of illness, maternity or accident, the general
+    social security system and special schemes provide "cash" benefits. 
+
+    These are per diems from Social Security (IJSS).
+
+    Compensation in addition to the Social Security daily allowances paid under
+    a provident fund contract does not constitute replacement income.
+     
+    Note: Disability benefits paid by disability/death plans are not affected.
+  description.fr: >-
+    En cas de maladie, maternité, ou accident, le régime général de Sécurité
+    sociale ainsi que les régimes spéciaux assurent le versement de prestations
+    « en espèces ». 
+
+    Ce sont les indemnités journalières de Sécurité sociale (IJSS).
+
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité
+    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
+    des revenus de remplacement.
+     
+    Note: Les prestations d’invalidité versées par les régimes
+    d’invalidité-décès ne sont pas concernées
+  question.en: >-
+    [automatic] Have you received daily allowances for sickness, maternity or
+    paternity as a result of your self-employed activity?
+  question.fr: "Avez-vous perçu des indemnités journalières de maladie, maternité ou paternité au titre de votre activité indépendante\_?"
+  titre.en: '[automatic] social security daily allowances'
+  titre.fr: indemnités journalières de sécurité sociale
+dirigeant . indépendant . IJSS . imposable:
+  description.en: >-
+    [automatic] Indicate only the taxable replacement income received, i.e. all
+    replacement income received **except for daily allowances in connection with
+    a Long-Term Affection (LTA)**. 
+
+
+    This income will be deducted from your contribution base, so as not to be
+    submitted twice to the CSG-CRDS :
+
+    - Replacement income that has been deducted from the CSG-CRDS must be shown
+    for the net amount of the deductible CSG share. 
+
+    - Replacement income that has not been deducted from the CSG-CRDS must be
+    shown for the gross amount as received. 
+
+    &gt; Replacement income is: the flat-rate maternal rest allowance, the
+    flat-rate daily allowance for interruption of activity, the replacement
+    allowance for maternity, paternity or adoption and the daily sickness
+    allowance.
+  description.fr: "Indiquez uniquement les revenus de remplacement imposables perçus, donc tous les revenus de remplacement perçus **sauf les indemnités journalières en lien avec une Affection de Longue Durée (ALD)**. \n\nCes revenus seront déduits de votre assiette des contributions, afin de ne pas être soumis deux fois à la CSG-CRDS\_:\n-  Les revenus de remplacement qui ont été précomptés de la CSG-CRDS doivent être indiqués pour leur montant net de la part de CSG déductible. \n-  Les revenus de remplacement qui n’ont pas été précomptés de la CSG-CRDS doivent être indiqués pour leur montant brut tel que perçu. \n> Les revenus de remplacement sont : l'allocation forfaitaire de repos maternel, l'indemnité journalière forfaitaire d'interruption d'activité, l’indemnité de remplacement pour maternité, paternité ou adoption et l'indemnité journalière maladie."
+  question.en: '[automatic] What is the gross amount of taxable daily allowances received?'
+  question.fr: Quel est le montant brut des indemnités journalières imposables perçues?
+  résumé.en: '[automatic] Only if you do not fall under the micro-fiscal regime.'
+  résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
+  titre.en: '[automatic] taxable per diems'
+  titre.fr: indemnités journalières imposable
+dirigeant . indépendant . IJSS . total:
+  description.en: >-
+    [automatic] Indicate only the gross amount of your replacement income,
+    taxable and non-taxable, as shown on the statement of benefits provided by
+    your health insurance fund.
+
+    &gt; Replacement income is: the flat-rate maternal rest allowance, the
+    flat-rate daily allowance for interruption of activity, the replacement
+    allowance for maternity, paternity or adoption and the daily sickness
+    allowance.
+  description.fr: >-
+    Indiquez uniquement le montant brut de vos revenus de remplacement,
+    imposables et non imposables qui figure sur le relevé de prestations fourni
+    pas votre caisse d'assurance maladie.
+
+    > Les revenus de remplacement sont : l'allocation forfaitaire de repos
+    maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
+    l'indemnité de remplacement pour maternité, paternité ou adoption et
+    l'indemnité journalière maladie.
+  question.en: '[automatic] What is the total gross amount of all your per diems?'
+  question.fr: "Quel est le montant total brut de toutes vos indemnités journalières\_?"
+  titre.en: '[automatic] sick pay'
+  titre.fr: indemnités journalières
 dirigeant . indépendant . PLNR régime général:
   description.en: rattaché au régime général plutôt que la CIPAV
   description.fr: >-
@@ -3534,6 +3768,14 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   titre.en: CSG and CRDS
   titre.fr: CSG et CRDS
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
+  note.en: >-
+    [automatic] Only the taxable portion of the IJSS is deducted from the MSA
+    base, since the non-taxable portion has already been deducted from the net
+    tax income provided.
+  note.fr: >-
+    Seule la partie imposable des IJSS est retranchée de l'assiette de la CSG,
+    puisque la partie non imposable a déjà été retranchée du revenu net fiscal
+    fourni
   titre.en: basis
   titre.fr: assiette
 dirigeant . indépendant . cotisations et contributions . cotisations:
@@ -3708,9 +3950,11 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
     and opted for the general scheme for self-employed persons have the
     possibility to opt for specific rates of supplementary pension contribution.
   description.fr: "Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019\_ et ont opté pour le régime général des travailleurs indépendants\_ ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.\n"
-  question.en: complémentaire ?
+  question.en: >-
+    [automatic] Have you opted for specific supplementary pension contribution
+    rates?
   question.fr: >-
-    Avez-vous opté pour des taux spécifique de cotisation retraite
+    Avez-vous opté pour des taux spécifiques de cotisation retraite
     complémentaire ?
   titre.en: unregulated specific rate for unregulated professions
   titre.fr: taux spécifique profession libérale non reglementée
@@ -3782,10 +4026,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . invali
     self-employed workers' scheme enjoy full exemption from sickness and
     supplementary pension contributions.
   description.fr: "Les personnes titulaires d’une pension d’invalidité versée par un régime des travailleurs non-salariés non agricoles bénéficient d’une exonération totale des cotisations\_maladie et retraite complémentaire."
-  question.en: indépendants ?
-  question.fr: >-
-    Êtes-vous titulaire d’une pension d’invalidité du régime des travailleurs
-    indépendants ?
+  question.en: '[automatic] Do you receive a disability pension as a self-employed person?'
+  question.fr: "Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant\_?"
   titre.en: disability
   titre.fr: invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
@@ -3847,7 +4089,9 @@ dirigeant . indépendant . revenus étrangers:
     Pour savoir si ces revenus sont soumis à l'impôt sur le revenu, référez-vous
     à la notice explicative sur le site
     [impots.gouv.fr](https://www.impots.gouv.fr/portail/international-particulier/imposition-des-revenus-de-source-etrangere)
-  question.en: '?'
+  question.en: >-
+    [automatic] Have you received any income abroad in connection with your
+    business?
   question.fr: Avez-vous perçu des revenus à l'étranger dans le cadre de votre activité ?
   titre.en: foreign income
   titre.fr: revenus étrangers
@@ -4049,10 +4293,10 @@ entreprise . catégorie d'activité:
   description.fr: >-
     Votre catégorie d'activité va déterminer une grande partie des calculs de
     cotisation, contribution et impôt.
-  question.en: What is your category of activity?
-  question.fr: Quelle est votre catégorie d'activité ?
-  titre.en: activity category
-  titre.fr: catégorie d'activité
+  question.en: '[automatic] What is the nature of your business?'
+  question.fr: Quelle est la nature de votre activité ?
+  titre.en: '[automatic] nature of business'
+  titre.fr: nature de l'activité
 entreprise . catégorie d'activité . artisanale:
   description.en: >
     It is an activity of service, production, processing, or by a qualified
@@ -4120,8 +4364,8 @@ entreprise . catégorie d'activité . commerciale ou industrielle:
   titre.en: commercial or industrial
   titre.fr: commerciale ou industrielle
 entreprise . catégorie d'activité . débit de tabac:
-  question.en: Is your business a tobacco store?
-  question.fr: Votre entreprise est-elle un débit de tabac ?
+  question.en: '[automatic] Do you engage in tobacco sales?'
+  question.fr: "Exercez-vous une activité de vente de tabac\_?"
   titre.en: tobacco shop
   titre.fr: débit de tabac
 entreprise . catégorie d'activité . libérale:
@@ -4387,8 +4631,8 @@ entreprise . date de création:
 
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
-  question.en: When did you create your company?
-  question.fr: Quelle est la date de début d'activité ?
+  question.en: '[automatic] What is your start date?'
+  question.fr: Quelle est votre date de début d'activité ?
   suggestions.Début 2019.en: '[automatic] Early 2019'
   suggestions.Début 2019.fr: Début 2019
   suggestions.Début 2020.en: '[automatic] Early 2020'
@@ -5233,104 +5477,20 @@ revenus net de cotisations:
 situation personnelle:
   titre.en: personal situation
   titre.fr: situation personnelle
-situation personnelle . IJSS:
-  description.en: >
-    [automatic] In the event of illness, maternity or accident, the general
-    social security system and special schemes provide "cash" benefits. These
-    are per diems from Social Security (IJSS),
-
-    Compensation in addition to the Social Security daily allowances paid under
-    a provident fund contract does not constitute replacement income.
-
-
-    Note: Disability benefits paid by disability/death plans are not affected.
-  description.fr: >
-    En cas de maladie, maternité, ou accident, le régime général de Sécurité
-    sociale ainsi que les régimes spéciaux assurent le versement de prestations
-    « en espèces ». Ce sont les indemnités journalières de Sécurité sociale
-    (IJSS),
-
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité
-    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
-    des revenus de remplacement.
-
-
-    Note: Les prestations d’invalidité versées par les régimes
-    d’invalidité-décès ne sont pas concernées
-  question.en: 'maternité, paternité, etc.) ?'
-  question.fr: >-
-    Avez-vous touché des indemnités journalières de sécurité sociale (maladie,
-    maternité, paternité, etc.) ?
-  titre.en: social security daily allowances
-  titre.fr: indemnités journalières de sécurité sociale
-situation personnelle . IJSS . ALD:
-  description.en: >-
-    [automatic] Long-term affection (ALD) is introduced by the Law of 13 August
-    2004 on health insurance. This status offers chronically ill people who meet
-    certain conditions specific medical care. Long-term condition is a
-    long-term, severe or chronic illness requiring long-term treatment at high
-    cost. The list of "exempt" DTAs is available on the website
-    [ameli.fr](https://www.ameli.fr/assure/droits-demarches/maladie-accident-hospitalisation/affection-longue-duree-ald/affection-longue-duree-ald)
-    Compensation paid under an "exempt" DTA is not taxable.
-  description.fr: >-
-    L'affection longue durée (ALD) est mise en place par la loi du 13 août 2004
-    relative à l'assurance maladie. Ce statut offre aux personnes malades
-    chroniques qui remplissent certaines conditions une prise en charge
-    spécifique de leurs soins médicaux. L'affection longue durée est une maladie
-    de longue durée, présentant un caractère grave ou chronique et nécessitant
-    un traitement long dont le coût est élevé. La liste des ALD dites
-    "exonérante" est disponible sur le site
-    [ameli.fr](https://www.ameli.fr/assure/droits-demarches/maladie-accident-hospitalisation/affection-longue-duree-ald/affection-longue-duree-ald)
-    Les indemnité versée dans le cadre d'une ALD dites "éxonérante" ne sont pas
-    imposable.
-  question.en: (ALD) dite "exonérante" ?
-  question.fr: >-
-    Avez-vous touché des indemnités dans le cas d'une affection longue durée
-    (ALD) dite "exonérante" ?
-  titre.en: ALD
-  titre.fr: ALD
-situation personnelle . IJSS . ALD . autres indemnités:
-  question.en: '(maternité, paternité, autre maladie) ?'
-  question.fr: >-
-    Avez-vous également touché des indemnités non liées à votre ALD (maternité,
-    paternité, autre maladie) ?
-  titre.en: other compensation
-  titre.fr: autres indemnités
-situation personnelle . IJSS . ALD . autres indemnités . montant:
-  question.en: How much was your other compensation?
-  question.fr: Quel était le montant de vos autres indemnités ?
-  titre.en: amount
-  titre.fr: montant
-situation personnelle . IJSS . défiscalisées:
-  question.en: What was the amount of your ALD benefits?
-  question.fr: Quel était le montant de vos indemnités ALD ?
-  titre.en: tax-free per diems
-  titre.fr: indemnités journalières défiscalisées
-situation personnelle . IJSS . fiscalisées:
-  titre.en: taxable daily allowances
-  titre.fr: indemnités journalières fiscalisées
-situation personnelle . IJSS . montant:
-  question.en: What was their total gross amount?
-  question.fr: Quel était leur montant total brut ?
-  titre.en: taxable daily allowances
-  titre.fr: indemnités journalières fiscalisées
-situation personnelle . IJSS . total:
-  titre.en: total daily allowances
-  titre.fr: total indemnités journalières
 situation personnelle . RSA:
-  question.en: Are you a beneficiary of the RSA (active solidarity income)?
-  question.fr: Êtes-vous allocataire du RSA ?
-  titre.en: RSA recipient
-  titre.fr: allocataire RSA
+  question.en: '[automatic] Are you a beneficiary of the RSA or the activity bonus?'
+  question.fr: "Etes-vous bénéficiaire du RSA ou de la prime d’activité\_?"
+  titre.en: '[automatic] beneficiary RSA or activity bonus'
+  titre.fr: bénéficiaire RSA ou prime d'activité
 situation personnelle . domiciliation fiscale à l'étranger:
-  description.en: >
+  description.en: >-
     [automatic] These insured persons are not liable for the CSG/CRDS but, in
     return, they are liable for the health contribution at a higher rate.
-  description.fr: >
+  description.fr: >-
     Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils
     sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
-  question.en: Is the insured's tax residence abroad?
-  question.fr: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
+  question.en: '[automatic] Is the tax residence located abroad?'
+  question.fr: La résidence fiscale est-elle située à l'étranger ?
   titre.en: tax domicile abroad
   titre.fr: domiciliation fiscale à l'étranger
 établissement:
@@ -5343,7 +5503,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
   titre.en: establishment
   titre.fr: établissement
 établissement . ZFU:
-  question.en: (ZFU) ?
+  question.en: >-
+    [automatic] Does your establishment benefit from the Urban Free Zone (ZFU)
+    scheme?
   question.fr: >-
     Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU)
     ?
