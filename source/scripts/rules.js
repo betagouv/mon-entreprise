@@ -7,14 +7,22 @@ const yaml = require('js-yaml')
 
 const publicodesDir = path.resolve(__dirname, '../../publicode/rules')
 
-function readRules() {
-	const concatenatedFile = fs
-		.readdirSync(publicodesDir)
+function concatenateFilesInDir(dirPath = publicodesDir) {
+	return fs
+		.readdirSync(dirPath)
 		.map(filename => {
-			return fs.readFileSync(path.join(publicodesDir, filename))
+			const fullpath = path.join(dirPath, filename)
+			if (fs.statSync(fullpath).isDirectory()) {
+				return concatenateFilesInDir(fullpath)
+			} else {
+				return fs.readFileSync(fullpath)
+			}
 		})
 		.reduce((acc, cur) => acc + '\n' + cur, '')
-	return yaml.safeLoad(concatenatedFile)
+}
+
+function readRules() {
+	return yaml.safeLoad(concatenateFilesInDir())
 }
 
 exports.readRules = readRules

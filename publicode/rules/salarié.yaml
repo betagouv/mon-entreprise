@@ -3226,3 +3226,31 @@ contrat salarié . cotisations . assiette forfaitaire . minimum:
 contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
   question: Voulez-vous calculer les cotisations sur la rémunération réelle (au lieu de la base forfaitaire) ?
   par défaut: non
+
+contrat salarié . convention collective:
+  par défaut: droit commun
+  question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - droit commun
+        - HCR
+        - BTP
+        - sport
+        - SVP
+        - optique
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - convention collective != non
+          - convention collective != 'droit commun'
+      niveau: avertissement
+      message: |
+        Attention, l'implémentation des conventions collective est encore
+        partielle et non vérifiée.
+        Néanmoins, cela permet d'obtenir une première estimation, plus précise
+        que le régime général.
+
+contrat salarié . convention collective . droit commun:
+  formule: convention collective = 'droit commun'

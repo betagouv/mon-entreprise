@@ -4,7 +4,11 @@
 
 import artisteAuteur from './rules/artiste-auteur.yaml'
 import base from './rules/base.yaml'
-import conventionsCollectives from './rules/conventions-collectives.yaml'
+import CCBatiment from './rules/conventions-collectives/bâtiment.yaml'
+import CCHotels from './rules/conventions-collectives/hôtels-cafés-restaurants.yaml'
+import CCOptique from './rules/conventions-collectives/optique.yaml'
+import CCSpectacleVivant from './rules/conventions-collectives/spectacle-vivant.yaml'
+import CCSport from './rules/conventions-collectives/sport.yaml'
 import dirigeant from './rules/dirigeant.yaml'
 import déclarationIndépendant from './rules/déclaration-revenu-indépendant.yaml'
 import entrepriseEtablissement from './rules/entreprise-établissement.yaml'
@@ -24,7 +28,11 @@ const rules = {
 	...entrepriseEtablissement,
 	...protectionSociale,
 	...salarié,
-	...conventionsCollectives,
+	...CCBatiment,
+	...CCHotels,
+	...CCOptique,
+	...CCSpectacleVivant,
+	...CCSport,
 	...situationPersonnelle
 }
 
