@@ -28,6 +28,7 @@
 			"Components": ["components"],
 			"Components/*": ["components/*"],
 			"Ui/*": ["components/ui/*"],
+			"Engine": ["engine"],
 			"Engine/*": ["engine/*"],
 			"Images/*": ["images/*"],
 			"Reducers/*": ["reducers/*"],

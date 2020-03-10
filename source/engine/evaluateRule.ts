@@ -1,5 +1,6 @@
 import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
 import { map, mergeAll, pick, pipe } from 'ramda'
+import { Rule } from 'Types/rule'
 import { typeWarning } from './error'
 import { convertNodeToUnit } from './nodeUnits'
 import { anyNull, undefOrTruthy, val } from './traverse-common-functions'
@@ -9,12 +10,14 @@ export const evaluateApplicability = (
 	cache,
 	situationGate,
 	parsedRules,
-	node
+	node: Rule
 ) => {
 	let evaluatedAttributes = pipe(
-			pick(['non applicable si', 'applicable si', 'rendu non applicable']),
+			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
+				x: any
+			) => any,
 			map(value => evaluateNode(cache, situationGate, parsedRules, value))
-		)(node),
+		)(node) as any,
 		{
 			'non applicable si': notApplicable,
 			'applicable si': applicable,
@@ -51,39 +54,43 @@ export const evaluateApplicability = (
 
 export default (cache, situationGate, parsedRules, node) => {
 	cache._meta.contextRule.push(node.dottedName)
-	let applicabilityEvaluation = evaluateApplicability(
-			cache,
-			situationGate,
-			parsedRules,
-			node
-		),
-		{
-			missingVariables: condMissing,
-			nodeValue: isApplicable
-		} = applicabilityEvaluation,
-		evaluateFormula = () =>
-			node.formule
-				? evaluateNode(cache, situationGate, parsedRules, node.formule)
-				: {},
-		// evaluate the formula lazily, only if the applicability is known and true
-		evaluatedFormula = isApplicable
-			? evaluateFormula()
-			: isApplicable === false
-			? {
-					...node.formule,
-					missingVariables: {},
-					nodeValue: 0
-			  }
-			: {
-					...node.formule,
-					missingVariables: {},
-					nodeValue: null
-			  },
-		{ missingVariables: formulaMissingVariables, nodeValue } = evaluatedFormula,
-		missingVariables = mergeMissing(
-			bonus(condMissing, !!Object.keys(condMissing).length),
-			formulaMissingVariables
-		)
+	const applicabilityEvaluation = evaluateApplicability(
+		cache,
+		situationGate,
+		parsedRules,
+		node
+	)
+	const {
+		missingVariables: condMissing,
+		nodeValue: isApplicable
+	} = applicabilityEvaluation
+
+	const evaluateFormula = () =>
+		node.formule
+			? evaluateNode(cache, situationGate, parsedRules, node.formule)
+			: {}
+	// evaluate the formula lazily, only if the applicability is known and true
+	const evaluatedFormula = isApplicable
+		? evaluateFormula()
+		: isApplicable === false
+		? {
+				...node.formule,
+				missingVariables: {},
+				nodeValue: 0
+		  }
+		: {
+				...node.formule,
+				missingVariables: {},
+				nodeValue: null
+		  }
+	let {
+		missingVariables: formulaMissingVariables,
+		nodeValue
+	} = evaluatedFormula
+	const missingVariables = mergeMissing(
+		bonus(condMissing, !!Object.keys(condMissing).length),
+		formulaMissingVariables
+	)
 	const unit =
 		node.unit ||
 		(node.defaultUnit &&

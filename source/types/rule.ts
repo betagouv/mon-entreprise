@@ -10,6 +10,7 @@ export type Rule = {
 	summary?: string
 	title?: string
 	defaultValue: any
+	parentDependencies: Array<Rule>
 	icons: string
 	formule: any
 }

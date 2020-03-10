@@ -1,11 +1,9 @@
 import baremeIr from '!!raw-loader!./exemples/bareme-ir.yaml'
 import douche from '!!raw-loader!./exemples/douche.yaml'
 import { ControlledEditor } from '@monaco-editor/react'
-import { formatValue } from 'Engine/format'
-import Engine from 'Engine/index'
-import { buildFlatRules } from 'Engine/rules'
+import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
@@ -63,75 +61,69 @@ export function Studio() {
 	)
 	const [targets, setTargets] = useState<string[]>([])
 	const [currentTarget, setCurrentTarget] = useState('')
-	const [analysis, setAnalysis] = useState()
-	const engine = useRef<any>(null)
+	const [rules, setRules] = useState(editorValue)
 
 	try {
 		setTargets(Object.keys(safeLoad(editorValue) ?? {}))
 	} catch {}
 
-	function updateResult() {
-		engine.current = new Engine.Engine(buildFlatRules(safeLoad(editorValue)))
-		engine.current.evaluate(
-			[targets.includes(currentTarget) ? currentTarget : targets[0]],
-			{ defaultUnits: [], situation: {} }
-		)
-		setAnalysis(engine.current.getLastEvaluationExplanations()?.targets?.[0])
-	}
-
 	return (
-		<Layout>
-			<section>
-				<ControlledEditor
+		<Engine.Provider rules={rules}>
+			<Layout>
+				<section>
+					<ControlledEditor
+						css={`
+							height: 100%;
+						`}
+						language="yaml"
+						value={editorValue}
+						onChange={(ev, newValue) => setEditorValue(newValue ?? '')}
+						options={{ minimap: { enabled: false } }}
+					/>
+				</section>
+				<section
 					css={`
-						height: 100%;
-					`}
-					language="yaml"
-					value={editorValue}
-					onChange={(ev, newValue) => setEditorValue(newValue ?? '')}
-					options={{ minimap: { enabled: false } }}
-				/>
-			</section>
-			<section
-				css={`
-					padding: 30px 20px;
-				`}
-			>
-				<div
-					css={`
-						background: var(--lighterColor);
-						padding: 20px;
-						border-radius: 5px;
+						padding: 30px 20px;
 					`}
 				>
-					<label htmlFor="objectif">Que voulez-vous calculer ? </label>
-					<select
-						id="objectif"
-						onChange={e => {
-							setCurrentTarget(e.target.value)
-						}}
+					<div
 						css={`
-							padding: 5px;
+							background: var(--lighterColor);
+							padding: 20px;
+							border-radius: 5px;
 						`}
 					>
-						{targets.map(target => (
-							<option key={target} value={target}>
-								{target}
-							</option>
-						))}
-					</select>
-					<br />
-					<button
-						css="display: block; margin-top: 1rem"
-						className="ui__ button small"
-						onClick={() => updateResult()}
-					>
-						{emoji('▶️')} Calculer
-					</button>
-				</div>
-				<Results analysis={analysis} />
-			</section>
-		</Layout>
+						<label htmlFor="objectif">Que voulez-vous calculer ? </label>
+						<select
+							id="objectif"
+							onChange={e => {
+								setCurrentTarget(e.target.value)
+							}}
+							css={`
+								padding: 5px;
+							`}
+						>
+							{targets.map(target => (
+								<option key={target} value={target}>
+									{target}
+								</option>
+							))}
+						</select>
+						<br />
+						<br />
+						<button
+							className="ui__ button small"
+							onClick={() => setRules(editorValue)}
+						>
+							{emoji('▶️')} Recalculer
+						</button>
+					</div>
+					<Results
+						rule={targets.includes(currentTarget) ? currentTarget : targets[0]}
+					/>
+				</section>
+			</Layout>
+		</Engine.Provider>
 	)
 }
 
@@ -153,18 +145,15 @@ const Layout = styled.div`
 	}
 `
 
-export const Results = ({ analysis }) => {
+export const Results = ({ rule }) => {
+	const analysis = Engine.useEvaluation(rule)
 	return analysis ? (
 		<div>
 			<h2>Résultats</h2>
 			{analysis.isApplicable === false ? (
-				<>❌ Cette règle n'est pas applicable</>
+				<>{emoji('❌')} Cette règle n'est pas applicable</>
 			) : (
-				formatValue({
-					language: 'fr',
-					value: analysis.nodeValue,
-					unit: analysis.unit
-				})
+				<Engine.Evaluation expression={rule} />
 			)}
 		</div>
 	) : null
