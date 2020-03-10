@@ -240,7 +240,7 @@ contrat salarié . déduction forfaitaire spécifique . application:
     déduction afin d'accorder plus de droits au salarié, notamment en terme de
     retraite et d'assurance chômage.
   titre: application de la DFS
-  par défaut: oui
+  formule: oui
 
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description: |
