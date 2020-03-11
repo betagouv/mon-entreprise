@@ -482,7 +482,7 @@ export let mecanismProduct = (recurse, k, v) => {
 			} catch (e) {
 				typeWarning(
 					cache._meta.contextRule,
-					"Impossible de convertir l'unité du plafond de la multiplication dans celle de l'assiette",
+					"Impossible de convertir l'unité du plafond du produit dans celle de l'assiette",
 					e
 				)
 			}
@@ -524,7 +524,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		jsx: Product,
 		explanation,
 		category: 'mecanism',
-		name: 'multiplication',
+		name: 'produit',
 		type: 'numeric',
 		unit: inferUnit(
 			'*',

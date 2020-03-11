@@ -91,7 +91,7 @@ artiste-auteur . cotisations . surcotisation:
 
 artiste-auteur . cotisations . vieillesse:
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       composantes:
         - nom: plafonnée
@@ -114,25 +114,25 @@ artiste-auteur . cotisations . CSG-CRDS . assiette:
 
 artiste-auteur . cotisations . CSG-CRDS . abattement:
   formule:
-    multiplication:
+    produit:
       assiette: revenus . traitements et salaires
       taux: 1.75%
       plafond: 4 * contrat salarié . plafond sécurité sociale
 
 artiste-auteur . cotisations . CSG-CRDS . CSG:
   formule:
-    multiplication:
+    produit:
       assiette: CSG-CRDS . assiette
       taux: 9.20%
 
 artiste-auteur . cotisations . CSG-CRDS . CRDS:
   formule:
-    multiplication:
+    produit:
       assiette: CSG-CRDS . assiette
       taux: 0.50%
 
 artiste-auteur . cotisations . formation professionnelle:
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       taux: 0.35%

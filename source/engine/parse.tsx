@@ -165,6 +165,7 @@ const statelessParseFunction = {
 	'toutes ces conditions': mecanismAllOf,
 	somme: mecanismSum,
 	multiplication: mecanismProduct,
+	produit: mecanismProduct,
 	arrondi: mecanismRound,
 	barème,
 	grille,

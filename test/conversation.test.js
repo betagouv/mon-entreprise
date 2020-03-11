@@ -97,7 +97,7 @@ describe('conversation', function() {
 				{
 					nom: 'cotisation',
 					formule: {
-						multiplication: {
+						produit: {
 							assiette: 'brut',
 							variations: [
 								{

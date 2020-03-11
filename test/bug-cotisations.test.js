@@ -5,7 +5,7 @@ import { safeLoad } from 'js-yaml'
 import { rules as realRules } from '../source/engine/rules'
 import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
 
-describe('bug-analyse-many', function () {
+describe('bug-analyse-many', function() {
 	it('complex inversion with composantes', () => {
 		let rawRules = dedent`
       - nom: net
@@ -18,7 +18,7 @@ describe('bug-analyse-many', function () {
 
       - nom: cotisation a
         formule:
-          multiplication:
+          produit:
             assiette: brut
             composantes:
               - attributs:
@@ -30,7 +30,7 @@ describe('bug-analyse-many', function () {
 
       - nom: cotisation b
         formule:
-          multiplication:
+          produit:
             assiette: brut
             composantes:
               - attributs:
@@ -58,7 +58,7 @@ describe('bug-analyse-many', function () {
 		//console.log(many[0].nodeValue, many[1].nodeValue, one.nodeValue)
 		expect(many[1].nodeValue).to.be.closeTo(one.nodeValue, 0.1)
 	})
-	it('should compute the same contributions if asked with analyseMany or analyse', function () {
+	it('should compute the same contributions if asked with analyseMany or analyse', function() {
 		const situationSelector = dottedName =>
 			({
 				'contrat salarié . rémunération . net de cotisations': 3500,
@@ -89,7 +89,6 @@ describe('bug-analyse-many', function () {
 			'contrat salarié . cotisations . salariales'
 		)(situationSelector).targets[0]
 
-		console.log(analyseManyValue.nodeValue, analyseValue.nodeValue)
 		expect(analyseManyValue.nodeValue).to.equal(analyseValue.nodeValue)
 	})
 })

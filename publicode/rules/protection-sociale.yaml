@@ -48,7 +48,7 @@ protection sociale . retraite:
 protection sociale . retraite . base:
   titre: pension de retraite de base
   formule:
-    multiplication:
+    produit:
       taux: taux de la pension
       plafond: plafond sécurité sociale temps plein
       assiette: revenu moyen
@@ -229,7 +229,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
 protection sociale . retraite . complémentaire sécurité des indépendants . points acquis par mois:
   unité: points/mois
   formule:
-    multiplication:
+    produit:
       assiette:
         somme:
           - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
@@ -288,7 +288,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
       - sinon:
           encadrement:
             valeur:
-              multiplication:
+              produit:
                 assiette: revenu moyen [€/jour]
                 taux: 50%
             plafond: 55.51 €/jour
@@ -302,7 +302,7 @@ protection sociale . santé . indemnités journalières . indépendant:
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           assiette: revenu moyen [€/jour]
           taux: 50%
       plancher: 21 €/jour
@@ -316,7 +316,7 @@ protection sociale . santé . indemnités journalières . salarié:
   notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
   applicable si: contrat salarié
   formule:
-    multiplication:
+    produit:
       assiette: revenu moyen [€/jour]
       taux: 50%
       plafond: 1.8 * contrat salarié . SMIC temps plein [€/jour]
@@ -390,7 +390,7 @@ protection sociale . accidents du travail et maladies professionnelles:
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           assiette: revenu moyen [€/jour]
           taux: 60%
       plafond: 202.78 €/jour

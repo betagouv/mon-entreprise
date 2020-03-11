@@ -20,7 +20,7 @@ b:
   formule: a + 18€
 c:
   formule:
-    multiplication: 
+    produit: 
       assiette: 2000€
       taux: 3%
 d:

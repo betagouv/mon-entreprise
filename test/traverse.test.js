@@ -135,7 +135,7 @@ describe('analyse with mecanisms', function() {
 				{
 					nom: 'startHere',
 					formule: {
-						multiplication: {
+						produit: {
 							assiette: 3259,
 							plafond: 3200,
 							facteur: 1,
@@ -155,7 +155,7 @@ describe('analyse with mecanisms', function() {
 				{
 					nom: 'startHere',
 					formule: {
-						multiplication: {
+						produit: {
 							assiette: 3200,
 							composantes: [{ taux: 0.7 }, { taux: 0.8 }]
 						}
@@ -173,7 +173,7 @@ describe('analyse with mecanisms', function() {
 				{
 					nom: 'startHere',
 					formule: {
-						multiplication: {
+						produit: {
 							assiette: 3259,
 							plafond: 3200,
 							composantes: [{ taux: 0.7 }, { taux: 0.8 }]

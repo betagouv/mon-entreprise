@@ -120,7 +120,7 @@ mutuelle:
 
 retraite:
   formule:
-    multiplication:
+    produit:
       assiette: assiette annuelle
       taux: 10%
       plafond: 12 k€/an
@@ -138,7 +138,7 @@ Conversion dans une somme compliquée:
 
 maladie:
   formule:
-    multiplication:
+    produit:
       assiette: assiette annuelle
       composantes:
         - attributs:
@@ -187,7 +187,7 @@ assiette cotisations:
 
 prévoyance cadre:
   formule:
-    multiplication:
+    produit:
       assiette: assiette cotisations
       taux: 1.5%
 
@@ -219,7 +219,7 @@ rémunération brute:
 Conversion de situation avec unité:
   unité: €/an
   formule:
-    multiplication:
+    produit:
       assiette: rémunération brute
       taux: 10%
   exemples:

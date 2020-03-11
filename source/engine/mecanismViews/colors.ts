@@ -2,7 +2,7 @@ const colors = {
 	ruleProp: '#9b59b6',
 	'applicable si': '#9b59b6',
 	'non applicable si': '#9b59b6',
-	multiplication: '#2ecc71',
+	produit: '#2ecc71',
 	'une de ces conditions': '#3498db',
 	'toutes ces conditions': '#3498db',
 	composantes: '#3498db',
