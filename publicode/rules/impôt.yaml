@@ -9,7 +9,7 @@ impôt:
             alors: impôt sur le revenu à payer
           - si: méthode de calcul . prélèvement à la source
             alors:
-              multiplication:
+              produit:
                 assiette: revenu imposable
                 taux: taux du prélèvement à la source
           - sinon: 0

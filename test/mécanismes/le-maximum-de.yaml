@@ -1,10 +1,10 @@
 Maximum:
   formule:
     le maximum de:
-      - multiplication:
+      - produit:
           assiette: 100
           taux: 1%
-      - multiplication:
+      - produit:
           assiette: 10
           taux: 9%
 

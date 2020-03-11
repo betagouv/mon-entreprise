@@ -162,7 +162,7 @@ prime:
   formule:
     somme:
       - fixe
-      - multiplication:
+      - produit:
           assiette: fixe
           taux: taux du bonus
 

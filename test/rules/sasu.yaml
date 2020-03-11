@@ -38,7 +38,7 @@ dividendes . net:
 
 dividendes . prélèvement forfaitaire unique:
   formule:
-    multiplication:
+    produit:
       assiette: brut
       composantes:
         - taux: 17.2%

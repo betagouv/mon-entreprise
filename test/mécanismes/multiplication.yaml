@@ -3,7 +3,7 @@ mon assiette:
 
 Multiplication simple:
   formule:
-    multiplication:
+    produit:
       assiette: mon assiette
       taux: 3%
   unité attendue: €
@@ -19,7 +19,7 @@ Multiplication simple:
 
 Multiplication à taux flottant:
   formule:
-    multiplication:
+    produit:
       assiette: 300
       taux: 3.3%
   exemples:
@@ -32,7 +32,7 @@ mon plafond:
 
 Multiplication plafonnée:
   formule:
-    multiplication:
+    produit:
       assiette: mon assiette
       taux: 3%
       plafond: mon plafond
@@ -55,7 +55,7 @@ mon facteur:
 Multiplication à facteur:
   unité attendue: patates
   formule:
-    multiplication:
+    produit:
       assiette: 100
       facteur: mon facteur
 
@@ -67,7 +67,7 @@ Multiplication à facteur:
 
 Multiplication complète:
   formule:
-    multiplication:
+    produit:
       assiette: mon assiette
       facteur: mon facteur
       taux: 0.5%
@@ -84,7 +84,7 @@ Multiplication complète:
 # This should work, but with the use of objectShape & co, the short circuits are not performed
 #Multiplication complète:
 #  formule:
-#    multiplication:
+#    produit:
 #      assiette: mon assiette
 #      facteur: mon facteur
 #      plafond: mon plafond
@@ -100,7 +100,7 @@ Multiplication complète:
 
 a:
   formule:
-    multiplication:
+    produit:
       assiette: 1000
       taux: 3%
 

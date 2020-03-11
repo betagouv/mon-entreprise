@@ -24,7 +24,7 @@ contrat salarié . convention collective . sport . cotisations . financement du 
     encadrement:
       plancher: 3 €.employé/an / entreprise . effectif
       valeur:
-        multiplication:
+        produit:
           assiette: cotisations . assiette
           taux: 0.06%
 
@@ -38,7 +38,7 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
           - prévoyance .employeur
           - avantages sociaux
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       plafonnée à: 8 * plafond sécurité sociale
       composantes:
@@ -54,7 +54,7 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
 contrat salarié . convention collective . sport . cotisations . régime frais de santé:
   remplace: contrat salarié . complémentaire santé . forfait
   formule:
-    multiplication:
+    produit:
       assiette: plafond sécurité sociale temps plein
       taux: taux
 
@@ -117,7 +117,7 @@ contrat salarié . convention collective . sport . cotisations . formation profe
     encadrement:
       plancher: versement minimum
       valeur:
-        multiplication:
+        produit:
           assiette: cotisations . assiette
           taux:
             variations:
@@ -135,7 +135,7 @@ contrat salarié . convention collective . sport . cotisations . formation profe
     encadrement:
       plancher: versement minimum
       valeur:
-        multiplication:
+        produit:
           assiette: cotisations . assiette
           taux:
             variations:
@@ -154,14 +154,14 @@ contrat salarié . convention collective . sport . cotisations . formation profe
       - CDI
       - entreprise . effectif >= 20
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 0.20%
 
 contrat salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD:
   applicable si: CDD
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 1%
 

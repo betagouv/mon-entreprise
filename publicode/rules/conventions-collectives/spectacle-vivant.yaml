@@ -31,7 +31,7 @@ contrat salarié . convention collective . SVP . FCAP:
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           plafonnée à: plafond sécurité sociale
           assiette: rémunération . brut
           taux: 0.1%
@@ -44,7 +44,7 @@ contrat salarié . convention collective . SVP . FCAP:
 
 contrat salarié . convention collective . SVP . prévoyance:
   formule:
-    multiplication:
+    produit:
       plafonnée à: plafond sécurité sociale
       assiette: cotisations . assiette
       taux: 1.20%

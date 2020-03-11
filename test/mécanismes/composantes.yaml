@@ -12,7 +12,7 @@ richesse:
 
 impôts:
   formule:
-    multiplication:
+    produit:
       assiette: richesse
       composantes:
         - taux: 8%

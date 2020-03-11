@@ -134,7 +134,7 @@ Variations menant à un booleén:
 
 variations au sein d'un mécanisme:
   formule:
-    multiplication:
+    produit:
       assiette: 100
       variations:
         - si: statut cadre
@@ -156,7 +156,7 @@ variations au sein d'un mécanisme:
 
 variations au sein d'un mécanisme avec sinon:
   formule:
-    multiplication:
+    produit:
       assiette: 100
       variations:
         - si: statut cadre

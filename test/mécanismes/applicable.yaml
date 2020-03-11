@@ -11,7 +11,7 @@ choix du statut cadre:
 prévoyance obligatoire cadre:
   applicable si: statut cadre
   formule:
-    multiplication:
+    produit:
       assiette: 1500
       taux: 1.5%
   exemples:

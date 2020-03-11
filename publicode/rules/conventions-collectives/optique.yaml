@@ -7,7 +7,7 @@ contrat salarié . convention collective . optique . prime d'ancienneté:
   applicable si: convention collective = 'optique'
   remplace: rémunération . primes . ancienneté
   formule:
-    multiplication:
+    produit:
       assiette: salaire minimum conventionnel
       taux:
         variations:

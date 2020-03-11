@@ -8,8 +8,8 @@ export default function ProductView(nodeValue, explanation, _, unit) {
 	return (
 		// The rate and factor and threshold are given defaut neutral values. If there is nothing to explain, don't display them at all
 		<Node
-			classes="mecanism multiplication"
-			name="multiplication"
+			classes="mecanism produit"
+			name="produit"
 			value={nodeValue}
 			unit={unit}
 		>

@@ -18,7 +18,7 @@ addition de plusieurs nombres:
   exemples:
     - valeur attendue: 29
 
-addition et multiplication:
+addition et produit:
   formule: 27 + 1 * 2
   exemples:
     - valeur attendue: 29
@@ -33,7 +33,7 @@ salaire de base:
 
 contrat . salaire de base:
 
-multiplication:
+produit:
   formule: salaire de base * 3
   unité attendue: $
   exemples:

@@ -47,7 +47,7 @@ cotisations:
 
 cotisations . retraite:
   formule:
-    multiplication:
+    produit:
       composantes:
         - attributs:
             dû par: employeur
@@ -59,13 +59,13 @@ cotisations . retraite:
 
 cotisations . chômage:
   formule:
-    multiplication:
+    produit:
       taux: 10%
       assiette: assiette
 
 cotisations . maladie:
   formule:
-    multiplication:
+    produit:
       taux: 10%
       assiette: assiette
 
@@ -116,7 +116,7 @@ remplacement d'une variable avec composante:
   remplace:
     règle: cotisations . retraite
     par:
-      multiplication:
+      produit:
         assiette: cotisations . assiette
         composantes:
           - attributs:

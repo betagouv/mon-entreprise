@@ -131,7 +131,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
 
   applicable si: entreprise . catégorie d'activité = 'commerciale ou industrielle'
   formule:
-    multiplication:
+    produit:
       assiette: base des cotisations
       taux:
         variations:
@@ -147,7 +147,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre: taxe pour frais de chambre des métiers
   applicable si: entreprise . catégorie d'activité = 'artisanale'
   formule:
-    multiplication:
+    produit:
       assiette: base des cotisations
       taux:
         variations:
@@ -162,7 +162,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
     shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
   formule:
-    multiplication:
+    produit:
       assiette: base des cotisations
       taux:
         variations:
@@ -195,7 +195,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ret
   # L'ACOSS ne veut pas communiquer sur le pourcentage des cotisations fléchés pour la retraite complémentaire pour les PL
   non applicable si: entreprise . catégorie d'activité = 'libérale'
   formule:
-    multiplication:
+    produit:
       assiette: base des cotisations
       taux:
         variations:
@@ -253,7 +253,7 @@ dirigeant . auto-entrepreneur . impôt . abattement:
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           assiette: base des cotisations
           taux: taux
       plancher: 305 €/an
@@ -302,7 +302,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
     - 2,2% pour les autres prestations de services relevants des bénéfices non commerciaux (BNC)
 
   formule:
-    multiplication:
+    produit:
       assiette: base des cotisations
       taux:
         variations:
@@ -380,14 +380,14 @@ dirigeant . rémunération totale:
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
   formule:
-    multiplication:
+    produit:
       assiette: cotisations - cotisations . retraite complémentaire
       taux: taux
       facteur: prorata sur l'année
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
   formule:
-    multiplication:
+    produit:
       assiette: plafond sécurité sociale temps plein
       taux:
         encadrement:
@@ -513,7 +513,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moi
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
   titre: assiette conjoint collaborateur
   formule:
-    multiplication:
+    produit:
       assiette: assiette des cotisations
       taux: 1 / 3
       variations:
@@ -579,14 +579,14 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       - 20% * plafond sécurité sociale temps plein
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
   formule:
-    multiplication:
+    produit:
       assiette: plafond sécurité sociale temps plein
       facteur: 40%
       taux: 0.85%
@@ -681,7 +681,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   remplace: maladie
   rend non applicable: indemnités journalières maladie
   formule:
-    multiplication:
+    produit:
       assiette: indépendant . assiette des cotisations
       taux:
         taux progressif:
@@ -714,7 +714,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . indemnit
   titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
   formule:
-    multiplication:
+    produit:
       assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
@@ -746,7 +746,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA:
   formule:
-    multiplication:
+    produit:
       assiette: taux RSA part variable + 1.35%
       plafond: 6.35%
   note: |
@@ -754,13 +754,13 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable:
   formule:
-    multiplication:
+    produit:
       assiette: 5%
       taux: assiette des cotisations / seuil supérieur de réduction
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
   formule:
-    multiplication:
+    produit:
       assiette: plafond sécurité sociale temps plein
       taux: 110%
 
@@ -787,7 +787,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 dirigeant . rattachement CIPAV . retraite de base:
   remplace: indépendant . cotisations et contributions . cotisations . retraite de base
   formule:
-    multiplication:
+    produit:
       assiette: indépendant . cotisations et contributions . cotisations . retraite de base . assiette
       multiplicateur:
       composantes:
@@ -923,7 +923,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
@@ -943,7 +943,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . invalidi
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       composantes:
         - attributs:
@@ -1001,7 +1001,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   formule:
-    multiplication:
+    produit:
       assiette: plafond sécurité sociale temps plein
       taux:
         variations:
@@ -1019,7 +1019,7 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
 
 dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales:
   formule:
-    multiplication:
+    produit:
       assiette: assiette des cotisations
       taux:
         taux progressif:
@@ -1041,7 +1041,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . maladie
       taux: taux
       # TODO : Le plafond est proratisé en début / fin d'exonération
@@ -1112,7 +1112,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   description: En contrepartie de l'exonération de CSG, les cotisants ont un taux maladie plus elevé. Contrairement aux autres assurés commerçants/artisans ils ne bénéficient pas de la réduction du taux de la cotisation maladie en fonction du revenu déclaré.
   remplace: maladie
   formule:
-    multiplication:
+    produit:
       assiette: maladie . assiette
       taux: 14.5%
 

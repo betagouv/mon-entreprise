@@ -13,7 +13,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: brut
               taux: 77%
 
@@ -33,7 +33,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: brut
               taux: 77%
 
@@ -60,7 +60,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: brut
               taux: 77%
 
@@ -81,7 +81,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: assiette
               variations:
                 - si: cadre
@@ -114,7 +114,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: assiette
               variations:
                 - si: cadre
@@ -141,7 +141,7 @@ describe('inversions', () => {
           formule: taxe + taxe
         - nom: taxe
           formule:
-            multiplication:
+            produit:
               assiette: 1200
               variations:
                 - si: cadre
@@ -163,7 +163,7 @@ describe('inversions', () => {
 		let rawRules = dedent`
         - nom: net
           formule:
-            multiplication:
+            produit:
               assiette: assiette
               variations:
                 - si: cadre
@@ -175,7 +175,7 @@ describe('inversions', () => {
 
         - nom: total
           formule:
-            multiplication:
+            produit:
               assiette: assiette
               taux: 150%
 
@@ -205,13 +205,13 @@ describe('inversions', () => {
 		let rawRules = dedent`
       - nom: net
         formule:
-          multiplication:
+          produit:
             assiette: 67 + brut
             taux: 80%
 
       - nom: cotisation
         formule:
-          multiplication:
+          produit:
             assiette: 67 + brut
             composantes:
               - attributs:

@@ -106,7 +106,7 @@ contrat salarié . frais professionnels . titres-restaurant:
 contrat salarié . frais professionnels . titres-restaurant . montant:
   titre: Titres-restaurant
   formule:
-    multiplication:
+    produit:
       assiette: montant unitaire
       facteur: titres-restaurant par mois
       composantes:
@@ -123,7 +123,7 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
     encadrement:
       valeur: montant .employeur
       plafond:
-        multiplication:
+        produit:
           assiette: titres-restaurant par mois
           facteur: 5.55 €/titres-restaurant
   références:
@@ -184,7 +184,7 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . monta
   titre: indemnité kilométrique vélo
   unité: €/an
   formule:
-    multiplication:
+    produit:
       assiette: distance mensuelle
       facteur: 0.25 €/km
 
@@ -285,7 +285,7 @@ contrat salarié . CDD . CPF:
       - motif . classique . saisonnier
       - motif . contrat aidé
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 1%
   références:
@@ -355,11 +355,11 @@ contrat salarié . CDD . compensation pour congés non pris:
   non applicable si: événement . poursuite du CDD en CDI
   formule:
     le maximum de:
-      - multiplication:
+      - produit:
           assiette: assiette mensuelle
           taux: 10%
           facteur: proportion congés non pris
-      - multiplication:
+      - produit:
           assiette: salaire journalier
           facteur: congés non pris / durée contrat
   exemples:
@@ -450,7 +450,7 @@ contrat salarié . CDD . prime de fin de contrat:
   # TODO Il faudrait pouvoir afficher les indemnités comme une somme de fin de contrat.
   # Ici elle est étalée sur un mois moyen
   formule:
-    multiplication:
+    produit:
       assiette:
         somme:
           - rémunération . brut de base
@@ -490,7 +490,7 @@ contrat salarié . ATMP:
     destinataire: URSSAF
     responsable: CARSAT
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: taux
 
@@ -1070,7 +1070,7 @@ contrat salarié . rémunération . primes . fin d'année:
     mêmes conditions que les autres salariés en proportion de leur durée du
     travail.
   formule:
-    multiplication:
+    produit:
       assiette: assiette de vérification du SMIC * temps de travail . quotité de travail / 1 an
       facteur: prime de fin d'année en mois
 
@@ -1115,7 +1115,7 @@ contrat salarié . rémunération . heures supplémentaires:
   unité par défaut: €/mois
 
   formule:
-    multiplication:
+    produit:
       assiette: taux horaire des heures supplémentaires et complémentaires
       facteur:
         somme:
@@ -1128,7 +1128,7 @@ contrat salarié . rémunération . heures complémentaires:
   unité par défaut: €/mois
 
   formule:
-    multiplication:
+    produit:
       assiette: taux horaire des heures supplémentaires et complémentaires
       facteur:
         somme:
@@ -1205,7 +1205,7 @@ contrat salarié . rémunération . avantages en nature . ntic . montant:
     ```
      soit 10,08€
   formule:
-    multiplication:
+    produit:
       assiette:
         somme:
           - coût appareils
@@ -1250,7 +1250,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   unité: €/mois
 
   formule:
-    multiplication:
+    produit:
       assiette: montant forfaitaire d'un repas
       facteur: repas par mois
 
@@ -1313,7 +1313,7 @@ contrat salarié . SMIC temps plein:
   unité: €/mois
 
   formule:
-    multiplication:
+    produit:
       assiette: temps de travail . base légale * période . semaines par mois
       facteur: SMIC horaire
   références:
@@ -1450,7 +1450,7 @@ contrat salarié . prime d'impatriation:
   description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
   applicable si: régime des impatriés
   formule:
-    multiplication:
+    produit:
       assiette: rémunération . net imposable . base
       taux: 30%
   références:
@@ -1543,7 +1543,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
   applicable si: entreprise . effectif < 20
   titre: déduction forfaitaire pour heures supplémentaires
   formule:
-    multiplication:
+    produit:
       assiette: temps de travail . heures supplémentaires
       facteur: 1.50 €/heure
   note: La déduction ne s’applique pas aux heures complémentaires
@@ -1556,7 +1556,7 @@ contrat salarié . réduction ACRE:
       - dirigeant = 'assimilé salarié'
       - entreprise . ACRE
   formule:
-    multiplication:
+    produit:
       assiette:
         somme:
           - maladie
@@ -1592,7 +1592,7 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           assiette:
             somme:
               - vieillesse .salarié
@@ -1673,7 +1673,7 @@ contrat salarié . temps de travail:
 contrat salarié . temps de travail . temps contractuel:
   unité: heures/mois
   formule:
-    multiplication:
+    produit:
       assiette: temps hebdomadaire
       facteur: période . semaines par mois
 
@@ -1813,7 +1813,7 @@ contrat salarié . temps de travail . heures complémentaires . seuil légal:
   unité: heures/mois
   formule:
     arrondi:
-      multiplication:
+      produit:
         assiette: temps partiel . heures par semaine
         taux: 10%
         facteur: période . semaines par mois
@@ -1892,7 +1892,7 @@ contrat salarié . réduction générale:
   formule:
     encadrement:
       valeur:
-        multiplication:
+        produit:
           assiette: cotisations . assiette
           facteur: coefficient
       plafond: plafond avec application de la DFS
@@ -1922,7 +1922,7 @@ contrat salarié . réduction générale . coefficient:
       valeur:
         encadrement:
           valeur:
-            multiplication:
+            produit:
               assiette: SMIC / cotisations . assiette * 1.6 - 1
               facteur: T / 0.6
           plancher: 0%
@@ -1959,7 +1959,7 @@ contrat salarié . réduction générale . T sécurité sociale et chômage:
 
 contrat salarié . réduction générale . imputation sécurité sociale:
   formule:
-    multiplication:
+    produit:
       assiette: réduction générale
       facteur: T sécurité sociale et chômage / T
 
@@ -1970,7 +1970,7 @@ contrat salarié . réduction générale . plafond avec application de la DFS:
   applicable si: déduction forfaitaire spécifique > 0
   unité: €/mois
   formule:
-    multiplication:
+    produit:
       taux: 130%
       assiette:
         recalcul:
@@ -2025,7 +2025,7 @@ contrat salarié . contribution d'équilibre technique:
     destinataire: AGIRC-ARRCO
   applicable si: cotisations . assiette > plafond sécurité sociale
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       plafond: 8 * plafond sécurité sociale
       composantes:
@@ -2114,7 +2114,7 @@ contrat salarié . retraite supplémentaire . exonération fiscale:
     encadrement:
       valeur: retraite supplémentaire
       plafond:
-        multiplication:
+        produit:
           taux: 8%
           assiette:
             encadrement:
@@ -2132,7 +2132,7 @@ contrat salarié . AGS:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
 
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 0.15%
       plafond: 4 * plafond sécurité sociale
@@ -2142,7 +2142,7 @@ contrat salarié . allocations familiales:
     dû par: employeur
     branche: famille
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: taux
   références:
@@ -2178,7 +2178,7 @@ contrat salarié . APEC:
   applicable si: statut cadre
 
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       composantes:
@@ -2200,7 +2200,7 @@ contrat salarié . chômage:
     urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
     changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       plafond: 4 * plafond sécurité sociale
       composantes:
@@ -2238,7 +2238,7 @@ contrat salarié . complémentaire santé:
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F20739
   formule:
-    multiplication:
+    produit:
       assiette: forfait
       composantes:
         # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
@@ -2345,7 +2345,7 @@ contrat salarié . contribution au dialogue social:
     - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 0.016%
 
@@ -2373,7 +2373,7 @@ contrat salarié . assiette CSG et CRDS . assiette abattue:
 
 contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
-    multiplication:
+    produit:
       assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
       taux: 98.25%
   références:
@@ -2390,7 +2390,7 @@ contrat salarié . CSG:
     Contribution sociale généralisée.
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
   formule:
-    multiplication:
+    produit:
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
@@ -2427,7 +2427,7 @@ contrat salarié . CRDS:
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
   formule:
-    multiplication:
+    produit:
       assiette: assiette CSG et CRDS
       taux: 0.5%
 
@@ -2442,7 +2442,7 @@ contrat salarié . FNAL:
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: taux
       variations:
@@ -2491,7 +2491,7 @@ contrat salarié . formation professionnelle:
       - apprentissage
 
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       variations:
         - si: entreprise . effectif < 11
@@ -2513,7 +2513,7 @@ contrat salarié . maladie:
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
     Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       composantes:
         - attributs:
@@ -2587,7 +2587,7 @@ contrat salarié . participation effort de construction:
 
   non applicable si: entreprise . effectif < 50
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: 0.45%
 
@@ -2631,7 +2631,7 @@ contrat salarié . prévoyance obligatoire cadre:
     minimum: http://www.axios.fr/150-tranche-a-evitez-une-erreur-a-160-000-euros
   applicable si: statut cadre
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       plafond: plafond sécurité sociale
       taux: 1.5%
@@ -2693,7 +2693,7 @@ contrat salarié . taxe d'apprentissage . assiette:
 contrat salarié . taxe d'apprentissage . base:
   titre: taxe d'apprentissage de base
   formule:
-    multiplication:
+    produit:
       assiette: assiette
       taux:
         variations:
@@ -2708,7 +2708,7 @@ contrat salarié . taxe d'apprentissage . contribution supplémentaire:
       - entreprise . ratio alternants < 5%
 
   formule:
-    multiplication:
+    produit:
       assiette: assiette
 
       # exception:
@@ -2921,7 +2921,7 @@ contrat salarié . versement transport:
     branche: transport
     dû par: employeur
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       taux: établissement . taux du versement transport
 
@@ -2936,7 +2936,7 @@ contrat salarié . vieillesse:
     # CTP: 100
   description: Cotisation au régime de retraite de base des salariés.
   formule:
-    multiplication:
+    produit:
       assiette: cotisations . assiette
       composantes:
         - attributs:
@@ -2994,7 +2994,7 @@ contrat salarié . forfait social:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
   formule:
-    multiplication:
+    produit:
       assiette: avantages sociaux
       taux: 8%
     # Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
@@ -3046,7 +3046,7 @@ contrat salarié . lodeom . réduction outre-mer:
           - FNAL .employeur
           - maladie .employeur
           - vieillesse .employeur
-          - multiplication:
+          - produit:
               assiette: cotisations . assiette
               taux: ATMP . taux minimum
           - retraite complémentaire .employeur
