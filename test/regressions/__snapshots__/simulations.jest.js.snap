@@ -106,19 +106,21 @@ exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  a
 
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  avec charges 2`] = `"[10982,10982,10742,4,19,23]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 1`] = `"[169,169,139,0,1,1]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 1`] = `"[0,0,2488,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 2`] = `"[738,738,323,0,2,2]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 2`] = `"[169,169,139,0,1,1]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 3`] = `"[2446,2446,2588,2,5,6]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 3`] = `"[738,738,323,0,2,2]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 4`] = `"[5291,5291,5306,4,10,12]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 4`] = `"[2446,2446,2588,2,5,6]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 5`] = `"[10982,10982,10742,4,19,23]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 5`] = `"[5291,5291,5306,4,10,12]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 6`] = `"[25971,28055,27050,4,46,59]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 6`] = `"[10982,10982,10742,4,19,23]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 7`] = `"[46812,57017,52684,4,46,119]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 7`] = `"[25971,28055,27050,4,46,59]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 8`] = `"[46812,57017,52684,4,46,119]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  ACRE 1`] = `"[9349,9349,2046,2,0,0]"`;
 
@@ -140,19 +142,21 @@ exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  av
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  avec charges 2`] = `"[15480,15480,7163,4,14,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 1`] = `"[871,871,60,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 1`] = `"[87,87,6,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 2`] = `"[1742,1742,119,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 2`] = `"[871,871,60,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 3`] = `"[4354,4354,1023,1,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 3`] = `"[1742,1742,119,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 4`] = `"[8709,8709,2046,2,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 4`] = `"[4354,4354,1023,1,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 5`] = `"[17417,17417,4093,3,8,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 5`] = `"[8709,8709,2046,2,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 6`] = `"[43543,43543,10232,4,20,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 6`] = `"[17417,17417,4093,3,8,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 7`] = `"[84367,87085,20465,4,40,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 7`] = `"[43543,43543,10232,4,20,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  échelle de rémunération 8`] = `"[84367,87085,20465,4,40,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  ACRE 1`] = `"[8215,8215,6018,4,21,0]"`;
 
@@ -174,19 +178,21 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec ch
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  avec charges 2`] = `"[13769,13769,10084,4,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 1`] = `"[null,null,0,3,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 1`] = `"[-1044,-1044,0,3,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 2`] = `"[616,616,470,3,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 2`] = `"[-225,-225,0,3,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 3`] = `"[3084,3084,2267,3,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 3`] = `"[616,616,470,3,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 4`] = `"[6795,6795,4977,4,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 4`] = `"[3084,3084,2267,3,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 5`] = `"[13769,13769,10084,4,21,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 5`] = `"[6795,6795,4977,4,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 6`] = `"[30434,33997,24912,4,48,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 6`] = `"[13769,13769,10084,4,21,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 7`] = `"[56273,69895,36431,4,56,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 7`] = `"[30434,33997,24912,4,48,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  échelle de rémunération 8`] = `"[56273,69895,36431,4,56,0]"`;
 
 exports[`calculate simulations-salarié:  JEI 1`] = `"[3440,0,0,3000,2353,2187]"`;
 
@@ -232,7 +238,7 @@ exports[`calculate simulations-salarié:  effectif 3`] = `"[2539,0,0,2000,1561,1
 
 exports[`calculate simulations-salarié:  effectif 4`] = `"[2539,0,0,2000,1561,1524]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2241,0,0,2000,1668,1668]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2242,0,0,2000,1668,1668]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 2`] = `"[2335,0,0,2000,1603,1561]"`;
 
@@ -240,9 +246,9 @@ exports[`calculate simulations-salarié:  frais pro - DFS 3`] = `"[2265,0,0,2000
 
 exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1657,1608]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2436,0,0,2000,1590,1590]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2437,0,0,2000,1590,1590]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1765,0,0,1700,1380,1380]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1767,0,0,1700,1380,1380]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 7`] = `"[3287,0,0,2600,2175,2141]"`;
 

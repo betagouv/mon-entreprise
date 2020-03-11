@@ -1,6 +1,5 @@
 import Route404 from 'Components/Route404'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
 import 'iframe-resizer'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
@@ -60,7 +59,6 @@ function InFranceRoute({ basename, language }) {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])
 	const paths = constructLocalizedSitePath(language)
-	const rules = language === 'en' ? baseRulesEn : baseRulesFr
 	return (
 		<Provider
 			basename={basename}
@@ -74,8 +72,7 @@ function InFranceRoute({ basename, language }) {
 			}}
 			initialStore={{
 				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation(),
-				rules
+				previousSimulation: retrievePersistedSimulation()
 			}}
 		>
 			<RouterSwitch />

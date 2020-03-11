@@ -1,75 +1,21 @@
 situation personnelle:
 
 situation personnelle . RSA:
-  titre: allocataire RSA
-  question: Êtes-vous allocataire du RSA ?
+  titre: bénéficiaire RSA ou prime d'activité
+  question: >-
+    Etes-vous bénéficiaire du RSA ou de la prime d’activité ?
   par défaut: non
-
-situation personnelle . IJSS:
-  titre: indemnités journalières de sécurité sociale
-  description: |
-    En cas de maladie, maternité, ou accident, le régime général de Sécurité sociale ainsi que les régimes spéciaux assurent le versement de prestations « en espèces ». Ce sont les indemnités journalières de Sécurité sociale (IJSS),
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
-
-    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
-  question: Avez-vous touché des indemnités journalières de sécurité sociale (maladie, maternité, paternité, etc.) ?
-  par défaut: non
-
-situation personnelle . IJSS . montant:
-  non applicable si: ALD
-  titre: indemnités journalières fiscalisées
-  par défaut: 0
-  question: Quel était leur montant total brut ?
-  unité par défaut: €/an
-
-situation personnelle . IJSS . ALD:
-  question: Avez-vous touché des indemnités dans le cas d'une affection longue durée (ALD) dite "exonérante" ?
-  description: 
-    L'affection longue durée (ALD) est mise en place par la loi du 13 août 2004 relative à l'assurance maladie. Ce statut offre aux personnes malades chroniques qui remplissent certaines conditions une prise en charge spécifique de leurs soins médicaux.
-    L'affection longue durée est une maladie de longue durée, présentant un caractère grave ou chronique et nécessitant un traitement long dont le coût est élevé.
-    La liste des ALD dites "exonérante" est disponible sur le site [ameli.fr](https://www.ameli.fr/assure/droits-demarches/maladie-accident-hospitalisation/affection-longue-duree-ald/affection-longue-duree-ald)
-    Les indemnité versée dans le cadre d'une ALD dites "éxonérante" ne sont pas imposable. 
-  par défaut: non
-
-situation personnelle . IJSS . ALD . autres indemnités:
-  question: Avez-vous également touché des indemnités non liées à votre ALD (maternité, paternité, autre maladie) ?
-  par défaut: non
-
-situation personnelle . IJSS . ALD . autres indemnités . montant:
-  question: Quel était le montant de vos autres indemnités ?
-  par défaut: 0
-  unité: €/an
-
-situation personnelle . IJSS . défiscalisées:
-  applicable si: ALD
-  titre: indemnités journalières défiscalisées
-  question: Quel était le montant de vos indemnités ALD ?
-  par défaut: 0
-  unité: €/an
-
-situation personnelle . IJSS . fiscalisées:
-  titre: indemnités journalières fiscalisées
-  formule: 
-    somme: 
-      - IJSS . montant
-      - ALD . autres indemnités . montant
-
-situation personnelle . IJSS . total:
-  titre: total indemnités journalières
-  formule:
-    somme: 
-      - fiscalisées
-      - défiscalisées
 
 situation personnelle . domiciliation fiscale à l'étranger:
-  description: |
-    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
-  question: La résidence fiscale de l'assuré est-elle domiciliée à l'étranger ?
-  par défaut: non
-  rend non applicable: 
+  description: >-
+    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils
+    sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
+  question: La résidence fiscale est-elle située à l'étranger ?
+  rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
     - contrat salarié . CSG
     - contrat salarié . CRDS
     - impôt
-  références: 
+  par défaut: non
+  références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html

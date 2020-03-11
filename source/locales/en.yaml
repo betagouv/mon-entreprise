@@ -4,6 +4,7 @@
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
+Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Alors: Then
 Année d'activité: Years of activity
 Assimilé salarié: '"Assimilé-salarié"'
@@ -43,6 +44,7 @@ Entrée: Enter
 Envoyer: Send
 Exemples: Examples
 Exemples de simulation de salaire: Examples of salary simulations
+Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
@@ -52,6 +54,7 @@ Gérant minoritaire: Managing director
 Imprimer: Print
 Impôts: Taxes
 Indépendant: Independent
+International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
 Intégrer nos simulateurs: Integrate our simulators
@@ -100,10 +103,12 @@ Responsabilité limitée: Limited liability
 Ressources utiles: Helpful resources
 Retour: Back
 Retour à la création: Back to creation
+Retour à ma déclaration: Back to my statement
 Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
+Récapitulatif: Summary
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
 Résultat: Result
@@ -117,6 +122,7 @@ Si: If
 Simulateur de salaire: Employee salary simulation
 Simulations personnalisées: Customized simulations
 Sinon: Else
+Situation personnelle: Personal situation
 Suivant: Next
 Taux: Rate
 Taux calculé: Calculated rate
@@ -134,6 +140,26 @@ Votre adresse e-mail: Your email address
 Votre entreprise: Your company
 Votre forme juridique: Your legal status
 aide: aid or subsidy
+aide-déclaration-indépendant:
+  description: >-
+    <0>Help with your 2019 income tax return </0><1>This tool is a tax (income)
+    and social security (ISD) declaration aid for self-employed workers. It
+    allows you to find out the amount of social security charges deductible from
+    your net fiscal result.</1><2><0>This tool is for you if you are in any of
+    the following cases :</0><1><0>you contribute to the general scheme for
+    self-employed persons</0><1>your business is in the actual tax system and in
+    accrual accounting</1></1><2>It does not concern you if you are in one of
+    the following cases:</2><3><0>you are a regulated liberal
+    profession</0><1>you are a liberal profession contributing to the
+    CIPAV</1><2>your company is domiciled in the DOMs</2></3></2><3>What is your
+    professional income in 2019?</3><4>Indicate your net fiscal result before
+    deduction of social security charges and tax exemptions.</4>
+  entreprise:
+    description: You can fill in your company to pre-fill in the form
+    titre: <0>Company and activity</0>
+  results:
+    ongoing: Calculation in progress...
+    title: "Reporting help \U0001F4C4"
 an: year
 année: year
 applicable si: applicable if
@@ -677,6 +703,9 @@ gérant minoritaire:
   titre: Chairman or managing director
 gérer:
   choix:
+    déclaration: >-
+      <0>Completing my tax return</0><1>Easily calculate the amounts to carry
+      forward on your 2019 tax return</1>
     embauche: >
       <0>Estimate the amount spent for hiring</0>
 
@@ -721,6 +750,7 @@ gérer:
   titre: Manage my business
 heure: hour
 heures: hours
+imprimer: Print
 impôt: tax
 impôt sur le revenu: income tax
 indemnité: benefit
@@ -845,6 +875,9 @@ path:
     exemples: /examples
     index: /documentation
   gérer:
+    déclaration-indépendant:
+      index: /declaration-aid-independent
+      récapitulatif: /summary
     embaucher: /hiring
     index: /manage
     sécuritéSociale: /social-security
@@ -858,7 +891,6 @@ path:
     assimilé-salarié: /assimile-salarie
     auto-entrepreneur: /auto-entrepreneur
     comparaison: /social-scheme-comparaison
-    dnrti: /dnrti
     index: /simulators
     indépendant: /independant
     salarié: /salaried

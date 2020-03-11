@@ -8,7 +8,6 @@ import { Link, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
 import AssimiléSalarié from './AssimiléSalarié'
 import AutoEntrepreneur from './AutoEntrepreneur'
-import DNRTI from './dnrti'
 import Home from './Home'
 import Indépendant from './Indépendant'
 import Salarié from './Salarié'
@@ -28,7 +27,7 @@ export default function Simulateurs() {
 	return (
 		<>
 			<ScrollToTop key={pathname} />
-			{pathname !== sitePaths.simulateurs.index && !pathname.match('dnrti') && (
+			{pathname !== sitePaths.simulateurs.index && (
 				<div css="transform: translateY(2rem);">
 					{lastState?.fromGérer && (
 						<Link
@@ -79,7 +78,6 @@ export default function Simulateurs() {
 					path={sitePaths.simulateurs['artiste-auteur']}
 					component={ArtisteAuteur}
 				/>
-				<Route path={sitePaths.simulateurs.dnrti} component={DNRTI} />
 			</Switch>
 		</>
 	)

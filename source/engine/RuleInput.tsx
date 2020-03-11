@@ -24,6 +24,7 @@ type Props = {
 	onChange: (value: Value) => void
 	useSwitch?: boolean
 	isTarget?: boolean
+	autoFocus?: boolean
 	value?: Value
 	className?: string
 	onSubmit?: (value: Value) => void
@@ -33,13 +34,14 @@ type Props = {
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function InputComponent({
+export default function RuleInput({
 	rules,
 	dottedName,
 	onChange,
 	value,
 	useSwitch = false,
 	isTarget = false,
+	autoFocus = false,
 	className,
 	onSubmit
 }: Props) {
@@ -53,6 +55,7 @@ export default function InputComponent({
 		value,
 		onChange,
 		onSubmit,
+		autoFocus,
 		className,
 		title: rule.title,
 		question: rule.question,

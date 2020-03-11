@@ -1,6 +1,6 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
-import InputComponent from 'Engine/RuleInput'
+import RuleInput from 'Engine/RuleInput'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
@@ -44,7 +44,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			setDefault()
 		}
 	}
-	const DecoratedInputComponent = FormDecorator(InputComponent)
+	const DecoratedInputComponent = FormDecorator(RuleInput)
 
 	return flatRules && nextSteps.length ? (
 		<>

@@ -1,9 +1,8 @@
 import { explainVariable } from 'Actions/actions'
-import Animate from 'Components/ui/animate'
+import Overlay from 'Components/Overlay'
 import { Markdown } from 'Components/utils/markdown'
 import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
-import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
@@ -17,45 +16,29 @@ export default function Aide() {
 
 	const stopExplaining = () => dispatch(explainVariable())
 
-	if (!explained) return <section id="helpWrapper" />
+	if (!explained) return null
 
 	let rule = findRuleByDottedName(flatRules, explained),
 		text = rule.description,
 		refs = rule.références
 
 	return (
-		<Animate.fromTop>
+		<Overlay onClose={stopExplaining}>
 			<div
 				css={`
-					display: flex;
-					align-items: center;
-					img {
-						margin: 0 1em 0 !important;
-						width: 1.6em !important;
-						height: 1.6em !important;
-					}
+					padding: 0.6rem;
 				`}
 			>
-				{emoji('ℹ️')}
-
-				<div
-					className="controlText ui__ card"
-					css="padding: 0.6rem 0; flex: 1;"
-				>
-					<h4>{rule.title}</h4>
-					<p>
-						<Markdown source={text} />
-					</p>
-					{refs && (
-						<div>
-							<References refs={refs} />
-						</div>
-					)}
-					<button className="hide" aria-label="close" onClick={stopExplaining}>
-						×
-					</button>
-				</div>
+				<h2>{rule.title}</h2>
+				<p>
+					<Markdown source={text} />
+				</p>
+				{refs && (
+					<div>
+						<References refs={refs} />
+					</div>
+				)}
 			</div>
-		</Animate.fromTop>
+		</Overlay>
 	)
 }

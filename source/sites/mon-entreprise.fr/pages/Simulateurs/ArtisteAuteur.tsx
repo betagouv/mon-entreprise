@@ -6,7 +6,7 @@ import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import 'Components/TargetSelection.css'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { formatValue } from 'Engine/format'
-import InputComponent from 'Engine/RuleInput'
+import RuleInput from 'Engine/RuleInput'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -104,7 +104,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 						</label>
 					</div>
 					<div className="targetInputOrValue">
-						<InputComponent
+						<RuleInput
 							className="targetInput"
 							isTarget
 							dottedName={dottedName}

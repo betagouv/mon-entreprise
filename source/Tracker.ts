@@ -1,5 +1,5 @@
 import { History, Location } from 'history'
-import { debounce } from './utils'
+import { debounce, inIframe } from './utils'
 
 declare global {
 	interface Window {
@@ -7,17 +7,33 @@ declare global {
 	}
 }
 
-type PushArgs = ['trackPageView'] | ['trackEvent', ...Array<string | number>]
+type TrackingAction = 'trackPageView' | 'trackEvent' | 'disableCookies'
+
+type PushArgs = [TrackingAction, ...Array<string | number>]
 type PushType = (args: PushArgs) => void
+
+const ua = window.navigator.userAgent
+const iOSSafari =
+	(!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
+	!!ua.match(/WebKit/i) &&
+	!ua.match(/CriOS/i)
 
 export default class Tracker {
 	push: PushType
 	unlistenFromHistory: (() => void) | undefined
 	previousPath: string | undefined
 
-	constructor(pushFunction: PushType = args => window._paq.push(args)) {
-		if (typeof window !== 'undefined') window._paq = window._paq || []
+	constructor(
+		pushFunction: PushType = args => (window?._paq ?? []).push(args)
+	) {
 		this.push = debounce(200, pushFunction) as PushType
+		// There is an issue with the way Safari handle cookies in iframe, cf.
+		// https://gist.github.com/iansltx/18caf551baaa60b79206.
+		// TODO : We don't need to disable cookies if a cookie is already set
+		if (iOSSafari && inIframe) {
+			pushFunction(['disableCookies'])
+		}
+		pushFunction(['trackPageView'])
 	}
 
 	connectToHistory(history: History) {
