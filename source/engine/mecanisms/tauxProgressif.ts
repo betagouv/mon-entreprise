@@ -3,7 +3,6 @@ import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import tauxProgressif from 'Engine/mecanismViews/TauxProgressif'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
-import { anyNull } from 'Engine/traverse-common-functions'
 import { parseUnit } from 'Engine/units'
 import {
 	evaluatePlafondUntilActiveTranche,
@@ -110,7 +109,7 @@ const evaluate = (
 		? previousTranche.taux
 		: activeTranche.taux
 	const calculationValues = [previousTaux, activeTranche.taux, activeTranche]
-	if (anyNull(calculationValues)) {
+	if (calculationValues.some(n => n.nodeValue === null)) {
 		activeTranche.nodeValue = null
 		activeTranche.missingVariables = mergeAllMissing(calculationValues)
 		return {
