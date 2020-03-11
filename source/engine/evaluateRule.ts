@@ -3,7 +3,6 @@ import { map, mergeAll, pick, pipe } from 'ramda'
 import { Rule } from 'Types/rule'
 import { typeWarning } from './error'
 import { convertNodeToUnit } from './nodeUnits'
-import { anyNull, undefOrTruthy, val } from './traverse-common-functions'
 import { areUnitConvertible } from './units'
 
 export const evaluateApplicability = (
@@ -27,14 +26,17 @@ export const evaluateApplicability = (
 			evaluateNode(cache, situationGate, parsedRules, parent)
 		),
 		isApplicable =
-			parentDependencies.some(parent => val(parent) === false) ||
-			val(notApplicable) === true ||
-			val(applicable) === false ||
-			val(disabled) === true
+			parentDependencies.some(parent => parent?.nodeValue === false) ||
+			notApplicable?.nodeValue === true ||
+			applicable?.nodeValue === false ||
+			disabled?.nodeValue === true
 				? false
-				: anyNull([notApplicable, applicable, ...parentDependencies])
+				: [notApplicable, applicable, ...parentDependencies].some(
+						n => n?.nodeValue === null
+				  )
 				? null
-				: !val(notApplicable) && undefOrTruthy(val(applicable)),
+				: !notApplicable?.nodeValue &&
+				  (applicable?.nodeValue == undefined || !!applicable?.nodeValue),
 		missingVariables =
 			isApplicable === false
 				? {}

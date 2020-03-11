@@ -39,7 +39,6 @@ import Product from './mecanismViews/Product'
 import Recalcul from './mecanismViews/Recalcul'
 import Somme from './mecanismViews/Somme'
 import { disambiguateRuleReference, findRuleByDottedName } from './rules'
-import { anyNull, val } from './traverse-common-functions'
 import uniroot from './uniroot'
 import { parseUnit } from './units'
 
@@ -376,7 +375,7 @@ export let mecanismReduction = (recurse, k, v) => {
 		{ assiette, abattement, plafond, franchise, décote },
 		cache
 	) => {
-		let v_assiette = val(assiette)
+		let v_assiette = assiette.nodeValue
 		if (v_assiette == null) return null
 		if (assiette.unit) {
 			try {
@@ -398,12 +397,12 @@ export let mecanismReduction = (recurse, k, v) => {
 			}
 		}
 		let montantFranchiséDécoté =
-			val(franchise) && v_assiette < val(franchise)
+			franchise.nodeValue && v_assiette < franchise.nodeValue
 				? 0
 				: décote
 				? (function() {
-						let plafondDécote = val(décote.plafond),
-							taux = val(décote.taux)
+						let plafondDécote = décote.plafond.nodeValue,
+							taux = décote.taux.nodeValue
 
 						return v_assiette > plafondDécote
 							? v_assiette
@@ -411,7 +410,7 @@ export let mecanismReduction = (recurse, k, v) => {
 				  })()
 				: v_assiette
 		const nodeValue = abattement
-			? val(abattement) == null
+			? abattement.nodeValue == null
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
@@ -419,9 +418,16 @@ export let mecanismReduction = (recurse, k, v) => {
 				? max(
 						0,
 						montantFranchiséDécoté -
-							min(val(plafond), val(abattement) * montantFranchiséDécoté)
+							min(
+								plafond.nodeValue,
+								abattement.nodeValue * montantFranchiséDécoté
+							)
 				  )
-				: max(0, montantFranchiséDécoté - min(val(plafond), val(abattement)))
+				: max(
+						0,
+						montantFranchiséDécoté -
+							min(plafond.nodeValue, abattement.nodeValue)
+				  )
 			: montantFranchiséDécoté
 		return {
 			nodeValue,
@@ -488,18 +494,23 @@ export let mecanismProduct = (recurse, k, v) => {
 			[assiette, taux, facteur].map(el => el.unit)
 		)
 		const nodeValue =
-			val(taux) === 0 ||
-			val(taux) === false ||
-			val(assiette) === 0 ||
-			val(facteur) === 0
+			taux.nodeValue === 0 ||
+			taux.nodeValue === false ||
+			assiette.nodeValue === 0 ||
+			facteur.nodeValue === 0
 				? 0
-				: anyNull([taux, assiette, facteur, plafond])
+				: [taux, assiette, facteur, plafond].some(n => n.nodeValue === null)
 				? null
-				: mult(val(assiette), val(taux), val(facteur), val(plafond))
+				: mult(
+						assiette.nodeValue,
+						taux.nodeValue,
+						facteur.nodeValue,
+						plafond.nodeValue
+				  )
 		return {
 			nodeValue,
 			additionalExplanation: {
-				plafondActif: val(assiette) > val(plafond),
+				plafondActif: assiette.nodeValue > plafond.nodeValue,
 				unit
 			}
 		}
@@ -598,8 +609,10 @@ export let mecanismComplement = (recurse, k, v) => {
 
 	let objectShape = { cible: false, montant: false }
 	let effect = ({ cible, montant }) => {
-		let nulled = val(cible) == null
-		return nulled ? null : subtract(val(montant), min(val(cible), val(montant)))
+		let nulled = cible.nodeValue == null
+		return nulled
+			? null
+			: subtract(montant.nodeValue, min(cible.nodeValue, montant.nodeValue))
 	}
 	let explanation = parseObject(recurse, objectShape, v)
 
@@ -647,16 +660,20 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 		let valuePath = v.chemin.split(' . ')
 
 		let nodeValue =
-			val(APIExplanation) == null ? null : path(valuePath, val(APIExplanation))
+			APIExplanation.nodeValue == null
+				? null
+				: path(valuePath, APIExplanation.nodeValue)
 
 		// If the API gave a non null value, then some of its props may be null (the API can be composed of multiple API, some failing). Then this prop will be set to the default value defined in the API's rule
 		let safeNodeValue =
-			nodeValue == null && val(APIExplanation) != null
+			nodeValue == null && APIExplanation.nodeValue != null
 				? path(valuePath, APIExplanation.explanation.defaultValue)
 				: nodeValue
 
 		let missingVariables =
-			val(APIExplanation) === null ? { [APIExplanation.dottedName]: 1 } : {}
+			APIExplanation.nodeValue === null
+				? { [APIExplanation.dottedName]: 1 }
+				: {}
 		let explanation = { ...v, API: APIExplanation }
 		return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
 	}

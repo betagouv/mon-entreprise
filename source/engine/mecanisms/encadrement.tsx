@@ -9,7 +9,6 @@ import {
 import { Node } from 'Engine/mecanismViews/common'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import React from 'react'
-import { val } from '../traverse-common-functions'
 
 function MecanismEncadrement({ nodeValue, explanation, unit }) {
 	return (
@@ -25,7 +24,7 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 					{!explanation.plancher.isDefault && (
 						<span
 							css={
-								nodeValue === val(explanation.plancher)
+								nodeValue === explanation.plancher.nodeValue
 									? 'background: yellow'
 									: {}
 							}
@@ -39,7 +38,7 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 							<br />
 							<span
 								css={
-									nodeValue === val(explanation.plafond)
+									nodeValue === explanation.plafond.nodeValue
 										? 'background: yellow'
 										: {}
 								}
@@ -70,7 +69,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	)
 	const valeur = evaluateAttribute(node.explanation.valeur)
 	let plafond = evaluateAttribute(node.explanation.plafond)
-	if (val(plafond) === false || val(plafond) === null) {
+	if (plafond.nodeValue === false || plafond.nodeValue === null) {
 		plafond = objectShape.plafond
 	}
 	let plancher = evaluateAttribute(node.explanation.plancher)
@@ -87,7 +86,10 @@ const evaluate = (cache, situation, parsedRules, node) => {
 		}
 	}
 
-	const nodeValue = Math.max(val(plancher), Math.min(val(plafond), val(valeur)))
+	const nodeValue = Math.max(
+		plancher.nodeValue,
+		Math.min(plafond.nodeValue, valeur.nodeValue)
+	)
 	return {
 		...node,
 		nodeValue,
