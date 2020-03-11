@@ -123,3 +123,70 @@ contrat salarié . convention collective . BTP . prévoyance complémentaire . c
               plafond: 4 * plafond sécurité sociale
             - taux: 50% * 3.60%
               plafond: 8 * plafond sécurité sociale
+
+contrat salarié . convention collective . BTP . cotisations conventionnelles:
+  remplace: cotisations . patronales . conventionnelles
+  formule:
+    somme:
+      - congés intempéries
+      - OPPBTP
+
+contrat salarié . convention collective . BTP . congés intempéries:
+  formule:
+    produit:
+      assiette: cotisations . assiette
+      taux:
+        variations:
+          - si: caisse de rattachement = 'idf'
+            alors: 19.80%
+          - si: caisse de rattachement = 'nord ouest'
+            alors: 19.95%
+          - si: caisse de rattachement = 'grand ouest'
+            alors: 19.95%
+          - si: caisse de rattachement = 'centre ouest'
+            alors: 20.30%
+          - si: caisse de rattachement = 'centre'
+            alors: 20.40%
+          - si: caisse de rattachement = 'grand est'
+            alors: 20.00%
+          - si: caisse de rattachement = 'rhône alpes auvergne'
+            alors: 19.80%
+          - si: caisse de rattachement = 'méditerranée'
+            alors: 19.60%
+          - si: caisse de rattachement = 'sud ouest'
+            alors: 19.90%
+  références:
+    CIBTP: https://www.cibtp.fr/
+
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
+  question: À quelle caisse l'entreprise est-elle rattachée pour le versement de la cotisation congés intempéries ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - idf
+        - nord ouest
+        - grand ouest
+        - centre ouest
+        - centre
+        - grand est
+        - rhône alpes auvergne
+        - méditerranée
+        - sud ouest
+
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf:
+  titre: Île-de-France
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . nord ouest:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand ouest:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre ouest:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand est:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . rhône alpes auvergne:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . méditerranée:
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . sud ouest:
+
+contrat salarié . convention collective . BTP . OPPBTP:
+  formule:
+    produit:
+      assiette: rémunération . brut de base * 1.1314
+      taux: 0.11%
