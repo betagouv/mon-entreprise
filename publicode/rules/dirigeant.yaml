@@ -35,8 +35,9 @@ dirigeant . assimilé salarié:
     - contrat salarié . contribution au dialogue social
     - contrat salarié . temps de travail . temps partiel
     - contrat salarié . temps de travail . heures supplémentaires
-    - entreprise . association non lucrative
+    - contrat salarié . déduction forfaitaire spécifique
     - contrat salarié . régime des impatriés
+    - entreprise . association non lucrative
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
 
