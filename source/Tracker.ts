@@ -7,12 +7,11 @@ declare global {
 	}
 }
 
-type TrackingAction = 'trackPageView' | 'trackEvent' | 'disableCookies'
-
-type PushArgs = [TrackingAction, ...Array<string | number>]
+type PushArgs = ['trackPageView'] | ['trackEvent', ...Array<string | number>]
 type PushType = (args: PushArgs) => void
 
 const ua = window.navigator.userAgent
+// https://chromium.googlesource.com/chromium/src.git/+/master/docs/ios/user_agent.md
 const iOSSafari =
 	(!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
 	!!ua.match(/WebKit/i) &&
@@ -24,16 +23,18 @@ export default class Tracker {
 	previousPath: string | undefined
 
 	constructor(
-		pushFunction: PushType = args => (window?._paq ?? []).push(args)
-	) {
-		this.push = debounce(200, pushFunction) as PushType
-		// There is an issue with the way Safari handle cookies in iframe, cf.
-		// https://gist.github.com/iansltx/18caf551baaa60b79206.
-		// TODO : We don't need to disable cookies if a cookie is already set
-		if (iOSSafari && inIframe) {
-			pushFunction(['disableCookies'])
+		pushFunction: PushType = args => {
+			// There is an issue with the way Safari handle cookies in iframe, cf.
+			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
+			// do better but for now we don't track action of iOs Safari user in
+			// iFrame -- to avoid errors in the number of visitors in our stats.
+			if (!(iOSSafari && inIframe)) {
+				window._paq.push(args)
+			}
 		}
-		pushFunction(['trackPageView'])
+	) {
+		if (typeof window !== 'undefined') window._paq = window._paq || []
+		this.push = debounce(200, pushFunction) as PushType
 	}
 
 	connectToHistory(history: History) {
