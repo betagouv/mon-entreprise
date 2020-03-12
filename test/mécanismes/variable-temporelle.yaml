@@ -211,3 +211,41 @@ variable temporelle numérique . multiplication avec valeur sur l'année:
 #   formule: salaire brut [avril 2019]
 #   exemples:
 #     - valeur attendue: 400 # (2000 * 6)/30
+cotisation spéciale:
+  formule:
+    barème:
+      assiette: contrat salarié . salaire
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - taux: 0%
+          plafond: 10%
+        - taux: 10%
+          plafond: 20%
+        - taux: 30%
+          plafond: 50%
+        - taux: 40%
+          plafond: 100%
+        - taux: 50%
+
+variable temporelle numérique . barème:
+  formule: cotisation spéciale | du 01/01/2019 | au 31/12/2019
+  exemples:
+    - valeur attendue: 567.438
+
+grille:
+  formule:
+    barème:
+      assiette: contrat salarié . salaire
+      tranches:
+        - montant: 5 heures
+          plafond: 1000€
+        - montant: 10 heures
+          plafond: 2000 €
+        - montant: 30 heures
+          plafond: 4000 €
+        - montant: 40 heures
+
+variable temporelle numérique . grille:
+  formule: cotisation spéciale | du 01/01/2019 | au 31/12/2019
+  exemples:
+    - valeur attendue: 567.438

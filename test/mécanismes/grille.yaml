@@ -31,3 +31,35 @@ Grille:
       situation:
         assiette: 999.3
       valeur attendue: 50
+
+plafond:
+  unité: €
+Grille avec valeur manquante:
+  formule:
+    grille:
+      assiette: assiette
+      unité: €
+      tranches:
+        - montant: 100
+          plafond: plafond
+        - montant: 200
+          plafond: 2000 €
+        - montant: 300
+          plafond: 4000 €
+
+  unité attendue: €
+  exemples:
+    - nom: 'variable manquante'
+      situation:
+        assiette: 1000
+      variables manquantes:
+        - plafond
+      valeur attendue: null
+    - nom: 'assiette non concernée par variable manquante'
+      situation:
+        assiette: 3000
+      valeur attendue: 300
+    - nom: 'assiette au delà du plagond'
+      situation:
+        assiette: 5000
+      valeur attendue: false

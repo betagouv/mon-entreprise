@@ -2,6 +2,8 @@ import { defaultNode, evaluateNode, mergeAllMissing } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import grille from 'Engine/mecanismViews/Grille'
+import { liftTemporalNode, mapTemporal, temporalAverage } from 'Engine/period'
+import { liftTemporal2 } from 'Engine/temporal'
 import { parseUnit } from 'Engine/units'
 import { lensPath, over } from 'ramda'
 import {
@@ -35,25 +37,8 @@ export default function parse(parse, k, v) {
 		unit: explanation.tranches[0].montant.unit
 	}
 }
-
-const evaluate = (
-	cache,
-	situationGate,
-	parsedRules,
-	node: ReturnType<typeof parse>
-) => {
-	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
-	const assiette = evaluate(node.explanation.assiette)
-	const multiplicateur = evaluate(node.explanation.multiplicateur)
-	const tranches = evaluatePlafondUntilActiveTranche(
-		evaluate,
-		{
-			parsedTranches: node.explanation.tranches,
-			assiette,
-			multiplicateur
-		},
-		cache
-	).map(tranche => {
+const evaluateGrille = (tranches, evaluate) =>
+	tranches.map(tranche => {
 		if (tranche.isActive === false) {
 			return tranche
 		}
@@ -67,19 +52,65 @@ const evaluate = (
 		}
 	})
 
-	const activeTranches = tranches.filter(({ isActive }) => isActive != false)
-	const missingVariables = mergeAllMissing(activeTranches)
-	const nodeValue = activeTranches.length ? activeTranches[0].nodeValue : false
+const evaluate = (
+	cache,
+	situationGate,
+	parsedRules,
+	node: ReturnType<typeof parse>
+) => {
+	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const assiette = evaluate(node.explanation.assiette)
+	const multiplicateur = evaluate(node.explanation.multiplicateur)
+	const temporalTranchesPlafond = liftTemporal2(
+		(assiette, multiplicateur) =>
+			evaluatePlafondUntilActiveTranche(
+				evaluate,
+				{
+					parsedTranches: node.explanation.tranches,
+					assiette,
+					multiplicateur
+				},
+				cache
+			),
+		liftTemporalNode(assiette),
+		liftTemporalNode(multiplicateur)
+	)
+	const temporalTranches = mapTemporal(
+		tranches => evaluateGrille(tranches, evaluate),
+		temporalTranchesPlafond
+	)
+
+	const activeTranches = mapTemporal(tranches => {
+		const activeTranche = tranches.find(tranche => tranche.isActive)
+		if (activeTranche) {
+			return [activeTranche]
+		}
+		const lastTranche = tranches[tranches.length - 1]
+		if (lastTranche.isAfterActive === false) {
+			return [{ nodeValue: false }]
+		}
+		return tranches.filter(tranche => tranche.isActive === null)
+	}, temporalTranches)
+	const temporalValue = mapTemporal(
+		tranches => (tranches[0].isActive === null ? null : tranches[0].nodeValue),
+		activeTranches
+	)
 
 	return {
 		...node,
+		nodeValue: temporalAverage(temporalValue),
+		...(temporalValue.length > 1
+			? {
+					temporalValue
+			  }
+			: { missingVariables: mergeAllMissing(activeTranches[0].value) }),
 		explanation: {
-			tranches,
 			assiette,
-			multiplicateur
+			multiplicateur,
+			...(temporalTranches.length > 1
+				? { temporalTranches }
+				: { tranches: temporalTranches[0].value })
 		},
-		missingVariables,
-		nodeValue,
-		unit: activeTranches[0]?.unit ?? node.unit
+		unit: activeTranches[0].value[0]?.unit ?? node.unit
 	}
 }

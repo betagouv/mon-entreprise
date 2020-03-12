@@ -4,13 +4,12 @@ import Variations from 'Engine/mecanismViews/Variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import {
 	liftTemporal2,
-	mapTemporal,
 	pureTemporal,
 	sometime,
 	temporalAverage
 } from 'Engine/period'
 import { inferUnit } from 'Engine/units'
-import { and, dissoc, not, or } from 'ramda'
+import { dissoc, or } from 'ramda'
 import { mergeAllMissing } from './../evaluation'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
@@ -81,12 +80,16 @@ function evaluate(
 			}
 			const evaluatedCondition = evaluate(condition)
 			const currentCondition = liftTemporal2(
-				and,
-				mapTemporal(not, previousConditions),
+				(previousCond, currentCond) =>
+					previousCond === null ? previousCond : !previousCond && currentCond,
+				previousConditions,
 				evaluatedCondition.temporalValue ??
 					pureTemporal(evaluatedCondition.nodeValue)
 			)
-			const currentConditionAlwaysFalse = !sometime(Boolean, currentCondition)
+			const currentConditionAlwaysFalse = !sometime(
+				x => x !== false,
+				currentCondition
+			)
 			if (currentConditionAlwaysFalse) {
 				return [
 					evaluation,
@@ -112,7 +115,6 @@ function evaluate(
 				evaluatedConsequence.temporalValue ??
 					pureTemporal(evaluatedConsequence.nodeValue)
 			)
-
 			return [
 				liftTemporal2(or, evaluation, currentValue),
 				[
@@ -139,6 +141,7 @@ function evaluate(
 			[]
 		)
 	)
+	// console.log(missingVariables, nodeValue, temporalValue)
 	return {
 		...node,
 		nodeValue,

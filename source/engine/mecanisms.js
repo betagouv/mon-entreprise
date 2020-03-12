@@ -3,7 +3,6 @@ import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import { inferUnit, isPercentUnit } from 'Engine/units'
 import {
-	add,
 	any,
 	equals,
 	evolve,
@@ -342,7 +341,10 @@ export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 export let mecanismSum = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(add, 0)
+	let evaluate = evaluateArray(
+		(x, y) => (x === false && y === false ? false : x + y),
+		false
+	)
 
 	return {
 		evaluate,
