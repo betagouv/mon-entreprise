@@ -27,31 +27,7 @@ d:
   formule: a + b + c
 `
 
-export default function SafeStudio() {
-	return (
-		<div
-			css={`
-				display: flex;
-				height: 100%;
-				flex-direction: column;
-			`}
-		>
-			<div className="ui__ container">
-				<Header noSubtitle sectionName="Studio" />
-			</div>
-			<div
-				css={`
-					flex-grow: 1;
-				`}
-			>
-				<ErrorBoundary>
-					<Studio />
-				</ErrorBoundary>
-			</div>
-		</div>
-	)
-}
-export function Studio() {
+export default function Studio() {
 	const { search } = useLocation()
 	const currentExample = new URLSearchParams(search ?? '').get('exemple')
 	const [editorValue, setEditorValue] = useState(
@@ -60,7 +36,6 @@ export function Studio() {
 			: initialInput
 	)
 	const [targets, setTargets] = useState<string[]>([])
-	const [currentTarget, setCurrentTarget] = useState('')
 	const [rules, setRules] = useState(editorValue)
 
 	try {
@@ -69,65 +44,126 @@ export function Studio() {
 
 	return (
 		<Engine.Provider rules={rules}>
-			<Layout>
-				<section>
-					<ControlledEditor
+			<div
+				css={`
+					display: flex;
+					height: 100%;
+					flex-direction: column;
+				`}
+			>
+				<div className="ui__ container">
+					<Header noSubtitle sectionName="Studio" />
+				</div>
+				<Layout>
+					<section>
+						<ControlledEditor
+							css={`
+								height: 100%;
+							`}
+							language="yaml"
+							value={editorValue}
+							onChange={(_ev, newValue) => setEditorValue(newValue ?? '')}
+							options={{ minimap: { enabled: false } }}
+						/>
+					</section>
+					<section
 						css={`
-							height: 100%;
-						`}
-						language="yaml"
-						value={editorValue}
-						onChange={(ev, newValue) => setEditorValue(newValue ?? '')}
-						options={{ minimap: { enabled: false } }}
-					/>
-				</section>
-				<section
-					css={`
-						padding: 30px 20px;
-					`}
-				>
-					<div
-						css={`
-							background: var(--lighterColor);
-							padding: 20px;
-							border-radius: 5px;
+							padding: 30px 20px;
 						`}
 					>
-						<label htmlFor="objectif">Que voulez-vous calculer ? </label>
-						<select
-							id="objectif"
-							onChange={e => {
-								setCurrentTarget(e.target.value)
-							}}
-							css={`
-								padding: 5px;
-							`}
-						>
-							{targets.map(target => (
-								<option key={target} value={target}>
-									{target}
-								</option>
-							))}
-						</select>
-						<br />
-						<br />
-						<button
-							className="ui__ button small"
-							onClick={() => setRules(editorValue)}
-						>
-							{emoji('▶️')} Recalculer
-						</button>
-					</div>
-					<Results
-						rule={targets.includes(currentTarget) ? currentTarget : targets[0]}
-					/>
-				</section>
-			</Layout>
+						<Results
+							targets={targets}
+							onClickUpdate={() => setRules(editorValue)}
+						/>
+					</section>
+				</Layout>
+			</div>
 		</Engine.Provider>
 	)
 }
 
+export const Results = ({ targets, onClickUpdate }) => {
+	const [currentTarget, setCurrentTarget] = useState('')
+	const rule = targets.includes(currentTarget) ? currentTarget : targets[0]
+	const error = Engine.useError()
+	const analysis = Engine.useEvaluation(rule)
+	return error !== null ? (
+		<div
+			css={`
+				background: lightyellow;
+				padding: 20px;
+				border-radius: 5px;
+			`}
+		>
+			{nl2br(error)}
+			<br />
+			<br />
+			<button className="ui__ button small" onClick={onClickUpdate}>
+				{emoji('▶️')} Ré-essayer
+			</button>
+		</div>
+	) : (
+		<>
+			<div
+				css={`
+					background: var(--lighterColor);
+					padding: 20px;
+					border-radius: 5px;
+				`}
+			>
+				<label htmlFor="objectif">Que voulez-vous calculer ? </label>
+				<select
+					id="objectif"
+					onChange={e => {
+						setCurrentTarget(e.target.value)
+					}}
+					css={`
+						padding: 5px;
+					`}
+				>
+					{targets.map(target => (
+						<option key={target} value={target}>
+							{target}
+						</option>
+					))}
+				</select>
+				<br />
+				<br />
+				<button className="ui__ button small" onClick={onClickUpdate}>
+					{emoji('▶️')} Recalculer
+				</button>
+			</div>
+			{analysis ? (
+				<div>
+					<h2>Résultats</h2>
+					{analysis.isApplicable === false ? (
+						<>{emoji('❌')} Cette règle n'est pas applicable</>
+					) : (
+						<Engine.Evaluation expression={rule} />
+					)}
+				</div>
+			) : null}
+		</>
+	)
+}
+
+const newlineRegex = /(\r\n|\r|\n)/g
+
+function nl2br(str: string) {
+	if (typeof str !== 'string') {
+		return str
+	}
+
+	return str.split(newlineRegex).map(function(line, index) {
+		if (line.match(newlineRegex)) {
+			return React.createElement('br', { key: index })
+		}
+		return line
+	})
+}
+
 const Layout = styled.div`
+	flex-grow: 1;
 	display: flex;
 	height: 100%;
 
@@ -144,46 +180,3 @@ const Layout = styled.div`
 		}
 	}
 `
-
-export const Results = ({ rule }) => {
-	const analysis = Engine.useEvaluation(rule)
-	return analysis ? (
-		<div>
-			<h2>Résultats</h2>
-			{analysis.isApplicable === false ? (
-				<>{emoji('❌')} Cette règle n'est pas applicable</>
-			) : (
-				<Engine.Evaluation expression={rule} />
-			)}
-		</div>
-	) : null
-}
-
-class ErrorBoundary extends React.Component {
-	state = {
-		error: false as false | { message: string }
-	}
-	static getDerivedStateFromError(error) {
-		// Mettez à jour l'état, de façon à montrer l'UI de repli au prochain rendu.
-		return { error }
-	}
-
-	render() {
-		return (
-			<>
-				{this.state.error ? (
-					<p css="max-height: 4rem; overflow: hidden; border: 3px solid red;">
-						Erreur :{' '}
-						{
-							this.state.error.message.split(
-								'The error may be correlated with'
-							)[0]
-						}
-					</p>
-				) : (
-					this.props.children
-				)}
-			</>
-		)
-	}
-}
