@@ -98,7 +98,8 @@ export const constructLocalizedSitePath = (language: string) => {
 					'path.gérer.déclaration-indépendant.récapitulatif',
 					'/récapitulatif'
 				)
-			}
+			},
+			coronavirus: t('path.gérer.coronavirus', '/coronavirus')
 		},
 		simulateurs: {
 			index: t('path.simulateurs.index', '/simulateurs'),

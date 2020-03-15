@@ -326,7 +326,7 @@ function AidesGlimpse() {
 							<span>{formatCurrency(aides.nodeValue, language)}</span>
 						</AnimatedTargetValue>
 					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides.explanation.icons)}
+					<Trans>d'aides</Trans> {emoji(aides.explanation?.icons ?? '')}
 				</RuleLink>
 			</div>
 		</Animate.fromTop>

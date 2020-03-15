@@ -16,7 +16,8 @@ type EngineConfig = {
 }
 
 let enrichRules = input => {
-	const rules = typeof input === 'string' ? safeLoad(input) : input
+	const rules =
+		typeof input === 'string' ? safeLoad(input.replace(/\t/g, '  ')) : input
 	const rulesList = Array.isArray(rules)
 		? rules
 		: Object.entries(rules).map(([dottedName, rule]) => ({
@@ -27,20 +28,19 @@ let enrichRules = input => {
 }
 
 export default class Engine {
+	rules: Array<Rule>
 	parsedRules: Record<DottedName, Rule>
 	defaultValues: Simulation['situation']
 	situation: Simulation['situation'] = {}
 	cache = { ...emptyCache }
 
 	constructor(config: EngineConfig = {}) {
-		const rules = config
-			? [
-					...(config.rules ? enrichRules(config.rules) : rulesFr),
-					...(config.extra ? enrichRules(config.extra) : [])
-			  ]
-			: rulesFr
-		this.parsedRules = parseAll(rules) as any
-		this.defaultValues = collectDefaults(rules)
+		this.rules = [
+			...(config?.rules ? enrichRules(config.rules) : rulesFr),
+			...(config?.extra ? enrichRules(config.extra) : [])
+		]
+		this.parsedRules = parseAll(this.rules) as any
+		this.defaultValues = collectDefaults(this.rules)
 	}
 
 	private resetCache() {

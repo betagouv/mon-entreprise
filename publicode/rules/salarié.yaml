@@ -220,12 +220,16 @@ contrat salarié . chômage partiel:
 
 contrat salarié . chômage partiel . heures chômées:
   question: Quelle est la durée mensuelle du chômage partiel ?
-  description:
+  description: >-
+    Le nombre d'heure chômées correspond à la différence entre la durée légale
+    de travail (35h/semaine pour un temps plein) et le nombre d'heures
+    travaillées.
+
+    Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
   unité: heures/mois
   par défaut: 0
 
 contrat salarié . chômage partiel . indemnité d'activité partielle:
-  description: >-
   formule:
     multiplication:
       taux: 70%
@@ -1540,7 +1544,10 @@ contrat salarié . rémunération . net:
 
   formule:
     allègement:
-      assiette: rémunération . net de cotisations
+      assiette:
+        somme:
+          - net de cotisations
+          - revenus de remplacement
       abattement:
         somme:
           - avantages en nature . montant

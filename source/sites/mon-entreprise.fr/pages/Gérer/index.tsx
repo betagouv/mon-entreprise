@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router'
 import { NavLink, useLocation } from 'react-router-dom'
 import AideDéclarationIndépendant from './AideDéclarationIndépendant/index'
 import { AideDéclarationIndépendantsRécapitulatif } from './AideDéclarationIndépendant/Récapitulatif'
+import { Coronavirus } from './Coronavirus'
 import Embaucher from './Embaucher'
 import Home from './Home'
 import SécuritéSociale from './SécuritéSociale'
@@ -54,6 +55,7 @@ export default function Gérer() {
 					path={sitePaths.gérer.déclarationIndépendant.récapitulatif}
 					component={AideDéclarationIndépendantsRécapitulatif}
 				/>
+				<Route path={sitePaths.gérer.coronavirus} component={Coronavirus} />
 			</Switch>
 		</>
 	)
