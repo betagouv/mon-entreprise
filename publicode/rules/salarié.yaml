@@ -205,6 +205,52 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . dista
     10 km/jour: 200
   par défaut: 80
 
+contrat salarié . chômage partiel:
+  question: Le salarié est-il en chômage partiel ?
+  description: >-
+    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
+    dispositif de chômage partiel étendu dans lequel l'État prend en charge
+    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+
+    La déclaration d'activité partielle est simplifiée est l'effet est
+    rétroactif.
+  par défaut: non
+  rend non applicable:
+    - temps de travail . heures supplémentaires
+
+contrat salarié . chômage partiel . heures chômées:
+  question: Quelle est la durée mensuelle du chômage partiel ?
+  description:
+  unité: heures/mois
+  par défaut: 0
+
+contrat salarié . chômage partiel . indemnité d'activité partielle:
+  description: >-
+  formule:
+    multiplication:
+      taux: 70%
+      assiette:
+        encadrement:
+          valeur:
+            encadrement:
+              valeur: rémunération . taux horaire
+              plafond: 4.5 * SMIC horaire
+          plancher: 8.03 €/heure
+      facteur: heures chômées
+
+contrat salarié . chômage partiel . absence activité partielle:
+  formule:
+    multiplication:
+      assiette: rémunération . taux horaire
+      facteur: (- heures chômées)
+
+contrat salarié . chômage partiel . indemnisation entreprise:
+  titre: Remboursement employeur de l'indemnité d'activité partielle
+  description: >-
+    Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
+    l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
+  formule: indemnité d'activité partielle
+
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
@@ -985,6 +1031,10 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     salaire médian: 2300
     SMIC: 1522
 
+contrat salarié . rémunération . taux horaire:
+  unité: €/heure
+  formule: assiette de vérification du SMIC / temps de travail . temps contractuel
+
 contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description: >
     Le taux horaire utilisé pour calculer la rémunération liée au heures
@@ -1106,6 +1156,7 @@ contrat salarié . rémunération . brut:
       - heures supplémentaires
       - heures complémentaires
       - frais professionnels
+      - chômage partiel . absence activité partielle
       - prévoyance . employeur
       - retraite supplémentaire . employeur
 
@@ -1134,6 +1185,19 @@ contrat salarié . rémunération . heures complémentaires:
         somme:
           - temps de travail . heures complémentaires
           - temps de travail . heures complémentaires . majoration
+
+contrat salarié . rémunération . revenus de remplacement:
+  description: >-
+    Les revenus de remplacement sont les revenus perçus en remplacement de la
+    rémunération du travail : allocations de chômage ou de chômage partiel,
+    indemnités maladie ou accident du travail, pension de retraite, revenu
+    d'intégration sociale, etc.
+
+    Ces revenus sont imposables mais sont exonérés de cotisations sociales. Ils
+    sont soumis à la CSG/CRDS avec un taux spécifique.
+  formule:
+    somme:
+      - chômage partiel . indemnité d'activité partielle
 
 contrat salarié . avantages sociaux:
   description: >
@@ -1624,9 +1688,8 @@ contrat salarié . cotisations . patronales . conventionnelles:
   formule: 0
 
 contrat salarié . aides employeur:
-  titre: aides à l'embauche
+  titre: aides employeur
   résumé: Pour l'employeur, différées dans le temps
-  icônes: 🎁
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
 
@@ -1635,6 +1698,7 @@ contrat salarié . aides employeur:
     somme:
       - aide à l'embauche d'apprentis
       - emploi franc
+      - chômage partiel . indemnisation entreprise
   note:
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -2395,13 +2459,22 @@ contrat salarié . assiette CSG et CRDS:
 contrat salarié . assiette CSG et CRDS . assiette abattue:
   formule:
     barème:
-      assiette: cotisations . assiette
+      assiette:
+        somme:
+          - cotisations . assiette
+          - rémunération . revenus de remplacement
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
         - taux: 98.25%
           plafond: 4
         - taux: 100%
+
+contrat salarié . assiette CSG et CRDS . assiette revenu remplacements:
+  formule:
+    produit:
+      taux: 98.25%
+      assiette: rémunération . revenus de remplacement
 
 contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
@@ -2410,9 +2483,6 @@ contrat salarié . CSG . assiette heures supplémentaires et complémentaires d�
       taux: 98.25%
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-contrat salarié . CSG . assiette CSG déductible:
-  formule: assiette CSG et CRDS - assiette heures supplémentaires et complémentaires défiscalisées
 
 contrat salarié . CSG:
   cotisation:
@@ -2426,17 +2496,34 @@ contrat salarié . CSG:
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
-          assiette: assiette CSG et CRDS
+          assiette:
+            somme:
+              - assiette CSG et CRDS
+              - (- assiette CSG et CRDS . assiette revenu remplacements)
           taux: 2.4%
         - attributs:
             impôt sur le revenu: déductible
-          assiette: assiette CSG déductible
+          assiette:
+            somme:
+              - assiette CSG et CRDS
+              - (- assiette heures supplémentaires et complémentaires défiscalisées)
+              - (- assiette CSG et CRDS . assiette revenu remplacements)
           taux: 6.8%
         - attributs:
             nom: heures supplémentaires et complémentaires défiscalisées
             impôt sur le revenu: non déductible
           assiette: assiette heures supplémentaires et complémentaires défiscalisées
           taux: 6.8%
+        - attributs:
+            nom: CSG déductible sur les revenus de remplacement
+            impôt sur le revenu: déductible
+          assiette: assiette CSG et CRDS . assiette revenu remplacements
+          taux: 3.8%
+        - attributs:
+            nom: CSG non déductible sur les revenus de remplacement
+            impôt sur le revenu: non déductible
+          assiette: assiette CSG et CRDS . assiette revenu remplacements
+          taux: 2.4%
 
   exemples:
     - nom: 'CSG cadre'
