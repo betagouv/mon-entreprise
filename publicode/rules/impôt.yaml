@@ -12,7 +12,6 @@ impôt:
               produit:
                 assiette: revenu imposable
                 taux: taux du prélèvement à la source
-          - sinon: 0
       - CEHR
       - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
 
@@ -358,6 +357,7 @@ impôt . taux personnalisé:
 
 revenus net de cotisations:
   résumé: Avant impôt
+  unité: €/an
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.

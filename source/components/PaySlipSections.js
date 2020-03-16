@@ -47,10 +47,17 @@ export let SalaireBrutSection = ({ getRule }) => {
 
 export let Line = ({ rule, ...props }) => {
 	const defaultUnit = useSelector(defaultUnitSelector)
-	;<>
-		<RuleLink {...rule} />
-		<Value {...rule} nilValueSymbol="—" defaultUnit={defaultUnit} {...props} />
-	</>
+	return (
+		<>
+			<RuleLink {...rule} />
+			<Value
+				{...rule}
+				nilValueSymbol="—"
+				defaultUnit={defaultUnit}
+				{...props}
+			/>
+		</>
+	)
 }
 
 export let SalaireNetSection = ({ getRule }) => {

@@ -40,10 +40,6 @@ export function evaluatePlafondUntilActiveTranche(
 			const plancher = tranches[i - 1]
 				? tranches[i - 1].plafond
 				: { nodeValue: 0 }
-			const isAfterActive =
-				plancher.nodeValue === null || assiette.nodeValue === null
-					? null
-					: plancher.nodeValue > assiette.nodeValue
 
 			let plafondValue =
 				plafond.nodeValue === null || multiplicateur.nodeValue === null
@@ -67,6 +63,10 @@ export function evaluatePlafondUntilActiveTranche(
 				)
 			}
 			let plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
+			const isAfterActive =
+				plancherValue === null || assiette.nodeValue === null
+					? null
+					: plancherValue > assiette.nodeValue
 
 			const calculationValues = [plafond, assiette, multiplicateur, plancher]
 			if (calculationValues.some(node => node.nodeValue === null)) {

@@ -115,12 +115,14 @@ function evaluate(
 				evaluatedConsequence.temporalValue ??
 					pureTemporal(evaluatedConsequence.nodeValue)
 			)
+			console.log(evaluatedCondition)
 			return [
 				liftTemporal2(or, evaluation, currentValue),
 				[
 					...explanations,
 					{
 						condition: evaluatedCondition,
+						satisfied: !!evaluatedCondition.nodeValue,
 						consequence: evaluatedConsequence
 					}
 				],
@@ -141,7 +143,6 @@ function evaluate(
 			[]
 		)
 	)
-	// console.log(missingVariables, nodeValue, temporalValue)
 	return {
 		...node,
 		nodeValue,
@@ -149,7 +150,5 @@ function evaluate(
 		explanation,
 		missingVariables,
 		...(temporalValue.length > 1 && { temporalValue })
-		// TODO
-		// missingVariables
 	}
 }

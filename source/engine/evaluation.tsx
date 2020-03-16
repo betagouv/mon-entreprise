@@ -8,6 +8,7 @@ import {
 	mergeWith,
 	reduce
 } from 'ramda'
+import React from 'react'
 import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import {
@@ -79,9 +80,7 @@ export const evaluateArray = (reducer, start) => (
 		cache._meta.contextRule,
 		node.name
 	)
-	if (!evaluatedNodes.every(Boolean)) {
-		console.log(node.explanation)
-	}
+
 	const temporalValues = concatTemporals(
 		evaluatedNodes.map(
 			({ temporalValue, nodeValue }) => temporalValue ?? pureTemporal(nodeValue)
@@ -96,6 +95,7 @@ export const evaluateArray = (reducer, start) => (
 
 	const baseEvaluation = {
 		...node,
+		missingVariables: mergeAllMissing(evaluatedNodes),
 		explanation: evaluatedNodes,
 		unit: evaluatedNodes[0].unit
 	}
@@ -191,7 +191,8 @@ export let evaluateObject = (objectShape, effect) => (
 		...node,
 		nodeValue,
 		unit: sameUnitTemporalExplanation[0].value.unit,
-		explanation: evaluations
+		explanation: evaluations,
+		missingVariables: mergeAllMissing(Object.values(evaluations))
 	}
 	if (sameUnitTemporalExplanation.length === 1) {
 		return {

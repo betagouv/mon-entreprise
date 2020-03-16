@@ -2898,13 +2898,12 @@ contrat salarié . taxe sur les salaires:
         entreprise . effectif: 1
       valeur attendue: 0
     - nom: association non lucrative
-      unités par défaut: [€/mois]
       situation:
         entreprise . association non lucrative: oui
         rémunération . brut de base: 2300
         entreprise . effectif: 10
         complémentaire santé . forfait: 0
-      valeur attendue: 48.10
+      valeur attendue: 577
 
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576

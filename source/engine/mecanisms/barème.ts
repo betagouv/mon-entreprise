@@ -49,7 +49,15 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 				"Le taux d'une tranche ne peut pas être une valeur temporelle"
 			)
 		}
-		if ([taux.nodeValue, tranche.nodeValue].some(value => value === null)) {
+
+		if (
+			[
+				assiette.nodeValue,
+				taux.nodeValue,
+				tranche.plafondValue,
+				tranche.plancherValue
+			].some(value => value === null)
+		) {
 			return {
 				...tranche,
 				taux,
@@ -96,7 +104,6 @@ const evaluate = (
 		temporalTranchesPlafond,
 		liftTemporalNode(assiette)
 	)
-
 	const temporalValue = mapTemporal(
 		tranches =>
 			tranches.reduce(

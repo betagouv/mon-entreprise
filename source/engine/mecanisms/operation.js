@@ -57,7 +57,7 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 				if (['∕', '-'].includes(node.operator) && a === false) {
 					return false
 				}
-				if (['×', '+'].includes(node.operator) && a === false) {
+				if (['+'].includes(node.operator) && a === false) {
 					return b
 				}
 				if (['∕', '-', '×', '+'].includes(node.operator) && b === false) {
