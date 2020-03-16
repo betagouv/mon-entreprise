@@ -31,7 +31,6 @@ let Comp = function Variations({ nodeValue, explanation, unit }) {
 						</p>
 						<ol>
 							{explanation.map(({ condition, consequence, satisfied }, i) => (
-								// console.log(condition, satisfied) ||
 								<li
 									key={i}
 									style={{

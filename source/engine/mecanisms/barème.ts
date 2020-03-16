@@ -5,7 +5,8 @@ import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
 import { liftTemporalNode, mapTemporal, temporalAverage } from 'Engine/period'
 import { liftTemporal2 } from 'Engine/temporal'
-import { convertUnit, parseUnit } from '../units'
+import { convertUnit } from '../units'
+import { parseUnit } from './../units'
 import {
 	evaluatePlafondUntilActiveTranche,
 	parseTranches
@@ -113,7 +114,6 @@ const evaluate = (
 			),
 		temporalTranches
 	)
-
 	return {
 		...node,
 		nodeValue: temporalAverage(temporalValue),

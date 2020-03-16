@@ -55,7 +55,6 @@ describe('bug-analyse-many', function() {
 
 		const one = analyse(rules, 'cotisations')(stateSelector).targets[0]
 
-		//console.log(many[0].nodeValue, many[1].nodeValue, one.nodeValue)
 		expect(many[1].nodeValue).to.be.closeTo(one.nodeValue, 0.1)
 	})
 	it('should compute the same contributions if asked with analyseMany or analyse', function() {

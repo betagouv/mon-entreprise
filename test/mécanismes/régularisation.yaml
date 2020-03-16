@@ -10,6 +10,7 @@ plafond sécurité sociale:
   formule: 3500 €/mois | du 01/01/2020 | au 31/12/2020
 
 retraite:
+  unité: €/mois
   formule:
     multiplication:
       assiette: salaire
@@ -75,6 +76,7 @@ taux variable:
       - sinon: 20%
 
 cotisation spéciale:
+  unité: €/mois
   formule:
     régularisation:
       règle:

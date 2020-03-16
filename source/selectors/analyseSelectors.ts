@@ -111,7 +111,7 @@ let validatedStepsSelector = createSelector(
 	(foldedSteps, targetNames) => [...(foldedSteps || []), ...targetNames]
 )
 export const defaultUnitSelector = (state: RootState) =>
-	state.simulation?.defaultUnit
+	state.simulation?.defaultUnit ?? '€/mois'
 let branchesSelector = (state: RootState) => configSelector(state).branches
 let configSituationSelector = (state: RootState) =>
 	configSelector(state).situation || {}
@@ -172,9 +172,9 @@ export let ruleAnalysisSelector = createSelector(
 		(_, props: { dottedName: DottedName }) => props.dottedName,
 		situationsWithDefaultsSelector,
 		state => state.situationBranch || 0,
-		defaultUnitsSelector
+		defaultUnitSelector
 	],
-	(rules, dottedName, situations, situationBranch, defaultUnits) => {
+	(rules, dottedName, situations, situationBranch, defaultUnit) => {
 		return analyseRule(
 			rules,
 			dottedName,
@@ -184,7 +184,7 @@ export let ruleAnalysisSelector = createSelector(
 					: situations
 				return currentSituation[dottedName]
 			},
-			defaultUnits
+			[defaultUnit]
 		)
 	}
 )
@@ -217,7 +217,7 @@ export let exampleAnalysisSelector = createSelector(
 			rules,
 			dottedName,
 			(dottedName: DottedName) => situation[dottedName],
-			example?.defaultUnits
+			example?.defaultUnit
 		)
 )
 
@@ -227,18 +227,16 @@ let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 			parsedRulesSelector,
 			targetNamesSelector,
 			situationSelector,
-			defaultUnitsSelector
+			defaultUnitSelector
 		],
-		(parsedRules, targetNames, situations, defaultUnits) => {
+		(parsedRules, targetNames, situations, defaultUnit) => {
 			return mapOrApply(
 				situation =>
-					analyseMany(
-						parsedRules,
-						targetNames,
-						defaultUnits
-					)((dottedName: DottedName) => {
-						return situation[dottedName]
-					}),
+					analyseMany(parsedRules, targetNames, [defaultUnit])(
+						(dottedName: DottedName) => {
+							return situation[dottedName]
+						}
+					),
 				situations
 			)
 		}

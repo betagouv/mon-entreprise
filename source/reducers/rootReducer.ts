@@ -8,6 +8,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
+import { areUnitConvertible, convertUnit, parseUnit } from './../engine/units'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
@@ -108,6 +109,37 @@ function updateSituation(
 		? omit(goals)
 		: identity
 	return { ...removePreviousTarget(situation), [fieldName]: value }
+}
+
+function updateDefaultUnit(situation, { toUnit, analysis }) {
+	const unit = parseUnit(toUnit)
+	const goals = goalsFromAnalysis(analysis)
+	const convertedSituation = Object.keys(situation)
+		.map(
+			dottedName =>
+				analysis.targets.find(target => target.dottedName === dottedName) ||
+				analysis.cache[dottedName]
+		)
+		.filter(
+			rule =>
+				rule.dottedName === 'entreprise . charges' || // HACK en attendant de revoir le fonctionnement des unités
+				(goals?.includes(rule.dottedName) &&
+					(rule.unit || rule.defaultUnit) &&
+					!rule.unité &&
+					areUnitConvertible(rule.unit || rule.defaultUnit, unit))
+		)
+		.reduce(
+			(convertedSituation, rule) => ({
+				...convertedSituation,
+				[rule.dottedName]: convertUnit(
+					rule.unit || rule.defaultUnit,
+					unit,
+					situation[rule.dottedName]
+				)
+			}),
+			situation
+		)
+	return convertedSituation
 }
 
 type QuestionsKind =
@@ -220,6 +252,10 @@ function simulation(
 		case 'UPDATE_DEFAULT_UNIT':
 			return {
 				...state,
+				situation: updateDefaultUnit(state.situation, {
+					toUnit: action.defaultUnit,
+					analysis
+				}),
 				defaultUnit: action.defaultUnit
 			}
 	}

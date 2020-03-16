@@ -7,10 +7,11 @@ import {
 } from './units'
 
 export function simplifyNodeUnit(node) {
-	if (!node.unit || !node.nodeValue) {
+	if (!node.unit || node.nodeValue === false || node.nodeValue == null) {
 		return node
 	}
 	const [unit, nodeValue] = simplifyUnitWithValue(node.unit, node.nodeValue)
+
 	return {
 		...node,
 		unit,

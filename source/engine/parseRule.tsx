@@ -84,6 +84,7 @@ export default (rules, rule, parsedRules) => {
 						node.explanation
 					),
 					{ nodeValue, unit, missingVariables, temporalValue } = explanation
+
 				return {
 					...node,
 					nodeValue,
@@ -136,8 +137,8 @@ export default (rules, rule, parsedRules) => {
 		...parsedRoot,
 		evaluate,
 		parsed: true,
-		isDisabledBy: [],
 		defaultUnit: parsedRoot.defaultUnit || parsedRoot.formule?.unit,
+		isDisabledBy: [],
 		replacedBy: []
 	}
 	parsedRules[rule.dottedName]['rendu non applicable'] = {

@@ -115,7 +115,6 @@ function evaluate(
 				evaluatedConsequence.temporalValue ??
 					pureTemporal(evaluatedConsequence.nodeValue)
 			)
-			console.log(evaluatedCondition)
 			return [
 				liftTemporal2(or, evaluation, currentValue),
 				[

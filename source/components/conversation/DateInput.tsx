@@ -13,7 +13,6 @@ export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 
 	const handleDateChange = useCallback(
 		evt => {
-			console.log('target', evt.target)
 			if (!evt.target.value) {
 				return onChange(null)
 			}

@@ -12,7 +12,6 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 	const siren = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany?.siren
 	)
-	console.log(useSelector((state: RootState) => state.rules))
 	const componentRef = useRef<HTMLDivElement>(null)
 
 	return (

@@ -184,9 +184,7 @@ export let evaluateObject = (objectShape, effect) => (
 		sameUnitTemporalExplanation
 	)
 	const nodeValue = temporalAverage(temporalValue)
-	if (nodeValue === 495) {
-		console.log(temporalValue)
-	}
+
 	const baseEvaluation = {
 		...node,
 		nodeValue,

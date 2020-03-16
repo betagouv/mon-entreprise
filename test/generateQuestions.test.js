@@ -237,8 +237,6 @@ describe('nextSteps', function() {
 			analysis = analyse(rules, 'sum')(stateSelector),
 			result = collectMissingVariables(analysis.targets)
 
-		//		console.log('analysis', JSON.stringify(analysis, null, 4))
-
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
 	})
