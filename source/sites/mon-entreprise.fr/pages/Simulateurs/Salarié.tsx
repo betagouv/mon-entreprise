@@ -133,7 +133,7 @@ function SeoExplanations() {
 
 export let SalarySimulation = () => {
 	const dispatch = useDispatch()
-	const location = useLocation()
+	const location = useLocation<{ fromGérer?: boolean }>()
 	dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
 	const sitePaths = useContext(SitePathsContext)
 	return (

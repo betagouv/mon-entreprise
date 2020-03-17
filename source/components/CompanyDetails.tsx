@@ -3,6 +3,17 @@ import { Trans, useTranslation } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
 
+type Company = {
+	denomination: string
+	prenom_usuel: string
+	nom: string
+	date_creation: string
+	etablissement_siege: {
+		libelle_commune: string
+		code_postal: string
+	}
+}
+
 export default function CompanyDetails({ siren, denomination }: Etablissement) {
 	const { i18n } = useTranslation()
 	const DateFormatter = useMemo(
@@ -14,7 +25,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 			}),
 		[i18n.language]
 	)
-	const [company, setCompany] = useState()
+	const [company, setCompany] = useState<Company>()
 	useEffect(() => {
 		fetchCompanyDetails(siren).then(setCompany)
 	}, [siren])
@@ -25,8 +36,9 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 				{denomination || company ? (
 					<>
 						{denomination ||
-							company.denomination ||
-							company.prenom_usuel + ' ' + company.nom}{' '}
+							(company &&
+								(company.denomination ||
+									company.prenom_usuel + ' ' + company.nom))}{' '}
 						<small>({siren})</small>
 					</>
 				) : (
@@ -45,7 +57,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 				</strong>
 				,&nbsp;
 				{company ? (
-					company?.etablissement_siege ? (
+					company.etablissement_siege ? (
 						<>
 							<Trans>domiciliée à</Trans>{' '}
 							<strong>{company.etablissement_siege.libelle_commune}</strong> (

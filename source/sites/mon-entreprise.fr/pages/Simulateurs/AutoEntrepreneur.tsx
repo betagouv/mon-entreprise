@@ -15,7 +15,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
-	const location = useLocation()
+	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
 	dispatch(
 		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)

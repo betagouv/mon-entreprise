@@ -15,7 +15,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function Indépendant() {
 	const dispatch = useDispatch()
-	const location = useLocation()
+	const location = useLocation<{ fromGérer?: boolean }>()
 	dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
 	const { t } = useTranslation()
 	const inIframe = useContext(IsEmbeddedContext)
