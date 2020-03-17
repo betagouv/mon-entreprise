@@ -177,7 +177,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
 
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
-
   formule:
     barème:
       assiette: base des cotisations
@@ -186,7 +185,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         - taux: taux de cotisation * (100% - taux ACRE)
           plafond: 1
         - taux: taux de cotisation
-
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
@@ -216,15 +214,40 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
   formule:
     variations:
       - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement
+          toutes ces conditions:
+            - dirigeant . auto-entrepreneur . dom
+            - une de ces conditions:
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
+                - entreprise . catégorie d'activité . restauration ou hébergement
+        alors: 8.6%
+      - si:
+          toutes ces conditions:
+            - dirigeant . auto-entrepreneur . dom
+            - entreprise . catégorie d'activité . service ou vente != 'vente'
+            - entreprise . catégorie d'activité . restauration ou hébergement = 'non'
+        alors: 14.7%
+      - si:
+          toutes ces conditions:
+            - dirigeant . auto-entrepreneur . dom
+            - entreprise . catégorie d'activité . libérale règlementée
+            - entreprise . durée d'activité < 21 mois
+        alors: 7.4%
+      - si:
+          toutes ces conditions:
+            - dirigeant . auto-entrepreneur . dom = 'non'
+            - une de ces conditions:
+                - entreprise . catégorie d'activité . service ou vente = 'vente'
+                - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 12.8%
       - sinon: 22%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . ACRE
+  non applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur . dom
+      - entreprise . durée d'activité < 2 ans
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
     l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 25% signifie que
@@ -277,6 +300,34 @@ dirigeant . auto-entrepreneur . impôt . abattement . taux:
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
       - sinon: 50%
+
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guadeloupe Réunion Martinique:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur . dom
+      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
+  formule:
+    barème:
+      assiette: base des cotisations
+      tranches:
+        - plafond: 2450
+          taux: 30%
+        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
+
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guyane Mayotte:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur . dom
+      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
+  formule:
+    barème:
+      assiette: base des cotisations
+      tranches:
+        - plafond: 4050
+          taux: 40%
+        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description: >
