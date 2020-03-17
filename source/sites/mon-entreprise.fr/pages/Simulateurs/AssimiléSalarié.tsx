@@ -12,7 +12,7 @@ import { useLocation } from 'react-router'
 
 export default function AssimiléSalarié() {
 	const dispatch = useDispatch()
-	const location = useLocation()
+	const location = useLocation<{ fromGérer?: boolean }>()
 	dispatch(setSimulationConfig(assimiléConfig, location.state?.fromGérer))
 	const { t } = useTranslation()
 	const inIframe = useContext(IsEmbeddedContext)
