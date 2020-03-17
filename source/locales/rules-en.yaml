@@ -931,6 +931,20 @@ contrat salarié . allocations familiales . taux réduit:
 contrat salarié . allocations familiales . taux réduit . plafond de réduction:
   titre.en: Ceiling on the reduction of family allowances
   titre.fr: Plafond de la réduction des allocations familiales
+contrat salarié . ancienneté:
+  titre.en: '[automatic] seniority'
+  titre.fr: ancienneté
+contrat salarié . ancienneté . date d'embauche:
+  question.en: '[automatic] What is the employee''s hiring date?'
+  question.fr: Quelle est la date d'embauche du salarié ?
+  suggestions.Début 2019.en: '[automatic] Early 2019'
+  suggestions.Début 2019.fr: Début 2019
+  suggestions.Début 2020.en: '[automatic] Early 2020'
+  suggestions.Début 2020.fr: Début 2020
+  suggestions.Fin 2017.en: '[automatic] End 2017'
+  suggestions.Fin 2017.fr: Fin 2017
+  titre.en: '[automatic] hire date'
+  titre.fr: date d'embauche
 contrat salarié . apprentissage:
   description.en: >
     An apprenticeship contract is a written employment contract of limited
@@ -1196,11 +1210,108 @@ contrat salarié . convention collective:
   question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
+contrat salarié . convention collective . BTP:
+  description.en: >-
+    [automatic] The company depends on the national collective agreement for the
+    building industry. This agreement defines three categories of employees:
+    blue-collar workers, ETAMs (employees, technicians and supervisors) and
+    managers.
+  description.fr: >-
+    L'entreprise dépend de la convention collective nationale du bâtiment. Cette
+    convention définit trois catégories de salariés : les ouvriers, les ETAM
+    (employés, techniciens et agents de maîtrise) et les cadres.
+  titre.en: '[automatic] Building'
+  titre.fr: Bâtiment
+contrat salarié . convention collective . BTP . OPPBTP:
+  titre.en: '[automatic] OPPBTP'
+  titre.fr: OPPBTP
+contrat salarié . convention collective . BTP . catégorie du salarié:
+  question.en: '[automatic] To which category does the employee belong?'
+  question.fr: À quelle catégorie la salarié appartient-t'il ?
+  titre.en: '[automatic] employee category'
+  titre.fr: catégorie du salarié
+contrat salarié . convention collective . BTP . catégorie du salarié . cadre:
+  titre.en: '[automatic] Framework'
+  titre.fr: Cadre
+contrat salarié . convention collective . BTP . catégorie du salarié . etam:
+  description.en: '[automatic] Employee, technician, master angent'
+  description.fr: 'Employé, technicien, angent de maîtrise'
+  titre.en: '[automatic] ETAM'
+  titre.fr: ETAM
+contrat salarié . convention collective . BTP . catégorie du salarié . ouvrier:
+  titre.en: '[automatic] Worker'
+  titre.fr: Ouvrier
+contrat salarié . convention collective . BTP . congés intempéries:
+  titre.en: '[automatic] bad weather'
+  titre.fr: congés intempéries
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
+  question.en: >-
+    [automatic] To which fund is the company attached for the payment of the bad
+    weather contribution?
+  question.fr: >-
+    À quelle caisse l'entreprise est-elle rattachée pour le versement de la
+    cotisation congés intempéries ?
+  titre.en: '[automatic] home office fund'
+  titre.fr: caisse de rattachement
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre:
+  titre.en: '[automatic] centre'
+  titre.fr: centre
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . centre ouest:
+  titre.en: '[automatic] western center'
+  titre.fr: centre ouest
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand est:
+  titre.en: '[automatic] great east'
+  titre.fr: grand est
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . grand ouest:
+  titre.en: '[automatic] great west'
+  titre.fr: grand ouest
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf:
+  titre.en: '[automatic] Île-de-France'
+  titre.fr: Île-de-France
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . méditerranée:
+  titre.en: '[automatic] mediterranean'
+  titre.fr: méditerranée
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . nord ouest:
+  titre.en: '[automatic] northwest'
+  titre.fr: nord ouest
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . rhône alpes auvergne:
+  titre.en: '[automatic] rhône alpes auvergne'
+  titre.fr: rhône alpes auvergne
+contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . sud ouest:
+  titre.en: '[automatic] southwest'
+  titre.fr: sud ouest
+contrat salarié . convention collective . BTP . cotisations conventionnelles:
+  titre.en: '[automatic] conventional contributions'
+  titre.fr: cotisations conventionnelles
+contrat salarié . convention collective . BTP . prévoyance complémentaire:
+  titre.en: '[automatic] complementary providence'
+  titre.fr: prévoyance complémentaire
+contrat salarié . convention collective . BTP . prévoyance complémentaire . cadre:
+  titre.en: '[automatic] framework'
+  titre.fr: cadre
+contrat salarié . convention collective . BTP . prévoyance complémentaire . etam:
+  titre.en: '[automatic] etam'
+  titre.fr: etam
+contrat salarié . convention collective . BTP . prévoyance complémentaire . ouvrier:
+  titre.en: '[automatic] worker'
+  titre.fr: ouvrier
+contrat salarié . convention collective . BTP . retraite complémentaire:
+  titre.en: '[automatic] retirement supplement'
+  titre.fr: retraite complémentaire
+contrat salarié . convention collective . BTP . retraite complémentaire . etam:
+  description.en: >-
+    [automatic] Conventional distribution fixed by Article 5 of the Building and
+    Public Works Agreement of 13 December 1990.
+  description.fr: >-
+    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13
+    décembre 1990.
+  titre.en: '[automatic] etam'
+  titre.fr: etam
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
   description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
-  titre.en: 'hotels, cafés restaurants HCR (beta)'
-  titre.fr: 'hôtels, cafés restaurants HCR (beta)'
+  titre.en: '[automatic] hotels, cafés and restaurants HCR'
+  titre.fr: 'hôtels, cafés restaurants HCR'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
   titre.en: overtime increase
   titre.fr: majoration heures supplémentaires
@@ -1214,8 +1325,8 @@ contrat salarié . convention collective . SVP:
   description.fr: >
     L'entreprise dépend de la convention collective nationale des entreprises
     privée du spectacle
-  titre.en: Performing arts private company (beta)
-  titre.fr: Spectacle vivant privé (beta)
+  titre.en: '[automatic] Private live show'
+  titre.fr: Spectacle vivant privé
 contrat salarié . convention collective . SVP . FCAP:
   description.en: >
     The "Fonds Commun d'Aide au Paritarisme du Spectacle Vivant Privé
@@ -1266,6 +1377,37 @@ contrat salarié . convention collective . SVP . prévoyance:
 contrat salarié . convention collective . droit commun:
   titre.en: common law
   titre.fr: droit commun
+contrat salarié . convention collective . optique:
+  titre.en: '[automatic] Optics'
+  titre.fr: Optique
+contrat salarié . convention collective . optique . coefficient:
+  description.en: >-
+    [automatic] Refer to the [grid provided by the collective
+    agreement](http://opticiensreunis.org/storage/pdf/D4AciCiqHMr9mgqlTgjW0hvfPyE4w6ZxGTCihzYy.pdf#page=27).
+  description.fr: >-
+    Se référer à la [grille fournie par la convention
+    collective](http://opticiensreunis.org/storage/pdf/D4AciCiqHMr9mgqlTgjW0hvfPyE4w6ZxGTCihzYy.pdf#page=27).
+  question.en: >-
+    [automatic] What is the coefficient corresponding to the employee's
+    position?
+  question.fr: Quel est le coefficient correspondant au poste du salarié ?
+  titre.en: '[automatic] coefficient'
+  titre.fr: coefficient
+contrat salarié . convention collective . optique . prime d'ancienneté:
+  titre.en: '[automatic] seniority bonus'
+  titre.fr: prime d'ancienneté
+contrat salarié . convention collective . optique . prévoyance:
+  titre.en: '[automatic] foresight'
+  titre.fr: prévoyance
+contrat salarié . convention collective . optique . prévoyance . employeur:
+  titre.en: '[automatic] employer'
+  titre.fr: employeur
+contrat salarié . convention collective . optique . prévoyance . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
+contrat salarié . convention collective . optique . salaire minimum conventionnel:
+  titre.en: '[automatic] standard minimum wage'
+  titre.fr: salaire minimum conventionnel
 contrat salarié . convention collective . sport:
   description.en: >
     The company is subject to the National Collective Agreement for Athletes
@@ -1279,8 +1421,8 @@ contrat salarié . convention collective . sport:
 
     Les disciplines concernées sont tous les sports pour lesquels il existe une
     fédération française agréée par le ministère de la Jeunesse et des Sports.
-  titre.en: Sport (beta)
-  titre.fr: Sport (beta)
+  titre.en: '[automatic] Sport'
+  titre.fr: Sport
 contrat salarié . convention collective . sport . cotisations:
   titre.en: contributions
   titre.fr: cotisations
@@ -2783,6 +2925,9 @@ contrat salarié . rémunération . primes . activité . base:
 contrat salarié . rémunération . primes . activité . conventionnelles:
   titre.en: bonuses "conventionnel"
   titre.fr: conventionnelles
+contrat salarié . rémunération . primes . ancienneté:
+  titre.en: '[automatic] seniority'
+  titre.fr: ancienneté
 contrat salarié . rémunération . primes . base:
   titre.en: base
   titre.fr: base
