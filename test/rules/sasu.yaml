@@ -4,9 +4,11 @@
 
 chiffre affaires:
   unité par défaut: €/mois
+  par défaut: 0
 
 charges:
-  par défaut: 0 €/mois
+  unité: €/mois
+  par défaut: 0
 
 répartition salaire sur dividendes:
   par défaut: 50

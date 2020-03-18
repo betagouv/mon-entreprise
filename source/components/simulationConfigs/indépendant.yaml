@@ -29,6 +29,6 @@ questions:
     - dirigeant . indépendant . cotisations et contributions . exonérations . âge
     - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
 
-unités par défaut: [€/an]
+unité par défaut: €/an
 situation:
   dirigeant: 'indépendant'

@@ -11,7 +11,6 @@ import './Variations.css'
 let Comp = function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
 	const { i18n } = useTranslation()
-
 	return (
 		<ShowValuesConsumer>
 			{showValues => (
@@ -64,7 +63,7 @@ let Comp = function Variations({ nodeValue, explanation, unit }) {
 									)}
 									{(expandedVariation === i || satisfied || !showValues) && (
 										<div style={{ margin: '1rem 0' }}>
-											{condition && (
+											{!condition.isDefault && (
 												<div
 													style={{
 														display: 'flex',
@@ -89,7 +88,7 @@ let Comp = function Variations({ nodeValue, explanation, unit }) {
 														satisfied
 													})}
 												>
-													{condition ? (
+													{!condition.isDefault ? (
 														<Trans>Alors</Trans>
 													) : (
 														<Trans>Sinon</Trans>

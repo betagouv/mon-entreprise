@@ -2,6 +2,7 @@
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 import { normalizeDateString } from 'Engine/date'
 import { parseUnit } from 'Engine/units'
+import { parsePeriod } from './temporal'
 
 export let binaryOperation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {
@@ -23,6 +24,13 @@ export let filteredVariable = ([{ variable }, , { value: filter }]) => ({
 
 export let variableWithConversion = ([{ variable }, , unit]) => ({
 	unitConversion: { explanation: variable, unit: parseUnit(unit.value) }
+})
+
+export let temporalNumericValue = (variable, word, date) => ({
+	temporalValue: {
+		explanation: variable,
+		period: parsePeriod(word.value.slice(2), date)
+	}
 })
 
 export let variable = ([firstFragment, nextFragment], _, reject) => {

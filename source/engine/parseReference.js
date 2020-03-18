@@ -149,10 +149,11 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 
 	if (cached) return addReplacementMissingVariable(cached)
 
-	let cacheNode = (nodeValue, missingVariables, explanation) => {
+	let cacheNode = (nodeValue, missingVariables, explanation, temporalValue) => {
 		cache[cacheName] = {
 			...node,
 			nodeValue,
+			temporalValue,
 			...(explanation && {
 				explanation
 			}),
@@ -183,7 +184,8 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		return cacheNode(
 			evaluation.nodeValue,
 			evaluation.missingVariables,
-			evaluation
+			evaluation,
+			evaluation.temporalValue
 		)
 	}
 

@@ -1,6 +1,8 @@
 import Value from 'Components/Value'
 import React from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { defaultUnitSelector } from 'Selectors/analyseSelectors'
 import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({ getRule }) => {
@@ -43,12 +45,20 @@ export let SalaireBrutSection = ({ getRule }) => {
 	)
 }
 
-export let Line = ({ rule, ...props }) => (
-	<>
-		<RuleLink {...rule} />
-		<Value {...rule} nilValueSymbol="—" unit="€" {...props} />
-	</>
-)
+export let Line = ({ rule, ...props }) => {
+	const defaultUnit = useSelector(defaultUnitSelector)
+	return (
+		<>
+			<RuleLink {...rule} />
+			<Value
+				{...rule}
+				nilValueSymbol="—"
+				defaultUnit={defaultUnit}
+				{...props}
+			/>
+		</>
+	)
+}
 
 export let SalaireNetSection = ({ getRule }) => {
 	let avantagesEnNature = getRule(

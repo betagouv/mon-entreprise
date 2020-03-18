@@ -8,7 +8,7 @@ import {
 	nextStepsSelector
 } from '../source/selectors/analyseSelectors'
 let baseState = {
-	simulation: { situation: {}, foldedSteps: [] }
+	simulation: { defaultUnit: '€/an', situation: {}, foldedSteps: [] }
 }
 
 describe('conversation', function() {
@@ -24,7 +24,11 @@ describe('conversation', function() {
 			rules = rawRules.map(enrichRule),
 			state = merge(baseState, {
 				rules,
-				simulation: { config: { objectifs: ['startHere'] }, foldedSteps: [] }
+				simulation: {
+					defaultUnit: '€/an',
+					config: { objectifs: ['startHere'] },
+					foldedSteps: []
+				}
 			}),
 			currentQuestion = currentQuestionSelector(state)
 
@@ -48,7 +52,11 @@ describe('conversation', function() {
 
 		let step1 = merge(baseState, {
 			rules,
-			simulation: { config: { objectifs: ['startHere'] }, foldedSteps: [] }
+			simulation: {
+				defaultUnit: '€/an',
+				config: { objectifs: ['startHere'] },
+				foldedSteps: []
+			}
 		})
 		let step2 = reducers(
 			assocPath(['simulation', 'situation'], { 'top . aa': '1' }, step1),
@@ -125,7 +133,11 @@ describe('conversation', function() {
 
 		let step1 = merge(baseState, {
 			rules,
-			simulation: { config: { objectifs: ['net'] }, foldedSteps: [] }
+			simulation: {
+				defaultUnit: '€/an',
+				config: { objectifs: ['net'] },
+				foldedSteps: []
+			}
 		})
 		expect(currentQuestionSelector(step1)).to.equal('brut')
 
@@ -148,7 +160,11 @@ describe('real conversation', function() {
 	it('should not have more than X questions', function() {
 		let state = merge(baseState, {
 				rules,
-				simulation: { config: salariéConfig, foldedSteps: [] }
+				simulation: {
+					defaultUnit: '€/an',
+					config: salariéConfig,
+					foldedSteps: []
+				}
 			}),
 			nextSteps = nextStepsSelector(state)
 

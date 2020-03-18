@@ -10,6 +10,7 @@ import {
 let state = {
 	rules,
 	simulation: {
+		defaultUnit: '€/mois',
 		config: salariéConfig,
 		situation: {
 			'contrat salarié . rémunération . brut de base': '2300',

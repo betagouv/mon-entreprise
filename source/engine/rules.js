@@ -1,6 +1,30 @@
 import { parseUnit } from 'Engine/units'
 import rawRules from 'Publicode/rules'
-import { assoc, chain, dropLast, filter, fromPairs, is, isNil, join, last, map, path, pipe, propEq, props, range, reduce, reduced, reject, split, take, toPairs, trim, when } from 'ramda'
+import {
+	assoc,
+	chain,
+	dropLast,
+	filter,
+	fromPairs,
+	is,
+	isNil,
+	join,
+	last,
+	map,
+	path,
+	pipe,
+	propEq,
+	props,
+	range,
+	reduce,
+	reduced,
+	reject,
+	split,
+	take,
+	toPairs,
+	trim,
+	when
+} from 'ramda'
 import translations from '../locales/rules-en.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
@@ -89,7 +113,7 @@ export let ruleParents = dottedName => {
  */
 export let disambiguateRuleReference = (
 	allRules,
-	{ dottedName, name },
+	{ dottedName },
 	partialName
 ) => {
 	let pathPossibilities = [
@@ -113,9 +137,8 @@ export let disambiguateRuleReference = (
 		return found.dottedName
 	}
 
-	throw new Error(
-		`OUUUUPS la référence '${partialName}' dans la règle '${name}' est introuvable dans la base`
-	)
+	throw new Error(`La référence '${partialName}' est introuvable.
+Vérifiez que l'orthographe et l'espace de nom sont corrects`)
 }
 
 export let collectDefaults = pipe(

@@ -1,4 +1,4 @@
-import { convertToDate, normalizeDate } from 'Engine/date'
+import { convertToDate, convertToString } from 'Engine/date'
 import {
 	defaultNode,
 	evaluateNode,
@@ -26,12 +26,7 @@ function MecanismDurée({ nodeValue, explanation, unit }) {
 		</Node>
 	)
 }
-const today = new Date()
-const todayString = normalizeDate(
-	today.getFullYear(),
-	today.getMonth() + 1,
-	today.getDate()
-)
+const todayString = convertToString(new Date())
 
 const objectShape = {
 	depuis: defaultNode(todayString),

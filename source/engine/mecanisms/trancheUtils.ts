@@ -1,4 +1,5 @@
 import { mergeAllMissing } from 'Engine/evaluation'
+import { Evaluation } from 'Engine/temporal'
 import { evolve } from 'ramda'
 import { evaluationError, typeWarning } from '../error'
 import { convertUnit, inferUnit } from '../units'
@@ -7,7 +8,6 @@ export const parseTranches = (parse, tranches) => {
 	return tranches
 		.map((t, i) => {
 			if (!t.plafond && i > tranches.length) {
-				console.log(t, i)
 				throw new SyntaxError(
 					`La tranche n°${i} du barème n'a pas de plafond précisé. Seule la dernière tranche peut ne pas être plafonnée`
 				)
@@ -32,35 +32,30 @@ export function evaluatePlafondUntilActiveTranche(
 			}
 
 			const plafond = evaluate(parsedTranche.plafond)
+			if (plafond.temporalValue) {
+				evaluationError(
+					cache._meta.contextRule,
+					'Les valeurs temporelles ne sont pas acceptées pour un plafond de tranche'
+				)
+			}
 			const plancher = tranches[i - 1]
 				? tranches[i - 1].plafond
 				: { nodeValue: 0 }
-			const calculationValues = [plafond, assiette, multiplicateur, plancher]
-			if (calculationValues.some(node => node.nodeValue === null)) {
-				return [
-					[
-						...tranches,
-						{
-							...parsedTranche,
-							plafond,
-							nodeValue: null,
-							isActive: null,
-							isAfterActive: false,
-							missingVariables: mergeAllMissing(calculationValues)
-						}
-					],
-					false
-				]
-			}
-			let plafondValue = plafond.nodeValue * multiplicateur.nodeValue
+
+			let plafondValue: Evaluation<number> =
+				plafond.nodeValue === null || multiplicateur.nodeValue === null
+					? null
+					: plafond.nodeValue * multiplicateur.nodeValue
+
 			try {
-				plafondValue = [Infinity || 0].includes(plafondValue)
-					? plafondValue
-					: convertUnit(
-							inferUnit('*', [plafond.unit, multiplicateur.unit]),
-							assiette.unit,
-							plafondValue
-					  )
+				plafondValue =
+					plafondValue === Infinity || plafondValue === 0
+						? plafondValue
+						: convertUnit(
+								inferUnit('*', [plafond.unit, multiplicateur.unit]),
+								assiette.unit,
+								plafondValue
+						  )
 			} catch (e) {
 				typeWarning(
 					cache._meta.contextRule,
@@ -69,9 +64,37 @@ export function evaluatePlafondUntilActiveTranche(
 					e
 				)
 			}
-
 			let plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
-			if (!!tranches[i - 1] && plafondValue <= plancherValue) {
+			const isAfterActive =
+				plancherValue === null || assiette.nodeValue === null
+					? null
+					: plancherValue > assiette.nodeValue
+
+			const calculationValues = [plafond, assiette, multiplicateur, plancher]
+			if (calculationValues.some(node => node.nodeValue === null)) {
+				return [
+					[
+						...tranches,
+						{
+							...parsedTranche,
+							plafond,
+							plafondValue,
+							plancherValue,
+							nodeValue: null,
+							isActive: null,
+							isAfterActive,
+							missingVariables: mergeAllMissing(calculationValues)
+						}
+					],
+					false
+				]
+			}
+
+			if (
+				!!tranches[i - 1] &&
+				!!plancherValue &&
+				<number>plafondValue <= plancherValue
+			) {
 				evaluationError(
 					cache._meta.contextRule,
 					`Le plafond de la tranche n°${i +
@@ -84,10 +107,10 @@ export function evaluatePlafondUntilActiveTranche(
 				plafond,
 				plancherValue,
 				plafondValue,
-				isAfterActive: false,
+				isAfterActive,
 				isActive:
 					assiette.nodeValue >= plancherValue &&
-					assiette.nodeValue < plafondValue
+					assiette.nodeValue < <number>plafondValue
 			}
 
 			return [[...tranches, tranche], tranche.isActive]

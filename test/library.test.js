@@ -88,13 +88,13 @@ impôt sur le revenu:
       assiette: revenu abattu
       tranches:
         - taux: 0%
-          plafond: 9807
+          plafond: 9807 €
         - taux: 14%
-          plafond: 27086
+          plafond: 27086 €
         - taux: 30%
-          plafond: 72617
+          plafond: 72617 €
         - taux: 41%
-          plafond: 153783
+          plafond: 153783 €
         - taux: 45%
 
 impôt sur le revenu à payer:

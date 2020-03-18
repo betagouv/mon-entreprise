@@ -1,6 +1,6 @@
 import { Action } from 'Actions/actions'
 import { Analysis } from 'Engine/traverse'
-import { areUnitConvertible, convertUnit, parseUnit, Unit } from 'Engine/units'
+import { Unit } from 'Engine/units'
 import { defaultTo, identity, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
@@ -8,6 +8,7 @@ import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
+import { areUnitConvertible, convertUnit, parseUnit } from './../engine/units'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
@@ -37,7 +38,7 @@ type Example = null | {
 	name: string
 	situation: object
 	dottedName: DottedName
-	defaultUnits?: Array<Unit>
+	defaultUnit?: Unit
 }
 
 function currentExample(state: Example = null, action: Action): Example {
@@ -155,7 +156,7 @@ export type SimulationConfig = Partial<{
 	bloquant: Array<DottedName>
 	situation: Simulation['situation']
 	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	'unités par défaut': [string]
+	'unité par défaut': string
 }>
 
 type Situation = Partial<Record<DottedName, any>>
@@ -165,7 +166,7 @@ export type Simulation = {
 	hiddenControls: Array<string>
 	situation: Situation
 	initialSituation: Situation
-	defaultUnits: [string]
+	defaultUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 }
@@ -203,7 +204,7 @@ function simulation(
 			hiddenControls: [],
 			situation: companySituation,
 			initialSituation: companySituation,
-			defaultUnits: config['unités par défaut'] || ['€/mois'],
+			defaultUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: Object.keys(companySituation) as Array<DottedName>,
 			unfoldedStep: null
 		}
@@ -251,11 +252,11 @@ function simulation(
 		case 'UPDATE_DEFAULT_UNIT':
 			return {
 				...state,
-				defaultUnits: [action.defaultUnit],
 				situation: updateDefaultUnit(state.situation, {
 					toUnit: action.defaultUnit,
 					analysis
-				})
+				}),
+				defaultUnit: action.defaultUnit
 			}
 	}
 	return state

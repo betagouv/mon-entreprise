@@ -1,12 +1,14 @@
+import { convertToDate } from 'Engine/date'
 import { typeWarning } from 'Engine/error'
 import { evaluateNode, makeJsx, mergeMissing } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
+import { liftTemporal2, pureTemporal, temporalAverage } from 'Engine/temporal'
 import { inferUnit, serializeUnit } from 'Engine/units'
 import { curry, map } from 'ramda'
 import React from 'react'
-import { convertToDateIfNeeded } from '../date.ts'
 
+const comparisonOperator = ['≠', '=', '<', '>', '≤', '≥']
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		const explanation = map(
@@ -43,29 +45,48 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 				)
 			}
 		}
-		let node1Value = node1.nodeValue
-		let node2Value = node2.nodeValue
-		try {
-			;[node1Value, node2Value] = convertToDateIfNeeded(
-				node1.nodeValue,
-				node2.nodeValue
-			)
-		} catch (e) {
-			typeWarning(
-				cache._meta.contextRule,
-				`Impossible de convertir une des valeur en date`,
-				e
-			)
-		}
-		let nodeValue = operatorFunction(node1Value, node2Value)
-
-		let unit = inferUnit(k, [node1.unit, node2.unit])
-		return {
+		const baseNode = {
 			...node,
-			nodeValue,
-			unit,
 			explanation,
+			unit: inferUnit(k, [node1.unit, node2.unit]),
 			missingVariables
+		}
+
+		let temporalValue = liftTemporal2(
+			(a, b) => {
+				if (['∕', '-'].includes(node.operator) && a === false) {
+					return false
+				}
+				if (['+'].includes(node.operator) && a === false) {
+					return b
+				}
+				if (['∕', '-', '×', '+'].includes(node.operator) && b === false) {
+					return a
+				}
+				if (
+					!['=', '≠'].includes(node.operator) &&
+					(a === false || b === false)
+				) {
+					return false
+				}
+				if (
+					comparisonOperator.includes(node.operator) &&
+					[a, b].every(value => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
+				) {
+					return operatorFunction(convertToDate(a), convertToDate(b))
+				}
+				return operatorFunction(a, b)
+			},
+			node1.temporalValue ?? pureTemporal(node1.nodeValue),
+			node2.temporalValue ?? pureTemporal(node2.nodeValue)
+		)
+
+		const nodeValue = temporalAverage(temporalValue, baseNode.unit)
+
+		return {
+			...baseNode,
+			nodeValue,
+			...(temporalValue.length > 1 && { temporalValue })
 		}
 	}
 

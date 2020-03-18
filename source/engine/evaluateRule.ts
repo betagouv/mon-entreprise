@@ -102,6 +102,7 @@ export default (cache, situationGate, parsedRules, node) => {
 		node.defaultUnit ||
 		evaluatedFormula.unit
 
+	const temporalValue = evaluatedFormula.temporalValue
 	if (unit) {
 		try {
 			nodeValue = convertNodeToUnit(unit, evaluatedFormula).nodeValue
@@ -121,6 +122,7 @@ export default (cache, situationGate, parsedRules, node) => {
 		...(node.formule && { formule: evaluatedFormula }),
 		nodeValue,
 		unit,
+		temporalValue,
 		isApplicable,
 		missingVariables
 	}

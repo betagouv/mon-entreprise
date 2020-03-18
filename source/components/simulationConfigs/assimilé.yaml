@@ -34,7 +34,7 @@ questions:
     - contrat salarié . complémentaire santé . part employeur
     - contrat salarié . régime des impatriés
 
-unités par défaut: [€/an]
+unité par défaut: €/an
 situation:
   dirigeant: 'assimilé salarié'
   contrat salarié . ATMP . taux réduit: oui
