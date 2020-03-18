@@ -3,8 +3,8 @@ import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
 	temporalAverage
-} from 'Engine/period'
-import { Temporal } from './../period'
+} from 'Engine/temporal'
+import { Temporal } from './../temporal'
 
 function evaluate(
 	cache: any,

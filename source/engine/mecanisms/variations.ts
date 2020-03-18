@@ -7,9 +7,9 @@ import {
 	pureTemporal,
 	sometime,
 	temporalAverage
-} from 'Engine/period'
+} from 'Engine/temporal'
 import { inferUnit } from 'Engine/units'
-import { dissoc, or } from 'ramda'
+import { or } from 'ramda'
 import { mergeAllMissing } from './../evaluation'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
@@ -36,18 +36,29 @@ export default function parse(recurse, k, v, devariate) {
 		)
 	}
 }
-
-export let devariateExplanation = (recurse, mecanismKey, v) => {
-	let fixedProps = dissoc('variations')(v),
-		explanation = v.variations.map(({ si, alors, sinon }) => ({
-			consequence: recurse({
-				[mecanismKey]: {
-					...fixedProps,
-					...(sinon || alors)
-				}
-			}),
-			condition: sinon ? defaultNode(true) : recurse(si)
-		}))
+type Variation =
+	| {
+			si: any
+			alors: Object
+	  }
+	| {
+			sinon: Object
+	  }
+export let devariateExplanation = (
+	recurse,
+	mecanismKey,
+	v: { variations: Array<Variation> }
+) => {
+	const { variations, ...fixedProps } = v
+	const explanation = variations.map(variation => ({
+		condition: 'sinon' in variation ? defaultNode(true) : recurse(variation.si),
+		consequence: recurse({
+			[mecanismKey]: {
+				...fixedProps,
+				...('sinon' in variation ? variation.sinon : variation.alors)
+			}
+		})
+	}))
 
 	return explanation
 }

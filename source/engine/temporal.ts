@@ -68,8 +68,11 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 export type Evaluation<T> = T | false | null
 
 export type EvaluatedNode<T> = {
+	unit: Unit
 	nodeValue: Evaluation<T>
 	temporalValue?: Temporal<Evaluation<T>>
+	explanation?: Object
+	missingVariables?: Object
 }
 
 export type TemporalNode<T> = Temporal<{ nodeValue: Evaluation<T> }>
@@ -343,14 +346,20 @@ export function temporalAverage(
 	unit?: Unit
 ): Evaluation<number> {
 	temporalValue = temporalValue.filter(({ value }) => value !== false)
-	const first = temporalValue[0]
-	const last = temporalValue[temporalValue.length - 1]
 	if (!temporalValue.length) {
 		return false
 	}
 	if (temporalValue.length === 1) {
 		return temporalValue[0].value
 	}
+
+	if (temporalValue.some(({ value }) => value == null)) {
+		return null
+	}
+
+	const temporalNumber = temporalValue as Temporal<number>
+	const first = temporalNumber[0]
+	const last = temporalNumber[temporalNumber.length - 1]
 
 	// La variable est définie sur un interval infini
 	if (first.start == null || last.end == null) {
@@ -363,11 +372,9 @@ export function temporalAverage(
 		return (first.value + last.value) / 2
 	}
 
-	if (temporalValue.some(({ value }) => value == null)) {
-		return null
-	}
 	let totalWeight = 0
-	const weights = temporalValue.map(({ start, end, value }) => {
+	const weights = temporalNumber.map(({ start, end, value }) => {
+		;[start, end] = [start, end] as [string, string]
 		let weight = 0
 		if (unit?.denominators.includes('mois')) {
 			weight = getDifferenceInMonths(start, end)
@@ -377,7 +384,7 @@ export function temporalAverage(
 			weight = getDifferenceInDays(start, end)
 		}
 		totalWeight += weight
-		return (value as number) * weight
+		return value * weight
 	})
 	return weights.reduce(
 		(average, weightedValue) => average + weightedValue / totalWeight,
@@ -390,11 +397,17 @@ export function temporalCumul(
 	unit: Unit
 ): Evaluation<number> {
 	temporalValue = temporalValue.filter(({ value }) => value !== false)
-	const first = temporalValue[0]
-	const last = temporalValue[temporalValue.length - 1]
 	if (!temporalValue.length) {
 		return false
 	}
+
+	if (temporalValue.some(({ value }) => value == null)) {
+		return null
+	}
+
+	const temporalNumber = temporalValue as Temporal<number>
+	const first = temporalNumber[0]
+	const last = temporalNumber[temporalNumber.length - 1]
 
 	// La variable est définie sur un interval infini
 	if (first.start == null || last.end == null) {
@@ -406,11 +419,12 @@ export function temporalCumul(
 		}
 		return null
 	}
-	if (temporalValue.some(({ value }) => value == null)) {
+	if (temporalNumber.some(({ value }) => value == null)) {
 		return null
 	}
 
-	return temporalValue.reduce((acc, { start, end, value }) => {
+	return temporalNumber.reduce((acc, { start, end, value }) => {
+		;[start, end] = [start, end] as [string, string]
 		let weight = 1
 		if (unit?.denominators.includes('mois')) {
 			weight = getDifferenceInMonths(start, end)

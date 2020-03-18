@@ -1,4 +1,4 @@
-import { mapTemporal } from './period'
+import { EvaluatedNode, mapTemporal } from './temporal'
 import {
 	areUnitConvertible,
 	convertUnit,
@@ -37,7 +37,7 @@ export const getNodeDefaultUnit = (node, cache) => {
 	)
 }
 
-export function convertNodeToUnit(to: Unit, node) {
+export function convertNodeToUnit(to: Unit, node: EvaluatedNode<number>) {
 	return {
 		...node,
 		nodeValue: node.unit

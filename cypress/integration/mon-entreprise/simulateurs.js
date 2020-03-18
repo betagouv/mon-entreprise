@@ -47,10 +47,12 @@ describe('Simulateurs', function() {
 						.first()
 						.invoke('val')
 						.should('match', /1[\s]000/)
-					cy.get(chargeInputSelector)
-						.first()
-						.invoke('val')
-						.should('be', '500')
+					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
+						cy.get(chargeInputSelector)
+							.first()
+							.invoke('val')
+							.should('be', '500')
+					}
 				})
 
 				it('should allow to navigate to a documentation page', function() {

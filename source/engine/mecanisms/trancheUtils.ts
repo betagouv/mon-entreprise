@@ -1,4 +1,5 @@
 import { mergeAllMissing } from 'Engine/evaluation'
+import { Evaluation } from 'Engine/temporal'
 import { evolve } from 'ramda'
 import { evaluationError, typeWarning } from '../error'
 import { convertUnit, inferUnit } from '../units'
@@ -41,19 +42,20 @@ export function evaluatePlafondUntilActiveTranche(
 				? tranches[i - 1].plafond
 				: { nodeValue: 0 }
 
-			let plafondValue =
+			let plafondValue: Evaluation<number> =
 				plafond.nodeValue === null || multiplicateur.nodeValue === null
 					? null
 					: plafond.nodeValue * multiplicateur.nodeValue
 
 			try {
-				plafondValue = [Infinity || 0].includes(plafondValue)
-					? plafondValue
-					: convertUnit(
-							inferUnit('*', [plafond.unit, multiplicateur.unit]),
-							assiette.unit,
-							plafondValue
-					  )
+				plafondValue =
+					plafondValue === Infinity || plafondValue === 0
+						? plafondValue
+						: convertUnit(
+								inferUnit('*', [plafond.unit, multiplicateur.unit]),
+								assiette.unit,
+								plafondValue
+						  )
 			} catch (e) {
 				typeWarning(
 					cache._meta.contextRule,
@@ -91,7 +93,7 @@ export function evaluatePlafondUntilActiveTranche(
 			if (
 				!!tranches[i - 1] &&
 				!!plancherValue &&
-				plafondValue <= plancherValue
+				<number>plafondValue <= plancherValue
 			) {
 				evaluationError(
 					cache._meta.contextRule,
@@ -108,7 +110,7 @@ export function evaluatePlafondUntilActiveTranche(
 				isAfterActive,
 				isActive:
 					assiette.nodeValue >= plancherValue &&
-					assiette.nodeValue < plafondValue
+					assiette.nodeValue < <number>plafondValue
 			}
 
 			return [[...tranches, tranche], tranche.isActive]

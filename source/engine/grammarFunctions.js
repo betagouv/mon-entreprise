@@ -2,7 +2,7 @@
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 import { normalizeDateString } from 'Engine/date'
 import { parseUnit } from 'Engine/units'
-import { parsePeriod } from './period'
+import { parsePeriod } from './temporal'
 
 export let binaryOperation = operationType => ([A, , operator, , B]) => ({
 	[operator]: {

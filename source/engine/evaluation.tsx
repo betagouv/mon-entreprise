@@ -13,12 +13,14 @@ import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import {
 	concatTemporals,
+	EvaluatedNode,
 	liftTemporalNode,
 	mapTemporal,
 	pureTemporal,
+	Temporal,
 	temporalAverage,
 	zipTemporals
-} from './period'
+} from './temporal'
 
 export let makeJsx = node =>
 	typeof node.jsx == 'function'
@@ -139,8 +141,10 @@ export let parseObject = (recurse, objectShape, value) => {
 			)
 		return value[key] != null ? recurse(value[key]) : defaultValue
 	}
-	let transforms = fromPairs(map(k => [k, recurseOne(k)], keys(objectShape)))
-	return evolve(transforms, objectShape)
+	let transforms = fromPairs(
+		map(k => [k, recurseOne(k)], keys(objectShape)) as any
+	)
+	return evolve(transforms as any, objectShape)
 }
 
 export let evaluateObject = (objectShape, effect) => (
@@ -170,7 +174,9 @@ export let evaluateObject = (objectShape, effect) => (
 		}
 	}, temporalExplanations)
 
-	const sameUnitTemporalExplanation = convertNodesToSameUnit(
+	const sameUnitTemporalExplanation: Temporal<EvaluatedNode<
+		number
+	>> = convertNodesToSameUnit(
 		temporalExplanation.map(x => x.value),
 		cache._meta.contextRule,
 		node.name

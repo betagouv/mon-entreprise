@@ -3,8 +3,12 @@ import { defaultNode, evaluateNode, mergeAllMissing } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import Barème from 'Engine/mecanismViews/Barème'
-import { liftTemporalNode, mapTemporal, temporalAverage } from 'Engine/period'
-import { liftTemporal2 } from 'Engine/temporal'
+import {
+	liftTemporal2,
+	liftTemporalNode,
+	mapTemporal,
+	temporalAverage
+} from 'Engine/temporal'
 import { convertUnit } from '../units'
 import { parseUnit } from './../units'
 import {
@@ -73,7 +77,7 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 			nodeValue:
 				(Math.min(assiette.nodeValue, tranche.plafondValue) -
 					tranche.plancherValue) *
-				convertUnit(taux.unit, parseUnit(''), taux.nodeValue)
+				convertUnit(taux.unit, parseUnit(''), taux.nodeValue as number)
 		}
 	})
 }

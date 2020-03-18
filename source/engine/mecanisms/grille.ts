@@ -2,8 +2,12 @@ import { defaultNode, evaluateNode, mergeAllMissing } from 'Engine/evaluation'
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import grille from 'Engine/mecanismViews/Grille'
-import { liftTemporalNode, mapTemporal, temporalAverage } from 'Engine/period'
-import { liftTemporal2 } from 'Engine/temporal'
+import {
+	liftTemporal2,
+	liftTemporalNode,
+	mapTemporal,
+	temporalAverage
+} from 'Engine/temporal'
 import { parseUnit } from 'Engine/units'
 import { lensPath, over } from 'ramda'
 import {

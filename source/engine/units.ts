@@ -12,6 +12,7 @@ import {
 	without
 } from 'ramda'
 import i18n from '../i18n'
+import { Evaluation } from './temporal'
 
 type BaseUnit = string
 
@@ -186,7 +187,13 @@ export function convertUnit(
 	from: Unit | undefined,
 	to: Unit | undefined,
 	value: number
-) {
+): number
+export function convertUnit(
+	from: Unit | undefined,
+	to: Unit | undefined,
+	value: Evaluation<number>
+): Evaluation<number>
+export function convertUnit(from, to, value): any {
 	if (!areUnitConvertible(from, to)) {
 		throw new Error(
 			`Impossible de convertir l'unité '${serializeUnit(

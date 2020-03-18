@@ -4207,8 +4207,39 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
-  titre.en: '[automatic] occupational income'
-  titre.fr: revenu professionnel
+  description.en: >
+    [automatic] This is the net deductible contribution income of the
+    self-employed person, which is used as the basis for the calculation of
+    contributions and tax for self-employed persons.
+
+
+    Attention, **our calculation is made at cruising speed**:
+
+    the self-employed person who starts out will pay a relatively small package
+    of social security contributions for the first 2 years. He will then have to
+    regularise this situation in relation to the income he has actually
+    received.
+
+
+    Therefore, this calculation should be seen as "the amount that will have to
+    be paid* in the short term after 2 years of exercise.
+  description.fr: >
+    C'est le revenu net de cotisations déductibles du travailleur indépendant,
+    qui sert de base au calcul des cotisations et de l'impôt pour les
+    indépendants.
+
+
+    Attention, **notre calcul est fait au régime de croisière**:
+
+    l'indépendant qui se lance paiera pendant ses 2 premières années un forfait
+    relativement réduit de cotisations sociales. Il devra ensuite régulariser
+    cette situation par rapport au revenu qu'il a vraiment perçu.
+
+
+    Il faut donc voir ce calcul comme *le montant qui devra de toute façon être
+    payé* à court terme après 2 ans d'exercice.
+  titre.en: '[automatic] professional income (net taxable)'
+  titre.fr: revenu professionnel (net imposable)
 dirigeant . indépendant . revenus étrangers:
   description.en: >
     [automatic] Foreign income is income declared by self-employed persons in

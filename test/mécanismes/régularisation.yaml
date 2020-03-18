@@ -20,12 +20,7 @@ retraite:
 retraite . avec régularisation:
   formule:
     régularisation:
-      règle:
-        multiplication:
-          assiette: salaire
-          plafond: plafond sécurité sociale
-          taux: 10%
-
+      règle: retraite
       valeurs cumulées:
         - salaire
         - plafond sécurité sociale

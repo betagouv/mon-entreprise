@@ -4,7 +4,7 @@ import {
 	createTemporalEvaluation,
 	groupByYear,
 	zipTemporals
-} from '../source/engine/period'
+} from '../source/engine/temporal'
 
 const neverEnding = value => [{ start: null, end: null, value: value }]
 describe('Periods : zip', () => {

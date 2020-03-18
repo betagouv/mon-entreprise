@@ -9,7 +9,7 @@ import {
 	Temporal,
 	temporalAverage,
 	temporalCumul
-} from 'Engine/period'
+} from 'Engine/temporal'
 import { Unit } from 'Engine/units'
 import { DottedName } from 'Types/rule'
 import { coerceArray } from '../../utils'
