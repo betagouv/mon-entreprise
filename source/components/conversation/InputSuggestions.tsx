@@ -2,10 +2,6 @@ import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Unit } from '../../engine/units'
-<<<<<<< HEAD
-=======
-import { Unit } from '../../engine/units'
->>>>>>> 1a8e67a2... :fire: enlève les defaultUnits du moteur
 
 type InputSuggestionsProps = {
 	suggestions: Record<string, number>

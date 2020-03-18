@@ -72,19 +72,21 @@ export function formatValue({
 	if (typeof value !== 'number') {
 		return value
 	}
-	let serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
+
+	let serializedUnit = unit && serializeUnit(unit, value, language)
 	if (serializedUnit === '') {
 		serializedUnit = '%'
 		value *= 100
 	}
+	if (serializedUnit?.split('/')[0].includes('€')) {
+		return numberFormatter({
+			style: 'currency',
+			maximumFractionDigits,
+			minimumFractionDigits,
+			language
+		})(value)
+	}
 	switch (serializedUnit) {
-		case '€':
-			return numberFormatter({
-				style: 'currency',
-				maximumFractionDigits,
-				minimumFractionDigits,
-				language
-			})(value)
 		case '%':
 			return numberFormatter({
 				style: 'percent',

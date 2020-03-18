@@ -1,7 +1,8 @@
 import { formatValue, formatValueOptions } from 'Engine/format'
+import { Unit } from 'Engine/units'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { EvaluatedRule } from 'Types/rule'
+import { Evaluation } from 'Types/rule'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
 
@@ -17,67 +18,66 @@ let style = customStyle => `
 `
 
 export type ValueProps = Partial<
-	Pick<EvaluatedRule, 'nodeValue' | 'unit'> &
-		Pick<
-			formatValueOptions,
-			'maximumFractionDigits' | 'minimumFractionDigits'
-		> & {
-			nilValueSymbol: string
-			children: number
-			negative: boolean
-			customCSS: string
-			defaultUnit?: string
-			printedUnit?: string
-		}
+	Pick<
+		formatValueOptions,
+		'maximumFractionDigits' | 'minimumFractionDigits'
+	> & {
+		nodeValue: Evaluation<any>
+		unit?: Unit | string
+		nilValueSymbol: string
+		children: number
+		customCSS: string
+	}
 >
 
 export default function Value({
 	nodeValue: value,
 	unit,
-	defaultUnit,
-	printedUnit,
-	nilValueSymbol,
 	maximumFractionDigits,
 	minimumFractionDigits,
 	children,
-	negative,
 	customCSS = ''
 }: ValueProps) {
 	const { language } = useTranslation().i18n
 
 	/* Either an entire rule object is passed, or just the right attributes and the value as a JSX  child*/
-	let nodeValue = value === undefined ? children : value
+	value = value === undefined ? children : value
+
+	if (value === undefined) {
+		return null
+	}
 
 	if (
-		(nilValueSymbol !== undefined && nodeValue === 0) ||
-		(nodeValue && Number.isNaN(nodeValue)) ||
-		nodeValue === null
-	)
+		(value && Number.isNaN(value)) ||
+		value === null ||
+		(value === false && unit)
+	) {
 		return (
 			<span css={style(customCSS)} className="value">
-				-
+				—
 			</span>
 		)
-	let valueType = typeof nodeValue,
-		formattedValue =
-			valueType === 'string' ? (
-				<Trans>{nodeValue}</Trans>
-			) : valueType === 'object' ? (
-				(nodeValue as any).nom
-			) : valueType === 'boolean' ? (
-				booleanTranslations[language][nodeValue]
-			) : nodeValue !== undefined ? (
-				formatValue({
-					minimumFractionDigits,
-					maximumFractionDigits,
-					language,
-					unit,
-					value: nodeValue
-				})
-			) : null
-	return nodeValue == undefined ? null : (
+	}
+
+	const formattedValue =
+		typeof value === 'string' ? (
+			<Trans>{value}</Trans>
+		) : typeof value === 'object' ? (
+			(value as any).nom
+		) : typeof value === 'boolean' ? (
+			booleanTranslations[language][value]
+		) : value !== undefined ? (
+			formatValue({
+				minimumFractionDigits,
+				maximumFractionDigits,
+				language,
+				unit,
+				value
+			})
+		) : null
+
+	return (
 		<span css={style(customCSS)} className="value">
-			{negative ? '-' : ''}
 			{formattedValue}
 		</span>
 	)

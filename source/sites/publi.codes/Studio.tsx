@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
+import { EvaluatedRule } from 'Types/rule'
 import { Header } from './Header'
 
 let examples = {
@@ -86,7 +87,7 @@ export const Results = ({ targets, onClickUpdate }) => {
 	const [currentTarget, setCurrentTarget] = useState('')
 	const rule = targets.includes(currentTarget) ? currentTarget : targets[0]
 	const error = Engine.useError()
-	const analysis = Engine.useEvaluation(rule)
+	const analysis = Engine.useEvaluation(rule) as EvaluatedRule<any>
 	return error !== null ? (
 		<div
 			css={`

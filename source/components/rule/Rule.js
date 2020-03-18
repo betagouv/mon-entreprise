@@ -128,12 +128,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 									}
 								`}
 							>
-								<Value
-									{...displayedRule}
-									nilValueSymbol={displayedRule.parentDependencies.some(
-										parent => parent?.nodeValue == false
-									)}
-								/>
+								<Value {...displayedRule} />
 							</div>
 							{displayedRule.defaultValue != null && (
 								<div id="ruleDefault">

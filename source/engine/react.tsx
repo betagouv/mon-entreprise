@@ -1,6 +1,9 @@
 import Value from 'Components/Value'
 import React, { createContext, useContext, useMemo, useState } from 'react'
+import { DottedName, EvaluatedRule } from 'Types/rule'
 import Engine from '.'
+import { Period } from './temporal'
+import { Unit } from './units'
 
 const EngineContext = createContext<{
 	engine: Engine | null
@@ -34,7 +37,13 @@ export function Provider({ rules, situation, children }: InputProps) {
 	)
 }
 
-export function useEvaluation(expression: string) {
+export function useEvaluation<T>(
+	expression: DottedName,
+	options?: {
+		unit?: Unit | string
+		period?: Period<string>
+	}
+): EvaluatedRule<T> {
 	const { engine } = useContext(EngineContext)
 	return engine === null ? null : engine.evaluate(expression)
 }

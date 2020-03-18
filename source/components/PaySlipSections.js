@@ -50,12 +50,7 @@ export let Line = ({ rule, ...props }) => {
 	return (
 		<>
 			<RuleLink {...rule} />
-			<Value
-				{...rule}
-				nilValueSymbol="—"
-				defaultUnit={defaultUnit}
-				{...props}
-			/>
+			<Value {...rule} defaultUnit={defaultUnit} {...props} />
 		</>
 	)
 }
