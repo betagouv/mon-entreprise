@@ -92,23 +92,7 @@ function ExplanationSection() {
 				css={`
 					margin-top: 2rem;
 				`}
-			>
-				<StackedBarChart
-					data={[
-						{
-							...net,
-							title: 'Revenu net avec chômage partiel',
-							color: palettes[0][0]
-						},
-						{
-							...perteRevenu,
-							nodeValue: -perteRevenu.nodeValue,
-							title: 'Perte de revenu net',
-							color: palettes[1][0]
-						}
-					]}
-				/>
-			</div>
+			></div>
 			<div
 				className="ui__ light-bg card"
 				css={`
@@ -139,6 +123,22 @@ function ExplanationSection() {
 					</li>
 				</ul>
 			</div>
+			<br />
+			<StackedBarChart
+				data={[
+					{
+						...net,
+						title: 'net avec chômage partiel',
+						color: palettes[0][0]
+					},
+					{
+						...perteRevenu,
+						nodeValue: -perteRevenu.nodeValue,
+						title: 'Perte de revenu',
+						color: palettes[1][0]
+					}
+				]}
+			/>
 		</Animate.fromTop>
 	)
 }
