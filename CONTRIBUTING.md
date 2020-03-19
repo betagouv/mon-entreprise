@@ -28,6 +28,13 @@ Nous utilisons :
 - [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
 - [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
+### CI/CD
+
+- [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
+    tests.
+- [Netlify](https://www.netlify.com/), un PaaS faisant tourner l'app Javascript
+    sur internet avec gestion des DNS.
+
 ### Démarrage
 
 Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramètre `depth` de git pour ne télécharger que les derniers commits.
@@ -58,7 +65,7 @@ https://github.com/atom/atom/blob/master/CONTRIBUTING.md#git-commit-messages
 - 🔥 `:fire:` when removing code or files
 - 💚 `:green_heart:` when fixing the CI build
 - ✅ `:white_check_mark:` when adding tests
-- ⬆️ `:arrow_up:` when upgrading dependencies
+- ⬆️  `:arrow_up:` when upgrading dependencies
 - :sparkles: `:sparkles:` when formatting, renaming, reorganizing files
 
 Et ceux spécifiques au projet :
