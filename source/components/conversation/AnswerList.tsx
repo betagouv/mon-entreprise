@@ -19,6 +19,7 @@ import './AnswerList.css'
 export default function AnswerList({ onClose }) {
 	const dispatch = useDispatch()
 	const { folded, next } = useSelector(stepsToRules)
+	console.log({ next })
 	return (
 		<Overlay onClose={onClose} className="answer-list">
 			<h2>
@@ -38,11 +39,15 @@ export default function AnswerList({ onClose }) {
 				</small>
 			</h2>
 			<StepsTable {...{ rules: folded, onClose }} />
-			<h2>
-				{emoji('🔮 ')}
-				<Trans>Prochaines questions</Trans>
-			</h2>
-			<StepsTable {...{ rules: next, onClose }} />
+			{next.length > 0 && (
+				<>
+					<h2>
+						{emoji('🔮 ')}
+						<Trans>Prochaines questions</Trans>
+					</h2>
+					<StepsTable {...{ rules: next, onClose }} />
+				</>
+			)}
 		</Overlay>
 	)
 }
