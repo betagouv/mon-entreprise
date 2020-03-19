@@ -133,25 +133,47 @@ export default function SocialSecurity() {
 								</Link>
 							)}
 							{régime !== 'auto-entrepreneur' && (
-								<Link
-									className="ui__ interactive card box"
-									css="width: 100%"
-									to={{
-										pathname: sitePaths.simulateurs.salarié,
-										state: {
-											fromGérer: true
-										}
-									}}
-								>
-									<div className="ui__ big box-icon">{emoji('🤝')}</div>
-									<Trans i18nKey="gérer.choix.embauche">
-										<h3>Estimer le montant d’une embauche</h3>
-										<p className="ui__ notice">
-											Calculez le montant total que votre entreprise devra
-											dépenser pour rémunérer votre prochain employé
-										</p>
-									</Trans>
-								</Link>
+								<>
+									<Link
+										className="ui__ interactive card box"
+										css="width: 100%"
+										to={{
+											pathname: sitePaths.coronavirus
+										}}
+									>
+										<span className="ui__ label" css="margin-bottom: 0.4rem">
+											Covid-19
+										</span>
+										<div className="ui__ big box-icon">{emoji('😷')}</div>
+										<Trans i18nKey="gérer.choix.embauche">
+											<h3>Connaître les aides</h3>
+											<p className="ui__ notice">
+												Calculez le montant des indemnités de chômage partiel.
+												Découvrez la liste des dispositifs d'aides aux
+												entreprises.
+											</p>
+										</Trans>
+									</Link>
+									<Link
+										className="ui__ interactive card box"
+										css="width: 100%"
+										to={{
+											pathname: sitePaths.simulateurs.salarié,
+											state: {
+												fromGérer: true
+											}
+										}}
+									>
+										<div className="ui__ big box-icon">{emoji('🤝')}</div>
+										<Trans i18nKey="gérer.choix.embauche">
+											<h3>Estimer le montant d’une embauche</h3>
+											<p className="ui__ notice">
+												Calculez le montant total que votre entreprise devra
+												dépenser pour rémunérer votre prochain employé
+											</p>
+										</Trans>
+									</Link>
+								</>
 							)}
 						</div>
 					</section>
