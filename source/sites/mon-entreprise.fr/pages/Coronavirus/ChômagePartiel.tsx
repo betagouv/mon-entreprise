@@ -1,3 +1,4 @@
+import RuleLink from 'Components/RuleLink'
 import {
 	EngineContext,
 	Evaluation,
@@ -58,41 +59,16 @@ function SimulateurSalarié() {
 							}
 						/>
 						{/* <SimpleField
-							dottedName={'contrat salarié . rémunération . net de cotisations'}
+							dottedName={
+								'contrat salarié . chômage partiel . heures chômées . proportion'
+							}
 							onChange={value =>
 								setSituation(state => ({
 									...state,
-									'contrat salarié . rémunération . net de cotisations': value
+									'contrat salarié . chômage partiel . heures chômées . proportion': value
 								}))
 							}
 						/> */}
-						{/* <li>
-							<span className="optionTitle">
-								Quelle est la proportion du chômage partiel ?{' '}
-								<Explicable dottedName="contrat salarié . chômage partiel . heures chômées" />
-							</span>
-							<RangeSlider
-								onChange={value =>
-									setSituation(state => ({
-										...state,
-										'contrat salarié . chômage partiel . heures chômées':
-											(Number(value) * tempsPlein) / 100
-									}))
-								}
-							/>
-							<SliderLegend>
-								<span>
-									<strong>0%</strong>
-									<br />
-									Activité totalement maintenue
-								</span>
-								<span>
-									<strong>100%</strong>
-									<br />
-									Activité totalement suspendue
-								</span>
-							</SliderLegend>
-						</li> */}
 					</ul>
 				</div>
 			</section>
@@ -110,7 +86,10 @@ function SimulateurSalarié() {
 						font-size: 1.3em;
 					`}
 				>
-					Revenu net :{' '}
+					<RuleLink
+						dottedName="contrat salarié . rémunération . net"
+						title="Revenu net"
+					/>{' '}
 					<Evaluation expression="contrat salarié . rémunération . net" />
 				</span>
 				<br />

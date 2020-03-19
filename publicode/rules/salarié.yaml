@@ -214,46 +214,61 @@ contrat salarié . chômage partiel:
 
     La déclaration d'activité partielle est simplifiée est l'effet est
     rétroactif.
+
   par défaut: non
   rend non applicable:
     - temps de travail . heures supplémentaires
+  références:
+    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
+    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
 
 contrat salarié . chômage partiel . heures chômées:
-  question: Quelle est la durée mensuelle du chômage partiel ?
+  unité: heures/mois
+  formule:
+    produit:
+      assiette: temps de travail . temps contractuel
+      taux: proportion
+
+contrat salarié . chômage partiel . heures chômées . proportion:
+  titre: proportion heures chômées
+  question: Quelle est la proportion d'heures chômées ?
   description: >-
     Le nombre d'heure chômées correspond à la différence entre la durée légale
     de travail (35h/semaine pour un temps plein) et le nombre d'heures
     travaillées.
 
     Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
-  unité: heures/mois
-  par défaut: 0
+  unité: '%'
+  par défaut: 100
 
 contrat salarié . chômage partiel . indemnité d'activité partielle:
+  unité: €/mois
   formule:
     multiplication:
       taux: 70%
       assiette:
         encadrement:
-          valeur:
-            encadrement:
-              valeur: rémunération . taux horaire
-              plafond: 4.5 * SMIC horaire
           plancher: 8.03 €/heure
+          valeur: rémunération . taux horaire
       facteur: heures chômées
 
 contrat salarié . chômage partiel . absence activité partielle:
+  unité: €/mois
   formule:
     multiplication:
       assiette: rémunération . taux horaire
-      facteur: (- heures chômées)
+      facteur: heures chômées
 
 contrat salarié . chômage partiel . indemnisation entreprise:
   titre: Remboursement employeur de l'indemnité d'activité partielle
   description: >-
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
-  formule: indemnité d'activité partielle
+  formule:
+    encadrement:
+      valeur: indemnité d'activité partielle
+      plafond: 4.5 * SMIC
 
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
@@ -1152,17 +1167,19 @@ contrat salarié . rémunération . brut:
     # et de retraite complémentaire on ne ré-intègre ici que la part employeur
     # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
     # base` dont elle vient en déduction).
-    somme:
-      - rémunération . brut de base
-      - avantages en nature . montant
-      - primes
-      - CDD . indemnités salarié
-      - heures supplémentaires
-      - heures complémentaires
-      - frais professionnels
-      - chômage partiel . absence activité partielle
-      - prévoyance . employeur
-      - retraite supplémentaire . employeur
+    allègement:
+      assiette:
+        somme:
+          - rémunération . brut de base
+          - avantages en nature . montant
+          - primes
+          - CDD . indemnités salarié
+          - heures supplémentaires
+          - heures complémentaires
+          - frais professionnels
+          - prévoyance . employeur
+          - retraite supplémentaire . employeur
+      abattement: chômage partiel . absence activité partielle
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1600,6 +1617,7 @@ contrat salarié . rémunération . total:
     somme:
       - brut
       - cotisations . patronales
+      - chômage partiel . indemnité d'activité partielle
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
@@ -2453,7 +2471,6 @@ contrat salarié . contribution au dialogue social:
       taux: 0.016%
 
 contrat salarié . assiette CSG et CRDS:
-  note: Cette assiette est complexe, cette version n'est qu'une simplification.
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
@@ -2483,7 +2500,7 @@ contrat salarié . assiette CSG et CRDS . assiette revenu remplacements:
       taux: 98.25%
       assiette: rémunération . revenus de remplacement
 
-contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
+contrat salarié . assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
     produit:
       assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
@@ -2503,34 +2520,26 @@ contrat salarié . CSG:
       composantes:
         - attributs:
             impôt sur le revenu: non déductible
-          assiette:
-            somme:
-              - assiette CSG et CRDS
-              - (- assiette CSG et CRDS . assiette revenu remplacements)
+          assiette: assiette CSG et CRDS
           taux: 2.4%
         - attributs:
             impôt sur le revenu: déductible
           assiette:
             somme:
               - assiette CSG et CRDS
-              - (- assiette heures supplémentaires et complémentaires défiscalisées)
+              - (- assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées)
               - (- assiette CSG et CRDS . assiette revenu remplacements)
           taux: 6.8%
         - attributs:
             nom: heures supplémentaires et complémentaires défiscalisées
             impôt sur le revenu: non déductible
-          assiette: assiette heures supplémentaires et complémentaires défiscalisées
+          assiette: assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées
           taux: 6.8%
         - attributs:
-            nom: CSG déductible sur les revenus de remplacement
+            nom: revenus de remplacement
             impôt sur le revenu: déductible
           assiette: assiette CSG et CRDS . assiette revenu remplacements
           taux: 3.8%
-        - attributs:
-            nom: CSG non déductible sur les revenus de remplacement
-            impôt sur le revenu: non déductible
-          assiette: assiette CSG et CRDS . assiette revenu remplacements
-          taux: 2.4%
 
   exemples:
     - nom: 'CSG cadre'
