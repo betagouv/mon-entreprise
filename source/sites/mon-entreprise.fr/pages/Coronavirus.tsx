@@ -13,7 +13,10 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	defaultUnitsSelector
+} from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 
 export default function ChômagePartiel() {
@@ -74,6 +77,8 @@ export default function ChômagePartiel() {
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
+	const mensuel = useSelector(defaultUnitsSelector)[0].includes('mois')
+
 	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
 
@@ -133,7 +138,7 @@ function ExplanationSection() {
 					},
 					{
 						...perteRevenu,
-						nodeValue: -perteRevenu.nodeValue,
+						nodeValue: -perteRevenu.nodeValue / (mensuel ? 1 : 12),
 						title: 'Perte de revenu',
 						color: palettes[1][0]
 					}
