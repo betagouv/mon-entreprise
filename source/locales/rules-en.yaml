@@ -525,7 +525,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -900,7 +900,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: deferred employer aids
   titre.fr: aides à l'embauche
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -972,7 +972,7 @@ contrat salarié . ancienneté:
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 contrat salarié . ancienneté . date d'embauche:
-  question.en: "[automatic] What is the employee's hiring date?"
+  question.en: '[automatic] What is the employee''s hiring date?'
   question.fr: Quelle est la date d'embauche du salarié ?
   suggestions.Début 2019.en: '[automatic] Early 2019'
   suggestions.Début 2019.fr: Début 2019
@@ -1043,7 +1043,7 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
   note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: "Cette assiette est complexe, cette version n'est qu'une simplification."
+  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
@@ -1244,7 +1244,7 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . BTP:
@@ -1346,9 +1346,9 @@ contrat salarié . convention collective . BTP . retraite complémentaire . etam
   titre.fr: etam
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
-  titre.en: 'hotels, cafés restaurants HCR (beta)'
-  titre.fr: 'hôtels, cafés restaurants HCR (beta)'
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
+  titre.en: '[automatic] hotels, cafés and restaurants HCR'
+  titre.fr: 'hôtels, cafés restaurants HCR'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
   titre.en: overtime increase
   titre.fr: majoration heures supplémentaires
@@ -1975,7 +1975,7 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   description.fr: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
-  question.en: "[automatic] What is the employer's paid portion?"
+  question.en: '[automatic] What is the employer''s paid portion?'
   question.fr: Quelle est la participation de l'employeur ?
   suggestions.50%.en: '[automatic] 50%'
   suggestions.50%.fr: 50%
@@ -2402,7 +2402,7 @@ contrat salarié . prévoyance . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . prévoyance . plafond exonération sociale employeur:
-  titre.en: "[automatic] ceiling employer's social security exemption"
+  titre.en: '[automatic] ceiling employer''s social security exemption'
   titre.fr: plafond exonération sociale employeur
 contrat salarié . prévoyance . salarié:
   titre.en: '[automatic] employee'
@@ -2443,7 +2443,7 @@ contrat salarié . retraite supplémentaire . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
-  titre.en: "[automatic] employer's social security ceiling"
+  titre.en: '[automatic] employer''s social security ceiling'
   titre.fr: plafond d'exonération sociale employeur
 contrat salarié . retraite supplémentaire . salarié:
   titre.en: '[automatic] employee'
@@ -3550,6 +3550,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     qu'une ligne unique dont le taux dépend de la catégorie d'activité.
   titre.en: contribution rate
   titre.fr: taux de cotisation
+dirigeant . auto-entrepreneur . dom:
+  question.en: '[automatic] Is your company located in the DOM-TOM?'
+  question.fr: Votre entreprise est-elle située dans les DOM-TOM ?
+  titre.en: >-
+    [automatic] domiciliation of the company in the French overseas departments
+    and territories
+  titre.fr: domiciliation de l'entreprise dans les DOM-TOM
 dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
@@ -3559,6 +3566,12 @@ dirigeant . auto-entrepreneur . impôt . abattement:
 dirigeant . auto-entrepreneur . impôt . abattement . taux:
   titre.en: tax allowance rate
   titre.fr: taux d'abattement de l'impôt
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guadeloupe Réunion Martinique:
+  titre.en: '[automatic] rate Guadeloupe Reunion Martinique'
+  titre.fr: taux Guadeloupe Réunion Martinique
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guyane Mayotte:
+  titre.en: '[automatic] rate French Guiana Mayotte'
+  titre.fr: taux Guyane Mayotte
 dirigeant . auto-entrepreneur . impôt . abattement . taux inversé:
   description.en: >-
     This is the rate to be applied to determine what remains after the
@@ -4329,7 +4342,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . invalidité et décès:
@@ -4692,7 +4705,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -4811,7 +4824,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -5028,7 +5041,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
@@ -5765,6 +5778,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . localisation . outre-mer . Guadeloupe Réunion Martinique:
   titre.en: '[automatic] Guadeloupe Reunion Martinique'
   titre.fr: Guadeloupe Réunion Martinique
+établissement . localisation . outre-mer . Guyane Mayotte:
+  titre.en: '[automatic] French Guiana Mayotte'
+  titre.fr: Guyane Mayotte
 établissement . taux du versement transport:
   titre.en: Rate of transport tax
   titre.fr: taux du versement transport
