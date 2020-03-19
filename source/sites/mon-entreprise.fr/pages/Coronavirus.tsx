@@ -3,6 +3,7 @@ import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import autoEntrepreneurConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { Markdown } from 'Components/utils/markdown'
 import Value from 'Components/Value'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useContext } from 'react'
@@ -47,18 +48,19 @@ export default function ChômagePartiel() {
 					</h1>
 					<p>
 						Le gouvernement met en place des mesures de soutien aux salariés
-						touchés par la crise du Coronavirus. Parmis les mesures phares, la
+						touchés par la crise du Coronavirus. Parmi les mesures phares, la
 						prise en charge de l'intégralité de l'indemnisation du chômage
-						partiel par l'état.
+						partiel par l'État.
 					</p>
 					<p>
 						Ce simulateur permet de connaître votre revenu net si vous avez été
-						mis en chômage partiel par votre entreprise, ainsi que le coût total
-						restant à charge pour l'entreprise
+						mis en chômage partiel, ainsi que le coût total restant à charge
+						pour l'entreprise
 					</p>
 				</Trans>
 			)}
 			<Simulation results={<ExplanationSection />} />
+			{!inIframe && <TextExplanations />}
 		</>
 	)
 }
@@ -116,5 +118,36 @@ function ExplanationSection() {
 				</ul>
 			</div>
 		</Animate.fromTop>
+	)
+}
+
+function TextExplanations() {
+	return (
+		<Markdown
+			source={`
+## Déclaration d'activité partielle 📫
+
+Le chômage partiel doit être demandé [ici](https://activitepartielle.emploi.gouv.fr/aparts/).
+
+Face à la crise du coronavirus, les modalités de passage en activité partielle
+ont été allégées. L'employeur est autorisé a placer ses salariés en activité
+partielle avant qu'une demande ne soit déposée par l'employeur. Celui-ci dispose
+ensuite d'un délai de **30 jours** pour déposer sa demande. Les
+indemnités seront versées avec un effet rétro-actif dès la mise en chômage
+partiel.
+
+## Indépendants 🚶‍♀️
+
+Les petites entreprises et les indépendants qui subissent une fermeture
+administrative OU qui auront connu une perte de chiffre d'affaires d'au moins
+70% au mois de mars 2020 par rapport au mois de mars 2019 bénéficieront d'une
+aide automatique de **1 500 euros**. Pour bénéficier de cette aide il faudra
+faire une déclaration sur le site de la DGFiP.
+
+[➡ Plus d'informations sur les mesures de soutien aux entreprises](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
+
+[👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
+	`}
+		/>
 	)
 }
