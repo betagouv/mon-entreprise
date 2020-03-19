@@ -218,6 +218,7 @@ contrat salarié . chômage partiel:
   par défaut: non
   rend non applicable:
     - temps de travail . heures supplémentaires
+    - temps de travail . heures complémentaires
   références:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
@@ -227,7 +228,7 @@ contrat salarié . chômage partiel . heures chômées:
   unité: heures/mois
   formule:
     produit:
-      assiette: temps de travail . temps contractuel
+      assiette: temps de travail
       taux: 100% - proportion heures travaillées
 
 contrat salarié . chômage partiel . proportion heures travaillées:
@@ -1059,7 +1060,7 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
 
 contrat salarié . rémunération . taux horaire:
   unité: €/heure
-  formule: assiette de vérification du SMIC / temps de travail . temps contractuel
+  formule: assiette de vérification du SMIC / temps de travail
 
 contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description: >

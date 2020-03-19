@@ -116,7 +116,7 @@ function ExplanationSection() {
 				<ul>
 					<li>
 						<Trans>
-							Indemnité chômage partiel prise en charge par l'état :
+							Indemnité chômage partiel prise en charge par l'État :
 						</Trans>{' '}
 						<RuleLink {...indemnité}>
 							<Value {...indemnité} maximumFractionDigits={0} />
