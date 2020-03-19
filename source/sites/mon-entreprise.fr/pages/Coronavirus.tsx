@@ -131,10 +131,10 @@ Le chômage partiel doit être demandé [ici](https://activitepartielle.emploi.g
 
 Face à la crise du coronavirus, les modalités de passage en activité partielle
 ont été allégées. L'employeur est autorisé a placer ses salariés en activité
-partielle avant qu'une demande ne soit déposée par l'employeur. Celui-ci dispose
-ensuite d'un délai de **30 jours** pour déposer sa demande. Les
-indemnités seront versées avec un effet rétro-actif dès la mise en chômage
-partiel.
+partielle avant que la demande officielle ne soit déposée. Celui-ci dispose
+ensuite d'un délai de **30 jours** pour se mettre en règle. Les
+indemnités seront versées avec un effet rétro-actif débutant à la mise en place
+du chômage partiel.
 
 ## Indépendants 🚶‍♀️
 
