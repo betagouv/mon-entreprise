@@ -224,7 +224,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
           toutes ces conditions:
             - dirigeant . auto-entrepreneur . dom
             - entreprise . catégorie d'activité . service ou vente != 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement = 'non'
+            - entreprise . catégorie d'activité . restauration ou hébergement = non
         alors: 14.7%
       - si:
           toutes ces conditions:
@@ -234,7 +234,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         alors: 7.4%
       - si:
           toutes ces conditions:
-            - dirigeant . auto-entrepreneur . dom = 'non'
+            - dirigeant . auto-entrepreneur . dom = non
             - une de ces conditions:
                 - entreprise . catégorie d'activité . service ou vente = 'vente'
                 - entreprise . catégorie d'activité . restauration ou hébergement
@@ -300,34 +300,6 @@ dirigeant . auto-entrepreneur . impôt . abattement . taux:
             - entreprise . catégorie d'activité . restauration ou hébergement
         alors: 71%
       - sinon: 50%
-
-dirigeant . auto-entrepreneur . impôt . abattement . taux Guadeloupe Réunion Martinique:
-  applicable si:
-    toutes ces conditions:
-      - dirigeant . auto-entrepreneur . dom
-      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
-  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
-  formule:
-    barème:
-      assiette: base des cotisations
-      tranches:
-        - plafond: 2450
-          taux: 30%
-        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
-
-dirigeant . auto-entrepreneur . impôt . abattement . taux Guyane Mayotte:
-  applicable si:
-    toutes ces conditions:
-      - dirigeant . auto-entrepreneur . dom
-      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
-  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
-  formule:
-    barème:
-      assiette: base des cotisations
-      tranches:
-        - plafond: 4050
-          taux: 40%
-        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description: >
