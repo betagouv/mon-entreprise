@@ -1,5 +1,3 @@
-import Explicable from 'Components/conversation/Explicable'
-import RangeSlider from 'Components/ui/RangeSlider'
 import {
 	EngineContext,
 	Evaluation,
@@ -25,18 +23,16 @@ perte de revenu chômage partiel:
 			- (- contrat salarié . rémunération . net . sans chômage partiel)
 `
 
-export function Coronavirus() {
+export default function Coronavirus() {
 	return (
 		<>
-			<h1>Coronavirus : quel impact sur mes revenus ?</h1>
+			<h1>Coronavirus et chômage partiel : quel impact sur mes revenus ?</h1>
 			<p>
 				Le gouvernement met en place des mesures de soutien aux salariés et
 				indépendants touchés par la crise du Coronavirus. Nos simulateurs
 				permettent d'estimer l'impact de ces mesures sur vos revenus.
 			</p>
-			<h2>Salariés</h2>
 			<SimulateurSalarié />
-			<h2>Indépendants</h2>
 		</>
 	)
 }
@@ -61,7 +57,16 @@ function SimulateurSalarié() {
 								}))
 							}
 						/>
-						<li>
+						{/* <SimpleField
+							dottedName={'contrat salarié . rémunération . net de cotisations'}
+							onChange={value =>
+								setSituation(state => ({
+									...state,
+									'contrat salarié . rémunération . net de cotisations': value
+								}))
+							}
+						/> */}
+						{/* <li>
 							<span className="optionTitle">
 								Quelle est la proportion du chômage partiel ?{' '}
 								<Explicable dottedName="contrat salarié . chômage partiel . heures chômées" />
@@ -87,7 +92,7 @@ function SimulateurSalarié() {
 									Activité totalement suspendue
 								</span>
 							</SliderLegend>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</section>

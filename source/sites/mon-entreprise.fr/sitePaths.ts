@@ -98,8 +98,7 @@ export const constructLocalizedSitePath = (language: string) => {
 					'path.gérer.déclaration-indépendant.récapitulatif',
 					'/récapitulatif'
 				)
-			},
-			coronavirus: t('path.gérer.coronavirus', '/coronavirus')
+			}
 		},
 		simulateurs: {
 			index: t('path.simulateurs.index', '/simulateurs'),
@@ -130,6 +129,10 @@ export const constructLocalizedSitePath = (language: string) => {
 		documentation: {
 			index: t('path.documentation.index', '/documentation'),
 			rule: (dottedName: DottedName) => '/' + encodeRuleName(dottedName)
+		},
+		coronavirus: {
+			index: t('path.coronavirus.index', '/coronavirus'),
+			chômagePartiel: t('path.coronavirus.chômage-partiel', '/chomage-partiel')
 		},
 		integration: {
 			index: t('path.integration.index', '/intégration'),
