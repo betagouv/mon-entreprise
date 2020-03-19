@@ -18,3 +18,5 @@ unités par défaut: [€/mois]
 situation:
   dirigeant: non
   contrat salarié . chômage partiel: oui
+  contrat salarié . médecine du travail: non
+  contrat salarié . complémentaire santé: 0

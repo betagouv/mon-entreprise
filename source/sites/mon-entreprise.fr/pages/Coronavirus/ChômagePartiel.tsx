@@ -51,6 +51,11 @@ export default function ChômagePartiel() {
 						prise en charge de l'intégralité de l'indemnisation du chômage
 						partiel par l'état.
 					</p>
+					<p>
+						Ce simulateur permet de connaître votre revenu net si vous avez été
+						mis en chômage partiel par votre entreprise, ainsi que le coût total
+						restant à charge pour l'entreprise
+					</p>
 				</Trans>
 			)}
 			<Simulation results={<ExplanationSection />} />
