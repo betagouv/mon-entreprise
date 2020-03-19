@@ -64,7 +64,12 @@ export default function ChômagePartiel() {
 					</p>
 				</Trans>
 			)}
-			<Simulation results={<ExplanationSection />} />
+			<Simulation
+				results={<ExplanationSection />}
+				customEndMessages={
+					<span className="ui__ notice">Voir les résultats au-dessus</span>
+				}
+			/>
 			{!inIframe && (
 				<>
 					<br />
@@ -108,7 +113,7 @@ function ExplanationSection() {
 				<h3>
 					<Trans>Revenu net avec chômage partiel :</Trans>{' '}
 					<RuleLink {...net}>
-						<Value {...net} />
+						<Value {...net} maximumFractionDigits={0} />
 					</RuleLink>
 				</h3>
 				<ul>
@@ -117,13 +122,13 @@ function ExplanationSection() {
 							Indemnité chômage partiel prise en charge par l'état :
 						</Trans>{' '}
 						<RuleLink {...indemnité}>
-							<Value {...indemnité} />
+							<Value {...indemnité} maximumFractionDigits={0} />
 						</RuleLink>{' '}
 					</li>
 					<li>
 						<Trans>Total payé par l'entreprise :</Trans>{' '}
 						<RuleLink {...totalEntreprise}>
-							<Value {...totalEntreprise} />
+							<Value {...totalEntreprise} maximumFractionDigits={0} />
 						</RuleLink>
 					</li>
 				</ul>
