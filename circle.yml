@@ -32,21 +32,21 @@ commands:
 jobs:
   type-check:
     docker:
-      - image: node
+      - image: node:12.16.1-buster
     steps:
       - install
       - run: |
           yarn run type-check
   i18n-check:
     docker:
-      - image: node
+      - image: node:12.16.1-buster
     steps:
       - install
       - run: yarn run i18n:rules:check
       - run: yarn run i18n:ui:check
   unit-test:
     docker:
-      - image: node
+      - image: node:12.16.1-buster
     steps:
       - install
       - run: |
@@ -55,7 +55,7 @@ jobs:
 
   end-to-end-test:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.16.1
         environment:
           TERM: xterm
     steps:
@@ -72,7 +72,7 @@ jobs:
 
   bundlesize-test:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.16.1
         environment:
           TERM: xterm
     steps:
@@ -83,7 +83,7 @@ jobs:
 
   production-end-to-end-test:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:12.16.1
         environment:
           TERM: xterm
     parallelism: 3
