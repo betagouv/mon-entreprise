@@ -141,9 +141,6 @@ export default function SocialSecurity() {
 											pathname: sitePaths.coronavirus
 										}}
 									>
-										<span className="ui__ label" css="margin-bottom: 0.4rem">
-											Covid-19
-										</span>
 										<div className="ui__ big box-icon">{emoji('😷')}</div>
 										<Trans i18nKey="gérer.choix.embauche">
 											<h3>Connaître les aides</h3>
@@ -153,6 +150,7 @@ export default function SocialSecurity() {
 												entreprises.
 											</p>
 										</Trans>
+										<span className="ui__ label">Covid-19</span>
 									</Link>
 									<Link
 										className="ui__ interactive card box"
@@ -363,7 +361,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 										: company.statutJuridique}
 								</span>
 								{company.isDirigeantMajoritaire != null && (
-									<span css="margin-left: 1rem" className="ui__ label">
+									<span css="margin-left: 1rem;" className="ui__ label">
 										{company.isDirigeantMajoritaire ? (
 											<Trans i18nKey="gérer.entreprise.majoritaire">
 												Dirigeant majoritaire

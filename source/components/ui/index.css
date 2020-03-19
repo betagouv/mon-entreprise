@@ -125,10 +125,10 @@ span.ui__.enumeration:not(:last-of-type)::after {
 
 .ui__.label {
 	font-size: 85%;
-	padding: 0.2rem 0.4rem;
+	padding: 0.4rem 0.6rem;
 	font-weight: bold;
 	color: white;
-	background: var(--color);
+	background: var(--darkColor);
 	border-radius: 0.3rem;
 	text-align: center;
 }

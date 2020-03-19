@@ -97,11 +97,12 @@
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	justify-content: center;
+
 	margin: 1rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	text-decoration: none;
+	align-items: center;
 	color: inherit;
 	font-size: inherit !important;
 }
