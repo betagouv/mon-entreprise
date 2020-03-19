@@ -15,6 +15,7 @@ export default function Input({
 	onSubmit,
 	dottedName,
 	value,
+	defaultValue,
 	unit
 }) {
 	const colors = useContext(ThemeColorsContext)
@@ -37,8 +38,9 @@ export default function Input({
 			<div className="answer">
 				<NumberFormat
 					autoFocus
-					className={'suffixed'}
+					className="suffixed"
 					id={'step-' + dottedName}
+					placeholder={defaultValue}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
