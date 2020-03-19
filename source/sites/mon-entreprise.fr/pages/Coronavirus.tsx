@@ -2,6 +2,8 @@ import { setSimulationConfig } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import autoEntrepreneurConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
+import StackedBarChart from 'Components/StackedBarChart'
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
 import Value from 'Components/Value'
@@ -72,6 +74,7 @@ export default function ChômagePartiel() {
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
+	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const net = getRule('contrat salarié . rémunération . net')
@@ -85,7 +88,27 @@ function ExplanationSection() {
 	}
 	return (
 		<Animate.fromTop>
-			{' '}
+			<div
+				css={`
+					margin-top: 2rem;
+				`}
+			>
+				<StackedBarChart
+					data={[
+						{
+							...net,
+							title: 'Revenu net avec chômage partiel',
+							color: palettes[0][0]
+						},
+						{
+							...perteRevenu,
+							nodeValue: -perteRevenu.nodeValue,
+							title: 'Perte de revenu net',
+							color: palettes[1][0]
+						}
+					]}
+				/>
+			</div>
 			<div
 				className="ui__ light-bg card"
 				css={`
@@ -112,12 +135,6 @@ function ExplanationSection() {
 						<Trans>Total payé par l'entreprise :</Trans>{' '}
 						<RuleLink {...totalEntreprise}>
 							<Value {...totalEntreprise} />
-						</RuleLink>
-					</li>
-					<li>
-						<Trans>Perte de revenu net :</Trans>{' '}
-						<RuleLink {...perteRevenu}>
-							<Value {...perteRevenu} />
 						</RuleLink>
 					</li>
 				</ul>
