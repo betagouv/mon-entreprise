@@ -75,9 +75,8 @@ function IntegrationCustomizer() {
 				>
 					<div className="ui__ left-side">
 						<h3>
-							<Trans>
-								Quel module ? <>{emoji('🚩')}</>
-							</Trans>
+							<Trans i18nKey="pages.développeurs.module">Quel module ?</Trans>
+							{emoji('🚩')}
 						</h3>
 						<select
 							onChange={event => setCurrentModule(event.target.value)}
@@ -89,20 +88,22 @@ function IntegrationCustomizer() {
 						</select>
 
 						<h3>
-							<Trans>
-								Quelle couleur ? <>{emoji('🎨')}</>
+							<Trans i18nKey="pages.développeurs.couleur">
+								Quelle couleur ?{' '}
 							</Trans>
+							{emoji('🎨')}
 						</h3>
 						<Suspense fallback={<div>Chargement...</div>}>
 							<LazyColorPicker color={color} onChange={setColor} />
 						</Suspense>
 						<h3>
-							<Trans>
-								Code d'intégration <>{emoji('🛠')}</>
+							<Trans i18nKey="pages.développeurs.code.titre">
+								Code d'intégration
 							</Trans>
+							{emoji('🛠')}
 						</h3>
 						<p>
-							<Trans i18nKey="pages.développeurs.code à copier">
+							<Trans i18nKey="pages.développeurs.code.description">
 								Voici le code à copier-coller sur votre site :
 							</Trans>
 						</p>

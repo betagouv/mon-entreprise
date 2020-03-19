@@ -817,12 +817,6 @@ contrat salarié . CSG:
     Prélèvement obligatoire qui participe au financement de la sécurité sociale.
   titre.en: CSG
   titre.fr: CSG
-contrat salarié . CSG . assiette CSG déductible:
-  titre.en: deductible CSG base
-  titre.fr: assiette CSG déductible
-contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
-  titre.en: '[automatic] tax-free overtime and additional hours base'
-  titre.fr: assiette heures supplémentaires et complémentaires défiscalisées
 contrat salarié . FNAL:
   description.en: >-
     The National Housing Fund (Fnal) is a contribution to ensure the financing
@@ -901,8 +895,8 @@ contrat salarié . aides employeur:
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
   résumé.fr: 'Pour l''employeur, différées dans le temps'
-  titre.en: deferred employer aids
-  titre.fr: aides à l'embauche
+  titre.en: '[automatic] employer assistance'
+  titre.fr: aides employeur
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description.en: >
     Since 2019, a single hiring aid has replaced four previous schemes. The
@@ -1042,13 +1036,17 @@ contrat salarié . apprentissage . diplôme préparé . niveau supérieur au bac
   titre.en: Degree above the baccalaureate level
   titre.fr: Diplôme d'un niveau supérieur au bac
 contrat salarié . assiette CSG et CRDS:
-  note.en: '[automatic] This plate is complex, this version is only a simplification.'
-  note.fr: 'Cette assiette est complexe, cette version n''est qu''une simplification.'
   titre.en: CSG and CRDS base
   titre.fr: assiette CSG et CRDS
 contrat salarié . assiette CSG et CRDS . assiette abattue:
   titre.en: reduced base
   titre.fr: assiette abattue
+contrat salarié . assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
+  titre.en: '[automatic] tax-free overtime and additional hours base'
+  titre.fr: assiette heures supplémentaires et complémentaires défiscalisées
+contrat salarié . assiette CSG et CRDS . assiette revenu remplacements:
+  titre.en: '[automatic] income base replacements'
+  titre.fr: assiette revenu remplacements
 contrat salarié . avantages sociaux:
   description.en: >-
     These are the benefits paid by the employer. They are specific to the
@@ -1071,6 +1069,73 @@ contrat salarié . chômage . taux employeur:
 contrat salarié . chômage . taux salarié:
   titre.en: employee rate
   titre.fr: taux salarié
+contrat salarié . chômage partiel:
+  description.en: >-
+    [automatic] Following the Coronavirus crisis, the government introduced an
+    extended short-time working scheme in which the state pays compensation for
+    hours worked up to 4.5 SMIC.
+
+    The declaration of partial activity is simplified and the effect is
+    retroactive.
+  description.fr: >-
+    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
+    dispositif de chômage partiel étendu dans lequel l'État prend en charge
+    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+
+    La déclaration d'activité partielle est simplifiée est l'effet est
+    rétroactif.
+  question.en: '[automatic] Is the employee on short-time work?'
+  question.fr: Le salarié est-il en chômage partiel ?
+  titre.en: '[automatic] short-time working'
+  titre.fr: chômage partiel
+contrat salarié . chômage partiel . absence activité partielle:
+  titre.en: '[automatic] partial absence of activity'
+  titre.fr: absence activité partielle
+contrat salarié . chômage partiel . heures chômées:
+  titre.en: '[automatic] non-working hours'
+  titre.fr: heures chômées
+contrat salarié . chômage partiel . indemnisation entreprise:
+  description.en: >-
+    [automatic] In the context of the Coronavirus crisis, the government has
+    announced that the short-time working allowance will be 100% paid by the
+    state.
+  description.fr: >-
+    Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
+    l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
+  titre.en: '[automatic] Employer''s reimbursement of partial activity allowance'
+  titre.fr: Remboursement employeur de l'indemnité d'activité partielle
+contrat salarié . chômage partiel . indemnité d'activité partielle:
+  titre.en: '[automatic] severance payment'
+  titre.fr: indemnité d'activité partielle
+contrat salarié . chômage partiel . proportion heures travaillées:
+  description.en: >-
+    [automatic] In the case of short-time working, the proportion of hours
+    worked corresponds to the ratio of the number of hours worked to the usual
+    contractual working time.
+
+    A ratio of 0% means that the employee did not work this month. A ratio of
+    100% means that the employee worked all those contractual hours.
+
+    Overtime, even usual overtime, is not taken into account.
+  description.fr: >-
+    Dans le cadre du chômage partiel, la proportion d'heure travaillées
+    correspond au ratio du nombre d'heures travaillées par rapport au temps de
+    travail contractuel habituel.
+
+    Un ratio de 0% signifie que l'employé n'a pas travaillé ce mois ci. Un ratio
+    de 100% signifie que l'employé a effectué toutes ces heures contractuelles.
+
+    Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
+  question.en: '[automatic] What is the proportion of hours worked over the month?'
+  question.fr: Quelle est la proportion d'heures travaillées sur le mois ?
+  suggestions.0%.en: '[automatic] 0%'
+  suggestions.0%.fr: 0%
+  suggestions.20%.en: '[automatic] 20%'
+  suggestions.20%.fr: 20%
+  suggestions.50%.en: '[automatic] 50%'
+  suggestions.50%.fr: 50%
+  titre.en: '[automatic] proportion of hours worked'
+  titre.fr: proportion heures travaillées
 contrat salarié . complémentaire santé:
   description.en: >
     Health Insurance (Social Security) does not fully reimburse your health
@@ -2811,8 +2876,8 @@ contrat salarié . rémunération . brut de base:
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
     primes...
-  question.en: What is the monthly gross salary?
-  question.fr: Quel est le salaire de base ?
+  question.en: '[automatic] What''s your gross salary?'
+  question.fr: Quel est votre salaire brut ?
   résumé.en: Written in the employment contract
   résumé.fr: Brut de base inscrit dans le contrat de travail
   suggestions.SMIC.en: '[automatic] SMIC'
@@ -2864,8 +2929,8 @@ contrat salarié . rémunération . net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel (pour
     le changer, il faut signer un avenant au contrat).
-  question.en: What is the net salary?
-  question.fr: Quel est le salaire net ?
+  question.en: '[automatic] What''s your take-home pay?'
+  question.fr: Quel est votre salaire net ?
   résumé.en: Received by the employee
   résumé.fr: Salaire net avant impôt
   titre.en: Net salary
@@ -3005,6 +3070,27 @@ contrat salarié . rémunération . primes . fin d'année . treizième mois:
   question.fr: Le salarié bénéficie-t-il d'un treizième mois ?
   titre.en: thirteenth month
   titre.fr: treizième mois
+contrat salarié . rémunération . revenus de remplacement:
+  description.en: >-
+    [automatic] Replacement income is income received in lieu of work:
+    unemployment or short-time working benefits, sickness or accident benefits,
+    retirement pension, social integration income, etc.
+
+    This income is taxable but exempt from social security contributions. They
+    are subject to the CSG/CRDS with a specific rate.
+  description.fr: >-
+    Les revenus de remplacement sont les revenus perçus en remplacement de la
+    rémunération du travail : allocations de chômage ou de chômage partiel,
+    indemnités maladie ou accident du travail, pension de retraite, revenu
+    d'intégration sociale, etc.
+
+    Ces revenus sont imposables mais sont exonérés de cotisations sociales. Ils
+    sont soumis à la CSG/CRDS avec un taux spécifique.
+  titre.en: '[automatic] replacement revenues'
+  titre.fr: revenus de remplacement
+contrat salarié . rémunération . taux horaire:
+  titre.en: '[automatic] hourly fee'
+  titre.fr: taux horaire
 contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description.en: >
     [automatic] The hourly rate used to calculate overtime pay. It includes
@@ -3023,8 +3109,8 @@ contrat salarié . rémunération . total:
     amount.
   description.fr: |
     C'est le total que l'employeur doit verser pour employer un salarié.
-  question.en: What is the remuneration charged?
-  question.fr: Quel est la rémunération chargée ?
+  question.en: '[automatic] What is the remuneration charged?'
+  question.fr: Quelle est la rémunération chargée ?
   résumé.en: Spent by the company
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
@@ -5284,6 +5370,12 @@ impôt . taux personnalisé:
   question.fr: Quel est votre taux de prélèvement à la source ?
   titre.en: personalized rate
   titre.fr: taux personnalisé
+perte de revenu chômage partiel:
+  titre.en: '[automatic] loss of income short-time working'
+  titre.fr: perte de revenu chômage partiel
+perte de revenu chômage partiel . net sans chômage partiel:
+  titre.en: '[automatic] net without short-time work'
+  titre.fr: net sans chômage partiel
 plafond horaire sécurité sociale:
   titre.en: hourly social security ceiling
   titre.fr: plafond horaire sécurité sociale

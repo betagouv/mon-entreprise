@@ -162,7 +162,7 @@ export let SalarySimulation = () => {
 			/>
 			<br />
 			<Banner icon={'😷'}>
-				<strong>Coronavirus et chômage partiel </strong>:{' '}
+				<strong>Covid-19 et chômage partiel </strong>:{' '}
 				<Link to={sitePaths.coronavirus}>Calculez votre indemnité</Link>
 			</Banner>
 			<PreviousSimulationBanner />

@@ -2,8 +2,6 @@
 	display: flex;
 	align-items: center;
 	margin: 1rem 0;
-	max-width: 100%;
-	width: 45rem;
 }
 
 .ui__.banner img {

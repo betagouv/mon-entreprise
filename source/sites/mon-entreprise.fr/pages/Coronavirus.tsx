@@ -50,9 +50,9 @@ export default function ChômagePartiel() {
 					</h1>
 					<p>
 						Le gouvernement met en place des mesures de soutien aux salariés
-						touchés par la crise du Coronavirus. Parmi les mesures phares, la
-						prise en charge de l'intégralité de l'indemnisation du chômage
-						partiel par l'État.
+						touchés par la crise du Covid-19. Parmi les mesures phares, la prise
+						en charge de l'intégralité de l'indemnisation du chômage partiel par
+						l'État.
 					</p>
 					<p>
 						Ce simulateur permet de connaître votre revenu net si vous avez été
@@ -144,13 +144,16 @@ function ExplanationSection() {
 }
 
 function TextExplanations() {
+	const { i18n } = useTranslation()
+	if (i18n.language !== 'fr') {
+		return null
+	}
 	return (
 		<Markdown
 			source={`
 
-
-			
 [👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
+
 
 ## Pour l'entreprise : déclarer une activité partielle 📫
 
