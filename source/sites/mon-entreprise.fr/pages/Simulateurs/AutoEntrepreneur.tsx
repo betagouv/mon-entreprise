@@ -9,6 +9,7 @@ import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entreprene
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import {
@@ -34,10 +35,16 @@ export default function AutoEntrepreneur() {
 	dispatch(
 		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
 	)
-
-	const company = useSelector(
-		(state: RootState) => state.inFranceApp.existingCompany
+	const [lastState, setLastState] = usePersistingState(
+		'navigation::simulateurs::locationState::v2'
 	)
+
+	let company
+	if (!lastState || !lastState?.fromSimulateurs) {
+		company = useSelector(
+			(state: RootState) => state.inFranceApp.existingCompany
+		)
+	}
 
 	const companyRef = useRef<Company | null>(null)
 	useEffect(() => {
