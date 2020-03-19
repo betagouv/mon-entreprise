@@ -18,18 +18,20 @@ type SimulationProps = {
 	explanations?: React.ReactNode
 	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
+	showPeriodSwitch?: boolean
 }
 
 export default function Simulation({
 	explanations,
 	results,
-	customEndMessages
+	customEndMessages,
+	showPeriodSwitch
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const progress = useSelector(simulationProgressSelector)
 	return (
 		<>
-			<TargetSelection />
+			<TargetSelection showPeriodSwitch={showPeriodSwitch} />
 			<SearchButton invisibleButton />
 			{firstStepCompleted && (
 				<>

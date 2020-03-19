@@ -23,7 +23,7 @@ import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
-export default function TargetSelection() {
+export default function TargetSelection({ showPeriodSwitch = true }) {
 	const [initialRender, setInitialRender] = useState(true)
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const objectifs = useSelector(
@@ -86,7 +86,7 @@ export default function TargetSelection() {
 									</h2>
 								)}
 							</div>
-							{index === 0 && <PeriodSwitch />}
+							{index === 0 && showPeriodSwitch && <PeriodSwitch />}
 						</div>
 						<section
 							className="ui__ plain card"

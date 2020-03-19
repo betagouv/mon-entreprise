@@ -13,10 +13,7 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import {
-	analysisWithDefaultsSelector,
-	defaultUnitsSelector
-} from 'Selectors/analyseSelectors'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 
 export default function ChômagePartiel() {
@@ -58,9 +55,9 @@ export default function ChômagePartiel() {
 						l'État.
 					</p>
 					<p>
-						Ce simulateur permet de connaître votre revenu net si vous avez été
-						mis en chômage partiel, ainsi que le coût total restant à charge
-						pour l'entreprise
+						Ce simulateur permet de connaître le revenu net versé au salarié,
+						ainsi que le coût total restant à charge pour l'entreprise en cas de
+						chômage partiel.
 					</p>
 				</Trans>
 			)}
@@ -69,6 +66,7 @@ export default function ChômagePartiel() {
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>
 				}
+				showPeriodSwitch={false}
 			/>
 			{!inIframe && (
 				<>
@@ -82,7 +80,6 @@ export default function ChômagePartiel() {
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
-	const mensuel = useSelector(defaultUnitsSelector)[0].includes('mois')
 
 	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
@@ -143,7 +140,7 @@ function ExplanationSection() {
 					},
 					{
 						...perteRevenu,
-						nodeValue: -perteRevenu.nodeValue / (mensuel ? 1 : 12),
+						nodeValue: -perteRevenu.nodeValue,
 						title: 'Perte de revenu',
 						color: palettes[1][0]
 					}
