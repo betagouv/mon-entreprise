@@ -34,7 +34,6 @@ export function Provider({ rules, extra, situation, children }: InputProps) {
 
 export function useEvaluation(expression: string) {
 	const { engine } = useContext(EngineContext)
-	console.log(engine, expression)
 	return engine === null ? null : engine.evaluate(expression)
 }
 

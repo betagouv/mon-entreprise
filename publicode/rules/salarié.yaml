@@ -1544,8 +1544,9 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
+  unité: €/mois
   type: salaire
-  question: Quel est le salaire net ?
+  question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
   description: >-
     C'est le montant que le salarié toucherait à la fin du mois avant de payer

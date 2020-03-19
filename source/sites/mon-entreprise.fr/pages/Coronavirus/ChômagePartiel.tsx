@@ -1,4 +1,3 @@
-import RuleLink from 'Components/RuleLink'
 import {
 	EngineContext,
 	Evaluation,
@@ -8,6 +7,7 @@ import {
 import RuleInput from 'Engine/RuleInput'
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
+import Animate from 'Ui/animate'
 
 const extraRules = `
 contrat salarié . rémunération . net . sans chômage partiel:
@@ -29,9 +29,10 @@ export default function Coronavirus() {
 		<>
 			<h1>Coronavirus et chômage partiel : quel impact sur mes revenus ?</h1>
 			<p>
-				Le gouvernement met en place des mesures de soutien aux salariés et
-				indépendants touchés par la crise du Coronavirus. Nos simulateurs
-				permettent d'estimer l'impact de ces mesures sur vos revenus.
+				Le gouvernement met en place des mesures de soutien aux salariés touchés
+				par la crise du Coronavirus. Parmis les mesures phares, la prise en
+				charge de l'intégralité de l'indemnisation du chômage partiel par
+				l'état.
 			</p>
 			<SimulateurSalarié />
 		</>
@@ -40,10 +41,9 @@ export default function Coronavirus() {
 
 function SimulateurSalarié() {
 	const [situation, setSituation] = useState({
-		'contrat salarié . chômage partiel': 'oui',
-		'contrat salarié . chômage partiel . heures chômées': 30
+		'contrat salarié . chômage partiel': 'oui'
 	})
-	const tempsPlein = 151.67
+	const result = !!situation['contrat salarié . rémunération . brut de base']
 	return (
 		<Provider situation={situation} extra={extraRules}>
 			<section className="ui__ light card">
@@ -72,33 +72,37 @@ function SimulateurSalarié() {
 					</ul>
 				</div>
 			</section>
-			<div
-				className="ui__ card"
-				css={`
-					margin-top: 20px;
-					padding: 20px;
-					line-height: 1.6em;
-				`}
-			>
-				<h3>Première estimation</h3>
-				<span
-					css={`
-						font-size: 1.3em;
-					`}
-				>
-					<RuleLink
-						dottedName="contrat salarié . rémunération . net"
-						title="Revenu net"
-					/>{' '}
-					<Evaluation expression="contrat salarié . rémunération . net" />
-				</span>
-				<br />
-				dont indemnité chômage partiel :{' '}
-				<Evaluation expression="contrat salarié . chômage partiel . indemnité d'activité partielle" />
-				<br />
-				perte de revenu chômage partiel :{' '}
-				<Evaluation expression="perte de revenu chômage partiel" />
-			</div>
+			{result && (
+				<Animate.fromTop>
+					{' '}
+					<div
+						className="ui__ plain card"
+						css={`
+							margin-top: 2rem;
+							padding: 0.5rem;
+						`}
+					>
+						<h3>
+							Revenu net avec chômage partiel :{' '}
+							<Evaluation expression="contrat salarié . rémunération . net" />
+						</h3>
+						<ul>
+							<li>
+								Indemnité chômage partiel prise en charge par l'état :{' '}
+								<Evaluation expression="contrat salarié . chômage partiel . indemnité d'activité partielle" />
+							</li>
+							<li>
+								Total payé par l'entreprise :{' '}
+								<Evaluation expression="contrat salarié . prix du travail" />
+							</li>
+							<li>
+								Perte de revenu net :{' '}
+								<Evaluation expression="perte de revenu chômage partiel" />
+							</li>
+						</ul>
+					</div>
+				</Animate.fromTop>
+			)}
 		</Provider>
 	)
 }
