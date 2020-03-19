@@ -28,20 +28,20 @@ export default function ChômagePartiel() {
 			<Helmet>
 				<title>
 					{t(
-						'coronavirus.chômage-partiel.page.titre',
+						'coronavirus.page.titre',
 						'Coronavirus et chômage partiel : quel impact sur vos revenus ?'
 					)}
 				</title>
 				<meta
 					name="description"
 					content={t(
-						'coronavirus.chômage-partiel.page.description',
+						'coronavirus.page.description',
 						'Estimez le revenus net avec les indemnités de chômage partiel'
 					)}
 				/>
 			</Helmet>
 			{!inIframe && (
-				<Trans i18nKey="coronavirus.chômage-partiel.description">
+				<Trans i18nKey="coronavirus.description">
 					<h1>
 						Coronavirus et chômage partiel : quel impact sur mes revenus ?
 					</h1>

@@ -119,7 +119,7 @@ const App = () => {
 						/>
 						<Route path={sitePaths.integration.index} component={Integration} />
 						<Route path={sitePaths.nouveautés} component={Nouveautés} />
-						<Route path={sitePaths.coronavirus.index} component={Coronavirus} />
+						<Route path={sitePaths.coronavirus} component={Coronavirus} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route
 							exact
