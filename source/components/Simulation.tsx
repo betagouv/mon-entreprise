@@ -1,5 +1,7 @@
 import Controls from 'Components/Controls'
-import Conversation, { ConversationProps } from 'Components/conversation/Conversation'
+import Conversation, {
+	ConversationProps
+} from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
@@ -13,12 +15,14 @@ import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
 
 type SimulationProps = {
-	explanations: React.ReactNode
+	explanations?: React.ReactNode
+	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 }
 
 export default function Simulation({
 	explanations,
+	results,
 	customEndMessages
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
@@ -30,6 +34,7 @@ export default function Simulation({
 			{firstStepCompleted && (
 				<>
 					<Animate.fromTop>
+						{results}
 						<div
 							style={{
 								display: 'flex',

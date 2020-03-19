@@ -1,0 +1,20 @@
+objectifs:
+  - contrat salarié . rémunération . brut de base
+
+objectifs secondaires:
+  - contrat salarié . prix du travail
+  - contrat salarié . rémunération . net
+  - perte de revenu chômage partiel
+  - contrat salarié . chômage partiel . indemnité d'activité partielle
+
+questions:
+  uniquement:
+    - contrat salarié . chômage partiel . proportion heures travaillées
+    - contrat salarié . temps de travail . temps partiel
+    - contrat salarié . temps de travail . temps partiel . heures par semaine
+    - contrat salarié . statut cadre
+
+unités par défaut: [€/mois]
+situation:
+  dirigeant: non
+  contrat salarié . chômage partiel: oui

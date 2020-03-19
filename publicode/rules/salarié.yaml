@@ -228,19 +228,26 @@ contrat salarié . chômage partiel . heures chômées:
   formule:
     produit:
       assiette: temps de travail . temps contractuel
-      taux: proportion
+      taux: 100% - proportion heures travaillées
 
-contrat salarié . chômage partiel . heures chômées . proportion:
-  titre: proportion heures chômées
-  question: Quelle est la proportion d'heures chômées ?
+contrat salarié . chômage partiel . proportion heures travaillées:
+  titre: proportion heures travaillées
+  question: Quelle est la proportion d'heures travaillées sur le mois ?
   description: >-
-    Le nombre d'heure chômées correspond à la différence entre la durée légale
-    de travail (35h/semaine pour un temps plein) et le nombre d'heures
-    travaillées.
+    Dans le cadre du chômage partiel, la proportion d'heure travaillées correspond
+    au ratio du nombre d'heures travaillées par rapport au temps de travail
+    contractuel habituel.
+
+    Un ratio de 0% signifie que l'employé n'a pas travaillé ce mois ci.
+    Un ratio de 100% signifie que l'employé a effectué toutes ces heures contractuelles.
 
     Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
   unité: '%'
-  par défaut: 100
+  par défaut: 0
+  suggestions:
+    0%: 0
+    20%: 20
+    50%: 50
 
 contrat salarié . chômage partiel . indemnité d'activité partielle:
   unité: €/mois
@@ -1608,7 +1615,7 @@ contrat salarié . prix du travail:
 
 contrat salarié . rémunération . total:
   titre: Total chargé
-  question: Quel est la rémunération chargée ?
+  question: Quelle est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
   unité par défaut: €/mois

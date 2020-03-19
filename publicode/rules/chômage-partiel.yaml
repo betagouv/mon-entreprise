@@ -1,0 +1,9 @@
+perte de revenu chômage partiel:
+  formule: contrat salarié . rémunération . net - net sans chômage partiel
+
+perte de revenu chômage partiel . net sans chômage partiel:
+  formule:
+    recalcul:
+      règle: contrat salarié . rémunération . net
+      avec:
+        contrat salarié . chômage partiel: non
