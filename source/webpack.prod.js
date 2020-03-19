@@ -123,8 +123,10 @@ module.exports = {
 				'/simulateurs/assimilé-salarié',
 				'/simulateurs/indépendant',
 				'/créer',
+				'/coronavirus',
 				'/gérer',
-				'/iframes/simulateur-embauche'
+				'/iframes/simulateur-embauche',
+				'/iframes/simulateur-chomage-partiel'
 			],
 			indexPath: path.resolve('dist', 'mon-entreprise.html')
 		})
