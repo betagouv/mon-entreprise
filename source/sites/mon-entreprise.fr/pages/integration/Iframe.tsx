@@ -1,9 +1,13 @@
-import { ThemeColorsProvider } from 'Components/utils/colors'
+import {
+	ThemeColorsContext,
+	ThemeColorsProvider
+} from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/urssaf.svg'
-import React, { Suspense, useRef, useState } from 'react'
+import React, { Suspense, useContext, useRef, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, useLocation } from 'react-router-dom'
 import { integrableModuleNames } from '../Dev/IntegrationTest'
 import Iframes from '../Iframes'
 import './iframe.css'
@@ -15,10 +19,16 @@ import poleEmploiLogo from './images/pole-emploi.png'
 let LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
 
 function IntegrationCustomizer() {
+	const { search } = useLocation()
+	const defaultModuleFromUrl =
+		new URLSearchParams(search ?? '').get('module') ?? ''
 	const [currentModule, setCurrentModule] = React.useState(
-		integrableModuleNames[0]
+		integrableModuleNames.includes(defaultModuleFromUrl)
+			? defaultModuleFromUrl
+			: integrableModuleNames[0]
 	)
-	const [color, setColor] = useState()
+	const { color: defaultColor } = useContext(ThemeColorsContext)
+	const [color, setColor] = useState(defaultColor)
 	return (
 		<section>
 			<h2>
@@ -65,22 +75,31 @@ function IntegrationCustomizer() {
 				>
 					<div className="ui__ left-side">
 						<h3>
-							<Trans>Quel module ?</Trans>
+							<Trans>
+								Quel module ? <>{emoji('🚩')}</>
+							</Trans>
 						</h3>
-						<select onChange={event => setCurrentModule(event.target.value)}>
+						<select
+							onChange={event => setCurrentModule(event.target.value)}
+							value={currentModule}
+						>
 							{integrableModuleNames.map(name => (
 								<option key={name}>{name}</option>
 							))}
 						</select>
 
 						<h3>
-							<Trans>Quelle couleur ?</Trans>
+							<Trans>
+								Quelle couleur ? <>{emoji('🎨')}</>
+							</Trans>
 						</h3>
 						<Suspense fallback={<div>Chargement...</div>}>
 							<LazyColorPicker color={color} onChange={setColor} />
 						</Suspense>
 						<h3>
-							<Trans>Code d'intégration</Trans>
+							<Trans>
+								Code d'intégration <>{emoji('🛠')}</>
+							</Trans>
 						</h3>
 						<p>
 							<Trans i18nKey="pages.développeurs.code à copier">
