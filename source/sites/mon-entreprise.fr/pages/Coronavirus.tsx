@@ -60,7 +60,12 @@ export default function ChômagePartiel() {
 				</Trans>
 			)}
 			<Simulation results={<ExplanationSection />} />
-			{!inIframe && <TextExplanations />}
+			{!inIframe && (
+				<>
+					<br />
+					<TextExplanations />
+				</>
+			)}
 		</>
 	)
 }
@@ -125,9 +130,13 @@ function TextExplanations() {
 	return (
 		<Markdown
 			source={`
-## Déclaration d'activité partielle 📫
 
-Le chômage partiel doit être demandé [ici](https://activitepartielle.emploi.gouv.fr/aparts/).
+
+			
+[👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
+
+## Pour l'entreprise : déclarer une activité partielle 📫
+
 
 Face à la crise du coronavirus, les modalités de passage en activité partielle
 ont été allégées. L'employeur est autorisé a placer ses salariés en activité
@@ -135,6 +144,8 @@ partielle avant que la demande officielle ne soit déposée. Celui-ci dispose
 ensuite d'un délai de **30 jours** pour se mettre en règle. Les
 indemnités seront versées avec un effet rétro-actif débutant à la mise en place
 du chômage partiel.
+
+[➡ Effectuer la demande de chômage partiel](https://activitepartielle.emploi.gouv.fr/aparts/).
 
 ## Indépendants 🚶‍♀️
 
@@ -146,7 +157,6 @@ faire une déclaration sur le site de la DGFiP.
 
 [➡ Plus d'informations sur les mesures de soutien aux entreprises](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
 
-[👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
 	`}
 		/>
 	)
