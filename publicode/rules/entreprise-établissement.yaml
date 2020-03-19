@@ -531,6 +531,12 @@ entreprise . auto entreprise impossible:
       - département = 'Martinique'
       - département = 'La Réunion'
 
+établissement . localisation . outre-mer . Guyane Mayotte:
+  formule:
+    une de ces conditions:
+      - département = 'Guyane'
+      - département = 'Mayotte'
+
 établissement . ZFU:
   applicable si: entreprise . date de création < 01/2015
   question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?

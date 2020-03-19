@@ -316,6 +316,34 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
           - si: entreprise . catégorie d'activité = 'libérale'
             alors: 2.2%
 
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guadeloupe Réunion Martinique:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur . dom
+      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
+  formule:
+    barème:
+      assiette: base des cotisations
+      tranches:
+        - plafond: 2450
+          taux: 30%
+        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
+
+dirigeant . auto-entrepreneur . impôt . abattement . taux Guyane Mayotte:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur . dom
+      - établissement . localisation . outre-mer . Guadeloupe Réunion Martinique
+  remplace: dirigeant . auto-entrepreneur . impôt . abattement . taux
+  formule:
+    barème:
+      assiette: base des cotisations
+      tranches:
+        - plafond: 4050
+          taux: 40%
+        - taux: dirigeant . auto-entrepreneur . impôt . abattement . taux
+
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
   non applicable si: versement libératoire
   formule: revenu abattu
