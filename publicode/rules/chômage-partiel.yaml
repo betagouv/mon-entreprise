@@ -1,10 +1,10 @@
-perte de revenu chômage partiel:
+baisse de revenu chômage partiel:
   formule:
     allègement:
       assiette: net sans chômage partiel
       abattement: contrat salarié . rémunération . net
 
-perte de revenu chômage partiel . net sans chômage partiel:
+baisse de revenu chômage partiel . net sans chômage partiel:
   formule:
     recalcul:
       règle: contrat salarié . rémunération . net

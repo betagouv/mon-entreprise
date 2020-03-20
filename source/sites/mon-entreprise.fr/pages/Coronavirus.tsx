@@ -89,7 +89,7 @@ function ExplanationSection() {
 	const net = getRule('contrat salarié . rémunération . net')
 	const indemnité = getRule('contrat salarié . chômage partiel . indemnités')
 	const totalEntreprise = getRule('contrat salarié . prix du travail')
-	const perteRevenu = getRule('perte de revenu chômage partiel')
+	const perteRevenu = getRule('baisse de revenu chômage partiel')
 	if (!net?.nodeValue) {
 		return null
 	}
@@ -110,9 +110,14 @@ function ExplanationSection() {
 					<ul className="targets">
 						<li>
 							<div className="main">
-								<span className="optionTitle">
-									<Trans>Revenu net avec chômage partiel</Trans>
-								</span>
+								<div>
+									<div className="optionTitle">
+										<Trans>Revenu net mensuel</Trans>
+									</div>
+									<p>
+										<Trans>En incluant l'indemnité de chômage partiel</Trans>
+									</p>
+								</div>
 								<div className="targetInputOrValue">
 									<RuleLink {...net}>
 										{formatValue({
@@ -142,7 +147,7 @@ function ExplanationSection() {
 						</li>
 						<li>
 							<span className="optionTitle">
-								<Trans>Part du salaire net maintenu</Trans>
+								<Trans>Part du salaire net maintenue</Trans>
 							</span>
 							<StackedBarChart
 								data={[
@@ -153,7 +158,7 @@ function ExplanationSection() {
 									},
 									{
 										...perteRevenu,
-										title: 'Perte de revenu',
+										title: 'Baisse de revenu',
 										color: palettes[1][0]
 									}
 								]}
