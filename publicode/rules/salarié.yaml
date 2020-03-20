@@ -254,11 +254,10 @@ contrat salarié . chômage partiel . indemnité d'activité partielle:
   unité: €/mois
   formule:
     multiplication:
-      taux: 70%
       assiette:
         encadrement:
           plancher: 8.03 €/heure
-          valeur: rémunération . taux horaire
+          valeur: rémunération . taux horaire * 70%
       facteur: heures chômées
 
 contrat salarié . chômage partiel . absence activité partielle:
