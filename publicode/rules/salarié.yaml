@@ -275,7 +275,11 @@ contrat salarié . chômage partiel . indemnisation entreprise:
   formule:
     encadrement:
       valeur: indemnité d'activité partielle
-      plafond: 4.5 * SMIC
+      plafond:
+        arrondi:
+          recalcul:
+            avec:
+              rémunération . brut de base: 4.5 * SMIC
 
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
