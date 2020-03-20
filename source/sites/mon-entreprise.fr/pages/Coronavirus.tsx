@@ -44,7 +44,16 @@ export default function ChômagePartiel() {
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
 					<h1>
-						Coronavirus et chômage partiel : quel impact sur mes revenus ?
+						<span
+							css={`
+								font-size: 0.65em;
+								opacity: 0.85;
+							`}
+						>
+							Coronavirus et chômage partiel
+						</span>
+						<br />
+						Quel impact sur mes revenus ?
 					</h1>
 					<p>
 						Le gouvernement met en place des mesures de soutien aux salariés
