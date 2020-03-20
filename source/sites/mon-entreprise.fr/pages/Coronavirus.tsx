@@ -1,7 +1,7 @@
 import { setSimulationConfig } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
-import autoEntrepreneurConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
+import chomagePartielConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
@@ -20,9 +20,7 @@ export default function ChômagePartiel() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	dispatch(
-		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
-	)
+	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
 
 	const { t } = useTranslation()
 
@@ -68,12 +66,7 @@ export default function ChômagePartiel() {
 				}
 				showPeriodSwitch={false}
 			/>
-			{!inIframe && (
-				<>
-					<br />
-					<TextExplanations />
-				</>
-			)}
+			{!inIframe && <TextExplanations />}
 		</>
 	)
 }
@@ -170,8 +163,10 @@ function TextExplanations() {
 	}
 	return (
 		<Markdown
+			css={`
+				margin-top: 2rem;
+			`}
 			source={`
-
 [👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
 
 
@@ -197,6 +192,13 @@ faire une déclaration sur le site de la DGFiP.
 
 [➡ Plus d'informations sur les mesures de soutien aux entreprises](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
 
+## Prime pour les salariés présents 👨‍🔬
+
+Le gouvernement invite les entreprises à verser une prime de **1 000 euros**
+défiscalisée et désocialisée à leurs salariés qui se rendent sur leur lieu de
+travail pendant la crise sanitaire du coronavirus. Cette prime fonctionnerait
+sur le même modèle que la « prime Macron » décidée à la suite de la crise des
+gilets jaunes, mais les détails ne sont pas encore connus.
 	`}
 		/>
 	)
