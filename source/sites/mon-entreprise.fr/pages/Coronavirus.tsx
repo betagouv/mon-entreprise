@@ -101,7 +101,7 @@ function ExplanationSection() {
 				`}
 			></div>
 			<div
-				className="ui__ light-bg card"
+				className="ui__ light card"
 				css={`
 					margin: 3rem 0;
 				`}
@@ -127,24 +127,7 @@ function ExplanationSection() {
 						</li>
 						<li className="small-target">
 							<div className="main">
-								<Trans>
-									Indemnité chômage partiel prise en charge par l'État
-								</Trans>
-								<div className="targetInputOrValue">
-									<RuleLink {...indemnité}>
-										{formatValue({
-											value: indemnité.nodeValue,
-											language,
-											unit: '€',
-											maximumFractionDigits: 0
-										})}
-									</RuleLink>
-								</div>
-							</div>
-						</li>
-						<li className="small-target">
-							<div className="main">
-								<Trans>Total payé par l'entreprise</Trans>
+								<Trans>Coût pour l'entreprise</Trans>
 								<div className="targetInputOrValue">
 									<RuleLink {...totalEntreprise}>
 										{formatValue({
