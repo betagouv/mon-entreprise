@@ -56,12 +56,6 @@ export default function ChômagePartiel() {
 						Quel impact sur mes revenus ?
 					</h1>
 					<p>
-						Le gouvernement met en place des mesures de soutien aux salariés
-						touchés par la crise du Covid-19. Parmi les mesures phares, la prise
-						en charge de l'intégralité de l'indemnisation du chômage partiel par
-						l'État.
-					</p>
-					<p>
 						Ce simulateur permet de connaître le revenu net versé au salarié,
 						ainsi que le coût total restant à charge pour l'entreprise en cas de
 						chômage partiel.
