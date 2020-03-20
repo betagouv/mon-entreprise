@@ -1625,16 +1625,12 @@ contrat salarié . rémunération . net:
     le changer, il faut signer un avenant au contrat).
 
   formule:
-    allègement:
-      assiette:
-        somme:
-          - net de cotisations
-          - revenus de remplacement
-          - chômage partiel . indemnités . complémentaire
-      abattement:
-        somme:
-          - avantages en nature . montant
-          - frais professionnels . titres-restaurant . montant
+    somme:
+      - net de cotisations
+      - revenus de remplacement
+      - chômage partiel . indemnités . complémentaire
+      - (- avantages en nature . montant)
+      - (- frais professionnels . titres-restaurant . montant)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
