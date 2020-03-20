@@ -20,7 +20,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 			'contrat salarié . activité partielle . indemnités'
 		),
 		chômagePartielAbsence = getRule(
-			'contrat salarié . activité partielle . retrait absence activité partielle'
+			'contrat salarié . activité partielle . retrait activité partielle'
 		),
 		primes = getRule('contrat salarié . rémunération . primes')
 	return (

@@ -205,7 +205,9 @@ administrative OU qui auront connu une perte de chiffre d'affaires d'au moins
 aide de **1 500 euros**. Pour bénéficier de cette aide forfaitaire il faudra
 faire une déclaration sur le site de la DGFiP.
 
-[➡ Plus d'informations sur les mesures de soutien aux entreprises](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
+➡ Plus d'informations sur le site du 
+[Ministère de l'Économie](https://www.economie.gouv.fr/coronavirus-soutien-entreprises) 
+et de l'[Urssaf](https://www.urssaf.fr/portail/home/actualites/foire-aux-questions.html).
 
 ## Prime pour les salariés présents 👨‍🔬
 
