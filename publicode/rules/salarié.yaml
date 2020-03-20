@@ -244,7 +244,7 @@ contrat salarié . chômage partiel . heures chômées:
   unité: heures/mois
   formule:
     produit:
-      assiette: temps de travail
+      assiette: temps de travail . temps contractuel
       taux: 100% - proportion heures travaillées
 
 contrat salarié . chômage partiel . proportion heures travaillées:
@@ -1033,7 +1033,7 @@ contrat salarié . cotisations . assiette minimale:
     recalcul:
       règle: rémunération . assiette de vérification du SMIC
       avec:
-        rémunération . brut de base: SMIC
+        rémunération . brut de base: SMIC horaire * temps de travail . effectif
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
@@ -1293,7 +1293,7 @@ contrat salarié . rémunération . revenus de remplacement:
       - chômage partiel . indemnités . activité partielle
   note: >-
     L'indemnité complémentaire n'est pas ajoutée ici car elle est
-    systématiquement exonérée de CSG du fait de l'écrètement pour les bas
+    systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
     revenus.
 
     L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
@@ -1850,6 +1850,12 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+contrat salarié . temps de travail . effectif:
+  formule:
+    somme:
+      - temps de travail
+      - (- chômage partiel . heures chômées)
 
 contrat salarié . temps de travail . temps contractuel:
   unité: heures/mois

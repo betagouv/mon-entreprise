@@ -12,6 +12,7 @@ questions:
     - contrat salarié . chômage partiel . proportion heures travaillées
     - contrat salarié . temps de travail . temps partiel
     - contrat salarié . temps de travail . temps partiel . heures par semaine
+    - contrat salarié . profession
 
 unités par défaut: [€/mois]
 situation:
