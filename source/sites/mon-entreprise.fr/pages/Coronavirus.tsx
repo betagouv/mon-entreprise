@@ -197,7 +197,7 @@ du chômage partiel.
 Les petites entreprises et les indépendants qui subissent une fermeture
 administrative OU qui auront connu une perte de chiffre d'affaires d'au moins
 70% au mois de mars 2020 par rapport au mois de mars 2019 bénéficieront d'une
-aide automatique de **1 500 euros**. Pour bénéficier de cette aide il faudra
+aide de **1 500 euros**. Pour bénéficier de cette aide forfaitaire il faudra
 faire une déclaration sur le site de la DGFiP.
 
 [➡ Plus d'informations sur les mesures de soutien aux entreprises](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
