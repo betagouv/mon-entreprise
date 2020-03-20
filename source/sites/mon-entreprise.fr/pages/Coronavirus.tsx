@@ -130,7 +130,7 @@ function ExplanationSection() {
 					</li>
 				</ul>
 			</div>
-			<br />
+			<h3>Part du salaire net maintenu</h3>
 			<StackedBarChart
 				data={[
 					{
