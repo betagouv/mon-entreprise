@@ -55,6 +55,6 @@ SMIC temps plein . net imposable:
     recalcul:
       règle: contrat salarié . rémunération . net imposable . base
       avec:
-        rémunération . brut de base: SMIC temps plein
+        contrat salarié . rémunération . brut de base: SMIC temps plein
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
