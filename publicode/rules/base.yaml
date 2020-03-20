@@ -37,3 +37,24 @@ SMIC horaire:
   références:
     décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2300
+
+SMIC temps plein:
+  unité: €/mois
+
+  formule:
+    produit:
+      assiette: contrat salarié . temps de travail . base légale * période . semaines par mois
+      facteur: SMIC horaire
+  références:
+    décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
+
+SMIC temps plein . net imposable:
+  titre: SMIC net imposable
+  description: Montant du SMIC net imposable pour un temps plein.
+  formule:
+    recalcul:
+      règle: contrat salarié . rémunération . net imposable . base
+      avec:
+        rémunération . brut de base: SMIC temps plein
+  références:
+    barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html

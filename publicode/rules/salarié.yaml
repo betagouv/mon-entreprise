@@ -223,6 +223,22 @@ contrat salarié . chômage partiel:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+contrat salarié . chômage partiel . rémunération mensuelle minimale:
+  acronyme: RMM
+  description: >-
+    Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
+    une rémunération mensuelle minimale qui peut donner lieu à un versement
+    complémentaire de l’employeur.
+  références:
+    Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
+  formule:
+    recalcul:
+      règle: contrat salarié . rémunération . net de cotisations
+      avec:
+        rémunération . brut de base: SMIC contractuel
+        chômage partiel: non
 
 contrat salarié . chômage partiel . heures chômées:
   unité: heures/mois
@@ -250,18 +266,51 @@ contrat salarié . chômage partiel . proportion heures travaillées:
     20%: 20
     50%: 50
 
-contrat salarié . chômage partiel . indemnité d'activité partielle:
-  unité: €/mois
+contrat salarié . chômage partiel . indemnités:
+  titre: indemnités chômage partiel
+  description: >-
+    La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
+    l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
+    reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie de
+    l’Etat une allocation d’activité partielle.
+
+    Si après versement de l’indemnité d’activité partielle la rémunération du
+    salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
+    les articles L3232-1 et suivants du code du travail pour les salariés à temps
+    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
+    somme initialement perçue par le salarié.
+
+  formule:
+    somme:
+      - activité partielle
+      - complémentaire
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+contrat salarié . chômage partiel . indemnités . activité partielle:
+  titre: indemnités d'activité partielle
   formule:
     multiplication:
-      assiette:
-        encadrement:
-          plancher: 8.03 €/heure
-          valeur: rémunération . taux horaire * 70%
-      facteur: heures chômées
+      assiette: retrait absence activité partielle
+      taux: 70%
 
-contrat salarié . chômage partiel . absence activité partielle:
-  unité: €/mois
+contrat salarié . chômage partiel . indemnités . complémentaire:
+  titre: indemnité complémentaire
+  description: >-
+    L'indemnité complémentaire de chômage partielle est une indemnité versée par
+    l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
+    rémunération effectivement perçue ne soit jamais inférieure à celle
+    du SMIC net.
+  formule:
+    allègement:
+      assiette: rémunération mensuelle minimale
+      abattement:
+        somme:
+          - rémunération . net de cotisations
+          - indemnités . activité partielle
+
+contrat salarié . chômage partiel . retrait absence activité partielle:
   formule:
     multiplication:
       assiette: rémunération . taux horaire
@@ -274,7 +323,8 @@ contrat salarié . chômage partiel . indemnisation entreprise:
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
     encadrement:
-      valeur: indemnité d'activité partielle
+      valeur: indemnités . activité partielle
+      plancher: 8.03 €/heure * heures chômées
       plafond:
         arrondi:
           recalcul:
@@ -432,7 +482,7 @@ contrat salarié . CDD . compensation pour congés non pris:
   formule:
     le maximum de:
       - produit:
-          assiette: assiette mensuelle
+          assiette: rémunération . assiette congés payés
           taux: 10%
           facteur: proportion congés non pris
       - produit:
@@ -484,15 +534,10 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   formule: 25 jour ouvré / 12 mois
 
-contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
-  unité: €/mois
-
-  formule: rémunération . brut de base + prime de fin de contrat
-
 contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
   unité: €/jour ouvré
 
-  formule: assiette mensuelle / période . jours ouvrés moyen par mois
+  formule: rémunération . assiette congés payés / période . jours ouvrés moyen par mois
 
 contrat salarié . CDD . prime de fin de contrat:
   indemnité:
@@ -996,7 +1041,7 @@ contrat salarié . cotisations . assiette minimale:
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
-  résumé: Brut de base inscrit dans le contrat de travail
+  résumé: Brut de référence (sans les primes, indemnités ni majorations)
   type: salaire
   question: Quel est votre salaire brut ?
   description: |
@@ -1094,6 +1139,26 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
     payées (et non de manière lissée sur l'année), c'est pourquoi nous ne les
     incluons pas dans cette formule.
 
+contrat salarié . rémunération . assiette congés payés:
+  titre: Assiette pour le calcul de l'indemnité de congés payés
+  description: >-
+    Pendant ses congés, le salarié ne perçoit pas son salaire. Il perçoit une
+    indemnité de congés payés.
+
+    Toutes les sommes ayant le caractère de salaire sont prises en compte pour
+    déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en
+    compte.
+  formule:
+    somme:
+      - brut de base
+      - heures supplémentaires
+      - heures complémentaires
+      - avantages en nature
+      - primes . ancienneté
+      - primes . activité
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F33359
+
 contrat salarié . rémunération . primes:
   description: |
     Les primes sont des compléments de salaire versés au salarié en vertu du
@@ -1190,7 +1255,7 @@ contrat salarié . rémunération . brut:
           - frais professionnels
           - prévoyance . employeur
           - retraite supplémentaire . employeur
-      abattement: chômage partiel . absence activité partielle
+      abattement: chômage partiel . retrait absence activité partielle
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1229,7 +1294,13 @@ contrat salarié . rémunération . revenus de remplacement:
     sont soumis à la CSG/CRDS avec un taux spécifique.
   formule:
     somme:
-      - chômage partiel . indemnité d'activité partielle
+      - chômage partiel . indemnités . activité partielle
+  note: >-
+    L'indemnité complémentaire n'est pas ajoutée ici car elle est
+    systématiquement exonérée de CSG du fait de l'écrètement pour les bas
+    revenus.
+
+    L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
 
 contrat salarié . avantages sociaux:
   description: >
@@ -1405,27 +1476,6 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
 
-contrat salarié . SMIC temps plein:
-  unité: €/mois
-
-  formule:
-    produit:
-      assiette: temps de travail . base légale * période . semaines par mois
-      facteur: SMIC horaire
-  références:
-    décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
-
-contrat salarié . SMIC temps plein . net imposable:
-  titre: SMIC net imposable
-  description: Montant du SMIC net imposable pour un temps plein.
-  formule:
-    recalcul:
-      règle: rémunération . net imposable . base
-      avec:
-        rémunération . brut de base: SMIC temps plein
-  références:
-    barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
-
 contrat salarié . SMIC contractuel:
   description: >
     Valeur du SMIC pro-ratisé pour prendre en compte le temps partiel et utilisé pour la détermination du salaire minimum
@@ -1494,8 +1544,10 @@ contrat salarié . rémunération . net de cotisations:
   titre: Salaire net de cotisations
   type: rémunération
   unité: €/mois
-
-  formule: brut - cotisations . salariales
+  formule:
+    somme:
+      - brut
+      - (- cotisations . salariales)
 
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
@@ -1504,24 +1556,25 @@ contrat salarié . rémunération . net imposable:
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   formule:
-    allègement:
-      assiette: base
-      abattement:
-        somme:
-          - frais professionnels . part déductible
-          - prime d'impatriation
-          - exonération d'impôt des stagiaires et apprentis
-          - heures supplémentaires et complémentaires défiscalisées
-          - retraite supplémentaire . exonération fiscale
-          - prévoyance . exonération fiscale
+    somme:
+      - base
+      - (- frais professionnels . part déductible)
+      - (- prime d'impatriation)
+      - (- exonération d'impôt des stagiaires et apprentis)
+      - (- heures supplémentaires et complémentaires défiscalisées)
+      - (- retraite supplémentaire . exonération fiscale)
+      - (- prévoyance . exonération fiscale)
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . rémunération . net imposable . base:
+  titre: net imposable avant exonérations
   description: Le net imposable avant les exonérations et déductions
   formule:
     somme:
-      - rémunération . net de cotisations
+      - net de cotisations
+      - revenus de remplacement
+      - chômage partiel . indemnités . complémentaire
       - avantages sociaux
       - CSG .non déductible
       - CRDS
@@ -1577,6 +1630,7 @@ contrat salarié . rémunération . net:
         somme:
           - net de cotisations
           - revenus de remplacement
+          - chômage partiel . indemnités . complémentaire
       abattement:
         somme:
           - avantages en nature . montant
@@ -1629,7 +1683,7 @@ contrat salarié . rémunération . total:
     somme:
       - brut
       - cotisations . patronales
-      - chômage partiel . indemnité d'activité partielle
+      - chômage partiel . indemnités
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
@@ -2521,6 +2575,7 @@ contrat salarié . assiette CSG et CRDS . assiette heures supplémentaires et co
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . CSG:
+  non applicable si: établissement . localisation . département = 'Mayotte'
   cotisation:
     impôt: oui
     dû par: salarié

@@ -87,9 +87,7 @@ function ExplanationSection() {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const net = getRule('contrat salarié . rémunération . net')
-	const indemnité = getRule(
-		"contrat salarié . chômage partiel . indemnité d'activité partielle"
-	)
+	const indemnité = getRule('contrat salarié . chômage partiel . indemnités')
 	const totalEntreprise = getRule('contrat salarié . prix du travail')
 	const perteRevenu = getRule('perte de revenu chômage partiel')
 	if (!net?.nodeValue) {
