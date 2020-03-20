@@ -305,10 +305,7 @@ contrat salarié . chômage partiel . indemnités . complémentaire:
   formule:
     allègement:
       assiette: rémunération mensuelle minimale
-      abattement:
-        somme:
-          - rémunération . net de cotisations
-          - indemnités . activité partielle
+      abattement: rémunération . net de cotisations
 
 contrat salarié . chômage partiel . retrait absence activité partielle:
   formule:
@@ -343,7 +340,7 @@ contrat salarié . déduction forfaitaire spécifique:
   titre: assiette avec DFS
   remplace:
     règle: cotisations . assiette
-    sauf dans: contrat salarié . CSG
+    sauf dans: contrat salarié . CSG et CRDS
     # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
@@ -891,8 +888,7 @@ contrat salarié . apprentissage:
     Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
   formule: contrat salarié = 'apprentissage'
   rend non applicable:
-    - CSG
-    - CRDS
+    - CSG et CRDS
     - statut cadre
     - statut JEI
     - régime des impatriés
@@ -1501,8 +1497,7 @@ contrat salarié . cotisations . salariales:
       - contribution d'équilibre général .salarié
       - contribution d'équilibre technique .salarié
       - chômage .salarié
-      - CSG
-      - CRDS
+      - CSG et CRDS
       - APEC .salarié
       - complémentaire santé .salarié
       - conventionnelles
@@ -1547,6 +1542,7 @@ contrat salarié . rémunération . net de cotisations:
   formule:
     somme:
       - brut
+      - revenus de remplacement
       - (- cotisations . salariales)
 
 contrat salarié . rémunération . net imposable:
@@ -1573,11 +1569,9 @@ contrat salarié . rémunération . net imposable . base:
   formule:
     somme:
       - net de cotisations
-      - revenus de remplacement
       - chômage partiel . indemnités . complémentaire
       - avantages sociaux
-      - CSG .non déductible
-      - CRDS
+      - CSG et CRDS . non déductible
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   formule:
@@ -1627,7 +1621,6 @@ contrat salarié . rémunération . net:
   formule:
     somme:
       - net de cotisations
-      - revenus de remplacement
       - chômage partiel . indemnités . complémentaire
       - (- avantages en nature . montant)
       - (- frais professionnels . titres-restaurant . montant)
@@ -2532,17 +2525,37 @@ contrat salarié . contribution au dialogue social:
       assiette: cotisations . assiette
       taux: 0.016%
 
-contrat salarié . assiette CSG et CRDS:
+contrat salarié . CSG et CRDS:
+  description: >-
+    La CSG et la CRDS sont dues par tous les salariés remplissant les deux
+    conditions suivantes :
+
+    - ils sont domiciliés fiscalement en France,
+    - ils sont à la charge d’un régime français d’assurance maladie obligatoire.
+
+    Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas
+    dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte
+    d’assuré social).
+  formule:
+    somme:
+      - CSG
+      - CRDS
+
+contrat salarié . CSG et CRDS . assiette de base:
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
   formule:
     somme:
-      - assiette abattue
+      - assiette abattue totale
+      # TODO : ce sont les cotisations forfaitaires qui ne rentrent pas dans
+      # l'abattue, et non tout les avantages sociaux
       - avantages sociaux
+      - (- assiette revenu remplacements)
+      - (- assiette heures supplémentaires et complémentaires défiscalisées)
 
-contrat salarié . assiette CSG et CRDS . assiette abattue:
+contrat salarié . CSG et CRDS . assiette abattue totale:
   formule:
     barème:
       assiette:
@@ -2556,13 +2569,13 @@ contrat salarié . assiette CSG et CRDS . assiette abattue:
           plafond: 4
         - taux: 100%
 
-contrat salarié . assiette CSG et CRDS . assiette revenu remplacements:
+contrat salarié . CSG et CRDS . assiette revenu remplacements:
   formule:
     produit:
       taux: 98.25%
       assiette: rémunération . revenus de remplacement
 
-contrat salarié . assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
+contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
     produit:
       assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
@@ -2570,40 +2583,51 @@ contrat salarié . assiette CSG et CRDS . assiette heures supplémentaires et co
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . CSG:
+contrat salarié . CSG et CRDS . CSG déductible:
+  formule:
+    somme:
+      - CSG . base .déductible
+      - CSG . revenus de remplacement . déductible
+
+contrat salarié . CSG et CRDS . non déductible:
+  titre: CSG non déductible et CRDS
+  formule:
+    somme:
+      - CSG . base .non déductible
+      - CSG . revenus de remplacement . non déductible
+      - CSG . heures supplémentaires et complémentaires défiscalisées
+      - CRDS
+contrat salarié . CSG et CRDS . CSG:
   non applicable si: établissement . localisation . département = 'Mayotte'
   cotisation:
     impôt: oui
     dû par: salarié
-  description: |
-    Contribution sociale généralisée.
-    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
-  formule:
-    produit:
-      composantes:
-        - attributs:
-            impôt sur le revenu: non déductible
-          assiette: assiette CSG et CRDS
-          taux: 2.4%
-        - attributs:
-            impôt sur le revenu: déductible
-          assiette:
-            somme:
-              - assiette CSG et CRDS
-              - (- assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées)
-              - (- assiette CSG et CRDS . assiette revenu remplacements)
-          taux: 6.8%
-        - attributs:
-            nom: heures supplémentaires et complémentaires défiscalisées
-            impôt sur le revenu: non déductible
-          assiette: assiette CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées
-          taux: 6.8%
-        - attributs:
-            nom: revenus de remplacement
-            impôt sur le revenu: déductible
-          assiette: assiette CSG et CRDS . assiette revenu remplacements
-          taux: 3.8%
+  description: >-
+    La contribution sociale généralisée (CSG) est un impôt destiné à participer
+    au financement de la protection sociale.
 
+    A la différence des cotisations sociales qui ne portent que sur les revenus
+    d’activité, la CSG concerne, outre les revenus d’activité et de remplacement
+    (allocations chômage, indemnités journalières…), les revenus du patrimoine,
+    les produits de placement ou les sommes engagées ou redistribuées par les
+    jeux.
+
+    Elle est prélevée à la source sur la plupart des revenus. Elle est recouvrée
+    par les Urssaf sur les revenus d’activité et par l’administration fiscale
+    sur les revenus du patrimoine.
+
+    Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
+    également le fonds de solidarité vieillesse
+
+  formule:
+    somme:
+      - base
+      - heures supplémentaires et complémentaires défiscalisées
+      - revenus de remplacement
+
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
   exemples:
     - nom: 'CSG cadre'
       situation:
@@ -2616,18 +2640,83 @@ contrat salarié . CSG:
         cotisations . assiette: 1500
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
-  références:
-    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . CRDS:
+contrat salarié . CSG et CRDS . CSG . taux déductible:
+  formule: 2.4%
+contrat salarié . CSG et CRDS . CSG . taux non déductible:
+  formule: 6.8%
+
+contrat salarié . CSG et CRDS . CSG . base:
+  titre: CSG
+  formule:
+    multiplication:
+      assiette: assiette de base
+      composantes:
+        - attributs:
+            impôt: non déductible
+          taux: taux déductible
+        - attributs:
+            impôt: déductible
+          taux: taux non déductible
+
+contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:
+  titre: CSG heures supplémentaires et complémentaires défiscalisées
+  formule:
+    produit:
+      assiette: assiette heures supplémentaires et complémentaires défiscalisées
+      taux: taux déductible + taux non déductible
+
+contrat salarié . CSG et CRDS . CSG . revenus de remplacement:
+  titre: CSG revenus de remplacement
+  formule:
+    somme:
+      - revenus de remplacement . déductible
+      - revenus de remplacement . non déductible
+
+contrat salarié . CSG et CRDS . CSG . revenus de remplacement . non déductible:
+  titre: CSG revenus de remplacement non déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: 3.8%
+
+contrat salarié . CSG et CRDS . CSG . revenus de remplacement . déductible:
+  titre: CSG revenus de remplacement déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: taux déductible
+
+contrat salarié . CSG et CRDS . CRDS:
   cotisation:
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
   formule:
+    somme:
+      - base
+      - revenus de remplacement
+
+contrat salarié . CSG et CRDS . CRDS . taux:
+  titre: taux CRDS
+  formule: 0.5%
+
+contrat salarié . CSG et CRDS . CRDS . base:
+  titre: CRDS
+  formule:
     produit:
-      assiette: assiette CSG et CRDS
-      taux: 0.5%
+      assiette:
+        somme:
+          - assiette de base
+          - assiette heures supplémentaires et complémentaires défiscalisées
+      taux: taux
+
+contrat salarié . CSG et CRDS . CRDS . revenus de remplacement:
+  titre: CRDS revenus de remplacement
+  formule:
+    produit:
+      assiette: assiette revenu remplacements
+      taux: taux
 
 contrat salarié . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
@@ -3393,7 +3482,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         - assiette . salariale
     - règle: assiette . salariale
       dans: vieillesse
-    - règle: assiette CSG et CRDS . assiette abattue
+    - règle: CSG et CRDS . assiette abattue totale
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
       sauf dans:
