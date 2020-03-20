@@ -2659,10 +2659,10 @@ contrat salarié . CSG et CRDS . CSG . base:
       assiette: assiette de base
       composantes:
         - attributs:
-            impôt: non déductible
+            impôt sur le revenu: non déductible
           taux: taux déductible
         - attributs:
-            impôt: déductible
+            impôt sur le revenu: déductible
           taux: taux non déductible
 
 contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:

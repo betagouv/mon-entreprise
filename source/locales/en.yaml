@@ -26,6 +26,7 @@ Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 'Covid-19 : Découvrez les mesures de soutien aux entreprises': 'Covid-19: Find out about business support measures'
+Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 Créer une: Create a
 De: From
@@ -38,6 +39,7 @@ Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 Effacer: Reset
 Embauche: Hiring process
+En incluant l'indemnité de chômage partiel: Including short-time working allowance
 En-dessous de: Below
 Entreprise Individuelle: Sole Proprietorship
 Entrez des mots clefs ici: Enter keywords
@@ -54,7 +56,7 @@ Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
 Imprimer: Print
 Impôts: Taxes
-"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
+'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
 Indépendant: Independent
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
@@ -71,12 +73,13 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-"Nom de l'entreprise ou SIREN ": Company name or SIREN code
+'Nom de l''entreprise ou SIREN ': Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
 Outils pour les développeurs: Tools for developers
 Pages associées: Related pages
+Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
 Part salariale: Employee share
 Part salarié: Employee share
@@ -112,6 +115,7 @@ Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
 'Revenu net avec chômage partiel :': 'Net income with short-time work :'
+Revenu net mensuel: Monthly net income
 Récapitulatif: Summary
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
@@ -132,7 +136,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-"Total payé par l'entreprise :": 'Total paid by the company :'
+'Total payé par l''entreprise :': 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -823,6 +827,7 @@ listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
 maj2019: The simulation is up-to-date in 2019.
+mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
