@@ -153,7 +153,6 @@ function ExplanationSection() {
 									},
 									{
 										...perteRevenu,
-										nodeValue: -perteRevenu.nodeValue,
 										title: 'Perte de revenu',
 										color: palettes[1][0]
 									}
