@@ -6,7 +6,7 @@ import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
-import Value from 'Components/Value'
+import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
@@ -80,7 +80,7 @@ export default function ChômagePartiel() {
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
-
+	const { language } = useTranslation().i18n
 	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
 
@@ -103,32 +103,62 @@ function ExplanationSection() {
 			<div
 				className="ui__ light-bg card"
 				css={`
-					margin-top: 2rem;
-					padding: 0.5rem;
+					margin: 3rem 0;
 				`}
 			>
-				<h3>
-					<Trans>Revenu net avec chômage partiel :</Trans>{' '}
-					<RuleLink {...net}>
-						<Value {...net} maximumFractionDigits={0} />
-					</RuleLink>
-				</h3>
-				<ul>
-					<li>
-						<Trans>
-							Indemnité chômage partiel prise en charge par l'État :
-						</Trans>{' '}
-						<RuleLink {...indemnité}>
-							<Value {...indemnité} maximumFractionDigits={0} />
-						</RuleLink>{' '}
-					</li>
-					<li>
-						<Trans>Total payé par l'entreprise :</Trans>{' '}
-						<RuleLink {...totalEntreprise}>
-							<Value {...totalEntreprise} maximumFractionDigits={0} />
-						</RuleLink>
-					</li>
-				</ul>
+				<div id="targetSelection">
+					<ul className="targets">
+						<li>
+							<div className="main">
+								<span className="optionTitle">
+									<Trans>Revenu net avec chômage partiel</Trans>
+								</span>
+								<div className="targetInputOrValue">
+									<RuleLink {...net}>
+										{formatValue({
+											value: net.nodeValue,
+											language,
+											unit: '€',
+											maximumFractionDigits: 0
+										})}
+									</RuleLink>
+								</div>
+							</div>
+						</li>
+						<li className="small-target">
+							<div className="main">
+								<Trans>
+									Indemnité chômage partiel prise en charge par l'État
+								</Trans>
+								<div className="targetInputOrValue">
+									<RuleLink {...indemnité}>
+										{formatValue({
+											value: indemnité.nodeValue,
+											language,
+											unit: '€',
+											maximumFractionDigits: 0
+										})}
+									</RuleLink>
+								</div>
+							</div>
+						</li>
+						<li className="small-target">
+							<div className="main">
+								<Trans>Total payé par l'entreprise</Trans>
+								<div className="targetInputOrValue">
+									<RuleLink {...totalEntreprise}>
+										{formatValue({
+											value: totalEntreprise.nodeValue,
+											language,
+											unit: '€',
+											maximumFractionDigits: 0
+										})}
+									</RuleLink>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<h3>Part du salaire net maintenu</h3>
 			<StackedBarChart
