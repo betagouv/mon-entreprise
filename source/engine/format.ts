@@ -49,6 +49,11 @@ export const formatCurrency = (value: number | undefined, language: string) => {
 		: formatValue({ unit: '€', language, value }).replace(/^(-)?€/, '$1€\u00A0')
 }
 
+export const formatPercentage = (value: number | undefined) =>
+	value == null
+		? ''
+		: formatValue({ unit: '%', value, maximumFractionDigits: 2 })
+
 export type formatValueOptions = {
 	maximumFractionDigits?: number
 	minimumFractionDigits?: number
