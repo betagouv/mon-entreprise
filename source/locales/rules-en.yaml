@@ -1069,7 +1069,7 @@ contrat salarié . chômage . taux employeur:
 contrat salarié . chômage . taux salarié:
   titre.en: employee rate
   titre.fr: taux salarié
-contrat salarié . chômage partiel:
+contrat salarié . activité partielle:
   description.en: >-
     [automatic] Following the Coronavirus crisis, the government introduced an
     extended short-time working scheme in which the state pays compensation for
@@ -1088,13 +1088,13 @@ contrat salarié . chômage partiel:
   question.fr: Le salarié est-il en chômage partiel ?
   titre.en: '[automatic] short-time working'
   titre.fr: chômage partiel
-contrat salarié . chômage partiel . absence activité partielle:
+contrat salarié . activité partielle . absence activité partielle:
   titre.en: '[automatic] partial absence of activity'
   titre.fr: absence activité partielle
-contrat salarié . chômage partiel . heures chômées:
+contrat salarié . activité partielle . heures chômées:
   titre.en: '[automatic] non-working hours'
   titre.fr: heures chômées
-contrat salarié . chômage partiel . indemnisation entreprise:
+contrat salarié . activité partielle . indemnisation entreprise:
   description.en: >-
     [automatic] In the context of the Coronavirus crisis, the government has
     announced that the short-time working allowance will be 100% paid by the
@@ -1104,10 +1104,10 @@ contrat salarié . chômage partiel . indemnisation entreprise:
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   titre.en: "[automatic] Employer's reimbursement of partial activity allowance"
   titre.fr: Remboursement employeur de l'indemnité d'activité partielle
-contrat salarié . chômage partiel . indemnité d'activité partielle:
+contrat salarié . activité partielle . indemnité d'activité partielle:
   titre.en: '[automatic] severance payment'
   titre.fr: indemnité d'activité partielle
-contrat salarié . chômage partiel . proportion heures travaillées:
+contrat salarié . activité partielle . proportion heures travaillées:
   description.en: >-
     [automatic] In the case of short-time working, the proportion of hours
     worked corresponds to the ratio of the number of hours worked to the usual

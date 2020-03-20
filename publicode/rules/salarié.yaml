@@ -205,7 +205,7 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . dista
     10 km/jour: 200
   par défaut: 80
 
-contrat salarié . chômage partiel:
+contrat salarié . activité partielle:
   question: Le salarié est-il en chômage partiel ?
   description: >-
     À la suite de la crise du Coronavirus, le gouvernement a mis en place un
@@ -225,7 +225,7 @@ contrat salarié . chômage partiel:
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
 
-contrat salarié . chômage partiel . rémunération mensuelle minimale:
+contrat salarié . activité partielle . rémunération mensuelle minimale:
   acronyme: RMM
   description: >-
     Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
@@ -238,16 +238,16 @@ contrat salarié . chômage partiel . rémunération mensuelle minimale:
       règle: contrat salarié . rémunération . net de cotisations
       avec:
         rémunération . brut de base: SMIC contractuel
-        chômage partiel: non
+        activité partielle: non
 
-contrat salarié . chômage partiel . heures chômées:
+contrat salarié . activité partielle . heures chômées:
   unité: heures/mois
   formule:
     produit:
       assiette: temps de travail . temps contractuel
       taux: 100% - proportion heures travaillées
 
-contrat salarié . chômage partiel . proportion heures travaillées:
+contrat salarié . activité partielle . proportion heures travaillées:
   titre: proportion heures travaillées
   question: Quelle est la proportion d'heures travaillées sur le mois ?
   description: >-
@@ -266,8 +266,8 @@ contrat salarié . chômage partiel . proportion heures travaillées:
     20%: 20
     50%: 50
 
-contrat salarié . chômage partiel . indemnités:
-  titre: indemnités chômage partiel
+contrat salarié . activité partielle . indemnités:
+  titre: indemnités activité partielle
   description: >-
     La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
     l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
@@ -283,19 +283,19 @@ contrat salarié . chômage partiel . indemnités:
 
   formule:
     somme:
-      - activité partielle
+      - base
       - complémentaire
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
 
-contrat salarié . chômage partiel . indemnités . activité partielle:
-  titre: indemnités d'activité partielle
+contrat salarié . activité partielle . indemnités . base:
+  titre: indemnités d'activité partielle de base
   formule:
     multiplication:
-      assiette: retrait absence activité partielle
+      assiette: retrait absence
       taux: 70%
 
-contrat salarié . chômage partiel . indemnités . complémentaire:
+contrat salarié . activité partielle . indemnités . complémentaire:
   titre: indemnité complémentaire
   description: >-
     L'indemnité complémentaire de chômage partielle est une indemnité versée par
@@ -305,25 +305,29 @@ contrat salarié . chômage partiel . indemnités . complémentaire:
   formule:
     allègement:
       assiette: rémunération mensuelle minimale
-      abattement: rémunération . net de cotisations
+      abattement:
+        somme:
+          - rémunération . net de cotisations
+          - indemnités . base
 
-contrat salarié . chômage partiel . retrait absence activité partielle:
+contrat salarié . activité partielle . retrait absence:
+  titre: retrait activité partielle
   formule:
     multiplication:
       assiette: rémunération . taux horaire
       facteur: heures chômées
 
-contrat salarié . chômage partiel . indemnisation entreprise:
-  titre: Remboursement employeur de l'indemnité d'activité partielle
+contrat salarié . activité partielle . indemnisation entreprise:
+  titre: Remboursement de l'indemnité d'activité partielle
   description: >-
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
-    encadrement:
-      valeur: indemnités . activité partielle
-      plancher: 8.03 €/heure * heures chômées
-      plafond:
-        arrondi:
+    arrondi:
+      encadrement:
+        valeur: indemnités . base
+        plancher: 8.03 €/heure * heures chômées
+        plafond:
           recalcul:
             avec:
               rémunération . brut de base: 4.5 * SMIC
@@ -1251,7 +1255,7 @@ contrat salarié . rémunération . brut:
           - frais professionnels
           - prévoyance . employeur
           - retraite supplémentaire . employeur
-      abattement: chômage partiel . retrait absence activité partielle
+      abattement: activité partielle . retrait absence
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1290,7 +1294,7 @@ contrat salarié . rémunération . revenus de remplacement:
     sont soumis à la CSG/CRDS avec un taux spécifique.
   formule:
     somme:
-      - chômage partiel . indemnités . activité partielle
+      - activité partielle . indemnités
   note: >-
     L'indemnité complémentaire n'est pas ajoutée ici car elle est
     systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
@@ -1542,8 +1546,14 @@ contrat salarié . rémunération . net de cotisations:
   formule:
     somme:
       - brut
-      - revenus de remplacement
       - (- cotisations . salariales)
+
+contrat salarié . rémunération . net avec revenus de remplacement:
+  formule:
+    somme:
+      - net de cotisations
+      - revenus de remplacement
+      - (- CSG et CRDS . revenus de remplacement)
 
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
@@ -1568,8 +1578,7 @@ contrat salarié . rémunération . net imposable . base:
   description: Le net imposable avant les exonérations et déductions
   formule:
     somme:
-      - net de cotisations
-      - chômage partiel . indemnités . complémentaire
+      - net avec revenus de remplacement
       - avantages sociaux
       - CSG et CRDS . non déductible
 
@@ -1620,8 +1629,7 @@ contrat salarié . rémunération . net:
 
   formule:
     somme:
-      - net de cotisations
-      - chômage partiel . indemnités . complémentaire
+      - net avec revenus de remplacement
       - (- avantages en nature . montant)
       - (- frais professionnels . titres-restaurant . montant)
 
@@ -1672,7 +1680,7 @@ contrat salarié . rémunération . total:
     somme:
       - brut
       - cotisations . patronales
-      - chômage partiel . indemnités
+      - activité partielle . indemnités
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
@@ -1777,9 +1785,8 @@ contrat salarié . aides employeur:
   formule:
     somme:
       - aide à l'embauche d'apprentis
+      - activité partielle . indemnisation entreprise
       - emploi franc
-      - chômage partiel . indemnisation entreprise
-  note:
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description: |
@@ -1855,7 +1862,7 @@ contrat salarié . temps de travail . effectif:
   formule:
     somme:
       - temps de travail
-      - (- chômage partiel . heures chômées)
+      - (- activité partielle . heures chômées)
 
 contrat salarié . temps de travail . temps contractuel:
   unité: heures/mois
@@ -2558,16 +2565,15 @@ contrat salarié . CSG et CRDS . assiette de base:
       # TODO : ce sont les cotisations forfaitaires qui ne rentrent pas dans
       # l'abattue, et non tout les avantages sociaux
       - avantages sociaux
-      - (- assiette revenu remplacements)
+      # - (- assiette revenu remplacements)
       - (- assiette heures supplémentaires et complémentaires défiscalisées)
 
 contrat salarié . CSG et CRDS . assiette abattue totale:
   formule:
     barème:
       assiette:
-        somme:
-          - cotisations . assiette
-          - rémunération . revenus de remplacement
+        cotisations . assiette
+        # - rémunération . revenus de remplacement
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
@@ -2589,20 +2595,16 @@ contrat salarié . CSG et CRDS . assiette heures supplémentaires et complément
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . CSG et CRDS . CSG déductible:
-  formule:
-    somme:
-      - CSG . base .déductible
-      - CSG . revenus de remplacement . déductible
-
 contrat salarié . CSG et CRDS . non déductible:
   titre: CSG non déductible et CRDS
   formule:
     somme:
       - CSG . base .non déductible
-      - CSG . revenus de remplacement . non déductible
       - CSG . heures supplémentaires et complémentaires défiscalisées
       - CRDS
+      - revenus de remplacement . CSG non déductible
+      - revenus de remplacement . CRDS
+
 contrat salarié . CSG et CRDS . CSG:
   non applicable si: établissement . localisation . département = 'Mayotte'
   cotisation:
@@ -2624,12 +2626,10 @@ contrat salarié . CSG et CRDS . CSG:
 
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
     également le fonds de solidarité vieillesse
-
   formule:
     somme:
       - base
       - heures supplémentaires et complémentaires défiscalisées
-      - revenus de remplacement
 
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
@@ -2672,43 +2672,11 @@ contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentair
       assiette: assiette heures supplémentaires et complémentaires défiscalisées
       taux: taux déductible + taux non déductible
 
-contrat salarié . CSG et CRDS . CSG . revenus de remplacement:
-  titre: CSG revenus de remplacement
-  formule:
-    somme:
-      - revenus de remplacement . déductible
-      - revenus de remplacement . non déductible
-
-contrat salarié . CSG et CRDS . CSG . revenus de remplacement . non déductible:
-  titre: CSG revenus de remplacement non déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: 3.8%
-
-contrat salarié . CSG et CRDS . CSG . revenus de remplacement . déductible:
-  titre: CSG revenus de remplacement déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: taux déductible
-
 contrat salarié . CSG et CRDS . CRDS:
   cotisation:
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
-  formule:
-    somme:
-      - base
-      - revenus de remplacement
-
-contrat salarié . CSG et CRDS . CRDS . taux:
-  titre: taux CRDS
-  formule: 0.5%
-
-contrat salarié . CSG et CRDS . CRDS . base:
-  titre: CRDS
   formule:
     produit:
       assiette:
@@ -2717,12 +2685,78 @@ contrat salarié . CSG et CRDS . CRDS . base:
           - assiette heures supplémentaires et complémentaires défiscalisées
       taux: taux
 
-contrat salarié . CSG et CRDS . CRDS . revenus de remplacement:
+contrat salarié . CSG et CRDS . CRDS . taux:
+  titre: taux CRDS
+  formule: 0.5%
+
+contrat salarié . CSG et CRDS . revenus de remplacement:
+  titre: CSG et CRDS revenus de remplacement
+  description: >-
+    La CSG et CRDS prélevées sur les revenus de remplacement.
+  note: >-
+    Le prélèvement de la CSG et de la CRDS ne peut pas avoir pour effet de
+    réduire le montant de la rémunération d’activité et des allocations de
+    chômage à un seuil inférieur au Smic brut.
+
+  formule:
+    somme:
+      - revenus de remplacement . CSG déductible
+      - revenus de remplacement . CSG non déductible
+      - revenus de remplacement . CRDS
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
+  titre: CSG déductible revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant:
+  titre: CSG déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: CSG . taux déductible
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
+  titre: CSG non déductible revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- CSG déductible . montant)
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant:
+  titre: CSG non déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: 3.8%
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre: CRDS revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- CSG déductible . montant)
+      - (- CSG non déductible . montant)
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
+  titre: CRDS
   formule:
     produit:
       assiette: assiette revenu remplacements
-      taux: taux
+      taux: CRDS . taux
 
 contrat salarié . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement

@@ -9,4 +9,4 @@ baisse de revenu chômage partiel . net sans chômage partiel:
     recalcul:
       règle: contrat salarié . rémunération . net
       avec:
-        contrat salarié . chômage partiel: non
+        contrat salarié . activité partielle: non

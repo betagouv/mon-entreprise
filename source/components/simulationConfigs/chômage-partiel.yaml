@@ -5,11 +5,11 @@ objectifs secondaires:
   - contrat salarié . prix du travail
   - contrat salarié . rémunération . net
   - baisse de revenu chômage partiel
-  - contrat salarié . chômage partiel . indemnités
+  - contrat salarié . activité partielle . indemnités
 
 questions:
   uniquement:
-    - contrat salarié . chômage partiel . proportion heures travaillées
+    - contrat salarié . activité partielle . proportion heures travaillées
     - contrat salarié . temps de travail . temps partiel
     - contrat salarié . temps de travail . temps partiel . heures par semaine
     - contrat salarié . profession
@@ -17,6 +17,6 @@ questions:
 unités par défaut: [€/mois]
 situation:
   dirigeant: non
-  contrat salarié . chômage partiel: oui
+  contrat salarié . activité partielle: oui
   contrat salarié . médecine du travail: non
   contrat salarié . complémentaire santé: 0
