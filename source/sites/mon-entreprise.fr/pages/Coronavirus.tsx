@@ -142,25 +142,29 @@ function ExplanationSection() {
 								</div>
 							</div>
 						</li>
+						<li>
+							<span className="optionTitle">
+								<Trans>Part du salaire net maintenu</Trans>
+							</span>
+							<StackedBarChart
+								data={[
+									{
+										...net,
+										title: 'net avec chômage partiel',
+										color: palettes[0][0]
+									},
+									{
+										...perteRevenu,
+										nodeValue: -perteRevenu.nodeValue,
+										title: 'Perte de revenu',
+										color: palettes[1][0]
+									}
+								]}
+							/>
+						</li>
 					</ul>
 				</div>
 			</div>
-			<h3>Part du salaire net maintenu</h3>
-			<StackedBarChart
-				data={[
-					{
-						...net,
-						title: 'net avec chômage partiel',
-						color: palettes[0][0]
-					},
-					{
-						...perteRevenu,
-						nodeValue: -perteRevenu.nodeValue,
-						title: 'Perte de revenu',
-						color: palettes[1][0]
-					}
-				]}
-			/>
 		</Animate.fromTop>
 	)
 }
