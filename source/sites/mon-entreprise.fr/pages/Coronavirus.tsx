@@ -202,14 +202,6 @@ faire une déclaration sur le site de la DGFiP.
 ➡ Plus d'informations sur le site du 
 [Ministère de l'Économie](https://www.economie.gouv.fr/coronavirus-soutien-entreprises) 
 et de l'[Urssaf](https://www.urssaf.fr/portail/home/actualites/foire-aux-questions.html).
-
-## Prime pour les salariés présents 👨‍🔬
-
-Le gouvernement invite les entreprises à verser une prime de **1 000 euros**
-défiscalisée et désocialisée à leurs salariés qui se rendent sur leur lieu de
-travail pendant la crise sanitaire du coronavirus. Cette prime fonctionnerait
-sur le même modèle que la « prime Macron » décidée à la suite de la crise des
-gilets jaunes, mais les détails ne sont pas encore connus.
 	`}
 		/>
 	)
