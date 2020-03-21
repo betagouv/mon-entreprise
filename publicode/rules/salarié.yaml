@@ -323,14 +323,13 @@ contrat salarié . activité partielle . indemnisation entreprise:
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
-    arrondi:
-      encadrement:
-        valeur: indemnités . base
-        plancher: 8.03 €/heure * heures chômées
-        plafond:
-          recalcul:
-            avec:
-              rémunération . brut de base: 4.5 * SMIC
+    encadrement:
+      valeur: indemnités . base
+      plancher: 8.03 €/heure * heures chômées
+      plafond:
+        recalcul:
+          avec:
+            rémunération . brut de base: 4.5 * SMIC
 
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
