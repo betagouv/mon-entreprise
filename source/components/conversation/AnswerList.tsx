@@ -1,6 +1,5 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import RuleLink from 'Components/RuleLink'
 import Value from 'Components/Value'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React from 'react'
@@ -67,10 +66,18 @@ function StepsTable({ rules, onClose }) {
 							`}
 						>
 							<td>
-								<RuleLink {...rule} />
+								<button
+									className="ui__ link-button"
+									onClick={() => {
+										dispatch(goToQuestion(rule.dottedName))
+										onClose()
+									}}
+								>
+									{rule.title}
+								</button>
 							</td>
 							<td>
-								<button
+								<span
 									className="answer"
 									css={`
 										display: inline-block;
@@ -81,21 +88,16 @@ function StepsTable({ rules, onClose }) {
 										text-align: start;
 										font-weight: 500;
 										> span {
-											border-bottom: 1px dashed blue;
 											border-bottom-color: var(--textColorOnWhite);
 											padding: 0.05em 0em;
 											display: inline-block;
 										}
 									`}
-									onClick={() => {
-										dispatch(goToQuestion(rule.dottedName))
-										onClose()
-									}}
 								>
 									<span className="answerContent">
 										<Value {...rule} />
 									</span>
-								</button>{' '}
+								</span>{' '}
 							</td>
 						</tr>
 					))}
