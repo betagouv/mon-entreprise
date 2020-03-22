@@ -2597,7 +2597,7 @@ contrat salarié . CSG et CRDS . assiette de base:
     somme:
       - assiette abattue totale
       # TODO : ce sont les cotisations forfaitaires qui ne rentrent pas dans
-      # l'abattue, et non tout les avantages sociaux
+      # l'abattue, et non tous les avantages sociaux
       - avantages sociaux
       # - (- assiette revenu remplacements)
       - (- assiette heures supplémentaires et complémentaires défiscalisées)
