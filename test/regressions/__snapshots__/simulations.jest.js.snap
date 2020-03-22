@@ -106,7 +106,7 @@ exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  a
 
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  avec charges 2`] = `"[10982,10982,10742,4,19,23]"`;
 
-exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 1`] = `"[0,0,2488,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 1`] = `"[-2313,-2313,2488,0,0,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  échelle de rémunération 2`] = `"[169,169,139,0,1,1]"`;
 
@@ -242,19 +242,19 @@ exports[`calculate simulations-salarié:  effectif 3`] = `"[2539,0,0,2000,1561,1
 
 exports[`calculate simulations-salarié:  effectif 4`] = `"[2539,0,0,2000,1561,1524]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2242,0,0,2000,1668,1668]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 1`] = `"[2242,0,0,2000,1630,1630]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 2`] = `"[2335,0,0,2000,1603,1561]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 2`] = `"[2335,0,0,2000,1584,1544]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 3`] = `"[2265,0,0,2000,1645,1597]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 3`] = `"[2265,0,0,2000,1606,1563]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1657,1608]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 4`] = `"[2243,0,0,2000,1613,1569]"`;
 
 exports[`calculate simulations-salarié:  frais pro - DFS 5`] = `"[2437,0,0,2000,1590,1590]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1767,0,0,1700,1380,1380]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 6`] = `"[1767,0,0,1700,1364,1364]"`;
 
-exports[`calculate simulations-salarié:  frais pro - DFS 7`] = `"[3287,0,0,2600,2175,2141]"`;
+exports[`calculate simulations-salarié:  frais pro - DFS 7`] = `"[3287,0,0,2600,2125,2097]"`;
 
 exports[`calculate simulations-salarié:  frais pro - IKV 1`] = `"[4367,0,0,3200,2530,2320]"`;
 
@@ -292,9 +292,9 @@ exports[`calculate simulations-salarié:  impôt sur le revenu 4`] = `"[3896,0,0
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 5`] = `"[41834,0,0,30000,24227,14588]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 6`] = `"[4076,0,0,3000,2353,2267]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 6`] = `"[4076,0,0,3000,2626,2481]"`;
 
-exports[`calculate simulations-salarié:  impôt sur le revenu 7`] = `"[41834,0,0,30000,24227,15843]"`;
+exports[`calculate simulations-salarié:  impôt sur le revenu 7`] = `"[41834,0,0,30000,26966,16204]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 8`] = `"[4076,0,0,3000,2353,2107]"`;
 
