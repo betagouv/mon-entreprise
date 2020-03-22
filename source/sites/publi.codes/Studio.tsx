@@ -3,7 +3,7 @@ import douche from '!!raw-loader!./exemples/douche.yaml'
 import { ControlledEditor } from '@monaco-editor/react'
 import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
@@ -38,9 +38,11 @@ export default function Studio() {
 	const [targets, setTargets] = useState<string[]>([])
 	const [rules, setRules] = useState(editorValue)
 
-	try {
-		setTargets(Object.keys(safeLoad(editorValue) ?? {}))
-	} catch {}
+	useEffect(() => {
+		try {
+			setTargets(Object.keys(safeLoad(editorValue) ?? {}))
+		} catch {}
+	}, [editorValue])
 
 	return (
 		<Engine.Provider rules={rules}>
