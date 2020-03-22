@@ -1015,6 +1015,26 @@ contrat salarié . activité partielle:
   question.fr: Le salarié est-il en chômage partiel ?
   titre.en: '[automatic] partial activity'
   titre.fr: activité partielle
+contrat salarié . activité partielle . convention syntec:
+  description.en: >-
+    [automatic] Collective bargaining agreement applicable to employees of
+    Technical Design Offices, Engineering Consultancy Firms and Consulting
+    Firms.
+
+    This collective bargaining agreement provides in particular for an increase
+    in the partial unemployment benefit above the legal minimum and at the
+    expense of the company.
+  description.fr: >-
+    Convention Collective applicable aux salariés des Bureaux d'Études
+    Techniques, des Cabinets d'Ingénieurs-Conseils et des Sociétés de Conseils.
+
+    Cette convention collective prévoit notamment une majoration de l'indemnité
+    de chômage partielle au dessus du minimum légal et à la charge de
+    l'entreprise.
+  question.en: '[automatic] Is the Syntec collective agreement applicable to the company?'
+  question.fr: La convention collective Syntec est-elle applicable à l'entreprise ?
+  titre.en: '[automatic] syntec convention'
+  titre.fr: convention syntec
 contrat salarié . activité partielle . heures chômées:
   titre.en: '[automatic] non-working hours'
   titre.fr: heures chômées
@@ -1070,6 +1090,9 @@ contrat salarié . activité partielle . indemnités . complémentaire:
     net.
   titre.en: '[automatic] additional allowance'
   titre.fr: indemnité complémentaire
+contrat salarié . activité partielle . indemnités . conventionnelle:
+  titre.en: '[automatic] conventional'
+  titre.fr: conventionnelle
 contrat salarié . activité partielle . proportion heures travaillées:
   description.en: >-
     [automatic] In the case of short-time working, the proportion of hours

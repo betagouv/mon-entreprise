@@ -241,6 +241,12 @@ activité partielle:
   - contrat salarié . rémunération . brut de base: 4000
     contrat salarié . activité partielle: oui
     contrat salarié . profession spécifique: journaliste
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . convention syntec: oui
+  - contrat salarié . rémunération . brut de base: 6000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . convention syntec: oui
 
 lodeom:
   - contrat salarié . rémunération . brut de base: 1521.22
