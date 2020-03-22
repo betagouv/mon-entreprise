@@ -221,6 +221,27 @@ frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2600
     contrat salarié . profession spécifique: journaliste
 
+activité partielle:
+  - contrat salarié . rémunération . brut de base: 1560
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 8000
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . proportion heures travaillées: 20
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . proportion heures travaillées: 50
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . activité partielle: oui
+    contrat salarié . temps de travail . temps partiel: oui
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 28
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . profession spécifique: journaliste
+
 lodeom:
   - contrat salarié . rémunération . brut de base: 1521.22
     contrat salarié . lodeom . zone un: true
