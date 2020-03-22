@@ -1,5 +1,7 @@
 import Controls from 'Components/Controls'
-import Conversation, { ConversationProps } from 'Components/conversation/Conversation'
+import Conversation, {
+	ConversationProps
+} from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
@@ -13,23 +15,28 @@ import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
 
 type SimulationProps = {
-	explanations: React.ReactNode
+	explanations?: React.ReactNode
+	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
+	showPeriodSwitch?: boolean
 }
 
 export default function Simulation({
 	explanations,
-	customEndMessages
+	results,
+	customEndMessages,
+	showPeriodSwitch
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const progress = useSelector(simulationProgressSelector)
 	return (
 		<>
-			<TargetSelection />
+			<TargetSelection showPeriodSwitch={showPeriodSwitch} />
 			<SearchButton invisibleButton />
 			{firstStepCompleted && (
 				<>
 					<Animate.fromTop>
+						{results}
 						<div
 							style={{
 								display: 'flex',

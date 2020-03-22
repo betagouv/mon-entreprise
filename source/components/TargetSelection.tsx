@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
@@ -23,7 +23,7 @@ import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
-export default function TargetSelection() {
+export default function TargetSelection({ showPeriodSwitch = true }) {
 	const [initialRender, setInitialRender] = useState(true)
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const objectifs = useSelector(
@@ -86,7 +86,7 @@ export default function TargetSelection() {
 									</h2>
 								)}
 							</div>
-							{index === 0 && <PeriodSwitch />}
+							{index === 0 && showPeriodSwitch && <PeriodSwitch />}
 						</div>
 						<section
 							className="ui__ plain card"
@@ -198,12 +198,19 @@ const Target = ({ target, initialRender }) => {
 
 let Header = ({ target }) => {
 	const sitePaths = useContext(SitePathsContext)
+	const { t } = useTranslation()
+	const { pathname } = useLocation()
+	// TODO : Super hacky, we want to amend one label in the covid simulator, but
+	// because the label is fetched from the global state we have to do a hack
+	// here based on the URL.
+	const hackyShowPeriod = pathname === sitePaths.coronavirus
 	return (
 		<span className="header">
 			<span className="texts">
 				<span className="optionTitle">
 					<Link to={sitePaths.documentation.rule(target.dottedName)}>
 						{target.title || target.name}
+						{hackyShowPeriod && ' ' + t('mensuel')}
 					</Link>
 				</span>
 				<p>{target.summary}</p>
@@ -326,7 +333,7 @@ function AidesGlimpse() {
 							<span>{formatCurrency(aides.nodeValue, language)}</span>
 						</AnimatedTargetValue>
 					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides.explanation.icons)}
+					<Trans>d'aides</Trans> {emoji(aides.explanation?.icons ?? '')}
 				</RuleLink>
 			</div>
 		</Animate.fromTop>

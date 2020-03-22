@@ -133,25 +133,45 @@ export default function SocialSecurity() {
 								</Link>
 							)}
 							{régime !== 'auto-entrepreneur' && (
-								<Link
-									className="ui__ interactive card box"
-									css="width: 100%"
-									to={{
-										pathname: sitePaths.simulateurs.salarié,
-										state: {
-											fromGérer: true
-										}
-									}}
-								>
-									<div className="ui__ big box-icon">{emoji('🤝')}</div>
-									<Trans i18nKey="gérer.choix.embauche">
-										<h3>Estimer le montant d’une embauche</h3>
-										<p className="ui__ notice">
-											Calculez le montant total que votre entreprise devra
-											dépenser pour rémunérer votre prochain employé
-										</p>
-									</Trans>
-								</Link>
+								<>
+									<Link
+										className="ui__ interactive card box"
+										css="width: 100%"
+										to={{
+											pathname: sitePaths.coronavirus
+										}}
+									>
+										<div className="ui__ big box-icon">{emoji('😷')}</div>
+										<Trans i18nKey="gérer.choix.embauche">
+											<h3>Connaître les aides</h3>
+											<p className="ui__ notice">
+												Calculez le montant des indemnités de chômage partiel.
+												Découvrez la liste des dispositifs d'aides aux
+												entreprises.
+											</p>
+										</Trans>
+										<span className="ui__ label">Covid-19</span>
+									</Link>
+									<Link
+										className="ui__ interactive card box"
+										css="width: 100%"
+										to={{
+											pathname: sitePaths.simulateurs.salarié,
+											state: {
+												fromGérer: true
+											}
+										}}
+									>
+										<div className="ui__ big box-icon">{emoji('🤝')}</div>
+										<Trans i18nKey="gérer.choix.embauche">
+											<h3>Estimer le montant d’une embauche</h3>
+											<p className="ui__ notice">
+												Calculez le montant total que votre entreprise devra
+												dépenser pour rémunérer votre prochain employé
+											</p>
+										</Trans>
+									</Link>
+								</>
 							)}
 						</div>
 					</section>
@@ -341,7 +361,7 @@ export const CompanySection = ({ company }: CompanySectionProps) => {
 										: company.statutJuridique}
 								</span>
 								{company.isDirigeantMajoritaire != null && (
-									<span css="margin-left: 1rem" className="ui__ label">
+									<span css="margin-left: 1rem;" className="ui__ label">
 										{company.isDirigeantMajoritaire ? (
 											<Trans i18nKey="gérer.entreprise.majoritaire">
 												Dirigeant majoritaire

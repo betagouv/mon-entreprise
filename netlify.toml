@@ -202,6 +202,12 @@
   status = 200
 
 [[redirects]]
+  from = "/coronavirus"
+  to = "/prerender/mon-entreprise/coronavirus/index.html"
+  status = 200
+
+
+[[redirects]]
   from = "/simulateurs/salari%C3%A9"
   to = "/prerender/mon-entreprise/simulateurs/salari%C3%A9/index.html"
   status = 200
@@ -229,6 +235,11 @@
 [[redirects]]
   from = "/iframes/simulateur-embauche"
   to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/iframes/simulateur-chomage-partiel"
+  to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
   status = 200
 
 [[redirects]]

@@ -1,11 +1,12 @@
+import { formatValue } from 'Engine/format'
 import React, { useCallback, useState } from 'react'
-import { formatPercentage } from 'Engine/format'
+import { debounce as debounceFn } from '../utils'
 import './PercentageField.css'
 
-export default function PercentageField({ onChange, value, debounce }) {
+export default function PercentageField({ onChange, value, debounce = 0 }) {
 	const [localValue, setLocalValue] = useState(value)
 	const debouncedOnChange = useCallback(
-		debounce ? debounce(debounce, onChange) : onChange,
+		debounce ? debounceFn(debounce, onChange) : onChange,
 		[debounce, onChange]
 	)
 
@@ -26,7 +27,10 @@ export default function PercentageField({ onChange, value, debounce }) {
 				max="1"
 			/>
 			<span style={{ display: 'inline-block', width: '3em' }}>
-				{formatPercentage(localValue)}
+				{formatValue({
+					value: localValue,
+					unit: '%'
+				})}
 			</span>
 		</div>
 	)

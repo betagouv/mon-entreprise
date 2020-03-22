@@ -13,8 +13,7 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question: La résidence fiscale est-elle située à l'étranger ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS
-    - contrat salarié . CSG
-    - contrat salarié . CRDS
+    - contrat salarié . CSG et CRDS
     - impôt
   par défaut: non
   références:

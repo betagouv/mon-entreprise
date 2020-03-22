@@ -16,6 +16,12 @@ export let SalaireBrutSection = ({ getRule }) => {
 		),
 		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
 		rémunérationBrute = getRule('contrat salarié . rémunération . brut'),
+		chômagePartielIndemnité = getRule(
+			'contrat salarié . activité partielle . indemnités'
+		),
+		chômagePartielAbsence = getRule(
+			'contrat salarié . activité partielle . retrait activité partielle'
+		),
 		primes = getRule('contrat salarié . rémunération . primes')
 	return (
 		<div className="payslip__salarySection">
@@ -29,6 +35,12 @@ export let SalaireBrutSection = ({ getRule }) => {
 						'contrat salarié . rémunération . avantages en nature . montant'
 					)}
 				/>
+			)}
+			{chômagePartielIndemnité?.nodeValue && (
+				<>
+					<Line rule={chômagePartielAbsence} />
+					<Line rule={chômagePartielIndemnité} />
+				</>
 			)}
 			{!!heuresSupplémentaires?.nodeValue && (
 				<Line rule={heuresSupplémentaires} />

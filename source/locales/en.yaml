@@ -25,6 +25,8 @@ Commencer: Get started
 Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social contributions
+'Covid-19 : Découvrez les mesures de soutien aux entreprises': 'Covid-19: Find out about business support measures'
+Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 Créer une: Create a
 De: From
@@ -37,6 +39,7 @@ Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 Effacer: Reset
 Embauche: Hiring process
+En incluant l'indemnité de chômage partiel: Including short-time working allowance
 En-dessous de: Below
 Entreprise Individuelle: Sole Proprietorship
 Entrez des mots clefs ici: Enter keywords
@@ -53,6 +56,7 @@ Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
 Imprimer: Print
 Impôts: Taxes
+'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
 Indépendant: Independent
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
@@ -75,6 +79,7 @@ Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
 Outils pour les développeurs: Tools for developers
 Pages associées: Related pages
+Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
 Part salariale: Employee share
 Part salarié: Employee share
@@ -82,6 +87,7 @@ Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
 Personnalisez l'integration: Customize the integration
+'Perte de revenu net :': 'Loss of net income :'
 Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
@@ -108,6 +114,8 @@ Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
+'Revenu net avec chômage partiel :': 'Net income with short-time work :'
+Revenu net mensuel: Monthly net income
 Récapitulatif: Summary
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
@@ -128,6 +136,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
+'Total payé par l''entreprise :': 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -381,6 +390,17 @@ comparaisonRégimes:
     Create my company as:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
 composantes: components
+coronavirus:
+  description: >-
+    <0>Coronavirus and short-time working: what impact on my income?</0><1>The
+    government is putting in place measures to support employees affected by the
+    Coronavirus crisis. One of the key measures is the assumption of the entire
+    short-time working compensation by the State.</1><2>This simulator allows
+    you to find out your net income if you have been placed on short-time work,
+    as well as the total cost to the company.</2>
+  page:
+    description: Estimate net income with short-time working benefits
+    titre: 'Coronavirus and short-time working: what impact on your income?'
 cotisation: contribution
 créer:
   cta:
@@ -807,6 +827,7 @@ listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
 maj2019: The simulation is up-to-date in 2019.
+mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
@@ -836,7 +857,11 @@ pages:
       publicode: >-
         <0>Publicodes</0><1>Our tools are powered by Publicodes, a new language
         for encoding "explainable" algorithms.</1>
+    code:
+      description: 'Here is the code to copy and paste on your site:'
+      titre: Integration Code
     code à copier: 'Here is the code to copy and paste on your site:'
+    couleur: 'What color? '
     home:
       choice:
         iframe: >-
@@ -858,8 +883,10 @@ pages:
       module</2> to blend it into the visual theme of your page.</2><3>The
       attribute <1>data-lang="en"</1> allows you to choose English as the
       simulator language.</3>
+    module: What module?
 par: per
 path:
+  coronavirus: /coronavirus
   créer:
     après: /after-registration
     guideStatut:

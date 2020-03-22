@@ -130,6 +130,7 @@ export const constructLocalizedSitePath = (language: string) => {
 			index: t('path.documentation.index', '/documentation'),
 			rule: (dottedName: DottedName) => '/' + encodeRuleName(dottedName)
 		},
+		coronavirus: t('path.coronavirus', '/coronavirus'),
 		integration: {
 			index: t('path.integration.index', '/intégration'),
 			iframe: t('path.integration.iframe', '/iframe'),

@@ -319,7 +319,7 @@ protection sociale . santé . indemnités journalières . salarié:
     produit:
       assiette: revenu moyen [€/jour]
       taux: 50%
-      plafond: 1.8 * contrat salarié . SMIC temps plein [€/jour]
+      plafond: 1.8 * SMIC temps plein [€/jour]
   reférences:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
 

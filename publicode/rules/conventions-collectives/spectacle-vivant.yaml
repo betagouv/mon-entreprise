@@ -79,12 +79,14 @@ contrat salarié . intermittents du spectacle . formation professionnelle:
           taux: 2.10%
 
 contrat salarié . intermittents du spectacle . caisse des congés spectacle:
+  rend non applicable: CDD . compensation pour congés non pris
   formule:
     produit:
       assiette: rémunération . brut
       taux: 15.40%
   références:
     audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/entreprise/Fiches-techniques/Conges-Spectacles-Mode-d-emploi-employeur-2019.pdf
+    Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
 contrat salarié . intermittents du spectacle . retraite complémentaire techniciens et cadre:
   applicable si:

@@ -1,6 +1,5 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
-import NewsletterRegister from 'Components/NewsletterRegister'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { lensPath, view } from 'ramda'
 import React, { useContext } from 'react'
@@ -20,7 +19,8 @@ const feedbackBlacklist = [
 	['simulateurs', 'indépendant'],
 	['simulateurs', 'auto-entrepreneur'],
 	['simulateurs', 'assimilé-salarié'],
-	['simulateurs', 'salarié']
+	['simulateurs', 'salarié'],
+	['coronavirus', 'chômagePartiel']
 ].map(lensPath)
 
 const Footer = () => {
@@ -50,13 +50,6 @@ const Footer = () => {
 					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 				/>
 				<div className="ui__ container">
-					{i18n.language === 'fr' && (
-						<>
-							<NewsletterRegister />
-							<hr className="footer__separator" />
-						</>
-					)}
-
 					{i18n.language === 'en' && (
 						<p className="ui__ notice" css="text-align: center">
 							This website is provided by the{' '}

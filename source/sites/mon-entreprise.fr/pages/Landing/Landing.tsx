@@ -39,6 +39,14 @@ export default function Landing() {
 				<img src={illustrationSvg} className="landing-title__img" />
 			</section>
 			<section className="ui__ full-width light-bg center-flex">
+				<div style={{ textAlign: 'center', width: '100%' }}>
+					{emoji('😷')}{' '}
+					<Link to={sitePaths.coronavirus}>
+						<Trans>
+							Covid-19 : Découvrez les mesures de soutien aux entreprises
+						</Trans>
+					</Link>
+				</div>
 				<Link
 					className="ui__ interactive card box"
 					to={

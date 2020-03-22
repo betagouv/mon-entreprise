@@ -1,21 +1,5 @@
 import { getRuleFromAnalysis } from 'Engine/rules'
-import {
-	add,
-	compose,
-	equals,
-	filter,
-	fromPairs,
-	map,
-	mapObjIndexed,
-	max,
-	mergeWith,
-	pick,
-	pipe,
-	propEq,
-	reduce,
-	sort,
-	without
-} from 'ramda'
+import { compose, filter, fromPairs, map, max, reduce, sort } from 'ramda'
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { Rule } from 'Types/rule'
@@ -59,57 +43,13 @@ const byMontantTotal = (
 		a[1].partSalariale
 	)
 }
-
+// TODO : refaire ça proprement dans le moteur
 const REPARTITION_CSG: Partial<Record<Branch, number>> = {
 	'protection sociale . famille': 0.85,
 	'protection sociale . santé': 7.75,
 	// TODO: cette part correspond à l'amortissement de la dette de la sécurité sociale.
 	// On peut imaginer la partager à toute les composantes concernées
 	'protection sociale . autres': 0.6
-}
-function applyCSGInPlace(
-	CSG: Cotisation,
-	rawRépartition: Record<Branch, MontantPartagé>
-): void {
-	for (const branche in REPARTITION_CSG) {
-		rawRépartition[branche] = {
-			partPatronale:
-				rawRépartition[branche].partPatronale +
-				(CSG.montant.partPatronale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
-					100,
-			partSalariale:
-				rawRépartition[branche].partSalariale +
-				(CSG.montant.partSalariale * (REPARTITION_CSG[branche] / (9.2 / 100))) /
-					100
-		}
-	}
-}
-
-const brancheConcernéeParLaRéduction = [
-	'santé',
-	'retraite',
-	'logement',
-	'famille'
-].map(branche => 'protection sociale . ' + branche)
-function applyReduction(
-	réduction,
-	répartitionMap: Record<Branch, MontantPartagé>
-): Record<Branch, MontantPartagé> {
-	const totalPatronal = (pipe(
-		pick(brancheConcernéeParLaRéduction),
-		Object.values,
-
-		reduce(mergeWith(add), {})
-	)(répartitionMap) as any).partPatronale
-	return mapObjIndexed(
-		({ partPatronale, partSalariale }, branche: string) => ({
-			partPatronale: brancheConcernéeParLaRéduction.find(equals(branche))
-				? partPatronale - (partPatronale / totalPatronal) * réduction.nodeValue
-				: partPatronale,
-			partSalariale
-		}),
-		répartitionMap
-	)
 }
 
 const répartition = analysis => {
@@ -122,22 +62,8 @@ const répartition = analysis => {
 		réductionsDeCotisations = getRule(
 			'contrat salarié . cotisations . patronales . réductions de cotisations'
 		)
-	let CSG
-	const autresCotisations = cotisations['protection sociale . autres'] as any
-	if (autresCotisations) {
-		CSG = autresCotisations.find(propEq('dottedName', 'contrat salarié . CSG'))
-		cotisations['protection sociale . autres'] = without(
-			[CSG],
-			autresCotisations
-		)
-	}
-
 	let répartitionMap = map(totalCotisations as any, cotisations) as any
-	if (CSG) {
-		applyCSGInPlace(CSG, répartitionMap)
-	}
 
-	répartitionMap = applyReduction(réductionsDeCotisations, répartitionMap)
 	return {
 		répartition: compose(
 			sort(byMontantTotal),
