@@ -2558,12 +2558,12 @@ contrat salarié . prix du travail:
   résumé.fr: Dépensé par l'entreprise
   titre.en: labor cost
   titre.fr: Coût total
-contrat salarié . profession:
+contrat salarié . profession spécifique:
   question.en: '[automatic] Does the employee work in one of the following professions?'
   question.fr: Le salarié exerce t-il l'une des professions suivantes ?
-  titre.en: '[automatic] profession'
-  titre.fr: profession
-contrat salarié . profession . artiste musicien:
+  titre.en: '[automatic] specific profession'
+  titre.fr: profession spécifique
+contrat salarié . profession spécifique . artiste musicien:
   description.en: >-
     [automatic] Concerns musicians, choir members, conductors, theatre managers,
     etc.
@@ -2572,7 +2572,7 @@ contrat salarié . profession . artiste musicien:
     théâtre
   titre.en: '[automatic] musical artist'
   titre.fr: artiste musicien
-contrat salarié . profession . journaliste:
+contrat salarié . profession spécifique . journaliste:
   description.en: >-
     [automatic] Concerns journalists, editors, photographers, newspaper
     directors Dramatic and music critics.
@@ -2581,13 +2581,13 @@ contrat salarié . profession . journaliste:
     Critiques dramatiques et musicaux.
   titre.en: '[automatic] journalist'
   titre.fr: journaliste
-contrat salarié . profession . journaliste . abattement fiscal:
+contrat salarié . profession spécifique . journaliste . abattement fiscal:
   titre.en: '[automatic] net taxable journalist'
   titre.fr: net imposable journaliste
-contrat salarié . profession . journaliste . réduction de taux:
+contrat salarié . profession spécifique . journaliste . réduction de taux:
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
-contrat salarié . profession . ouvrier du bâtiment:
+contrat salarié . profession spécifique . ouvrier du bâtiment:
   description.en: >-
     [automatic] Concerns the construction workers referred to in paragraphs 1
     and 2 of Article 1 of the Decree of 17 November 1936, excluding those
@@ -2598,12 +2598,12 @@ contrat salarié . profession . ouvrier du bâtiment:
     travaillent en usine ou en atelier.
   titre.en: '[automatic] construction worker'
   titre.fr: ouvrier du bâtiment
-contrat salarié . profession . pilote de ligne ou personnel navigant:
+contrat salarié . profession spécifique . pilote de ligne ou personnel navigant:
   description.en: >-
-    [automatic] Concerns pilots, radios, flight engineers of air transport
-    companies; pilots and mechanics employed by aircraft and engine construction
-    companies for testing prototypes; pilot instructors of flying clubs and
-    civil aviation schools.
+    [automatic] Concerns pilots, radio operators, flight engineers of air
+    transport companies; pilots and mechanics employed by aircraft and engine
+    construction companies to test prototypes; pilot instructors of flying clubs
+    and civil aviation schools.
   description.fr: >-
     Concerne les pilotes, radios, mécaniciens navigants des compagnies de
     transports aériens ; pilotes et mécaniciens employés par les maisons de

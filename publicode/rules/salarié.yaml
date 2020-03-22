@@ -361,13 +361,13 @@ contrat salarié . déduction forfaitaire spécifique:
 contrat salarié . déduction forfaitaire spécifique . taux:
   formule:
     variations:
-      - si: profession = 'journaliste'
+      - si: profession spécifique = 'journaliste'
         alors: 20%
-      - si: profession = 'ouvrier du bâtiment'
+      - si: profession spécifique = 'ouvrier du bâtiment'
         alors: 10%
-      - si: profession = 'artiste musicien'
+      - si: profession spécifique = 'artiste musicien'
         alors: 20%
-      - si: profession = 'pilote de ligne ou personnel navigant'
+      - si: profession spécifique = 'pilote de ligne ou personnel navigant'
         alors: 30%
       - sinon: 0%
   références:
@@ -3108,7 +3108,7 @@ contrat salarié . taxe sur les salaires . barème:
         assiette: 2300
       valeur attendue: 2627.97
 
-contrat salarié . profession:
+contrat salarié . profession spécifique:
   question: Le salarié exerce t-il l'une des professions suivantes ?
   formule:
     une possibilité:
@@ -3118,14 +3118,14 @@ contrat salarié . profession:
         - artiste musicien
         - pilote de ligne ou personnel navigant
 
-contrat salarié . profession . journaliste:
+contrat salarié . profession spécifique . journaliste:
   icônes: ✒
   description: >-
     Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
     Critiques dramatiques et musicaux.
 
-contrat salarié . profession . journaliste . réduction de taux:
-  applicable si: profession = 'journaliste'
+contrat salarié . profession spécifique . journaliste . réduction de taux:
+  applicable si: profession spécifique = 'journaliste'
   remplace:
     - règle: vieillesse . taux employeur plafonné
       par: vieillesse . taux employeur plafonné * réduction de taux
@@ -3146,8 +3146,8 @@ contrat salarié . profession . journaliste . réduction de taux:
       par: ATMP . taux minimum * réduction de taux
   formule: 80%
 
-contrat salarié . profession . journaliste . abattement fiscal:
-  applicable si: profession = 'journaliste'
+contrat salarié . profession spécifique . journaliste . abattement fiscal:
+  applicable si: profession spécifique = 'journaliste'
   remplace: rémunération . net imposable
   titre: net imposable journaliste
   formule:
@@ -3155,20 +3155,20 @@ contrat salarié . profession . journaliste . abattement fiscal:
       assiette: rémunération . net imposable
       abattement: 7650€/an
 
-contrat salarié . profession . ouvrier du bâtiment:
+contrat salarié . profession spécifique . ouvrier du bâtiment:
   icônes: 👷‍♂️
   description: >-
     Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
     l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
     travaillent en usine ou en atelier.
 
-contrat salarié . profession . artiste musicien:
+contrat salarié . profession spécifique . artiste musicien:
   icônes: 🎼
   description: >-
     Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
     théâtre
 
-contrat salarié . profession . pilote de ligne ou personnel navigant:
+contrat salarié . profession spécifique . pilote de ligne ou personnel navigant:
   icônes: ✈
   description: >-
     Concerne les pilotes, radios, mécaniciens navigants des compagnies de

@@ -12,7 +12,7 @@ questions:
     - contrat salarié . activité partielle . proportion heures travaillées
     - contrat salarié . temps de travail . temps partiel
     - contrat salarié . temps de travail . temps partiel . heures par semaine
-    - contrat salarié . profession
+    - contrat salarié . profession spécifique
 
 unités par défaut: [€/mois]
 situation:
