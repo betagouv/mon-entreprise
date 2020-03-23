@@ -188,7 +188,7 @@ ensuite d'un délai de **30 jours** pour se mettre en règle. Les
 indemnités seront versées avec un effet rétro-actif débutant à la mise en place
 du chômage partiel.
 
-[➡ Effectuer la demande de chômage partiel](https://activitepartielle.emploi.gouv.fr/aparts/).
+[➡ Effectuer la demande de chômage partiel](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001).
 
 ## Indépendants 🚶‍♀️
 
