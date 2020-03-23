@@ -28,13 +28,6 @@ Nous utilisons :
 - [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore)
 - [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 
-### CI/CD
-
-- [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
-    tests.
-- [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
-    sur internet avec gestion des DNS.
-
 ### Démarrage
 
 Si l'historique des commits est trop volumineux, vous pouvez utiliser le paramètre `depth` de git pour ne télécharger que les derniers commits.
@@ -129,3 +122,10 @@ $ yarn run i18n:ui:translate
 ```
 
 N'oubliez pas de vérifier le diff que rien n'est choquant.
+
+### CI/CD
+
+- [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
+    tests.
+- [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
+    sur internet avec gestion des DNS.
