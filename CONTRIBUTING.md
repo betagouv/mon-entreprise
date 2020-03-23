@@ -32,7 +32,7 @@ Nous utilisons :
 
 - [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
     tests.
-- [Netlify](https://www.netlify.com/), un PaaS faisant tourner l'app Javascript
+- [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
     sur internet avec gestion des DNS.
 
 ### Démarrage
