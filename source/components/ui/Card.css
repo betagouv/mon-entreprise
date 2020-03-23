@@ -54,7 +54,9 @@
 	opacity: 0.7;
 }
 
+.ui__.label a,
 .ui__.card.plain a,
+.ui__.label .link-button,
 .ui__.card.plain .link-button {
 	color: white !important;
 }
