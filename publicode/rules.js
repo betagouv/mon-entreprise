@@ -4,6 +4,7 @@
 
 import artisteAuteur from './rules/artiste-auteur.yaml'
 import base from './rules/base.yaml'
+import chômagePartiel from './rules/chômage-partiel.yaml'
 import CCBatiment from './rules/conventions-collectives/bâtiment.yaml'
 import CCHotels from './rules/conventions-collectives/hôtels-cafés-restaurants.yaml'
 import CCOptique from './rules/conventions-collectives/optique.yaml'
@@ -33,7 +34,8 @@ const rules = {
 	...CCOptique,
 	...CCSpectacleVivant,
 	...CCSport,
-	...situationPersonnelle
+	...situationPersonnelle,
+	...chômagePartiel
 }
 
 export default rules

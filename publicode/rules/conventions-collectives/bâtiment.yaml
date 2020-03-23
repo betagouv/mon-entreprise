@@ -132,6 +132,7 @@ contrat salarié . convention collective . BTP . cotisations conventionnelles:
       - OPPBTP
 
 contrat salarié . convention collective . BTP . congés intempéries:
+  rend non applicable: CDD . compensation pour congés non pris
   formule:
     produit:
       assiette: cotisations . assiette
@@ -157,6 +158,7 @@ contrat salarié . convention collective . BTP . congés intempéries:
             alors: 19.90%
   références:
     CIBTP: https://www.cibtp.fr/
+    Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
 contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
   question: À quelle caisse l'entreprise est-elle rattachée pour le versement de la cotisation congés intempéries ?

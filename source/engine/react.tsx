@@ -1,29 +1,27 @@
 import Value from 'Components/Value'
-import React, { createContext, useContext, useMemo, useState } from 'react'
+import React, { createContext, useContext, useMemo } from 'react'
 import Engine from '.'
 
-const EngineContext = createContext<{
+export const EngineContext = createContext<{
 	engine: Engine | null
 	error: string | null
 }>({ engine: new Engine(), error: null })
 
 type InputProps = {
 	rules?: any
+	extra?: any
 	situation?: any
 	children: React.ReactNode
 }
 
-export function Provider({ rules, situation, children }: InputProps) {
-	const [error, setError] = useState<string | null>(null)
-	const engine = useMemo(() => {
+export function Provider({ rules, extra, situation, children }: InputProps) {
+	const [engine, error] = useMemo(() => {
 		try {
-			setError(null)
-			return new Engine({ rules })
+			return [new Engine({ rules, extra }), null]
 		} catch (err) {
-			setError(err?.message ?? err.toString())
-			return null
+			return [null, (err?.message ?? err.toString()) as string]
 		}
-	}, [rules])
+	}, [rules, extra])
 	if (engine !== null && !Object.is(situation, engine.situation)) {
 		engine.setSituation(situation)
 	}

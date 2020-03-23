@@ -205,6 +205,167 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . dista
     10 km/jour: 200
   par défaut: 80
 
+contrat salarié . activité partielle:
+  question: Le salarié est-il en chômage partiel ?
+  description: >-
+    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
+    dispositif de chômage partiel étendu dans lequel l'État prend en charge
+    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+
+    La déclaration d'activité partielle est simplifiée est l'effet est
+    rétroactif.
+
+  par défaut: non
+  rend non applicable:
+    - temps de travail . heures supplémentaires
+    - temps de travail . heures complémentaires
+  références:
+    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
+    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+contrat salarié . activité partielle . rémunération mensuelle minimale:
+  acronyme: RMM
+  description: >-
+    Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
+    une rémunération mensuelle minimale qui peut donner lieu à un versement
+    complémentaire de l’employeur.
+  références:
+    Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
+  formule:
+    recalcul:
+      règle: contrat salarié . rémunération . net de cotisations
+      avec:
+        rémunération . brut de base: SMIC contractuel
+        activité partielle: non
+
+contrat salarié . activité partielle . heures chômées:
+  unité: heures/mois
+  formule:
+    produit:
+      assiette: temps de travail . temps contractuel
+      taux: 100% - proportion heures travaillées
+
+contrat salarié . activité partielle . proportion heures travaillées:
+  titre: proportion heures travaillées
+  question: Quelle est la proportion d'heures travaillées sur le mois ?
+  description: >-
+    Dans le cadre du chômage partiel, la proportion d'heure travaillées correspond
+    au ratio du nombre d'heures travaillées par rapport au temps de travail
+    contractuel habituel.
+
+    Un ratio de 0% signifie que l'employé n'a pas travaillé ce mois ci.
+    Un ratio de 100% signifie que l'employé a effectué toutes ces heures contractuelles.
+
+    Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
+  unité: '%'
+  par défaut: 0
+  suggestions:
+    0%: 0
+    20%: 20
+    50%: 50
+
+contrat salarié . activité partielle . indemnités:
+  titre: indemnités activité partielle
+  description: >-
+    La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
+    l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
+    reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie de
+    l’Etat une allocation d’activité partielle.
+
+    Si après versement de l’indemnité d’activité partielle la rémunération du
+    salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
+    les articles L3232-1 et suivants du code du travail pour les salariés à temps
+    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
+    somme initialement perçue par le salarié.
+
+  formule:
+    somme:
+      - base
+      - complémentaire
+      - conventionnelle
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+
+contrat salarié . activité partielle . indemnités . base:
+  titre: indemnités d'activité partielle de base
+  formule:
+    multiplication:
+      assiette: retrait absence
+      taux: 70%
+
+contrat salarié . activité partielle . indemnités . complémentaire:
+  titre: indemnité complémentaire
+  description: >-
+    L'indemnité complémentaire de chômage partielle est une indemnité versée par
+    l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
+    rémunération effectivement perçue ne soit jamais inférieure à celle
+    du SMIC net.
+  formule:
+    allègement:
+      assiette: rémunération mensuelle minimale
+      abattement:
+        somme:
+          - rémunération . net de cotisations
+          - indemnités . base
+
+contrat salarié . activité partielle . indemnités . conventionnelle:
+  applicable si: convention syntec
+  formule:
+    produit:
+      assiette: rémunération . assiette congés payés
+      taux:
+        grille:
+          assiette: rémunération . assiette congés payés
+          tranches:
+            - montant: 95% - 70%
+              plafond: 2000€
+            - montant: 80% - 70%
+              plafond: plafond sécurité sociale temps plein
+            - montant: 75% - 70%
+  références:
+    Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
+    Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
+
+contrat salarié . activité partielle . retrait absence:
+  titre: retrait activité partielle
+  formule:
+    multiplication:
+      assiette: rémunération . taux horaire
+      facteur: heures chômées
+
+contrat salarié . activité partielle . indemnisation entreprise:
+  titre: Remboursement de l'indemnité d'activité partielle
+  description: >-
+    Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
+    l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
+  formule:
+    encadrement:
+      valeur: indemnités . base
+      plancher: 8.03 €/heure * heures chômées
+      plafond:
+        recalcul:
+          avec:
+            rémunération . brut de base: 4.5 * SMIC
+
+# TODO : This should be merged with other convention collectives
+contrat salarié . activité partielle . convention syntec:
+  question: La convention collective Syntec est-elle applicable à l'entreprise ?
+  description: >-
+    Convention Collective applicable aux salariés des Bureaux d'Études
+    Techniques, des Cabinets d'Ingénieurs-Conseils et des Sociétés de Conseils.
+
+    Cette convention collective prévoit notamment une majoration de l'indemnité
+    de chômage partielle au dessus du minimum légal et à la charge de
+    l'entreprise.
+  par défaut: non
+  rend non applicable:
+    # TODO: this is not working, the question is still displayed. This should be
+    # fixed but is not critical
+    - profession spécifique
+
 contrat salarié . déduction forfaitaire spécifique:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
@@ -217,7 +378,7 @@ contrat salarié . déduction forfaitaire spécifique:
   titre: assiette avec DFS
   remplace:
     règle: cotisations . assiette
-    sauf dans: contrat salarié . CSG
+    sauf dans: contrat salarié . CSG et CRDS
     # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
@@ -235,13 +396,13 @@ contrat salarié . déduction forfaitaire spécifique:
 contrat salarié . déduction forfaitaire spécifique . taux:
   formule:
     variations:
-      - si: profession = 'journaliste'
+      - si: profession spécifique = 'journaliste'
         alors: 20%
-      - si: profession = 'ouvrier du bâtiment'
+      - si: profession spécifique = 'ouvrier du bâtiment'
         alors: 10%
-      - si: profession = 'artiste musicien'
+      - si: profession spécifique = 'artiste musicien'
         alors: 20%
-      - si: profession = 'pilote de ligne ou personnel navigant'
+      - si: profession spécifique = 'pilote de ligne ou personnel navigant'
         alors: 30%
       - sinon: 0%
   références:
@@ -356,7 +517,7 @@ contrat salarié . CDD . compensation pour congés non pris:
   formule:
     le maximum de:
       - produit:
-          assiette: assiette mensuelle
+          assiette: rémunération . assiette congés payés
           taux: 10%
           facteur: proportion congés non pris
       - produit:
@@ -408,15 +569,10 @@ contrat salarié . CDD . congés dus en jours ouvrés:
 contrat salarié . congés dus par mois:
   formule: 25 jour ouvré / 12 mois
 
-contrat salarié . CDD . compensation pour congés non pris . assiette mensuelle:
-  unité: €/mois
-
-  formule: rémunération . brut de base + prime de fin de contrat
-
 contrat salarié . CDD . compensation pour congés non pris . salaire journalier:
   unité: €/jour ouvré
 
-  formule: assiette mensuelle / période . jours ouvrés moyen par mois
+  formule: rémunération . assiette congés payés / période . jours ouvrés moyen par mois
 
 contrat salarié . CDD . prime de fin de contrat:
   indemnité:
@@ -770,8 +926,7 @@ contrat salarié . apprentissage:
     Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
   formule: contrat salarié = 'apprentissage'
   rend non applicable:
-    - CSG
-    - CRDS
+    - CSG et CRDS
     - statut cadre
     - statut JEI
     - régime des impatriés
@@ -916,13 +1071,13 @@ contrat salarié . cotisations . assiette minimale:
     recalcul:
       règle: rémunération . assiette de vérification du SMIC
       avec:
-        rémunération . brut de base: SMIC
+        rémunération . brut de base: SMIC horaire * temps de travail . effectif
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
-  résumé: Brut de base inscrit dans le contrat de travail
+  résumé: Brut de référence (sans les primes, indemnités ni majorations)
   type: salaire
-  question: Quel est le salaire de base ?
+  question: Quel est votre salaire brut ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
@@ -985,6 +1140,10 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
     salaire médian: 2300
     SMIC: 1522
 
+contrat salarié . rémunération . taux horaire:
+  unité: €/heure
+  formule: assiette de vérification du SMIC / temps de travail
+
 contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description: >
     Le taux horaire utilisé pour calculer la rémunération liée au heures
@@ -1013,6 +1172,26 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
     l'assiette de vérification du SMIC mais seulement le mois où elles sont
     payées (et non de manière lissée sur l'année), c'est pourquoi nous ne les
     incluons pas dans cette formule.
+
+contrat salarié . rémunération . assiette congés payés:
+  titre: Assiette pour le calcul de l'indemnité de congés payés
+  description: >-
+    Pendant ses congés, le salarié ne perçoit pas son salaire. Il perçoit une
+    indemnité de congés payés.
+
+    Toutes les sommes ayant le caractère de salaire sont prises en compte pour
+    déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en
+    compte.
+  formule:
+    somme:
+      - brut de base
+      - heures supplémentaires
+      - heures complémentaires
+      - avantages en nature
+      - primes . ancienneté
+      - primes . activité
+  références:
+    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F33359
 
 contrat salarié . rémunération . primes:
   description: |
@@ -1098,16 +1277,19 @@ contrat salarié . rémunération . brut:
     # et de retraite complémentaire on ne ré-intègre ici que la part employeur
     # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
     # base` dont elle vient en déduction).
-    somme:
-      - rémunération . brut de base
-      - avantages en nature . montant
-      - primes
-      - CDD . indemnités salarié
-      - heures supplémentaires
-      - heures complémentaires
-      - frais professionnels
-      - prévoyance . employeur
-      - retraite supplémentaire . employeur
+    allègement:
+      assiette:
+        somme:
+          - rémunération . brut de base
+          - avantages en nature . montant
+          - primes
+          - CDD . indemnités salarié
+          - heures supplémentaires
+          - heures complémentaires
+          - frais professionnels
+          - prévoyance . employeur
+          - retraite supplémentaire . employeur
+      abattement: activité partielle . retrait absence
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -1134,6 +1316,25 @@ contrat salarié . rémunération . heures complémentaires:
         somme:
           - temps de travail . heures complémentaires
           - temps de travail . heures complémentaires . majoration
+
+contrat salarié . rémunération . revenus de remplacement:
+  description: >-
+    Les revenus de remplacement sont les revenus perçus en remplacement de la
+    rémunération du travail : allocations de chômage ou de chômage partiel,
+    indemnités maladie ou accident du travail, pension de retraite, revenu
+    d'intégration sociale, etc.
+
+    Ces revenus sont imposables mais sont exonérés de cotisations sociales. Ils
+    sont soumis à la CSG/CRDS avec un taux spécifique.
+  formule:
+    somme:
+      - activité partielle . indemnités
+  note: >-
+    L'indemnité complémentaire n'est pas ajoutée ici car elle est
+    systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
+    revenus.
+
+    L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
 
 contrat salarié . avantages sociaux:
   description: >
@@ -1309,27 +1510,6 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
 
-contrat salarié . SMIC temps plein:
-  unité: €/mois
-
-  formule:
-    produit:
-      assiette: temps de travail . base légale * période . semaines par mois
-      facteur: SMIC horaire
-  références:
-    décret: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037833206
-
-contrat salarié . SMIC temps plein . net imposable:
-  titre: SMIC net imposable
-  description: Montant du SMIC net imposable pour un temps plein.
-  formule:
-    recalcul:
-      règle: rémunération . net imposable . base
-      avec:
-        rémunération . brut de base: SMIC temps plein
-  références:
-    barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
-
 contrat salarié . SMIC contractuel:
   description: >
     Valeur du SMIC pro-ratisé pour prendre en compte le temps partiel et utilisé pour la détermination du salaire minimum
@@ -1355,8 +1535,7 @@ contrat salarié . cotisations . salariales:
       - contribution d'équilibre général .salarié
       - contribution d'équilibre technique .salarié
       - chômage .salarié
-      - CSG
-      - CRDS
+      - CSG et CRDS
       - APEC .salarié
       - complémentaire santé .salarié
       - conventionnelles
@@ -1398,8 +1577,17 @@ contrat salarié . rémunération . net de cotisations:
   titre: Salaire net de cotisations
   type: rémunération
   unité: €/mois
+  formule:
+    somme:
+      - brut
+      - (- cotisations . salariales)
 
-  formule: brut - cotisations . salariales
+contrat salarié . rémunération . net avec revenus de remplacement:
+  formule:
+    somme:
+      - net de cotisations
+      - revenus de remplacement
+      - (- CSG et CRDS . revenus de remplacement)
 
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
@@ -1408,27 +1596,25 @@ contrat salarié . rémunération . net imposable:
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   formule:
-    allègement:
-      assiette: base
-      abattement:
-        somme:
-          - frais professionnels . part déductible
-          - prime d'impatriation
-          - exonération d'impôt des stagiaires et apprentis
-          - heures supplémentaires et complémentaires défiscalisées
-          - retraite supplémentaire . exonération fiscale
-          - prévoyance . exonération fiscale
+    somme:
+      - base
+      - (- frais professionnels . part déductible)
+      - (- prime d'impatriation)
+      - (- exonération d'impôt des stagiaires et apprentis)
+      - (- heures supplémentaires et complémentaires défiscalisées)
+      - (- retraite supplémentaire . exonération fiscale)
+      - (- prévoyance . exonération fiscale)
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
 contrat salarié . rémunération . net imposable . base:
+  titre: net imposable avant exonérations
   description: Le net imposable avant les exonérations et déductions
   formule:
     somme:
-      - rémunération . net de cotisations
+      - net avec revenus de remplacement
       - avantages sociaux
-      - CSG .non déductible
-      - CRDS
+      - CSG et CRDS . non déductible
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   formule:
@@ -1459,8 +1645,9 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
+  unité: €/mois
   type: salaire
-  question: Quel est le salaire net ?
+  question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
   description: >-
     C'est le montant que le salarié toucherait à la fin du mois avant de payer
@@ -1475,12 +1662,10 @@ contrat salarié . rémunération . net:
     le changer, il faut signer un avenant au contrat).
 
   formule:
-    allègement:
-      assiette: rémunération . net de cotisations
-      abattement:
-        somme:
-          - avantages en nature . montant
-          - frais professionnels . titres-restaurant . montant
+    somme:
+      - net avec revenus de remplacement
+      - (- avantages en nature . montant)
+      - (- frais professionnels . titres-restaurant . montant)
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
@@ -1519,7 +1704,7 @@ contrat salarié . prix du travail:
 
 contrat salarié . rémunération . total:
   titre: Total chargé
-  question: Quel est la rémunération chargée ?
+  question: Quelle est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
   unité par défaut: €/mois
@@ -1529,6 +1714,7 @@ contrat salarié . rémunération . total:
     somme:
       - brut
       - cotisations . patronales
+      - activité partielle . indemnités
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
   formule:
@@ -1624,9 +1810,8 @@ contrat salarié . cotisations . patronales . conventionnelles:
   formule: 0
 
 contrat salarié . aides employeur:
-  titre: aides à l'embauche
+  titre: aides employeur
   résumé: Pour l'employeur, différées dans le temps
-  icônes: 🎁
   description: |
     Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
 
@@ -1634,8 +1819,8 @@ contrat salarié . aides employeur:
   formule:
     somme:
       - aide à l'embauche d'apprentis
+      - activité partielle . indemnisation entreprise
       - emploi franc
-  note:
 
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description: |
@@ -1706,6 +1891,12 @@ contrat salarié . temps de travail:
       - heures supplémentaires
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+
+contrat salarié . temps de travail . effectif:
+  formule:
+    somme:
+      - temps de travail
+      - (- activité partielle . heures chômées)
 
 contrat salarié . temps de travail . temps contractuel:
   unité: heures/mois
@@ -2381,21 +2572,42 @@ contrat salarié . contribution au dialogue social:
       assiette: cotisations . assiette
       taux: 0.016%
 
-contrat salarié . assiette CSG et CRDS:
-  note: Cette assiette est complexe, cette version n'est qu'une simplification.
+contrat salarié . CSG et CRDS:
+  description: >-
+    La CSG et la CRDS sont dues par tous les salariés remplissant les deux
+    conditions suivantes :
+
+    - ils sont domiciliés fiscalement en France,
+    - ils sont à la charge d’un régime français d’assurance maladie obligatoire.
+
+    Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas
+    dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte
+    d’assuré social).
+  formule:
+    somme:
+      - CSG
+      - CRDS
+
+contrat salarié . CSG et CRDS . assiette de base:
   références:
     calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
     abattement: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
   formule:
     somme:
-      - assiette abattue
+      - assiette abattue totale
+      # TODO : ce sont les cotisations forfaitaires qui ne rentrent pas dans
+      # l'abattue, et non tous les avantages sociaux
       - avantages sociaux
+      # - (- assiette revenu remplacements)
+      - (- assiette heures supplémentaires et complémentaires défiscalisées)
 
-contrat salarié . assiette CSG et CRDS . assiette abattue:
+contrat salarié . CSG et CRDS . assiette abattue totale:
   formule:
     barème:
-      assiette: cotisations . assiette
+      assiette:
+        cotisations . assiette
+        # - rémunération . revenus de remplacement
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
       tranches:
@@ -2403,7 +2615,13 @@ contrat salarié . assiette CSG et CRDS . assiette abattue:
           plafond: 4
         - taux: 100%
 
-contrat salarié . CSG . assiette heures supplémentaires et complémentaires défiscalisées:
+contrat salarié . CSG et CRDS . assiette revenu remplacements:
+  formule:
+    produit:
+      taux: 98.25%
+      assiette: rémunération . revenus de remplacement
+
+contrat salarié . CSG et CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
   formule:
     produit:
       assiette: rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
@@ -2411,33 +2629,45 @@ contrat salarié . CSG . assiette heures supplémentaires et complémentaires d�
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . CSG . assiette CSG déductible:
-  formule: assiette CSG et CRDS - assiette heures supplémentaires et complémentaires défiscalisées
+contrat salarié . CSG et CRDS . non déductible:
+  titre: CSG non déductible et CRDS
+  formule:
+    somme:
+      - CSG . base .non déductible
+      - CSG . heures supplémentaires et complémentaires défiscalisées
+      - CRDS
+      - revenus de remplacement . CSG non déductible
+      - revenus de remplacement . CRDS
 
-contrat salarié . CSG:
+contrat salarié . CSG et CRDS . CSG:
+  non applicable si: établissement . localisation . département = 'Mayotte'
   cotisation:
     impôt: oui
     dû par: salarié
-  description: |
-    Contribution sociale généralisée.
-    Prélèvement obligatoire qui participe au financement de la sécurité sociale.
-  formule:
-    produit:
-      composantes:
-        - attributs:
-            impôt sur le revenu: non déductible
-          assiette: assiette CSG et CRDS
-          taux: 2.4%
-        - attributs:
-            impôt sur le revenu: déductible
-          assiette: assiette CSG déductible
-          taux: 6.8%
-        - attributs:
-            nom: heures supplémentaires et complémentaires défiscalisées
-            impôt sur le revenu: non déductible
-          assiette: assiette heures supplémentaires et complémentaires défiscalisées
-          taux: 6.8%
+  description: >-
+    La contribution sociale généralisée (CSG) est un impôt destiné à participer
+    au financement de la protection sociale.
 
+    A la différence des cotisations sociales qui ne portent que sur les revenus
+    d’activité, la CSG concerne, outre les revenus d’activité et de remplacement
+    (allocations chômage, indemnités journalières…), les revenus du patrimoine,
+    les produits de placement ou les sommes engagées ou redistribuées par les
+    jeux.
+
+    Elle est prélevée à la source sur la plupart des revenus. Elle est recouvrée
+    par les Urssaf sur les revenus d’activité et par l’administration fiscale
+    sur les revenus du patrimoine.
+
+    Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
+    également le fonds de solidarité vieillesse
+  formule:
+    somme:
+      - base
+      - heures supplémentaires et complémentaires défiscalisées
+
+  références:
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
   exemples:
     - nom: 'CSG cadre'
       situation:
@@ -2450,18 +2680,117 @@ contrat salarié . CSG:
         cotisations . assiette: 1500
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
-  références:
-    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
-contrat salarié . CRDS:
+contrat salarié . CSG et CRDS . CSG . taux déductible:
+  formule: 2.4%
+contrat salarié . CSG et CRDS . CSG . taux non déductible:
+  formule: 6.8%
+
+contrat salarié . CSG et CRDS . CSG . base:
+  titre: CSG
+  formule:
+    multiplication:
+      assiette: assiette de base
+      composantes:
+        - attributs:
+            impôt sur le revenu: non déductible
+          taux: taux déductible
+        - attributs:
+            impôt sur le revenu: déductible
+          taux: taux non déductible
+
+contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:
+  titre: CSG heures supplémentaires et complémentaires défiscalisées
+  formule:
+    produit:
+      assiette: assiette heures supplémentaires et complémentaires défiscalisées
+      taux: taux déductible + taux non déductible
+
+contrat salarié . CSG et CRDS . CRDS:
   cotisation:
     impôt: oui
     dû par: salarié
   description: Contribution pour le remboursement de la dette sociale
   formule:
     produit:
-      assiette: assiette CSG et CRDS
-      taux: 0.5%
+      assiette:
+        somme:
+          - assiette de base
+          - assiette heures supplémentaires et complémentaires défiscalisées
+      taux: taux
+
+contrat salarié . CSG et CRDS . CRDS . taux:
+  titre: taux CRDS
+  formule: 0.5%
+
+contrat salarié . CSG et CRDS . revenus de remplacement:
+  titre: CSG et CRDS revenus de remplacement
+  description: >-
+    La CSG et CRDS prélevées sur les revenus de remplacement.
+  note: >-
+    Le prélèvement de la CSG et de la CRDS ne peut pas avoir pour effet de
+    réduire le montant de la rémunération d’activité et des allocations de
+    chômage à un seuil inférieur au Smic brut.
+
+  formule:
+    somme:
+      - revenus de remplacement . CSG déductible
+      - revenus de remplacement . CSG non déductible
+      - revenus de remplacement . CRDS
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
+  titre: CSG déductible revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant:
+  titre: CSG déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: CSG . taux déductible
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
+  titre: CSG non déductible revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- CSG déductible . montant)
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant:
+  titre: CSG non déductible
+  formule:
+    produit:
+      assiette: CSG et CRDS . assiette revenu remplacements
+      taux: 3.8%
+
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
+  titre: CRDS revenus de remplacement
+  applicable si: rémunération nette >= SMIC temps plein
+  formule: montant
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette:
+  formule:
+    somme:
+      - rémunération . net de cotisations
+      - rémunération . revenus de remplacement
+      - (- CSG déductible . montant)
+      - (- CSG non déductible . montant)
+      - (- montant)
+contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
+  titre: CRDS
+  formule:
+    produit:
+      assiette: assiette revenu remplacements
+      taux: CRDS . taux
 
 contrat salarié . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
@@ -2814,7 +3143,7 @@ contrat salarié . taxe sur les salaires . barème:
         assiette: 2300
       valeur attendue: 2627.97
 
-contrat salarié . profession:
+contrat salarié . profession spécifique:
   question: Le salarié exerce t-il l'une des professions suivantes ?
   formule:
     une possibilité:
@@ -2824,14 +3153,14 @@ contrat salarié . profession:
         - artiste musicien
         - pilote de ligne ou personnel navigant
 
-contrat salarié . profession . journaliste:
+contrat salarié . profession spécifique . journaliste:
   icônes: ✒
   description: >-
     Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
     Critiques dramatiques et musicaux.
 
-contrat salarié . profession . journaliste . réduction de taux:
-  applicable si: profession = 'journaliste'
+contrat salarié . profession spécifique . journaliste . réduction de taux:
+  applicable si: profession spécifique = 'journaliste'
   remplace:
     - règle: vieillesse . taux employeur plafonné
       par: vieillesse . taux employeur plafonné * réduction de taux
@@ -2852,8 +3181,8 @@ contrat salarié . profession . journaliste . réduction de taux:
       par: ATMP . taux minimum * réduction de taux
   formule: 80%
 
-contrat salarié . profession . journaliste . abattement fiscal:
-  applicable si: profession = 'journaliste'
+contrat salarié . profession spécifique . journaliste . abattement fiscal:
+  applicable si: profession spécifique = 'journaliste'
   remplace: rémunération . net imposable
   titre: net imposable journaliste
   formule:
@@ -2861,20 +3190,20 @@ contrat salarié . profession . journaliste . abattement fiscal:
       assiette: rémunération . net imposable
       abattement: 7650€/an
 
-contrat salarié . profession . ouvrier du bâtiment:
+contrat salarié . profession spécifique . ouvrier du bâtiment:
   icônes: 👷‍♂️
   description: >-
     Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
     l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
     travaillent en usine ou en atelier.
 
-contrat salarié . profession . artiste musicien:
+contrat salarié . profession spécifique . artiste musicien:
   icônes: 🎼
   description: >-
     Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
     théâtre
 
-contrat salarié . profession . pilote de ligne ou personnel navigant:
+contrat salarié . profession spécifique . pilote de ligne ou personnel navigant:
   icônes: ✈
   description: >-
     Concerne les pilotes, radios, mécaniciens navigants des compagnies de
@@ -3227,7 +3556,7 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         - assiette . salariale
     - règle: assiette . salariale
       dans: vieillesse
-    - règle: assiette CSG et CRDS . assiette abattue
+    - règle: CSG et CRDS . assiette abattue totale
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
       sauf dans:

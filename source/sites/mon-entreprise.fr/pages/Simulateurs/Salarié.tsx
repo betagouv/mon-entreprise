@@ -1,4 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
+import Banner from 'Components/Banner'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
@@ -34,6 +35,7 @@ export default function Salarié() {
 					)}
 				/>
 			</Helmet>
+
 			<h1>
 				<Trans i18nKey="simulateurs.salarié.titre">
 					Simulateur de revenus pour salarié
@@ -158,6 +160,11 @@ export let SalarySimulation = () => {
 					</>
 				}
 			/>
+			<br />
+			<Banner icon={'😷'}>
+				<strong>Covid-19 et chômage partiel </strong>:{' '}
+				<Link to={sitePaths.coronavirus}>Calculez votre indemnité</Link>
+			</Banner>
 			<PreviousSimulationBanner />
 		</>
 	)

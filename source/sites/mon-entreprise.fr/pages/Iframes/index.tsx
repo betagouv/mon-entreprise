@@ -2,6 +2,7 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import React from 'react'
 import { Route } from 'react-router'
 import { inIframe } from '../../../../utils'
+import SimulateurChômagePartiel from '../Coronavirus'
 import SimulateurArtisteAuteur from '../Simulateurs/ArtisteAuteur'
 import SimulateurAssimiléSalarié from '../Simulateurs/AssimiléSalarié'
 import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
@@ -36,6 +37,10 @@ export default function Iframes() {
 				<Route
 					path="/iframes/simulateur-artiste-auteur"
 					component={SimulateurArtisteAuteur}
+				/>
+				<Route
+					path="/iframes/simulateur-chomage-partiel"
+					component={SimulateurChômagePartiel}
 				/>
 				{inIframe() && <IframeFooter />}
 			</div>

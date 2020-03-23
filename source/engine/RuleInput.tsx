@@ -4,6 +4,7 @@ import SelectGéo from 'Components/conversation/select/SelectGéo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import SendButton from 'Components/conversation/SendButton'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
+import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { is, prop, unless } from 'ramda'
 import React from 'react'
@@ -116,6 +117,9 @@ export default function RuleInput({
 				{onSubmit && <SendButton disabled={!value} onSubmit={onSubmit} />}
 			</>
 		)
+	}
+	if (unit?.numerators.includes('%') && isTarget) {
+		return <PercentageField {...commonProps} debounce={600} />
 	}
 
 	return <Input {...commonProps} unit={unit} />

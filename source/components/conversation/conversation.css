@@ -87,7 +87,8 @@
 }
 
 .step input::placeholder {
-	opacity: 0.7;
+	opacity: 0.6;
+	color: grey;
 }
 .step input[type='tel']::placeholder {
 	font-family: monospace;

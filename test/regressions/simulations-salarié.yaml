@@ -205,21 +205,48 @@ frais pro - IKV:
 
 frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . profession: journaliste
+    contrat salarié . profession spécifique: journaliste
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . profession: ouvrier du bâtiment
+    contrat salarié . profession spécifique: ouvrier du bâtiment
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . profession: artiste musicien
+    contrat salarié . profession spécifique: artiste musicien
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . profession: pilote de ligne ou personnel navigant
+    contrat salarié . profession spécifique: pilote de ligne ou personnel navigant
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . profession: journaliste
+    contrat salarié . profession spécifique: journaliste
     contrat salarié . déduction forfaitaire spécifique . application: non
   # Test des taux réduits journalistes et abattement fiscal
   - contrat salarié . rémunération . brut de base: 1700
-    contrat salarié . profession: journaliste
+    contrat salarié . profession spécifique: journaliste
   - contrat salarié . rémunération . brut de base: 2600
-    contrat salarié . profession: journaliste
+    contrat salarié . profession spécifique: journaliste
+
+activité partielle:
+  - contrat salarié . rémunération . brut de base: 1560
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 8000
+    contrat salarié . activité partielle: oui
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . proportion heures travaillées: 20
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . proportion heures travaillées: 50
+  - contrat salarié . rémunération . brut de base: 3000
+    contrat salarié . activité partielle: oui
+    contrat salarié . temps de travail . temps partiel: oui
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 28
+  - contrat salarié . rémunération . brut de base: 4000
+    contrat salarié . activité partielle: oui
+    contrat salarié . profession spécifique: journaliste
+  - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . convention syntec: oui
+  - contrat salarié . rémunération . brut de base: 6000
+    contrat salarié . activité partielle: oui
+    contrat salarié . activité partielle . convention syntec: oui
 
 lodeom:
   - contrat salarié . rémunération . brut de base: 1521.22
