@@ -46,11 +46,11 @@ export default function Landing() {
 			<ul>
 				<li>
 					<a href="https://github.com/betagouv/publicodes/wiki">
-						{emoji('📖 ')} Lisez la documentation
+						{emoji('📖 ')} Lire la documentation
 					</a>
 				</li>
 				<li>
-					<Link to="/studio">⚡ Essayez le langage </Link>
+					<Link to="/studio">⚡ Essayer le langage </Link>
 				</li>
 			</ul>
 			<h2>Projets phares</h2>

@@ -3,7 +3,8 @@ import douche from '!!raw-loader!./exemples/douche.yaml'
 import { ControlledEditor } from '@monaco-editor/react'
 import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
-import React, { useEffect, useState } from 'react'
+import { last } from 'ramda'
+import React, { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
@@ -28,15 +29,23 @@ d:
 `
 
 export default function Studio() {
-	const { search } = useLocation()
-	const currentExample = new URLSearchParams(search ?? '').get('exemple')
+	const search = new URLSearchParams(useLocation().search ?? '')
+	const currentExample = search.get('exemple')
+	const code = search.get('code')
 	const [editorValue, setEditorValue] = useState(
-		currentExample && Object.keys(examples).includes(currentExample)
+		code
+			? code
+			: currentExample && Object.keys(examples).includes(currentExample)
 			? examples[currentExample]
 			: initialInput
 	)
 	const [targets, setTargets] = useState<string[]>([])
 	const [rules, setRules] = useState(editorValue)
+	const handleShare = useCallback(() => {
+		navigator.clipboard.writeText(
+			`https://publi.codes/studio?code=${encodeURIComponent(editorValue)}`
+		)
+	}, [editorValue])
 
 	useEffect(() => {
 		try {
@@ -76,6 +85,7 @@ export default function Studio() {
 						<Results
 							targets={targets}
 							onClickUpdate={() => setRules(editorValue)}
+							onClickShare={handleShare}
 						/>
 					</section>
 				</Layout>
@@ -84,11 +94,18 @@ export default function Studio() {
 	)
 }
 
-export const Results = ({ targets, onClickUpdate }) => {
-	const [currentTarget, setCurrentTarget] = useState('')
-	const rule = targets.includes(currentTarget) ? currentTarget : targets[0]
+export const Results = ({ targets, onClickUpdate, onClickShare }) => {
+	const [rule, setCurrentTarget] = useState()
+	const currentTarget = rule ?? last(targets)
 	const error = Engine.useError()
-	const analysis = Engine.useEvaluation(rule)
+	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
+	// console.warn
+	const warnings: string[] = []
+	const originalWarn = console.warn
+	console.warn = warning => warnings.push(warning)
+	const analysis = Engine.useEvaluation(currentTarget)
+	console.warn = originalWarn
+
 	return error !== null ? (
 		<div
 			css={`
@@ -124,24 +141,44 @@ export const Results = ({ targets, onClickUpdate }) => {
 					`}
 				>
 					{targets.map(target => (
-						<option key={target} value={target}>
+						<option
+							key={target}
+							value={target}
+							selected={currentTarget === target}
+						>
 							{target}
 						</option>
 					))}
 				</select>
 				<br />
 				<br />
-				<button className="ui__ button small" onClick={onClickUpdate}>
-					{emoji('▶️')} Recalculer
-				</button>
+				<div className="ui__ answer-group">
+					<button className="ui__ plain button small" onClick={onClickUpdate}>
+						{emoji('▶️')} Calculer
+					</button>
+					<button className="ui__ button small" onClick={onClickShare}>
+						{emoji('🔗')} Copier le lien
+					</button>
+				</div>
 			</div>
+			{warnings.map(warning => (
+				<div
+					css={`
+						background: lightyellow;
+						padding: 20px;
+						border-radius: 5px;
+					`}
+				>
+					{nl2br(warning)}
+				</div>
+			))}
 			{analysis ? (
 				<div>
 					<h2>Résultats</h2>
 					{analysis.isApplicable === false ? (
 						<>{emoji('❌')} Cette règle n'est pas applicable</>
 					) : (
-						<Engine.Evaluation expression={rule} />
+						<Engine.Evaluation expression={currentTarget} />
 					)}
 				</div>
 			) : null}
