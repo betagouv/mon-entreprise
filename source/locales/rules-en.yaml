@@ -260,10 +260,10 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
-baisse de revenu chômage partiel:
-  titre.en: '[automatic] short-time working'
-  titre.fr: baisse de revenu chômage partiel
-baisse de revenu chômage partiel . net sans chômage partiel:
+différence de revenu chômage partiel:
+  titre.en: '[automatic] difference in income from short-time work'
+  titre.fr: différence de revenu chômage partiel
+différence de revenu chômage partiel . net sans chômage partiel:
   titre.en: '[automatic] net without short-time work'
   titre.fr: net sans chômage partiel
 contrat salarié:
@@ -536,7 +536,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
+  note.en: "[automatic] That's not a reason for a fixed-term contract."
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -1153,7 +1153,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: 'Pour l''employeur, différées dans le temps'
+  résumé.fr: "Pour l'employeur, différées dans le temps"
   titre.en: '[automatic] employer assistance'
   titre.fr: aides employeur
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -1225,7 +1225,7 @@ contrat salarié . ancienneté:
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 contrat salarié . ancienneté . date d'embauche:
-  question.en: '[automatic] What is the employee''s hiring date?'
+  question.en: "[automatic] What is the employee's hiring date?"
   question.fr: Quelle est la date d'embauche du salarié ?
   suggestions.Début 2019.en: '[automatic] Early 2019'
   suggestions.Début 2019.fr: Début 2019
@@ -1489,7 +1489,7 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
+  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . BTP:
@@ -1591,7 +1591,7 @@ contrat salarié . convention collective . BTP . retraite complémentaire . etam
   titre.fr: etam
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
+  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
   titre.en: '[automatic] hotels, cafés and restaurants HCR'
   titre.fr: 'hôtels, cafés restaurants HCR'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -2220,7 +2220,7 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   description.fr: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
-  question.en: '[automatic] What is the employer''s paid portion?'
+  question.en: "[automatic] What is the employer's paid portion?"
   question.fr: Quelle est la participation de l'employeur ?
   suggestions.50%.en: '[automatic] 50%'
   suggestions.50%.fr: 50%
@@ -2647,7 +2647,7 @@ contrat salarié . prévoyance . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . prévoyance . plafond exonération sociale employeur:
-  titre.en: '[automatic] ceiling employer''s social security exemption'
+  titre.en: "[automatic] ceiling employer's social security exemption"
   titre.fr: plafond exonération sociale employeur
 contrat salarié . prévoyance . salarié:
   titre.en: '[automatic] employee'
@@ -2688,7 +2688,7 @@ contrat salarié . retraite supplémentaire . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
-  titre.en: '[automatic] employer''s social security ceiling'
+  titre.en: "[automatic] employer's social security ceiling"
   titre.fr: plafond d'exonération sociale employeur
 contrat salarié . retraite supplémentaire . salarié:
   titre.en: '[automatic] employee'
@@ -3072,7 +3072,7 @@ contrat salarié . rémunération . brut de base:
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
     primes...
-  question.en: '[automatic] What''s your gross salary?'
+  question.en: "[automatic] What's your gross salary?"
   question.fr: Quel est votre salaire brut ?
   résumé.en: '[automatic] Reference gross (excluding premiums, allowances and surcharges)'
   résumé.fr: 'Brut de référence (sans les primes, indemnités ni majorations)'
@@ -3125,7 +3125,7 @@ contrat salarié . rémunération . net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel (pour
     le changer, il faut signer un avenant au contrat).
-  question.en: '[automatic] What''s your take-home pay?'
+  question.en: "[automatic] What's your take-home pay?"
   question.fr: Quel est votre salaire net ?
   résumé.en: Received by the employee
   résumé.fr: Salaire net avant impôt
@@ -4630,7 +4630,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
+  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . invalidité et décès:
@@ -4993,7 +4993,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
+  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -5112,7 +5112,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: '[automatic] We can''t see that far into the future'
+  contrôles.0.en: "[automatic] We can't see that far into the future"
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -5329,7 +5329,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
+  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:

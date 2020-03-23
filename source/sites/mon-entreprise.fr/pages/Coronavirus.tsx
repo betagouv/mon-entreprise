@@ -81,9 +81,8 @@ function ExplanationSection() {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const net = getRule('contrat salarié . rémunération . net')
-	const indemnité = getRule('contrat salarié . activité partielle . indemnités')
 	const totalEntreprise = getRule('contrat salarié . prix du travail')
-	const perteRevenu = getRule('baisse de revenu chômage partiel')
+	const perteRevenu = getRule('différence de revenu chômage partiel')
 	if (!net?.nodeValue) {
 		return null
 	}
@@ -152,7 +151,7 @@ function ExplanationSection() {
 									},
 									{
 										...perteRevenu,
-										title: 'Baisse de revenu',
+										title: 'Différence de revenu',
 										color: palettes[1][0]
 									}
 								]}
