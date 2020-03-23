@@ -18,7 +18,6 @@ import './AnswerList.css'
 export default function AnswerList({ onClose }) {
 	const dispatch = useDispatch()
 	const { folded, next } = useSelector(stepsToRules)
-	console.log({ next })
 	return (
 		<Overlay onClose={onClose} className="answer-list">
 			<h2>

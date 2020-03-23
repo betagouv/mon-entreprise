@@ -43,6 +43,7 @@ export default function ChômagePartiel() {
 					)}
 				/>
 			</Helmet>
+			<ScrollToTop />
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
 					<h1>
