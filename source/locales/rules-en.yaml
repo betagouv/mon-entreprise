@@ -260,12 +260,6 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
-différence de revenu chômage partiel:
-  titre.en: '[automatic] difference in income from short-time work'
-  titre.fr: différence de revenu chômage partiel
-différence de revenu chômage partiel . net sans chômage partiel:
-  titre.en: '[automatic] net without short-time work'
-  titre.fr: net sans chômage partiel
 contrat salarié:
   contrôles.0.en: >
     [automatic] Remember that a fixed-term contract must always correspond to a
@@ -536,7 +530,7 @@ contrat salarié . CDD . contrat jeune vacances:
   description.fr: >-
     Aussi appelé CDD vendanges. Contrat conclu avec un jeune pendant ses
     vacances scolaires ou universitaires.
-  note.en: "[automatic] That's not a reason for a fixed-term contract."
+  note.en: '[automatic] That''s not a reason for a fixed-term contract.'
   note.fr: Ce n'est pas un motif de CDD.
   question.en: Is it a young holiday contract?
   question.fr: Est-ce un contrat jeune vacances ?
@@ -1153,7 +1147,7 @@ contrat salarié . aides employeur:
     France. Découvrez-les sur le [portail
     officiel](http://www.aides-entreprises.fr).
   résumé.en: Deferred aids available to the employer.
-  résumé.fr: "Pour l'employeur, différées dans le temps"
+  résumé.fr: 'Pour l''employeur, différées dans le temps'
   titre.en: '[automatic] employer assistance'
   titre.fr: aides employeur
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
@@ -1225,7 +1219,7 @@ contrat salarié . ancienneté:
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 contrat salarié . ancienneté . date d'embauche:
-  question.en: "[automatic] What is the employee's hiring date?"
+  question.en: '[automatic] What is the employee''s hiring date?'
   question.fr: Quelle est la date d'embauche du salarié ?
   suggestions.Début 2019.en: '[automatic] Early 2019'
   suggestions.Début 2019.fr: Début 2019
@@ -1351,60 +1345,42 @@ contrat salarié . complémentaire santé . forfait:
     Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de
     soin minimal défini dans la loi.
   description.en: >-
-    The employer has the obligation to propose a complementary health insurance
-    plan. More importantly, he has to take in charge at least half of the
-    amount, which is the repartition we chose for this simulation, or more. The
-    plan is free as long as it covers a legal care basket.
-  description.fr: >
+    [automatic] The employer has the obligation to offer a complementary health
+    care package. He must pay at least half of the cost. 
+
+    The amount may vary, but the plan must cover a legal minimum basket of care.
+  description.fr: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
-    doit prendre en charge la moitié du montant,
+    doit prendre à sa charge au moins la moitié de son coût. 
 
-    ce que nous avons retenu pour cette simulation, ou davantage. Le montant est
-    libre, tant qu'elle couvre un panier légal de soins.
-  titre.en: Complementary health insurance package
-  titre.fr: Forfait de complémentaire santé entreprise
-contrat salarié . complémentaire santé . forfait . en alsace moselle:
-  description.en: >
-    For historical reasons, the social health coverage of the employees of the
-    Alsace and Moselle historical regions is higher. As a result, the price of
-    the complementary health insurance packages that private companies offer to
-    them is lower.
-
-
-    A study by Meilleureassurance.com allows us to assume that it is worth on
-    average ~ 70% of the average price in France.
-  description.fr: >
+    Le montant peut varier, mais la prévoyance doit couvrir un panier minimum
+    légal de soins.
+  note.en: >-
+    [automatic] For historical reasons, social health coverage for employees in
+    Alsace-Moselle is stronger. As a result, the price of the complementary
+    health packages offered to them are lower. A study by Meilleuresureure.com
+    allows us to assume that it is worth on average ~ 70% of the average price
+    in France.
+  note.fr: >-
     Pour des raisons historiques, la couverture sociale santé des salariés
     d'Alsace-Moselle est plus forte. En conséquence, le prix des forfaits de
-    complémentaire santé qui leur sont proposés sont inférieurs.
-
-    Une étude de Meilleureassurance.com nous permet de supposer qu'il vaut en
-    moyenne ~ 70% du prix moyen en France.
+    complémentaire santé qui leur sont proposés sont inférieurs. Une étude de
+    Meilleureassurance.com nous permet de supposer qu'il vaut en moyenne ~ 70%
+    du prix moyen en France.
   question.en: >-
-    What is the total monthly amount (employee and employer) of the company's
-    complementary health insurance (Alsace-Moselle) ?
-  question.fr: >-
-    Quel est le montant mensuel total (salarié et employeur) de la
-    complémentaire santé entreprise (régime Alsace-Moselle) ?
-  suggestions.basique.en: '[automatic] basic'
-  suggestions.basique.fr: basique
-  suggestions.élevé.en: '[automatic] high'
-  suggestions.élevé.fr: élevé
-  titre.en: Complementary health insurance plan (Alsace-Moselle)
-  titre.fr: forfait complémentaire santé en Alsace-Moselle
-contrat salarié . complémentaire santé . forfait . en france:
-  question.en: >-
-    What is the total monthly amount (employee and employer) of the company's
-    complementary health insurance ?
+    [automatic] What is the total monthly amount (employee and employer) of the
+    company health supplement?
   question.fr: >-
     Quel est le montant mensuel total (salarié et employeur) de la
     complémentaire santé entreprise ?
+  suggestions.alsace moselle basique.en: '[automatic] basic alsace moselle'
+  suggestions.alsace moselle basique.fr: alsace moselle basique
   suggestions.basique.en: '[automatic] basic'
   suggestions.basique.fr: basique
   suggestions.élevé.en: '[automatic] high'
   suggestions.élevé.fr: élevé
-  titre.en: Complementary health insurance plan (France)
-  titre.fr: forfait complémentaire santé en France
+  titre.en: Complementary health insurance package
+  titre.fr: Forfait de complémentaire santé entreprise
 contrat salarié . complémentaire santé . part employeur:
   contrôles.0.en: >-
     [automatic] The employer's share of the supplementary health insurance must
@@ -1489,7 +1465,7 @@ contrat salarié . convention collective:
     Néanmoins, cela permet d'obtenir une première estimation, plus précise
     que le régime général.
   question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.fr: 'Quelle convention collective est applicable à l''entreprise ? [beta] '
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . BTP:
@@ -1591,7 +1567,7 @@ contrat salarié . convention collective . BTP . retraite complémentaire . etam
   titre.fr: etam
 contrat salarié . convention collective . HCR:
   description.en: 'The company is a hotel, café, restaurant or similar.'
-  description.fr: "L'entreprise est un hôtel, café, restaurant ou assimilé."
+  description.fr: 'L''entreprise est un hôtel, café, restaurant ou assimilé.'
   titre.en: '[automatic] hotels, cafés and restaurants HCR'
   titre.fr: 'hôtels, cafés restaurants HCR'
 contrat salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -2220,7 +2196,7 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   description.fr: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
-  question.en: "[automatic] What is the employer's paid portion?"
+  question.en: '[automatic] What is the employer''s paid portion?'
   question.fr: Quelle est la participation de l'employeur ?
   suggestions.50%.en: '[automatic] 50%'
   suggestions.50%.fr: 50%
@@ -2647,7 +2623,7 @@ contrat salarié . prévoyance . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . prévoyance . plafond exonération sociale employeur:
-  titre.en: "[automatic] ceiling employer's social security exemption"
+  titre.en: '[automatic] ceiling employer''s social security exemption'
   titre.fr: plafond exonération sociale employeur
 contrat salarié . prévoyance . salarié:
   titre.en: '[automatic] employee'
@@ -2688,7 +2664,7 @@ contrat salarié . retraite supplémentaire . part déductible:
   titre.en: '[automatic] deductible portion'
   titre.fr: part déductible
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
-  titre.en: "[automatic] employer's social security ceiling"
+  titre.en: '[automatic] employer''s social security ceiling'
   titre.fr: plafond d'exonération sociale employeur
 contrat salarié . retraite supplémentaire . salarié:
   titre.en: '[automatic] employee'
@@ -3072,7 +3048,7 @@ contrat salarié . rémunération . brut de base:
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et
     primes...
-  question.en: "[automatic] What's your gross salary?"
+  question.en: '[automatic] What''s your gross salary?'
   question.fr: Quel est votre salaire brut ?
   résumé.en: '[automatic] Reference gross (excluding premiums, allowances and surcharges)'
   résumé.fr: 'Brut de référence (sans les primes, indemnités ni majorations)'
@@ -3125,7 +3101,7 @@ contrat salarié . rémunération . net:
     Cette somme peut varier en fonction de décisions politiques (augmentation ou
     diminution des cotisations) alors que le salaire brut est contractuel (pour
     le changer, il faut signer un avenant au contrat).
-  question.en: "[automatic] What's your take-home pay?"
+  question.en: '[automatic] What''s your take-home pay?'
   question.fr: Quel est votre salaire net ?
   résumé.en: Received by the employee
   résumé.fr: Salaire net avant impôt
@@ -3717,6 +3693,12 @@ contrat salarié . vieillesse . taux salarié déplafonné:
 contrat salarié . vieillesse . taux salarié plafonné:
   titre.en: capped employee rate
   titre.fr: taux salarié plafonné
+différence de revenu chômage partiel:
+  titre.en: '[automatic] difference in income from short-time work'
+  titre.fr: différence de revenu chômage partiel
+différence de revenu chômage partiel . net sans chômage partiel:
+  titre.en: '[automatic] net without short-time work'
+  titre.fr: net sans chômage partiel
 dirigeant:
   question.en: What is the director's social regime?
   question.fr: Quel est le régime social du dirigeant ?
@@ -4630,7 +4612,7 @@ dirigeant . rattachement CIPAV:
   note.en: >-
     [automatic] for the time being, we have only retained the CIPAV for the
     calculations.
-  note.fr: "pour l'instant, nous n'avons retenu que la CIPAV pour les calculs"
+  note.fr: 'pour l''instant, nous n''avons retenu que la CIPAV pour les calculs'
   titre.en: CIPAV attachment
   titre.fr: rattachement CIPAV
 dirigeant . rattachement CIPAV . invalidité et décès:
@@ -4993,7 +4975,7 @@ entreprise . catégorie d'activité . restauration ou hébergement:
   titre.fr: restauration ou hébergement
 entreprise . catégorie d'activité . service ou vente:
   question.en: 'Is it a service activity, or the purchase and sale of goods?'
-  question.fr: "Est-ce une activité de prestation de service, ou de l'achat-vente de biens ?"
+  question.fr: 'Est-ce une activité de prestation de service, ou de l''achat-vente de biens ?'
   titre.en: service or sale
   titre.fr: service ou vente
 entreprise . catégorie d'activité . service ou vente . service:
@@ -5112,7 +5094,7 @@ entreprise . chiffre d'affaires minimum:
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
 entreprise . date de création:
-  contrôles.0.en: "[automatic] We can't see that far into the future"
+  contrôles.0.en: '[automatic] We can''t see that far into the future'
   contrôles.0.fr: Nous ne pouvons voir aussi loin dans le futur
   contrôles.1.en: >-
     [automatic] This is a very old company! Are you sure you didn't make a
@@ -5329,7 +5311,7 @@ entreprise . établissement bancaire:
     L'entreprise est un établissement bancaire, financier ou d'assurance. Elle
     est non assujettie à la TVA.
   question.en: 'Is it a banking, financial or insurance institution?'
-  question.fr: "S'agit-il d'un établissement bancaire, financier, d'assurance ?"
+  question.fr: 'S''agit-il d''un établissement bancaire, financier, d''assurance ?'
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
