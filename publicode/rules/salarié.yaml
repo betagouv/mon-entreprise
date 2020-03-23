@@ -321,7 +321,7 @@ contrat salarié . activité partielle . indemnités . conventionnelle:
           assiette: rémunération . assiette congés payés
           tranches:
             - montant: 95% - 70%
-              plafond: 2000€
+              plafond: 2000 €/mois
             - montant: 80% - 70%
               plafond: plafond sécurité sociale temps plein
             - montant: 75% - 70%
@@ -2501,7 +2501,7 @@ contrat salarié . complémentaire santé . part salarié:
 
 contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
-  unité par défaut: €/mois
+  unité: €/mois
   description: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
     doit prendre à sa charge au moins la moitié de son coût. 
