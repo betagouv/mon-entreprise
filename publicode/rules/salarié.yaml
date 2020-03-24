@@ -310,12 +310,13 @@ contrat salarié . activité partielle . indemnités . complémentaire:
         somme:
           - rémunération . net de cotisations
           - indemnités . base
+          - indemnités . conventionnelle
 
 contrat salarié . activité partielle . indemnités . conventionnelle:
   applicable si: convention syntec
   formule:
     produit:
-      assiette: rémunération . assiette congés payés
+      assiette: retrait absence
       taux:
         grille:
           assiette: rémunération . assiette congés payés
