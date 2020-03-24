@@ -222,7 +222,7 @@ prime:
           taux: taux du bonus
 ```
 
-**[Voir la liste des mécanismes existants](/mécanismes)**
+> **[Voir la description des mécanismes existants](./mécanismes)**
 
 ## Applicabilité
 

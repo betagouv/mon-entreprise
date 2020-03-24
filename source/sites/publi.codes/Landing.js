@@ -1,4 +1,5 @@
 import { Markdown } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import publicodeReadme from 'Engine/README.md'
 import React, { useEffect } from 'react'
 import { Header } from './Header'
@@ -19,6 +20,7 @@ export default function Landing() {
 	})
 	return (
 		<div className="app-content ui__ container" css="margin: 2rem 0">
+			<ScrollToTop />
 			<Header />
 			<br />
 			<br />

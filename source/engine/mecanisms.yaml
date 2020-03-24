@@ -5,11 +5,13 @@ une de ces conditions:
     Renvoie vrai si l'une des conditions est applicable.
   retourne: Booléen
   exemples:
-    base:
+    base: >-
       age:
         formule: 17 ans
+
       mineur émancipé:
         formule: oui
+
       peut voter:
         formule:
           une de ces conditions:
@@ -44,18 +46,20 @@ produit:
     plafond: Plafond au dessus duquel le taux appliqué est nul
 
   exemples:
-    base:
+    base: >-
       cotisation:
         formule:
           produit:
             assiette: 2000 €/mois
             taux: 5%
 
-    assiette plafonnée:
+    assiette plafonnée: >-
       plafond sécurité sociale:
         formule: 3000 €/mois
+
       assiette cotisation:
         formule: 15000 €/mois
+
       chômage:
         formule:
           produit:
@@ -81,7 +85,7 @@ variations:
     - ...
     - sinon: consequence évaluée si aucune des conditions précédente n'était applicable
   exemples:
-    base:
+    base: >-
       taux réduit:
         formule: oui
 
@@ -92,7 +96,7 @@ variations:
               alors: 3.45%
             - sinon: 5.25%
 
-    dans un produit:
+    dans un produit: >-
       assiette cotisation:
         formule: 2300 €/mois
 
@@ -121,17 +125,19 @@ somme:
     - ...
 
   exemples:
-    base:
+    base: >-
       somme:
         - 15.89 €
         - 12% * 14 €
         - (-30 €)
-    terme non applicable:
+    terme non applicable: >-
       a:
         formule: 50 €
+        
       b:
         applicable si: non
         formule: 20 €
+
       somme:
         formule:
           somme:
@@ -158,7 +164,7 @@ arrondi:
   description: >-
     Arrondi à l'entier le plus proche, ou à une précision donnée.
   exemples:
-    base:
+    base: >-
       arrondi:
         formule:
           arrondi:
@@ -180,7 +186,7 @@ régularisation:
         numérique, et avoir une unité `/mois`
 
   exemples:
-    base:
+    base: >-
       brut:
         formule:
           somme:
