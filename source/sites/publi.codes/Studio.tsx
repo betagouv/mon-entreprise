@@ -95,7 +95,7 @@ export default function Studio() {
 }
 
 export const Results = ({ targets, onClickUpdate, onClickShare }) => {
-	const [rule, setCurrentTarget] = useState()
+	const [rule, setCurrentTarget] = useState<string>()
 	const currentTarget = rule ?? last(targets)
 	const error = Engine.useError()
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker

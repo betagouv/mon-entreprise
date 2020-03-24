@@ -266,6 +266,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
+		unit: v.unité && parseUnit(v.unité),
 		explanation: evolve({ avec: map(recurse) }, v),
 		jsx: InversionNumérique,
 		category: 'mecanism',
