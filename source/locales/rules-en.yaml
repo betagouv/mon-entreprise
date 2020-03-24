@@ -4249,6 +4249,29 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
 dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales:
   titre.en: family allowances
   titre.fr: allocations familiales
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin:
+  description.en: >
+    If you deposit money in a Madelin insurance contract, you can deduce these
+    sums from the taxable profits that you declare for your non-salaried
+    activity. Attention, the contracts that can benefit from this should
+    contain:
+      - Regular deposits in terms of amount and periodicity.
+      - A due payout in the form of a rent (no capital payment).
+      - No buyout before retirement (except social buyout).
+      - No capital payout in case of death but a life annuity.
+  description.fr: |
+    Si vous cotisez au titre d'un contrat d'assurance de type loi Madelin,
+    vous pouvez déduire ces cotisations des bénéfices imposables que vous
+    déclarez pour votre activité non salariée. Attention, les contrats qui
+    peuvent en bénéficier doivent contenir: 
+      - des versements réguliers quant aux montants et à la périodicité ;
+      - un versement à terme sous forme de rente (pas de versement en capital) ;
+      - le non rachat avant la retraite (sauf rachat social) ;
+      - le non versement d'un capital en cas de décès mais versement sous forme de rente viagère.
+  question.en: What is the annual amount that you deposit each year in a Madelin contract?
+  question.fr: "Quel est le montant annuel que vous versez à un contrat Madelin\_?"
+  titre.en: Madelin contract subscription
+  titre.fr: Souscription à un contrat Madelin
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac:
   description.en: >
     activité commerciale, vous avez la possibilité d’opter pour le calcul de
