@@ -1576,7 +1576,6 @@ contrat salarié . rémunération:
 contrat salarié . rémunération . net de cotisations:
   titre: Salaire net de cotisations
   type: rémunération
-  unité: €/mois
   formule:
     somme:
       - brut
@@ -1645,7 +1644,7 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
-  unité: €/mois
+  unité par défaut: €/mois
   type: salaire
   question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
