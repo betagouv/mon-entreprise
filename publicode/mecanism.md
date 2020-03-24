@@ -159,6 +159,8 @@ brut:
     somme:
       - 2000 €/mois | du 01/01/2020 | au 31/05/2020
       - 4000 €/mois | du 01/06/2020 | au 31/12/2020
+plafond:
+  formule: 3000 €/mois
 
 cotisation:
   formule:
@@ -166,13 +168,17 @@ cotisation:
       règle:
         produit:
           assiette: brut
-          plafond: 3000€/mois
+          plafond: plafond
           taux: 10%
       valeurs cumulées:
         - brut
+        - plafond
 
-cotisation en 2020:
-  formule: cotisation | du 01/01/2020 | au 31/12/2020
+cotisation en mai:
+  formule: cotisation | du 01/05/2020 | au 30/05/2020
+
+cotisation en juin:
+  formule: cotisation | du 01/05/2020 | au 30/05/2020
 ```
 
 [Lancer le calcul](https://publi.codes/studio?code=brut%3A%0A%20%20formule%3A%0A%20%20%20%20somme%3A%0A%20%20%20%20%20%20-%202000%20%E2%82%AC%2Fmois%20%7C%20du%2001%2F01%2F2020%20%7C%20au%2031%2F05%2F2020%0A%20%20%20%20%20%20-%204000%20%E2%82%AC%2Fmois%20%7C%20du%2001%2F06%2F2020%20%7C%20au%2031%2F12%2F2020%0A%0Acotisation%3A%0A%20%20formule%3A%20%0A%20%20%20%20r%C3%A9gularisation%3A%0A%20%20%20%20%20%20r%C3%A8gle%3A%0A%20%20%20%20%20%20%20%20produit%3A%0A%20%20%20%20%20%20%20%20%20%20assiette%3A%20brut%0A%20%20%20%20%20%20%20%20%20%20plafond%3A%203000%E2%82%AC%2Fmois%0A%20%20%20%20%20%20%20%20%20%20taux%3A%2010%25%0A%20%20%20%20%20%20valeurs%20cumul%C3%A9es%3A%0A%20%20%20%20%20%20%20%20-%20brut%0A%0Acotisation%20en%202020%3A%0A%20%20formule%3A%0A%20%20%20%20cotisation%20%7C%20du%2001%2F01%2F2020%20%7C%20au%2031%2F12%2F2020%0A)
