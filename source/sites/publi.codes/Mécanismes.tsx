@@ -8,10 +8,9 @@ import { capitalise0 } from '../../utils'
 import { Header } from './Header'
 
 type MecanismProp = {
-	name: string
 	exemples: { base: string }
 	description: string
-	arguments: any
+	name: string
 }
 const Mecanism = ({ name, description, exemples }: MecanismProp) => (
 	<React.Fragment key={name}>
@@ -52,14 +51,14 @@ export default function Landing() {
 			<Header />
 			<h1 id="top">Mécanismes existants</h1>
 			<ul>
-				{Object.entries(mecanisms).map(([name, data]) => (
+				{Object.keys(mecanisms).map(name => (
 					<li key={name}>
 						<Link to={useLocation().pathname + '#' + name}>{name}</Link>
 					</li>
 				))}
 			</ul>
 			{Object.entries(mecanisms).map(([name, data]) => (
-				<Mecanism {...data} name={name} />
+				<Mecanism {...(data as any)} name={name} />
 			))}
 		</div>
 	)

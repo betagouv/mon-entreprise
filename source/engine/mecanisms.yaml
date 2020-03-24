@@ -2,11 +2,11 @@ une de ces conditions:
   description: >-
     C'est un `ou` logique.
     Contient une liste de conditions.
-    Renvoie vrai si l'une des conditions est applicable.
+    Renvoie `oui` si l'une des conditions est applicable.
   retourne: Booléen
   exemples:
     base: >-
-      age:
+      âge:
         formule: 17 ans
 
       mineur émancipé:
@@ -15,17 +15,30 @@ une de ces conditions:
       peut voter:
         formule:
           une de ces conditions:
-            - age > 18 ans
+            - âge > 18 ans
             - mineur émancipé
 
 toutes ces conditions:
   description: >-
     C'est un `et` logique.
     Contient une liste de conditions.
-    Renvoie vrai si toutes les conditions sont applicables.
+    Renvoie `oui` si toutes les conditions sont applicables.
   argument:
     - '*'
     - ...
+  exemples:
+    base: >-
+      âge:
+        formule: 17 ans
+
+      citoyenneté française:
+        formule: oui
+
+      peut voter:
+        formule:
+          toutes ces conditions:
+            - citoyenneté française
+            - âge > 18 ans
 
 produit:
   description: >-
@@ -133,7 +146,7 @@ somme:
     terme non applicable: >-
       a:
         formule: 50 €
-        
+
       b:
         applicable si: non
         formule: 20 €
@@ -152,6 +165,13 @@ le maximum de:
 
     Pour ajouter un plancher à une valeur, préférer l'utilisation du
     mécanisme `encadrement`.
+  exemples:
+    base: >-
+      max: 
+        formule:
+          le maximum de:
+            - 50
+            - 100
 
 le minimum de:
   description: >-
@@ -159,6 +179,13 @@ le minimum de:
     plus petite.
 
     Pour plafonner une valeur, préférer l'utilisation du mécanisme `encadrement`.
+  exemples:
+    base: >-
+      min: 
+        formule:
+          le minimum de:
+            - 50
+            - 100
 
 arrondi:
   description: >-
@@ -222,6 +249,23 @@ recalcul:
     courante. Permet par exemple de calculer le montant des cotisations au niveau du
     SMIC, même si le salaire est plus élevé dans la situation actuelle.
 
+  exemples:
+    base: >-
+      brut: 
+        formule: 2000€
+
+      cotisations: 
+        formule:
+          produit:
+            assiette: brut
+            taux: 20%
+
+      cotisations pour un SMIC:
+        recalcul:
+          règle: cotisations
+          avec:
+            - brut: 1500 €
+
 barème:
   description: C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation
     dans le calcul de l'impôt sur le revenu.
@@ -232,6 +276,25 @@ barème:
     Les tranches sont souvent exprimées sous forme de facteurs d'une variable
     que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la
     sécurité sociale`.
+  exemples:
+    base: >-
+      revenu imposable:
+        formule: 54126 €
+
+      impôt sur le revenu:
+        formule:
+          barème:
+            assiette: revenu imposable
+            tranches:
+              - taux: 0%
+                plafond: 9807 €
+              - taux: 14%
+                plafond: 27086 €
+              - taux: 30%
+                plafond: 72617 €
+              - taux: 41%
+                plafond: 153783 €
+              - taux: 45%
 
 grille:
   description: >-
@@ -241,6 +304,31 @@ grille:
     Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette
     qui correspond à la tranche, et de selectionner le montant associé à
     l'assiette.
+  exemples:
+    grille avec multiplicateur et unité: >-
+      SMIC horaire: 
+        formule: 10 €/heure
+
+      revenu moyen: 
+        formule:
+          2000 €/mois
+
+      trimestres validés:
+        formule:
+          grille:
+            unité: trimestres validés/an
+            assiette: revenu moyen
+            multiplicateur: SMIC horaire
+            tranches:
+              - montant: 0
+                plafond: 150 heures/an
+              - montant: 1
+                plafond: 300 heures/an
+              - montant: 2
+                plafond: 450 heures/an
+              - montant: 3
+                plafond: 600 heures/an
+              - montant: 4
 
 taux progressif:
   description: >-
@@ -256,7 +344,24 @@ taux progressif:
 
     > Pour une assiette de 500, le taux retourné sera 75%, car il correspond au
     > taux situé à la moitié de la tranche correspondante.
+  exemples:
+    base: >-
+      chiffre d'affaires: 
+        formule: 30000 €/an
 
+      plafond: 
+        formule: 3000 €/mois
+
+      taux réduction de cotisation:
+        formule:
+          taux progressif:
+            assiette: chiffre d'affaires
+            multiplicateur: plafond
+            tranches:
+              - taux: 100%
+                plafond: 75%
+              - taux: 0%
+                plafond: 100%
 composantes:
   description: >-
     Beaucoup de cotisations sont composées de deux parties qui partagent la
@@ -280,9 +385,27 @@ allègement:
 
 encadrement:
   description: Permet d'ajouter un plafond et/ou un plancher à une valeur.
+  exemples:
+    base: >-
+      assiette plafonnée:
+        formule:
+          encadrement:
+            plancher: 0 €
+            valeur: 2000 €
+            plafond: 1500 €
 
 durée:
   description: Permet d'obtenir le nombre de jours entre deux dates
+  exemples:
+    base: >-
+      date d'embauche: 14/04/2008
+
+      ancienneté en fin d'année:
+        unité: an
+        formule:
+          durée:
+            depuis: date d'embauche
+            jusqu'à: 31/12/2020
 
 synchronisation:
   description: Pour éviter trop de saisies à l'utilisateur, certaines informations sont

@@ -21,7 +21,7 @@ progressivement le résultat affiché, et explorer une documentation du calcul.
   [bibliothèque de calcul autonome](https://mon-entreprise.fr/intégration/bibliothèque-de-calcul), libre de droit.
 
 - [futur.eco](https://futur.eco/) utilise publicode pour calculer les bilans
-  carbone d'un grand nombre d'activité, plats, transport ou biens.
+  carbone d'un grand nombre d'activités, plats, transports ou biens.
 
 ## Principe de base
 
@@ -31,7 +31,7 @@ liste de règles identifiées par leur nom et possédant une formule de calcul :
 
 ```yaml
 prix d'un repas:
-  formule: 10
+  formule: 10 €
 ```
 
 Une formule de calcul peut référencer d'autres variables. Dans l'exemple suivant
@@ -39,7 +39,7 @@ la règle `prix total` aura pour valeur 50 (= 5 \* 10)
 
 ```yaml
 prix d'un repas:
-  formule: 10
+  formule: 10 €
 
 prix total:
   formule: 5 * prix d'un repas
@@ -104,7 +104,7 @@ prix total:
 
 ### Conversion
 
-Publicode converti automatiquement les unités si besoin.
+Publicode convertit automatiquement les unités si besoin.
 
 ```yaml
 salaire:
@@ -222,7 +222,7 @@ prime:
           taux: taux du bonus
 ```
 
-> **[Voir la description des mécanismes existants](./mécanismes)**
+> **[Aller à la liste des mécanismes existants](./mécanismes)**
 
 ## Applicabilité
 

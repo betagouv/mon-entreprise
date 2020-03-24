@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-export const Header = ({ noSubtitle, sectionName = '' }) => (
+export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
 			<h1>
