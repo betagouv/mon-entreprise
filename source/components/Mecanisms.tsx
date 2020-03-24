@@ -1,5 +1,5 @@
 // Page listing the engine's currently implemented mecanisms and their tests
-import knownMecanims from 'Engine/known-mecanisms.yaml'
+import mécanismes from 'Engine/mecanisms.yaml'
 import { fromPairs, has, toPairs } from 'ramda'
 import React from 'react'
 import './Mecanisms.css'
@@ -24,7 +24,7 @@ export default function Mecanisms() {
 				partageant le code de mecanisms.test.js
 			</p>
 			<ul id="mecanisms">
-				{toPairs(knownMecanims).map(([name, data]) => (
+				{toPairs(mécanismes).map(([name, data]) => (
 					<li key={name}>
 						{name}
 						{suites[name] == null ? (

@@ -1,16 +1,29 @@
-# Publicode
-
 Publicode est un langage déclaratif pour encoder les algorithmes d'intérêt
 public. Il permet de réaliser des calculs généraux tout en fournissant une
 explication permettant de comprendre et de documenter ces calculs.
 
 Publicode est adapté pour modéliser des domaines métiers complexes pouvant être
-décomposés en règles élémentaires simples (comme la législation socio-fiscale,
-un bilan carbone, un estimateur de rendement locatif, etc.). Il permet de
+décomposés en règles élémentaires simples (comme la [législation socio-fiscale](https://github.com/betagouv/mon-entreprise/tree/master/publicode),
+[un bilan carbone](https://github.com/laem/futureco-data/blob/master/co2.yaml),
+un estimateur de rendement locatif, etc.).
+
+Il permet de
 générer facilement des simulateurs web interactifs où l'on peut affiner
 progressivement le résultat affiché, et explorer une documentation du calcul.
 
-## Formule basiques
+## Projets phares
+
+- [mon-entreprise.fr](https://mon-entreprise.fr/simulateurs) : utilise publicode
+  pour spécifier l'ensemble des calculs relatifs à la législation socio-fiscale
+  en France. Le site permet entre autre de simuler une fiche de paie complète,
+  de calculer les cotisations sociales pour un indépendant ou encore connaître
+  le montant du chômage partiel. Les règles sont publiées sous la forme d'une
+  [bibliothèque de calcul autonome](https://mon-entreprise.fr/intégration/bibliothèque-de-calcul), libre de droit.
+
+- [futur.eco](https://futur.eco/) utilise publicode pour calculer les bilans
+  carbone d'un grand nombre d'activité, plats, transport ou biens.
+
+## Principe de base
 
 La syntaxe de Publicode est basée sur le langage
 [Yaml](https://en.wikipedia.org/wiki/YAML). Un fichier Publicode contient une
@@ -32,8 +45,6 @@ prix total:
   formule: 5 * prix d'un repas
 ```
 
-> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%0A%0Aprix%20total%3A%0A%20%20formule%3A%205%20*%20prix%20d'un%20repas)
-
 Il s'agit d'un langage déclaratif : comme dans une formule d'un tableur le `prix total` sera recalculé automatiquement si le prix d'un repas change. L'ordre de
 définition des règles n'a pas d'importance.
 
@@ -53,12 +64,12 @@ prix total:
   formule: nombre de repas * prix d'un repas
 ```
 
-> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20prix%20d'un%20repas)
-
 Le calcul est inchangé mais on a indiqué que le "prix d'un repas" s'exprime en
 `€/repas` et que le "nombre de repas" est un nombre de `repas`. L'unité du prix
 total est inférée automatiquement comme étant en `€`. (`€/repas` \* `repas` =
-`€`) Ce système d'unité permet de typer les formules de calcul et de rejeter
+`€`)
+
+Ce système d'unité permet de typer les formules de calcul et de rejeter
 automatiquement des formules incohérentes :
 
 ```yaml
@@ -77,8 +88,6 @@ prix total:
 # La formule de "prix total" est invalide.
 ```
 
-> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Afrais%20de%20r%C3%A9servation%3A%0A%20%20formule%3A%201%20%E2%82%AC%2Frepas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20prix%20d'un%20repas%20%2B%20frais%20de%20r%C3%A9servation)
-
 Dans l'exemple ci-dessus Publicode détecte une erreur car les termes de
 l'addition ont des unités incompatibles : d'un côté on a des `€` et de l'autre
 des `€/repas`. Comme dans les formules de Physique, cette incohérence d'unité
@@ -90,10 +99,37 @@ prix total:
   formule: nombre de repas * (prix d'un repas + frais de réservation)
 ```
 
-> [Lancer le calcul](<https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Afrais%20de%20r%C3%A9servation%3A%0A%20%20formule%3A%201%20%E2%82%AC%2Frepas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20(prix%20d'un%20repas%20%2B%20frais%20de%20r%C3%A9servation)>)
+> **Attention :** Il ne faut pas insérer d'espace autour de la barre oblique dans
+> les unités, l'unité `€ / mois` doit être notée `€/mois`
 
-> **Attention:** Il ne faut pas insérer d'espace autour de la barre oblique dans
-> les unités, l'unité ~`€ / mois`~ doit être notée `€/mois`
+### Conversion
+
+Publicode converti automatiquement les unités si besoin.
+
+```yaml
+salaire:
+  formule: 1500 €/mois
+
+prime faible salaire:
+  applicable si: salaire < 20 k€/an
+  formule: 300€
+```
+
+On peut forcer la conversion des unités via la propriété `unité`, ou la notation suffixé `[...]`
+
+```yaml
+salaire:
+  unité: €/mois
+  formule: 3200
+
+salaire annuel:
+  formule: salaire [k€/an]
+```
+
+**Conversions disponibles :**
+
+- `mois` / `année` / `jour`
+- `€` / `k€`
 
 ## Titre, description et références
 
@@ -149,25 +185,34 @@ spécifique par mécanisme.
 Par exemple on a un mécanisme `barème`:
 
 ```yaml
+revenu imposable:
+  formule: 54126 €
+
 impôt sur le revenu:
   formule:
     barème:
       assiette: revenu imposable
       tranches:
         - taux: 0%
-          plafond: 9807
+          plafond: 9807 €
         - taux: 14%
-          plafond: 27086
+          plafond: 27086 €
         - taux: 30%
-          plafond: 72617
+          plafond: 72617 €
         - taux: 41%
-          plafond: 153783
+          plafond: 153783 €
         - taux: 45%
 ```
 
 La syntaxe hiérarchique de Yaml permet d'imbriquer les mécanismes :
 
 ```yaml
+prime . fixe:
+  formule: 1000€
+
+prime . taux du bonus:
+  formule: 20%
+
 prime:
   formule:
     somme:
@@ -175,15 +220,9 @@ prime:
       - produit:
           assiette: fixe
           taux: taux du bonus
-
-prime . fixe:
-  formule: 1000€
-
-prime . taux du bonus:
-  formule: 20%
 ```
 
-**[Voir la liste des mécanismes](https://github.com/betagouv/mon-entreprise/blob/master/publicode/mecanism.md)**
+**[Voir la liste des mécanismes existants](/mécanismes)**
 
 ## Applicabilité
 
@@ -203,8 +242,6 @@ prime de vacances:
   applicable si: ancienneté en fin d'année > 1 an
   formule: 200€
 ```
-
-> [Lancer le calcul](https://publi.codes/studio?code=date%20de%20d%C3%A9but%3A%20%0A%20%20formule%3A%2012%2F02%2F2020%0A%20%20%0Aanciennet%C3%A9%20en%20fin%20d'ann%C3%A9e%3A%0A%20%20formule%3A%20%0A%20%20%20%20dur%C3%A9e%3A%0A%20%20%20%20%20%20%20depuis%3A%20date%20de%20d%C3%A9but%0A%20%20%20%20%20%20%20jusqu'%C3%A0%3A%2031%2F12%2F2020%0A%0Aprime%20de%20vacances%3A%0A%20%20applicable%20si%3A%20anciennet%C3%A9%20en%20fin%20d'ann%C3%A9e%20%3E%201%20an%0A%20%20formule%3A%20200%E2%82%AC)
 
 Ici si l'ancienneté est inférieure à un an la prime de vacances ne sera pas
 applicable. Les variables non applicables sont ignorées au niveau des mécanismes
