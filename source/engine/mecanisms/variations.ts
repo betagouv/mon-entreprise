@@ -1,5 +1,5 @@
 import { typeWarning } from 'Engine/error'
-import { defaultNode, evaluateNode } from 'Engine/evaluation'
+import { bonus, defaultNode, evaluateNode } from 'Engine/evaluation'
 import Variations from 'Engine/mecanismViews/Variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import {
@@ -96,6 +96,10 @@ function evaluate(
 				previousConditions,
 				evaluatedCondition.temporalValue ??
 					pureTemporal(evaluatedCondition.nodeValue)
+			)
+			evaluatedCondition.missingVariables = bonus(
+				evaluatedCondition.missingVariables,
+				true
 			)
 			const currentConditionAlwaysFalse = !sometime(
 				x => x !== false,

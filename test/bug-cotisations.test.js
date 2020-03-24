@@ -72,7 +72,7 @@ describe('bug-analyse-many', function() {
 				'contrat salarié . temps partiel': 'non',
 				'établissement . localisation': {},
 				'contrat salarié . complémentaire santé . part employeur': 50,
-				'contrat salarié . complémentaire santé . forfait . en france': 50,
+				'contrat salarié . complémentaire santé . forfait': 50,
 				'entreprise . effectif': 1,
 				'entreprise . association non lucrative': 'non'
 			}[dottedName])

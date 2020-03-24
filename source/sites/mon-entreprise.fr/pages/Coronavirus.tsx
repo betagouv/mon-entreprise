@@ -6,6 +6,7 @@ import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React, { useContext } from 'react'
@@ -26,6 +27,7 @@ export default function ChômagePartiel() {
 
 	return (
 		<>
+			<ScrollToTop key={location.pathname} />
 			<Helmet>
 				<title>
 					{t(
@@ -41,6 +43,7 @@ export default function ChômagePartiel() {
 					)}
 				/>
 			</Helmet>
+			<ScrollToTop />
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
 					<h1>
