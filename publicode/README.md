@@ -32,6 +32,8 @@ prix total:
   formule: 5 * prix d'un repas
 ```
 
+> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%0A%0Aprix%20total%3A%0A%20%20formule%3A%205%20*%20prix%20d'un%20repas)
+
 Il s'agit d'un langage déclaratif : comme dans une formule d'un tableur le `prix total` sera recalculé automatiquement si le prix d'un repas change. L'ordre de
 définition des règles n'a pas d'importance.
 
@@ -50,6 +52,8 @@ nombre de repas:
 prix total:
   formule: nombre de repas * prix d'un repas
 ```
+
+> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20prix%20d'un%20repas)
 
 Le calcul est inchangé mais on a indiqué que le "prix d'un repas" s'exprime en
 `€/repas` et que le "nombre de repas" est un nombre de `repas`. L'unité du prix
@@ -73,6 +77,8 @@ prix total:
 # La formule de "prix total" est invalide.
 ```
 
+> [Lancer le calcul](https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Afrais%20de%20r%C3%A9servation%3A%0A%20%20formule%3A%201%20%E2%82%AC%2Frepas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20prix%20d'un%20repas%20%2B%20frais%20de%20r%C3%A9servation)
+
 Dans l'exemple ci-dessus Publicode détecte une erreur car les termes de
 l'addition ont des unités incompatibles : d'un côté on a des `€` et de l'autre
 des `€/repas`. Comme dans les formules de Physique, cette incohérence d'unité
@@ -83,6 +89,8 @@ de factoriser la variable "nombre de repas" dans la formule du "prix total".
 prix total:
   formule: nombre de repas * (prix d'un repas + frais de réservation)
 ```
+
+> [Lancer le calcul](<https://publi.codes/studio?code=prix%20d'un%20repas%3A%0A%20%20formule%3A%2010%20%E2%82%AC%2Frepas%0A%0Anombre%20de%20repas%3A%0A%20%20formule%3A%205%20repas%0A%0Afrais%20de%20r%C3%A9servation%3A%0A%20%20formule%3A%201%20%E2%82%AC%2Frepas%0A%0Aprix%20total%3A%0A%20%20formule%3A%20nombre%20de%20repas%20*%20(prix%20d'un%20repas%20%2B%20frais%20de%20r%C3%A9servation)>)
 
 > **Attention:** Il ne faut pas insérer d'espace autour de la barre oblique dans
 > les unités, l'unité ~`€ / mois`~ doit être notée `€/mois`
@@ -136,7 +144,9 @@ variable `taux` dans un autre espace de nom.
 
 Les règles de calcul élémentaires sont extraites dans des "mécanismes" qui
 permettent de partager la logique de calcul et de générer une page d'explication
-spécifique par mécanisme. Par exemple on a un mécanisme `barème`:
+spécifique par mécanisme.
+
+Par exemple on a un mécanisme `barème`:
 
 ```yaml
 impôt sur le revenu:
@@ -173,18 +183,28 @@ prime . taux du bonus:
   formule: 20%
 ```
 
+**[Voir la liste des mécanismes](https://github.com/betagouv/mon-entreprise/blob/master/publicode/mecanism.md)**
+
 ## Applicabilité
 
 On peut définir des conditions d'applicabilité des règles :
 
 ```yaml
-ancienneté:
-  formule: aujourd'hui - date de début
+date de début:
+  formule: 12/02/2020
+
+ancienneté en fin d'année:
+  formule:
+    durée:
+      depuis: date de début
+      jusqu'à: 31/12/2020
 
 prime de vacances:
-  applicable si: ancienneté > 1 an
+  applicable si: ancienneté en fin d'année > 1 an
   formule: 200€
 ```
+
+> [Lancer le calcul](https://publi.codes/studio?code=date%20de%20d%C3%A9but%3A%20%0A%20%20formule%3A%2012%2F02%2F2020%0A%20%20%0Aanciennet%C3%A9%20en%20fin%20d'ann%C3%A9e%3A%0A%20%20formule%3A%20%0A%20%20%20%20dur%C3%A9e%3A%0A%20%20%20%20%20%20%20depuis%3A%20date%20de%20d%C3%A9but%0A%20%20%20%20%20%20%20jusqu'%C3%A0%3A%2031%2F12%2F2020%0A%0Aprime%20de%20vacances%3A%0A%20%20applicable%20si%3A%20anciennet%C3%A9%20en%20fin%20d'ann%C3%A9e%20%3E%201%20an%0A%20%20formule%3A%20200%E2%82%AC)
 
 Ici si l'ancienneté est inférieure à un an la prime de vacances ne sera pas
 applicable. Les variables non applicables sont ignorées au niveau des mécanismes
