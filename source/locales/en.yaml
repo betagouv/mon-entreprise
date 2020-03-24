@@ -13,6 +13,7 @@ Au-dessus de: Above
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
+Avec chômage partiel: With partial unemployment
 Calcul: Formula
 Cette règle ne s'applique pas pour: This rule does not apply for
 Changer: Change
@@ -40,6 +41,7 @@ Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 Effacer: Reset
 Embauche: Hiring process
+Employeur: Employer
 En incluant l'indemnité de chômage partiel: Including short-time working allowance
 En-dessous de: Below
 Entreprise Individuelle: Sole Proprietorship
@@ -55,6 +57,7 @@ Fiche de paie: Payslip
 Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
+Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
 'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
@@ -93,6 +96,7 @@ Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
+Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
 Protection sociale: Social security
 Précédent: Previous
@@ -1201,6 +1205,7 @@ trouver:
 une de ces conditions: one of these applies
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Échap: Esc
+État: State
 à: to
 économieCollaborative:
   accueil:

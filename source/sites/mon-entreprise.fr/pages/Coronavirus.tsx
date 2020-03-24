@@ -9,12 +9,14 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import styled from 'styled-components'
+import { EvaluatedRule } from 'Types/rule'
 import Animate from 'Ui/animate'
 
 export default function ChômagePartiel() {
@@ -27,7 +29,6 @@ export default function ChômagePartiel() {
 
 	return (
 		<>
-			<ScrollToTop key={location.pathname} />
 			<Helmet>
 				<title>
 					{t(
@@ -46,7 +47,11 @@ export default function ChômagePartiel() {
 			<ScrollToTop />
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
-					<h1>
+					<h1
+						css={`
+							margin-top: 1rem;
+						`}
+					>
 						<span
 							css={`
 								font-size: 0.65em;
@@ -79,93 +84,240 @@ export default function ChômagePartiel() {
 
 function ExplanationSection() {
 	const analysis = useSelector(analysisWithDefaultsSelector)
-	const { language } = useTranslation().i18n
+	const {
+		i18n: { language },
+		t
+	} = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
+	const [showTable, setShowTable] = useState(false)
 
 	const net = getRule('contrat salarié . rémunération . net')
+	const netHabituel = getRule('chômage partiel . revenu net habituel')
 	const totalEntreprise = getRule('contrat salarié . prix du travail')
-	const perteRevenu = getRule('différence de revenu chômage partiel')
+	const totalEntrepriseHabituel = getRule(
+		'chômage partiel . coût employeur habituel'
+	)
 	if (!net?.nodeValue) {
 		return null
 	}
 	return (
 		<Animate.fromTop>
 			<div
-				css={`
-					margin-top: 2rem;
-				`}
-			></div>
-			<div
+				id="targetSelection"
 				className="ui__ light card"
 				css={`
-					margin: 3rem 0;
+					margin: 1rem 0;
+					padding: 1rem 0;
 				`}
 			>
-				<div id="targetSelection">
-					<ul className="targets">
-						<li>
-							<div className="main">
-								<div>
-									<div className="optionTitle">
-										<Trans>Revenu net mensuel</Trans>
-									</div>
-									<p>
-										<Trans>En incluant l'indemnité de chômage partiel</Trans>
-									</p>
-								</div>
-								<div className="targetInputOrValue">
-									<RuleLink {...net}>
-										{formatValue({
-											value: net.nodeValue,
-											language,
-											unit: '€',
-											maximumFractionDigits: 0
-										})}
-									</RuleLink>
-								</div>
-							</div>
-						</li>
-						<li className="small-target">
-							<div className="main">
-								<Trans>Coût pour l'entreprise</Trans>
-								<div className="targetInputOrValue">
-									<RuleLink {...totalEntreprise}>
-										{formatValue({
-											value: totalEntreprise.nodeValue,
-											language,
-											unit: '€',
-											maximumFractionDigits: 0
-										})}
-									</RuleLink>
-								</div>
-							</div>
-						</li>
-						<li>
-							<span className="optionTitle">
-								<Trans>Part du salaire net maintenue</Trans>
-							</span>
-							<StackedBarChart
-								data={[
-									{
-										...net,
-										title: 'net avec chômage partiel',
-										color: palettes[0][0]
-									},
-									{
-										...perteRevenu,
-										title: 'Différence de revenu',
-										color: palettes[1][0]
-									}
-								]}
-							/>
-						</li>
-					</ul>
+				<p>
+					Le chômage partiel permet d'obenir un revenu net de{' '}
+					<strong>
+						{formatValue({
+							value: net.nodeValue,
+							language,
+							unit: '€',
+							maximumFractionDigits: 0
+						})}
+					</strong>
+					.
+					<br />
+					Soit{' '}
+					<strong>
+						{formatValue({
+							value: (net.nodeValue / netHabituel.nodeValue) * 100,
+							unit: '%',
+							maximumFractionDigits: 0
+						})}
+					</strong>{' '}
+					du revenu net habituel.{' '}
+					<button
+						className="ui__ link-button"
+						onClick={() => setShowTable(!showTable)}
+					>
+						Détails ▾
+					</button>
+				</p>
+				{showTable && (
+					<Animate.fromTop>
+						<ComparaisonTable
+							rows={[
+								['', t('Habituellement'), t('Avec chômage partiel')],
+								[net, netHabituel, net],
+								[totalEntreprise, totalEntrepriseHabituel, totalEntreprise]
+							]}
+						/>
+					</Animate.fromTop>
+				)}
+				<div
+					className="optionTitle"
+					css={`
+						padding: 1rem 0;
+						border-top: 1px solid rgba(0, 0, 0, 0.1);
+					`}
+				>
+					<Trans>Prise en charge du revenu net avec chômage partiel</Trans>
 				</div>
+				<StackedBarChart
+					data={[
+						{
+							...getRule(
+								'contrat salarié . activité partielle . indemnisation entreprise'
+							),
+							title: t('État'),
+							color: palettes[0][0]
+						},
+						{
+							...totalEntreprise,
+							title: t('Employeur'),
+							color: palettes[1][0]
+						}
+					]}
+				/>
 			</div>
 		</Animate.fromTop>
 	)
 }
+
+function ComparaisonTable({ rows: [head, ...body] }) {
+	const columns = head.filter(x => x !== '')
+	const [currentColumnIndex, setCurrentColumnIndex] = useState(
+		columns.length - 1
+	)
+
+	return (
+		<>
+			<ResultTable className="ui__ mobile-version">
+				<tr>
+					<th></th>
+					<th>
+						<select
+							onChange={evt => setCurrentColumnIndex(Number(evt.target.value))}
+						>
+							{columns.map((name, i) => (
+								<option value={i} selected={i === currentColumnIndex}>
+									{name}
+								</option>
+							))}
+						</select>
+					</th>
+				</tr>
+				<tbody>
+					{body.map(([label, ...line], i) => (
+						<tr key={i}>
+							<td>
+								<RowLabel {...label} />
+							</td>
+							<td>
+								<ValueWithLink {...line[currentColumnIndex]} />
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</ResultTable>
+			<ResultTable>
+				<tr>
+					{head.map((label, i) => (
+						<th key={i}>{label}</th>
+					))}
+				</tr>
+				{body.map(([label, ...line], i) => (
+					<tr key={i}>
+						<td>
+							<RowLabel {...label} />
+						</td>
+						{line.map((cell, j) => (
+							<td key={j}>
+								{' '}
+								<ValueWithLink {...cell} />
+							</td>
+						))}
+					</tr>
+				))}
+			</ResultTable>
+		</>
+	)
+}
+
+function ValueWithLink(rule: EvaluatedRule) {
+	const { language } = useTranslation().i18n
+	return (
+		<RuleLink {...rule}>
+			{formatValue({
+				value: rule.nodeValue as number,
+				language,
+				unit: '€',
+				maximumFractionDigits: 0
+			})}
+		</RuleLink>
+	)
+}
+
+function RowLabel(target: EvaluatedRule) {
+	return (
+		<>
+			{' '}
+			<div className="optionTitle">{target.title}</div>
+			<p>{target.summary}</p>
+		</>
+	)
+}
+
+const ResultTable = styled.table`
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 5px;
+
+	&.ui__.mobile-version {
+		display: none;
+		@media (max-width: 660px) {
+			display: table;
+		}
+	}
+
+	&:not(.mobile-version) {
+		display: none;
+		@media (min-width: 660px) {
+			display: table;
+		}
+
+		td:nth-child(2) {
+			font-size: 1em;
+			opacity: 0.8;
+		}
+	}
+
+	td {
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		padding: 8px 16px 0;
+
+		p {
+			font-style: italic;
+		}
+	}
+
+	th:nth-child(n + 2) {
+		white-space: nowrap;
+		text-align: right;
+		padding: 8px 16px;
+	}
+
+	th:first-child {
+		width: 100%;
+		padding-left: 10px;
+	}
+
+	td:nth-child(n + 2) {
+		text-align: right;
+		font-size: 1.3em;
+	}
+
+	td:last-child,
+	th:last-child {
+		background: var(--lighterColor);
+	}
+`
 
 function TextExplanations() {
 	const { i18n } = useTranslation()

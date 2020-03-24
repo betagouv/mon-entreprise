@@ -260,6 +260,12 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
+chômage partiel . coût employeur habituel:
+  titre.en: '[automatic] regular employer cost'
+  titre.fr: coût employeur habituel
+chômage partiel . revenu net habituel:
+  titre.en: '[automatic] usual net income'
+  titre.fr: revenu net habituel
 contrat salarié:
   contrôles.0.en: >
     [automatic] Remember that a fixed-term contract must always correspond to a
@@ -3693,12 +3699,6 @@ contrat salarié . vieillesse . taux salarié déplafonné:
 contrat salarié . vieillesse . taux salarié plafonné:
   titre.en: capped employee rate
   titre.fr: taux salarié plafonné
-différence de revenu chômage partiel:
-  titre.en: '[automatic] difference in income from short-time work'
-  titre.fr: différence de revenu chômage partiel
-différence de revenu chômage partiel . net sans chômage partiel:
-  titre.en: '[automatic] net without short-time work'
-  titre.fr: net sans chômage partiel
 dirigeant:
   question.en: What is the director's social regime?
   question.fr: Quel est le régime social du dirigeant ?
