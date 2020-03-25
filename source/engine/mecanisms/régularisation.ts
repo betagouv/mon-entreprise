@@ -6,6 +6,7 @@ import {
 	Evaluation,
 	groupByYear,
 	liftTemporal2,
+	pureTemporal,
 	Temporal,
 	temporalAverage,
 	temporalCumul
@@ -95,17 +96,17 @@ function evaluate(
 		const cumulatedVariables = node.explanation.variables.reduce(
 			(acc, parsedVariable) => {
 				const evaluation = evaluate(parsedVariable)
-				if (!evaluation.temporalValue) {
+				if (!evaluation.unit.denominators.some(unit => unit === 'mois')) {
 					evaluationError(
 						cache._meta.contextRule,
-						`Dans le mécanisme régularisation, la valeur annuelle ${parsedVariable.name} n'est pas une variables temporelle`
+						`Dans le mécanisme régularisation, la valeur cumulée '${parsedVariable.name}' n'est pas une variable numérique définie sur le mois`
 					)
 				}
 				return {
 					...acc,
 					[parsedVariable.dottedName]: getMonthlyCumulatedValuesOverYear(
 						currentYear,
-						evaluation.temporalValue,
+						evaluation.temporalValue ?? pureTemporal(evaluation.nodeValue),
 						evaluation.unit
 					)
 				}

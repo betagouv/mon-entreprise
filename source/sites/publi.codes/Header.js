@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-export const Header = ({ noSubtitle, sectionName = '' }) => (
+export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
 			<h1>
@@ -19,7 +19,7 @@ export const Header = ({ noSubtitle, sectionName = '' }) => (
 		</Link>
 		{!noSubtitle && (
 			<p css="max-width: 28rem; margin: 0 auto; font-size: 120%">
-				Un nouveau langage pour les algorithmes d'intérêt public.
+				Le langage pour les algorithmes d'intérêt public.
 			</p>
 		)}
 	</header>

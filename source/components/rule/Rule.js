@@ -1,7 +1,7 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
-import knownMecanisms from 'Engine/known-mecanisms.yaml'
+import mecanisms from 'Engine/mecanisms.yaml'
 import { findRuleByDottedName, findRuleByNamespace } from 'Engine/rules'
 import { isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
@@ -28,7 +28,7 @@ import './Rule.css'
 
 let LazySource = React.lazy(() => import('./RuleSource'))
 
-export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
+export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 	const currentExample = useSelector(state => state.currentExample)
 	const flatRules = useSelector(flatRulesSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
