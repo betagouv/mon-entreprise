@@ -3,9 +3,14 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { defaultUnitSelector } from 'Selectors/analyseSelectors'
+import { DottedName, EvaluatedRule } from 'Types/rule'
 import RuleLink from './RuleLink'
 
-export let SalaireBrutSection = ({ getRule }) => {
+export let SalaireBrutSection = ({
+	getRule
+}: {
+	getRule: (rule: DottedName) => EvaluatedRule
+}) => {
 	let avantagesEnNature = getRule(
 			'contrat salarié . rémunération . avantages en nature'
 		),
@@ -20,7 +25,7 @@ export let SalaireBrutSection = ({ getRule }) => {
 			'contrat salarié . activité partielle . indemnités'
 		),
 		chômagePartielAbsence = getRule(
-			'contrat salarié . activité partielle . retrait activité partielle'
+			'contrat salarié . activité partielle . retrait absence'
 		),
 		primes = getRule('contrat salarié . rémunération . primes')
 	return (
