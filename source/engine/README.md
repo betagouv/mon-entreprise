@@ -262,13 +262,39 @@ quelle règle existante sans avoir besoin de la modifier :
 frais de repas:
   formule: 5 €/repas
 
-convention collective:
+convention hôtels cafés restaurants:
+  formule: oui
 
-convention collective . hôtels cafés restaurants:
-  applicable si: convention collective = 'HCR'
+convention hôtels cafés restaurants . frais de repas:
+  remplace: frais de repas
+  formule: 6 €/repas
+
+montant repas mensuels:
+  formule: 20 repas * frais de repas
+```
+
+On peut également choisir de remplacer uniquement dans un contexte donné:
+
+```yaml
+a:
+  formule: 10 min
+
+b:
+  formule: 20 min
+
+règle nulle:
   remplace:
-    - règle: frais de repas
-      par: 6 €/repas
+    - règle: a
+      sauf dans: somme originale
+    - règle: b
+      dans: somme avec remplacements
+  formule: 0
+
+somme originale:
+  formule: a + b
+
+somme avec remplacements:
+  formule: a + b
 ```
 
 ## Évaluation

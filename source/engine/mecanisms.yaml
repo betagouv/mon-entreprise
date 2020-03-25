@@ -139,10 +139,12 @@ somme:
 
   exemples:
     base: >-
-      somme:
-        - 15.89 €
-        - 12% * 14 €
-        - (-30 €)
+      exemple:
+        formule:
+          somme:
+            - 15.89 €
+            - 12% * 14 €
+            - (-20 €)
     terme non applicable: >-
       a:
         formule: 50 €
@@ -311,7 +313,7 @@ grille:
 
       revenu moyen: 
         formule:
-          2000 €/mois
+          250 €/mois
 
       trimestres validés:
         formule:
@@ -398,7 +400,8 @@ durée:
   description: Permet d'obtenir le nombre de jours entre deux dates
   exemples:
     base: >-
-      date d'embauche: 14/04/2008
+      date d'embauche: 
+        formule: 14/04/2008
 
       ancienneté en fin d'année:
         unité: an
