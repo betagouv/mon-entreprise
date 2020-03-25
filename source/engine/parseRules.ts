@@ -1,15 +1,9 @@
 import parseRule from 'Engine/parseRule'
 import { safeLoad } from 'js-yaml'
+import { lensPath, set } from 'ramda'
+import { compilationError } from './error'
 import { parseReference } from './parseReference'
 import { ParsedRules, Rules } from './types'
-
-/*
- Dans ce fichier, les règles YAML sont parsées.
- Elles expriment un langage orienté expression, les expressions étant
- - préfixes quand elles sont des 'mécanismes' (des mot-clefs représentant des calculs courants dans la loi)
- - infixes pour les feuilles : des tests d'égalité, d'inclusion, des comparaisons sur des variables ou tout simplement la  variable elle-même, ou une opération effectuée sur la variable
-
-*/
 
 export default function parseRules<Names extends string>(
 	rawRules: Rules<Names> | string
@@ -17,7 +11,9 @@ export default function parseRules<Names extends string>(
 	const rules =
 		typeof rawRules === 'string'
 			? (safeLoad(rawRules.replace(/\t/g, '  ')) as Rules<Names>)
-			: rawRules
+			: { ...rawRules }
+
+	extractInlinedNames(rules)
 
 	/* First we parse each rule one by one. When a mechanism is encountered, it is
 	recursively parsed. When a reference to a variable is encountered, a
@@ -67,16 +63,60 @@ export default function parseRules<Names extends string>(
 		}))
 	})
 
-	/* Then we need to infer units. Since only references to variables have been created, we need to wait for the latter map to complete before starting this job. Consider this example :
-		A = B * C
-		B = D / E
-	
-		C unité km
-		D unité €
-		E unité km
-	 *
-	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
-	 *
-	 * */
 	return parsedRules as ParsedRules<Names>
+}
+
+// We recursively traverse the YAML tree in order to extract named parameters
+// into their own dedicated rules, and replace the inline definition with a
+// reference to the newly created rule.
+function extractInlinedNames(rules: Record<string, Object>) {
+	const extractNamesInRule = (dottedName: string) => {
+		rules[dottedName] !== null &&
+			Object.entries(rules[dottedName]).forEach(
+				extractNamesInObject(dottedName)
+			)
+	}
+	const extractNamesInObject = (
+		dottedName: string,
+		context: Array<string | number> = []
+	) => ([key, value]: [string, Object]) => {
+		const match = key.match(/\[ref( (.+))?\]$/)
+		if (match) {
+			const argumentType = key.replace(match[0], '').trim()
+			const argumentName = match[2]?.trim() || argumentType
+			const extractedReferenceName = `${dottedName} . ${argumentName}`
+
+			if (typeof rules[extractedReferenceName] !== 'undefined') {
+				compilationError(
+					dottedName,
+					`Le paramètre [ref] ${argumentName} entre en conflit avec la règle déjà existante ${extractedReferenceName}`
+				)
+			}
+
+			rules[extractedReferenceName] = {
+				formule: value,
+				// TODO: The `virtualRule` parameter should be used to avoid creating a
+				// dedicated documentation page.
+				virtualRule: true
+			}
+			rules[dottedName] = set(
+				lensPath([...context, argumentType]),
+				extractedReferenceName,
+				rules[dottedName]
+			)
+			extractNamesInRule(extractedReferenceName)
+		} else if (Array.isArray(value)) {
+			value.forEach((content: Object, i) =>
+				Object.entries(content).forEach(
+					extractNamesInObject(dottedName, [...context, key, i])
+				)
+			)
+		} else if (value && typeof value === 'object') {
+			Object.entries(value).forEach(
+				extractNamesInObject(dottedName, [...context, key])
+			)
+		}
+	}
+
+	Object.keys(rules).forEach(extractNamesInRule)
 }
