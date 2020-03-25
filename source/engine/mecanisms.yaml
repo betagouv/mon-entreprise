@@ -263,10 +263,11 @@ recalcul:
             taux: 20%
 
       cotisations pour un SMIC:
-        recalcul:
-          règle: cotisations
-          avec:
-            - brut: 1500 €
+        formule:
+          recalcul:
+            règle: cotisations
+            avec:
+              brut: 1500 €
 
 barème:
   description: C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation
