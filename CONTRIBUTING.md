@@ -129,3 +129,14 @@ N'oubliez pas de vérifier le diff que rien n'est choquant.
     tests.
 - [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
     sur internet avec gestion des DNS.
+
+## Documentation
+
+### Publicodes
+
+Le code publicodes, relatif aux règles, est dans le dossier `publicodes`. Vous y trouverez notamment un README qui vous initiera au langage.
+
+Pour information, un wiki contenant des informations intéressantes sur publicodes et le raisonnement ayant abouti à ce langage sont dispos sur le repository [betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par ailleurs inutilisé.
+
+Pour se familiariser avec les règles, vous pouvez jeter un oeil aux fichiers contenant les règles elles-mêmes (dans le dossier `publicodes/rules`) mais cela peut s'avérer assez abrupt.  
+Essayez plutôt de jeter un oeil [aux tests](https://github.com/betagouv/mon-entreprise/blob/master/test/m%C3%A9canismes/expressions.yaml) dans un premier temps, puis au [mécanismes en place](https://github.com/betagouv/mon-entreprise/blob/master/source/engine/known-mecanisms.yaml).  
