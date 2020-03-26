@@ -655,7 +655,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
       assiette: assiette des cotisations
       abattement: déduction tabac
 
-dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . montant: # [XXX] - Ajouter la date de 1994
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . montant:
   titre: Souscription à un contrat Madelin
   unité par défaut: €/an
   question: Quel est le montant que vous versez à un contrat Madelin ?
