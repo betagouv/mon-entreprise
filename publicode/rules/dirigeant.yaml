@@ -450,9 +450,9 @@ dirigeant . indépendant . assiette des cotisations:
     encadrement:
       plancher: 0
       valeur:
-        allègement:
-          assiette: revenu professionnel
-          abattement: cotisations et contributions . cotisations . contrat madelin
+        somme:
+          - revenu professionnel
+          - cotisations et contributions . cotisations . contrat madelin
 
 dirigeant . indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
