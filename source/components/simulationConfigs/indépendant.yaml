@@ -28,6 +28,7 @@ questions:
     - entreprise . ZFU
     - dirigeant . indépendant . cotisations et contributions . exonérations . âge
     - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
+    - dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin
 
 unité par défaut: €/an
 situation:
