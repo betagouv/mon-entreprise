@@ -6,62 +6,57 @@
 */
 
 import { expect } from 'chai'
-import { collectMissingVariables } from '../source/engine/generateQuestions'
-import { enrichRule } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
+import Engine from 'Engine'
 import { parseUnit } from '../source/engine/units'
 import testSuites from './load-mecanism-tests'
-
-describe('Mécanismes', () =>
-	testSuites.map(([suiteName, suite]) =>
-		Object.keys(suite)
-			.map(key => [key, suite[key] ?? undefined])
-			.map(
-				([name, { exemples, titre, 'unité attendue': unit } = {}]) =>
-					exemples &&
-					describe(`Suite ${suiteName}, test : ${titre ?? name}`, () =>
-						exemples.map(
-							({
-								nom: testTexte,
-								situation,
-								'unités par défaut': defaultUnits,
-								'valeur attendue': valeur,
-								'variables manquantes': expectedMissing
-							}) =>
-								it(testTexte == null ? '' : testTexte + '', () => {
-									let rules = parseAll(
-											Object.entries(suite)
-												.map(([dottedName, rule]) => ({
-													dottedName,
-													...rule
-												}))
-												.map(enrichRule)
-										),
-										state = situation || {},
-										stateSelector = name => state[name],
-										analysis = analyse(
-											rules,
-											name,
-											defaultUnits
-										)(stateSelector),
-										missing = collectMissingVariables(analysis.targets),
-										target = analysis.targets[0]
-
-									if (typeof valeur === 'number') {
-										expect(target.nodeValue).to.be.closeTo(valeur, 0.001)
-									} else if (valeur !== undefined) {
-										expect(target).to.have.property('nodeValue', valeur)
-									}
-
-									if (expectedMissing) {
-										expect(missing).to.eql(expectedMissing)
-									}
-
-									if (unit) {
-										expect(target.unit).not.to.be.equal(undefined)
-										expect(target.unit).to.deep.equal(parseUnit(unit))
-									}
-								})
-						))
-			)
-	))
+testSuites.forEach(([suiteName, suite]) => {
+	const engine = new Engine({ rules: suite, useDefaultValues: false })
+	describe(`Mécanisme ${suiteName}`, () => {
+		Object.entries(suite)
+			.filter(([, rule]) => rule?.exemples)
+			.forEach(([name, test]) => {
+				const { exemples, 'unité attendue': unit } = test
+				exemples.forEach(
+					(
+						{
+							nom: testName,
+							situation,
+							'unités par défaut': defaultUnits,
+							'valeur attendue': valeur,
+							'variables manquantes': expectedMissing
+						},
+						i
+					) => {
+						it(
+							name +
+								(testName
+									? ` [${testName}]`
+									: exemples.length > 1
+									? ` (${i + 1})`
+									: ''),
+							() => {
+								const result = engine
+									.setSituation(situation ?? {})
+									.setDefaultUnits(defaultUnits)
+									.evaluate(name)
+								if (typeof valeur === 'number') {
+									expect(result.nodeValue).to.be.closeTo(valeur, 0.001)
+								} else if (valeur !== undefined) {
+									expect(result.nodeValue).to.be.eq(valeur)
+								}
+								if (expectedMissing) {
+									expect(Object.keys(result.missingVariables)).to.eql(
+										expectedMissing
+									)
+								}
+								if (unit) {
+									expect(result.unit).not.to.be.equal(undefined)
+									expect(result.unit).to.deep.equal(parseUnit(unit))
+								}
+							}
+						)
+					}
+				)
+			})
+	})
+})

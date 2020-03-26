@@ -1,85 +1,73 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
-import { safeLoad } from 'js-yaml'
-import { collectMissingVariables } from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
-import { analyse, analyseMany, parseAll } from '../source/engine/traverse'
+import Engine from 'Engine'
 
 describe('inversions', () => {
 	it('should handle non inverted example', () => {
-		let fakeState = { brut: 2300 }
-		let stateSelector = name => fakeState[name]
-
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: brut
               taux: 77%
 
-        - nom: brut
+        brut:
           unité: €
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			analysis = analyse(rules, 'net')(stateSelector)
+      `
+		const result = new Engine({ rules })
+			.setSituation({ brut: 2300 })
+			.evaluate('net')
 
-		expect(analysis.targets[0].nodeValue).to.be.closeTo(1771, 0.001)
+		expect(result.nodeValue).to.be.closeTo(1771, 0.001)
 	})
 
 	it('should handle simple inversion', () => {
-		let fakeState = { net: 2000 }
-		let stateSelector = name => fakeState[name]
-
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: brut
               taux: 77%
 
-        - nom: brut
+        brut:
           unité: €
           formule:
             inversion numérique:
               avec:
                 - net
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			analysis = analyse(rules, 'brut')(stateSelector)
+      `
+		const result = new Engine({ rules })
+			.setSituation({ net: 2000 })
+			.evaluate('brut')
 
-		expect(analysis.targets[0].nodeValue).to.be.closeTo(
-			2000 / (77 / 100),
-			0.0001 * 2000
-		)
+		expect(result.nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
 	})
 
 	it('should handle inversion with value at 0', () => {
-		let fakeState = { net: 0 }
-		let stateSelector = name => fakeState[name]
-
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: brut
               taux: 77%
 
-        - nom: brut
+        brut:
           unité: €
           formule:
             inversion numérique:
               avec:
                 - net
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			analysis = analyse(rules, 'brut')(stateSelector)
+      `
+		const result = new Engine({ rules })
+			.setSituation({ net: 0 })
+			.evaluate('brut')
 
-		expect(analysis.targets[0].nodeValue).to.be.closeTo(0, 0.0001)
+		expect(result.nodeValue).to.be.closeTo(0, 0.0001)
 	})
 
 	it('should ask the input of one of the possible inversions', () => {
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: assiette
@@ -90,29 +78,26 @@ describe('inversions', () => {
                 - sinon:
                     taux: 70%
 
-        - nom: brut
+        brut:
           unité: €
           formule:
             inversion numérique:
               avec:
                 - net
-        - nom: cadre
-        - nom: assiette
+        cadre:
+        assiette:
           formule: 67 + brut
 
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			stateSelector = () => null,
-			analysis = analyse(rules, 'brut')(stateSelector),
-			missing = collectMissingVariables(analysis.targets)
+      `
+		const result = new Engine({ rules }).evaluate('brut')
 
-		expect(analysis.targets[0].nodeValue).to.be.null
-		expect(missing).to.include('brut')
+		expect(result.nodeValue).to.be.null
+		expect(Object.keys(result.missingVariables)).to.include('brut')
 	})
 
 	it('should handle inversions with missing variables', () => {
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: assiette
@@ -123,23 +108,23 @@ describe('inversions', () => {
                 - sinon:
                     taux: 70%
 
-        - nom: brut
+        brut:
           unité: €
           formule:
             inversion numérique:
               avec:
                 - net
-        - nom: cadre
-        - nom: assiette
+        cadre:
+        assiette:
           formule:
             somme:
               - 1200
               - brut
               - taxeOne
-        - nom: taxeOne
+        taxeOne:
           non applicable si: cadre
           formule: taxe + taxe
-        - nom: taxe
+        taxe:
           formule:
             produit:
               assiette: 1200
@@ -149,19 +134,17 @@ describe('inversions', () => {
                     taux: 80%
                 - sinon:
                     taux: 70%
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			stateSelector = name => ({ net: 2000 }[name]),
-			analysis = analyse(rules, 'brut')(stateSelector),
-			missing = collectMissingVariables(analysis.targets)
-
-		expect(analysis.targets[0].nodeValue).to.be.null
-		expect(missing).to.include('cadre')
+      `
+		const result = new Engine({ rules })
+			.setSituation({ net: 2000 })
+			.evaluate('brut')
+		expect(result.nodeValue).to.be.null
+		expect(Object.keys(result.missingVariables)).to.include('cadre')
 	})
 
 	it("shouldn't report a missing salary if another salary was input", () => {
-		let rawRules = dedent`
-        - nom: net
+		const rules = dedent`
+        net:
           formule:
             produit:
               assiette: assiette
@@ -173,13 +156,13 @@ describe('inversions', () => {
                   alors:
                     taux: 70%
 
-        - nom: total
+        total:
           formule:
             produit:
               assiette: assiette
               taux: 150%
 
-        - nom: brut
+        brut:
           unité: €
           formule:
             inversion numérique:
@@ -187,29 +170,28 @@ describe('inversions', () => {
                 - net
                 - total
 
-        - nom: cadre
+        cadre:
 
-        - nom: assiette
+        assiette:
           formule: 67 + brut
 
-      `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			stateSelector = name => ({ net: 2000, cadre: 'oui' }[name]),
-			analysis = analyse(rules, 'total')(stateSelector),
-			missing = collectMissingVariables(analysis.targets)
-
-		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
-		expect(missing).to.be.empty
+      `
+		const result = new Engine({ rules })
+			.setSituation({ net: 2000, cadre: 'oui' })
+			.evaluate('total')
+		expect(result.nodeValue).to.be.closeTo(3750, 1)
+		expect(Object.keys(result.missingVariables)).to.be.empty
 	})
+
 	it('complex inversion with composantes', () => {
-		let rawRules = dedent`
-      - nom: net
+		const rules = dedent`
+      net:
         formule:
           produit:
             assiette: 67 + brut
             taux: 80%
 
-      - nom: cotisation
+      cotisation:
         formule:
           produit:
             assiette: 67 + brut
@@ -221,38 +203,21 @@ describe('inversions', () => {
                   dû par: salarié
                 taux: 50%
 
-      - nom: total
+      total:
         formule: cotisation .employeur + cotisation .salarié
 
-      - nom: brut
+      brut:
         unité: €
         formule:
           inversion numérique:
             avec:
               - net
               - total
-    `,
-			rules = parseAll(safeLoad(rawRules).map(enrichRule)),
-			stateSelector = name => ({ net: 2000 }[name]),
-			analysis = analyse(rules, 'total')(stateSelector),
-			missing = collectMissingVariables(analysis.targets)
-
-		expect(analysis.targets[0].nodeValue).to.be.closeTo(3750, 1)
-		expect(missing).to.be.empty
-	})
-	it('should collect missing variables not too slowly', function() {
-		let stateSelector = name =>
-			({ 'contrat salarié . rémunération . net': '2300' }[name])
-
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyseMany(rules, [
-				'contrat salarié . rémunération . brut',
-				'contrat salarié . rémunération . total'
-			])(stateSelector)
-
-		let start = Date.now()
-		collectMissingVariables(analysis.targets)
-		let elapsed = Date.now() - start
-		expect(elapsed).to.be.below(1500)
+    `
+		const result = new Engine({ rules })
+			.setSituation({ net: 2000 })
+			.evaluate('total')
+		expect(result.nodeValue).to.be.closeTo(3750, 1)
+		expect(Object.keys(result.missingVariables)).to.be.empty
 	})
 })

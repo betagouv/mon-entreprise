@@ -1,6 +1,6 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { nameLeaf } from 'Engine/rules'
+import { nameLeaf } from 'Engine/ruleUtils'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Rule } from 'Types/rule'

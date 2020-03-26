@@ -17,7 +17,7 @@ export default function RuleSource({ dottedName }: RuleSourceProps) {
 				Code source <br />
 				<code>{dottedName}</code>
 			</h2>
-			<PublicodeHighlighter source={safeDump(source)} />
+			<PublicodeHighlighter source={safeDump({ dottedName: source })} />
 		</div>
 	)
 }

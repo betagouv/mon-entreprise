@@ -30,7 +30,7 @@ activités:
     entreprise . catégorie d'activité: libérale
   - dirigeant . rémunération totale: 20000
     entreprise . catégorie d'activité: libérale
-    entreprise . catégorie d'activité . libérale règlementée: true
+    entreprise . catégorie d'activité . libérale règlementée: oui
   - dirigeant . rémunération totale: 20000
     entreprise . catégorie d'activité: artisanale
   - dirigeant . rémunération totale: 20000
@@ -39,4 +39,4 @@ activités:
   - dirigeant . rémunération totale: 20000
     entreprise . catégorie d'activité: commerciale ou industrielle
     entreprise . catégorie d'activité . service ou vente: service
-    entreprise . catégorie d'activité . restauration ou hébergement: true
+    entreprise . catégorie d'activité . restauration ou hébergement: oui

@@ -2,8 +2,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import mecanisms from 'Engine/mecanisms.yaml'
-import { findRuleByDottedName, findRuleByNamespace } from 'Engine/rules'
-import { isEmpty } from 'ramda'
+import { filter, isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
@@ -12,8 +11,8 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
 	exampleAnalysisSelector,
-	flatRulesSelector,
 	noUserInputSelector,
+	parsedRulesSelector,
 	ruleAnalysisSelector
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
@@ -30,7 +29,7 @@ let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 	const currentExample = useSelector(state => state.currentExample)
-	const flatRules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
 	const analysedRule = useSelector(state =>
 		ruleAnalysisSelector(state, { dottedName })
@@ -42,9 +41,15 @@ export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 	const [viewSource, setViewSource] = useState(false)
 	const { t } = useTranslation()
 
-	let flatRule = findRuleByDottedName(flatRules, dottedName)
-	let { type, name, acronyme, title, description, question, icon } = flatRule,
-		namespaceRules = findRuleByNamespace(flatRules, dottedName)
+	let rule = rules[dottedName]
+	let { type, name, acronyme, title, description, question, icon } = rule,
+		namespaceRules = filter(
+			rule =>
+				rule.dottedName.startsWith(dottedName) &&
+				rule.dottedName.split(' . ').length ===
+					dottedName.split(' . ').length + 1,
+			rules
+		)
 	let displayedRule = analysedExample || analysedRule
 	const renderToggleSourceButton = () => {
 		return (
@@ -99,8 +104,8 @@ export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 								type,
 								description,
 								question,
-								flatRule,
-								flatRules,
+								flatRule: rule,
+								flatRules: rules,
 								name,
 								acronyme,
 								title,
@@ -183,10 +188,10 @@ export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 									</ul>
 								</section>
 							)}
-							{flatRule.note && (
+							{rule.note && (
 								<section id="notes">
 									<h3>Note : </h3>
-									<Markdown source={flatRule.note} />
+									<Markdown source={rule.note} />
 								</section>
 							)}
 							<Examples
@@ -197,7 +202,7 @@ export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 							{!isEmpty(namespaceRules) && (
 								<NamespaceRulesList {...{ namespaceRules }} />
 							)}
-							{renderReferences(flatRule)}
+							{renderReferences(rule)}
 						</section>
 						{renderToggleSourceButton()}
 					</Animate.fromBottom>
@@ -216,7 +221,7 @@ function NamespaceRulesList({ namespaceRules }) {
 				<Trans>Pages associées</Trans>
 			</h2>
 			<ul>
-				{namespaceRules.map(r => (
+				{Object.values(namespaceRules).map(r => (
 					<li key={r.name}>
 						<Link
 							style={{

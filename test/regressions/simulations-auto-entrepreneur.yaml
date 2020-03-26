@@ -12,14 +12,14 @@
 
 aides:
   - dirigeant . auto-entrepreneur . net de cotisations: 5000
-    entreprise . ACRE: true
+    entreprise . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 50000
-    entreprise . ACRE: true
+    entreprise . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . auto-entrepreneur . net de cotisations: 25000
     entreprise . catégorie d'activité: 'libérale'
-    dirigeant . auto-entrepreneur . impôt . versement libératoire: true
+    dirigeant . auto-entrepreneur . impôt . versement libératoire: oui
 
 ACRE:
   - dirigeant . auto-entrepreneur . net de cotisations: 20000

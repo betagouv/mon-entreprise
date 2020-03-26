@@ -1,27 +1,26 @@
 import Value from 'Components/Value'
+import rules from 'Publicode/rules'
 import React, { createContext, useContext, useMemo } from 'react'
 import Engine from '.'
-
 export const EngineContext = createContext<{
 	engine: Engine | null
 	error: string | null
-}>({ engine: new Engine(), error: null })
+}>({ engine: new Engine({ rules }), error: null })
 
 type InputProps = {
 	rules?: any
-	extra?: any
 	situation?: any
 	children: React.ReactNode
 }
 
-export function Provider({ rules, extra, situation, children }: InputProps) {
+export function Provider({ rules, situation, children }: InputProps) {
 	const [engine, error] = useMemo(() => {
 		try {
-			return [new Engine({ rules, extra }), null]
+			return [new Engine({ rules }), null]
 		} catch (err) {
 			return [null, (err?.message ?? err.toString()) as string]
 		}
-	}, [rules, extra])
+	}, [rules])
 	if (engine !== null && !Object.is(situation, engine.situation)) {
 		engine.setSituation(situation)
 	}

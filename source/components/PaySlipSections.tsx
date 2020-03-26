@@ -92,15 +92,15 @@ export let SalaireNetSection = ({ getRule }) => {
 				<Trans>Salaire net</Trans>
 			</h4>
 			{netImposable && <Line rule={netImposable} />}
-			{(avantagesEnNature.nodeValue || retenueTitresRestaurant.nodeValue) && (
+			{(avantagesEnNature?.nodeValue || retenueTitresRestaurant?.nodeValue) && (
 				<Line
 					rule={getRule('contrat salarié . rémunération . net de cotisations')}
 				/>
 			)}
-			{!!avantagesEnNature.nodeValue && (
+			{!!avantagesEnNature?.nodeValue && (
 				<Line negative rule={avantagesEnNature} />
 			)}
-			{!!retenueTitresRestaurant.nodeValue && (
+			{!!retenueTitresRestaurant?.nodeValue && (
 				<Line negative rule={retenueTitresRestaurant} />
 			)}
 

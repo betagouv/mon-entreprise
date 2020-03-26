@@ -11,8 +11,8 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
-	flatRulesSelector,
 	nextStepsSelector,
+	parsedRulesSelector,
 	ruleAnalysisSelector,
 	situationSelector
 } from 'Selectors/analyseSelectors'
@@ -54,7 +54,7 @@ const lauchComputationWhenResultsInViewport = () => {
 
 export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
-	const rules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
@@ -213,12 +213,12 @@ function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false
 }: SubSectionProp) {
-	const flatRules = useSelector(flatRulesSelector)
+	const parsedRules = useSelector(parsedRulesSelector)
 	const ruleTitle = useRule(sectionDottedName)?.title
 	const nextSteps = useSelector(nextStepsSelector)
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
-	const subQuestions = flatRules.filter(
+	const subQuestions = Object.values(parsedRules).filter(
 		({ dottedName, question }) =>
 			Boolean(question) &&
 			dottedName.startsWith(sectionDottedName) &&
@@ -245,7 +245,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const evaluatedRule = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
-	const rules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
 	const dispatchValue = useCallback(

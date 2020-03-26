@@ -1,11 +1,10 @@
 import { updateSituation } from 'Actions/actions'
 import Explicable from 'Components/conversation/Explicable'
-import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	flatRulesSelector,
+	parsedRulesSelector,
 	situationSelector
 } from 'Selectors/analyseSelectors'
 
@@ -21,7 +20,7 @@ export default function FormDecorator(RenderField) {
 	return function FormStep({ dottedName }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
-		const flatRules = useSelector(flatRulesSelector)
+		const rules = useSelector(parsedRulesSelector)
 
 		const language = useTranslation().i18n.language
 		const submit = source =>
@@ -38,8 +37,7 @@ export default function FormDecorator(RenderField) {
 		return (
 			<div className="step">
 				<h3>
-					{findRuleByDottedName(flatRules, dottedName).question}{' '}
-					<Explicable dottedName={dottedName} />
+					{rules[dottedName].question} <Explicable dottedName={dottedName} />
 				</h3>
 
 				<fieldset>
@@ -48,7 +46,7 @@ export default function FormDecorator(RenderField) {
 						value={situation[dottedName]}
 						onChange={setFormValue}
 						onSubmit={submit}
-						rules={flatRules}
+						rules={rules}
 					/>
 				</fieldset>
 			</div>

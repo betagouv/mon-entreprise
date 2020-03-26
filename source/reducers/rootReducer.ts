@@ -1,5 +1,4 @@
 import { Action } from 'Actions/actions'
-import { Analysis } from 'Engine/traverse'
 import { Unit } from 'Engine/units'
 import { defaultTo, identity, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
@@ -101,7 +100,7 @@ function updateSituation(
 	}: {
 		fieldName: DottedName
 		value: any
-		analysis: Analysis | Array<Analysis> | null
+		analysis: any
 	}
 ) {
 	const goals = goalsFromAnalysis(analysis)
@@ -187,7 +186,7 @@ function getCompanySituation(company: Company): Situation {
 function simulation(
 	state: Simulation | null = null,
 	action: Action,
-	analysis: Analysis | Array<Analysis> | null,
+	analysis: any,
 	existingCompany: Company
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {

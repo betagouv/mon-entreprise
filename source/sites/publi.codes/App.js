@@ -1,4 +1,4 @@
-import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
+// TODO : load translation only if en
 import 'iframe-resizer'
 import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -14,7 +14,7 @@ function Router({ language }) {
 	useEffect(() => {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])
-	const rules = language === 'en' ? baseRulesEn : baseRulesFr
+	const rules = language === 'en' ? rules : rules
 	return (
 		<Provider
 			basename="publicodes"

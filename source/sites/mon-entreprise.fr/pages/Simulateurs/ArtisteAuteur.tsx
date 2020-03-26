@@ -7,14 +7,13 @@ import 'Components/TargetSelection.css'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { formatValue } from 'Engine/format'
 import RuleInput from 'Engine/RuleInput'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	analysisWithDefaultsSelector,
-	flatRulesSelector,
 	parsedRulesSelector,
 	ruleAnalysisSelector,
 	situationSelector
@@ -84,7 +83,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
 	const initialRender = useContext(InitialRenderContext)
-	const flatRules = useSelector(flatRulesSelector)
+	const parsedRules = useSelector(parsedRulesSelector)
 	const value = useSelector(situationSelector)[dottedName]
 
 	const onChange = x => dispatch(updateSituation(dottedName, x))
@@ -108,7 +107,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 							className="targetInput"
 							isTarget
 							dottedName={dottedName}
-							rules={flatRules}
+							rules={parsedRules}
 							value={value}
 							onChange={onChange}
 							useSwitch

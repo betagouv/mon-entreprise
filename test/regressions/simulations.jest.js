@@ -6,6 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
+import rules from 'Publicode/rules'
 import artisteAuteurConfig from '../../source/components/simulationConfigs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/components/simulationConfigs/auto-entrepreneur.yaml'
 import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
@@ -19,7 +20,7 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
-const engine = new Engine()
+const engine = new Engine({ rules })
 const runSimulations = (
 	situations,
 	targets,

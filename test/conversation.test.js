@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { enrichRule, rulesFr as rules } from 'Engine/rules'
+import rules from 'Publicode/rules'
 import { assocPath, merge } from 'ramda'
 import reducers from 'Reducers/rootReducer'
 import salariéConfig from '../source/components/simulationConfigs/salarié.yaml'
@@ -13,20 +13,19 @@ let baseState = {
 
 describe('conversation', function() {
 	it('should start with the first missing variable', function() {
-		let rawRules = [
+		let rules = {
 				// TODO - this won't work without the indirection, figure out why
-				{ nom: 'top . startHere', formule: { somme: ['a', 'b'] } },
-				{ nom: 'top . a', formule: 'aa' },
-				{ nom: 'top . b', formule: 'bb' },
-				{ nom: 'top . aa', question: '?', titre: 'a', unité: '€' },
-				{ nom: 'top . bb', question: '?', titre: 'b', unité: '€' }
-			],
-			rules = rawRules.map(enrichRule),
+				'top . startHere': { formule: { somme: ['a', 'b'] } },
+				'top . a': { formule: 'aa' },
+				'top . b': { formule: 'bb' },
+				'top . aa': { question: '?', titre: 'a', unité: '€' },
+				'top . bb': { question: '?', titre: 'b', unité: '€' }
+			},
 			state = merge(baseState, {
 				rules,
 				simulation: {
 					defaultUnit: '€/an',
-					config: { objectifs: ['startHere'] },
+					config: { objectifs: ['top . startHere'] },
 					foldedSteps: []
 				}
 			}),
@@ -35,26 +34,24 @@ describe('conversation', function() {
 		expect(currentQuestion).to.equal('top . aa')
 	})
 	it('should deal with double unfold', function() {
-		let rawRules = [
-				// TODO - this won't work without the indirection, figure out why
-				{
-					nom: 'top . startHere',
-					formule: { somme: ['a', 'b', 'c'] }
-				},
-				{ nom: 'top . a', formule: 'aa' },
-				{ nom: 'top . b', formule: 'bb' },
-				{ nom: 'top . c', formule: 'cc' },
-				{ nom: 'top . aa', question: '?', titre: 'a', unité: '€' },
-				{ nom: 'top . bb', question: '?', titre: 'b', unité: '€' },
-				{ nom: 'top . cc', question: '?', titre: 'c', unité: '€' }
-			],
-			rules = rawRules.map(enrichRule)
+		let rules = {
+			// TODO - this won't work without the indirection, figure out why
+			'top . startHere': {
+				formule: { somme: ['a', 'b', 'c'] }
+			},
+			'top . a': { formule: 'aa' },
+			'top . b': { formule: 'bb' },
+			'top . c': { formule: 'cc' },
+			'top . aa': { question: '?', titre: 'a', unité: '€' },
+			'top . bb': { question: '?', titre: 'b', unité: '€' },
+			'top . cc': { question: '?', titre: 'c', unité: '€' }
+		}
 
 		let step1 = merge(baseState, {
 			rules,
 			simulation: {
 				defaultUnit: '€/an',
-				config: { objectifs: ['startHere'] },
+				config: { objectifs: ['top . startHere'] },
 				foldedSteps: []
 			}
 		})
@@ -96,40 +93,36 @@ describe('conversation', function() {
 	})
 
 	it('should first ask for questions without defaults, then those with defaults', function() {
-		let rawRules = [
-				{ nom: 'net', formule: 'brut - cotisation' },
-				{
-					nom: 'brut',
-					question: 'Quel est le salaire brut ?'
-				},
-				{
-					nom: 'cotisation',
-					formule: {
-						produit: {
-							assiette: 'brut',
-							variations: [
-								{
-									si: 'cadre',
-									alors: {
-										taux: '77%'
-									}
-								},
-								{
-									sinon: {
-										taux: '80%'
-									}
+		let rules = {
+			net: { formule: 'brut - cotisation' },
+			brut: {
+				question: 'Quel est le salaire brut ?'
+			},
+			cotisation: {
+				formule: {
+					produit: {
+						assiette: 'brut',
+						variations: [
+							{
+								si: 'cadre',
+								alors: {
+									taux: '77%'
 								}
-							]
-						}
+							},
+							{
+								sinon: {
+									taux: '80%'
+								}
+							}
+						]
 					}
-				},
-				{
-					nom: 'cadre',
-					question: 'Est-ce un cadre ?',
-					'par défaut': 'non'
 				}
-			],
-			rules = rawRules.map(enrichRule)
+			},
+			cadre: {
+				question: 'Est-ce un cadre ?',
+				'par défaut': 'non'
+			}
+		}
 
 		let step1 = merge(baseState, {
 			rules,

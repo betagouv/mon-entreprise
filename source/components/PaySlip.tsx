@@ -1,6 +1,6 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Value from 'Components/Value'
-import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React, { Fragment, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -64,7 +64,7 @@ export default function PaySlip() {
 					<Trans>Part salarié</Trans>
 				</h4>
 				{cotisations.map(([brancheDottedName, cotisationList]) => {
-					let branche = findRuleByDottedName(parsedRules, brancheDottedName)
+					let branche = parsedRules[brancheDottedName]
 					return (
 						<Fragment key={branche.dottedName}>
 							<h5 className="payslip__cotisationTitle">

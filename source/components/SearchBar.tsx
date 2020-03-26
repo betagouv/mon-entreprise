@@ -1,11 +1,11 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { parentName } from 'Engine/rules.js'
+import { parentName } from 'Engine/ruleUtils.js'
 import { pick, sortBy, take } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import FuzzyHighlighter, { Highlighter } from 'react-fuzzy-highlighter'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect, useHistory } from 'react-router-dom'
-import { Rule } from 'Types/rule'
+import { DottedName, Rule } from 'Types/rule'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
 import './SearchBar.css'
@@ -13,7 +13,7 @@ import './SearchBar.css'
 const worker = new Worker()
 
 type SearchBarProps = {
-	rules: Array<Rule>
+	rules: { [name in DottedName]: Rule }
 	showDefaultList: boolean
 	finally?: () => void
 }
@@ -60,7 +60,7 @@ export default function SearchBar({
 
 	useEffect(() => {
 		worker.postMessage({
-			rules: rules.map(
+			rules: Object.values(rules).map(
 				pick(['title', 'espace', 'description', 'name', 'dottedName'])
 			)
 		})
@@ -256,7 +256,9 @@ export default function SearchBar({
 				i18n.t('noresults', {
 					defaultValue: "Nous n'avons rien trouvé…"
 				})}
-			{showDefaultList && !input ? renderOptions(rules) : renderOptions()}
+			{showDefaultList && !input
+				? renderOptions(Object.values(rules))
+				: renderOptions()}
 		</>
 	)
 }

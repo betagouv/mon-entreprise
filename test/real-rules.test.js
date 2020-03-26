@@ -1,8 +1,8 @@
 import { AssertionError } from 'chai'
+import { parseRules } from 'Engine'
+import rules from 'Publicode/rules'
 import { merge } from 'ramda'
 import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
-import { rules } from '../source/engine/rules'
-import { parseAll } from '../source/engine/traverse'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -34,7 +34,7 @@ let runExamples = (examples, rule) =>
 		})
 	})
 
-let parsedRules = parseAll(rules)
+let parsedRules = parseRules(rules)
 describe('Tests des règles de notre base de règles', () =>
 	Object.values(parsedRules).map(rule => {
 		if (!rule.exemples) return null

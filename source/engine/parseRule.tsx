@@ -3,17 +3,22 @@ import RuleLink from 'Components/RuleLink'
 import { evolve, map } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { coerceArray } from '../utils'
+import { capitalise0, coerceArray } from '../utils'
+import { warning } from './error'
 import evaluate from './evaluateRule'
 import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
 import { Node } from './mecanismViews/common'
 import { parse } from './parse'
-import { disambiguateRuleReference, findParentDependencies } from './rules'
+import {
+	disambiguateRuleReference,
+	findParentDependencies,
+	nameLeaf
+} from './ruleUtils'
+import { parseUnit } from './units'
 
-export default (rules, rule, parsedRules) => {
-	if (parsedRules[rule.dottedName]) return parsedRules[rule.dottedName]
-
-	parsedRules[rule.dottedName] = 'being parsed'
+export default function parseRule(rules, dottedName, parsedRules) {
+	if (parsedRules[dottedName]) return parsedRules[dottedName]
+	parsedRules[dottedName] = 'being parsed'
 	/*
 		The parseRule function will traverse the tree of the `rule` and produce an
 		AST, an object containing other objects containing other objects... Some of
@@ -25,7 +30,34 @@ export default (rules, rule, parsedRules) => {
 		functions are attached to the objects of the AST. They will be evaluated
 		during the evaluation phase, called "analyse".
 	*/
+	let rule = rules[dottedName] || {}
 
+	const name = nameLeaf(dottedName)
+	let unit = rule.unité && parseUnit(rule.unité)
+	let defaultUnit =
+		rule['unité par défaut'] && parseUnit(rule['unité par défaut'])
+
+	if (defaultUnit && unit) {
+		warning(
+			dottedName,
+			'Le paramètre `unité` est plus contraignant que `unité par défaut`.',
+			'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
+		)
+	}
+
+	rule = {
+		...rule,
+		dottedName,
+		name,
+		type: rule.type,
+		title: capitalise0(rule['titre'] || name),
+		defaultValue: rule['par défaut'],
+		examples: rule['exemples'],
+		icons: rule['icônes'],
+		summary: rule['résumé'],
+		unit,
+		defaultUnit
+	}
 	let parentDependencies = findParentDependencies(rules, rule)
 
 	let root = { ...rule, parentDependencies }
@@ -36,8 +68,7 @@ export default (rules, rule, parsedRules) => {
 		// condition d'applicabilité de la règle
 		parentDependencies: parents =>
 			parents.map(parent => {
-				let node = parse(rules, rule, parsedRules)(parent.dottedName)
-
+				let node = parse(rules, rule, parsedRules)(parent)
 				let jsx = (nodeValue, explanation) => (
 					<ShowValuesConsumer>
 						{showValues =>
@@ -72,7 +103,7 @@ export default (rules, rule, parsedRules) => {
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
 		'rend non applicable': nonApplicableRules =>
 			coerceArray(nonApplicableRules).map(referenceName => {
-				return disambiguateRuleReference(rules, rule, referenceName)
+				return disambiguateRuleReference(rules, rule.dottedName, referenceName)
 			}),
 		remplace: evolveReplacement(rules, rule, parsedRules),
 		formule: value => {
@@ -111,14 +142,6 @@ export default (rules, rule, parsedRules) => {
 		},
 		contrôles: map((control: any) => {
 			let testExpression = parse(rules, rule, parsedRules)(control.si)
-			if (
-				!testExpression.explanation &&
-				!(testExpression.category === 'reference')
-			)
-				throw new Error(
-					'Ce contrôle ne semble pas être compris :' + control['si']
-				)
-
 			return {
 				dottedName: rule.dottedName,
 				level: control['niveau'],
@@ -130,10 +153,8 @@ export default (rules, rule, parsedRules) => {
 		})
 	})(root)
 
+	// On sauvegarde la règle dans les parsedRules
 	parsedRules[rule.dottedName] = {
-		// Pas de propriété explanation et jsx ici car on est parti du (mauvais)
-		// principe que 'non applicable si' et 'formule' sont particuliers, alors
-		// qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRoot,
 		evaluate,
 		parsed: true,
@@ -241,11 +262,17 @@ let evolveReplacement = (rules, rule, parsedRules) => replacements =>
 			.map(
 				names =>
 					names &&
-					names.map(name => disambiguateRuleReference(rules, rule, name))
+					names.map(name =>
+						disambiguateRuleReference(rules, rule.dottedName, name)
+					)
 			)
 
 		return {
-			referenceName: disambiguateRuleReference(rules, rule, referenceName),
+			referenceName: disambiguateRuleReference(
+				rules,
+				rule.dottedName,
+				referenceName
+			),
 			replacementNode,
 			whiteListedNames,
 			blackListedNames

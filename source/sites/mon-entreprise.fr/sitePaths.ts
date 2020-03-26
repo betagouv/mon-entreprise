@@ -1,4 +1,4 @@
-import { encodeRuleName } from 'Engine/rules'
+import { encodeRuleName } from 'Engine/ruleUtils'
 import { map, reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import { DottedName } from 'Types/rule'

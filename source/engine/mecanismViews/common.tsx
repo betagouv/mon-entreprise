@@ -6,11 +6,11 @@ import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import { DottedName, Rule } from 'Types/rule'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
-import { encodeRuleName, findRuleByDottedName } from '../rules'
+import { encodeRuleName } from '../ruleUtils'
 import mecanismColors from './colors'
 
 type NodeValuePointerProps = {
@@ -48,7 +48,14 @@ type NodeProps = {
 	children: React.ReactNode
 }
 
-export function Node({ classes, name, value, children, inline, unit }: NodeProps) {
+export function Node({
+	classes,
+	name,
+	value,
+	children,
+	inline,
+	unit
+}: NodeProps) {
 	let termDefinition = contains('mecanism', classes) && name
 
 	return (
@@ -127,8 +134,8 @@ export function Leaf({
 	unit
 }: LeafProps) {
 	const sitePaths = useContext(SitePathsContext)
-	const flatRules = useSelector(flatRulesSelector)
-	let rule = findRuleByDottedName(flatRules, dottedName)
+	const rules = useSelector(parsedRulesSelector)
+	let rule = rules[dottedName]
 	const title = rule.title || capitalise0(name)
 	return (
 		<span className={classNames(classes, 'leaf')}>

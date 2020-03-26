@@ -1,13 +1,13 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { decodeRuleName, findRuleByDottedName } from 'Engine/rules.js'
+import { decodeRuleName } from 'Engine/ruleUtils.js'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import {
-	flatRulesSelector,
 	noUserInputSelector,
+	parsedRulesSelector,
 	situationBranchNameSelector
 } from 'Selectors/analyseSelectors'
 import { DottedName } from 'Types/rule'
@@ -16,7 +16,7 @@ import './RulePage.css'
 import SearchButton from './SearchButton'
 
 export default function RulePage({ match }) {
-	const flatRules = useSelector(flatRulesSelector)
+	const parsedRules = useSelector(parsedRulesSelector)
 	const brancheName = useSelector(situationBranchNameSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
 	let name = match?.params?.name,
@@ -36,8 +36,7 @@ export default function RulePage({ match }) {
 		)
 	}
 
-	if (!findRuleByDottedName(flatRules, decodedRuleName))
-		return <Redirect to="/404" />
+	if (!parsedRules[decodedRuleName]) return <Redirect to="/404" />
 
 	return renderRule(decodedRuleName as DottedName)
 }

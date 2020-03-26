@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import Overlay from './Overlay'
 import SearchBar from './SearchBar'
 
@@ -11,7 +11,7 @@ type SearchButtonProps = {
 }
 
 export default function SearchButton({ invisibleButton }: SearchButtonProps) {
-	const flatRules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const [visible, setVisible] = useState(false)
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -34,7 +34,7 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			<h1>
 				<Trans>Chercher dans la documentation</Trans>
 			</h1>
-			<SearchBar showDefaultList={false} finally={close} rules={flatRules} />
+			<SearchBar showDefaultList={false} finally={close} rules={rules} />
 		</Overlay>
 	) : invisibleButton ? null : (
 		<button

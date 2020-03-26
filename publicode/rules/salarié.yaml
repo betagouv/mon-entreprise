@@ -1230,7 +1230,6 @@ contrat salarié . rémunération . primes . activité:
 contrat salarié . rémunération . primes . activité . base:
   titre: primes d'activité
   unité: €/mois
-
   question: Quel est le montant des primes liées à l'activité du salarié ?
   par défaut: 0
 
@@ -3136,6 +3135,7 @@ contrat salarié . taxe sur les salaires . barème:
 
 contrat salarié . profession spécifique:
   question: Le salarié exerce t-il l'une des professions suivantes ?
+  par défaut: non
   formule:
     une possibilité:
       possibilités:

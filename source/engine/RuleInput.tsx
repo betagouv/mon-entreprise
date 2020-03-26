@@ -6,12 +6,10 @@ import SendButton from 'Components/conversation/SendButton'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
-import { is, prop, unless } from 'ramda'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName, Rule } from 'Types/rule'
 import DateInput from '../components/conversation/DateInput'
-import { findRuleByDottedName, queryRule } from './rules'
 
 export const binaryOptionChoices = [
 	{ value: 'non', label: 'Non' },
@@ -20,7 +18,7 @@ export const binaryOptionChoices = [
 
 type Value = string | number | object | boolean
 type Props = {
-	rules: Array<Rule>
+	rules: { [name in DottedName]: Rule }
 	dottedName: DottedName
 	onChange: (value: Value) => void
 	useSwitch?: boolean
@@ -46,7 +44,7 @@ export default function RuleInput({
 	className,
 	onSubmit
 }: Props) {
-	let rule = findRuleByDottedName(rules, dottedName)
+	let rule = rules[dottedName]
 	let unit = rule.unit || rule.defaultUnit
 	let language = useTranslation().i18n.language
 
@@ -63,7 +61,6 @@ export default function RuleInput({
 		defaultValue: rule.defaultValue,
 		suggestions: rule.suggestions
 	}
-
 	if (getVariant(rule)) {
 		return (
 			<Question
@@ -125,16 +122,16 @@ export default function RuleInput({
 	return <Input {...commonProps} unit={unit} />
 }
 
-let getVariant = rule => queryRule(rule)('formule . une possibilité')
+let getVariant = rule => rule?.formule?.explanation['une possibilité']
 
 export let buildVariantTree = (allRules, path) => {
 	let rec = path => {
-		let node = findRuleByDottedName(allRules, path)
+		let node = allRules[path]
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
 		let variant = getVariant(node),
-			variants = variant && unless(is(Array), prop('possibilités'))(variant),
+			variants = variant && node.formule.explanation['possibilités'],
 			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
-			canGiveUp = variant && !variant['choix obligatoire']
+			canGiveUp = variant && !node.formule.explanation['choix obligatoire']
 
 		return Object.assign(
 			node,

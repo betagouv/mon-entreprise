@@ -1,12 +1,9 @@
 salaire brut:
   formule: 2000€
-
 salaire net:
   formule: 0.5 * salaire brut
-
 SMIC brut:
   formule: 1000€
-
 SMIC net:
   formule:
     recalcul:

@@ -1,285 +1,267 @@
 import { expect } from 'chai'
-import {
-	collectMissingVariables,
-	getNextSteps
-} from '../source/engine/generateQuestions'
-import { enrichRule, rules as realRules } from '../source/engine/rules'
-import { analyse, parseAll } from '../source/engine/traverse'
+import Engine from 'Engine'
+import rules from 'Publicode/rules'
+import { getNextSteps } from '../source/engine/generateQuestions'
 
-let stateSelector = () => undefined
-
-describe('collectMissingVariables', function() {
+describe('Missing variables', function() {
 	it('should identify missing variables', function() {
-		let rawRules = [
-				{ nom: 'sum' },
-				{
-					nom: 'sum . startHere',
-					formule: 2,
-					'non applicable si': 'sum . evt . ko'
-				},
-				{
-					nom: 'sum . evt',
-					formule: { 'une possibilité': ['ko'] },
-					titre: 'Truc',
-					question: '?'
-				},
-				{ nom: 'sum . evt . ko' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			sum: {},
+			'sum . startHere': {
+				formule: 2,
+				'non applicable si': 'sum . evt . ko'
+			},
+			'sum . evt': {
+				formule: { 'une possibilité': ['ko'] },
+				titre: 'Truc',
+				question: '?'
+			},
+			'sum . evt . ko': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.include('sum . evt . ko')
 	})
 
 	it('should identify missing variables mentioned in expressions', function() {
-		let rawRules = [
-				{ nom: 'sum' },
-				{ nom: 'sum . evt' },
-				{
-					nom: 'sum . startHere',
-					formule: 2,
-					'non applicable si': 'evt . nyet > evt . nope'
-				},
-				{ nom: 'sum . evt . nope' },
-				{ nom: 'sum . evt . nyet' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			sum: {},
+			'sum . evt': {},
+			'sum . startHere': {
+				formule: 2,
+				'non applicable si': 'evt . nyet > evt . nope'
+			},
+			'sum . evt . nope': {},
+			'sum . evt . nyet': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.include('sum . evt . nyet')
 		expect(result).to.include('sum . evt . nope')
 	})
 
 	it('should ignore missing variables in the formula if not applicable', function() {
-		let rawRules = [
-				{ nom: 'sum' },
-				{
-					nom: 'sum . startHere',
-					formule: 'trois',
-					'non applicable si': '3 > 2'
-				},
-				{ nom: 'sum . trois' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			sum: {},
+			'sum . startHere': {
+				formule: 'trois',
+				'non applicable si': '3 > 2'
+			},
+			'sum . trois': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.be.empty
 	})
 
 	it('should not report missing variables when "one of these" short-circuits', function() {
-		let rawRules = [
-				{ nom: 'sum' },
-				{
-					nom: 'sum . startHere',
-					formule: 'trois',
-					'non applicable si': {
-						'une de ces conditions': ['3 > 2', 'trois']
-					}
-				},
-				{ nom: 'sum . trois' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			sum: {},
+			'sum . startHere': {
+				formule: 'trois',
+				'non applicable si': {
+					'une de ces conditions': ['3 > 2', 'trois']
+				}
+			},
+			'sum . trois': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.be.empty
 	})
 
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . startHere', formule: 'trois' },
-				{
-					nom: 'top . trois',
-					formule: { 'une possibilité': ['ko'] }
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			top: {},
+			'top . startHere': { formule: 'trois' },
+			'top . trois': {
+				formule: { 'une possibilité': ['ko'] }
+			}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.include('top . trois')
 	})
 
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . startHere', formule: 'trois' },
-				{
-					nom: 'top . trois',
-					formule: { 'une possibilité': ['ko'] },
-					'non applicable si': 1
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			top: {},
+			'top . startHere': { formule: 'trois' },
+			'top . trois': {
+				formule: { 'une possibilité': ['ko'] },
+				'non applicable si': 1
+			}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.be.empty
 		null
 	})
 
 	it('should not report missing variables when "une possibilité" was answered', function() {
-		let mySelector = name => ({ 'top . trois': 'ko' }[name])
-
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . startHere', formule: 'trois' },
-				{
-					nom: 'top . trois',
-					formule: { 'une possibilité': ['ko'] }
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(mySelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			top: {},
+			'top . startHere': { formule: 'trois' },
+			'top . trois': {
+				formule: { 'une possibilité': ['ko'] }
+			}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules })
+				.setSituation({ 'top . trois': 'ko' })
+				.evaluate('top . startHere').missingVariables
+		)
 
 		expect(result).to.be.empty
 	})
 
-	// TODO : enlever ce test, depuis que l'on évalue plus les branches qui ne sont pas encore applicable
+	// TODO : réparer ce test
 	it.skip('should report missing variables in variations', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{
-					nom: 'top . startHere',
-					formule: { somme: ['variations'] }
-				},
-				{
-					nom: 'top . variations',
-					formule: {
-						barème: {
-							assiette: 2008,
-							variations: [
-								{
-									si: 'dix',
-									alors: {
-										multiplicateur: 'deux',
-										tranches: [
-											{ plafond: 1, taux: 0.1 },
-											{ plafond: 2, taux: 'trois' },
-											{ taux: 10 }
-										]
-									}
-								},
-								{
-									si: '3 > 4',
-									alors: {
-										multiplicateur: 'quatre',
-										tranches: [
-											{ plafond: 1, taux: 0.1 },
-											{ plafond: 2, taux: 1.8 },
-											{ 'au-dessus de': 2, taux: 10 }
-										]
-									}
+		const rawRules = {
+			top: {},
+			'top . startHere': {
+				formule: { somme: ['variations'] }
+			},
+			'top . variations': {
+				formule: {
+					barème: {
+						assiette: 2008,
+						variations: [
+							{
+								si: 'dix',
+								alors: {
+									multiplicateur: 'deux',
+									tranches: [
+										{ plafond: 1, taux: 0.1 },
+										{ plafond: 2, taux: 'trois' },
+										{ taux: 10 }
+									]
 								}
-							]
-						}
+							},
+							{
+								si: '3 > 4',
+								alors: {
+									multiplicateur: 'quatre',
+									tranches: [
+										{ plafond: 1, taux: 0.1 },
+										{ plafond: 2, taux: 1.8 },
+										{ 'au-dessus de': 2, taux: 10 }
+									]
+								}
+							}
+						]
 					}
-				},
-				{ nom: 'top . dix' },
-				{ nom: 'top . deux' },
-				{ nom: 'top . trois' },
-				{ nom: 'top . quatre' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'startHere')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+				}
+			},
+			'top . dix': {},
+			'top . deux': {},
+			'top . trois': {},
+			'top . quatre': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
+		)
 
 		expect(result).to.include('top . dix')
 		expect(result).to.include('top . deux')
+		expect(result).to.include('top . trois')
 		expect(result).not.to.include('top . quatre')
-		// TODO
-		// expect(result).to.include('top . trois')
 	})
 })
 
 describe('nextSteps', function() {
 	it('should generate questions for simple situations', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . sum', formule: 'deux' },
-				{
-					nom: 'top . deux',
-					formule: 2,
-					'non applicable si': 'top . sum . evt'
-				},
-				{
-					nom: 'top . sum . evt',
-					titre: 'Truc',
-					question: '?'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'sum')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			top: {},
+			'top . sum': { formule: 'deux' },
+			'top . deux': {
+				formule: 2,
+				'non applicable si': 'top . sum . evt'
+			},
+			'top . sum . evt': {
+				titre: 'Truc',
+				question: '?'
+			}
+		}
+
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
+		)
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
 	})
 	it('should generate questions', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . sum', formule: 'deux' },
-				{
-					nom: 'top . deux',
-					formule: 'sum . evt'
-				},
-				{
-					nom: 'top . sum . evt',
-					question: '?'
-				}
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'sum')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const rawRules = {
+			top: {},
+			'top . sum': { formule: 'deux' },
+			'top . deux': {
+				formule: 'sum . evt'
+			},
+			'top . sum . evt': {
+				question: '?'
+			}
+		}
+
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
+		)
 
 		expect(result).to.have.lengthOf(1)
 		expect(result[0]).to.equal('top . sum . evt')
 	})
-	// todo : réflechir à l'applicabilité de ce test
-	it.skip('should generate questions with more intricate situation', function() {
-		let rawRules = [
-				{ nom: 'top' },
-				{ nom: 'top . sum', formule: { somme: [2, 'deux'] } },
-				{
-					nom: 'top . deux',
-					formule: 2,
-					'non applicable si': "top . sum . evt = 'ko'"
-				},
-				{
-					nom: 'top . sum . evt',
-					formule: { 'une possibilité': ['ko'] },
-					titre: 'Truc',
-					question: '?'
-				},
-				{ nom: 'top . sum . evt . ko' }
-			],
-			rules = parseAll(rawRules.map(enrichRule)),
-			analysis = analyse(rules, 'sum')(stateSelector),
-			result = collectMissingVariables(analysis.targets)
 
-		expect(result).to.have.lengthOf(2)
-		expect(result).to.eql(['top . sum', 'top . sum . evt'])
+	it('should generate questions with more intricate situation', function() {
+		const rawRules = {
+			top: {},
+			'top . sum': { formule: { somme: [2, 'deux'] } },
+			'top . deux': {
+				formule: 2,
+				'non applicable si': "top . sum . evt = 'ko'"
+			},
+			'top . sum . evt': {
+				formule: { 'une possibilité': ['ko'] },
+				titre: 'Truc',
+				question: '?'
+			},
+			'top . sum . evt . ko': {}
+		}
+		const result = Object.keys(
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
+		)
+
+		expect(result).to.eql(['top . sum . evt'])
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function() {
-		let stateSelector = name =>
-			({
-				'contrat salarié': 'oui',
-				'contrat salarié . CDD': 'oui',
-				'contrat salarié . rémunération . brut de base': '2300'
-			}[name])
-
-		let rules = parseAll(realRules.map(enrichRule)),
-			analysis = analyse(
-				rules,
-				'contrat salarié . rémunération . net'
-			)(stateSelector),
-			result = collectMissingVariables(analysis.targets)
+		const result = Object.keys(
+			new Engine({ rules, useDefaultValues: false })
+				.setSituation({
+					'contrat salarié': 'oui',
+					'contrat salarié . CDD': 'oui',
+					'contrat salarié . rémunération . brut de base': '2300'
+				})
+				.evaluate('contrat salarié . rémunération . net').missingVariables
+		)
 
 		expect(result).to.include('contrat salarié . CDD . motif')
 	})

@@ -1,4 +1,4 @@
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import { compose, filter, fromPairs, map, max, reduce, sort } from 'ramda'
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'

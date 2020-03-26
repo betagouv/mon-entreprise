@@ -1,6 +1,5 @@
 impôt:
   formule: 1000
-
 exilé fiscal:
   rend non applicable:
     - impôt

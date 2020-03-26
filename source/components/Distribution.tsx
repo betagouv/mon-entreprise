@@ -1,12 +1,11 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import Value from 'Components/Value'
-import { findRuleByDottedName } from 'Engine/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { animated, config, useSpring } from 'react-spring'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import répartitionSelector from 'Selectors/repartitionSelectors'
 import { Rule } from 'Types/rule'
 import { isIE } from '../utils'
@@ -53,12 +52,12 @@ export function DistributionBranch({
 	icon,
 	distribution
 }: DistributionBranchProps) {
-	const rules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
 	const { color } = useContext(ThemeColorsContext)
-	const branche = findRuleByDottedName(rules, dottedName)
+	const branche = rules[dottedName]
 	const montant = brancheInViewport ? value : 0
 	const styles = useSpring({
 		config: ANIMATION_SPRING,

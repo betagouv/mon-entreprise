@@ -3,7 +3,6 @@ import {
 	countBy,
 	descend,
 	flatten,
-	fromPairs,
 	head,
 	identity,
 	keys,
@@ -37,9 +36,6 @@ type Explanation = {
 	dottedName: DottedName
 }
 
-export let collectMissingVariablesByTarget = (targets: Explanation[] = []) =>
-	fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
-
 export let getNextSteps = missingVariablesByTarget => {
 	let byCount = ([, [count]]) => count
 	let byScore = ([, [, score]]) => score
@@ -62,6 +58,3 @@ export let getNextSteps = missingVariablesByTarget => {
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs)
 }
-
-export let collectMissingVariables = targets =>
-	getNextSteps(collectMissingVariablesByTarget(targets))
