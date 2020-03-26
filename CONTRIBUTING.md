@@ -139,4 +139,4 @@ Le code publicodes, relatif aux règles, est dans le dossier `publicodes`. Vous 
 Pour information, un wiki contenant des informations intéressantes sur publicodes et le raisonnement ayant abouti à ce langage sont dispos sur le repository [betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par ailleurs inutilisé.
 
 Pour se familiariser avec les règles, vous pouvez jeter un oeil aux fichiers contenant les règles elles-mêmes (dans le dossier `publicodes/rules`) mais cela peut s'avérer assez abrupt.  
-Essayez plutôt de jeter un oeil [aux tests](https://github.com/betagouv/mon-entreprise/blob/master/test/m%C3%A9canismes/expressions.yaml) dans un premier temps, puis au [mécanismes en place](https://github.com/betagouv/mon-entreprise/blob/master/source/engine/known-mecanisms.yaml).  
+Essayez plutôt de jeter un oeil [aux tests](./test/mécanismes/expressions.yaml) dans un premier temps, puis au [mécanismes en place](./source/engine/mecanisms.yaml).  
