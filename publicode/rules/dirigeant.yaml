@@ -418,7 +418,11 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
           plafond: 100%
 
 dirigeant . indépendant . revenu net de cotisations:
-  formule: revenu professionnel - cotisations et contributions . CSG et CRDS .non déductible
+  formule:
+    somme:
+      - revenu professionnel
+      - (- cotisations et contributions . CSG et CRDS .non déductible)
+      - cotisations et contributions . cotisations . contrat madelin . montant - cotisations et contributions . cotisations . contrat madelin . déduction fiscale
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -452,7 +456,7 @@ dirigeant . indépendant . assiette des cotisations:
       valeur:
         somme:
           - revenu professionnel
-          - cotisations et contributions . cotisations . contrat madelin
+          - cotisations et contributions . cotisations . contrat madelin . déduction fiscale
 
 dirigeant . indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
@@ -651,24 +655,54 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
       assiette: assiette des cotisations
       abattement: déduction tabac
 
-dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin:
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . montant: # [XXX] - Ajouter la date de 1994
   titre: Souscription à un contrat Madelin
   unité par défaut: €/an
-  question: Quel est le montant annuel que vous versez à un contrat Madelin ?
+  question: Quel est le montant que vous versez à un contrat Madelin ?
   description: |
     Si vous cotisez au titre d'un contrat d'assurance de type loi Madelin,
     vous pouvez déduire ces cotisations des bénéfices imposables que vous
-    déclarez pour votre activité non salariée. Attention, les contrats qui
-    peuvent en bénéficier doivent contenir: 
-      - des versements réguliers quant aux montants et à la périodicité ;
-      - un versement à terme sous forme de rente (pas de versement en capital) ;
-      - le non rachat avant la retraite (sauf rachat social) ;
-      - le non versement d'un capital en cas de décès mais versement sous forme de rente viagère.
+    déclarez pour votre activité non salariée.
+
+    Si vous avez plusieurs contrats Madelin (retraite, mutuelle santé, etc.),
+    vous devez saisir la somme des montants cotisés sur chaque contrat.
   références:
-    Fiche impôts:  https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
+    Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Bofip (contrats d'assurance de groupe): https://bofip.impots.gouv.fr/bofip/4639-PGP.html
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
   par défaut: 0
+
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . plafond:
+  unité par défaut: €/an
+  formule:
+    le maximum de:
+      - somme:
+          - produit:
+              assiette:
+                le maximum de:
+                  - rémunération totale
+                  - 8 * 38616 # [XXX] - A remplacer par une variable
+              taux: 10%
+          - produit:
+              assiette:
+                le minimum de:
+                  - le maximum de:
+                      - rémunération totale - 38616 # [XXX]
+                      - 0
+                  - 7 * 38616 # [XXX]
+              taux: 15%
+      - produit:
+          assiette: rémunération totale
+          taux: 10%
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/1124-PGP.html
+    LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
+
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . déduction fiscale:
+  formule:
+    le minimum de:
+      - montant
+      - plafond
 
 dirigeant . rattachement CIPAV:
   description: |
