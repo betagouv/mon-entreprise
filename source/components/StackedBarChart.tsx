@@ -87,10 +87,8 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	data = data.filter(datum => datum.nodeValue != undefined)
-	const percentages = roundedPercentages(
-		data.map(d => d.nodeValue) as Array<number>
-	)
+	data = data.filter(d => d.nodeValue != undefined)
+	const percentages = roundedPercentages(data.map(d => d.nodeValue as number))
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]
@@ -100,15 +98,19 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 	return (
 		<animated.div ref={intersectionRef} style={styles}>
 			<BarStack>
-				{dataWithPercentage.map(({ dottedName, color, percentage }) => (
-					<BarItem
-						style={{
-							width: `${percentage}%`,
-							backgroundColor: color || 'green'
-						}}
-						key={dottedName}
-					/>
-				))}
+				{dataWithPercentage
+					// <BarItem /> has a border so we don't want to display empty bars
+					// (even with width 0).
+					.filter(({ percentage }) => percentage !== 0)
+					.map(({ dottedName, color, percentage }) => (
+						<BarItem
+							style={{
+								width: `${percentage}%`,
+								backgroundColor: color || 'green'
+							}}
+							key={dottedName}
+						/>
+					))}
 			</BarStack>
 			<BarStackLegend>
 				{dataWithPercentage.map(({ percentage, color, ...rule }) => (

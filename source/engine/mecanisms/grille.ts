@@ -17,7 +17,7 @@ import {
 
 export default function parse(parse, k, v) {
 	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
+		//mécanisme de composantes. Voir mécanismes.md/composantes
 		return decompose(parse, k, v)
 	}
 	if (v.variations) {

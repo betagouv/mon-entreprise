@@ -1,3 +1,4 @@
+import PublicodeHighlighter from 'Components/ui/PublicodeHighlighter'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
@@ -31,6 +32,15 @@ type MarkdownProps = ReactMarkdownProps & {
 	className?: string
 }
 
+const CodeBlock = ({ value, language }) =>
+	language === 'yaml' ? (
+		<PublicodeHighlighter source={value} />
+	) : (
+		<pre>
+			<code>{value}</code>
+		</pre>
+	)
+
 export const Markdown = ({
 	source,
 	className = '',
@@ -40,7 +50,12 @@ export const Markdown = ({
 	<ReactMarkdown
 		source={source}
 		className={`markdown ${className}`}
-		renderers={{ link: LinkRenderer, text: TextRenderer, ...renderers }}
+		renderers={{
+			link: LinkRenderer,
+			text: TextRenderer,
+			code: CodeBlock,
+			...renderers
+		}}
 		{...otherProps}
 	/>
 )

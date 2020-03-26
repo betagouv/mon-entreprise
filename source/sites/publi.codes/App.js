@@ -8,6 +8,7 @@ import { getSessionStorage } from '../../utils'
 import redirects from '../mon-entreprise.fr/redirects'
 import Landing from './Landing'
 import Studio from './LazyStudio'
+import Mécanismes from './Mécanismes'
 
 function Router({ language }) {
 	useEffect(() => {
@@ -38,7 +39,8 @@ let RouterSwitch = () => {
 		<>
 			<Switch>
 				<Route exact path="/" component={Landing} />
-				<Route exact path="/Studio" component={Studio} />
+				<Route exact path="/studio" component={Studio} />
+				<Route exact path="/mécanismes" component={Mécanismes} />
 				<Route component={App} />
 			</Switch>
 		</>

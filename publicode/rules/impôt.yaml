@@ -357,7 +357,7 @@ impôt . taux personnalisé:
 
 revenus net de cotisations:
   résumé: Avant impôt
-  unité: €/an
+  unité par défaut: €/an
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.

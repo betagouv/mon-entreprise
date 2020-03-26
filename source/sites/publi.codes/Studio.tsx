@@ -1,5 +1,3 @@
-import baremeIr from '!!raw-loader!./exemples/bareme-ir.yaml'
-import douche from '!!raw-loader!./exemples/douche.yaml'
 import { ControlledEditor } from '@monaco-editor/react'
 import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
@@ -9,11 +7,6 @@ import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
 import { Header } from './Header'
-
-let examples = {
-	'bareme-ir': baremeIr,
-	douche
-}
 
 let initialInput = `a:
   formule: 10€
@@ -30,15 +23,8 @@ d:
 
 export default function Studio() {
 	const search = new URLSearchParams(useLocation().search ?? '')
-	const currentExample = search.get('exemple')
 	const code = search.get('code')
-	const [editorValue, setEditorValue] = useState(
-		code
-			? code
-			: currentExample && Object.keys(examples).includes(currentExample)
-			? examples[currentExample]
-			: initialInput
-	)
+	const [editorValue, setEditorValue] = useState(code ? code : initialInput)
 	const [targets, setTargets] = useState<string[]>([])
 	const [rules, setRules] = useState(editorValue)
 	const handleShare = useCallback(() => {
@@ -95,7 +81,7 @@ export default function Studio() {
 }
 
 export const Results = ({ targets, onClickUpdate, onClickShare }) => {
-	const [rule, setCurrentTarget] = useState()
+	const [rule, setCurrentTarget] = useState<string>()
 	const currentTarget = rule ?? last(targets)
 	const error = Engine.useError()
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker

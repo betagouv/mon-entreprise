@@ -31,10 +31,11 @@ button {
 
 blockquote {
 	background: var(--lighterColor);
-	border-radius: 0.6em;
-	padding: 1.2em 1em 0.4em;
-	margin: 0.6em;
-	color: #333;
+	border-radius: 0.3rem;
+	padding: 1rem;
+	padding-bottom: 0.6rem;
+	margin: 1rem 0;
+	color: var(--darkerColor);
 }
 
 .ui__.answer-group {

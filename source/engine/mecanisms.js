@@ -2,33 +2,11 @@ import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import { inferUnit, isPercentUnit } from 'Engine/units'
-import {
-	any,
-	equals,
-	evolve,
-	is,
-	map,
-	max,
-	mergeWith,
-	min,
-	path,
-	pluck,
-	reduce,
-	toPairs
-} from 'ramda'
+import { any, equals, evolve, is, map, max, mergeWith, min, path, pluck, reduce, toPairs } from 'ramda'
 import React from 'react'
 import 'react-virtualized/styles.css'
 import { typeWarning } from './error'
-import {
-	collectNodeMissing,
-	defaultNode,
-	evaluateArray,
-	evaluateNode,
-	evaluateObject,
-	makeJsx,
-	mergeAllMissing,
-	parseObject
-} from './evaluation'
+import { collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, parseObject } from './evaluation'
 import Allègement from './mecanismViews/Allègement'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'
@@ -266,6 +244,7 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	return {
 		...v,
 		evaluate,
+		unit: v.unité && parseUnit(v.unité),
 		explanation: evolve({ avec: map(recurse) }, v),
 		jsx: InversionNumérique,
 		category: 'mecanism',
@@ -462,7 +441,7 @@ export let mecanismReduction = (recurse, k, v) => {
 
 export let mecanismProduct = (recurse, k, v) => {
 	if (v.composantes) {
-		//mécanisme de composantes. Voir known-mecanisms.md/composantes
+		//mécanisme de composantes. Voir mécanismes.md/composantes
 		return decompose(recurse, k, v)
 	}
 	if (v.variations) {
