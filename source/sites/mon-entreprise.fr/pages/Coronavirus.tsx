@@ -9,7 +9,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/rules'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,12 +19,30 @@ import styled from 'styled-components'
 import { EvaluatedRule } from 'Types/rule'
 import Animate from 'Ui/animate'
 
+declare global {
+	interface Window {
+		STONLY_WID: string
+	}
+}
+
 export default function ChômagePartiel() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
 	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
-
+	useEffect(() => {
+		if (inIframe) {
+			return
+		}
+		const script = document.createElement('script')
+		window.STONLY_WID = '0128ae02-6780-11ea-ac13-0a4250848ba4'
+		script.src = 'https://stonly.com/js/widget/stonly-widget.js'
+		script.async = true
+		document.body.appendChild(script)
+		return () => {
+			document.body.removeChild(script)
+		}
+	}, [])
 	const { t } = useTranslation()
 
 	return (
@@ -90,7 +108,6 @@ function ExplanationSection() {
 	} = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 	const getRule = getRuleFromAnalysis(analysis)
-	const [showTable, setShowTable] = useState(false)
 
 	const net = getRule('contrat salarié . rémunération . net')
 	const netHabituel = getRule('chômage partiel . revenu net habituel')
@@ -108,57 +125,50 @@ function ExplanationSection() {
 				className="ui__ light card"
 				css={`
 					margin: 1rem 0;
-					padding: 1rem 0;
+					padding-bottom: 1rem;
 				`}
 			>
-				<p>
-					Le chômage partiel permet d'obenir un revenu net de{' '}
-					<strong>
-						{formatValue({
-							value: net.nodeValue,
-							language,
-							unit: '€',
-							maximumFractionDigits: 0
-						})}
-					</strong>
-					.
-					<br />
-					Soit{' '}
-					<strong>
-						{formatValue({
-							value: (net.nodeValue / netHabituel.nodeValue) * 100,
-							unit: '%',
-							maximumFractionDigits: 0
-						})}
-					</strong>{' '}
-					du revenu net habituel.{' '}
-					<button
-						className="ui__ link-button"
-						onClick={() => setShowTable(!showTable)}
-					>
-						Détails ▾
-					</button>
-				</p>
-				{showTable && (
-					<Animate.fromTop>
-						<ComparaisonTable
-							rows={[
-								['', t('Habituellement'), t('Avec chômage partiel')],
-								[net, netHabituel, net],
-								[totalEntreprise, totalEntrepriseHabituel, totalEntreprise]
-							]}
-						/>
-					</Animate.fromTop>
-				)}
 				<div
-					className="optionTitle"
 					css={`
-						padding: 1rem 0;
-						border-top: 1px solid rgba(0, 0, 0, 0.1);
+						margin: 0 -1rem;
 					`}
 				>
-					<Trans>Prise en charge du revenu net avec chômage partiel</Trans>
+					<ComparaisonTable
+						rows={[
+							['', t('Habituellement'), t('Avec chômage partiel')],
+							[
+								net,
+								netHabituel,
+								{
+									...net,
+									additionalText: (
+										<>
+											Soit{' '}
+											<strong>
+												{formatValue({
+													value: (net.nodeValue / netHabituel.nodeValue) * 100,
+													unit: '%',
+													maximumFractionDigits: 0
+												})}
+											</strong>{' '}
+											du revenu net
+										</>
+									)
+								}
+							],
+							[totalEntreprise, totalEntrepriseHabituel, totalEntreprise]
+						]}
+					/>
 				</div>
+
+				<p
+					css={`
+						padding-top: 8px;
+					`}
+					className="optionTitle"
+				>
+					<Trans>Prise en charge du revenu net avec chômage partiel</Trans>
+				</p>
 				<StackedBarChart
 					data={[
 						{
@@ -231,6 +241,16 @@ function ComparaisonTable({ rows: [head, ...body] }) {
 							<td key={j}>
 								{' '}
 								<ValueWithLink {...cell} />
+								{cell.additionalText && (
+									<p
+										className="ui__ notice"
+										css={`
+											text-align: right;
+										`}
+									>
+										{cell.additionalText}
+									</p>
+								)}
 							</td>
 						))}
 					</tr>
@@ -274,6 +294,9 @@ const ResultTable = styled.table`
 		@media (max-width: 660px) {
 			display: table;
 		}
+		td {
+			text-align: center;
+		}
 	}
 
 	&:not(.mobile-version) {
@@ -286,12 +309,19 @@ const ResultTable = styled.table`
 			font-size: 1em;
 			opacity: 0.8;
 		}
+		td {
+			vertical-align: top;
+			text-align: right;
+		}
 	}
 
 	td {
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
 		padding: 8px 16px 0;
+	}
 
+	td:first-child {
+		text-align: left;
 		p {
 			font-style: italic;
 		}
@@ -306,16 +336,22 @@ const ResultTable = styled.table`
 	th:first-child {
 		width: 100%;
 		padding-left: 10px;
+		text-align: left;
 	}
 
-	td:nth-child(n + 2) {
-		text-align: right;
-		font-size: 1.3em;
+	td:nth-child(3) {
+		font-weight: bold;
+		p {
+			font-weight: initial;
+		}
 	}
 
 	td:last-child,
 	th:last-child {
 		background: var(--lighterColor);
+	}
+	tr:last-child {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
 `
 
