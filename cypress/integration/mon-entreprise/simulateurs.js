@@ -103,6 +103,17 @@ describe('Simulateurs', function() {
 						cy.contains('Suivant').click()
 						cy.contains('ACRE')
 					})
+					it.only('should not have negative value', () => {
+						cy.contains('€ / mois').click()
+						cy.get(inputSelector)
+							.first()
+							.type('{selectall}5000')
+						cy.wait(600)
+						cy.get(inputSelector).each($input => {
+							const val = +$input.val().replace(/[\s,.]/g, '')
+							expect(val).not.to.be.below(4000)
+						})
+					})
 				}
 			})
 	)
