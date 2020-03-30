@@ -2,7 +2,6 @@ import { setSimulationConfig } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import chomagePartielConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
-import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -125,7 +124,6 @@ function ExplanationSection() {
 				className="ui__ light card"
 				css={`
 					margin: 1rem 0;
-					padding-bottom: 1rem;
 				`}
 			>
 				<div
@@ -156,35 +154,32 @@ function ExplanationSection() {
 									)
 								}
 							],
-							[totalEntreprise, totalEntrepriseHabituel, totalEntreprise]
+							[
+								totalEntreprise,
+								totalEntrepriseHabituel,
+								{
+									...totalEntreprise,
+									additionalText: (
+										<>
+											Soit{' '}
+											<strong>
+												{formatValue({
+													value:
+														(totalEntreprise.nodeValue /
+															totalEntrepriseHabituel.nodeValue) *
+														100,
+													unit: '%',
+													maximumFractionDigits: 0
+												})}
+											</strong>{' '}
+											du coût habituel
+										</>
+									)
+								}
+							]
 						]}
 					/>
 				</div>
-
-				<p
-					css={`
-						padding-top: 8px;
-					`}
-					className="optionTitle"
-				>
-					<Trans>Prise en charge du revenu net avec chômage partiel</Trans>
-				</p>
-				<StackedBarChart
-					data={[
-						{
-							...getRule(
-								'contrat salarié . activité partielle . indemnisation entreprise'
-							),
-							title: t('État'),
-							color: palettes[0][0]
-						},
-						{
-							...totalEntreprise,
-							title: t('Employeur'),
-							color: palettes[1][0]
-						}
-					]}
-				/>
 			</div>
 		</Animate.fromTop>
 	)
@@ -349,9 +344,6 @@ const ResultTable = styled.table`
 	td:last-child,
 	th:last-child {
 		background: var(--lighterColor);
-	}
-	tr:last-child {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
 `
 

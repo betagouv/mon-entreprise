@@ -1520,7 +1520,9 @@ contrat salarié . SMIC:
   description: |
     Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
 
-    Les heures supplémentaires et les heures complémentaires sont prises en compte sans tenir compte de la majoration.
+    Les heures supplémentaires et les heures complémentaires sont prises en
+    compte sans tenir compte de la majoration.
+  unité par défaut: €/mois
   formule: temps de travail * SMIC horaire
   références:
     Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
@@ -3401,13 +3403,12 @@ contrat salarié . lodeom . réduction outre-mer:
           - retraite complémentaire .employeur
           - contribution d'équilibre général .employeur
           - chômage .employeur
-
       plafond:
         variations:
           - si:
               toutes ces conditions:
                 - éligible barème innovation et croissance
-                - cotisations . assiette > borne inférieure
+                - cotisations . assiette > borne inférieure * SMIC
                 - cotisations . assiette < 2.5 * SMIC
             alors: 1.7 * paramètre T * SMIC
           - si:
@@ -3428,18 +3429,20 @@ contrat salarié . lodeom . écart au plafond de l'assiette:
 
 contrat salarié . lodeom . éligible barème compétitivité:
   titre: Eligibilité au barème de compétitivité
-  applicable si: zone un
+  applicable si:
+    toutes ces conditions:
+      - zone un
+      - une de ces conditions:
+          - entreprise . effectif < 11
+          - secteurs d'activité
   rend non applicable:
     - réduction générale
-  formule:
-    variations:
-      - si: entreprise . effectif < 11
-        alors: oui
-      - sinon: secteurs d'activité
+  formule: oui
+
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
 
-contrat salarié . lodeom . éligible barème compétitivité . secteurs d'activité:
+contrat salarié . lodeom . secteurs d'activité:
   question: Votre entreprise appartient-elle à l'un de ces secteurs ?
   description: |
     Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de compétitivité, votre entreprise doit appartenir à l'un des secteurs suivants :
@@ -3489,23 +3492,22 @@ contrat salarié . lodeom . éligible barème innovation et croissance:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-innovation-et-croissa.html
 
 contrat salarié . lodeom . borne inférieure:
-  unité: ''
   formule:
     variations:
       - si: éligible barème compétitivité
-        alors: 1.3
-      - sinon: 1.7
+        alors: 130%
+      - sinon: 170%
 
 contrat salarié . lodeom . borne supérieure:
   unité: ''
   formule:
     variations:
       - si: éligible barème compétitivité
-        alors: 2.2
+        alors: 220%
       - si: éligible barème compétitivité renforcée
-        alors: 2.7
+        alors: 270%
       - si: éligible barème innovation et croissance
-        alors: 3.5
+        alors: 350%
 
 contrat salarié . lodeom . multiplicateur:
   note: pour le barème 1 le dénominateur vaut 0,9
