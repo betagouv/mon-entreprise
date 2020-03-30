@@ -1,24 +1,21 @@
 import { Action } from 'Actions/actions'
 import { Unit } from 'Engine/units'
+import originRules from 'Publicode/rules'
 import { defaultTo, identity, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
-import { DottedName } from 'Types/rule'
+import { DottedName, Rules } from 'Types/rule'
 import i18n, { AvailableLangs } from '../i18n'
 import { areUnitConvertible, convertUnit, parseUnit } from './../engine/units'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
-function rules(state = null, action) {
-	switch (action.type) {
-		case 'SET_RULES':
-			return action.rules
-		default:
-			return state
-	}
+function rules(state: Rules = originRules) {
+	return state
 }
+
 function explainedVariable(
 	state: DottedName | null = null,
 	action: Action

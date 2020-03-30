@@ -55,7 +55,7 @@ const middlewares = [
 	trackSimulatorActions(tracker)
 ]
 
-function InFranceRoute({ basename, language }) {
+function InFranceRoute({ basename, language, rules }) {
 	useEffect(() => {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])
@@ -73,7 +73,8 @@ function InFranceRoute({ basename, language }) {
 			}}
 			initialStore={{
 				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation()
+				previousSimulation: retrievePersistedSimulation(),
+				rules
 			}}
 		>
 			<RouterSwitch />

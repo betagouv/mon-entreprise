@@ -27,6 +27,7 @@ type Cache = {
 	}
 }
 
+export { default as translateRules } from './translateRules'
 export { parseRules }
 export default class Engine {
 	parsedRules: Record<DottedName, Rule>

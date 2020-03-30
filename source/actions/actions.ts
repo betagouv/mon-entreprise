@@ -17,7 +17,7 @@ export type Action =
 	| HideControlAction
 	| LoadPreviousSimulationAction
 	| SetSituationBranchAction
-	| UpdateDefaultUnit
+	| UpdateDefaultUnitAction
 	| SetActiveTargetAction
 
 export type ThunkResult<R> = ThunkAction<
@@ -64,7 +64,7 @@ type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideControlAction = ReturnType<typeof hideControl>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateDefaultUnit = ReturnType<typeof updateUnit>
+type UpdateDefaultUnitAction = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({

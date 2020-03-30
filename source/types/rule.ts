@@ -2,6 +2,9 @@ import { Unit } from 'Engine/units'
 import jsonRules from './dottednames.json'
 export type DottedName = keyof typeof jsonRules
 
+// TODO : différencier Rule et ParsedRule
+export type Rules = { [key in DottedName]: Rule }
+
 export type Rule = {
 	dottedName: DottedName
 	question?: string

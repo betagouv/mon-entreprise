@@ -5,7 +5,6 @@ import {
 	disambiguateRuleReference,
 	splitName
 } from 'Engine/ruleUtils'
-import rules from 'Publicode/rules'
 import {
 	add,
 	difference,
@@ -54,9 +53,7 @@ let configSelector = (state: RootState) => state.simulation?.config || {}
 // hot-reloading on developement). See
 // https://github.com/betagouv/mon-entreprise/issues/912
 // TOTO
-const rulesEn = rules
-let flatRulesSelector = (state: RootState) =>
-	state.rules ?? (state.lang === 'en' ? rulesEn : rules)
+let flatRulesSelector = (state: RootState) => state.rules
 
 // We must here compute parsedRules, flatRules, analyse which contains both
 // targets and cache objects

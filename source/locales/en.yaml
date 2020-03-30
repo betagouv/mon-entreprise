@@ -1,6 +1,7 @@
 '404':
   action: Return to safe place
   message: This page does not exist or no longer exists
+'<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>': '<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>'
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
@@ -60,7 +61,7 @@ Gérant minoritaire: Managing director
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
-'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
+"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
 Indépendant: Independent
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
@@ -77,7 +78,7 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-'Nom de l''entreprise ou SIREN ': Company name or SIREN code
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -142,7 +143,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-'Total payé par l''entreprise :': 'Total paid by the company :'
+"Total payé par l'entreprise :": 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -401,9 +402,7 @@ coronavirus:
     <0>Coronavirus and short-time working: what impact on my income?</0><1>The
     government is putting in place measures to support employees affected by the
     Coronavirus crisis. One of the key measures is the assumption of the entire
-    short-time working compensation by the State.</1><2>This simulator allows
-    you to find out your net income if you have been placed on short-time work,
-    as well as the total cost to the company.</2>
+    short-time working compensation by the State.</1>
   page:
     description: Estimate net income with short-time working benefits
     titre: 'Coronavirus and short-time working: what impact on your income?'

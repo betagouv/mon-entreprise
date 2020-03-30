@@ -139,17 +139,20 @@ function ExplanationSection() {
 								netHabituel,
 								{
 									...net,
-									additionalText: (
+									additionalText: language === 'fr' && (
 										<>
-											Soit{' '}
-											<strong>
-												{formatValue({
-													value: (net.nodeValue / netHabituel.nodeValue) * 100,
-													unit: '%',
-													maximumFractionDigits: 0
-												})}
-											</strong>{' '}
-											du revenu net
+											<Trans>
+												Soit{' '}
+												<strong>
+													{formatValue({
+														value:
+															(net.nodeValue / netHabituel.nodeValue) * 100,
+														unit: '%',
+														maximumFractionDigits: 0
+													})}
+												</strong>{' '}
+												du revenu net
+											</Trans>
 										</>
 									)
 								}
@@ -159,7 +162,7 @@ function ExplanationSection() {
 								totalEntrepriseHabituel,
 								{
 									...totalEntreprise,
-									additionalText: (
+									additionalText: language === 'fr' && (
 										<>
 											Soit{' '}
 											<strong>
