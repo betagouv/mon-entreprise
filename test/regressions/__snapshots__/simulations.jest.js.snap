@@ -200,7 +200,7 @@ exports[`calculate simulations-salarié:  JEI 2`] = `"[26635,0,0,20000,15969,106
 
 exports[`calculate simulations-salarié:  JEI 3`] = `"[4517,0,0,4000,3141,2741]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 1`] = `"[27,1218,0,1560,1197,1197]"`;
+exports[`calculate simulations-salarié:  activité partielle 1`] = `"[27,1218,0,1560,1116,1116]"`;
 
 exports[`calculate simulations-salarié:  activité partielle 2`] = `"[27,2800,0,4000,2594,2354]"`;
 
@@ -214,9 +214,9 @@ exports[`calculate simulations-salarié:  activité partielle 6`] = `"[27,2100,3
 
 exports[`calculate simulations-salarié:  activité partielle 7`] = `"[27,2800,0,4000,2594,2491]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 8`] = `"[227,1400,0,2000,1540,1515]"`;
+exports[`calculate simulations-salarié:  activité partielle 8`] = `"[227,1400,0,2000,1473,1447]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 9`] = `"[1156,700,0,2000,1551,1519]"`;
+exports[`calculate simulations-salarié:  activité partielle 9`] = `"[1156,700,0,2000,1517,1486]"`;
 
 exports[`calculate simulations-salarié:  activité partielle 10`] = `"[327,4200,0,6000,4182,3494]"`;
 

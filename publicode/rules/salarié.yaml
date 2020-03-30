@@ -2712,6 +2712,8 @@ contrat salarié . CSG et CRDS . CRDS . taux:
   titre: taux CRDS
   formule: 0.5%
 
+# L'écrêtement de la CSG/CRDS pour les revenus de remplacement a été implémenté
+# dans 992a4da
 contrat salarié . CSG et CRDS . revenus de remplacement:
   titre: CSG et CRDS revenus de remplacement
   description: >-
@@ -2721,24 +2723,19 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
     réduire le montant de la rémunération d’activité et des allocations de
     chômage à un seuil inférieur au Smic brut.
 
+    Cette disposition est suspendue dans le cadre de l'activité partielle suite
+    au covid-19.
   formule:
     somme:
       - revenus de remplacement . CSG déductible
       - revenus de remplacement . CSG non déductible
       - revenus de remplacement . CRDS
+  références:
+    Aménagements covid-19: https://www.legisocial.fr/actualites-sociales/3781-ordonnance-modifiant-regime-activite-partielle-publiee-jo-jour.html
+    Mesures d'urgences pour l'activité partielle: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000041762506&categorieLien=id
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
   titre: CSG déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant:
-  titre: CSG déductible
   formule:
     produit:
       assiette: CSG et CRDS . assiette revenu remplacements
@@ -2746,17 +2743,6 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . mon
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant:
-  titre: CSG non déductible
   formule:
     produit:
       assiette: CSG et CRDS . assiette revenu remplacements
@@ -2764,18 +2750,6 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible .
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre: CRDS revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- CSG non déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
-  titre: CRDS
   formule:
     produit:
       assiette: assiette revenu remplacements
