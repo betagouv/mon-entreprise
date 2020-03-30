@@ -10,8 +10,9 @@ import PeriodSwitch from 'Components/PeriodSwitch'
 import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils.js'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import revenusSVG from 'Images/revenus.svg'
+import { DottedName } from 'Publicode/rules'
 import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -22,7 +23,6 @@ import {
 	analysisWithDefaultsSelector,
 	branchAnalyseSelector
 } from 'Selectors/analyseSelectors'
-import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
 import './SchemeComparaison.css'
@@ -648,7 +648,7 @@ function RuleValueLink({
 			<Value
 				maximumFractionDigits={0}
 				{...rule}
-				unit={unit !== undefined ? unit : '€'}
+				unit={unit != null ? unit : '€'}
 			/>
 			{appendText && <> {appendText}</>}
 		</Link>

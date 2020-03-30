@@ -1,7 +1,6 @@
 import { evaluateControls } from 'Engine/controls'
+import { ParsedRules, Rules } from 'Engine/types'
 import { Simulation } from 'Reducers/rootReducer'
-import { Rule } from 'Types/rule'
-import { DottedName } from './../types/rule'
 import { evaluateNode } from './evaluation'
 import parseRules from './parseRules'
 import { collectDefaults } from './ruleUtils'
@@ -11,8 +10,8 @@ const emptyCache = {
 	_meta: { contextRule: [], defaultUnits: [] }
 }
 
-type EngineConfig = {
-	rules: string | object
+type EngineConfig<Names extends string> = {
+	rules: string | Rules<Names> | ParsedRules<Names>
 	useDefaultValues?: boolean
 }
 
@@ -29,18 +28,17 @@ type Cache = {
 
 export { default as translateRules } from './translateRules'
 export { parseRules }
-export default class Engine {
-	parsedRules: Record<DottedName, Rule>
+export default class Engine<Names extends string> {
+	parsedRules: ParsedRules<Names>
 	defaultValues: Simulation['situation']
 	situation: Simulation['situation'] = {}
 	cache: Cache = { ...emptyCache }
 
-	constructor({ rules, useDefaultValues = true }: EngineConfig) {
+	constructor({ rules, useDefaultValues = true }: EngineConfig<Names>) {
 		this.parsedRules =
-			typeof rules === 'object' &&
-			!!Object.values(rules).filter(Boolean)[0].dottedName
-				? rules
-				: (parseRules(rules) as any)
+			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
+				? parseRules(rules)
+				: (rules as ParsedRules<Names>)
 		this.defaultValues = useDefaultValues
 			? collectDefaults(this.parsedRules)
 			: {}

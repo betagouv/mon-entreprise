@@ -1,6 +1,7 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { decodeRuleName } from 'Engine/ruleUtils.js'
+import { decodeRuleName } from 'Engine/ruleUtils'
+import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
@@ -10,7 +11,6 @@ import {
 	parsedRulesSelector,
 	situationBranchNameSelector
 } from 'Selectors/analyseSelectors'
-import { DottedName } from 'Types/rule'
 import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'

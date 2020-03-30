@@ -1,6 +1,7 @@
 import parseRule from 'Engine/parseRule'
 import { safeLoad } from 'js-yaml'
 import { parseReference } from './parseReference'
+import { ParsedRules, Rules } from './types'
 
 /*
  Dans ce fichier, les règles YAML sont parsées.
@@ -10,14 +11,17 @@ import { parseReference } from './parseReference'
 
 */
 
-export default function parseRules(rules) {
-	rules =
-		typeof rules === 'string' ? safeLoad(rules.replace(/\t/g, '  ')) : rules
+export default function parseRules<Names extends string>(
+	rawRules: Rules<Names> | string
+): ParsedRules<Names> {
+	const rules =
+		typeof rawRules === 'string'
+			? (safeLoad(rawRules.replace(/\t/g, '  ')) as Rules<Names>)
+			: rawRules
 
 	/* First we parse each rule one by one. When a mechanism is encountered, it is
 	recursively parsed. When a reference to a variable is encountered, a
 	'variable' node is created, we don't parse variables recursively. */
-
 	let parsedRules = {}
 
 	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B`
@@ -25,20 +29,21 @@ export default function parseRules(rules) {
 	retreive them from `B` */
 	let nonApplicableMapping: Record<string, any> = {}
 	let replacedByMapping: Record<string, any> = {}
-	Object.keys(rules).map(dottedName => {
-		const rule = parseRule(rules, dottedName, parsedRules)
+	;(Object.keys(rules) as Names[]).map(dottedName => {
+		const parsedRule = parseRule(rules, dottedName, parsedRules)
 
-		if (rule['rend non applicable']) {
-			nonApplicableMapping[rule.dottedName] = rule['rend non applicable']
+		if (parsedRule['rend non applicable']) {
+			nonApplicableMapping[parsedRule.dottedName] =
+				parsedRule['rend non applicable']
 		}
 
-		const replaceDescriptors = rule['remplace']
+		const replaceDescriptors = parsedRule['remplace']
 		if (replaceDescriptors) {
 			replaceDescriptors.forEach(
 				descriptor =>
 					(replacedByMapping[descriptor.referenceName] = [
 						...(replacedByMapping[descriptor.referenceName] ?? []),
-						{ ...descriptor, referenceName: rule.dottedName }
+						{ ...descriptor, referenceName: parsedRule.dottedName }
 					])
 			)
 		}
@@ -73,5 +78,5 @@ export default function parseRules(rules) {
 	 * When parsing A's formula, we don't know the unit of B, since only the final nodes have units (it would be too cumbersome to specify a unit to each variable), and B hasn't been parsed yet.
 	 *
 	 * */
-	return parsedRules
+	return parsedRules as ParsedRules<Names>
 }

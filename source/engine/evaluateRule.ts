@@ -1,6 +1,6 @@
 import { bonus, evaluateNode, mergeMissing } from 'Engine/evaluation'
+import { ParsedRule } from 'Engine/types'
 import { map, mergeAll, pick, pipe } from 'ramda'
-import { Rule } from 'Types/rule'
 import { typeWarning } from './error'
 import { convertNodeToUnit } from './nodeUnits'
 import { areUnitConvertible } from './units'
@@ -9,7 +9,7 @@ export const evaluateApplicability = (
 	cache,
 	situationGate,
 	parsedRules,
-	node: Rule
+	node: ParsedRule
 ) => {
 	let evaluatedAttributes = pipe(
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (

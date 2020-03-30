@@ -6,6 +6,8 @@ import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Engine/RuleInput'
+import { ParsedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,7 +19,6 @@ import {
 	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
-import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
 import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import { CompanySection } from '../Home'
@@ -237,8 +238,8 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: Rule['summary']
-	question?: Rule['question']
+	summary?: ParsedRule['summary']
+	question?: ParsedRule['question']
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()

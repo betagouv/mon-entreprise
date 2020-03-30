@@ -1,13 +1,14 @@
 import { default as classNames, default as classnames } from 'classnames'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value, { ValueProps } from 'Components/Value'
+import { ParsedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import { contains, isNil, pipe, sort, toPairs } from 'ramda'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { parsedRulesSelector } from 'Selectors/analyseSelectors'
-import { DottedName, Rule } from 'Types/rule'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName } from '../ruleUtils'
@@ -166,7 +167,7 @@ export function Leaf({
 	)
 }
 
-type SimpleRuleLinkProps = { rule: Rule }
+type SimpleRuleLinkProps = { rule: ParsedRule }
 
 export function SimpleRuleLink({
 	rule: { dottedName, title, name }

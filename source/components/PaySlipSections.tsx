@@ -1,9 +1,10 @@
 import Value from 'Components/Value'
+import { EvaluatedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { defaultUnitSelector } from 'Selectors/analyseSelectors'
-import { DottedName, EvaluatedRule } from 'Types/rule'
 import RuleLink from './RuleLink'
 
 export let SalaireBrutSection = ({
@@ -62,15 +63,17 @@ export let SalaireBrutSection = ({
 	)
 }
 
-export let Line = ({ rule, ...props }) => {
+export let Line = ({ rule, className = '', ...props }) => {
 	const defaultUnit = useSelector(defaultUnitSelector)
 	return (
 		<>
-			<RuleLink {...rule} />
+			<RuleLink {...rule} className={className} />
 			<Value
 				{...rule}
 				nilValueSymbol="—"
 				defaultUnit={defaultUnit}
+				unit="€"
+				className={className}
 				{...props}
 			/>
 		</>
@@ -104,11 +107,15 @@ export let SalaireNetSection = ({ getRule }) => {
 				<Line negative rule={retenueTitresRestaurant} />
 			)}
 
-			<Line rule={getRule('contrat salarié . rémunération . net')} />
+			<Line
+				rule={getRule('contrat salarié . rémunération . net')}
+				className="payslip__total"
+			/>
 			{!!impôt && (
 				<>
 					<Line negative rule={impôt} />
 					<Line
+						className="payslip__total"
 						rule={getRule('contrat salarié . rémunération . net après impôt')}
 					/>
 				</>

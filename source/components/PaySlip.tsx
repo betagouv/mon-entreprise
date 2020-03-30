@@ -42,7 +42,7 @@ export default function PaySlip() {
 					unit="heures/mois"
 					maximumFractionDigits={1}
 				/>
-				{heuresSupplémentaires?.nodeValue > 0 && (
+				{!!heuresSupplémentaires?.nodeValue && (
 					<Line
 						rule={heuresSupplémentaires}
 						unit="heures/mois"
@@ -103,13 +103,13 @@ export default function PaySlip() {
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . patronales')}
-					printedUnit="€"
+					unit="€"
 					className="payslip__total"
 				/>
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . salariales')}
-					printedUnit="€"
+					unit="€"
 					className="payslip__total"
 				/>
 				{/* Salaire chargé */}

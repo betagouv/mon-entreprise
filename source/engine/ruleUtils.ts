@@ -1,22 +1,14 @@
-import {
-	dropLast,
-	filter,
-	isNil,
-	join,
-	last,
-	map,
-	pipe,
-	propEq,
-	range,
-	reject,
-	split,
-	take
-} from 'ramda'
+import { dropLast, last, pipe, propEq, range, take } from 'ramda'
 import { coerceArray } from '../utils'
+import { EvaluatedRule, ParsedRule, ParsedRules, Rule, Rules } from './types'
 
-export const splitName = split(' . ')
-export const joinName = join(' . ')
-export const parentName = pipe(splitName, dropLast(1), joinName)
+export const splitName = str => str.split(' . ')
+export const joinName = strs => strs.join(' . ')
+export const parentName = pipe(
+	splitName,
+	dropLast(1) as (a: string[]) => string[],
+	joinName
+)
 export const nameLeaf = pipe(splitName, last)
 export const encodeRuleName = name =>
 	encodeURI(
@@ -32,15 +24,21 @@ export let decodeRuleName = name =>
 			.replace(/-/g, ' ')
 			.replace(/\u2011/g, '-')
 	)
-export let ruleParents = dottedName => {
+export function ruleParents<Names extends string>(
+	dottedName: Names
+): Array<Names> {
 	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
 	return range(1, fragments.length)
-		.map(nbEl => take(nbEl)(fragments))
+		.map(nbEl => take(nbEl, fragments))
 		.map(joinName) //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD
 		.reverse()
 }
 
-export let disambiguateRuleReference = (rules, contextName, partialName) => {
+export function disambiguateRuleReference<Names extends string>(
+	rules: Rules<Names>,
+	contextName: Names,
+	partialName: string
+) {
 	const possibleDottedName = [
 		contextName,
 		...ruleParents(contextName),
@@ -54,14 +52,18 @@ export let disambiguateRuleReference = (rules, contextName, partialName) => {
 	return dottedName
 }
 
-export function collectDefaults(parsedRules) {
-	return Object.values(parsedRules).reduce(
-		(acc, rule) => ({
-			...acc,
-			...(rule?.defaultValue != null && {
-				[rule.dottedName]: rule.defaultValue
-			})
-		}),
+type DefaultValues<Names extends string> = { [name in Names]: any } | {}
+export function collectDefaults<Names extends string>(
+	parsedRules: ParsedRules<Names>
+): DefaultValues<Names> {
+	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
+		(acc, parsedRule) =>
+			parsedRule?.defaultValue != null
+				? {
+						...acc,
+						[parsedRule.dottedName]: parsedRule.defaultValue
+				  }
+				: acc,
 		{}
 	)
 }
@@ -70,30 +72,33 @@ export function collectDefaults(parsedRules) {
  Autres 
  */
 
-export let findParentDependencies = (rules, rule) => {
+export function findParentDependencies<Names extends string>(
+	rules: Rules<Names>,
+	name: Names
+): Array<Names> {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
 	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
 	// It lets those children omit obvious and repetitive parent applicability tests
-	let parentDependencies = ruleParents(rule.dottedName)
-	return pipe(
-		map(parent => ({ dottedName: parent, ...rules[parent] })),
-		reject(isNil),
-		filter(
-			//Find the first "calculable" parent
-			({ question, unit, formule }) =>
-				(question && !unit && !formule) ||
+	return ruleParents(name)
+		.map(parent => [parent, rules[parent]] as [Names, Rule])
+		.filter(([_, rule]) => !!rule)
+		.filter(
+			([_, { question, unité, formule }]) =>
+				//Find the first "calculable" parent
+				(question && !unité && !formule) ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) ||
 				formule === 'oui' ||
 				formule === 'non' ||
 				formule?.['une de ces conditions'] ||
 				formule?.['toutes ces conditions']
-		),
-		map(parent => parent.dottedName)
-	)(parentDependencies)
+		)
+		.map(([name, _]) => name)
 }
 
-export let getRuleFromAnalysis = analysis => dottedName => {
+export let getRuleFromAnalysis = analysis => <Names extends string>(
+	dottedName: Names
+): EvaluatedRule<Names> => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}

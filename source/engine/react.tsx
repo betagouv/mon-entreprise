@@ -1,9 +1,9 @@
 import Value from 'Components/Value'
-import rules from 'Publicode/rules'
+import rules, { DottedName } from 'Publicode/rules'
 import React, { createContext, useContext, useMemo } from 'react'
 import Engine from '.'
 export const EngineContext = createContext<{
-	engine: Engine | null
+	engine: Engine<DottedName> | null
 	error: string | null
 }>({ engine: new Engine({ rules }), error: null })
 

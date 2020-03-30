@@ -6,9 +6,10 @@ import SendButton from 'Components/conversation/SendButton'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
+import { ParsedRules } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName, Rule } from 'Types/rule'
 import DateInput from '../components/conversation/DateInput'
 
 export const binaryOptionChoices = [
@@ -18,7 +19,7 @@ export const binaryOptionChoices = [
 
 type Value = string | number | object | boolean
 type Props = {
-	rules: { [name in DottedName]: Rule }
+	rules: ParsedRules
 	dottedName: DottedName
 	onChange: (value: Value) => void
 	useSwitch?: boolean

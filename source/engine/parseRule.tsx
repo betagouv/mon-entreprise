@@ -14,10 +14,16 @@ import {
 	findParentDependencies,
 	nameLeaf
 } from './ruleUtils'
+import { ParsedRule, Rule, Rules } from './types'
 import { parseUnit } from './units'
 
-export default function parseRule(rules, dottedName, parsedRules) {
+export default function<Names extends string>(
+	rules: Rules<Names>,
+	dottedName,
+	parsedRules
+): ParsedRule<Names> {
 	if (parsedRules[dottedName]) return parsedRules[dottedName]
+
 	parsedRules[dottedName] = 'being parsed'
 	/*
 		The parseRule function will traverse the tree of the `rule` and produce an
@@ -30,38 +36,48 @@ export default function parseRule(rules, dottedName, parsedRules) {
 		functions are attached to the objects of the AST. They will be evaluated
 		during the evaluation phase, called "analyse".
 	*/
-	let rule = rules[dottedName] || {}
+
+	let parentDependencies = findParentDependencies(rules, dottedName)
+	let rawRule = rules[dottedName]
+	if (rawRule == null) {
+		rawRule = {}
+	}
+	if (typeof rawRule === 'string') {
+		rawRule = {
+			formule: rawRule
+		}
+	}
+	rawRule as Rule
 
 	const name = nameLeaf(dottedName)
-	let unit = rule.unité && parseUnit(rule.unité)
+	let unit = rawRule.unité && parseUnit(rawRule.unité)
 	let defaultUnit =
-		rule['unité par défaut'] && parseUnit(rule['unité par défaut'])
+		rawRule['unité par défaut'] && parseUnit(rawRule['unité par défaut'])
 
 	if (defaultUnit && unit) {
 		warning(
-			dottedName,
+			name,
 			'Le paramètre `unité` est plus contraignant que `unité par défaut`.',
 			'Si vous souhaitez que la valeur de votre variable soit toujours la même unité, gardez `unité`'
 		)
 	}
 
-	rule = {
-		...rule,
-		dottedName,
+	const rule = {
+		...rawRule,
 		name,
-		type: rule.type,
-		title: capitalise0(rule['titre'] || name),
-		defaultValue: rule['par défaut'],
-		examples: rule['exemples'],
-		icons: rule['icônes'],
-		summary: rule['résumé'],
+		dottedName,
+		type: rawRule.type,
+		title: capitalise0(rawRule['titre'] || name),
+		defaultValue: rawRule['par défaut'],
+		examples: rawRule['exemples'],
+		icons: rawRule['icônes'],
+		summary: rawRule['résumé'],
 		unit,
-		defaultUnit
+		defaultUnit,
+		parentDependencies
 	}
-	let parentDependencies = findParentDependencies(rules, rule)
 
-	let root = { ...rule, parentDependencies }
-	let parsedRoot = evolve({
+	let parsedRule = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
@@ -69,6 +85,7 @@ export default function parseRule(rules, dottedName, parsedRules) {
 		parentDependencies: parents =>
 			parents.map(parent => {
 				let node = parse(rules, rule, parsedRules)(parent)
+
 				let jsx = (nodeValue, explanation) => (
 					<ShowValuesConsumer>
 						{showValues =>
@@ -103,7 +120,7 @@ export default function parseRule(rules, dottedName, parsedRules) {
 		'applicable si': evolveCond('applicable si', rule, rules, parsedRules),
 		'rend non applicable': nonApplicableRules =>
 			coerceArray(nonApplicableRules).map(referenceName => {
-				return disambiguateRuleReference(rules, rule.dottedName, referenceName)
+				return disambiguateRuleReference(rules, dottedName, referenceName)
 			}),
 		remplace: evolveReplacement(rules, rule, parsedRules),
 		formule: value => {
@@ -142,8 +159,16 @@ export default function parseRule(rules, dottedName, parsedRules) {
 		},
 		contrôles: map((control: any) => {
 			let testExpression = parse(rules, rule, parsedRules)(control.si)
+			if (
+				!testExpression.explanation &&
+				!(testExpression.category === 'reference')
+			)
+				throw new Error(
+					'Ce contrôle ne semble pas être compris :' + control['si']
+				)
+
 			return {
-				dottedName: rule.dottedName,
+				dottedName: dottedName,
 				level: control['niveau'],
 				test: control['si'],
 				message: control['message'],
@@ -151,18 +176,20 @@ export default function parseRule(rules, dottedName, parsedRules) {
 				solution: control['solution']
 			}
 		})
-	})(root)
+	})(rule)
 
-	// On sauvegarde la règle dans les parsedRules
-	parsedRules[rule.dottedName] = {
-		...parsedRoot,
+	parsedRules[dottedName] = {
+		// Pas de propriété explanation et jsx ici car on est parti du (mauvais)
+		// principe que 'non applicable si' et 'formule' sont particuliers, alors
+		// qu'ils pourraient être rangé avec les autres mécanismes
+		...parsedRule,
 		evaluate,
 		parsed: true,
-		defaultUnit: parsedRoot.defaultUnit || parsedRoot.formule?.unit,
+		defaultUnit: parsedRule.defaultUnit || parsedRule.formule?.unit,
 		isDisabledBy: [],
 		replacedBy: []
 	}
-	parsedRules[rule.dottedName]['rendu non applicable'] = {
+	parsedRules[dottedName]['rendu non applicable'] = {
 		evaluate: (cache, situation, parsedRules, node) => {
 			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
 				evaluateNode(cache, situation, parsedRules, disablerNode)
@@ -187,7 +214,7 @@ export default function parseRule(rules, dottedName, parsedRules) {
 							{isDisabledBy.map((rule, i) => (
 								<React.Fragment key={i}>
 									{i > 0 && ', '}
-									<RuleLink dottedName={rule.dottedName} />
+									<RuleLink dottedName={dottedName} />
 								</React.Fragment>
 							))}
 						</p>
@@ -199,12 +226,12 @@ export default function parseRule(rules, dottedName, parsedRules) {
 		rulePropType: 'cond',
 		name: 'rendu non applicable',
 		type: 'boolean',
-		explanation: parsedRules[rule.dottedName]
+		explanation: parsedRules[dottedName]
 	}
-	return parsedRules[rule.dottedName]
+	return parsedRules[dottedName]
 }
 
-let evolveCond = (name, rule, rules, parsedRules) => value => {
+let evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
 		let explanation = evaluateNode(
 				cache,
@@ -223,7 +250,7 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 	let jsx = (nodeValue, explanation) => (
 		<Node
 			classes="ruleProp mecanism cond"
-			name={name}
+			name={dottedName}
 			value={nodeValue}
 			unit={undefined}
 		>
@@ -240,7 +267,7 @@ let evolveCond = (name, rule, rules, parsedRules) => value => {
 		jsx,
 		category: 'ruleProp',
 		rulePropType: 'cond',
-		name,
+		dottedName,
 		type: 'boolean',
 		explanation: child
 	}
@@ -258,12 +285,12 @@ let evolveReplacement = (rules, rule, parsedRules) => replacements =>
 			reference.dans,
 			reference['sauf dans']
 		]
-			.map(name => name && coerceArray(name))
+			.map(dottedName => dottedName && coerceArray(dottedName))
 			.map(
 				names =>
 					names &&
-					names.map(name =>
-						disambiguateRuleReference(rules, rule.dottedName, name)
+					names.map(dottedName =>
+						disambiguateRuleReference(rules, rule.dottedName, dottedName)
 					)
 			)
 

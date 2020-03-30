@@ -1,58 +1,57 @@
 import { AssertionError } from 'chai'
-import { parseRules } from 'Engine'
+import Engine, { parseRules } from 'Engine'
+import { disambiguateRuleReference } from 'Engine/ruleUtils'
 import rules from 'Publicode/rules'
-import { merge } from 'ramda'
-import { exampleAnalysisSelector } from 'Selectors/analyseSelectors'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
+let parsedRules = parseRules(rules)
+const engine = new Engine({ rules: parsedRules })
 let runExamples = (examples, rule) =>
 	examples.map(ex => {
-		let runExample = exampleAnalysisSelector(
-				{
-					rules,
-					currentExample: {
-						situation: ex.situation,
-						dottedName: rule.dottedName,
-						defaultUnits: ex['unités par défaut']
-					}
-				},
-				{ dottedName: rule.dottedName }
-			),
-			exampleValue = runExample.nodeValue,
-			goal = ex['valeur attendue'],
-			ok =
-				exampleValue === goal
-					? true
-					: typeof goal === 'number'
-					? Math.abs((exampleValue - goal) / goal) < 0.001
-					: goal === null && exampleValue === 0
+		const expected = ex['valeur attendue']
+		const situation = Object.entries(ex.situation).reduce(
+			(acc, [name, value]) => ({
+				...acc,
+				[disambiguateRuleReference(parsedRules, rule.dottedName, name)]: value
+			}),
+			{}
+		)
+		const evaluation = engine
+			.setSituation(situation)
+			.setDefaultUnits(
+				ex['unités par défaut'] ?? [rule['unité par défaut'] ?? '€/mois']
+			)
+			.evaluate(rule.dottedName)
+		const ok =
+			evaluation.nodeValue === expected
+				? true
+				: typeof expected === 'number'
+				? Math.abs((evaluation.nodeValue - expected) / expected) < 0.001
+				: false
 
-		return merge(ex, {
-			ok,
-			rule: runExample
-		})
+		return { ...ex, ok, rule: evaluation }
 	})
 
-let parsedRules = parseRules(rules)
 describe('Tests des règles de notre base de règles', () =>
 	Object.values(parsedRules).map(rule => {
-		if (!rule.exemples) return null
+		if (!rule?.exemples) return null
 		describe(rule.dottedName, () => {
 			let examples = runExamples(rule.exemples, rule)
 			examples.map(example =>
 				it(example.nom + '', () => {
-					if (!example.ok)
+					if (!example.ok) {
 						throw new AssertionError(`
-              Valeur attendue : ${example['valeur attendue']}
-			  Valeur obtenue : ${example.rule.nodeValue} 
-			  ${
-					example.rule.nodeValue === null
-						? 'Variables manquantes : ' +
-						  JSON.stringify(example.rule.missingVariables, null, 4)
-						: ''
-				}
+						Valeur attendue : ${example['valeur attendue']}
+						Valeur obtenue : ${example.rule.nodeValue} 
+						${
+							example.rule.nodeValue === null
+								? 'Variables manquantes : ' +
+								  JSON.stringify(example.rule.missingVariables, null, 4)
+								: ''
+						}
             `)
+					}
 				})
 			)
 		})

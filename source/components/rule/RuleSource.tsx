@@ -1,11 +1,11 @@
+import { ParsedRule } from 'Engine/types'
 import { safeDump } from 'js-yaml'
 import rules from 'Publicode/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Rule } from 'Types/rule'
 import PublicodeHighlighter from '../ui/PublicodeHighlighter'
 
-type RuleSourceProps = Pick<Rule, 'dottedName'>
+type RuleSourceProps = Pick<ParsedRule, 'dottedName'>
 
 export default function RuleSource({ dottedName }: RuleSourceProps) {
 	let source = rules[dottedName]

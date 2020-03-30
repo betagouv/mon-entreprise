@@ -5,6 +5,8 @@ import RuleLink from 'Components/RuleLink'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatCurrency } from 'Engine/format'
+import { ParsedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import { isEmpty, isNil } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -17,7 +19,6 @@ import {
 	situationSelector,
 	useTarget
 } from 'Selectors/analyseSelectors'
-import { Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
@@ -220,16 +221,16 @@ let Header = ({ target }) => {
 }
 
 type TargetInputOrValueProps = {
-	target: Rule
+	target: ParsedRule<DottedName>
 	isActiveInput: boolean
 	isSmallTarget: boolean
 }
 
-let TargetInputOrValue = ({
+function TargetInputOrValue({
 	target,
 	isActiveInput,
 	isSmallTarget
-}: TargetInputOrValueProps) => {
+}: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()

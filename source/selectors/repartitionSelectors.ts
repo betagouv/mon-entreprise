@@ -1,15 +1,15 @@
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { ParsedRule } from 'Engine/types'
 import { compose, filter, fromPairs, map, max, reduce, sort } from 'ramda'
 import { createSelector } from 'reselect'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { Rule } from 'Types/rule'
 import {
 	analysisToCotisations,
 	BLANK_COTISATION,
 	mergeCotisations
 } from './ficheDePaieSelectors'
 
-export type Cotisation = Partial<Rule> & {
+export type Cotisation = Partial<ParsedRule> & {
 	branche: Branch
 	montant: MontantPartagé
 }

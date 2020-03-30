@@ -1,10 +1,10 @@
 import { explainVariable } from 'Actions/actions'
+import { DottedName } from 'Publicode/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { parsedRulesSelector } from 'Selectors/analyseSelectors'
-import { DottedName } from 'Types/rule'
 import { TrackerContext } from '../utils/withTracker'
 import './Explicable.css'
 

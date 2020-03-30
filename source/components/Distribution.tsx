@@ -1,13 +1,13 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import Value from 'Components/Value'
+import { DottedName } from 'Publicode/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { animated, config, useSpring } from 'react-spring'
 import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import répartitionSelector from 'Selectors/repartitionSelectors'
-import { Rule } from 'Types/rule'
 import { isIE } from '../utils'
 import './Distribution.css'
 import './PaySlip'
@@ -39,7 +39,7 @@ export default function Distribution() {
 }
 
 type DistributionBranchProps = {
-	dottedName: Rule['dottedName']
+	dottedName: DottedName
 	value: number
 	distribution: { maximum: number; total: number }
 	icon?: string

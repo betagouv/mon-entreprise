@@ -11,7 +11,7 @@ const path = require('path')
 const { readRules } = require('./rules')
 
 const sourceDirPath = path.resolve(__dirname, '../../publicode/rules')
-const outPath = path.resolve(__dirname, '../types/dottednames.json')
+const outPath = path.resolve(__dirname, '../../publicode/dottednames.json')
 
 function persistJsonFileFromYaml() {
 	const rules = readRules()

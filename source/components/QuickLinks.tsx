@@ -1,4 +1,5 @@
 import { goToQuestion } from 'Actions/actions'
+import { DottedName } from 'Publicode/rules'
 import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -8,7 +9,6 @@ import {
 	currentQuestionSelector,
 	nextStepsSelector
 } from 'Selectors/analyseSelectors'
-import { DottedName } from 'Types/rule'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)

@@ -8,6 +8,7 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { formatValue } from 'Engine/format'
 import RuleInput from 'Engine/RuleInput'
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { DottedName } from 'Publicode/rules'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,7 +20,6 @@ import {
 	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
-import { DottedName } from 'Types/rule'
 import Animate from 'Ui/animate'
 
 export function useRule(dottedName: DottedName) {

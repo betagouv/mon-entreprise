@@ -1,4 +1,5 @@
-import { assoc } from 'ramda'
+import { assoc, mapObjIndexed } from 'ramda'
+import { Rule, Rules } from './types'
 
 /* Traduction */
 const translateContrôle = (prop, rule, translation, lang) =>
@@ -40,7 +41,10 @@ export const attributesToTranslate = [
 	'note'
 ]
 
-const translateProp = (lang, translation) => (rule, prop) => {
+const translateProp = (lang: string, translation: Object) => (
+	rule: Rule,
+	prop
+) => {
 	if (prop === 'contrôles' && rule?.contrôles) {
 		return translateContrôle(prop, rule, translation, lang)
 	}
@@ -52,7 +56,12 @@ const translateProp = (lang, translation) => (rule, prop) => {
 	return propTrans ? assoc(prop, propTrans, rule) : rule
 }
 
-const translateRule = (lang, translations, name, rule) => {
+function translateRule<Names extends string>(
+	lang: string,
+	translations: { [Name in Names]: Object },
+	name: Names,
+	rule: Rule
+): Rule {
 	let ruleTrans = translations[name]
 	if (!ruleTrans) {
 		return rule
@@ -60,15 +69,19 @@ const translateRule = (lang, translations, name, rule) => {
 	return attributesToTranslate.reduce(
 		translateProp(lang, ruleTrans),
 		rule ?? {}
-	)
+	) as Rule
 }
 
-export default function translateRules(lang, translations, rules) {
-	const translatedRules = Object.fromEntries(
-		Object.entries(rules).map(([name, rule]) => [
-			name,
-			translateRule(lang, translations, name, rule)
-		])
+export default function translateRules<Names extends string>(
+	lang: string,
+	translations: { [Name in Names]: Object },
+	rules: Rules<Names>
+): Rules<Names> {
+	const translatedRules = mapObjIndexed(
+		(rule: Rule, name: Names) =>
+			translateRule(lang, translations, name, rule as Rule),
+		rules
 	)
-	return translatedRules
+
+	return translatedRules as Rules<Names>
 }
