@@ -655,6 +655,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
       assiette: assiette des cotisations
       abattement: déduction tabac
 
+dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin:
+  titre: Contrat Madelin
+
 dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . montant:
   titre: Souscription à un contrat Madelin
   unité par défaut: €/an
@@ -676,29 +679,23 @@ dirigeant . indépendant . cotisations et contributions . cotisations . contrat 
   unité par défaut: €/an
   formule:
     le maximum de:
-      - somme:
-          - produit:
-              assiette:
-                le maximum de:
-                  - rémunération totale
-                  - 8 * 38616 # [XXX] - A remplacer par une variable
-              taux: 10%
-          - produit:
-              assiette:
-                le minimum de:
-                  - le maximum de:
-                      - rémunération totale - 38616 # [XXX]
-                      - 0
-                  - 7 * 38616 # [XXX]
-              taux: 15%
+      - barème:
+          assiette: revenu professionnel
+          tranches:
+            - taux: 10%
+              plafond: plafond sécurité sociale temps plein
+            - taux: 25%
+              plafond: 8 * plafond sécurité sociale temps plein
+            - taux: 0%
       - produit:
-          assiette: rémunération totale
+          assiette: plafond sécurité sociale temps plein
           taux: 10%
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/1124-PGP.html
     LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
 
 dirigeant . indépendant . cotisations et contributions . cotisations . contrat madelin . déduction fiscale:
+  titre: Déduction fiscale contrat Madelin
   formule:
     le minimum de:
       - montant
