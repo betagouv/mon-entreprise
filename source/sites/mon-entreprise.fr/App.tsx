@@ -35,7 +35,6 @@ import Integration from './pages/integration/index'
 import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautés/Nouveautés'
 import Simulateurs from './pages/Simulateurs'
-import Stats from './pages/Stats/Stats'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
@@ -120,7 +119,6 @@ const App = () => {
 						/>
 						<Route path={sitePaths.integration.index} component={Integration} />
 						<Route path={sitePaths.nouveautés} component={Nouveautés} />
-						<Route path={sitePaths.stats} component={Stats} />
 						<Route path={sitePaths.coronavirus} component={Coronavirus} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route

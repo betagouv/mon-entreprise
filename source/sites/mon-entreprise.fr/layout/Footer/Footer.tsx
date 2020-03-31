@@ -68,7 +68,7 @@ const Footer = () => {
 							</>
 						)}
 						{'  •  '}
-						<Link to={sitePaths.stats}>Stats</Link>
+						<a href="https://mon-entreprise.fr/stats">Stats</a>
 						{'  •  '}
 						<Link to={sitePaths.integration.index}>
 							<Trans>Intégrer nos simulateurs</Trans>
