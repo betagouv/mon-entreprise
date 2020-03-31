@@ -927,6 +927,7 @@ path:
     index: /simulators
     indépendant: /independant
     salarié: /salaried
+  stats: /stats
   économieCollaborative:
     index: /sharing-economy
     votreSituation: /your-situation

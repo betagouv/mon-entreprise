@@ -34,17 +34,16 @@ export default function MoreInfosOnUs() {
 					<div className="ui__ small simple button">Découvrir</div>
 				</Link>
 			)}
-			<a
-				href="https://mon-entreprise.fr/stats"
-				className="ui__ interactive card box"
-			>
-				<div className="ui__ big box-icon">{emoji('📊')}</div>
-				<h3>Les statistiques</h3>
-				<p className="ui__ notice" css="flex: 1">
-					Quel est notre impact ?
-				</p>
-				<div className="ui__ small simple button">Découvrir</div>
-			</a>
+			{!pathname.startsWith(sitePaths.stats) && (
+				<Link className="ui__ interactive card box" to={sitePaths.stats}>
+					<div className="ui__ big box-icon">{emoji('📊')}</div>
+					<h3>Les statistiques</h3>
+					<p className="ui__ notice" css="flex: 1">
+						Quel est notre impact ?
+					</p>
+					<div className="ui__ small simple button">Découvrir</div>
+				</Link>
+			)}
 			{!pathname.startsWith(sitePaths.budget) && (
 				<Link className="ui__ interactive card box" to={sitePaths.budget}>
 					<div className="ui__ big box-icon">{emoji('💶')}</div>
