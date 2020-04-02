@@ -51,7 +51,7 @@ describe('controls', function() {
 	})
 
 	it('Should allow imbricated conditions', function() {
-		const engine = new Engine({ rules: rawRules })
+		const engine = new Engine(rawRules)
 		let controls = engine.setSituation({ brut: 2000000 }).controls()
 		expect(
 			controls.find(

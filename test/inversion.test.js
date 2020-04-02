@@ -14,7 +14,7 @@ describe('inversions', () => {
         brut:
           unité: €
       `
-		const result = new Engine({ rules })
+		const result = new Engine(rules)
 			.setSituation({ brut: 2300 })
 			.evaluate('net')
 
@@ -36,7 +36,7 @@ describe('inversions', () => {
               avec:
                 - net
       `
-		const result = new Engine({ rules })
+		const result = new Engine(rules)
 			.setSituation({ net: 2000 })
 			.evaluate('brut')
 
@@ -58,9 +58,7 @@ describe('inversions', () => {
               avec:
                 - net
       `
-		const result = new Engine({ rules })
-			.setSituation({ net: 0 })
-			.evaluate('brut')
+		const result = new Engine(rules).setSituation({ net: 0 }).evaluate('brut')
 
 		expect(result.nodeValue).to.be.closeTo(0, 0.0001)
 	})
@@ -86,10 +84,10 @@ describe('inversions', () => {
                 - net
         cadre:
         assiette:
-          formule: 67 + brut
+          formule: 67€ + brut
 
       `
-		const result = new Engine({ rules }).evaluate('brut')
+		const result = new Engine(rules).evaluate('brut')
 
 		expect(result.nodeValue).to.be.null
 		expect(Object.keys(result.missingVariables)).to.include('brut')
@@ -127,7 +125,7 @@ describe('inversions', () => {
         taxe:
           formule:
             produit:
-              assiette: 1200
+              assiette: 1200 €
               variations:
                 - si: cadre
                   alors:
@@ -135,7 +133,7 @@ describe('inversions', () => {
                 - sinon:
                     taux: 70%
       `
-		const result = new Engine({ rules })
+		const result = new Engine(rules)
 			.setSituation({ net: 2000 })
 			.evaluate('brut')
 		expect(result.nodeValue).to.be.null
@@ -176,7 +174,7 @@ describe('inversions', () => {
           formule: 67 + brut
 
       `
-		const result = new Engine({ rules })
+		const result = new Engine(rules)
 			.setSituation({ net: 2000, cadre: 'oui' })
 			.evaluate('total')
 		expect(result.nodeValue).to.be.closeTo(3750, 1)
@@ -214,7 +212,7 @@ describe('inversions', () => {
               - net
               - total
     `
-		const result = new Engine({ rules })
+		const result = new Engine(rules)
 			.setSituation({ net: 2000 })
 			.evaluate('total')
 		expect(result.nodeValue).to.be.closeTo(3750, 1)

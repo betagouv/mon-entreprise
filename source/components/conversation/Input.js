@@ -33,6 +33,7 @@ export default function Input({
 						onChange(value)
 					}}
 					onSecondClick={() => onSubmit && onSubmit('suggestion')}
+					unit={unit}
 				/>
 			</div>
 
@@ -41,7 +42,7 @@ export default function Input({
 					autoFocus={autoFocus}
 					className="suffixed"
 					id={'step-' + dottedName}
-					placeholder={defaultValue}
+					placeholder={defaultValue?.nodeValue ?? defaultValue}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}

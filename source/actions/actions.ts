@@ -1,4 +1,4 @@
-import { SitePaths } from 'Components/utils/withSitePaths'
+import { SitePaths } from 'Components/utils/SitePathsContext'
 import { History } from 'history'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
@@ -12,13 +12,12 @@ export type Action =
 	| UpdateAction
 	| SetSimulationConfigAction
 	| DeletePreviousSimulationAction
-	| SetExempleAction
 	| ExplainVariableAction
 	| UpdateSituationAction
 	| HideControlAction
 	| LoadPreviousSimulationAction
 	| SetSituationBranchAction
-	| UpdateDefaultUnitAction
+	| UpdateTargetUnitAction
 	| SetActiveTargetAction
 	| CompanyStatusAction
 
@@ -46,18 +45,6 @@ type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
-type SetExempleAction =
-	| {
-			type: 'SET_EXAMPLE'
-			name: null
-	  }
-	| {
-			type: 'SET_EXAMPLE'
-			name: string
-			situation: object
-			dottedName: DottedName
-	  }
-
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
 type UpdateSituationAction = ReturnType<typeof updateSituation>
@@ -66,14 +53,14 @@ type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideControlAction = ReturnType<typeof hideControl>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateDefaultUnitAction = ReturnType<typeof updateUnit>
+type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({
 		type: 'RESET_SIMULATION'
 	} as const)
 
-export const goToQuestion = (question: string) =>
+export const goToQuestion = (question: DottedName) =>
 	({
 		type: 'STEP_ACTION',
 		name: 'unfold',
@@ -99,7 +86,7 @@ export const setSituationBranch = (id: number) =>
 	} as const)
 
 export const setSimulationConfig = (
-	config: Object,
+	config: SimulationConfig,
 	useCompanyDetails: boolean = false
 ): ThunkResult<void> => (dispatch, getState, { history }): void => {
 	if (getState().simulation?.config === config) {
@@ -134,26 +121,17 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 		value
 	} as const)
 
-export const updateUnit = (defaultUnit: string) =>
+export const updateUnit = (targetUnit: string) =>
 	({
-		type: 'UPDATE_DEFAULT_UNIT',
-		defaultUnit
+		type: 'UPDATE_TARGET_UNIT',
+		targetUnit
 	} as const)
 
-export function setExample(
-	name: string,
-	situation: Situation,
-	dottedName: DottedName
-) {
-	return { type: 'SET_EXAMPLE', name, situation, dottedName } as const
-}
-
 export const goBackToSimulation = (): ThunkResult<void> => (
-	dispatch,
+	_,
 	getState,
 	{ history }
 ) => {
-	dispatch({ type: 'SET_EXAMPLE', name: null })
 	const url = getState().simulation?.url
 	url && history.push(url)
 }

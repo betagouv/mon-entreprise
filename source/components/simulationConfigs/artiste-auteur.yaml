@@ -1,5 +1,5 @@
 situation:
-  dirigeant: artiste-auteur
+  dirigeant: "'artiste-auteur'"
 unité par défaut: €/an
 objectifs:
   - artiste-auteur . cotisations

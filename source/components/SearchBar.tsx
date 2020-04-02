@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { parentName } from 'Engine/ruleUtils'
 import { ParsedRule, ParsedRules } from 'Engine/types'
 import { pick, sortBy, take } from 'ramda'
@@ -10,6 +10,7 @@ import { DottedName } from 'Rules'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
 import './SearchBar.css'
+import { UseDefaultValuesContext } from './Documentation/UseDefaultValuesContext'
 
 const worker = new Worker()
 
@@ -34,15 +35,16 @@ export default function SearchBar({
 	let [focusElem, setFocusElem] = useState(-1)
 	const { i18n } = useTranslation()
 	const history = useHistory()
-
+	const useDefaultValues = useContext(UseDefaultValuesContext)
 	const handleKeyDown = e => {
 		if (e.key === 'Enter' && results.length > 0) {
 			finallyCallback && finallyCallback()
-			history.push(
-				sitePaths.documentation.rule(
+			history.push({
+				pathname: sitePaths.documentation.rule(
 					results[focusElem > 0 ? focusElem : 0].dottedName
-				)
-			)
+				),
+				state: { useDefaultValues }
+			})
 		}
 
 		if (
@@ -191,7 +193,12 @@ export default function SearchBar({
 						return (
 							<>
 								{formattedResults.length === 0 && (
-									<Link to={sitePaths.documentation.rule(dottedName)}>
+									<Link
+										to={{
+											pathname: sitePaths.documentation.rule(dottedName),
+											state: { useDefaultValues }
+										}}
+									>
 										{title || capitalise0(name) || ''}
 									</Link>
 								)}
@@ -202,7 +209,12 @@ export default function SearchBar({
 
 									return (
 										<Link
-											to={sitePaths.documentation.rule(dottedName)}
+											to={{
+												pathname: sitePaths.documentation.rule(dottedName),
+												state: {
+													useDefaultValues
+												}
+											}}
 											key={resultIndex}
 										>
 											<Highlighter text={formattedResult.formatted.title} />

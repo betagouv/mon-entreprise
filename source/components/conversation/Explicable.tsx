@@ -4,15 +4,15 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
-import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import { TrackerContext } from '../utils/withTracker'
 import './Explicable.css'
+import { EngineContext } from 'Components/utils/EngineContext'
 
 export default function Explicable({ dottedName }: { dottedName: DottedName }) {
+	const rules = useContext(EngineContext).getParsedRules()
 	const tracker = useContext(TrackerContext)
 	const dispatch = useDispatch()
 	const explained = useSelector((state: RootState) => state.explainedVariable)
-	const rules = useSelector(parsedRulesSelector)
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) return null

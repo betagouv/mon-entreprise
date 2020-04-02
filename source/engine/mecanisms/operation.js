@@ -8,7 +8,6 @@ import { inferUnit, serializeUnit } from 'Engine/units'
 import { curry, map } from 'ramda'
 import React from 'react'
 
-const comparisonOperator = ['≠', '=', '<', '>', '≤', '≥']
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let evaluate = (cache, situation, parsedRules, node) => {
 		const explanation = map(
@@ -54,23 +53,17 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 
 		let temporalValue = liftTemporal2(
 			(a, b) => {
-				if (['∕', '-'].includes(node.operator) && a === false) {
+				if (!['≠', '='].includes(node.operator) && a === false && b === false) {
 					return false
 				}
-				if (['+'].includes(node.operator) && a === false) {
-					return b
-				}
-				if (['∕', '-', '×', '+'].includes(node.operator) && b === false) {
-					return a
-				}
 				if (
-					!['=', '≠'].includes(node.operator) &&
+					['<', '>', '≤', '≥', '∕', '×'].includes(node.operator) &&
 					(a === false || b === false)
 				) {
 					return false
 				}
 				if (
-					comparisonOperator.includes(node.operator) &&
+					['≠', '=', '<', '>', '≤', '≥'].includes(node.operator) &&
 					[a, b].every(value => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
 				) {
 					return operatorFunction(convertToDate(a), convertToDate(b))
@@ -80,7 +73,6 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 			node1.temporalValue ?? pureTemporal(node1.nodeValue),
 			node2.temporalValue ?? pureTemporal(node2.nodeValue)
 		)
-
 		const nodeValue = temporalAverage(temporalValue, baseNode.unit)
 
 		return {
@@ -94,7 +86,7 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let [node1, node2] = explanation
 	let unit = inferUnit(k, [node1.unit, node2.unit])
 
-	let jsx = (nodeValue, explanation, _, unit) => (
+	let jsx = (nodeValue, explanation, unit) => (
 		<Node classes={'inlineExpression ' + k} value={nodeValue} unit={unit}>
 			<span className="nodeContent">
 				{(explanation[0].nodeValue !== 0 ||

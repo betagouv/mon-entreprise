@@ -25,7 +25,7 @@ export default function AnimatedTargetValue({
 
 	// We don't want to show the animated if the difference comes from a change in the unit
 	const currentUnit = useSelector(
-		(state: RootState) => state?.simulation?.defaultUnit
+		(state: RootState) => state?.simulation?.targetUnit
 	)
 	const previousUnit = useRef(currentUnit)
 

@@ -8,8 +8,7 @@ douche . impact:
 
 douche . nombre:
   question: Combien prenez-vous de douches ?
-  unité: douche
-  par défaut: 30
+  par défaut: 30 douches
   suggestions:
     Une par jour: 30
 
@@ -54,7 +53,7 @@ chauffage . type:
         - gaz
         - fioul
         - électricité
-  par défaut: gaz
+  par défaut: "'gaz'"
 
 chauffage . type . gaz:
   icônes: 🔵
@@ -102,8 +101,7 @@ chauffage . impact par litre:
 
 douche . durée de la douche:
   question: Combien de temps dure votre douche en général ?
-  unité: min
-  par défaut: 5
+  par défaut: 5 min
   suggestions:
     expresse: 5
     moyenne: 10

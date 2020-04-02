@@ -1,5 +1,5 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { toPairs } from 'ramda'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'

@@ -96,7 +96,7 @@ montant abattu avec plafond numérique:
         montant: 100000
       valeur attendue: 88000 # 85000 s'il n'y avait pas de plafond à la somme abattue
 
-montant franchisé, décote, abattu:
+montant franchisé décote abattu:
   unité: €
   formule:
     allègement:
