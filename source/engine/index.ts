@@ -1,24 +1,21 @@
 import { evaluateControls } from 'Engine/controls'
-import { ParsedRules, Rules } from 'Engine/types'
+import { convertNodeToUnit, simplifyNodeUnit } from 'Engine/nodeUnits'
+import { parse } from 'Engine/parse'
+import { EvaluatedNode, EvaluatedRule, ParsedRules, Rules } from 'Engine/types'
+import { parseUnit } from 'Engine/units'
+import { mapObjIndexed } from 'ramda'
 import { Simulation } from 'Reducers/rootReducer'
-import { evaluateNode } from './evaluation'
+import { evaluationError, warning } from './error'
+import { collectDefaults, evaluateNode } from './evaluation'
 import parseRules from './parseRules'
-import { collectDefaults } from './ruleUtils'
-import { parseUnit, Unit } from './units'
 
-const emptyCache = {
-	_meta: { contextRule: [], defaultUnits: [] }
-}
-
-type EngineConfig<Names extends string> = {
-	rules: string | Rules<Names> | ParsedRules<Names>
-	useDefaultValues?: boolean
-}
+const emptyCache = () => ({
+	_meta: { contextRule: [] }
+})
 
 type Cache = {
 	_meta: {
 		contextRule: Array<string>
-		defaultUnits: Array<Unit>
 		inversionFail?: {
 			given: string
 			estimated: string
@@ -26,70 +23,135 @@ type Cache = {
 	}
 }
 
+export type EvaluationOptions = Partial<{
+	unit: string
+	useDefaultValues: boolean
+}>
+
 export { default as translateRules } from './translateRules'
 export { parseRules }
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
 	defaultValues: Simulation['situation']
 	situation: Simulation['situation'] = {}
-	cache: Cache = { ...emptyCache }
+	cache: Cache
+	cacheWithoutDefault: Cache
 
-	constructor({ rules, useDefaultValues = true }: EngineConfig<Names>) {
+	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
+		this.cache = emptyCache()
+		this.cacheWithoutDefault = emptyCache()
 		this.parsedRules =
 			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
 				? parseRules(rules)
 				: (rules as ParsedRules<Names>)
-		this.defaultValues = useDefaultValues
-			? collectDefaults(this.parsedRules)
-			: {}
+
+		this.defaultValues = mapObjIndexed(
+			(value, name) =>
+				typeof value === 'string'
+					? this.evaluateExpression(value, `[valeur par défaut] ${name}`, false)
+					: value,
+			collectDefaults(this.parsedRules)
+		)
 	}
 
 	private resetCache() {
-		this.cache = { ...emptyCache }
+		this.cache = emptyCache()
+		this.cacheWithoutDefault = emptyCache()
 	}
 
-	setSituation(situation: Simulation['situation'] = {}) {
-		this.situation = situation
-		this.resetCache()
-		return this
+	private situationGate(useDefaultValues = true) {
+		return dottedName =>
+			this.situation[dottedName] ??
+			(useDefaultValues ? this.defaultValues[dottedName] : null)
 	}
 
-	setDefaultUnits(defaultUnits: string[] = []) {
-		this.cache._meta.defaultUnits = defaultUnits.map(unit =>
-			parseUnit(unit)
-		) as any
-		return this
-	}
-
-	evaluate(expression: string | Array<string>) {
-		const results = (Array.isArray(expression) ? expression : [expression]).map(
-			expr =>
-				this.cache[expr] ||
-				(this.parsedRules[expr]
-					? evaluateNode(
-							this.cache,
-							this.situationGate,
-							this.parsedRules,
-							this.parsedRules[expr]
-					  )
-					: // TODO: To support expressions (with operations, unit conversion,
-					  // etc.) it should be enough to replace the above line with :
-					  // parse(this.parsedRules, { dottedName: '' }, this.parsedRules)(expr)
-					  // But currently there are small side effects (null values converted
-					  // to 0), so we need to modify a little bit the engine before enabling
-					  // publicode expressions in the UI.
-
-					  null)
+	private evaluateExpression(
+		expression: string,
+		context: string,
+		useDefaultValues: boolean = true
+	): EvaluatedRule<Names> {
+		const result = simplifyNodeUnit(
+			evaluateNode(
+				useDefaultValues ? this.cache : this.cacheWithoutDefault,
+				this.situationGate(useDefaultValues),
+				this.parsedRules,
+				parse(
+					this.parsedRules,
+					{ dottedName: context },
+					this.parsedRules
+				)(expression)
+			)
 		)
-		return Array.isArray(expression) ? results : results[0]
+
+		if (Object.keys(result.defaultValue?.missingVariable ?? {}).length) {
+			throw new evaluationError(
+				context,
+				"Impossible d'évaluer l'expression car celle ci fait appel à des variables manquantes"
+			)
+		}
+		return result
+	}
+
+	setSituation(
+		situation: Partial<Record<Names, string | number | object>> = {}
+	) {
+		this.resetCache()
+		this.situation = mapObjIndexed(
+			(value, name) =>
+				typeof value === 'string'
+					? this.evaluateExpression(value, `[situation] ${name}`, true)
+					: value,
+			situation
+		)
+		return this
+	}
+
+	evaluate(expression: Names, options?: EvaluationOptions): EvaluatedRule<Names>
+	evaluate(
+		expression: string,
+		options?: EvaluationOptions
+	): EvaluatedNode<Names>
+	evaluate(
+		expression: string,
+		options?: EvaluationOptions
+	): EvaluatedNode<Names> {
+		let result = this.evaluateExpression(
+			expression,
+			`[evaluation] ${expression}`,
+			options?.useDefaultValues ?? true
+		)
+		if (result.category === 'reference' && result.explanation) {
+			result = result.explanation
+		}
+		if (options?.unit) {
+			try {
+				return convertNodeToUnit(
+					parseUnit(options.unit),
+					result as EvaluatedNode<Names, number>
+				)
+			} catch (e) {
+				warning(
+					`[evaluation] ${expression}`,
+					"L'unité demandée est incompatible avec l'expression évaluée"
+				)
+			}
+		}
+		return result
 	}
 	controls() {
-		return evaluateControls(this.cache, this.situationGate, this.parsedRules)
+		return evaluateControls(this.cache, this.situationGate(), this.parsedRules)
 	}
+
+	inversionFail(): boolean {
+		return !!this.cache._meta.inversionFail
+	}
+
+	getParsedRules(): ParsedRules<Names> {
+		return this.parsedRules
+	}
+
 	// TODO : this should be private
 	getCache(): Cache {
 		return this.cache
 	}
-	situationGate = (dottedName: string) =>
-		this.situation[dottedName] ?? this.defaultValues[dottedName]
 }

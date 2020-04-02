@@ -1,5 +1,6 @@
 import { formatValue } from 'Engine/format'
 import React, { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { debounce as debounceFn } from '../utils'
 import './PercentageField.css'
 
@@ -9,6 +10,7 @@ export default function PercentageField({ onChange, value, debounce = 0 }) {
 		debounce ? debounceFn(debounce, onChange) : onChange,
 		[debounce, onChange]
 	)
+	const language = useTranslation().i18n.language
 
 	return (
 		<div>
@@ -28,7 +30,8 @@ export default function PercentageField({ onChange, value, debounce = 0 }) {
 			/>
 			<span style={{ display: 'inline-block', width: '3em' }}>
 				{formatValue({
-					value: localValue,
+					nodeValue: localValue,
+					language,
 					unit: '%'
 				})}
 			</span>

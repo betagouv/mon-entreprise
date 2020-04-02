@@ -2392,8 +2392,8 @@ contrat salarié . lodeom . réduction outre-mer:
 contrat salarié . lodeom . secteurs d'activité:
   description.en: "[automatic] To be eligible for the 1st scale of the LODEOM exemption, known as the competitiveness scale, your company must belong to one of the following sectors:\n\n- ✈ air transport providing connections between the overseas departments and regions and between metropolitan France and these territories, as well as domestic services\n- ⛵ maritime and river services or links between the French Overseas Departments and Regions\n- \U0001F3D7 building and public works\n- \U0001F4F0 the press\n- \U0001F3A5 audiovisual production\n- sectors eligible for the enhanced competitiveness (Scale 2) or innovation and growth (Scale 3) schemes, which do not meet the conditions in terms of workforce (less than 250 employees) or annual turnover (less than EUR 50 million).\n"
   description.fr: "Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de compétitivité, votre entreprise doit appartenir à l'un des secteurs suivants :\n\n- ✈ transport aérien assurant les liaisons entre les départements et régions d’Outre-mer et entre la métropole et ces territoires, ainsi que les dessertes intérieures\n- ⛵ dessertes maritimes, fluviales ou les liaisons entre départements et régions d’Outre-mer\n- \U0001F3D7 bâtiment et travaux publics\n- \U0001F4F0 la presse\n- \U0001F3A5 la production audiovisuelle\n- les secteurs éligibles aux régimes de compétitivité renforcée (barème 2) ou d’innovation et de croissance (barème 3), qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).\n"
-  question.en: '[automatic] Does your company belong to one of these sectors?'
-  question.fr: Votre entreprise appartient-elle à l'un de ces secteurs ?
+  question.en: '[automatic] Does your company belong to one of the LODEOM eligible sectors?'
+  question.fr: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
   titre.en: '[automatic] business areas'
   titre.fr: secteurs d'activité
 contrat salarié . lodeom . zone un:
@@ -2892,9 +2892,6 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.en: food
   titre.fr: nourriture
-contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
-  titre.en: fixed amount of a meal
-  titre.fr: montant forfaitaire d'un repas
 contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
   question.en: |
     How many meals per month are paid for by the employer?
@@ -3271,7 +3268,7 @@ contrat salarié . rémunération . revenus de remplacement:
 contrat salarié . rémunération . taux horaire:
   titre.en: '[automatic] hourly fee'
   titre.fr: taux horaire
-contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
+contrat salarié . rémunération . taux horaire . heures supplémentaires:
   description.en: >
     [automatic] The hourly rate used to calculate overtime pay. It includes
     benefits in kind and bonuses for work performed.
@@ -3279,8 +3276,8 @@ contrat salarié . rémunération . taux horaire des heures supplémentaires et 
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature et les primes
     constituant la contrepartie d'un travail fourni.
-  titre.en: '[automatic] hourly rate for overtime and overtime'
-  titre.fr: taux horaire des heures supplémentaires et complémentaires
+  titre.en: '[automatic] hourly rate (overtime)'
+  titre.fr: taux horaire (heure supplémentaire)
 contrat salarié . rémunération . total:
   description.en: >-
     It is the gross salary, plus the employer contributions. It is the total
@@ -4373,9 +4370,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
     à ce taux, et c'est cette implémentation que nous avons retenue.
   titre.en: health insurance
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
-  titre.en: upper reduction threshold
-  titre.fr: seuil supérieur de réduction
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux:
   note.en: >
     [automatic] This contribution is basically very simple: the health

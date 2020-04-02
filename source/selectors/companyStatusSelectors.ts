@@ -1,4 +1,4 @@
-import { SitePaths } from 'Components/utils/withSitePaths'
+import { SitePaths } from 'Components/utils/SitePathsContext'
 import {
 	add,
 	any,

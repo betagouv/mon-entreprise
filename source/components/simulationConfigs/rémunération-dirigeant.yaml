@@ -22,11 +22,11 @@ unité par défaut: €/an
 branches:
   - nom: Assimilé salarié
     situation:
-      dirigeant: 'assimilé salarié'
+      dirigeant: "'assimilé salarié'"
       contrat salarié . ATMP . taux réduit: oui
   - nom: Indépendant
     situation:
-      dirigeant: 'indépendant'
+      dirigeant: "'indépendant'"
   - nom: Auto-entrepreneur
     situation:
-      dirigeant: 'auto-entrepreneur'
+      dirigeant: "'auto-entrepreneur'"

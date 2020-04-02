@@ -47,12 +47,12 @@ describe('CurrencyInput', () => {
 		expect(input.instance().value).to.equal('0,5')
 	})
 
-	it('should not accept negative number', () => {
+	it('should accept negative number', () => {
 		let onChange = spy()
 		const input = getInput(<CurrencyInput onChange={onChange} />)
 		input.simulate('change', { target: { value: '-12', focus: () => {} } })
 		expect(onChange).to.have.been.calledWith(
-			match.hasNested('target.value', '12')
+			match.hasNested('target.value', '-12')
 		)
 	})
 

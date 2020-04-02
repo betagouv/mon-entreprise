@@ -1,13 +1,22 @@
 // import { ControlledEditor } from '@monaco-editor/react'
+import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
+import Value from 'Components/EngineValue'
+import Engine from 'Engine'
 import { formatValue } from 'Engine/format'
-import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
 import { last } from 'ramda'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState
+} from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
+import { DottedName } from 'Rules'
 
 const EXAMPLE_CODE = `
 # Bienvenue dans le bac à sable du langage publicode ! 
@@ -96,9 +105,14 @@ export default function Studio() {
 					flex: 1;
 				`}
 			>
-				<Engine.Provider rules={debouncedEditorValue}>
-					<Results targets={targets} onClickShare={handleShare} />
-				</Engine.Provider>
+				<ErrorBoundary>
+					{/* TODO: prévoir de changer la signature de EngineProvider */}
+					<EngineProvider
+						value={new Engine(debouncedEditorValue) as Engine<DottedName>}
+					>
+						<Results targets={targets} onClickShare={handleShare} />
+					</EngineProvider>
+				</ErrorBoundary>
 			</section>
 		</Layout>
 	)
@@ -112,26 +126,17 @@ type ResultsProps = {
 export const Results = ({ targets, onClickShare }: ResultsProps) => {
 	const [rule, setCurrentTarget] = useState<string>()
 	const currentTarget = rule ?? (last(targets) as string)
-	const error = Engine.useError()
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 	// console.warn
 	const warnings: string[] = []
 	const originalWarn = console.warn
 	console.warn = warning => warnings.push(warning)
-	const analysis = Engine.useEvaluation(currentTarget)
+	const evaluation = (useContext(EngineContext) as Engine<string>).evaluate(
+		currentTarget
+	)
 	console.warn = originalWarn
 
-	return error !== null ? (
-		<div
-			css={`
-				background: lightyellow;
-				padding: 20px;
-				border-radius: 5px;
-			`}
-		>
-			{nl2br(error)}
-		</div>
-	) : (
+	return (
 		<>
 			<div
 				css={`
@@ -181,30 +186,38 @@ export const Results = ({ targets, onClickShare }: ResultsProps) => {
 					{nl2br(warning)}
 				</div>
 			))}
-			{analysis ? (
+			{evaluation ? (
 				<div>
 					<h2>Résultats</h2>
-					{analysis.isApplicable === false ? (
+					{evaluation.isApplicable === false ? (
 						<>{emoji('❌')} Cette règle n'est pas applicable</>
 					) : (
 						<>
 							<p>
 								<strong>
-									<Engine.Evaluation expression={currentTarget} />
+									<Value expression={currentTarget} />
 								</strong>
 							</p>
 							<br />
-							{analysis.temporalValue
-								?.filter(({ value }) => value !== false)
-								.map(({ start: du, end: au, value }) => (
-									<span key={`${du ?? ''}-${au ?? ''}`}>
-										<small>
-											Du <em>{du}</em> au <em>{au}</em> :{' '}
-										</small>
-										<code>{formatValue({ value, unit: analysis.unit })}</code>{' '}
-										<br />
-									</span>
-								))}
+							{'temporalValue' in evaluation &&
+								evaluation.temporalValue &&
+								evaluation.temporalValue
+									.filter(({ value }) => value !== false)
+									.map(({ start: du, end: au, value }) => (
+										<span key={`${du ?? ''}-${au ?? ''}`}>
+											<small>
+												Du <em>{du}</em> au <em>{au}</em> :{' '}
+											</small>
+											<code>
+												{formatValue({
+													nodeValue: value,
+													unit: evaluation.unit,
+													language: 'fr'
+												})}
+											</code>{' '}
+											<br />
+										</span>
+									))}
 						</>
 					)}
 				</div>
@@ -242,3 +255,28 @@ const Layout = styled.div`
 		}
 	}
 `
+
+class ErrorBoundary extends React.Component {
+	state: { error: false | string } = { error: false }
+
+	static getDerivedStateFromError(error) {
+		console.error(error)
+		return { error: error.message }
+	}
+	render() {
+		if (this.state.error) {
+			return (
+				<div
+					css={`
+						background: lightyellow;
+						padding: 20px;
+						border-radius: 5px;
+					`}
+				>
+					{nl2br(this.state.error)}
+				</div>
+			)
+		}
+		return this.props.children
+	}
+}

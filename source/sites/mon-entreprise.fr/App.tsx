@@ -1,5 +1,9 @@
 import Route404 from 'Components/Route404'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import {
+	SituationProvider,
+	EngineProvider
+} from 'Components/utils/EngineContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
 import createRavenMiddleware from 'raven-for-redux'
 import Raven from 'raven-js'
@@ -39,6 +43,10 @@ import Simulateurs from './pages/Simulateurs'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
+import { useSelector } from 'react-redux'
+import { RootState } from 'Reducers/rootReducer'
+import { Rules } from 'Rules'
+import Engine from 'Engine'
 
 if (process.env.NODE_ENV === 'production') {
 	Raven.config(
@@ -59,7 +67,7 @@ const middlewares = [
 type InFranceRouteProps = {
 	basename: ProviderProps['basename']
 	language: ProviderProps['language']
-	rules: NonNullable<ProviderProps['initialStore']>['rules']
+	rules: Rules
 }
 
 function InFranceRoute({ basename, language, rules }: InFranceRouteProps) {
@@ -68,24 +76,25 @@ function InFranceRoute({ basename, language, rules }: InFranceRouteProps) {
 	}, [language])
 	const paths = constructLocalizedSitePath(language)
 	return (
-		<Provider
-			basename={basename}
-			language={language}
-			tracker={tracker}
-			sitePaths={paths}
-			reduxMiddlewares={middlewares}
-			onStoreCreated={store => {
-				persistEverything({ except: ['rules', 'simulation'] })(store)
-				persistSimulation(store)
-			}}
-			initialStore={{
-				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation(),
-				rules
-			}}
-		>
-			<RouterSwitch />
-		</Provider>
+		<EngineProvider value={new Engine(rules)}>
+			<Provider
+				basename={basename}
+				language={language}
+				tracker={tracker}
+				sitePaths={paths}
+				reduxMiddlewares={middlewares}
+				onStoreCreated={store => {
+					persistEverything({ except: ['simulation'] })(store)
+					persistSimulation(store)
+				}}
+				initialStore={{
+					...retrievePersistedState(),
+					previousSimulation: retrievePersistedSimulation()
+				}}
+			>
+				<RouterSwitch />
+			</Provider>
+		</EngineProvider>
 	)
 }
 
@@ -105,45 +114,62 @@ let RouterSwitch = () => {
 const App = () => {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
+	const situation = useSelector((state: RootState) => ({
+		...(state.simulation?.situation ?? {}),
+		...(state.simulation?.config.situation ?? {})
+	}))
 	return (
-		<div className="app-container">
-			<Helmet titleTemplate={`%s | ${t(['siteName', 'Mon-entreprise.fr'])}`} />
-			{/* Passing location down to prevent update blocking */}
+		<SituationProvider situation={situation}>
+			<div className="app-container">
+				<Helmet
+					titleTemplate={`%s - ${t(['siteName', 'Mon-entreprise.fr'])}`}
+				/>
+				{/* Passing location down to prevent update blocking */}
 
-			<div className="app-content">
-				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
-					<Switch>
-						{redirects}
-						<Route path={sitePaths.créer.index} component={Créer} />
-						<Route path={sitePaths.gérer.index} component={Gérer} />
-						<Route
-							path={sitePaths.économieCollaborative.index}
-							component={ÉconomieCollaborative}
-						/>
-						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
-						<Route
-							path={sitePaths.documentation.index}
-							component={Documentation}
-						/>
-						<Route path={sitePaths.integration.index} component={Integration} />
-						<Route path={sitePaths.nouveautés} component={Nouveautés} />
-						<Route path={sitePaths.coronavirus} component={Coronavirus} />
-						<Route path={sitePaths.budget} component={Budget} />
-						<Route exact path="/dev/sitemap" component={Sitemap} />
-						<Route
-							exact
-							path="/dev/integration-test"
-							component={IntegrationTest}
-						/>
-						<Route exact path="/dev/personas" component={Personas} />
+				<div className="app-content">
+					<div
+						className="ui__ container"
+						style={{ flexGrow: 1, flexShrink: 0 }}
+					>
+						<Switch>
+							{redirects}
+							<Route path={sitePaths.créer.index} component={Créer} />
+							<Route path={sitePaths.gérer.index} component={Gérer} />
+							<Route
+								path={sitePaths.économieCollaborative.index}
+								component={ÉconomieCollaborative}
+							/>
+							<Route
+								path={sitePaths.simulateurs.index}
+								component={Simulateurs}
+							/>
+							<Route
+								path={sitePaths.documentation.index}
+								component={Documentation}
+							/>
+							<Route
+								path={sitePaths.integration.index}
+								component={Integration}
+							/>
+							<Route path={sitePaths.nouveautés} component={Nouveautés} />
+							<Route path={sitePaths.coronavirus} component={Coronavirus} />
+							<Route path={sitePaths.budget} component={Budget} />
+							<Route exact path="/dev/sitemap" component={Sitemap} />
+							<Route
+								exact
+								path="/dev/integration-test"
+								component={IntegrationTest}
+							/>
+							<Route exact path="/dev/personas" component={Personas} />
 
-						<Route component={Route404} />
-					</Switch>
+							<Route component={Route404} />
+						</Switch>
+					</div>
+
+					{!inIframe() && <Footer />}
 				</div>
-
-				{!inIframe() && <Footer />}
 			</div>
-		</div>
+		</SituationProvider>
 	)
 }
 

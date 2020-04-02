@@ -80,10 +80,10 @@ variations avec cas défaut calculé:
       variables manquantes: []
 
 effectif:
-  unité: _
+  unité: ''
 
 effectif plafond:
-  unité: _
+  unité: ''
 
 plusieurs variations et un cas défaut:
   formule:
@@ -100,7 +100,7 @@ plusieurs variations et un cas défaut:
     - nom: 1er cas
       situation:
         effectif: 300
-      valeur attendue: 0.05
+      valeur attendue: 5
     - nom: 2ème cas, non résolu
       situation:
         effectif: 40
@@ -111,7 +111,7 @@ plusieurs variations et un cas défaut:
       situation:
         effectif: 20
         effectif plafond: 60
-      valeur attendue: 0.01
+      valeur attendue: 1
 
 variations au sein d'un mécanisme:
   formule:

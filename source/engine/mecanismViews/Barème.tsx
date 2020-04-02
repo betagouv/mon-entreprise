@@ -4,8 +4,9 @@ import { Trans } from 'react-i18next'
 import { makeJsx } from '../evaluation'
 import './Barème.css'
 import { Node, NodeValuePointer } from './common'
+import { parseUnit } from 'Engine/units'
 
-export default function Barème(nodeValue, explanation, _, unit) {
+export default function Barème(nodeValue, explanation, unit) {
 	return (
 		<Node classes="mecanism barème" name="barème" value={nodeValue} unit={unit}>
 			<ul className="properties">
@@ -22,7 +23,7 @@ export default function Barème(nodeValue, explanation, _, unit) {
 						</b>
 						<NodeValuePointer
 							data={(100 * nodeValue) / explanation.assiette.nodeValue}
-							unit="%"
+							unit={parseUnit('%')}
 						/>
 					</>
 				)}

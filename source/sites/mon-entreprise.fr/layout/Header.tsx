@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'

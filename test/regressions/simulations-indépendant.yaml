@@ -1,45 +1,45 @@
 échelle de revenus:
-  - dirigeant . indépendant . revenu net de cotisations: 500
-  - dirigeant . indépendant . revenu net de cotisations: 1000
-  - dirigeant . indépendant . revenu net de cotisations: 1500
-  - dirigeant . indépendant . revenu net de cotisations: 2000
-  - dirigeant . indépendant . revenu net de cotisations: 5000
-  - dirigeant . indépendant . revenu net de cotisations: 10000
-  - dirigeant . indépendant . revenu net de cotisations: 100000
-  - dirigeant . indépendant . revenu net de cotisations: 1000000
+  - dirigeant . indépendant . revenu net de cotisations: 500 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1500 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 2000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 5000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 10000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 100000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1000000 €/an
 
 inversions:
-  - dirigeant . rémunération totale: 2000
-  - dirigeant . rémunération totale: 50000
-  - revenu net après impôt: 10000
-  - revenu net après impôt: 50000
-  - revenu net après impôt: 10000
-    entreprise . charges: 1000
-  - entreprise . chiffre d'affaires minimum: 20000
-    entreprise . charges: 1000
-  - entreprise . chiffre d'affaires minimum: 20000
-    entreprise . charges: 2000
+  - dirigeant . rémunération totale: 2000 €/an
+  - dirigeant . rémunération totale: 50000 €/an
+  - revenu net après impôt: 10000 €/an
+  - revenu net après impôt: 50000 €/an
+  - revenu net après impôt: 10000 €/an
+    entreprise . charges: 1000 €/an
+  - entreprise . chiffre d'affaires minimum: 20000 €/an
+    entreprise . charges: 1000 €/an
+  - entreprise . chiffre d'affaires minimum: 20000 €/an
+    entreprise . charges: 2000 €/an
 
 cotisations minimales:
-  - dirigeant . indépendant . revenu net de cotisations: 100
-  - dirigeant . indépendant . revenu net de cotisations: 100
+  - dirigeant . indépendant . revenu net de cotisations: 100 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 100 €/an
     situation personnelle . RSA: oui
 
 activité:
-  - dirigeant . indépendant . revenu net de cotisations: 20000
-    entreprise . catégorie d'activité: libérale
-  - dirigeant . indépendant . revenu net de cotisations: 20000
-    entreprise . catégorie d'activité: artisanale
+  - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
+    entreprise . catégorie d'activité: "'libérale'"
+  - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
+    entreprise . catégorie d'activité: "'artisanale'"
 
 acre:
-  - dirigeant . indépendant . revenu net de cotisations: 50000
+  - dirigeant . indépendant . revenu net de cotisations: 50000 €/an
     entreprise . ACRE: true
 
 impôt sur le revenu:
-  - dirigeant . indépendant . revenu net de cotisations: 20000
-    impôt . méthode de calcul: taux neutre
-  - dirigeant . indépendant . revenu net de cotisations: 50000
-    impôt . méthode de calcul: taux neutre
-  - dirigeant . indépendant . revenu net de cotisations: 20000
-    impôt . méthode de calcul: taux personnalisé
+  - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
+    impôt . méthode de calcul: "'taux neutre'"
+  - dirigeant . indépendant . revenu net de cotisations: 50000 €/an
+    impôt . méthode de calcul: "'taux neutre'"
+  - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
+    impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10

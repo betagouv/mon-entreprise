@@ -14,9 +14,11 @@ export default function Recalcul(nodeValue, explanation) {
 			unit={explanation.unit}
 		>
 			<>
-				{explanation.règle && (
+				{explanation.recalcul && (
 					<Trans i18nKey="calcul-avec">
-						Calcul de <RuleLink dottedName={explanation.règle} /> avec :
+						Recalcul de la règle{' '}
+						<RuleLink dottedName={explanation.recalcul.dottedName} /> avec les
+						valeurs suivantes :
 					</Trans>
 				)}
 				<ul>

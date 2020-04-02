@@ -1,4 +1,3 @@
-import { setSimulationConfig, setSituationBranch } from 'Actions/actions'
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur
@@ -7,25 +6,20 @@ import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PeriodSwitch from 'Components/PeriodSwitch'
-import ComparaisonConfig from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
-import Value from 'Components/Value'
+import Value from 'Components/EngineValue'
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import revenusSVG from 'Images/revenus.svg'
 import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
-import {
-	analysisWithDefaultsSelector,
-	branchAnalyseSelector
-} from 'Selectors/analyseSelectors'
+import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
+import { Condition } from 'Components/EngineValue'
 import './SchemeComparaison.css'
+import { EngineContext } from './utils/EngineContext'
 
 let getBranchIndex = (branch: string) =>
 	({ assimilé: 0, indépendant: 1, 'auto-entrepreneur': 2 }[branch])
@@ -45,22 +39,16 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false
 }: SchemeComparaisonProps) {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(ComparaisonConfig))
-
-	const analyses = useSelector(analysisWithDefaultsSelector)
-	const plafondAutoEntrepreneurDépassé = useSelector((state: RootState) =>
-		branchAnalyseSelector(state, {
-			situationBranchName: 'Auto-entrepreneur'
-		}).controls?.find(
+	const plafondAutoEntrepreneurDépassé = useContext(EngineContext)
+		.controls()
+		.find(
 			({ test }) =>
 				test.includes && test.includes('base des cotisations > plafond')
 		)
-	)
 
-	let getRule = getRuleFrom(analyses)
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
-		!!getRule('assimilé', 'revenu net après impôt')?.nodeValue
+		useSelector(firstStepCompletedSelector)
 	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
 		setConversationStarted
@@ -325,244 +313,151 @@ export default function SchemeComparaison({
 						</div>
 					)}
 				</div>
-				{conversationStarted &&
-					!!getRule('assimilé', 'revenu net après impôt')?.nodeValue && (
-						<>
-							<Trans i18nKey="comparaisonRégimes.revenuNetApresImpot">
-								<h3 className="legend">Revenu net après impôt</h3>
-							</Trans>
-							<div className="AS">
-								<Animate.appear className="ui__ plain card">
-									<RuleValueLink
-										branch="assimilé"
-										rule="revenu net après impôt"
-									/>
-								</Animate.appear>
-							</div>
-							<div className="indep">
-								<Animate.appear className="ui__ plain card">
-									<RuleValueLink
-										branch="indépendant"
-										rule="revenu net après impôt"
-									/>
-								</Animate.appear>
-							</div>
-							<div className="auto">
-								<Animate.appear
-									className={classnames(
-										'ui__ plain card',
-										plafondAutoEntrepreneurDépassé && 'disabled'
-									)}
-								>
-									{plafondAutoEntrepreneurDépassé ? (
-										'Plafond de CA dépassé'
-									) : (
-										<RuleValueLink
-											branch="auto-entrepreneur"
-											rule="revenu net après impôt"
-										/>
-									)}
-								</Animate.appear>
-							</div>
-							<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
-								<h3 className="legend">
-									Revenu net de cotisations <small>(avant impôts)</small>
-								</h3>
-							</Trans>
-							<div className="AS">
-								<RuleValueLink
-									branch="assimilé"
-									rule="revenus net de cotisations"
-								/>
-							</div>
-							<div className="indep">
-								<RuleValueLink
-									branch="indépendant"
-									rule="dirigeant . indépendant . revenu net de cotisations"
-								/>
-							</div>
-							<div className="auto">
-								{plafondAutoEntrepreneurDépassé ? (
-									'—'
-								) : (
-									<RuleValueLink
-										branch="auto-entrepreneur"
-										rule="dirigeant . auto-entrepreneur . net de cotisations"
-									/>
+				{conversationStarted && (
+					<Condition expression="revenu net après impôt">
+						<Trans i18nKey="comparaisonRégimes.revenuNetApresImpot">
+							<h3 className="legend">Revenu net après impôt</h3>
+						</Trans>
+						<div className="AS">
+							<Animate.appear className="ui__ plain card">
+								<Value expression="revenu net après impôt" />
+							</Animate.appear>
+						</div>
+						<div className="indep">
+							<Animate.appear className="ui__ plain card">
+								<Value expression="revenu net après impôt" />
+							</Animate.appear>
+						</div>
+						<div className="auto">
+							<Animate.appear
+								className={classnames(
+									'ui__ plain card',
+									plafondAutoEntrepreneurDépassé && 'disabled'
 								)}
-							</div>
+							>
+								{plafondAutoEntrepreneurDépassé ? (
+									'Plafond de CA dépassé'
+								) : (
+									<Value expression="revenu net après impôt" />
+								)}
+							</Animate.appear>
+						</div>
+						<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
 							<h3 className="legend">
-								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
-									<span>Pension de retraite</span>
-									<small>(avant impôts)</small>
-								</Trans>
+								Revenu net de cotisations <small>(avant impôts)</small>
 							</h3>
-							<div className="AS">
-								<span>
-									<RuleValueLink
-										branch="assimilé"
-										rule="protection sociale . retraite"
-									/>{' '}
+						</Trans>
+						<div className="AS">
+							<Value expression="revenus net de cotisations" />
+						</div>
+						<div className="indep">
+							<Value expression="dirigeant . indépendant . revenu net de cotisations" />
+						</div>
+						<div className="auto">
+							{plafondAutoEntrepreneurDépassé ? (
+								'—'
+							) : (
+								<Value expression="dirigeant . auto-entrepreneur . net de cotisations" />
+							)}
+						</div>
+						<h3 className="legend">
+							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
+								<span>Pension de retraite</span>
+								<small>(avant impôts)</small>
+							</Trans>
+						</h3>
+						<div className="AS">
+							<Value expression="protection sociale . retraite" />{' '}
+							<InfoBulle>
+								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
+									Pension calculée pour 172 trimestres cotisés au régime général
+									sans variations de revenus.
+								</Trans>
+							</InfoBulle>
+						</div>
+						<div className="indep">
+							<Value expression="protection sociale . retraite" />
+							<InfoBulle>
+								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
+									Pension calculée pour 172 trimestres cotisés au régime des
+									indépendants sans variations de revenus.
+								</Trans>
+							</InfoBulle>
+						</div>
+						<div className="auto">
+							{plafondAutoEntrepreneurDépassé ? (
+								'—'
+							) : (
+								<>
+									<Value expression="protection sociale . retraite" />
 									<InfoBulle>
-										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
-											Pension calculée pour 172 trimestres cotisés au régime
-											général sans variations de revenus.
+										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
+											Pension calculée pour 172 trimestres cotisés en
+											auto-entrepreneur sans variations de revenus.
 										</Trans>
 									</InfoBulle>
-								</span>
-							</div>
-							<div className="indep">
-								{getRule('indépendant', 'protection sociale . retraite')
-									.isApplicable !== false ? (
-									<span>
-										<RuleValueLink
-											branch="indépendant"
-											rule="protection sociale . retraite"
-										/>{' '}
-										<InfoBulle>
-											<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
-												Pension calculée pour 172 trimestres cotisés au régime
-												des indépendants sans variations de revenus.
-											</Trans>
-										</InfoBulle>
-									</span>
-								) : (
-									<span className="ui__ notice">
-										<Trans>Pas implémenté</Trans>
-									</span>
-								)}
-							</div>
-							<div className="auto">
-								{plafondAutoEntrepreneurDépassé ? (
-									'—'
-								) : getRule(
-										'auto-entrepreneur',
-										'protection sociale . retraite'
-								  ).isApplicable !== false ? (
-									<span>
-										<RuleValueLink
-											branch="auto-entrepreneur"
-											rule="protection sociale . retraite"
-										/>{' '}
-										<InfoBulle>
-											<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
-												Pension calculée pour 172 trimestres cotisés en
-												auto-entrepreneur sans variations de revenus.
-											</Trans>
-										</InfoBulle>
-									</span>
-								) : (
-									<span className="ui__ notice">
-										<Trans>Pas implémenté</Trans>
-									</span>
-								)}
-							</div>
-							<Trans i18nKey="comparaisonRégimes.trimestreValidés">
-								<h3 className="legend">
-									Nombre de trimestres validés <small>(pour la retraite)</small>
-								</h3>
-							</Trans>
-							<div className="AS">
-								<RuleValueLink
-									branch="assimilé"
-									rule="protection sociale . retraite . trimestres validés par an"
-									appendText={<Trans>trimestres</Trans>}
-									unit={null}
+								</>
+							)}
+						</div>
+						<Trans i18nKey="comparaisonRégimes.trimestreValidés">
+							<h3 className="legend">
+								Nombre de trimestres validés <small>(pour la retraite)</small>
+							</h3>
+						</Trans>
+						<div className="AS">
+							<Value
+								displayedUnit="trimestre"
+								expression="protection sociale . retraite . trimestres validés par an"
+							/>
+						</div>
+						<div className="indep">
+							<Value
+								expression="protection sociale . retraite . trimestres validés par an"
+								displayedUnit="trimestre"
+							/>
+						</div>
+						<div className="auto">
+							{plafondAutoEntrepreneurDépassé ? (
+								'—'
+							) : (
+								<Value
+									expression="protection sociale . retraite . trimestres validés par an"
+									displayedUnit="trimestres"
 								/>
-							</div>
-							<div className="indep">
-								<RuleValueLink
-									branch="indépendant"
-									rule="protection sociale . retraite . trimestres validés par an"
-									appendText={<Trans>trimestres</Trans>}
-									unit={null}
-								/>
-							</div>
-							<div className="auto">
-								{plafondAutoEntrepreneurDépassé ? (
-									'—'
-								) : (
-									<RuleValueLink
-										branch="auto-entrepreneur"
-										rule="protection sociale . retraite . trimestres validés par an"
-										appendText={<Trans>trimestres</Trans>}
-										unit={null}
-									/>
-								)}
-							</div>
-							<Trans i18nKey="comparaisonRégimes.indemnités">
-								<h3 className="legend">
-									Indemnités journalières{' '}
-									<small>(en cas d'arrêt maladie)</small>
-								</h3>
-							</Trans>
-							<div className="AS">
+							)}
+						</div>
+						<Trans i18nKey="comparaisonRégimes.indemnités">
+							<h3 className="legend">
+								Indemnités journalières <small>(en cas d'arrêt maladie)</small>
+							</h3>
+						</Trans>
+						<div className="AS">
+							<span>
+								<Value expression="protection sociale . santé . indemnités journalières" />
+							</span>
+							<small>
+								(
+								<Value expression="protection sociale . accidents du travail et maladies professionnelles" />{' '}
+								<Trans>
+									pour les accidents de trajet/travail et maladie pro
+								</Trans>
+								)
+							</small>
+						</div>
+						<div className="indep">
+							<Value expression="protection sociale . santé . indemnités journalières" />
+						</div>
+						<div className="auto">
+							{plafondAutoEntrepreneurDépassé ? (
+								'—'
+							) : (
 								<span>
-									<RuleValueLink
-										branch="assimilé"
-										appendText={
-											<>
-												/ <Trans>jour</Trans>
-											</>
-										}
-										rule="protection sociale . santé . indemnités journalières"
-									/>
+									<Value expression="protection sociale . santé . indemnités journalières" />
 								</span>
-								<small>
-									(
-									<RuleValueLink
-										branch="assimilé"
-										rule="protection sociale . accidents du travail et maladies professionnelles"
-									/>{' '}
-									<Trans>
-										pour les accidents de trajet/travail et maladie pro
-									</Trans>
-									)
-								</small>
-							</div>
-							<div className="indep">
-								<span>
-									{getRule(
-										'indépendant',
-										'protection sociale . santé . indemnités journalières'
-									).isApplicable !== false ? (
-										<span>
-											<RuleValueLink
-												appendText={
-													<>
-														/ <Trans>jour</Trans>
-													</>
-												}
-												branch="indépendant"
-												rule="protection sociale . santé . indemnités journalières"
-											/>
-										</span>
-									) : (
-										<span className="ui__ notice">
-											<Trans>Pas implémenté</Trans>
-										</span>
-									)}
-								</span>
-							</div>
-							<div className="auto">
-								{plafondAutoEntrepreneurDépassé ? (
-									'—'
-								) : (
-									<span>
-										<RuleValueLink
-											branch="auto-entrepreneur"
-											rule="protection sociale . santé . indemnités journalières"
-											appendText={
-												<>
-													/ <Trans>jour</Trans>
-												</>
-											}
-										/>
-									</span>
-								)}
-							</div>
-						</>
-					)}
+							)}
+						</div>
+					</Condition>
+				)}
 			</div>
 			<div className="ui__ container">
 				<br />
@@ -620,37 +515,5 @@ export default function SchemeComparaison({
 				</div>
 			</div>
 		</>
-	)
-}
-
-type RuleValueLinkProps = {
-	branch: string
-	rule: DottedName
-	appendText?: React.ReactNode
-	unit?: null | string
-}
-
-function RuleValueLink({
-	branch,
-	rule: dottedName,
-	appendText,
-	unit
-}: RuleValueLinkProps) {
-	const dispatch = useDispatch()
-	const analyses = useSelector(analysisWithDefaultsSelector)
-	const sitePaths = useContext(SitePathsContext)
-	let rule = getRuleFrom(analyses)(branch, dottedName)
-	return !rule ? null : (
-		<Link
-			onClick={() => dispatch(setSituationBranch(getBranchIndex(branch)))}
-			to={sitePaths.documentation.rule(rule.dottedName)}
-		>
-			<Value
-				maximumFractionDigits={0}
-				{...rule}
-				unit={unit != null ? unit : '€'}
-			/>
-			{appendText && <> {appendText}</>}
-		</Link>
 	)
 }

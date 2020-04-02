@@ -9,8 +9,8 @@ import TargetSelection from 'Components/TargetSelection'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
-import { simulationProgressSelector } from 'Selectors/progressSelectors'
+import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
+import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import * as Animate from 'Ui/animate'
 import Progress from 'Ui/Progress'
 
@@ -28,7 +28,7 @@ export default function Simulation({
 	showPeriodSwitch
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
-	const progress = useSelector(simulationProgressSelector)
+	const progress = useSimulationProgress()
 	return (
 		<>
 			<TargetSelection showPeriodSwitch={showPeriodSwitch} />

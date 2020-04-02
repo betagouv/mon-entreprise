@@ -1,7 +1,12 @@
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
-import { inferUnit, isPercentUnit } from 'Engine/units'
+import {
+	areUnitConvertible,
+	convertUnit,
+	inferUnit,
+	serializeUnit
+} from 'Engine/units'
 import {
 	any,
 	equals,
@@ -195,7 +200,7 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
 	let attempt = fx(2000)
-	if (attempt.nodeValue == null) {
+	if (attempt.nodeValue === null) {
 		return attempt
 	}
 
@@ -204,14 +209,18 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 		nodeValue = uniroot(
 			x => {
 				let y = fx(x)
-				return y.nodeValue - fixedObjectiveValue
+				return (
+					y.nodeValue -
+					(fixedObjectiveValue?.nodeValue == null
+						? fixedObjectiveValue
+						: convertNodeToUnit(y.unit, fixedObjectiveValue).nodeValue)
+				)
 			},
 			v['valeurs négatives possibles'] === 'oui' ? -1000000 : 0,
-			10000000,
+			100000000,
 			tolerance,
 			10
 		)
-
 	return {
 		nodeValue,
 		missingVariables: {},
@@ -225,35 +234,37 @@ let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
 
 export let mecanismInversion = dottedName => (recurse, k, v) => {
 	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let inversion =
-				// avoid the inversion loop !
-				situationGate(dottedName) == undefined &&
-				doInversion(cache, situationGate, parsedRules, v, dottedName),
-			// TODO - ceci n'est pas vraiment satisfaisant
-			nodeValue =
-				situationGate(dottedName) != null
-					? Number.parseFloat(situationGate(dottedName))
-					: inversion.nodeValue,
-			missingVariables = inversion.missingVariables
+		const situationValue = situationGate(dottedName)
+		if (situationValue != null) {
+			return {
+				...node,
+				nodeValue: situationValue.nodeValue ?? situationValue,
+				unit: situationValue.unit ?? node.unit
+			}
+		}
+		const inversion = doInversion(
+			cache,
+			situationGate,
+			parsedRules,
+			v,
+			dottedName
+		)
+		const nodeValue = inversion.nodeValue
 		if (nodeValue === undefined) {
 			cache._meta.inversionFail = {
 				given: inversion.inversedWith.rule.dottedName,
 				estimated: dottedName
 			}
 		}
-		let evaluatedNode = {
+		return {
 			...node,
-			nodeValue,
+			nodeValue: nodeValue ?? null,
 			explanation: {
 				...node.explanation,
 				inversedWith: inversion?.inversedWith
 			},
-			missingVariables
+			missingVariables: inversion.missingVariables
 		}
-		// TODO - we need this so that ResultsGrid will work, but it's
-		// just not right
-		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
-		return evaluatedNode
 	}
 
 	return {
@@ -269,61 +280,57 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 }
 
 export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
-	let evaluate = (currentCache, situationGate, parsedRules, node) => {
-		let defaultRuleToEvaluate = dottedNameContext
-		let nodeToEvaluate = recurse(node?.règle ?? defaultRuleToEvaluate)
-		let cache = { _meta: { ...currentCache._meta, inRecalcul: true } } // Create an empty cache
-		let amendedSituation = Object.fromEntries(
-			Object.keys(node.avec).map(dottedName => [
-				disambiguateRuleReference(parsedRules, dottedNameContext, dottedName),
-				node.avec[dottedName]
-			])
-		)
-
-		if (currentCache._meta.inRecalcul) {
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		if (cache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
+		const recalculCache = { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
+		const amendedSituation = map(
+			value => evaluateNode(cache, situationGate, parsedRules, value),
+			node.explanation.amendedSituation
+		)
+		const amendedSituationGate = dottedName => {
+			if (!(dottedName in amendedSituation)) {
+				return situationGate(dottedName)
+			}
+			return amendedSituation[dottedName]
+		}
 
-		let amendedSituationGate = dottedName =>
-			Object.keys(amendedSituation).includes(dottedName)
-				? evaluateNode(
-						cache,
-						amendedSituationGate,
-						parsedRules,
-						recurse(amendedSituation[dottedName])
-				  ).nodeValue
-				: situationGate(dottedName)
-
-		let evaluatedNode = evaluateNode(
-			cache,
+		const evaluatedNode = evaluateNode(
+			recalculCache,
 			amendedSituationGate,
 			parsedRules,
-			nodeToEvaluate
+			node.explanation.recalcul
 		)
 
 		return {
-			...evaluatedNode,
+			...node,
+			nodeValue: evaluatedNode.nodeValue,
+			...(evaluatedNode.temporalValue && {
+				temporalValue: evaluatedNode.temporalValue
+			}),
+			unit: evaluatedNode.unit,
 			explanation: {
-				...evaluateNode.explanation,
-				unit: evaluatedNode.unit,
-				amendedSituation: Object.fromEntries(
-					Object.keys(amendedSituation).map(dottedName => [
-						dottedName,
-						evaluateNode(
-							cache,
-							amendedSituationGate,
-							parsedRules,
-							recurse(amendedSituation[dottedName])
-						)
-					])
-				)
-			},
-			jsx: Recalcul
+				recalcul: evaluatedNode,
+				amendedSituation
+			}
 		}
 	}
 
+	const amendedSituation = Object.fromEntries(
+		Object.keys(v.avec).map(dottedName => [
+			recurse(dottedName).dottedName,
+			recurse(v.avec[dottedName])
+		])
+	)
+	const defaultRuleToEvaluate = dottedNameContext
+	const nodeToEvaluate = recurse(v.règle ?? defaultRuleToEvaluate)
 	return {
-		...v,
+		explanation: {
+			recalcul: nodeToEvaluate,
+			amendedSituation
+		},
+		jsx: Recalcul,
 		evaluate
 	}
 }
@@ -339,7 +346,7 @@ export let mecanismSum = (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, _, unit) => (
+		jsx: (nodeValue, explanation, unit) => (
 			<Somme nodeValue={nodeValue} explanation={explanation} unit={unit} />
 		),
 		explanation,
@@ -371,7 +378,7 @@ export let mecanismReduction = (recurse, k, v) => {
 			try {
 				franchise = convertNodeToUnit(assiette.unit, franchise)
 				plafond = convertNodeToUnit(assiette.unit, plafond)
-				if (!isPercentUnit(abattement.unit)) {
+				if (serializeUnit(abattement.unit) !== '%') {
 					abattement = convertNodeToUnit(assiette.unit, abattement)
 				}
 				if (décote) {
@@ -404,13 +411,13 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: isPercentUnit(abattement.unit)
+				: serializeUnit(abattement.unit) === '%'
 				? max(
 						0,
 						montantFranchiséDécoté -
 							min(
 								plafond.nodeValue,
-								abattement.nodeValue * montantFranchiséDécoté
+								(abattement.nodeValue / 100) * montantFranchiséDécoté
 							)
 				  )
 				: max(
@@ -477,10 +484,10 @@ export let mecanismProduct = (recurse, k, v) => {
 				)
 			}
 		}
-		let mult = (base, rate, facteur, plafond) =>
+		const mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
 
-		const nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
+		let nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
 			? false
 			: [taux, assiette, facteur].some(n => n.nodeValue === 0)
 			? 0
@@ -493,10 +500,14 @@ export let mecanismProduct = (recurse, k, v) => {
 					plafond.nodeValue
 			  )
 
-		const unit = inferUnit(
+		let unit = inferUnit(
 			'*',
 			[assiette, taux, facteur].map(el => el.unit)
 		)
+		if (areUnitConvertible(unit, assiette.unit)) {
+			nodeValue = convertUnit(unit, assiette.unit, nodeValue)
+			unit = assiette.unit
+		}
 		return {
 			nodeValue,
 

@@ -1,125 +1,93 @@
-import Value from 'Components/Value'
-import { EvaluatedRule } from 'Engine/types'
-import React from 'react'
+import { EngineContext } from 'Components/utils/EngineContext'
+import Value, { ValueProps, Condition } from 'Components/EngineValue'
+import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { defaultUnitSelector } from 'Selectors/analyseSelectors'
+import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 
-export let SalaireBrutSection = ({
-	getRule
-}: {
-	getRule: (rule: DottedName) => EvaluatedRule
-}) => {
-	let avantagesEnNature = getRule(
-			'contrat salarié . rémunération . avantages en nature'
-		),
-		indemnitésSalarié = getRule('contrat salarié . CDD . indemnités salarié'),
-		remboursementDeFrais = getRule('contrat salarié . frais professionnels'),
-		heuresSupplémentaires = getRule(
-			'contrat salarié . rémunération . heures supplémentaires'
-		),
-		salaireDeBase = getRule('contrat salarié . rémunération . brut de base'),
-		rémunérationBrute = getRule('contrat salarié . rémunération . brut'),
-		chômagePartielIndemnité = getRule(
-			'contrat salarié . activité partielle . indemnités'
-		),
-		chômagePartielAbsence = getRule(
-			'contrat salarié . activité partielle . retrait absence'
-		),
-		primes = getRule('contrat salarié . rémunération . primes')
+export let SalaireBrutSection = () => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<Trans>Salaire</Trans>
 			</h4>
-			<Line rule={salaireDeBase} />
-			{!!avantagesEnNature?.nodeValue && (
-				<Line
-					rule={getRule(
-						'contrat salarié . rémunération . avantages en nature . montant'
-					)}
-				/>
-			)}
-			{chômagePartielIndemnité?.nodeValue && (
-				<>
-					<Line rule={chômagePartielAbsence} />
-					<Line rule={chômagePartielIndemnité} />
-				</>
-			)}
-			{!!heuresSupplémentaires?.nodeValue && (
-				<Line rule={heuresSupplémentaires} />
-			)}
-			{!!primes?.nodeValue && <Line rule={primes} />}
-			{!!remboursementDeFrais?.nodeValue && (
-				<Line rule={remboursementDeFrais} />
-			)}
-			{!!indemnitésSalarié?.nodeValue && <Line rule={indemnitésSalarié} />}
-			{rémunérationBrute.nodeValue !== salaireDeBase.nodeValue && (
-				<Line rule={rémunérationBrute} />
-			)}
+			<Line rule="contrat salarié . rémunération . brut de base" />
+			<Line rule="contrat salarié . rémunération . avantages en nature . montant" />
+			<Line rule="contrat salarié . activité partielle . retrait absence" />
+			<Line rule="contrat salarié . activité partielle . indemnités" />
+			<Line rule="contrat salarié . rémunération . heures supplémentaires" />
+			<Line rule="contrat salarié . rémunération . heures complémentaires" />
+			<Line rule="contrat salarié . rémunération . primes" />
+			<Line rule="contrat salarié . frais professionnels" />
+			<Line rule="contrat salarié . CDD . indemnités salarié" />
+			<Condition expression="contrat salarié . rémunération . brut de base != contrat salarié . rémunération . brut">
+				<Line rule="contrat salarié . rémunération . brut" />
+			</Condition>
 		</div>
 	)
 }
 
-export let Line = ({ rule, className = '', ...props }) => {
-	const defaultUnit = useSelector(defaultUnitSelector)
-	return (
-		<>
-			<RuleLink {...rule} className={className} />
-			<Value
-				{...rule}
-				nilValueSymbol="—"
-				defaultUnit={defaultUnit}
-				unit="€"
-				className={className}
-				{...props}
-			/>
-		</>
-	)
-}
-
-export let SalaireNetSection = ({ getRule }) => {
-	let avantagesEnNature = getRule(
-		'contrat salarié . rémunération . avantages en nature . montant'
-	)
-	let impôt = getRule('impôt')
-	let netImposable = getRule('contrat salarié . rémunération . net imposable')
-	const retenueTitresRestaurant = getRule(
-		'contrat salarié . frais professionnels . titres-restaurant . montant'
-	)
+export let SalaireNetSection = () => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
 			</h4>
-			{netImposable && <Line rule={netImposable} />}
-			{(avantagesEnNature?.nodeValue || retenueTitresRestaurant?.nodeValue) && (
-				<Line
-					rule={getRule('contrat salarié . rémunération . net de cotisations')}
-				/>
-			)}
-			{!!avantagesEnNature?.nodeValue && (
-				<Line negative rule={avantagesEnNature} />
-			)}
-			{!!retenueTitresRestaurant?.nodeValue && (
-				<Line negative rule={retenueTitresRestaurant} />
-			)}
-
+			<Line rule="contrat salarié . rémunération . net imposable" />
+			<Condition
+				expression={[
+					'contrat salarié . rémunération . avantages en nature',
+					'contrat salarié . frais professionnels . titres-restaurant'
+				]}
+			>
+				<Line rule="contrat salarié . rémunération . net de cotisations" />
+			</Condition>
 			<Line
-				rule={getRule('contrat salarié . rémunération . net')}
+				negative
+				rule="contrat salarié . rémunération . avantages en nature . montant"
+			/>
+			<Line
+				negative
+				rule="contrat salarié . frais professionnels . titres-restaurant . montant"
+			/>
+			<Line
+				rule="contrat salarié . rémunération . net"
 				className="payslip__total"
 			/>
-			{!!impôt && (
-				<>
-					<Line negative rule={impôt} />
-					<Line
-						className="payslip__total"
-						rule={getRule('contrat salarié . rémunération . net après impôt')}
-					/>
-				</>
-			)}
+			<Condition expression="impôt">
+				<Line negative rule="impôt" unit="€/mois" />
+				<Line
+					className="payslip__total"
+					rule="contrat salarié . rémunération . net après impôt"
+				/>
+			</Condition>
 		</div>
+	)
+}
+
+type LineProps = {
+	rule: DottedName
+	negative?: boolean
+} & Omit<ValueProps, 'expression'>
+
+export function Line({
+	rule,
+	displayedUnit = '€',
+	negative = false,
+	className,
+	...props
+}: LineProps) {
+	const parsedRules = useContext(EngineContext).getParsedRules()
+	return (
+		<Condition expression={rule}>
+			<RuleLink {...parsedRules[rule]} className={className} />
+			<Value
+				expression={(negative ? '- ' : '') + rule}
+				displayedUnit={displayedUnit}
+				className={className}
+				{...props}
+			/>
+		</Condition>
 	)
 }

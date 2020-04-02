@@ -50,13 +50,13 @@ entreprise . chiffre d'affaires:
   titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
   résumé: Le montant des ventes réalisées
-  unité par défaut: €/an
+  unité: €/an
   formule: dirigeant . rémunération totale + charges
 
 entreprise . chiffre d'affaires minimum:
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   question: Quel est votre chiffre d'affaires minimum envisagé ?
-  unité par défaut: €/an
+  unité: €/an
   formule: chiffre d'affaires
 
 entreprise . chiffre d'affaires de société:
@@ -69,8 +69,7 @@ entreprise . rémunération du dirigeant:
   description: |
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
-  unité: '%'
-  par défaut: 1
+  par défaut: 100%
 
 entreprise . bénéfice:
   formule: chiffre d'affaires - charges dont rémunération dirigeant
@@ -122,8 +121,7 @@ entreprise . charges:
 
   références:
     Charges déductibles ou non du résultat fiscal d'une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
-  par défaut: 0
-  unité par défaut: €/an
+  par défaut: 0 €/an
 
 entreprise . ACRE:
   description: >-
@@ -233,7 +231,7 @@ entreprise . effectif . seuil:
         - moins de 50
         - moins de 250
         - 251 et plus
-  par défaut: moins de 5
+  par défaut: "'moins de 5'"
 
 entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 11:
@@ -247,11 +245,10 @@ entreprise . ratio alternants:
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
-  unité: '%'
   suggestions:
     1%: 0.01
     5%: 0.05
-  par défaut: 0
+  par défaut: 0%
 
 entreprise . association non lucrative:
   description: L'entreprise est une association non lucrative
@@ -289,7 +286,7 @@ entreprise . catégorie d'activité:
   titre: nature de l'activité
   question: Quelle est la nature de votre activité ?
   description: Votre catégorie d'activité va déterminer une grande partie des calculs de cotisation, contribution et impôt.
-  par défaut: commerciale ou industrielle
+  par défaut: "'commerciale ou industrielle'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -346,7 +343,7 @@ entreprise . catégorie d'activité . service ou vente:
       possibilités:
         - service
         - vente
-  par défaut: vente
+  par défaut: "'vente'"
 
 entreprise . catégorie d'activité . service ou vente . vente:
   titre: vente de biens
