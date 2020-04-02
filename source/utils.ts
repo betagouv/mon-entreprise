@@ -1,5 +1,8 @@
-export let capitalise0 = (name: string | undefined) =>
-	name && name[0].toUpperCase() + name.slice(1)
+export function capitalise0(name: undefined): undefined
+export function capitalise0(name: string): string
+export function capitalise0(name) {
+	return name && name[0].toUpperCase() + name.slice(1)
+}
 
 export const debounce = <F extends (...args: any[]) => void>(
 	waitFor: number,

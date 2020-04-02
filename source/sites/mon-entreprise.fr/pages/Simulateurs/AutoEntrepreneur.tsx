@@ -5,7 +5,7 @@ import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entreprene
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'

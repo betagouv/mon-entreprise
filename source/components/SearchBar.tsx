@@ -1,11 +1,12 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { parentName } from 'Engine/rules.js'
+import { parentName } from 'Engine/ruleUtils'
+import { ParsedRule, ParsedRules } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import { pick, sortBy, take } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import FuzzyHighlighter, { Highlighter } from 'react-fuzzy-highlighter'
 import { useTranslation } from 'react-i18next'
 import { Link, Redirect, useHistory } from 'react-router-dom'
-import { Rule } from 'Types/rule'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import { capitalise0 } from '../utils'
 import './SearchBar.css'
@@ -13,13 +14,13 @@ import './SearchBar.css'
 const worker = new Worker()
 
 type SearchBarProps = {
-	rules: Array<Rule>
+	rules: ParsedRules<DottedName>
 	showDefaultList: boolean
 	finally?: () => void
 }
 
-type Option = Pick<Rule, 'dottedName' | 'name' | 'title'>
-type Result = Pick<Rule, 'dottedName'>
+type Option = Pick<ParsedRule<DottedName>, 'dottedName' | 'name' | 'title'>
+type Result = Pick<ParsedRule<DottedName>, 'dottedName'>
 
 export default function SearchBar({
 	rules,
@@ -60,7 +61,7 @@ export default function SearchBar({
 
 	useEffect(() => {
 		worker.postMessage({
-			rules: rules.map(
+			rules: Object.values(rules).map(
 				pick(['title', 'espace', 'description', 'name', 'dottedName'])
 			)
 		})
@@ -88,11 +89,11 @@ export default function SearchBar({
 		)
 	}
 
-	let renderOptions = (rules?: Array<Rule>) => {
+	let renderOptions = (rules?: Array<ParsedRule>) => {
 		const currentPage = getDottedName(window.location.href)
 		let options = (rules && sortBy(rule => rule.dottedName, rules)) || results
-		let currentOptions: Array<Pick<Rule, 'dottedName'>> = []
-		let notCurrentOptions: Array<Pick<Rule, 'dottedName'>> = []
+		let currentOptions: Array<Option> = []
+		let notCurrentOptions: Array<Option> = []
 		options.forEach(option => {
 			if (option.dottedName.startsWith(currentPage)) {
 				currentOptions.push(option)
@@ -256,7 +257,9 @@ export default function SearchBar({
 				i18n.t('noresults', {
 					defaultValue: "Nous n'avons rien trouvé…"
 				})}
-			{showDefaultList && !input ? renderOptions(rules) : renderOptions()}
+			{showDefaultList && !input
+				? renderOptions(Object.values(rules))
+				: renderOptions()}
 		</>
 	)
 }

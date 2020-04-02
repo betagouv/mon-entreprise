@@ -1,6 +1,6 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Value from 'Components/Value'
-import { findRuleByDottedName, getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React, { Fragment, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -42,7 +42,7 @@ export default function PaySlip() {
 					unit="heures/mois"
 					maximumFractionDigits={1}
 				/>
-				{heuresSupplémentaires?.nodeValue > 0 && (
+				{!!heuresSupplémentaires?.nodeValue && (
 					<Line
 						rule={heuresSupplémentaires}
 						unit="heures/mois"
@@ -64,7 +64,7 @@ export default function PaySlip() {
 					<Trans>Part salarié</Trans>
 				</h4>
 				{cotisations.map(([brancheDottedName, cotisationList]) => {
-					let branche = findRuleByDottedName(parsedRules, brancheDottedName)
+					let branche = parsedRules[brancheDottedName]
 					return (
 						<Fragment key={branche.dottedName}>
 							<h5 className="payslip__cotisationTitle">
@@ -103,13 +103,13 @@ export default function PaySlip() {
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . patronales')}
-					printedUnit="€"
+					unit="€"
 					className="payslip__total"
 				/>
 				<Value
 					nilValueSymbol="—"
 					{...getRule('contrat salarié . cotisations . salariales')}
-					printedUnit="€"
+					unit="€"
 					className="payslip__total"
 				/>
 				{/* Salaire chargé */}

@@ -1,7 +1,7 @@
-import { encodeRuleName } from 'Engine/rules'
+import { encodeRuleName } from 'Engine/ruleUtils'
+import { DottedName } from 'Publicode/rules'
 import { map, reduce, toPairs, zipObj } from 'ramda'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
-import { DottedName } from 'Types/rule'
 import i18n from '../../i18n'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [

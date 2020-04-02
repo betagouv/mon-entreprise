@@ -1,9 +1,9 @@
+import { DottedName } from 'Publicode/rules'
 import {
 	add,
 	countBy,
 	descend,
 	flatten,
-	fromPairs,
 	head,
 	identity,
 	keys,
@@ -15,7 +15,6 @@ import {
 	toPairs,
 	values
 } from 'ramda'
-import { DottedName } from 'Types/rule'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES
@@ -36,9 +35,6 @@ type Explanation = {
 	missingVariables: Array<DottedName>
 	dottedName: DottedName
 }
-
-export let collectMissingVariablesByTarget = (targets: Explanation[] = []) =>
-	fromPairs(targets.map(target => [target.dottedName, target.missingVariables]))
 
 export let getNextSteps = missingVariablesByTarget => {
 	let byCount = ([, [count]]) => count
@@ -62,6 +58,3 @@ export let getNextSteps = missingVariablesByTarget => {
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs)
 }
-
-export let collectMissingVariables = targets =>
-	getNextSteps(collectMissingVariablesByTarget(targets))

@@ -10,9 +10,6 @@ let { safeLoad } = require('js-yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
 let UiTranslationPath = path.resolve('source/locales/en.yaml')
 
-// TODO: This should be shared with the variable exported by Engine/rules, but
-// it's currently not possible because a NodeJS script can't use "import"
-// statements
 let attributesToTranslate = [
 	'titre',
 	'description',

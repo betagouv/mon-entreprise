@@ -1,4 +1,4 @@
-import { rules as baseRulesEn, rulesFr as baseRulesFr } from 'Engine/rules'
+// TODO : load translation only if en
 import 'iframe-resizer'
 import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -10,25 +10,12 @@ import Landing from './Landing'
 import Studio from './LazyStudio'
 import Mécanismes from './Mécanismes'
 
-function Router({ language }) {
+function Router({ language, rules }) {
 	useEffect(() => {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])
-	const rules = language === 'en' ? baseRulesEn : baseRulesFr
 	return (
-		<Provider
-			basename="publicodes"
-			language={language}
-			reduxMiddlewares={[]}
-			initialStore={{
-				rules,
-				simulation: {
-					config: {
-						objectifs: []
-					}
-				}
-			}}
-		>
+		<Provider basename="publicodes" language={language} rules={rules}>
 			<RouterSwitch />
 		</Provider>
 	)

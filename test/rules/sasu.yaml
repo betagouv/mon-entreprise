@@ -27,17 +27,11 @@ impôt sur les sociétés:
   références:
     fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
-bénéfice:
-  formule: chiffre affaires - salaire total
-
+bénéfice: chiffre affaires - salaire total
 dividendes:
 
-dividendes . brut:
-  formule: bénéfice - impôt sur les sociétés
-
-dividendes . net:
-  formule: brut - prélèvement forfaitaire unique
-
+dividendes . brut: bénéfice - impôt sur les sociétés
+dividendes . net: brut - prélèvement forfaitaire unique
 dividendes . prélèvement forfaitaire unique:
   formule:
     produit:
@@ -46,8 +40,6 @@ dividendes . prélèvement forfaitaire unique:
         - taux: 17.2%
         - taux: 12.8%
 
-salaire total:
-  formule: chiffre affaires * répartition salaire sur dividendes
-
+salaire total: chiffre affaires * répartition salaire sur dividendes
 revenu net après impôt:
   formule: contrat salarié . rémunération . net après impôt + dividendes . net

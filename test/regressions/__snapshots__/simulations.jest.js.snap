@@ -2,9 +2,9 @@
 
 exports[`calculate simulations-artiste-auteur:  bnc 1`] = `"[1230]"`;
 
-exports[`calculate simulations-artiste-auteur:  bnc 2`] = `"[1230]"`;
+exports[`calculate simulations-artiste-auteur:  bnc 2`] = `"[1863]"`;
 
-exports[`calculate simulations-artiste-auteur:  bnc 3`] = `"[1230]"`;
+exports[`calculate simulations-artiste-auteur:  bnc 3`] = `"[932]"`;
 
 exports[`calculate simulations-artiste-auteur:  salarié 1`] = `"[160]"`;
 

@@ -28,7 +28,7 @@ function LinkRenderer({ href, children }) {
 const TextRenderer = ({ children }) => <>{emoji(children)}</>
 
 type MarkdownProps = ReactMarkdownProps & {
-	source: string
+	source: string | undefined
 	className?: string
 }
 

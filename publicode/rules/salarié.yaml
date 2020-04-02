@@ -464,7 +464,6 @@ contrat salarié . CDD . CPF:
         événement: aucun
         motif: accroissement activité
         contrat jeune vacances: non
-
         cotisations . assiette: 1480
       valeur attendue: 14.8
     - nom: salaire médian
@@ -479,7 +478,7 @@ contrat salarié . CDD . CPF:
       situation:
         contrat salarié . CDD . motif: classique . saisonnier
         cotisations . assiette: 2300
-      valeur attendue: null
+      valeur attendue: 0
 
 contrat salarié . CDD . compensation pour congés non pris:
   titre: indemnité de congés payés
@@ -628,7 +627,7 @@ contrat salarié . CDD . prime de fin de contrat:
       situation:
         motif: classique . usage
         rémunération . brut de base: 2300
-      valeur attendue: null
+      valeur attendue: 0
 
   références:
     Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
@@ -1230,7 +1229,6 @@ contrat salarié . rémunération . primes . activité:
 contrat salarié . rémunération . primes . activité . base:
   titre: primes d'activité
   unité: €/mois
-
   question: Quel est le montant des primes liées à l'activité du salarié ?
   par défaut: 0
 
@@ -2564,6 +2562,9 @@ contrat salarié . contribution au dialogue social:
       taux: 0.016%
 
 contrat salarié . CSG et CRDS:
+  cotisation:
+    dû par: salarié
+    collecteur: URSSAF
   description: >-
     La CSG et la CRDS sont dues par tous les salariés remplissant les deux
     conditions suivantes :
@@ -3136,6 +3137,7 @@ contrat salarié . taxe sur les salaires . barème:
 
 contrat salarié . profession spécifique:
   question: Le salarié exerce t-il l'une des professions suivantes ?
+  par défaut: non
   formule:
     une possibilité:
       possibilités:
@@ -3260,7 +3262,7 @@ contrat salarié . taxe sur les salaires:
         rémunération . brut de base: 2300
         entreprise . effectif: 10
         complémentaire santé . forfait: 0
-      valeur attendue: 577
+      valeur attendue: 48.106
 
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576

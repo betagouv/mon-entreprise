@@ -53,10 +53,8 @@ heures d'absences:
 
 temps contractuel:
   formule: 145 heures/mois
-
 temps de travail effectif:
   formule: temps contractuel - heures d'absences
-
 plafond sécurité sociale proratisé:
   formule:
     multiplication:

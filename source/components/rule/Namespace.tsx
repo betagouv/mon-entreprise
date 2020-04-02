@@ -1,5 +1,4 @@
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { findRuleByDottedName } from 'Engine/rules'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
@@ -22,7 +21,7 @@ export default function Namespace({ dottedName, flatRules, color }) {
 				)
 				.map(fragments => {
 					let ruleName = fragments.join(' . '),
-						rule = findRuleByDottedName(flatRules, ruleName)
+						rule = flatRules[ruleName]
 					if (!rule) {
 						throw new Error(
 							`Attention, il se peut que la règle ${ruleName}, ait été définie avec un namespace qui n'existe pas.`

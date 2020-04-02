@@ -1,8 +1,8 @@
 import { SitePaths } from 'Components/utils/withSitePaths'
 import { History } from 'history'
+import { DottedName } from 'Publicode/rules'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'Types/rule'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
 
 export type Action =
@@ -17,7 +17,7 @@ export type Action =
 	| HideControlAction
 	| LoadPreviousSimulationAction
 	| SetSituationBranchAction
-	| UpdateDefaultUnit
+	| UpdateDefaultUnitAction
 	| SetActiveTargetAction
 
 export type ThunkResult<R> = ThunkAction<
@@ -64,7 +64,7 @@ type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideControlAction = ReturnType<typeof hideControl>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateDefaultUnit = ReturnType<typeof updateUnit>
+type UpdateDefaultUnitAction = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({

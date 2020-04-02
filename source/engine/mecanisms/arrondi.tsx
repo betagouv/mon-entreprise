@@ -5,10 +5,10 @@ import {
 	mergeAllMissing
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
+import { EvaluatedRule } from 'Engine/types'
 import { has } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { EvaluatedRule } from 'Types/rule'
 
 type MecanismRoundProps = {
 	nodeValue: EvaluatedRule['nodeValue']
@@ -49,12 +49,12 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-let evaluate = (
+function evaluate<Names extends string>(
 	cache,
 	situation,
 	parsedRules,
-	node: EvaluatedRule<ArrondiExplanation>
-) => {
+	node: EvaluatedRule<Names, ArrondiExplanation>
+) {
 	const evaluateAttribute = evaluateNode.bind(
 		null,
 		cache,

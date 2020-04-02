@@ -7,7 +7,7 @@ import { evaluateNode, mergeMissing } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
 import { convertNodeToUnit, getNodeDefaultUnit } from './nodeUnits'
-import { disambiguateRuleReference, findRuleByDottedName } from './rules'
+import { disambiguateRuleReference } from './ruleUtils'
 import { areUnitConvertible } from './units'
 const getApplicableReplacements = (
 	filter,
@@ -198,15 +198,18 @@ export let parseReference = (
 	parsedRules,
 	filter
 ) => partialReference => {
-	let dottedName = disambiguateRuleReference(rules, rule, partialReference)
+	let dottedName = disambiguateRuleReference(
+		rules,
+		rule.dottedName,
+		partialReference
+	)
 
 	let inInversionFormula = rule.formule?.['inversion numérique']
 
 	let parsedRule =
 		parsedRules[dottedName] ||
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
-		(!inInversionFormula &&
-			parseRule(rules, findRuleByDottedName(rules, dottedName), parsedRules))
+		(!inInversionFormula && parseRule(rules, dottedName, parsedRules))
 	const unit =
 		parsedRule.unit || parsedRule.formule?.unit || parsedRule.defaultUnit
 	return {

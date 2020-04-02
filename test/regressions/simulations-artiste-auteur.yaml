@@ -6,7 +6,7 @@ salarié:
 bnc:
   - artiste-auteur . revenus . BNC . recettes: 10000
   - artiste-auteur . revenus . BNC . recettes: 10000
-    artiste-auteur . revenus . BNC . micro-bnc: false
+    artiste-auteur . revenus . BNC . micro-bnc: non
   - artiste-auteur . revenus . BNC . recettes: 10000
-    artiste-auteur . revenus . BNC . micro-bnc: false
+    artiste-auteur . revenus . BNC . micro-bnc: non
     artiste-auteur . revenus . BNC . frais réels: 5000

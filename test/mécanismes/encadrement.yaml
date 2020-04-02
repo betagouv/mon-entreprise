@@ -25,9 +25,7 @@ plafonnement reference inactive:
   exemples:
     - valeur attendue: 1000
 
-plafonnement reference inactive . plafond:
-  formule: non
-
+plafonnement reference inactive . plafond: non
 plancher:
   formule:
     encadrement:

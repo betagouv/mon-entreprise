@@ -7,7 +7,9 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { EvaluatedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -15,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
-import { EvaluatedRule } from 'Types/rule'
 import Animate from 'Ui/animate'
 
 declare global {
@@ -114,7 +115,12 @@ function ExplanationSection() {
 	const totalEntrepriseHabituel = getRule(
 		'chômage partiel . coût employeur habituel'
 	)
-	if (!net?.nodeValue) {
+	if (
+		!net?.nodeValue ||
+		!netHabituel?.nodeValue ||
+		totalEntreprise?.nodeValue == null ||
+		!totalEntrepriseHabituel?.nodeValue
+	) {
 		return null
 	}
 	return (
@@ -139,7 +145,7 @@ function ExplanationSection() {
 								netHabituel,
 								{
 									...net,
-									additionalText: (
+									additionalText: language === 'fr' && (
 										<>
 											Soit{' '}
 											<strong>
@@ -159,7 +165,7 @@ function ExplanationSection() {
 								totalEntrepriseHabituel,
 								{
 									...totalEntreprise,
-									additionalText: (
+									additionalText: language === 'fr' && (
 										<>
 											Soit{' '}
 											<strong>
@@ -255,7 +261,7 @@ function ComparaisonTable({ rows: [head, ...body] }) {
 	)
 }
 
-function ValueWithLink(rule: EvaluatedRule) {
+function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 	const { language } = useTranslation().i18n
 	return (
 		<RuleLink {...rule}>

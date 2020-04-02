@@ -1,7 +1,9 @@
+import classnames from 'classnames'
 import { formatValue, formatValueOptions } from 'Engine/format'
+import { EvaluatedRule } from 'Engine/types'
+import { Unit } from 'Engine/units'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { EvaluatedRule } from 'Types/rule'
 
 // let booleanTranslations = { true: '✅', false: '❌' }
 
@@ -17,7 +19,7 @@ let style = customStyle => `
 `
 
 export type ValueProps = Partial<
-	Pick<EvaluatedRule, 'nodeValue' | 'unit'> &
+	Pick<EvaluatedRule, 'nodeValue'> &
 		Pick<
 			formatValueOptions,
 			'maximumFractionDigits' | 'minimumFractionDigits'
@@ -25,21 +27,20 @@ export type ValueProps = Partial<
 			nilValueSymbol: string
 			children: number
 			negative: boolean
+			unit: string | Unit
 			customCSS: string
-			defaultUnit?: string
-			printedUnit?: string
+			className?: string
 		}
 >
 
 export default function Value({
 	nodeValue: value,
 	unit,
-	defaultUnit,
-	printedUnit,
 	nilValueSymbol,
 	maximumFractionDigits,
 	minimumFractionDigits,
 	children,
+	className,
 	negative,
 	customCSS = ''
 }: ValueProps) {
@@ -54,7 +55,7 @@ export default function Value({
 		nodeValue === null
 	)
 		return (
-			<span css={style(customCSS)} className="value">
+			<span css={style(customCSS)} className={classnames('value', className)}>
 				-
 			</span>
 		)
@@ -76,7 +77,7 @@ export default function Value({
 				})
 			) : null
 	return nodeValue == undefined ? null : (
-		<span css={style(customCSS)} className="value">
+		<span css={style(customCSS)} className={classnames('value', className)}>
 			{negative ? '-' : ''}
 			{formattedValue}
 		</span>

@@ -1,46 +1,47 @@
-import { safeLoad } from 'js-yaml'
+import { evaluateControls } from 'Engine/controls'
+import { ParsedRules, Rules } from 'Engine/types'
 import { Simulation } from 'Reducers/rootReducer'
-import { DottedName, Rule } from 'Types/rule'
 import { evaluateNode } from './evaluation'
-import { collectDefaults, enrichRule, rulesFr } from './rules'
-import { parseAll } from './traverse'
-import { parseUnit } from './units'
+import parseRules from './parseRules'
+import { collectDefaults } from './ruleUtils'
+import { parseUnit, Unit } from './units'
 
 const emptyCache = {
 	_meta: { contextRule: [], defaultUnits: [] }
 }
 
-type EngineConfig = {
-	rules?: string | Array<any> | object
-	extra?: string | Array<any> | object
+type EngineConfig<Names extends string> = {
+	rules: string | Rules<Names> | ParsedRules<Names>
+	useDefaultValues?: boolean
 }
 
-let enrichRules = input => {
-	const rules =
-		typeof input === 'string' ? safeLoad(input.replace(/\t/g, '  ')) : input
-	const rulesList = Array.isArray(rules)
-		? rules
-		: Object.entries(rules).map(([dottedName, rule]) => ({
-				dottedName,
-				...(rule as any)
-		  }))
-	return rulesList.map(enrichRule)
+type Cache = {
+	_meta: {
+		contextRule: Array<string>
+		defaultUnits: Array<Unit>
+		inversionFail?: {
+			given: string
+			estimated: string
+		}
+	}
 }
 
-export default class Engine {
-	rules: Array<Rule>
-	parsedRules: Record<DottedName, Rule>
+export { default as translateRules } from './translateRules'
+export { parseRules }
+export default class Engine<Names extends string> {
+	parsedRules: ParsedRules<Names>
 	defaultValues: Simulation['situation']
 	situation: Simulation['situation'] = {}
-	cache = { ...emptyCache }
+	cache: Cache = { ...emptyCache }
 
-	constructor(config: EngineConfig = {}) {
-		this.rules = [
-			...(config?.rules ? enrichRules(config.rules) : rulesFr),
-			...(config?.extra ? enrichRules(config.extra) : [])
-		]
-		this.parsedRules = parseAll(this.rules) as any
-		this.defaultValues = collectDefaults(this.rules)
+	constructor({ rules, useDefaultValues = true }: EngineConfig<Names>) {
+		this.parsedRules =
+			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
+				? parseRules(rules)
+				: (rules as ParsedRules<Names>)
+		this.defaultValues = useDefaultValues
+			? collectDefaults(this.parsedRules)
+			: {}
 	}
 
 	private resetCache() {
@@ -50,12 +51,14 @@ export default class Engine {
 	setSituation(situation: Simulation['situation'] = {}) {
 		this.situation = situation
 		this.resetCache()
+		return this
 	}
 
-	setDefaultUnits(defaultUnits = []) {
+	setDefaultUnits(defaultUnits: string[] = []) {
 		this.cache._meta.defaultUnits = defaultUnits.map(unit =>
 			parseUnit(unit)
 		) as any
+		return this
 	}
 
 	evaluate(expression: string | Array<string>) {
@@ -68,19 +71,25 @@ export default class Engine {
 							this.situationGate,
 							this.parsedRules,
 							this.parsedRules[expr]
-							// TODO: To support expressions (with operations, unit conversion,
-							// etc.) it should be enough to replace the above line with :
-							// parse(this.parsedRules, { dottedName: '' }, this.parsedRules)(expr)
-							// But currently there are small side effects (null values converted
-							// to 0), so we need to modify a little bit the engine before enabling
-							// publicode expressions in the UI.
 					  )
-					: null)
-		)
+					: // TODO: To support expressions (with operations, unit conversion,
+					  // etc.) it should be enough to replace the above line with :
+					  // parse(this.parsedRules, { dottedName: '' }, this.parsedRules)(expr)
+					  // But currently there are small side effects (null values converted
+					  // to 0), so we need to modify a little bit the engine before enabling
+					  // publicode expressions in the UI.
 
+					  null)
+		)
 		return Array.isArray(expression) ? results : results[0]
 	}
-
+	controls() {
+		return evaluateControls(this.cache, this.situationGate, this.parsedRules)
+	}
+	// TODO : this should be private
+	getCache(): Cache {
+		return this.cache
+	}
 	situationGate = (dottedName: string) =>
-		this.situation[dottedName] || this.defaultValues[dottedName]
+		this.situation[dottedName] ?? this.defaultValues[dottedName]
 }

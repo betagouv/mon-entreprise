@@ -15,10 +15,8 @@ douche . nombre:
 
 douche . impact par douche:
   formule: impact par litre * litres d'eau par douche
-
 douche . impact par litre:
   formule: eau . impact par litre froid + chauffage . impact par litre
-
 douche . litres d'eau par douche:
   icônes: 🇱
   formule: durée de la douche * litres par minute / 1 douche
@@ -94,7 +92,6 @@ chauffage . énergie consommée par litre:
 
 chauffage . impact par litre:
   formule: impact par kWh * énergie consommée par litre
-
 # Meilleure syntaxe : nouveau mécanisme correspondance
 # mais où désigne-t-on ce sur quoi la correspondance se fait ? Est-ce implicite ? Ici le chauffage.
 # formule:

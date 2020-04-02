@@ -100,9 +100,7 @@ function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
 	const value = situation[dottedName]
 	return value && (value === 'oui' || unit === '€') ? (
 		<p>
-			<span>
-				{rules.find(rule => rule.dottedName === dottedName)?.question}
-			</span>
+			<span>{rules[dottedName]?.question}</span>
 			<span>
 				&nbsp;
 				<strong>

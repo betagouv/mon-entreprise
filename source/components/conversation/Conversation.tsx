@@ -1,7 +1,6 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
 import RuleInput from 'Engine/RuleInput'
-import { findRuleByDottedName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -9,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	currentQuestionSelector,
-	flatRulesSelector,
-	nextStepsSelector
+	nextStepsSelector,
+	parsedRulesSelector
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
@@ -23,7 +22,7 @@ export type ConversationProps = {
 
 export default function Conversation({ customEndMessages }: ConversationProps) {
 	const dispatch = useDispatch()
-	const flatRules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const previousAnswers = useSelector(
 		(state: RootState) => state.simulation?.foldedSteps || []
@@ -34,7 +33,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		dispatch(
 			validateStepWithValue(
 				currentQuestion,
-				findRuleByDottedName(flatRules, currentQuestion).defaultValue
+				rules[currentQuestion].defaultValue
 			)
 		)
 	const goToPrevious = () =>
@@ -46,7 +45,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	}
 	const DecoratedInputComponent = FormDecorator(RuleInput)
 
-	return flatRules && nextSteps.length ? (
+	return rules && nextSteps.length ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>

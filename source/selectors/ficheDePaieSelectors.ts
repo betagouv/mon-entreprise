@@ -1,4 +1,3 @@
-import { Analysis } from 'Engine/traverse'
 import {
 	add,
 	concat,
@@ -23,7 +22,6 @@ export const BLANK_COTISATION: Cotisation = {
 		partPatronale: 0,
 		partSalariale: 0
 	},
-	unit: 'ERROR_SHOULD_BE_INSTANCIATED',
 	dottedName: 'ERROR_SHOULD_BE_INSTANCIATED' as any,
 	title: 'ERROR_SHOULD_BE_INSTANCIATED',
 	branche: 'protection sociale . autres'
@@ -91,7 +89,7 @@ const groupByBranche = (cotisations: Array<Cotisation>) => {
 		cotisationsMap[branche]
 	])
 }
-export let analysisToCotisations = (analysis: Analysis) => {
+export let analysisToCotisations = (analysis: { cache: Cache }) => {
 	const variables = [
 		'contrat salarié . cotisations . salariales',
 		'contrat salarié . cotisations . patronales'
@@ -129,6 +127,6 @@ export let analysisToCotisations = (analysis: Analysis) => {
 	return cotisations
 }
 export const analysisToCotisationsSelector = createSelector(
-	[analysisWithDefaultsSelector],
+	[analysisWithDefaultsSelector as any],
 	analysisToCotisations
 )

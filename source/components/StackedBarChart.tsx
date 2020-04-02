@@ -1,9 +1,10 @@
 import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+import { EvaluatedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import styled from 'styled-components'
-import { EvaluatedRule } from 'Types/rule'
 import { capitalise0 } from '../utils'
 
 const BarStack = styled.div`
@@ -80,7 +81,7 @@ export function roundedPercentages(values: Array<number>) {
 }
 
 type StackedBarChartProps = {
-	data: Array<{ color?: string } & EvaluatedRule>
+	data: Array<{ color?: string } & EvaluatedRule<DottedName>>
 }
 
 export default function StackedBarChart({ data }: StackedBarChartProps) {

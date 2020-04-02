@@ -2,18 +2,40 @@ import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
 import { inferUnit, isPercentUnit } from 'Engine/units'
-import { any, equals, evolve, is, map, max, mergeWith, min, path, pluck, reduce, toPairs } from 'ramda'
+import {
+	any,
+	equals,
+	evolve,
+	is,
+	map,
+	max,
+	mergeWith,
+	min,
+	path,
+	pluck,
+	reduce,
+	toPairs
+} from 'ramda'
 import React from 'react'
 import 'react-virtualized/styles.css'
 import { typeWarning } from './error'
-import { collectNodeMissing, defaultNode, evaluateArray, evaluateNode, evaluateObject, makeJsx, mergeAllMissing, parseObject } from './evaluation'
+import {
+	collectNodeMissing,
+	defaultNode,
+	evaluateArray,
+	evaluateNode,
+	evaluateObject,
+	makeJsx,
+	mergeAllMissing,
+	parseObject
+} from './evaluation'
 import Allègement from './mecanismViews/Allègement'
 import { Node, SimpleRuleLink } from './mecanismViews/common'
 import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
 import Recalcul from './mecanismViews/Recalcul'
 import Somme from './mecanismViews/Somme'
-import { disambiguateRuleReference, findRuleByDottedName } from './rules'
+import { disambiguateRuleReference } from './ruleUtils'
 import uniroot from './uniroot'
 import { parseUnit } from './units'
 
@@ -123,16 +145,10 @@ export let findInversion = (situationGate, parsedRules, v, dottedName) => {
 	le salaire net, a été renseigné ?
 	*/
 	let candidates = inversions
-			.map(i =>
-				disambiguateRuleReference(
-					Object.values(parsedRules),
-					parsedRules[dottedName],
-					i
-				)
-			)
+			.map(i => disambiguateRuleReference(parsedRules, dottedName, i))
 			.map(name => {
 				let userInput = situationGate(name) != undefined
-				let rule = findRuleByDottedName(parsedRules, name)
+				let rule = parsedRules[name]
 				if (!userInput) return null
 				return {
 					fixedObjectiveRule: rule,
@@ -260,11 +276,7 @@ export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 		let cache = { _meta: { ...currentCache._meta, inRecalcul: true } } // Create an empty cache
 		let amendedSituation = Object.fromEntries(
 			Object.keys(node.avec).map(dottedName => [
-				disambiguateRuleReference(
-					parsedRules,
-					{ dottedName: dottedNameContext },
-					dottedName
-				),
+				disambiguateRuleReference(parsedRules, dottedNameContext, dottedName),
 				node.avec[dottedName]
 			])
 		)

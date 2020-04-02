@@ -1,6 +1,5 @@
 variable temporelle numérique . le . valeur:
   formule: 40 €/mois | le 02/04/2019
-
 variable temporelle numérique . le . test date applicable:
   formule: valeur | le 02/04/2019
   exemples:
@@ -13,7 +12,6 @@ variable temporelle numérique . le . test date non applicable:
 
 variable temporelle numérique . depuis . valeur:
   formule: 40 €/mois | depuis le 02/04/2019
-
 variable temporelle numérique . depuis . test date applicable:
   formule: valeur | depuis le 06/04/2019
   exemples:
@@ -26,7 +24,6 @@ variable temporelle numérique . depuis . test date non applicable:
 
 variable temporelle numérique . intervalle . valeur:
   formule: 40 €/mois | du 02/04/2019 | au 04/05/2020
-
 variable temporelle numérique . intervalle . test date applicable:
   formule: valeur | le 06/04/2019
   exemples:
@@ -49,10 +46,8 @@ variable temporelle numérique . intervalle . test date non applicable 2:
 
 variable temporelle numérique . variable . date limite de paiement:
   formule: 03/09/2020
-
 variable temporelle numérique . variable . majorations de retard:
   formule: '40 €/jour | à partir de : date limite de paiement'
-
 variable temporelle numérique . variable . test date non applicable:
   formule: "majorations de retard | jusqu'au : 02/09/2020"
   exemples:
@@ -75,7 +70,6 @@ variable temporelle numérique . variable . test date applicable 2:
 
 prix:
   formule: (20 €/mois | à partir du 15/11/2019) + (10 €/mois | à partir du 01/02/2020)
-
 date:
 variable temporelle numérique . test addition:
   formule: 'prix | le : date'
@@ -92,7 +86,6 @@ variable temporelle numérique . test addition:
 
 prix avec variations:
   formule: prix * (50% | du 01/01/2020 | au 31/01/2020)
-
 début:
 fin:
 variable temporelle numérique . expression . multiplication:
@@ -144,7 +137,6 @@ variable temporelle numérique . variation:
 
 contrat salarié . date d'embauche:
   formule: 12/09/2018
-
 contrat salarié . salaire:
   formule:
     somme:
@@ -159,7 +151,6 @@ contrat salarié . salaire . brut de base:
 
 contrat salarié . salaire . primes:
   formule: 2000€/mois | du 01/12/2019 | au 31/12/2019
-
 plafond sécurité sociale:
   formule:
     somme:

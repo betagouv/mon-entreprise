@@ -1,7 +1,7 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import Value from 'Components/Value'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'

@@ -1,20 +1,23 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
-import { nameLeaf } from 'Engine/rules'
+import { nameLeaf } from 'Engine/ruleUtils'
+import { ParsedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { Rule } from 'Types/rule'
 import './RuleLink.css'
 
 type RuleLinkProps = {
-	dottedName: Rule['dottedName']
-	title?: Rule['title']
+	dottedName: DottedName
+	title?: ParsedRule['title']
+	className?: string
 	style?: React.CSSProperties
 	children?: React.ReactNode
 }
 
 export default function RuleLink({
 	dottedName,
+	className,
 	title,
 	style,
 	children
@@ -26,9 +29,9 @@ export default function RuleLink({
 	return (
 		<Link
 			to={newPath}
-			className="rule-link"
 			title={title}
 			style={{ color, ...style }}
+			className={className}
 		>
 			{children || title || nameLeaf(dottedName)}
 		</Link>

@@ -6,18 +6,19 @@ import Warning from 'Components/ui/WarningBlock'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Engine/RuleInput'
+import { ParsedRule } from 'Engine/types'
+import { DottedName } from 'Publicode/rules'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
-	flatRulesSelector,
 	nextStepsSelector,
+	parsedRulesSelector,
 	ruleAnalysisSelector,
 	situationSelector
 } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
-import { DottedName, Rule } from 'Types/rule'
 import Animate from 'Ui/animate'
 import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import { CompanySection } from '../Home'
@@ -54,7 +55,7 @@ const lauchComputationWhenResultsInViewport = () => {
 
 export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
-	const rules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
@@ -213,12 +214,12 @@ function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false
 }: SubSectionProp) {
-	const flatRules = useSelector(flatRulesSelector)
+	const parsedRules = useSelector(parsedRulesSelector)
 	const ruleTitle = useRule(sectionDottedName)?.title
 	const nextSteps = useSelector(nextStepsSelector)
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
-	const subQuestions = flatRules.filter(
+	const subQuestions = Object.values(parsedRules).filter(
 		({ dottedName, question }) =>
 			Boolean(question) &&
 			dottedName.startsWith(sectionDottedName) &&
@@ -237,15 +238,15 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: Rule['summary']
-	question?: Rule['question']
+	summary?: ParsedRule['summary']
+	question?: ParsedRule['question']
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const evaluatedRule = useSelector((state: RootState) => {
 		return ruleAnalysisSelector(state, { dottedName })
 	})
-	const rules = useSelector(flatRulesSelector)
+	const rules = useSelector(parsedRulesSelector)
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
 	const dispatchValue = useCallback(

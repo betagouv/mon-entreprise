@@ -1,7 +1,8 @@
 // Currenty we systematically bundle all the rules even if we only need a
 // sub-section of them. We might support "code-splitting" the rules in the
 // future.
-
+import { Rules as GenericRules } from 'Engine/types'
+import jsonRules from './dottednames.json'
 import artisteAuteur from './rules/artiste-auteur.yaml'
 import base from './rules/base.yaml'
 import chômagePartiel from './rules/chômage-partiel.yaml'
@@ -18,7 +19,10 @@ import protectionSociale from './rules/protection-sociale.yaml'
 import salarié from './rules/salarié.yaml'
 import situationPersonnelle from './rules/situation-personnelle.yaml'
 
-const rules = {
+export type DottedName = keyof typeof jsonRules
+export type Rules = GenericRules<DottedName>
+
+const rules: Rules = {
 	...base,
 	// TODO: rule order shouldn't matter but there is a bug if "impot" is after
 	// "dirigeant".
