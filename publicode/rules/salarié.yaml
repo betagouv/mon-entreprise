@@ -1071,7 +1071,7 @@ contrat salarié . cotisations . assiette minimale:
     recalcul:
       règle: rémunération . assiette de vérification du SMIC
       avec:
-        rémunération . brut de base: SMIC horaire * temps de travail . effectif
+        rémunération . brut de base: SMIC horaire * temps de travail . temps effectif
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
@@ -1496,7 +1496,16 @@ contrat salarié . statut cadre:
 contrat salarié . plafond sécurité sociale:
   acronyme: PSS
   unité: €/mois
-  formule: plafond sécurité sociale temps plein * temps de travail . quotité de travail
+  formule:
+    encadrement:
+      valeur: plafond sécurité sociale temps plein * temps de travail . quotité de travail effective
+      # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
+      # quotité de travail effective. Cela pose problème en cas de de chômage
+      # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
+      # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
+      # divisions par zéro (si j'ai bien compris le problème, il est possible
+      # que le problème exact soit un peu différent).
+      plancher: 1 €/mois
 
 contrat salarié . plafond sécurité sociale . renonciation proratisation:
   description: >-
@@ -1892,7 +1901,7 @@ contrat salarié . temps de travail:
       - heures complémentaires
   description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
 
-contrat salarié . temps de travail . effectif:
+contrat salarié . temps de travail . temps effectif:
   formule:
     somme:
       - temps de travail
@@ -1946,6 +1955,12 @@ contrat salarié . temps de travail . quotité de travail:
       valeur: temps de travail / (base légale * période . semaines par mois)
       plafond: 100%
   unité: '%'
+
+contrat salarié . temps de travail . quotité de travail effective:
+  description: >-
+    Le plafond de la sécurité sociale doit être pro-ratisé en retirant les
+    absences ainsi que les jours passés au chômage partiel.
+  formule: temps de travail . temps effectif / (base légale * période . semaines par mois)
 
 contrat salarié . temps de travail . heures supplémentaires:
   description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.

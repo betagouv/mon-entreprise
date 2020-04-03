@@ -206,9 +206,9 @@ exports[`calculate simulations-salarié:  activité partielle 2`] = `"[27,2800,0
 
 exports[`calculate simulations-salarié:  activité partielle 3`] = `"[778,4849,0,8000,5209,4232]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 4`] = `"[850,2240,0,4000,2704,2435]"`;
+exports[`calculate simulations-salarié:  activité partielle 4`] = `"[852,2240,0,4000,2704,2435]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 5`] = `"[2479,1400,0,4000,2869,2556]"`;
+exports[`calculate simulations-salarié:  activité partielle 5`] = `"[2483,1400,0,4000,2870,2556]"`;
 
 exports[`calculate simulations-salarié:  activité partielle 6`] = `"[27,2100,3750,3000,1940,1844]"`;
 
