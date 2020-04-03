@@ -3493,9 +3493,6 @@ contrat salarié . temps de travail:
 contrat salarié . temps de travail . base légale:
   titre.en: legal base
   titre.fr: base légale
-contrat salarié . temps de travail . effectif:
-  titre.en: '[automatic] staff'
-  titre.fr: effectif
 contrat salarié . temps de travail . heures complémentaires:
   contrôles.0.en: >-
     [automatic] Unless otherwise provided by agreement, the number of overtime
@@ -3636,12 +3633,24 @@ contrat salarié . temps de travail . quotité de travail:
   description.fr: Temps de travail en proportion du temps complet légal.
   titre.en: work share
   titre.fr: quotité de travail
+contrat salarié . temps de travail . quotité de travail effective:
+  description.en: >-
+    [automatic] The social security ceiling must be pro-rated by removing
+    absences and days spent on short-time work.
+  description.fr: >-
+    Le plafond de la sécurité sociale doit être pro-ratisé en retirant les
+    absences ainsi que les jours passés au chômage partiel.
+  titre.en: '[automatic] effective work share'
+  titre.fr: quotité de travail effective
 contrat salarié . temps de travail . temps contractuel:
   titre.en: contractual time
   titre.fr: temps contractuel
 contrat salarié . temps de travail . temps contractuel . temps hebdomadaire:
   titre.en: weekly time
   titre.fr: temps hebdomadaire
+contrat salarié . temps de travail . temps effectif:
+  titre.en: '[automatic] actual time'
+  titre.fr: temps effectif
 contrat salarié . temps de travail . temps partiel:
   description.en: >
     Two contracts at the same salary, one part-time and the other full-time, may
