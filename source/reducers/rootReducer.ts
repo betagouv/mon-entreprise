@@ -282,7 +282,7 @@ const mainReducer = (state, action: Action) =>
 				a,
 				b,
 				a && analysisWithDefaultsSelector(state),
-				state.inFranceApp?.existingCompany
+				state?.inFranceApp?.existingCompany
 			),
 		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
 		currentExample,

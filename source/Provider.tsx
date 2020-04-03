@@ -67,7 +67,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 					history: this.history,
 					sitePaths: this.props.sitePaths
 				}),
-				...props.reduxMiddlewares
+				...(props.reduxMiddlewares ?? [])
 			)
 		)
 		if (this.props.language) {
