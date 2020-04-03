@@ -1871,6 +1871,9 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
 contrat salarié . cotisations . assiette minimale:
   titre.en: '[automatic] minimum base'
   titre.fr: assiette minimale
+contrat salarié . cotisations . maladie sur les revenus de remplacement:
+  titre.en: '[automatic] sickness on replacement income'
+  titre.fr: maladie sur les revenus de remplacement
 contrat salarié . cotisations . patronales:
   titre.en: employer contributions
   titre.fr: cotisations patronales

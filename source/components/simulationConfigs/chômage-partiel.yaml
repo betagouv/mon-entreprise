@@ -15,6 +15,7 @@ questions:
     - contrat salarié . temps de travail . temps partiel . heures par semaine
     - contrat salarié . activité partielle . convention syntec
     - contrat salarié . profession spécifique
+    - établissement . localisation
 
 unités par défaut: [€/mois]
 situation:
