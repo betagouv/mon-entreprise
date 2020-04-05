@@ -8,7 +8,6 @@ import translations from '../../locales/rules-en.yaml'
 import App from './App'
 
 let anchor = document.querySelector('#js')
-console.log(translateRules('en', translations, rules))
 render(
 	<App
 		language="en"

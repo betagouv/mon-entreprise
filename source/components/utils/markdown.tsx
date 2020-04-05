@@ -4,7 +4,7 @@ import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { Link } from 'react-router-dom'
 
-function LinkRenderer({ href, children }) {
+function LinkRenderer({ href, children }: { href: string; children: string }) {
 	if (!href.startsWith('http')) {
 		return <Link to={href}>{children}</Link>
 	}
@@ -25,14 +25,16 @@ function LinkRenderer({ href, children }) {
 		</a>
 	)
 }
-const TextRenderer = ({ children }) => <>{emoji(children)}</>
+const TextRenderer = ({ children }: { children: string }) => (
+	<>{emoji(children)}</>
+)
 
 type MarkdownProps = ReactMarkdownProps & {
 	source: string | undefined
 	className?: string
 }
 
-const CodeBlock = ({ value, language }) =>
+const CodeBlock = ({ value, language }: { value: string; language: string }) =>
 	language === 'yaml' ? (
 		<PublicodeHighlighter source={value} />
 	) : (

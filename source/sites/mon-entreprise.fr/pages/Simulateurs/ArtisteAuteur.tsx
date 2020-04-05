@@ -86,8 +86,6 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const parsedRules = useSelector(parsedRulesSelector)
 	const value = useSelector(situationSelector)[dottedName]
 
-	const onChange = x => dispatch(updateSituation(dottedName, x))
-
 	if (!analysis.isApplicable) {
 		return null
 	}
@@ -109,7 +107,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 							dottedName={dottedName}
 							rules={parsedRules}
 							value={value}
-							onChange={onChange}
+							onChange={x => dispatch(updateSituation(dottedName, x))}
 							useSwitch
 						/>
 					</div>

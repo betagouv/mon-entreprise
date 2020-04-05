@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
-import Provider from '../../Provider'
+import Provider, { ProviderProps } from '../../Provider'
 import {
 	persistEverything,
 	retrievePersistedState
@@ -55,7 +55,13 @@ const middlewares = [
 	trackSimulatorActions(tracker)
 ]
 
-function InFranceRoute({ basename, language, rules }) {
+type InFranceRouteProps = {
+	basename: ProviderProps['basename']
+	language: ProviderProps['language']
+	rules: ProviderProps['initialStore']['rules']
+}
+
+function InFranceRoute({ basename, language, rules }: InFranceRouteProps) {
 	useEffect(() => {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])

@@ -14,7 +14,6 @@ export default function RuleHeader({
 	description,
 	question,
 	flatRule,
-	flatRules,
 	acronyme,
 	name,
 	title,
@@ -26,7 +25,7 @@ export default function RuleHeader({
 		<section id="ruleHeader">
 			<header className="ui__ plain card">
 				<div>
-					<Namespace {...{ dottedName, flatRules, color: colors.textColor }} />
+					<Namespace {...{ dottedName }} />
 					<h1 style={{ color: colors.textColor }}>
 						{title || capitalise0(name)}
 						{acronyme && <> ({acronyme})</>}

@@ -260,6 +260,9 @@ artiste-auteur . revenus . traitements et salaires:
   résumé.fr: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
+chômage partiel:
+  titre.en: '[automatic] short-time working'
+  titre.fr: chômage partiel
 chômage partiel . coût employeur habituel:
   titre.en: '[automatic] regular employer cost'
   titre.fr: coût employeur habituel

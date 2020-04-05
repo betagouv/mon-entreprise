@@ -1,5 +1,6 @@
 import CompanyDetails from 'Components/CompanyDetails'
 import { formatValue } from 'Engine/format'
+import { DottedName } from 'Publicode/rules'
 import React, { useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -64,7 +65,6 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 			/>
 
 			<SimpleField
-				label="Il cotise sur la base"
 				dottedName={
 					'dirigeant . indépendant . conjoint collaborateur . assiette'
 				}
@@ -90,11 +90,10 @@ export function AideDéclarationIndépendantsRécapitulatif() {
 }
 
 type SimpleFieldProps = {
-	label?: string
-	dottedName: string
+	dottedName: DottedName
 	unit?: string
 }
-function SimpleField({ label, dottedName, unit }: SimpleFieldProps) {
+function SimpleField({ dottedName, unit }: SimpleFieldProps) {
 	const situation = useSelector(situationSelector)
 	const rules = useSelector((state: RootState) => state.rules)
 	const value = situation[dottedName]

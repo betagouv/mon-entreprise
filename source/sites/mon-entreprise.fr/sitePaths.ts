@@ -141,7 +141,7 @@ export const constructLocalizedSitePath = (language: string) => {
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
-const deepReduce = (fn, initialValue?: any, object?: any) =>
+const deepReduce = (fn: any, initialValue?: any, object?: any): any =>
 	reduce(
 		(acc, [key, value]) =>
 			typeof value === 'object'

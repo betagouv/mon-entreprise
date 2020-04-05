@@ -15,7 +15,11 @@ import {
 import { softCatch } from '../../utils'
 import './AnswerList.css'
 
-export default function AnswerList({ onClose }) {
+type AnswerListProps = {
+	onClose: () => void
+}
+
+export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const { folded, next } = useSelector(stepsToRules)
 	return (

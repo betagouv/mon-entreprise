@@ -106,7 +106,7 @@ function updateSituation(
 	return { ...removePreviousTarget(situation), [fieldName]: value }
 }
 
-function updateDefaultUnit(situation, { toUnit, analysis }) {
+function updateDefaultUnit(situation: Situation, { toUnit, analysis }) {
 	const unit = parseUnit(toUnit)
 	const goals = goalsFromAnalysis(analysis)
 	const convertedSituation = Object.keys(situation)

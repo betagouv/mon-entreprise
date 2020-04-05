@@ -3,7 +3,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import './Destinataire.css'
 
-export default function Rule({ destinataire }) {
+export default function Rule({ destinataire }: { destinataire: string }) {
 	let destinataireData = possiblesDestinataires[destinataire]
 
 	return destinataire && destinataireData ? (

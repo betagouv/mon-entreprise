@@ -80,9 +80,19 @@ export default function Studio() {
 	)
 }
 
-export const Results = ({ targets, onClickUpdate, onClickShare }) => {
+type ResultsProps = {
+	targets: string[]
+	onClickUpdate: React.MouseEventHandler
+	onClickShare: React.MouseEventHandler
+}
+
+export const Results = ({
+	targets,
+	onClickUpdate,
+	onClickShare
+}: ResultsProps) => {
 	const [rule, setCurrentTarget] = useState<string>()
-	const currentTarget = rule ?? last(targets)
+	const currentTarget = rule ?? (last(targets) as string)
 	const error = Engine.useError()
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 	// console.warn
