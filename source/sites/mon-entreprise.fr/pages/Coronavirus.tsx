@@ -379,6 +379,11 @@ du chômage partiel.
 
 [➡ Effectuer la demande de chômage partiel](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001).
 
+> #### ⚠ Cotisations sociales
+> L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
+contribution maladie dans certains cas.
+[➡ En savoir plus sur le site de l'URSSAF](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html)
+
 ## Indépendants 🚶‍♀️
 
 Les petites entreprises et les indépendants qui subissent une fermeture
