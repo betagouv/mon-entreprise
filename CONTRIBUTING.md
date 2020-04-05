@@ -99,7 +99,7 @@ Le site est disponible en français, et en anglais sur https://mycompanyinfrance
 
 Les traductions se trouvent dans le répertoire `source/locales`.
 
-La librairie utilisée pour la traduction de l'Ui est
+La librairie utilisée pour la traduction de l'UI est
 [react-i18next](https://react.i18next.com/).
 
 Lorsque l'on introduit une nouvelle chaîne de caractère dans l'UI il faut
@@ -114,7 +114,7 @@ $ yarn run i18n:rules:check
 $ yarn run i18n:ui:check
 ```
 
-Pour traduire automatiquement les chaînes manquantes via l'api deepl :
+Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
 
 ```sh
 $ yarn run i18n:rules:translate
@@ -126,17 +126,25 @@ N'oubliez pas de vérifier le diff que rien n'est choquant.
 ### CI/CD
 
 - [CircleCI](https://circleci.com/) s'occupe de faire tourner les builds et
-    tests.
+  tests.
 - [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
-    sur internet avec gestion des DNS.
+  sur internet avec gestion des DNS.
 
 ## Documentation
 
 ### Publicodes
 
-Le code publicodes, relatif aux règles, est dans le dossier `publicodes`. Vous y trouverez notamment un README qui vous initiera au langage.
+Un tutoriel sur publicode est disponible sur https://publi.codes.
 
-Pour information, un wiki contenant des informations intéressantes sur publicodes et le raisonnement ayant abouti à ce langage sont dispos sur le repository [betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par ailleurs inutilisé.
+Un wiki contenant des informations intéressantes sur publicode et le
+raisonnement ayant abouti à ce langage sont dispos sur le repository
+[betagouv/publicodes](https://github.com/betagouv/publicodes/wiki), qui est par
+ailleurs inutilisé.
 
-Pour se familiariser avec les règles, vous pouvez jeter un oeil aux fichiers contenant les règles elles-mêmes (dans le dossier `publicodes/rules`) mais cela peut s'avérer assez abrupt.  
-Essayez plutôt de jeter un oeil [aux tests](./test/mécanismes/expressions.yaml) dans un premier temps, puis au [mécanismes en place](./source/engine/mecanisms.yaml).  
+Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
+contenant les règles elles-mêmes (dans le dossier `source/rules`) mais cela peut
+s'avérer assez abrupt.
+
+Essayez plutôt de jeter un oeil [aux tests](./test/mécanismes/expressions.yaml)
+dans un premier temps, puis au [mécanismes en
+place](./source/engine/mecanisms.yaml).

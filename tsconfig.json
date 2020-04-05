@@ -32,7 +32,8 @@
 			"Engine/*": ["engine/*"],
 			"Images/*": ["images/*"],
 			"Reducers/*": ["reducers/*"],
-			"Publicode/*": ["../publicode/*"],
+			"Rules/*": ["rules/*"],
+			"Rules": ["rules"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
 		}

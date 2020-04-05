@@ -1,8 +1,8 @@
 import { ParsedRule } from 'Engine/types'
 import { safeDump } from 'js-yaml'
-import rules from 'Publicode/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
+import rules from 'Rules'
 import PublicodeHighlighter from '../ui/PublicodeHighlighter'
 
 type RuleSourceProps = Pick<ParsedRule, 'dottedName'>

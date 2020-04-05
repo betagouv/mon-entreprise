@@ -1,11 +1,11 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { decodeRuleName } from 'Engine/ruleUtils'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { Redirect, useParams } from 'react-router-dom'
+import { DottedName } from 'Rules'
 import {
 	noUserInputSelector,
 	parsedRulesSelector,

@@ -12,13 +12,13 @@ import { SitePathsContext } from 'Components/utils/withSitePaths'
 import Value from 'Components/Value'
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import revenusSVG from 'Images/revenus.svg'
-import { DottedName } from 'Publicode/rules'
 import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import { DottedName } from 'Rules'
 import {
 	analysisWithDefaultsSelector,
 	branchAnalyseSelector

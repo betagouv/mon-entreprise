@@ -1,7 +1,7 @@
 import { AssertionError } from 'chai'
 import Engine, { parseRules } from 'Engine'
 import { disambiguateRuleReference } from 'Engine/ruleUtils'
-import rules from 'Publicode/rules'
+import rules from 'Rules'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule

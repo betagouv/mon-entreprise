@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { parseRules } from 'Engine'
-import rawRules from 'Publicode/rules'
 import { uniq } from 'ramda'
+import rawRules from 'Rules'
 import unitsTranslations from '../source/locales/units.yaml'
 
 it('has translation for all base units', () => {

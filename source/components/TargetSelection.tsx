@@ -6,7 +6,6 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatCurrency } from 'Engine/format'
 import { ParsedRule } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import { isEmpty, isNil } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -14,6 +13,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import { DottedName } from 'Rules'
 import {
 	analysisWithDefaultsSelector,
 	situationSelector,

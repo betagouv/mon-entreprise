@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
-import rules from 'Publicode/rules'
+import rules from 'Rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import {
 	analysisToCotisationsSelector,

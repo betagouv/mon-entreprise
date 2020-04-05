@@ -1,9 +1,9 @@
 import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { EvaluatedRule } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
+import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { capitalise0 } from '../utils'
 

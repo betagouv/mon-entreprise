@@ -1,12 +1,35 @@
 import Engine, { parseRules } from 'Engine'
 import { getNextSteps } from 'Engine/generateQuestions'
-import { collectDefaults, disambiguateRuleReference, splitName } from 'Engine/ruleUtils'
+import {
+	collectDefaults,
+	disambiguateRuleReference,
+	splitName
+} from 'Engine/ruleUtils'
 import { ParsedRules } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
-import { add, difference, equals, fromPairs, head, intersection, isNil, last, length, map, mergeDeepWith, negate, pick, pipe, sortBy, takeWhile, toPairs, zipWith } from 'ramda'
+import {
+	add,
+	difference,
+	equals,
+	fromPairs,
+	head,
+	intersection,
+	isNil,
+	last,
+	length,
+	map,
+	mergeDeepWith,
+	negate,
+	pick,
+	pipe,
+	sortBy,
+	takeWhile,
+	toPairs,
+	zipWith
+} from 'ramda'
 import { useSelector } from 'react-redux'
 import { RootState, Simulation } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
+import { DottedName } from 'Rules'
 import { mapOrApply } from '../utils'
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule

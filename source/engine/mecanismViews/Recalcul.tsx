@@ -1,8 +1,8 @@
 import RuleLink from 'Components/RuleLink'
 import { makeJsx } from 'Engine/evaluation'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
+import { DottedName } from 'Rules'
 import { Node } from './common'
 
 export default function Recalcul(nodeValue, explanation) {

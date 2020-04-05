@@ -1,4 +1,3 @@
-import { DottedName } from 'Publicode/rules'
 import {
 	add,
 	countBy,
@@ -15,6 +14,7 @@ import {
 	toPairs,
 	values
 } from 'ramda'
+import { DottedName } from 'Rules'
 
 /*
 	COLLECTE DES VARIABLES MANQUANTES

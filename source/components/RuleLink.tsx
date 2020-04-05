@@ -2,9 +2,9 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { nameLeaf } from 'Engine/ruleUtils'
 import { ParsedRule } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { DottedName } from 'Rules'
 import './RuleLink.css'
 
 type RuleLinkProps = {

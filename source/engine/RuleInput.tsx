@@ -7,9 +7,9 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { ParsedRules } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { DottedName } from 'Rules'
 import DateInput from '../components/conversation/DateInput'
 
 export const binaryOptionChoices = [

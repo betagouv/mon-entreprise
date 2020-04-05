@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import rules from 'Publicode/rules'
+import rules from 'Rules'
 import Engine from '../source/engine/index'
 import co2 from './rules/co2.yaml'
 import sasuRules from './rules/sasu.yaml'

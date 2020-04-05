@@ -1,10 +1,10 @@
 import CompanyDetails from 'Components/CompanyDetails'
 import { formatValue } from 'Engine/format'
-import { DottedName } from 'Publicode/rules'
 import React, { useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
+import { DottedName } from 'Rules'
 import { situationSelector } from 'Selectors/analyseSelectors'
 import { Results } from './Result'
 

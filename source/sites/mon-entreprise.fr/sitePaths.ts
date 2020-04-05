@@ -1,6 +1,6 @@
 import { encodeRuleName } from 'Engine/ruleUtils'
-import { DottedName } from 'Publicode/rules'
 import { map, reduce, toPairs, zipObj } from 'ramda'
+import { DottedName } from 'Rules'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import i18n from '../../i18n'
 

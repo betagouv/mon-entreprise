@@ -12,7 +12,7 @@ import {
 	temporalCumul
 } from 'Engine/temporal'
 import { Unit } from 'Engine/units'
-import { DottedName } from 'Publicode/rules'
+import { DottedName } from 'Rules'
 import { coerceArray } from '../../utils'
 
 export default function parse(parse, k, v) {
