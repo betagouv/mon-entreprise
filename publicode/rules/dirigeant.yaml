@@ -680,12 +680,12 @@ dirigeant . indépendant . contrats madelin . part déductible fiscalement:
   titre: Part de la cotisation à contrat Madelin qui est déductible fiscalement
   formule:
     somme:
-      - le minimum de:
-        - mutuelle . montant
-        - mutuelle . plafond
-      - le minimum de:
-        - retraite . montant
-        - retraite . plafond
+      - encadrement:
+          valeur: mutuelle . montant
+          plafond: mutuelle . plafond
+      - encadrement:
+          valeur: retraite . montant
+          plafond: retraite . plafond
 
 dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
   titre: Part de la cotisation à contrat Madelin qui n'est pas déductible fiscalement
@@ -711,18 +711,21 @@ dirigeant . indépendant . contrats madelin . mutuelle . montant:
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   unité par défaut: €/an
   formule:
-    le minimum de:
-      - somme:
-        - produit:
-            assiette: revenu professionnel
-            taux: 3.75%
-        - produit:
-            assiette: plafond sécurité sociale temps plein
-            taux: 7%
-      - produit:
+    encadrement:
+      valeur:
+        somme:
+          - produit:
+              assiette: résultat fiscal
+              taux: 3.75%
+          - produit:
+              assiette: plafond sécurité sociale temps plein
+              taux: 7%
+      plafond:
+        produit:
           assiette: 8 * plafond sécurité sociale temps plein
           taux: 3%
   références:
+    Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
 
 dirigeant . indépendant . contrats madelin . retraite:
