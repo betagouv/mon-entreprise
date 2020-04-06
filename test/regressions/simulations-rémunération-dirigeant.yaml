@@ -40,3 +40,35 @@ activités:
     entreprise . catégorie d'activité: commerciale ou industrielle
     entreprise . catégorie d'activité . service ou vente: service
     entreprise . catégorie d'activité . restauration ou hébergement: oui
+
+Contrats Madelin:
+  # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
+  # cotisations (résultat comptable) n'est pas affecté car l'assiette des
+  # cotisations ne change pas:
+  - dirigeant . rémunération totale: 30000
+    entreprise . charges: 10000
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 4000 # plafond: 10% PSS donc environ 4100
+  # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
+  # cotisations est affecté car l'assiette des cotisations est plus élevée
+  - dirigeant . rémunération totale: 30000
+    entreprise . charges: 10000
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 5000 # plafond: 10% PSS donc environ 4100
+  # Cas mutuelle
+  - dirigeant . rémunération totale: 30000
+    entreprise . charges: 10000
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 1000
+  # Cas global madelin faible
+  - dirigeant . rémunération totale: 20000
+    entreprise . charges: 1000
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 200
+    dirigeant . indépendant . contrats madelin . retraite . montant: 300
+  # Cas global madelin grand (plafonds calculés différemment)
+  - dirigeant . rémunération totale: 300000
+    entreprise . charges: 15000 
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 1500
+    dirigeant . indépendant . contrats madelin . retraite . montant: 5000
+  # Cas charges plus faibles que total madelin
+  - dirigeant . rémunération totale: 20000
+    entreprise . charges: 500 
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 300
+    dirigeant . indépendant . contrats madelin . retraite . montant: 300

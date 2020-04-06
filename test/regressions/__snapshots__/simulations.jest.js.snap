@@ -92,6 +92,18 @@ exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  A
 
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  ACRE 3`] = `"[21575,22669,21905,4,40,48]"`;
 
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 1`] = `"[16490,16673,16178,4,29,35]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 2`] = `"[16490,16673,16178,4,29,35]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 3`] = `"[16490,16673,16178,4,29,35]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 4`] = `"[10982,10982,10742,4,19,23]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 5`] = `"[118288,173630,154362,4,46,203]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  Contrats Madelin 6`] = `"[10982,10982,10742,4,19,23]"`;
+
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  activités 1`] = `"[10982,10982,10742,4,19,23]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Assimilé salarié -  activités 2`] = `"[10982,10982,10742,4,19,23]"`;
@@ -128,6 +140,18 @@ exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  AC
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  ACRE 3`] = `"[28046,28046,6139,4,12,0]"`;
 
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 1`] = `"[24834,24834,8186,4,16,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 2`] = `"[24834,24834,8186,4,16,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 3`] = `"[24834,24834,8186,4,16,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 4`] = `"[17288,17288,4298,4,8,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 5`] = `"[235917,259318,39357,4,56,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  Contrats Madelin 6`] = `"[17352,17352,4195,3,8,0]"`;
+
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  activités 1`] = `"[15580,15580,6600,4,18,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Auto-entrepreneur -  activités 2`] = `"[15560,15560,0,4,0,0]"`;
@@ -163,6 +187,18 @@ exports[`calculate simulations-rémunération-dirigeant: Indépendant -  ACRE 1`
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  ACRE 2`] = `"[16442,16527,12103,4,24,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  ACRE 3`] = `"[20731,21570,15799,4,31,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 1`] = `"[19279,20567,15183,4,30,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 2`] = `"[18737,20264,15648,4,30,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 3`] = `"[19779,20620,15102,4,29,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 4`] = `"[13769,13769,10084,4,21,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 5`] = `"[144184,226878,57937,4,56,0]"`;
+
+exports[`calculate simulations-rémunération-dirigeant: Indépendant -  Contrats Madelin 6`] = `"[13769,13769,10084,4,21,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant: Indépendant -  activités 1`] = `"[13886,13886,10166,4,21,0]"`;
 
