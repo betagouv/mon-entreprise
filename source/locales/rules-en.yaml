@@ -4549,9 +4549,9 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
   description.en: >
-    This is the income net of deductible contributions of the self-employed
-    person, which is used as the basis for the calculation of contributions and
-    tax.
+    This is the income net of deductible contributions of the
+    self-employed person, which is used as the basis for the calculation of
+    contributions and tax.
 
 
     Attention, **our calculation is made at cruising speed**:
@@ -4618,10 +4618,10 @@ dirigeant . indépendant . revenus étrangers . montant:
   titre.fr: revenus perçu à l'étranger
 dirigeant . indépendant . résultat fiscal:
   description.en: 'Taxable net, amount on which tax has to be calculated.'
-  description.fr: 'Il s''agit du net imposable, assiette sur laquelle l''impôt est calculé.'
   résumé.en: Base for tax calculation
-  résumé.fr: Assiette du calcul de l'impôt
   titre.en: fiscal earnings
+  description.fr: 'Il s''agit du net imposable, assiette sur laquelle l''impôt est calculé.'
+  résumé.fr: Assiette du calcul de l'impôt
   titre.fr: résultat fiscal
 dirigeant . rattachement CIPAV:
   description.en: >
