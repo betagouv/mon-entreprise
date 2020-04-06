@@ -4120,6 +4120,10 @@ dirigeant . indépendant . PLNR régime général:
   titre.en: PLNR general scheme
   titre.fr: PLNR régime général
 dirigeant . indépendant . assiette des cotisations:
+  description.en: >-
+    [automatic] This is the basis for social security contributions, which is
+    necessarily a positive number.
+  description.fr: 'Il s''agit de l''assiette des cotisations sociales, nombre forcément positif'
   titre.en: '[automatic] contribution base'
   titre.fr: assiette des cotisations
 dirigeant . indépendant . conjoint collaborateur:
@@ -4545,9 +4549,9 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
   description.en: >
-    [automatic] This is the net deductible contribution income of the
-    self-employed person, which is used as the basis for the calculation of
-    contributions and tax for self-employed persons.
+    This is the income net of deductible contributions of the self-employed
+    person, which is used as the basis for the calculation of contributions and
+    tax.
 
 
     Attention, **our calculation is made at cruising speed**:
@@ -4558,12 +4562,11 @@ dirigeant . indépendant . revenu professionnel:
     received.
 
 
-    Therefore, this calculation should be seen as "the amount that will have to
+    Therefore, this calculation should be seen as *the amount that will have to
     be paid* in the short term after 2 years of exercise.
   description.fr: >
     C'est le revenu net de cotisations déductibles du travailleur indépendant,
-    qui sert de base au calcul des cotisations et de l'impôt pour les
-    indépendants.
+    qui sert de base au calcul des cotisations pour les indépendants.
 
 
     Attention, **notre calcul est fait au régime de croisière**:
@@ -4575,8 +4578,8 @@ dirigeant . indépendant . revenu professionnel:
 
     Il faut donc voir ce calcul comme *le montant qui devra de toute façon être
     payé* à court terme après 2 ans d'exercice.
-  titre.en: '[automatic] professional income (net taxable)'
-  titre.fr: revenu professionnel (net imposable)
+  titre.en: professional income
+  titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
   description.en: >
     [automatic] Foreign income is income declared by self-employed persons in
@@ -4613,6 +4616,13 @@ dirigeant . indépendant . revenus étrangers . montant:
   question.fr: Quel est leur montant ?
   titre.en: foreign income
   titre.fr: revenus perçu à l'étranger
+dirigeant . indépendant . résultat fiscal:
+  description.en: 'Taxable net, amount on which tax has to be calculated.'
+  description.fr: 'Il s''agit du net imposable, assiette sur laquelle l''impôt est calculé.'
+  résumé.en: Base for tax calculation
+  résumé.fr: Assiette du calcul de l'impôt
+  titre.en: fiscal earnings
+  titre.fr: résultat fiscal
 dirigeant . rattachement CIPAV:
   description.en: >
     [automatic] The unregulated liberal enterprises created were attached to the

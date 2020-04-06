@@ -424,11 +424,20 @@ dirigeant . indépendant . revenu net de cotisations:
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   unité par défaut: €/an
 
+dirigeant . indépendant . résultat fiscal:
+  résumé: Assiette du calcul de l'impôt
+  description: Il s'agit du net imposable, assiette sur laquelle l'impôt est calculé.
+  formule:
+    somme:
+      - revenu professionnel
+  références:
+    Portail URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
+
 dirigeant . indépendant . revenu professionnel:
   unité par défaut: €/an
-  titre: revenu professionnel (net imposable)
+  titre: revenu professionnel
   description: |
-    C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations et de l'impôt pour les indépendants.
+    C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations pour les indépendants.
 
     Attention, **notre calcul est fait au régime de croisière**:
     l'indépendant qui se lance paiera pendant ses 2 premières années un forfait relativement réduit de cotisations sociales. Il devra ensuite régulariser cette situation par rapport au revenu qu'il a vraiment perçu.
@@ -439,6 +448,7 @@ dirigeant . indépendant . revenu professionnel:
     inversion numérique:
       avec:
         - dirigeant . indépendant . revenu net de cotisations
+        - dirigeant . indépendant . résultat fiscal
         - dirigeant . rémunération totale
         - revenu net après impôt
         - entreprise . chiffre d'affaires
@@ -446,6 +456,7 @@ dirigeant . indépendant . revenu professionnel:
       valeurs négatives possibles: oui
 
 dirigeant . indépendant . assiette des cotisations:
+  description: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
   formule:
     encadrement:
       plancher: 0
