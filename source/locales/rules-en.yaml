@@ -352,9 +352,6 @@ contrat salarié . ATMP:
     Professionnelles.
   titre.en: Contribution for work accidents and occupational diseases
   titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
-contrat salarié . ATMP . taux:
-  titre.en: rate
-  titre.fr: taux
 contrat salarié . ATMP . taux collectif ATMP:
   description.en: >-
     Companies with fewer than 20 employees are subject to this collective rate.
@@ -956,9 +953,6 @@ contrat salarié . FNAL:
     le financement de l’allocation logement.
   titre.en: Contribution to the National Fund for Housing Assistance
   titre.fr: Contribution au Fonds National d’Aide au Logement
-contrat salarié . FNAL . taux:
-  titre.en: rate
-  titre.fr: taux
 contrat salarié . FNAL . éligible taux réduit:
   titre.en: '[automatic] eligible reduced rate'
   titre.fr: éligible taux réduit
@@ -1217,9 +1211,6 @@ contrat salarié . aides employeur . emploi franc . éligible:
 contrat salarié . allocations familiales:
   titre.en: Family allowances
   titre.fr: allocations familiales
-contrat salarié . allocations familiales . taux:
-  titre.en: rate
-  titre.fr: taux
 contrat salarié . allocations familiales . taux réduit:
   titre.en: reduced rate
   titre.fr: taux réduit
@@ -1315,12 +1306,6 @@ contrat salarié . chômage:
   description.fr: Cotisation d’assurance chômage
   titre.en: unemployment
   titre.fr: chômage
-contrat salarié . chômage . taux employeur:
-  titre.en: employer rate
-  titre.fr: taux employeur
-contrat salarié . chômage . taux salarié:
-  titre.en: employee rate
-  titre.fr: taux salarié
 contrat salarié . complémentaire santé:
   description.en: >
     Health Insurance (Social Security) does not fully reimburse your health
@@ -1455,15 +1440,9 @@ contrat salarié . contribution d'équilibre général:
     cotisation de compensation pour les cadres.
   titre.en: general equilibrium contribution
   titre.fr: contribution d'équilibre général
-contrat salarié . contribution d'équilibre général . taux employeur tranche 1:
-  titre.en: '[automatic] employer rate tranche 1'
-  titre.fr: taux employeur tranche 1
 contrat salarié . contribution d'équilibre technique:
   titre.en: technical equilibrium contribution
   titre.fr: contribution d'équilibre technique
-contrat salarié . contribution d'équilibre technique . taux employeur:
-  titre.en: '[automatic] employer rate'
-  titre.fr: taux employeur
 contrat salarié . convention collective:
   contrôles.0.en: |
     [automatic] Caution, the implementation of collective agreements is still
@@ -2653,18 +2632,6 @@ contrat salarié . retraite complémentaire:
     Cotisations de retraite complémentaire.
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
-contrat salarié . retraite complémentaire . taux employeur tranche 1:
-  titre.en: employer rate tranche 1
-  titre.fr: taux employeur tranche 1
-contrat salarié . retraite complémentaire . taux employeur tranche 2:
-  titre.en: employer rate tranche 2
-  titre.fr: taux employeur tranche 2
-contrat salarié . retraite complémentaire . taux salarié tranche 1:
-  titre.en: employee rate tranche 1
-  titre.fr: taux salarié tranche 1
-contrat salarié . retraite complémentaire . taux salarié tranche 2:
-  titre.en: employee rate tranche 2
-  titre.fr: taux salarié tranche 2
 contrat salarié . retraite supplémentaire:
   titre.en: '[automatic] additional pension'
   titre.fr: retraite supplémentaire
@@ -3704,18 +3671,6 @@ contrat salarié . vieillesse:
   description.fr: Cotisation au régime de retraite de base des salariés.
   titre.en: Basic pension contribution
   titre.fr: vieillesse
-contrat salarié . vieillesse . taux employeur déplafonné:
-  titre.en: not capped employer rate
-  titre.fr: taux employeur déplafonné
-contrat salarié . vieillesse . taux employeur plafonné:
-  titre.en: capped employer rate
-  titre.fr: taux employeur plafonné
-contrat salarié . vieillesse . taux salarié déplafonné:
-  titre.en: not capped employee rate
-  titre.fr: taux salarié déplafonné
-contrat salarié . vieillesse . taux salarié plafonné:
-  titre.en: capped employee rate
-  titre.fr: taux salarié plafonné
 dirigeant:
   question.en: What is the director's social regime?
   question.fr: Quel est le régime social du dirigeant ?

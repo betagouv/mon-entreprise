@@ -15,6 +15,20 @@ export function syntaxError(
 	)
 }
 
+export function compilationError(
+	rules: string[] | string,
+	message: string,
+	originalError?: Error
+) {
+	throw new Error(
+		`\n[ Erreur de compilation ]
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+✖️ ${message}
+  ${originalError?.message}
+`
+	)
+}
+
 export function evaluationError(
 	rules: string[] | string,
 	message: string,
