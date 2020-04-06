@@ -1,9 +1,9 @@
 import { Action } from 'Actions/actions'
 import { Unit } from 'Engine/units'
-import originRules, { DottedName, Rules } from 'Publicode/rules'
 import { defaultTo, identity, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
+import originRules, { DottedName, Rules } from 'Rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import i18n, { AvailableLangs } from '../i18n'
@@ -106,7 +106,7 @@ function updateSituation(
 	return { ...removePreviousTarget(situation), [fieldName]: value }
 }
 
-function updateDefaultUnit(situation, { toUnit, analysis }) {
+function updateDefaultUnit(situation: Situation, { toUnit, analysis }) {
 	const unit = parseUnit(toUnit)
 	const goals = goalsFromAnalysis(analysis)
 	const convertedSituation = Object.keys(situation)

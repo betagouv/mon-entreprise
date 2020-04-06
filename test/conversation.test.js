@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import rules from 'Publicode/rules'
 import { assocPath, merge } from 'ramda'
 import reducers from 'Reducers/rootReducer'
+import rules from 'Rules'
 import salariéConfig from '../source/components/simulationConfigs/salarié.yaml'
 import {
 	currentQuestionSelector,

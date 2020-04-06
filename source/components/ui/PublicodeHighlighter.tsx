@@ -6,7 +6,7 @@ import style from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
 
 SyntaxHighlighter.registerLanguage('yaml', yaml)
 
-export default ({ source }) => (
+export default ({ source }: { source: string }) => (
 	<div css="position: relative; margin-bottom: 1rem">
 		<SyntaxHighlighter language="yaml" style={style}>
 			{source}

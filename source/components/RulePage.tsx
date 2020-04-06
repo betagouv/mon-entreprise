@@ -1,11 +1,11 @@
 import { goBackToSimulation } from 'Actions/actions'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { decodeRuleName } from 'Engine/ruleUtils'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
+import { DottedName } from 'Rules'
 import {
 	noUserInputSelector,
 	parsedRulesSelector,
@@ -15,12 +15,12 @@ import Rule from './rule/Rule'
 import './RulePage.css'
 import SearchButton from './SearchButton'
 
-export default function RulePage({ match }) {
+export default function RulePage() {
 	const parsedRules = useSelector(parsedRulesSelector)
 	const brancheName = useSelector(situationBranchNameSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
-	let name = match?.params?.name,
-		decodedRuleName = decodeRuleName(name)
+	const { name } = useParams()
+	const decodedRuleName = decodeRuleName(name)
 
 	const renderRule = (dottedName: DottedName) => {
 		return (
@@ -36,7 +36,8 @@ export default function RulePage({ match }) {
 		)
 	}
 
-	if (!parsedRules[decodedRuleName]) return <Redirect to="/404" />
+	if (!parsedRules.hasOwnProperty(decodedRuleName))
+		return <Redirect to="/404" />
 
 	return renderRule(decodedRuleName as DottedName)
 }

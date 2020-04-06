@@ -8,14 +8,15 @@ export const flatActivités = pipe(
 	unnest
 )(activités)
 
-export const getActivité = a => flatActivités.find(item => item.titre === a)
+export const getActivité = (a: string) =>
+	flatActivités.find(item => item.titre === a)
 
-export const getTranslatedActivité = (title, language) => ({
+export const getTranslatedActivité = (title: string, language: string) => ({
 	...getActivité(title),
 	...(language !== 'fr' && activitésEn[title])
 })
 
-export const getMinimumDéclaration = a => {
+export const getMinimumDéclaration = (a: string) => {
 	const activité = getActivité(a)
 	if (activité['seuil pro'] === 0 && !activité['seuil régime général']) {
 		return 'RÉGIME_GÉNÉRAL_NON_DISPONIBLE'
@@ -31,7 +32,7 @@ export const getMinimumDéclaration = a => {
 	}
 	return null
 }
-export const hasConditions = a => {
+export const hasConditions = (a: string) => {
 	const activité = getActivité(a)
 	return !!(
 		activité['exonérée sauf si'] ||
@@ -42,5 +43,5 @@ export const hasConditions = a => {
 	)
 }
 
-export const getSousActivités = a =>
-	(getActivité(a).activités || []).map(({ titre }) => titre)
+export const getSousActivités = (a: string) =>
+	(getActivité(a).activités || []).map(({ titre }: { titre: string }) => titre)

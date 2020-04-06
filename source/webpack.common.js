@@ -14,7 +14,7 @@ module.exports.default = {
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
-			Publicode: path.resolve('publicode/'),
+			Rules: path.resolve('source/rules/'),
 			Images: path.resolve('source/images/')
 		},
 		extensions: ['.js', '.ts', '.tsx']

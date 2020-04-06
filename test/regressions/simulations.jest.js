@@ -6,7 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import rules from 'Publicode/rules'
+import rules from 'Rules'
 import artisteAuteurConfig from '../../source/components/simulationConfigs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/components/simulationConfigs/auto-entrepreneur.yaml'
 import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'

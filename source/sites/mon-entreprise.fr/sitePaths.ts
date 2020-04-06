@@ -1,6 +1,6 @@
 import { encodeRuleName } from 'Engine/ruleUtils'
-import { DottedName } from 'Publicode/rules'
 import { map, reduce, toPairs, zipObj } from 'ramda'
+import { DottedName } from 'Rules'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import i18n from '../../i18n'
 
@@ -141,7 +141,7 @@ export const constructLocalizedSitePath = (language: string) => {
 
 export type SitePathsType = ReturnType<typeof constructLocalizedSitePath>
 
-const deepReduce = (fn, initialValue?: any, object?: any) =>
+const deepReduce = (fn: any, initialValue?: any, object?: any): any =>
 	reduce(
 		(acc, [key, value]) =>
 			typeof value === 'object'

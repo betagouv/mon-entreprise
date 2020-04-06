@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
 
-const publicodesDir = path.resolve(__dirname, '../../publicode/rules')
+const publicodesDir = path.resolve(__dirname, '../rules')
 
 function concatenateFilesInDir(dirPath = publicodesDir) {
 	return fs
@@ -15,7 +15,7 @@ function concatenateFilesInDir(dirPath = publicodesDir) {
 			if (fs.statSync(fullpath).isDirectory()) {
 				return concatenateFilesInDir(fullpath)
 			} else {
-				return fs.readFileSync(fullpath)
+				return filename.endsWith('.yaml') ? fs.readFileSync(fullpath) : ''
 			}
 		})
 		.reduce((acc, cur) => acc + '\n' + cur, '')

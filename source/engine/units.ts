@@ -43,10 +43,10 @@ function getUnitKey(unit: string, lng: string): string {
 	return key || unit
 }
 
-let printUnits = (units: Array<string>, count: number, lng): string =>
+let printUnits = (units: Array<string>, count: number, lng: string): string =>
 	units
 		.filter(unit => unit !== '%')
-		.map(unit => i18n.t(`units:${unit}`, { count, lng: lng }))
+		.map(unit => i18n.t(`units:${unit}`, { count, lng }))
 		.join('.')
 
 const plural = 2
@@ -193,7 +193,11 @@ export function convertUnit(
 	to: Unit | undefined,
 	value: Evaluation<number>
 ): Evaluation<number>
-export function convertUnit(from, to, value): any {
+export function convertUnit(
+	from: Unit | undefined,
+	to: Unit | undefined,
+	value: number | Evaluation<number>
+) {
 	if (!areUnitConvertible(from, to)) {
 		throw new Error(
 			`Impossible de convertir l'unité '${serializeUnit(

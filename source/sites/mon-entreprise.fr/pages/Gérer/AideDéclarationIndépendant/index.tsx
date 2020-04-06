@@ -7,11 +7,11 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Engine/RuleInput'
 import { ParsedRule } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
+import { DottedName } from 'Rules'
 import {
 	nextStepsSelector,
 	parsedRulesSelector,

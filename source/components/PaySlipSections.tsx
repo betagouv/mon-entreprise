@@ -1,9 +1,9 @@
 import Value from 'Components/Value'
 import { EvaluatedRule } from 'Engine/types'
-import { DottedName } from 'Publicode/rules'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { DottedName } from 'Rules'
 import { defaultUnitSelector } from 'Selectors/analyseSelectors'
 import RuleLink from './RuleLink'
 

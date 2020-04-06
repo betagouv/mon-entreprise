@@ -105,7 +105,6 @@ export default AttachDictionary(mecanisms)(function Rule({ dottedName }) {
 								description,
 								question,
 								flatRule: rule,
-								flatRules: rules,
 								name,
 								acronyme,
 								title,

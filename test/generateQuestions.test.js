@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import Engine from 'Engine'
-import rules from 'Publicode/rules'
+import rules from 'Rules'
 import { getNextSteps } from '../source/engine/generateQuestions'
 
 describe('Missing variables', function() {

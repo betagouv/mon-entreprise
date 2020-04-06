@@ -1,4 +1,5 @@
 import { Markdown } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -11,33 +12,38 @@ import { hideNewsBanner } from '../../layout/NewsBanner'
 const fetcher = (url: RequestInfo) => fetch(url).then(r => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
+type ReleasesData = Array<{
+	name: string
+	description: string
+}>
+
 export default function Nouveautés() {
 	// The release.json file may be big, we don't want to include it in the main
 	// bundle, that's why we only fetch it on this page. Alternatively we could
 	// use import("data/release.json") and configure code splitting with Webpack.
-	const { data } = useSWR('/data/releases.json', fetcher)
+	const { data } = useSWR<ReleasesData>('/data/releases.json', fetcher)
 	const history = useHistory()
 	const sitePaths = useContext(SitePathsContext)
 	const slug = useRouteMatch<{ slug: string }>(`${sitePaths.nouveautés}/:slug`)
 		?.params?.slug
-	const selectedRelease = data?.findIndex(({ name }) => slugify(name) === slug)
-
 	useEffect(hideNewsBanner, [])
-	useEffect(() => {
-		window.scrollTo({ top: 0 })
-	}, [selectedRelease])
+
+	if (!data) {
+		return null
+	}
+
+	const selectedRelease = data.findIndex(({ name }) => slugify(name) === slug)
 
 	const getPath = (index: number) =>
 		`${sitePaths.nouveautés}/${slugify(data[index].name)}`
 
-	if (!data) {
-		return null
-	} else if (!slug || selectedRelease === -1) {
+	if (!slug || selectedRelease === -1) {
 		return <Redirect to={getPath(0)} />
 	}
 
 	return (
 		<>
+			<ScrollToTop key={selectedRelease} />
 			<h1>Les nouveautés {emoji('✨')}</h1>
 			<p>
 				Nous améliorons le site en continu à partir de vos retours. Découvrez
@@ -101,7 +107,7 @@ export default function Nouveautés() {
 const removeGithubIssuesReferences = (text: string) =>
 	text.replace(/#[0-9]{1,5}/g, '')
 
-const TextRenderer = ({ children }) => (
+const TextRenderer = ({ children }: { children: string }) => (
 	<>{emoji(removeGithubIssuesReferences(children))}</>
 )
 

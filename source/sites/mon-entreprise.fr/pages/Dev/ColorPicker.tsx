@@ -1,7 +1,12 @@
 import React from 'react'
-import { ChromePicker } from 'react-color'
+import { ChromePicker, ChromePickerProps } from 'react-color'
 
-export default function ColorPicker({ color, onChange }) {
+type ColorPickerProps = {
+	color: ChromePickerProps['color']
+	onChange: (color: string) => void
+}
+
+export default function ColorPicker({ color, onChange }: ColorPickerProps) {
 	return (
 		<ChromePicker
 			color={color}
