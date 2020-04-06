@@ -4247,6 +4247,67 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite compl
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
   titre.en: basic retirement
   titre.fr: retraite de base
+dirigeant . indépendant . contrats madelin:
+  titre.en: Madelin Contracts
+  titre.fr: Contrats Madelin
+dirigeant . indépendant . contrats madelin . montant:
+  contrôles.0.en: >
+    [automatic] The amount of all contributions to your Madelin contracts
+
+    must be included in your operating expenses, and you have to include it in
+    your
+
+    have indicated a contribution amount greater than expenses.
+  contrôles.0.fr: |
+    Le montant de l'ensemble des cotisations à vos contrats Madelin
+    doit être inclus dans vos charges de fonctionnement, or ce vous
+    avez indiqué un montant de cotisations supérieur aux charges.
+  titre.en: Sum of subscriptions to Madelin contracts
+  titre.fr: Somme des cotisations à contrats Madelin
+dirigeant . indépendant . contrats madelin . mutuelle:
+  titre.en: Madelin healthcare contract
+  titre.fr: Contrat Madelin mutuelle
+dirigeant . indépendant . contrats madelin . mutuelle . montant:
+  description.en: |
+    If you subscribe to a Madelin-law healthcare contract, you can deduct
+    part of the subscriptions from taxable earnings that you declare for a
+    self-employed occupation.
+  question.en: "How much do you subscribe to a Madelin healthcare contract?"
+  titre.en: Subscription to a Madelin healthcare contract
+  description.fr: |
+    Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
+    vous pouvez déduire une partie de ces cotisations des bénéfices
+    imposables que vous déclarez pour votre activité non salariée.
+  question.fr: "Quel est le montant que vous versez à un contrat de mutuelle Madelin\_?"
+  titre.fr: Souscription à un contrat de mutuelle Madelin
+dirigeant . indépendant . contrats madelin . mutuelle . plafond:
+  titre.en: ceiling
+  titre.fr: plafond
+dirigeant . indépendant . contrats madelin . part déductible fiscalement:
+  titre.en: Part of the Madelin contract subscription which is fiscally deductible
+  titre.fr: Part de la cotisation à contrat Madelin qui est déductible fiscalement
+dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
+  titre.en: Part of the Madelin contract subscription which is not fiscally deductible
+  titre.fr: Part de la cotisation à contrat Madelin qui n'est pas déductible fiscalement
+dirigeant . indépendant . contrats madelin . retraite:
+  titre.en: Madelin pension contract
+  titre.fr: Contrat Madelin retraite
+dirigeant . indépendant . contrats madelin . retraite . montant:
+  description.en: |
+    If you subscribe to a Madelin-law pension contract, you can deduct
+    part of the subscriptions to taxable earnings that you declare for your
+    self-employed activity.
+  question.en: "How much do you subscribe to a Madelin pension contract?"
+  titre.en: Subscription to a Madelin pension contract
+  description.fr: |
+    Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
+    vous pouvez déduire une partie de ces cotisations des bénéfices
+    imposables que vous déclarez pour votre activité non salariée.
+  question.fr: "Quel est le montant que vous versez à votre contrat Madelin retraite\_?"
+  titre.fr: Souscription à une retraite Madelin
+dirigeant . indépendant . contrats madelin . retraite . plafond:
+  titre.en: ceiling
+  titre.fr: plafond
 dirigeant . indépendant . cotisations et contributions:
   titre.en: all contributions
   titre.fr: cotisations et contributions
@@ -4549,9 +4610,9 @@ dirigeant . indépendant . revenu net de cotisations:
   titre.fr: revenu net de cotisations
 dirigeant . indépendant . revenu professionnel:
   description.en: >
-    This is the income net of deductible contributions of the
-    self-employed person, which is used as the basis for the calculation of
-    contributions and tax.
+    This is the income net of deductible contributions of the self-employed
+    person, which is used as the basis for the calculation of contributions and
+    tax.
 
 
     Attention, **our calculation is made at cruising speed**:
@@ -4618,10 +4679,10 @@ dirigeant . indépendant . revenus étrangers . montant:
   titre.fr: revenus perçu à l'étranger
 dirigeant . indépendant . résultat fiscal:
   description.en: 'Taxable net, amount on which tax has to be calculated.'
-  résumé.en: Base for tax calculation
-  titre.en: fiscal earnings
   description.fr: 'Il s''agit du net imposable, assiette sur laquelle l''impôt est calculé.'
+  résumé.en: Base for tax calculation
   résumé.fr: Assiette du calcul de l'impôt
+  titre.en: fiscal earnings
   titre.fr: résultat fiscal
 dirigeant . rattachement CIPAV:
   description.en: >
@@ -5047,6 +5108,8 @@ entreprise . charges:
 
     - meal costs: the supplement over the cost of a meal at home
 
+    - Madelin contracts subscriptions
+
 
     Attention: the purchase of a computer at 1000€ is not a charge, but a
     capital asset: it is an asset that will benefit the company for a period of
@@ -5079,6 +5142,8 @@ entreprise . charges:
     - achat de produits en vue de leur revente, pour une activité commerciale
 
     - frais de repas : le supplément par rapport au coût d'un repas à domicile
+
+    - les cotisations aux contrats Madelin
 
 
     Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une
