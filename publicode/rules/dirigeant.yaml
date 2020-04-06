@@ -750,7 +750,7 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
   formule:
     le maximum de:
       - barème:
-          assiette: revenu professionnel
+          assiette: résultat fiscal
           multiplicateur: plafond sécurité sociale temps plein
           tranches:
             - taux: 10%
