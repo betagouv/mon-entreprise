@@ -297,6 +297,74 @@ somme avec remplacements:
   formule: a + b
 ```
 
+## Références de paramètres
+
+Si le mécanisme de remplacement permet de faire des substitutions de règles
+complètes, il est parfois utile de ne modifier qu'un seul paramètre d'une règle
+existante, par exemple modifier le facteur d'une multiplication tout en
+conservant le reste de sa définition inchangée.
+
+Une première manière de faire consiste à extraire le paramètre en question dans
+une règle indépendante, le rendant ainsi accessible et modifiable depuis
+l'extérieur :
+
+```yaml
+prime:
+  formule:
+    multiplication:
+      assiette: 1000€
+      taux: taux
+
+prime . taux:
+  formule: 5%
+
+super-prime:
+  remplace: prime . taux
+  formule: 10%
+```
+
+Ce code fonctionne mais il nous oblige a créer une règle `prime . taux` qui
+n'est pas pertinente en tant qu'entité autonome (avec sa propre page de
+documentation, etc.), uniquement pour pouvoir la modifier avec un `remplace`. On
+a aussi introduit une indirection dans la définition de la prime en remplaçant
+une ligne explicite `taux: 5%` par une référence vers une règle tierce
+`taux: taux`, qui est loin d'être aussi claire.
+
+Pour ce cas d'usage il est possible d'utiliser une **référence de paramètre**.
+On garde la définition de la prime inchangée et on annote l'argument auquel on
+veut accéder depuis l'extérieur avec le mot clé `[ref]` :
+
+```yaml
+prime:
+  formule:
+    multiplication:
+      assiette: 1000€
+      taux [ref]: 5%
+
+super-prime:
+  remplace: prime . taux
+  formule: 10%
+```
+
+Par défaut le paramètre est référencé avec son nom dans l'espace de nom de la
+règle, ici `prime . taux`. Il est possible de choisir un nom personnalisé :
+
+```yaml
+prime:
+  formule:
+    multiplication:
+      assiette: 1000€
+      taux [ref taux bonus]: 5%
+
+super-prime:
+  remplace: prime . taux bonus
+  formule: 10%
+```
+
+Lors d'une relecture future de la règle `prime` le mot clé `[ref]` indique
+explicitement que du code extérieur dépend du paramètre `taux`, ce a quoi il
+faut être vigilant en cas de ré-écriture.
+
 ## Évaluation
 
 Le ticket
