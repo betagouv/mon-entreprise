@@ -76,7 +76,7 @@ impôt . revenu imposable:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - dirigeant . indépendant . revenu professionnel
+          - dirigeant . indépendant . résultat fiscal
           - dirigeant . auto-entrepreneur . impôt . revenu imposable
       abattement: abattement contrat court / 1 an
 
@@ -112,7 +112,7 @@ impôt . revenu abattu par défaut:
       assiette:
         somme:
           - contrat salarié . rémunération . net imposable
-          - dirigeant . indépendant . revenu professionnel
+          - dirigeant . indépendant . résultat fiscal
       abattement: 10%
       plafond: 12502 €/an
   note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
