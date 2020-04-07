@@ -353,6 +353,9 @@ dirigeant . auto-entrepreneur . net après impôt:
   formule: revenu net après impôt
 
 dirigeant . rémunération totale:
+  synonymes:
+    - résultat d'exploitation
+    - bénéfices
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
   unité par défaut: €/an
@@ -418,6 +421,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
           plafond: 100%
 
 dirigeant . indépendant . revenu net de cotisations:
+  synonymes:
+    - résultat comptable
   formule:
     somme:
       - revenu professionnel
@@ -431,6 +436,9 @@ dirigeant . indépendant . revenu net de cotisations:
     Cerfa 2033-sd: https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2020/2033-sd_2983.pdf
 
 dirigeant . indépendant . résultat fiscal:
+  synonymes:
+    - net imposable
+    - assiette fiscale
   résumé: Assiette du calcul de l'impôt
   description: Il s'agit du net imposable, assiette sur laquelle l'impôt est calculé.
   formule:

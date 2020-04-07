@@ -97,6 +97,9 @@ entreprise . charges dont rémunération dirigeant:
   formule: charges + dirigeant . rémunération totale
 
 entreprise . charges:
+  synonymes:
+    - charges d'exploitation
+    - charges de fonctionnement
   titre: charges de fonctionnement
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
