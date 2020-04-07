@@ -48,6 +48,10 @@ export default class Engine<Names extends string> {
 		this.cache = { ...emptyCache }
 	}
 
+	/**
+	 * Permet de définir la situation
+	 * @param situation Un dictionnaire qui associe le nom des règles avec leur valeur
+	 */
 	setSituation(situation: Simulation['situation'] = {}) {
 		this.situation = situation
 		this.resetCache()
@@ -61,6 +65,10 @@ export default class Engine<Names extends string> {
 		return this
 	}
 
+	/**
+	 *
+	 * @param expression L'expression à évaluer
+	 */
 	evaluate(expression: string | Array<string>) {
 		const results = (Array.isArray(expression) ? expression : [expression]).map(
 			expr =>

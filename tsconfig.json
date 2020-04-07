@@ -5,6 +5,7 @@
 		"target": "es2019",
 		"jsx": "react",
 		"baseUrl": "source",
+		"outDir": "",
 		"types": ["webpack-env"],
 		"typeRoots": ["source/types"],
 		"allowSyntheticDefaultImports": true,

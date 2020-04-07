@@ -6,6 +6,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import { getSessionStorage } from '../../utils'
 import redirects from '../mon-entreprise.fr/redirects'
+import Api from './Api'
 import Landing from './Landing'
 import Studio from './LazyStudio'
 import Mécanismes from './Mécanismes'
@@ -28,6 +29,7 @@ let RouterSwitch = () => {
 				<Route exact path="/" component={Landing} />
 				<Route exact path="/studio" component={Studio} />
 				<Route exact path="/mécanismes" component={Mécanismes} />
+				<Route exact path="/api" component={Api} />
 				<Route component={App} />
 			</Switch>
 		</>
