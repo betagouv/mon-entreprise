@@ -9,8 +9,9 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
-const fs = require('fs')
-const path = require('path')
+// const fs = require('fs')
+// const path = require('path')
+var { createDataDir, writeInDataDir } = require('./utils.js')
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/
@@ -48,18 +49,21 @@ const fakeData = [
 	}
 ]
 
-const dataDir = path.resolve(__dirname, '../data/')
+// const dataDir = path.resolve(__dirname, '../data/')
 
 async function main() {
 	createDataDir()
-	writeReleasesInDataDir(await fetchReleases())
+	const releases = await fetchReleases()
+	writeInDataDir('releases.json', releases)
+	writeInDataDir('last-release.json', { lastRelease: releases[0].name })
+	// writeReleasesInDataDir(await fetchReleases())
 }
 
-function createDataDir() {
-	if (!fs.existsSync(dataDir)) {
-		fs.mkdirSync(dataDir)
-	}
-}
+// function createDataDir() {
+// 	if (!fs.existsSync(dataDir)) {
+// 		fs.mkdirSync(dataDir)
+// 	}
+// }
 
 async function fetchReleases() {
 	if (!githubAuthToken) {
@@ -84,19 +88,19 @@ async function fetchReleases() {
 	}
 }
 
-function writeReleasesInDataDir(releases) {
-	// The last release name is fetched on all pages (to display the banner)
-	// whereas the full release data is used only in the dedicated page, that why
-	// we deduplicate the releases data in two separated files that can be
-	// bundled/fetched separately.
-	fs.writeFileSync(
-		path.join(dataDir, 'releases.json'),
-		JSON.stringify(releases)
-	)
-	fs.writeFileSync(
-		path.join(dataDir, 'last-release.json'),
-		JSON.stringify({ lastRelease: releases[0].name })
-	)
-}
+// function writeReleasesInDataDir(releases) {
+// 	// The last release name is fetched on all pages (to display the banner)
+// 	// whereas the full release data is used only in the dedicated page, that why
+// 	// we deduplicate the releases data in two separated files that can be
+// 	// bundled/fetched separately.
+// 	fs.writeFileSync(
+// 		path.join(dataDir, 'releases.json'),
+// 		JSON.stringify(releases)
+// 	)
+// 	fs.writeFileSync(
+// 		path.join(dataDir, 'last-release.json'),
+// 		JSON.stringify({ lastRelease: releases[0].name })
+// 	)
+// }
 
 main()
