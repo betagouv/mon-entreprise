@@ -29,10 +29,6 @@ describe('Units', () => {
 			numerators: ['kg', 'm'],
 			denominators: ['s']
 		})
-		expect(parseUnit('kg.m/s')).to.deep.equal({
-			numerators: ['kg', 'm'],
-			denominators: ['s']
-		})
 		expect(parseUnit('€/personne/mois')).to.deep.equal({
 			numerators: ['€'],
 			denominators: ['personne', 'mois']

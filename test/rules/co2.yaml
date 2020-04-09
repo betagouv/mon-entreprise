@@ -22,12 +22,11 @@ douche . litres d'eau par douche:
   formule: durée de la douche * litres par minute / 1 douche
 
 douche . litres par minute:
-  unité: l/min
   formule:
     variations:
       - si: pomme de douche économe
-        alors: 9
-      - sinon: 18
+        alors: 9 l/min
+      - sinon: 18 l/min
   références:
     économise l'eau: https://www.jeconomiseleau.org/index.php/particuliers/economies-par-usage/la-douche-et-le-bain
 
@@ -39,8 +38,7 @@ eau:
   icônes: 💧
 
 eau . impact par litre froid:
-  unité: kgCO2eq/l
-  formule: 0.000132
+  formule: 0.000132 kgCO2eq/l
 
 chauffage:
   icônes: 🔥
@@ -66,15 +64,14 @@ chauffage . type . électricité:
 # définir ces éléments un par un
 
 chauffage . impact par kWh:
-  unité: kgCO2eq/kWh PCI
   formule:
     variations:
       - si: type = 'gaz'
-        alors: 0.227
+        alors: 0.227 kgCO2eq/kWh
       - si: type = 'fioul'
-        alors: 0.324
+        alors: 0.324 kgCO2eq/kWh
       - si: type = 'électricité'
-        alors: 0.059
+        alors: 0.059 kgCO2eq/kWh
 
   notes: |
     La base carbone de l'ADEME ne permet malheureusement pas de faire des liens profonds vers les chiffres utilisés.
@@ -85,8 +82,7 @@ chauffage . impact par kWh:
     électricité sur Décrypter l'Energie: https://decrypterlenergie.org/decryptage-quel-est-le-contenu-en-co2-du-kwh-electrique
 
 chauffage . énergie consommée par litre:
-  formule: 0.0325
-  unité: kWh
+  formule: 0.0325 kWh/l
   références:
     analyse du prix d'une douche: https://www.econologie.com/forums/plomberie-et-sanitaire/prix-reel-d-un-bain-ou-d-une-douche-pour-l-eau-et-chauffage-t12727.html
 
