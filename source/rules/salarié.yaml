@@ -380,9 +380,6 @@ contrat salarié . déduction forfaitaire spécifique:
   remplace:
     règle: cotisations . assiette
     sauf dans: contrat salarié . CSG et CRDS
-    # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
-    # pour les journalistes. Nécessite probablement de faire un re-remplacement
-    # inverse.
   formule:
     encadrement:
       valeur:
@@ -417,6 +414,18 @@ contrat salarié . déduction forfaitaire spécifique . application:
     retraite et d'assurance chômage.
   titre: application de la DFS
   formule: oui
+
+contrat salarié . déduction forfaitaire spécifique . chômage des journalistes:
+  description: >-
+    Par exception, la déduction forfaitaire spécifique ne s'applique pas à la
+    cotisation chômage pour les journalistes.
+  applicable si: profession spécifique = 'journaliste'
+  remplace:
+    règle: déduction forfaitaire spécifique
+    dans: chômage
+  formule: cotisations . assiette
+  références:
+    Décret relatif à l'assurance chômage: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000038829574&categorieLien=id#JORFARTI000038830094
 
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description: |
