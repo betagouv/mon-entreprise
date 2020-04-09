@@ -181,3 +181,18 @@ remplacement non applicable (branche desactivée):
   formule: z
   exemples:
     - valeur attendue: 1
+
+valeur initiale dans le namespace:
+
+valeur initiale dans le namespace . initial:
+  formule: 1000€
+
+valeur initiale dans le namespace . remplacement:
+  remplace: initial
+  formule: 10€
+
+valeur initiale dans le namespace . remplacement . cas particulier:
+  titre: valeur initiale accessible dans l'espace de nom du remplacement
+  formule: initial
+  exemples:
+    - valeur attendue: 1000

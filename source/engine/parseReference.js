@@ -11,7 +11,7 @@ import { disambiguateRuleReference } from './ruleUtils'
 import { areUnitConvertible } from './units'
 const getApplicableReplacements = (
 	filter,
-	contextRuleName,
+	contextRuleName = '',
 	cache,
 	situation,
 	rules,
@@ -34,7 +34,11 @@ const getApplicableReplacements = (
 				!blackListedNames ||
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
-		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
+		// Keep the original value in the context of the replacement rule
+		.filter(
+			({ referenceNode }) =>
+				!contextRuleName.startsWith(referenceNode.dottedName)
+		)
 		// Remove remplacement defined in a not applicable node
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]

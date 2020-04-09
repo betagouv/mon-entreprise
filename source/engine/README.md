@@ -297,6 +297,23 @@ somme avec remplacements:
   formule: a + b
 ```
 
+Enfin, il est possible d'accéder à la valeur initiale de la règle modifiée dans
+une formule de remplacement :
+
+```yaml
+temps de trajet:
+  formule: 10 min
+
+bouchons:
+  remplace: temps de trajet
+  formule: temps de trajet * 2
+```
+
+Dans la règle `bouchons`, la variable `temps de trajet` référence la valeur
+initiale de la règle avant sa modification, permettant de l'utiliser dans le
+calcul de la nouvelle valeur. Cette référence initiale est disponible dans tout
+l'espace de nom de `bouchons`.
+
 ## Références de paramètres
 
 Si le mécanisme de remplacement permet de faire des substitutions de règles
