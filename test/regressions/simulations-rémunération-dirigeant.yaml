@@ -64,11 +64,11 @@ Contrats Madelin:
     dirigeant . indépendant . contrats madelin . retraite . montant: 300
   # Cas global madelin grand (plafonds calculés différemment)
   - dirigeant . rémunération totale: 300000
-    entreprise . charges: 15000 
+    entreprise . charges: 15000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 1500
     dirigeant . indépendant . contrats madelin . retraite . montant: 5000
   # Cas charges plus faibles que total madelin
   - dirigeant . rémunération totale: 20000
-    entreprise . charges: 500 
+    entreprise . charges: 500
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 300
     dirigeant . indépendant . contrats madelin . retraite . montant: 300

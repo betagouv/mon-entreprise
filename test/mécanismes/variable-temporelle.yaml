@@ -240,3 +240,18 @@ variable temporelle numérique . grille:
   formule: cotisation spéciale | du 01/01/2019 | au 31/12/2019
   exemples:
     - valeur attendue: 567.438
+
+condition:
+date applicable:
+  applicable si: condition
+  formule: 10/01/2019
+
+variable temporelle . date non applicable:
+  formule: '(30 | à partir de : date applicable) | le 09/01/2019'
+  exemples:
+    - situation:
+        condition: oui
+      valeur attendue: false
+    - situation:
+        condition: non
+      valeur attendue: 30

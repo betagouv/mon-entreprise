@@ -5,6 +5,7 @@ import {
 	mergeAllMissing
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
+import { mapTemporal, pureTemporal, temporalAverage } from 'Engine/temporal'
 import { EvaluatedRule } from 'Engine/types'
 import { has } from 'ramda'
 import React from 'react'
@@ -64,15 +65,20 @@ function evaluate<Names extends string>(
 	const value = evaluateAttribute(node.explanation.value)
 	const decimals = evaluateAttribute(node.explanation.decimals)
 
-	const nodeValue =
-		typeof value.nodeValue === 'number'
-			? roundWithPrecision(value.nodeValue, decimals.nodeValue)
-			: value.nodeValue
+	const temporalValue = mapTemporal(
+		(val: number | false | null) =>
+			typeof val === 'number'
+				? roundWithPrecision(val, decimals.nodeValue)
+				: val,
+		value.temporalValue ?? pureTemporal(value.nodeValue)
+	)
 
+	const nodeValue = temporalAverage(temporalValue, value.unit)
 	return {
 		...node,
 		unit: value.unit,
 		nodeValue,
+		...(temporalValue.length > 1 && { temporalValue }),
 		missingVariables: mergeAllMissing([value, decimals]),
 		explanation: { value, decimals }
 	}

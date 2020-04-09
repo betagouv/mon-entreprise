@@ -178,6 +178,7 @@ protection sociale . revenu moyen:
 
   formule:
     le maximum de:
+      - 0
       - dirigeant . indépendant . revenu professionnel
       - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut

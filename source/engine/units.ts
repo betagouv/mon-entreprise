@@ -143,12 +143,15 @@ let simplify = (
 
 const convertTable: { readonly [index: string]: number } = {
 	'mois/an': 12,
-	'€/k€': 1000,
 	'jour/an': 365,
 	'jour/mois': 365 / 12,
 	'trimestre/an': 4,
 	'mois/trimestre': 3,
-	'jour/trimestre': (365 / 12) * 3
+	'jour/trimestre': (365 / 12) * 3,
+	'€/k€': 10 ** 3,
+	'g/kg': 10 ** 3,
+	'mg/g': 10 ** 3,
+	'mg/kg': 10 ** 6
 }
 function singleUnitConversionFactor(
 	from: string,
@@ -225,7 +228,8 @@ export function convertUnit(
 
 const convertibleUnitClasses = [
 	['mois', 'an', 'jour', 'trimestre'],
-	['€', 'k€']
+	['€', 'k€'],
+	['g', 'kg', 'mg']
 ]
 function areSameClass(a: string, b: string) {
 	return (
