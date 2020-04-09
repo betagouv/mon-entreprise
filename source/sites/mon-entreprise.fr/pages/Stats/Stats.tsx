@@ -12,11 +12,22 @@ import {
 	YAxis
 } from 'recharts'
 import * as data from '../../../../data/stats.json'
+import * as status_chosen from '../../../../data/status_chosen.json'
 import * as uniq_visitors from '../../../../data/total_visits.json'
 
 export default function Stats() {
 	let d202004 = data[11].values
-	console.log('data202004', d202004)
+	const labels = [
+		'auto-entrepreneur',
+		'SASU',
+		'EURL',
+		'SARL',
+		'EI',
+		'SAS',
+		'EIRL',
+		'auto-entrepreneur-EIRL',
+		'SA'
+	]
 	return (
 		<>
 			<ScrollToTop />
@@ -48,7 +59,6 @@ export default function Stats() {
 				</LineChart>
 				<div id="visits-indicators"></div>
 			</section>
-
 			<section>
 				<h2> Nombre d'utilisation des simulateurs</h2>
 				<BarChart
@@ -70,6 +80,29 @@ export default function Stats() {
 					<Bar dataKey="value" fill="#8884d8" label="value" />
 				</BarChart>
 				<div id="simulteurs-indicators"></div>
+			</section>
+
+			<section>
+				<h2> Statut choisi le dernier mois</h2>
+				<BarChart
+					width={700}
+					height={300}
+					data={status_chosen.slice()}
+					layout="vertical"
+					margin={{
+						top: 20,
+						right: 30,
+						left: 20,
+						bottom: 5
+					}}
+				>
+					<CartesianGrid strokeDasharray="3 3" />
+					<YAxis dy={-5} type="category" dataKey="label" />
+					<XAxis type="number" dateKey="nb_visits" />
+					<Tooltip />
+					<Bar dataKey="nb_visits" fill="#8884d8" />
+				</BarChart>
+				<div id="status-indicators"></div>
 			</section>
 		</>
 	)
