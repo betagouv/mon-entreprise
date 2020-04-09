@@ -47,8 +47,9 @@ const fakeData = [
 
 async function main() {
 	createDataDir()
-	writeInDataDir('stats.json', await fetchStats())
-	writeInDataDir('total_visits.json', await fetchNumberofVisitsbyMonth())
+	// writeInDataDir('stats.json', await fetchStats())
+	// writeInDataDir('total_visits.json', await fetchNumberofVisitsbyMonth())
+	writeInDataDir('status_chosen.json', await fetchStatusChosen())
 }
 
 async function fetchStats() {
@@ -129,9 +130,7 @@ async function fetchNumberofVisitsbyMonth() {
 			})
 		)
 		const data = await response.json()
-		var result = Object.entries(
-			JSON.parse(JSON.stringify({ ...data, ...visitsIn2019 }))
-		)
+		var result = Object.entries({ ...data, ...visitsIn2019 })
 			.sort(([t1], [t2]) => (t1 > t2 ? 1 : -1))
 			.map(([x, y]) => ({ year: x, nb_uniq_visitors: y }))
 
@@ -141,6 +140,46 @@ async function fetchNumberofVisitsbyMonth() {
 		return Object.entries(visitsIn2019).map(([a, b]) => {
 			return { year: a, nb_uniq_visitors: b }
 		})
+	}
+}
+
+const fakeStatusChosen = [
+	{ label: 'auto-entrepreneur', nb_visits: 0 },
+	{ label: 'SASU', nb_visits: 0 },
+	{ label: 'EURL', nb_visits: 0 },
+	{ label: 'SARL', nb_visits: 0 },
+	{ label: 'EI', nb_visits: 0 },
+	{ label: 'EIRL', nb_visits: 0 },
+	{ label: 'auto-entrepreneur-EIRL', nb_visits: 0 },
+	{ label: 'SAS', nb_visits: 0 },
+	{ label: 'SA', nb_visits: 0 }
+]
+
+async function fetchStatusChosen() {
+	try {
+		const response = await fetch(
+			apiURL({
+				method: 'Events.getAction',
+				label: 'status chosen',
+				date: 'previous1'
+			})
+		)
+		const data = await response.json()
+		const response2 = await fetch(
+			apiURL({
+				method: 'Events.getNameFromActionId',
+				idSubtable: Object.values(data)[0][0].idsubdatatable,
+				date: 'previous1'
+			})
+		)
+		const data2 = await response2.json()
+		const result = Object.values(data2)[0].map(({ label, nb_visits }) => ({
+			label,
+			nb_visits
+		}))
+		return result
+	} catch (e) {
+		return fakeStatusChosen
 	}
 }
 
