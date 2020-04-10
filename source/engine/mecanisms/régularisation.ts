@@ -145,7 +145,6 @@ function evaluate(
 	}
 
 	const evaluation = evaluate(node.explanation.rule)
-	console.log(evaluation)
 	const temporalValue = evaluation.temporalValue
 	const evaluationWithRegularisation = groupByYear(
 		temporalValue as Temporal<Evaluation<number>>
