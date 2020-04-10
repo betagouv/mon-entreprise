@@ -1,3 +1,6 @@
+SMIC:
+  titre.en: '[automatic] SMIC'
+  titre.fr: SMIC
 SMIC horaire:
   titre.en: hourly minimum wage (SMIC)
   titre.fr: SMIC horaire
@@ -4711,6 +4714,9 @@ dirigeant . rémunération totale:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Director total income
   titre.fr: rémunération totale
+effectif 20 salarié ou plus:
+  titre.en: '[automatic] 20 or more employees'
+  titre.fr: effectif 20 salarié ou plus
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -5623,6 +5629,9 @@ plafond sécurité sociale temps plein:
     prendre en compte pour le calcul de certaines cotisations.
   titre.en: full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
+primes:
+  titre.en: '[automatic] premiums'
+  titre.fr: primes
 protection sociale:
   description.en: >
     Social protection in France is composed of 5 main branches: sickness,
@@ -6011,6 +6020,48 @@ revenus net de cotisations:
   résumé.fr: Avant impôt
   titre.en: net contribution income
   titre.fr: revenus net de cotisations
+réduction générale:
+  titre.en: '[automatic] overall decrease'
+  titre.fr: réduction générale
+réduction générale . chômage:
+  titre.en: '[automatic] unemployment'
+  titre.fr: chômage
+réduction générale . chômage . coefficient:
+  titre.en: '[automatic] coefficient'
+  titre.fr: coefficient
+réduction générale . chômage . constante:
+  titre.en: '[automatic] constant'
+  titre.fr: constante
+réduction générale . chômage . réduction sans régularisation:
+  titre.en: '[automatic] unregulated reduction'
+  titre.fr: réduction sans régularisation
+réduction générale . début:
+  titre.en: '[automatic] start'
+  titre.fr: début
+réduction générale . urssaf:
+  titre.en: '[automatic] urssaf'
+  titre.fr: urssaf
+réduction générale . urssaf . coefficient:
+  titre.en: '[automatic] coefficient'
+  titre.fr: coefficient
+réduction générale . urssaf . constante:
+  titre.en: '[automatic] constant'
+  titre.fr: constante
+réduction générale . urssaf . réduction sans régularisation:
+  titre.en: '[automatic] unregulated reduction'
+  titre.fr: réduction sans régularisation
+réduction lodeom:
+  titre.en: '[automatic] lodeom reduction'
+  titre.fr: réduction lodeom
+réduction lodeom . constante:
+  titre.en: '[automatic] constant'
+  titre.fr: constante
+réduction sur AC au 1er janvier:
+  titre.en: '[automatic] reduction on AC on January 1st'
+  titre.fr: réduction sur AC au 1er janvier
+rémunération:
+  titre.en: '[automatic] remuneration'
+  titre.fr: rémunération
 situation personnelle:
   titre.en: personal situation
   titre.fr: situation personnelle

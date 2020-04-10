@@ -206,12 +206,50 @@ régularisation:
     variables numérique mensuelle cumulée.
 
     Ce mécanisme spécifique est utilisé pour le calcul des cotisations
-    mensuelles.
+    mensuelles, afin de "lisser" un plafond ou un calcul sur plusieurs mois.
+
+    La régularisation progressive s'opère le long d'une année civile complète.
+
+    ## Explication du calcul
+
+    Pour chaque mois, on évalue la valeur à régulariser en faisant le cumul des
+    éléments nécessaires au calcul sur la période écoulée depuis le premier
+    jour de l’année.
+
+    Par exemple, pour la cotisation suivante : 
+    ```yaml
+      cotisation: 
+        formule: 
+          produit:
+            assiette: brut
+            plafond: 2000 €/mois
+            taux: 10%
+    ```
+    Avec un brut de 1000 € en janvier et 3500 € en février et 1000€ en mars, le cumul sera le
+    suivant :
+
+    ```
+            brut   plafond   cotisation
+       JAN  1000   2000      1000 * 10% = 100 €
+       FEV  4500   4000      4000 * 10% = 400 € 
+       MAR  5500   6000      5500 * 10% = 550 € 
+    ```
+      
+    On regarde ensuite le cumul des valeurs déjà versée les mois précédent, pour
+    ne garder que la différence entre les deux montant. Dans notre exemple, on
+    abouti aux valeurs suivantes :
+
+    ```
+            cotisation cumul  cotis régularisée
+       JAN  100 €             100 €    
+       FEV  400 €             400 € - 100 € = 300 €
+       MAR  550 €             550 € - 300 € = 150 €
+    ```
 
   arguments:
     règle: règle à régulariser
     valeurs cumulées:
-      - liste de variables cumulée mensuellement pour calculer la régularisation. Doit être
+      - liste de variables cumulée mensuellement pour calculer la régularisation. Doivent être
         numérique, et avoir une unité `/mois`
 
   exemples:
@@ -219,10 +257,9 @@ régularisation:
       brut:
         formule:
           somme:
-            - 2000 €/mois | du 01/01/2020 | au 31/05/2020
-            - 4000 €/mois | du 01/06/2020 | au 31/12/2020
-      plafond:
-        formule: 3000 €/mois
+            - 1000 €/mois | du 01/01/2020 | au 31/01/2020
+            - 3500 €/mois | du 01/02/2020 | au 29/02/2020
+            - 1000 €/mois | du 01/03/2020 | au 31/03/2020
 
       cotisation:
         formule:
@@ -230,20 +267,55 @@ régularisation:
             règle:
               produit:
                 assiette: brut
-                plafond: plafond
+                plafond [ref]: 2000 €/mois
                 taux: 10%
             valeurs cumulées:
               - brut
               - plafond
 
-      cotisation en mai:
-        formule: cotisation | du 01/05/2020 | au 31/05/2020
+    valeur cumulée à partir d'une date: >-
+      SMIC: 1521.22 €/mois
 
-      cotisation en juin:
-        formule: cotisation | du 01/06/2020 | au 30/06/2020
+      primes:
+        formule:
+          somme:
+            - 2470 €/mois | du 01/01/2019 | au 31/01/2019
+            - 1470 €/mois | du 01/05/2019 | au 31/05/2019
 
-      cotisation en novembre:
-        formule: cotisation | du 01/11/2020 | au 30/11/2020
+      rémunération:
+        formule:
+          somme:
+            - 1530 €/mois | du 01/01/2019 | au 31/12/2019
+            - primes
+
+      réduction sur AC au 1er janvier:
+        formule: non
+
+      réduction générale chômage . coefficient:
+        formule:
+          arrondi:
+            valeur: (0.0405 / 0.60 ) * (1.60 * SMIC / rémunération - 1)
+            décimales: 4
+
+      réduction générale chômage . réduction sans régularisation:
+        formule:
+          encadrement:
+            plancher: 0
+            valeur:
+              arrondi:
+                valeur:
+                  multiplication:
+                    assiette: rémunération
+                    taux: coefficient
+                décimales: 2
+
+      réduction générale chômage:
+        formule:
+          régularisation:
+            règle: réduction sans régularisation
+            valeurs cumulées:
+              - 'SMIC | à partir du 01/10/2019'
+              - 'rémunération | à partir du 01/10/2019'
 
 recalcul:
   description: >-

@@ -150,7 +150,7 @@ describe('conversation', function() {
 	})
 })
 describe('real conversation', function() {
-	it('should not have more than X questions', function() {
+	it('should not have more than X questions', function(done) {
 		let state = merge(baseState, {
 				rules,
 				simulation: {
@@ -163,5 +163,6 @@ describe('real conversation', function() {
 
 		expect(nextSteps.length).to.be.below(30) // If this breaks, that's good news
 		expect(nextSteps.length).to.be.above(10)
+		done()
 	})
 })

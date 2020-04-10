@@ -12,9 +12,15 @@ import {
 	temporalCumul
 } from 'Engine/temporal'
 import { Unit } from 'Engine/units'
-import { DottedName } from 'Rules'
 import { coerceArray } from '../../utils'
+import { DottedName } from './../../rules/index'
 
+function stripTemporalTransform(node) {
+	if (!node?.explanation?.period) {
+		return node
+	}
+	return stripTemporalTransform(node.explanation.value)
+}
 export default function parse(parse, k, v) {
 	const rule = parse(v.règle)
 	if (!v['valeurs cumulées']) {
@@ -23,16 +29,22 @@ export default function parse(parse, k, v) {
 		)
 	}
 
-	const variables = coerceArray(v['valeurs cumulées']).map(parse) as Array<{
-		dottedName: DottedName
-		category: string
-		name: 'string'
-	}>
-	if (variables.some(({ category }) => category !== 'reference')) {
-		throw new Error(
-			'Le mécanisme régularisation attend des noms de règles sous la clé `valeurs cumulées`'
-		)
-	}
+	const variables = coerceArray(v['valeurs cumulées']).map(variable => {
+		if (typeof variable !== 'string') {
+			throw new Error(
+				`Les \`valeurs cumulées\` du mécanisme de régularisation doivent être des noms de règles existantes`
+			)
+		}
+
+		const value = parse(variable)
+		const reference = stripTemporalTransform(value)
+		if (reference.category !== 'reference') {
+			throw new Error(
+				'Le mécanisme régularisation attend des noms de règles existantes dans les `valeurs cumulées`'
+			)
+		}
+		return { value, dottedName: reference.dottedName }
+	}) as Array<{ dottedName: DottedName; value: Object }>
 
 	return {
 		evaluate,
@@ -94,17 +106,17 @@ function evaluate(
 
 		const currentYear = getYear(temporalEvaluation[0].start as string)
 		const cumulatedVariables = node.explanation.variables.reduce(
-			(acc, parsedVariable) => {
-				const evaluation = evaluate(parsedVariable)
+			(acc, { dottedName, value }) => {
+				const evaluation = evaluate(value)
 				if (!evaluation.unit.denominators.some(unit => unit === 'mois')) {
 					evaluationError(
 						cache._meta.contextRule,
-						`Dans le mécanisme régularisation, la valeur cumulée '${parsedVariable.name}' n'est pas une variable numérique définie sur le mois`
+						`Dans le mécanisme régularisation, la valeur cumulée '${dottedName}' n'est pas une variable numérique définie sur le mois`
 					)
 				}
 				return {
 					...acc,
-					[parsedVariable.dottedName]: getMonthlyCumulatedValuesOverYear(
+					[dottedName]: getMonthlyCumulatedValuesOverYear(
 						currentYear,
 						evaluation.temporalValue ?? pureTemporal(evaluation.nodeValue),
 						evaluation.unit
@@ -133,19 +145,18 @@ function evaluate(
 	}
 
 	const evaluation = evaluate(node.explanation.rule)
-
+	console.log(evaluation)
 	const temporalValue = evaluation.temporalValue
 	const evaluationWithRegularisation = groupByYear(
 		temporalValue as Temporal<Evaluation<number>>
 	)
 		.map(regulariseYear)
 		.flat()
-
 	return {
 		...node,
 		temporalValue: evaluationWithRegularisation,
 		explanation: evaluation,
-		nodeValue: temporalAverage(temporalValue),
+		nodeValue: temporalAverage(evaluationWithRegularisation, evaluation.unit),
 		missingVariables: evaluation.missingVariables,
 		unit: evaluation.unit
 	}

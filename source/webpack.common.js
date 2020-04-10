@@ -1,6 +1,7 @@
 /* eslint-env node */
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
@@ -31,6 +32,8 @@ module.exports.default = {
 		globalObject: 'self'
 	},
 	plugins: [
+		new MonacoWebpackPlugin(),
+
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}',
@@ -138,6 +141,10 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 		{
 			test: /\.md$/,
 			use: ['raw-loader']
+		},
+		{
+			test: /\.ttf$/,
+			use: ['file-loader']
 		}
 	]
 }

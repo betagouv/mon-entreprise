@@ -17,7 +17,6 @@ import {
 	toPairs
 } from 'ramda'
 import React from 'react'
-import 'react-virtualized/styles.css'
 import { typeWarning } from './error'
 import {
 	collectNodeMissing,
@@ -480,24 +479,24 @@ export let mecanismProduct = (recurse, k, v) => {
 		}
 		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
+
+		const nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
+			? false
+			: [taux, assiette, facteur].some(n => n.nodeValue === 0)
+			? 0
+			: [taux, assiette, facteur].some(n => n.nodeValue === null)
+			? null
+			: mult(
+					assiette.nodeValue,
+					taux.nodeValue,
+					facteur.nodeValue,
+					plafond.nodeValue
+			  )
+
 		const unit = inferUnit(
 			'*',
 			[assiette, taux, facteur].map(el => el.unit)
 		)
-		const nodeValue =
-			taux.nodeValue === 0 ||
-			taux.nodeValue === false ||
-			assiette.nodeValue === 0 ||
-			facteur.nodeValue === 0
-				? 0
-				: [taux, assiette, facteur, plafond].some(n => n.nodeValue === null)
-				? null
-				: mult(
-						assiette.nodeValue,
-						taux.nodeValue,
-						facteur.nodeValue,
-						plafond.nodeValue
-				  )
 		return {
 			nodeValue,
 

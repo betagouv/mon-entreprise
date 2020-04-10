@@ -1,9 +1,8 @@
 import { typeWarning } from 'Engine/error'
 import {
 	defaultNode,
-	evaluateNode,
+	evaluateObject,
 	makeJsx,
-	mergeAllMissing,
 	parseObject
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
@@ -60,48 +59,38 @@ const objectShape = {
 	plancher: defaultNode(-Infinity)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const valeur = evaluateAttribute(node.explanation.valeur)
-	let plafond = evaluateAttribute(node.explanation.plafond)
-	if (plafond.nodeValue === false || plafond.nodeValue === null) {
-		plafond = objectShape.plafond
-	}
-	let plancher = evaluateAttribute(node.explanation.plancher)
-	if (valeur.unit) {
-		try {
-			plafond = convertNodeToUnit(valeur.unit, plafond)
-			plancher = convertNodeToUnit(valeur.unit, plancher)
-		} catch (e) {
-			typeWarning(
-				cache._meta.contextRule,
-				"Le plafond / plancher de l'encadrement a une unité incompatible avec celle de la valeur à encadrer",
-				e
-			)
+const evaluate = evaluateObject(
+	objectShape,
+	({ valeur, plafond, plancher }, cache) => {
+		if (plafond.nodeValue === false || plafond.nodeValue === null) {
+			plafond = objectShape.plafond
 		}
-	}
 
-	const nodeValue = Math.max(
-		plancher.nodeValue,
-		Math.min(plafond.nodeValue, valeur.nodeValue)
-	)
-	return {
-		...node,
-		nodeValue,
-		missingVariables: mergeAllMissing([valeur, plafond, plancher]),
-		unit: valeur.unit,
-		explanation: {
-			valeur,
-			plafond,
-			plancher
+		if (valeur.unit) {
+			try {
+				plafond = convertNodeToUnit(valeur.unit, plafond)
+				plancher = convertNodeToUnit(valeur.unit, plancher)
+			} catch (e) {
+				typeWarning(
+					cache._meta.contextRule,
+					"Le plafond / plancher de l'encadrement a une unité incompatible avec celle de la valeur à encadrer",
+					e
+				)
+			}
+		}
+		return {
+			nodeValue:
+				typeof valeur.nodeValue !== 'number'
+					? valeur.nodeValue
+					: Math.max(
+							plancher.nodeValue,
+							Math.min(plafond.nodeValue, valeur.nodeValue)
+					  ),
+			unit: valeur.unit
 		}
 	}
-}
+)
+
 export default (recurse, k, v) => {
 	const explanation = parseObject(recurse, objectShape, v)
 

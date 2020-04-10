@@ -27,10 +27,9 @@ function evaluate(
 		evaluateAttribute(node.explanation.period.end)
 	const value = evaluateAttribute(node.explanation.value)
 	const period = {
-		start: start?.nodeValue ?? null,
-		end: end?.nodeValue ?? null
+		start: start?.nodeValue || null,
+		end: end?.nodeValue || null
 	}
-
 	const temporalValue = value.temporalValue
 		? narrowTemporalValue(period, value.temporalValue)
 		: createTemporalEvaluation(value.nodeValue, period)
