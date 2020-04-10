@@ -1,4 +1,6 @@
 const { map } = require('ramda')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+
 const prod = require('./webpack.prod.js')
 const {
 	commonLoaders,
@@ -19,6 +21,7 @@ module.exports = {
 	},
 	plugins: [
 		...HTMLPlugins({ injectTrackingScript: true }),
+		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}'
