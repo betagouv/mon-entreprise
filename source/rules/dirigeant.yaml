@@ -257,7 +257,6 @@ dirigeant . auto-entrepreneur . impôt . abattement:
           assiette: base des cotisations
           taux: taux
       plancher: 305 €/an
-
   références:
     Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
 
@@ -836,19 +835,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
     guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
   note: Les professions libérales ne cotisent pour la part correspondante aux indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de maladie.
 
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
-  titre: assiette maladie
-  formule:
-    variations:
-      - si: situation personnelle . RSA
-        alors: assiette des cotisations
-      - sinon:
-          encadrement:
-            plancher: 40% * plafond sécurité sociale temps plein
-            valeur: assiette des cotisations
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
@@ -861,7 +847,10 @@ dirigeant . indépendant . cotisations et contributions . cotisations . indemnit
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   formule:
     barème:
-      assiette: assiette
+      assiette [ref]:
+        encadrement:
+          plancher [ref]: 40% * plafond sécurité sociale temps plein
+          valeur: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
         - taux: taux variable
@@ -869,6 +858,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
         - taux: 6.5%
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+    Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
   note: |
     On retrouve dans le décret ci-dessous la phrase suivante :
 
@@ -998,26 +988,17 @@ dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation .
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   formule:
     barème:
-      assiette: assiette
+      assiette [ref]:
+        encadrement:
+          plancher [ref]: 11.5% * plafond sécurité sociale temps plein
+          valeur: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
         - taux: 17.75%
           plafond: 1
         - taux: 0.6%
-
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
-  titre: assiette retraite de base
-  formule:
-    variations:
-      - si: situation personnelle . RSA
-        alors: assiette des cotisations
-      - sinon:
-          encadrement:
-            plancher: 11.5% * plafond sécurité sociale temps plein
-            valeur: assiette des cotisations
-
   références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
   applicable si:
@@ -1063,20 +1044,22 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   formule:
     produit:
-      assiette: assiette
+      assiette [ref]:
+        encadrement:
+          valeur: assiette des cotisations
+          plancher [ref]: 11.5% * plafond sécurité sociale temps plein
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
+  références:
+    Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
-dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
-  titre: assiette invalidité et décès
-  formule:
-    variations:
-      - si: situation personnelle . RSA
-        alors: assiette des cotisations
-      - sinon:
-          encadrement:
-            valeur: assiette des cotisations
-            plancher: 11.5% * plafond sécurité sociale temps plein
+dirigeant . indépendant . cotisations et contributions . cotisations . exonération de cotisations minimales:
+  applicable si: situation personnelle . RSA
+  remplace:
+    - invalidité et décès . assiette . plancher
+    - maladie . assiette . plancher
+    - retraite de base . assiette . plancher
+  formule: non
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 

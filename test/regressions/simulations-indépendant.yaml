@@ -20,6 +20,11 @@ inversions:
   - entreprise . chiffre d'affaires minimum: 20000
     entreprise . charges: 2000
 
+cotisations minimales:
+  - dirigeant . indépendant . revenu net de cotisations: 100
+  - dirigeant . indépendant . revenu net de cotisations: 100
+    situation personnelle . RSA: oui
+
 activité:
   - dirigeant . indépendant . revenu net de cotisations: 20000
     entreprise . catégorie d'activité: libérale

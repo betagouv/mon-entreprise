@@ -4227,13 +4227,13 @@ dirigeant . indépendant . contrats madelin . mutuelle . montant:
     If you subscribe to a Madelin-law healthcare contract, you can deduct
     part of the subscriptions from taxable earnings that you declare for a
     self-employed occupation.
-  question.en: "How much do you subscribe to a Madelin healthcare contract?"
-  titre.en: Subscription to a Madelin healthcare contract
   description.fr: |
     Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
+  question.en: How much do you subscribe to a Madelin healthcare contract?
   question.fr: "Quel est le montant que vous versez à un contrat de mutuelle Madelin\_?"
+  titre.en: Subscription to a Madelin healthcare contract
   titre.fr: Souscription à un contrat de mutuelle Madelin
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   titre.en: ceiling
@@ -4252,13 +4252,13 @@ dirigeant . indépendant . contrats madelin . retraite . montant:
     If you subscribe to a Madelin-law pension contract, you can deduct
     part of the subscriptions to taxable earnings that you declare for your
     self-employed activity.
-  question.en: "How much do you subscribe to a Madelin pension contract?"
-  titre.en: Subscription to a Madelin pension contract
   description.fr: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
+  question.en: How much do you subscribe to a Madelin pension contract?
   question.fr: "Quel est le montant que vous versez à votre contrat Madelin retraite\_?"
+  titre.en: Subscription to a Madelin pension contract
   titre.fr: Souscription à une retraite Madelin
 dirigeant . indépendant . contrats madelin . retraite . plafond:
   titre.en: ceiling
@@ -4313,6 +4313,9 @@ dirigeant . indépendant . cotisations et contributions . cotisations . déducti
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits:
   titre.en: '[automatic] contribution base (with tobacco deduction)'
   titre.fr: assiette des cotisations (avec déduction tabac)
+dirigeant . indépendant . cotisations et contributions . cotisations . exonération de cotisations minimales:
+  titre.en: '[automatic] minimum contribution holiday'
+  titre.fr: exonération de cotisations minimales
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   description.en: >-
     Contributions for the daily allowances of self-employed people. If the state
@@ -4328,9 +4331,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . indemnit
 dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès:
   titre.en: disability and death
   titre.fr: invalidité et décès
-dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette:
-  titre.en: disability and death basis
-  titre.fr: assiette invalidité et décès
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
   note.en: >
     [automatic] The decree below contains the following sentence:
@@ -4362,9 +4362,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
     à ce taux, et c'est cette implémentation que nous avons retenue.
   titre.en: health insurance
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie . assiette:
-  titre.en: health insurance basis
-  titre.fr: assiette maladie
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
   titre.en: upper reduction threshold
   titre.fr: seuil supérieur de réduction
@@ -4468,9 +4465,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   titre.en: pension
   titre.fr: retraite de base
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base . assiette:
-  titre.en: pension basis
-  titre.fr: assiette retraite de base
 dirigeant . indépendant . cotisations et contributions . exonérations:
   titre.en: exemptions
   titre.fr: exonérations
