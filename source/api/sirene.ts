@@ -25,6 +25,16 @@ export async function searchDenominationOrSiren(value: string) {
 	return searchFullText(value)
 }
 
+type SireneData = {
+	etablissement: Array<{
+		siren: string
+		is_siege: string
+		categorie_entreprise: string
+		activite_principale: string
+		l1_normalisee: string
+	}>
+}
+
 export type Etablissement = {
 	siren: string
 	denomination?: string
@@ -39,7 +49,7 @@ async function searchFullText(
 	if (!response.ok) {
 		return null
 	}
-	const json = await response.json()
+	const json: SireneData = await response.json()
 	const etablissements = json.etablissement
 		.filter(
 			({ is_siege, categorie_entreprise, activite_principale }) =>

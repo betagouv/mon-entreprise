@@ -59,7 +59,11 @@ export default function PreviousAnswers() {
 				([key, value]) =>
 					!isNil(value) && (
 						<li key={key}>
-							<Link to={sitePaths.créer.guideStatut[key]}>
+							<Link
+								to={
+									sitePaths.créer.guideStatut[key as keyof typeof legalStatus]
+								}
+							>
 								{requirementToText(key as any, value as any)}
 							</Link>
 						</li>

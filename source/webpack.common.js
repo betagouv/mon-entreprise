@@ -25,7 +25,7 @@ module.exports.default = {
 		infrance: './source/sites/mon-entreprise.fr/entry.en.tsx',
 		'simulateur-iframe-integration':
 			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
-		publicodes: './source/sites/publi.codes/entry.js'
+		publicodes: './source/sites/publi.codes/entry.tsx'
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -37,7 +37,7 @@ module.exports.default = {
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}',
-			MASTER: false
+			MASTER: 'false'
 		}),
 
 		new CopyPlugin([

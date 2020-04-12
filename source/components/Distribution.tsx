@@ -8,7 +8,6 @@ import { animated, config, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
 import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import répartitionSelector from 'Selectors/repartitionSelectors'
-import { isIE } from '../utils'
 import './Distribution.css'
 import './PaySlip'
 import RuleLink from './RuleLink'
@@ -73,7 +72,7 @@ export function DistributionBranch({
 			className="distribution-chart__item"
 			style={{ opacity: styles.opacity }}
 		>
-			<BranchIcône icône={icon ?? branche.icons} />
+			<BranchIcône icône={(icon ?? branche.icons) as string} />
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
 					<span className="distribution-chart__branche-name">
@@ -95,15 +94,19 @@ export function DistributionBranch({
 	)
 }
 
-let ChartItemBar = ({ styles, color, montant }) => (
+type ChartItemBarProps = {
+	styles: React.CSSProperties
+	color: string
+	montant: number
+}
+
+let ChartItemBar = ({ styles, color, montant }: ChartItemBarProps) => (
 	<div className="distribution-chart__bar-container">
 		<animated.div
 			className="distribution-chart__bar"
 			style={{
 				backgroundColor: color,
-				...(!isIE()
-					? { flex: styles.flex }
-					: { minWidth: styles.flex * 500 + 'px' })
+				...styles
 			}}
 		/>
 		<div
@@ -120,7 +123,7 @@ let ChartItemBar = ({ styles, color, montant }) => (
 	</div>
 )
 
-let BranchIcône = ({ icône }) => (
+let BranchIcône = ({ icône }: { icône: string }) => (
 	<div className="distribution-chart__legend">
 		<span className="distribution-chart__icon">{emoji(icône)}</span>
 	</div>

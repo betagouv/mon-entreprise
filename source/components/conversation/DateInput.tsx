@@ -1,12 +1,26 @@
 import { normalizeDateString } from 'Engine/date'
+import { RuleInputProps } from 'Engine/RuleInput'
+import { Rule } from 'Engine/types'
 import React, { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
 import SendButton from './SendButton'
 
-export default function DateInput({ suggestions, onChange, onSubmit, value }) {
+type DateInputProps = {
+	onChange: RuleInputProps['onChange']
+	onSubmit: RuleInputProps['onSubmit']
+	value: RuleInputProps['value']
+	suggestions: Rule['suggestions']
+}
+
+export default function DateInput({
+	suggestions,
+	onChange,
+	onSubmit,
+	value
+}: DateInputProps) {
 	const dateValue = useMemo(() => {
-		if (!value) return undefined
+		if (!value || typeof value !== 'string') return undefined
 		const [day, month, year] = normalizeDateString(value).split('/')
 		return `${year}-${month}-${day}`
 	}, [value])
@@ -32,7 +46,7 @@ export default function DateInput({ suggestions, onChange, onSubmit, value }) {
 					onFirstClick={value => {
 						onChange(normalizeDateString(value as string))
 					}}
-					onSecondClick={() => onSubmit('suggestion')}
+					onSecondClick={() => onSubmit?.('suggestion')}
 				/>
 			</div>
 			<div className="answer">

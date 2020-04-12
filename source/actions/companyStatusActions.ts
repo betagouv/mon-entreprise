@@ -1,11 +1,48 @@
 import { dropWhile } from 'ramda'
 import { nextQuestionUrlSelector } from 'Selectors/companyStatusSelectors'
+import { Action, ThunkResult } from './actions'
 
-const thenGoToNextQuestion = actionCreator => (...args: unknown[]) => (
-	dispatch,
-	getState,
-	{ history, sitePaths }
-) => {
+export type CompanyStatusAction =
+	| CompanyIsSoleProprietorshipAction
+	| DefineDirectorStatusAction
+	| MultipleAssociatesAction
+	| CompanyIsMicroentrepriseAction
+	| SpecifyDirectorsShareAction
+	| ResetCompanyStatusChoiceAction
+
+type CompanyIsSoleProprietorshipAction = {
+	type: 'COMPANY_IS_SOLE_PROPRIETORSHIP'
+	isSoleProprietorship?: boolean
+}
+
+type DefineDirectorStatusAction = {
+	type: 'DEFINE_DIRECTOR_STATUS'
+	status: DirectorStatus
+}
+
+type MultipleAssociatesAction = {
+	type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES'
+	multipleAssociates?: boolean
+}
+
+type CompanyIsMicroentrepriseAction = {
+	type: 'COMPANY_IS_MICROENTERPRISE'
+	autoEntrepreneur?: boolean
+}
+
+type SpecifyDirectorsShareAction = {
+	type: 'SPECIFY_DIRECTORS_SHARE'
+	minorityDirector?: boolean
+}
+
+type ResetCompanyStatusChoiceAction = {
+	type: 'RESET_COMPANY_STATUS_CHOICE'
+	answersToReset?: string[]
+}
+
+const thenGoToNextQuestion = (actionCreator: (...args: any[]) => Action) => (
+	...args: any[]
+): ThunkResult => (dispatch, getState, { history, sitePaths }) => {
 	dispatch(actionCreator(...args))
 	history.push(nextQuestionUrlSelector(getState(), { sitePaths }))
 }
@@ -52,7 +89,7 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 		} as const)
 )
 
-export const goToCompanyStatusChoice = () => (
+export const goToCompanyStatusChoice = (): ThunkResult => (
 	dispatch,
 	_,
 	{ history, sitePaths }
@@ -63,7 +100,7 @@ export const goToCompanyStatusChoice = () => (
 	history.push(sitePaths.créer.index)
 }
 
-export const resetCompanyStatusChoice = (from: string) => (
+export const resetCompanyStatusChoice = (from: string): ThunkResult => (
 	dispatch,
 	getState
 ) => {
@@ -77,5 +114,5 @@ export const resetCompanyStatusChoice = (from: string) => (
 	dispatch({
 		type: 'RESET_COMPANY_STATUS_CHOICE',
 		answersToReset
-	})
+	} as const)
 }

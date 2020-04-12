@@ -1,11 +1,11 @@
 import { isSoleProprietorship } from 'Actions/companyStatusActions'
-import { compose } from 'ramda'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const SoleProprietorship = ({ isSoleProprietorship }) => {
+export default function SoleProprietorship() {
+	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	return (
 		<>
@@ -69,7 +69,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 			<div className="ui__ answer-group">
 				<button
 					onClick={() => {
-						isSoleProprietorship(true)
+						dispatch(isSoleProprietorship(true))
 					}}
 					className="ui__ button"
 				>
@@ -79,7 +79,7 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 				</button>
 				<button
 					onClick={() => {
-						isSoleProprietorship(false)
+						dispatch(isSoleProprietorship(false))
 					}}
 					className="ui__ button"
 				>
@@ -91,7 +91,3 @@ const SoleProprietorship = ({ isSoleProprietorship }) => {
 		</>
 	)
 }
-
-export default compose(connect(null, { isSoleProprietorship }))(
-	SoleProprietorship
-)

@@ -15,15 +15,7 @@ export const debounce = <F extends (...args: any[]) => void>(
 	}
 }
 
-export function isIE(): boolean {
-	return (
-		navigator.appName == 'Microsoft Internet Explorer' ||
-		(navigator.appName == 'Netscape' &&
-			new RegExp('Trident/.*rv:([0-9]{1,}[.0-9]{0,})').exec(
-				navigator.userAgent
-			) != null)
-	)
-}
+export const fetcher = (url: RequestInfo) => fetch(url).then(r => r.json())
 
 export function inIframe(): boolean {
 	try {

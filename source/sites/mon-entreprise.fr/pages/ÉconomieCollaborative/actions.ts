@@ -4,26 +4,30 @@ export type Action =
 	| ReturnType<typeof activitéVue>
 	| ReturnType<typeof changeCritèreExonération>
 
-export const selectSeuilRevenus = (activité, seuilAtteint: number) =>
+export const selectSeuilRevenus = (activité: string, seuilAtteint: number) =>
 	({
 		type: 'SELECT_SEUIL_REVENUS_ATTEINT',
 		activité,
 		seuilAtteint
 	} as const)
 
-export const toggleActivité = activité =>
+export const toggleActivité = (activité: string) =>
 	({
 		type: 'TOGGLE_ACTIVITÉ_EFFECTUÉE',
 		activité
 	} as const)
 
-export const activitéVue = activité =>
+export const activitéVue = (activité: string) =>
 	({
 		type: 'ACTIVITÉ_VUE',
 		activité
 	} as const)
 
-export const changeCritèreExonération = (activité, index, estRespecté) =>
+export const changeCritèreExonération = (
+	activité: string,
+	index: string,
+	estRespecté: boolean
+) =>
 	({
 		type: 'CHANGE_CRITÈRE_EXONÉRATION',
 		activité,

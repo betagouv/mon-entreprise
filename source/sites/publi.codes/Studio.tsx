@@ -8,8 +8,9 @@ import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
 import { useLocation } from 'react-router'
 import styled from 'styled-components'
+
 const EXAMPLE_CODE = `
-# Bienvenu dans le bac à sable du langage publicode ! 
+# Bienvenue dans le bac à sable du langage publicode ! 
 # Pour en savoir plus sur le langage, consultez le tutoriel :
 # => https://publi.codes
 
@@ -25,7 +26,7 @@ dépenses primeur:
       - prix . avocat * 3 avocat
 `
 
-function useDebounce(value, delay) {
+function useDebounce<T>(value: T, delay: number) {
 	const [debouncedValue, setDebouncedValue] = useState(value)
 	useEffect(
 		() => {
@@ -196,7 +197,7 @@ export const Results = ({ targets, onClickShare }: ResultsProps) => {
 							{analysis.temporalValue
 								?.filter(({ value }) => value !== false)
 								.map(({ start: du, end: au, value }) => (
-									<span key={du}>
+									<span key={`${du ?? ''}-${au ?? ''}`}>
 										<small>
 											Du <em>{du}</em> au <em>{au}</em> :{' '}
 										</small>

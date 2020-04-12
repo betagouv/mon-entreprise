@@ -138,7 +138,7 @@ export default function VotreSituation() {
 	)
 }
 
-const ActivitéList = ({ activités }) => {
+const ActivitéList = ({ activités }: { activités: string[] }) => {
 	const { state } = useContext(StoreContext)
 	return (
 		<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">

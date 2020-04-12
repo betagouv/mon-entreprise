@@ -3,7 +3,7 @@ declare module NodeJS {
 		EN_SITE: string
 		FR_SITE: string
 		NODE_ENV: 'development' | 'production'
-		MASTER: boolean
+		MASTER: 'true' | 'false'
 		GITHUB_API_SECRET: string
 	}
 }
