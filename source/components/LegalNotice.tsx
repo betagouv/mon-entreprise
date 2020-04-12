@@ -1,5 +1,4 @@
 import Overlay from 'Components/Overlay'
-import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 
@@ -78,7 +77,6 @@ export default function LegalNotice() {
 			</button>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
-					<ScrollToTop />
 					<LegalNoticeContent />
 				</Overlay>
 			)}
