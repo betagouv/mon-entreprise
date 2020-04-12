@@ -1,11 +1,11 @@
 import RuleLink from 'Components/RuleLink'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { formatValue } from 'Engine/format'
-import React, { useContext } from 'react'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import ReactToPrint from 'react-to-print'
+import { DottedName, EvaluatedRule } from 'Rules'
 import Animate from 'Ui/animate'
 import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import simulationConfig from './config.yaml'
@@ -14,12 +14,11 @@ type ResultsProp = {
 	componentRef?: any
 }
 export function Results({ componentRef }: ResultsProp) {
-	const results = simulationConfig.objectifs.map(dottedName =>
-		useRule(dottedName)
+	const results: EvaluatedRule[] = simulationConfig.objectifs.map(
+		(dottedName: DottedName) => useRule(dottedName)
 	)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
-	const sitePaths = useContext(SitePathsContext)
 	return (
 		<div
 			className="ui__ card lighter-bg"

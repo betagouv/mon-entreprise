@@ -2,9 +2,10 @@ import { companyHasMultipleAssociates } from 'Actions/companyStatusActions'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
+export default function NumberOfAssociates() {
+	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	return (
 		<>
@@ -42,7 +43,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 			<div className="ui__ answer-group">
 				<button
 					onClick={() => {
-						companyHasMultipleAssociates(false)
+						dispatch(companyHasMultipleAssociates(false))
 					}}
 					className="ui__ button"
 				>
@@ -50,7 +51,7 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 				</button>
 				<button
 					onClick={() => {
-						companyHasMultipleAssociates(true)
+						dispatch(companyHasMultipleAssociates(true))
 					}}
 					className="ui__ button"
 				>
@@ -60,7 +61,3 @@ const NumberOfAssociates = ({ companyHasMultipleAssociates }) => {
 		</>
 	)
 }
-
-export default connect(null, { companyHasMultipleAssociates })(
-	NumberOfAssociates
-)

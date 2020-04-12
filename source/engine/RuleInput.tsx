@@ -18,10 +18,10 @@ export const binaryOptionChoices = [
 ]
 
 type Value = string | number | object | boolean
-type Props = {
+export type RuleInputProps = {
 	rules: ParsedRules
 	dottedName: DottedName
-	onChange: (value: Value) => void
+	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
 	autoFocus?: boolean
@@ -44,7 +44,7 @@ export default function RuleInput({
 	autoFocus = false,
 	className,
 	onSubmit
-}: Props) {
+}: RuleInputProps) {
 	let rule = rules[dottedName]
 	let unit = rule.unit || rule.defaultUnit
 	let language = useTranslation().i18n.language
@@ -139,7 +139,7 @@ export let buildVariantTree = (allRules, path) => {
 			shouldBeExpanded
 				? {
 						canGiveUp,
-						children: (variants as any).map(v => rec(path + ' . ' + v))
+						children: variants.map(v => rec(path + ' . ' + v))
 				  }
 				: null
 		)

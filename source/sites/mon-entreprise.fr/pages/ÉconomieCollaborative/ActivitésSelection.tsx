@@ -76,7 +76,7 @@ export default function ActivitésSelection() {
 
 type ActivitéSelectionProps = {
 	activités: Array<string>
-	currentActivité?: any
+	currentActivité?: string
 }
 
 export const ActivitéSelection = ({
@@ -107,7 +107,10 @@ export const ActivitéSelection = ({
 					)
 				})}
 			</div>
-			<NextButton disabled={nextButtonDisabled} activité={currentActivité} />
+			<NextButton
+				disabled={nextButtonDisabled}
+				activité={currentActivité as any}
+			/>
 		</>
 	)
 }

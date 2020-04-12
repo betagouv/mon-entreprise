@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 
-export default function Checkbox(props) {
+export default function Checkbox(props: React.ComponentProps<'input'>) {
 	return (
 		<>
 			<input

@@ -80,7 +80,9 @@ export function ScrollToElement({
 				...(!children ? { position: 'absolute' } : {})
 			}}
 			ref={ref}
-		/>
+		>
+			{children}
+		</div>
 	)
 }
 

@@ -1,7 +1,10 @@
 // Currenty we systematically bundle all the rules even if we only need a
 // sub-section of them. We might support "code-splitting" the rules in the
 // future.
-import { Rules as GenericRules } from 'Engine/types'
+import {
+	EvaluatedRule as GenericEvaluatedRule,
+	Rules as GenericRules
+} from 'Engine/types'
 import artisteAuteur from './artiste-auteur.yaml'
 import base from './base.yaml'
 import chômagePartiel from './chômage-partiel.yaml'
@@ -21,6 +24,8 @@ import situationPersonnelle from './situation-personnelle.yaml'
 
 export type DottedName = keyof typeof jsonRules
 export type Rules = GenericRules<DottedName>
+export type EvaluatedRule = GenericEvaluatedRule<DottedName>
+export type Situation = Partial<Record<DottedName, string>>
 
 const rules: Rules = {
 	...base,

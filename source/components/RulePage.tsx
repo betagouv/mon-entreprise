@@ -20,7 +20,7 @@ export default function RulePage() {
 	const brancheName = useSelector(situationBranchNameSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
 	const { name } = useParams()
-	const decodedRuleName = decodeRuleName(name)
+	const decodedRuleName = decodeRuleName(name ?? '')
 
 	const renderRule = (dottedName: DottedName) => {
 		return (

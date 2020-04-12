@@ -4,7 +4,7 @@ import { TrackerProvider } from 'Components/utils/withTracker'
 import { createBrowserHistory } from 'history'
 import { AvailableLangs } from 'i18n'
 import i18next from 'i18next'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
@@ -42,14 +42,14 @@ if (
 }
 
 export type ProviderProps = {
-	tracker?: Tracker
 	basename: string
-	sitePaths: SitePaths
 	language: AvailableLangs
-	initialStore: RootState
-	onStoreCreated: (store: Store) => void
-	reduxMiddlewares: Array<Middleware>
 	children: React.ReactNode
+	tracker?: Tracker
+	sitePaths?: SitePaths
+	initialStore?: RootState
+	onStoreCreated?: (store: Store) => void
+	reduxMiddlewares?: Array<Middleware>
 }
 
 export default function Provider({
@@ -62,9 +62,13 @@ export default function Provider({
 	onStoreCreated,
 	children
 }: ProviderProps) {
-	const history = createBrowserHistory({
-		basename: process.env.NODE_ENV === 'production' ? '' : basename
-	})
+	const history = useMemo(
+		() =>
+			createBrowserHistory({
+				basename: process.env.NODE_ENV === 'production' ? '' : basename
+			}),
+		[]
+	)
 	useEffect(() => {
 		tracker?.connectToHistory(history)
 		return () => {
@@ -82,10 +86,12 @@ export default function Provider({
 			...(reduxMiddlewares ?? [])
 		)
 	)
-	if (language) {
-		i18next.changeLanguage(language)
-		if (initialStore) initialStore.lang = language
-	}
+	useEffect(() => {
+		if (language) {
+			i18next.changeLanguage(language)
+		}
+	}, [])
+	if (language && initialStore) initialStore.lang = language
 	const store = createStore(reducers, initialStore, storeEnhancer)
 	onStoreCreated?.(store)
 
@@ -113,7 +119,7 @@ export default function Provider({
 				color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 			>
 				<TrackerProvider value={tracker!}>
-					<SitePathProvider value={sitePaths}>
+					<SitePathProvider value={sitePaths as any}>
 						<I18nextProvider i18n={i18next}>
 							<Router history={history}>
 								<>{children}</>

@@ -10,12 +10,13 @@ import Landing from './Landing'
 import Studio from './LazyStudio'
 import Mécanismes from './Mécanismes'
 
-function Router({ language, rules }) {
+function Router() {
+	const language = 'fr'
 	useEffect(() => {
 		getSessionStorage()?.setItem('lang', language)
 	}, [language])
 	return (
-		<Provider basename="publicodes" language={language} rules={rules}>
+		<Provider basename="publicodes" language={language}>
 			<RouterSwitch />
 		</Provider>
 	)

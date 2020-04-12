@@ -8,13 +8,12 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
 import { getRuleFromAnalysis } from 'Engine/ruleUtils'
-import { EvaluatedRule } from 'Engine/types'
 import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { DottedName } from 'Rules'
+import { EvaluatedRule } from 'Rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
@@ -191,7 +190,17 @@ function ExplanationSection() {
 	)
 }
 
-function ComparaisonTable({ rows: [head, ...body] }) {
+type ComparaisonTableProps = {
+	rows: [Array<string>, ...Array<Line>]
+}
+
+type Line = Array<
+	EvaluatedRule & {
+		additionalText?: React.ReactNode
+	}
+>
+
+function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	const columns = head.filter(x => x !== '')
 	const [currentColumnIndex, setCurrentColumnIndex] = useState(
 		columns.length - 1
@@ -261,7 +270,7 @@ function ComparaisonTable({ rows: [head, ...body] }) {
 	)
 }
 
-function ValueWithLink(rule: EvaluatedRule<DottedName>) {
+function ValueWithLink(rule: EvaluatedRule) {
 	const { language } = useTranslation().i18n
 	return (
 		<RuleLink {...rule}>

@@ -2,8 +2,9 @@ import { SitePaths } from 'Components/utils/withSitePaths'
 import { History } from 'history'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'Rules'
+import { DottedName, Situation } from 'Rules'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
+import { CompanyStatusAction } from './companyStatusActions'
 
 export type Action =
 	| ResetSimulationAction
@@ -19,8 +20,9 @@ export type Action =
 	| SetSituationBranchAction
 	| UpdateDefaultUnitAction
 	| SetActiveTargetAction
+	| CompanyStatusAction
 
-export type ThunkResult<R> = ThunkAction<
+export type ThunkResult<R = void> = ThunkAction<
 	R,
 	RootState,
 	{ history: History; sitePaths: SitePaths },
@@ -138,7 +140,11 @@ export const updateUnit = (defaultUnit: string) =>
 		defaultUnit
 	} as const)
 
-export function setExample(name: string, situation, dottedName: DottedName) {
+export function setExample(
+	name: string,
+	situation: Situation,
+	dottedName: DottedName
+) {
 	return { type: 'SET_EXAMPLE', name, situation, dottedName } as const
 }
 

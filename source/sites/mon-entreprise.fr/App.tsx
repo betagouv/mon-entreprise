@@ -58,7 +58,7 @@ const middlewares = [
 type InFranceRouteProps = {
 	basename: ProviderProps['basename']
 	language: ProviderProps['language']
-	rules: ProviderProps['initialStore']['rules']
+	rules: NonNullable<ProviderProps['initialStore']>['rules']
 }
 
 function InFranceRoute({ basename, language, rules }: InFranceRouteProps) {

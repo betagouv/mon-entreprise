@@ -7,7 +7,12 @@ import { activitéVue } from './actions'
 import { nextActivitéSelector } from './selectors'
 import { StoreContext } from './StoreContext'
 
-export default function NextButton({ activité, disabled }) {
+type NextButtonProps = {
+	activité: string
+	disabled: boolean
+}
+
+export default function NextButton({ activité, disabled }: NextButtonProps) {
 	const sitePaths = useContext(SitePathsContext)
 	const { state, dispatch } = useContext(StoreContext)
 	const nextActivité = nextActivitéSelector(state, activité)

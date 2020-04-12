@@ -9,24 +9,25 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { connect, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import * as Animate from 'Ui/animate'
 import { CheckItem, Checklist } from 'Ui/Checklist'
 import StatutDescription from './StatutDescription'
 
-function CreateCompany({
-	statut,
-	onChecklistInitialization,
-	onItemCheck,
-	onStatusChange
-}) {
+type CreateCompanyProps = {
+	statut: LegalStatus
+}
+
+export default function CreateCompany({ statut }: CreateCompanyProps) {
 	const { t, i18n } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const companyCreationChecklist = useSelector(
 		(state: RootState) => state.inFranceApp.companyCreationChecklist
 	)
+	const dispatch = useDispatch()
 
 	// TODO : add this logic inside selector
 	const isAutoentrepreneur = statut.startsWith('auto-entrepreneur')
@@ -74,7 +75,7 @@ function CreateCompany({
 			<Scroll.toTop />
 			<div css="transform: translateY(2rem);">
 				<button
-					onClick={onStatusChange}
+					onClick={() => dispatch(goToCompanyStatusChoice())}
 					className="ui__ simple small push-left button"
 				>
 					<Trans i18nKey="entreprise.retour">← Choisir un autre statut</Trans>
@@ -101,8 +102,12 @@ function CreateCompany({
 			</p>
 			<Checklist
 				key={statut}
-				onInitialization={items => onChecklistInitialization(statut, items)}
-				onItemCheck={x => onItemCheck}
+				onInitialization={items =>
+					dispatch(initializeCompanyCreationChecklist(statut, items))
+				}
+				onItemCheck={(name, isChecked) =>
+					dispatch(checkCompanyCreationItem(name, isChecked))
+				}
 				defaultChecked={companyCreationChecklist}
 			>
 				<CheckItem
@@ -541,13 +546,11 @@ function CreateCompany({
 	)
 }
 
-export default connect(null, {
-	onChecklistInitialization: initializeCompanyCreationChecklist,
-	onItemCheck: checkCompanyCreationItem,
-	onStatusChange: goToCompanyStatusChoice
-})(CreateCompany)
+type StatutsExampleProps = {
+	statut: string
+}
 
-let StatutsExample = ({ statut }) => {
+let StatutsExample = ({ statut }: StatutsExampleProps) => {
 	const links = {
 		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'
@@ -556,7 +559,7 @@ let StatutsExample = ({ statut }) => {
 	if (!(statut in links)) return null
 
 	return (
-		<a target="_blank" href={links[statut]}>
+		<a target="_blank" href={links[statut as keyof typeof links]}>
 			<Trans i18nKey="entreprise.tâches.statuts.exemple">
 				Exemple de statuts pour votre
 			</Trans>{' '}
