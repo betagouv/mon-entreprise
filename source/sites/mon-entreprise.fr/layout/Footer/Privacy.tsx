@@ -1,5 +1,4 @@
 import Overlay from 'Components/Overlay'
-import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -21,7 +20,6 @@ export default function Privacy() {
 			</button>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
-					<ScrollToTop />
 					<PrivacyContent language={i18n.language} />
 				</Overlay>
 			)}
