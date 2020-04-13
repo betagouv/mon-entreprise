@@ -3,39 +3,46 @@ import ContributionButton from './ContributionButton'
 import DocumentationButton from './DocumentationButton'
 import Suggestions from './Suggestions'
 import { Link } from 'react-router-dom'
+import Illustration from 'Images/illustration-micmac.png'
 
 export default () => {
 	return (
 		<div
 			css={`
 				h1 {
-					margin-top: 1rem;
+					margin-top: 0.3rem;
 					font-size: 140%;
 					line-height: 1.2em;
 				}
-				> a {
-					margin: 2rem;
+				> div > a {
 				}
 				text-align: center;
+				> img {
+					width: 70%;
+					min-width: 25rem;
+				}
 			`}
 		>
 			<h1>Connais-tu ton empreinte sur le climat ?</h1>
-			<Link to="/simulateur/micmac" className="ui__ button">
-				Faire le test
-			</Link>
+			<img src={Illustration} />
+			<div css="margin: 1rem 0 2rem;">
+				<Link to="/simulateur/micmac" className="ui__ plain button">
+					Faire le test
+				</Link>
+			</div>
 			<p>
 				Ce simulateur vous permet d'évaluer votre empreinte climat personnelle,
-				et de la situer par rapport aux objectifs climatiques. C'est une
-				nouvelle version du simulateur{' '}
+				et de la situer par rapport aux objectifs climatiques. Il est basé sur
+				le modèle{' '}
 				<a href="http://avenirclimatique.org/micmac/simulationCarbone.php">
 					MicMac{' '}
 				</a>{' '}
-				développé de l'association Avenir Climatique.
+				de l'association Avenir Climatique.
 			</p>
 			<DocumentationButton />
 			<footer
 				css={`
-					margin-top: 3rem;
+					margin-top: 1rem;
 					display: flex;
 					align-items: center;
 					justify-content: center;
