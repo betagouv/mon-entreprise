@@ -32,6 +32,7 @@ const Mecanism = ({ name, description, exemples }: MecanismProp) => (
 	</React.Fragment>
 )
 export default function Landing() {
+	const { pathname } = useLocation()
 	useEffect(() => {
 		var css = document.createElement('style')
 		css.type = 'text/css'
@@ -53,7 +54,7 @@ export default function Landing() {
 			<ul>
 				{Object.keys(mecanisms).map(name => (
 					<li key={name}>
-						<Link to={useLocation().pathname + '#' + name}>{name}</Link>
+						<Link to={pathname + '#' + name}>{name}</Link>
 					</li>
 				))}
 			</ul>

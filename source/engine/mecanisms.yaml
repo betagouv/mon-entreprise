@@ -201,9 +201,9 @@ arrondi:
             décimales: 1
 
 régularisation:
-  description: >-
-    Permet de régulariser progressivement un calcul de cotisation en fonction de
-    variables numérique mensuelle cumulée.
+  description: |
+    Permet de régulariser progressivement un calcul de cotisation en fonction du
+    cumul de variables numériques mensuelles.
 
     Ce mécanisme spécifique est utilisé pour le calcul des cotisations
     mensuelles, afin de "lisser" un plafond ou un calcul sur plusieurs mois.
@@ -217,6 +217,7 @@ régularisation:
     jour de l’année.
 
     Par exemple, pour la cotisation suivante : 
+
     ```yaml
       cotisation: 
         formule: 
@@ -225,26 +226,26 @@ régularisation:
             plafond: 2000 €/mois
             taux: 10%
     ```
+
     Avec un brut de 1000 € en janvier et 3500 € en février et 1000€ en mars, le cumul sera le
     suivant :
 
-    ```
-            brut   plafond   cotisation
-       JAN  1000   2000      1000 * 10% = 100 €
-       FEV  4500   4000      4000 * 10% = 400 € 
-       MAR  5500   6000      5500 * 10% = 550 € 
-    ```
-      
-    On regarde ensuite le cumul des valeurs déjà versée les mois précédent, pour
-    ne garder que la différence entre les deux montant. Dans notre exemple, on
-    abouti aux valeurs suivantes :
+    |     | brut   | plafond | cotisation         |
+    | --- | ------ | ------- |------------------- |
+    | JAN | 1000 € | 2000 €  | 1000 × 10% = 100 € |
+    | FEV | 4500 € | 4000 €  | 4000 × 10% = 400 € |
+    | MAR | 5500 € | 6000 €  | 5500 × 10% = 550 € |
 
-    ```
-            cotisation cumul  cotis régularisée
-       JAN  100 €             100 €    
-       FEV  400 €             400 € - 100 € = 300 €
-       MAR  550 €             550 € - 300 € = 150 €
-    ```
+      
+    On regarde ensuite le cumul des valeurs déjà versées les mois précédents, pour
+    ne garder que la différence entre les deux montants. Dans notre exemple, on
+    aboutit aux valeurs suivantes :
+
+    |     | cotisation cumul | cotisation régularisée |
+    | --- | ---------------- | ---------------------- |
+    | JAN |  100 €           |  100 €                 |
+    | FEV |  400 €           |  400 € - 100 € = 300 € |
+    | MAR |  550 €           |  550 € - 300 € = 150 € |
 
   arguments:
     règle: règle à régulariser
