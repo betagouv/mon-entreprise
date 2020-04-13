@@ -151,6 +151,9 @@ heures supplémentaires et complémentaires:
     contrat salarié . temps de travail . heures supplémentaires: 30
     contrat salarié . convention collective: 'HCR'
   - contrat salarié . rémunération . brut de base: 2000
+    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . convention collective: 'compta'
+  - contrat salarié . rémunération . brut de base: 2000
     contrat salarié . temps de travail . temps partiel: oui
     contrat salarié . temps de travail . temps partiel . heures par semaine: 24
     contrat salarié . temps de travail . heures complémentaires: 20

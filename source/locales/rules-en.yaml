@@ -1619,6 +1619,20 @@ contrat salarié . convention collective . SVP . prévoyance:
     c'est donc cette dernière qui est prise en compte
   titre.en: insurance
   titre.fr: prévoyance
+contrat salarié . convention collective . compta:
+  description.en: >-
+    [automatic] This collective agreement concerns chartered accountants
+    registered with the Order, statutory auditors registered with the company,
+    as well as approved management centres and approved associations (AGC).
+  description.fr: >-
+    Cette convention collective concerne les experts comptables inscrits à
+    l'ordre, les commissaires aux comptes inscrits à la compagnie, ainsi que les
+    centres de gestion agréés et les associations agréées (AGC).
+  titre.en: '[automatic] Chartered Accountants and Statutory Auditors'
+  titre.fr: Experts-comptables et commissaires aux comptes
+contrat salarié . convention collective . compta . majoration heures supplémentaires:
+  titre.en: '[automatic] overtime increase'
+  titre.fr: majoration heures supplémentaires
 contrat salarié . convention collective . droit commun:
   titre.en: common law
   titre.fr: droit commun

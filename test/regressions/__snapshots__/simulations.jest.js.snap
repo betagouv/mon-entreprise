@@ -338,9 +338,11 @@ exports[`calculate simulations-salarié:  heures supplémentaires et complément
 
 exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 5`] = `"[3025,0,0,2000,1970,1932]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 6`] = `"[3336,0,2446,2000,1919,1889]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 6`] = `"[3041,0,0,2000,1978,1939]"`;
 
-exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 7`] = `"[3286,0,2286,2000,1889,1859]"`;
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 7`] = `"[3336,0,2446,2000,1919,1889]"`;
+
+exports[`calculate simulations-salarié:  heures supplémentaires et complémentaires 8`] = `"[3286,0,2286,2000,1889,1859]"`;
 
 exports[`calculate simulations-salarié:  impôt sur le revenu 1`] = `"[4076,0,0,3000,2353,2168]"`;
 

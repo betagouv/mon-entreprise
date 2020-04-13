@@ -9,6 +9,7 @@ import artisteAuteur from './artiste-auteur.yaml'
 import base from './base.yaml'
 import chômagePartiel from './chômage-partiel.yaml'
 import CCBatiment from './conventions-collectives/bâtiment.yaml'
+import CCCompta from './conventions-collectives/experts-comptables.yaml'
 import CCHotels from './conventions-collectives/hôtels-cafés-restaurants.yaml'
 import CCOptique from './conventions-collectives/optique.yaml'
 import CCSpectacleVivant from './conventions-collectives/spectacle-vivant.yaml'
@@ -43,6 +44,7 @@ const rules: Rules = {
 	...CCOptique,
 	...CCSpectacleVivant,
 	...CCSport,
+	...CCCompta,
 	...situationPersonnelle,
 	...chômagePartiel
 }
