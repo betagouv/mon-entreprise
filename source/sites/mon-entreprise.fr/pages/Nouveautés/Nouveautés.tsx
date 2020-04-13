@@ -1,5 +1,5 @@
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
-import { Markdown } from 'Components/utils/markdown'
+import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect } from 'react'
@@ -77,7 +77,7 @@ export default function Nouveautés() {
 					))}
 				</Sidebar>
 				<MainBlock>
-					<Markdown
+					<MarkdownWithAnchorLinks
 						source={data[selectedRelease].description}
 						escapeHtml={false}
 						renderers={{ text: TextRenderer }}
