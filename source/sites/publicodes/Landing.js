@@ -33,6 +33,31 @@ export default () => {
 				développé de l'association Avenir Climatique.
 			</p>
 			<DocumentationButton />
+			<footer
+				css={`
+					margin-top: 3rem;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-wrap: wrap;
+					img {
+						margin-left: 1rem;
+					}
+					p {
+						width: 100%;
+					}
+				`}
+			>
+				<p>Données bientôt validées par</p>
+				<img
+					css="height: 3rem"
+					src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
+				/>
+				<img
+					css="height: 2rem"
+					src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
+				/>
+			</footer>
 		</div>
 	)
 }
