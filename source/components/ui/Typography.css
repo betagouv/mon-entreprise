@@ -68,6 +68,7 @@ h6 {
 	color: var(--darkColor);
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
+	scroll-margin-top: 1rem; /* Add a margin for anchor links */
 }
 
 button {
