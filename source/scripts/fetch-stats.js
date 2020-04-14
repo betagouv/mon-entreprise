@@ -31,28 +31,20 @@ const apiURL = params => {
 // In case we cannot fetch the release (the API is down or the Authorization
 // token isn't valid) we fallback to some fake data -- it would be better to
 // have a static ressource accessible without authentification.
-const fakeData = [
-	{
-		key: '0',
-		values: [
-			{ key: '/salarié', value: 0 },
-			{ key: '/auto-entrepreneur', value: 0 },
-			{ key: '/artiste-auteur', value: 0 },
-			{ key: '/indépendant', value: 0 },
-			{ key: '/comparaison-régimes-sociaux', value: 0 },
-			{ key: '/assimilé-salarié', value: 0 }
-		]
-	}
-]
 
 async function main() {
 	createDataDir()
-	// writeInDataDir('stats.json', await fetchStats())
-	// writeInDataDir('total_visits.json', await fetchNumberofVisitsbyMonth())
-	writeInDataDir('status_chosen.json', await fetchStatusChosen())
+	const stats = {
+		simulators: await fetchSimulators(),
+		monthly_visits: await fetchMonthlyVisits(),
+		daily_visits: await fetchDailyVisits(),
+		status_chosen: await fetchStatusChosen(),
+		feedback: await fetchFeedback()
+	}
+	writeInDataDir('stats.json', stats)
 }
 
-async function fetchStats() {
+async function fetchSimulators() {
 	try {
 		const response = await fetch(
 			apiURL({
@@ -64,6 +56,7 @@ async function fetchStats() {
 				idSubtable: 2
 			})
 		)
+
 		const data = await response.json()
 		let result = Object.fromEntries(
 			// convert to array, map, and then fromEntries gives back the object
@@ -102,8 +95,8 @@ async function fetchStats() {
 			.entries(result)
 		return result
 	} catch (e) {
-		console.log('toto')
-		return fakeData
+		console.log('fail to fetch Simulators Visits')
+		return null
 	}
 }
 const visitsIn2019 = {
@@ -120,7 +113,7 @@ const visitsIn2019 = {
 	'2019-11': 174515,
 	'2019-12': 116305
 }
-async function fetchNumberofVisitsbyMonth() {
+async function fetchMonthlyVisits() {
 	try {
 		const response = await fetch(
 			apiURL({
@@ -132,28 +125,39 @@ async function fetchNumberofVisitsbyMonth() {
 		const data = await response.json()
 		var result = Object.entries({ ...data, ...visitsIn2019 })
 			.sort(([t1], [t2]) => (t1 > t2 ? 1 : -1))
-			.map(([x, y]) => ({ year: x, nb_uniq_visitors: y }))
+			.map(([x, y]) => ({
+				date: x,
+				visiteurs: y
+			}))
 
 		return result
 	} catch (e) {
-		console.log('toto')
-		return Object.entries(visitsIn2019).map(([a, b]) => {
-			return { year: a, nb_uniq_visitors: b }
-		})
+		console.log('fail to fetch Monthly Visits')
+		return null
 	}
 }
 
-const fakeStatusChosen = [
-	{ label: 'auto-entrepreneur', nb_visits: 0 },
-	{ label: 'SASU', nb_visits: 0 },
-	{ label: 'EURL', nb_visits: 0 },
-	{ label: 'SARL', nb_visits: 0 },
-	{ label: 'EI', nb_visits: 0 },
-	{ label: 'EIRL', nb_visits: 0 },
-	{ label: 'auto-entrepreneur-EIRL', nb_visits: 0 },
-	{ label: 'SAS', nb_visits: 0 },
-	{ label: 'SA', nb_visits: 0 }
-]
+async function fetchDailyVisits() {
+	try {
+		const response = await fetch(
+			apiURL({
+				period: 'day',
+				date: 'last30',
+				method: 'VisitsSummary.getUniqueVisitors'
+			})
+		)
+		const data = await response.json()
+		return Object.entries(data).map(([a, b]) => {
+			return {
+				date: a,
+				nb_uniq_visitors: b
+			}
+		})
+	} catch (e) {
+		console.log('fail to fetch Daily Visits')
+		return null
+	}
+}
 
 async function fetchStatusChosen() {
 	try {
@@ -179,7 +183,48 @@ async function fetchStatusChosen() {
 		}))
 		return result
 	} catch (e) {
-		return fakeStatusChosen
+		console.log('fail to fetch Status Chosen')
+		return null
+	}
+}
+
+async function fetchFeedback() {
+	try {
+		const APIcontent = await fetch(
+			apiURL({
+				method: 'Events.getCategory',
+				label: 'Feedback &gt; @rate%20page%20usefulness',
+				date: 'last5'
+			})
+		)
+		const APIsimulator = await fetch(
+			apiURL({
+				method: 'Events.getCategory',
+				label: 'Feedback &gt; @rate%20simulator',
+				date: 'last5'
+			})
+		)
+		const feedbackcontent = await APIcontent.json()
+		const feedbacksimulator = await APIsimulator.json()
+
+		var content = 0
+		var simulator = 0
+		var j = 0
+		// The weights are defined by taking the coefficients of an exponential smoothing with alpha=0.8 and normalizing them.
+		// The current month is not considered.
+		const weights = [0.0015, 0.0076, 0.0381, 0.1905, 0.7623]
+		for (const i in feedbackcontent) {
+			content += feedbackcontent[i][0].avg_event_value * weights[j]
+			simulator += feedbacksimulator[i][0].avg_event_value * weights[j]
+			j += 1
+		}
+		return {
+			content: Math.round(content * 10),
+			simulator: Math.round(simulator * 10)
+		}
+	} catch (e) {
+		console.log('fail to fetch feedbacks')
+		return null
 	}
 }
 
