@@ -7,6 +7,7 @@ import {
 import { Node } from 'Engine/mecanismViews/common'
 import { mapTemporal, pureTemporal, temporalAverage } from 'Engine/temporal'
 import { EvaluatedRule } from 'Engine/types'
+import { serializeUnit } from 'Engine/units'
 import { has } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -101,5 +102,18 @@ export default (recurse, k, v) => {
 		name: 'arrondi',
 		type: 'numeric',
 		unit: explanation.value.unit
+	}
+}
+
+export function unchainRoundMecanism(recurse, rawNode) {
+	const { arrondi, ...valeur } = rawNode
+	const arrondiValue = recurse(arrondi)
+
+	if (serializeUnit(arrondiValue.unit) === 'décimales') {
+		return { arrondi: { valeur, décimales: arrondiValue.nodeValue } }
+	} else if (arrondiValue.nodeValue === true) {
+		return { arrondi: { valeur } }
+	} else {
+		return valeur
 	}
 }

@@ -7,6 +7,22 @@ plafonnement:
   exemples:
     - valeur attendue: 250
 
+plafond nouvelle ecriture:
+  formule:
+    valeur: 1000 €
+    plafond: 250 €
+
+  exemples:
+    - valeur attendue: 250
+
+plancher nouvelle ecriture:
+  formule:
+    valeur: 1000 €
+    plancher: 2000 €
+
+  exemples:
+    - valeur attendue: 2000
+
 plafonnement inactif:
   formule:
     encadrement:
