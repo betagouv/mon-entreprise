@@ -118,18 +118,17 @@ async function fetchMonthlyVisits() {
 		const response = await fetch(
 			apiURL({
 				period: 'month',
-				date: 'last12',
+				date: 'previous12',
 				method: 'VisitsSummary.getUniqueVisitors'
 			})
 		)
 		const data = await response.json()
 		var result = Object.entries({ ...data, ...visitsIn2019 })
 			.sort(([t1], [t2]) => (t1 > t2 ? 1 : -1))
-			.map(([x, y]) => ({
-				date: x,
-				visiteurs: y
-			}))
-
+			.map(([x, y]) => {
+				;[year, month] = x.split('-')
+				return { date: `${month}/${year}`, visiteurs: y }
+			})
 		return result
 	} catch (e) {
 		console.log('fail to fetch Monthly Visits')
@@ -142,15 +141,16 @@ async function fetchDailyVisits() {
 		const response = await fetch(
 			apiURL({
 				period: 'day',
-				date: 'last30',
+				date: 'previous30',
 				method: 'VisitsSummary.getUniqueVisitors'
 			})
 		)
 		const data = await response.json()
 		return Object.entries(data).map(([a, b]) => {
+			;[year, month, day] = a.split('-')
 			return {
-				date: a,
-				nb_uniq_visitors: b
+				date: `${day}/${month}`,
+				visiteurs: b
 			}
 		})
 	} catch (e) {
@@ -194,14 +194,14 @@ async function fetchFeedback() {
 			apiURL({
 				method: 'Events.getCategory',
 				label: 'Feedback &gt; @rate%20page%20usefulness',
-				date: 'last5'
+				date: 'previous5'
 			})
 		)
 		const APIsimulator = await fetch(
 			apiURL({
 				method: 'Events.getCategory',
 				label: 'Feedback &gt; @rate%20simulator',
-				date: 'last5'
+				date: 'previous5'
 			})
 		)
 		const feedbackcontent = await APIcontent.json()

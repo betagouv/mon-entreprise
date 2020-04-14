@@ -58,7 +58,7 @@ function LineChart_Visites({ test }) {
 				<Tooltip />
 				<Line
 					type="monotone"
-					dataKey="nb_uniq_visitors"
+					dataKey="visiteurs"
 					stroke="#8884d8"
 					strokeWidth={3}
 				/>
