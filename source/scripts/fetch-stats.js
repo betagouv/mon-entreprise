@@ -5,10 +5,9 @@
 //
 require('dotenv').config()
 require('isomorphic-fetch')
-var d3 = require('d3')
-var querystring = require('querystring')
-var { createDataDir, writeInDataDir } = require('./utils.js')
-
+const querystring = require('querystring')
+const { createDataDir, writeInDataDir } = require('./utils.js')
+const R = require('ramda')
 // We use the Matomo API.
 // Documentation can be found here : https://developer.matomo.org/api-reference/reporting-api
 
@@ -35,7 +34,7 @@ const apiURL = params => {
 async function main() {
 	createDataDir()
 	const stats = {
-		simulators: await fetchSimulators(),
+		simulators: await fetchSimulatorsMonth(),
 		monthly_visits: await fetchMonthlyVisits(),
 		daily_visits: await fetchDailyVisits(),
 		status_chosen: await fetchStatusChosen(),
@@ -43,62 +42,86 @@ async function main() {
 	}
 	writeInDataDir('stats.json', stats)
 }
+function FirstDayXMonthAgo(dt, X = 0) {
+	let [year, month, day] = dt.split('-')
+	if (month - X > 0) {
+		month -= X
+	} else {
+		month = 12 + (month - X)
+		year -= 1
+	}
+	const pad = n => (+n < 10 ? `0${n}` : '' + n)
+	return `${year}-${pad(month)}-01`
+}
+async function fetchSimulatorsMonth() {
+	today = new Date().toJSON().slice(0, 10)
+	const months = {
+		currentmonth: {
+			date: FirstDayXMonthAgo(today, 0),
+			visites: await fetchSimulators(today)
+		},
+		onemonthago: {
+			date: FirstDayXMonthAgo(today, 1),
+			visites: await fetchSimulators(FirstDayXMonthAgo(today, 1))
+		},
+		twomonthago: {
+			date: FirstDayXMonthAgo(today, 2),
+			visites: await fetchSimulators(FirstDayXMonthAgo(today, 2))
+		}
+	}
+	return months
+}
 
-async function fetchSimulators() {
+async function fetchSimulators(dt) {
 	try {
 		const response = await fetch(
 			apiURL({
-				period: 'day',
-				date: 'last365',
+				period: 'month',
+				date: `${dt}`,
+				method: 'Actions.getPageUrls',
+				filter_limits: -1
+			})
+		)
+		const data = await response.json()
+		const idTable = data.filter(page => page.label == 'simulateurs')[0]
+			.idsubdatatable
+		const response2 = await fetch(
+			apiURL({
+				date: `${dt}`,
 				method: 'Actions.getPageUrls',
 				search_recursive: 1,
-				keep_totals_row: 0,
-				idSubtable: 2
+				filter_limits: -1,
+				idSubtable: idTable
 			})
 		)
-
-		const data = await response.json()
-		let result = Object.fromEntries(
-			// convert to array, map, and then fromEntries gives back the object
-			Object.entries(data).map(([key, value]) => [
-				key,
-				value
-					.filter(function(page) {
-						return [
-							'/salarié',
-							'/auto-entrepreneur',
-							'/artiste-auteur',
-							'/indépendant',
-							'/comparaison-régimes-sociaux',
-							'/assimilé-salarié'
-						].includes(page.label) // '/salarie' pas pris en compte
-					})
-					.map(function(page) {
-						var { label, nb_visits } = page
-						return { month: new Date(key).getMonth(), label, nb_visits }
-					})
-			])
+		const data2 = await response2.json()
+		// const test =
+		const result = R.map(
+			x => {
+				const { label, nb_visits } = x
+				return {
+					label,
+					nb_visits
+				}
+			},
+			data2.filter(x =>
+				[
+					'/salarié',
+					'/auto-entrepreneur',
+					'/artiste-auteur',
+					'/indépendant',
+					'/comparaison-régimes-sociaux',
+					'/assimilé-salarié'
+				].includes(x.label)
+			)
 		)
-		result = Object.values(result).reduce(function(prev, curr) {
-			return [...prev, ...curr]
-		})
-
-		result = d3
-			.nest()
-			.key(p => p.month)
-			.key(p => p.label)
-			.rollup(function(v) {
-				return d3.sum(v, function(p) {
-					return p.nb_visits
-				})
-			})
-			.entries(result)
 		return result
 	} catch (e) {
 		console.log('fail to fetch Simulators Visits')
 		return null
 	}
 }
+
 const visitsIn2019 = {
 	'2019-01': 119541,
 	'2019-02': 99065,
@@ -207,9 +230,9 @@ async function fetchFeedback() {
 		const feedbackcontent = await APIcontent.json()
 		const feedbacksimulator = await APIsimulator.json()
 
-		var content = 0
-		var simulator = 0
-		var j = 0
+		let content = 0
+		let simulator = 0
+		let j = 0
 		// The weights are defined by taking the coefficients of an exponential smoothing with alpha=0.8 and normalizing them.
 		// The current month is not considered.
 		const weights = [0.0015, 0.0076, 0.0381, 0.1905, 0.7623]

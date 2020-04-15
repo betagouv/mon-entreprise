@@ -1,5 +1,6 @@
+import { ThemeColorsContext } from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import {
 	Bar,
@@ -12,6 +13,7 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
+import { formatPercentage } from '../../../../../source/engine/format'
 import stats from '../../../../data/stats.json'
 
 type IndicatorProps = {
@@ -40,9 +42,10 @@ function Indicator({ main, subTitle }: IndicatorProps) {
 }
 
 function LineChart_Visites({ test }) {
+	const { color } = useContext(ThemeColorsContext)
 	const data2 = test === 'daily' ? stats.daily_visits : stats.monthly_visits
 	return (
-		<ResponsiveContainer width="100%" height={300}>
+		<ResponsiveContainer width="100%" height={400}>
 			<LineChart
 				data={data2}
 				margin={{
@@ -59,7 +62,7 @@ function LineChart_Visites({ test }) {
 				<Line
 					type="monotone"
 					dataKey="visiteurs"
-					stroke="#8884d8"
+					stroke={color}
 					strokeWidth={3}
 				/>
 			</LineChart>
@@ -69,8 +72,8 @@ function LineChart_Visites({ test }) {
 
 export default function Stats() {
 	let d202004 = stats.simulators[11].values
-
 	const [choice, setChoice] = useState('monthly')
+	const { color } = useContext(ThemeColorsContext)
 	return (
 		<>
 			<ScrollToTop />
@@ -88,6 +91,7 @@ export default function Stats() {
 						onChange={event => {
 							setChoice(event.target.value)
 						}}
+						value={choice}
 					>
 						<option value="monthly">12 derniers mois</option>
 						<option value="daily"> 30 derniers jours</option>
@@ -128,11 +132,11 @@ export default function Stats() {
 					`}
 				>
 					<Indicator
-						main={stats.feedback.simulator.toString().concat(' ', '%')}
+						main={formatPercentage(stats.feedback.simulator)}
 						subTitle="Taux de satisfaction sur les simulateurs"
 					/>
 					<Indicator
-						main={stats.feedback.content.toString().concat(' ', '%')}
+						main={formatPercentage(stats.feedback.content)}
 						subTitle="Taux de satisfaction sur le contenu"
 					/>
 				</div>
@@ -155,7 +159,7 @@ export default function Stats() {
 						<XAxis type="number" dataKey="value" />
 						<YAxis type="category" dateKey="key" />
 						<Tooltip />
-						<Bar dataKey="value" fill="#8884d8" label="value" />
+						<Bar dataKey="value" fill={color} />
 					</BarChart>
 				</ResponsiveContainer>
 				<div id="simulteurs-indicators"></div>
@@ -170,15 +174,15 @@ export default function Stats() {
 						margin={{
 							top: 20,
 							right: 30,
-							left: 20,
+							left: 150,
 							bottom: 5
 						}}
 					>
 						<CartesianGrid strokeDasharray="3 3" />
-						<YAxis dy={-5} type="category" dataKey="label" />
+						<YAxis type="category" dataKey="label" />
 						<XAxis type="number" dateKey="nb_visits" />
 						<Tooltip />
-						<Bar dataKey="nb_visits" fill="#8884d8" />
+						<Bar dataKey="nb_visits" fill={color}></Bar>
 					</BarChart>
 				</ResponsiveContainer>
 				<div id="status-indicators"></div>
