@@ -2,7 +2,7 @@ import Overlay from 'Components/Overlay'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-export default function Privacy() {
+export default function Privacy({ label }: { label?: string }) {
 	const [opened, setOpened] = useState(false)
 	const { i18n } = useTranslation()
 
@@ -16,7 +16,7 @@ export default function Privacy() {
 	return (
 		<>
 			<button onClick={handleOpen} className="ui__ link-button">
-				<Trans>Vie privée</Trans>
+				{label ?? <Trans>Vie privée</Trans>}
 			</button>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>

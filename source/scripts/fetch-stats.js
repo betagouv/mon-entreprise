@@ -1,15 +1,17 @@
 // This script uses the Matomo API which requires an access token
 // Once you have your access token you can put it in a `.env` file at the root
 // of the project to enable it during development. For instance:
+//
 // MATOMO_TOKEN=f4336c82cb1e494752d06e610614eab12b65f1d1
 //
+// Matomo API documentation:
+// https://developer.matomo.org/api-reference/reporting-api
+
 require('dotenv').config()
 require('isomorphic-fetch')
 const querystring = require('querystring')
 const { createDataDir, writeInDataDir } = require('./utils.js')
 const R = require('ramda')
-// We use the Matomo API.
-// Documentation can be found here : https://developer.matomo.org/api-reference/reporting-api
 
 const apiURL = params => {
 	const query = querystring.stringify({
@@ -27,10 +29,6 @@ const apiURL = params => {
 	return `https://stats.data.gouv.fr/index.php?${query}`
 }
 
-// In case we cannot fetch the release (the API is down or the Authorization
-// token isn't valid) we fallback to some fake data -- it would be better to
-// have a static ressource accessible without authentification.
-
 async function main() {
 	createDataDir()
 	const stats = {
@@ -43,7 +41,7 @@ async function main() {
 	writeInDataDir('stats.json', stats)
 }
 function FirstDayXMonthAgo(dt, X = 0) {
-	let [year, month, day] = dt.split('-')
+	let [year, month] = dt.split('-')
 	if (month - X > 0) {
 		month -= X
 	} else {
@@ -54,7 +52,7 @@ function FirstDayXMonthAgo(dt, X = 0) {
 	return `${year}-${pad(month)}-01`
 }
 async function fetchSimulatorsMonth() {
-	today = new Date().toJSON().slice(0, 10)
+	const today = new Date().toJSON().slice(0, 10)
 	const months = {
 		currentmonth: {
 			date: FirstDayXMonthAgo(today, 0),
@@ -95,7 +93,6 @@ async function fetchSimulators(dt) {
 			})
 		)
 		const data2 = await response2.json()
-		// const test =
 		const result = R.map(
 			x => {
 				const { label, nb_visits } = x
@@ -146,10 +143,10 @@ async function fetchMonthlyVisits() {
 			})
 		)
 		const data = await response.json()
-		var result = Object.entries({ ...data, ...visitsIn2019 })
+		const result = Object.entries({ ...data, ...visitsIn2019 })
 			.sort(([t1], [t2]) => (t1 > t2 ? 1 : -1))
 			.map(([x, y]) => {
-				;[year, month] = x.split('-')
+				const [year, month] = x.split('-')
 				return { date: `${month}/${year}`, visiteurs: y }
 			})
 		return result
@@ -170,7 +167,7 @@ async function fetchDailyVisits() {
 		)
 		const data = await response.json()
 		return Object.entries(data).map(([a, b]) => {
-			;[year, month, day] = a.split('-')
+			const [, month, day] = a.split('-')
 			return {
 				date: `${day}/${month}`,
 				visiteurs: b
@@ -233,8 +230,9 @@ async function fetchFeedback() {
 		let content = 0
 		let simulator = 0
 		let j = 0
-		// The weights are defined by taking the coefficients of an exponential smoothing with alpha=0.8 and normalizing them.
-		// The current month is not considered.
+		// The weights are defined by taking the coefficients of an exponential
+		// smoothing with alpha=0.8 and normalizing them. The current month is not
+		// considered.
 		const weights = [0.0015, 0.0076, 0.0381, 0.1905, 0.7623]
 		for (const i in feedbackcontent) {
 			content += feedbackcontent[i][0].avg_event_value * weights[j]
