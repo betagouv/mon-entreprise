@@ -4,7 +4,7 @@ import { debounce } from '../../../utils'
 
 async function tauxVersementTransport(codeCommune) {
 	const response = await fetch(
-		'https://versement-transport.netlify.com/.netlify/functions/taux-par-code-commune?codeCommune=' +
+		'https://versement-transport.netlify.app/.netlify/functions/taux-par-code-commune?codeCommune=' +
 			codeCommune
 	)
 	if (!response.ok) {
