@@ -120,12 +120,11 @@ contrat salarié . frais professionnels . titres-restaurant . montant:
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre: Titres-restaurant (déductible)
   formule:
-    encadrement:
-      valeur: montant .employeur
-      plafond:
-        produit:
-          assiette: titres-restaurant par mois
-          facteur: 5.55 €/titres-restaurant
+    valeur: montant .employeur
+    plafond:
+      produit:
+        assiette: titres-restaurant par mois
+        facteur: 5.55 €/titres-restaurant
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
@@ -191,9 +190,8 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . monta
 contrat salarié . frais professionnels . indemnité kilométrique vélo . part déductible:
   titre: indemnité kilométrique vélo (déductible)
   formule:
-    encadrement:
-      valeur: montant
-      plafond: 200 €/an
+    valeur: montant
+    plafond: 200 €/an
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle:
   unité: km/mois
@@ -343,13 +341,12 @@ contrat salarié . activité partielle . indemnisation entreprise:
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
-    encadrement:
-      valeur: indemnités . base
-      plancher: 8.03 €/heure * heures chômées
-      plafond:
-        recalcul:
-          avec:
-            rémunération . brut de base: 4.5 * SMIC
+    valeur: indemnités . base
+    plancher: 8.03 €/heure * heures chômées
+    plafond:
+      recalcul:
+        avec:
+          rémunération . brut de base: 4.5 * SMIC
 
 # TODO : This should be merged with other convention collectives
 contrat salarié . activité partielle . convention syntec:
@@ -384,13 +381,12 @@ contrat salarié . déduction forfaitaire spécifique:
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
   formule:
-    encadrement:
-      valeur:
-        allègement:
-          assiette: cotisations . assiette
-          abattement: taux
-          plafond: 7600 €/an
-      plancher: cotisations . assiette minimale
+    valeur:
+      allègement:
+        assiette: cotisations . assiette
+        abattement: taux
+        plafond: 7600 €/an
+    plancher: cotisations . assiette minimale
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
@@ -1494,15 +1490,14 @@ contrat salarié . plafond sécurité sociale:
   acronyme: PSS
   unité: €/mois
   formule:
-    encadrement:
-      valeur: plafond sécurité sociale temps plein * temps de travail . quotité de travail effective
-      # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
-      # quotité de travail effective. Cela pose problème en cas de de chômage
-      # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
-      # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
-      # divisions par zéro (si j'ai bien compris le problème, il est possible
-      # que le problème exact soit un peu différent).
-      plancher: 1 €/mois
+    valeur: plafond sécurité sociale temps plein * temps de travail . quotité de travail effective
+    # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
+    # quotité de travail effective. Cela pose problème en cas de de chômage
+    # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
+    # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
+    # divisions par zéro (si j'ai bien compris le problème, il est possible
+    # que le problème exact soit un peu différent).
+    plancher: 1 €/mois
 
 contrat salarié . plafond sécurité sociale . renonciation proratisation:
   description: >-
@@ -1625,12 +1620,11 @@ contrat salarié . rémunération . net imposable . base:
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
   formule:
-    encadrement:
-      valeur:
-        somme:
-          - heures supplémentaires
-          - heures complémentaires
-      plafond: plafond brut
+    valeur:
+      somme:
+        - heures supplémentaires
+        - heures complémentaires
+    plafond: plafond brut
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1783,16 +1777,15 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
   unité: '%'
   description: le taux effectif des cotisations d'assurance vieillesse à la charge du salarié
   formule:
-    encadrement:
-      valeur:
-        produit:
-          assiette:
-            somme:
-              - vieillesse .salarié
-              - retraite complémentaire .salarié
-              - contribution d'équilibre général .salarié
-          facteur: 1 / assiette
-      plafond: 11.31%
+    valeur:
+      produit:
+        assiette:
+          somme:
+            - vieillesse .salarié
+            - retraite complémentaire .salarié
+            - contribution d'équilibre général .salarié
+        facteur: 1 / assiette
+    plafond: 11.31%
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
     Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
@@ -1961,9 +1954,8 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
 contrat salarié . temps de travail . quotité de travail:
   description: Temps de travail en proportion du temps complet légal.
   formule:
-    encadrement:
-      valeur: temps de travail / (base légale * période . semaines par mois)
-      plafond: 100%
+    valeur: temps de travail / (base légale * période . semaines par mois)
+    plafond: 100%
   unité: '%'
 
 contrat salarié . temps de travail . quotité de travail effective:
@@ -2065,11 +2057,11 @@ contrat salarié . temps de travail . heures complémentaires . seuil légal:
     sont rémunérée avec une majoration de 25%
   unité: heures/mois
   formule:
-    arrondi:
-      produit:
-        assiette: temps partiel . heures par semaine
-        taux: 10%
-        facteur: période . semaines par mois
+    produit:
+      assiette: temps partiel . heures par semaine
+      taux: 10%
+      facteur: période . semaines par mois
+    arrondi: 0 décimales
 
 contrat salarié . statut JEI:
   titre: Statut JEI
@@ -2117,16 +2109,14 @@ contrat salarié . statut JEI . exonération de cotisations:
   unité: €/mois
 
   formule:
-    encadrement:
-      plafond:
-        recalcul:
-          avec:
-            rémunération . brut de base: 4.5 * SMIC
-      valeur:
-        somme:
-          - allocations familiales
-          - maladie .employeur
-          - vieillesse .employeur
+    somme:
+      - allocations familiales
+      - maladie .employeur
+      - vieillesse .employeur
+    plafond:
+      recalcul:
+        avec:
+          rémunération . brut de base: 4.5 * SMIC
 
 contrat salarié . réduction générale:
   description: |
@@ -2138,12 +2128,10 @@ contrat salarié . réduction générale:
     cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   non applicable si: cotisations . assiette forfaitaire . montant
   formule:
-    encadrement:
-      valeur:
-        produit:
-          assiette: cotisations . assiette
-          facteur: coefficient
-      plafond: plafond avec application de la DFS
+    produit:
+      assiette: cotisations . assiette
+      facteur: coefficient
+    plafond: plafond avec application de la DFS
   exemples:
     # Formule de calcul algébrique : (0,2809÷0,6)×(1,6×(1 521,22÷1 530)−1)×1 530
     - nom: "Maximale dans le cas d'un SMIC"
@@ -2165,16 +2153,12 @@ contrat salarié . réduction générale:
 
 contrat salarié . réduction générale . coefficient:
   formule:
-    arrondi:
-      décimales: 4
-      valeur:
-        encadrement:
-          valeur:
-            produit:
-              assiette: SMIC / cotisations . assiette * 1.6 - 1
-              facteur: T / 0.6
-          plancher: 0%
-          plafond: T
+    produit:
+      assiette: SMIC / cotisations . assiette * 1.6 - 1
+      facteur: T / 0.6
+    plancher: 0%
+    plafond: T
+    arrondi: 4 décimales
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
     Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
@@ -2185,12 +2169,10 @@ contrat salarié . réduction générale . T:
   formule:
     somme:
       - T sécurité sociale et chômage
-      - encadrement:
-          valeur: retraite complémentaire . taux employeur tranche 1
-          plafond: 4.72%
-      - encadrement:
-          valeur: contribution d'équilibre général . taux employeur tranche 1
-          plafond: 1.29%
+      - valeur: retraite complémentaire . taux employeur tranche 1
+        plafond: 4.72%
+      - valeur: contribution d'équilibre général . taux employeur tranche 1
+        plafond: 1.29%
 
 contrat salarié . réduction générale . T sécurité sociale et chômage:
   unité: ''
@@ -2335,24 +2317,21 @@ contrat salarié . retraite supplémentaire . part déductible:
 
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
   formule:
-    encadrement:
-      valeur: 5% * cotisations . assiette
-      plafond: 5% * plafond sécurité sociale
+    valeur: 5% * cotisations . assiette
+    plafond: 5% * plafond sécurité sociale
   références:
     Article D242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037456320&cidTexte=LEGITEXT000006073189&dateTexte=20180930
 
 contrat salarié . retraite supplémentaire . exonération fiscale:
   titre: retraite supplémentaire exonérée d'impôt
   formule:
-    encadrement:
-      valeur: retraite supplémentaire
-      plafond:
-        produit:
-          taux: 8%
-          assiette:
-            encadrement:
-              valeur: rémunération . brut
-              plafond: 8 * plafond sécurité sociale temps plein
+    valeur: retraite supplémentaire
+    plafond:
+      produit:
+        taux: 8%
+        assiette:
+          valeur: rémunération . brut
+          plafond: 8 * plafond sécurité sociale temps plein
   références:
     Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
@@ -2962,12 +2941,10 @@ contrat salarié . prévoyance . part déductible:
 
 contrat salarié . prévoyance . plafond exonération sociale employeur:
   formule:
-    encadrement:
-      valeur:
-        somme:
-          - 6% * plafond sécurité sociale
-          - 1.5% * cotisations . assiette
-      plafond: 12% * plafond sécurité sociale
+    somme:
+      - 6% * plafond sécurité sociale
+      - 1.5% * cotisations . assiette
+    plafond: 12% * plafond sécurité sociale
 
 # TODO: À fusionner avec `contrat salarié . prévoyance`. Pour l'instant pas
 # gênant d'avoir deux cotisations séparées car `contrat salarié . prévoyance`
@@ -2992,15 +2969,12 @@ contrat salarié . prévoyance obligatoire cadre:
 contrat salarié . prévoyance . exonération fiscale:
   titre: prévoyance exonérée d'impôt
   formule:
-    encadrement:
-      valeur: prévoyance
-      plafond:
-        encadrement:
-          valeur:
-            somme:
-              - 5% * plafond sécurité sociale temps plein
-              - 2% * rémunération . brut
-          plafond: 2% * 8 * plafond sécurité sociale temps plein
+    valeur: prévoyance
+    plafond:
+      somme:
+        - 5% * plafond sécurité sociale temps plein
+        - 2% * rémunération . brut
+      plafond: 2% * 8 * plafond sécurité sociale temps plein
   références:
     Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
@@ -3379,33 +3353,31 @@ contrat salarié . lodeom . réduction outre-mer:
           - éligible barème innovation et croissance
 
   formule:
-    encadrement:
-      valeur:
-        somme:
-          - allocations familiales
-          - FNAL .employeur
-          - maladie .employeur
-          - vieillesse .employeur
-          - produit:
-              assiette: cotisations . assiette
-              taux: ATMP . taux minimum
-          - retraite complémentaire .employeur
-          - contribution d'équilibre général .employeur
-          - chômage .employeur
-      plafond:
-        variations:
-          - si:
-              toutes ces conditions:
-                - éligible barème innovation et croissance
-                - cotisations . assiette > borne inférieure * SMIC
-                - cotisations . assiette < 2.5 * SMIC
-            alors: 1.7 * paramètre T * SMIC
-          - si:
-              toutes ces conditions:
-                - éligible barème innovation et croissance
-                - cotisations . assiette > 2.5 * SMIC
-            alors: ((borne inférieure * paramètre T) / (borne supérieure - 2.5)) *  écart au plafond de l'assiette
-          - sinon: multiplicateur * écart au plafond de l'assiette
+    somme:
+      - allocations familiales
+      - FNAL .employeur
+      - maladie .employeur
+      - vieillesse .employeur
+      - produit:
+          assiette: cotisations . assiette
+          taux: ATMP . taux minimum
+      - retraite complémentaire .employeur
+      - contribution d'équilibre général .employeur
+      - chômage .employeur
+    plafond:
+      variations:
+        - si:
+            toutes ces conditions:
+              - éligible barème innovation et croissance
+              - cotisations . assiette > borne inférieure * SMIC
+              - cotisations . assiette < 2.5 * SMIC
+          alors: 1.7 * paramètre T * SMIC
+        - si:
+            toutes ces conditions:
+              - éligible barème innovation et croissance
+              - cotisations . assiette > 2.5 * SMIC
+          alors: ((borne inférieure * paramètre T) / (borne supérieure - 2.5)) *  écart au plafond de l'assiette
+        - sinon: multiplicateur * écart au plafond de l'assiette
   note: Nous utilisons la méthode de calcul officielle de la sécurité sociale. Il serait préférable ici de réduire directement les cotisations concernées, ce qui éviterait au calcul de reposer sur les paramètres `T` publiés chaque année (ils dépendent directement des cotisaitons réduites).
   références:
     Estimateur URSSAF: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html?ut=
@@ -3548,9 +3520,8 @@ contrat salarié . cotisations . assiette forfaitaire . montant:
         # Todo : Ce hack est dû à la façon dont est implémenté l'exonération salariale pour les apprentis
         - assiette . salariale
   formule:
-    encadrement:
-      valeur: assiette forfaitaire
-      plancher: minimum
+    valeur: assiette forfaitaire
+    plancher: minimum
   références:
     exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
     CSG et CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html

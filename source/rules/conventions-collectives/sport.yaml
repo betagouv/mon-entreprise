@@ -21,12 +21,10 @@ contrat salarié . convention collective . sport . cotisations . financement du 
   # TODO
   note: se calcule sur la masse salariale
   formule:
-    encadrement:
-      plancher: 3 €.employé/an / entreprise . effectif
-      valeur:
-        produit:
-          assiette: cotisations . assiette
-          taux: 0.06%
+    produit:
+      assiette: cotisations . assiette
+      taux: 0.06%
+    plancher: 3 €.employé/an / entreprise . effectif
 
 contrat salarié . convention collective . sport . cotisations . prévoyance:
   remplace:
@@ -114,17 +112,15 @@ contrat salarié . convention collective . sport . cotisations . formation profe
 
 contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation:
   formule:
-    encadrement:
-      plancher: versement minimum
-      valeur:
-        produit:
-          assiette: cotisations . assiette
-          taux:
-            variations:
-              - si: entreprise . effectif < 20
-                alors: 1.45%
-              - si: entreprise . effectif >= 20
-                alors: 0.90%
+    produit:
+      assiette: cotisations . assiette
+      taux:
+        variations:
+          - si: entreprise . effectif < 20
+            alors: 1.45%
+          - si: entreprise . effectif >= 20
+            alors: 0.90%
+    plancher: versement minimum
 
 contrat salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation . versement minimum:
   applicable si: entreprise . effectif < 10
@@ -132,17 +128,15 @@ contrat salarié . convention collective . sport . cotisations . formation profe
 
 contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation:
   formule:
-    encadrement:
-      plancher: versement minimum
-      valeur:
-        produit:
-          assiette: cotisations . assiette
-          taux:
-            variations:
-              - si: entreprise . effectif < 20
-                alors: 0.15%
-              - si: entreprise . effectif >= 20
-                alors: 0.50%
+    produit:
+      assiette: cotisations . assiette
+      taux:
+        variations:
+          - si: entreprise . effectif < 20
+            alors: 0.15%
+          - si: entreprise . effectif >= 20
+            alors: 0.50%
+    plancher: versement minimum
 
 contrat salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation . versement minimum:
   applicable si: entreprise . effectif < 10
@@ -238,9 +232,8 @@ contrat salarié . convention collective . sport . primes . manifestation 1:
 contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1
   formule:
-    encadrement:
-      valeur: manifestation 1
-      plafond: 70% * plafond journalier sécurité sociale
+    valeur: manifestation 1
+    plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 2:
   question: Quelle prime pour la deuxième manifestation ?
@@ -251,9 +244,8 @@ contrat salarié . convention collective . sport . primes . manifestation 2:
 contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2
   formule:
-    encadrement:
-      valeur: manifestation 2
-      plafond: 70% * plafond journalier sécurité sociale
+    valeur: manifestation 2
+    plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 3:
   question: Quelle prime pour la troisième manifestation ?
@@ -264,9 +256,8 @@ contrat salarié . convention collective . sport . primes . manifestation 3:
 contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3
   formule:
-    encadrement:
-      valeur: manifestation 3
-      plafond: 70% * plafond journalier sécurité sociale
+    valeur: manifestation 3
+    plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 4:
   question: Quelle prime pour la quatrième manifestation ?
@@ -277,9 +268,8 @@ contrat salarié . convention collective . sport . primes . manifestation 4:
 contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4
   formule:
-    encadrement:
-      valeur: manifestation 4
-      plafond: 70% * plafond journalier sécurité sociale
+    valeur: manifestation 4
+    plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
@@ -290,9 +280,8 @@ contrat salarié . convention collective . sport . primes . manifestation 5:
 contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5
   formule:
-    encadrement:
-      valeur: manifestation 5
-      plafond: 70% * plafond journalier sécurité sociale
+    valeur: manifestation 5
+    plafond: 70% * plafond journalier sécurité sociale
 
 contrat salarié . convention collective . sport . primes . autres manifestations:
   question: Quelles primes pour les autres manifestations ?

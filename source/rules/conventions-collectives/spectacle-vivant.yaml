@@ -29,14 +29,12 @@ contrat salarié . convention collective . SVP . FCAP:
   # TODO :
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
   formule:
-    encadrement:
-      valeur:
-        produit:
-          plafonnée à: plafond sécurité sociale
-          assiette: rémunération . brut
-          taux: 0.1%
-      plancher: 80 €.employés/an / entreprise . effectif
-      plafond: 300 €.employés/an / entreprise . effectif
+    produit:
+      plafonnée à: plafond sécurité sociale
+      assiette: rémunération . brut
+      taux: 0.1%
+    plancher: 80 €.employés/an / entreprise . effectif
+    plafond: 300 €.employés/an / entreprise . effectif
 
   références:
     Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262

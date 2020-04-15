@@ -12,19 +12,13 @@ artiste-auteur . revenus . traitements et salaires:
 
 artiste-auteur . revenus . BNC:
   formule:
-    encadrement:
-      plancher: 0 €/an
-      valeur:
+    allègement:
+      assiette: recettes
+      abattement:
         variations:
           - si: micro-bnc
-            alors:
-              somme:
-                - recettes
-                - (- charges forfaitaires)
-          - sinon:
-              somme:
-                - recettes
-                - (- frais réels)
+            alors: charges forfaitaires
+          - sinon: frais réels
 
 artiste-auteur . revenus . BNC . micro-bnc:
   applicable si:
