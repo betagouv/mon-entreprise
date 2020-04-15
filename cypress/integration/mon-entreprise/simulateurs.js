@@ -103,7 +103,7 @@ describe('Simulateurs', function() {
 						cy.contains('Suivant').click()
 						cy.contains('ACRE')
 					})
-					it.only('should not have negative value', () => {
+					it('should not have negative value', () => {
 						cy.contains('€ / mois').click()
 						cy.get(inputSelector)
 							.first()

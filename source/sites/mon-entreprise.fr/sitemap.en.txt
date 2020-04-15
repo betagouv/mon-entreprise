@@ -20,16 +20,20 @@ https://mycompanyinfrance.fr/create/legal-status/chairman-or-managing-director
 https://mycompanyinfrance.fr/manage
 https://mycompanyinfrance.fr/manage/hiring
 https://mycompanyinfrance.fr/manage/social-security
+https://mycompanyinfrance.fr/manage/declaration-aid-independent
+https://mycompanyinfrance.fr/manage/declaration-aid-independent/summary
 https://mycompanyinfrance.fr/simulators
 https://mycompanyinfrance.fr/simulators/assimile-salarie
 https://mycompanyinfrance.fr/simulators/independant
 https://mycompanyinfrance.fr/simulators/auto-entrepreneur
 https://mycompanyinfrance.fr/simulators/social-scheme-comparaison
 https://mycompanyinfrance.fr/simulators/salaried
-https://mycompanyinfrance.fr/simulators/artiste-auteur
+https://mycompanyinfrance.fr/simulators/artist-author
 https://mycompanyinfrance.fr/sharing-economy
+https://mycompanyinfrance.fr/sharing-economy/your-situation
+https://mycompanyinfrance.fr/What's new
 https://mycompanyinfrance.fr/documentation
-https://mycompanyinfrance.fr/documentation/examples
+https://mycompanyinfrance.fr/coronavirus
 https://mycompanyinfrance.fr/integration
 https://mycompanyinfrance.fr/integration/iframe
 https://mycompanyinfrance.fr/integration/library
