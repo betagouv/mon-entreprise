@@ -1,27 +1,49 @@
 import PublicodeHighlighter from 'Components/ui/PublicodeHighlighter'
-import React from 'react'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
+import { SiteNameContext } from '../../Provider'
 
-function LinkRenderer({ href, children }: { href: string; children: string }) {
-	if (!href.startsWith('http')) {
-		return <Link to={href}>{children}</Link>
+const internalURLs = {
+	'mon-entreprise.fr': 'mon-entreprise',
+	'mycompanyinfrance.fr': 'infrance',
+	'publi.codes': 'publicodes'
+} as const
+
+export function LinkRenderer({
+	href,
+	children,
+	...otherProps
+}: Omit<React.ComponentProps<'a'>, 'ref'>) {
+	const siteName = useContext(SiteNameContext)
+	if (href && !href.startsWith('http')) {
+		return (
+			<Link to={href} {...otherProps}>
+				{children}
+			</Link>
+		)
 	}
 
 	// Convert absolute links that reload the full app into in-app links handled
 	// by react-router.
-	const domain = 'mon-entreprise.fr'
-	if (
-		href.startsWith(`https://${domain}`) &&
-		(location.hostname === 'localhost' || location.hostname === domain)
-	) {
-		return <Link to={href.replace(`https://${domain}`, '')}>{children}</Link>
+	for (const domain of Object.keys(internalURLs)) {
+		if (
+			href &&
+			href.startsWith(`https://${domain}`) &&
+			internalURLs[domain] === siteName
+		) {
+			return (
+				<Link to={href.replace(`https://${domain}`, '')} {...otherProps}>
+					{children}
+				</Link>
+			)
+		}
 	}
 
 	return (
-		<a target="_blank" href={href}>
+		<a target="_blank" href={href} {...otherProps}>
 			{children}
 		</a>
 	)

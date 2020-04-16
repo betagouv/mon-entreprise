@@ -4,7 +4,7 @@ import { TrackerProvider } from 'Components/utils/withTracker'
 import { createBrowserHistory } from 'history'
 import { AvailableLangs } from 'i18n'
 import i18next from 'i18next'
-import React, { useEffect, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
@@ -41,8 +41,12 @@ if (
 	})
 }
 
+type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
+
+export const SiteNameContext = createContext<SiteName | null>(null)
+
 export type ProviderProps = {
-	basename: string
+	basename: SiteName
 	language: AvailableLangs
 	children: React.ReactNode
 	tracker?: Tracker
@@ -119,13 +123,15 @@ export default function Provider({
 				color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 			>
 				<TrackerProvider value={tracker!}>
-					<SitePathProvider value={sitePaths as any}>
-						<I18nextProvider i18n={i18next}>
-							<Router history={history}>
-								<>{children}</>
-							</Router>
-						</I18nextProvider>
-					</SitePathProvider>
+					<SiteNameContext.Provider value={basename}>
+						<SitePathProvider value={sitePaths as any}>
+							<I18nextProvider i18n={i18next}>
+								<Router history={history}>
+									<>{children}</>
+								</Router>
+							</I18nextProvider>
+						</SitePathProvider>
+					</SiteNameContext.Provider>
 				</TrackerProvider>
 			</ThemeColorsProvider>
 		</ReduxProvider>
