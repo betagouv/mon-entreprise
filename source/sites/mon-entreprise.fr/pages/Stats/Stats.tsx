@@ -17,6 +17,10 @@ import { formatPercentage } from '../../../../../source/engine/format'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Privacy from '../../layout/Footer/Privacy'
 import statsJson from '../../../../data/stats.json'
+import Value from 'Components/Value'
+import { animated, config, useSpring } from 'react-spring'
+import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
+const ANIMATION_SPRING = config.gentle
 
 const stats: StatsData = statsJson as any
 
@@ -37,6 +41,125 @@ type StatsData = {
 		date: string
 		visiteurs: number
 	}>
+}
+let ChartItemBar = ({ styles, color, visitors }) => (
+	<div className="distribution-chart__bar-container">
+		<animated.div
+			className="distribution-chart__bar"
+			style={{
+				backgroundColor: color,
+				flex: styles.flex
+			}}
+		/>
+		<div
+			css={`
+				font-weight: bold;
+				margin-left: 1rem;
+				color: var(--textColorOnWhite);
+			`}
+		>
+			<Value maximumFractionDigits={0} unit="visiteurs">
+				{visitors}
+			</Value>
+		</div>
+	</div>
+)
+let BranchIcône = ({ icône }) => (
+	<div className="distribution-chart__legend">
+		<span className="distribution-chart__icon">{emoji(icône)}</span>
+	</div>
+)
+
+type DistributionBranchProps = {
+	page: { label: string; nb_visits: number }
+	title: string
+	description?: string
+	icon?: string
+	total: number
+}
+
+const Simulateurs = {
+	'/salarié': {
+		name: 'Salarié',
+		description:
+			"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé",
+		icone: '🤝'
+	},
+	'/auto-entrepreneur': {
+		name: 'Auto-entrepreneur',
+		description:
+			"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur",
+		icone: '🚶‍♂️'
+	},
+	'/artiste-auteur': {
+		name: 'Artiste-auteur',
+		description: "Estimer les cotisations sociales d'un artiste ou auteur",
+		icone: '👩‍🎨'
+	},
+	'/indépendant': {
+		name: 'Indépendant',
+		description:
+			"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire",
+		icone: '👩‍🔧'
+	},
+	'/assimilé-salarié': {
+		name: 'Assimilé salarié',
+		description:
+			"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire",
+		icone: '☂️'
+	},
+	'/comparaison-régimes-sociaux': {
+		name: 'Comparaison status',
+		description:
+			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
+		icone: '📊'
+	}
+}
+
+export function DistributionBranch({
+	page,
+	title,
+	description,
+	icon,
+	total
+}: DistributionBranchProps) {
+	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
+	const { color } = useContext(ThemeColorsContext)
+	const visitors = brancheInViewport ? page.nb_visits : 0
+	const styles = useSpring({
+		config: ANIMATION_SPRING,
+		to: {
+			flex: visitors / total,
+			opacity: visitors ? 1 : 0
+		}
+	}) as { flex: number; opacity: number }
+
+	return (
+		<animated.div
+			ref={intersectionRef}
+			className="distribution-chart__item"
+			style={{ opacity: styles.opacity }}
+		>
+			<BranchIcône icône={icon} />
+			<div className="distribution-chart__item-content">
+				<p className="distribution-chart__counterparts">
+					<span className="distribution-chart__branche-name">{title}</span>
+					<br />
+					<small>{description}</small>
+				</p>
+				<ChartItemBar
+					{...{
+						styles,
+						color,
+						visitors,
+						total
+					}}
+				/>
+			</div>
+		</animated.div>
+	)
 }
 
 export default function Stats() {
@@ -102,7 +225,21 @@ export default function Stats() {
 					/>
 				</div>
 			</section>
-
+			<section>
+				<h2>Nombre d'utilisation des simulateurs</h2>
+				{stats.simulators.currentmonth.visites.map(x => (
+					<DistributionBranch
+						page={x}
+						title={Simulateurs[x.label].name}
+						description={Simulateurs[x.label].description}
+						icon={Simulateurs[x.label].icone}
+						total={stats.simulators.currentmonth.visites.reduce(
+							(a, b) => Math.max(a, b.nb_visits),
+							0
+						)}
+					/>
+				))}
+			</section>
 			<section>
 				<h2>Avis des visiteurs</h2>
 				<div
@@ -127,29 +264,6 @@ export default function Stats() {
 					en bas de toutes les pages.
 				</p>
 			</section>
-
-			{/* <section>
-				<h2> Nombre d'utilisation des simulateurs</h2>
-				<ResponsiveContainer width="100%" height={300}>
-					<BarChart
-						data={d202004}
-						layout="vertical"
-						margin={{
-							top: 20,
-							right: 30,
-							left: 20,
-							bottom: 5
-						}}
-					>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis type="number" dataKey="value" />
-						<YAxis type="category" dateKey="key" />
-						<Tooltip />
-						<Bar dataKey="value" fill={color} />
-					</BarChart>
-				</ResponsiveContainer>
-				<div id="simulteurs-indicators"></div>
-			</section> */}
 
 			<section>
 				<h2>Statut choisi le dernier mois</h2>
