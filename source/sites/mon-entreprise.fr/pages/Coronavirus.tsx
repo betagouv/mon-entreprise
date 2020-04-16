@@ -2,6 +2,7 @@ import { setSimulationConfig } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import chomagePartielConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
+import Warning from 'Components/ui/WarningBlock'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { Markdown } from 'Components/utils/markdown'
@@ -30,7 +31,7 @@ export default function ChômagePartiel() {
 	const inIframe = useContext(IsEmbeddedContext)
 	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
 	useEffect(() => {
-		if (inIframe) {
+		if (inIframe || process.env.MASTER !== 'false') {
 			return
 		}
 		const script = document.createElement('script')
@@ -69,24 +70,31 @@ export default function ChômagePartiel() {
 							margin-top: 1rem;
 						`}
 					>
-						<span
-							css={`
-								font-size: 0.65em;
-								opacity: 0.85;
-							`}
-						>
-							Coronavirus et chômage partiel
-						</span>
-						<br />
-						Quel impact sur mes revenus ?
+						Covid-19 : Simulateur de chômage partiel
 					</h1>
+					<h2 style={{ marginTop: 0 }}>
+						<small>Comment calculer l'indemnité de chômage partiel ?</small>
+					</h2>
 					<p>
 						Ce simulateur permet de connaître le revenu net versé au salarié,
 						ainsi que le coût total restant à charge pour l'entreprise en cas de
-						chômage partiel.
+						recours à l'activité partielle.
+					</p>
+					<p>
+						Toutes les indemnités d'activité partielle sont prises en compte,
+						ainsi que les cotisations qui leur sont associées.
 					</p>
 				</Trans>
 			)}
+
+			<Warning localStorageKey="covid19">
+				<ul>
+					<li>
+						Ce simulateur ne prend pas en compte les rémunérations brut définies
+						sur 39h hebdomadaires.
+					</li>
+				</ul>
+			</Warning>
 			<Simulation
 				results={<ExplanationSection />}
 				customEndMessages={

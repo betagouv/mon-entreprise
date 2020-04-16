@@ -242,29 +242,26 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
 
 contrat salarié . activité partielle . heures chômées:
   unité: heures/mois
-  formule:
-    produit:
-      assiette: temps de travail . temps contractuel
-      taux: 100% - proportion heures travaillées
+  formule: temps de travail . temps contractuel - heures travaillées
 
-contrat salarié . activité partielle . proportion heures travaillées:
-  titre: proportion heures travaillées
-  question: Quelle est la proportion d'heures travaillées sur le mois ?
+contrat salarié . activité partielle . heures travaillées:
+  titre: heures travaillées restantes
+  question: Quelle est le nombre d'heures travaillées sur le mois ?
   description: >-
-    Dans le cadre du chômage partiel, la proportion d'heure travaillées correspond
-    au ratio du nombre d'heures travaillées par rapport au temps de travail
-    contractuel habituel.
-
-    Un ratio de 0% signifie que l'employé n'a pas travaillé ce mois ci.
-    Un ratio de 100% signifie que l'employé a effectué toutes ces heures contractuelles.
-
-    Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
-  unité: '%'
+    Dans le cadre du chômage partiel, le nombre d'heure restante travaillées. Doit être
+    inférieur au temps contractuel.
+  unité: heures/mois
   par défaut: 0
   suggestions:
-    0%: 0
-    20%: 20
-    50%: 50
+    30 h/semaine: 130
+    20 h/semaine: 86.6666
+    10 h/semaine: 43.3333
+  contrôles:
+    - si: heures travaillées > temps de travail . temps contractuel
+      niveau: avertissement
+      message: >-
+        Dans le cadre du temps partiel, le temps de travail doit être inférieur
+        à celui inscrit dans le contrat de travail.
 
 contrat salarié . activité partielle . indemnités:
   titre: indemnités activité partielle

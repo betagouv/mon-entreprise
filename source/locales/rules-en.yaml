@@ -1040,6 +1040,29 @@ contrat salarié . activité partielle . convention syntec:
 contrat salarié . activité partielle . heures chômées:
   titre.en: '[automatic] non-working hours'
   titre.fr: heures chômées
+contrat salarié . activité partielle . heures travaillées:
+  contrôles.0.en: >-
+    [automatic] In the case of part-time work, the working time must be less
+    than that stipulated in the employment contract.
+  contrôles.0.fr: >-
+    Dans le cadre du temps partiel, le temps de travail doit être inférieur à
+    celui inscrit dans le contrat de travail.
+  description.en: >-
+    [automatic] In the case of short-time working, the number of hours remaining
+    worked. Must be less than the contractual time.
+  description.fr: >-
+    Dans le cadre du chômage partiel, le nombre d'heure restante travaillées.
+    Doit être inférieur au temps contractuel.
+  question.en: '[automatic] What is the number of hours worked over the month?'
+  question.fr: Quelle est le nombre d'heures travaillées sur le mois ?
+  suggestions.10 h/semaine.en: '[automatic] 10 hrs/week'
+  suggestions.10 h/semaine.fr: 10 h/semaine
+  suggestions.20 h/semaine.en: '[automatic] 20 hrs/week'
+  suggestions.20 h/semaine.fr: 20 h/semaine
+  suggestions.30 h/semaine.en: '[automatic] 30 hrs/week'
+  suggestions.30 h/semaine.fr: 30 h/semaine
+  titre.en: '[automatic] remaining hours worked'
+  titre.fr: heures travaillées restantes
 contrat salarié . activité partielle . indemnisation entreprise:
   description.en: >-
     [automatic] In the context of the Coronavirus crisis, the government has
@@ -1095,35 +1118,6 @@ contrat salarié . activité partielle . indemnités . complémentaire:
 contrat salarié . activité partielle . indemnités . conventionnelle:
   titre.en: '[automatic] conventional'
   titre.fr: conventionnelle
-contrat salarié . activité partielle . proportion heures travaillées:
-  description.en: >-
-    [automatic] In the case of short-time working, the proportion of hours
-    worked corresponds to the ratio of the number of hours worked to the usual
-    contractual working time.
-
-    A ratio of 0% means that the employee did not work this month. A ratio of
-    100% means that the employee worked all those contractual hours.
-
-    Overtime, even usual overtime, is not taken into account.
-  description.fr: >-
-    Dans le cadre du chômage partiel, la proportion d'heure travaillées
-    correspond au ratio du nombre d'heures travaillées par rapport au temps de
-    travail contractuel habituel.
-
-    Un ratio de 0% signifie que l'employé n'a pas travaillé ce mois ci. Un ratio
-    de 100% signifie que l'employé a effectué toutes ces heures contractuelles.
-
-    Les heures supplémentaires, même habituelles, ne sont pas prises en compte.
-  question.en: '[automatic] What is the proportion of hours worked over the month?'
-  question.fr: Quelle est la proportion d'heures travaillées sur le mois ?
-  suggestions.0%.en: '[automatic] 0%'
-  suggestions.0%.fr: 0%
-  suggestions.20%.en: '[automatic] 20%'
-  suggestions.20%.fr: 20%
-  suggestions.50%.en: '[automatic] 50%'
-  suggestions.50%.fr: 50%
-  titre.en: '[automatic] proportion of hours worked'
-  titre.fr: proportion heures travaillées
 contrat salarié . activité partielle . retrait absence:
   titre.en: '[automatic] partial activity withdrawal'
   titre.fr: retrait activité partielle

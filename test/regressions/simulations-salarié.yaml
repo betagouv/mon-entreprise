@@ -230,10 +230,10 @@ activité partielle:
     contrat salarié . activité partielle: oui
   - contrat salarié . rémunération . brut de base: 4000
     contrat salarié . activité partielle: oui
-    contrat salarié . activité partielle . proportion heures travaillées: 20
+    contrat salarié . activité partielle . heures travaillées: 30.33331
   - contrat salarié . rémunération . brut de base: 4000
     contrat salarié . activité partielle: oui
-    contrat salarié . activité partielle . proportion heures travaillées: 50
+    contrat salarié . activité partielle . heures travaillées: 75.833275
   - contrat salarié . rémunération . brut de base: 3000
     contrat salarié . activité partielle: oui
     contrat salarié . temps de travail . temps partiel: oui
@@ -245,7 +245,7 @@ activité partielle:
     contrat salarié . activité partielle: oui
     contrat salarié . activité partielle . convention syntec: oui
   - contrat salarié . rémunération . brut de base: 2000
-    contrat salarié . activité partielle . proportion heures travaillées: 50
+    contrat salarié . activité partielle . heures travaillées: 75.833275
     contrat salarié . activité partielle: oui
     contrat salarié . activité partielle . convention syntec: oui
   - contrat salarié . rémunération . brut de base: 6000
