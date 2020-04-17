@@ -65,15 +65,11 @@ it('calculate simulations-auto-entrepreneur', () => {
 })
 
 it('calculate simulations-rémunération-dirigeant', () => {
-	const baseSituation = remunerationDirigeantConfig.situation
-	remunerationDirigeantConfig.branches.forEach(({ nom, situation }) => {
-		runSimulations(
-			remunerationDirigeantSituations,
-			remunerationDirigeantConfig.objectifs,
-			{ ...baseSituation, ...situation },
-			`${nom} - `
-		)
-	})
+	runSimulations(
+		remunerationDirigeantSituations,
+		remunerationDirigeantConfig.objectifs,
+		remunerationDirigeantConfig.situation
+	)
 })
 
 it('calculate simulations-artiste-auteur', () => {

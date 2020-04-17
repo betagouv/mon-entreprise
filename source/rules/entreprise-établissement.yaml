@@ -157,7 +157,7 @@ entreprise . ACRE:
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
-          - dirigeant = 'auto-entrepreneur'
+          - dirigeant . auto-entrepreneur
           - entreprise . durée d'activité < 3 ans
           - entreprise . date de création < 01/01/2020
       - entreprise . durée d'activité . en début d'année < 1 an

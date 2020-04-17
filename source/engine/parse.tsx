@@ -2,9 +2,7 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
-import Value from 'Components/Value'
 import mecanismRound, { unchainRoundMecanism } from 'Engine/mecanisms/arrondi'
-import mecanismRound from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
 import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'

@@ -5,29 +5,19 @@ import {
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
+import Value, { Condition } from 'Components/EngineValue'
 import PeriodSwitch from 'Components/PeriodSwitch'
-import Value from 'Components/EngineValue'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import revenusSVG from 'Images/revenus.svg'
 import { default as React, useCallback, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'Rules'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
-import Animate from 'Ui/animate'
 import InfoBulle from 'Ui/InfoBulle'
-import { Condition } from 'Components/EngineValue'
 import './SchemeComparaison.css'
 import { EngineContext } from './utils/EngineContext'
-
-let getBranchIndex = (branch: string) =>
-	({ assimilé: 0, indépendant: 1, 'auto-entrepreneur': 2 }[branch])
-
-let getRuleFrom = analyses => (branch: string, dottedName: DottedName) => {
-	let i = getBranchIndex(branch)
-	return getRuleFromAnalysis(analyses[i])(dottedName)
-}
+import { setSimulationConfig } from 'Actions/actions'
+import dirigeantComparaison from 'Components/simulationConfigs/rémunération-dirigeant.yaml'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -39,6 +29,7 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false
 }: SchemeComparaisonProps) {
 	const dispatch = useDispatch()
+	dispatch(setSimulationConfig(dirigeantComparaison))
 	const plafondAutoEntrepreneurDépassé = useContext(EngineContext)
 		.controls()
 		.find(
@@ -314,51 +305,33 @@ export default function SchemeComparaison({
 					)}
 				</div>
 				{conversationStarted && (
-					<Condition expression="revenu net après impôt">
-						<Trans i18nKey="comparaisonRégimes.revenuNetApresImpot">
-							<h3 className="legend">Revenu net après impôt</h3>
-						</Trans>
-						<div className="AS">
-							<Animate.appear className="ui__ plain card">
-								<Value expression="revenu net après impôt" />
-							</Animate.appear>
-						</div>
-						<div className="indep">
-							<Animate.appear className="ui__ plain card">
-								<Value expression="revenu net après impôt" />
-							</Animate.appear>
-						</div>
-						<div className="auto">
-							<Animate.appear
-								className={classnames(
-									'ui__ plain card',
-									plafondAutoEntrepreneurDépassé && 'disabled'
-								)}
-							>
-								{plafondAutoEntrepreneurDépassé ? (
-									'Plafond de CA dépassé'
-								) : (
-									<Value expression="revenu net après impôt" />
-								)}
-							</Animate.appear>
-						</div>
+					<Condition expression="oui">
 						<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
 							<h3 className="legend">
 								Revenu net de cotisations <small>(avant impôts)</small>
 							</h3>
 						</Trans>
 						<div className="AS">
-							<Value expression="revenus net de cotisations" />
+							<Value
+								precision={0}
+								expression="contrat salarié . rémunération . net"
+							/>
 						</div>
 						<div className="indep">
-							<Value expression="dirigeant . indépendant . revenu net de cotisations" />
+							<Value
+								precision={0}
+								expression="dirigeant . indépendant . revenu net de cotisations"
+							/>
 						</div>
 						<div className="auto">
-							{plafondAutoEntrepreneurDépassé ? (
-								'—'
-							) : (
-								<Value expression="dirigeant . auto-entrepreneur . net de cotisations" />
-							)}
+							<>
+								{plafondAutoEntrepreneurDépassé && 'Plafond de CA dépassé'}
+								<Value
+									precision={0}
+									unit="€/an"
+									expression="dirigeant . auto-entrepreneur . net de cotisations"
+								/>
+							</>
 						</div>
 						<h3 className="legend">
 							<Trans i18nKey="comparaisonRégimes.retraiteEstimation.legend">
@@ -367,7 +340,10 @@ export default function SchemeComparaison({
 							</Trans>
 						</h3>
 						<div className="AS">
-							<Value expression="protection sociale . retraite" />{' '}
+							<Value
+								precision={0}
+								expression="comparaison régime . assimilé . retraite"
+							/>{' '}
 							<InfoBulle>
 								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.AS">
 									Pension calculée pour 172 trimestres cotisés au régime général
@@ -376,7 +352,10 @@ export default function SchemeComparaison({
 							</InfoBulle>
 						</div>
 						<div className="indep">
-							<Value expression="protection sociale . retraite" />
+							<Value
+								precision={0}
+								expression="comparaison régime . indépendant . retraite"
+							/>{' '}
 							<InfoBulle>
 								<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.indep">
 									Pension calculée pour 172 trimestres cotisés au régime des
@@ -389,7 +368,10 @@ export default function SchemeComparaison({
 								'—'
 							) : (
 								<>
-									<Value expression="protection sociale . retraite" />
+									<Value
+										precision={0}
+										expression="comparaison régime . auto-entrepreneur . retraite"
+									/>{' '}
 									<InfoBulle>
 										<Trans i18nKey="comparaisonRégimes.retraiteEstimation.infobulles.auto">
 											Pension calculée pour 172 trimestres cotisés en
@@ -406,13 +388,15 @@ export default function SchemeComparaison({
 						</Trans>
 						<div className="AS">
 							<Value
+								precision={0}
 								displayedUnit="trimestre"
-								expression="protection sociale . retraite . trimestres validés par an"
+								expression="comparaison régime . assimilé . trimestres validés"
 							/>
 						</div>
 						<div className="indep">
 							<Value
-								expression="protection sociale . retraite . trimestres validés par an"
+								precision={0}
+								expression="comparaison régime . indépendant . trimestres validés"
 								displayedUnit="trimestre"
 							/>
 						</div>
@@ -421,7 +405,8 @@ export default function SchemeComparaison({
 								'—'
 							) : (
 								<Value
-									expression="protection sociale . retraite . trimestres validés par an"
+									precision={0}
+									expression="comparaison régime . auto-entrepreneur . trimestres validés"
 									displayedUnit="trimestres"
 								/>
 							)}
@@ -433,11 +418,17 @@ export default function SchemeComparaison({
 						</Trans>
 						<div className="AS">
 							<span>
-								<Value expression="protection sociale . santé . indemnités journalières" />
+								<Value
+									precision={0}
+									expression="comparaison régime . assimilé . indemnités journalières"
+								/>
 							</span>
 							<small>
 								(
-								<Value expression="protection sociale . accidents du travail et maladies professionnelles" />{' '}
+								<Value
+									precision={0}
+									expression="protection sociale . accidents du travail et maladies professionnelles"
+								/>{' '}
 								<Trans>
 									pour les accidents de trajet/travail et maladie pro
 								</Trans>
@@ -445,14 +436,20 @@ export default function SchemeComparaison({
 							</small>
 						</div>
 						<div className="indep">
-							<Value expression="protection sociale . santé . indemnités journalières" />
+							<Value
+								precision={0}
+								expression="comparaison régime . indépendant . indemnités journalières"
+							/>
 						</div>
 						<div className="auto">
 							{plafondAutoEntrepreneurDépassé ? (
 								'—'
 							) : (
 								<span>
-									<Value expression="protection sociale . santé . indemnités journalières" />
+									<Value
+										precision={0}
+										expression="comparaison régime . auto-entrepreneur . indemnités journalières"
+									/>
 								</span>
 							)}
 						</div>

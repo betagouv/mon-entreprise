@@ -83,6 +83,7 @@ export function Line({
 		<Condition expression={rule}>
 			<RuleLink {...parsedRules[rule]} className={className} />
 			<Value
+				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}
 				displayedUnit={displayedUnit}
 				className={className}

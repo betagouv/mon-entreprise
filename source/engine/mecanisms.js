@@ -137,141 +137,119 @@ export let mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-export let findInversion = (situationGate, parsedRules, v, dottedName) => {
-	let inversions = v.avec
-	if (!inversions)
-		throw new Error(
-			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
-		)
-	/*
-	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
-	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
-	le salaire net, a été renseigné ?
-	*/
-	let candidates = inversions
-			.map(i => disambiguateRuleReference(parsedRules, dottedName, i))
-			.map(name => {
-				let userInput = situationGate(name) != undefined
-				let rule = parsedRules[name]
-				if (!userInput) return null
-				return {
-					fixedObjectiveRule: rule,
-					userInput,
-					fixedObjectiveValue: situationGate(name)
-				}
-			}),
-		candidateWithUserInput = candidates.find(c => c && c.userInput)
+// export let findInversion = (situationGate, parsedRules, v, dottedName) => {
+// 	/*
+// 	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
+// 	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
+// 	le salaire net, a été renseigné ?
+// 	*/
+// 	let candidates = inversions
+// 			.map(i => disambiguateRuleReference(parsedRules, dottedName, i))
+// 			.map(name => {
+// 				let userInput = situationGate(name) != undefined
+// 				let rule = parsedRules[name]
+// 				if (!userInput) return null
+// 				return {
+// 					fixedObjectiveRule: rule,
+// 					userInput,
+// 					fixedObjectiveValue: situationGate(name)
+// 				}
+// 			}),
+// 		candidateWithUserInput = candidates.find(c => c && c.userInput)
 
-	return (
-		candidateWithUserInput || candidates.find(candidate => candidate != null)
+// 	return (
+// 		candidateWithUserInput || candidates.find(candidate => candidate != null)
+// 	)
+// }
+
+let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
+	// TODO : take applicability into account here
+	let inversedWith = node.explanation.inversionCandidates.find(n =>
+		situationGate(n.dottedName)
 	)
-}
-
-let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
-	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
-
-	if (!inversion)
+	if (!inversedWith) {
 		return {
-			missingVariables: { [dottedName]: 1 },
+			...node,
+			missingVariables: Object.fromEntries(
+				node.explanation.inversionCandidates.map(n => [n.dottedName, 1])
+			),
 			nodeValue: null
 		}
-	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
-
-	let inversionCache = {}
-	let fx = x => {
-		inversionCache = {
-			_meta: oldCache._meta
-		}
-		let v = evaluateNode(
-			inversionCache, // with an empty cache
-			n =>
-				dottedName === n
-					? x
-					: n === 'sys.filter'
-					? undefined
-					: situationGate(n),
-			parsedRules,
-			fixedObjectiveRule
-		)
-		return v
 	}
+	inversedWith = evaluateNode(
+		oldCache,
+		situationGate,
+		parsedRules,
+		inversedWith
+	)
+
+	const evaluateWithValue = n =>
+		evaluateNode(
+			{
+				_meta: oldCache._meta
+			},
+			dottedName =>
+				dottedName === node.explanation.ruleToInverse
+					? n
+					: dottedName === inversedWith.dottedName
+					? undefined
+					: situationGate(dottedName),
+			parsedRules,
+			inversedWith
+		)
 
 	// si fx renvoie null pour une valeur numérique standard, disons 2000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-	let attempt = fx(2000)
-	if (attempt.nodeValue === null) {
-		return attempt
+	const randomAttempt = evaluateWithValue(2000)
+	const nodeValue =
+		randomAttempt.nodeValue === null
+			? null
+			: // cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
+			  uniroot(
+					x => {
+						const candidateNode = evaluateWithValue(x)
+						return (
+							candidateNode.nodeValue -
+							convertNodeToUnit(candidateNode.unit, inversedWith).nodeValue
+						)
+					},
+					node.explanation.negativeValuesAllowed ? -1000000 : 0,
+					100000000,
+					0.1, // tolerance
+					10 // number of iteration max
+			  )
+
+	if (nodeValue === undefined) {
+		oldCache._meta.inversionFail = true
 	}
 
-	let tolerance = 0.1,
-		// cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
-		nodeValue = uniroot(
-			x => {
-				let y = fx(x)
-				return (
-					y.nodeValue -
-					(fixedObjectiveValue?.nodeValue == null
-						? fixedObjectiveValue
-						: convertNodeToUnit(y.unit, fixedObjectiveValue).nodeValue)
-				)
-			},
-			v['valeurs négatives possibles'] === 'oui' ? -1000000 : 0,
-			100000000,
-			tolerance,
-			10
-		)
 	return {
-		nodeValue,
-		missingVariables: {},
-		inversionCache,
-		inversedWith: {
-			rule: fixedObjectiveRule,
-			value: fixedObjectiveValue
-		}
+		...node,
+		nodeValue: nodeValue ?? null,
+		explanation: {
+			...node.explanation,
+			inversionFail: nodeValue === undefined,
+			inversedWith
+		},
+		missingVariables: randomAttempt.missingVariables
 	}
 }
 
 export let mecanismInversion = dottedName => (recurse, k, v) => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		const situationValue = situationGate(dottedName)
-		if (situationValue != null) {
-			return {
-				...node,
-				nodeValue: situationValue.nodeValue ?? situationValue,
-				unit: situationValue.unit ?? node.unit
-			}
-		}
-		const inversion = doInversion(
-			cache,
-			situationGate,
-			parsedRules,
-			v,
-			dottedName
+	if (!v.avec) {
+		throw new Error(
+			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
 		)
-		const nodeValue = inversion.nodeValue
-		if (nodeValue === undefined) {
-			cache._meta.inversionFail = {
-				given: inversion.inversedWith.rule.dottedName,
-				estimated: dottedName
-			}
-		}
-		return {
-			...node,
-			nodeValue: nodeValue ?? null,
-			explanation: {
-				...node.explanation,
-				inversedWith: inversion?.inversedWith
-			},
-			missingVariables: inversion.missingVariables
-		}
 	}
-
 	return {
-		...v,
-		evaluate,
+		evaluate: evaluateInversion,
 		unit: v.unité && parseUnit(v.unité),
-		explanation: evolve({ avec: map(recurse) }, v),
+		explanation: {
+			ruleToInverse: dottedName,
+			inversionCandidates: v.avec.map(recurse),
+			negativeValuesAllowed: v['valeurs négatives possibles'] === 'oui'
+		},
 		jsx: InversionNumérique,
 		category: 'mecanism',
 		name: 'inversion numérique',

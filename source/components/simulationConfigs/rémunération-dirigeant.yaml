@@ -2,12 +2,18 @@ titre: |
   Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise après paiement des cotisations et de l'impôt sur le revenu.
 
 objectifs:
-  - revenu net après impôt
-  - revenus net de cotisations
-  - protection sociale . retraite
-  - protection sociale . retraite . trimestres validés par an
-  - protection sociale . santé . indemnités journalières
-  - protection sociale . accidents du travail et maladies professionnelles
+  - contrat salarié . rémunération . net
+  - dirigeant . indépendant . revenu net de cotisations
+  - dirigeant . auto-entrepreneur . net de cotisations
+  - comparaison régime . assimilé . retraite
+  - comparaison régime . indépendant . retraite
+  - comparaison régime . auto-entrepreneur . retraite
+  - comparaison régime . assimilé . indemnités journalières
+  - comparaison régime . indépendant . indemnités journalières
+  - comparaison régime . auto-entrepreneur . indemnités journalières
+  - comparaison régime . assimilé . trimestres validés
+  - comparaison régime . indépendant . trimestres validés
+  - comparaison régime . auto-entrepreneur . trimestres validés
 
 questions:
   uniquement:
@@ -19,14 +25,9 @@ questions:
     - entreprise . catégorie d'activité . libérale règlementée
 
 unité par défaut: €/an
-branches:
-  - nom: Assimilé salarié
-    situation:
-      dirigeant: "'assimilé salarié'"
-      contrat salarié . ATMP . taux réduit: oui
-  - nom: Indépendant
-    situation:
-      dirigeant: "'indépendant'"
-  - nom: Auto-entrepreneur
-    situation:
-      dirigeant: "'auto-entrepreneur'"
+situation:
+  comparaison régime: oui
+  dirigeant . assimilé salarié: oui
+  dirigeant . indépendant: oui
+  dirigeant . auto-entrepreneur: oui
+  contrat salarié . ATMP . taux réduit: oui

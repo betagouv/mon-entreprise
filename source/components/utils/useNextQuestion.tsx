@@ -77,6 +77,7 @@ export function getNextQuestions(
 		uniquement: only = null,
 		'liste noire': blacklist = []
 	} = questionConfig
+	// console.log(missingVariables)
 	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
 
 	if (only) {

@@ -60,14 +60,14 @@ protection sociale . retraite . base . taux de la pension:
   description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
   formule:
     variations:
-      - si: trimestres validés par an = 0
+      - si: trimestres validés = 0
         alors: 0%
       - sinon: 50%
   note: On ne prends pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
 
-protection sociale . retraite . trimestres validés par an:
+protection sociale . retraite . trimestres validés:
   unité: trimestres validés/an
   formule:
     somme:
@@ -76,14 +76,14 @@ protection sociale . retraite . trimestres validés par an:
       - trimestres auto-entrepreneur
     plafond: 4
 
-protection sociale . retraite . trimestres validés par an . trimestres salarié:
+protection sociale . retraite . trimestres validés . trimestres salarié:
   unité: trimestres validés/an
   applicable si: contrat salarié
   formule: barème trimestres générique
 
-protection sociale . retraite . trimestres validés par an . trimestres indépendant:
+protection sociale . retraite . trimestres validés . trimestres indépendant:
   unité: trimestres validés/an
-  applicable si: dirigeant = 'indépendant'
+  applicable si: dirigeant . indépendant
   formule:
     variations:
       - si: situation personnelle . RSA
@@ -92,7 +92,7 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
           valeur: barème trimestres générique
           plancher: 3
 
-protection sociale . retraite . trimestres validés par an . barème trimestres générique:
+protection sociale . retraite . trimestres validés . barème trimestres générique:
   unité: trimestres validés/an
   formule:
     grille:
@@ -112,8 +112,8 @@ protection sociale . retraite . trimestres validés par an . barème trimestres 
   références:
     cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
 
-protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
-  applicable si: dirigeant = 'auto-entrepreneur'
+protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
+  applicable si: dirigeant . auto-entrepreneur
   description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
   unité: trimestres validés/an
   formule:
@@ -276,7 +276,7 @@ protection sociale . santé . indemnités journalières:
       - indemnités journalières . salarié
 
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
-  applicable si: dirigeant = 'auto-entrepreneur'
+  applicable si: dirigeant . auto-entrepreneur
   unité: €/jour
 
   formule:
@@ -292,7 +292,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
 protection sociale . santé . indemnités journalières . indépendant:
-  applicable si: dirigeant = 'indépendant'
+  applicable si: dirigeant . indépendant
   unité: €/jour
 
   formule:
@@ -422,3 +422,90 @@ protection sociale . transport:
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+comparaison régime:
+  par défaut: non
+comparaison régime . assimilé:
+comparaison régime . indépendant:
+comparaison régime . auto-entrepreneur:
+
+comparaison régime . assimilé . indemnités journalières:
+  formule:
+    recalcul:
+      règle: protection sociale . santé . indemnités journalières
+      avec:
+        dirigeant . assimilé salarié: oui
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . indépendant . indemnités journalières:
+  formule:
+    recalcul:
+      règle: protection sociale . santé . indemnités journalières
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: oui
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . auto-entrepreneur . indemnités journalières:
+  formule:
+    recalcul:
+      règle: protection sociale . santé . indemnités journalières
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: oui
+
+comparaison régime . assimilé . retraite:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite
+      avec:
+        dirigeant . assimilé salarié: oui
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . indépendant . retraite:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: oui
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . auto-entrepreneur . retraite:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: oui
+
+comparaison régime . assimilé . trimestres validés:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite . trimestres validés
+      avec:
+        dirigeant . assimilé salarié: oui
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . indépendant . trimestres validés:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite . trimestres validés
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: oui
+        dirigeant . auto-entrepreneur: non
+
+comparaison régime . auto-entrepreneur . trimestres validés:
+  formule:
+    recalcul:
+      règle: protection sociale . retraite . trimestres validés
+      avec:
+        dirigeant . assimilé salarié: non
+        dirigeant . indépendant: non
+        dirigeant . auto-entrepreneur: oui

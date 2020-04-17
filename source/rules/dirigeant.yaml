@@ -779,11 +779,11 @@ dirigeant . rattachement CIPAV:
           - contrat salarié = non
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - dirigeant = 'indépendant'
+          - dirigeant . indépendant
           - entreprise . date de création < 01/2019
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
-          - dirigeant = 'auto-entrepreneur'
+          - dirigeant . auto-entrepreneur
           - entreprise . date de création < 01/2018
           - entreprise . catégorie d'activité = 'libérale'
 

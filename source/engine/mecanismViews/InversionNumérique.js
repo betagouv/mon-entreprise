@@ -1,5 +1,4 @@
 import { makeJsx } from 'Engine/evaluation'
-import { Leaf } from 'Engine/mecanismViews/common'
 import React from 'react'
 import { Node } from './common'
 import './InversionNumérique.css'
@@ -11,19 +10,21 @@ let Comp = function InversionNumérique({ nodeValue, explanation }) {
 			name="inversion numérique"
 			value={nodeValue}
 		>
-			{nodeValue === null || explanation.inversedWith?.value == null ? (
+			{explanation.inversionFailed ? (
 				<>
+					{' '}
 					<p>
-						Cette formule de calcul n'existe pas ! Mais on peut faire une
-						estimation à partir de&nbsp;:
+						Cette valeur devrait pouvoir être estimée à partir d'une autre
+						variable qui possède une formule de calcul et dont la valeur a été
+						fixée dans la simulation :
 					</p>
-					<ul id="inversionsPossibles">
-						{explanation.avec.map(el => (
-							<li key={el.name}>{makeJsx(el)}</li>
-						))}
-					</ul>
+					{makeJsx(explanation.inversedWith)}
+					<p>
+						Malheureusement, il a été impossible de retrouver une valeur pour
+						cette formule qui permette d'atterir sur la valeur demandée.
+					</p>
 				</>
-			) : (
+			) : explanation.inversedWith ? (
 				<>
 					{' '}
 					<p>
@@ -31,7 +32,19 @@ let Comp = function InversionNumérique({ nodeValue, explanation }) {
 						une formule de calcul et dont la valeur a été fixée dans la
 						simulation :
 					</p>
-					<Leaf className="variable" rule={explanation.inversedWith.rule} />
+					{makeJsx(explanation.inversedWith)}
+				</>
+			) : (
+				<>
+					<p>
+						Cette formule de calcul n'existe pas, mais on peut la calculer par
+						inversion en utilisant les formules des règles suivantes :
+					</p>
+					<ul id="inversionsPossibles">
+						{explanation.inversionCandidates.map(el => (
+							<li key={el.dottedName}>{makeJsx(el)}</li>
+						))}
+					</ul>
 				</>
 			)}
 		</Node>

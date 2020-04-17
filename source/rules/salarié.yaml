@@ -1710,7 +1710,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - dirigeant = 'assimilé salarié'
+      - dirigeant . assimilé salarié
       - entreprise . ACRE
   formule:
     produit:

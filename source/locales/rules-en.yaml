@@ -5881,13 +5881,13 @@ protection sociale . retraite . complémentaire sécurité des indépendants . v
 protection sociale . retraite . mois cotisés:
   titre.en: contributed months
   titre.fr: mois cotisés
-protection sociale . retraite . trimestres validés par an:
+protection sociale . retraite . trimestres validés:
   titre.en: quarters validated per year
   titre.fr: trimestres validés par an
-protection sociale . retraite . trimestres validés par an . barème trimestres générique:
+protection sociale . retraite . trimestres validés . barème trimestres générique:
   titre.en: generic quarters scale
   titre.fr: barème trimestres générique
-protection sociale . retraite . trimestres validés par an . trimestres auto-entrepreneur:
+protection sociale . retraite . trimestres validés . trimestres auto-entrepreneur:
   description.en: >-
     Minimum turnover thresholds for the validation of quarters for retirement as
     a self-employed entrepreneur. Below the minimum amount, you will only have
@@ -5898,10 +5898,10 @@ protection sociale . retraite . trimestres validés par an . trimestres auto-ent
     n'aurez accès qu'à l'allocation de solidarité.
   titre.en: auto-entrepreneur quarters
   titre.fr: trimestres auto-entrepreneur
-protection sociale . retraite . trimestres validés par an . trimestres indépendant:
+protection sociale . retraite . trimestres validés . trimestres indépendant:
   titre.en: self-employed quarters
   titre.fr: trimestres indépendant
-protection sociale . retraite . trimestres validés par an . trimestres salarié:
+protection sociale . retraite . trimestres validés . trimestres salarié:
   titre.en: employee quarters
   titre.fr: trimestres salarié
 protection sociale . revenu moyen:
