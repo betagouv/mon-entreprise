@@ -41,7 +41,22 @@ type StatsData = {
 		date: string
 		visiteurs: number
 	}>
+	simulators: {
+		currentmonth: {
+			date: string
+			visites: Array<{ label: string; nb_visits: string }>
+		}
+		onemonthago: {
+			date: string
+			visites: Array<{ label: string; nb_visits: string }>
+		}
+		twomonthago: {
+			date: string
+			visites: Array<{ label: string; nb_visits: string }>
+		}
+	}
 }
+
 let ChartItemBar = ({ styles, color, visitors }) => (
 	<div className="distribution-chart__bar-container">
 		<animated.div
@@ -73,7 +88,6 @@ let BranchIcône = ({ icône }) => (
 type DistributionBranchProps = {
 	page: { label: string; nb_visits: number }
 	title: string
-	description?: string
 	icon?: string
 	total: number
 }
@@ -119,7 +133,6 @@ const Simulateurs = {
 export function DistributionBranch({
 	page,
 	title,
-	description,
 	icon,
 	total
 }: DistributionBranchProps) {
@@ -147,7 +160,6 @@ export function DistributionBranch({
 				<p className="distribution-chart__counterparts">
 					<span className="distribution-chart__branche-name">{title}</span>
 					<br />
-					<small>{description}</small>
 				</p>
 				<ChartItemBar
 					{...{
@@ -166,6 +178,7 @@ export default function Stats() {
 	const [choice, setChoice] = useState<LineChartVisitsProps['periodicity']>(
 		'monthly'
 	)
+	const [choicesimulators, setChoicesimulators] = useState('currentmonth')
 	const { color } = useContext(ThemeColorsContext)
 
 	return (
@@ -226,19 +239,51 @@ export default function Stats() {
 				</div>
 			</section>
 			<section>
-				<h2>Nombre d'utilisation des simulateurs</h2>
-				{stats.simulators.currentmonth.visites.map(x => (
-					<DistributionBranch
-						page={x}
-						title={Simulateurs[x.label].name}
-						description={Simulateurs[x.label].description}
-						icon={Simulateurs[x.label].icone}
-						total={stats.simulators.currentmonth.visites.reduce(
-							(a, b) => Math.max(a, b.nb_visits),
-							0
-						)}
-					/>
-				))}
+				<div
+					css={`
+						display: flex;
+						justify-content: space-between;
+
+						h2 {
+							margin: 0;
+						}
+					`}
+				>
+					<h2>Nombre d'utilisation des simulateurs</h2>
+					<select
+						onChange={event => {
+							setChoicesimulators(event.target.value)
+						}}
+						value={choicesimulators}
+					>
+						<option value="currentmonth">
+							{stats.simulators.currentmonth.date}
+						</option>
+						<option value="onemonthago">
+							{stats.simulators.onemonthago.date}
+						</option>
+						<option value="twomonthago">
+							{stats.simulators.twomonthago.date}
+						</option>
+					</select>
+				</div>
+				<div
+					css={`
+						margin-top: 3em;
+					`}
+				>
+					{stats.simulators[choicesimulators].visites.map(x => (
+						<DistributionBranch
+							page={x}
+							title={Simulateurs[x.label].name}
+							icon={Simulateurs[x.label].icone}
+							total={stats.simulators[choicesimulators].visites.reduce(
+								(a, b) => Math.max(a, b.nb_visits),
+								0
+							)}
+						/>
+					))}
+				</div>
 			</section>
 			<section>
 				<h2>Avis des visiteurs</h2>
@@ -264,27 +309,19 @@ export default function Stats() {
 					en bas de toutes les pages.
 				</p>
 			</section>
-
 			<section>
-				<h2>Statut choisi le dernier mois</h2>
-				<ResponsiveContainer width="100%" height={300}>
-					<BarChart
-						data={stats.status_chosen}
-						layout="vertical"
-						margin={{
-							top: 20,
-							right: 30,
-							left: 150,
-							bottom: 5
-						}}
-					>
-						<CartesianGrid strokeDasharray="3 3" />
-						<YAxis type="category" dataKey="label" />
-						<XAxis type="number" dataKey="nb_visits" />
-						<Tooltip />
-						<Bar dataKey="nb_visits" fill={color}></Bar>
-					</BarChart>
-				</ResponsiveContainer>
+				<h2>Statut choisi le mois dernier</h2>
+				{stats.status_chosen.map(x => (
+					<DistributionBranch
+						page={x}
+						title={x.label}
+						icon=""
+						total={stats.status_chosen.reduce(
+							(a, b) => Math.max(a, b.nb_visits),
+							0
+						)}
+					/>
+				))}
 				<div id="status-indicators"></div>
 			</section>
 			<MoreInfosOnUs />
@@ -321,7 +358,7 @@ type LineChartVisitsProps = {
 	periodicity: 'daily' | 'monthly'
 }
 
-function LineChartVisits({ periodicity }) {
+function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 	const { color } = useContext(ThemeColorsContext)
 	const data =
 		periodicity === 'daily' ? stats.daily_visits : stats.monthly_visits

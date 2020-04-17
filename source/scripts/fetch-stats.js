@@ -49,22 +49,25 @@ function FirstDayXMonthAgo(dt, X = 0) {
 		year -= 1
 	}
 	const pad = n => (+n < 10 ? `0${n}` : '' + n)
-	return `${year}-${pad(month)}-01`
+	return {
+		date: `${year}-${pad(month)}-01`,
+		datenormalize: `${pad(month)}/${year}`
+	}
 }
 async function fetchSimulatorsMonth() {
 	const today = new Date().toJSON().slice(0, 10)
 	const months = {
 		currentmonth: {
-			date: FirstDayXMonthAgo(today, 0),
+			date: FirstDayXMonthAgo(today, 0).datenormalize,
 			visites: await fetchSimulators(today)
 		},
 		onemonthago: {
-			date: FirstDayXMonthAgo(today, 1),
-			visites: await fetchSimulators(FirstDayXMonthAgo(today, 1))
+			date: FirstDayXMonthAgo(today, 1).datenormalize,
+			visites: await fetchSimulators(FirstDayXMonthAgo(today, 1).date)
 		},
 		twomonthago: {
-			date: FirstDayXMonthAgo(today, 2),
-			visites: await fetchSimulators(FirstDayXMonthAgo(today, 2))
+			date: FirstDayXMonthAgo(today, 2).datenormalize,
+			visites: await fetchSimulators(FirstDayXMonthAgo(today, 2).date)
 		}
 	}
 	return months
@@ -92,7 +95,7 @@ async function fetchSimulators(dt) {
 				idSubtable: idTable
 			})
 		)
-		const data2 = await response2.json()
+		let data2 = await response2.json()
 		const result = R.map(
 			x => {
 				const { label, nb_visits } = x
@@ -101,17 +104,28 @@ async function fetchSimulators(dt) {
 					nb_visits
 				}
 			},
-			data2.filter(x =>
-				[
-					'/salarié',
-					'/auto-entrepreneur',
-					'/artiste-auteur',
-					'/indépendant',
-					'/comparaison-régimes-sociaux',
-					'/assimilé-salarié'
-				].includes(x.label)
-			)
+			data2
+				.filter(x =>
+					[
+						'/salarié',
+						'/auto-entrepreneur',
+						'/artiste-auteur',
+						'/indépendant',
+						'/comparaison-régimes-sociaux',
+						'/assimilé-salarié'
+					].includes(x.label)
+				)
+				.filter(
+					x =>
+						x.label != '/salarié' ||
+						x.nb_visits !=
+							data2
+								.filter(x => x.label == '/salarié')
+								.reduce((a, b) => Math.min(a, b.nb_visits), 1000)
+				)
+			/// 2 '/salarié' pages have been uploaded by the API, one of which has very few visitors.  We delete it manually.
 		)
+
 		return result
 	} catch (e) {
 		console.log('fail to fetch Simulators Visits')
