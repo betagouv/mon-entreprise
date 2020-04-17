@@ -80,7 +80,8 @@ expertes provenant du réseau des URSSAF.
   Les coûts de développement répresentent la grande majorité de notre budget.
   Nous utilisons une petite équipe de développeurs freelances, qui sont
   pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
-  métiers.
+  métiers. Les rémunérations suivent
+  [la grille des startups d’Etat](https://pad.incubateur.net/s/ls5nopfNH).
 
 - **Logiciels et hébergement 💻**
 
