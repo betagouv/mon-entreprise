@@ -20,7 +20,7 @@ class App extends Component {
 		return (
 			<Provider
 				basename="publicodes"
-				rulesURL="https://micmac--futureco-data.app/co2.json"
+				rulesURL="https://micmac--futureco-data.netlify.app/co2.json"
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}
 			>
