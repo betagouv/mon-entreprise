@@ -33,15 +33,11 @@ réduction générale . urssaf . coefficient:
 
 réduction générale . urssaf . réduction sans régularisation:
   formule:
-    encadrement:
-      plancher: 0
-      valeur:
-        arrondi:
-          valeur:
-            multiplication:
-              assiette: rémunération
-              taux: coefficient
-          décimales: 2
+    produit:
+      assiette: rémunération
+      taux: coefficient
+    arrondi: 2 décimales
+    plancher: 0
 
 réduction générale . urssaf:
   formule:
@@ -62,15 +58,11 @@ réduction générale . chômage . coefficient:
 
 réduction générale . chômage . réduction sans régularisation:
   formule:
-    encadrement:
-      plancher: 0
-      valeur:
-        arrondi:
-          valeur:
-            multiplication:
-              assiette: rémunération
-              taux: coefficient
-          décimales: 2
+    produit:
+      assiette: rémunération
+      taux: coefficient
+    arrondi: 2 décimales
+    plancher: 0
 
 réduction générale . début:
   non applicable si: réduction sur AC au 1er janvier
@@ -97,24 +89,18 @@ réduction lodeom:
         - SMIC
         - rémunération
       règle:
-        encadrement:
-          plancher: 0
-          valeur:
-            arrondi:
-              décimales: 2
-              valeur:
-                produit:
-                  assiette: rémunération
-                  facteur [ref coefficient]:
-                    arrondi:
-                      décimales: 4
-                      valeur:
-                        grille:
-                          assiette: rémunération
-                          multiplicateur: SMIC
-                          tranches:
-                            - montant: constante
-                              plafond: 1.7
-                            - montant: constante * 1.7 * SMIC / rémunération
-                              plafond: 2.5
-                            - montant: 1.7 * constante * (3.5 * SMIC / rémunération - 1)
+        produit:
+          assiette: rémunération
+          facteur [ref coefficient]:
+            grille:
+              assiette: rémunération
+              multiplicateur: SMIC
+              tranches:
+                - montant: constante
+                  plafond: 1.7
+                - montant: constante * 1.7 * SMIC / rémunération
+                  plafond: 2.5
+                - montant: 1.7 * constante * (3.5 * SMIC / rémunération - 1)
+            arrondi: 4 décimales
+        arrondi: 2 décimales
+        plancher: 0

@@ -38,3 +38,25 @@ Arrondi avec precision:
         cotisation retraite: 1200.21
         nombre de décimales: 2
       valeur attendue: 1200.21
+
+arrondi nouvelle ecriture 1:
+  formule:
+    valeur: 30.4167 jours
+    arrondi: oui
+  exemples:
+    - valeur attendue: 30
+      unité attendue: jours
+
+arrondi nouvelle ecriture 2:
+  formule:
+    valeur: 30.4167 jours
+    arrondi: non
+  exemples:
+    - valeur attendue: 30.4167
+
+arrondi nouvelle ecriture 3:
+  formule:
+    valeur: 30.4167
+    arrondi: 2 décimales
+  exemples:
+    - valeur attendue: 30.42

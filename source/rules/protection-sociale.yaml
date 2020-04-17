@@ -70,13 +70,11 @@ protection sociale . retraite . base . taux de la pension:
 protection sociale . retraite . trimestres validés par an:
   unité: trimestres validés/an
   formule:
-    encadrement:
-      valeur:
-        somme:
-          - trimestres salarié
-          - trimestres indépendant
-          - trimestres auto-entrepreneur
-      plafond: 4
+    somme:
+      - trimestres salarié
+      - trimestres indépendant
+      - trimestres auto-entrepreneur
+    plafond: 4
 
 protection sociale . retraite . trimestres validés par an . trimestres salarié:
   unité: trimestres validés/an
@@ -91,9 +89,8 @@ protection sociale . retraite . trimestres validés par an . trimestres indépen
       - si: situation personnelle . RSA
         alors: barème trimestres générique
       - sinon:
-          encadrement:
-            plancher: 3
-            valeur: barème trimestres générique
+          valeur: barème trimestres générique
+          plancher: 3
 
 protection sociale . retraite . trimestres validés par an . barème trimestres générique:
   unité: trimestres validés/an
@@ -287,12 +284,10 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
       - si: revenu moyen < 3919.20 €/an
         alors: 0 €/jour
       - sinon:
-          encadrement:
-            valeur:
-              produit:
-                assiette: revenu moyen [€/jour]
-                taux: 50%
-            plafond: 55.51 €/jour
+          produit:
+            assiette: revenu moyen [€/jour]
+            taux: 50%
+          plafond: 55.51 €/jour
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -301,13 +296,11 @@ protection sociale . santé . indemnités journalières . indépendant:
   unité: €/jour
 
   formule:
-    encadrement:
-      valeur:
-        produit:
-          assiette: revenu moyen [€/jour]
-          taux: 50%
-      plancher: 21 €/jour
-      plafond: 55.51 €/jour
+    produit:
+      assiette: revenu moyen [€/jour]
+      taux: 50%
+    plancher: 21 €/jour
+    plafond: 55.51 €/jour
   reférences:
     - secu-independants.fr: https://www.secu-independants.fr/sante/indemnites-journalieres/montant-de-lindemnite
 
@@ -389,13 +382,11 @@ protection sociale . accidents du travail et maladies professionnelles:
 
   applicable si: contrat salarié
   formule:
-    encadrement:
-      valeur:
-        produit:
-          assiette: revenu moyen [€/jour]
-          taux: 60%
-      plafond: 202.78 €/jour
-
+    produit:
+      assiette: revenu moyen [€/jour]
+      taux: 60%
+    plafond:
+      202.78 €/jour
       # TODO
       # - 0.834% * plafond sécurité sociale temps plein [€/an]
 

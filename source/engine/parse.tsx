@@ -3,7 +3,7 @@
 // TODO import them automatically
 // TODO convert the legacy functions to new files
 import Value from 'Components/Value'
-import mecanismRound from 'Engine/mecanisms/arrondi'
+import mecanismRound, { unchainRoundMecanism } from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
 import durée from 'Engine/mecanisms/durée'
 import encadrement from 'Engine/mecanisms/encadrement'
@@ -16,6 +16,7 @@ import variations from 'Engine/mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
 	add,
+	difference,
 	divide,
 	equals,
 	fromPairs,
@@ -86,7 +87,6 @@ export const parseExpression = (rule, rawNode) => {
 		)
 	}
 }
-
 const parseMecanism = (rules, rule, parsedRules) => rawNode => {
 	if (Array.isArray(rawNode)) {
 		syntaxError(
@@ -99,16 +99,22 @@ Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'tout
 		`
 		)
 	}
-	if (Object.keys(rawNode).length > 1) {
-		syntaxError(
-			rule.dottedName,
-			`
-Les mécanismes suivants se situent au même niveau : ${Object.keys(rawNode)
-				.map(x => `'${x}'`)
-				.join(', ')}
+	const keys = Object.keys(rawNode)
+	const unchainableMecanisms = difference(keys, chainableMecanisms)
+	if (keys.length > 1) {
+		if (unchainableMecanisms.length > 1) {
+			syntaxError(
+				rule.dottedName,
+				`
+Les mécanismes suivants se situent au même niveau : ${unchainableMecanisms
+					.map(x => `'${x}'`)
+					.join(', ')}
 Cela vient probablement d'une erreur dans l'indentation
 		`
-		)
+			)
+		}
+
+		return parseChainedMecanisms(rules, rule, parsedRules, rawNode)
 	}
 	const mecanismName = Object.keys(rawNode)[0]
 	const values = rawNode[mecanismName]
@@ -159,6 +165,34 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 	}
 }
 
+const chainableMecanisms = ['arrondi', 'plancher', 'plafond']
+
+function parseChainedMecanisms(rules, rule, parsedRules, rawNode) {
+	const keys = Object.keys(rawNode)
+	const recurse = parseMecanism(rules, rule, parsedRules)
+	if (keys.includes('arrondi')) {
+		return recurse(
+			unchainRoundMecanism(parse(rules, rule, parsedRules), rawNode)
+		)
+	} else if (keys.includes('plancher')) {
+		const { plancher, ...valeur } = rawNode
+		return recurse({
+			encadrement: {
+				valeur,
+				plancher
+			}
+		})
+	} else if (keys.includes('plafond')) {
+		const { plafond, ...valeur } = rawNode
+		return recurse({
+			encadrement: {
+				valeur,
+				plafond
+			}
+		})
+	}
+}
+
 const knownOperations = {
 	'*': [multiply, '×'],
 	'/': [divide, '∕'],
@@ -199,6 +233,7 @@ const statelessParseFunction = {
 	allègement: mecanismReduction,
 	variations,
 	synchronisation: mecanismSynchronisation,
+	valeur: (recurse, __, v) => recurse(v),
 	constant: (_, __, v) => ({
 		type: v.type,
 		nodeValue: v.nodeValue,
