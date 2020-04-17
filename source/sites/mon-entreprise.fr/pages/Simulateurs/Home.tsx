@@ -5,6 +5,49 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+export const simulateursDetails = {
+	'/salarié': {
+		name: 'Salarié',
+		description:
+			"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé",
+		icone: '🤝'
+	},
+	'/auto-entrepreneur': {
+		name: 'Auto-entrepreneur',
+		description:
+			"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur",
+		icone: '🚶‍♂️'
+	},
+	'/artiste-auteur': {
+		name: 'Artiste-auteur',
+		description: "Estimer les cotisations sociales d'un artiste ou auteur",
+		icone: '👩‍🎨'
+	},
+	'/indépendant': {
+		name: 'Indépendant',
+		description:
+			"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire",
+		icone: '👩‍🔧'
+	},
+	'/assimilé-salarié': {
+		name: 'Assimilé salarié',
+		description:
+			"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire",
+		icone: '☂️'
+	},
+	'/comparaison-régimes-sociaux': {
+		name: 'Comparaison statuts',
+		description:
+			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
+		icone: '📊'
+	},
+	'/coronavirus': {
+		name: 'Coronavirus',
+		description: '',
+		icone: '👨‍🔬'
+	}
+}
+
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
 	const { t, i18n } = useTranslation()

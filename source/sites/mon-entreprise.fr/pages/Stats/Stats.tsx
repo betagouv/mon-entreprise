@@ -3,8 +3,6 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import {
-	Bar,
-	BarChart,
 	CartesianGrid,
 	Line,
 	LineChart,
@@ -13,14 +11,16 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
-import { formatPercentage } from '../../../../../source/engine/format'
+import {
+	formatPercentage,
+	formatValue
+} from '../../../../../source/engine/format'
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import Privacy from '../../layout/Footer/Privacy'
 import statsJson from '../../../../data/stats.json'
-import Value from 'Components/Value'
-import { animated, config, useSpring } from 'react-spring'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-const ANIMATION_SPRING = config.gentle
+import { capitalise0 } from '../../../../utils'
+import DistributionBranch from 'Components/BarChart'
+import { simulateursDetails } from '../Simulateurs/Home'
 
 const stats: StatsData = statsJson as any
 
@@ -42,54 +42,19 @@ type StatsData = {
 		visiteurs: number
 	}>
 	simulators: {
-		currentmonth: {
+		currentMonth: {
 			date: string
 			visites: Array<{ label: string; nb_visits: string }>
 		}
-		onemonthago: {
+		oneMonthAgo: {
 			date: string
 			visites: Array<{ label: string; nb_visits: string }>
 		}
-		twomonthago: {
+		twoMonthAgo: {
 			date: string
 			visites: Array<{ label: string; nb_visits: string }>
 		}
 	}
-}
-
-let ChartItemBar = ({ styles, color, visitors }) => (
-	<div className="distribution-chart__bar-container">
-		<animated.div
-			className="distribution-chart__bar"
-			style={{
-				backgroundColor: color,
-				flex: styles.flex
-			}}
-		/>
-		<div
-			css={`
-				font-weight: bold;
-				margin-left: 1rem;
-				color: var(--textColorOnWhite);
-			`}
-		>
-			<Value maximumFractionDigits={0} unit="visiteurs">
-				{visitors}
-			</Value>
-		</div>
-	</div>
-)
-let BranchIcône = ({ icône }) => (
-	<div className="distribution-chart__legend">
-		<span className="distribution-chart__icon">{emoji(icône)}</span>
-	</div>
-)
-
-type DistributionBranchProps = {
-	page: { label: string; nb_visits: number }
-	title: string
-	icon?: string
-	total: number
 }
 
 const Simulateurs = {
@@ -123,62 +88,23 @@ const Simulateurs = {
 		icone: '☂️'
 	},
 	'/comparaison-régimes-sociaux': {
-		name: 'Comparaison status',
+		name: 'Comparaison statuts',
 		description:
 			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
 		icone: '📊'
+	},
+	'/coronavirus': {
+		name: 'Coronavirus',
+		description: '',
+		icone: '👨‍🔬'
 	}
-}
-
-export function DistributionBranch({
-	page,
-	title,
-	icon,
-	total
-}: DistributionBranchProps) {
-	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
-		threshold: 0.5
-	})
-	const { color } = useContext(ThemeColorsContext)
-	const visitors = brancheInViewport ? page.nb_visits : 0
-	const styles = useSpring({
-		config: ANIMATION_SPRING,
-		to: {
-			flex: visitors / total,
-			opacity: visitors ? 1 : 0
-		}
-	}) as { flex: number; opacity: number }
-
-	return (
-		<animated.div
-			ref={intersectionRef}
-			className="distribution-chart__item"
-			style={{ opacity: styles.opacity }}
-		>
-			<BranchIcône icône={icon} />
-			<div className="distribution-chart__item-content">
-				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">{title}</span>
-					<br />
-				</p>
-				<ChartItemBar
-					{...{
-						styles,
-						color,
-						visitors,
-						total
-					}}
-				/>
-			</div>
-		</animated.div>
-	)
 }
 
 export default function Stats() {
 	const [choice, setChoice] = useState<LineChartVisitsProps['periodicity']>(
 		'monthly'
 	)
-	const [choicesimulators, setChoicesimulators] = useState('currentmonth')
+	const [choicesimulators, setChoicesimulators] = useState('oneMonthAgo')
 	const { color } = useContext(ThemeColorsContext)
 
 	return (
@@ -188,8 +114,9 @@ export default function Stats() {
 				Statistiques <>{emoji('📊')}</>
 			</h1>
 			<p>
-				Découvrez nos statistiques d'utilisation mises à jour en temps réel. Les
-				données recueillies sont anonymisées. <Privacy label="En savoir plus" />
+				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
+				Les données recueillies sont anonymisées.{' '}
+				<Privacy label="En savoir plus" />
 			</p>
 			<section>
 				<div
@@ -212,7 +139,7 @@ export default function Stats() {
 						value={choice}
 					>
 						<option value="monthly">les derniers mois</option>
-						<option value="daily"> les derniers jours</option>
+						<option value="daily">les derniers jours</option>
 					</select>
 				</div>
 				<div
@@ -256,14 +183,14 @@ export default function Stats() {
 						}}
 						value={choicesimulators}
 					>
-						<option value="currentmonth">
-							{stats.simulators.currentmonth.date}
+						<option value="currentMonth">
+							{stats.simulators.currentMonth.date}
 						</option>
-						<option value="onemonthago">
-							{stats.simulators.onemonthago.date}
+						<option value="oneMonthAgo">
+							{stats.simulators.oneMonthAgo.date}
 						</option>
-						<option value="twomonthago">
-							{stats.simulators.twomonthago.date}
+						<option value="twoMonthAgo">
+							{stats.simulators.twoMonthAgo.date}
 						</option>
 					</select>
 				</div>
@@ -274,13 +201,15 @@ export default function Stats() {
 				>
 					{stats.simulators[choicesimulators].visites.map(x => (
 						<DistributionBranch
-							page={x}
-							title={Simulateurs[x.label].name}
+							key={x.label}
+							data={x.nb_visits}
+							title={simulateursDetails[x.label].name}
 							icon={Simulateurs[x.label].icone}
 							total={stats.simulators[choicesimulators].visites.reduce(
 								(a, b) => Math.max(a, b.nb_visits),
 								0
 							)}
+							unit="visiteurs"
 						/>
 					))}
 				</div>
@@ -313,13 +242,14 @@ export default function Stats() {
 				<h2>Statut choisi le mois dernier</h2>
 				{stats.status_chosen.map(x => (
 					<DistributionBranch
-						page={x}
-						title={x.label}
-						icon=""
+						key={x.label}
+						data={x.nb_visits}
+						title={capitalise0(x.label)}
 						total={stats.status_chosen.reduce(
 							(a, b) => Math.max(a, b.nb_visits),
 							0
 						)}
+						unit="visiteurs"
 					/>
 				))}
 				<div id="status-indicators"></div>
@@ -375,13 +305,19 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 			>
 				<CartesianGrid />
 				<XAxis dataKey="date" />
-				<YAxis />
+				<YAxis
+					dataKey="visiteurs"
+					tickFormatter={tickItem =>
+						formatValue({ value: tickItem, language: 'fr' })
+					}
+				/>
 				<Tooltip />
 				<Line
 					type="monotone"
 					dataKey="visiteurs"
 					stroke={color}
 					strokeWidth={3}
+					animationDuration={500}
 				/>
 			</LineChart>
 		</ResponsiveContainer>

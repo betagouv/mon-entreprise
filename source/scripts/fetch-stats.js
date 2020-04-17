@@ -40,7 +40,7 @@ async function main() {
 	}
 	writeInDataDir('stats.json', stats)
 }
-function FirstDayXMonthAgo(dt, X = 0) {
+function firstDayXMonthAgo(dt, X = 0) {
 	let [year, month] = dt.split('-')
 	if (month - X > 0) {
 		month -= X
@@ -51,23 +51,23 @@ function FirstDayXMonthAgo(dt, X = 0) {
 	const pad = n => (+n < 10 ? `0${n}` : '' + n)
 	return {
 		date: `${year}-${pad(month)}-01`,
-		datenormalize: `${pad(month)}/${year}`
+		datenormalize: `${months[month - 1]} ${year}`
 	}
 }
 async function fetchSimulatorsMonth() {
 	const today = new Date().toJSON().slice(0, 10)
 	const months = {
-		currentmonth: {
-			date: FirstDayXMonthAgo(today, 0).datenormalize,
+		currentMonth: {
+			date: firstDayXMonthAgo(today, 0).datenormalize,
 			visites: await fetchSimulators(today)
 		},
-		onemonthago: {
-			date: FirstDayXMonthAgo(today, 1).datenormalize,
-			visites: await fetchSimulators(FirstDayXMonthAgo(today, 1).date)
+		oneMonthAgo: {
+			date: firstDayXMonthAgo(today, 1).datenormalize,
+			visites: await fetchSimulators(firstDayXMonthAgo(today, 1).date)
 		},
-		twomonthago: {
-			date: FirstDayXMonthAgo(today, 2).datenormalize,
-			visites: await fetchSimulators(FirstDayXMonthAgo(today, 2).date)
+		twoMonthAgo: {
+			date: firstDayXMonthAgo(today, 2).datenormalize,
+			visites: await fetchSimulators(firstDayXMonthAgo(today, 2).date)
 		}
 	}
 	return months
@@ -84,19 +84,9 @@ async function fetchSimulators(dt) {
 			})
 		)
 		const data = await response.json()
-		const idTable = data.filter(page => page.label == 'simulateurs')[0]
-			.idsubdatatable
-		const response2 = await fetch(
-			apiURL({
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				search_recursive: 1,
-				filter_limits: -1,
-				idSubtable: idTable
-			})
-		)
-		let data2 = await response2.json()
-		const result = R.map(
+
+		// Coronavirus page
+		const coronavirus = R.map(
 			x => {
 				const { label, nb_visits } = x
 				return {
@@ -104,7 +94,34 @@ async function fetchSimulators(dt) {
 					nb_visits
 				}
 			},
-			data2
+			data.filter(page => page.label == '/coronavirus')
+		)
+
+		// Visits on simulators pages
+		const idTableSimulateurs = data.filter(
+			page => page.label == 'simulateurs'
+		)[0].idsubdatatable
+
+		const responseSimulateurs = await fetch(
+			apiURL({
+				date: `${dt}`,
+				method: 'Actions.getPageUrls',
+				search_recursive: 1,
+				filter_limits: -1,
+				idSubtable: idTableSimulateurs
+			})
+		)
+
+		const dataSimulateurs = await responseSimulateurs.json()
+		const resultSimulateurs = R.map(
+			x => {
+				const { label, nb_visits } = x
+				return {
+					label,
+					nb_visits
+				}
+			},
+			dataSimulateurs
 				.filter(x =>
 					[
 						'/salarié',
@@ -115,18 +132,67 @@ async function fetchSimulators(dt) {
 						'/assimilé-salarié'
 					].includes(x.label)
 				)
+
 				.filter(
 					x =>
 						x.label != '/salarié' ||
 						x.nb_visits !=
-							data2
+							dataSimulateurs
 								.filter(x => x.label == '/salarié')
 								.reduce((a, b) => Math.min(a, b.nb_visits), 1000)
-				)
-			/// 2 '/salarié' pages have been uploaded by the API, one of which has very few visitors.  We delete it manually.
+				) /// 2 '/salarié' pages have been uploaded by the API, one of which has very few visitors.  We delete it manually.
 		)
 
-		return result
+		// Add iframes
+		const idTableIframes = data.filter(page => page.label == 'iframes')[0]
+			.idsubdatatable
+		const responseIframes = await fetch(
+			apiURL({
+				date: `${dt}`,
+				method: 'Actions.getPageUrls',
+				search_recursive: 1,
+				filter_limits: -1,
+				idSubtable: idTableIframes
+			})
+		)
+		const dataIframes = await responseIframes.json()
+		const resultIframes = R.map(
+			x => {
+				const { label, nb_visits } = x
+				return {
+					label,
+					nb_visits
+				}
+			},
+			dataIframes.filter(x =>
+				[
+					'/simulateur-embauche?couleur=',
+					'/simulateur-autoentrepreneur?couleur='
+				].includes(x.label)
+			)
+		)
+		const groupSimulateursIframesVisits = ({ label }) =>
+			label == '/simulateur-embauche?couleur='
+				? '/salarié'
+				: label == '/simulateur-autoentrepreneur?couleur='
+				? '/auto-entrepreneur'
+				: label
+
+		const sumVisits = (acc, { nb_visits }) => acc + nb_visits
+		const result = R.reduceBy(sumVisits, 0, groupSimulateursIframesVisits, [
+			...resultSimulateurs,
+			...resultIframes,
+			...coronavirus
+		])
+		const diff = function(a, b) {
+			return b.nb_visits - a.nb_visits
+		}
+		return R.sort(
+			diff,
+			Object.keys(result).map(key => {
+				return { label: key, nb_visits: result[key] }
+			})
+		)
 	} catch (e) {
 		console.log('fail to fetch Simulators Visits')
 		return null
@@ -147,6 +213,22 @@ const visitsIn2019 = {
 	'2019-11': 174515,
 	'2019-12': 116305
 }
+
+const months = [
+	'Janvier',
+	'Février',
+	'Mars',
+	'Avril',
+	'Mai',
+	'Juin',
+	'Juillet',
+	'Aout',
+	'Septembre',
+	'Octobre',
+	'Novembre',
+	'Decembre'
+]
+
 async function fetchMonthlyVisits() {
 	try {
 		const response = await fetch(

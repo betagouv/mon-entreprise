@@ -9,5 +9,5 @@ exports.createDataDir = () => {
 }
 
 exports.writeInDataDir = (filename, data) => {
-	fs.writeFileSync(path.join(dataDir, filename), JSON.stringify(data))
+	fs.writeFileSync(path.join(dataDir, filename), JSON.stringify(data, null, 2))
 }

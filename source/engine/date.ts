@@ -5,6 +5,7 @@ export function normalizeDateString(dateString: string): string {
 	}
 	return normalizeDate(+year, +month, +day)
 }
+
 const pad = (n: number): string => (+n < 10 ? `0${n}` : '' + n)
 export function normalizeDate(
 	year: number,
