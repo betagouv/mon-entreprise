@@ -2649,9 +2649,9 @@ contrat salarié . CSG et CRDS . CSG:
       valeur attendue: 137.425
 
 contrat salarié . CSG et CRDS . CSG . taux déductible:
-  formule: 2.4%
-contrat salarié . CSG et CRDS . CSG . taux non déductible:
   formule: 6.8%
+contrat salarié . CSG et CRDS . CSG . taux non déductible:
+  formule: 2.4%
 
 contrat salarié . CSG et CRDS . CSG . base:
   titre: CSG
@@ -2660,10 +2660,10 @@ contrat salarié . CSG et CRDS . CSG . base:
       assiette: assiette de base
       composantes:
         - attributs:
-            impôt sur le revenu: non déductible
+            impôt sur le revenu: déductible
           taux: taux déductible
         - attributs:
-            impôt sur le revenu: déductible
+            impôt sur le revenu: non déductible
           taux: taux non déductible
 
 contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:
@@ -2720,7 +2720,7 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . mon
   formule:
     produit:
       assiette: CSG et CRDS . assiette revenu remplacements
-      taux: CSG . taux déductible
+      taux: 3.8%
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
@@ -2738,7 +2738,7 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible .
   formule:
     produit:
       assiette: CSG et CRDS . assiette revenu remplacements
-      taux: 3.8%
+      taux: CSG . taux non déductible
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre: CRDS revenus de remplacement

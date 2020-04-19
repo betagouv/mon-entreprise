@@ -242,23 +242,23 @@ exports[`calculate simulations-salarié:  JEI 3`] = `"[4517,0,0,4000,3141,2741]"
 
 exports[`calculate simulations-salarié:  activité partielle 1`] = `"[27,1218,0,1560,1197,1197]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 2`] = `"[27,2800,0,4000,2594,2354]"`;
+exports[`calculate simulations-salarié:  activité partielle 2`] = `"[27,2800,0,4000,2594,2365]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 3`] = `"[778,4849,0,8000,5209,4232]"`;
+exports[`calculate simulations-salarié:  activité partielle 3`] = `"[778,4849,0,8000,5209,4253]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 4`] = `"[852,2240,0,4000,2704,2435]"`;
+exports[`calculate simulations-salarié:  activité partielle 4`] = `"[852,2240,0,4000,2704,2444]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 5`] = `"[2483,1400,0,4000,2870,2556]"`;
+exports[`calculate simulations-salarié:  activité partielle 5`] = `"[2483,1400,0,4000,2870,2562]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 6`] = `"[27,2100,3750,3000,1940,1844]"`;
+exports[`calculate simulations-salarié:  activité partielle 6`] = `"[27,2100,3750,3000,1940,1848]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 7`] = `"[27,2800,0,4000,2594,2491]"`;
+exports[`calculate simulations-salarié:  activité partielle 7`] = `"[27,2800,0,4000,2594,2497]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 8`] = `"[227,1400,0,2000,1540,1515]"`;
+exports[`calculate simulations-salarié:  activité partielle 8`] = `"[227,1400,0,2000,1578,1547]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 9`] = `"[1156,700,0,2000,1551,1519]"`;
+exports[`calculate simulations-salarié:  activité partielle 9`] = `"[1156,700,0,2000,1540,1510]"`;
 
-exports[`calculate simulations-salarié:  activité partielle 10`] = `"[327,4200,0,6000,4182,3494]"`;
+exports[`calculate simulations-salarié:  activité partielle 10`] = `"[327,4200,0,6000,4182,3511]"`;
 
 exports[`calculate simulations-salarié:  aides 1`] = `"[2302,0,0,2000,1561,1524]"`;
 
