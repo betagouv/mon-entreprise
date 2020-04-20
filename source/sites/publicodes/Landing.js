@@ -32,7 +32,7 @@ export default () => {
 			</div>
 			<p>
 				Ce simulateur vous permet d'évaluer votre empreinte climat personnelle,
-				et de la situer par rapport aux objectifs climatiques. Il est basé sur
+				puis de la situer par rapport aux objectifs climatiques. Il est basé sur
 				le modèle{' '}
 				<a href="http://avenirclimatique.org/micmac/simulationCarbone.php">
 					MicMac{' '}
