@@ -26,7 +26,7 @@ class App extends Component {
 			>
 				<StoreProvider>
 					<div className="ui__ container">
-						<nav css="display: flex; justify-content: center; margin-top: 1rem">
+						<nav css="display: flex; justify-content: center; margin-top: .6rem">
 							<Link to="/">
 								<img
 									css={`
