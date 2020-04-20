@@ -7,7 +7,7 @@ import { makeJsx } from '../evaluation'
 import { InlineMecanism, Node } from './common'
 import './Composantes.css'
 
-let Comp = function Composantes({ nodeValue, explanation, unit }) {
+export default function Composantes({ nodeValue, explanation, unit }) {
 	const { i18n } = useTranslation()
 
 	return (
@@ -70,8 +70,3 @@ let Comp = function Composantes({ nodeValue, explanation, unit }) {
 		</Node>
 	)
 }
-
-// eslint-disable-next-line
-export default (nodeValue, explanation, unit) => (
-	<Comp {...{ nodeValue, explanation, unit }} />
-)

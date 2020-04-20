@@ -8,32 +8,32 @@
  * Copyright (c) 2012 Borgar Thorsteinsson <borgar@borgar.net>
  * MIT License, http://www.opensource.org/licenses/mit-license.php
  *
- * @param {function} function for which the root is sought.
- * @param {number} the lower point of the interval to be searched.
- * @param {number} the upper point of the interval to be searched.
- * @param {number} the desired accuracy (convergence tolerance).
- * @param {number} the maximum number of iterations.
+ * @param {function} func function for which the root is sought.
+ * @param {number} lowerLimit the lower point of the interval to be searched.
+ * @param {number} upperLimit the upper point of the interval to be searched.
+ * @param {number} errorTol the desired accuracy (convergence tolerance).
+ * @param {number} maxIter the maximum number of iterations.
  * @returns an estimate for the root within accuracy.
  *
  */
 export default function uniroot(
-	func,
-	lowerLimit,
-	upperLimit,
-	errorTol,
-	maxIter
+	func: (x: number) => number,
+	lowerLimit: number,
+	upperLimit: number,
+	errorTol: number,
+	maxIter: number
 ) {
-	var a = lowerLimit,
+	let a = lowerLimit,
 		b = upperLimit,
 		c = a,
 		fa = func(a),
 		fb = func(b),
 		fc = fa,
-		tol_act, // Actual tolerance
-		new_step, // Step at this iteration
-		prev_step, // Distance from the last but one to the last approximation
-		p, // Interpolation step is calculated in the form p/q; division is delayed until the last moment
-		q
+		tol_act: number, // Actual tolerance
+		new_step: number, // Step at this iteration
+		prev_step: number, // Distance from the last but one to the last approximation
+		p: number, // Interpolation step is calculated in the form p/q; division is delayed until the last moment
+		q: number
 
 	errorTol = errorTol || 0
 	maxIter = maxIter || 1000
@@ -57,7 +57,7 @@ export default function uniroot(
 		// Decide if the interpolation can be tried
 		if (Math.abs(prev_step) >= tol_act && Math.abs(fa) > Math.abs(fb)) {
 			// If prev_step was large enough and was in true direction, Interpolatiom may be tried
-			var t1, cb, t2
+			let t1: number, cb: number, t2: number
 			cb = c - b
 			if (a === c) {
 				// If we have only two distinct points linear interpolation can only be applied
@@ -101,22 +101,3 @@ export default function uniroot(
 		}
 	}
 }
-
-/*
-var test_counter;
-function f1 (x) { test_counter++; return (Math.pow(x,2)-1)*x - 5; }
-function f2 (x) { test_counter++; return Math.cos(x)-x; }
-function f3 (x) { test_counter++; return Math.sin(x)-x; }
-function f4 (x) { test_counter++; return (x + 3) * Math.pow(x - 1, 2); }
-[
-  [f1, 2, 3],
-  [f2, 2, 3],
-  [f2, -1, 3],
-  [f3, -1, 3],
-  [f4, -4, 4/3]
-].forEach(function (args) {
-  test_counter = 0;
-  var root = uniroot.apply( pv, args );
-  ;;;console.log( 'uniroot:', args.slice(1), root, test_counter );
-})
-*/

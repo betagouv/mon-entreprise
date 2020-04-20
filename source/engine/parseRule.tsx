@@ -85,7 +85,7 @@ export default function<Names extends string>(
 			parents.map(parent => {
 				let node = parse(rules, rule, parsedRules)(parent)
 
-				let jsx = (nodeValue, explanation) =>
+				let jsx = ({ nodeValue, explanation }) =>
 					nodeValue === null ? (
 						<div>Active seulement si {makeJsx(explanation)}</div>
 					) : nodeValue === true ? (
@@ -143,7 +143,7 @@ export default function<Names extends string>(
 
 			let child = parse(rules, rule, parsedRules)(value)
 
-			let jsx = (_nodeValue, explanation) => makeJsx(explanation)
+			let jsx = ({ explanation }) => makeJsx(explanation)
 
 			return {
 				evaluate,
@@ -205,7 +205,7 @@ export default function<Names extends string>(
 			}
 		},
 
-		jsx: (_nodeValue, { isDisabledBy }) => {
+		jsx: ({ explanation: { isDisabledBy } }) => {
 			return (
 				isDisabledBy.length > 0 && (
 					<>
@@ -248,7 +248,7 @@ let evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 
 	let child = parse(rules, rule, parsedRules)(value)
 
-	let jsx = (nodeValue, explanation, unit) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="ruleProp mecanism cond"
 			name={dottedName}

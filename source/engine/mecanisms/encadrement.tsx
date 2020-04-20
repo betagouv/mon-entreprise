@@ -96,14 +96,7 @@ export default (recurse, k, v) => {
 
 	return {
 		evaluate,
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, unit) => (
-			<MecanismEncadrement
-				nodeValue={nodeValue}
-				explanation={explanation}
-				unit={unit}
-			/>
-		),
+		jsx: MecanismEncadrement,
 		explanation,
 		category: 'mecanism',
 		name: 'encadrement',

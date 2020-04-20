@@ -6,7 +6,7 @@ import './Barème.css'
 import { Node, NodeValuePointer } from './common'
 import { parseUnit } from 'Engine/units'
 
-export default function Barème(nodeValue, explanation, unit) {
+export default function Barème({ nodeValue, explanation, unit }) {
 	return (
 		<Node classes="mecanism barème" name="barème" value={nodeValue} unit={unit}>
 			<ul className="properties">
