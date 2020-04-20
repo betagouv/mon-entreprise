@@ -44,6 +44,7 @@ import {
 	mecanismSynchronisation
 } from './mecanisms'
 import { parseReferenceTransforms } from './parseReference'
+import { EvaluatedRule } from './types'
 
 export const parse = (rules, rule, parsedRules) => rawNode => {
 	if (rawNode == null) {
@@ -240,7 +241,7 @@ const statelessParseFunction = {
 		nodeValue: v.nodeValue,
 		unit: v.unit,
 		// eslint-disable-next-line
-		jsx: (nodeValue, _, unit) => (
+		jsx: ({ nodeValue, unit }: EvaluatedRule) => (
 			<span className={v.type}>
 				{formatValue({
 					unit,

@@ -96,10 +96,7 @@ export default (recurse, k, v) => {
 	return {
 		explanation,
 		evaluate,
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<MecanismRound nodeValue={nodeValue} explanation={explanation} />
-		),
+		jsx: MecanismRound,
 		category: 'mecanism',
 		name: 'arrondi',
 		type: 'numeric',

@@ -39,17 +39,19 @@ import Recalcul from './mecanismViews/Recalcul'
 import Somme from './mecanismViews/Somme'
 import uniroot from './uniroot'
 import { parseUnit } from './units'
+import { EvaluatedRule } from './types'
 
 export let mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
 
 	let explanation = map(recurse, v)
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism conditions list"
 			name="une de ces conditions"
 			value={nodeValue}
+			unit={unit}
 		>
 			<ul>
 				{explanation.map((item, i) => (
@@ -95,11 +97,12 @@ export let mecanismAllOf = (recurse, k, v) => {
 
 	let explanation = map(recurse, v)
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism conditions list"
 			name="toutes ces conditions"
 			value={nodeValue}
+			unit={unit}
 		>
 			<ul>
 				{explanation.map((item, i) => (
@@ -194,13 +197,15 @@ let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 						const candidateNode = evaluateWithValue(x)
 						return (
 							candidateNode.nodeValue -
-							convertNodeToUnit(candidateNode.unit, inversedWith).nodeValue
+							// TODO: convertNodeToUnit migth return null or false
+							(convertNodeToUnit(candidateNode.unit, inversedWith)
+								.nodeValue as number)
 						)
 					},
 					node.explanation.negativeValuesAllowed ? -1000000 : 0,
 					100000000,
-					0.1, // tolerance
-					10 // number of iteration max
+					0.1,
+					10
 			  )
 
 	if (nodeValue === undefined) {
@@ -312,7 +317,7 @@ export let mecanismSum = (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, unit) => (
+		jsx: ({ nodeValue, explanation, unit }: EvaluatedRule) => (
 			<Somme nodeValue={nodeValue} explanation={explanation} unit={unit} />
 		),
 		explanation,
@@ -520,11 +525,12 @@ export let mecanismMax = (recurse, k, v) => {
 	}
 	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism list maximum"
 			name="le maximum de"
 			value={nodeValue}
+			unit={unit}
 		>
 			<ul>
 				{explanation.map((item, i) => (
@@ -553,11 +559,12 @@ export let mecanismMin = (recurse, k, v) => {
 
 	let evaluate = evaluateArray(min, Infinity)
 
-	let jsx = (nodeValue, explanation) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism list minimum"
 			name="le minimum de"
 			value={nodeValue}
+			unit={unit}
 		>
 			<ul>
 				{explanation.map((item, i) => (
@@ -614,7 +621,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	return {
 		explanation: { ...v, API: recurse(v.API) },
 		evaluate,
-		jsx: function Synchronisation(nodeValue, explanation) {
+		jsx: function Synchronisation({ explanation }) {
 			return (
 				<p>
 					Obtenu à partir de la saisie <SimpleRuleLink rule={explanation.API} />

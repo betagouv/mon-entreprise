@@ -1,4 +1,3 @@
-import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { animated, config, useSpring } from 'react-spring'

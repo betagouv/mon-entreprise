@@ -3,7 +3,7 @@ import React from 'react'
 import { Node } from './common'
 import './InversionNumérique.css'
 
-let Comp = function InversionNumérique({ nodeValue, explanation }) {
+export default function InversionNumérique({ nodeValue, explanation }) {
 	return (
 		<Node
 			classes="mecanism inversionNumérique"
@@ -50,8 +50,3 @@ let Comp = function InversionNumérique({ nodeValue, explanation }) {
 		</Node>
 	)
 }
-
-//eslint-disable-next-line
-export default (nodeValue, explanation) => (
-	<Comp {...{ nodeValue, explanation }} />
-)

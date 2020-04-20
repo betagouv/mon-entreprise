@@ -5,7 +5,8 @@ objectifs:
   - aide déclaration revenu indépendant 2019 . CFP
   - aide déclaration revenu indépendant 2019 . total charges sociales déductible
   - aide déclaration revenu indépendant 2019 . assiette sociale
+
 situation:
-  dirigeant: 'indépendant'
+  dirigeant: "'indépendant'"
   aide déclaration revenu indépendant 2019: true
-unités par défaut: ['€/an']
+unité par défaut: '€/an'

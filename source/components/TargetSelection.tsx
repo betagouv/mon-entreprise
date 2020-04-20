@@ -173,7 +173,7 @@ let Header = ({ target }) => {
 						{hackyShowPeriod && ' ' + t('mensuel')}
 					</Link>
 				</span>
-				<p>{target.summary}</p>
+				<p className="ui__ notice">{target.summary}</p>
 			</span>
 		</span>
 	)

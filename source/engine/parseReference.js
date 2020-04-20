@@ -230,15 +230,13 @@ export let parseReference = (
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
 		//eslint-disable-next-line react/display-name
-		jsx: (nodeValue, _, nodeUnit) => (
-			<>
-				<Leaf
-					className="variable filtered"
-					rule={parsedRules[dottedName]}
-					nodeValue={nodeValue}
-					unit={nodeUnit || parsedRules[dottedName]?.unit || unit}
-				/>
-			</>
+		jsx: ({ nodeValue, unit: nodeUnit }) => (
+			<Leaf
+				className="variable filtered"
+				rule={parsedRules[dottedName]}
+				nodeValue={nodeValue}
+				unit={nodeUnit || parsedRules[dottedName]?.unit || unit}
+			/>
 		),
 		name: partialReference,
 		category: 'reference',

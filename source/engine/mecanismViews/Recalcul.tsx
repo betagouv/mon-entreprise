@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next'
 import { DottedName } from 'Rules'
 import { Node } from './common'
 
-export default function Recalcul(nodeValue, explanation) {
+export default function Recalcul({ nodeValue, explanation }) {
 	return (
 		<Node
 			classes="mecanism recalcul"

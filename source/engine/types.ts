@@ -67,6 +67,7 @@ export type EvaluatedNode<
 	nodeValue: Evaluation<T>
 	explanation?: Object
 	isDefault?: boolean
+	jsx?: (node: EvaluatedNode) => JSX.Element
 	missingVariables: Partial<Record<Names, number>>
 } & (T extends number
 	? {

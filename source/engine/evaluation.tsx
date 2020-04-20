@@ -23,10 +23,8 @@ import {
 } from './temporal'
 import { ParsedRule, ParsedRules } from './types'
 
-export let makeJsx = node =>
-	typeof node.jsx == 'function'
-		? node.jsx(node.nodeValue, node.explanation, node.unit)
-		: node.jsx
+export let makeJsx = (node: EvaluatedNode): JSX.Element =>
+	typeof node.jsx == 'function' ? node.jsx(node) : <></>
 
 export let collectNodeMissing = node => node.missingVariables || {}
 
@@ -124,7 +122,9 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 export let defaultNode = nodeValue => ({
 	nodeValue,
 	// eslint-disable-next-line
-	jsx: nodeValue => <span className="value">{nodeValue}</span>,
+	jsx: ({ nodeValue }: EvaluatedNode) => (
+		<span className="value">{nodeValue}</span>
+	),
 	isDefault: true
 })
 

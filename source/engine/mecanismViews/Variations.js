@@ -7,7 +7,7 @@ import { makeJsx } from '../evaluation'
 import { InlineMecanism, Node } from './common'
 import './Variations.css'
 
-let Comp = function Variations({ nodeValue, explanation, unit }) {
+export default function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
 	const { i18n } = useTranslation()
 	return (
@@ -107,7 +107,3 @@ let Comp = function Variations({ nodeValue, explanation, unit }) {
 		</Node>
 	)
 }
-// eslint-disable-next-line
-export default (nodeValue, explanation, unit) => (
-	<Comp {...{ nodeValue, explanation, unit }} />
-)

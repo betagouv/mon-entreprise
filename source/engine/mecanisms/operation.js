@@ -86,7 +86,7 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let [node1, node2] = explanation
 	let unit = inferUnit(k, [node1.unit, node2.unit])
 
-	let jsx = (nodeValue, explanation, unit) => (
+	let jsx = ({ nodeValue, explanation, unit }) => (
 		<Node classes={'inlineExpression ' + k} value={nodeValue} unit={unit}>
 			<span className="nodeContent">
 				{(explanation[0].nodeValue !== 0 ||

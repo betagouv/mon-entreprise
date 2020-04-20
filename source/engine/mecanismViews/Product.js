@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 import { Node } from './common'
 import './InversionNumérique.css'
 
-export default function ProductView(nodeValue, explanation, unit) {
+export default function ProductView({ nodeValue, explanation, unit }) {
 	return (
 		// The rate and factor and threshold are given defaut neutral values. If there is nothing to explain, don't display them at all
 		<Node
