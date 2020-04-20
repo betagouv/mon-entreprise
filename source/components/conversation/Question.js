@@ -7,6 +7,7 @@ import Explicable from './Explicable'
 import { FormDecorator } from './FormDecorator'
 import './Question.css'
 import SendButton from './SendButton'
+import emoji from 'react-easy-emoji'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -67,7 +68,8 @@ export default compose(FormDecorator('question'))(function Question({
 					display: flex;
 					justify-content: flex-end;
 					flex-wrap: wrap;
-				`}>
+				`}
+			>
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -84,27 +86,29 @@ export default compose(FormDecorator('question'))(function Question({
 					</li>
 				)}
 				{choices.children &&
-					choices.children.map(({ name, title, dottedName, children }) =>
-						children ? (
-							<li key={name} className="variant" css="width: 100%">
-								<div>{title}</div>
-								{renderChildren({ children })}
-							</li>
-						) : (
-							<li key={name} className="variantLeaf">
-								<RadioLabel
-									{...{
-										value: relativeDottedName(dottedName),
-										label: title,
-										dottedName,
-										currentValue,
-										submit,
-										colors,
-										onChange
-									}}
-								/>
-							</li>
-						)
+					choices.children.map(
+						({ name, title, dottedName, icônes, children }) =>
+							children ? (
+								<li key={name} className="variant" css="width: 100%">
+									<div>{title}</div>
+									{renderChildren({ children })}
+								</li>
+							) : (
+								<li key={name} className="variantLeaf">
+									<RadioLabel
+										{...{
+											value: relativeDottedName(dottedName),
+											label: title,
+											icônes,
+											dottedName,
+											currentValue,
+											submit,
+											colors,
+											onChange
+										}}
+									/>
+								</li>
+							)
 					)}
 			</ul>
 		)
@@ -136,9 +140,15 @@ let RadioLabel = props => (
 	</>
 )
 
-function RadioLabelContent({ value, label, currentValue, onChange, submit }) {
-	let labelStyle = value === '_' ? { fontWeight: 'bold' } : null,
-		selected = value === currentValue
+function RadioLabelContent({
+	icônes,
+	value,
+	label,
+	currentValue,
+	onChange,
+	submit
+}) {
+	let selected = value === currentValue
 
 	const click = value => () => {
 		if (currentValue == value) submit('dblClick')
@@ -147,9 +157,15 @@ function RadioLabelContent({ value, label, currentValue, onChange, submit }) {
 	return (
 		<label
 			key={value}
-			style={labelStyle}
+			css={`
+				fontweight: ${value === '_' ? 'bold' : 'normal'};
+				> img {
+					margin-right: 0.3rem !important;
+				}
+			`}
 			className={classnames('radio', 'userAnswerButton', { selected })}
 		>
+			{icônes && emoji(icônes)}
 			<T>{label}</T>
 			<input
 				type="radio"
