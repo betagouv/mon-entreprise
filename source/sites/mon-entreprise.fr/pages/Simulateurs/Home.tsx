@@ -10,41 +10,55 @@ export const simulateursDetails = {
 		name: 'Salarié',
 		description:
 			"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé",
-		icone: '🤝'
+		icone: '🤝',
+		keySitePaths: 'salarié',
+		keyTrad: 'simulateurs.accueil.salarié'
 	},
 	'/auto-entrepreneur': {
 		name: 'Auto-entrepreneur',
 		description:
 			"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur",
-		icone: '🚶‍♂️'
+		icone: '🚶‍♂️',
+		keySitePaths: 'auto-entrepreneur',
+		keyTrad: 'simulateurs.accueil.auto'
 	},
 	'/artiste-auteur': {
 		name: 'Artiste-auteur',
 		description: "Estimer les cotisations sociales d'un artiste ou auteur",
-		icone: '👩‍🎨'
+		icone: '👩‍🎨',
+		keySitePaths: 'artiste-auteur',
+		keyTrad: 'simulateurs.accueil.artiste-auteur'
 	},
 	'/indépendant': {
 		name: 'Indépendant',
 		description:
 			"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire",
-		icone: '👩‍🔧'
+		icone: '👩‍🔧',
+		keySitePaths: 'indépendant',
+		keyTrad: 'simulateurs.accueil.indépendant'
 	},
 	'/assimilé-salarié': {
 		name: 'Assimilé salarié',
 		description:
 			"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire",
-		icone: '☂️'
+		icone: '☂️',
+		keySitePaths: 'assimilé-salarié',
+		keyTrad: 'simulateurs.accueil.assimilé'
 	},
 	'/comparaison-régimes-sociaux': {
 		name: 'Comparaison statuts',
 		description:
 			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
-		icone: '📊'
+		icone: '📊',
+		keySitePaths: 'comparaison',
+		keyTrad: 'simulateurs.accueil.comparaison'
 	},
 	'/coronavirus': {
 		name: 'Coronavirus',
 		description: '',
-		icone: '👨‍🔬'
+		icone: '👨‍🔬',
+		keySitePaths: '',
+		keyTrad: ''
 	}
 }
 
@@ -70,101 +84,42 @@ export default function Simulateurs() {
 					// dernière ligne.
 					style={{ maxWidth: 1100, margin: 'auto' }}
 				>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['assimilé-salarié']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('☂️')}</div>
-						<Trans i18nKey="simulateurs.accueil.assimilé">
-							<h3>Assimilé salarié</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu d'un dirigeant de SAS, SASU ou SARL
-								minoritaire
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.indépendant
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('👩‍🔧')}</div>
-						<Trans i18nKey="simulateurs.accueil.indépendant">
-							<h3>Indépendant</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu d'un dirigeant de EURL, EI, ou SARL
-								majoritaire
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['auto-entrepreneur']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('🚶‍♂️')}</div>
-						<Trans i18nKey="simulateurs.accueil.auto">
-							<h3>Auto-entrepreneur</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu (ou le chiffre d'affaires) d'un
-								auto-entrepreneur
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.salarié
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('🤝')}</div>
-						<Trans i18nKey="simulateurs.accueil.salarié">
-							<h3>Salarié</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le salaire net, brut, ou total d'un salarié, stagiaire,
-								ou assimilé
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['artiste-auteur']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-						<Trans i18nKey="simulateurs.accueil.artiste-auteur">
-							<h3>Artiste-auteur</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Estimer les cotisations sociales d'un artiste ou auteur
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.comparaison
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('📊')}</div>
-						<Trans i18nKey="simulateurs.accueil.comparaison">
-							<h3>Comparaison statuts</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Simulez les différences entre les régimes (cotisations,
-								retraite, maternité, maladie, etc.)
-							</p>
-						</Trans>
-					</Link>
+					{Object.keys(simulateursDetails).map(simulator => {
+						if (
+							[
+								'/assimilé-salarié',
+								'/indépendant',
+								'/auto-entrepreneur',
+								'/salarié',
+								'/artiste-auteur',
+								'/comparaison-régimes-sociaux'
+							].includes(simulator)
+						) {
+							return (
+								<Link
+									className="ui__ interactive card box"
+									key={simulator}
+									to={{
+										state: { fromSimulateurs: true },
+										pathname:
+											sitePaths.simulateurs[
+												simulateursDetails[simulator].keySitePaths
+											]
+									}}
+								>
+									<div className="ui__ big box-icon">
+										{emoji(simulateursDetails[simulator].icone)}
+									</div>
+									<Trans i18nKey={simulateursDetails[simulator].keyTrad}>
+										<h3>{simulateursDetails[simulator].name}</h3>
+										<p className="ui__ notice" css="flex: 1">
+											{simulateursDetails[simulator].description}
+										</p>
+									</Trans>
+								</Link>
+							)
+						}
+					})}
 				</div>
 			</section>
 			<section>

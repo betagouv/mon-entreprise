@@ -11,6 +11,7 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
+import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent'
 import {
 	formatPercentage,
 	formatValue
@@ -54,49 +55,6 @@ type StatsData = {
 			date: string
 			visites: Array<{ label: string; nb_visits: string }>
 		}
-	}
-}
-
-const Simulateurs = {
-	'/salarié': {
-		name: 'Salarié',
-		description:
-			"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé",
-		icone: '🤝'
-	},
-	'/auto-entrepreneur': {
-		name: 'Auto-entrepreneur',
-		description:
-			"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur",
-		icone: '🚶‍♂️'
-	},
-	'/artiste-auteur': {
-		name: 'Artiste-auteur',
-		description: "Estimer les cotisations sociales d'un artiste ou auteur",
-		icone: '👩‍🎨'
-	},
-	'/indépendant': {
-		name: 'Indépendant',
-		description:
-			"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire",
-		icone: '👩‍🔧'
-	},
-	'/assimilé-salarié': {
-		name: 'Assimilé salarié',
-		description:
-			"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire",
-		icone: '☂️'
-	},
-	'/comparaison-régimes-sociaux': {
-		name: 'Comparaison statuts',
-		description:
-			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
-		icone: '📊'
-	},
-	'/coronavirus': {
-		name: 'Coronavirus',
-		description: '',
-		icone: '👨‍🔬'
 	}
 }
 
@@ -184,13 +142,13 @@ export default function Stats() {
 						value={choicesimulators}
 					>
 						<option value="currentMonth">
-							{stats.simulators.currentMonth.date}
+							{transformDate(stats.simulators.currentMonth.date)}
 						</option>
 						<option value="oneMonthAgo">
-							{stats.simulators.oneMonthAgo.date}
+							{transformDate(stats.simulators.oneMonthAgo.date)}
 						</option>
 						<option value="twoMonthAgo">
-							{stats.simulators.twoMonthAgo.date}
+							{transformDate(stats.simulators.twoMonthAgo.date)}
 						</option>
 					</select>
 				</div>
@@ -204,7 +162,7 @@ export default function Stats() {
 							key={x.label}
 							data={x.nb_visits}
 							title={simulateursDetails[x.label].name}
-							icon={Simulateurs[x.label].icone}
+							icon={simulateursDetails[x.label].icone}
 							total={stats.simulators[choicesimulators].visites.reduce(
 								(a, b) => Math.max(a, b.nb_visits),
 								0
@@ -304,14 +262,19 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 				}}
 			>
 				<CartesianGrid />
-				<XAxis dataKey="date" />
+				<XAxis
+					dataKey="date"
+					tickFormatter={tickItem =>
+						transformDateReducedMonth(periodicity, tickItem)
+					}
+				/>
 				<YAxis
 					dataKey="visiteurs"
 					tickFormatter={tickItem =>
 						formatValue({ value: tickItem, language: 'fr' })
 					}
 				/>
-				<Tooltip />
+				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
 				<Line
 					type="monotone"
 					dataKey="visiteurs"
@@ -323,3 +286,68 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 		</ResponsiveContainer>
 	)
 }
+
+function transformDate(date) {
+	const [month, year] = date.split('-')
+	return `${months[month - 1]} ${year}`
+}
+function transformDateReducedMonth(periodicity, date) {
+	if (periodicity == 'monthly') {
+		const [month, year] = date.split('/')
+		return `${reducedMonths[month - 1]} ${year}`
+	} else {
+		return date
+	}
+}
+
+const CustomTooltip = props => {
+	if (!props.active) {
+		return null
+	}
+	const newPayload = [
+		{
+			value: transformDateReducedMonth(
+				props.periodicity,
+				props.payload[0].payload.date
+			)
+		},
+		{
+			value: formatValue({
+				value: props.payload[0].payload.visiteurs,
+				language: 'fr'
+			}),
+			unit: ' visiteurs'
+		}
+	]
+	return <DefaultTooltipContent payload={newPayload} />
+}
+
+const months = [
+	'Janvier',
+	'Février',
+	'Mars',
+	'Avril',
+	'Mai',
+	'Juin',
+	'Juillet',
+	'Aout',
+	'Septembre',
+	'Octobre',
+	'Novembre',
+	'Decembre'
+]
+
+const reducedMonths = [
+	'Janv.',
+	'Févr.',
+	'Mars',
+	'Avr.',
+	'Mai',
+	'Juin',
+	'Juill.',
+	'Aout',
+	'Sept.',
+	'Oct.',
+	'Nov.',
+	'Déc.'
+]

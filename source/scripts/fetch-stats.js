@@ -51,22 +51,22 @@ function firstDayXMonthAgo(dt, X = 0) {
 	const pad = n => (+n < 10 ? `0${n}` : '' + n)
 	return {
 		date: `${year}-${pad(month)}-01`,
-		datenormalize: `${months[month - 1]} ${year}`
+		monthyear: `${pad(month)}-${year}`
 	}
 }
 async function fetchSimulatorsMonth() {
 	const today = new Date().toJSON().slice(0, 10)
 	const months = {
 		currentMonth: {
-			date: firstDayXMonthAgo(today, 0).datenormalize,
+			date: firstDayXMonthAgo(today, 0).monthyear,
 			visites: await fetchSimulators(today)
 		},
 		oneMonthAgo: {
-			date: firstDayXMonthAgo(today, 1).datenormalize,
+			date: firstDayXMonthAgo(today, 1).monthyear,
 			visites: await fetchSimulators(firstDayXMonthAgo(today, 1).date)
 		},
 		twoMonthAgo: {
-			date: firstDayXMonthAgo(today, 2).datenormalize,
+			date: firstDayXMonthAgo(today, 2).monthyear,
 			visites: await fetchSimulators(firstDayXMonthAgo(today, 2).date)
 		}
 	}
@@ -213,21 +213,6 @@ const visitsIn2019 = {
 	'2019-11': 174515,
 	'2019-12': 116305
 }
-
-const months = [
-	'Janvier',
-	'Février',
-	'Mars',
-	'Avril',
-	'Mai',
-	'Juin',
-	'Juillet',
-	'Aout',
-	'Septembre',
-	'Octobre',
-	'Novembre',
-	'Decembre'
-]
 
 async function fetchMonthlyVisits() {
 	try {
