@@ -1,7 +1,7 @@
 import MoreInfosOnUs from 'Components/MoreInfosOnUs'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Redirect, useHistory, useRouteMatch } from 'react-router'

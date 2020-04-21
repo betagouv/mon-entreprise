@@ -3,16 +3,11 @@ import InputSuggestions from 'Components/conversation/InputSuggestions'
 import PeriodSwitch from 'Components/PeriodSwitch'
 import RuleLink from 'Components/RuleLink'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import {
-	EngineContext,
-	useEvaluation,
-	useInversionFail
-} from 'Components/utils/EngineContext'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { formatCurrency, formatValue } from 'Engine/format'
-import { EvaluatedRule } from 'Engine/types'
-import { isNil } from 'ramda'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { formatCurrency } from 'Engine/format'
+import { ParsedRule } from 'Engine/types'
+import { isEmpty, isNil } from 'ramda'
+import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,9 +15,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
 import {
+	analysisWithDefaultsSelector,
 	situationSelector,
-	targetUnitSelector
-} from 'Selectors/simulationSelectors'
+	useTarget
+} from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import AnimatedTargetValue from 'Ui/AnimatedTargetValue'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
@@ -30,12 +26,48 @@ import './TargetSelection.css'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
 	const [initialRender, setInitialRender] = useState(true)
+	const analysis = useSelector(analysisWithDefaultsSelector)
 	const objectifs = useSelector(
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
+	const secondaryObjectives = useSelector(
+		(state: RootState) =>
+			state.simulation?.config['objectifs secondaires'] || []
+	)
+	const situation = useSelector(situationSelector)
+	const dispatch = useDispatch()
 	const colors = useContext(ThemeColorsContext)
 
+	const targets =
+		analysis?.targets.filter(
+			t =>
+				!secondaryObjectives.includes(t.dottedName) &&
+				t.dottedName !== 'contrat salarié . aides employeur'
+		) || []
+
 	useEffect(() => {
+		// Initialize defaultValue for target that can't be computed
+		// TODO: this logic shouldn't be here
+		targets
+			.filter(
+				target =>
+					(!target.formule || isEmpty(target.formule)) &&
+					(!isNil(target.defaultValue) ||
+						!isNil(target.explanation?.defaultValue)) &&
+					!situation[target.dottedName]
+			)
+
+			.forEach(target => {
+				dispatch(
+					updateSituation(
+						target.dottedName,
+						!isNil(target.defaultValue)
+							? target.defaultValue
+							: target.explanation?.defaultValue
+					)
+				)
+			})
+
 		setInitialRender(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -45,7 +77,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 			{((typeof objectifs[0] === 'string'
 				? [{ objectifs }]
 				: objectifs) as any).map(
-				({ icône, objectifs: targets, nom }, index) => (
+				({ icône, objectifs: groupTargets, nom }, index) => (
 					<React.Fragment key={nom || '0'}>
 						<div style={{ display: 'flex', alignItems: 'end' }}>
 							<div style={{ flex: 1 }}>
@@ -69,16 +101,14 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 								)`
 							}}
 						>
-							<ul className="targets">
-								{' '}
-								{targets.map(target => (
-									<Target
-										key={target}
-										dottedName={target}
-										initialRender={initialRender}
-									/>
-								))}
-							</ul>
+							<Targets
+								{...{
+									targets: targets.filter(({ dottedName }) =>
+										groupTargets.includes(dottedName)
+									),
+									initialRender
+								}}
+							/>
 						</section>
 					</React.Fragment>
 				)
@@ -87,25 +117,36 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 	)
 }
 
-type TargetProps = {
-	dottedName: DottedName
-	initialRender: boolean
-}
-const Target = ({ dottedName, initialRender }: TargetProps) => {
+let Targets = ({ targets, initialRender }) => (
+	<div>
+		<ul className="targets">
+			{targets
+				.map(target => target.explanation || target)
+				.filter(target => {
+					return (
+						target.isApplicable !== false &&
+						(target.question || target.nodeValue)
+					)
+				})
+				.map(target => (
+					<Target
+						key={target.dottedName}
+						initialRender={initialRender}
+						{...{
+							target
+						}}
+					/>
+				))}
+		</ul>
+	</div>
+)
+
+const Target = ({ target, initialRender }) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
 	const dispatch = useDispatch()
-	const target = useEvaluation(dottedName, {
-		unit: useSelector(targetUnitSelector)
-	})
-	const isSmallTarget = !!target.question !== !!target.formule
-	if (
-		target.nodeValue === false ||
-		(isSmallTarget && !target.question && !target.nodeValue)
-	) {
-		return null
-	}
-	const isActiveInput = activeInput === target.dottedName
 
+	const isActiveInput = activeInput === target.dottedName
+	const isSmallTarget = !!target.question !== !!target.formule
 	return (
 		<li
 			key={target.name}
@@ -145,7 +186,7 @@ const Target = ({ dottedName, initialRender }: TargetProps) => {
 									onFirstClick={value => {
 										dispatch(updateSituation(target.dottedName, value))
 									}}
-									unit={target.unit}
+									unit={target.defaultUnit}
 								/>
 							</div>
 						</Animate.fromTop>
@@ -168,12 +209,7 @@ let Header = ({ target }) => {
 		<span className="header">
 			<span className="texts">
 				<span className="optionTitle">
-					<Link
-						to={{
-							pathname: sitePaths.documentation.rule(target.dottedName),
-							state: { useDefaultValues: true }
-						}}
-					>
+					<Link to={sitePaths.documentation.rule(target.dottedName)}>
 						{target.title || target.name}
 						{hackyShowPeriod && ' ' + t('mensuel')}
 					</Link>
@@ -185,7 +221,7 @@ let Header = ({ target }) => {
 }
 
 type TargetInputOrValueProps = {
-	target: EvaluatedRule<DottedName>
+	target: ParsedRule<DottedName>
 	isActiveInput: boolean
 	isSmallTarget: boolean
 }
@@ -199,29 +235,16 @@ function TargetInputOrValue({
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
 	const situationValue = useSelector(situationSelector)[target.dottedName]
-	const targetUnit = useSelector(targetUnitSelector)
-	const engine = useContext(EngineContext)
+
+	const targetWithValue = useTarget(target.dottedName)
+	const inversionFail = useSelector(analysisWithDefaultsSelector)?.cache._meta
+		.inversionFail
 	const value =
-		typeof situationValue === 'string'
-			? Math.round(
-					engine.evaluate(situationValue, { unit: targetUnit })
-						.nodeValue as number
-			  )
-			: situationValue != null
-			? situationValue
-			: target?.nodeValue != null
-			? Math.round(+target.nodeValue)
+		targetWithValue?.nodeValue != null && !inversionFail
+			? Math.round(targetWithValue.nodeValue)
 			: undefined
+	const blurValue = inversionFail && !isActiveInput
 
-	const blurValue = useInversionFail() && !isActiveInput
-
-	const onChange = useCallback(
-		evt =>
-			dispatch(
-				updateSituation(target.dottedName, +evt.target.value + ' ' + targetUnit)
-			),
-		[targetUnit, target, dispatch]
-	)
 	return (
 		<span
 			className="targetInputOrValue"
@@ -237,15 +260,15 @@ function TargetInputOrValue({
 						}}
 						debounce={600}
 						name={target.dottedName}
-						value={value}
+						value={situationValue ? Math.round(situationValue) : value}
 						className={
-							isActiveInput ||
-							isNil(value) ||
-							(target.question && isSmallTarget)
-								? 'targetInput'
-								: 'editableTarget'
+							isActiveInput || isNil(value) ? 'targetInput' : 'editableTarget'
 						}
-						onChange={onChange}
+						onChange={evt =>
+							dispatch(
+								updateSituation(target.dottedName, Number(evt.target.value))
+							)
+						}
 						onFocus={() => {
 							if (isSmallTarget) return
 							dispatch(setActiveTarget(target.dottedName))
@@ -269,10 +292,8 @@ function TargetInputOrValue({
 	)
 }
 function TitreRestaurant() {
-	const targetUnit = useSelector(targetUnitSelector)
-	const titresRestaurant = useEvaluation(
-		'contrat salarié . frais professionnels . titres-restaurant . montant',
-		{ unit: targetUnit }
+	const titresRestaurant = useTarget(
+		'contrat salarié . frais professionnels . titres-restaurant . montant'
 	)
 	const { language } = useTranslation().i18n
 	if (!titresRestaurant?.nodeValue) return null
@@ -282,11 +303,7 @@ function TitreRestaurant() {
 				<RuleLink {...titresRestaurant}>
 					+{' '}
 					<strong>
-						{formatValue({
-							nodeValue: titresRestaurant.nodeValue,
-							unit: '€',
-							language
-						})}
+						{formatCurrency(titresRestaurant.nodeValue, language)}
 					</strong>{' '}
 					<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
 				</RuleLink>
@@ -295,18 +312,16 @@ function TitreRestaurant() {
 	)
 }
 function AidesGlimpse() {
-	const targetUnit = useSelector(targetUnitSelector)
-	const aides = useEvaluation('contrat salarié . aides employeur', {
-		unit: targetUnit
-	})
+	const aides = useTarget('contrat salarié . aides employeur')
 	const { language } = useTranslation().i18n
 
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous
 	// faisons un lien direct vers cette aide, plutôt qu'un lien vers la liste qui
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
-	const aidesDetail = aides?.formule.explanation.explanation
+	const aidesNode = aides?.explanation
+	const aidesDetail = aides?.explanation.formule.explanation.explanation
 	const aidesNotNul = aidesDetail?.filter(node => node.nodeValue !== false)
-	const aideLink = aidesNotNul?.length === 1 ? aidesNotNul[0] : aides
+	const aideLink = aidesNotNul?.length === 1 ? aidesNotNul[0] : aidesNode
 
 	if (!aides?.nodeValue) return null
 	return (
@@ -315,15 +330,11 @@ function AidesGlimpse() {
 				<RuleLink {...aideLink}>
 					<Trans>en incluant</Trans>{' '}
 					<strong>
-						<span>
-							{formatValue({
-								nodeValue: aides.nodeValue,
-								unit: '€',
-								language
-							})}
-						</span>
+						<AnimatedTargetValue value={aides.nodeValue}>
+							<span>{formatCurrency(aides.nodeValue, language)}</span>
+						</AnimatedTargetValue>
 					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides?.icons ?? '')}
+					<Trans>d'aides</Trans> {emoji(aides.explanation?.icons ?? '')}
 				</RuleLink>
 			</div>
 		</Animate.fromTop>

@@ -3,7 +3,7 @@ import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { icons } from './ui/SocialIcon'
-import { SitePathsContext } from './utils/SitePathsContext'
+import { SitePathsContext } from './utils/withSitePaths'
 
 export default function MoreInfosOnUs() {
 	const { pathname } = useLocation()

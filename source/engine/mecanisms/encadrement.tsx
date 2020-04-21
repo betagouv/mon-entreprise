@@ -19,7 +19,7 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 		>
 			<>
 				{makeJsx(explanation.valeur)}
-				<div css="margin-top: 1rem">
+				<p css="margin-top: 1rem">
 					{!explanation.plancher.isDefault && (
 						<span
 							css={
@@ -47,7 +47,7 @@ function MecanismEncadrement({ nodeValue, explanation, unit }) {
 							</span>
 						</>
 					)}
-				</div>
+				</p>
 			</>
 		</Node>
 	)
@@ -97,7 +97,7 @@ export default (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, unit) => (
+		jsx: (nodeValue, explanation, _, unit) => (
 			<MecanismEncadrement
 				nodeValue={nodeValue}
 				explanation={explanation}

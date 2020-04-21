@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { isNil } from 'ramda'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'

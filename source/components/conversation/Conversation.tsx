@@ -1,22 +1,20 @@
 import { goToQuestion, validateStepWithValue } from 'Actions/actions'
 import QuickLinks from 'Components/QuickLinks'
 import RuleInput from 'Engine/RuleInput'
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
+import {
+	currentQuestionSelector,
+	nextStepsSelector,
+	parsedRulesSelector
+} from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
 import FormDecorator from './FormDecorator'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { EngineContext } from 'Components/utils/EngineContext'
-import PreviousAnswers from 'sites/mon-entreprise.fr/pages/Créer/GuideStatut/PreviousAnswers'
-import {
-	answeredQuestionsSelector,
-	currentQuestionSelector
-} from 'Selectors/simulationSelectors'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -24,15 +22,18 @@ export type ConversationProps = {
 
 export default function Conversation({ customEndMessages }: ConversationProps) {
 	const dispatch = useDispatch()
-	const rules = useContext(EngineContext).getParsedRules()
-	const currentQuestion = useNextQuestions()[0]
+	const rules = useSelector(parsedRulesSelector)
+	const currentQuestion = useSelector(currentQuestionSelector)
+	const previousAnswers = useSelector(
+		(state: RootState) => state.simulation?.foldedSteps || []
+	)
+	const nextSteps = useSelector(nextStepsSelector)
 
-	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const setDefault = () =>
 		dispatch(
 			validateStepWithValue(
 				currentQuestion,
-				rules[currentQuestion]['par défaut']
+				rules[currentQuestion].defaultValue
 			)
 		)
 	const goToPrevious = () =>
@@ -44,31 +45,35 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	}
 	const DecoratedInputComponent = FormDecorator(RuleInput)
 
-	return currentQuestion ? (
+	return rules && nextSteps.length ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
-				<Animate.fadeIn>
-					<DecoratedInputComponent dottedName={currentQuestion} />
-				</Animate.fadeIn>
-				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 && (
-						<>
+				{currentQuestion && (
+					<React.Fragment key={currentQuestion}>
+						<Animate.fadeIn>
+							<DecoratedInputComponent dottedName={currentQuestion} />
+						</Animate.fadeIn>
+						<div className="ui__ answer-group">
+							{previousAnswers.length > 0 && (
+								<>
+									<button
+										onClick={goToPrevious}
+										className="ui__ simple small push-left button"
+									>
+										← <Trans>Précédent</Trans>
+									</button>
+								</>
+							)}
 							<button
-								onClick={goToPrevious}
-								className="ui__ simple small push-left button"
+								onClick={setDefault}
+								className="ui__ simple small push-right button"
 							>
-								← <Trans>Précédent</Trans>
+								<Trans>Passer</Trans> →
 							</button>
-						</>
-					)}
-					<button
-						onClick={setDefault}
-						className="ui__ simple small push-right button"
-					>
-						<Trans>Passer</Trans> →
-					</button>
-				</div>
+						</div>
+					</React.Fragment>
+				)}
 			</div>
 			<QuickLinks />
 		</>

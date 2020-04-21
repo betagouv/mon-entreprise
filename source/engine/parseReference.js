@@ -6,9 +6,9 @@ import { evaluateApplicability } from './evaluateRule'
 import { evaluateNode, mergeMissing } from './evaluation'
 import { getSituationValue } from './getSituationValue'
 import { Leaf } from './mecanismViews/common'
-import { convertNodeToUnit } from './nodeUnits'
+import { convertNodeToUnit, getNodeDefaultUnit } from './nodeUnits'
 import { disambiguateRuleReference } from './ruleUtils'
-import { areUnitConvertible, serializeUnit } from './units'
+import { areUnitConvertible } from './units'
 const getApplicableReplacements = (
 	filter,
 	contextRuleName,
@@ -56,7 +56,7 @@ const getApplicableReplacements = (
 			if (referenceNode.question && situationValue == null) {
 				missingVariableList.push({ [referenceNode.dottedName]: 1 })
 			}
-			return situationValue?.nodeValue !== false
+			return situationValue !== false
 		})
 		// Remove remplacement defined in a boolean node whose evaluated value is false
 		.filter(({ referenceNode }) => {
@@ -79,7 +79,7 @@ const getApplicableReplacements = (
 				: evaluateReference(filter)(cache, situation, rules, referenceNode)
 		)
 		.map(replacementNode => {
-			const replacedRuleUnit = rule.unit
+			const replacedRuleUnit = getNodeDefaultUnit(rule, cache)
 			if (!areUnitConvertible(replacementNode.unit, replacedRuleUnit)) {
 				typeWarning(
 					contextRuleName,
@@ -149,51 +149,34 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 
 	if (cached) return addReplacementMissingVariable(cached)
 
-	let cacheNode = (nodeValue, missingVariables, explanation) => {
+	let cacheNode = (nodeValue, missingVariables, explanation, temporalValue) => {
 		cache[cacheName] = {
 			...node,
 			nodeValue,
+			temporalValue,
 			...(explanation && {
 				explanation
-			}),
-			...(explanation?.temporalValue && {
-				temporalValue: explanation.temporalValue
 			}),
 			...(explanation?.unit && { unit: explanation.unit }),
 			missingVariables
 		}
 		return addReplacementMissingVariable(cache[cacheName])
 	}
-	const applicabilityEvaluation = evaluateApplicability(
-		cache,
-		situation,
-		rules,
-		rule
-	)
-	if (!applicabilityEvaluation.nodeValue) {
-		return cacheNode(
-			applicabilityEvaluation.nodeValue,
-			applicabilityEvaluation.missingVariables,
-			applicabilityEvaluation
-		)
+	const {
+		nodeValue: isApplicable,
+		missingVariables: condMissingVariables
+	} = evaluateApplicability(cache, situation, rules, rule)
+	if (!isApplicable) {
+		return cacheNode(isApplicable, condMissingVariables, rule)
 	}
 	const situationValue = getSituationValue(situation, dottedName, rule)
-	if (situationValue != null) {
-		const unit =
-			!situationValue.unit || serializeUnit(situationValue.unit) === ''
-				? rule.unit
-				: situationValue.unit
-		return cacheNode(
-			situationValue?.nodeValue !== undefined
-				? situationValue.nodeValue
-				: situationValue,
-			applicabilityEvaluation.missingVariables,
-			{
-				...rule,
-				...(situationValue?.nodeValue !== undefined && situationValue),
-				unit
-			}
-		)
+	if (situationValue !== undefined) {
+		const unit = getNodeDefaultUnit(rule, cache)
+		return cacheNode(situationValue, condMissingVariables, {
+			...rule,
+			nodeValue: situationValue,
+			unit
+		})
 	}
 
 	if (rule.formule != null) {
@@ -227,17 +210,20 @@ export let parseReference = (
 		parsedRules[dottedName] ||
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula && parseRule(rules, dottedName, parsedRules))
-	const unit = parsedRule.unit
+	const unit =
+		parsedRule.unit || parsedRule.formule?.unit || parsedRule.defaultUnit
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
 		//eslint-disable-next-line react/display-name
-		jsx: (nodeValue, _, nodeUnit) => (
+		jsx: (nodeValue, explanation, _, nodeUnit) => (
 			<>
 				<Leaf
-					className="variable filtered"
-					rule={parsedRules[dottedName]}
+					classes="variable filtered"
+					filter={filter}
+					name={partialReference}
+					dottedName={dottedName}
 					nodeValue={nodeValue}
-					unit={nodeUnit || parsedRules[dottedName]?.unit || unit}
+					unit={nodeUnit || explanation?.unit || unit}
 				/>
 			</>
 		),
@@ -245,7 +231,6 @@ export let parseReference = (
 		category: 'reference',
 		partialReference,
 		dottedName,
-		explanation: parsedRule,
 		unit
 	}
 }

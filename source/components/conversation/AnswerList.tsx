@@ -1,14 +1,18 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import { useEvaluation } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { formatValue } from 'Engine/format'
+import Value from 'Components/Value'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'Rules'
-import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import { RootState } from 'Reducers/rootReducer'
+import { createSelector } from 'reselect'
+import {
+	analysisWithDefaultsSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
+import { softCatch } from '../../utils'
 import './AnswerList.css'
 
 type AnswerListProps = {
@@ -17,60 +21,46 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const nextSteps = useNextQuestions()
-
+	const { folded, next } = useSelector(stepsToRules)
 	return (
 		<Overlay onClose={onClose} className="answer-list">
-			{!!answeredQuestions.length && (
-				<>
-					<h2>
-						{emoji('📋 ')}
-						<Trans>Mes réponses</Trans>
-						<small css="margin-left: 2em; img {font-size: .8em}">
-							{emoji('🗑')}{' '}
-							<button
-								className="ui__ simple small button"
-								onClick={() => {
-									dispatch(resetSimulation())
-									onClose()
-								}}
-							>
-								<Trans>Tout effacer</Trans>
-							</button>
-						</small>
-					</h2>
-					<StepsTable {...{ rules: answeredQuestions, onClose }} />
-				</>
-			)}
-			{!!nextSteps.length && (
+			<h2>
+				{emoji('📋 ')}
+				<Trans>Mes réponses</Trans>
+				<small css="margin-left: 2em; img {font-size: .8em}">
+					{emoji('🗑')}{' '}
+					<button
+						className="ui__ simple small button"
+						onClick={() => {
+							dispatch(resetSimulation())
+							onClose()
+						}}
+					>
+						<Trans>Tout effacer</Trans>
+					</button>
+				</small>
+			</h2>
+			<StepsTable {...{ rules: folded, onClose }} />
+			{next.length > 0 && (
 				<>
 					<h2>
 						{emoji('🔮 ')}
 						<Trans>Prochaines questions</Trans>
 					</h2>
-					<StepsTable {...{ rules: nextSteps, onClose }} />
+					<StepsTable {...{ rules: next, onClose }} />
 				</>
 			)}
 		</Overlay>
 	)
 }
 
-function StepsTable({
-	rules,
-	onClose
-}: {
-	rules: Array<DottedName>
-	onClose: () => void
-}) {
+function StepsTable({ rules, onClose }) {
 	const dispatch = useDispatch()
-	const evaluatedRules = useEvaluation(rules)
-	const language = useTranslation().i18n.language
 	return (
 		<table>
 			<tbody>
-				{evaluatedRules
-					.filter(rule => rule.isApplicable !== false)
+				{rules
+					.filter(rule => rule.nodeValue !== undefined)
 					.map(rule => (
 						<tr
 							key={rule.dottedName}
@@ -99,7 +89,7 @@ function StepsTable({
 										font-size: inherit;
 										width: 100%;
 										text-align: start;
-										font-weight: 600;
+										font-weight: 500;
 										> span {
 											border-bottom-color: var(--textColorOnWhite);
 											padding: 0.05em 0em;
@@ -108,7 +98,7 @@ function StepsTable({
 									`}
 								>
 									<span className="answerContent">
-										{formatValue({ ...rule, language })}
+										<Value {...rule} />
 									</span>
 								</span>{' '}
 							</td>
@@ -118,3 +108,17 @@ function StepsTable({
 		</table>
 	)
 }
+
+const stepsToRules = createSelector(
+	(state: RootState) => state.simulation?.foldedSteps || [],
+	nextStepsSelector,
+	analysisWithDefaultsSelector,
+	(folded, nextSteps, analysis) => ({
+		folded: folded
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean),
+		next: nextSteps
+			.map(softCatch(getRuleFromAnalysis(analysis)))
+			.filter(Boolean)
+	})
+)

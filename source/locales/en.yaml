@@ -5,7 +5,6 @@
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
-Afficher la description publicode: Display publicode description
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Alors: Then
 Année d'activité: Years of activity
@@ -123,6 +122,7 @@ Revenu (incluant les dépenses liées à l'activité): Revenue (including expens
 Revenu disponible: Disposable income
 'Revenu net avec chômage partiel :': 'Net income with short-time work :'
 Revenu net mensuel: Monthly net income
+Récapitulatif: Summary
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
 Résultat: Result
@@ -152,7 +152,6 @@ Vie privée: Privacy
 Voir la répartition des cotisations: View contribution breakdown
 Voir le code source: See the source code
 Voir les autres simulateurs: See the other simulators
-Voir toutes les questions: See all questions
 Votre adresse e-mail: Your email address
 Votre entreprise: Your company
 Votre forme juridique: Your legal status
@@ -911,6 +910,7 @@ path:
   gérer:
     déclaration-indépendant:
       index: /declaration-aid-independent
+      récapitulatif: /summary
     embaucher: /hiring
     index: /manage
     sécuritéSociale: /social-security

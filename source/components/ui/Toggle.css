@@ -52,7 +52,7 @@
 	border: 1px dotted gray;
 }
 .ui__.toggle input[type='radio']:checked ~ .radioText {
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .ui__.toggle input[type='radio']:checked ~ * {

@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'

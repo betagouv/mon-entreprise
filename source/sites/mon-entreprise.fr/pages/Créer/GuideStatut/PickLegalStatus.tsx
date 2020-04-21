@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { filter } from 'ramda'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'

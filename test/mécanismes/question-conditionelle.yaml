@@ -3,7 +3,7 @@ enfants:
 nombre enfants:
   applicable si: enfants
   question: Combien d'enfants avez vous ?
-  par défaut: 4 enfants
+  par défaut: 4
 
 famille nombreuse:
   titre: question conditionnelle

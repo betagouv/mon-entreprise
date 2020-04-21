@@ -19,7 +19,7 @@
 	padding: 0.1em 0.4em;
 }
 .barème table th {
-	font-weight: 600;
+	font-weight: 500;
 }
 .barème table th:first-letter {
 	text-transform: uppercase;

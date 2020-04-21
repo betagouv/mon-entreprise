@@ -1,7 +1,7 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import Value from 'Components/EngineValue'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
+import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -14,7 +14,6 @@ import ExceptionsExonération from './ExceptionsExonération'
 import NextButton from './NextButton'
 import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
-import { formatValue } from 'Engine/format'
 
 export default function Activité({
 	match: {
@@ -111,12 +110,9 @@ export default function Activité({
 												defaultChecked={seuilRevenus === 'AUCUN'}
 											/>{' '}
 											<Trans>inférieurs à</Trans>{' '}
-											{formatValue({
-												nodeValue: activité['seuil déclaration'],
-												precision: 0,
-												language,
-												unit: '€'
-											})}
+											<Value maximumFractionDigits={0} unit="€">
+												{activité['seuil déclaration']}
+											</Value>
 										</label>
 									</li>
 								)}
@@ -129,12 +125,9 @@ export default function Activité({
 										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
 									<Trans>inférieurs à</Trans>{' '}
-									{formatValue({
-										nodeValue: activité['seuil pro'],
-										precision: 0,
-										language,
-										unit: '€'
-									})}
+									<Value maximumFractionDigits={0} unit="€">
+										{activité['seuil pro']}
+									</Value>
 								</label>
 							</li>
 							{activité['seuil régime général'] && (
@@ -149,12 +142,9 @@ export default function Activité({
 											}
 										/>{' '}
 										<Trans>supérieurs à</Trans>{' '}
-										{formatValue({
-											nodeValue: activité['seuil pro'],
-											precision: 0,
-											language,
-											unit: '€'
-										})}
+										<Value maximumFractionDigits={0} unit="€">
+											{activité['seuil pro']}
+										</Value>
 									</label>
 								</li>
 							)}
@@ -170,13 +160,9 @@ export default function Activité({
 										}
 									/>{' '}
 									<Trans>supérieurs à</Trans>{' '}
-									{formatValue({
-										nodeValue:
-											activité['seuil régime général'] || activité['seuil pro'],
-										precision: 0,
-										language,
-										unit: '€'
-									})}
+									<Value maximumFractionDigits={0} unit="€">
+										{activité['seuil régime général'] || activité['seuil pro']}
+									</Value>
 								</label>
 							</li>
 						</ul>

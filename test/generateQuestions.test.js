@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import Engine from 'Engine'
 import rules from 'Rules'
-import { getNextSteps } from '../source/components/utils/useNextQuestion'
+import { getNextSteps } from '../source/engine/generateQuestions'
 
 describe('Missing variables', function() {
 	it('should identify missing variables', function() {
@@ -19,7 +19,8 @@ describe('Missing variables', function() {
 			'sum . evt . ko': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('sum . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.include('sum . evt . ko')
@@ -37,7 +38,8 @@ describe('Missing variables', function() {
 			'sum . evt . nyet': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('sum . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.include('sum . evt . nyet')
@@ -54,7 +56,8 @@ describe('Missing variables', function() {
 			'sum . trois': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('sum . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.be.empty
@@ -72,7 +75,8 @@ describe('Missing variables', function() {
 			'sum . trois': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('sum . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('sum . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.be.empty
@@ -87,7 +91,8 @@ describe('Missing variables', function() {
 			}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.include('top . trois')
@@ -103,7 +108,8 @@ describe('Missing variables', function() {
 			}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.be.empty
@@ -119,8 +125,8 @@ describe('Missing variables', function() {
 			}
 		}
 		const result = Object.keys(
-			new Engine(rawRules)
-				.setSituation({ 'top . trois': "'ko'" })
+			new Engine({ rules: rawRules })
+				.setSituation({ 'top . trois': 'ko' })
 				.evaluate('top . startHere').missingVariables
 		)
 
@@ -171,7 +177,8 @@ describe('Missing variables', function() {
 			'top . quatre': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . startHere').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . startHere')
+				.missingVariables
 		)
 
 		expect(result).to.include('top . dix')
@@ -197,7 +204,7 @@ describe('nextSteps', function() {
 		}
 
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . sum').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
 		)
 
 		expect(result).to.have.lengthOf(1)
@@ -216,7 +223,7 @@ describe('nextSteps', function() {
 		}
 
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . sum').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
 		)
 
 		expect(result).to.have.lengthOf(1)
@@ -239,7 +246,7 @@ describe('nextSteps', function() {
 			'top . sum . evt . ko': {}
 		}
 		const result = Object.keys(
-			new Engine(rawRules).evaluate('top . sum').missingVariables
+			new Engine({ rules: rawRules }).evaluate('top . sum').missingVariables
 		)
 
 		expect(result).to.eql(['top . sum . evt'])
@@ -247,15 +254,13 @@ describe('nextSteps', function() {
 
 	it('should ask "motif CDD" if "CDD" applies', function() {
 		const result = Object.keys(
-			new Engine(rules)
+			new Engine({ rules, useDefaultValues: false })
 				.setSituation({
 					'contrat salarié': 'oui',
 					'contrat salarié . CDD': 'oui',
 					'contrat salarié . rémunération . brut de base': '2300'
 				})
-				.evaluate('contrat salarié . rémunération . net', {
-					useDefaultValues: false
-				}).missingVariables
+				.evaluate('contrat salarié . rémunération . net').missingVariables
 		)
 
 		expect(result).to.include('contrat salarié . CDD . motif')
@@ -264,19 +269,19 @@ describe('nextSteps', function() {
 
 describe('getNextSteps', function() {
 	it('should give priority to questions that advance most targets', function() {
-		let missingVariablesByTarget = [
-			{
+		let missingVariablesByTarget = {
+			chargé: {
 				effectif: 34.01,
 				cadre: 30
 			},
-			{
+			net: {
 				cadre: 10.1
 			},
-			{
+			aides: {
 				effectif: 32.0,
 				cadre: 10
 			}
-		]
+		}
 
 		let result = getNextSteps(missingVariablesByTarget)
 
@@ -284,17 +289,17 @@ describe('getNextSteps', function() {
 	})
 
 	it('should give priority to questions by total weight when advancing the same target count', function() {
-		let missingVariablesByTarget = [
-			{
+		let missingVariablesByTarget = {
+			chargé: {
 				effectif: 24.01,
 				cadre: 30
 			},
-			{
+			net: {
 				effectif: 24.01,
 				cadre: 10.1
 			},
-			{}
-		]
+			aides: {}
+		}
 
 		let result = getNextSteps(missingVariablesByTarget)
 

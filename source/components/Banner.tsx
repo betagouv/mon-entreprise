@@ -1,7 +1,7 @@
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
+import { firstStepCompletedSelector } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import './Banner.css'
 

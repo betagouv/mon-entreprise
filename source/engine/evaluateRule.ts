@@ -3,6 +3,7 @@ import { ParsedRule } from 'Engine/types'
 import { map, mergeAll, pick, pipe } from 'ramda'
 import { typeWarning } from './error'
 import { convertNodeToUnit } from './nodeUnits'
+import { areUnitConvertible } from './units'
 
 export const evaluateApplicability = (
 	cache,
@@ -47,11 +48,8 @@ export const evaluateApplicability = (
 				  ])
 
 	return {
-		...node,
-		isApplicable,
 		nodeValue: isApplicable,
 		missingVariables,
-		parentDependencies,
 		...evaluatedAttributes
 	}
 }
@@ -74,7 +72,7 @@ export default (cache, situationGate, parsedRules, node) => {
 			? evaluateNode(cache, situationGate, parsedRules, node.formule)
 			: {}
 	// evaluate the formula lazily, only if the applicability is known and true
-	let evaluatedFormula = isApplicable
+	const evaluatedFormula = isApplicable
 		? evaluateFormula()
 		: isApplicable === false
 		? {
@@ -87,10 +85,27 @@ export default (cache, situationGate, parsedRules, node) => {
 				missingVariables: {},
 				nodeValue: null
 		  }
+	let {
+		missingVariables: formulaMissingVariables,
+		nodeValue
+	} = evaluatedFormula
+	const missingVariables = mergeMissing(
+		bonus(condMissing, !!Object.keys(condMissing).length),
+		formulaMissingVariables
+	)
+	const unit =
+		node.unit ||
+		(node.defaultUnit &&
+			cache._meta.defaultUnits.find(unit =>
+				areUnitConvertible(node.defaultUnit, unit)
+			)) ||
+		node.defaultUnit ||
+		evaluatedFormula.unit
 
-	if (node.unit) {
+	const temporalValue = evaluatedFormula.temporalValue
+	if (unit) {
 		try {
-			evaluatedFormula = convertNodeToUnit(node.unit, evaluatedFormula)
+			nodeValue = convertNodeToUnit(unit, evaluatedFormula).nodeValue
 		} catch (e) {
 			typeWarning(
 				node.dottedName,
@@ -99,20 +114,14 @@ export default (cache, situationGate, parsedRules, node) => {
 			)
 		}
 	}
-	const missingVariables = mergeMissing(
-		bonus(condMissing, !!Object.keys(condMissing).length),
-		evaluatedFormula.missingVariables
-	)
-	// console.log(node.dottedName, evaluatedFormula.unit)
 
-	let temporalValue = evaluatedFormula.temporalValue
 	cache._meta.contextRule.pop()
 	return {
 		...node,
 		...applicabilityEvaluation,
 		...(node.formule && { formule: evaluatedFormula }),
-		nodeValue: evaluatedFormula.nodeValue,
-		unit: node.unit ?? evaluatedFormula.unit,
+		nodeValue,
+		unit,
 		temporalValue,
 		isApplicable,
 		missingVariables

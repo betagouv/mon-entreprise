@@ -9,7 +9,7 @@ contrat salarié:
         - CDD
         - apprentissage
         - stage
-  par défaut: "'CDI'"
+  par défaut: CDI
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
 
@@ -130,7 +130,8 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
   question: Combien de titres-restaurants sont distribués au salarié ?
-  par défaut: 19 titres-restaurant/mois
+  par défaut: 19
+  unité: titres-restaurant/mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   question: Quelle est la valeur unitaire du titre-restaurant ?
@@ -138,18 +139,20 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
     Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
     revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
     dépasser 11,10€ par titre en 2020.
-  par défaut: 8 €/titre-restaurant
+  par défaut: 8
   suggestions:
     faible: 6
     moyenne: 8
     max exonéré: 11.10
+  unité: €/titre-restaurant
 
 contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
   description: >-
     Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
     de 60% maximum.
   question: Quelle est la participation de l'employeur ?
-  par défaut: 50 %
+  par défaut: 50
+  unité: '%'
   suggestions:
     50%: 50
     60%: 60
@@ -191,13 +194,14 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . part 
     plafond: 200 €/an
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle:
+  unité: km/mois
   question: >-
     Quelle est la distance parcourue en vélo chaque mois pour le trajet domicile / travail ?
   suggestions:
     2 km/jour: 40
     5 km/jour: 100
     10 km/jour: 200
-  par défaut: 80 km/mois
+  par défaut: 80
 
 contrat salarié . activité partielle:
   question: Le salarié est-il en chômage partiel ?
@@ -244,7 +248,8 @@ contrat salarié . activité partielle . heures travaillées:
   description: >-
     Dans le cadre du chômage partiel, le nombre d'heure restante travaillées. Doit être
     inférieur au temps contractuel.
-  par défaut: 0 heures/mois
+  unité: heures/mois
+  par défaut: 0
   suggestions:
     30 h/semaine: 130
     20 h/semaine: 86.6666
@@ -333,13 +338,12 @@ contrat salarié . activité partielle . indemnisation entreprise:
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
-    encadrement:
-      valeur: indemnités . base
-      plancher: 8.03 €/heure * heures chômées
-      plafond:
-        recalcul:
-          avec:
-            rémunération . brut de base: 4.5 * SMIC
+    valeur: indemnités . base
+    plancher: 8.03 €/heure * heures chômées
+    plafond:
+      recalcul:
+        avec:
+          rémunération . brut de base: 4.5 * SMIC
 
 # TODO : This should be merged with other convention collectives
 contrat salarié . activité partielle . convention syntec:
@@ -446,28 +450,28 @@ contrat salarié . CDD . CPF:
       situation:
         CDD: non
         cotisations . assiette: 1480
-      valeur attendue: false
+      valeur attendue: 0
     - nom: SMIC
       situation:
         CDD: oui
-        événement: non
-        motif: "'accroissement activité'"
+        événement: aucun
+        motif: accroissement activité
         contrat jeune vacances: non
         cotisations . assiette: 1480
       valeur attendue: 14.8
     - nom: salaire médian
       situation:
         CDD: oui
-        événement: non
-        motif: "'accroissement activité'"
+        événement: aucun
+        motif: accroissement activité
         contrat jeune vacances: non
         cotisations . assiette: 2300
       valeur attendue: 23
     - nom: motif saisonnier -> non applicable
       situation:
-        contrat salarié . CDD . motif: "'classique . saisonnier'"
+        contrat salarié . CDD . motif: classique . saisonnier
         cotisations . assiette: 2300
-      valeur attendue: false
+      valeur attendue: 0
 
 contrat salarié . CDD . compensation pour congés non pris:
   titre: indemnité de congés payés
@@ -515,26 +519,26 @@ contrat salarié . CDD . compensation pour congés non pris:
   exemples:
     - nom: pas de congés non pris
       situation:
-        rémunération . brut de base: 2300 €/mois
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
         congés non pris: 0
         durée contrat: 12
-      valeur attendue: false
+      valeur attendue: 0
     - nom: 10 jours non pris
       situation:
         CDD: oui
-        rémunération . brut de base: 2300 €/mois
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
-        congés non pris: 10 jours ouvrés
-        durée contrat: 12 mois
+        congés non pris: 10
+        durée contrat: 12
       valeur attendue: 92
     - nom: 3 jours non pris
       situation:
         CDD: oui
-        rémunération . brut de base: 2300 €/mois
+        rémunération . brut de base: 2300
         prime de fin de contrat: 0
-        congés non pris: 3 jours ouvrés
-        durée contrat: 6 mois
+        congés non pris: 3
+        durée contrat: 6
       valeur attendue: 55.21
   note: |
     L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
@@ -609,14 +613,14 @@ contrat salarié . CDD . prime de fin de contrat:
       situation:
         CDD: oui
         rémunération . brut de base: 2300
-        motif: "'classique . accroissement activité'"
+        motif: classique . accroissement activité
       valeur attendue: 230
 
     - nom: CDD d'usage -> non applicable
       situation:
-        motif: "'classique . usage'"
+        motif: classique . usage
         rémunération . brut de base: 2300
-      valeur attendue: false
+      valeur attendue: 0
 
   références:
     Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
@@ -670,7 +674,8 @@ contrat salarié . ATMP . taux collectif ATMP:
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
     ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
     concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  par défaut: 2.22 %
+  par défaut: 2.22
+  unité par défaut: '%'
   references:
     taux moyen national: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=4702534627E4A8CF240B990E28C81AF4.tplgfr30s_3?idArticle=JORFARTI000033735834&cidTexte=JORFTEXT000033735824&dateTexte=29990101&categorieLien=id
 
@@ -688,12 +693,11 @@ contrat salarié . CDD . événement:
   # elle apparaîtrait alors forcément _après_ la question du motif
   formule:
     une possibilité:
-      possibilités:
-        - poursuite du CDD en CDI
-        - refus CDI avantageux
-        - rupture anticipée salarié
-        - rupture pour faute grave ou force majeure
-        - rupture pendant période essai
+      - poursuite du CDD en CDI
+      - refus CDI avantageux
+      - rupture anticipée salarié
+      - rupture pour faute grave ou force majeure
+      - rupture pendant période essai
   par défaut: non
 
 contrat salarié . CDD . événement . poursuite du CDD en CDI:
@@ -743,7 +747,7 @@ contrat salarié . CDD . motif:
         - complément formation
         - issue d'apprentissage
   # les CDD d'usage "concentrent la moitié des embauches en CDD"
-  par défaut: "'classique . usage'"
+  par défaut: classique . usage
   références:
     Code du travail - Articles L1242-1 à 4: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=E318966AA9DEB9E32465297F15B04D86.tpdila20v_1?idSectionTA=LEGISCTA000006195639&cidTexte=LEGITEXT000006072050&dateTexte=20170420
     le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
@@ -754,15 +758,14 @@ contrat salarié . CDD . motif . classique:
   titre: motifs classiques
   formule:
     une possibilité:
-      possibilités:
-        - remplacement
-        - accroissement activité
-        - saisonnier
-        - usage
-        - mission
+      - remplacement
+      - accroissement activité
+      - saisonnier
+      - usage
+      - mission
   références:
     Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
-  par défaut: "'usage'"
+  par défaut: usage
 
 contrat salarié . CDD . motif . classique . saisonnier:
   titre: Saisonnier
@@ -867,23 +870,25 @@ contrat salarié . CDD . durée contrat:
     [Cliquez ici](https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211) pour connaître la durée maximale d'un CDD.
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
+  unité: mois
   suggestions:
     18 mois: 18
     1 an: 12
     6 mois: 6
     3 mois: 3
   # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
-  par défaut: 1 mois
+  par défaut: 1
 
 contrat salarié . CDD . congés non pris:
   question: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
+  unité: jour ouvré
   suggestions:
     3: 3
     10: 10
-  par défaut: 0 jour ouvré
+  par défaut: 0
   contrôles:
     - si: congés non pris > congés dus en jours ouvrés
       message: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
@@ -925,7 +930,7 @@ contrat salarié . apprentissage . diplôme préparé:
       possibilités:
         - niveau bac ou moins
         - niveau supérieur au bac
-  par défaut: "'niveau supérieur au bac'"
+  par défaut: niveau supérieur au bac
 
 contrat salarié . apprentissage . diplôme préparé . niveau bac ou moins:
   titre: Diplôme d'un niveau inférieur ou égal au bac
@@ -947,7 +952,7 @@ contrat salarié . apprentissage . ancienneté:
         - moins de deux ans
         - moins de trois ans
         - moins de quatre ans
-  par défaut: "'moins d'un an'"
+  par défaut: moins d'un an
   contrôles:
     - si: moins de quatre ans
       niveau: information
@@ -1025,6 +1030,7 @@ contrat salarié . cotisations . assiette:
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
   référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  unité par défaut: €/mois
   formule:
     allègement:
       assiette: rémunération . brut
@@ -1066,7 +1072,7 @@ contrat salarié . rémunération . brut de base:
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
     Il ne comprend pas les indemnités, avantages sociaux, avantages en nature et primes...
-  unité: €/mois
+  unité par défaut: €/mois
   suggestions:
     salaire médian: 2300
     SMIC: 1539
@@ -1106,9 +1112,9 @@ contrat salarié . rémunération . brut de base:
         - rémunération . net
         - rémunération . net après impôt
         - équivalent temps plein
-        - dirigeant . rémunération totale
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
+        - dirigeant . rémunération totale
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
@@ -1118,7 +1124,7 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   titre: Salaire brut équivalent temps plein
   résumé: Le salaire si l'embauche se faisait à temps plein
   question: Quel est le salaire en équivalent temps plein ?
-  unité: €/mois
+  unité par défaut: €/mois
   formule: brut de base / temps de travail . quotité de travail
   suggestions:
     salaire médian: 2300
@@ -1128,8 +1134,7 @@ contrat salarié . rémunération . taux horaire:
   unité: €/heure
   formule: assiette de vérification du SMIC / temps de travail
 
-contrat salarié . rémunération . taux horaire . heures supplémentaires:
-  titre: taux horaire (heure supplémentaire)
+contrat salarié . rémunération . taux horaire des heures supplémentaires et complémentaires:
   description: >
     Le taux horaire utilisé pour calculer la rémunération liée au heures
     supplémentaires. Il intègre les avantages en nature et les primes
@@ -1186,6 +1191,7 @@ contrat salarié . rémunération . primes:
 
     Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
     sur le revenu.
+  unité par défaut: €/mois
 
   formule:
     somme:
@@ -1212,8 +1218,9 @@ contrat salarié . rémunération . primes . activité:
 
 contrat salarié . rémunération . primes . activité . base:
   titre: primes d'activité
+  unité: €/mois
   question: Quel est le montant des primes liées à l'activité du salarié ?
-  par défaut: 0 €/mois
+  par défaut: 0
 
 contrat salarié . rémunération . primes . activité . conventionnelles:
   formule: 0 €/mois
@@ -1253,6 +1260,7 @@ contrat salarié . rémunération . primes . fin d'année . treizième mois:
 contrat salarié . rémunération . brut:
   description: Toutes les sommes versées au salarié sous forme monétaire en échange de son travail.
   titre: Rémunération brute
+  unité par défaut: €/mois
   formule:
     # Pour les frais professionnels, et les cotisations de prévoyance facultative
     # et de retraite complémentaire on ne ré-intègre ici que la part employeur
@@ -1275,9 +1283,11 @@ contrat salarié . rémunération . brut:
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
   description: La rémunération relative aux heures supplémentaires
+  unité par défaut: €/mois
+
   formule:
     produit:
-      assiette: taux horaire . heures supplémentaires
+      assiette: taux horaire des heures supplémentaires et complémentaires
       facteur:
         somme:
           - temps de travail . heures supplémentaires
@@ -1286,9 +1296,11 @@ contrat salarié . rémunération . heures supplémentaires:
 contrat salarié . rémunération . heures complémentaires:
   titre: rémunération heures complémentaires
   description: La rémunération relative aux heures complémentaires
+  unité par défaut: €/mois
+
   formule:
     produit:
-      assiette: taux horaire . heures supplémentaires
+      assiette: taux horaire des heures supplémentaires et complémentaires
       facteur:
         somme:
           - temps de travail . heures complémentaires
@@ -1367,9 +1379,10 @@ contrat salarié . rémunération . avantages en nature . autres . montant:
   titre: autres
   question: >
     Quel est le montant de ces autres avantages ?
-  par défaut: 0 €/mois
+  par défaut: 0
   suggestions:
     🚗 véhicule: 260
+  unité par défaut: €/mois
 
 contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre: outils NTIC
@@ -1394,7 +1407,9 @@ contrat salarié . rémunération . avantages en nature . ntic . montant:
 contrat salarié . rémunération . avantages en nature . ntic . coût appareils:
   question: >
     Quel est le coût total neuf des appareils mis à disposition ?
-  par défaut: 800 €
+  unité: €
+
+  par défaut: 800
   # TODO : vérifier et documenter les chiffres
   suggestions:
     📱: 400
@@ -1404,7 +1419,9 @@ contrat salarié . rémunération . avantages en nature . ntic . coût appareils
 
 contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
-  par défaut: 20 €/mois
+  unité: €/mois
+
+  par défaut: 20
   suggestions:
     aucun: 0
     standard: 20
@@ -1421,17 +1438,24 @@ contrat salarié . rémunération . avantages en nature . nourriture:
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
   unité: €/mois
+
   formule:
     produit:
-      assiette [ref repas forfaitaire]: 4.85 €/repas
+      assiette: montant forfaitaire d'un repas
       facteur: repas par mois
+
+contrat salarié . rémunération . avantages en nature . nourriture . montant forfaitaire d'un repas:
+  unité: €/repas
+
+  formule: 4.85
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
 contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
   question: >
     Combien de repas par mois sont payés par l'employeur ?
-  par défaut: 21 repas/mois
+  par défaut: 21
+  unité: repas/mois
   suggestions:
     1 par jour: 21
     2 par jour: 42
@@ -1494,6 +1518,7 @@ contrat salarié . SMIC:
 
     Les heures supplémentaires et les heures complémentaires sont prises en
     compte sans tenir compte de la majoration.
+  unité par défaut: €/mois
   formule: temps de travail * SMIC horaire
   références:
     Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
@@ -1566,6 +1591,7 @@ contrat salarié . rémunération . net avec revenus de remplacement:
 contrat salarié . rémunération . net imposable:
   titre: Salaire net imposable
   type: salaire
+  unité par défaut: €/mois
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   formule:
@@ -1617,7 +1643,7 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
-  unité: €/mois
+  unité par défaut: €/mois
   type: salaire
   question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
@@ -1644,7 +1670,7 @@ contrat salarié . rémunération . net après impôt:
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
-  unité: €/mois
+  unité par défaut: €/mois
   description: |
     Le 1er janvier 2019, l'impôt sur le revenu est prélevé à la source et apparaît donc sur la fiche de paie.
 
@@ -1672,14 +1698,14 @@ contrat salarié . prix du travail:
       - rémunération . total
       - (- aides employeur)
       - médecine du travail
-  unité: €/mois
+  unité par défaut: €/mois
 
 contrat salarié . rémunération . total:
   titre: Total chargé
   question: Quelle est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire
-  unité: €/mois
+  unité par défaut: €/mois
   description: |
     C'est le total que l'employeur doit verser pour employer un salarié.
   formule:
@@ -1711,7 +1737,7 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
 contrat salarié . réduction ACRE:
   applicable si:
     toutes ces conditions:
-      - dirigeant . assimilé salarié
+      - dirigeant = 'assimilé salarié'
       - entreprise . ACRE
   formule:
     produit:
@@ -1771,12 +1797,14 @@ contrat salarié . cotisations:
 contrat salarié . cotisations . salariales . conventionnelles:
   titre: cotisations salariales conventionnelles
   description: Cotisations spécifiques à la convention collective
-  formule: 0 €/mois
+  unité par défaut: €/mois
+  formule: 0
 
 contrat salarié . cotisations . patronales . conventionnelles:
   titre: cotisations patronales conventionnelles
   description: Cotisations spécifiques à la convention collective
-  formule: 0 €/mois
+  unité par défaut: €/mois
+  formule: 0
 
 contrat salarié . cotisations . maladie sur les revenus de remplacement:
   formule:
@@ -1906,7 +1934,8 @@ contrat salarié . temps de travail . temps partiel:
   par défaut: non
 
 contrat salarié . temps de travail . temps partiel . heures par semaine:
-  par défaut: 32 heures/semaine
+  par défaut: 32
+  unité: heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
   contrôles:
     - si:
@@ -1937,7 +1966,8 @@ contrat salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   non applicable si: temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
-  par défaut: 0 heure/mois
+  par défaut: 0
+  unité: heure/mois
   suggestions:
     aucune: 0
     39h / semaine: 17.33
@@ -1983,7 +2013,8 @@ contrat salarié . temps de travail . heures complémentaires:
     durée légale ou conventionnelle du travail.
   applicable si: temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
-  par défaut: 0 heure/mois
+  unité: heure/mois
+  par défaut: 0
   contrôles:
     - si: heures complémentaires > seuil légal
       niveau: information
@@ -2429,10 +2460,11 @@ contrat salarié . complémentaire santé:
 contrat salarié . complémentaire santé . part employeur:
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
   question: Quelle est la part de la complémentaire santé payée par l'employeur ?
+  unité: '%'
   suggestions:
     50%: 50
     100%: 100
-  par défaut: 50%
+  par défaut: 50
   contrôles:
     - si: part employeur < 50%
       niveau: avertissement
@@ -2444,6 +2476,7 @@ contrat salarié . complémentaire santé . part salarié:
 
 contrat salarié . complémentaire santé . forfait:
   titre: Forfait de complémentaire santé entreprise
+  unité: €/mois
   description: >-
     L'employeur a l'obligation de proposer une offre de complémentaire santé. Il
     doit prendre à sa charge au moins la moitié de son coût. 
@@ -2463,7 +2496,7 @@ contrat salarié . complémentaire santé . forfait:
     Alsace-moselle étude Meilleureassurance.com: http://www.lefigaro.fr/conjoncture/2018/10/16/20002-20181016ARTFIG00248-les-tarifs-des-complementaires-sante-font-le-grand-ecart-d-un-departement-a-l-autre.php
 
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
-  par défaut: 40 €/mois
+  par défaut: 40
   suggestions:
     basique: 40
     élevé: 100
@@ -3040,6 +3073,7 @@ contrat salarié . taxe sur les salaires . assiette de base:
     assiette: http://bofip.impots.gouv.fr/bofip/6690-PGP.html
 
 contrat salarié . taxe sur les salaires . assiette:
+  unité par défaut: €/mois
   formule:
     allègement:
       assiette: assiette de base
@@ -3169,7 +3203,6 @@ contrat salarié . régime des impatriés:
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
 
 contrat salarié . taxe sur les salaires:
-  unité: €/mois
   taxe:
     dû par: employeur
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
@@ -3184,7 +3217,7 @@ contrat salarié . taxe sur les salaires:
     - nom: non applicable par défaut
       situation:
         rémunération . brut de base: 2300
-      valeur attendue: false
+      valeur attendue: 0
     - nom: association non lucrative unipersonnelle
       situation:
         entreprise . association non lucrative: oui
@@ -3368,8 +3401,7 @@ contrat salarié . lodeom . éligible barème compétitivité:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/outre-mer/employeur/exoneration-de-cotisations-di-1/employeurs-situes-en-guadeloupe/bareme-dit-de-competitivite.html
 
 contrat salarié . lodeom . secteurs d'activité:
-  applicable si: zone un
-  question: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
+  question: Votre entreprise appartient-elle à l'un de ces secteurs ?
   description: |
     Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de compétitivité, votre entreprise doit appartenir à l'un des secteurs suivants :
 
@@ -3504,7 +3536,7 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
   par défaut: non
 
 contrat salarié . convention collective:
-  par défaut: "'droit commun'"
+  par défaut: droit commun
   question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
   formule:
     une possibilité:

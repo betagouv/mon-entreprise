@@ -1,9 +1,12 @@
-import { updateSituation, goToQuestion } from 'Actions/actions'
+import { updateSituation } from 'Actions/actions'
 import Explicable from 'Components/conversation/Explicable'
-import React, { useContext } from 'react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
-import { EngineContext } from 'Components/utils/EngineContext'
+import {
+	parsedRulesSelector,
+	situationSelector
+} from 'Selectors/analyseSelectors'
 
 /*
 This higher order component wraps "Form" components (e.g. Question.js), that represent user inputs,
@@ -17,8 +20,9 @@ export default function FormDecorator(RenderField) {
 	return function FormStep({ dottedName }) {
 		const dispatch = useDispatch()
 		const situation = useSelector(situationSelector)
-		const rules = useContext(EngineContext).getParsedRules()
+		const rules = useSelector(parsedRulesSelector)
 
+		const language = useTranslation().i18n.language
 		const submit = source =>
 			dispatch({
 				type: 'STEP_ACTION',
@@ -27,7 +31,6 @@ export default function FormDecorator(RenderField) {
 				source
 			})
 		const setFormValue = value => {
-			dispatch(goToQuestion(dottedName))
 			dispatch(updateSituation(dottedName, value))
 		}
 

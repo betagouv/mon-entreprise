@@ -1,9 +1,9 @@
 import { convertToString, getYear } from 'Engine/date'
 import { evaluationError } from 'Engine/error'
 import { evaluateNode } from 'Engine/evaluation'
-import { Evaluation } from 'Engine/types'
 import {
 	createTemporalEvaluation,
+	Evaluation,
 	groupByYear,
 	liftTemporal2,
 	pureTemporal,

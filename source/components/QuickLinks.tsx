@@ -5,20 +5,20 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
-
-import { useNextQuestions } from './utils/useNextQuestion'
 import {
-	answeredQuestionsSelector,
-	currentQuestionSelector
-} from 'Selectors/simulationSelectors'
+	currentQuestionSelector,
+	nextStepsSelector
+} from 'Selectors/analyseSelectors'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)
-	const nextSteps = useNextQuestions()
+	const nextSteps = useSelector(nextStepsSelector)
 	const quickLinks = useSelector(
 		(state: RootState) => state.simulation?.config.questions?.["à l'affiche"]
 	)
-	const quickLinksToHide = useSelector(answeredQuestionsSelector)
+	const quickLinksToHide = useSelector(
+		(state: RootState) => state.simulation?.foldedSteps || []
+	)
 	const dispatch = useDispatch()
 
 	if (!quickLinks) {

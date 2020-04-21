@@ -36,7 +36,7 @@
 	text-transform: uppercase;
 	font-size: 85%;
 	color: var(--darkColor);
-	font-weight: 600;
+	font-weight: 500;
 }
 .footer__registerField {
 	display: flex;

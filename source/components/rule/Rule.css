@@ -1,0 +1,31 @@
+.reportErrorContainer {
+	text-align: center;
+	padding: 0.3em 0.6em;
+	margin: 3em auto 0;
+}
+.reportError {
+	color: #c0392b;
+	font-size: 100%;
+	text-align: center;
+}
+.reportError:hover {
+	color: #b53527;
+}
+
+#notes {
+	color: #666;
+}
+
+h2 small {
+	font-size: 75%;
+}
+
+
+#rule #ruleDefault {
+	text-align: center;
+	opacity: 0.75;
+}
+
+#toggleRuleSource {
+	margin-top: 1em;
+}

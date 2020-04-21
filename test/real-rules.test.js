@@ -6,7 +6,7 @@ import rules from 'Rules'
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
 let parsedRules = parseRules(rules)
-const engine = new Engine(parsedRules)
+const engine = new Engine({ rules: parsedRules })
 let runExamples = (examples, rule) =>
 	examples.map(ex => {
 		const expected = ex['valeur attendue']
@@ -19,9 +19,10 @@ let runExamples = (examples, rule) =>
 		)
 		const evaluation = engine
 			.setSituation(situation)
-			.evaluate(rule.dottedName, {
-				unit: ex['unités par défaut']?.[0] ?? rule['unité par défaut']
-			})
+			.setDefaultUnits(
+				ex['unités par défaut'] ?? [rule['unité par défaut'] ?? '€/mois']
+			)
+			.evaluate(rule.dottedName)
 		const ok =
 			evaluation.nodeValue === expected
 				? true

@@ -3,15 +3,15 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
+import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import Banner from './Banner'
-import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(
 		(state: RootState) => state.previousSimulation
 	)
-	const newSimulationStarted = useSelector(firstStepCompletedSelector)
+	const newSimulationStarted = !useSelector(noUserInputSelector)
 	const dispatch = useDispatch()
 
 	return (

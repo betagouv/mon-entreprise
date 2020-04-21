@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import logoSvg from 'Images/logo.svg'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'

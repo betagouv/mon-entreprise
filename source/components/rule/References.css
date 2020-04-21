@@ -1,9 +1,12 @@
 .references {
+	font-size: 100%;
 	list-style: none;
-	padding: 0;
+	padding-left: 1em;
+	color: #333350;
 }
 .references a {
-	flex: 1;
+	color: inherit;
+	width: 40%;
 	text-decoration: underline;
 }
 
@@ -16,6 +19,15 @@
 #noOfficialReferences {
 	text-align: left;
 	font-style: italic;
+}
+.references .url {
+	font-weight: 600;
+	color: white;
+	background: #333350;
+	border-radius: 0.4em;
+	font-style: italic;
+	padding: 0.05em 0.6em;
+	font-size: 95%;
 }
 .references .imageWrapper {
 	width: 6rem;

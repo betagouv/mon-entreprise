@@ -88,9 +88,4 @@ régularisation . test variations 1:
 régularisation . test variations 2:
   formule: cotisation spéciale | du 01/02/2020 | au 29/02/2020
   exemples:
-    - valeur attendue: 0
-
-régularisation . test variations 3:
-  formule: cotisation spéciale | du 01/03/2020 | au 31/03/2020
-  exemples:
-    - valeur attendue: 1380
+    - valeur attendue: 660

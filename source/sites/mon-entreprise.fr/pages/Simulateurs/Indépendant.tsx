@@ -5,12 +5,13 @@ import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
+import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function Indépendant() {
 	const dispatch = useDispatch()
@@ -50,7 +51,8 @@ export default function Indépendant() {
 }
 
 function ExplanationSection() {
-	const engine = useContext(EngineContext)
+	const analysis = useSelector(analysisWithDefaultsSelector)
+	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -60,13 +62,13 @@ function ExplanationSection() {
 			<StackedBarChart
 				data={[
 					{
-						...engine.evaluate('revenu net après impôt'),
+						...getRule('revenu net après impôt'),
 						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
-					{ ...engine.evaluate('impôt'), color: palettes[1][0] },
+					{ ...getRule('impôt'), color: palettes[1][0] },
 					{
-						...engine.evaluate(
+						...getRule(
 							'dirigeant . indépendant . cotisations et contributions'
 						),
 						title: t('Cotisations'),

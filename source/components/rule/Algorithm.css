@@ -3,6 +3,7 @@
 */
 
 .situationValue {
+	display: none;
 	text-decoration: underline white;
 	border-bottom-left-radius: 3px;
 	font-weight: 400;
@@ -12,6 +13,14 @@
 .name {
 	display: flex;
 	align-items: baseline;
+}
+#rule-rules .name > .situationValue {
+	border-bottom: 2px solid white;
+	padding-left: 0.4em;
+}
+
+#rule-rules.showValues .situationValue {
+	display: inline-block;
 }
 
 .node.inlineExpression:not(.comparison) {
@@ -31,6 +40,10 @@
 	margin-top: 0.3em;
 	align-items: flex-end;
 	text-align: right;
+}
+
+#rule-rules section {
+	margin: 1em 0;
 }
 
 #declenchement > ul {
@@ -54,7 +67,7 @@
 	padding: 0.2em 0.8em;
 	display: inline-block;
 	color: white !important;
-	font-weight: 600;
+	font-weight: 500;
 	border-bottom-right-radius: 6px;
 }
 .inlineMecanism .name {
@@ -109,7 +122,7 @@
 }
 
 .percentage .name {
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .inlineExpression .operator {
@@ -129,14 +142,22 @@
 	border: 1px solid;
 	max-width: 100%;
 	border-radius: 3px;
-	padding: 1rem;
+	padding: 1em;
+	padding-top: 1em;
 	position: relative;
 	flex: 1;
 }
+#rule-rules.showValues .mecanism {
+	padding-bottom: 2em;
+}
 .mecanism-result {
 	position: absolute;
+	display: none;
 	bottom: 0px;
 	right: 0;
+}
+#rule-rules.showValues .mecanism-result {
+	display: initial;
 }
 .mecanism .mecanism {
 	flex: initial;
