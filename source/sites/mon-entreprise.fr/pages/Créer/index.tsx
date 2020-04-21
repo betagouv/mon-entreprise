@@ -1,5 +1,5 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext } from 'react'
 import { Route, Switch } from 'react-router'
 import { useLocation } from 'react-router-dom'

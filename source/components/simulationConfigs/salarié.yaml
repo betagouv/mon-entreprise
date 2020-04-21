@@ -1,15 +1,9 @@
 objectifs:
   - contrat salarié . prix du travail
-  - contrat salarié . aides employeur
   - contrat salarié . rémunération . brut de base . équivalent temps plein
   - contrat salarié . rémunération . brut de base
   - contrat salarié . rémunération . net
   - contrat salarié . rémunération . net après impôt
-
-objectifs secondaires:
-  - contrat salarié . temps de travail
-  - contrat salarié . cotisations
-  - contrat salarié . frais professionnels . titres-restaurant . montant
 
 questions:
   à l'affiche:

@@ -20,25 +20,16 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
-const engine = new Engine({ rules })
-const runSimulations = (
-	situations,
-	targets,
-	baseSituation = {},
-	defaultUnits,
-	namePrefix = ''
-) =>
+const engine = new Engine(rules)
+const runSimulations = (situations, targets, baseSituation = {}) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach(situation => {
 			engine.setSituation({ ...baseSituation, ...situation })
-			engine.setDefaultUnits(defaultUnits)
-			const res = engine.evaluate(targets).map(node => node.nodeValue)
+			const res = targets.map(target => engine.evaluate(target).nodeValue)
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
-			expect(JSON.stringify(roundResult(res))).toMatchSnapshot(
-				namePrefix + ' ' + name
-			)
+			expect(JSON.stringify(roundResult(res))).toMatchSnapshot(name)
 		})
 	)
 
@@ -46,8 +37,7 @@ it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,
-		employeeConfig.situation,
-		['€/mois']
+		employeeConfig.situation
 	)
 })
 
@@ -56,38 +46,57 @@ it('calculate simulations-indépendant', () => {
 		(acc, cur) => [...acc, ...cur.objectifs],
 		[]
 	)
-	runSimulations(independentSituations, targets, independantConfig.situation, [
-		'€/an'
-	])
+	runSimulations(independentSituations, targets, independantConfig.situation)
 })
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
 		autoEntrepreneurSituations,
 		autoentrepreneurConfig.objectifs,
-		autoentrepreneurConfig.situation,
-		['€/an']
+		autoentrepreneurConfig.situation
 	)
 })
 
-it('calculate simulations-rémunération-dirigeant', () => {
-	const baseSituation = remunerationDirigeantConfig.situation
-	remunerationDirigeantConfig.branches.forEach(({ nom, situation }) => {
-		runSimulations(
-			remunerationDirigeantSituations,
-			remunerationDirigeantConfig.objectifs,
-			{ ...baseSituation, ...situation },
-			['€/an'],
-			`${nom} - `
-		)
-	})
+it('calculate simulations-rémunération-dirigeant (assimilé salarié)', () => {
+	runSimulations(
+		remunerationDirigeantSituations,
+		remunerationDirigeantConfig.objectifs,
+		{
+			...remunerationDirigeantConfig.situation,
+			dirigeant: "'assimilé salarié'"
+		},
+		'assimilé salarié'
+	)
+})
+
+it('calculate simulations-rémunération-dirigeant (auto-entrepreneur)', () => {
+	runSimulations(
+		remunerationDirigeantSituations,
+		remunerationDirigeantConfig.objectifs,
+		{
+			...remunerationDirigeantConfig.situation,
+			dirigeant: "'auto-entrepreneur'"
+		},
+		'auto-entrepreneur'
+	)
+})
+
+it('calculate simulations-rémunération-dirigeant (indépendant)', () => {
+	runSimulations(
+		remunerationDirigeantSituations,
+		remunerationDirigeantConfig.objectifs,
+		{
+			...remunerationDirigeantConfig.situation,
+			dirigeant: "'indépendant'"
+		},
+		'indépendant'
+	)
 })
 
 it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
 		artisteAuteurSituations,
 		artisteAuteurConfig.objectifs,
-		artisteAuteurConfig.situation,
-		['€/an']
+		artisteAuteurConfig.situation
 	)
 })

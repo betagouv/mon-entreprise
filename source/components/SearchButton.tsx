@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import Overlay from './Overlay'
+import { EngineContext } from 'Components/utils/EngineContext'
 import SearchBar from './SearchBar'
 
 type SearchButtonProps = {
@@ -11,7 +11,7 @@ type SearchButtonProps = {
 }
 
 export default function SearchButton({ invisibleButton }: SearchButtonProps) {
-	const rules = useSelector(parsedRulesSelector)
+	const rules = useContext(EngineContext).getParsedRules()
 	const [visible, setVisible] = useState(false)
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {

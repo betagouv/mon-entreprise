@@ -20,7 +20,7 @@ describe('Simulateurs', function() {
 					}
 					cy.get(inputSelector).each((testedInput, i) => {
 						cy.wrap(testedInput).type('{selectall}60000')
-						cy.wait(600)
+						cy.wait(800)
 						cy.contains('Cotisations')
 						cy.get(inputSelector).each(($input, j) => {
 							const val = $input.val().replace(/[\s,.]/g, '')
@@ -41,7 +41,7 @@ describe('Simulateurs', function() {
 					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
 						cy.get(chargeInputSelector).type('{selectall}6000')
 					}
-					cy.wait(600)
+					cy.wait(800)
 					cy.contains('€ / mois').click()
 					cy.get(inputSelector)
 						.first()
@@ -108,7 +108,7 @@ describe('Simulateurs', function() {
 						cy.get(inputSelector)
 							.first()
 							.type('{selectall}5000')
-						cy.wait(600)
+						cy.wait(800)
 						cy.get(inputSelector).each($input => {
 							const val = +$input.val().replace(/[\s,.]/g, '')
 							expect(val).not.to.be.below(4000)

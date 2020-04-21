@@ -72,6 +72,6 @@ let Comp = function Composantes({ nodeValue, explanation, unit }) {
 }
 
 // eslint-disable-next-line
-export default (nodeValue, explanation, _, unit) => (
+export default (nodeValue, explanation, unit) => (
 	<Comp {...{ nodeValue, explanation, unit }} />
 )

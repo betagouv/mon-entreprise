@@ -177,7 +177,7 @@ x . y:
   remplace: z
   formule: 20
 
-remplacement non applicable (branche desactivée):
+remplacement non applicable car branche desactivée:
   formule: z
   exemples:
     - valeur attendue: 1

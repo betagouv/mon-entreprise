@@ -18,11 +18,11 @@ Conversion de reference 2:
     - situation:
         douches par mois: 30
       valeur attendue: 360
-    - nom: Unité de variable prioritaire devant les unités par défaut
+    - nom: unités par défaut prioritaire devant unité de variable
       situation:
         douches par mois: 30
-      unités par défaut: [douche/mois]
-      valeur attendue: 360
+      unité par défaut: douche/mois
+      valeur attendue: 30
 
 Conversion de variable:
   formule: 1.5 kCo2/douche * douches par mois
@@ -34,7 +34,7 @@ Conversion de variable:
     - nom: Unité cible de simulation
       situation:
         douches par mois: 20
-      unités par défaut: [kCo2/an]
+      unité par défaut: kCo2/an
       unité attendue: kCo2/an
       valeur attendue: 360
 
@@ -102,7 +102,7 @@ Conversion de mécanisme 2:
     - situation:
         assiette annuelle: 36000
       valeur attendue: 131.25
-      unités par défaut: [€/mois]
+      unité par défaut: €/mois
 
 Conversion dans une expression:
   unité: €/an
@@ -132,7 +132,7 @@ Conversion dans une somme compliquée:
   exemples:
     - situation:
         assiette annuelle: 20000
-      unités par défaut: [€/mois]
+      unité par défaut: €/mois
       valeur attendue: 130
 
 maladie:
@@ -166,11 +166,11 @@ Conversion dans un allègement:
       assiette: 1000€/an
       abattement: 10€/mois
   exemples:
-    - unités par défaut: [€/an]
-      valeur attendue: 880
+    unité par défaut: €/an
+    valeur attendue: 880
 
 Conversion dans avec un abattement en %:
-  unité par défaut: €/an
+  unité: €/an
   formule:
     allègement:
       assiette: 1000€/an
@@ -196,10 +196,10 @@ Conversion avec plusieurs échelons:
       - prévoyance cadre
       - 35€/mois
   exemples:
-    - unités par défaut: [€/an]
-      situation:
-        assiette mensuelle: 1100
-      valeur attendue: 600
+    unité par défaut: €/an
+    situation:
+      assiette mensuelle: 1100
+    valeur attendue: 600
 
 Conversion de situation:
   formule:
@@ -207,25 +207,7 @@ Conversion de situation:
       - retraite
       - mutuelle
   exemples:
-    - unités par défaut: [€/an]
-      situation:
-        retraite: 4000
-      valeur attendue: 4360
-
-rémunération brute:
-  unité par défaut: €/mois
-
-Conversion de situation avec unité:
-  unité: €/an
-  formule:
-    produit:
-      assiette: rémunération brute
-      taux: 10%
-  exemples:
-    - situation:
-        rémunération brute: 1000
-      valeur attendue: 1200
-    - unités par défaut: [k€/an]
-      situation:
-        rémunération brute: 12
-      valeur attendue: 1200
+    unité par défaut: €/an
+    situation:
+      retraite: 4000
+    valeur attendue: 4360

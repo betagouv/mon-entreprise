@@ -34,4 +34,4 @@ Applicable si:
       valeur attendue: 10
     - situation:
         date de création: 09/02/2019
-      valeur attendue: 0
+      valeur attendue: false

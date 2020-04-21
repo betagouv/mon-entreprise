@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'

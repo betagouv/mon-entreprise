@@ -2,9 +2,6 @@
 	"editor.formatOnSave": true,
 	"spellright.language": ["fr", "en"],
 	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": true
-	},
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2
 }
