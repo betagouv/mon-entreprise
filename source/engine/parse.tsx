@@ -2,6 +2,7 @@
 // In a specific file
 // TODO import them automatically
 // TODO convert the legacy functions to new files
+import Value from 'Components/Value'
 import mecanismRound, { unchainRoundMecanism } from 'Engine/mecanisms/arrondi'
 import barème from 'Engine/mecanisms/barème'
 import durée from 'Engine/mecanisms/durée'
@@ -28,7 +29,6 @@ import {
 } from 'ramda'
 import React from 'react'
 import { EngineError, syntaxError } from './error'
-import { formatValue } from './format'
 import grammar from './grammar.ne'
 import {
 	mecanismAllOf,
@@ -72,7 +72,7 @@ Utilisez leur contrepartie française : 'oui' / 'non'`
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
 
-const parseExpression = (rule, rawNode) => {
+export const parseExpression = (rule, rawNode) => {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
@@ -236,20 +236,20 @@ const statelessParseFunction = {
 	valeur: (recurse, __, v) => recurse(v),
 	constant: (_, __, v) => ({
 		type: v.type,
-		constant: true,
 		nodeValue: v.nodeValue,
 		unit: v.unit,
 		// eslint-disable-next-line
-		jsx: (nodeValue, _, unit) => (
+		jsx: (nodeValue, _, __, unit) => (
 			<span className={v.type}>
-				{formatValue({
-					unit,
-					nodeValue,
-					language: 'fr',
-					// We want to display constants with full precision,
-					// espacilly for percentages like APEC 0,036 %
-					precision: 5
-				})}
+				<Value
+					{...{
+						unit,
+						nodeValue,
+						// We want to display constants with full precision,
+						// espacilly for percentages like APEC 0,036 %
+						maximumFractionDigits: 5
+					}}
+				/>
 			</span>
 		)
 	})

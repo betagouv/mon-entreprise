@@ -59,7 +59,7 @@ contrat salarié . intermittents du spectacle:
       - une de ces conditions:
           - convention collective . SVP
   question: A quel statut d'intermittent est rattaché l'employé ?
-  par défaut: "'technicien'"
+  par défaut: technicien
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -201,7 +201,8 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux . A
 
 contrat salarié . intermittents du spectacle . artiste . nombre jours travaillés:
   question: Pour combien de jours continus l'artiste est-il engagé ?
-  par défaut: 5 jours
+  unité: jours
+  par défaut: 5
 
 contrat salarié . intermittents du spectacle . artiste . plafond proratisé:
   applicable si: nombre jours travaillés < 5

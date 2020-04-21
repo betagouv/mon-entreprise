@@ -1,51 +1,37 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { EngineContext } from 'Components/utils/EngineContext'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { formatValue } from 'Engine/format'
-import { add, max } from 'ramda'
+import Value from 'Components/Value'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { animated, config, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
-import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
+import répartitionSelector from 'Selectors/repartitionSelectors'
 import './Distribution.css'
 import './PaySlip'
-import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 
 export default function Distribution() {
-	const targetUnit = useSelector(targetUnitSelector)
-	const engine = useContext(EngineContext)
-	const distribution = (getCotisationsBySection(
-		useContext(EngineContext).getParsedRules()
-	).map(([section, cotisations]) => [
-		section,
-		cotisations
-			.map(c => engine.evaluate(c, { unit: targetUnit }))
-			.reduce(
-				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
-				0
-			)
-	]) as Array<[DottedName, number]>)
-		.filter(([, value]) => value > 0)
-		.sort(([, a], [, b]) => b - a)
+	const distribution = useSelector(répartitionSelector) as any
 
-	const maximum = distribution.map(([, value]) => value).reduce(max, 0)
-	const total = distribution.map(([, value]) => value).reduce(add, 0)
+	if (!Object.values(distribution).length) {
+		return null
+	}
 
 	return (
 		<>
 			<div className="distribution-chart__container">
-				{distribution.map(([sectionName, value]) => (
-					<DistributionBranch
-						key={sectionName}
-						dottedName={sectionName}
-						value={value}
-						distribution={{ maximum, total }}
-					/>
-				))}
+				{distribution.répartition.map(
+					([brancheDottedName, { partPatronale, partSalariale }]) => (
+						<DistributionBranch
+							key={brancheDottedName}
+							dottedName={brancheDottedName}
+							value={partPatronale + partSalariale}
+							distribution={distribution}
+						/>
+					)
+				)}
 			</div>
 		</>
 	)
@@ -65,7 +51,7 @@ export function DistributionBranch({
 	icon,
 	distribution
 }: DistributionBranchProps) {
-	const rules = useContext(EngineContext).getParsedRules()
+	const rules = useSelector(parsedRulesSelector)
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
@@ -108,42 +94,34 @@ export function DistributionBranch({
 	)
 }
 
-let ChartItemBar = ({
-	styles,
-	color,
-	montant
-}: {
+type ChartItemBarProps = {
 	styles: React.CSSProperties
 	color: string
 	montant: number
-}) => {
-	const { i18n } = useTranslation()
-	return (
-		<div className="distribution-chart__bar-container">
-			<animated.div
-				className="distribution-chart__bar"
-				style={{
-					backgroundColor: color,
-					...styles
-				}}
-			/>
-			<div
-				css={`
-					font-weight: bold;
-					margin-left: 1rem;
-					color: var(--textColorOnWhite);
-				`}
-			>
-				{formatValue({
-					nodeValue: montant,
-					unit: '€',
-					precision: 0,
-					language: i18n.language
-				})}
-			</div>
-		</div>
-	)
 }
+
+let ChartItemBar = ({ styles, color, montant }: ChartItemBarProps) => (
+	<div className="distribution-chart__bar-container">
+		<animated.div
+			className="distribution-chart__bar"
+			style={{
+				backgroundColor: color,
+				...styles
+			}}
+		/>
+		<div
+			css={`
+				font-weight: bold;
+				margin-left: 1rem;
+				color: var(--textColorOnWhite);
+			`}
+		>
+			<Value maximumFractionDigits={0} unit="€">
+				{montant}
+			</Value>
+		</div>
+	</div>
+)
 
 let BranchIcône = ({ icône }: { icône: string }) => (
 	<div className="distribution-chart__legend">

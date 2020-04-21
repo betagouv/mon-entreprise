@@ -1,8 +1,6 @@
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { EngineProvider } from 'Components/utils/EngineContext'
-import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
+import { SitePathProvider, SitePaths } from 'Components/utils/withSitePaths'
 import { TrackerProvider } from 'Components/utils/withTracker'
-import Engine from 'Engine'
 import { createBrowserHistory } from 'history'
 import { AvailableLangs } from 'i18n'
 import i18next from 'i18next'
@@ -14,7 +12,6 @@ import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 import Tracker from 'Tracker'
-import { Rules } from './rules'
 import { inIframe } from './utils'
 
 declare global {

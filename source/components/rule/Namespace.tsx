@@ -1,19 +1,18 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { DottedName } from 'Rules'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import { capitalise0 } from '../../utils'
 import './Namespace.css'
-import { EngineContext } from 'Components/utils/EngineContext'
 
 export default function Namespace({ dottedName }: { dottedName: DottedName }) {
 	const sitePaths = useContext(SitePathsContext)
 	const colors = useContext(ThemeColorsContext)
-	const rules = useContext(EngineContext).getParsedRules()
-
+	const flatRules = useSelector(parsedRulesSelector)
 	return (
 		<ul id="namespace">
 			{dottedName
@@ -28,7 +27,7 @@ export default function Namespace({ dottedName }: { dottedName: DottedName }) {
 				)
 				.map((fragments: string[]) => {
 					let ruleName = fragments.join(' . ') as DottedName,
-						rule = rules[ruleName]
+						rule = flatRules[ruleName]
 					if (!rule) {
 						throw new Error(
 							`Attention, il se peut que la règle ${ruleName}, ait été définie avec un namespace qui n'existe pas.`

@@ -1,74 +1,74 @@
 échelle de rémunération:
-  - dirigeant . rémunération totale: 100 €/an
-  - dirigeant . rémunération totale: 1000 €/an
-  - dirigeant . rémunération totale: 2000 €/an
-  - dirigeant . rémunération totale: 5000 €/an
-  - dirigeant . rémunération totale: 10000 €/an
-  - dirigeant . rémunération totale: 20000 €/an
-  - dirigeant . rémunération totale: 50000 €/an
-  - dirigeant . rémunération totale: 100000 €/an
+  - dirigeant . rémunération totale: 100
+  - dirigeant . rémunération totale: 1000
+  - dirigeant . rémunération totale: 2000
+  - dirigeant . rémunération totale: 5000
+  - dirigeant . rémunération totale: 10000
+  - dirigeant . rémunération totale: 20000
+  - dirigeant . rémunération totale: 50000
+  - dirigeant . rémunération totale: 100000
 
 avec charges:
-  - dirigeant . rémunération totale: 10000 €/an
+  - dirigeant . rémunération totale: 10000
     entreprise . charges: 2000
-  - dirigeant . rémunération totale: 20000 €/an
+  - dirigeant . rémunération totale: 20000
     entreprise . charges: 15000
 
 ACRE:
-  - dirigeant . rémunération totale: 10000 €/an
+  - dirigeant . rémunération totale: 10000
     entreprise . date de création: 01/01/2020
     entreprise . ACRE: oui
-  - dirigeant . rémunération totale: 20000 €/an
+  - dirigeant . rémunération totale: 20000
     entreprise . date de création: 01/01/2020
     entreprise . ACRE: oui
-  - dirigeant . rémunération totale: 30000 €/an
+  - dirigeant . rémunération totale: 30000
     entreprise . date de création: 01/06/2020
     entreprise . ACRE: oui
 
 activités:
-  - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
-  - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'libérale'"
+  - dirigeant . rémunération totale: 20000
+    entreprise . catégorie d'activité: libérale
+  - dirigeant . rémunération totale: 20000
+    entreprise . catégorie d'activité: libérale
     entreprise . catégorie d'activité . libérale règlementée: oui
-  - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'artisanale'"
-  - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'commerciale ou industrielle'"
-    entreprise . catégorie d'activité . service ou vente: "'vente'"
-  - dirigeant . rémunération totale: 20000 €/an
-    entreprise . catégorie d'activité: "'commerciale ou industrielle'"
-    entreprise . catégorie d'activité . service ou vente: "'service'"
+  - dirigeant . rémunération totale: 20000
+    entreprise . catégorie d'activité: artisanale
+  - dirigeant . rémunération totale: 20000
+    entreprise . catégorie d'activité: commerciale ou industrielle
+    entreprise . catégorie d'activité . service ou vente: vente
+  - dirigeant . rémunération totale: 20000
+    entreprise . catégorie d'activité: commerciale ou industrielle
+    entreprise . catégorie d'activité . service ou vente: service
     entreprise . catégorie d'activité . restauration ou hébergement: oui
 
 Contrats Madelin:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
-  - dirigeant . rémunération totale: 30000 €/an
+  - dirigeant . rémunération totale: 30000
     entreprise . charges: 10000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 4000 # plafond: 10% PSS donc environ 4100
   # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
-  - dirigeant . rémunération totale: 30000 €/an
+  - dirigeant . rémunération totale: 30000
     entreprise . charges: 10000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 5000 # plafond: 10% PSS donc environ 4100
   # Cas mutuelle
-  - dirigeant . rémunération totale: 30000 €/an
+  - dirigeant . rémunération totale: 30000
     entreprise . charges: 10000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 1000
   # Cas global madelin faible
-  - dirigeant . rémunération totale: 20000 €/an
+  - dirigeant . rémunération totale: 20000
     entreprise . charges: 1000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 200
     dirigeant . indépendant . contrats madelin . retraite . montant: 300
   # Cas global madelin grand (plafonds calculés différemment)
-  - dirigeant . rémunération totale: 300000 €/an
+  - dirigeant . rémunération totale: 300000
     entreprise . charges: 15000
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 1500
     dirigeant . indépendant . contrats madelin . retraite . montant: 5000
   # Cas charges plus faibles que total madelin
-  - dirigeant . rémunération totale: 20000 €/an
+  - dirigeant . rémunération totale: 20000
     entreprise . charges: 500
     dirigeant . indépendant . contrats madelin . mutuelle . montant: 300
     dirigeant . indépendant . contrats madelin . retraite . montant: 300

@@ -3,9 +3,8 @@ import { Trans } from 'react-i18next'
 import { BarèmeAttributes, TrancheTable } from './Barème'
 import './Barème.css'
 import { Node, NodeValuePointer } from './common'
-import { Unit } from 'Engine/units'
 
-export default function TauxProgressif(nodeValue, explanation, unit: Unit) {
+export default function TauxProgressif(nodeValue, explanation, _, unit) {
 	return (
 		<Node
 			classes="mecanism barème"
@@ -24,7 +23,7 @@ export default function TauxProgressif(nodeValue, explanation, unit: Unit) {
 						<b>
 							<Trans>Taux calculé</Trans> :{' '}
 						</b>{' '}
-						<NodeValuePointer data={nodeValue * 100} unit={unit} />
+						<NodeValuePointer data={nodeValue * 100} unit="%" />
 					</>
 				)}
 			</ul>

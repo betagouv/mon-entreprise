@@ -7,7 +7,7 @@ import sasuRules from './rules/sasu.yaml'
 describe('library', function() {
 	it('should evaluate one target with no input data', function() {
 		let target = 'contrat salarié . rémunération . net'
-		let engine = new Engine(rules)
+		let engine = new Engine({ rules })
 		engine.setSituation({
 			'contrat salarié . rémunération . brut de base': 2300
 		})
@@ -23,20 +23,20 @@ ya:
 yi:
   formule:  yo + 2
 `
-		let engine = new Engine(rules)
+		let engine = new Engine({ rules })
 
 		expect(engine.evaluate('ya').nodeValue).to.equal(201)
 		expect(engine.evaluate('yi').nodeValue).to.equal(202)
 	})
 
-	it.skip('should let the user add rules to an existing rule base', function() {
-		let extraRules = `
+	it.skip('should let the user add rules to the default ones', function() {
+		let rules = `
 yo:
   formule: 1
 ya:
   formule:  contrat salarié . rémunération . net + yo
 `
-		let engine = new Engine(rules, extraRules)
+		let engine = new Engine({ extra: rules })
 		engine.setSituation({
 			'contrat salarié . rémunération . brut de base': 2300
 		})
@@ -47,7 +47,7 @@ ya:
 		'should let the user extend the rules constellation in a serious manner',
 		function() {
 			let CA = 550 * 16
-			let engine = new Engine(rules, sasuRules)
+			let engine = new Engine({ extra: sasuRules })
 			engine.setSituation({
 				'chiffre affaires': CA
 			})
@@ -64,10 +64,10 @@ ya:
 				'contrat salarié . rémunération . net après impôt': salaireNetAprèsImpôt,
 				'chiffre affaires': CA
 			})
-			let [revenuDisponible, dividendes] = [
+			let [revenuDisponible, dividendes] = engine.evaluate([
 				'contrat salarié . rémunération . net après impôt',
 				'dividendes . net'
-			].map(name => engine.evaluate(name))
+			])
 
 			expect(revenuDisponible.nodeValue).to.be.closeTo(2324, 1)
 			expect(dividendes.nodeValue).to.be.closeTo(2507, 1)
@@ -110,7 +110,7 @@ impôt sur le revenu à payer:
         plafond: 1177
 `
 
-		let engine = new Engine(rules)
+		let engine = new Engine({ rules })
 		engine.setSituation({
 			'revenu imposable': '48000'
 		})
@@ -119,10 +119,10 @@ impôt sur le revenu à payer:
 	})
 
 	it('should let the user define a rule base on a completely different subject', function() {
-		let engine = new Engine(co2)
+		let engine = new Engine({ rules: co2 })
 		engine.setSituation({
 			'nombre de douches': 30,
-			'chauffage . type': "'gaz'",
+			'chauffage . type': 'gaz',
 			'durée de la douche': 10
 		})
 		let value = engine.evaluate('douche . impact')

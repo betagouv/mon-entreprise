@@ -1,6 +1,5 @@
 import { serializeUnit } from 'Engine/units'
 import { memoizeWith } from 'ramda'
-import { Evaluation } from './types'
 import { Unit } from './units'
 
 const NumberFormat = memoizeWith(
@@ -47,7 +46,7 @@ export const currencyFormat = (language: string | undefined) => ({
 export const formatCurrency = (value: number | undefined, language: string) => {
 	return value == null
 		? ''
-		: (formatNumber({ unit: '€', language, value }) ?? '').replace(
+		: (formatValue({ unit: '€', language, value }) ?? '').replace(
 				/^(-)?€/,
 				'$1€\u00A0'
 		  )
@@ -56,17 +55,17 @@ export const formatCurrency = (value: number | undefined, language: string) => {
 export const formatPercentage = (value: number | undefined) =>
 	value == null
 		? ''
-		: formatNumber({ unit: '%', value, maximumFractionDigits: 2 })
+		: formatValue({ unit: '%', value, maximumFractionDigits: 2 })
 
 export type formatValueOptions = {
 	maximumFractionDigits?: number
 	minimumFractionDigits?: number
 	language?: string
 	unit?: Unit | string
-	value: number
+	value?: number
 }
 
-function formatNumber({
+export function formatValue({
 	maximumFractionDigits,
 	minimumFractionDigits,
 	language,
@@ -106,45 +105,4 @@ function formatNumber({
 				(typeof serializedUnit === 'string' ? `\u00A0${serializedUnit}` : '')
 			)
 	}
-}
-
-const booleanTranslations = {
-	fr: { true: 'Oui', false: 'Non' },
-	en: { true: 'Yes', false: 'No' }
-}
-
-type ValueArg = {
-	nodeValue: Evaluation
-	language: string
-	unit?: string | Unit
-	precision?: number
-}
-
-export function formatValue({
-	nodeValue,
-	language,
-	unit,
-	precision = 2
-}: ValueArg) {
-	if (
-		(typeof nodeValue === 'number' && Number.isNaN(nodeValue)) ||
-		nodeValue === null
-	) {
-		return '-'
-	}
-	return typeof nodeValue === 'string'
-		? nodeValue
-		: typeof nodeValue === 'object'
-		? (nodeValue as any).nom
-		: typeof nodeValue === 'boolean'
-		? booleanTranslations[language][nodeValue]
-		: typeof nodeValue === 'number'
-		? formatNumber({
-				minimumFractionDigits: 0,
-				maximumFractionDigits: precision,
-				language,
-				unit,
-				value: nodeValue
-		  })
-		: null
 }

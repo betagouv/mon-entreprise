@@ -70,7 +70,7 @@ export default (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, unit) => (
+		jsx: (nodeValue, explanation, _, unit) => (
 			<MecanismDurée
 				nodeValue={nodeValue}
 				explanation={explanation}

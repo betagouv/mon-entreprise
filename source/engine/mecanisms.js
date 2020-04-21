@@ -1,15 +1,11 @@
 import { decompose } from 'Engine/mecanisms/utils'
 import variations from 'Engine/mecanisms/variations'
 import { convertNodeToUnit } from 'Engine/nodeUnits'
-import {
-	areUnitConvertible,
-	convertUnit,
-	inferUnit,
-	serializeUnit
-} from 'Engine/units'
+import { inferUnit, isPercentUnit } from 'Engine/units'
 import {
 	any,
 	equals,
+	evolve,
 	is,
 	map,
 	max,
@@ -17,7 +13,8 @@ import {
 	min,
 	path,
 	pluck,
-	reduce
+	reduce,
+	toPairs
 } from 'ramda'
 import React from 'react'
 import { typeWarning } from './error'
@@ -37,6 +34,7 @@ import InversionNumérique from './mecanismViews/InversionNumérique'
 import Product from './mecanismViews/Product'
 import Recalcul from './mecanismViews/Recalcul'
 import Somme from './mecanismViews/Somme'
+import { disambiguateRuleReference } from './ruleUtils'
 import uniroot from './uniroot'
 import { parseUnit } from './units'
 
@@ -134,97 +132,135 @@ export let mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
-	// TODO : take applicability into account here
-	let inversedWith = node.explanation.inversionCandidates.find(
-		n => situationGate(n.dottedName) != undefined
+export let findInversion = (situationGate, parsedRules, v, dottedName) => {
+	let inversions = v.avec
+	if (!inversions)
+		throw new Error(
+			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
+		)
+	/*
+	Quelle variable d'inversion possible a sa valeur renseignée dans la situation courante ?
+	Ex. s'il nous est demandé de calculer le salaire de base, est-ce qu'un candidat à l'inversion, comme
+	le salaire net, a été renseigné ?
+	*/
+	let candidates = inversions
+			.map(i => disambiguateRuleReference(parsedRules, dottedName, i))
+			.map(name => {
+				let userInput = situationGate(name) != undefined
+				let rule = parsedRules[name]
+				if (!userInput) return null
+				return {
+					fixedObjectiveRule: rule,
+					userInput,
+					fixedObjectiveValue: situationGate(name)
+				}
+			}),
+		candidateWithUserInput = candidates.find(c => c && c.userInput)
+
+	return (
+		candidateWithUserInput || candidates.find(candidate => candidate != null)
 	)
-	if (!inversedWith) {
+}
+
+let doInversion = (oldCache, situationGate, parsedRules, v, dottedName) => {
+	let inversion = findInversion(situationGate, parsedRules, v, dottedName)
+
+	if (!inversion)
 		return {
-			...node,
-			missingVariables: {
-				...Object.fromEntries(
-					node.explanation.inversionCandidates.map(n => [n.dottedName, 1])
-				),
-				[node.explanation.ruleToInverse]: 1
-			},
+			missingVariables: { [dottedName]: 1 },
 			nodeValue: null
 		}
-	}
-	inversedWith = evaluateNode(
-		oldCache,
-		situationGate,
-		parsedRules,
-		inversedWith
-	)
+	let { fixedObjectiveValue, fixedObjectiveRule } = inversion
 
-	const evaluateWithValue = n =>
-		evaluateNode(
-			{
-				_meta: oldCache._meta
-			},
-			dottedName =>
-				dottedName === node.explanation.ruleToInverse
-					? n
-					: dottedName === inversedWith.dottedName
+	let inversionCache = {}
+	let fx = x => {
+		inversionCache = {
+			_meta: oldCache._meta
+		}
+		let v = evaluateNode(
+			inversionCache, // with an empty cache
+			n =>
+				dottedName === n
+					? x
+					: n === 'sys.filter'
 					? undefined
-					: situationGate(dottedName),
+					: situationGate(n),
 			parsedRules,
-			inversedWith
+			fixedObjectiveRule
 		)
+		return v
+	}
 
 	// si fx renvoie null pour une valeur numérique standard, disons 2000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
-	const randomAttempt = evaluateWithValue(2000)
-	const nodeValue =
-		randomAttempt.nodeValue === null
-			? null
-			: // cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
-			  uniroot(
-					x => {
-						const candidateNode = evaluateWithValue(x)
-						return (
-							candidateNode.nodeValue -
-							convertNodeToUnit(candidateNode.unit, inversedWith).nodeValue
-						)
-					},
-					node.explanation.negativeValuesAllowed ? -1000000 : 0,
-					100000000,
-					0.1, // tolerance
-					10 // number of iteration max
-			  )
-
-	if (nodeValue === undefined) {
-		oldCache._meta.inversionFail = true
+	let attempt = fx(2000)
+	if (attempt.nodeValue == null) {
+		return attempt
 	}
 
+	let tolerance = 0.1,
+		// cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
+		nodeValue = uniroot(
+			x => {
+				let y = fx(x)
+				return y.nodeValue - fixedObjectiveValue
+			},
+			v['valeurs négatives possibles'] === 'oui' ? -1000000 : 0,
+			10000000,
+			tolerance,
+			10
+		)
+
 	return {
-		...node,
-		nodeValue: nodeValue ?? null,
-		explanation: {
-			...node.explanation,
-			inversionFail: nodeValue === undefined,
-			inversedWith
-		},
-		missingVariables: randomAttempt.missingVariables
+		nodeValue,
+		missingVariables: {},
+		inversionCache,
+		inversedWith: {
+			rule: fixedObjectiveRule,
+			value: fixedObjectiveValue
+		}
 	}
 }
 
 export let mecanismInversion = dottedName => (recurse, k, v) => {
-	if (!v.avec) {
-		throw new Error(
-			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
-		)
+	let evaluate = (cache, situationGate, parsedRules, node) => {
+		let inversion =
+				// avoid the inversion loop !
+				situationGate(dottedName) == undefined &&
+				doInversion(cache, situationGate, parsedRules, v, dottedName),
+			// TODO - ceci n'est pas vraiment satisfaisant
+			nodeValue =
+				situationGate(dottedName) != null
+					? Number.parseFloat(situationGate(dottedName))
+					: inversion.nodeValue,
+			missingVariables = inversion.missingVariables
+		if (nodeValue === undefined) {
+			cache._meta.inversionFail = {
+				given: inversion.inversedWith.rule.dottedName,
+				estimated: dottedName
+			}
+		}
+		let evaluatedNode = {
+			...node,
+			nodeValue,
+			explanation: {
+				...node.explanation,
+				inversedWith: inversion?.inversedWith
+			},
+			missingVariables
+		}
+		// TODO - we need this so that ResultsGrid will work, but it's
+		// just not right
+		toPairs(inversion.inversionCache).map(([k, v]) => (cache[k] = v))
+		return evaluatedNode
 	}
+
 	return {
-		evaluate: evaluateInversion,
+		...v,
+		evaluate,
 		unit: v.unité && parseUnit(v.unité),
-		explanation: {
-			ruleToInverse: dottedName,
-			inversionCandidates: v.avec.map(recurse),
-			negativeValuesAllowed: v['valeurs négatives possibles'] === 'oui'
-		},
+		explanation: evolve({ avec: map(recurse) }, v),
 		jsx: InversionNumérique,
 		category: 'mecanism',
 		name: 'inversion numérique',
@@ -233,57 +269,61 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 }
 
 export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		if (cache._meta.inRecalcul) {
+	let evaluate = (currentCache, situationGate, parsedRules, node) => {
+		let defaultRuleToEvaluate = dottedNameContext
+		let nodeToEvaluate = recurse(node?.règle ?? defaultRuleToEvaluate)
+		let cache = { _meta: { ...currentCache._meta, inRecalcul: true } } // Create an empty cache
+		let amendedSituation = Object.fromEntries(
+			Object.keys(node.avec).map(dottedName => [
+				disambiguateRuleReference(parsedRules, dottedNameContext, dottedName),
+				node.avec[dottedName]
+			])
+		)
+
+		if (currentCache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
-		const recalculCache = { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
-		const amendedSituation = map(
-			value => evaluateNode(cache, situationGate, parsedRules, value),
-			node.explanation.amendedSituation
-		)
-		const amendedSituationGate = dottedName => {
-			if (!(dottedName in amendedSituation)) {
-				return situationGate(dottedName)
-			}
-			return amendedSituation[dottedName]
-		}
 
-		const evaluatedNode = evaluateNode(
-			recalculCache,
+		let amendedSituationGate = dottedName =>
+			Object.keys(amendedSituation).includes(dottedName)
+				? evaluateNode(
+						cache,
+						amendedSituationGate,
+						parsedRules,
+						recurse(amendedSituation[dottedName])
+				  ).nodeValue
+				: situationGate(dottedName)
+
+		let evaluatedNode = evaluateNode(
+			cache,
 			amendedSituationGate,
 			parsedRules,
-			node.explanation.recalcul
+			nodeToEvaluate
 		)
 
 		return {
-			...node,
-			nodeValue: evaluatedNode.nodeValue,
-			...(evaluatedNode.temporalValue && {
-				temporalValue: evaluatedNode.temporalValue
-			}),
-			unit: evaluatedNode.unit,
+			...evaluatedNode,
 			explanation: {
-				recalcul: evaluatedNode,
-				amendedSituation
-			}
+				...evaluateNode.explanation,
+				unit: evaluatedNode.unit,
+				amendedSituation: Object.fromEntries(
+					Object.keys(amendedSituation).map(dottedName => [
+						dottedName,
+						evaluateNode(
+							cache,
+							amendedSituationGate,
+							parsedRules,
+							recurse(amendedSituation[dottedName])
+						)
+					])
+				)
+			},
+			jsx: Recalcul
 		}
 	}
 
-	const amendedSituation = Object.fromEntries(
-		Object.keys(v.avec).map(dottedName => [
-			recurse(dottedName).dottedName,
-			recurse(v.avec[dottedName])
-		])
-	)
-	const defaultRuleToEvaluate = dottedNameContext
-	const nodeToEvaluate = recurse(v.règle ?? defaultRuleToEvaluate)
 	return {
-		explanation: {
-			recalcul: nodeToEvaluate,
-			amendedSituation
-		},
-		jsx: Recalcul,
+		...v,
 		evaluate
 	}
 }
@@ -299,7 +339,7 @@ export let mecanismSum = (recurse, k, v) => {
 	return {
 		evaluate,
 		// eslint-disable-next-line
-		jsx: (nodeValue, explanation, unit) => (
+		jsx: (nodeValue, explanation, _, unit) => (
 			<Somme nodeValue={nodeValue} explanation={explanation} unit={unit} />
 		),
 		explanation,
@@ -331,7 +371,7 @@ export let mecanismReduction = (recurse, k, v) => {
 			try {
 				franchise = convertNodeToUnit(assiette.unit, franchise)
 				plafond = convertNodeToUnit(assiette.unit, plafond)
-				if (serializeUnit(abattement.unit) !== '%') {
+				if (!isPercentUnit(abattement.unit)) {
 					abattement = convertNodeToUnit(assiette.unit, abattement)
 				}
 				if (décote) {
@@ -364,13 +404,13 @@ export let mecanismReduction = (recurse, k, v) => {
 				? montantFranchiséDécoté === 0
 					? 0
 					: null
-				: serializeUnit(abattement.unit) === '%'
+				: isPercentUnit(abattement.unit)
 				? max(
 						0,
 						montantFranchiséDécoté -
 							min(
 								plafond.nodeValue,
-								(abattement.nodeValue / 100) * montantFranchiséDécoté
+								abattement.nodeValue * montantFranchiséDécoté
 							)
 				  )
 				: max(
@@ -437,10 +477,10 @@ export let mecanismProduct = (recurse, k, v) => {
 				)
 			}
 		}
-		const mult = (base, rate, facteur, plafond) =>
+		let mult = (base, rate, facteur, plafond) =>
 			Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
 
-		let nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
+		const nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
 			? false
 			: [taux, assiette, facteur].some(n => n.nodeValue === 0)
 			? 0
@@ -453,14 +493,10 @@ export let mecanismProduct = (recurse, k, v) => {
 					plafond.nodeValue
 			  )
 
-		let unit = inferUnit(
+		const unit = inferUnit(
 			'*',
 			[assiette, taux, facteur].map(el => el.unit)
 		)
-		if (areUnitConvertible(unit, assiette.unit)) {
-			nodeValue = convertUnit(unit, assiette.unit, nodeValue)
-			unit = assiette.unit
-		}
 		return {
 			nodeValue,
 
@@ -493,18 +529,6 @@ export let mecanismProduct = (recurse, k, v) => {
 export let mecanismMax = (recurse, k, v) => {
 	let explanation = v.map(recurse)
 
-	const max = (a, b) => {
-		if (a === false) {
-			return b
-		}
-		if (b === false) {
-			return a
-		}
-		if (a === null || b === null) {
-			return null
-		}
-		return Math.max(a, b)
-	}
 	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
 	let jsx = (nodeValue, explanation) => (

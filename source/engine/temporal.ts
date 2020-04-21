@@ -6,7 +6,6 @@ import {
 	getRelativeDate,
 	getYear
 } from 'Engine/date'
-import { EvaluatedNode, Evaluation, Types } from './types'
 import { Unit } from './units'
 
 export type Period<T> = {
@@ -64,12 +63,22 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 	throw new Error('Non implémenté')
 }
 
-export type TemporalNode<Names extends string> = Temporal<
-	EvaluatedNode<Names, number>
->
+// Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
+// Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
+export type Evaluation<T> = T | false | null
+
+export type EvaluatedNode<T> = {
+	unit: Unit
+	nodeValue: Evaluation<T>
+	temporalValue?: Temporal<Evaluation<T>>
+	explanation?: Object
+	missingVariables?: Object
+}
+
+export type TemporalNode<T> = Temporal<{ nodeValue: Evaluation<T> }>
 export type Temporal<T> = Array<Period<string> & { value: T }>
 
-export function narrowTemporalValue<T extends Types>(
+export function narrowTemporalValue<T>(
 	period: Period<string>,
 	temporalValue: Temporal<Evaluation<T>>
 ): Temporal<Evaluation<T>> {
@@ -81,7 +90,7 @@ export function narrowTemporalValue<T extends Types>(
 }
 
 // Returns a temporal value that's true for the given period and false otherwise.
-export function createTemporalEvaluation<T extends Types>(
+export function createTemporalEvaluation<T>(
 	value: Evaluation<T>,
 	period: Period<string> = { start: null, end: null }
 ): Temporal<Evaluation<T>> {
@@ -144,16 +153,10 @@ export function concatTemporals<T, U>(
 	)
 }
 
-export function liftTemporalNode<
-	T extends Types,
-	Names extends string,
-	N extends EvaluatedNode<Names, T>
->(node: N): Temporal<Pick<N, Exclude<keyof N, 'temporalValue'>>> {
-	if (!('temporalValue' in node)) {
-		return pureTemporal(node)
-	}
-	const { temporalValue, ...baseNode } = node as N & {
-		temporalValue: Temporal<Evaluation<number>>
+export function liftTemporalNode<T>(node: EvaluatedNode<T>): TemporalNode<T> {
+	const { temporalValue, ...baseNode } = node
+	if (!temporalValue) {
+		return pureTemporal(baseNode)
 	}
 	return mapTemporal(
 		nodeValue => ({

@@ -21,7 +21,7 @@ remboursement dépot de garantie:
       situation:
         dégradation mineure: oui
         dégradation majeure: oui
-      valeur attendue: false
+      valeur attendue: 0
       variables manquantes: []
     - nom: C
       situation:

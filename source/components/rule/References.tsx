@@ -23,28 +23,16 @@ function Ref({ name, link }: RefProps) {
 		refData = (refKey && references[refKey]) || {},
 		domain = cleanDomain(link)
 	return (
-		<li
-			css={`
-				display: flex;
-				align-items: baseline;
-			`}
-			key={name}
-		>
+		<li key={name}>
 			<span className="imageWrapper">
 				{refData.image && (
 					<img src={require('Images/références/' + refData.image)} />
 				)}
 			</span>
-			<a
-				href={link}
-				target="_blank"
-				css={`
-					margin-right: 1rem;
-				`}
-			>
+			<a href={link} target="_blank">
 				{capitalise0(name)}
 			</a>
-			<span className="ui__ label">{domain}</span>
+			<span className="url">{domain}</span>
 		</li>
 	)
 }

@@ -1,12 +1,12 @@
 import classnames from 'classnames'
 import { currencyFormat } from 'Engine/format'
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import NumberFormat, { NumberFormatProps } from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
 
 type CurrencyInputProps = NumberFormatProps & {
-	value?: string | number | null
+	value?: string | number
 	debounce?: number
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 	currencySymbol?: string
@@ -25,12 +25,8 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
-	const onChangeDebounced = useMemo(
-		() =>
-			debounceTimeout && onChange
-				? debounce(debounceTimeout, onChange)
-				: onChange,
-		[onChange, debounceTimeout]
+	const onChangeDebounced = useRef(
+		debounceTimeout && onChange ? debounce(debounceTimeout, onChange) : onChange
 	)
 	// We need some mutable reference because the <NumberFormat /> component doesn't provide
 	// the DOM `event` in its custom `onValueChange` handler
@@ -58,7 +54,7 @@ export default function CurrencyInput({
 			value: nextValue.current
 		}
 		nextValue.current = ''
-		onChangeDebounced?.(event)
+		onChangeDebounced.current?.(event)
 	}
 
 	const {
@@ -93,10 +89,10 @@ export default function CurrencyInput({
 				}
 				onValueChange={({ value }) => {
 					setCurrentValue(value)
-					nextValue.current = value.toString().replace(/^0+/, '')
+					nextValue.current = value.toString().replace('-', '')
 				}}
 				onChange={handleChange}
-				value={currentValue?.toString().replace('.', decimalSeparator)}
+				value={currentValue.toString().replace('.', decimalSeparator)}
 				autoComplete="off"
 			/>
 			{!isCurrencyPrefixed && <>&nbsp;€</>}

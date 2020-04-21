@@ -5,7 +5,7 @@ import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
 import { default as React, useContext } from 'react'
@@ -136,8 +136,8 @@ function SeoExplanations() {
 export let SalarySimulation = () => {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
-	const sitePaths = useContext(SitePathsContext)
 	dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
+	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>
 			<Simulation

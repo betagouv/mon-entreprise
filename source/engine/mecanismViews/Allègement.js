@@ -40,7 +40,7 @@ export default function Allègement(nodeValue, rawExplanation) {
 						</li>
 					)}
 					{explanation.plafond && (
-						<li key="plafond">
+						<li key="abattement">
 							<span className="key">plafond: </span>
 							<span className="value">{makeJsx(explanation.plafond)}</span>
 						</li>

@@ -1,11 +1,12 @@
 objectifs:
   - contrat salarié . rémunération . brut de base
 
-objectifs cachés:
-  - contrat salarié . rémunération . net
+objectifs secondaires:
   - contrat salarié . prix du travail
+  - contrat salarié . rémunération . net
   - chômage partiel . revenu net habituel
   - chômage partiel . coût employeur habituel
+  - contrat salarié . activité partielle . indemnités
 
 questions:
   uniquement:

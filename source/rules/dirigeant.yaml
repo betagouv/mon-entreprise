@@ -20,8 +20,6 @@ dirigeant . assimilé salarié:
       par: oui
   rend non applicable:
     - contrat salarié . convention collective
-    - contrat salarié . activité partielle
-    - contrat salarié . profession spécifique
     - contrat salarié . rémunération . primes
     - contrat salarié . rémunération . primes . fin d'année
     - contrat salarié . rémunération . primes . activité
@@ -99,10 +97,10 @@ dirigeant . auto-entrepreneur . net de cotisations:
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
   formule: dirigeant . rémunération totale - cotisations et contributions
-  unité: €/mois
+  unité par défaut: €/mois
 
 dirigeant . auto-entrepreneur . cotisations et contributions:
-  unité: €/mois
+  unité par défaut: €/mois
   formule:
     somme:
       - cotisations
@@ -159,7 +157,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
   titre: Contribution à la formation professionnelle
-  unité: €/mois
+  unité par défaut: €/mois
   références:
     shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
@@ -329,7 +327,7 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
 dirigeant . auto-entrepreneur . net après impôt:
   titre: revenu net après impôt
   résumé: Avant déduction des dépenses liées à l'activité
-  unité: €/an
+  unité par défaut: €/an
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
     Le revenu net de l'auto-entrepreneur après déduction de l'impôt 
@@ -357,7 +355,7 @@ dirigeant . rémunération totale:
     - bénéfices
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
-  unité: €/an
+  unité par défaut: €/an
   description: C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
@@ -429,6 +427,7 @@ dirigeant . indépendant . revenu net de cotisations:
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
+  unité par défaut: €/an
   références:
     Cerfa 2033-sd: https://www.impots.gouv.fr/portail/files/formulaires/2033-sd/2020/2033-sd_2983.pdf
 
@@ -446,7 +445,7 @@ dirigeant . indépendant . résultat fiscal:
     Portail URSSAF: https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/la-declaration-sociale-des-indep/les-revenus-pris-en-compte-pour.html
 
 dirigeant . indépendant . revenu professionnel:
-  unité: €/an
+  unité par défaut: €/an
   titre: revenu professionnel
   description: |
     C'est le revenu net de cotisations déductibles du travailleur indépendant, qui sert de base au calcul des cotisations pour les indépendants.
@@ -494,7 +493,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
     - 1/3 du Plafond de Sécurité Sociale
     - Option sur le revenu du chef avec partage ( ½ ou 1/3)
     - Option sur le revenu du chef sans partage ( ½ ou 1/3)
-  par défaut: "'forfaitaire'"
+  par défaut: forfaitaire
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -524,7 +523,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans parta
 
 dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
   question: À quelle proportion du revenu le conjoint cotise-t'il ?
-  par défaut: "'tiers'"
+  par défaut: tiers
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -645,13 +644,15 @@ dirigeant . indépendant . cotisations et contributions:
       - formation professionnelle
       - conjoint collaborateur . cotisations
       - (- exonérations)
+  unité par défaut: €/an
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac:
   applicable si: entreprise . catégorie d'activité . débit de tabac
+  unité par défaut: €/an
   question: Quel est le montant des revenus issus de la vente de tabac que vous souhaitez exonérer de cotisation vieillesse ?
   description: |
     Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.
-  par défaut: 0 €/an
+  par défaut: 0
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits:
   titre: assiette des cotisations (avec déduction tabac)
@@ -703,6 +704,7 @@ dirigeant . indépendant . contrats madelin . mutuelle:
 
 dirigeant . indépendant . contrats madelin . mutuelle . montant:
   titre: Souscription à un contrat de mutuelle Madelin
+  unité par défaut: €/an
   question: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
   description: |
     Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
@@ -712,10 +714,10 @@ dirigeant . indépendant . contrats madelin . mutuelle . montant:
     Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Bofip (contrats d'assurance de groupe): https://bofip.impots.gouv.fr/bofip/4639-PGP.html
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
-  par défaut: 0 €/an
+  par défaut: 0
 
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
-  unité: €/an
+  unité par défaut: €/an
   formule:
     somme:
       - produit:
@@ -737,6 +739,7 @@ dirigeant . indépendant . contrats madelin . retraite:
 
 dirigeant . indépendant . contrats madelin . retraite . montant:
   titre: Souscription à une retraite Madelin
+  unité par défaut: €/an
   question: Quel est le montant que vous versez à votre contrat Madelin retraite ?
   description: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
@@ -746,10 +749,10 @@ dirigeant . indépendant . contrats madelin . retraite . montant:
     Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Bofip (contrats d'assurance de groupe): https://bofip.impots.gouv.fr/bofip/4639-PGP.html
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
-  par défaut: 0 €/an
+  par défaut: 0
 
 dirigeant . indépendant . contrats madelin . retraite . plafond:
-  unité: €/an
+  unité par défaut: €/an
   formule:
     le maximum de:
       - barème:
@@ -779,11 +782,11 @@ dirigeant . rattachement CIPAV:
           - contrat salarié = non
           - entreprise . catégorie d'activité . libérale règlementée
       - toutes ces conditions:
-          - dirigeant . indépendant
+          - dirigeant = 'indépendant'
           - entreprise . date de création < 01/2019
           - entreprise . catégorie d'activité = 'libérale'
       - toutes ces conditions:
-          - dirigeant . auto-entrepreneur
+          - dirigeant = 'auto-entrepreneur'
           - entreprise . date de création < 01/2018
           - entreprise . catégorie d'activité = 'libérale'
 
@@ -864,18 +867,23 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA:
   formule:
-    encadrement:
-      valeur: taux RSA part variable + 1.35%
+    produit:
+      assiette: taux RSA part variable + 1.35%
       plafond: 6.35%
   note: |
     Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable:
-  unité: '%'
   formule:
     produit:
       assiette: 5%
-      taux: assiette des cotisations / (110% * plafond sécurité sociale temps plein)
+      taux: assiette des cotisations / seuil supérieur de réduction
+
+dirigeant . indépendant . cotisations et contributions . cotisations . maladie . seuil supérieur de réduction:
+  formule:
+    produit:
+      assiette: plafond sécurité sociale temps plein
+      taux: 110%
 
 dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux:
   formule:
@@ -960,7 +968,7 @@ dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation:
         - A
         - B
         - C
-  par défaut: "'A'"
+  par défaut: A
 
 dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . A:
   titre: classe A
@@ -1084,9 +1092,10 @@ dirigeant . indépendant . revenus étrangers:
   par défaut: non
 
 dirigeant . indépendant . revenus étrangers . montant:
+  unité par défaut: €/an
   titre: revenus perçu à l'étranger
   question: Quel est leur montant ?
-  par défaut: 0 €/an
+  par défaut: 0
 
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette:
   note: >-
@@ -1252,7 +1261,8 @@ dirigeant . indépendant . IJSS . total:
     maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
     l'indemnité de remplacement pour maternité, paternité ou adoption et
     l'indemnité journalière maladie.
-  par défaut: 0 €/an
+  par défaut: 0
+  unité: €/an
 
 dirigeant . indépendant . IJSS . imposable:
   titre: indemnités journalières imposable
@@ -1277,4 +1287,5 @@ dirigeant . indépendant . IJSS . imposable:
     maternel, l'indemnité journalière forfaitaire d'interruption d'activité,
     l’indemnité de remplacement pour maternité, paternité ou adoption et
     l'indemnité journalière maladie.
-  par défaut: 0 €/an
+  par défaut: 0
+  unité: €/an

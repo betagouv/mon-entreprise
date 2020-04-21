@@ -1,12 +1,12 @@
 import SearchBar from 'Components/SearchBar'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import './RulesList.css'
-import { EngineContext } from 'Components/utils/EngineContext'
 
 export default function RulesList() {
-	const rules = useContext(EngineContext).getParsedRules()
+	const rules = useSelector(parsedRulesSelector)
 	return (
 		<div id="RulesList" className="ui__ container">
 			<h1>

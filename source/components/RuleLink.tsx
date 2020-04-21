@@ -1,5 +1,5 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 import { nameLeaf } from 'Engine/ruleUtils'
 import { ParsedRule } from 'Engine/types'
 import React, { useContext } from 'react'
@@ -25,14 +25,10 @@ export default function RuleLink({
 	const sitePaths = useContext(SitePathsContext)
 	const { color } = useContext(ThemeColorsContext)
 	const newPath = sitePaths.documentation.rule(dottedName)
+
 	return (
 		<Link
-			to={{
-				pathname: newPath,
-				state: {
-					useDefaultValues: true
-				}
-			}}
+			to={newPath}
 			title={title}
 			style={{ color, ...style }}
 			className={className}
