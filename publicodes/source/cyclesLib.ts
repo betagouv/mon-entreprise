@@ -4,7 +4,7 @@
  */
 
 import { chain, partial } from 'ramda'
-import { ParsedRules } from './types'
+import { ParsedRule, ParsedRules } from './types'
 
 // type GraphNode = {
 //   name: string
@@ -12,56 +12,89 @@ import { ParsedRules } from './types'
 // }
 type DottedName = string
 
-type ASTNode = any
+type ASTNode = Record<string, {}>
 
-type RuleNode = any // extends ASTNode
+type RuleNode = /* ASTNode & */ ParsedRule
 
-type Value = any // extends ASTNode
-
-type Operation = any // extends ASTNode
-
-type Reference = ASTNode & {
-	category: 'reference'
-	dottedName: DottedName
+type Value = ASTNode & {
+	nodeValue: any
+	constant: true
 }
-
-type Possibilities = any // extends ASTNode
-
-type Recalcul = ASTNode & {
-	règle: DottedName
-} // [XXX] - faire la meme pour les autres
-
-type Mechanism = any // extends ASTNode
-
-type FormuleNode = Value | Operation | Possibilities | Recalcul | Mechanism
-
-type EncadrementMech = any // extends Mechanism
-
-type SommeMech = any // extends Mechanism
-
 export function isValue(node): node is Value {
-	return (node as Value).nodeValue !== undefined
+	return (
+		(node as Value).nodeValue !== undefined && (node as Value).constant === true
+	)
 }
 
+type Operation = ASTNode & {
+	operationType: 'comparison' | 'calculation'
+}
 export function isOperation(node): node is Operation {
-	return (node as Operation).operationType !== undefined
+	return ['comparison', 'calculation'].includes(
+		(node as Operation).operationType
+	)
 }
 
+type Possibilities = ASTNode & {
+	possibilités: Array<string>
+	'choix obligatoire'?: 'oui' | 'non' // [XXX] - This should already be a defined type.
+	'une possibilité': 'oui' | 'non'
+}
+export function isPossibilities(node): node is Possibilities {
+	const possibilities = node as Possibilities
+	return (
+		possibilities.possibilités instanceof Array &&
+		possibilities.possibilités.every(it => typeof it === 'string') &&
+		['oui', 'non'].includes(possibilities['choix obligatoire']) &&
+		['oui', 'non'].includes(possibilities['une possibilité'])
+	)
+}
+
+type Reference = Omit<RuleNode, 'category'> & {
+	// [XXX] - a priori non pour le omit, il n'y a pas du tout autant de choses que dans RuleNode à l'intérieur d'une reference
+	category: 'reference'
+	partialReference: DottedName
+}
 export function isReference(node): node is Reference {
 	return (node as Reference).category === 'reference'
 }
 
-export function isPossibilities(node): node is Possibilities {
-	return (node as Possibilities).possibilités !== undefined
+type Recalcul = ASTNode & {
+	explanation: {
+		recalcul: Reference
+		amendedSituation: Record<DottedName, Reference>
+	}
 }
-
 export function isRecalcul(node): node is Recalcul {
-	return (node as Recalcul).règle !== undefined // [XXX] - A VERIF
+	const recalcul = node as Recalcul
+	return (
+		typeof recalcul.explanation === 'object' &&
+		isReference(recalcul.explanation.recalcul as ASTNode) &&
+		typeof recalcul.explanation.amendedSituation === 'object' &&
+		Object.entries(recalcul.explanation.amendedSituation).every(([_, v]) =>
+			isReference(v as ASTNode)
+		)
+	)
 }
 
+type Mechanism = ASTNode & {
+	category: 'mecanism'
+}
 export function isMechanism(node): node is Mechanism {
 	return (node as Mechanism).category === 'mecanism'
 }
+
+type FormuleNode =
+	| Value
+	| Operation
+	| Possibilities
+	| Reference
+	| Recalcul
+	| Mechanism
+
+type EncadrementMech = any // extends Mechanism
+
+type SommeMech = any // extends Mechanism
 
 export function isFormuleNode(node): node is FormuleNode {
 	return (
@@ -164,7 +197,6 @@ export function ruleDependenciesOfNode(
 	} else if (isMechanism(node)) {
 		return ruleDependenciesOfMechanism(depth, node as Mechanism)
 	}
-	debugger
 	return [] // [XXX]
 }
 
@@ -172,15 +204,15 @@ function ruleDependenciesOfRule(
 	depth: number,
 	rule: RuleNode
 ): Array<DottedName> {
-	logVisit(depth, 'rule', rule.dottedName)
+	logVisit(depth, 'rule', rule.dottedName as string)
 	if (rule.formule) {
 		const formuleNode: FormuleNode = rule.formule.explanation
 		// This is for comfort, as the responsibility over structure isn't owned by this piece of code:
 		if (!isFormuleNode(formuleNode)) {
 			debugger
-			throw Error(
-				`This rule's formule is not of a known type: ${rule.dottedName}`
-			)
+			// throw Error(
+			// 	`This rule's formule is not of a known type: ${rule.dottedName}`
+			// )
 		}
 		return ruleDependenciesOfNode(depth + 1, formuleNode)
 	} else return [rule.dottedName]
