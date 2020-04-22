@@ -36,9 +36,10 @@ module.exports.default = {
 
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
-			FR_SITE: '/mon-entreprise${path}',
-			MASTER: 'false'
+			FR_SITE: '/mon-entreprise${path}'
 		}),
+
+		new EnvironmentPlugin(['HEAD', 'COMMIT_REF']),
 
 		new CopyPlugin([
 			'./manifest.webmanifest',
