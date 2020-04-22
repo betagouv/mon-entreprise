@@ -248,10 +248,8 @@ async function fetchDailyVisits() {
 		const data = await response.json()
 		return Object.entries(data).map(([a, b]) => {
 			const [year, month, day] = a.split('-')
-			dt = new Date(a)
 			return {
 				date: `${day}/${month}/${year}`,
-				dayOfWeek: dt.getDay(),
 				visiteurs: b
 			}
 		})
@@ -368,15 +366,5 @@ async function fetchChannelType() {
 		return null
 	}
 }
-// pct:
-// (nb_visits * 100) /
-// date
-// 	.filter(x =>
-// 		[
-// 			'Sites web',
-// 			'Moteurs de recherche',
-// 			'Entrées directes'
-// 		].includes(x.label)
-// 	)
-// 	.reduce((a, b) => a + b.nb_visits, 0)
+
 main()

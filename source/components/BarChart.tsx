@@ -79,7 +79,7 @@ export default function DistributionBranch({
 			{icon ? <BranchIcône icône={icon} /> : null}
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">{title}</span>
+					<span className="distribution-chart__branche-name">{title} </span>{' '}
 					{link ? (
 						<Link
 							className="distribution-chart__link_icone"

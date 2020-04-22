@@ -80,9 +80,19 @@ type StatsData = {
 const weekEndDays = R.groupWith(
 	(a, b) => parseInt(a.split('/')[0], 10) === parseInt(b.split('/')[0], 10) - 1,
 	stats.daily_visits
+		.map(({ date, visiteurs }) => {
+			const [day, month, year] = date.split('/')
+			const dt = new Date(
+				parseInt(year, 10),
+				parseInt(month, 10) - 1,
+				parseInt(day, 10)
+			)
+			return { date, visiteurs, dayOfWeek: dt.getDay() }
+		})
 		.filter(day => day.dayOfWeek == 0 || day.dayOfWeek == 6)
 		.map(day => day.date)
 )
+
 export default function Stats() {
 	const [choice, setChoice] = useState<LineChartVisitsProps['periodicity']>(
 		'monthly'
@@ -198,6 +208,67 @@ export default function Stats() {
 				</div>
 			</section>
 			<section>
+				<div
+					css={`
+						display: flex;
+						justify-content: space-between;
+
+						h2 {
+							margin: 0;
+						}
+					`}
+				>
+					<h2> Origine du traffic </h2>
+					<select
+						onChange={event => {
+							setChoicesimulators(event.target.value)
+						}}
+						value={choicesimulators}
+					>
+						<option value="currentMonth">
+							{transformDate(stats.simulators.currentMonth.date)}
+						</option>
+						<option value="oneMonthAgo">
+							{transformDate(stats.simulators.oneMonthAgo.date)}
+						</option>
+						<option value="twoMonthAgo">
+							{transformDate(stats.simulators.twoMonthAgo.date)}
+						</option>
+					</select>
+				</div>
+				<div
+					css={`
+						margin-top: 2em;
+					`}
+				>
+					<NewStackedBarChart
+						data={[
+							{
+								label: 'Entrées directes',
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Entrées directes'
+								)[0].nb_visits,
+								color: palettes[2][3]
+							},
+							{
+								label: 'Moteurs de recherche',
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Moteurs de recherche'
+								)[0].nb_visits,
+								color: palettes[1][0]
+							},
+							{
+								label: 'Sites référents',
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Sites web'
+								)[0].nb_visits,
+								color: palettes[0][0]
+							}
+						]}
+					/>
+				</div>
+			</section>
+			<section>
 				<h2>Avis des visiteurs</h2>
 				<div
 					css={`
@@ -237,73 +308,7 @@ export default function Stats() {
 				))}
 				<div id="status-indicators"></div>
 			</section>
-			<section>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
 
-						h2 {
-							margin: 0;
-						}
-					`}
-				>
-					<h2> Type de cannal utilisé</h2>
-					<select
-						onChange={event => {
-							setChoicesimulators(event.target.value)
-						}}
-						value={choicesimulators}
-					>
-						<option value="currentMonth">
-							{transformDate(stats.simulators.currentMonth.date)}
-						</option>
-						<option value="oneMonthAgo">
-							{transformDate(stats.simulators.oneMonthAgo.date)}
-						</option>
-						<option value="twoMonthAgo">
-							{transformDate(stats.simulators.twoMonthAgo.date)}
-						</option>
-					</select>
-				</div>
-				<div
-					css={`
-						margin-top: 2em;
-					`}
-				>
-					<NewStackedBarChart
-						data={[
-							{
-								label: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Sites web'
-								)[0].label,
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Sites web'
-								)[0].nb_visits,
-								color: palettes[0][0]
-							},
-							{
-								label: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Moteurs de recherche'
-								)[0].label,
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Moteurs de recherche'
-								)[0].nb_visits,
-								color: palettes[1][0]
-							},
-							{
-								label: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Entrées directes'
-								)[0].label,
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Entrées directes'
-								)[0].nb_visits,
-								color: palettes[1][3]
-							}
-						]}
-					/>
-				</div>
-			</section>
 			<MoreInfosOnUs />
 		</>
 	)
@@ -335,13 +340,6 @@ function Indicator({ main, subTitle }: IndicatorProps) {
 }
 
 type LineChartVisitsProps = {
-	periodicity: 'daily' | 'monthly'
-}
-
-type CustomTooltipProps = {
-	active: boolean
-	payload: any
-	label: any
 	periodicity: 'daily' | 'monthly'
 }
 
@@ -387,19 +385,17 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 					/>
 				) : null}
 				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
-				{R.map(
-					days =>
-						days.length === 2 ? (
-							<ReferenceArea
-								key={days[0]}
-								x1={days[0]}
-								x2={days[1]}
-								strokeOpacity={0.3}
-							/>
-						) : (
-							<ReferenceArea key={days[0]} x1={days[0]} strokeOpacity={0.3} />
-						),
-					weekEndDays
+				{weekEndDays.map(days =>
+					days.length === 2 ? (
+						<ReferenceArea
+							key={days[0]}
+							x1={days[0]}
+							x2={days[1]}
+							strokeOpacity={0.3}
+						/>
+					) : (
+						<ReferenceArea key={days[0]} x1={days[0]} strokeOpacity={0.3} />
+					)
 				)}
 				<Line
 					type="monotone"
