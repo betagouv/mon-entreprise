@@ -18,6 +18,7 @@ import { EvaluatedRule } from 'Rules'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
+import { productionMode } from '../../../utils'
 
 declare global {
 	interface Window {
@@ -31,7 +32,7 @@ export default function ChômagePartiel() {
 	const inIframe = useContext(IsEmbeddedContext)
 	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
 	useEffect(() => {
-		if (inIframe || process.env.MASTER !== 'false') {
+		if (inIframe || !productionMode) {
 			return
 		}
 		const script = document.createElement('script')

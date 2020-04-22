@@ -41,9 +41,13 @@ import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
-	Raven.config(
+	const release =
+		process.env.HEAD &&
+		process.env.COMMIT_REF &&
+		process.env.HEAD + '-' + process.env.COMMIT_REF?.substring(0, 7)
+	const publicDSN =
 		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
-	).install()
+	Raven.config(publicDSN, release ? { release } : {}).install()
 }
 
 let tracker = devTracker
