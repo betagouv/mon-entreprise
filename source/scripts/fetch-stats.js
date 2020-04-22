@@ -36,7 +36,8 @@ async function main() {
 		monthly_visits: await fetchMonthlyVisits(),
 		daily_visits: await fetchDailyVisits(),
 		status_chosen: await fetchStatusChosen(),
-		feedback: await fetchFeedback()
+		feedback: await fetchFeedback(),
+		channel_type: await fetchChannelType()
 	}
 	writeInDataDir('stats.json', stats)
 }
@@ -184,9 +185,7 @@ async function fetchSimulators(dt) {
 			...resultIframes,
 			...coronavirus
 		])
-		const diff = function(a, b) {
-			return b.nb_visits - a.nb_visits
-		}
+		const diff = (a, b) => b.nb_visits - a.nb_visits
 		return R.sort(
 			diff,
 			Object.keys(result).map(key => {
@@ -248,9 +247,11 @@ async function fetchDailyVisits() {
 		)
 		const data = await response.json()
 		return Object.entries(data).map(([a, b]) => {
-			const [, month, day] = a.split('-')
+			const [year, month, day] = a.split('-')
+			dt = new Date(a)
 			return {
-				date: `${day}/${month}`,
+				date: `${day}/${month}/${year}`,
+				dayOfWeek: dt.getDay(),
 				visiteurs: b
 			}
 		})
@@ -330,4 +331,52 @@ async function fetchFeedback() {
 	}
 }
 
+async function fetchChannelType() {
+	try {
+		const response = await fetch(
+			apiURL({
+				period: 'month',
+				date: `last3`,
+				method: 'Referrers.getReferrerType'
+			})
+		)
+
+		const data = await response.json()
+
+		const result = R.map(
+			date =>
+				date
+					.filter(x =>
+						['Sites web', 'Moteurs de recherche', 'Entrées directes'].includes(
+							x.label
+						)
+					)
+					.map(({ label, nb_visits }) => ({
+						label,
+						nb_visits
+					})),
+			data
+		)
+		dates = Object.keys(result).sort((t1, t2) => t1 - t2)
+		return {
+			currentMonth: { date: dates[0], visites: result[dates[0]] },
+			oneMonthAgo: { date: dates[1], visites: result[dates[1]] },
+			twoMonthAgo: { date: dates[2], visites: result[dates[2]] }
+		}
+	} catch (e) {
+		console.log('fail to fetch channel type')
+		return null
+	}
+}
+// pct:
+// (nb_visits * 100) /
+// date
+// 	.filter(x =>
+// 		[
+// 			'Sites web',
+// 			'Moteurs de recherche',
+// 			'Entrées directes'
+// 		].includes(x.label)
+// 	)
+// 	.reduce((a, b) => a + b.nb_visits, 0)
 main()

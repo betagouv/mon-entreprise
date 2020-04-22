@@ -125,3 +125,48 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 		</animated.div>
 	)
 }
+
+type NewStackedBarChartProps = {
+	data: Array<{ label: string; nb_visits: number; color?: string }>
+}
+
+export function NewStackedBarChart({ data }: NewStackedBarChartProps) {
+	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
+	const percentages = roundedPercentages(data.map(d => d.nb_visits))
+	const dataWithPercentage = data.map((data, index) => ({
+		...data,
+		percentage: percentages[index]
+	}))
+
+	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+	return (
+		<animated.div ref={intersectionRef} style={styles}>
+			<BarStack>
+				{dataWithPercentage
+					// <BarItem /> has a border so we don't want to display empty bars
+					// (even with width 0).
+					.filter(({ percentage }) => percentage !== 0)
+					.map(({ label, color, percentage }) => (
+						<BarItem
+							style={{
+								width: `${percentage}%`,
+								backgroundColor: color || 'green'
+							}}
+							key={label}
+						/>
+					))}
+			</BarStack>
+			<BarStackLegend>
+				{dataWithPercentage.map(({ percentage, color, label }) => (
+					<BarStackLegendItem key={label}>
+						<SmallCircle style={{ backgroundColor: color }} />
+						<strong>{capitalise0(label)}</strong>
+						<strong>{percentage} %</strong>
+					</BarStackLegendItem>
+				))}
+			</BarStackLegend>
+		</animated.div>
+	)
+}

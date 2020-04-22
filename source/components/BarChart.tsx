@@ -4,6 +4,8 @@ import emoji from 'react-easy-emoji'
 import { animated, config, useSpring } from 'react-spring'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { Link } from 'react-router-dom'
+import { SitePathsContext } from 'Components/utils/withSitePaths'
 
 const ANIMATION_SPRING = config.gentle
 
@@ -39,6 +41,7 @@ type DistributionBranchProps = {
 	data: number
 	title: string
 	icon?: string
+	link?: string
 	total: number
 	description?: string
 	unit?: string
@@ -48,6 +51,7 @@ export default function DistributionBranch({
 	data,
 	title,
 	icon,
+	link,
 	total,
 	description,
 	unit
@@ -55,6 +59,7 @@ export default function DistributionBranch({
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
+	const sitePaths = useContext(SitePathsContext)
 	const { color } = useContext(ThemeColorsContext)
 	const numberToPlot = brancheInViewport ? data : 0
 	const styles = useSpring({
@@ -75,6 +80,18 @@ export default function DistributionBranch({
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
 					<span className="distribution-chart__branche-name">{title}</span>
+					{link ? (
+						<Link
+							className="distribution-chart__link_icone"
+							key={title}
+							to={{
+								state: { fromSimulateurs: true },
+								pathname: sitePaths.simulateurs[link]
+							}}
+						>
+							{emoji('📎')}
+						</Link>
+					) : null}
 					<br />
 					{description ? <small>{description}</small> : null}
 				</p>

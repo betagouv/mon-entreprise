@@ -1,4 +1,5 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { NewStackedBarChart } from 'Components/StackedBarChart'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -9,7 +10,9 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
-	YAxis
+	YAxis,
+	ReferenceArea,
+	Legend
 } from 'recharts'
 import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent'
 import {
@@ -22,6 +25,7 @@ import statsJson from '../../../../data/stats.json'
 import { capitalise0 } from '../../../../utils'
 import DistributionBranch from 'Components/BarChart'
 import { simulateursDetails } from '../Simulateurs/Home'
+import * as R from 'ramda'
 
 const stats: StatsData = statsJson as any
 
@@ -36,6 +40,7 @@ type StatsData = {
 	}>
 	daily_visits: Array<{
 		date: string
+		dayOfWeek: number
 		visiteurs: number
 	}>
 	monthly_visits: Array<{
@@ -45,26 +50,45 @@ type StatsData = {
 	simulators: {
 		currentMonth: {
 			date: string
-			visites: Array<{ label: string; nb_visits: string }>
+			visites: Array<{ label: string; nb_visits: number }>
 		}
 		oneMonthAgo: {
 			date: string
-			visites: Array<{ label: string; nb_visits: string }>
+			visites: Array<{ label: string; nb_visits: number }>
 		}
 		twoMonthAgo: {
 			date: string
-			visites: Array<{ label: string; nb_visits: string }>
+			visites: Array<{ label: string; nb_visits: number }>
+		}
+	}
+	channel_type: {
+		currentMonth: {
+			date: string
+			visites: Array<{ label: string; nb_visits: number }>
+		}
+		oneMonthAgo: {
+			date: string
+			visites: Array<{ label: string; nb_visits: number }>
+		}
+		twoMonthAgo: {
+			date: string
+			visites: Array<{ label: string; nb_visits: number }>
 		}
 	}
 }
 
+const weekEndDays = R.groupWith(
+	(a, b) => parseInt(a.split('/')[0], 10) === parseInt(b.split('/')[0], 10) - 1,
+	stats.daily_visits
+		.filter(day => day.dayOfWeek == 0 || day.dayOfWeek == 6)
+		.map(day => day.date)
+)
 export default function Stats() {
 	const [choice, setChoice] = useState<LineChartVisitsProps['periodicity']>(
 		'monthly'
 	)
 	const [choicesimulators, setChoicesimulators] = useState('oneMonthAgo')
-	const { color } = useContext(ThemeColorsContext)
-
+	const { palettes } = useContext(ThemeColorsContext)
 	return (
 		<>
 			<ScrollToTop />
@@ -162,6 +186,7 @@ export default function Stats() {
 							key={x.label}
 							data={x.nb_visits}
 							title={simulateursDetails[x.label].name}
+							link={simulateursDetails[x.label].keySitePaths}
 							icon={simulateursDetails[x.label].icone}
 							total={stats.simulators[choicesimulators].visites.reduce(
 								(a, b) => Math.max(a, b.nb_visits),
@@ -212,6 +237,73 @@ export default function Stats() {
 				))}
 				<div id="status-indicators"></div>
 			</section>
+			<section>
+				<div
+					css={`
+						display: flex;
+						justify-content: space-between;
+
+						h2 {
+							margin: 0;
+						}
+					`}
+				>
+					<h2> Type de cannal utilisé</h2>
+					<select
+						onChange={event => {
+							setChoicesimulators(event.target.value)
+						}}
+						value={choicesimulators}
+					>
+						<option value="currentMonth">
+							{transformDate(stats.simulators.currentMonth.date)}
+						</option>
+						<option value="oneMonthAgo">
+							{transformDate(stats.simulators.oneMonthAgo.date)}
+						</option>
+						<option value="twoMonthAgo">
+							{transformDate(stats.simulators.twoMonthAgo.date)}
+						</option>
+					</select>
+				</div>
+				<div
+					css={`
+						margin-top: 2em;
+					`}
+				>
+					<NewStackedBarChart
+						data={[
+							{
+								label: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Sites web'
+								)[0].label,
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Sites web'
+								)[0].nb_visits,
+								color: palettes[0][0]
+							},
+							{
+								label: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Moteurs de recherche'
+								)[0].label,
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Moteurs de recherche'
+								)[0].nb_visits,
+								color: palettes[1][0]
+							},
+							{
+								label: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Entrées directes'
+								)[0].label,
+								nb_visits: stats.channel_type[choicesimulators].visites.filter(
+									x => x.label == 'Entrées directes'
+								)[0].nb_visits,
+								color: palettes[1][3]
+							}
+						]}
+					/>
+				</div>
+			</section>
 			<MoreInfosOnUs />
 		</>
 	)
@@ -246,10 +338,18 @@ type LineChartVisitsProps = {
 	periodicity: 'daily' | 'monthly'
 }
 
+type CustomTooltipProps = {
+	active: boolean
+	payload: any
+	label: any
+	periodicity: 'daily' | 'monthly'
+}
+
 function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 	const { color } = useContext(ThemeColorsContext)
 	const data =
 		periodicity === 'daily' ? stats.daily_visits : stats.monthly_visits
+
 	return (
 		<ResponsiveContainer width="100%" height={400}>
 			<LineChart
@@ -274,7 +374,33 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 						formatValue({ value: tickItem, language: 'fr' })
 					}
 				/>
+				{periodicity === 'daily' ? (
+					<Legend
+						payload={[
+							{
+								value: 'Week-End',
+								type: 'rect',
+								color: '#e5e5e5',
+								id: 'weedkend'
+							}
+						]}
+					/>
+				) : null}
 				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
+				{R.map(
+					days =>
+						days.length === 2 ? (
+							<ReferenceArea
+								key={days[0]}
+								x1={days[0]}
+								x2={days[1]}
+								strokeOpacity={0.3}
+							/>
+						) : (
+							<ReferenceArea key={days[0]} x1={days[0]} strokeOpacity={0.3} />
+						),
+					weekEndDays
+				)}
 				<Line
 					type="monotone"
 					dataKey="visiteurs"
@@ -296,7 +422,8 @@ function transformDateReducedMonth(periodicity, date) {
 		const [month, year] = date.split('/')
 		return `${reducedMonths[month - 1]} ${year}`
 	} else {
-		return date
+		const [day, month] = date.split('/')
+		return `${day}/${month}`
 	}
 }
 
