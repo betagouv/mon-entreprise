@@ -158,14 +158,22 @@ let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 		inversedWith
 	)
 
+	let inversionCache
+	function resetInversionCache() {
+		inversionCache = {
+			_meta: { ...oldCache._meta }
+		}
+		return inversionCache
+	}
 	const evaluateWithValue = n =>
 		evaluateNode(
-			{
-				_meta: oldCache._meta
-			},
+			resetInversionCache(),
 			dottedName =>
 				dottedName === node.explanation.ruleToInverse
-					? n
+					? {
+							nodeValue: n,
+							unit: parsedRules[node.explanation.ruleToInverse].unit
+					  }
 					: dottedName === inversedWith.dottedName
 					? undefined
 					: situationGate(dottedName),
@@ -197,6 +205,11 @@ let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 
 	if (nodeValue === undefined) {
 		oldCache._meta.inversionFail = true
+	} else {
+		// For performance reason, we transfer the inversion cache
+		Object.entries(inversionCache).forEach(([k, value]) => {
+			oldCache[k] = value
+		})
 	}
 
 	return {

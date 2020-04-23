@@ -1,5 +1,6 @@
 impôt:
   icônes: 🏛️
+  unité: €/an
   description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre: impôts sur le revenu
   formule:
@@ -288,7 +289,7 @@ impôt . foyer fiscal . situation de famille:
       possibilités:
         - célibataire
         - couple
-  par défaut: célibataire
+  par défaut: "'célibataire'"
 
 impôt . foyer fiscal . situation de famille . célibataire:
   titre: Célibataire / Divorcé(e) / Veuf(ve) / Union libre
@@ -298,8 +299,7 @@ impôt . foyer fiscal . situation de famille . couple:
 
 impôt . foyer fiscal . enfants à charge:
   question: Combien d'enfants sont à charge du foyer fiscal ?
-  unité: enfants
-  par défaut: 0
+  par défaut: 0 enfants
 
 impôt . foyer fiscal . nombre de parts:
   unité: parts
@@ -348,8 +348,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
 
 impôt . foyer fiscal . revenu imposable . autres revenus imposables:
   question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
-  unité: €/an
-  par défaut: 0
+  par défaut: 0 €/an
 
 impôt . foyer fiscal . revenu fiscal de référence:
   description: >-

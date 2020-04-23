@@ -94,7 +94,7 @@ export const evaluateArray = (reducer, start) => (
 		...node,
 		missingVariables: mergeAllMissing(evaluatedNodes),
 		explanation: evaluatedNodes,
-		unit: evaluatedNodes[0].unit
+		...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit })
 	}
 	if (temporalValue.length === 1) {
 		return {

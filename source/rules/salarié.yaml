@@ -2577,9 +2577,6 @@ contrat salarié . CSG et CRDS . non déductible:
 
 contrat salarié . CSG et CRDS . CSG:
   non applicable si: établissement . localisation . département = 'Mayotte'
-  cotisation:
-    impôt: oui
-    dû par: salarié
   description: >-
     La contribution sociale généralisée (CSG) est un impôt destiné à participer
     au financement de la protection sociale.

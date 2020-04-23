@@ -140,11 +140,10 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			node.missingVariables
 		)
 	})
-
 	let dottedName = node.dottedName,
 		// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 		// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-		cacheName = dottedName + (filter ? '.' + filter : ''),
+		cacheName = dottedName + (filter ? ' .' + filter : ''),
 		cached = cache[cacheName]
 
 	if (cached) return addReplacementMissingVariable(cached)
