@@ -8,7 +8,7 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
-import { default as React, useContext } from 'react'
+import { default as React, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -137,7 +137,9 @@ export let SalarySimulation = () => {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const sitePaths = useContext(SitePathsContext)
-	dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
+	useEffect(() => {
+		dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
+	}, [])
 	return (
 		<>
 			<Simulation

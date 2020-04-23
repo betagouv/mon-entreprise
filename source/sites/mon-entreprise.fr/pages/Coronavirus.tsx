@@ -29,7 +29,11 @@ export default function ChômagePartiel() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
+	useEffect(() => {
+		dispatch(
+			setSimulationConfig(chomagePartielConfig, location.state?.fromGérer)
+		)
+	}, [])
 	useEffect(() => {
 		if (inIframe || !productionMode) {
 			return

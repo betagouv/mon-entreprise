@@ -27,7 +27,9 @@ function useInitialRender() {
 
 export default function ArtisteAuteur() {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(config))
+	useEffect(() => {
+		dispatch(setSimulationConfig(config))
+	}, [])
 	const initialRender = useInitialRender()
 	const inIframe = useContext(IsEmbeddedContext)
 

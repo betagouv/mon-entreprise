@@ -6,7 +6,7 @@ import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { default as React, useContext } from 'react'
+import { default as React, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -16,10 +16,11 @@ export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	dispatch(
-		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
-	)
-
+	useEffect(() => {
+		dispatch(
+			setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
+		)
+	}, [])
 	const { t } = useTranslation()
 
 	return (

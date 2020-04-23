@@ -35,11 +35,6 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 	)
 	const colors = useContext(ThemeColorsContext)
 
-	useEffect(() => {
-		setInitialRender(false)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
 	return (
 		<div id="targetSelection">
 			{((typeof objectifs[0] === 'string'
@@ -72,11 +67,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 							<ul className="targets">
 								{' '}
 								{targets.map(target => (
-									<Target
-										key={target}
-										dottedName={target}
-										initialRender={initialRender}
-									/>
+									<Target key={target} dottedName={target} />
 								))}
 							</ul>
 						</section>
@@ -89,14 +80,20 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 
 type TargetProps = {
 	dottedName: DottedName
-	initialRender: boolean
 }
-const Target = ({ dottedName, initialRender }: TargetProps) => {
+const Target = ({ dottedName }: TargetProps) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
-	const dispatch = useDispatch()
 	const target = useEvaluation(dottedName, {
 		unit: useSelector(targetUnitSelector)
 	})
+	const dispatch = useDispatch()
+	const onSuggestionClick = useCallback(
+		value => {
+			dispatch(updateSituation(target.dottedName, value))
+		},
+		[target.dottedName, dispatch]
+	)
+
 	const isSmallTarget = !!target.question !== !!target.formule
 	if (
 		target.nodeValue === false ||
@@ -111,7 +108,7 @@ const Target = ({ dottedName, initialRender }: TargetProps) => {
 			key={target.name}
 			className={isSmallTarget ? 'small-target' : undefined}
 		>
-			<Animate.appear unless={initialRender}>
+			<Animate.appear unless={!isSmallTarget}>
 				<div>
 					<div className="main">
 						<Header
@@ -142,9 +139,7 @@ const Target = ({ dottedName, initialRender }: TargetProps) => {
 							<div css="display: flex; justify-content: flex-end">
 								<InputSuggestions
 									suggestions={target.suggestions}
-									onFirstClick={value => {
-										dispatch(updateSituation(target.dottedName, value))
-									}}
+									onFirstClick={onSuggestionClick}
 									unit={target.unit}
 								/>
 							</div>

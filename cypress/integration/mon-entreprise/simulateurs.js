@@ -27,7 +27,7 @@ describe('Simulateurs', function() {
 							if (i != j) {
 								expect(val).not.to.be.eq('60000')
 							}
-							expect(val).to.match(/[1-9][\d]*$/)
+							expect(val).to.match(/[1-9][\d]{3,6}$/)
 						})
 					})
 				})

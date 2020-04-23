@@ -15,7 +15,8 @@ import {
 	useCallback,
 	useContext,
 	useMemo,
-	useState
+	useState,
+	useEffect
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -35,7 +36,9 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false
 }: SchemeComparaisonProps) {
 	const dispatch = useDispatch()
-	dispatch(setSimulationConfig(dirigeantComparaison))
+	useEffect(() => {
+		dispatch(setSimulationConfig(dirigeantComparaison))
+	}, [])
 	const plafondAutoEntrepreneurDépassé = useContext(EngineContext)
 		.controls()
 		.find(
