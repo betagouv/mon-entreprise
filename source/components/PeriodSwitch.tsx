@@ -3,13 +3,13 @@ import { parseUnit, serializeUnit } from 'Engine/units'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { defaultUnitSelector } from 'Selectors/analyseSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import './PeriodSwitch.css'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
 	const language = useTranslation().i18n.language
-	const currentUnit = useSelector(defaultUnitSelector)
+	const currentUnit = useSelector(targetUnitSelector)
 
 	let units = ['€/mois', '€/an']
 	return (

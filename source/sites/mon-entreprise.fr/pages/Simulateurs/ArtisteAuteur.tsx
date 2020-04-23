@@ -1,32 +1,20 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import { DistributionBranch } from 'Components/Distribution'
-import RuleLink from 'Components/RuleLink'
+import { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import config from 'Components/simulationConfigs/artiste-auteur.yaml'
 import 'Components/TargetSelection.css'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { formatValue } from 'Engine/format'
+import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
+import Value from 'Components/EngineValue'
 import RuleInput from 'Engine/RuleInput'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
-import {
-	analysisWithDefaultsSelector,
-	parsedRulesSelector,
-	ruleAnalysisSelector,
-	situationSelector
-} from 'Selectors/analyseSelectors'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
-
-export function useRule(dottedName: DottedName) {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const getRule = getRuleFromAnalysis(analysis)
-	return getRule(dottedName)
-}
 
 const InitialRenderContext = createContext(false)
 function useInitialRender() {
@@ -77,16 +65,12 @@ type SimpleFieldProps = {
 }
 
 function SimpleField({ dottedName }: SimpleFieldProps) {
-	const rule = useSelector(parsedRulesSelector)[dottedName]
 	const dispatch = useDispatch()
-	const analysis = useSelector((state: RootState) => {
-		return ruleAnalysisSelector(state, { dottedName })
-	})
+	const rule = useEvaluation(dottedName)
 	const initialRender = useContext(InitialRenderContext)
-	const parsedRules = useSelector(parsedRulesSelector)
-	const value = useSelector(situationSelector)[dottedName]
-
-	if (!analysis.isApplicable) {
+	const parsedRules = useContext(EngineContext).getParsedRules()
+	const value = useSelector(situationSelector)[dottedName] ?? rule['par défaut']
+	if (rule.isApplicable === false || rule.isApplicable === null) {
 		return null
 	}
 
@@ -147,10 +131,7 @@ const ResultLabel = styled.div`
 
 function CotisationsResult() {
 	const [display, setDisplay] = useState(false)
-	const { i18n } = useTranslation()
 	const situation = useSelector(situationSelector)
-	const cotisationRule = useRule('artiste-auteur . cotisations')
-	const value = cotisationRule.nodeValue
 
 	if (Object.keys(situation).length && !display) {
 		setDisplay(true)
@@ -166,16 +147,15 @@ function CotisationsResult() {
 				<ResultLabel>
 					<Trans>Montant des cotisations</Trans>
 				</ResultLabel>
-				<RuleLink dottedName={cotisationRule.dottedName}>
-					{formatValue({
-						value: cotisationRule.nodeValue,
-						language: i18n.language,
-						unit: '€',
-						maximumFractionDigits: 0
-					})}
-				</RuleLink>
+				<Value
+					displayedUnit="€"
+					precision={0}
+					expression="artiste-auteur . cotisations"
+				/>
 			</ResultBlock>
-			{cotisationRule.nodeValue ? <RepartitionCotisations /> : null}
+			<Condition expression="artiste-auteur . cotisations">
+				<RepartitionCotisations />
+			</Condition>
 		</Animate.appear>
 	)
 }
@@ -200,9 +180,10 @@ const branches = [
 ] as const
 
 function RepartitionCotisations() {
+	const engine = useContext(EngineContext)
 	const cotisations = branches.map(branch => ({
 		...branch,
-		value: useRule(branch.dottedName).nodeValue as number
+		value: engine.evaluate(branch.dottedName).nodeValue as number
 	}))
 	const maximum = Math.max(...cotisations.map(x => x.value))
 	return (

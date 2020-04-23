@@ -1,24 +1,22 @@
 import { goToQuestion, hideControl } from 'Actions/actions'
+import { useControls, useInversionFail } from 'Components/utils/EngineContext'
 import { makeJsx } from 'Engine/evaluation'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 import animate from 'Ui/animate'
 import './Controls.css'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 
 export default function Controls() {
 	const { t } = useTranslation()
-	const foldedSteps = useSelector(
-		(state: RootState) => state.simulation?.foldedSteps
-	)
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const controls = analysis?.controls
-	const inversionFail = analysis?.cache._meta.inversionFail
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const controls = useControls()
+	const inversionFail = useInversionFail()
 	const hiddenControls = useSelector(
 		(state: RootState) => state.simulation?.hiddenControls
 	)
@@ -56,7 +54,7 @@ export default function Controls() {
 											<span id="controlExplanation">{makeJsx(evaluated)}</span>
 										)}
 
-										{solution && !foldedSteps?.includes(solution.cible) && (
+										{solution && !answeredQuestions?.includes(solution.cible) && (
 											<div>
 												<button
 													key={solution.cible}

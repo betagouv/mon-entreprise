@@ -8,20 +8,21 @@
 import { expect } from 'chai'
 import Engine from 'Engine'
 import { parseUnit } from '../source/engine/units'
+import { coerceArray } from '../source/utils'
 import testSuites from './load-mecanism-tests'
 testSuites.forEach(([suiteName, suite]) => {
-	const engine = new Engine({ rules: suite, useDefaultValues: false })
+	const engine = new Engine(suite)
 	describe(`Mécanisme ${suiteName}`, () => {
 		Object.entries(suite)
 			.filter(([, rule]) => rule?.exemples)
 			.forEach(([name, test]) => {
 				const { exemples, 'unité attendue': unit } = test
-				exemples.forEach(
+				coerceArray(exemples).forEach(
 					(
 						{
 							nom: testName,
 							situation,
-							'unités par défaut': defaultUnits,
+							'unité par défaut': defaultUnit,
 							'valeur attendue': valeur,
 							'variables manquantes': expectedMissing
 						},
@@ -37,8 +38,10 @@ testSuites.forEach(([suiteName, suite]) => {
 							() => {
 								const result = engine
 									.setSituation(situation ?? {})
-									.setDefaultUnits(defaultUnits)
-									.evaluate(name)
+									.evaluate(name, {
+										unit: defaultUnit,
+										useDefaultValues: false
+									})
 								if (typeof valeur === 'number') {
 									expect(result.nodeValue).to.be.closeTo(valeur, 0.001)
 								} else if (valeur !== undefined) {

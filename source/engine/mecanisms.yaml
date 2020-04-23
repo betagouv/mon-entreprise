@@ -15,7 +15,7 @@ une de ces conditions:
       peut voter:
         formule:
           une de ces conditions:
-            - âge > 18 ans
+            - âge >= 18 ans
             - mineur émancipé
 
 toutes ces conditions:
@@ -38,7 +38,7 @@ toutes ces conditions:
         formule:
           toutes ces conditions:
             - citoyenneté française
-            - âge > 18 ans
+            - âge >= 18 ans
 
 produit:
   description: >-

@@ -14,7 +14,7 @@ remboursement dépot de garantie:
     - nom: Est vraie -> non applicable -> 0
       situation:
         dégradation mineure: oui
-      valeur attendue: 0
+      valeur attendue: false
       variables manquantes: []
     - nom: Est fausse -> en attente de l'autre
       situation:

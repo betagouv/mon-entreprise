@@ -10,22 +10,6 @@ describe('getSituationValue', function() {
 		expect(getSituationValue(situationGate, 'salaire', rule)).to.equal('2300')
 	})
 
-	it("should interpret rules without a formula as boolean-valued, with 'oui' for true", function() {
-		let rule = {},
-			state = { condition: 'oui' },
-			situationGate = name => state[name]
-
-		expect(getSituationValue(situationGate, 'condition', rule)).to.be.true
-	})
-
-	it("should interpret rules without a formula as boolean-valued, with 'non' meaning false", function() {
-		let rule = {},
-			state = { condition: 'non' },
-			situationGate = name => state[name]
-
-		expect(getSituationValue(situationGate, 'condition', rule)).to.be.false
-	})
-
 	it("should interpret rules with 'one of these', with 'oui' for true", function() {
 		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
 			state = { condition: 'oui' },

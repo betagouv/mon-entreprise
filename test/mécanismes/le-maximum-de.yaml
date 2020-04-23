@@ -9,9 +9,7 @@ Maximum:
           taux: 9%
 
   exemples:
-    - nom:
-      situation:
-      valeur attendue: 1
+    - valeur attendue: 1
 
 a:
   applicable si: non

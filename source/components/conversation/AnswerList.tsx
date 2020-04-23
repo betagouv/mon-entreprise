@@ -1,18 +1,14 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import Value from 'Components/Value'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { useEvaluation } from 'Components/utils/EngineContext'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { formatValue } from 'Engine/format'
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
-import { createSelector } from 'reselect'
-import {
-	analysisWithDefaultsSelector,
-	nextStepsSelector
-} from 'Selectors/analyseSelectors'
-import { softCatch } from '../../utils'
+import { DottedName } from 'Rules'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
 
 type AnswerListProps = {
@@ -21,46 +17,60 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
-	const { folded, next } = useSelector(stepsToRules)
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const nextSteps = useNextQuestions()
+
 	return (
 		<Overlay onClose={onClose} className="answer-list">
-			<h2>
-				{emoji('📋 ')}
-				<Trans>Mes réponses</Trans>
-				<small css="margin-left: 2em; img {font-size: .8em}">
-					{emoji('🗑')}{' '}
-					<button
-						className="ui__ simple small button"
-						onClick={() => {
-							dispatch(resetSimulation())
-							onClose()
-						}}
-					>
-						<Trans>Tout effacer</Trans>
-					</button>
-				</small>
-			</h2>
-			<StepsTable {...{ rules: folded, onClose }} />
-			{next.length > 0 && (
+			{!!answeredQuestions.length && (
+				<>
+					<h2>
+						{emoji('📋 ')}
+						<Trans>Mes réponses</Trans>
+						<small css="margin-left: 2em; img {font-size: .8em}">
+							{emoji('🗑')}{' '}
+							<button
+								className="ui__ simple small button"
+								onClick={() => {
+									dispatch(resetSimulation())
+									onClose()
+								}}
+							>
+								<Trans>Tout effacer</Trans>
+							</button>
+						</small>
+					</h2>
+					<StepsTable {...{ rules: answeredQuestions, onClose }} />
+				</>
+			)}
+			{!!nextSteps.length && (
 				<>
 					<h2>
 						{emoji('🔮 ')}
 						<Trans>Prochaines questions</Trans>
 					</h2>
-					<StepsTable {...{ rules: next, onClose }} />
+					<StepsTable {...{ rules: nextSteps, onClose }} />
 				</>
 			)}
 		</Overlay>
 	)
 }
 
-function StepsTable({ rules, onClose }) {
+function StepsTable({
+	rules,
+	onClose
+}: {
+	rules: Array<DottedName>
+	onClose: () => void
+}) {
 	const dispatch = useDispatch()
+	const evaluatedRules = useEvaluation(rules)
+	const language = useTranslation().i18n.language
 	return (
 		<table>
 			<tbody>
-				{rules
-					.filter(rule => rule.nodeValue !== undefined)
+				{evaluatedRules
+					.filter(rule => rule.isApplicable !== false)
 					.map(rule => (
 						<tr
 							key={rule.dottedName}
@@ -89,7 +99,7 @@ function StepsTable({ rules, onClose }) {
 										font-size: inherit;
 										width: 100%;
 										text-align: start;
-										font-weight: 500;
+										font-weight: 600;
 										> span {
 											border-bottom-color: var(--textColorOnWhite);
 											padding: 0.05em 0em;
@@ -98,7 +108,7 @@ function StepsTable({ rules, onClose }) {
 									`}
 								>
 									<span className="answerContent">
-										<Value {...rule} />
+										{formatValue({ ...rule, language })}
 									</span>
 								</span>{' '}
 							</td>
@@ -108,17 +118,3 @@ function StepsTable({ rules, onClose }) {
 		</table>
 	)
 }
-
-const stepsToRules = createSelector(
-	(state: RootState) => state.simulation?.foldedSteps || [],
-	nextStepsSelector,
-	analysisWithDefaultsSelector,
-	(folded, nextSteps, analysis) => ({
-		folded: folded
-			.map(softCatch(getRuleFromAnalysis(analysis)))
-			.filter(Boolean),
-		next: nextSteps
-			.map(softCatch(getRuleFromAnalysis(analysis)))
-			.filter(Boolean)
-	})
-)

@@ -31,7 +31,7 @@ impôt . méthode de calcul:
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire
-  par défaut: barème standard
+  par défaut: "'barème standard'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -256,7 +256,7 @@ impôt . taux personnalisé:
 
 revenus net de cotisations:
   résumé: Avant impôt
-  unité par défaut: €/an
+  unité: €/an
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: |
     Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -267,7 +267,7 @@ revenus net de cotisations:
       - dirigeant . auto-entrepreneur . net de cotisations
 
 revenu net après impôt:
-  unité par défaut: €/an
+  unité: €/an
   résumé: Disponible sur votre compte en banque
   question: Quel revenu voulez-vous toucher ?
   description: |

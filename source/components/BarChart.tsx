@@ -4,31 +4,34 @@ import emoji from 'react-easy-emoji'
 import { animated, config, useSpring } from 'react-spring'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { formatValue } from 'Engine/format'
+import { useTranslation } from 'react-i18next'
 
 const ANIMATION_SPRING = config.gentle
 
-let ChartItemBar = ({ styles, color, numberToPlot, unit }) => (
-	<div className="distribution-chart__bar-container">
-		<animated.div
-			className="distribution-chart__bar"
-			style={{
-				backgroundColor: color,
-				flex: styles.flex
-			}}
-		/>
-		<div
-			css={`
-				font-weight: bold;
-				margin-left: 1rem;
-				color: var(--textColorOnWhite);
-			`}
-		>
-			<Value maximumFractionDigits={0} unit={unit}>
-				{numberToPlot}
-			</Value>
+let ChartItemBar = ({ styles, color, numberToPlot, unit }) => {
+	const language = useTranslation().i18n.language
+	return (
+		<div className="distribution-chart__bar-container">
+			<animated.div
+				className="distribution-chart__bar"
+				style={{
+					backgroundColor: color,
+					flex: styles.flex
+				}}
+			/>
+			<div
+				css={`
+					font-weight: bold;
+					margin-left: 1rem;
+					color: var(--textColorOnWhite);
+				`}
+			>
+				{formatValue({ nodeValue: numberToPlot, unit, precision: 0, language })}
+			</div>
 		</div>
-	</div>
-)
+	)
+}
 let BranchIcône = ({ icône }) => (
 	<div className="distribution-chart__legend">
 		<span className="distribution-chart__icon">{emoji(icône)}</span>

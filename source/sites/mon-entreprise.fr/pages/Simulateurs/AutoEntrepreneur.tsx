@@ -5,13 +5,12 @@ import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entreprene
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { EngineContext } from 'Components/utils/EngineContext'
 import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
@@ -54,12 +53,11 @@ export default function AutoEntrepreneur() {
 }
 
 function ExplanationSection() {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const getRule = getRuleFromAnalysis(analysis)
+	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
-	const impôt = getRule('impôt')
+	const impôt = engine.evaluate('impôt')
 	return (
 		<section>
 			<h2>
@@ -68,7 +66,9 @@ function ExplanationSection() {
 			<StackedBarChart
 				data={[
 					{
-						...getRule('dirigeant . auto-entrepreneur . net après impôt'),
+						...engine.evaluate(
+							'dirigeant . auto-entrepreneur . net après impôt'
+						),
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: palettes[0][0]
 					},
@@ -77,7 +77,7 @@ function ExplanationSection() {
 						? [{ ...impôt, title: t('impôt'), color: palettes[1][0] }]
 						: []),
 					{
-						...getRule(
+						...engine.evaluate(
 							'dirigeant . auto-entrepreneur . cotisations et contributions'
 						),
 						title: t('Cotisations'),

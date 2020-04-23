@@ -18,4 +18,4 @@ questions:
 
 unité par défaut: €/an
 situation:
-  dirigeant: 'auto-entrepreneur'
+  dirigeant: "'auto-entrepreneur'"

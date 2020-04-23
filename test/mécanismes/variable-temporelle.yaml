@@ -85,7 +85,7 @@ variable temporelle numérique . test addition:
         valeur attendue: 30
 
 prix avec variations:
-  formule: prix * (50% | du 01/01/2020 | au 31/01/2020)
+  formule: prix - (prix * 50% | du 01/01/2020 | au 31/01/2020)
 début:
 fin:
 variable temporelle numérique . expression . multiplication:
@@ -96,14 +96,17 @@ variable temporelle numérique . expression . multiplication:
         début: 01/01/2020
         fin: 31/01/2020
       valeur attendue: 10
+      unité attendue: €/mois
     - situation:
         début: 01/01/2020
         fin: 29/02/2020
       valeur attendue: 20
+      unité attendue: €/mois
     - situation:
         début: 01/02/2020
         fin: 31/03/2020
       valeur attendue: 30
+      unité attendue: €/mois
 
 taux associé:
   formule:
@@ -112,7 +115,7 @@ taux associé:
         alors: 10%/mois
       - si: prix avec variations < 20 €/mois
         alors: 60%/mois
-      # Cette formule peut paraître bizarre, mais lorsque multiplication est non
+      # Cette formule peut paraître bizarre, mais lorsque le prix est non
       # applicable, c'est bien le sinon qui s'applique
       - sinon: 5%/mois
 variable temporelle numérique . variation:

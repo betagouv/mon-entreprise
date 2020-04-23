@@ -89,7 +89,7 @@ contrat salarié . convention collective . sport . cotisations . régime frais d
         - R1
         - R2
         - R3
-  par défaut: R1
+  par défaut: "'R1'"
   références:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
 contrat salarié . convention collective . sport . cotisations . régime frais de santé . option . R1:
@@ -206,8 +206,7 @@ contrat salarié . convention collective . sport . cotisations . assiette forfai
 contrat salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
   #TODO : gérer la période
-  unité: manifestations
-  par défaut: 0
+  par défaut: 0 manifestations
 
 contrat salarié . convention collective . sport . primes:
   titre: primes de manifestation
@@ -226,8 +225,7 @@ contrat salarié . convention collective . sport . primes:
 contrat salarié . convention collective . sport . primes . manifestation 1:
   question: Quelle prime pour la première manifestation ?
   applicable si: nombre de manifestations > 0
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1
@@ -238,8 +236,7 @@ contrat salarié . convention collective . sport . primes . manifestation 1 . fr
 contrat salarié . convention collective . sport . primes . manifestation 2:
   question: Quelle prime pour la deuxième manifestation ?
   applicable si: nombre de manifestations > 1
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2
@@ -250,8 +247,7 @@ contrat salarié . convention collective . sport . primes . manifestation 2 . fr
 contrat salarié . convention collective . sport . primes . manifestation 3:
   question: Quelle prime pour la troisième manifestation ?
   applicable si: nombre de manifestations > 2
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3
@@ -262,8 +258,7 @@ contrat salarié . convention collective . sport . primes . manifestation 3 . fr
 contrat salarié . convention collective . sport . primes . manifestation 4:
   question: Quelle prime pour la quatrième manifestation ?
   applicable si: nombre de manifestations > 3
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4
@@ -274,8 +269,7 @@ contrat salarié . convention collective . sport . primes . manifestation 4 . fr
 contrat salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
   applicable si: nombre de manifestations > 4
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5
@@ -286,8 +280,7 @@ contrat salarié . convention collective . sport . primes . manifestation 5 . fr
 contrat salarié . convention collective . sport . primes . autres manifestations:
   question: Quelles primes pour les autres manifestations ?
   applicable si: nombre de manifestations > 5
-  par défaut: 100
-  unité: €
+  par défaut: 100 €
 
 contrat salarié . convention collective . sport . cotisations . franchise:
   applicable si: entreprise . effectif < 10

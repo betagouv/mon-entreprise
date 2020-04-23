@@ -1,6 +1,6 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { lensPath, view } from 'ramda'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'

@@ -3,16 +3,13 @@
 # dans la base centrale
 
 chiffre affaires:
-  unité par défaut: €/mois
-  par défaut: 0
+  par défaut: 0 €/mois
 
 charges:
-  unité: €/mois
-  par défaut: 0
+  par défaut: 0 €/mois
 
 répartition salaire sur dividendes:
-  par défaut: 50
-  unité: '%'
+  par défaut: 50%
 
 impôt sur les sociétés:
   formule:

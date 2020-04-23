@@ -65,10 +65,9 @@ contrat salarié . convention collective . optique . salaire minimum conventionn
 
 contrat salarié . convention collective . optique . coefficient:
   question: Quel est le coefficient correspondant au poste du salarié ?
-  unité: points
   description: >-
     Se référer à la [grille fournie par la convention collective](http://opticiensreunis.org/storage/pdf/D4AciCiqHMr9mgqlTgjW0hvfPyE4w6ZxGTCihzYy.pdf#page=27).
-  par défaut: 110
+  par défaut: 110 points
 
 contrat salarié . convention collective . optique . prévoyance:
   non applicable si: prévoyance obligatoire cadre

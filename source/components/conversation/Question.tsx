@@ -88,7 +88,7 @@ export default function Question({
 							<li key={dottedName} className="variantLeaf">
 								<RadioLabel
 									{...{
-										value: relativeDottedName(dottedName),
+										value: `'${relativeDottedName(dottedName)}'`,
 										label: title,
 										dottedName,
 										currentValue,

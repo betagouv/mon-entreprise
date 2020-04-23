@@ -62,7 +62,7 @@
 
 #targetSelection .optionTitle {
 	font-size: 115%;
-	font-weight: 500;
+	font-weight: 600;
 }
 #targetSelection .optionTitle a {
 	color: inherit;
@@ -169,7 +169,7 @@
 	font-style: italic;
 	color: #c0392b;
 	background: yellow;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

@@ -2,29 +2,20 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { useEvaluation, useInversionFail } from 'Components/utils/EngineContext'
 import React, { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	analysisWithDefaultsSelector,
-	defaultUnitSelector
-} from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 
 export default function SalaryExplanation() {
-	const showDistributionFirst = useSelector(
-		(state: RootState) => !state.simulation?.foldedSteps.length
-	)
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const inversionFail = analysis?.cache._meta.inversionFail
+	const showDistributionFirst = !useSelector(answeredQuestionsSelector).length
 	const distributionRef = useRef<HTMLDivElement>(null)
 
-	// We can't provide an explanation if the engine has failed to run the
-	// simulation.
-	if (inversionFail) {
+	if (useInversionFail()) {
 		return null
 	}
 	return (
@@ -83,11 +74,16 @@ export default function SalaryExplanation() {
 }
 
 function RevenueRepatitionSection() {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const getRule = getRuleFromAnalysis(analysis)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
-
+	const data = useEvaluation(
+		[
+			'contrat salarié . rémunération . net après impôt',
+			'impôt',
+			'contrat salarié . cotisations'
+		],
+		{ unit: '€/mois' }
+	)
 	return (
 		<section>
 			<h2>
@@ -96,18 +92,17 @@ function RevenueRepatitionSection() {
 			<StackedBarChart
 				data={[
 					{
-						...getRule('contrat salarié . rémunération . net après impôt'),
+						...data[0],
 						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
 					{
-						...getRule('impôt'),
+						...data[1],
 						title: t('impôt'),
 						color: palettes[1][0]
 					},
 					{
-						...getRule('contrat salarié . cotisations'),
-
+						...data[2],
 						color: palettes[1][1]
 					}
 				]}
@@ -117,15 +112,10 @@ function RevenueRepatitionSection() {
 }
 
 function PaySlipSection() {
-	const unit = useSelector(defaultUnitSelector)
 	return (
 		<section>
 			<h2>
-				{unit?.endsWith('mois') ? (
-					<Trans>Fiche de paie</Trans>
-				) : (
-					<Trans>Détail annuel des cotisations</Trans>
-				)}
+				<Trans>Fiche de paie</Trans>
 			</h2>
 			<PaySlip />
 		</section>

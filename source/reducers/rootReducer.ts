@@ -1,13 +1,13 @@
 import { Action } from 'Actions/actions'
 import { Unit } from 'Engine/units'
-import { defaultTo, identity, omit, without } from 'ramda'
+import { defaultTo, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import originRules, { DottedName, Rules } from 'Rules'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import originRules, { Rules } from 'Rules'
 import { SavedSimulation } from 'Selectors/storageSelectors'
 import i18n, { AvailableLangs } from '../i18n'
-import { areUnitConvertible, convertUnit, parseUnit } from './../engine/units'
+import { DottedName } from './../rules/index'
+import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
 import storageRootReducer from './storageReducer'
 
@@ -34,15 +34,6 @@ type Example = null | {
 	situation: object
 	dottedName: DottedName
 	defaultUnit?: Unit
-}
-
-function currentExample(state: Example = null, action: Action): Example {
-	switch (action.type) {
-		case 'SET_EXAMPLE':
-			return action.name != null ? action : null
-		default:
-			return state
-	}
 }
 
 function situationBranch(state: number | null = null, action: Action) {
@@ -77,82 +68,22 @@ function lang(
 	}
 }
 
-function goalsFromAnalysis(analysis) {
-	return (
-		analysis &&
-		(Array.isArray(analysis) ? analysis[0] : analysis).targets
-			.map(target => target.explanation || target)
-			.filter(target => !!target.formule == !!target.question)
-			.map(({ dottedName }) => dottedName)
-	)
-}
-
-function updateSituation(
-	situation,
-	{
-		fieldName,
-		value,
-		analysis
-	}: {
-		fieldName: DottedName
-		value: any
-		analysis: any
-	}
-) {
-	const goals = goalsFromAnalysis(analysis)
-	const removePreviousTarget = goals?.includes(fieldName)
-		? omit(goals)
-		: identity
-	return { ...removePreviousTarget(situation), [fieldName]: value }
-}
-
-function updateDefaultUnit(situation: Situation, { toUnit, analysis }) {
-	const unit = parseUnit(toUnit)
-	const goals = goalsFromAnalysis(analysis)
-	const convertedSituation = Object.keys(situation)
-		.map(
-			dottedName =>
-				analysis.targets.find(target => target.dottedName === dottedName) ||
-				analysis.cache[dottedName]
-		)
-		.filter(
-			rule =>
-				rule.dottedName === 'entreprise . charges' || // HACK en attendant de revoir le fonctionnement des unités
-				(goals?.includes(rule.dottedName) &&
-					(rule.unit || rule.defaultUnit) &&
-					!rule.unité &&
-					areUnitConvertible(rule.unit || rule.defaultUnit, unit))
-		)
-		.reduce(
-			(convertedSituation, rule) => ({
-				...convertedSituation,
-				[rule.dottedName]: convertUnit(
-					rule.unit || rule.defaultUnit,
-					unit,
-					situation[rule.dottedName]
-				)
-			}),
-			situation
-		)
-	return convertedSituation
-}
-
 type QuestionsKind =
 	| "à l'affiche"
 	| 'non prioritaires'
 	| 'uniquement'
 	| 'liste noire'
 
-export type SimulationConfig = Partial<{
+export type SimulationConfig = {
 	objectifs:
 		| Array<DottedName>
 		| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
-	questions: Partial<Record<QuestionsKind, Array<DottedName>>>
-	bloquant: Array<DottedName>
 	situation: Simulation['situation']
-	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
+	bloquant?: Array<DottedName>
+	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
+	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
 	'unité par défaut': string
-}>
+}
 
 type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
@@ -161,14 +92,14 @@ export type Simulation = {
 	hiddenControls: Array<string>
 	situation: Situation
 	initialSituation: Situation
-	defaultUnit: string
+	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 }
 function getCompanySituation(company: Company): Situation {
 	return {
 		...(company?.localisation && {
-			'établissement . localisation': JSON.stringify(company.localisation)
+			'établissement . localisation': company.localisation
 		}),
 		...(company?.dateDeCréation && {
 			'entreprise . date de création': company.dateDeCréation.replace(
@@ -182,7 +113,6 @@ function getCompanySituation(company: Company): Situation {
 function simulation(
 	state: Simulation | null = null,
 	action: Action,
-	analysis: any,
 	existingCompany: Company
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
@@ -199,7 +129,7 @@ function simulation(
 			hiddenControls: [],
 			situation: companySituation,
 			initialSituation: companySituation,
-			defaultUnit: config['unité par défaut'] || '€/mois',
+			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: Object.keys(companySituation) as Array<DottedName>,
 			unfoldedStep: null
 		}
@@ -220,13 +150,20 @@ function simulation(
 				unfoldedStep: null
 			}
 		case 'UPDATE_SITUATION':
+			const targets = without(
+				['entreprise . charges'],
+				objectifsSelector({ simulation: state })
+			)
+			const situation = state.situation
+			const { fieldName: dottedName, value } = action
 			return {
 				...state,
-				situation: updateSituation(state.situation, {
-					fieldName: action.fieldName,
-					value: action.value,
-					analysis
-				})
+				situation: {
+					...(targets.includes(dottedName)
+						? omit(targets, situation)
+						: situation),
+					[dottedName]: value
+				}
 			}
 		case 'STEP_ACTION':
 			const { name, step } = action
@@ -244,14 +181,10 @@ function simulation(
 				}
 			}
 			return state
-		case 'UPDATE_DEFAULT_UNIT':
+		case 'UPDATE_TARGET_UNIT':
 			return {
 				...state,
-				situation: updateDefaultUnit(state.situation, {
-					toUnit: action.defaultUnit,
-					analysis
-				}),
-				defaultUnit: action.defaultUnit
+				targetUnit: action.targetUnit
 			}
 	}
 	return state
@@ -274,18 +207,11 @@ const existingCompanyReducer = (state, action: Action) => {
 const mainReducer = (state, action: Action) =>
 	combineReducers({
 		lang,
-		rules,
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
-			simulation(
-				a,
-				b,
-				a && analysisWithDefaultsSelector(state),
-				state?.inFranceApp?.existingCompany
-			),
+			simulation(a, b, state?.inFranceApp?.existingCompany),
 		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
-		currentExample,
 		situationBranch,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer
