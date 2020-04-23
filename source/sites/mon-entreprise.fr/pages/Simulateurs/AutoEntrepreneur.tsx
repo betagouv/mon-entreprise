@@ -9,8 +9,9 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { default as React, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
@@ -57,8 +58,9 @@ function ExplanationSection() {
 	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
+	const targetUnit = useSelector(targetUnitSelector)
+	const impôt = engine.evaluate('impôt', { unit: targetUnit })
 
-	const impôt = engine.evaluate('impôt')
 	return (
 		<section>
 			<h2>
@@ -68,7 +70,8 @@ function ExplanationSection() {
 				data={[
 					{
 						...engine.evaluate(
-							'dirigeant . auto-entrepreneur . net après impôt'
+							'dirigeant . auto-entrepreneur . net après impôt',
+							{ unit: targetUnit }
 						),
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: palettes[0][0]
@@ -79,7 +82,8 @@ function ExplanationSection() {
 						: []),
 					{
 						...engine.evaluate(
-							'dirigeant . auto-entrepreneur . cotisations et contributions'
+							'dirigeant . auto-entrepreneur . cotisations et contributions',
+							{ unit: targetUnit }
 						),
 						title: t('Cotisations'),
 						color: palettes[1][1]
