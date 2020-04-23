@@ -62,7 +62,7 @@ export default function Select({ onChange, onSubmit }) {
 				console.log(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
-				) || onChange(JSON.stringify({ option }))
+				) || onChange(option)
 				onSubmit() // eslint-disable-line no-console
 			})
 	}

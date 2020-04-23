@@ -107,7 +107,7 @@ describe.only('Simulateur salarié', () => {
 	}
 	before(() => cy.visit(`/simulateurs/salarié`))
 
-	it('should save the current simulation', function() {
+	it.skip('should save the current simulation', function() {
 		cy.get(inputSelector)
 			.first()
 			.type('{selectall}2137')
@@ -135,10 +135,13 @@ describe.only('Simulateur salarié', () => {
 		cy.contains('Motifs classiques')
 	})
 
-	it.skip('should not crash when selecting localisation', function() {
+	it('should not crash when selecting localisation', function() {
 		cy.contains('Commune').click()
-		cy.contains("Saisissez le nom d'une commune").type('Steenvoorde')
+		cy.get('input[placeholder="Saisissez le nom d\'une commune"]').type(
+			'Steenvoorde'
+		)
 		cy.contains('Steenvoorde (Nord)').click()
+		cy.wait(900)
 		cy.contains('Voir toutes les questions').click()
 		cy.contains('Steenvoorde')
 	})

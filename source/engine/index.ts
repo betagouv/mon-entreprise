@@ -121,7 +121,14 @@ export default class Engine<Names extends string> {
 			options?.useDefaultValues ?? true
 		)
 		if (result.category === 'reference' && result.explanation) {
-			result = result.explanation
+			result = {
+				nodeValue: result.nodeValue,
+				unit: result.unit,
+				...('temporalValue' in result && {
+					temporalValue: result.temporalValue
+				}),
+				...result.explanation
+			}
 		}
 		if (options?.unit) {
 			try {
