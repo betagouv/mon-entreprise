@@ -9,8 +9,7 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
-const fs = require('fs')
-const path = require('path')
+var { createDataDir, writeInDataDir } = require('./utils.js')
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/
@@ -48,17 +47,15 @@ const fakeData = [
 	}
 ]
 
-const dataDir = path.resolve(__dirname, '../data/')
-
 async function main() {
 	createDataDir()
-	writeReleasesInDataDir(await fetchReleases())
-}
-
-function createDataDir() {
-	if (!fs.existsSync(dataDir)) {
-		fs.mkdirSync(dataDir)
-	}
+	const releases = await fetchReleases()
+	// The last release name is fetched on all pages (to display the banner)
+	// whereas the full release data is used only in the dedicated page, that why
+	// we deduplicate the releases data in two separated files that can be
+	// bundled/fetched separately.
+	writeInDataDir('releases.json', releases)
+	writeInDataDir('last-release.json', { lastRelease: releases[0].name })
 }
 
 async function fetchReleases() {
@@ -82,21 +79,6 @@ async function fetchReleases() {
 	} catch (e) {
 		return fakeData
 	}
-}
-
-function writeReleasesInDataDir(releases) {
-	// The last release name is fetched on all pages (to display the banner)
-	// whereas the full release data is used only in the dedicated page, that why
-	// we deduplicate the releases data in two separated files that can be
-	// bundled/fetched separately.
-	fs.writeFileSync(
-		path.join(dataDir, 'releases.json'),
-		JSON.stringify(releases)
-	)
-	fs.writeFileSync(
-		path.join(dataDir, 'last-release.json'),
-		JSON.stringify({ lastRelease: releases[0].name })
-	)
 }
 
 main()

@@ -8,6 +8,7 @@ Accueil: Home
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Alors: Then
 Année d'activité: Years of activity
+Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
@@ -24,7 +25,9 @@ Choisir plus tard: Choose later
 Code d'intégration: Integration Code
 Commencer: Get started
 'Commerçant, artisan, ou libéral ?': 'Trader, craftsman, or liberal?'
+Comparaison statuts: Status comparison
 Continuer: Continue
+Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 'Covid-19 : Découvrez les mesures de soutien aux entreprises': 'Covid-19: Find out about business support measures'
@@ -61,8 +64,8 @@ Gérant minoritaire: Managing director
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
-'Indemnité chômage partiel prise en charge par l''état :': 'State-paid short-time working allowance :'
-Indépendant: Independent
+"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
+Indépendant: 'Indépendant'
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
@@ -78,7 +81,7 @@ Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
 Montant des cotisations: Amount of contributions
-'Nom de l''entreprise ou SIREN ': Company name or SIREN code
+"Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: 'No'
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: 'Yes'
@@ -132,6 +135,7 @@ Saisissez votre domaine d'activité: Enter your business area
 Salaire: Salary
 Salaire net: Net Salary
 Salaire net et brut: Net and gross salary
+Salarié: Employee
 Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
@@ -143,7 +147,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-'Total payé par l''entreprise :': 'Total paid by the company :'
+"Total payé par l'entreprise :": 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -927,6 +931,7 @@ path:
     index: /simulators
     indépendant: /independant
     salarié: /salaried
+  stats: /stats
   économieCollaborative:
     index: /sharing-economy
     votreSituation: /your-situation
@@ -1019,20 +1024,6 @@ simlateurs:
       the year 2020 based on your projected income.
 simulateurs:
   accueil:
-    artiste-auteur: >-
-      <0>Artist-author</0><1>Estimating the social security contributions of an
-      artist or author</1>
-    assimilé: |
-      <0>"Assimilé-salarié"</0>
-      <1>Calculate the income of an officer of a minority SAS, SASU or SARL</1>
-    auto: |
-      <0>Auto-entrepreneur</0>
-      <1>Calculate the income (or turnover) of an auto-entrepreneur</1>
-    comparaison: >
-      <0>Status comparison</0>
-
-      <1>Simulate the differences between the plans (contributions, retirement,
-      maternity, illness, etc.)</1>
     description: >-
       <0>All the simulators on this site are:</0>
 
@@ -1040,14 +1031,6 @@ simulateurs:
       to increase the number of devices taken into account</1> <2>Developed in
       partnership with the Urssaf (the contribution collector entity in
       France)<2> </1>
-    indépendant: |
-      <0>"Indépendant"</0>
-      <1>Calculate the income of a majority manager of EURL, EI, or SARL</1>
-    salarié: >
-      <0>Employee</0>
-
-      <1>Calculate the net, gross, or total salary of an employee, trainee, or
-      similar</1>
     titre: Available simulators
   artiste-auteur:
     titre: Estimate my artist/author contributions
@@ -1099,6 +1082,20 @@ simulateurs:
     défaut: 'Refine the simulation by answering the following questions:'
     faible: Low accuracy
     moyenne: Medium accuracy
+  résumé:
+    artiste-auteur: Estimating the social security contributions of an artist or author
+    assimilé: |
+      Calculate the income of an officer of a minority SAS, SASU or SARL
+    auto: |
+      Calculate the income (or turnover) of an auto-entrepreneur
+    comparaison: >
+      Simulate the differences between the plans (contributions, retirement,
+      maternity, illness, etc.)
+    indépendant: |
+      Calculate the income of a majority manager of EURL, EI, or SARL
+    salarié: >
+      Calculate the net, gross, or total salary of an employee, trainee, or
+      similar
   salarié:
     page:
       description: >-

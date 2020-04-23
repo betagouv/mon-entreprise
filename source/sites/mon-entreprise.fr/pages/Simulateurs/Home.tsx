@@ -5,9 +5,83 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-export default function Simulateurs() {
+export function useSimulatorsMetadata() {
+	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
-	const { t, i18n } = useTranslation()
+
+	type SimulatorMetaData = {
+		name: string
+		icône: string
+		description?: string
+		sitePath: string
+	}
+
+	return [
+		{
+			name: t('Assimilé salarié'),
+			icône: '☂️',
+			description: t(
+				'simulateurs.résumé.assimilé',
+				"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire"
+			),
+			sitePath: sitePaths.simulateurs['assimilé-salarié']
+		},
+		{
+			name: t('Indépendant'),
+			icône: '👩‍🔧',
+			description: t(
+				'simulateurs.résumé.indépendant',
+				"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire"
+			),
+			sitePath: sitePaths.simulateurs.indépendant
+		},
+		{
+			name: t('Auto-entrepreneur'),
+			icône: '🚶‍♂️',
+			description: t(
+				'simulateurs.résumé.auto',
+				"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur"
+			),
+			sitePath: sitePaths.simulateurs['auto-entrepreneur']
+		},
+		{
+			name: t('Salarié'),
+			icône: '🤝',
+			description: t(
+				'simulateurs.résumé.salarié',
+				"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé"
+			),
+			sitePath: sitePaths.simulateurs.salarié
+		},
+		{
+			name: t('Artiste-auteur'),
+			icône: '👩‍🎨',
+			description: t(
+				'simulateurs.résumé.artiste-auteur',
+				"Estimer les cotisations sociales d'un artiste ou auteur"
+			),
+			sitePath: sitePaths.simulateurs['artiste-auteur']
+		},
+		{
+			name: t('Comparaison statuts'),
+			icône: '📊',
+			description: t(
+				'simulateurs.résumé.comparaison',
+				'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)'
+			),
+			sitePath: sitePaths.simulateurs.comparaison
+		},
+		{
+			name: t('Coronavirus'),
+			icône: '👨‍🔬',
+			sitePath: sitePaths.coronavirus
+		}
+	] as Array<SimulatorMetaData>
+}
+
+export default function Simulateurs() {
+	const { t } = useTranslation()
+	const simulatorsMetadata = useSimulatorsMetadata()
 	const titre = t('simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
 		<>
@@ -27,101 +101,24 @@ export default function Simulateurs() {
 					// dernière ligne.
 					style={{ maxWidth: 1100, margin: 'auto' }}
 				>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['assimilé-salarié']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('☂️')}</div>
-						<Trans i18nKey="simulateurs.accueil.assimilé">
-							<h3>Assimilé salarié</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu d'un dirigeant de SAS, SASU ou SARL
-								minoritaire
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.indépendant
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('👩‍🔧')}</div>
-						<Trans i18nKey="simulateurs.accueil.indépendant">
-							<h3>Indépendant</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu d'un dirigeant de EURL, EI, ou SARL
-								majoritaire
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['auto-entrepreneur']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('🚶‍♂️')}</div>
-						<Trans i18nKey="simulateurs.accueil.auto">
-							<h3>Auto-entrepreneur</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le revenu (ou le chiffre d'affaires) d'un
-								auto-entrepreneur
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.salarié
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('🤝')}</div>
-						<Trans i18nKey="simulateurs.accueil.salarié">
-							<h3>Salarié</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Calculer le salaire net, brut, ou total d'un salarié, stagiaire,
-								ou assimilé
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs['artiste-auteur']
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('👩‍🎨')}</div>
-						<Trans i18nKey="simulateurs.accueil.artiste-auteur">
-							<h3>Artiste-auteur</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Estimer les cotisations sociales d'un artiste ou auteur
-							</p>
-						</Trans>
-					</Link>
-					<Link
-						className="ui__ interactive card box"
-						to={{
-							state: { fromSimulateurs: true },
-							pathname: sitePaths.simulateurs.comparaison
-						}}
-					>
-						<div className="ui__ big box-icon">{emoji('📊')}</div>
-						<Trans i18nKey="simulateurs.accueil.comparaison">
-							<h3>Comparaison statuts</h3>
-							<p className="ui__ notice" css="flex: 1">
-								Simulez les différences entre les régimes (cotisations,
-								retraite, maternité, maladie, etc.)
-							</p>
-						</Trans>
-					</Link>
+					{simulatorsMetadata
+						.filter(({ name }) => name !== 'Coronavirus')
+						.map(({ name, description, sitePath, icône }) => (
+							<Link
+								className="ui__ interactive card box"
+								key={sitePath}
+								to={{
+									state: { fromSimulateurs: true },
+									pathname: sitePath
+								}}
+							>
+								<div className="ui__ big box-icon">{emoji(icône)}</div>
+								<h3>{name}</h3>
+								<p className="ui__ notice" css="flex: 1">
+									{description}
+								</p>
+							</Link>
+						))}
 				</div>
 			</section>
 			<section>

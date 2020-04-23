@@ -205,7 +205,6 @@ function RepartitionCotisations() {
 		value: useRule(branch.dottedName).nodeValue as number
 	}))
 	const maximum = Math.max(...cotisations.map(x => x.value))
-	const total = cotisations.map(x => x.value).reduce((a = 0, b) => a + b)
 	return (
 		<section>
 			<h2>
@@ -215,7 +214,7 @@ function RepartitionCotisations() {
 				{cotisations.map(cotisation => (
 					<DistributionBranch
 						key={cotisation.dottedName}
-						distribution={{ maximum, total }}
+						maximum={maximum}
 						{...cotisation}
 					/>
 				))}
