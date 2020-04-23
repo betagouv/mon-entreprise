@@ -236,7 +236,9 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
 
 contrat salarié . activité partielle . heures chômées:
   unité: heures/mois
-  formule: temps de travail . temps contractuel - heures travaillées
+  formule:
+    valeur: temps de travail . temps contractuel - heures travaillées
+    plancher: 0
 
 contrat salarié . activité partielle . heures travaillées:
   titre: heures travaillées restantes
@@ -253,7 +255,7 @@ contrat salarié . activité partielle . heures travaillées:
     - si: heures travaillées > temps de travail . temps contractuel
       niveau: avertissement
       message: >-
-        Dans le cadre du temps partiel, le temps de travail doit être inférieur
+        Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
         à celui inscrit dans le contrat de travail.
 
 contrat salarié . activité partielle . indemnités:
