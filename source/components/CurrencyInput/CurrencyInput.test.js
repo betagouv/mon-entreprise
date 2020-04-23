@@ -145,4 +145,29 @@ describe('CurrencyInput', () => {
 		wrapper.setProps({ value: '1000000' })
 		expect(Number(getInlineWidth().replace(/em$/, ''))).to.be.greaterThan(5)
 	})
+
+	it('should not call onChange if the value is not a correct number', () => {
+		let onChange = spy()
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '-', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '.', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '.5', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '8.', focus: () => {} }
+			})
+		expect(onChange).not.to.have.been.called
+	})
 })

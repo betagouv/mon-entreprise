@@ -1042,11 +1042,11 @@ contrat salarié . activité partielle . heures chômées:
   titre.fr: heures chômées
 contrat salarié . activité partielle . heures travaillées:
   contrôles.0.en: >-
-    [automatic] In the case of part-time work, the working time must be less
-    than that stipulated in the employment contract.
+    [automatic] In the context of the partial activity, the working time must be
+    less than that stipulated in the employment contract.
   contrôles.0.fr: >-
-    Dans le cadre du temps partiel, le temps de travail doit être inférieur à
-    celui inscrit dans le contrat de travail.
+    Dans le cadre de l'activité partielle, le temps de travail doit être
+    inférieur à celui inscrit dans le contrat de travail.
   description.en: >-
     [automatic] In the case of short-time working, the number of hours remaining
     worked. Must be less than the contractual time.
