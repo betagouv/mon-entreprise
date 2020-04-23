@@ -1,12 +1,12 @@
+import * as Sentry from '@sentry/browser'
 import Route404 from 'Components/Route404'
 import { SitePathsContext } from 'Components/utils/withSitePaths'
 import 'iframe-resizer'
-import createRavenMiddleware from 'raven-for-redux'
-import Raven from 'raven-js'
 import React, { useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
+import createSentryMiddleware from 'redux-sentry-middleware'
 import 'Ui/index.css'
 import Provider, { ProviderProps } from '../../Provider'
 import {
@@ -45,9 +45,8 @@ if (process.env.NODE_ENV === 'production') {
 		process.env.HEAD &&
 		process.env.COMMIT_REF &&
 		process.env.HEAD + '-' + process.env.COMMIT_REF?.substring(0, 7)
-	const publicDSN =
-		'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
-	Raven.config(publicDSN, release ? { release } : {}).install()
+	const dsn = 'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
+	Sentry.init({ dsn, release })
 }
 
 let tracker = devTracker
@@ -56,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const middlewares = [
-	createRavenMiddleware(Raven),
+	createSentryMiddleware(Sentry),
 	trackSimulatorActions(tracker)
 ]
 
