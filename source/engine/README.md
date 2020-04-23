@@ -128,7 +128,7 @@ salaire annuel:
 
 **Conversions disponibles :**
 
-- `mois` / `année` / `jour`
+- `jour` / `mois` / `an`
 - `€` / `k€`
 
 ## Titre, description et références
