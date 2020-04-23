@@ -51,7 +51,7 @@ const deriveAnalogousPalettes = (hex: string) => {
 	return [
 		generateDarkenVariations(4, [(h - 45) % 360, 0.75 * s, l]),
 		generateDarkenVariations(4, [(h + 45) % 360, 0.75 * s, l]),
-		generateDarkenVariations(4, [(h + 180) % 360, 0.75 * s, l])
+		generateDarkenVariations(4, [(h + 90) % 360, 0.75 * s, l])
 	]
 }
 

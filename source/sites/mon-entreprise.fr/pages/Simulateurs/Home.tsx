@@ -5,66 +5,83 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-export const simulateursDetails = {
-	'/salarié': {
-		name: 'Salarié',
-		description:
-			"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé",
-		icone: '🤝',
-		keySitePaths: 'salarié',
-		keyTrad: 'simulateurs.accueil.salarié'
-	},
-	'/auto-entrepreneur': {
-		name: 'Auto-entrepreneur',
-		description:
-			"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur",
-		icone: '🚶‍♂️',
-		keySitePaths: 'auto-entrepreneur',
-		keyTrad: 'simulateurs.accueil.auto'
-	},
-	'/artiste-auteur': {
-		name: 'Artiste-auteur',
-		description: "Estimer les cotisations sociales d'un artiste ou auteur",
-		icone: '👩‍🎨',
-		keySitePaths: 'artiste-auteur',
-		keyTrad: 'simulateurs.accueil.artiste-auteur'
-	},
-	'/indépendant': {
-		name: 'Indépendant',
-		description:
-			"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire",
-		icone: '👩‍🔧',
-		keySitePaths: 'indépendant',
-		keyTrad: 'simulateurs.accueil.indépendant'
-	},
-	'/assimilé-salarié': {
-		name: 'Assimilé salarié',
-		description:
-			"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire",
-		icone: '☂️',
-		keySitePaths: 'assimilé-salarié',
-		keyTrad: 'simulateurs.accueil.assimilé'
-	},
-	'/comparaison-régimes-sociaux': {
-		name: 'Comparaison statuts',
-		description:
-			'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)',
-		icone: '📊',
-		keySitePaths: 'comparaison',
-		keyTrad: 'simulateurs.accueil.comparaison'
-	},
-	'/coronavirus': {
-		name: 'Coronavirus',
-		description: '',
-		icone: '👨‍🔬',
-		keySitePaths: '',
-		keyTrad: ''
+export function useSimulatorsMetadata() {
+	const { t } = useTranslation()
+	const sitePaths = useContext(SitePathsContext)
+
+	type SimulatorMetaData = {
+		name: string
+		icône: string
+		description?: string
+		sitePath: string
 	}
+
+	return [
+		{
+			name: t('Assimilé salarié'),
+			icône: '☂️',
+			description: t(
+				'simulateurs.résumé.assimilé',
+				"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire"
+			),
+			sitePath: sitePaths.simulateurs['assimilé-salarié']
+		},
+		{
+			name: t('Indépendant'),
+			icône: '👩‍🔧',
+			description: t(
+				'simulateurs.résumé.indépendant',
+				"Calculer le revenu d'un dirigeant de EURL, EI, ou SARL majoritaire"
+			),
+			sitePath: sitePaths.simulateurs.indépendant
+		},
+		{
+			name: t('Auto-entrepreneur'),
+			icône: '🚶‍♂️',
+			description: t(
+				'simulateurs.résumé.auto',
+				"Calculer le revenu (ou le chiffre d'affaires) d'un auto-entrepreneur"
+			),
+			sitePath: sitePaths.simulateurs['auto-entrepreneur']
+		},
+		{
+			name: t('Salarié'),
+			icône: '🤝',
+			description: t(
+				'simulateurs.résumé.salarié',
+				"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé"
+			),
+			sitePath: sitePaths.simulateurs.salarié
+		},
+		{
+			name: t('Artiste-auteur'),
+			icône: '👩‍🎨',
+			description: t(
+				'simulateurs.résumé.artiste-auteur',
+				"Estimer les cotisations sociales d'un artiste ou auteur"
+			),
+			sitePath: sitePaths.simulateurs['artiste-auteur']
+		},
+		{
+			name: t('Comparaison statuts'),
+			icône: '📊',
+			description: t(
+				'simulateurs.résumé.comparaison',
+				'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)'
+			),
+			sitePath: sitePaths.simulateurs.comparaison
+		},
+		{
+			name: t('Coronavirus'),
+			icône: '👨‍🔬',
+			sitePath: sitePaths.coronavirus
+		}
+	] as Array<SimulatorMetaData>
 }
 
 export default function Simulateurs() {
-	const sitePaths = useContext(SitePathsContext)
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
+	const simulatorsMetadata = useSimulatorsMetadata()
 	const titre = t('simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
 		<>
@@ -84,42 +101,24 @@ export default function Simulateurs() {
 					// dernière ligne.
 					style={{ maxWidth: 1100, margin: 'auto' }}
 				>
-					{Object.keys(simulateursDetails).map(simulator => {
-						if (
-							[
-								'/assimilé-salarié',
-								'/indépendant',
-								'/auto-entrepreneur',
-								'/salarié',
-								'/artiste-auteur',
-								'/comparaison-régimes-sociaux'
-							].includes(simulator)
-						) {
-							return (
-								<Link
-									className="ui__ interactive card box"
-									key={simulator}
-									to={{
-										state: { fromSimulateurs: true },
-										pathname:
-											sitePaths.simulateurs[
-												simulateursDetails[simulator].keySitePaths
-											]
-									}}
-								>
-									<div className="ui__ big box-icon">
-										{emoji(simulateursDetails[simulator].icone)}
-									</div>
-									<Trans i18nKey={simulateursDetails[simulator].keyTrad}>
-										<h3>{simulateursDetails[simulator].name}</h3>
-										<p className="ui__ notice" css="flex: 1">
-											{simulateursDetails[simulator].description}
-										</p>
-									</Trans>
-								</Link>
-							)
-						}
-					})}
+					{simulatorsMetadata
+						.filter(({ name }) => name !== 'Coronavirus')
+						.map(({ name, description, sitePath, icône }) => (
+							<Link
+								className="ui__ interactive card box"
+								key={sitePath}
+								to={{
+									state: { fromSimulateurs: true },
+									pathname: sitePath
+								}}
+							>
+								<div className="ui__ big box-icon">{emoji(icône)}</div>
+								<h3>{name}</h3>
+								<p className="ui__ notice" css="flex: 1">
+									{description}
+								</p>
+							</Link>
+						))}
 				</div>
 			</section>
 			<section>

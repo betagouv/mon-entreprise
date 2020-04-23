@@ -4,8 +4,6 @@ import emoji from 'react-easy-emoji'
 import { animated, config, useSpring } from 'react-spring'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { Link } from 'react-router-dom'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
 
 const ANIMATION_SPRING = config.gentle
 
@@ -37,38 +35,35 @@ let BranchIcône = ({ icône }) => (
 	</div>
 )
 
-type DistributionBranchProps = {
-	data: number
-	title: string
+type BarChartBranchProps = {
+	value: number
+	title: React.ReactNode
 	icon?: string
-	link?: string
-	total: number
+	maximum: number
 	description?: string
 	unit?: string
 }
 
-export default function DistributionBranch({
-	data,
+export default function BarChartBranch({
+	value,
 	title,
 	icon,
-	link,
-	total,
+	maximum,
 	description,
 	unit
-}: DistributionBranchProps) {
+}: BarChartBranchProps) {
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	const sitePaths = useContext(SitePathsContext)
 	const { color } = useContext(ThemeColorsContext)
-	const numberToPlot = brancheInViewport ? data : 0
+	const numberToPlot = brancheInViewport ? value : 0
 	const styles = useSpring({
 		config: ANIMATION_SPRING,
 		to: {
-			flex: numberToPlot / total,
+			flex: numberToPlot / maximum,
 			opacity: numberToPlot ? 1 : 0
 		}
-	}) as { flex: number; opacity: number }
+	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
 
 	return (
 		<animated.div
@@ -76,24 +71,12 @@ export default function DistributionBranch({
 			className="distribution-chart__item"
 			style={{ opacity: styles.opacity }}
 		>
-			{icon ? <BranchIcône icône={icon} /> : null}
+			{icon && <BranchIcône icône={icon} />}
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">{title} </span>{' '}
-					{link ? (
-						<Link
-							className="distribution-chart__link_icone"
-							key={title}
-							to={{
-								state: { fromSimulateurs: true },
-								pathname: sitePaths.simulateurs[link]
-							}}
-						>
-							{emoji('📎')}
-						</Link>
-					) : null}
+					<span className="distribution-chart__branche-name">{title}</span>
 					<br />
-					{description ? <small>{description}</small> : null}
+					{description && <small>{description}</small>}
 				</p>
 				<ChartItemBar
 					{...{

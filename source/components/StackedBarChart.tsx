@@ -81,15 +81,19 @@ export function roundedPercentages(values: Array<number>) {
 }
 
 type StackedBarChartProps = {
-	data: Array<{ color?: string } & EvaluatedRule<DottedName>>
+	data: Array<{
+		color?: string
+		value: number | undefined
+		legend: React.ReactNode
+		key: string
+	}>
 }
 
-export default function StackedBarChart({ data }: StackedBarChartProps) {
+export function StackedBarChart({ data }: StackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	data = data.filter(d => d.nodeValue != undefined)
-	const percentages = roundedPercentages(data.map(d => d.nodeValue as number))
+	const percentages = roundedPercentages(data.map(d => d.value ?? 0))
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]
@@ -103,21 +107,21 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 					// <BarItem /> has a border so we don't want to display empty bars
 					// (even with width 0).
 					.filter(({ percentage }) => percentage !== 0)
-					.map(({ dottedName, color, percentage }) => (
+					.map(({ key, color, percentage }) => (
 						<BarItem
 							style={{
 								width: `${percentage}%`,
 								backgroundColor: color || 'green'
 							}}
-							key={dottedName}
+							key={key}
 						/>
 					))}
 			</BarStack>
 			<BarStackLegend>
-				{dataWithPercentage.map(({ percentage, color, ...rule }) => (
-					<BarStackLegendItem key={rule.dottedName}>
+				{dataWithPercentage.map(({ key, percentage, color, legend }) => (
+					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />
-						<RuleLink {...rule}>{capitalise0(rule.title)}</RuleLink>
+						<strong>{legend}</strong>
 						<strong>{percentage} %</strong>
 					</BarStackLegendItem>
 				))}
@@ -126,47 +130,19 @@ export default function StackedBarChart({ data }: StackedBarChartProps) {
 	)
 }
 
-type NewStackedBarChartProps = {
-	data: Array<{ label: string; nb_visits: number; color?: string }>
+type StackedRulesChartProps = {
+	data: Array<{ color?: string } & EvaluatedRule<DottedName>>
 }
 
-export function NewStackedBarChart({ data }: NewStackedBarChartProps) {
-	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
-		threshold: 0.5
-	})
-	const percentages = roundedPercentages(data.map(d => d.nb_visits))
-	const dataWithPercentage = data.map((data, index) => ({
-		...data,
-		percentage: percentages[index]
-	}))
-
-	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+export default function StackedRulesChart({ data }: StackedRulesChartProps) {
 	return (
-		<animated.div ref={intersectionRef} style={styles}>
-			<BarStack>
-				{dataWithPercentage
-					// <BarItem /> has a border so we don't want to display empty bars
-					// (even with width 0).
-					.filter(({ percentage }) => percentage !== 0)
-					.map(({ label, color, percentage }) => (
-						<BarItem
-							style={{
-								width: `${percentage}%`,
-								backgroundColor: color || 'green'
-							}}
-							key={label}
-						/>
-					))}
-			</BarStack>
-			<BarStackLegend>
-				{dataWithPercentage.map(({ percentage, color, label }) => (
-					<BarStackLegendItem key={label}>
-						<SmallCircle style={{ backgroundColor: color }} />
-						<strong>{capitalise0(label)}</strong>
-						<strong>{percentage} %</strong>
-					</BarStackLegendItem>
-				))}
-			</BarStackLegend>
-		</animated.div>
+		<StackedBarChart
+			data={data.map(rule => ({
+				...rule,
+				key: rule.dottedName,
+				value: rule.nodeValue,
+				legend: <RuleLink {...rule}>{capitalise0(rule.title)}</RuleLink>
+			}))}
+		/>
 	)
 }

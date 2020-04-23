@@ -1,104 +1,81 @@
+import BarChartBranch from 'Components/BarChart'
+import MoreInfosOnUs from 'Components/MoreInfosOnUs'
+import { StackedBarChart } from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { NewStackedBarChart } from 'Components/StackedBarChart'
 import { ScrollToTop } from 'Components/utils/Scroll'
+import { groupWith } from 'ramda'
 import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Link } from 'react-router-dom'
 import {
 	CartesianGrid,
+	Legend,
 	Line,
 	LineChart,
+	ReferenceArea,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
-	YAxis,
-	ReferenceArea,
-	Legend
+	YAxis
 } from 'recharts'
 import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent'
+import styled from 'styled-components'
 import {
 	formatPercentage,
 	formatValue
 } from '../../../../../source/engine/format'
-import MoreInfosOnUs from 'Components/MoreInfosOnUs'
-import Privacy from '../../layout/Footer/Privacy'
 import statsJson from '../../../../data/stats.json'
 import { capitalise0 } from '../../../../utils'
-import DistributionBranch from 'Components/BarChart'
-import { simulateursDetails } from '../Simulateurs/Home'
-import * as R from 'ramda'
+import Privacy from '../../layout/Footer/Privacy'
+import { useSimulatorsMetadata } from '../Simulateurs/Home'
 
 const stats: StatsData = statsJson as any
+
+const monthPeriods = ['currentMonth', 'oneMonthAgo', 'twoMonthAgo'] as const
+type MonthPeriod = typeof monthPeriods[number]
+
+type Periodicity = 'daily' | 'monthly'
 
 type StatsData = {
 	feedback: {
 		simulator: number
 		content: number
 	}
-	status_chosen: Array<{
+	statusChosen: Array<{
 		label: string
 		nb_visits: number
 	}>
-	daily_visits: Array<{
-		date: string
-		dayOfWeek: number
-		visiteurs: number
-	}>
-	monthly_visits: Array<{
+	dailyVisits: Array<{
 		date: string
 		visiteurs: number
 	}>
-	simulators: {
-		currentMonth: {
+	monthlyVisits: Array<{
+		date: string
+		visiteurs: number
+	}>
+	simulators: Record<
+		MonthPeriod,
+		{
 			date: string
 			visites: Array<{ label: string; nb_visits: number }>
 		}
-		oneMonthAgo: {
+	>
+	channelType: Record<
+		MonthPeriod,
+		{
 			date: string
 			visites: Array<{ label: string; nb_visits: number }>
 		}
-		twoMonthAgo: {
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-	}
-	channel_type: {
-		currentMonth: {
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-		oneMonthAgo: {
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-		twoMonthAgo: {
-			date: string
-			visites: Array<{ label: string; nb_visits: number }>
-		}
-	}
+	>
 }
 
-const weekEndDays = R.groupWith(
-	(a, b) => parseInt(a.split('/')[0], 10) === parseInt(b.split('/')[0], 10) - 1,
-	stats.daily_visits
-		.map(({ date, visiteurs }) => {
-			const [day, month, year] = date.split('/')
-			const dt = new Date(
-				parseInt(year, 10),
-				parseInt(month, 10) - 1,
-				parseInt(day, 10)
-			)
-			return { date, visiteurs, dayOfWeek: dt.getDay() }
-		})
-		.filter(day => day.dayOfWeek == 0 || day.dayOfWeek == 6)
-		.map(day => day.date)
-)
-
 export default function Stats() {
-	const [choice, setChoice] = useState<LineChartVisitsProps['periodicity']>(
-		'monthly'
+	const [choice, setChoice] = useState<Periodicity>('monthly')
+	const [choicesimulators, setChoicesimulators] = useState<MonthPeriod>(
+		'oneMonthAgo'
 	)
-	const [choicesimulators, setChoicesimulators] = useState('oneMonthAgo')
 	const { palettes } = useContext(ThemeColorsContext)
+	const simulatorsMetadata = useSimulatorsMetadata()
 	return (
 		<>
 			<ScrollToTop />
@@ -107,177 +84,111 @@ export default function Stats() {
 			</h1>
 			<p>
 				Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
+				<br />
 				Les données recueillies sont anonymisées.{' '}
 				<Privacy label="En savoir plus" />
 			</p>
 			<section>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
-
-						h2 {
-							margin: 0;
-						}
-					`}
-				>
+				<SectionTitle>
 					<h2>Nombre de visites</h2>
-					<select
-						onChange={event => {
-							setChoice(
-								event.target.value as LineChartVisitsProps['periodicity']
-							)
-						}}
-						value={choice}
-					>
-						<option value="monthly">les derniers mois</option>
-						<option value="daily">les derniers jours</option>
-					</select>
-				</div>
-				<div
-					css={`
-						margin-top: 3em;
-					`}
-				>
-					<LineChartVisits periodicity={choice} />
-				</div>
+					<span>
+						{emoji('🗓')}{' '}
+						<select
+							onChange={event => {
+								setChoice(event.target.value as Periodicity)
+							}}
+							value={choice}
+						>
+							<option value="monthly">les derniers mois</option>
+							<option value="daily">les derniers jours</option>
+						</select>
+					</span>
+				</SectionTitle>
+				<LineChartVisits periodicity={choice} />
 
-				<div
-					css={`
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						margin-top: 2rem;
-					`}
-				>
+				<Indicators>
 					<Indicator main="1,7 million" subTitle="Visiteurs en 2019" />
 					<Indicator
 						main="52,9%"
 						subTitle="Convertissent en lançant une simulation"
 					/>
-				</div>
+				</Indicators>
 			</section>
 			<section>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
-
-						h2 {
-							margin: 0;
-						}
-					`}
-				>
+				<SectionTitle>
 					<h2>Nombre d'utilisation des simulateurs</h2>
-					<select
+					<PeriodSelector
 						onChange={event => {
-							setChoicesimulators(event.target.value)
+							setChoicesimulators(event.target.value as MonthPeriod)
 						}}
 						value={choicesimulators}
-					>
-						<option value="currentMonth">
-							{transformDate(stats.simulators.currentMonth.date)}
-						</option>
-						<option value="oneMonthAgo">
-							{transformDate(stats.simulators.oneMonthAgo.date)}
-						</option>
-						<option value="twoMonthAgo">
-							{transformDate(stats.simulators.twoMonthAgo.date)}
-						</option>
-					</select>
-				</div>
-				<div
-					css={`
-						margin-top: 3em;
-					`}
-				>
-					{stats.simulators[choicesimulators].visites.map(x => (
-						<DistributionBranch
-							key={x.label}
-							data={x.nb_visits}
-							title={simulateursDetails[x.label].name}
-							link={simulateursDetails[x.label].keySitePaths}
-							icon={simulateursDetails[x.label].icone}
-							total={stats.simulators[choicesimulators].visites.reduce(
-								(a, b) => Math.max(a, b.nb_visits),
-								0
-							)}
-							unit="visiteurs"
-						/>
-					))}
-				</div>
+					/>
+				</SectionTitle>
+
+				{stats.simulators[choicesimulators].visites.map(
+					({ label, nb_visits }) => {
+						const details = simulatorsMetadata.find(({ sitePath }) =>
+							sitePath.includes(label)
+						)
+						if (!details) {
+							return null
+						}
+						return (
+							<BarChartBranch
+								key={label}
+								value={nb_visits}
+								title={
+									<>
+										{details.name}{' '}
+										<Link
+											className="distribution-chart__link_icone"
+											to={{
+												state: { fromSimulateurs: true },
+												pathname: details.sitePath
+											}}
+											title="Accéder au simulateur"
+											css="font-size:0.75em"
+										>
+											{emoji('📎')}
+										</Link>
+									</>
+								}
+								icon={details.icône}
+								maximum={stats.simulators[choicesimulators].visites.reduce(
+									(a, b) => Math.max(a, b.nb_visits),
+									0
+								)}
+								unit="visiteurs"
+							/>
+						)
+					}
+				)}
 			</section>
 			<section>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
-
-						h2 {
-							margin: 0;
-						}
-					`}
-				>
-					<h2> Origine du traffic </h2>
-					<select
+				<SectionTitle>
+					<h2>Origine du trafic</h2>
+					<PeriodSelector
 						onChange={event => {
-							setChoicesimulators(event.target.value)
+							setChoicesimulators(event.target.value as MonthPeriod)
 						}}
 						value={choicesimulators}
-					>
-						<option value="currentMonth">
-							{transformDate(stats.simulators.currentMonth.date)}
-						</option>
-						<option value="oneMonthAgo">
-							{transformDate(stats.simulators.oneMonthAgo.date)}
-						</option>
-						<option value="twoMonthAgo">
-							{transformDate(stats.simulators.twoMonthAgo.date)}
-						</option>
-					</select>
-				</div>
-				<div
-					css={`
-						margin-top: 2em;
-					`}
-				>
-					<NewStackedBarChart
-						data={[
-							{
-								label: 'Entrées directes',
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Entrées directes'
-								)[0].nb_visits,
-								color: palettes[2][3]
-							},
-							{
-								label: 'Moteurs de recherche',
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Moteurs de recherche'
-								)[0].nb_visits,
-								color: palettes[1][0]
-							},
-							{
-								label: 'Sites référents',
-								nb_visits: stats.channel_type[choicesimulators].visites.filter(
-									x => x.label == 'Sites web'
-								)[0].nb_visits,
-								color: palettes[0][0]
-							}
-						]}
 					/>
-				</div>
+				</SectionTitle>
+
+				<StackedBarChart
+					data={stats.channelType[choicesimulators].visites
+						.map((data, i) => ({
+							value: data.nb_visits,
+							key: data.label,
+							legend: capitalise0(data.label),
+							color: palettes[i][0]
+						}))
+						.reverse()}
+				/>
 			</section>
 			<section>
 				<h2>Avis des visiteurs</h2>
-				<div
-					css={`
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						margin: 2rem 0;
-					`}
-				>
+				<Indicators>
 					<Indicator
 						main={formatPercentage(stats.feedback.simulator)}
 						subTitle="Taux de satisfaction sur les simulateurs"
@@ -286,7 +197,7 @@ export default function Stats() {
 						main={formatPercentage(stats.feedback.content)}
 						subTitle="Taux de satisfaction sur le contenu"
 					/>
-				</div>
+				</Indicators>
 				<p>
 					Ces indicateurs sont calculés à partir des boutons de retours affichés
 					en bas de toutes les pages.
@@ -294,25 +205,63 @@ export default function Stats() {
 			</section>
 			<section>
 				<h2>Statut choisi le mois dernier</h2>
-				{stats.status_chosen.map(x => (
-					<DistributionBranch
+				{stats.statusChosen.map(x => (
+					<BarChartBranch
 						key={x.label}
-						data={x.nb_visits}
+						value={x.nb_visits}
 						title={capitalise0(x.label)}
-						total={stats.status_chosen.reduce(
+						maximum={stats.statusChosen.reduce(
 							(a, b) => Math.max(a, b.nb_visits),
 							0
 						)}
 						unit="visiteurs"
 					/>
 				))}
-				<div id="status-indicators"></div>
 			</section>
 
 			<MoreInfosOnUs />
 		</>
 	)
 }
+
+const weekEndDays = groupWith(
+	(a, b) => {
+		const dayAfterA = new Date(a)
+		dayAfterA.setDate(dayAfterA.getDate() + 1)
+		return dayAfterA.toISOString().substring(0, 10) === b
+	},
+	stats.dailyVisits
+		.map(({ date }) => new Date(date))
+		.filter(date => date.getDay() === 0 || date.getDay() === 6)
+		.map(date => date.toISOString().substring(0, 10))
+)
+
+function PeriodSelector(props: React.ComponentProps<'select'>) {
+	const formatDate = (date: string) =>
+		new Date(date).toLocaleString('default', {
+			month: 'long',
+			year: 'numeric'
+		})
+	return (
+		<span>
+			{emoji('🗓')}{' '}
+			<select {...props}>
+				{monthPeriods.map(monthPeriod => (
+					<option key={monthPeriod} value={monthPeriod}>
+						{formatDate(stats.simulators[monthPeriod].date)}
+					</option>
+				))}
+			</select>
+		</span>
+	)
+}
+
+const Indicators = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 2rem 0;
+`
 
 type IndicatorProps = {
 	main?: string
@@ -340,13 +289,12 @@ function Indicator({ main, subTitle }: IndicatorProps) {
 }
 
 type LineChartVisitsProps = {
-	periodicity: 'daily' | 'monthly'
+	periodicity: Periodicity
 }
 
 function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 	const { color } = useContext(ThemeColorsContext)
-	const data =
-		periodicity === 'daily' ? stats.daily_visits : stats.monthly_visits
+	const data = periodicity === 'daily' ? stats.dailyVisits : stats.monthlyVisits
 
 	return (
 		<ResponsiveContainer width="100%" height={400}>
@@ -362,9 +310,7 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 				<CartesianGrid />
 				<XAxis
 					dataKey="date"
-					tickFormatter={tickItem =>
-						transformDateReducedMonth(periodicity, tickItem)
-					}
+					tickFormatter={tickItem => formatDate(tickItem, periodicity)}
 				/>
 				<YAxis
 					dataKey="visiteurs"
@@ -409,68 +355,58 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 	)
 }
 
-function transformDate(date) {
-	const [month, year] = date.split('-')
-	return `${months[month - 1]} ${year}`
-}
-function transformDateReducedMonth(periodicity, date) {
-	if (periodicity == 'monthly') {
-		const [month, year] = date.split('/')
-		return `${reducedMonths[month - 1]} ${year}`
+function formatDate(date: string | Date, periodicity?: Periodicity) {
+	if (periodicity === 'monthly') {
+		return new Date(date).toLocaleString('default', {
+			month: 'short',
+			year: '2-digit'
+		})
 	} else {
-		const [day, month] = date.split('/')
-		return `${day}/${month}`
+		return new Date(date).toLocaleString('default', {
+			day: '2-digit',
+			month: '2-digit'
+		})
 	}
 }
 
-const CustomTooltip = props => {
-	if (!props.active) {
+type CustomTooltipProps = {
+	active?: boolean
+	periodicity: Periodicity
+	payload?: any
+}
+
+const CustomTooltip = ({
+	active,
+	periodicity,
+	payload
+}: CustomTooltipProps) => {
+	if (!active) {
 		return null
 	}
-	const newPayload = [
-		{
-			value: transformDateReducedMonth(
-				props.periodicity,
-				props.payload[0].payload.date
-			)
-		},
-		{
-			value: formatValue({
-				value: props.payload[0].payload.visiteurs,
-				language: 'fr'
-			}),
-			unit: ' visiteurs'
-		}
-	]
-	return <DefaultTooltipContent payload={newPayload} />
+	return (
+		<DefaultTooltipContent
+			payload={[
+				{
+					value: formatDate(payload[0].payload.date, periodicity)
+				},
+				{
+					value: formatValue({
+						value: payload[0].payload.visiteurs,
+						language: 'fr'
+					}),
+					unit: ' visiteurs'
+				}
+			]}
+		/>
+	)
 }
 
-const months = [
-	'Janvier',
-	'Février',
-	'Mars',
-	'Avril',
-	'Mai',
-	'Juin',
-	'Juillet',
-	'Aout',
-	'Septembre',
-	'Octobre',
-	'Novembre',
-	'Decembre'
-]
+const SectionTitle = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
 
-const reducedMonths = [
-	'Janv.',
-	'Févr.',
-	'Mars',
-	'Avr.',
-	'Mai',
-	'Juin',
-	'Juill.',
-	'Aout',
-	'Sept.',
-	'Oct.',
-	'Nov.',
-	'Déc.'
-]
+	h2 {
+		margin: 0;
+	}
+`

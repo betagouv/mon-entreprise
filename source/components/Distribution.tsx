@@ -1,16 +1,12 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
-import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import Value from 'Components/Value'
-import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { animated, config, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
 import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import répartitionSelector from 'Selectors/repartitionSelectors'
 import './Distribution.css'
 import './PaySlip'
 import RuleLink from './RuleLink'
+import BarChartBranch from './BarChart'
 
 export default function Distribution() {
 	const distribution = useSelector(répartitionSelector) as any
@@ -28,7 +24,7 @@ export default function Distribution() {
 							key={brancheDottedName}
 							dottedName={brancheDottedName}
 							value={partPatronale + partSalariale}
-							distribution={distribution}
+							maximum={distribution.maximum}
 						/>
 					)
 				)}
@@ -40,91 +36,26 @@ export default function Distribution() {
 type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
-	distribution: { maximum: number; total: number }
+	maximum: number
 	icon?: string
 }
 
-const ANIMATION_SPRING = config.gentle
 export function DistributionBranch({
 	dottedName,
 	value,
 	icon,
-	distribution
+	maximum
 }: DistributionBranchProps) {
 	const rules = useSelector(parsedRulesSelector)
-	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
-		threshold: 0.5
-	})
-	const { color } = useContext(ThemeColorsContext)
-	const branche = rules[dottedName]
-	const montant = brancheInViewport ? value : 0
-	const styles = useSpring({
-		config: ANIMATION_SPRING,
-		to: {
-			flex: montant / distribution.maximum,
-			opacity: montant ? 1 : 0
-		}
-	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
-
+	const branch = rules[dottedName]
 	return (
-		<animated.div
-			ref={intersectionRef}
-			className="distribution-chart__item"
-			style={{ opacity: styles.opacity }}
-		>
-			<BranchIcône icône={(icon ?? branche.icons) as string} />
-			<div className="distribution-chart__item-content">
-				<p className="distribution-chart__counterparts">
-					<span className="distribution-chart__branche-name">
-						<RuleLink {...branche} />
-					</span>
-					<br />
-					<small>{branche.summary}</small>
-				</p>
-				<ChartItemBar
-					{...{
-						styles,
-						color,
-						montant,
-						total: distribution.total
-					}}
-				/>
-			</div>
-		</animated.div>
+		<BarChartBranch
+			value={value}
+			maximum={maximum}
+			title={<RuleLink {...branch} />}
+			icon={icon ?? branch.icons}
+			description={branch.summary}
+			unit="€"
+		/>
 	)
 }
-
-type ChartItemBarProps = {
-	styles: React.CSSProperties
-	color: string
-	montant: number
-}
-
-let ChartItemBar = ({ styles, color, montant }: ChartItemBarProps) => (
-	<div className="distribution-chart__bar-container">
-		<animated.div
-			className="distribution-chart__bar"
-			style={{
-				backgroundColor: color,
-				...styles
-			}}
-		/>
-		<div
-			css={`
-				font-weight: bold;
-				margin-left: 1rem;
-				color: var(--textColorOnWhite);
-			`}
-		>
-			<Value maximumFractionDigits={0} unit="€">
-				{montant}
-			</Value>
-		</div>
-	</div>
-)
-
-let BranchIcône = ({ icône }: { icône: string }) => (
-	<div className="distribution-chart__legend">
-		<span className="distribution-chart__icon">{emoji(icône)}</span>
-	</div>
-)
