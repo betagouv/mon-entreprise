@@ -6,12 +6,17 @@
 import R from 'ramda'
 import { ParsedRule, ParsedRules } from './types'
 
-// type GraphNode = {
-//   name: string
-//   children?: Array<GraphNode>
-// }
+type OnOff = 'oui' | 'non'
+export function isOnOff(a: string): a is OnOff {
+	return a === 'oui' || a === 'non'
+}
 
-type ASTNode = { [index: string]: {} | undefined }
+type WannabeDottedName = string
+export function isWannabeDottedName(a: string): a is WannabeDottedName {
+	return typeof a === 'string'
+}
+
+type ASTNode = { [_: string]: {} | undefined }
 
 // [XXX] - Vaudrait-il mieux utiliser les DottedNames directement ici?
 // A priori non car on peut imaginer cette lib comme étant indépendante des règles existantes et
@@ -19,12 +24,15 @@ type ASTNode = { [index: string]: {} | undefined }
 type RuleNode<Name extends string> = /* ASTNode & */ ParsedRule<Name>
 
 type Value = ASTNode & {
-	nodeValue: any
-	constant: true
+	nodeValue: number | string
+	constant?: boolean
 }
 export function isValue(node: ASTNode): node is Value {
+	const value = node as Value
 	return (
-		(node as Value).nodeValue !== undefined && (node as Value).constant === true
+		(typeof value.nodeValue === 'string' ||
+			typeof value.nodeValue === 'number') &&
+		(value.constant === undefined || typeof value.constant === 'boolean')
 	)
 }
 
@@ -33,20 +41,16 @@ type Operation = ASTNode & {
 	explanation: Array<ASTNode>
 }
 export function isOperation(node: ASTNode): node is Operation {
-	return (
-		(node as Operation).operationType === 'comparison' ||
-		(node as Operation).operationType === 'calculation'
-	)
-	// return R.includes((node as Operation).operationType, [
-	// 	'comparison',
-	// 	'calculation'
-	// ])
+	return R.includes((node as Operation).operationType, [
+		'comparison',
+		'calculation'
+	])
 }
 
 type Possibilities = ASTNode & {
 	possibilités: Array<string>
-	'choix obligatoire'?: 'oui' | 'non' // [XXX] - This should already be a defined type.
-	'une possibilité': 'oui' | 'non'
+	'choix obligatoire'?: OnOff
+	'une possibilité': OnOff
 }
 export function isPossibilities(node: ASTNode): node is Possibilities {
 	const possibilities = node as Possibilities
@@ -54,28 +58,27 @@ export function isPossibilities(node: ASTNode): node is Possibilities {
 		possibilities.possibilités instanceof Array &&
 		possibilities.possibilités.every(it => typeof it === 'string') &&
 		(possibilities['choix obligatoire'] === undefined ||
-			possibilities['choix obligatoire'] === 'oui' ||
-			possibilities['choix obligatoire'] === 'non') &&
-		(possibilities['une possibilité'] === 'oui' ||
-			possibilities['une possibilité'] === 'non')
-		// R.includes(possibilities['choix obligatoire'], [undefined, 'oui', 'non']) &&
-		// R.includes(possibilities['une possibilité'], ['oui', 'non'])
+			isOnOff(possibilities['choix obligatoire'])) &&
+		isOnOff(possibilities['une possibilité'])
 	)
 }
 
-type Reference<Name extends string> = Omit<RuleNode<Name>, 'category'> & {
-	// [XXX] - a priori non pour le omit, il n'y a pas du tout autant de choses que dans RuleNode à l'intérieur d'une reference
+type Reference<Name extends string> = ASTNode & {
 	category: 'reference'
+	name: Name
 	partialReference: Name
 	dottedName: Name
+	unit: {} | undefined
 }
 export function isReference<Name extends string>(
 	node: ASTNode
 ): node is Reference<Name> {
+	const reference = node as Reference<Name>
 	return (
-		(node as Reference<Name>).category === 'reference' &&
-		(node as Reference<Name>).partialReference !== undefined &&
-		(node as Reference<Name>).dottedName !== undefined
+		reference.category === 'reference' &&
+		isWannabeDottedName(reference.name) &&
+		isWannabeDottedName(reference.partialReference) &&
+		isWannabeDottedName(reference.dottedName)
 	)
 }
 
@@ -93,25 +96,94 @@ export function isRecalcul<Name extends string>(
 		typeof recalcul.explanation === 'object' &&
 		typeof recalcul.explanation.recalcul === 'object' &&
 		isReference(recalcul.explanation.recalcul as ASTNode) &&
-		typeof recalcul.explanation.amendedSituation === 'object' &&
-		R.values(recalcul.explanation.amendedSituation).every(v => v !== undefined) // [XXX] - maybe a bit useless
+		typeof recalcul.explanation.amendedSituation === 'object'
+		// [XXX] - We would like to do
+		// && R.all(isDottedName, R.keys(recalcul.explanation.amendedSituation))
+		// but it seems there is no simple way to get a type's guard in Typescript
+		// apart if it's built as a class. Or we could rebuild everything here with
+		// passing this guard ƒ as a context everywhere along with the ASTNodes,
+		// with a context monad for example. Overkill.
 	)
 }
 
-type Mechanism = ASTNode & {
+type AbstractMechanism = ASTNode & {
 	category: 'mecanism'
+	name: string
 }
-export function isMechanism(node: ASTNode): node is Mechanism {
-	return (node as Mechanism).category === 'mecanism'
+export function isAbstractMechanism(node: ASTNode): node is AbstractMechanism {
+	return (
+		(node as AbstractMechanism).category === 'mecanism' &&
+		typeof (node as AbstractMechanism).name === 'string'
+	)
 }
 
-type FormuleNode<Name> =
+type EncadrementMech = AbstractMechanism & {
+	name: 'encadrement'
+	valeur: {
+		explanation: Array<ASTNode>
+		[_: string]: {} | undefined
+	}
+}
+export function isEncadrementMech(node: ASTNode): node is EncadrementMech {
+	const encadrementMech = node as EncadrementMech
+	return (
+		isAbstractMechanism(encadrementMech) &&
+		typeof encadrementMech.valeur === 'object' &&
+		encadrementMech.valeur.explanation instanceof Array &&
+		encadrementMech.name === 'encadrement'
+	)
+}
+
+type SommeMech = AbstractMechanism & {
+	name: 'somme'
+	explanation: Array<ASTNode>
+}
+export function isSommeMech(node: ASTNode): node is SommeMech {
+	const sommeMech = node as SommeMech
+	return (
+		isAbstractMechanism(sommeMech) &&
+		sommeMech.name === 'somme' &&
+		typeof sommeMech.explanation === 'object'
+	)
+}
+
+type ProduitMech = AbstractMechanism & {
+	name: 'produit'
+	type: 'numeric'
+	unit: {}
+	explanation: {
+		assiette: ASTNode
+		plafond: ASTNode
+		facteur: ASTNode
+		taux: ASTNode
+	}
+}
+export function isProduitMech(node: ASTNode): node is ProduitMech {
+	const produitMech = node as ProduitMech
+	return (
+		produitMech.name === 'produit' &&
+		produitMech.type === 'numeric' &&
+		produitMech.unit !== undefined &&
+		typeof produitMech.explanation === 'object' &&
+		typeof produitMech.explanation.assiette === 'object' &&
+		typeof produitMech.explanation.plafond === 'object' &&
+		typeof produitMech.explanation.facteur === 'object' &&
+		typeof produitMech.explanation.taux === 'object'
+	)
+}
+
+type AnyMechanism = EncadrementMech | SommeMech
+export function isAnyMechanism(node: ASTNode): node is AnyMechanism {
+	return isEncadrementMech(node) || isSommeMech(node) || isProduitMech(node)
+}
+
+type FormuleNode<Name extends string> =
 	| Value
 	| Operation
 	| Possibilities
 	| Reference<Name>
 	| Recalcul<Name>
-	| Mechanism
+	| AnyMechanism
 export function isFormuleNode<Name extends string>(
 	node: ASTNode
 ): node is FormuleNode<Name> {
@@ -121,29 +193,20 @@ export function isFormuleNode<Name extends string>(
 		isReference(node) ||
 		isPossibilities(node) ||
 		isRecalcul(node) ||
-		isMechanism(node)
+		isAnyMechanism(node)
 	)
 }
 
-type EncadrementMech = Mechanism & {
-	valeur: {
-		explanation: ASTNode
-		[s: string]: {}
+function logVisit(
+	depth: number,
+	typeName: string,
+	obj: string | number | object
+): void {
+	let cleanRepr = obj
+	if (typeof obj === 'object') {
+		cleanRepr = JSON.stringify(obj, null)
 	}
-}
-export function isEncadrementMech(
-	mechanism: Mechanism
-): mechanism is EncadrementMech {
-	return (mechanism as EncadrementMech).explanation.name === 'encadrement'
-}
-
-type SommeMech = any // extends Mechanism
-export function isSommeMech(mechanism: Mechanism): mechanism is SommeMech {
-	return (mechanism as EncadrementMech).explanation.name === 'somme'
-}
-
-function logVisit(depth: number, typeName: string, repr: string): void {
-	console.log(' '.repeat(depth) + `visiting ${typeName} node ${repr}`)
+	console.log(' '.repeat(depth) + `visiting ${typeName} node ${cleanRepr}`)
 }
 
 export function ruleDependenciesOfNode<Name extends string>(
@@ -160,11 +223,12 @@ export function ruleDependenciesOfNode<Name extends string>(
 		operation: Operation
 	): Array<Name> {
 		logVisit(depth, 'operation', operation.operationType)
-		return R.chain<ASTNode, Name>(
+		return R.chain(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			])
-		)(operation.explanation)
+			]),
+			operation.explanation
+		)
 	}
 
 	function ruleDependenciesOfPossibilities(
@@ -195,22 +259,46 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return [recalcul.explanation.recalcul.partialReference]
 	}
 
-	function ruleDependenciesOfMechanism(
+	function ruleDependenciesOfEncadrementMech(
 		depth: number,
-		mechanism: Mechanism
+		encadrementMech: EncadrementMech
 	): Array<Name> {
-		logVisit(depth, 'mechanism', '')
-		debugger
-		// [XXX] - flatten this out in the main function, like the other types
-		// if (isEncadrementMech(mechanism)) {
-		// 	chain(partial(ruleDependenciesOfNode, [depth + 1]))(
-		// 		mechanism.valeur.explanation
-		// 	)
-		// }
-		// if (isSommeMech(mechanism)) {
-		// 	chain(partial(ruleDependenciesOfNode, [depth + 1]))(mechanism.explanation)
-		// }
-		return [] // [XXX]
+		debugger // [XXX] - correct the type, guard and visit logger
+		logVisit(depth, 'encadrement mechanism', '??') // [XXX]
+		return R.chain(
+			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
+				depth + 1
+			]),
+			encadrementMech.valeur.explanation
+		)
+	}
+
+	function ruleDependenciesOfSommeMech(
+		depth: number,
+		sommeMech: SommeMech
+	): Array<Name> {
+		debugger // [XXX] - correct the type, guard and visit logger
+		logVisit(depth, 'somme mech', '??') // [XXX]
+		return R.chain(
+			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
+				depth + 1
+			]),
+			sommeMech.explanation
+		)
+	}
+
+	function ruleDependenciesOfProduitMech(
+		depth: number,
+		produitMech: ProduitMech
+	): Array<Name> {
+		logVisit(depth, 'produit mech', '')
+		const result = R.chain<Array<Name>, Name>(R.identity, [
+			ruleDependenciesOfNode(depth + 1, produitMech.explanation.assiette),
+			ruleDependenciesOfNode(depth + 1, produitMech.explanation.plafond),
+			ruleDependenciesOfNode(depth + 1, produitMech.explanation.facteur),
+			ruleDependenciesOfNode(depth + 1, produitMech.explanation.taux)
+		])
+		return result
 	}
 
 	if (isValue(node)) {
@@ -223,10 +311,20 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return ruleDependenciesOfPossibilities(depth, node as Possibilities)
 	} else if (isRecalcul(node)) {
 		return ruleDependenciesOfRecalcul(depth, node as Recalcul<Name>)
-	} else if (isMechanism(node)) {
-		return ruleDependenciesOfMechanism(depth, node as Mechanism)
+	} else if (isEncadrementMech(node)) {
+		return ruleDependenciesOfEncadrementMech(depth, node as EncadrementMech)
+	} else if (isSommeMech(node)) {
+		return ruleDependenciesOfSommeMech(depth, node as SommeMech)
+	} else if (isProduitMech(node)) {
+		return ruleDependenciesOfProduitMech(depth, node)
 	}
-	return [] // [XXX]
+	throw new Error(
+		`This node doesn't have a visitor method defined: ${JSON.stringify(
+			node,
+			null,
+			4
+		)}`
+	)
 }
 
 function ruleDependenciesOfRule<Name extends string>(
