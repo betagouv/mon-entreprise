@@ -74,24 +74,6 @@ describe('Simulateurs', function() {
 						.should('be', '2 000')
 				})
 
-				if (simulateur === 'salarié') {
-					it('should save the current simulation', function() {
-						cy.get(inputSelector)
-							.first()
-							.type('{selectall}2137')
-						cy.contains('Passer').click()
-						cy.contains('Passer').click()
-						cy.contains('Passer').click()
-						cy.wait(1600)
-						cy.visit('/simulateurs/salarié')
-						cy.contains('Retrouver ma simulation').click()
-						cy.get(inputSelector)
-							.first()
-							.invoke('val')
-							.should('match', /2[\s]137/)
-					})
-				}
-
 				if (simulateur === 'auto-entrepreneur') {
 					it('should allow to enter the date of creation', () => {
 						cy.get(inputSelector)
@@ -117,4 +99,47 @@ describe('Simulateurs', function() {
 				}
 			})
 	)
+})
+
+describe.only('Simulateur salarié', () => {
+	if (!fr) {
+		return
+	}
+	before(() => cy.visit(`/simulateurs/salarié`))
+
+	it('should save the current simulation', function() {
+		cy.get(inputSelector)
+			.first()
+			.type('{selectall}2137')
+		cy.contains('Passer').click()
+		cy.contains('Passer').click()
+		cy.contains('Passer').click()
+		cy.wait(1600)
+		cy.visit('/simulateurs/salarié')
+		cy.contains('Retrouver ma simulation').click()
+		cy.get(inputSelector)
+			.first()
+			.invoke('val')
+			.should('match', /2[\s]137/)
+	})
+
+	it('should ask for CDD motif directly after CDD is selected', function() {
+		cy.get(inputSelector)
+			.eq(1)
+			.type('{selectall}3000')
+		cy.wait(1000)
+		cy.get('.step')
+			.find('input[value="\'CDD\'"]')
+			.click({ force: true })
+		cy.contains('Suivant').click()
+		cy.contains('Motifs classiques')
+	})
+
+	it.skip('should not crash when selecting localisation', function() {
+		cy.contains('Commune').click()
+		cy.contains("Saisissez le nom d'une commune").type('Steenvoorde')
+		cy.contains('Steenvoorde (Nord)').click()
+		cy.contains('Voir toutes les questions').click()
+		cy.contains('Steenvoorde')
+	})
 })

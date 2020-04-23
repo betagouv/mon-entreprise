@@ -60,7 +60,12 @@
 }
 
 .step.question input[type='radio'] {
-	display: none;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	position: absolute;
+	z-index: -1;
 }
 
 .step input[type='text'],

@@ -31,11 +31,12 @@ import {
 	objectifsSelector,
 	configSelector,
 	answeredQuestionsSelector,
-	currentQuestionSelector
+	currentQuestionSelector,
+	situationSelector
 } from 'Selectors/simulationSelectors'
 import { useMemo } from 'react'
 import { DottedName } from 'Rules'
-import { SimulationConfig } from 'Reducers/rootReducer'
+import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
 
 type MissingVariables = Array<Partial<Record<DottedName, number>>>
 export function getNextSteps(
@@ -70,14 +71,14 @@ const similarity = (rule1: string = '', rule2: string = '') =>
 export function getNextQuestions(
 	missingVariables: MissingVariables,
 	questionConfig: SimulationConfig['questions'] = {},
-	answeredQuestions = []
+	answeredQuestions = [],
+	situation: Simulation['situation'] = {}
 ): Array<DottedName> {
 	const {
 		'non prioritaires': notPriority = [],
 		uniquement: only = null,
 		'liste noire': blacklist = []
 	} = questionConfig
-	// console.log(missingVariables)
 	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
 
 	if (only) {
@@ -89,16 +90,19 @@ export function getNextQuestions(
 
 	const lastStep = last(answeredQuestions)
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est "une possibilité", exemple "contrat salarié . cdd"
-	// lastStepWithAnswer =
-	// 	lastStep && situation[lastStep]
-	// 		? ([lastStep, situation[lastStep]].join(' . ') as DottedName)
-	// 		: lastStep
+	const lastStepWithAnswer =
+		lastStep && situation[lastStep]
+			? ([lastStep, situation[lastStep]]
+					.join(' . ')
+					.replace(/'/g, '')
+					.trim() as DottedName)
+			: lastStep
 
 	return sortBy(
 		question =>
 			notPriority.includes(question)
 				? notPriority.indexOf(question)
-				: similarity(question, lastStep),
+				: similarity(question, lastStepWithAnswer),
 
 		nextSteps
 	)
@@ -109,6 +113,7 @@ export const useNextQuestions = function(): Array<DottedName> {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions ?? {}
+	const situation = useSelector(situationSelector)
 	const missingVariables = useEvaluation(objectifs, {
 		useDefaultValues: false
 	}).map(node => node.missingVariables ?? {})
@@ -116,7 +121,8 @@ export const useNextQuestions = function(): Array<DottedName> {
 		return getNextQuestions(
 			missingVariables,
 			questionsConfig,
-			answeredQuestions
+			answeredQuestions,
+			situation
 		)
 	}, [missingVariables, questionsConfig, answeredQuestions])
 	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
