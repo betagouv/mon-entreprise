@@ -15,7 +15,7 @@ import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 import Tracker from 'Tracker'
 import { Rules } from './rules'
-import { inIframe } from './utils'
+import { inIframe, getSessionStorage } from './utils'
 
 declare global {
 	interface Window {
@@ -93,11 +93,11 @@ export default function Provider({
 			...(reduxMiddlewares ?? [])
 		)
 	)
-	useEffect(() => {
-		if (language) {
-			i18next.changeLanguage(language)
-		}
-	}, [])
+	if (language) {
+		getSessionStorage()?.setItem('lang', language)
+		i18next.changeLanguage(language)
+	}
+
 	if (language && initialStore) initialStore.lang = language
 	const store = createStore(reducers, initialStore, storeEnhancer)
 	onStoreCreated?.(store)

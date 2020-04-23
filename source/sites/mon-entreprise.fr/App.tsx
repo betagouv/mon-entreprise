@@ -7,13 +7,13 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import Engine from 'Engine'
 import 'iframe-resizer'
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import { Rules } from 'Rules'
+import rulesFr, { Rules } from 'Rules'
 import {
 	configSituationSelector,
 	situationSelector
@@ -29,7 +29,7 @@ import {
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
-import { getSessionStorage, inIframe } from '../../utils'
+import { inIframe } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
@@ -78,20 +78,16 @@ const middlewares = [
 	trackSimulatorActions(tracker)
 ]
 
-type InFranceRouteProps = {
+type RootProps = {
 	basename: ProviderProps['basename']
 	language: ProviderProps['language']
 	rules: Rules
 }
 
-function InFranceRoute({ basename, language, rules }: InFranceRouteProps) {
-	useEffect(() => {
-		getSessionStorage()?.setItem('lang', language)
-	}, [language])
-
+function Root({ basename, language, rules }: RootProps) {
 	// Hot reload rules
 	if (process.env.NODE_ENV !== 'production' && language === 'fr') {
-		rules = rules
+		rules = rulesFr
 	}
 
 	const paths = constructLocalizedSitePath(language)
@@ -199,11 +195,11 @@ const App = () => {
 	)
 }
 
-let ExportedApp = InFranceRoute
+let ExportedApp = Root
 
 if (process.env.NODE_ENV !== 'production') {
 	const { hot } = require('react-hot-loader')
-	ExportedApp = hot(module)(InFranceRoute)
+	ExportedApp = hot(module)(Root)
 }
 
 export default ExportedApp
