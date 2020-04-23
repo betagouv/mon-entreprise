@@ -43,13 +43,13 @@ En 2019, le projet dispose d'un budget de **250 000 € HT** pris en charge :
 [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
 |                            |                  |
-| -------------------------- | ---------------- |
-| Financement DINSIC         | 150 000 € HT     |
-| Financement Acoss initial  | 100 000 € HT     |
-| Rallonge Acoss fin d'année | 12 500 € HT      |
+| -------------------------- | ---------------: |
+| Financement DINSIC         |     150 000 € HT |
+| Financement ACOSS initial  |     100 000 € HT |
+| Rallonge ACOSS fin d'année |      12 500 € HT |
 | **Total**                  | **262 500 € HT** |
 
-En fin d'année une rallonge de a été attribuée pour la réalisation d'un nouveau
+En fin d'année une rallonge est attribuée pour la réalisation d'un nouveau
 simulateur et une expérimentation sur la paie.
 
 ---
@@ -63,9 +63,9 @@ De plus, une enveloppe de **41 667 € HT** est allouée pour expérimenter la
 transformation de notre moteur de simulations en moteur de paie complète.
 
 |                             |                  |
-| --------------------------- | ---------------- |
-| Budget mon-entreprise       | 250 000 € HT     |
-| Budget expérimentation paie | 41 667 € HT      |
+| --------------------------- | ---------------: |
+| Budget mon-entreprise       |     250 000 € HT |
+| Budget expérimentation paie |      41 667 € HT |
 | **Total**                   | **291 667 € HT** |
 
 En plus de cette contribution financière, l'ACOSS fournit des ressources métier
@@ -81,7 +81,7 @@ expertes provenant du réseau des URSSAF.
   Nous utilisons une petite équipe de développeurs freelances, qui sont
   pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
   métiers. Les rémunérations suivent
-  [la grille des startups d’Etat](https://pad.incubateur.net/s/ls5nopfNH).
+  [la grille des startups d’Etat](https://beta-gouv.gitbook.io/beta-gouv/travailler-a-beta-gouv/recrutement/remuneration).
 
 - **Logiciels et hébergement 💻**
 
@@ -101,3 +101,9 @@ expertes provenant du réseau des URSSAF.
 
   Nous achetons de la documentation spécialisée à destination des professionnels
   du droit afin de faciliter l'implémentation des dipositifs législatifs.
+
+- **Frais de l'attributaire du marché 🤝**
+
+  Nous passons par un attributaire du
+  [marché public de l'Acoss](https://www.acoss.fr/home/fournisseurs.html).
+  Cet attributaire prend une marge correspondant aux frais de gestion du marché.

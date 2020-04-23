@@ -114,8 +114,7 @@ const RessourcesAllocationTable = styled.table`
 		text-align: right;
 	}
 
-	tbody tr:nth-child(2n + 1),
-	tfoot tr {
+	tbody tr:nth-child(2n + 1) {
 		background: var(--lighterColor);
 	}
 
