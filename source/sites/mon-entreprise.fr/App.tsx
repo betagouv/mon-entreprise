@@ -48,6 +48,13 @@ if (process.env.NODE_ENV === 'production') {
 		process.env.HEAD + '-' + process.env.COMMIT_REF?.substring(0, 7)
 	const dsn = 'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
 	Sentry.init({ dsn, release })
+
+	if (process.env.HEAD && process.env.HEAD !== 'master') {
+		console.log(
+			`ℹ Vous êtes sur la branche : %c${process.env.HEAD}`,
+			'font-weight: bold; text-decoration: underline;'
+		)
+	}
 }
 
 let tracker = devTracker
