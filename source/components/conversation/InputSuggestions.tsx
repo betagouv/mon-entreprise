@@ -11,19 +11,23 @@ type InputSuggestionsProps = {
 }
 
 export default function InputSuggestions({
-	suggestions,
+	suggestions = {},
 	onSecondClick = x => x,
 	onFirstClick,
 	unit
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<string | number>()
 	const { t } = useTranslation()
-	if (!suggestions) return null
 
 	return (
-		<div css="display: flex; align-items: baseline; ">
-			<small>Suggestions :</small>
-
+		<div
+			className="ui__ notice"
+			css={`
+				display: flex;
+				align-items: baseline;
+				margin-top: 0.2rem;
+			`}
+		>
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {
 				const valueWithUnit: string = `${value} ${
 					unit ? serializeUnit(unit)?.replace(' / ', '/') : ''
@@ -32,7 +36,12 @@ export default function InputSuggestions({
 					<button
 						className="ui__ link-button"
 						key={value}
-						css="margin: 0 0.4rem !important"
+						css={`
+							margin: 0 0.4rem !important;
+							:first-child {
+								margin-left: 0rem !important;
+							}
+						`}
 						onClick={() => {
 							onFirstClick(valueWithUnit)
 							if (suggestion !== value) setSuggestion(valueWithUnit)

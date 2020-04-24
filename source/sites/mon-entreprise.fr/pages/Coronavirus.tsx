@@ -137,6 +137,7 @@ function ExplanationSection() {
 				id="targetSelection"
 				className="ui__ light card"
 				css={`
+					overflow: hidden;
 					margin: 1rem 0;
 				`}
 			>
@@ -315,7 +316,6 @@ function RowLabel(target: EvaluatedRule) {
 const ResultTable = styled.table`
 	width: 100%;
 	border-collapse: collapse;
-	margin-top: 5px;
 
 	&.ui__.mobile-version {
 		display: none;
@@ -345,13 +345,13 @@ const ResultTable = styled.table`
 
 	td {
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
-		padding: 8px 16px 0;
+		padding: 0.8rem 1rem 0;
 	}
 
 	td:first-child {
 		text-align: left;
 		p {
-			font-style: italic;
+			margin-top: 0.2rem;
 		}
 	}
 

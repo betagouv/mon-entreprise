@@ -123,7 +123,7 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 				{dataWithPercentage.map(({ key, percentage, color, legend }) => (
 					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />
-						<strong>{legend}</strong>
+						{legend}
 						<strong>{percentage} %</strong>
 					</BarStackLegendItem>
 				))}

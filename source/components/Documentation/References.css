@@ -4,6 +4,7 @@
 }
 .references a {
 	flex: 1;
+	min-width: 45%;
 	text-decoration: underline;
 }
 
@@ -18,7 +19,7 @@
 	font-style: italic;
 }
 .references .imageWrapper {
-	width: 6rem;
+	width: 4.5rem;
 	height: 3rem;
 	display: flex;
 	align-items: center;

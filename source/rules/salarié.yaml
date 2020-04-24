@@ -883,8 +883,8 @@ contrat salarié . CDD . congés non pris:
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
   suggestions:
-    3: 3
-    10: 10
+    3 jours: 3
+    10 jours: 10
   par défaut: 0 jour ouvré
   contrôles:
     - si: congés non pris > congés dus en jours ouvrés

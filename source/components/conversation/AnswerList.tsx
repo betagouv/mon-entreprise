@@ -91,7 +91,6 @@ function StepsTable({
 							</td>
 							<td>
 								<span
-									className="answer"
 									css={`
 										display: inline-block;
 										padding: 0.6rem;
