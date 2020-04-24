@@ -42,6 +42,7 @@ export function isCondRuleProp(node: ASTNode): node is CondRuleProp {
 	return isRuleProp(node) && (node as CondRuleProp).rulePropType === 'cond'
 }
 
+// [XXX] - What about 'rend non applicable'? Unclear what to do in this case, it seems it would create a graph edge in the contrary sense?
 type ApplicableSi = CondRuleProp & {
 	dottedName: 'applicable si'
 	explanation: ASTNode
@@ -625,6 +626,23 @@ export function ruleDependenciesOfNode<Name extends string>(
 	depth: number,
 	node: ASTNode
 ): Array<Name> {
+	function ruleDependenciesOfApplicableSi(
+		depth: number,
+		applicableSi: ApplicableSi
+	): Array<Name> {
+		logVisit(depth, 'applicable si', '')
+		debugger
+		return ruleDependenciesOfNode(depth + 1, applicableSi.explanation)
+	}
+
+	function ruleDependenciesOfNonApplicableSi(
+		depth: number,
+		nonApplicableSi: NonApplicableSi
+	): Array<Name> {
+		logVisit(depth, 'non applicable si', '')
+		return ruleDependenciesOfNode(depth + 1, nonApplicableSi.explanation)
+	}
+
 	function ruleDependenciesOfFormule(
 		depth: number,
 		formule: Formule<Name>
@@ -991,7 +1009,11 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return result
 	}
 
-	if (isFormule<Name>(node)) {
+	if (isApplicableSi(node)) {
+		return ruleDependenciesOfApplicableSi(depth, node)
+	} else if (isNonApplicableSi(node)) {
+		return ruleDependenciesOfNonApplicableSi(depth, node)
+	} else if (isFormule<Name>(node)) {
 		return ruleDependenciesOfFormule(depth, node)
 	} else if (isValue(node)) {
 		return ruleDependenciesOfValue(depth, node)
@@ -1067,27 +1089,14 @@ function ruleDependenciesOfRuleNode<Name extends string>(
 ): Array<Name> {
 	logVisit(depth, 'Rule', rule.dottedName)
 
-	if (rule.formule) {
-		const formuleNode = rule.formule
-		return ruleDependenciesOfNode(depth + 1, formuleNode)
-		const formuleExplanationNode: FormuleExplanationNode<Name> =
-			rule.formule.explanation
-		// // This is for comfort, as the responsibility over structure isn't owned by this piece of code:
-		// if (!isFormuleExplanationNode(formuleExplanationNode)) {
-		// 	debugger
-		// 	// throw Error(
-		// 	// 	`This rule's formule is not of a known type: ${rule.dottedName}`
-		// 	// )
-		// }
-		return ruleDependenciesOfNode(depth + 1, formuleExplanationNode)
-	}
-	// if (rule['applicable si']) {
-	// 	debugger
-	// }
-	// if (rule['non applicable si']) {
-	// 	debugger
-	// }
-	return []
+	return R.chain<Array<Name>, Name>(
+		R.identity,
+		R.map(x => (x ? ruleDependenciesOfNode(depth + 1, x) : []), [
+			rule.formule,
+			rule['applicable si'],
+			rule['non applicable si']
+		])
+	)
 }
 
 export function buildRulesDependencies<Name extends string>(
