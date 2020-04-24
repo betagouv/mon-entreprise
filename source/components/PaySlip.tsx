@@ -112,11 +112,22 @@ export default function PaySlip() {
 						</Fragment>
 					)
 				})}
-
-				{/* Total cotisation */}
-				<div className="payslip__total">
-					<Trans>Total des retenues</Trans>
+				{/* Réductions */}
+				<div>
+					<Trans>Réductions</Trans>
 				</div>
+				<Value
+					expression="- contrat salarié . cotisations . patronales . réductions de cotisations"
+					displayedUnit="€"
+				/>
+				<Value
+					expression="- contrat salarié . cotisations . salariales . réduction heures supplémentaires"
+					displayedUnit="€"
+				/>
+				{/* Total cotisation */}
+				<p className="payslip__total">
+					<Trans>Total des retenues</Trans>
+				</p>
 				<Value
 					expression="contrat salarié . cotisations . patronales"
 					displayedUnit="€"
