@@ -26,7 +26,7 @@ export default function Input({
 
 	return (
 		<div className="step input">
-			<div css="width: 100%">
+			<div>
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
@@ -35,9 +35,6 @@ export default function Input({
 					onSecondClick={() => onSubmit && onSubmit('suggestion')}
 					unit={unit}
 				/>
-			</div>
-
-			<div className="answer">
 				<NumberFormat
 					autoFocus={autoFocus}
 					className="suffixed"
@@ -56,10 +53,10 @@ export default function Input({
 				<label className="suffix" htmlFor={'step-' + dottedName}>
 					{serializeUnit(unit, value, language)}
 				</label>
-				{onSubmit && (
-					<SendButton disabled={value === undefined} onSubmit={onSubmit} />
-				)}
 			</div>
+			{onSubmit && (
+				<SendButton disabled={value === undefined} onSubmit={onSubmit} />
+			)}
 		</div>
 	)
 }

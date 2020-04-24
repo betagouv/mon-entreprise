@@ -83,7 +83,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 					<div className="header">
 						<label htmlFor={`step-${dottedName}`}>
 							<span className="optionTitle">{rule.question || rule.titre}</span>
-							<p>{rule.résumé}</p>
+							<p className="ui__ notice">{rule.résumé}</p>
 						</label>
 					</div>
 					<div className="targetInputOrValue">

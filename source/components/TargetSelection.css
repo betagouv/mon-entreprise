@@ -69,7 +69,7 @@
 	text-decoration: underline;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 660px) {
 	#targetSelection {
 		font-size: 115%;
 	}
@@ -132,7 +132,7 @@
 }
 
 .light #targetSelection .optionTitle {
-	color: var(--darkestColor);
+	color: var(--darkColor);
 }
 
 #targetSelection .editableTarget {

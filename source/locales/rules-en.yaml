@@ -526,10 +526,10 @@ contrat salarié . CDD . congés non pris:
     fin du contrat.
   question.en: How many working days of paid leave will not be taken?
   question.fr: Combien de jours ouvrés de congés ne seront pas pris sur la durée du CDD ?
-  suggestions.10.en: '[automatic] 10'
-  suggestions.10.fr: '10'
-  suggestions.3.en: '[automatic] 3'
-  suggestions.3.fr: '3'
+  suggestions.10 jours.en: '[automatic] 10 days'
+  suggestions.10 jours.fr: 10 jours
+  suggestions.3 jours.en: '[automatic] 3 days'
+  suggestions.3 jours.fr: 3 jours
   titre.en: Untaken paid leave
   titre.fr: congés non pris
 contrat salarié . CDD . contrat jeune vacances:

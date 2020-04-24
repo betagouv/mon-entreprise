@@ -42,8 +42,8 @@ export default function DateInput({
 		[onChange]
 	)
 	return (
-		<>
-			<div css="width: 100%">
+		<div className="step input">
+			<div>
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
@@ -51,17 +51,15 @@ export default function DateInput({
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
 				/>
-			</div>
-			<div className="answer">
 				<DateStyledInput
-					className="ui__ input"
+					className="ui__ input suffixed"
 					type="date"
 					value={dateValue}
 					onChange={handleDateChange}
 				/>
-				{onSubmit && <SendButton disabled={!dateValue} onSubmit={onSubmit} />}
 			</div>
-		</>
+			{onSubmit && <SendButton disabled={!dateValue} onSubmit={onSubmit} />}
+		</div>
 	)
 }
 
