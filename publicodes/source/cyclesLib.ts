@@ -380,9 +380,8 @@ export function isBaremeMech(node: ASTNode): node is BaremeMech {
 
 type InversionNumMech<Name extends string> = AbstractMechanism & {
 	name: 'inversion numérique'
-	avec: Array<string> // Actually: short dotted name
 	explanation: {
-		avec: Array<Reference<Name>>
+		inversionCandidates: Array<Reference<Name>>
 	}
 }
 export function isInversionNumMech<Name extends string>(
@@ -395,16 +394,15 @@ export function isInversionNumMech<Name extends string>(
 	return (
 		isAbstractMechanism(inversionNumMech) &&
 		inversionNumMech.name === 'inversion numérique' &&
-		inversionNumMech.avec instanceof Array &&
 		typeof inversionNumMech.explanation === 'object' &&
-		inversionNumMech.explanation.avec instanceof Array &&
-		R.all(isReferenceSpec, inversionNumMech.explanation.avec)
+		inversionNumMech.explanation.inversionCandidates instanceof Array &&
+		R.all(isReferenceSpec, inversionNumMech.explanation.inversionCandidates)
 	)
 }
 
 type ArrondiMech = AbstractMechanism & {
 	name: 'arrondi'
-	explanation: ArrondiExplanation
+	explanation: Record<keyof ArrondiExplanation, ASTNode>
 }
 export function isArrondiMech(node: ASTNode): node is ArrondiMech {
 	const arrondiMech = node as ArrondiMech
@@ -631,7 +629,6 @@ export function ruleDependenciesOfNode<Name extends string>(
 		applicableSi: ApplicableSi
 	): Array<Name> {
 		logVisit(depth, 'applicable si', '')
-		debugger
 		return ruleDependenciesOfNode(depth + 1, applicableSi.explanation)
 	}
 
@@ -848,7 +845,7 @@ export function ruleDependenciesOfNode<Name extends string>(
 		depth: number,
 		inversionNumMech: InversionNumMech<Name>
 	): Array<Name> {
-		logVisit(depth, 'inversion numérique', inversionNumMech.avec)
+		logVisit(depth, 'inversion numérique', '')
 		return []
 	}
 
@@ -857,7 +854,6 @@ export function ruleDependenciesOfNode<Name extends string>(
 		arrondiMech: ArrondiMech
 	): Array<Name> {
 		logVisit(depth, 'arrondi mech', '??')
-
 		const result = R.chain(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
@@ -1071,7 +1067,6 @@ export function ruleDependenciesOfNode<Name extends string>(
 			`Visited a non-parsed recalcul node, to investigate: règle ${node.règle}`
 		)
 	} else {
-		debugger
 		throw new Error(
 			`This node doesn't have a visitor method defined: ${JSON.stringify(
 				node,
