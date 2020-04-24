@@ -115,21 +115,6 @@ function Root({ basename, language, rules }: RootProps) {
 }
 
 const Router = () => {
-	return (
-		<>
-			{!inIframe() && <Header />}
-			<Switch>
-				<Route exact path="/" component={Landing} />
-				<Route path="/iframes" component={Iframes} />
-				<Route component={App} />
-			</Switch>
-		</>
-	)
-}
-
-const App = () => {
-	const { t } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
 	const userSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const situation = useMemo(
@@ -141,57 +126,60 @@ const App = () => {
 	)
 	return (
 		<SituationProvider situation={situation}>
-			<div className="app-container">
-				<Helmet
-					titleTemplate={`%s - ${t(['siteName', 'Mon-entreprise.fr'])}`}
-				/>
-				{/* Passing location down to prevent update blocking */}
-
-				<div className="app-content">
-					<div
-						className="ui__ container"
-						style={{ flexGrow: 1, flexShrink: 0 }}
-					>
-						<Switch>
-							{redirects}
-							<Route path={sitePaths.créer.index} component={Créer} />
-							<Route path={sitePaths.gérer.index} component={Gérer} />
-							<Route
-								path={sitePaths.économieCollaborative.index}
-								component={ÉconomieCollaborative}
-							/>
-							<Route
-								path={sitePaths.simulateurs.index}
-								component={Simulateurs}
-							/>
-							<Route
-								path={sitePaths.documentation.index}
-								component={Documentation}
-							/>
-							<Route
-								path={sitePaths.integration.index}
-								component={Integration}
-							/>
-							<Route path={sitePaths.nouveautés} component={Nouveautés} />
-							<Route path={sitePaths.stats} component={Stats} />
-							<Route path={sitePaths.coronavirus} component={Coronavirus} />
-							<Route path={sitePaths.budget} component={Budget} />
-							<Route exact path="/dev/sitemap" component={Sitemap} />
-							<Route
-								exact
-								path="/dev/integration-test"
-								component={IntegrationTest}
-							/>
-							<Route exact path="/dev/personas" component={Personas} />
-
-							<Route component={Route404} />
-						</Switch>
-					</div>
-
-					{!inIframe() && <Footer />}
-				</div>
-			</div>
+			{!inIframe() && <Header />}
+			<Switch>
+				<Route exact path="/" component={Landing} />
+				<Route path="/iframes" component={Iframes} />
+				<Route component={App} />
+			</Switch>
 		</SituationProvider>
+	)
+}
+
+const App = () => {
+	const { t } = useTranslation()
+	const sitePaths = useContext(SitePathsContext)
+
+	return (
+		<div className="app-container">
+			<Helmet titleTemplate={`%s - ${t(['siteName', 'Mon-entreprise.fr'])}`} />
+			{/* Passing location down to prevent update blocking */}
+
+			<div className="app-content">
+				<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
+					<Switch>
+						{redirects}
+						<Route path={sitePaths.créer.index} component={Créer} />
+						<Route path={sitePaths.gérer.index} component={Gérer} />
+						<Route
+							path={sitePaths.économieCollaborative.index}
+							component={ÉconomieCollaborative}
+						/>
+						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
+						<Route
+							path={sitePaths.documentation.index}
+							component={Documentation}
+						/>
+						<Route path={sitePaths.integration.index} component={Integration} />
+						<Route path={sitePaths.nouveautés} component={Nouveautés} />
+						<Route path={sitePaths.stats} component={Stats} />
+						<Route path={sitePaths.coronavirus} component={Coronavirus} />
+						<Route path={sitePaths.budget} component={Budget} />
+						<Route exact path="/dev/sitemap" component={Sitemap} />
+						<Route
+							exact
+							path="/dev/integration-test"
+							component={IntegrationTest}
+						/>
+						<Route exact path="/dev/personas" component={Personas} />
+
+						<Route component={Route404} />
+					</Switch>
+				</div>
+
+				{!inIframe() && <Footer />}
+			</div>
+		</div>
 	)
 }
 
