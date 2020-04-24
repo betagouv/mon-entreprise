@@ -22,7 +22,90 @@ type ASTNode = { [_: string]: {} | undefined }
 // [XXX] - Vaudrait-il mieux utiliser les DottedNames directement ici?
 // A priori non car on peut imaginer cette lib comme étant indépendante des règles existantes et
 // fonctionnant par ex en "mode serveur".
-type RuleNode<Name extends string> = /* ASTNode & */ ParsedRule<Name>
+type RuleNode<Name extends string> = ASTNode & ParsedRule<Name>
+
+type RuleProp = ASTNode & {
+	category: 'ruleProp'
+	rulePropType: string
+}
+export function isRuleProp(node: ASTNode): node is RuleProp {
+	return (
+		(node as RuleProp).category === 'ruleProp' &&
+		typeof (node as RuleProp).rulePropType === 'string'
+	)
+}
+
+type CondRuleProp = RuleProp & {
+	rulePropType: 'cond'
+}
+export function isCondRuleProp(node: ASTNode): node is CondRuleProp {
+	return isRuleProp(node) && (node as CondRuleProp).rulePropType === 'cond'
+}
+
+type ApplicableSi = CondRuleProp & {
+	dottedName: 'applicable si'
+	explanation: ASTNode
+}
+export function isApplicableSi(node: ASTNode): node is ApplicableSi {
+	const applicableSi = node as ApplicableSi
+	return (
+		isCondRuleProp(node) &&
+		applicableSi.dottedName === 'applicable si' &&
+		applicableSi.explanation !== undefined
+	)
+}
+
+type NonApplicableSi = CondRuleProp & {
+	dottedName: 'non applicable si'
+	explanation: ASTNode
+}
+export function isNonApplicableSi(node: ASTNode): node is NonApplicableSi {
+	const nonApplicableSi = node as NonApplicableSi
+	return (
+		isCondRuleProp(node) &&
+		nonApplicableSi.dottedName === 'non applicable si' &&
+		nonApplicableSi.explanation !== undefined
+	)
+}
+
+type Formule<Name extends string> = RuleProp & {
+	name: 'formule'
+	rulePropType: 'formula'
+	explanation: FormuleExplanation<Name>
+}
+export function isFormule<Name extends string>(
+	node: ASTNode
+): node is Formule<Name> {
+	const formule = node as Formule<Name>
+	return (
+		isRuleProp(node) &&
+		formule.name === 'formule' &&
+		formule.rulePropType === 'formula' &&
+		isFormuleExplanation<Name>(formule.explanation)
+	)
+}
+
+type FormuleExplanation<Name extends string> =
+	| Value
+	| Operation
+	| Possibilities
+	| Possibilities2
+	| Reference<Name>
+	| RecalculBroken<Name>
+	| AnyMechanism<Name>
+export function isFormuleExplanation<Name extends string>(
+	node: ASTNode
+): node is FormuleExplanation<Name> {
+	return (
+		isValue(node) ||
+		isOperation(node) ||
+		isReference(node) ||
+		isPossibilities(node) ||
+		isPossibilities2(node) ||
+		isRecalculBroken<Name>(node) ||
+		isAnyMechanism<Name>(node)
+	)
+}
 
 type Value = ASTNode & {
 	nodeValue: number | string | boolean
@@ -98,30 +181,23 @@ export function isReference<Name extends string>(
 	)
 }
 
-type Recalcul<Name extends string> = ASTNode & {
-	explanation: {
-		recalcul: Reference<Name>
-		amendedSituation: Record<Name, Reference<Name>>
-	}
+type RecalculBroken<Name> = ASTNode & {
+	avec: Record<string, string> // Note: TS doesn't allow `Record<Name, string>`!
+	règle?: Name
+	evaluate: Function
 }
-export function isRecalcul<Name extends string>(
+export function isRecalculBroken<Name>(
 	node: ASTNode
-): node is Recalcul<Name> {
-	const recalcul = node as Recalcul<Name>
-	const isReferenceSpec = isReference as (
-		node: ASTNode
-	) => node is Reference<Name>
+): node is RecalculBroken<Name> {
+	const recalculBroken = node as RecalculBroken<Name>
+	// Very defensive because we don't want to take risks with this not-well-defined kind of node:
 	return (
-		typeof recalcul.explanation === 'object' &&
-		typeof recalcul.explanation.recalcul === 'object' &&
-		isReferenceSpec(recalcul.explanation.recalcul as ASTNode) &&
-		typeof recalcul.explanation.amendedSituation === 'object'
-		// [XXX] - We would like to do
-		// && R.all(isDottedName, R.keys(recalcul.explanation.amendedSituation))
-		// but it seems there is no simple way to get a type's guard in Typescript
-		// apart if it's built as a class. Or we could rebuild everything here with
-		// passing this guard ƒ as a context everywhere along with the ASTNodes,
-		// with a context monad for example. Overkill.
+		R.all(
+			key => R.includes(key, ['avec', 'règle', 'evaluate']),
+			R.keys(recalculBroken)
+		) &&
+		typeof recalculBroken.avec === 'object' &&
+		recalculBroken.evaluate instanceof Function
 	)
 }
 
@@ -133,6 +209,33 @@ export function isAbstractMechanism(node: ASTNode): node is AbstractMechanism {
 	return (
 		(node as AbstractMechanism).category === 'mecanism' &&
 		typeof (node as AbstractMechanism).name === 'string'
+	)
+}
+
+type RecalculMech<Name extends string> = AbstractMechanism & {
+	explanation: {
+		recalcul: Reference<Name>
+		amendedSituation: Record<Name, Reference<Name>>
+	}
+}
+export function isRecalculMech<Name extends string>(
+	node: ASTNode
+): node is RecalculMech<Name> {
+	const recalculMech = node as RecalculMech<Name>
+	const isReferenceSpec = isReference as (
+		node: ASTNode
+	) => node is Reference<Name>
+	return (
+		typeof recalculMech.explanation === 'object' &&
+		typeof recalculMech.explanation.recalcul === 'object' &&
+		isReferenceSpec(recalculMech.explanation.recalcul as ASTNode) &&
+		typeof recalculMech.explanation.amendedSituation === 'object'
+		// [XXX] - We would like to do
+		// && R.all(isDottedName, R.keys(recalculMech.explanation.amendedSituation))
+		// but it seems there is no simple way to get a type's guard in Typescript
+		// apart if it's built as a class. Or we could rebuild everything here with
+		// passing this guard ƒ as a context everywhere along with the ASTNodes,
+		// with a context monad for example. Overkill.
 	)
 }
 
@@ -465,16 +568,37 @@ export function isDureeMech(node: ASTNode): node is DureeMech {
 	)
 }
 
-type AnyMechanism = EncadrementMech | SommeMech
-export function isAnyMechanism(node: ASTNode): node is AnyMechanism {
+type AnyMechanism<Name extends string> =
+	| RecalculMech<Name>
+	| EncadrementMech
+	| SommeMech
+	| ProduitMech
+	| VariationsMech
+	| AllegementMech
+	| BaremeMech
+	| InversionNumMech<Name>
+	| ArrondiMech
+	| MaxMech
+	| MinMech
+	| ComposantesMech
+	| UneConditionsMech
+	| ToutesConditionsMech
+	| SyncMech
+	| GrilleMech
+	| TauxProgMech
+	| DureeMech
+export function isAnyMechanism<Name extends string>(
+	node: ASTNode
+): node is AnyMechanism<Name> {
 	return (
+		isRecalculMech<Name>(node) ||
 		isEncadrementMech(node) ||
 		isSommeMech(node) ||
 		isProduitMech(node) ||
 		isVariationsMech(node) ||
 		isAllegementMech(node) ||
 		isBaremeMech(node) ||
-		isInversionNumMech(node) ||
+		isInversionNumMech<Name>(node) ||
 		isArrondiMech(node) ||
 		isMaxMech(node) ||
 		isMinMech(node) ||
@@ -485,28 +609,6 @@ export function isAnyMechanism(node: ASTNode): node is AnyMechanism {
 		isGrilleMech(node) ||
 		isTauxProgMech(node) ||
 		isDureeMech(node)
-	)
-}
-
-type FormuleNode<Name extends string> =
-	| Value
-	| Operation
-	| Possibilities
-	| Possibilities2
-	| Reference<Name>
-	| Recalcul<Name>
-	| AnyMechanism
-export function isFormuleNode<Name extends string>(
-	node: ASTNode
-): node is FormuleNode<Name> {
-	return (
-		isValue(node) ||
-		isOperation(node) ||
-		isReference(node) ||
-		isPossibilities(node) ||
-		isPossibilities2(node) ||
-		isRecalcul(node) ||
-		isAnyMechanism(node)
 	)
 }
 
@@ -523,6 +625,14 @@ export function ruleDependenciesOfNode<Name extends string>(
 	depth: number,
 	node: ASTNode
 ): Array<Name> {
+	function ruleDependenciesOfFormule(
+		depth: number,
+		formule: Formule<Name>
+	): Array<Name> {
+		logVisit(depth, 'formule', '')
+		return ruleDependenciesOfNode(depth + 1, formule.explanation)
+	}
+
 	function ruleDependenciesOfValue(depth: number, value: Value): Array<Name> {
 		logVisit(depth, 'value', value.nodeValue)
 		return []
@@ -568,16 +678,24 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return [reference.dottedName]
 	}
 
-	function ruleDependenciesOfRecalcul(
+	function ruleDependenciesOfRecalculBroken<Name>(
 		depth: number,
-		recalcul: Recalcul<Name>
+		recalculBroken: RecalculBroken<Name>
+	): Array<Name> {
+		logVisit(depth, 'recalcul broken', recalculBroken.règle || '')
+		return recalculBroken.règle ? [recalculBroken.règle] : []
+	}
+
+	function ruleDependenciesOfRecalculMech(
+		depth: number,
+		recalculMech: RecalculMech<Name>
 	): Array<Name> {
 		logVisit(
 			depth,
 			'recalcul',
-			recalcul.explanation.recalcul.partialReference as string
+			recalculMech.explanation.recalcul.partialReference as string
 		)
-		return [recalcul.explanation.recalcul.partialReference]
+		return [recalculMech.explanation.recalcul.partialReference]
 	}
 
 	function ruleDependenciesOfEncadrementMech(
@@ -873,7 +991,9 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return result
 	}
 
-	if (isValue(node)) {
+	if (isFormule<Name>(node)) {
+		return ruleDependenciesOfFormule(depth, node)
+	} else if (isValue(node)) {
 		return ruleDependenciesOfValue(depth, node)
 	} else if (isOperation(node)) {
 		return ruleDependenciesOfOperation(depth, node)
@@ -883,8 +1003,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return ruleDependenciesOfPossibilities(depth, node)
 	} else if (isPossibilities2(node)) {
 		return ruleDependenciesOfPossibilities2(depth, node)
-	} else if (isRecalcul<Name>(node)) {
-		return ruleDependenciesOfRecalcul(depth, node)
+	} else if (isRecalculBroken<Name>(node)) {
+		return ruleDependenciesOfRecalculBroken(depth, node)
+	} else if (isRecalculMech<Name>(node)) {
+		return ruleDependenciesOfRecalculMech(depth, node)
 	} else if (isEncadrementMech(node)) {
 		return ruleDependenciesOfEncadrementMech(depth, node)
 	} else if (isSommeMech(node)) {
@@ -939,22 +1061,32 @@ export function ruleDependenciesOfNode<Name extends string>(
 	return []
 }
 
-function ruleDependenciesOfRule<Name extends string>(
+function ruleDependenciesOfRuleNode<Name extends string>(
 	depth: number,
 	rule: RuleNode<Name>
 ): Array<Name> {
-	logVisit(depth, 'rule', rule.dottedName as string)
+	logVisit(depth, 'Rule', rule.dottedName)
+
 	if (rule.formule) {
-		const formuleNode: FormuleNode<Name> = rule.formule.explanation
+		const formuleNode = rule.formule
+		return ruleDependenciesOfNode(depth + 1, formuleNode)
+		const formuleExplanationNode: FormuleExplanationNode<Name> =
+			rule.formule.explanation
 		// // This is for comfort, as the responsibility over structure isn't owned by this piece of code:
-		// if (!isFormuleNode(formuleNode)) {
+		// if (!isFormuleExplanationNode(formuleExplanationNode)) {
 		// 	debugger
 		// 	// throw Error(
 		// 	// 	`This rule's formule is not of a known type: ${rule.dottedName}`
 		// 	// )
 		// }
-		return ruleDependenciesOfNode(depth + 1, formuleNode)
+		return ruleDependenciesOfNode(depth + 1, formuleExplanationNode)
 	}
+	// if (rule['applicable si']) {
+	// 	debugger
+	// }
+	// if (rule['non applicable si']) {
+	// 	debugger
+	// }
 	return []
 }
 
@@ -977,7 +1109,7 @@ export function buildRulesDependencies<Name extends string>(
 	return R.map(
 		([dottedName, ruleNode]: [Name, RuleNode<Name>]): [Name, Array<Name>] => [
 			dottedName,
-			ruleDependenciesOfRule<Name>(0, ruleNode)
+			ruleDependenciesOfRuleNode<Name>(0, ruleNode)
 		],
 		pairs
 	)
