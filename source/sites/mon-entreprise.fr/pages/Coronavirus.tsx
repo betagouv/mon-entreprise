@@ -300,8 +300,14 @@ function RowLabel(target: EvaluatedRule) {
 	return (
 		<>
 			{' '}
-			<div className="optionTitle">{target.title}</div>
-			<p>{target.summary}</p>
+			<div
+				css={`
+					font-weight: bold;
+				`}
+			>
+				{target.title}
+			</div>
+			<p className="ui__ notice">{target.summary}</p>
 		</>
 	)
 }

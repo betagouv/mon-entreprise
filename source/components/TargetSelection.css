@@ -33,7 +33,7 @@
 
 #targetSelection .targets > li {
 	border-top: 1px solid rgba(255, 255, 255, 0.5);
-	padding: 0.6rem 1rem;
+	padding: 0.8rem 1rem;
 	margin-left: -1rem;
 	margin-right: -1rem;
 }
@@ -48,10 +48,6 @@
 	justify-content: space-between;
 }
 
-#targetSelection .targets > li p {
-	margin: 0.2em 0 0;
-}
-
 #targetSelection li .header {
 	display: flex;
 	align-items: center;
@@ -59,7 +55,10 @@
 #targetSelection .targets > li.small-target .header p {
 	display: none;
 }
-
+#targetSelection .optionTitle + p {
+	margin-top: 0.2rem;
+	margin-bottom: 0;
+}
 #targetSelection .optionTitle a {
 	color: inherit;
 	font-weight: bold;
@@ -68,6 +67,12 @@
 #targetSelection .optionTitle a:hover,
 #targetSelection .aidesGlimpse a:hover {
 	text-decoration: underline;
+}
+
+@media (min-width: 800px) {
+	#targetSelection {
+		font-size: 115%;
+	}
 }
 
 @media (hover: none) {
@@ -83,7 +88,7 @@
 }
 
 #targetSelection .targetInputOrValue {
-	font-size: 125%;
+	font-size: 115%;
 	margin-left: 0.6rem;
 	text-align: right;
 	display: flex;
