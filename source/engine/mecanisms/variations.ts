@@ -31,11 +31,10 @@ export default function parse(recurse, k, v, devariate) {
 		category: 'mecanism',
 		name: 'variations',
 		type: 'numeric',
-		unit:
-			inferUnit(
-				'+',
-				explanation.map(r => r.consequence.unit)
-			) ?? parseUnit('')
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.consequence.unit)
+		)
 	}
 }
 type Variation =
