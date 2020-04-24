@@ -8,7 +8,7 @@ import { Redirect, useHistory, useRouteMatch } from 'react-router'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import useSWR from 'swr'
-import { hideNewsBanner } from '../../layout/NewsBanner'
+import { determinant, hideNewsBanner } from '../../layout/NewsBanner'
 
 const fetcher = (url: RequestInfo) => fetch(url).then(r => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
@@ -42,6 +42,8 @@ export default function Nouveautés() {
 		return <Redirect to={getPath(0)} />
 	}
 
+	const releaseName = data[selectedRelease].name.toLowerCase()
+
 	return (
 		<>
 			<ScrollToTop key={selectedRelease} />
@@ -51,7 +53,7 @@ export default function Nouveautés() {
 				les{' '}
 				{selectedRelease === 0
 					? 'dernières nouveautés'
-					: `nouveautés de ${data[selectedRelease].name.toLowerCase()}`}
+					: `nouveautés ${determinant(releaseName)}${releaseName}`}
 				&nbsp;:
 			</p>
 			<SmallScreenSelect

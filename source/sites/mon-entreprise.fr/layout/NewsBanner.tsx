@@ -10,6 +10,9 @@ const localStorageKey = 'last-viewed-release'
 
 export const hideNewsBanner = () => writeStorage(localStorageKey, lastRelease)
 
+export const determinant = (word: string) =>
+	word.match(/^[aeiouy]/i) ? 'd’' : 'de '
+
 export default function NewsBanner() {
 	const [lastViewedRelease] = useLocalStorage(localStorageKey)
 	const sitePaths = useContext(SitePathsContext)
@@ -27,8 +30,8 @@ export default function NewsBanner() {
 	return showBanner ? (
 		<div className="ui__ banner news">
 			<span>
-				{emoji('✨')} Découvrez les nouveautés de{' '}
-				<Link to={sitePaths.nouveautés}>{lastRelease}</Link>
+				{emoji('✨')} Découvrez les nouveautés {determinant(lastRelease)}
+				<Link to={sitePaths.nouveautés}>{lastRelease.toLowerCase()}</Link>
 			</span>
 			<span onClick={hideNewsBanner} className="ui__ close-button">
 				&times;
