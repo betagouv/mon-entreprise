@@ -1,7 +1,7 @@
 import Warning from 'Components/ui/WarningBlock'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { SitePaths } from './utils/withSitePaths'
+import { SitePaths } from './utils/SitePathsContext'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof SitePaths['simulateurs'], 'index'>

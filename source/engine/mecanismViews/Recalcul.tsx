@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next'
 import { DottedName } from 'Rules'
 import { Node } from './common'
 
-export default function Recalcul(nodeValue, explanation) {
+export default function Recalcul({ nodeValue, explanation }) {
 	return (
 		<Node
 			classes="mecanism recalcul"
@@ -14,9 +14,11 @@ export default function Recalcul(nodeValue, explanation) {
 			unit={explanation.unit}
 		>
 			<>
-				{explanation.règle && (
+				{explanation.recalcul && (
 					<Trans i18nKey="calcul-avec">
-						Calcul de <RuleLink dottedName={explanation.règle} /> avec :
+						Recalcul de la règle{' '}
+						<RuleLink dottedName={explanation.recalcul.dottedName} /> avec les
+						valeurs suivantes :
 					</Trans>
 				)}
 				<ul>

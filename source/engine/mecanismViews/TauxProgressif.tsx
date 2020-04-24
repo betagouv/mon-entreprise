@@ -4,7 +4,7 @@ import { BarèmeAttributes, TrancheTable } from './Barème'
 import './Barème.css'
 import { Node, NodeValuePointer } from './common'
 
-export default function TauxProgressif(nodeValue, explanation, _, unit) {
+export default function TauxProgressif({ nodeValue, explanation, unit }) {
 	return (
 		<Node
 			classes="mecanism barème"
@@ -23,7 +23,7 @@ export default function TauxProgressif(nodeValue, explanation, _, unit) {
 						<b>
 							<Trans>Taux calculé</Trans> :{' '}
 						</b>{' '}
-						<NodeValuePointer data={nodeValue * 100} unit="%" />
+						<NodeValuePointer data={nodeValue * 100} unit={unit} />
 					</>
 				)}
 			</ul>

@@ -12,7 +12,7 @@ import {
 	without
 } from 'ramda'
 import i18n from '../i18n'
-import { Evaluation } from './temporal'
+import { Evaluation } from './types'
 
 type BaseUnit = string
 
@@ -163,13 +163,11 @@ function singleUnitConversionFactor(
 	)
 }
 function unitsConversionFactor(from: string[], to: string[]): number {
-	let factor = 1
-	if (to.includes('%')) {
-		factor *= 100
-	}
-	if (from.includes('%')) {
-		factor /= 100
-	}
+	let factor =
+		100 **
+		// Factor is mutliplied or divided 100 for each '%' in units
+		(to.filter(unit => unit === '%').length -
+			from.filter(unit => unit === '%').length)
 	;[factor] = from.reduce(
 		([value, toUnits], fromUnit) => {
 			const index = toUnits.findIndex(
@@ -241,11 +239,19 @@ function areSameClass(a: string, b: string) {
 function round(value: number) {
 	return +value.toFixed(16)
 }
-export function simplifyUnitWithValue(
-	unit: Unit,
-	value: number = 1
-): [Unit, number] {
+export function simplifyUnit(unit: Unit): Unit {
+	const { numerators, denominators } = simplify(unit, areSameClass)
+	if (numerators.length && numerators.every(symb => symb === '%')) {
+		return { numerators: ['%'], denominators }
+	}
+	return {
+		numerators: without(['%'], numerators),
+		denominators: without(['%'], denominators)
+	}
+}
+function simplifyUnitWithValue(unit: Unit, value: number = 1): [Unit, number] {
 	const { denominators, numerators } = unit
+
 	const factor = unitsConversionFactor(numerators, denominators)
 	return [
 		simplify(
@@ -268,13 +274,13 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		)
 		return classIndex === -1 ? unit : '' + classIndex
 	})
+
 	const [numA, denomA, numB, denomB] = [
 		a.numerators,
 		a.denominators,
 		b.numerators,
 		b.denominators
 	].map(countByUnitClass)
-
 	const unitClasses = pipe(
 		map(keys),
 		flatten,
@@ -284,15 +290,5 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		unitClass =>
 			(numA[unitClass] || 0) - (denomA[unitClass] || 0) ===
 				(numB[unitClass] || 0) - (denomB[unitClass] || 0) || unitClass === '%'
-	)
-}
-export function isPercentUnit(unit: Unit) {
-	if (!unit) {
-		return false
-	}
-	const simplifiedUnit = simplifyUnitWithValue(unit)[0]
-	return (
-		simplifiedUnit.denominators.length === 0 &&
-		simplifiedUnit.numerators.length === 0
 	)
 }

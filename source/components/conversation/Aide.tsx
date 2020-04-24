@@ -1,16 +1,16 @@
 import { explainVariable } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import { Markdown } from 'Components/utils/markdown'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { parsedRulesSelector } from 'Selectors/analyseSelectors'
-import References from '../rule/References'
+import References from '../Documentation/References'
 import './Aide.css'
+import { EngineContext } from 'Components/utils/EngineContext'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
-	const rules = useSelector(parsedRulesSelector)
+	const rules = useContext(EngineContext).getParsedRules()
 	const dispatch = useDispatch()
 
 	const stopExplaining = () => dispatch(explainVariable())
@@ -29,9 +29,7 @@ export default function Aide() {
 				`}
 			>
 				<h2>{rule.title}</h2>
-				<p>
-					<Markdown source={text} />
-				</p>
+				<Markdown source={text} />
 				{refs && (
 					<div>
 						<References refs={refs} />

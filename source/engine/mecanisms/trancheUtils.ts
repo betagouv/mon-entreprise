@@ -1,5 +1,5 @@
 import { mergeAllMissing } from 'Engine/evaluation'
-import { Evaluation } from 'Engine/temporal'
+import { Evaluation } from 'Engine/types'
 import { evolve } from 'ramda'
 import { evaluationError, typeWarning } from '../error'
 import { convertUnit, inferUnit } from '../units'

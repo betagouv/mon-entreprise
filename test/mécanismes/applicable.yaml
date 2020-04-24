@@ -1,12 +1,4 @@
 statut cadre:
-  formule:
-    variations:
-      - si: 3 > 2
-        alors: oui
-      - sinon: choix du statut cadre
-
-choix du statut cadre:
-  par défaut: non
 
 prévoyance obligatoire cadre:
   applicable si: statut cadre
@@ -22,4 +14,4 @@ prévoyance obligatoire cadre:
     - nom: Non Applicabilité
       situation:
         statut cadre: non
-      valeur attendue: 0
+      valeur attendue: false

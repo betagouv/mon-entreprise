@@ -1,13 +1,14 @@
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
-import SelectGéo from 'Components/conversation/select/SelectGéo'
+import SelectGéo from 'Components/conversation/select/SelectGeo'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import SendButton from 'Components/conversation/SendButton'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
+import { EngineContext } from 'Components/utils/EngineContext'
 import { ParsedRules } from 'Engine/types'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from '../components/conversation/DateInput'
@@ -17,7 +18,7 @@ export const binaryOptionChoices = [
 	{ value: 'oui', label: 'Oui' }
 ]
 
-type Value = string | number | object | boolean
+type Value = string | number | object | boolean | null
 export type RuleInputProps = {
 	rules: ParsedRules
 	dottedName: DottedName
@@ -46,8 +47,9 @@ export default function RuleInput({
 	onSubmit
 }: RuleInputProps) {
 	let rule = rules[dottedName]
-	let unit = rule.unit || rule.defaultUnit
+	let unit = rule.unit
 	let language = useTranslation().i18n.language
+	let engine = useContext(EngineContext)
 
 	let commonProps = {
 		key: dottedName,
@@ -100,6 +102,11 @@ export default function RuleInput({
 			<Question {...commonProps} choices={binaryOptionChoices} />
 		)
 	}
+
+	commonProps.value =
+		typeof commonProps.value === 'string'
+			? engine.evaluate(commonProps.value as DottedName).nodeValue
+			: commonProps.value
 	if (unit?.numerators.includes('€') && isTarget) {
 		return (
 			<>
@@ -123,20 +130,18 @@ export default function RuleInput({
 	return <Input {...commonProps} unit={unit} />
 }
 
-let getVariant = rule => rule?.formule?.explanation['une possibilité']
+let getVariant = rule => rule?.formule?.explanation['possibilités']
 
 export let buildVariantTree = (allRules, path) => {
 	let rec = path => {
 		let node = allRules[path]
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
-		let variant = getVariant(node),
-			variants = variant && node.formule.explanation['possibilités'],
-			shouldBeExpanded = variant && true, //variants.find( v => relevantPaths.find(rp => contains(path + ' . ' + v)(rp) )),
-			canGiveUp = variant && !node.formule.explanation['choix obligatoire']
-
+		let variant = getVariant(node)
+		const variants = variant && node.formule.explanation['possibilités']
+		const canGiveUp = variant && !node.formule.explanation['choix obligatoire']
 		return Object.assign(
 			node,
-			shouldBeExpanded
+			!!variant
 				? {
 						canGiveUp,
 						children: variants.map(v => rec(path + ' . ' + v))

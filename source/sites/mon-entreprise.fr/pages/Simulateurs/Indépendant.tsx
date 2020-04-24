@@ -5,18 +5,19 @@ import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
-import { default as React, useContext } from 'react'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { default as React, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
 
 export default function Indépendant() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
-	dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
+	useEffect(() => {
+		dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
+	}, [])
 	const { t } = useTranslation()
 	const inIframe = useContext(IsEmbeddedContext)
 
@@ -51,8 +52,7 @@ export default function Indépendant() {
 }
 
 function ExplanationSection() {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const getRule = getRuleFromAnalysis(analysis)
+	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -62,13 +62,13 @@ function ExplanationSection() {
 			<StackedBarChart
 				data={[
 					{
-						...getRule('revenu net après impôt'),
+						...engine.evaluate('revenu net après impôt'),
 						title: t('Revenu disponible'),
 						color: palettes[0][0]
 					},
-					{ ...getRule('impôt'), color: palettes[1][0] },
+					{ ...engine.evaluate('impôt'), color: palettes[1][0] },
 					{
-						...getRule(
+						...engine.evaluate(
 							'dirigeant . indépendant . cotisations et contributions'
 						),
 						title: t('Cotisations'),

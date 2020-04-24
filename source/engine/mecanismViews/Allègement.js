@@ -3,7 +3,10 @@ import React from 'react'
 import { makeJsx } from '../evaluation'
 import { Node } from './common'
 
-export default function Allègement(nodeValue, rawExplanation) {
+export default function Allègement({
+	nodeValue,
+	explanations: rawExplanation
+}) {
 	// Don't display attributes with default values
 	let explanation = map(k => (k && !k.isDefault ? k : null), rawExplanation)
 	return (
@@ -40,7 +43,7 @@ export default function Allègement(nodeValue, rawExplanation) {
 						</li>
 					)}
 					{explanation.plafond && (
-						<li key="abattement">
+						<li key="plafond">
 							<span className="key">plafond: </span>
 							<span className="value">{makeJsx(explanation.plafond)}</span>
 						</li>

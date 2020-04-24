@@ -11,7 +11,6 @@ import {
 import { inferUnit } from 'Engine/units'
 import { or } from 'ramda'
 import { mergeAllMissing } from './../evaluation'
-import { getNodeDefaultUnit } from './../nodeUnits'
 import { parseUnit } from './../units'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
@@ -32,11 +31,10 @@ export default function parse(recurse, k, v, devariate) {
 		category: 'mecanism',
 		name: 'variations',
 		type: 'numeric',
-		unit:
-			inferUnit(
-				'+',
-				explanation.map(r => r.consequence.unit)
-			) ?? parseUnit('')
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.consequence.unit)
+		)
 	}
 }
 type Variation =
@@ -147,12 +145,7 @@ function evaluate(
 				liftTemporal2(or, previousConditions, currentCondition)
 			]
 		},
-		[
-			pureTemporal(false),
-			[],
-			getNodeDefaultUnit({ defaultUnit: node.unit }, cache),
-			pureTemporal(false)
-		]
+		[pureTemporal(false), [], node.unit, pureTemporal(false)]
 	)
 
 	const nodeValue = temporalAverage(temporalValue, unit)

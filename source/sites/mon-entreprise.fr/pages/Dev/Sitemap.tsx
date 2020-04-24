@@ -1,4 +1,4 @@
-import { SitePathsContext } from 'Components/utils/withSitePaths'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext } from 'react'
 import { generateSiteMap, SitePathsType } from '../../sitePaths'
 

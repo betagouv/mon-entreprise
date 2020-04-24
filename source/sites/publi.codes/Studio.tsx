@@ -1,12 +1,13 @@
 // import { ControlledEditor } from '@monaco-editor/react'
+import Engine from 'Engine'
 import { formatValue } from 'Engine/format'
-import Engine from 'Engine/react'
 import { safeLoad } from 'js-yaml'
 import { last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
 import { useLocation } from 'react-router'
+import { DottedName } from 'Rules'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `
@@ -83,7 +84,6 @@ export default function Studio() {
 			<MonacoEditor
 				language="yaml"
 				height="90vh"
-				width="55%"
 				defaultValue={editorValue}
 				onChange={newValue => setEditorValue(newValue ?? '')}
 				options={{
@@ -96,9 +96,15 @@ export default function Studio() {
 					flex: 1;
 				`}
 			>
-				<Engine.Provider rules={debouncedEditorValue}>
-					<Results targets={targets} onClickShare={handleShare} />
-				</Engine.Provider>
+				<ErrorBoundary key={debouncedEditorValue}>
+					{/* TODO: prévoir de changer la signature de EngineProvider */}
+
+					<Results
+						targets={targets}
+						rules={debouncedEditorValue}
+						onClickShare={handleShare}
+					/>
+				</ErrorBoundary>
 			</section>
 		</Layout>
 	)
@@ -106,32 +112,23 @@ export default function Studio() {
 
 type ResultsProps = {
 	targets: string[]
+	rules: string
 	onClickShare: React.MouseEventHandler
 }
 
-export const Results = ({ targets, onClickShare }: ResultsProps) => {
+export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 	const [rule, setCurrentTarget] = useState<string>()
 	const currentTarget = rule ?? (last(targets) as string)
-	const error = Engine.useError()
+	const engine = useMemo(() => new Engine(rules), [rules])
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 	// console.warn
 	const warnings: string[] = []
 	const originalWarn = console.warn
 	console.warn = warning => warnings.push(warning)
-	const analysis = Engine.useEvaluation(currentTarget)
+	const evaluation = engine.evaluate(currentTarget)
 	console.warn = originalWarn
 
-	return error !== null ? (
-		<div
-			css={`
-				background: lightyellow;
-				padding: 20px;
-				border-radius: 5px;
-			`}
-		>
-			{nl2br(error)}
-		</div>
-	) : (
+	return (
 		<>
 			<div
 				css={`
@@ -181,30 +178,41 @@ export const Results = ({ targets, onClickShare }: ResultsProps) => {
 					{nl2br(warning)}
 				</div>
 			))}
-			{analysis ? (
+			{evaluation ? (
 				<div>
 					<h2>Résultats</h2>
-					{analysis.isApplicable === false ? (
+					{evaluation.isApplicable === false ? (
 						<>{emoji('❌')} Cette règle n'est pas applicable</>
 					) : (
 						<>
 							<p>
 								<strong>
-									<Engine.Evaluation expression={currentTarget} />
+									{formatValue({
+										...evaluation,
+										language: 'fr'
+									})}
 								</strong>
 							</p>
 							<br />
-							{analysis.temporalValue
-								?.filter(({ value }) => value !== false)
-								.map(({ start: du, end: au, value }) => (
-									<span key={`${du ?? ''}-${au ?? ''}`}>
-										<small>
-											Du <em>{du}</em> au <em>{au}</em> :{' '}
-										</small>
-										<code>{formatValue({ value, unit: analysis.unit })}</code>{' '}
-										<br />
-									</span>
-								))}
+							{'temporalValue' in evaluation &&
+								evaluation.temporalValue &&
+								evaluation.temporalValue
+									.filter(({ value }) => value !== false)
+									.map(({ start: du, end: au, value }) => (
+										<span key={`${du ?? ''}-${au ?? ''}`}>
+											<small>
+												Du <em>{du}</em> au <em>{au}</em> :{' '}
+											</small>
+											<code>
+												{formatValue({
+													nodeValue: value,
+													unit: evaluation.unit,
+													language: 'fr'
+												})}
+											</code>{' '}
+											<br />
+										</span>
+									))}
 						</>
 					)}
 				</div>
@@ -232,13 +240,41 @@ const Layout = styled.div`
 	flex-grow: 1;
 	display: flex;
 	height: 100%;
+	> :first-child {
+		width: 55% !important;
+	}
 
 	@media (max-width: 960px) {
 		flex-direction: column;
 		padding: 20px;
 
-		section {
-			width: 100%;
+		> :first-child {
+			width: 100% !important;
 		}
 	}
 `
+
+class ErrorBoundary extends React.Component {
+	state: { error: false | string } = { error: false }
+
+	static getDerivedStateFromError(error) {
+		console.error(error)
+		return { error: error.message }
+	}
+	render() {
+		if (this.state.error) {
+			return (
+				<div
+					css={`
+						background: lightyellow;
+						padding: 20px;
+						border-radius: 5px;
+					`}
+				>
+					{nl2br(this.state.error)}
+				</div>
+			)
+		}
+		return this.props.children
+	}
+}

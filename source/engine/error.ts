@@ -60,13 +60,13 @@ export function typeWarning(
 export function warning(
 	rules: string[] | string,
 	message: string,
-	solution: string
+	solution?: string
 ) {
 	console.warn(
 		`\n[ Avertissement ]
 ➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ⚠️  ${message}
-💡  ${solution}
+💡  ${solution ? solution : ''}
 `
 	)
 }

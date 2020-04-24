@@ -34,6 +34,9 @@ export default function DateInput({
 			if (+year < 1700) {
 				return
 			}
+			if ([day, month, year].some(x => Number.isNaN(+x))) {
+				return
+			}
 			onChange(`${day}/${month}/${year}`)
 		},
 		[onChange]

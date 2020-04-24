@@ -93,10 +93,6 @@ export const constructLocalizedSitePath = (language: string) => {
 				index: t(
 					'path.gérer.déclaration-indépendant.index',
 					'/aide-declaration-independants'
-				),
-				récapitulatif: t(
-					'path.gérer.déclaration-indépendant.récapitulatif',
-					'/récapitulatif'
 				)
 			}
 		},

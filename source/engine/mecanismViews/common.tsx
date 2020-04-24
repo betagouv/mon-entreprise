@@ -1,22 +1,24 @@
 import { default as classNames, default as classnames } from 'classnames'
-import { SitePathsContext } from 'Components/utils/withSitePaths'
-import Value, { ValueProps } from 'Components/Value'
-import { ParsedRule } from 'Engine/types'
+import { UseDefaultValuesContext } from 'Components/Documentation/UseDefaultValuesContext'
+import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { formatValue } from 'Engine/format'
+import { ParsedRule, Types, Evaluation } from 'Engine/types'
 import { contains, isNil, pipe, sort, toPairs } from 'ramda'
 import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { DottedName } from 'Rules'
-import { parsedRulesSelector } from 'Selectors/analyseSelectors'
 import { LinkButton } from 'Ui/Button'
 import { capitalise0 } from '../../utils'
 import { encodeRuleName } from '../ruleUtils'
 import mecanismColors from './colors'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { Unit } from 'Engine/units'
 
 type NodeValuePointerProps = {
-	data: ValueProps['nodeValue']
-	unit: ValueProps['unit']
+	data: Evaluation<Types>
+	unit: Unit
 }
 
 export let NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
@@ -29,13 +31,12 @@ export let NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 			border-bottom: 0 !important;
 			padding: 0 0.2rem;
 			text-decoration: none !important;
-			font-size: 80%;
 			box-shadow: 2px 2px 4px 1px #d9d9d9, 0 0 0 1px #d9d9d9;
 			line-height: 1.6em;
 			border-radius: 0.2rem;
 		`}
 	>
-		<Value nodeValue={data} unit={unit} />
+		{formatValue({ nodeValue: data, unit, language: 'fr' })}
 	</span>
 )
 
@@ -84,14 +85,7 @@ export function Node({
 					</div>
 				)
 			) : (
-				<span
-					css={`
-						@media (max-width: 1200px) {
-							width: 100%;
-							text-align: right;
-						}
-					`}
-				>
+				<span>
 					{(value as any) !== true &&
 						(value as any) !== false &&
 						!isNil(value) && <span className="operator"> =&nbsp;</span>}
@@ -117,52 +111,45 @@ export function InlineMecanism({ name }: { name: string }) {
 }
 
 type LeafProps = {
-	classes: string
-	dottedName: DottedName
-	name: string
+	className: string
+	rule: ParsedRule
 	nodeValue: NodeValuePointerProps['data']
 	filter: string
 	unit: NodeValuePointerProps['unit']
 }
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Leaf({
-	classes,
-	dottedName,
-	name,
-	nodeValue,
-	filter,
-	unit
-}: LeafProps) {
+export function Leaf({ className, rule, nodeValue, filter, unit }: LeafProps) {
 	const sitePaths = useContext(SitePathsContext)
-	const rules = useSelector(parsedRulesSelector)
-	let rule = rules[dottedName]
-	const title = rule.title || capitalise0(name)
+	const useDefaultValues = useContext(UseDefaultValuesContext)
+	const title = rule.title || capitalise0(rule.name)
 	return (
-		<span className={classNames(classes, 'leaf')}>
-			{dottedName && (
-				<span className="nodeHead">
-					<Link to={sitePaths.documentation.rule(dottedName)}>
-						<span className="name">
-							{rule.acronyme ? (
-								<abbr title={title}>{rule.acronyme}</abbr>
-							) : (
-								title
-							)}{' '}
-							{filter}
-						</span>
-					</Link>
-					{!isNil(nodeValue) && (
-						<span
-							css={`
-								margin: 0 0.3rem;
-							`}
-						>
-							<NodeValuePointer data={nodeValue} unit={unit} />
-						</span>
-					)}
-				</span>
-			)}
+		<span className={classNames(className, 'leaf')}>
+			<span className="nodeHead">
+				<Link
+					to={{
+						// TODO : remove dependance to sitePaths
+						pathname: sitePaths.documentation.rule(
+							rule.dottedName as DottedName
+						),
+						state: { useDefaultValues }
+					}}
+				>
+					<span className="name">
+						{rule.acronyme ? <abbr title={title}>{rule.acronyme}</abbr> : title}{' '}
+						{filter}
+					</span>
+				</Link>
+				{!isNil(nodeValue) && (
+					<span
+						css={`
+							margin: 0 0.3rem;
+						`}
+					>
+						<NodeValuePointer data={nodeValue} unit={unit} />
+					</span>
+				)}
+			</span>
 		</span>
 	)
 }

@@ -3,19 +3,18 @@ import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import chomagePartielConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
 import Warning from 'Components/ui/WarningBlock'
-import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import { useEvaluation } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { formatValue } from 'Engine/format'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
+import { EvaluatedRule } from 'Engine/types'
 import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
-import { EvaluatedRule } from 'Rules'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
 import { productionMode } from '../../../utils'
@@ -30,7 +29,11 @@ export default function ChômagePartiel() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	dispatch(setSimulationConfig(chomagePartielConfig, location.state?.fromGérer))
+	useEffect(() => {
+		dispatch(
+			setSimulationConfig(chomagePartielConfig, location.state?.fromGérer)
+		)
+	}, [])
 	useEffect(() => {
 		if (inIframe || !productionMode) {
 			return
@@ -109,25 +112,22 @@ export default function ChômagePartiel() {
 }
 
 function ExplanationSection() {
-	const analysis = useSelector(analysisWithDefaultsSelector)
 	const {
 		i18n: { language },
 		t
 	} = useTranslation()
-	const { palettes } = useContext(ThemeColorsContext)
-	const getRule = getRuleFromAnalysis(analysis)
 
-	const net = getRule('contrat salarié . rémunération . net')
-	const netHabituel = getRule('chômage partiel . revenu net habituel')
-	const totalEntreprise = getRule('contrat salarié . prix du travail')
-	const totalEntrepriseHabituel = getRule(
+	const net = useEvaluation('contrat salarié . rémunération . net')
+	const netHabituel = useEvaluation('chômage partiel . revenu net habituel')
+	const totalEntreprise = useEvaluation('contrat salarié . prix du travail')
+	const totalEntrepriseHabituel = useEvaluation(
 		'chômage partiel . coût employeur habituel'
 	)
 	if (
-		!net?.nodeValue ||
-		!netHabituel?.nodeValue ||
-		totalEntreprise?.nodeValue == null ||
-		!totalEntrepriseHabituel?.nodeValue
+		typeof net?.nodeValue !== 'number' ||
+		typeof netHabituel?.nodeValue !== 'number' ||
+		typeof totalEntreprise?.nodeValue !== 'number' ||
+		typeof totalEntrepriseHabituel?.nodeValue !== 'number'
 	) {
 		return null
 	}
@@ -154,17 +154,19 @@ function ExplanationSection() {
 								{
 									...net,
 									additionalText: language === 'fr' && (
-										<>
+										<span data-test-id="comparaison-net">
 											Soit{' '}
 											<strong>
 												{formatValue({
-													value: (net.nodeValue / netHabituel.nodeValue) * 100,
+													nodeValue:
+														(net.nodeValue / netHabituel.nodeValue) * 100,
 													unit: '%',
-													maximumFractionDigits: 0
+													language: 'fr',
+													precision: 0
 												})}
 											</strong>{' '}
 											du revenu net
-										</>
+										</span>
 									)
 								}
 							],
@@ -174,20 +176,21 @@ function ExplanationSection() {
 								{
 									...totalEntreprise,
 									additionalText: language === 'fr' && (
-										<>
+										<span data-test-id="comparaison-total">
 											Soit{' '}
 											<strong>
 												{formatValue({
-													value:
+													nodeValue:
 														(totalEntreprise.nodeValue /
 															totalEntrepriseHabituel.nodeValue) *
 														100,
 													unit: '%',
-													maximumFractionDigits: 0
+													language: 'fr',
+													precision: 0
 												})}
 											</strong>{' '}
 											du coût habituel
-										</>
+										</span>
 									)
 								}
 							]
@@ -204,7 +207,7 @@ type ComparaisonTableProps = {
 }
 
 type Line = Array<
-	EvaluatedRule & {
+	EvaluatedRule<DottedName> & {
 		additionalText?: React.ReactNode
 	}
 >
@@ -279,15 +282,15 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	)
 }
 
-function ValueWithLink(rule: EvaluatedRule) {
+function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 	const { language } = useTranslation().i18n
 	return (
 		<RuleLink {...rule}>
 			{formatValue({
-				value: rule.nodeValue as number,
+				nodeValue: rule.nodeValue as number,
 				language,
 				unit: '€',
-				maximumFractionDigits: 0
+				precision: 0
 			})}
 		</RuleLink>
 	)

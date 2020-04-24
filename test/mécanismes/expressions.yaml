@@ -172,7 +172,8 @@ négation:
 pourcentage:
   formule: 38.1%
   exemples:
-    - valeur attendue: 0.381
+    - valeur attendue: 38.1
+      unité attendue: '%'
       #- test: variable modifiée temporellement
 
 multiplication et pourcentage:
@@ -213,10 +214,10 @@ test de possibilités:
   formule: catégorie d'activité = 'artisanale'
   exemples:
     - situation:
-        catégorie d'activité: artisanale
+        catégorie d'activité: "'artisanale'"
       valeur attendue: true
     - situation:
-        catégorie d'activité: commerciale
+        catégorie d'activité: "'commerciale'"
       valeur attendue: false
 
 revenu:
@@ -267,6 +268,24 @@ variables négatives dans expression:
     - situation:
         salaire de base: 3000
       valeur attendue: -300
+
+expression dans situation:
+  formule: 10% * salaire de base
+  exemples:
+    - situation:
+        salaire de base: 12 * 100
+      unité attendue: $
+      valeur attendue: 120
+
+salaire:
+  unité: €/mois
+expression dans situation 2:
+  formule: 10% * salaire
+  exemples:
+    - situation:
+        salaire: 48k€/an
+      unité attendue: €/mois
+      valeur attendue: 400
 # TODO
 # expression sur plusieurs lignes:
 #   formule: >

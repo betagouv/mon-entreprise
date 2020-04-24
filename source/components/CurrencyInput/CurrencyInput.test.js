@@ -47,12 +47,12 @@ describe('CurrencyInput', () => {
 		expect(input.instance().value).to.equal('0,5')
 	})
 
-	it('should not accept negative number', () => {
+	it('should accept negative number', () => {
 		let onChange = spy()
 		const input = getInput(<CurrencyInput onChange={onChange} />)
 		input.simulate('change', { target: { value: '-12', focus: () => {} } })
 		expect(onChange).to.have.been.calledWith(
-			match.hasNested('target.value', '12')
+			match.hasNested('target.value', '-12')
 		)
 	})
 
@@ -144,5 +144,30 @@ describe('CurrencyInput', () => {
 		expect(getInlineWidth()).to.equal('')
 		wrapper.setProps({ value: '1000000' })
 		expect(Number(getInlineWidth().replace(/em$/, ''))).to.be.greaterThan(5)
+	})
+
+	it('should not call onChange if the value is not a correct number', () => {
+		let onChange = spy()
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '-', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '.', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '.5', focus: () => {} }
+			})
+		mount(<CurrencyInput onChange={onChange} />)
+			.find('input')
+			.simulate('change', {
+				target: { value: '8.', focus: () => {} }
+			})
+		expect(onChange).not.to.have.been.called
 	})
 })

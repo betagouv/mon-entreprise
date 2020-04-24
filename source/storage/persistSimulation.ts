@@ -6,7 +6,7 @@ import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 
-const VERSION = 3
+const VERSION = 4
 
 const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
 

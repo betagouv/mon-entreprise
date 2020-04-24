@@ -9,7 +9,7 @@ aide déclaration revenu indépendant 2019:
 aide déclaration revenu indépendant 2019 . nature de l'activité:
   remplace: entreprise . catégorie d'activité
   question: Quelle est la nature de votre activité ?
-  par défaut: commerciale ou industrielle
+  par défaut: "'commerciale ou industrielle'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -71,7 +71,7 @@ aide déclaration revenu indépendant 2019 . SMIC 2019:
 aide déclaration revenu indépendant 2019 . revenu net fiscal:
   titre: revenu net fiscal
   résumé: avant déduction des charges sociales et exonérations fiscales [A]
-  unité par défaut: €/an
+  unité: €/an
   formule: dirigeant . rémunération totale
 
 aide déclaration revenu indépendant 2019 . CSG déductible:

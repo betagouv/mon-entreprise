@@ -5,22 +5,23 @@ import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entreprene
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { getRuleFromAnalysis } from 'Engine/ruleUtils'
-import { default as React, useContext } from 'react'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { default as React, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 
 export default function AutoEntrepreneur() {
 	const dispatch = useDispatch()
 	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	dispatch(
-		setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
-	)
-
+	useEffect(() => {
+		dispatch(
+			setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
+		)
+	}, [])
 	const { t } = useTranslation()
 
 	return (
@@ -54,12 +55,12 @@ export default function AutoEntrepreneur() {
 }
 
 function ExplanationSection() {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const getRule = getRuleFromAnalysis(analysis)
+	const engine = useContext(EngineContext)
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
+	const targetUnit = useSelector(targetUnitSelector)
+	const impôt = engine.evaluate('impôt', { unit: targetUnit })
 
-	const impôt = getRule('impôt')
 	return (
 		<section>
 			<h2>
@@ -68,7 +69,10 @@ function ExplanationSection() {
 			<StackedBarChart
 				data={[
 					{
-						...getRule('dirigeant . auto-entrepreneur . net après impôt'),
+						...engine.evaluate(
+							'dirigeant . auto-entrepreneur . net après impôt',
+							{ unit: targetUnit }
+						),
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: palettes[0][0]
 					},
@@ -77,8 +81,9 @@ function ExplanationSection() {
 						? [{ ...impôt, title: t('impôt'), color: palettes[1][0] }]
 						: []),
 					{
-						...getRule(
-							'dirigeant . auto-entrepreneur . cotisations et contributions'
+						...engine.evaluate(
+							'dirigeant . auto-entrepreneur . cotisations et contributions',
+							{ unit: targetUnit }
 						),
 						title: t('Cotisations'),
 						color: palettes[1][1]

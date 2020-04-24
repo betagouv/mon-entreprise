@@ -11,9 +11,9 @@ import {
 import React from 'react'
 import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
+import { EvaluatedNode } from 'Engine/types'
 import {
 	concatTemporals,
-	EvaluatedNode,
 	liftTemporalNode,
 	mapTemporal,
 	pureTemporal,
@@ -21,11 +21,10 @@ import {
 	temporalAverage,
 	zipTemporals
 } from './temporal'
+import { ParsedRule, ParsedRules } from './types'
 
-export let makeJsx = node =>
-	typeof node.jsx == 'function'
-		? node.jsx(node.nodeValue, node.explanation, node.lazyEval, node.unit)
-		: node.jsx
+export let makeJsx = (node: EvaluatedNode): JSX.Element =>
+	typeof node.jsx == 'function' ? node.jsx(node) : <></>
 
 export let collectNodeMissing = node => node.missingVariables || {}
 
@@ -40,12 +39,6 @@ export let evaluateNode = (cache, situationGate, parsedRules, node) => {
 	let evaluatedNode = node.evaluate
 		? node.evaluate(cache, situationGate, parsedRules, node)
 		: node
-	if (typeof evaluatedNode.nodeValue !== 'number') {
-		return evaluatedNode
-	}
-	evaluatedNode = node.unité
-		? convertNodeToUnit(node.unit, evaluatedNode)
-		: simplifyNodeUnit(evaluatedNode)
 	return evaluatedNode
 }
 
@@ -99,7 +92,7 @@ export const evaluateArray = (reducer, start) => (
 		...node,
 		missingVariables: mergeAllMissing(evaluatedNodes),
 		explanation: evaluatedNodes,
-		unit: evaluatedNodes[0].unit
+		...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit })
 	}
 	if (temporalValue.length === 1) {
 		return {
@@ -129,7 +122,9 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 export let defaultNode = nodeValue => ({
 	nodeValue,
 	// eslint-disable-next-line
-	jsx: nodeValue => <span className="value">{nodeValue}</span>,
+	jsx: ({ nodeValue }: EvaluatedNode) => (
+		<span className="value">{nodeValue}</span>
+	),
 	isDefault: true
 })
 
@@ -175,6 +170,7 @@ export let evaluateObject = (objectShape, effect) => (
 	}, temporalExplanations)
 
 	const sameUnitTemporalExplanation: Temporal<EvaluatedNode<
+		string,
 		number
 	>> = convertNodesToSameUnit(
 		temporalExplanation.map(x => x.value),
@@ -209,4 +205,23 @@ export let evaluateObject = (objectShape, effect) => (
 		temporalValue,
 		temporalExplanation
 	}
+}
+
+type DefaultValues<Names extends string> = { [name in Names]: any } | {}
+export function collectDefaults<Names extends string>(
+	parsedRules: ParsedRules<Names>
+): DefaultValues<Names> {
+	const cache = { _meta: { contextRule: [] as string[] } }
+	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
+		(acc, parsedRule) => {
+			if (parsedRule?.['par défaut'] == null) {
+				return acc
+			}
+			return {
+				...acc,
+				[parsedRule.dottedName]: parsedRule['par défaut']
+			}
+		},
+		{}
+	)
 }

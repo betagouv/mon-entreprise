@@ -1,6 +1,6 @@
+import chai from 'chai'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import chai from 'chai'
 import sinonChai from 'sinon-chai'
 
 chai.use(sinonChai)

@@ -15,10 +15,13 @@
 	border-top: none;
 }
 
-#targetSelection .targets > li.small-target * {
-	font-size: 1rem;
+#targetSelection .targets > li.small-target {
+	font-size: 85%;
+}
+#targetSelection .targets > li.small-target .optionTitle a {
 	font-weight: normal;
 }
+
 #targetSelection .targets > li.small-target {
 	border-top: none;
 }
@@ -47,9 +50,6 @@
 
 #targetSelection .targets > li p {
 	margin: 0.2em 0 0;
-	font-style: italic;
-	opacity: 0.8;
-	line-height: 1.2rem;
 }
 
 #targetSelection li .header {
@@ -60,12 +60,9 @@
 	display: none;
 }
 
-#targetSelection .optionTitle {
-	font-size: 115%;
-	font-weight: 500;
-}
 #targetSelection .optionTitle a {
 	color: inherit;
+	font-weight: bold;
 	text-decoration: none;
 }
 #targetSelection .optionTitle a:hover,
@@ -74,12 +71,8 @@
 }
 
 @media (hover: none) {
-	#targetSelection .optionTitle {
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		border-radius: 0.25em;
-		padding: 0.05em 0.4em;
-		font-size: 125%;
-		font-weight: 400;
+	#targetSelection .optionTitle a {
+		text-decoration: underline;
 	}
 }
 
@@ -169,7 +162,7 @@
 	font-style: italic;
 	color: #c0392b;
 	background: yellow;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

@@ -1,6 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { EvaluatedRule } from 'Engine/types'
+import { EvaluatedRule, Evaluation, Types } from 'Engine/types'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
@@ -83,7 +83,7 @@ export function roundedPercentages(values: Array<number>) {
 type StackedBarChartProps = {
 	data: Array<{
 		color?: string
-		value: number | undefined
+		value: Evaluation<Types>
 		legend: React.ReactNode
 		key: string
 	}>
@@ -93,7 +93,9 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
 		threshold: 0.5
 	})
-	const percentages = roundedPercentages(data.map(d => d.value ?? 0))
+	const percentages = roundedPercentages(
+		data.map(d => (typeof d.value === 'number' && d.value) || 0)
+	)
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
 		percentage: percentages[index]

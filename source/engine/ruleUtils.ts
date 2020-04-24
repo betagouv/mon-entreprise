@@ -1,6 +1,6 @@
 import { dropLast, last, pipe, propEq, range, take } from 'ramda'
 import { coerceArray } from '../utils'
-import { EvaluatedRule, ParsedRule, ParsedRules, Rule, Rules } from './types'
+import { EvaluatedRule, Rule, Rules } from './types'
 
 export const splitName = str => str.split(' . ')
 export const joinName = strs => strs.join(' . ')
@@ -50,22 +50,6 @@ export function disambiguateRuleReference<Names extends string>(
 	Vérifiez que l'orthographe et l'espace de nom sont corrects`)
 	}
 	return dottedName
-}
-
-type DefaultValues<Names extends string> = { [name in Names]: any } | {}
-export function collectDefaults<Names extends string>(
-	parsedRules: ParsedRules<Names>
-): DefaultValues<Names> {
-	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
-		(acc, parsedRule) =>
-			parsedRule?.defaultValue != null
-				? {
-						...acc,
-						[parsedRule.dottedName]: parsedRule.defaultValue
-				  }
-				: acc,
-		{}
-	)
 }
 
 /*********************************

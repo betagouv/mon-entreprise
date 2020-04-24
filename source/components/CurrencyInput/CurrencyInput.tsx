@@ -1,12 +1,12 @@
 import classnames from 'classnames'
 import { currencyFormat } from 'Engine/format'
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import NumberFormat, { NumberFormatProps } from 'react-number-format'
 import { debounce } from '../../utils'
 import './CurrencyInput.css'
 
 type CurrencyInputProps = NumberFormatProps & {
-	value?: string | number
+	value?: string | number | null
 	debounce?: number
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 	currencySymbol?: string
@@ -25,8 +25,12 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
 	const [initialValue, setInitialValue] = useState(valueProp)
 	const [currentValue, setCurrentValue] = useState(valueProp)
-	const onChangeDebounced = useRef(
-		debounceTimeout && onChange ? debounce(debounceTimeout, onChange) : onChange
+	const onChangeDebounced = useMemo(
+		() =>
+			debounceTimeout && onChange
+				? debounce(debounceTimeout, onChange)
+				: onChange,
+		[onChange, debounceTimeout]
 	)
 	// We need some mutable reference because the <NumberFormat /> component doesn't provide
 	// the DOM `event` in its custom `onValueChange` handler
@@ -45,7 +49,7 @@ export default function CurrencyInput({
 		// Only trigger the `onChange` event if the value has changed -- and not
 		// only its formating, we don't want to call it when a dot is added in `12.`
 		// for instance
-		if (!nextValue.current) {
+		if (!nextValue.current || nextValue.current.match(/(\.$)|(^\.)|(-$)/)) {
 			return
 		}
 		event.persist()
@@ -54,7 +58,7 @@ export default function CurrencyInput({
 			value: nextValue.current
 		}
 		nextValue.current = ''
-		onChangeDebounced.current?.(event)
+		onChangeDebounced?.(event)
 	}
 
 	const {
@@ -89,10 +93,10 @@ export default function CurrencyInput({
 				}
 				onValueChange={({ value }) => {
 					setCurrentValue(value)
-					nextValue.current = value.toString().replace('-', '')
+					nextValue.current = value.toString().replace(/^0+/, '')
 				}}
 				onChange={handleChange}
-				value={currentValue.toString().replace('.', decimalSeparator)}
+				value={currentValue?.toString().replace('.', decimalSeparator)}
 				autoComplete="off"
 			/>
 			{!isCurrencyPrefixed && <>&nbsp;€</>}

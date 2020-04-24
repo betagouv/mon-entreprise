@@ -1,22 +1,20 @@
 import RuleLink from 'Components/RuleLink'
+import { useEvaluation } from 'Components/utils/EngineContext'
 import { formatValue } from 'Engine/format'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import Skeleton from 'react-loading-skeleton'
 import ReactToPrint from 'react-to-print'
-import { DottedName, EvaluatedRule } from 'Rules'
 import Animate from 'Ui/animate'
-import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import simulationConfig from './config.yaml'
+import { DottedName } from 'Rules'
 
 type ResultsProp = {
 	componentRef?: any
 }
 export function Results({ componentRef }: ResultsProp) {
-	const results: EvaluatedRule[] = simulationConfig.objectifs.map(
-		(dottedName: DottedName) => useRule(dottedName)
-	)
+	const results = useEvaluation(simulationConfig.objectifs as Array<DottedName>)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
 	return (
@@ -51,10 +49,10 @@ export function Results({ componentRef }: ResultsProp) {
 								<RuleLink dottedName={r.dottedName}>
 									{r.nodeValue != null ? (
 										formatValue({
-											value: r.nodeValue || 0,
+											nodeValue: r.nodeValue || 0,
 											language: 'fr',
 											unit: '€',
-											maximumFractionDigits: 0
+											precision: 0
 										})
 									) : (
 										<Skeleton width={80} />

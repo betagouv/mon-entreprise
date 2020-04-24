@@ -5,21 +5,22 @@ import {
 	mergeAllMissing
 } from 'Engine/evaluation'
 import { Node } from 'Engine/mecanismViews/common'
+import { simplifyNodeUnit } from 'Engine/nodeUnits'
 import { mapTemporal, pureTemporal, temporalAverage } from 'Engine/temporal'
-import { EvaluatedRule } from 'Engine/types'
 import { serializeUnit } from 'Engine/units'
+import { EvaluatedRule, Evaluation, EvaluatedNode } from 'Engine/types'
 import { has } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 
 type MecanismRoundProps = {
-	nodeValue: EvaluatedRule['nodeValue']
+	nodeValue: Evaluation<number>
 	explanation: ArrondiExplanation
 }
 
 type ArrondiExplanation = {
-	value: EvaluatedRule
-	decimals: EvaluatedRule
+	value: EvaluatedNode<string, number>
+	decimals: EvaluatedNode<string, number>
 }
 
 function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
@@ -32,16 +33,17 @@ function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
 		>
 			<>
 				{makeJsx(explanation.value)}
-				{explanation.decimals.isDefault !== false && (
-					<p>
-						<Trans
-							i18nKey="arrondi-to-decimals"
-							count={explanation.decimals.nodeValue}
-						>
-							Arrondi à {{ count: explanation.decimals.nodeValue }} décimales
-						</Trans>
-					</p>
-				)}
+				{explanation.decimals.nodeValue !== false &&
+					explanation.decimals.isDefault != false && (
+						<p>
+							<Trans
+								i18nKey="arrondi-to-decimals"
+								count={explanation.decimals.nodeValue ?? undefined}
+							>
+								Arrondi à {{ count: explanation.decimals.nodeValue }} décimales
+							</Trans>
+						</p>
+					)}
 			</>
 		</Node>
 	)
@@ -63,7 +65,7 @@ function evaluate<Names extends string>(
 		situation,
 		parsedRules
 	)
-	const value = evaluateAttribute(node.explanation.value)
+	const value = simplifyNodeUnit(evaluateAttribute(node.explanation.value))
 	const decimals = evaluateAttribute(node.explanation.decimals)
 
 	const temporalValue = mapTemporal(
@@ -94,10 +96,7 @@ export default (recurse, k, v) => {
 	return {
 		explanation,
 		evaluate,
-		// eslint-disable-next-line
-		jsx: (nodeValue, explanation) => (
-			<MecanismRound nodeValue={nodeValue} explanation={explanation} />
-		),
+		jsx: MecanismRound,
 		category: 'mecanism',
 		name: 'arrondi',
 		type: 'numeric',

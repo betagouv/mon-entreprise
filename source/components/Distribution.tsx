@@ -1,35 +1,45 @@
-import React from 'react'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { max } from 'ramda'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { parsedRulesSelector } from 'Selectors/analyseSelectors'
-import répartitionSelector from 'Selectors/repartitionSelectors'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import BarChartBranch from './BarChart'
 import './Distribution.css'
 import './PaySlip'
+import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
-import BarChartBranch from './BarChart'
 
 export default function Distribution() {
-	const distribution = useSelector(répartitionSelector) as any
+	const targetUnit = useSelector(targetUnitSelector)
+	const engine = useContext(EngineContext)
+	const distribution = (getCotisationsBySection(
+		useContext(EngineContext).getParsedRules()
+	).map(([section, cotisations]) => [
+		section,
+		cotisations
+			.map(c => engine.evaluate(c, { unit: targetUnit }))
+			.reduce(
+				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
+				0
+			)
+	]) as Array<[DottedName, number]>)
+		.filter(([, value]) => value > 0)
+		.sort(([, a], [, b]) => b - a)
 
-	if (!Object.values(distribution).length) {
-		return null
-	}
+	const maximum = distribution.map(([, value]) => value).reduce(max, 0)
 
 	return (
-		<>
-			<div className="distribution-chart__container">
-				{distribution.répartition.map(
-					([brancheDottedName, { partPatronale, partSalariale }]) => (
-						<DistributionBranch
-							key={brancheDottedName}
-							dottedName={brancheDottedName}
-							value={partPatronale + partSalariale}
-							maximum={distribution.maximum}
-						/>
-					)
-				)}
-			</div>
-		</>
+		<div className="distribution-chart__container">
+			{distribution.map(([sectionName, value]) => (
+				<DistributionBranch
+					key={sectionName}
+					dottedName={sectionName}
+					value={value}
+					maximum={maximum}
+				/>
+			))}
+		</div>
 	)
 }
 
@@ -37,6 +47,7 @@ type DistributionBranchProps = {
 	dottedName: DottedName
 	value: number
 	maximum: number
+
 	icon?: string
 }
 
@@ -46,15 +57,16 @@ export function DistributionBranch({
 	icon,
 	maximum
 }: DistributionBranchProps) {
-	const rules = useSelector(parsedRulesSelector)
-	const branch = rules[dottedName]
+	const rules = useContext(EngineContext).getParsedRules()
+	const branche = rules[dottedName]
+
 	return (
 		<BarChartBranch
 			value={value}
 			maximum={maximum}
-			title={<RuleLink {...branch} />}
-			icon={icon ?? branch.icons}
-			description={branch.summary}
+			title={<RuleLink {...branche} />}
+			icon={icon ?? branche.icons}
+			description={branche.summary}
 			unit="€"
 		/>
 	)

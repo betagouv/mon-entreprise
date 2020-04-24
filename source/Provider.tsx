@@ -1,6 +1,8 @@
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { SitePathProvider, SitePaths } from 'Components/utils/withSitePaths'
+import { EngineProvider } from 'Components/utils/EngineContext'
+import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { TrackerProvider } from 'Components/utils/withTracker'
+import Engine from 'Engine'
 import { createBrowserHistory } from 'history'
 import { AvailableLangs } from 'i18n'
 import i18next from 'i18next'
@@ -12,7 +14,8 @@ import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 import Tracker from 'Tracker'
-import { inIframe } from './utils'
+import { Rules } from './rules'
+import { inIframe, getSessionStorage } from './utils'
 
 declare global {
 	interface Window {
@@ -90,11 +93,11 @@ export default function Provider({
 			...(reduxMiddlewares ?? [])
 		)
 	)
-	useEffect(() => {
-		if (language) {
-			i18next.changeLanguage(language)
-		}
-	}, [])
+	if (language) {
+		getSessionStorage()?.setItem('lang', language)
+		i18next.changeLanguage(language)
+	}
+
 	if (language && initialStore) initialStore.lang = language
 	const store = createStore(reducers, initialStore, storeEnhancer)
 	onStoreCreated?.(store)

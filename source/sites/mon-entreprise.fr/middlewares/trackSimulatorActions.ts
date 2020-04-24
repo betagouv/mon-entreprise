@@ -1,7 +1,4 @@
-import {
-	currentQuestionSelector,
-	situationSelector
-} from 'Selectors/analyseSelectors'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import Tracker from 'Tracker'
 
 export default (tracker: Tracker) => {
@@ -17,14 +14,15 @@ export default (tracker: Tracker) => {
 				situationSelector(newState)[action.step]
 			])
 
-			if (!currentQuestionSelector(newState)) {
-				tracker.push([
-					'trackEvent',
-					'Simulator',
-					'simulation completed',
-					'after ' + newState.simulation.foldedSteps.length + ' questions'
-				])
-			}
+			// TODO : add tracking in UI instead ?
+			// if (!currentQuestionSelector(newState)) {
+			// 	tracker.push([
+			// 		'trackEvent',
+			// 		'Simulator',
+			// 		'simulation completed',
+			// 		'after ' + newState.simulation.foldedSteps.length + ' questions'
+			// 	])
+			// }
 		}
 
 		if (action.type === 'SET_ACTIVE_TARGET_INPUT') {
@@ -38,14 +36,14 @@ export default (tracker: Tracker) => {
 
 		if (
 			action.type === 'UPDATE_SITUATION' ||
-			action.type === 'UPDATE_DEFAULT_UNIT'
+			action.type === 'UPDATE_TARGET_UNIT'
 		) {
 			tracker.push([
 				'trackEvent',
 				'Simulator',
 				'update situation',
-				...(action.type === 'UPDATE_DEFAULT_UNIT'
-					? ['unité', action.defaultUnit]
+				...(action.type === 'UPDATE_TARGET_UNIT'
+					? ['unité', action.targetUnit]
 					: [action.fieldName, action.value])
 			])
 		}

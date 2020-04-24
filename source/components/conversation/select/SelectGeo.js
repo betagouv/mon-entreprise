@@ -47,16 +47,14 @@ export default function Select({ onChange, onSubmit }) {
 		tauxVersementTransport(option.code)
 			.then(({ taux }) => {
 				// serialize to not mix our data schema and the API response's
-				onChange(
-					JSON.stringify({
-						...option,
-						...(taux != undefined
-							? {
-									'taux du versement transport': taux
-							  }
-							: {})
-					})
-				)
+				onChange({
+					...option,
+					...(taux != undefined
+						? {
+								'taux du versement transport': taux
+						  }
+						: {})
+				})
 				onSubmit()
 			})
 			.catch(error => {
@@ -64,7 +62,7 @@ export default function Select({ onChange, onSubmit }) {
 				console.log(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
-				) || onChange(JSON.stringify({ option }))
+				) || onChange(option)
 				onSubmit() // eslint-disable-line no-console
 			})
 	}

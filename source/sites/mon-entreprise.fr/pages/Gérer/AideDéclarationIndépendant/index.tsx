@@ -3,27 +3,30 @@ import Aide from 'Components/conversation/Aide'
 import Explicable from 'Components/conversation/Explicable'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
+import { useEvaluation, EngineContext } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Engine/RuleInput'
 import { ParsedRule } from 'Engine/types'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+	useContext
+} from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
-import {
-	nextStepsSelector,
-	parsedRulesSelector,
-	ruleAnalysisSelector,
-	situationSelector
-} from 'Selectors/analyseSelectors'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
-import { useRule } from '../../Simulateurs/ArtisteAuteur'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 import { Results } from './Result'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { Dot } from 'recharts'
 
 const lauchComputationWhenResultsInViewport = () => {
 	const dottedName = 'dirigeant . rémunération totale'
@@ -55,11 +58,14 @@ const lauchComputationWhenResultsInViewport = () => {
 
 export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
-	const rules = useSelector(parsedRulesSelector)
+	const rules = useContext(EngineContext).getParsedRules()
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
-	dispatch(setSimulationConfig(simulationConfig, true))
+	useEffect(() => {
+		dispatch(setSimulationConfig(simulationConfig, true))
+	}, [])
+
 	const {
 		resultsRef,
 		displayForm,
@@ -160,8 +166,9 @@ export default function AideDéclarationIndépendant() {
 							<SimpleField dottedName="entreprise . date de création" />
 							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
 							{/* PLNR */}
-							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
+							<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
+							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
 
 							<h2>
 								<Trans>Situation personnelle</Trans>
@@ -214,22 +221,23 @@ function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false
 }: SubSectionProp) {
-	const parsedRules = useSelector(parsedRulesSelector)
-	const ruleTitle = useRule(sectionDottedName)?.title
-	const nextSteps = useSelector(nextStepsSelector)
+	const parsedRules = useContext(EngineContext).getParsedRules()
+	const ruleTitle = parsedRules[sectionDottedName]?.title
+	const nextSteps = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
-	const subQuestions = Object.values(parsedRules).filter(
-		({ dottedName, question }) =>
-			Boolean(question) &&
-			dottedName.startsWith(sectionDottedName) &&
-			(Object.keys(situation).includes(dottedName) ||
-				nextSteps.includes(dottedName))
-	)
+	const subQuestions = [
+		...(Object.keys(situation) as Array<DottedName>),
+		...nextSteps
+	].filter(nextStep => {
+		const { dottedName, question } = parsedRules[nextStep]
+		return !!question && dottedName.startsWith(sectionDottedName)
+	})
+
 	return (
 		<>
 			{!!subQuestions.length && title && <h3>{title}</h3>}
-			{subQuestions.map(({ dottedName }) => (
+			{subQuestions.map(dottedName => (
 				<SimpleField key={dottedName} dottedName={dottedName} />
 			))}
 		</>
@@ -243,12 +251,11 @@ type SimpleFieldProps = {
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const evaluatedRule = useSelector((state: RootState) => {
-		return ruleAnalysisSelector(state, { dottedName })
-	})
-	const rules = useSelector(parsedRulesSelector)
+	const evaluatedRule = useEvaluation(dottedName, { useDefaultValues: false })
+	const rules = useContext(EngineContext).getParsedRules()
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
+
 	const dispatchValue = useCallback(
 		value => {
 			dispatch(updateSituation(dottedName, value))
@@ -267,8 +274,10 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	useEffect(() => {
 		setCurrentValue(value)
 	}, [value])
-
-	if (!evaluatedRule.isApplicable) {
+	if (
+		evaluatedRule.isApplicable === false ||
+		evaluatedRule.isApplicable === null
+	) {
 		return null
 	}
 	return (
