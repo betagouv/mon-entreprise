@@ -1,28 +1,30 @@
-const authorizedNamespaces = [
+const catégories = [
 	'transport',
 	'logement',
-	'nourriture',
 	'numérique',
 	'vêtements',
+	'divers',
+	'nourriture',
 ]
 const catégorie = ({ catégorie, dottedName }) => {
-	if (catégorie) return catégorie
+	if (catégorie && catégories.includes(catégorie)) return catégorie
 
-	const found = authorizedNamespaces.find((a) => dottedName.includes(a + ' . '))
-	return found || 'DIVERS'
+	const found = catégories.find((a) => dottedName.includes(a + ' . '))
+	return found || 'divers'
 }
 
 export default (rules) => {
-	const catégories = Object.entries(
+	const raw = Object.entries(
 		rules.reduce((memo, next) => {
 			const category = catégorie(next)
 			memo[category] = [...(memo[category] || []), next]
 			return memo
 		}, {})
 	)
-	return catégories.sort(([c1], c2) =>
+	return raw.sort(([c1], [c2]) =>
+		console.log(c1, c2, catégories.indexOf(c2), catégories.indexOf(c1)) ||
 		c1 === 'nourriture'
-			? Infinity
-			: authorizedNamespaces.indexOf(c2) - authorizedNamespaces.indexOf(c1)
+			? 1
+			: catégories.indexOf(c1) - catégories.indexOf(c2)
 	)
 }
