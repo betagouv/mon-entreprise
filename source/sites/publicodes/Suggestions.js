@@ -21,12 +21,14 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
 
 		let [fuse, setFuse] = useState(null)
-		useEffect(() => setFuse(buildFuse(exposedRules)), [])
+		useEffect(() => setFuse(buildFuse(exposedRules)), [exposedRules])
 
 		let filteredRules = pipe(
 			partition(has('formule')),
 			apply(concat)
 		)(fuse && input ? fuse.search(input) : exposedRules)
+
+		console.log({ filteredRules })
 
 		return (
 			<section style={{ marginTop: '2rem' }}>
