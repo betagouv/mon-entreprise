@@ -1,16 +1,16 @@
 {
 	"name": "Futureco",
 	"short_name": "Futureco",
-	"description": "Découvrir l'impact de nos gestes quotidiens sur le climat",
+	"description": "L'impact climat de tes gestes quotidiens",
 	"display": "standalone",
 	"lang": "fr",
 	"orientation": "portrait-primary",
-	"theme_color": "#3742fa",
+	"theme_color": "#2975D1",
 	"icons": [
 		{
-			"src": "/source/sites/publicodes/logo.png",
-			"sizes": "48x48",
-			"type": "image/png"
+			"src": "/images/logo.svg",
+			"sizes": "144x144",
+			"type": "image/svg+xml"
 		}
 	]
 }
