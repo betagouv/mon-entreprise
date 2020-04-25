@@ -1,6 +1,8 @@
 const { map } = require('ramda')
 const webpack = require('webpack')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+
 const {
 	commonLoaders,
 	styleLoader,
@@ -18,6 +20,7 @@ module.exports = {
 	plugins: [
 		...(common.plugins || []),
 		...HTMLPlugins(),
+		new ReactRefreshWebpackPlugin(),
 		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
 		new webpack.HotModuleReplacementPlugin(),
 		new MonacoWebpackPlugin({
