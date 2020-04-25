@@ -25,7 +25,16 @@ module.exports.default = {
 	output: {
 		path: path.resolve('./dist/'),
 		globalObject: 'self'
-	}
+	},
+	plugins: [
+		new CopyPlugin([
+			'./manifest.webmanifest',
+			{
+				from: './source/sites/publicodes/favicon',
+				to: 'favicon'
+			}
+		])
+	]
 }
 
 module.exports.styleLoader = styleLoader => ({
@@ -113,8 +122,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		inject: false,
 
 		template: 'index.html',
-		logo: 'https://futur.eco/images/logo.png',
-		shareImage: 'https://futur.eco/images/logo.png',
+		logo: 'https://futur.eco/images/logo.svg',
 		chunks: ['publicodes'],
 
 		title: "Futureco 🔥 – L'impact climat de vos gestes quotidiens",
