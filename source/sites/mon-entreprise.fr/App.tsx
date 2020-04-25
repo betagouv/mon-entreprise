@@ -80,11 +80,11 @@ const middlewares = [
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	language: ProviderProps['language']
 	rules: Rules
 }
 
-function Root({ basename, language, rules }: RootProps) {
+function Root({ basename, rules }: RootProps) {
+	const { language } = useTranslation().i18n
 	// Hot reload rules
 	if (process.env.NODE_ENV !== 'production' && language === 'fr') {
 		rules = rulesFr
@@ -94,7 +94,6 @@ function Root({ basename, language, rules }: RootProps) {
 	return (
 		<Provider
 			basename={basename}
-			language={language}
 			tracker={tracker}
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}

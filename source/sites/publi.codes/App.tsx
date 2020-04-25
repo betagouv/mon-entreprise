@@ -4,19 +4,14 @@ import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
-import { getSessionStorage } from '../../utils'
 import redirects from '../mon-entreprise.fr/redirects'
 import Landing from './Landing'
 import Studio from './LazyStudio'
 import Mécanismes from './Mécanismes'
 
 function Router() {
-	const language = 'fr'
-	useEffect(() => {
-		getSessionStorage()?.setItem('lang', language)
-	}, [language])
 	return (
-		<Provider basename="publicodes" language={language}>
+		<Provider basename="publicodes">
 			<RouterSwitch />
 		</Provider>
 	)
