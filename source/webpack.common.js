@@ -15,21 +15,21 @@ module.exports.default = {
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/')
+			Images: path.resolve('source/images/'),
 		},
-		extensions: ['.js', '.ts', '.tsx']
+		extensions: ['.js', '.ts', '.tsx'],
 	},
 	entry: {
-		publicodes: './source/sites/publicodes/entry.js'
+		publicodes: './source/sites/publicodes/entry.js',
 	},
 	output: {
 		path: path.resolve('./dist/'),
-		globalObject: 'self'
+		globalObject: 'self',
 	},
-	plugins: [new CopyPlugin(['./manifest.webmanifest'])]
+	plugins: [new CopyPlugin(['./manifest.webmanifest'])],
 }
 
-module.exports.styleLoader = styleLoader => ({
+module.exports.styleLoader = (styleLoader) => ({
 	test: /\.css$/,
 	use: [
 		{ loader: styleLoader },
@@ -37,16 +37,16 @@ module.exports.styleLoader = styleLoader => ({
 			loader: 'css-loader',
 			options: {
 				sourceMap: true,
-				importLoaders: 1
-			}
+				importLoaders: 1,
+			},
 		},
 		{
-			loader: 'postcss-loader'
-		}
-	]
+			loader: 'postcss-loader',
+		},
+	],
 })
 
-module.exports.commonLoaders = ({ legacy = false } = {}) => {
+module.exports.commonLoaders = () => {
 	const babelLoader = {
 		loader: 'babel-loader',
 		options: {
@@ -54,48 +54,43 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 				[
 					'@babel/preset-env',
 					{
-						targets: !legacy
-							? {
-									esmodules: true
-							  }
-							: {
-									esmodules: false,
-									browsers: ['ie 11']
-							  },
+						targets: {
+							esmodules: true,
+						},
 						useBuiltIns: 'entry',
-						corejs: '3'
-					}
-				]
-			]
-		}
+						corejs: '3',
+					},
+				],
+			],
+		},
 	}
 
 	return [
 		{
 			test: /\.(js|ts|tsx)$/,
 			loader: babelLoader,
-			exclude: /node_modules|dist/
+			exclude: /node_modules|dist/,
 		},
 		{
 			test: /\.(jpe?g|png|svg)$/,
 			use: {
 				loader: 'file-loader',
 				options: {
-					name: 'images/[name].[ext]'
-				}
-			}
+					name: 'images/[name].[ext]',
+				},
+			},
 		},
 		{
 			test: /\.yaml$/,
-			use: ['json-loader', 'yaml-loader']
+			use: ['json-loader', 'yaml-loader'],
 		},
 		{
 			test: /\.toml$/,
-			use: ['toml-loader']
+			use: ['toml-loader'],
 		},
 		{
 			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader']
+			use: [babelLoader, 'nearley-loader'],
 		},
 		{
 			test: /\.csv$/,
@@ -103,9 +98,9 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			options: {
 				dynamicTyping: true,
 				header: true,
-				skipEmptyLines: true
-			}
-		}
+				skipEmptyLines: true,
+			},
+		},
 	]
 }
 
@@ -120,6 +115,6 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		title: "Futureco 🔥 – L'impact climat de vos gestes quotidiens",
 		description:
 			"La catastrophe climatique n'est plus qu'une menace lointaine, c'est une actualité. Tous vos gestes et consommations quotidiennes impactent le climat. À vous de jouer !",
-		filename: 'publicodes.html'
-	})
+		filename: 'publicodes.html',
+	}),
 ]

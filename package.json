@@ -7,8 +7,7 @@
 		"url": "https://github.com/laem/futureco.git"
 	},
 	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
+		"> 1% in FR"
 	],
 	"dependencies": {
 		"@babel/polyfill": "^7.6.0",
@@ -63,7 +62,7 @@
 	},
 	"scripts": {
 		"postinstall": "node source/scripts/postinstall.js",
-		"compile": "yarn run webpack --config source/webpack.prod.js && yarn run webpack --config source/webpack.prod.legacyBrowser.js",
+		"compile": "NODE_ENV=production yarn run webpack --config source/webpack.prod.js",
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
