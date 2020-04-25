@@ -6,16 +6,16 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import ItemCard from './ItemCard'
-import catégorie from './catégorie'
+import byCategory from './catégories'
 import Worker from 'worker-loader!./Suggestions.worker.js'
 const worker = new Worker()
 import Search from './Search'
 
 let ItemCardWithoutData = ItemCard()
 
-export default connect(state => ({ rules: flatRulesSelector(state) }))(
+export default connect((state) => ({ rules: flatRulesSelector(state) }))(
 	({ rules }) => {
-		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
+		let exposedRules = rules.filter((rule) => rule?.exposé === 'oui')
 		let [results, setResults] = useState(exposedRules)
 		let [input, setInput] = useState(null)
 
@@ -23,36 +23,82 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 			worker.postMessage({
 				rules: Object.values(exposedRules).map(
 					pick(['title', 'description', 'name', 'dottedName'])
-				)
+				),
 			})
 
 			worker.onmessage = ({ data: results }) => setResults(results)
-		}, [exposedRules, rules])
+		}, [exposedRules])
 
 		return (
-			<section style={{ marginTop: '2rem' }}>
+			<section>
 				<Search
-					setInput={input => {
+					setInput={(input) => {
 						setInput(input)
-						worker.postMessage({ input })
+						if (input.length > 2) worker.postMessage({ input })
 					}}
 				/>
-				{input &&
-					(results.length ? (
-						<>
-							<h2 css="font-size: 100%;">Résultats :</h2>
+				<section style={{ marginTop: '1.3rem' }}>
+					{input ? (
+						results.length ? (
+							<>
+								<h2 css="font-size: 100%;">Résultats :</h2>
 
-							<RuleList {...{ rules: results, exposedRules }} />
-						</>
+								<RuleList {...{ rules: results, exposedRules }} />
+							</>
+						) : (
+							<p>Rien trouvé {emoji('😶')}</p>
+						)
 					) : (
-						<p>Rien trouvé {emoji('😶')}</p>
-					))}
-				<RuleList {...{ rules: exposedRules, exposedRules }} />
+						<CategoryView exposedRules={exposedRules} />
+					)}
+				</section>
 			</section>
 		)
 	}
 )
 
+const CategoryView = ({ exposedRules }) => {
+	const categories = byCategory(exposedRules)
+	return (
+		<ul
+			css={`
+				padding-left: 0;
+				list-style: none;
+				li {
+				}
+				> li > div {
+					text-transform: uppercase;
+					font-size: 85%;
+					text-align: center;
+				}
+				li > ul > li {
+					white-space: initial;
+					display: inline-block;
+				}
+				li > ul {
+					padding-left: 0;
+				}
+				@media (max-width: 600px) {
+					li > ul {
+						display: block;
+						white-space: nowrap;
+						overflow-x: auto;
+					}
+					li > ul > li {
+						margin: 0 1rem;
+					}
+				}
+			`}
+		>
+			{categories.map(([category, rules]) => (
+				<li>
+					<div>{category}</div>
+					<RuleList {...{ rules, exposedRules: rules }} />
+				</li>
+			))}
+		</ul>
+	)
+}
 const RuleList = ({ rules, exposedRules }) => (
 	<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
 		{rules.map(({ dottedName }) => {
@@ -68,7 +114,6 @@ const RuleList = ({ rules, exposedRules }) => (
 							}
 						`}
 					>
-						{catégorie(rule)}
 						<ItemCardWithoutData {...rule} />
 					</Link>
 				</li>
