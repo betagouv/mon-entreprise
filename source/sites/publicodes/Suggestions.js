@@ -84,6 +84,7 @@ const CategoryView = ({ exposedRules }) => {
 				li > ul {
 					padding-left: 0;
 				}
+
 				@media (max-width: 600px) {
 					li > ul {
 						display: block;
@@ -96,10 +97,23 @@ const CategoryView = ({ exposedRules }) => {
 				}
 			`}
 		>
-			{categories.map(([category, rules]) => (
+			{categories.map(([category, rules], i) => (
 				<li>
 					<div>{category}</div>
 					<RuleList {...{ rules, exposedRules: rules }} />
+					{i === 0 && (
+						<img
+							css={`
+								display: none;
+								height: 3em;
+								margin: 1em auto;
+								@media (max-width: 600px) {
+									display: block;
+								}
+							`}
+							src={require('./images/horizontal-scroll.png')}
+						/>
+					)}
 				</li>
 			))}
 		</ul>
