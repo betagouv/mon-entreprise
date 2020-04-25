@@ -6,9 +6,6 @@
 		"type": "git",
 		"url": "https://github.com/laem/futureco.git"
 	},
-	"engines": {
-		"node": ">=8.10.0"
-	},
 	"browserslist": [
 		"> 1% in FR",
 		"not ie < 11"
