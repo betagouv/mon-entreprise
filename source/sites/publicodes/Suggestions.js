@@ -19,47 +19,52 @@ let buildFuse = rules =>
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
 	({ input, rules }) => {
-		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
-
 		let [fuse, setFuse] = useState(null)
-		useEffect(() => setFuse(buildFuse(exposedRules)), [exposedRules])
+		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
+		useEffect(() => {
+			setFuse(buildFuse(exposedRules))
+		}, [exposedRules])
 
-		let filteredRules = pipe(
-			partition(has('formule')),
-			apply(concat)
-		)(fuse && input ? fuse.search(input) : exposedRules)
+		let filteredRules = fuse && fuse.search(input)
 
 		return (
 			<section style={{ marginTop: '2rem' }}>
-				{filteredRules.length ? (
-					input && <h2 css="font-size: 100%;">Résultats :</h2>
-				) : (
-					<p>Rien trouvé {emoji('😶')}</p>
-				)}
-				{filteredRules && (
-					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
-						{filteredRules.map(({ dottedName }) => {
-							let rule = findRuleByDottedName(exposedRules, dottedName)
-							return (
-								<li css="list-style-type: none" key={rule.dottedName}>
-									<Link
-										to={'/simulateur/' + encodeRuleName(rule.dottedName)}
-										css={`
-											text-decoration: none !important;
-											:hover {
-												opacity: 1 !important;
-											}
-										`}
-									>
-										{catégorie(rule)}
-										<ItemCardWithoutData {...rule} />
-									</Link>
-								</li>
-							)
-						})}
-					</ul>
-				)}
+				{input &&
+					(filteredRules.length ? (
+						<>
+							<h2 css="font-size: 100%;">Résultats :</h2>
+
+							<RuleList {...{ rules: filteredRules, exposedRules }} />
+						</>
+					) : (
+						<p>Rien trouvé {emoji('😶')}</p>
+					))}
+				<RuleList {...{ rules: exposedRules, exposedRules }} />
 			</section>
 		)
 	}
+)
+
+const RuleList = ({ rules, exposedRules }) => (
+	<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
+		{rules.map(({ dottedName }) => {
+			let rule = findRuleByDottedName(exposedRules, dottedName)
+			return (
+				<li css="list-style-type: none" key={rule.dottedName}>
+					<Link
+						to={'/simulateur/' + encodeRuleName(rule.dottedName)}
+						css={`
+							text-decoration: none !important;
+							:hover {
+								opacity: 1 !important;
+							}
+						`}
+					>
+						{catégorie(rule)}
+						<ItemCardWithoutData {...rule} />
+					</Link>
+				</li>
+			)
+		})}
+	</ul>
 )
