@@ -3,8 +3,8 @@ import emoji from 'react-easy-emoji'
 import HumanCarbonImpact from './HumanCarbonImpact'
 import withTarget from './withTarget'
 
-export default withFigure => {
-	let decorator = withFigure ? withTarget : a => a
+export default (withFigure) => {
+	let decorator = withFigure ? withTarget : (a) => a
 	return decorator(
 		({
 			dottedName,
@@ -14,7 +14,7 @@ export default withFigure => {
 			nodeValue,
 			scenario,
 			nextSteps,
-			foldedSteps
+			foldedSteps,
 		}) => (
 			<div
 				key={dottedName}
@@ -23,6 +23,15 @@ export default withFigure => {
 					padding: ${withFigure ? '1rem 0 0' : '1rem'};
 					width: ${withFigure ? '18rem' : '10rem'};
 					min-height: 7em;
+					${!withFigure &&
+					`
+					@media (max-width: 600px){
+							padding: .6rem;
+							width: 9rem;
+							font-size: 110%;
+							min-height: 6.5rem
+					}
+					`}
 					position: relative;
 					display: flex;
 					align-items: center;
@@ -74,7 +83,7 @@ export default withFigure => {
 									dottedName,
 									scenario,
 									nextSteps,
-									foldedSteps
+									foldedSteps,
 								}}
 							/>
 						</div>
