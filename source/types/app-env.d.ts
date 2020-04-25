@@ -3,6 +3,7 @@ declare module NodeJS {
 		EN_SITE: string
 		FR_SITE: string
 		NODE_ENV: 'development' | 'production'
+		ANALYZE_BUNDLE: '0' | '1'
 
 		// Netlify variables
 		// https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
