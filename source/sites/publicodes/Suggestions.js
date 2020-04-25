@@ -1,6 +1,4 @@
-import searchWeights from 'Components/searchWeights'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import Fuse from 'fuse.js'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -9,32 +7,42 @@ import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import ItemCard from './ItemCard'
 import catégorie from './catégorie'
+import Worker from 'worker-loader!./Suggestions.worker.js'
+const worker = new Worker()
+import Search from './Search'
 
 let ItemCardWithoutData = ItemCard()
-let buildFuse = rules =>
-	new Fuse(rules.map(pick(['title', 'description', 'name', 'dottedName'])), {
-		keys: searchWeights,
-		threshold: 0.3
-	})
 
 export default connect(state => ({ rules: flatRulesSelector(state) }))(
-	({ input, rules }) => {
-		let [fuse, setFuse] = useState(null)
+	({ rules }) => {
 		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
-		useEffect(() => {
-			setFuse(buildFuse(exposedRules))
-		}, [exposedRules])
+		let [results, setResults] = useState(exposedRules)
+		let [input, setInput] = useState(null)
 
-		let filteredRules = fuse && fuse.search(input)
+		useEffect(() => {
+			worker.postMessage({
+				rules: Object.values(exposedRules).map(
+					pick(['title', 'description', 'name', 'dottedName'])
+				)
+			})
+
+			worker.onmessage = ({ data: results }) => setResults(results)
+		}, [exposedRules, rules])
 
 		return (
 			<section style={{ marginTop: '2rem' }}>
+				<Search
+					setInput={input => {
+						setInput(input)
+						worker.postMessage({ input })
+					}}
+				/>
 				{input &&
-					(filteredRules.length ? (
+					(results.length ? (
 						<>
 							<h2 css="font-size: 100%;">Résultats :</h2>
 
-							<RuleList {...{ rules: filteredRules, exposedRules }} />
+							<RuleList {...{ rules: results, exposedRules }} />
 						</>
 					) : (
 						<p>Rien trouvé {emoji('😶')}</p>
