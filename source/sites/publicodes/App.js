@@ -54,4 +54,4 @@ class App extends Component {
 }
 
 let devMode = process.env.NODE_ENV !== 'production'
-export default devMode ? require('react-hot-loader').hot(module)(App) : App
+export default devMode ? require('react-hot-loader/root').hot(App) : App
