@@ -69,7 +69,13 @@ const CategoryView = ({ exposedRules }) => {
 				> li > div {
 					text-transform: uppercase;
 					font-size: 85%;
+					width: auto;
+					margin: 0 auto;
 					text-align: center;
+					border-radius: 0.3rem;
+					width: 6.5rem;
+					color: var(--textColor);
+					background: var(--color);
 				}
 				li > ul > li {
 					white-space: initial;
