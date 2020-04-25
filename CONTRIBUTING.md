@@ -130,6 +130,12 @@ N'oubliez pas de vérifier le diff que rien n'est choquant.
 - [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet
   sur internet avec gestion des DNS.
 
+### Analyse des bundles
+
+La commande `yarn run analyze-bundle` gènere une visualisation interactive du
+contenu packagé, cf.
+[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
 ## Documentation
 
 ### Publicodes

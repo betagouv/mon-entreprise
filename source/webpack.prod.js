@@ -5,6 +5,8 @@ const {
 	default: common
 } = require('./webpack.common.js')
 
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
@@ -63,6 +65,7 @@ module.exports = {
 	plugins: [
 		...common.plugins,
 		...HTMLPlugins({ injectTrackingScript: true }),
+		process.env.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
@@ -102,33 +105,35 @@ module.exports = {
 			filename: '[name].[hash].css',
 			chunkFilename: '[id].[hash].css'
 		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'infrance'),
-			routes: [
-				'/',
-				'/social-security/salaried',
-				'/iframes/simulateur-embauche'
-			],
-			indexPath: path.resolve('dist', 'infrance.html')
-		}),
-		new PrerenderSPAPlugin({
-			...prerenderConfig(),
-			outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
-			routes: [
-				'/',
-				'/simulateurs/salarié',
-				'/simulateurs/auto-entrepreneur',
-				'/simulateurs/artiste-auteur',
-				'/simulateurs/assimilé-salarié',
-				'/simulateurs/indépendant',
-				'/créer',
-				'/coronavirus',
-				'/gérer',
-				'/iframes/simulateur-embauche',
-				'/iframes/simulateur-chomage-partiel'
-			],
-			indexPath: path.resolve('dist', 'mon-entreprise.html')
-		})
-	]
+		process.env.ANALYZE_BUNDLE !== '1' &&
+			new PrerenderSPAPlugin({
+				...prerenderConfig(),
+				outputDir: path.resolve('dist', 'prerender', 'infrance'),
+				routes: [
+					'/',
+					'/social-security/salaried',
+					'/iframes/simulateur-embauche'
+				],
+				indexPath: path.resolve('dist', 'infrance.html')
+			}),
+		process.env.ANALYZE_BUNDLE !== '1' &&
+			new PrerenderSPAPlugin({
+				...prerenderConfig(),
+				outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
+				routes: [
+					'/',
+					'/simulateurs/salarié',
+					'/simulateurs/auto-entrepreneur',
+					'/simulateurs/artiste-auteur',
+					'/simulateurs/assimilé-salarié',
+					'/simulateurs/indépendant',
+					'/créer',
+					'/coronavirus',
+					'/gérer',
+					'/iframes/simulateur-embauche',
+					'/iframes/simulateur-chomage-partiel'
+				],
+				indexPath: path.resolve('dist', 'mon-entreprise.html')
+			})
+	].filter(Boolean)
 }

@@ -26,7 +26,6 @@ import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
 import { Results } from './Result'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { Dot } from 'recharts'
 
 const lauchComputationWhenResultsInViewport = () => {
 	const dottedName = 'dirigeant . rémunération totale'
