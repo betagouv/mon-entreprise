@@ -23,10 +23,8 @@ import {
 	take,
 	toPairs,
 	trim,
-	when
+	when,
 } from 'ramda'
-import rawRules from 'Règles/base.yaml'
-import translations from 'Règles/externalized.yaml'
 // TODO - should be in UI, not engine
 import { capitalise0, coerceArray } from '../utils'
 import { syntaxError, warning } from './error'
@@ -35,7 +33,7 @@ import possibleVariableTypes from './possibleVariableTypes.yaml'
 /***********************************
 Functions working on one rule */
 
-export let enrichRule = rule => {
+export let enrichRule = (rule) => {
 	try {
 		const dottedName = rule.dottedName || rule.nom
 		const name = nameLeaf(dottedName)
@@ -55,14 +53,14 @@ export let enrichRule = rule => {
 			...rule,
 			dottedName,
 			name,
-			type: possibleVariableTypes.find(t => has(t, rule) || rule.type === t),
+			type: possibleVariableTypes.find((t) => has(t, rule) || rule.type === t),
 			title: capitalise0(rule['titre'] || name),
 			defaultValue: rule['par défaut'],
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
 			unit,
-			defaultUnit
+			defaultUnit,
 		}
 	} catch (e) {
 		syntaxError(
@@ -82,7 +80,7 @@ export let disambiguateExampleSituation = (rules, rule) =>
 		fromPairs
 	)
 
-export let hasKnownRuleType = rule => rule && enrichRule(rule).type
+export let hasKnownRuleType = (rule) => rule && enrichRule(rule).type
 
 export let splitName = split(' . '),
 	joinName = join(' . ')
@@ -90,14 +88,14 @@ export let splitName = split(' . '),
 export let parentName = pipe(splitName, dropLast(1), joinName)
 export let nameLeaf = pipe(splitName, last)
 
-export let encodeRuleName = name =>
+export let encodeRuleName = (name) =>
 	encodeURI(
 		name
 			.replace(/\s\.\s/g, '/')
 			.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
 			.replace(/\s/g, '-')
 	)
-export let decodeRuleName = name =>
+export let decodeRuleName = (name) =>
 	decodeURI(
 		name
 			.replace(/\//g, ' . ')
@@ -105,10 +103,10 @@ export let decodeRuleName = name =>
 			.replace(/\u2011/g, '-')
 	)
 
-export let ruleParents = dottedName => {
+export let ruleParents = (dottedName) => {
 	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
 	return range(1, fragments.length)
-		.map(nbEl => take(nbEl)(fragments))
+		.map((nbEl) => take(nbEl)(fragments))
 		.reverse() //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD] ]
 }
 /* In a formula, variables can be cited without referring to them absolutely : namespaces can be omitted to enhance the readability. This function resolves this ambiguity.
@@ -121,7 +119,7 @@ export let disambiguateRuleReference = (
 	let pathPossibilities = [
 			splitName(dottedName), // the rule's own namespace
 			...ruleParents(dottedName), // the parent namespaces
-			[] // the top level namespace
+			[], // the top level namespace
 		],
 		found = reduce(
 			(res, path) => {
@@ -165,7 +163,7 @@ export let findRulesByName = (allRules, query) =>
 
 export let findRuleByDottedName = (allRules, dottedName) =>
 	Array.isArray(allRules)
-		? allRules.find(rule => rule.dottedName == dottedName)
+		? allRules.find((rule) => rule.dottedName == dottedName)
 		: allRules[dottedName]
 
 export let findRule = (rules, nameOrDottedName) =>
@@ -174,14 +172,14 @@ export let findRule = (rules, nameOrDottedName) =>
 		: findRuleByName(rules, nameOrDottedName)
 
 export let findRuleByNamespace = (allRules, ns) =>
-	allRules.filter(rule => parentName(rule.dottedName) === ns)
+	allRules.filter((rule) => parentName(rule.dottedName) === ns)
 
 /*********************************
  Autres */
 
-export let queryRule = rule => query => path(query.split(' . '))(rule)
+export let queryRule = (rule) => (query) => path(query.split(' . '))(rule)
 
-export let nestedSituationToPathMap = situation => {
+export let nestedSituationToPathMap = (situation) => {
 	if (situation == undefined) return {}
 	let rec = (o, currentPath) =>
 		typeof o === 'object'
@@ -194,7 +192,7 @@ export let nestedSituationToPathMap = situation => {
 /* Traduction */
 
 export let translateAll = (translations, flatRules) => {
-	let translationsOf = rule => translations[rule.dottedName],
+	let translationsOf = (rule) => translations[rule.dottedName],
 		translateProp = (lang, translation) => (rule, prop) => {
 			let propTrans = translation[prop + '.' + lang]
 			if (prop === 'suggestions' && propTrans)
@@ -204,7 +202,7 @@ export let translateAll = (translations, flatRules) => {
 						toPairs,
 						map(([key, translatedKey]) => [
 							translatedKey,
-							rule.suggestions[key]
+							rule.suggestions[key],
 						]),
 						fromPairs
 					)(propTrans),
@@ -212,7 +210,7 @@ export let translateAll = (translations, flatRules) => {
 				)
 			return propTrans ? assoc(prop, propTrans, rule) : rule
 		},
-		translateRule = (lang, translations, props) => rule => {
+		translateRule = (lang, translations, props) => (rule) => {
 			let ruleTrans = translationsOf(rule)
 			return ruleTrans
 				? reduce(translateProp(lang, ruleTrans), rule, props)
@@ -225,23 +223,11 @@ export let translateAll = (translations, flatRules) => {
 		'question',
 		'résumé',
 		'suggestions',
-		'contrôles'
+		'contrôles',
 	]
 
 	return map(translateRule('en', translations, targets), flatRules)
 }
-
-const rulesList = Object.entries(rawRules).map(([dottedName, rule]) => ({
-	dottedName,
-	...rule
-}))
-
-// On enrichit la base de règles avec des propriétés dérivées de celles du YAML
-export let rules = translateAll(translations, rulesList).map(rule =>
-	enrichRule(rule)
-)
-
-export let rulesFr = rulesList.map(rule => enrichRule(rule))
 
 export let findParentDependencies = (rules, rule) => {
 	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
@@ -249,7 +235,7 @@ export let findParentDependencies = (rules, rule) => {
 	// It lets those children omit obvious and repetitive parent applicability tests
 	let parentDependencies = ruleParents(rule.dottedName).map(joinName)
 	return pipe(
-		map(parent => findRuleByDottedName(rules, parent)),
+		map((parent) => findRuleByDottedName(rules, parent)),
 		reject(isNil),
 		filter(
 			//Find the first "calculable" parent
@@ -263,14 +249,14 @@ export let findParentDependencies = (rules, rule) => {
 	)(parentDependencies)
 }
 
-export let getRuleFromAnalysis = analysis => dottedName => {
+export let getRuleFromAnalysis = (analysis) => (dottedName) => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
 
 	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
 		.map(
-			analysis =>
+			(analysis) =>
 				analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute
 				analysis.targets.find(propEq('dottedName', dottedName))
 		)
