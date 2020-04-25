@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import ItemCard from './ItemCard'
+import catégorie from './catégorie'
 
 let ItemCardWithoutData = ItemCard()
 let buildFuse = rules =>
@@ -27,8 +28,6 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 			partition(has('formule')),
 			apply(concat)
 		)(fuse && input ? fuse.search(input) : exposedRules)
-
-		console.log({ filteredRules })
 
 		return (
 			<section style={{ marginTop: '2rem' }}>
@@ -52,6 +51,7 @@ export default connect(state => ({ rules: flatRulesSelector(state) }))(
 											}
 										`}
 									>
+										{catégorie(rule)}
 										<ItemCardWithoutData {...rule} />
 									</Link>
 								</li>
