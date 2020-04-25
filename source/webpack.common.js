@@ -26,15 +26,7 @@ module.exports.default = {
 		path: path.resolve('./dist/'),
 		globalObject: 'self'
 	},
-	plugins: [
-		new CopyPlugin([
-			'./manifest.webmanifest',
-			{
-				from: './source/sites/publicodes/favicon',
-				to: 'favicon'
-			}
-		])
-	]
+	plugins: [new CopyPlugin(['./manifest.webmanifest'])]
 }
 
 module.exports.styleLoader = styleLoader => ({
