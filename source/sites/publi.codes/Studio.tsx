@@ -1,13 +1,12 @@
 // import { ControlledEditor } from '@monaco-editor/react'
 import Engine from 'Engine'
 import { formatValue } from 'Engine/format'
-import { safeLoad } from 'js-yaml'
+import yaml from 'yaml'
 import { last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
 import { useLocation } from 'react-router'
-import { DottedName } from 'Rules'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `
@@ -58,7 +57,7 @@ export default function Studio() {
 
 	const targets = useMemo(() => {
 		try {
-			return Object.keys(safeLoad(debouncedEditorValue) ?? {})
+			return Object.keys(yaml.parse(debouncedEditorValue) ?? {})
 		} catch (e) {
 			console.error(e)
 			return []

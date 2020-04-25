@@ -1,5 +1,5 @@
 import { ParsedRule } from 'Engine/types'
-import { safeDump } from 'js-yaml'
+import yaml from 'yaml'
 import React from 'react'
 import rules from 'Rules'
 import PublicodeHighlighter from '../ui/PublicodeHighlighter'
@@ -12,7 +12,7 @@ export default function RuleSource({ dottedName }: RuleSourceProps) {
 	return (
 		<section>
 			<h3>Source publicode</h3>
-			<PublicodeHighlighter source={safeDump({ [dottedName]: source })} />
+			<PublicodeHighlighter source={yaml.stringify({ [dottedName]: source })} />
 			<p className="ui__ notice">
 				Ci-dessus la règle d'origine, écrite en publicode. Publicode est un
 				langage déclaratif développé par beta.gouv.fr en partenariat avec

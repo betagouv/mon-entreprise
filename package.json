@@ -62,7 +62,8 @@
 		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
 		"swr": "^0.1.16",
-		"whatwg-fetch": "^3.0.0"
+		"whatwg-fetch": "^3.0.0",
+		"yaml": "^1.9.2"
 	},
 	"scripts": {
 		"prepare": "node source/scripts/prepare.js",
@@ -101,7 +102,7 @@
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"mon-entreprise:test": "cypress open --browser chromium",
 		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"mycompanyinfrance:test": "cypress open --browser chromium --env language=en --config baseUrl=http://localhost:8080/infrance",
+		"mycompanyinfrance:test": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
 		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
 	},
 	"devDependencies": {

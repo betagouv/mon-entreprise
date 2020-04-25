@@ -1,5 +1,5 @@
 import parseRule from 'Engine/parseRule'
-import { safeLoad } from 'js-yaml'
+import yaml from 'yaml'
 import { lensPath, set } from 'ramda'
 import { compilationError } from './error'
 import { parseReference } from './parseReference'
@@ -10,7 +10,7 @@ export default function parseRules<Names extends string>(
 ): ParsedRules<Names> {
 	const rules =
 		typeof rawRules === 'string'
-			? (safeLoad(rawRules.replace(/\t/g, '  ')) as Rules<Names>)
+			? (yaml.parse(rawRules.replace(/\t/g, '  ')) as Rules<Names>)
 			: { ...rawRules }
 
 	extractInlinedNames(rules)
