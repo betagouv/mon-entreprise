@@ -4,15 +4,19 @@ import React from 'react'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import rules from 'Rules'
-import translations from '../../locales/rules-en.yaml'
+import i18next from '../../i18n'
+import translations from '../../locales/en.yaml'
+import ruleTranslations from '../../locales/rules-en.yaml'
 import App from './App'
+
+i18next.addResourceBundle('en', 'translation', translations)
+i18next.changeLanguage('en')
 
 let anchor = document.querySelector('#js')
 render(
 	<App
-		language="en"
 		basename="infrance"
-		rules={translateRules('en', translations, rules)}
+		rules={translateRules('en', ruleTranslations, rules)}
 	/>,
 	anchor
 )

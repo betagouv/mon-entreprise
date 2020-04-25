@@ -1,21 +1,18 @@
 import { ThemeColorsProvider } from 'Components/utils/colors'
-import { EngineProvider } from 'Components/utils/EngineContext'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
 import { TrackerProvider } from 'Components/utils/withTracker'
-import Engine from 'Engine'
 import { createBrowserHistory } from 'history'
 import { AvailableLangs } from 'i18n'
 import i18next from 'i18next'
 import React, { createContext, useEffect, useMemo } from 'react'
-import { I18nextProvider } from 'react-i18next'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 import Tracker from 'Tracker'
-import { Rules } from './rules'
-import { inIframe, getSessionStorage } from './utils'
+import { inIframe } from './utils'
 
 declare global {
 	interface Window {
@@ -50,7 +47,6 @@ export const SiteNameContext = createContext<SiteName | null>(null)
 
 export type ProviderProps = {
 	basename: SiteName
-	language: AvailableLangs
 	children: React.ReactNode
 	tracker?: Tracker
 	sitePaths?: SitePaths
@@ -64,11 +60,11 @@ export default function Provider({
 	basename,
 	sitePaths,
 	reduxMiddlewares,
-	language,
 	initialStore,
 	onStoreCreated,
 	children
 }: ProviderProps) {
+	const { language } = useTranslation().i18n as { language: AvailableLangs }
 	const history = useMemo(
 		() =>
 			createBrowserHistory({
@@ -93,10 +89,6 @@ export default function Provider({
 			...(reduxMiddlewares ?? [])
 		)
 	)
-	if (language) {
-		getSessionStorage()?.setItem('lang', language)
-		i18next.changeLanguage(language)
-	}
 
 	if (language && initialStore) initialStore.lang = language
 	const store = createStore(reducers, initialStore, storeEnhancer)
