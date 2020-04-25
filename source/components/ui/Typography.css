@@ -26,7 +26,7 @@ body {
 	font-weight: 400;
 	color: #040e19;
 	color: var(--darkColor);
-	font-family: 'Roboto', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -66,7 +66,7 @@ h4,
 h5,
 h6 {
 	color: var(--darkColor);
-	font-family: 'Montserrat', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 600;
 }
 
