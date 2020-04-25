@@ -20,4 +20,9 @@ export default (rules) => {
 			return memo
 		}, {})
 	)
+	return catégories.sort(([c1], c2) =>
+		c1 === 'nourriture'
+			? Infinity
+			: authorizedNamespaces.indexOf(c2) - authorizedNamespaces.indexOf(c1)
+	)
 }
