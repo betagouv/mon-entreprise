@@ -79,7 +79,7 @@ export default () => {
 								border: 4px solid var(--color)
 								
 							`
-								: `border: 4px solid white`}
+								: 'border: 4px solid white'}
 						`}
 					>
 						<h2>

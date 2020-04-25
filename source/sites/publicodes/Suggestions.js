@@ -1,6 +1,4 @@
-import searchWeights from 'Components/searchWeights'
 import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
-import Fuse from 'fuse.js'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -8,58 +6,118 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import ItemCard from './ItemCard'
-import catégorie from './catégorie'
+import byCategory from './catégories'
+import Worker from 'worker-loader!./Suggestions.worker.js'
+const worker = new Worker()
+import Search from './Search'
 
 let ItemCardWithoutData = ItemCard()
-let buildFuse = rules =>
-	new Fuse(rules.map(pick(['title', 'description', 'name', 'dottedName'])), {
-		keys: searchWeights,
-		threshold: 0.3
-	})
 
-export default connect(state => ({ rules: flatRulesSelector(state) }))(
-	({ input, rules }) => {
-		let exposedRules = rules.filter(rule => rule?.exposé === 'oui')
+export default connect((state) => ({ rules: flatRulesSelector(state) }))(
+	({ rules }) => {
+		let exposedRules = rules.filter((rule) => rule?.exposé === 'oui')
+		let [results, setResults] = useState(exposedRules)
+		let [input, setInput] = useState(null)
 
-		let [fuse, setFuse] = useState(null)
-		useEffect(() => setFuse(buildFuse(exposedRules)), [exposedRules])
+		useEffect(() => {
+			worker.postMessage({
+				rules: Object.values(exposedRules).map(
+					pick(['title', 'description', 'name', 'dottedName'])
+				),
+			})
 
-		let filteredRules = pipe(
-			partition(has('formule')),
-			apply(concat)
-		)(fuse && input ? fuse.search(input) : exposedRules)
+			worker.onmessage = ({ data: results }) => setResults(results)
+		}, [exposedRules])
 
 		return (
-			<section style={{ marginTop: '2rem' }}>
-				{filteredRules.length ? (
-					input && <h2 css="font-size: 100%;">Résultats :</h2>
-				) : (
-					<p>Rien trouvé {emoji('😶')}</p>
-				)}
-				{filteredRules && (
-					<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
-						{filteredRules.map(({ dottedName }) => {
-							let rule = findRuleByDottedName(exposedRules, dottedName)
-							return (
-								<li css="list-style-type: none" key={rule.dottedName}>
-									<Link
-										to={'/simulateur/' + encodeRuleName(rule.dottedName)}
-										css={`
-											text-decoration: none !important;
-											:hover {
-												opacity: 1 !important;
-											}
-										`}
-									>
-										{catégorie(rule)}
-										<ItemCardWithoutData {...rule} />
-									</Link>
-								</li>
-							)
-						})}
-					</ul>
-				)}
+			<section>
+				<Search
+					setInput={(input) => {
+						setInput(input)
+						if (input.length > 2) worker.postMessage({ input })
+					}}
+				/>
+				<section style={{ marginTop: '1.3rem' }}>
+					{input ? (
+						results.length ? (
+							<>
+								<h2 css="font-size: 100%;">Résultats :</h2>
+
+								<RuleList {...{ rules: results, exposedRules }} />
+							</>
+						) : (
+							<p>Rien trouvé {emoji('😶')}</p>
+						)
+					) : (
+						<CategoryView exposedRules={exposedRules} />
+					)}
+				</section>
 			</section>
 		)
 	}
+)
+
+const CategoryView = ({ exposedRules }) => {
+	const categories = byCategory(exposedRules)
+	return (
+		<ul
+			css={`
+				padding-left: 0;
+				list-style: none;
+				li {
+				}
+				> li > div {
+					text-transform: uppercase;
+					font-size: 85%;
+					text-align: center;
+				}
+				li > ul > li {
+					white-space: initial;
+					display: inline-block;
+				}
+				li > ul {
+					padding-left: 0;
+				}
+				@media (max-width: 600px) {
+					li > ul {
+						display: block;
+						white-space: nowrap;
+						overflow-x: auto;
+					}
+					li > ul > li {
+						margin: 0 1rem;
+					}
+				}
+			`}
+		>
+			{categories.map(([category, rules]) => (
+				<li>
+					<div>{category}</div>
+					<RuleList {...{ rules, exposedRules: rules }} />
+				</li>
+			))}
+		</ul>
+	)
+}
+const RuleList = ({ rules, exposedRules }) => (
+	<ul css="display: flex; flex-wrap: wrap; justify-content: space-evenly;     ">
+		{rules.map(({ dottedName }) => {
+			let rule = findRuleByDottedName(exposedRules, dottedName)
+			return (
+				<li css="list-style-type: none" key={rule.dottedName}>
+					<Link
+						to={'/simulateur/' + encodeRuleName(rule.dottedName)}
+						css={`
+							text-decoration: none !important;
+							:hover {
+								opacity: 1 !important;
+							}
+						`}
+					>
+						<ItemCardWithoutData {...rule} />
+					</Link>
+				</li>
+			)
+		})}
+	</ul>
 )

@@ -1,27 +1,19 @@
 {
-	"name": "mon-entreprise",
+	"name": "futureco",
 	"license": "MIT",
 	"version": "1.2.3",
-	"description": "Library to compute the french social security contributions. Also a website that explains the calculations, and a generic engine to build cool forms that asks the question needed to compute an objective.",
-	"main": "./dist/engine.js",
-	"files": [
-		"dist/engine.js"
-	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/betagouv/mon-entreprise.git"
-	},
-	"engines": {
-		"node": ">=8.10.0"
+		"url": "https://github.com/laem/futureco.git"
 	},
 	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
+		"> 1% in FR"
 	],
 	"dependencies": {
 		"@babel/polyfill": "^7.6.0",
 		"@babel/runtime": "^7.6.0",
 		"@microlink/react": "^4.0.1",
+		"@pmmmwh/react-refresh-webpack-plugin": "^0.2.0",
 		"classnames": "^2.2.5",
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
@@ -37,10 +29,10 @@
 		"ramda": "^0.26.1",
 		"raven-for-redux": "^1.3.1",
 		"raven-js": "^3.26.4",
-		"react": "^16.8.6",
+		"react": "^16.13.1",
 		"react-addons-css-transition-group": "^15.6.2",
 		"react-color": "^2.14.0",
-		"react-dom": "npm:@hot-loader/react-dom",
+		"react-dom": "^16.13.1",
 		"react-easy-emoji": "^1.2.0",
 		"react-helmet": "6.0.0-beta",
 		"react-highlight-words": "^0.11.0",
@@ -50,6 +42,7 @@
 		"react-monaco-editor": "^0.30.2",
 		"react-number-format": "^4.3.1",
 		"react-redux": "^7.0.3",
+		"react-refresh": "^0.8.1",
 		"react-router": "^5.1.1",
 		"react-router-dom": "^5.1.1",
 		"react-spring": "=8.0.27",
@@ -69,18 +62,16 @@
 	},
 	"scripts": {
 		"postinstall": "node source/scripts/postinstall.js",
-		"compile": "yarn run webpack --config source/webpack.prod.js && yarn run webpack --config source/webpack.prod.legacyBrowser.js",
+		"compile": "NODE_ENV=production yarn run webpack --config source/webpack.prod.js",
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
 		"eslint": "LIST=`git diff --cached --name-only --diff-filter=AMR HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"externalize": "node source/externalize.js",
-		"heroku-postbuild": "yarn install --production=false && yarn compile",
 		"pretest": "LIST=`git diff --name-only --diff-filter=AMR HEAD^..HEAD | grep .*\\.js | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi",
 		"start": "node source/server.js",
 		"test-inversions": "yarn test-watch --grep 'inversions'",
 		"test-meca": "yarn test-watch --grep 'Mécanismes'",
 		"test-rules": "yarn test-watch --grep 'notre base de règles'",
-		"test-cypress": "yarn run cypress run",
 		"test-watch": "yarn test-common --watch",
 		"test-common": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js \"./{,!(node_modules)/**/}!(webpack).test.js\"",
 		"test": "yarn test-common",
@@ -89,15 +80,7 @@
 		"test-lib": "mocha-webpack --webpack-config source/webpack.lib.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage test/library.test.js",
 		"test-expressions": "yarn test-common --grep 'Suite expressions'",
 		"test-units": "mocha-webpack --webpack-config source/webpack.test.js --require source-map-support/register --include componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js test/units.test.js",
-		"test-regressions": "jest",
-		"type-check": "tsc --noEmit",
-		"compile-lib": "yarn webpack --config source/webpack.lib.js",
-		"compile-dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
-		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
-		"mon-entreprise:test": "cypress open --browser chromium",
-		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"mycompanyinfrance:test": "cypress open --browser chromium --env language=en --config baseUrl=http://localhost:8080/infrance",
-		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
+		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.6.4",
@@ -167,10 +150,9 @@
 		"monaco-editor-webpack-plugin": "^1.7.0",
 		"nearley-loader": "^2.0.0",
 		"postcss-loader": "^2.1.2",
-		"prettier": "^1.19.1",
+		"prettier": "^2.0.5",
 		"ramda-fantasy": "^0.8.0",
 		"raw-loader": "^0.5.1",
-		"react-hot-loader": "^4.12.15",
 		"serve": "^11.1.0",
 		"serve-handler": "^6.1.1",
 		"sinon": "^4.5.0",
@@ -189,9 +171,5 @@
 		"worker-loader": "^2.0.0",
 		"yaml-jest": "^1.0.5",
 		"yaml-loader": "^0.5.0"
-	},
-	"optionalDependencies": {
-		"cypress": "^3.6.1",
-		"prerender-spa-plugin": "^3.4.0"
 	}
 }
