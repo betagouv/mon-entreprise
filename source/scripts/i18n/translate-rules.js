@@ -1,4 +1,4 @@
-var { safeDump } = require('js-yaml')
+var { stringify } = require('yaml')
 var fs = require('fs')
 
 const {
@@ -9,7 +9,10 @@ const {
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
 
-fs.writeFileSync(rulesTranslationPath, safeDump(resolved, { sortKeys: true }))
+fs.writeFileSync(
+	rulesTranslationPath,
+	stringify(resolved, { sortMapEntries: true })
+)
 
 missingTranslations.forEach(async ([dottedName, attr, value]) => {
 	try {
@@ -18,7 +21,7 @@ missingTranslations.forEach(async ([dottedName, attr, value]) => {
 		// C'est très bourrin, mais on ne veut pas perdre une traduction qu'on a payé
 		fs.writeFileSync(
 			rulesTranslationPath,
-			safeDump(resolved, { sortKeys: true })
+			stringify(resolved, { sortMapEntries: true })
 		)
 	} catch (e) {
 		console.log(e)

@@ -3,7 +3,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const yaml = require('js-yaml')
+const yaml = require('yaml')
 
 const publicodesDir = path.resolve(__dirname, '../rules')
 
@@ -22,7 +22,7 @@ function concatenateFilesInDir(dirPath = publicodesDir) {
 }
 
 function readRules() {
-	return yaml.safeLoad(concatenateFilesInDir())
+	return yaml.parse(concatenateFilesInDir())
 }
 
 exports.readRules = readRules

@@ -6,7 +6,7 @@ let R = require('ramda')
 var querystring = require('querystring')
 let { readRules } = require('../rules')
 
-let { safeLoad } = require('js-yaml')
+let { parse } = require('yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
 let UiTranslationPath = path.resolve('source/locales/en.yaml')
 
@@ -23,7 +23,7 @@ let attributesToTranslate = [
 function getRulesMissingTranslations() {
 	let rules = readRules()
 
-	let currentExternalization = safeLoad(
+	let currentExternalization = parse(
 		fs.readFileSync(rulesTranslationPath, 'utf-8')
 	)
 
@@ -119,7 +119,7 @@ const getUiMissingTranslations = () => {
 	const staticKeys = require(path.resolve(
 		'source/locales/static-analysis-fr.json'
 	))
-	const translatedKeys = safeLoad(fs.readFileSync(UiTranslationPath, 'utf-8'))
+	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 
 	const missingTranslations = Object.keys(staticKeys).filter(key => {
 		if (key.match(/^\{.*\}$/)) {

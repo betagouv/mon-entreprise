@@ -1,4 +1,4 @@
-var { safeDump, safeLoad } = require('js-yaml')
+var { stringify, parse } = require('yaml')
 var R = require('ramda')
 var fs = require('fs')
 
@@ -9,7 +9,7 @@ const {
 } = require('./utils')
 
 const missingTranslations = getUiMissingTranslations()
-let translatedKeys = safeLoad(fs.readFileSync(UiTranslationPath, 'utf-8'))
+let translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 
 Object.entries(missingTranslations)
 	.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
@@ -23,7 +23,7 @@ Object.entries(missingTranslations)
 			)
 			fs.writeFileSync(
 				UiTranslationPath,
-				safeDump(translatedKeys, { sortKeys: true })
+				stringify(translatedKeys, { sortMapEntries: true })
 			)
 		} catch (e) {
 			console.log(e)
