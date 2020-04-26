@@ -98,7 +98,7 @@ export default function SocialSecurity() {
 									<Link
 										className="ui__ interactive card box"
 										to={{
-											pathname: sitePaths.gérer.déclarationIndépendant.index
+											pathname: sitePaths.gérer.déclarationIndépendant
 										}}
 									>
 										<div className="ui__ big box-icon">{emoji('✍')}</div>

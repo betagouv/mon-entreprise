@@ -51,6 +51,7 @@ import Stats from './pages/Stats/LazyStats'
 import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
+import { AvailableLangs } from 'i18n'
 
 if (process.env.NODE_ENV === 'production') {
 	const release =
@@ -90,7 +91,7 @@ function Root({ basename, rules }: RootProps) {
 		rules = rulesFr
 	}
 
-	const paths = constructLocalizedSitePath(language)
+	const paths = constructLocalizedSitePath(language as AvailableLangs)
 	return (
 		<Provider
 			basename={basename}

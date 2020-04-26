@@ -8,7 +8,7 @@ let { readRules } = require('../rules')
 
 let { parse } = require('yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
-let UiTranslationPath = path.resolve('source/locales/en.yaml')
+let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
 
 let attributesToTranslate = [
 	'titre',
