@@ -895,46 +895,6 @@ pages:
       simulator language.</3>
     module: What module?
 par: per
-path:
-  budget: /budget
-  coronavirus: /coronavirus
-  créer:
-    après: /after-registration
-    guideStatut:
-      autoEntrepreneur: /auto-entrepreneur
-      gérantMinoritaire: /chairman-or-managing-director
-      index: /legal-status
-      liste: /list
-      nombreAssociés: /multiple-associates
-      responsabilité: /liability
-      statutDirigeant: /director
-    index: /create
-  documentation:
-    exemples: /examples
-    index: /documentation
-  gérer:
-    déclaration-indépendant:
-      index: /declaration-aid-independent
-    embaucher: /hiring
-    index: /manage
-    sécuritéSociale: /social-security
-  integration:
-    iframe: /iframe
-    index: /integration
-    library: /library
-  nouveautés: /What's new
-  simulateurs:
-    artiste-auteur: /artist-author
-    assimilé-salarié: /assimile-salarie
-    auto-entrepreneur: /auto-entrepreneur
-    comparaison: /social-scheme-comparaison
-    index: /simulators
-    indépendant: /independant
-    salarié: /salaried
-  stats: /stats
-  économieCollaborative:
-    index: /sharing-economy
-    votreSituation: /your-situation
 payslip:
   disclaimer: >-
     It takes into account national law but not union negotiated rules. Lots of

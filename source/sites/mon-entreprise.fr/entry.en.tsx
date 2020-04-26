@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import rules from 'Rules'
 import i18next from '../../i18n'
-import translations from '../../locales/en.yaml'
+import translations from '../../locales/ui-en.yaml'
 import ruleTranslations from '../../locales/rules-en.yaml'
 import App from './App'
 

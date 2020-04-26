@@ -32,7 +32,7 @@ export default function Gérer() {
 				<Route path={sitePaths.gérer.embaucher} component={Embaucher} />
 				<Route
 					exact
-					path={sitePaths.gérer.déclarationIndépendant.index}
+					path={sitePaths.gérer.déclarationIndépendant}
 					component={AideDéclarationIndépendant}
 				/>
 			</Switch>
