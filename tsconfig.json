@@ -38,5 +38,5 @@
 			"Types/*": ["types/*"]
 		}
 	},
-	"include": ["source"]
+	"include": ["source", "test", "cypress"]
 }
