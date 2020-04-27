@@ -90,7 +90,6 @@ export default function Provider({
 		)
 	)
 
-	if (language && initialStore) initialStore.lang = language
 	const store = createStore(reducers, initialStore, storeEnhancer)
 	onStoreCreated?.(store)
 

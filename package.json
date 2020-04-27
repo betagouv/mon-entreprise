@@ -99,11 +99,12 @@
 		"i18n:ui:check": "yarn run i18next && node source/scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next && node source/scripts/i18n/translate-ui.js",
 		"publicodes:serve": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
+		"publicodes:test-dev": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"mon-entreprise:serve": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
-		"mon-entreprise:test": "cypress open --browser chromium",
+		"mon-entreprise:test-dev": "cypress open --browser chromium",
 		"mycompanyinfrance:serve": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
-		"mycompanyinfrance:test": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
-		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve"
+		"mycompanyinfrance:test-dev": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
+		"serve-dev": "yarn run mon-entreprise:serve & yarn run mycompanyinfrance:serve & yarn run publicodes:serve"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.6.4",

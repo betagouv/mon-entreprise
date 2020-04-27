@@ -56,18 +56,6 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 	}
 }
 
-function lang(
-	state = i18n.language as AvailableLangs,
-	{ type, lang }
-): AvailableLangs {
-	switch (type) {
-		case 'SWITCH_LANG':
-			return lang
-		default:
-			return state
-	}
-}
-
 type QuestionsKind =
 	| "à l'affiche"
 	| 'non prioritaires'
@@ -206,7 +194,6 @@ const existingCompanyReducer = (state, action: Action) => {
 }
 const mainReducer = (state, action: Action) =>
 	combineReducers({
-		lang,
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>

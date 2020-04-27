@@ -3,6 +3,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import publicodeReadme from 'Engine/README.md'
 import React, { useEffect } from 'react'
 import { Header } from './Header'
+import { NavLink } from 'react-router-dom'
 
 export default function Landing() {
 	useEffect(() => {
@@ -22,7 +23,6 @@ export default function Landing() {
 		<div className="app-content ui__ container" css="margin: 2rem 0">
 			<ScrollToTop />
 			<Header />
-			<br />
 			<br />
 			<MarkdownWithAnchorLinks source={publicodeReadme} />
 		</div>

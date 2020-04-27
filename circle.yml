@@ -21,7 +21,7 @@ commands:
         default: fr
       integration_folder:
         type: enum
-        enum: [mon-entreprise, external]
+        enum: [mon-entreprise, external, publi.codes]
         default: mon-entreprise
       base_url:
         type: string
@@ -70,6 +70,9 @@ jobs:
       - cypress:
           base_url: http://localhost:5001
           language: en
+      - cypress:
+          base_url: http://localhost:5002
+          integration_folder: publi.codes
 
   bundlesize-test:
     docker:
@@ -97,6 +100,9 @@ jobs:
           language: en
       - cypress:
           integration_folder: external
+      - cypress:
+          base_url: https://publi.codes
+          integration_folder: publi.codes
       - run:
           name: Send email if test failed
           when: on_fail
