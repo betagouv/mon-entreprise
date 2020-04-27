@@ -30,13 +30,22 @@ commands:
       - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
 
 jobs:
+  lint:
+    docker:
+      - image: node:12.16.1-buster
+    steps:
+      - install
+      - run: |
+          yarn eslintrc-check
+          yarn eslint-check
+          yarn prettier-check
   type-check:
     docker:
       - image: node:12.16.1-buster
     steps:
       - install
       - run: |
-          yarn run type-check
+          yarn type-check
   i18n-check:
     docker:
       - image: node:12.16.1-buster
@@ -53,7 +62,6 @@ jobs:
           git config --global core.quotepath false
           yarn test
           yarn test-regressions
-
   end-to-end-test:
     docker:
       - image: cypress/base:12.16.1
@@ -73,7 +81,6 @@ jobs:
       - cypress:
           base_url: http://localhost:5002
           integration_folder: publi.codes
-
   bundlesize-test:
     docker:
       - image: cypress/base:12.16.1
@@ -84,7 +91,6 @@ jobs:
       - run: |
           yarn run simple-compile
           yarn test-bundlesize
-
   production-end-to-end-test:
     docker:
       - image: cypress/base:12.16.1
@@ -113,6 +119,7 @@ workflows:
   version: 2
   test:
     jobs:
+      - lint
       - type-check
       - i18n-check
       - unit-test
