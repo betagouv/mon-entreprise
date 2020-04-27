@@ -2,4 +2,5 @@ globals:
   cy: false
   Cypress: false
   expect: false
-parser: esprima
+env:
+  mocha: true
