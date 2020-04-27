@@ -10,8 +10,11 @@ import rules from 'Rules'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
+		// debugger
 		let parsedRules = parseRules(rules)
 		let ruleDependencies = buildRulesDependencies(parsedRules)
+
+		// console.log(ruleDependencies)
 		let g = new graphlib.Graph()
 
 		ruleDependencies.forEach(([ruleDottedName, dependenciesDottedNames]) => {

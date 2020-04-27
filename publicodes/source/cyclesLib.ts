@@ -92,18 +92,19 @@ type FormuleExplanation<Name extends string> =
 	| Possibilities
 	| Possibilities2
 	| Reference<Name>
-	| RecalculBroken<Name>
 	| AnyMechanism<Name>
 export function isFormuleExplanation<Name extends string>(
 	node: ASTNode
 ): node is FormuleExplanation<Name> {
+	if (node.avec && node.règle) {
+		debugger
+	}
 	return (
 		isValue(node) ||
 		isOperation(node) ||
 		isReference(node) ||
 		isPossibilities(node) ||
 		isPossibilities2(node) ||
-		isRecalculBroken<Name>(node) ||
 		isAnyMechanism<Name>(node)
 	)
 }
@@ -179,26 +180,6 @@ export function isReference<Name extends string>(
 		isWannabeDottedName(reference.name) &&
 		isWannabeDottedName(reference.partialReference) &&
 		isWannabeDottedName(reference.dottedName)
-	)
-}
-
-type RecalculBroken<Name> = ASTNode & {
-	avec: Record<string, string> // Note: TS doesn't allow `Record<Name, string>`!
-	règle?: Name
-	evaluate: Function
-}
-export function isRecalculBroken<Name>(
-	node: ASTNode
-): node is RecalculBroken<Name> {
-	const recalculBroken = node as RecalculBroken<Name>
-	// Very defensive because we don't want to take risks with this not-well-defined kind of node:
-	return (
-		R.all(
-			key => R.includes(key, ['avec', 'règle', 'evaluate']),
-			R.keys(recalculBroken)
-		) &&
-		typeof recalculBroken.avec === 'object' &&
-		recalculBroken.evaluate instanceof Function
 	)
 }
 
@@ -693,14 +674,6 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return [reference.dottedName]
 	}
 
-	function ruleDependenciesOfRecalculBroken<Name>(
-		depth: number,
-		recalculBroken: RecalculBroken<Name>
-	): Array<Name> {
-		logVisit(depth, 'recalcul broken', recalculBroken.règle || '')
-		return recalculBroken.règle ? [recalculBroken.règle] : []
-	}
-
 	function ruleDependenciesOfRecalculMech(
 		depth: number,
 		recalculMech: RecalculMech<Name>
@@ -1021,8 +994,6 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return ruleDependenciesOfPossibilities(depth, node)
 	} else if (isPossibilities2(node)) {
 		return ruleDependenciesOfPossibilities2(depth, node)
-	} else if (isRecalculBroken<Name>(node)) {
-		return ruleDependenciesOfRecalculBroken(depth, node)
 	} else if (isRecalculMech<Name>(node)) {
 		return ruleDependenciesOfRecalculMech(depth, node)
 	} else if (isEncadrementMech(node)) {
@@ -1061,21 +1032,13 @@ export function ruleDependenciesOfNode<Name extends string>(
 		return ruleDependenciesOfDureeMech(depth, node)
 	}
 
-	if (node.avec) {
-		// [XXX] - How come we meet this? Souldn't `mecanismRecalcul` (in `mecanisms.js`) build a `Recalcul` type node?
-		console.error(
-			`Visited a non-parsed recalcul node, to investigate: règle ${node.règle}`
-		)
-	} else {
-		throw new Error(
-			`This node doesn't have a visitor method defined: ${JSON.stringify(
-				node,
-				null,
-				4
-			)}`
-		)
-	}
-	return []
+	throw new Error(
+		`This node doesn't have a visitor method defined: ${JSON.stringify(
+			node,
+			null,
+			4
+		)}`
+	)
 }
 
 function ruleDependenciesOfRuleNode<Name extends string>(
