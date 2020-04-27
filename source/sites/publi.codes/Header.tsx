@@ -1,6 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link, NavLink } from 'react-router-dom'
+const activeStyle = {
+	fontWeight: 'bold',
+	textDecoration: 'underline'
+} as React.CSSProperties
 export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
@@ -23,5 +26,15 @@ export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 				Le langage pour les algorithmes d'intérêt public.
 			</p>
 		)}
+		<br />
+		<nav css="display">
+			<NavLink activeStyle={activeStyle} to="/studio">
+				Bac à sable
+			</NavLink>{' '}
+			•{' '}
+			<NavLink activeStyle={activeStyle} to="/mécanismes">
+				Liste des mécanismes
+			</NavLink>
+		</nav>
 	</header>
 )
