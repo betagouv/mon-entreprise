@@ -50,7 +50,7 @@ export default function ArtisteAuteur() {
 							<SimpleField dottedName="artiste-auteur . revenus . traitements et salaires" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . recettes" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
-							<WarningRegimeSpecial />
+							<Warning dottedName="artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
 							<SimpleField dottedName="artiste-auteur . cotisations . option surcotisation" />
 						</InitialRenderContext.Provider>
@@ -103,18 +103,16 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	)
 }
 
-function WarningRegimeSpecial() {
-	const situation = useSelector(situationSelector)
-	const recettes = situation['artiste-auteur . revenus . BNC . recettes']
-	const showWarning = recettes !== 0 && recettes >= 70000
-	if (!showWarning) {
+type WarningProps = {
+	dottedName: DottedName
+}
+
+function Warning({ dottedName }: WarningProps) {
+	const warning = useEvaluation(dottedName)
+	if (!warning.nodeValue) {
 		return null
 	}
-	return (
-		<li>
-			Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
-		</li>
-	)
+	return <li>{warning.description}</li>
 }
 
 const ResultBlock = styled.div`
@@ -168,11 +166,7 @@ const branches = [
 		icon: '👵'
 	},
 	{
-		dottedName: 'artiste-auteur . cotisations . CSG-CRDS . CSG',
-		icon: '🏛'
-	},
-	{
-		dottedName: 'artiste-auteur . cotisations . CSG-CRDS . CRDS',
+		dottedName: 'artiste-auteur . cotisations . CSG-CRDS',
 		icon: '🏛'
 	},
 	{

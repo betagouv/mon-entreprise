@@ -227,6 +227,11 @@ artiste-auteur . revenus . BNC . micro-bnc:
   résumé.fr: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
   titre.en: Would you like to opt-in for the micro-BNC regime?
   titre.fr: Souhaitez-vous opter pour le régime micro-BNC ?
+artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc:
+  description.en: "[automatic] Your income does not allow you to opt for the micro-BNC plan."
+  description.fr: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
+  titre.en: "[automatic] micro-bnc control"
+  titre.fr: contrôle micro-bnc
 artiste-auteur . revenus . BNC . recettes:
   résumé.en: The amount of your gross revenue excluding VAT
   résumé.fr: Le montant de vos recettes brutes hors TVA
