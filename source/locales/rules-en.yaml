@@ -947,6 +947,21 @@ contrat salarié . activité partielle . indemnités . complémentaire:
 contrat salarié . activité partielle . indemnités . conventionnelle:
   titre.en: "[automatic] conventional"
   titre.fr: conventionnelle
+contrat salarié . activité partielle . indemnités . part assujettie aux cotisations:
+  description.en: "[automatic] As of 1 May 2020, when the sum of the legal partial
+    activity allowance and the additional allowance paid by the employer
+    pursuant to a collective agreement or a unilateral decision is greater than
+    3.15 SMIC, the portion of the additional allowance paid in excess of this
+    amount is subject to the contributions and social security contributions
+    applicable to income from employment under the conditions of ordinary law."
+  description.fr: À partir du 1er mai 2020, lorsque la somme de l'indemnité légale
+    d'activité partielle et de l'indemnité complémentaire versée par l'employeur
+    en application d'un accord collectif ou d'une décision unilatérale est
+    supérieure à 3,15 SMIC, la part de l'indemnité complémentaire versée au-delà
+    de ce montant est assujettie aux contributions et cotisations sociales
+    applicables aux revenus d'activité dans les conditions de droit commun.
+  titre.en: "[automatic] contributable portion"
+  titre.fr: part assujettie aux cotisations
 contrat salarié . activité partielle . retrait absence:
   titre.en: "[automatic] partial activity withdrawal"
   titre.fr: retrait activité partielle
@@ -2831,19 +2846,18 @@ contrat salarié . rémunération . net imposable . heures supplémentaires et c
   titre.en: gross cap
   titre.fr: plafond brut
 contrat salarié . rémunération . primes:
-  description.en: |
-    contrat de travail, de la convention collective, d'un usage d'entreprise, ou
-    bien à titre bénévole par l'employeur.
+  description.en: >-
+    [automatic] Bonuses are salary supplements paid to the employee under the
+    terms of the employment contract, the collective agreement, company usage,
+    or on a voluntary basis by the employer.
 
-    Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
-    sur le revenu.
-  description.fr: |
+    With few exceptions, they are subject to social security contributions and income tax.
+  description.fr: >-
     Les primes sont des compléments de salaire versés au salarié en vertu du
     contrat de travail, de la convention collective, d'un usage d'entreprise, ou
     bien à titre bénévole par l'employeur.
 
-    Sauf exception, elles sont soumises aux cotisations sociales et à l'impôt
-    sur le revenu.
+    Sauf exception, elles sont assujetties aux cotisations sociales et à l'impôt sur le revenu.
   titre.en: bonuses
   titre.fr: primes
 contrat salarié . rémunération . primes . activité:
