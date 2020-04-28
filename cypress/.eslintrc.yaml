@@ -2,3 +2,5 @@ globals:
   cy: false
   Cypress: false
   expect: false
+env:
+  mocha: true
