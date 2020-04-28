@@ -1,4 +1,3 @@
-import { setSimulationConfig } from 'Actions/actions'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import autoEntrepreneurConfig from 'Components/simulationConfigs/auto-entrepreneur.yaml'
@@ -6,22 +5,14 @@ import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { default as React, useContext, useEffect } from 'react'
+import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router'
+import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 
 export default function AutoEntrepreneur() {
-	const dispatch = useDispatch()
-	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	useEffect(() => {
-		dispatch(
-			setSimulationConfig(autoEntrepreneurConfig, location.state?.fromGérer)
-		)
-	}, [])
 	const { t } = useTranslation()
 
 	return (
@@ -49,7 +40,10 @@ export default function AutoEntrepreneur() {
 				</h1>
 			)}
 			<Warning simulateur="auto-entrepreneur" />
-			<Simulation explanations={<ExplanationSection />} />
+			<Simulation
+				config={autoEntrepreneurConfig}
+				explanations={<ExplanationSection />}
+			/>
 		</>
 	)
 }

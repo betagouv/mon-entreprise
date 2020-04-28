@@ -1,4 +1,3 @@
-import { setSimulationConfig } from 'Actions/actions'
 import Banner from 'Components/Banner'
 import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import SalaryExplanation from 'Components/SalaryExplanation'
@@ -8,11 +7,10 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
-import { default as React, useContext, useEffect } from 'react'
+import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Salarié() {
 	const { t } = useTranslation()
@@ -134,15 +132,11 @@ function SeoExplanations() {
 }
 
 export let SalarySimulation = () => {
-	const dispatch = useDispatch()
-	const location = useLocation<{ fromGérer?: boolean }>()
 	const sitePaths = useContext(SitePathsContext)
-	useEffect(() => {
-		dispatch(setSimulationConfig(salariéConfig, location.state?.fromGérer))
-	}, [])
 	return (
 		<>
 			<Simulation
+				config={salariéConfig}
 				explanations={<SalaryExplanation />}
 				customEndMessages={
 					<>
