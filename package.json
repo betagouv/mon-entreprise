@@ -69,7 +69,7 @@
 		"simple-compile": "yarn run webpack --config source/webpack.prod.js",
 		"stats": "webpack --config source/webpack.prod.js --profile --json > stats.json",
 		"eslintrc-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "eslint-check": "eslint source test cypress",
+    "eslint-check": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier-check": "prettier --check \"{source,test,cypress}/**/*.{js,jsx,ts,tsx}\"",
     "lint": "yarn eslintrc-check && yarn eslint-check && yarn prettier-check",
 		"type-check": "tsc --noEmit",
