@@ -1,12 +1,10 @@
 module.exports = {
   root: true,
-  parser: "@typescript-eslint/parser",
+  parser: "babel-eslint",
   parserOptions: {
     "ecmaFeatures": {
       "jsx": true
-    },
-    "tsconfigRootDir": __dirname,
-    "project": [ "./tsconfig.json" ]
+    }
   },
   env: {
     "browser": true,
@@ -17,7 +15,6 @@ module.exports = {
     "process": false
   },
   plugins: [
-    "@typescript-eslint",
     "react",
     "react-hooks"
   ],
@@ -48,19 +45,29 @@ module.exports = {
       "version": "detect"
     }
   },
-  overrides: [
-    {
-      "files": [
-        "*.test.js",
-        "cypress/integration/**/*.js"
-      ]
-    }
-  ],
+  overrides: [ {
+    files: [ "**/*.{ts,tsx}" ],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "tsconfigRootDir": __dirname,
+      "project": [ "./tsconfig.json" ]
+    },
+    plugins: [ "@typescript-eslint" ],
+    rules: {
+      "@typescript-eslint/no-empty-function": 0,
+      "@typescript-eslint/no-use-before-define": 0
+    },
+    extends: [
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ]
+  } ],
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
     "prettier",
     "prettier/react",
