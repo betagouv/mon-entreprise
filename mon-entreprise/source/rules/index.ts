@@ -21,6 +21,7 @@ import jsonRules from '../types/dottednames.json'
 import déclarationIndépendant from './déclaration-revenu-indépendant.yaml'
 import entrepriseEtablissement from './entreprise-établissement.yaml'
 import impot from './impôt.yaml'
+import professionLibérale from './profession-libérale.yaml'
 import protectionSociale from './protection-sociale.yaml'
 import salarié from './salarié.yaml'
 import situationPersonnelle from './situation-personnelle.yaml'
@@ -42,6 +43,7 @@ const rules: Rules = {
 	...dirigeant,
 	...entrepriseEtablissement,
 	...protectionSociale,
+	...professionLibérale,
 	...salarié,
 	...CCBatiment,
 	...CCHotels,

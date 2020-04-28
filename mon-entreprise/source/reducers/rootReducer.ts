@@ -50,14 +50,17 @@ type QuestionsKind =
 
 export type SimulationConfig = {
 	objectifs:
-		| Array<DottedName>
-		| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
+		| ReadonlyArray<DottedName>
+		| ReadonlyArray<{
+				icône: string
+				nom: string
+				objectifs: ReadonlyArray<DottedName>
+		  }>
 	'objectifs cachés': Array<DottedName>
 	situation: Simulation['situation']
 	bloquant?: Array<DottedName>
 	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
 	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	'unité par défaut': string
 }
 
 type Situation = Partial<Record<DottedName, any>>

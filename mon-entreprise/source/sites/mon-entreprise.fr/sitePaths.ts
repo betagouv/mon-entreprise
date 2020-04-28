@@ -55,6 +55,7 @@ const sitePathsFr = {
 		comparaison: '/comparaison-régimes-sociaux',
 		salarié: '/salarié',
 		'artiste-auteur': '/artiste-auteur',
+		'profession-libérale': '/profession-libérale/:profession?',
 		'chômage-partiel': '/chômage-partiel',
 		économieCollaborative: {
 			index: '/économie-collaborative',
@@ -98,6 +99,7 @@ const sitePathsEn = {
 		formulaireDétachement: '/posting-demand'
 	},
 	simulateurs: {
+		...sitePathsFr.simulateurs,
 		index: '/simulators',
 		'assimilé-salarié': '/assimile-salarie',
 		indépendant: '/independant',

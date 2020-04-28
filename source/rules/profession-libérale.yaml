@@ -1,0 +1,42 @@
+# TODO: rules have a lot to share with artiste-author (BNC-regime) and independant
+profession libérale:
+
+profession libérale . revenus:
+
+profession libérale . revenus . BNC:
+  titre: Bénéfice
+  formule:
+    allègement:
+      assiette: recettes
+      abattement:
+        variations:
+          - si: micro-bnc
+            alors: charges forfaitaires
+          - sinon: frais réels
+  remplace:
+    - dirigeant . indépendant . revenu professionnel
+
+profession libérale . revenus . BNC . micro-bnc:
+  applicable si:
+    toutes ces conditions:
+      - recettes > 0
+      - recettes < 72500 €/an
+  par défaut: oui
+  titre: Souhaitez-vous opter pour le régime micro-BNC ?
+  résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
+
+profession libérale . revenus . BNC . recettes:
+  question: Chiffre d'affaire ?
+  titre: Chiffre d'affaire
+  par défaut: 0 €/an
+  résumé: Le montant brut de votre chiffre d'affaire hors TVA
+
+profession libérale . revenus . BNC . frais réels:
+  par défaut: 0 €/an
+  # question: Régime des frais réels BNC
+  résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
+  # applicable si: recettes > 0 €/an
+  # non applicable si: micro-bnc
+
+profession libérale . revenus . BNC . charges forfaitaires:
+  formule: 34% * recettes

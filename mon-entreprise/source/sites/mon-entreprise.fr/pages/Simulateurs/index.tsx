@@ -6,10 +6,11 @@ import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
 import AssimiléSalarié from './AssimiléSalarié'
-import ChômagePartiel from './ChômagePartiel'
 import AutoEntrepreneur from './AutoEntrepreneur'
+import ChômagePartiel from './ChômagePartiel'
 import Home from './Home'
 import Indépendant from './Indépendant'
+import ProfessionLibérale from './ProfessionLibérale'
 import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
@@ -81,12 +82,14 @@ export default function Simulateurs() {
 					component={ArtisteAuteur}
 				/>
 				<Route
-					path={sitePaths.simulateurs['chômage-partiel']}
-					component={ChômagePartiel}
-				/>
-				<Route
 					path={sitePaths.simulateurs.économieCollaborative.index}
 					component={ÉconomieCollaborative}
+					path={sitePaths.simulateurs['profession-libérale']}
+					component={ProfessionLibérale}
+				/>
+				<Route
+					path={sitePaths.simulateurs['chômage-partiel']}
+					component={ChômagePartiel}
 				/>
 			</Switch>
 		</>
