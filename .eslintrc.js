@@ -45,27 +45,41 @@ module.exports = {
       "version": "detect"
     }
   },
-  overrides: [ {
-    files: [ "**/*.{ts,tsx}" ],
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-      "ecmaFeatures": {
-        "jsx": true
+  overrides: [
+    {
+      files: [ "**/*.{ts,tsx}" ],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "tsconfigRootDir": __dirname,
+        "project": [ "./tsconfig.json" ]
       },
-      "tsconfigRootDir": __dirname,
-      "project": [ "./tsconfig.json" ]
+      plugins: [ "@typescript-eslint" ],
+      rules: {
+        "@typescript-eslint/no-empty-function": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/member-delimiter-style": [2, {
+          multiline: {
+            delimiter: "none"
+          }
+        }],
+        "@typescript-eslint/explicit-function-return-type": 0
+      },
+      extends: [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ]
     },
-    plugins: [ "@typescript-eslint" ],
-    rules: {
-      "@typescript-eslint/no-empty-function": 0,
-      "@typescript-eslint/no-use-before-define": 0
-    },
-    extends: [
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/recommended-requiring-type-checking"
-    ]
-  } ],
+    {
+      files: [ "**/*.test.js" ],
+      env: {
+        mocha: true
+      }
+    }
+  ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
