@@ -84,7 +84,7 @@ export default class Engine<Names extends string> {
 		)
 
 		if (Object.keys(result.defaultValue?.missingVariable ?? {}).length) {
-			throw new evaluationError(
+			throw evaluationError(
 				context,
 				"Impossible d'évaluer l'expression car celle ci fait appel à des variables manquantes"
 			)

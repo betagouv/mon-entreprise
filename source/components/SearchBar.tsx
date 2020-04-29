@@ -36,7 +36,7 @@ export default function SearchBar({
 	const { i18n } = useTranslation()
 	const history = useHistory()
 	const useDefaultValues = useContext(UseDefaultValuesContext)
-	const handleKeyDown = e => {
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter' && results.length > 0) {
 			finallyCallback && finallyCallback()
 			history.push({
@@ -257,7 +257,7 @@ export default function SearchBar({
 				`}
 				value={input}
 				placeholder={i18n.t('Entrez des mots clefs ici')}
-				onKeyDown={e => handleKeyDown(e)}
+				onKeyDown={handleKeyDown}
 				onChange={e => {
 					let input = e.target.value
 					setInput(input)

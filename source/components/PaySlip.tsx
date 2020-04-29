@@ -7,6 +7,7 @@ import { DottedName } from 'Rules'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 import RuleLink from './RuleLink'
+import { ParsedRules, ParsedRule } from 'Rules'
 
 export const SECTION_ORDER = [
 	'protection sociale . santé',
@@ -21,9 +22,9 @@ export const SECTION_ORDER = [
 
 type Section = typeof SECTION_ORDER[number]
 
-function getSection(rule): Section {
+function getSection(rule: ParsedRule): Section {
 	const section = ('protection sociale . ' +
-		(rule.cotisation?.branche ?? rule.taxe?.branche)) as Section
+		rule.cotisation?.branche) as Section
 	if (SECTION_ORDER.includes(section)) {
 		return section
 	}
@@ -31,7 +32,7 @@ function getSection(rule): Section {
 }
 
 export function getCotisationsBySection(
-	parsedRules
+	parsedRules: ParsedRules
 ): Array<[Section, DottedName[]]> {
 	const cotisations = [
 		...parsedRules['contrat salarié . cotisations . patronales'].formule
@@ -41,7 +42,7 @@ export function getCotisationsBySection(
 	]
 		.map(cotisation => cotisation.dottedName)
 		.filter(Boolean)
-		.reduce((acc, cotisation) => {
+		.reduce((acc, cotisation: DottedName) => {
 			const sectionName = getSection(parsedRules[cotisation])
 			return {
 				...acc,
@@ -154,12 +155,12 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const partSalariale = useEvaluation(
 		'contrat salarié . cotisations . salariales'
 	)?.formule.explanation.explanation.find(
-		cotisation => cotisation.dottedName === dottedName
+		(cotisation: ParsedRule) => cotisation.dottedName === dottedName
 	)
 	const partPatronale = useEvaluation(
 		'contrat salarié . cotisations . patronales'
 	)?.formule.explanation.explanation.find(
-		cotisation => cotisation.dottedName === dottedName
+		(cotisation: ParsedRule) => cotisation.dottedName === dottedName
 	)
 	if (!partPatronale?.nodeValue && !partSalariale?.nodeValue) {
 		return null

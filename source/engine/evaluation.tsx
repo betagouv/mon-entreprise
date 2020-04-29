@@ -119,7 +119,7 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	})
 }
 
-export let defaultNode = nodeValue => ({
+export let defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
 	nodeValue,
 	// eslint-disable-next-line
 	jsx: ({ nodeValue }: EvaluatedNode) => (
@@ -211,7 +211,6 @@ type DefaultValues<Names extends string> = { [name in Names]: any } | {}
 export function collectDefaults<Names extends string>(
 	parsedRules: ParsedRules<Names>
 ): DefaultValues<Names> {
-	const cache = { _meta: { contextRule: [] as string[] } }
 	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
 		(acc, parsedRule) => {
 			if (parsedRule?.['par défaut'] == null) {

@@ -1,11 +1,19 @@
 import { assoc, mapObjIndexed } from 'ramda'
 import { Rule, Rules } from './types'
 
+type Translation = Record<string, string>
+type translateAttribute = (
+	prop: string,
+	rule: Rule,
+	translation: Translation,
+	lang: string
+) => Rule
+
 /* Traduction */
-const translateContrôle = (prop, rule, translation, lang) =>
+const translateContrôle: translateAttribute = (prop, rule, translation, lang) =>
 	assoc(
 		'contrôles',
-		rule.contrôles.map((control, i) => ({
+		rule.contrôles!.map((control, i) => ({
 			...control,
 			message: translation[`${prop}.${i}.${lang}`]?.replace(
 				/^\[automatic\] /,
@@ -15,10 +23,15 @@ const translateContrôle = (prop, rule, translation, lang) =>
 		rule
 	)
 
-const translateSuggestion = (prop, rule, translation, lang) =>
+const translateSuggestion: translateAttribute = (
+	prop,
+	rule,
+	translation,
+	lang
+) =>
 	assoc(
 		'suggestions',
-		Object.entries(rule.suggestions).reduce(
+		Object.entries(rule.suggestions!).reduce(
 			(acc, [name, value]) => ({
 				...acc,
 				[translation[`${prop}.${name}.${lang}`]?.replace(
@@ -41,9 +54,9 @@ export const attributesToTranslate = [
 	'note'
 ]
 
-const translateProp = (lang: string, translation: Object) => (
+const translateProp = (lang: string, translation: Translation) => (
 	rule: Rule,
-	prop
+	prop: string
 ) => {
 	if (prop === 'contrôles' && rule?.contrôles) {
 		return translateContrôle(prop, rule, translation, lang)
@@ -58,7 +71,7 @@ const translateProp = (lang: string, translation: Object) => (
 
 function translateRule<Names extends string>(
 	lang: string,
-	translations: { [Name in Names]: Object },
+	translations: { [Name in Names]: Translation },
 	name: Names,
 	rule: Rule
 ): Rule {
@@ -74,7 +87,7 @@ function translateRule<Names extends string>(
 
 export default function translateRules<Names extends string>(
 	lang: string,
-	translations: { [Name in Names]: Object },
+	translations: { [Name in Names]: Translation },
 	rules: Rules<Names>
 ): Rules<Names> {
 	const translatedRules = mapObjIndexed(

@@ -10,15 +10,15 @@ import {
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { formatCurrency, formatValue } from 'Engine/format'
-import { EvaluatedRule } from 'Engine/types'
+import { EvaluatedRule, EvaluatedNode } from 'Engine/types'
 import { isNil } from 'ramda'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
-import { RootState } from 'Reducers/rootReducer'
-import { DottedName } from 'Rules'
+import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { DottedName, ParsedRule } from 'Rules'
 import {
 	situationSelector,
 	targetUnitSelector
@@ -29,7 +29,6 @@ import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
-	const [initialRender, setInitialRender] = useState(true)
 	const objectifs = useSelector(
 		(state: RootState) => state.simulation?.config.objectifs || []
 	)
@@ -40,7 +39,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 			{((typeof objectifs[0] === 'string'
 				? [{ objectifs }]
 				: objectifs) as any).map(
-				({ icône, objectifs: targets, nom }, index) => (
+				({ icône, objectifs: targets, nom }, index: number) => (
 					<React.Fragment key={nom || '0'}>
 						<div style={{ display: 'flex', alignItems: 'end' }}>
 							<div style={{ flex: 1 }}>
@@ -151,7 +150,7 @@ const Target = ({ dottedName }: TargetProps) => {
 	)
 }
 
-let Header = ({ target }) => {
+let Header = ({ target }: { target: ParsedRule }) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	const { pathname } = useLocation()

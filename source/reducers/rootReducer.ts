@@ -66,6 +66,7 @@ export type SimulationConfig = {
 	objectifs:
 		| Array<DottedName>
 		| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
+	'objectifs cachés': Array<DottedName>
 	situation: Simulation['situation']
 	bloquant?: Array<DottedName>
 	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
@@ -140,7 +141,7 @@ function simulation(
 		case 'UPDATE_SITUATION':
 			const targets = without(
 				['entreprise . charges'],
-				objectifsSelector({ simulation: state })
+				objectifsSelector({ simulation: state } as RootState)
 			)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action

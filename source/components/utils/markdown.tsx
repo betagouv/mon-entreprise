@@ -154,7 +154,12 @@ function HeadingWithAnchorLink({
 	)
 }
 
-function Heading({ level, children, ...otherProps }) {
+type HeadingProps = {
+	level: number
+	children: React.ReactNode
+} & React.ComponentProps<'h1'>
+
+function Heading({ level, children, ...otherProps }: HeadingProps) {
 	return React.createElement(`h${level}`, otherProps, children)
 }
 

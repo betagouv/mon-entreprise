@@ -2,7 +2,7 @@ import { dropLast, last, pipe, propEq, range, take } from 'ramda'
 import { coerceArray } from '../utils'
 import { EvaluatedRule, Rule, Rules } from './types'
 
-export const splitName = str => str.split(' . ')
+export const splitName = (str: string) => str.split(' . ')
 export const joinName = strs => strs.join(' . ')
 export const parentName = pipe(
 	splitName,
