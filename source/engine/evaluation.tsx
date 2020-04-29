@@ -23,8 +23,10 @@ import {
 } from './temporal'
 import { ParsedRule, ParsedRules } from './types'
 
-export let makeJsx = (node: EvaluatedNode): JSX.Element =>
-	typeof node.jsx == 'function' ? node.jsx(node) : <></>
+export let makeJsx = (node: EvaluatedNode): JSX.Element => {
+	const Component = node.jsx
+	return <Component {...node} />
+}
 
 export let collectNodeMissing = node => node.missingVariables || {}
 
