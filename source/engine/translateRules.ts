@@ -75,14 +75,14 @@ function translateRule<Names extends string>(
 	name: Names,
 	rule: Rule
 ): Rule {
-	let ruleTrans = translations[name]
+	const ruleTrans = translations[name]
 	if (!ruleTrans) {
 		return rule
 	}
 	return attributesToTranslate.reduce(
 		translateProp(lang, ruleTrans),
 		rule ?? {}
-	) as Rule
+	)
 }
 
 export default function translateRules<Names extends string>(
@@ -91,10 +91,9 @@ export default function translateRules<Names extends string>(
 	rules: Rules<Names>
 ): Rules<Names> {
 	const translatedRules = mapObjIndexed(
-		(rule: Rule, name: Names) =>
-			translateRule(lang, translations, name, rule as Rule),
+		(rule: Rule, name: Names) => translateRule(lang, translations, name, rule),
 		rules
 	)
 
-	return translatedRules as Rules<Names>
+	return translatedRules
 }

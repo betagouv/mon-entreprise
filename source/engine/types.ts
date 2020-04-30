@@ -38,7 +38,7 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	defaultValue?: any
 	defaultUnit?: Unit
 	examples?: any
-	API?: Object
+	API?: Record<string, any>
 	icons?: string
 	formule?: any
 	evaluate?: Function
@@ -74,7 +74,7 @@ export type EvaluatedNode<
 	T extends Types = Types
 > = {
 	nodeValue: Evaluation<T>
-	explanation?: Object
+	explanation?: Record<string, any>
 	isDefault?: boolean
 	jsx: React.FunctionComponent<EvaluatedNode>
 	missingVariables: Partial<Record<Names, number>>

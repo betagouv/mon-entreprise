@@ -32,7 +32,7 @@ export default function parse(parse, k, v) {
 	const variables = coerceArray(v['valeurs cumulées']).map(variable => {
 		if (typeof variable !== 'string') {
 			throw new Error(
-				`Les \`valeurs cumulées\` du mécanisme de régularisation doivent être des noms de règles existantes`
+				'Les `valeurs cumulées` du mécanisme de régularisation doivent être des noms de règles existantes'
 			)
 		}
 
@@ -44,7 +44,7 @@ export default function parse(parse, k, v) {
 			)
 		}
 		return { value, dottedName: reference.dottedName }
-	}) as Array<{ dottedName: DottedName; value: Object }>
+	}) as Array<{ dottedName: DottedName; value: Record<string, any> }>
 
 	return {
 		evaluate,

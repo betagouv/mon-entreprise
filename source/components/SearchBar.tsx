@@ -32,7 +32,7 @@ export default function SearchBar({
 	const [input, setInput] = useState('')
 	const [selectedOption, setSelectedOption] = useState<Option | null>(null)
 	const [results, setResults] = useState<Array<Result>>([])
-	let [focusElem, setFocusElem] = useState(-1)
+	const [focusElem, setFocusElem] = useState(-1)
 	const { i18n } = useTranslation()
 	const history = useHistory()
 	const useDefaultValues = useContext(UseDefaultValuesContext)
@@ -71,9 +71,9 @@ export default function SearchBar({
 		worker.onmessage = ({ data: results }) => setResults(results)
 	}, [rules, results, focusElem])
 
-	let onMouseOverHandler = () => setFocusElem(-1)
+	const onMouseOverHandler = () => setFocusElem(-1)
 
-	const getDottedName = (href: String) => {
+	const getDottedName = (href: string) => {
 		const currentSlug = decodeURI(href.substring(href.lastIndexOf('/') + 1))
 		return (
 			[
@@ -91,11 +91,11 @@ export default function SearchBar({
 		)
 	}
 
-	let renderOptions = (rules?: Array<ParsedRule>) => {
+	const renderOptions = (rules?: Array<ParsedRule>) => {
 		const currentPage = getDottedName(window.location.href)
-		let options = (rules && sortBy(rule => rule.dottedName, rules)) || results
-		let currentOptions: Array<Option> = []
-		let notCurrentOptions: Array<Option> = []
+		const options = (rules && sortBy(rule => rule.dottedName, rules)) || results
+		const currentOptions: Array<Option> = []
+		const notCurrentOptions: Array<Option> = []
 		options.forEach(option => {
 			if (option.dottedName.startsWith(currentPage)) {
 				currentOptions.push(option)
@@ -112,9 +112,9 @@ export default function SearchBar({
 		)
 	}
 
-	let renderOption = (option: Option, idx: number) => {
-		let { title, dottedName, name } = option
-		let espace = parentName(dottedName)
+	const renderOption = (option: Option, idx: number) => {
+		const { title, dottedName, name } = option
+		const espace = parentName(dottedName)
 			? parentName(dottedName)
 					.split(' . ')
 					.map(capitalise0)
@@ -259,7 +259,7 @@ export default function SearchBar({
 				placeholder={i18n.t('Entrez des mots clefs ici')}
 				onKeyDown={handleKeyDown}
 				onChange={e => {
-					let input = e.target.value
+					const input = e.target.value
 					setInput(input)
 					if (input.length > 0) worker.postMessage({ input })
 				}}

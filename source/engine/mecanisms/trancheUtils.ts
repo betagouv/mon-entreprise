@@ -64,7 +64,7 @@ export function evaluatePlafondUntilActiveTranche(
 					e
 				)
 			}
-			let plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
+			const plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
 			const isAfterActive =
 				plancherValue === null || assiette.nodeValue === null
 					? null

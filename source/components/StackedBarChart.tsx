@@ -62,7 +62,7 @@ function integerAndDecimalParts(value: number) {
 // This function calculates rounded percentages so that the sum of all
 // returned values is always 100. For instance: [60, 30, 10].
 export function roundedPercentages(values: Array<number>) {
-	const sum = (a: number = 0, b: number) => a + b
+	const sum = (a = 0, b: number) => a + b
 	const total = values.reduce(sum, 0)
 	const percentages = values.map(value =>
 		integerAndDecimalParts((value / total) * 100)

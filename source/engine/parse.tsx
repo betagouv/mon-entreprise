@@ -78,7 +78,7 @@ const parseExpression = (rule, rawNode) => {
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 	try {
-		let [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
+		const [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
 		return parseResult
 	} catch (e) {
 		syntaxError(

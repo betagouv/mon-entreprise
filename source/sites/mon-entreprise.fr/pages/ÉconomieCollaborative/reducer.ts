@@ -10,11 +10,11 @@ import {
 
 const activitéReducer = reducerActivité =>
 	combineReducers({
-		effectuée: (state: boolean = false, { type, activité }: Action): boolean =>
+		effectuée: (state = false, { type, activité }: Action): boolean =>
 			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
 				? !state
 				: state,
-		vue: (state: boolean = false, { type, activité }: Action): boolean => {
+		vue: (state = false, { type, activité }: Action): boolean => {
 			if (type === 'ACTIVITÉ_VUE' && reducerActivité === activité) {
 				return true
 			}
@@ -54,7 +54,7 @@ const activitéReducer = reducerActivité =>
 // type ActivityTitle = string
 // type State = Record<ActivityTitle, ReturnType<ReturnType<typeof activitéReducer>>>
 
-let reducer = reduceReducers(
+const reducer = reduceReducers(
 	((state, { type, activité }: Action) => {
 		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
 			return getSousActivités(activité).reduce(

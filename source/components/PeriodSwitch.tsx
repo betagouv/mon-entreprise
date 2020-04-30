@@ -11,7 +11,7 @@ export default function PeriodSwitch() {
 	const language = useTranslation().i18n.language
 	const currentUnit = useSelector(targetUnitSelector)
 
-	let units = ['€/mois', '€/an']
+	const units = ['€/mois', '€/an']
 	return (
 		<span id="PeriodSwitch">
 			<span className="base ui__ small toggle">

@@ -32,7 +32,7 @@ export default function Barème({ nodeValue, explanation, unit }) {
 	)
 }
 
-export let BarèmeAttributes = ({ explanation }) => {
+export const BarèmeAttributes = ({ explanation }) => {
 	const multiplicateur = explanation.multiplicateur
 	return (
 		<>

@@ -9,7 +9,7 @@ type WarningProps = {
 }
 
 export default function Warning({ localStorageKey, children }: WarningProps) {
-	let [folded, fold] = usePersistingState(localStorageKey, false)
+	const [folded, fold] = usePersistingState(localStorageKey, false)
 	return (
 		<div
 			css={`

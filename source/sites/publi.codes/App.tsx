@@ -17,7 +17,7 @@ function Router() {
 	)
 }
 
-let RouterSwitch = () => {
+const RouterSwitch = () => {
 	return (
 		<>
 			<Switch>

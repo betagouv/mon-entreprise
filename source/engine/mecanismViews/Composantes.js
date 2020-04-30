@@ -28,7 +28,7 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 					{explanation.map((c, i) => [
 						<li
 							className="composante"
-							css={``}
+							css={''}
 							key={JSON.stringify(c.composante)}
 						>
 							<ul

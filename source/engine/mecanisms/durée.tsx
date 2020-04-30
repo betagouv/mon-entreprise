@@ -34,14 +34,14 @@ const objectShape = {
 }
 
 const evaluate = (cache, situation, parsedRules, node) => {
-	let evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
-	let from = evaluateAttribute(node.explanation.depuis)
-	let to = evaluateAttribute(node.explanation["jusqu'à"])
+	const evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
+	const from = evaluateAttribute(node.explanation.depuis)
+	const to = evaluateAttribute(node.explanation["jusqu'à"])
 	let nodeValue
 	if ([from, to].some(({ nodeValue }) => nodeValue === null)) {
 		nodeValue = null
 	} else {
-		let [fromDate, toDate] = [from.nodeValue, to.nodeValue].map(convertToDate)
+		const [fromDate, toDate] = [from.nodeValue, to.nodeValue].map(convertToDate)
 		nodeValue = Math.max(
 			0,
 			Math.round(

@@ -23,22 +23,22 @@ import {
 } from './temporal'
 import { ParsedRule, ParsedRules } from './types'
 
-export let makeJsx = (node: EvaluatedNode): JSX.Element => {
+export const makeJsx = (node: EvaluatedNode): JSX.Element => {
 	const Component = node.jsx
 	return <Component {...node} />
 }
 
-export let collectNodeMissing = node => node.missingVariables || {}
+export const collectNodeMissing = node => node.missingVariables || {}
 
-export let bonus = (missings, hasCondition = true) =>
+export const bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
-export let mergeAllMissing = missings =>
+export const mergeAllMissing = missings =>
 	reduce(mergeWith(add), {}, map(collectNodeMissing, missings))
-export let mergeMissing = (left, right) =>
+export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 
-export let evaluateNode = (cache, situationGate, parsedRules, node) => {
-	let evaluatedNode = node.evaluate
+export const evaluateNode = (cache, situationGate, parsedRules, node) => {
+	const evaluatedNode = node.evaluate
 		? node.evaluate(cache, situationGate, parsedRules, node)
 		: node
 	return evaluatedNode
@@ -121,7 +121,7 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	})
 }
 
-export let defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
+export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
 	nodeValue,
 	// eslint-disable-next-line
 	jsx: ({ nodeValue }: EvaluatedNode) => (
@@ -130,21 +130,21 @@ export let defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
 	isDefault: true
 })
 
-export let parseObject = (recurse, objectShape, value) => {
-	let recurseOne = key => defaultValue => {
+export const parseObject = (recurse, objectShape, value) => {
+	const recurseOne = key => defaultValue => {
 		if (value[key] == null && !defaultValue)
 			throw new Error(
 				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
 			)
 		return value[key] != null ? recurse(value[key]) : defaultValue
 	}
-	let transforms = fromPairs(
+	const transforms = fromPairs(
 		map(k => [k, recurseOne(k)], keys(objectShape)) as any
 	)
 	return evolve(transforms as any, objectShape)
 }
 
-export let evaluateObject = (objectShape, effect) => (
+export const evaluateObject = (objectShape, effect) => (
 	cache,
 	situationGate,
 	parsedRules,
@@ -213,16 +213,13 @@ type DefaultValues<Names extends string> = { [name in Names]: any } | {}
 export function collectDefaults<Names extends string>(
 	parsedRules: ParsedRules<Names>
 ): DefaultValues<Names> {
-	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
-		(acc, parsedRule) => {
-			if (parsedRule?.['par défaut'] == null) {
-				return acc
-			}
-			return {
-				...acc,
-				[parsedRule.dottedName]: parsedRule['par défaut']
-			}
-		},
-		{}
-	)
+	return Object.values(parsedRules).reduce((acc, parsedRule) => {
+		if (parsedRule?.['par défaut'] == null) {
+			return acc
+		}
+		return {
+			...acc,
+			[parsedRule.dottedName]: parsedRule['par défaut']
+		}
+	}, {})
 }

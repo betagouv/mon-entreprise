@@ -8,7 +8,7 @@ const NumberFormat = memoizeWith(
 	Intl.NumberFormat
 )
 
-export let numberFormatter = ({
+export const numberFormatter = ({
 	style,
 	maximumFractionDigits = 2,
 	minimumFractionDigits = 0,

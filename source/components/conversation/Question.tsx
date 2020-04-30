@@ -105,7 +105,7 @@ export default function Question({
 		)
 	}
 
-	let choiceElements = is(Array)(choices)
+	const choiceElements = is(Array)(choices)
 		? renderBinaryQuestion()
 		: renderChildren(choices)
 
@@ -120,7 +120,7 @@ export default function Question({
 	)
 }
 
-export let RadioLabel = props => (
+export const RadioLabel = props => (
 	<>
 		<RadioLabelContent {...props} />
 		<Explicable dottedName={props.dottedName} />

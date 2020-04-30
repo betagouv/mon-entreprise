@@ -18,13 +18,13 @@ export default function parseRules<Names extends string>(
 	/* First we parse each rule one by one. When a mechanism is encountered, it is
 	recursively parsed. When a reference to a variable is encountered, a
 	'variable' node is created, we don't parse variables recursively. */
-	let parsedRules = {}
+	const parsedRules = {}
 
 	/* A rule `A` can disable a rule `B` using the rule `rend non applicable: B`
 	in the definition of `A`. We need to map these exonerations to be able to
 	retreive them from `B` */
-	let nonApplicableMapping: Record<string, any> = {}
-	let replacedByMapping: Record<string, any> = {}
+	const nonApplicableMapping: Record<string, any> = {}
+	const replacedByMapping: Record<string, any> = {}
 	;(Object.keys(rules) as Names[]).map(dottedName => {
 		const parsedRule = parseRule(rules, dottedName, parsedRules)
 
@@ -69,7 +69,7 @@ export default function parseRules<Names extends string>(
 // We recursively traverse the YAML tree in order to extract named parameters
 // into their own dedicated rules, and replace the inline definition with a
 // reference to the newly created rule.
-function extractInlinedNames(rules: Record<string, Object>) {
+function extractInlinedNames(rules: Record<string, Record<string, any>>) {
 	const extractNamesInRule = (dottedName: string) => {
 		rules[dottedName] !== null &&
 			Object.entries(rules[dottedName]).forEach(
@@ -79,7 +79,7 @@ function extractInlinedNames(rules: Record<string, Object>) {
 	const extractNamesInObject = (
 		dottedName: string,
 		context: Array<string | number> = []
-	) => ([key, value]: [string, Object]) => {
+	) => ([key, value]: [string, Record<string, any>]) => {
 		const match = key.match(/\[ref( (.+))?\]$/)
 		if (match) {
 			const argumentType = key.replace(match[0], '').trim()
@@ -106,7 +106,7 @@ function extractInlinedNames(rules: Record<string, Object>) {
 			)
 			extractNamesInRule(extractedReferenceName)
 		} else if (Array.isArray(value)) {
-			value.forEach((content: Object, i) =>
+			value.forEach((content: Record<string, any>, i) =>
 				Object.entries(content).forEach(
 					extractNamesInObject(dottedName, [...context, key, i])
 				)

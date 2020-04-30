@@ -550,7 +550,7 @@ type StatutsExampleProps = {
 	statut: string
 }
 
-let StatutsExample = ({ statut }: StatutsExampleProps) => {
+const StatutsExample = ({ statut }: StatutsExampleProps) => {
 	const links = {
 		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'

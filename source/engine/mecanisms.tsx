@@ -41,12 +41,12 @@ import uniroot from './uniroot'
 import { parseUnit } from './units'
 import { EvaluatedRule } from './types'
 
-export let mecanismOneOf = (recurse, k, v) => {
+export const mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
 
-	let explanation = map(recurse, v)
+	const explanation = map(recurse, v)
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism conditions list"
 			name="une de ces conditions"
@@ -61,8 +61,8 @@ export let mecanismOneOf = (recurse, k, v) => {
 		</Node>
 	)
 
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child =>
+	const evaluate = (cache, situationGate, parsedRules, node) => {
+		const evaluateOne = child =>
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			values = pluck('nodeValue', explanation),
@@ -92,12 +92,12 @@ export let mecanismOneOf = (recurse, k, v) => {
 	}
 }
 
-export let mecanismAllOf = (recurse, k, v) => {
+export const mecanismAllOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
 
-	let explanation = map(recurse, v)
+	const explanation = map(recurse, v)
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism conditions list"
 			name="toutes ces conditions"
@@ -112,8 +112,8 @@ export let mecanismAllOf = (recurse, k, v) => {
 		</Node>
 	)
 
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let evaluateOne = child =>
+	const evaluate = (cache, situationGate, parsedRules, node) => {
+		const evaluateOne = child =>
 				evaluateNode(cache, situationGate, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			values = pluck('nodeValue', explanation),
@@ -137,7 +137,7 @@ export let mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
+const evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 	// TODO : take applicability into account here
 	let inversedWith = node.explanation.inversionCandidates.find(
 		n => situationGate(n.dottedName) != undefined
@@ -229,7 +229,7 @@ let evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 	}
 }
 
-export let mecanismInversion = dottedName => (recurse, k, v) => {
+export const mecanismInversion = dottedName => (recurse, k, v) => {
 	if (!v.avec) {
 		throw new Error(
 			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
@@ -250,8 +250,8 @@ export let mecanismInversion = dottedName => (recurse, k, v) => {
 	}
 }
 
-export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
+export const mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
+	const evaluate = (cache, situationGate, parsedRules, node) => {
 		if (cache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
@@ -306,10 +306,10 @@ export let mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 	}
 }
 
-export let mecanismSum = (recurse, k, v) => {
-	let explanation = v.map(recurse)
+export const mecanismSum = (recurse, k, v) => {
+	const explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(
+	const evaluate = evaluateArray(
 		(x, y) => (x === false && y === false ? false : x + y),
 		false
 	)
@@ -328,19 +328,19 @@ export let mecanismSum = (recurse, k, v) => {
 	}
 }
 
-export let mecanismReduction = (recurse, k, v) => {
-	let objectShape = {
+export const mecanismReduction = (recurse, k, v) => {
+	const objectShape = {
 		assiette: false,
 		abattement: defaultNode(0),
 		plafond: defaultNode(Infinity),
 		franchise: defaultNode(0)
 	}
 
-	let effect = (
+	const effect = (
 		{ assiette, abattement, plafond, franchise, décote },
 		cache
 	) => {
-		let v_assiette = assiette.nodeValue
+		const v_assiette = assiette.nodeValue
 		if (v_assiette == null) return { nodeValue: null }
 		if (assiette.unit) {
 			try {
@@ -361,12 +361,12 @@ export let mecanismReduction = (recurse, k, v) => {
 				)
 			}
 		}
-		let montantFranchiséDécoté =
+		const montantFranchiséDécoté =
 			franchise.nodeValue && v_assiette < franchise.nodeValue
 				? 0
 				: décote
 				? (function() {
-						let plafondDécote = décote.plafond.nodeValue,
+						const plafondDécote = décote.plafond.nodeValue,
 							taux = décote.taux.nodeValue
 
 						return v_assiette > plafondDécote
@@ -405,7 +405,7 @@ export let mecanismReduction = (recurse, k, v) => {
 		}
 	}
 
-	let base = parseObject(recurse, objectShape, v),
+	const base = parseObject(recurse, objectShape, v),
 		explanation = v.décote
 			? {
 					...base,
@@ -425,7 +425,7 @@ export let mecanismReduction = (recurse, k, v) => {
 	}
 }
 
-export let mecanismProduct = (recurse, k, v) => {
+export const mecanismProduct = (recurse, k, v) => {
 	if (v.composantes) {
 		//mécanisme de composantes. Voir mécanismes.md/composantes
 		return decompose(recurse, k, v)
@@ -434,13 +434,13 @@ export let mecanismProduct = (recurse, k, v) => {
 		return variations(recurse, k, v, true)
 	}
 
-	let objectShape = {
+	const objectShape = {
 		assiette: false,
 		taux: defaultNode(1),
 		facteur: defaultNode(1),
 		plafond: defaultNode(Infinity)
 	}
-	let effect = ({ assiette, taux, facteur, plafond }, cache) => {
+	const effect = ({ assiette, taux, facteur, plafond }, cache) => {
 		if (assiette.unit) {
 			try {
 				plafond = convertNodeToUnit(assiette.unit, plafond)
@@ -486,7 +486,7 @@ export let mecanismProduct = (recurse, k, v) => {
 		}
 	}
 
-	let explanation = parseObject(recurse, objectShape, v),
+	const explanation = parseObject(recurse, objectShape, v),
 		evaluate = evaluateObject(objectShape, effect)
 
 	return {
@@ -505,8 +505,8 @@ export let mecanismProduct = (recurse, k, v) => {
 	}
 }
 
-export let mecanismMax = (recurse, k, v) => {
-	let explanation = v.map(recurse)
+export const mecanismMax = (recurse, k, v) => {
+	const explanation = v.map(recurse)
 
 	const max = (a, b) => {
 		if (a === false) {
@@ -520,9 +520,9 @@ export let mecanismMax = (recurse, k, v) => {
 		}
 		return Math.max(a, b)
 	}
-	let evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
+	const evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism list maximum"
 			name="le maximum de"
@@ -551,12 +551,12 @@ export let mecanismMax = (recurse, k, v) => {
 	}
 }
 
-export let mecanismMin = (recurse, k, v) => {
-	let explanation = v.map(recurse)
+export const mecanismMin = (recurse, k, v) => {
+	const explanation = v.map(recurse)
 
-	let evaluate = evaluateArray(min, Infinity)
+	const evaluate = evaluateArray(min, Infinity)
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="mecanism list minimum"
 			name="le minimum de"
@@ -585,33 +585,33 @@ export let mecanismMin = (recurse, k, v) => {
 	}
 }
 
-export let mecanismSynchronisation = (recurse, k, v) => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let APIExplanation = evaluateNode(
+export const mecanismSynchronisation = (recurse, k, v) => {
+	const evaluate = (cache, situationGate, parsedRules, node) => {
+		const APIExplanation = evaluateNode(
 			cache,
 			situationGate,
 			parsedRules,
 			node.explanation.API
 		)
 
-		let valuePath = v.chemin.split(' . ')
+		const valuePath = v.chemin.split(' . ')
 
-		let nodeValue =
+		const nodeValue =
 			APIExplanation.nodeValue == null
 				? null
 				: path(valuePath, APIExplanation.nodeValue)
 
 		// If the API gave a non null value, then some of its props may be null (the API can be composed of multiple API, some failing). Then this prop will be set to the default value defined in the API's rule
-		let safeNodeValue =
+		const safeNodeValue =
 			nodeValue == null && APIExplanation.nodeValue != null
 				? path(valuePath, APIExplanation.explanation.defaultValue)
 				: nodeValue
 
-		let missingVariables =
+		const missingVariables =
 			APIExplanation.nodeValue === null
 				? { [APIExplanation.dottedName]: 1 }
 				: {}
-		let explanation = { ...v, API: APIExplanation }
+		const explanation = { ...v, API: APIExplanation }
 		return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
 	}
 
@@ -630,7 +630,7 @@ export let mecanismSynchronisation = (recurse, k, v) => {
 	}
 }
 
-export let mecanismOnePossibility = dottedName => (recurse, k, v) => ({
+export const mecanismOnePossibility = dottedName => (recurse, k, v) => ({
 	...v,
 	'une possibilité': 'oui',
 	evaluate: (cache, situationGate, parsedRules, node) => ({

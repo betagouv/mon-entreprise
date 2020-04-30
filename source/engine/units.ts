@@ -22,8 +22,8 @@ export type Unit = {
 }
 
 //TODO this function does not handle complex units like passenger-kilometer/flight
-export let parseUnit = (string: string, lng: string = 'fr'): Unit => {
-	let [a, ...b] = string.split('/'),
+export const parseUnit = (string: string, lng = 'fr'): Unit => {
+	const [a, ...b] = string.split('/'),
 		result = {
 			numerators: a
 				.split('.')
@@ -43,17 +43,17 @@ function getUnitKey(unit: string, lng: string): string {
 	return key || unit
 }
 
-let printUnits = (units: Array<string>, count: number, lng: string): string =>
+const printUnits = (units: Array<string>, count: number, lng: string): string =>
 	units
 		.filter(unit => unit !== '%')
 		.map(unit => i18n.t(`units:${unit}`, { count, lng }))
 		.join('.')
 
 const plural = 2
-export let serializeUnit = (
+export const serializeUnit = (
 	rawUnit: Unit | undefined | string,
 	count: number = plural,
-	lng: string = 'fr'
+	lng = 'fr'
 ) => {
 	if (rawUnit === null || typeof rawUnit !== 'object') {
 		return typeof rawUnit === 'string'
@@ -63,12 +63,12 @@ export let serializeUnit = (
 	let unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
 	// the unit '%' is only displayed when it is the only unit
-	let merge = [...numerators, ...denominators]
+	const merge = [...numerators, ...denominators]
 	if (merge.length === 1 && merge[0] === '%') return '%'
 
-	let n = !isEmpty(numerators)
-	let d = !isEmpty(denominators)
-	let string =
+	const n = !isEmpty(numerators)
+	const d = !isEmpty(denominators)
+	const string =
 		!n && !d
 			? ''
 			: n && !d
@@ -86,12 +86,12 @@ export let serializeUnit = (
 
 type SupportedOperators = '*' | '/' | '+' | '-'
 
-let noUnit = { numerators: [], denominators: [] }
-export let inferUnit = (
+const noUnit = { numerators: [], denominators: [] }
+export const inferUnit = (
 	operator: SupportedOperators,
 	rawUnits: Array<Unit | undefined>
 ): Unit | undefined => {
-	let units = rawUnits.map(u => u || noUnit)
+	const units = rawUnits.map(u => u || noUnit)
 	if (operator === '*')
 		return simplify({
 			numerators: unnest(units.map(u => u.numerators)),
@@ -116,16 +116,16 @@ export let inferUnit = (
 	return undefined
 }
 
-export let removeOnce = <T>(
+export const removeOnce = <T>(
 	element: T,
 	eqFn: (a: T, b: T) => boolean = equals
 ) => (list: Array<T>): Array<T> => {
-	let index = list.findIndex(e => eqFn(e, element))
+	const index = list.findIndex(e => eqFn(e, element))
 	if (index > -1) return remove<T>(index, 1)(list)
 	else return list
 }
 
-let simplify = (
+const simplify = (
 	unit: Unit,
 	eqFn: (a: string, b: string) => boolean = equals
 ): Unit =>
@@ -249,7 +249,7 @@ export function simplifyUnit(unit: Unit): Unit {
 		denominators: without(['%'], denominators)
 	}
 }
-function simplifyUnitWithValue(unit: Unit, value: number = 1): [Unit, number] {
+function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
 	const { denominators, numerators } = unit
 
 	const factor = unitsConversionFactor(numerators, denominators)

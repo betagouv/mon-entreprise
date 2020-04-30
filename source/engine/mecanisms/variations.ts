@@ -15,7 +15,7 @@ import { parseUnit } from './../units'
 
 /* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
 export default function parse(recurse, k, v, devariate) {
-	let explanation = devariate
+	const explanation = devariate
 		? devariateExplanation(recurse, k, v)
 		: v.map(({ si, alors, sinon }) =>
 				sinon !== undefined
@@ -40,12 +40,12 @@ export default function parse(recurse, k, v, devariate) {
 type Variation =
 	| {
 			si: any
-			alors: Object
+			alors: Record<string, any>
 	  }
 	| {
-			sinon: Object
+			sinon: Record<string, any>
 	  }
-export let devariateExplanation = (
+export const devariateExplanation = (
 	recurse,
 	mecanismKey,
 	v: { variations: Array<Variation> }

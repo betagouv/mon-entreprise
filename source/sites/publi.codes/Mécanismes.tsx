@@ -34,7 +34,7 @@ const Mecanism = ({ name, description, exemples }: MecanismProp) => (
 export default function Landing() {
 	const { pathname } = useLocation()
 	useEffect(() => {
-		var css = document.createElement('style')
+		const css = document.createElement('style')
 		css.type = 'text/css'
 		css.innerHTML = `
 		#js {

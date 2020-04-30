@@ -1,4 +1,4 @@
-declare module NodeJS {
+declare namespace NodeJS {
 	interface ProcessEnv {
 		EN_SITE: string
 		FR_SITE: string

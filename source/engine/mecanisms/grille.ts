@@ -24,7 +24,7 @@ export default function parse(parse, k, v) {
 		return variations(parse, k, v, true)
 	}
 	const defaultUnit = v['unité'] && parseUnit(v['unité'])
-	let explanation = {
+	const explanation = {
 		assiette: parse(v.assiette),
 		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),
 		tranches: parseTranches(parse, v.tranches).map(

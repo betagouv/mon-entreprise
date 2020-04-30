@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Header } from './Header'
-let Studio = React.lazy(() => import('./Studio'))
+const Studio = React.lazy(() => import('./Studio'))
 
 export default function LazyStudio() {
 	return (
