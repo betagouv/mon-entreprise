@@ -10,7 +10,7 @@ import { RootState } from 'Reducers/rootReducer'
 import {
 	currentQuestionSelector,
 	flatRulesSelector,
-	nextStepsSelector
+	nextStepsSelector,
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
@@ -22,7 +22,7 @@ export type ConversationProps = {
 
 export default function Conversation({
 	customEndMessages,
-	customEnd
+	customEnd,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const flatRules = useSelector(flatRulesSelector)
@@ -47,12 +47,34 @@ export default function Conversation({
 		}
 	}
 
+	const questionCategory = findRuleByDottedName(
+		flatRules,
+		'micmac . ' + currentQuestion.split(' . ')[1]
+	)
+
 	return nextSteps.length ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				{currentQuestion && (
 					<React.Fragment key={currentQuestion}>
+						<div>
+							<span
+								css={`
+									background: darkblue;
+									color: white;
+									border-radius: 0.3rem;
+									padding: 0.15rem 0.6rem;
+									text-transform: uppercase;
+									img {
+										margin: 0 0.6rem 0 0 !important;
+									}
+								`}
+							>
+								{emoji(questionCategory.icônes || '🌍')}
+								{questionCategory.title}
+							</span>
+						</div>
 						<Animate.fadeIn>
 							{getInputComponent(flatRules)(currentQuestion)}
 						</Animate.fadeIn>

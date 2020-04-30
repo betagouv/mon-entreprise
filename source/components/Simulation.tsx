@@ -1,7 +1,7 @@
 import { T } from 'Components'
 import Controls from 'Components/Controls'
 import Conversation, {
-	ConversationProps
+	ConversationProps,
 } from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
@@ -26,7 +26,7 @@ export default function Simulation({
 	targets,
 	showConversation,
 	noFeedback,
-	noProgressMessage
+	noProgressMessage,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const progress = useSelector(simulationProgressSelector)
@@ -43,7 +43,7 @@ export default function Simulation({
 								justifyContent: 'space-between',
 								marginTop: '1.2rem',
 								marginBottom: '0.6rem',
-								alignItems: 'baseline'
+								alignItems: 'baseline',
 							}}
 						>
 							{progress < 1 && !noProgressMessage ? (
@@ -57,7 +57,10 @@ export default function Simulation({
 							)}
 							<SeeAnswersButton />
 						</div>
-						<section className="ui__ full-width lighter-bg">
+						<section
+							css={'background: red !important;'}
+							className="ui__ full-width lighter-bg"
+						>
 							<div className="ui__ container">
 								<Controls />
 								<Conversation
