@@ -10,11 +10,11 @@ import {
 
 const activitéReducer = reducerActivité =>
 	combineReducers({
-		effectuée: (state = false, { type, activité }: Action): boolean =>
+		effectuée: (state: boolean = false, { type, activité }: Action): boolean =>
 			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
 				? !state
 				: state,
-		vue: (state = false, { type, activité }: Action): boolean => {
+		vue: (state: boolean = false, { type, activité }: Action): boolean => {
 			if (type === 'ACTIVITÉ_VUE' && reducerActivité === activité) {
 				return true
 			}

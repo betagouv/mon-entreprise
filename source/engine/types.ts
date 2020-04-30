@@ -38,7 +38,7 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	defaultValue?: any
 	defaultUnit?: Unit
 	examples?: any
-	API?: Record<string, any>
+	API?: string
 	icons?: string
 	formule?: any
 	evaluate?: Function

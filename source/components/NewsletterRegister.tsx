@@ -20,6 +20,8 @@ export default function Newsletter() {
 		return null
 	}
 
+	const sinscrire = t("S'inscrire")
+
 	return (
 		<>
 			{' '}
@@ -53,7 +55,9 @@ export default function Newsletter() {
 							<input
 								className="ui__ plain small button"
 								type="submit"
-								value={t("S'inscrire")}
+								value={
+									sinscrire === undefined || sinscrire === null ? '' : sinscrire
+								}
 								name="subscribe"
 								id="mc-embedded-subscribe"
 							/>
