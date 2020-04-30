@@ -13,12 +13,21 @@ export default ({ nodeValue: possiblyNegativeValue }) => {
 		value = raw.toFixed(1) * (possiblyNegativeValue < 0 ? -1 : 1)
 
 	return (
-		<span>
-			Soit{' '}
-			<strong>
-				{value}&nbsp;{unit}
-			</strong>{' '}
-			{unitSuffix}
+		<span
+			css={`
+				strong {
+					font-size: 160%;
+					font-weight: 600;
+				}
+			`}
+		>
+			<em>Votre total provisoire</em>
+			<div>
+				<strong>
+					{value}&nbsp;{unit}
+				</strong>{' '}
+				{unitSuffix}
+			</div>
 		</span>
 	)
 }

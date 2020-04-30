@@ -18,6 +18,7 @@
 		"color-convert": "^1.9.2",
 		"core-js": "^3.2.1",
 		"focus-trap-react": "^3.1.2",
+		"framer-motion": "^1.10.3",
 		"fuse.js": "^3.4.5",
 		"great-circle": "^0.2.8",
 		"i18next": "^18.0.1",

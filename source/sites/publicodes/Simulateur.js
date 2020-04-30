@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import CarbonImpact from './CarbonImpact'
 import withTarget from './withTarget'
+import Chart from './chart/index.js'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
 
@@ -48,8 +49,13 @@ const Simulateur = (props) => {
 					)
 				}
 				targets={<>{rule.period === 'flexible' && <PeriodBlock />}</>}
+				explanations={
+					<>
+						<CarbonImpactWithData />
+						<Chart />
+					</>
+				}
 			/>
-			<CarbonImpactWithData />
 			<ShareButton
 				text="Mesure ton impact sur Futur.eco !"
 				url={'https://' + window.location.hostname + props.match.url}
