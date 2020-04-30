@@ -123,7 +123,7 @@ export default function<Names extends string>(
 				: value,
 		formule: value => {
 			const evaluate = (cache, situationGate, parsedRules, node) => {
-				let explanation = evaluateNode(
+				const explanation = evaluateNode(
 						cache,
 						situationGate,
 						parsedRules,

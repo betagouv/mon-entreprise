@@ -60,7 +60,7 @@ export const serializeUnit = (
 			? i18n.t(`units:${rawUnit}`, { count, lng })
 			: rawUnit
 	}
-	let unit = simplify(rawUnit),
+	const unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
 	// the unit '%' is only displayed when it is the only unit
 	const merge = [...numerators, ...denominators]
