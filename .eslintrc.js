@@ -65,7 +65,11 @@ module.exports = {
             delimiter: "none"
           }
         }],
-        "@typescript-eslint/explicit-function-return-type": 0
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/camelcase": 1,
+        '@typescript-eslint/prefer-string-starts-ends-with': 1,
+        '@typescript-eslint/no-unnecessary-type-assertion': 1,  // has false positives (Object.values result) v 2.29.0
+        '@typescript-eslint/no-inferrable-types': 1,  // causes problems with unknown values v 2.29.0 typescript v 3.8.3
       },
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",

@@ -54,7 +54,7 @@ const activitéReducer = reducerActivité =>
 // type ActivityTitle = string
 // type State = Record<ActivityTitle, ReturnType<ReturnType<typeof activitéReducer>>>
 
-let reducer = reduceReducers(
+const reducer = reduceReducers(
 	((state, { type, activité }: Action) => {
 		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
 			return getSousActivités(activité).reduce(

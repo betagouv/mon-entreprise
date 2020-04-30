@@ -10,7 +10,7 @@ export const evaluateApplicability = (
 	parsedRules,
 	node: ParsedRule
 ) => {
-	let evaluatedAttributes = pipe(
+	const evaluatedAttributes = pipe(
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
 				x: any
 			) => any,
@@ -94,7 +94,7 @@ export default (cache, situationGate, parsedRules, node) => {
 		} catch (e) {
 			typeWarning(
 				node.dottedName,
-				`L'unité de la règle est incompatible avec celle de sa formule`,
+				"L'unité de la règle est incompatible avec celle de sa formule",
 				e
 			)
 		}
@@ -105,7 +105,7 @@ export default (cache, situationGate, parsedRules, node) => {
 	)
 	// console.log(node.dottedName, evaluatedFormula.unit)
 
-	let temporalValue = evaluatedFormula.temporalValue
+	const temporalValue = evaluatedFormula.temporalValue
 	cache._meta.contextRule.pop()
 	return {
 		...node,

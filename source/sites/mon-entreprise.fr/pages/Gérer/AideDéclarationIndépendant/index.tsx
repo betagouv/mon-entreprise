@@ -27,35 +27,7 @@ import simulationConfig from './config.yaml'
 import { Results } from './Result'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 
-const lauchComputationWhenResultsInViewport = () => {
-	const dottedName = 'dirigeant . rémunération totale'
-	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
-		threshold: 0.5,
-		unobserve: false
-	})
-	const value = useSelector(situationSelector)[dottedName]
-	const [currentIncome, setCurrentIncome] = useState(value)
-	const [displayForm, setDisplayForm] = useState(currentIncome != null)
-	const updateIncome = useCallback(
-		income => {
-			setDisplayForm(income != null)
-			setCurrentIncome(income)
-		},
-		[setDisplayForm, setCurrentIncome]
-	)
-	const dispatch = useDispatch()
-	useEffect(() => {
-		if (resultsInViewPort && displayForm) {
-			dispatch(updateSituation(dottedName, currentIncome))
-		} else {
-			dispatch(updateSituation(dottedName, null))
-		}
-	}, [resultsInViewPort, displayForm, currentIncome])
-
-	return { updateIncome, resultsRef, displayForm, currentIncome }
-}
-
-export default function AideDéclarationIndépendant() {
+export default function() {
 	const dispatch = useDispatch()
 	const rules = useContext(EngineContext).getParsedRules()
 	const company = useSelector(
@@ -65,12 +37,34 @@ export default function AideDéclarationIndépendant() {
 		dispatch(setSimulationConfig(simulationConfig, true))
 	}, [])
 
-	const {
-		resultsRef,
-		displayForm,
-		updateIncome,
-		currentIncome
-	} = lauchComputationWhenResultsInViewport()
+	const { resultsRef, displayForm, updateIncome, currentIncome } = (() => {
+		const dottedName = 'dirigeant . rémunération totale'
+		const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
+			threshold: 0.5,
+			unobserve: false
+		})
+		const value = useSelector(situationSelector)[dottedName]
+		const [currentIncome, setCurrentIncome] = useState(value)
+		const [displayForm, setDisplayForm] = useState(currentIncome != null)
+		const updateIncome = useCallback(
+			income => {
+				setDisplayForm(income != null)
+				setCurrentIncome(income)
+			},
+			[setDisplayForm, setCurrentIncome]
+		)
+		const dispatch = useDispatch()
+		useEffect(() => {
+			if (resultsInViewPort && displayForm) {
+				dispatch(updateSituation(dottedName, currentIncome))
+			} else {
+				dispatch(updateSituation(dottedName, null))
+			}
+		}, [resultsInViewPort, displayForm, currentIncome])
+
+		return { updateIncome, resultsRef, displayForm, currentIncome }
+	})()
+
 	const printComponentRef = useRef<HTMLDivElement>(null)
 	return (
 		<div ref={printComponentRef}>

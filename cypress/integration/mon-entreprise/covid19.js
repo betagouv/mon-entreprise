@@ -13,7 +13,7 @@ describe('Page covid-19', function() {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit(`/coronavirus`))
+	before(() => cy.visit('/coronavirus'))
 	it('should not crash', () => {
 		cy.contains('Salaire brut mensuel')
 	})

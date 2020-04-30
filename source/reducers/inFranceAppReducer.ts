@@ -105,16 +105,16 @@ const infereLegalStatusFromCategorieJuridique = (
 	if (catégorieJuridique === '5498') {
 		return 'EURL'
 	}
-	if (catégorieJuridique.match(/^54..$/)) {
+	if (/^54..$/.exec(catégorieJuridique)) {
 		return 'SARL'
 	}
-	if (catégorieJuridique.match(/^55..$/)) {
+	if (/^55..$/.exec(catégorieJuridique)) {
 		return 'SA'
 	}
 	if (catégorieJuridique === '5720') {
 		return 'SASU'
 	}
-	if (catégorieJuridique.match(/^57..$/)) {
+	if (/^57..$/.exec(catégorieJuridique)) {
 		return 'SAS'
 	}
 	return 'NON_IMPLÉMENTÉ'

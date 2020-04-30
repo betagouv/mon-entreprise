@@ -12,7 +12,7 @@ import {
 type Props = {
 	children: React.ReactNode
 	config?: SpringConfig
-	style?: Object
+	style?: React.CSSProperties
 	className?: string
 	delay?: number
 }

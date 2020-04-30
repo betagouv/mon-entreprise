@@ -29,7 +29,7 @@ export default function InputSuggestions({
 			`}
 		>
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {
-				const valueWithUnit: string = `${value} ${
+				const valueWithUnit = `${value} ${
 					unit ? serializeUnit(unit)?.replace(' / ', '/') : ''
 				}`
 				return (

@@ -1,5 +1,5 @@
 export default {
-	removeItem: function (key: string) {
+	removeItem: function(key: string) {
 		try {
 			return window.localStorage.removeItem(key)
 		} catch (error) {
@@ -12,7 +12,7 @@ export default {
 			return null
 		}
 	},
-	getItem: function (key: string) {
+	getItem: function(key: string) {
 		try {
 			return window.localStorage.getItem(key)
 		} catch (error) {
@@ -25,7 +25,7 @@ export default {
 			return null
 		}
 	},
-	setItem: function (key: string, value: string) {
+	setItem: function(key: string, value: string) {
 		try {
 			return window.localStorage.setItem(key, value)
 		} catch (error) {

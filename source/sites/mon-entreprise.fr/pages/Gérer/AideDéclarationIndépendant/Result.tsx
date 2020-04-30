@@ -66,7 +66,11 @@ export function Results({ componentRef }: ResultsProp) {
 					</p>
 					{!onGoingComputation && (
 						<div css="text-align: center">
-							<style>{`@media print {.button.print{display: none;} body {margin: 40px;}}`}</style>
+							<style>
+								{
+									'@media print {.button.print{display: none;} body {margin: 40px;}}'
+								}
+							</style>
 							<ReactToPrint
 								trigger={() => (
 									<button className="ui__ simple button print">

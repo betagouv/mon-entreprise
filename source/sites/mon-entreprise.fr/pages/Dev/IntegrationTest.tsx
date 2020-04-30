@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-let LazyColorPicker = React.lazy(() => import('./ColorPicker'))
+const LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
 export const integrableModuleNames = [
 	'simulateur-embauche',

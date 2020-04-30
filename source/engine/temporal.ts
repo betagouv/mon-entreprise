@@ -85,7 +85,7 @@ export function createTemporalEvaluation<T extends Types>(
 	value: Evaluation<T>,
 	period: Period<string> = { start: null, end: null }
 ): Temporal<Evaluation<T>> {
-	let temporalValue = [{ ...period, value }]
+	const temporalValue = [{ ...period, value }]
 	if (period.start != null) {
 		temporalValue.unshift({
 			start: null,

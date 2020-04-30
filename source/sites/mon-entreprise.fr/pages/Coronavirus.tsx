@@ -220,7 +220,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 							onChange={evt => setCurrentColumnIndex(Number(evt.target.value))}
 						>
 							{columns.map((name, i) => (
-								<option value={i} selected={i === currentColumnIndex}>
+								<option value={i} selected={i === currentColumnIndex} key={i}>
 									{name}
 								</option>
 							))}

@@ -17,7 +17,7 @@ export default function Aide() {
 
 	if (!explained) return null
 
-	let rule = rules[explained],
+	const rule = rules[explained],
 		text = rule.description,
 		refs = rule.références
 

@@ -5,13 +5,13 @@ import { Trans } from 'react-i18next'
 import './Algorithm.css'
 import { EvaluatedRule, ParsedRule } from 'Rules'
 
-let Conditions = ({
+const Conditions = ({
 	'rendu non applicable': disabledBy,
 	parentDependencies,
 	'applicable si': applicable,
 	'non applicable si': notApplicable
 }: EvaluatedRule) => {
-	let listElements = [
+	const listElements = [
 		...parentDependencies.map(
 			parentDependency =>
 				parentDependency.nodeValue === false && (
@@ -53,7 +53,7 @@ function ShowIfDisabled({ dependency }: { dependency: EvaluatedRule }) {
 }
 
 export default function Algorithm({ rule }: { rule: EvaluatedRule }) {
-	let formula =
+	const formula =
 			rule.formule ||
 			(rule.category === 'variable' && rule.explanation.formule),
 		displayFormula =

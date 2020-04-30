@@ -105,7 +105,7 @@ describe.only('Simulateur salarié', () => {
 	if (!fr) {
 		return
 	}
-	before(() => cy.visit(`/simulateurs/salarié`))
+	before(() => cy.visit('/simulateurs/salarié'))
 
 	it.skip('should save the current simulation', function() {
 		cy.get(inputSelector)

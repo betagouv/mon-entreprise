@@ -22,7 +22,7 @@ export default function Salarié() {
 				<title>
 					{t(
 						'simulateurs.salarié.page.titre',
-						`Calcul du salaire brut / net : le simulateur de l'Urssaf`
+						"Calcul du salaire brut / net : le simulateur de l'Urssaf"
 					)}
 				</title>
 				<meta
@@ -131,7 +131,7 @@ function SeoExplanations() {
 	)
 }
 
-export let SalarySimulation = () => {
+export const SalarySimulation = () => {
 	const sitePaths = useContext(SitePathsContext)
 	return (
 		<>

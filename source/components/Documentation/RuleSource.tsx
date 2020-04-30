@@ -6,7 +6,7 @@ import PublicodeHighlighter from '../ui/PublicodeHighlighter'
 type RuleSourceProps = Pick<ParsedRule, 'dottedName'>
 
 export default function RuleSource({ dottedName }: RuleSourceProps) {
-	let source = rules[dottedName]
+	const source = rules[dottedName]
 
 	return (
 		<section>

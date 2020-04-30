@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import { translateRules } from 'Engine'
 import React from 'react'
 import { render } from 'react-dom'
@@ -13,17 +13,12 @@ import App from './App'
 i18next.addResourceBundle('en', 'translation', translations)
 i18next.changeLanguage('en')
 
-let Root = () => (
+const Root = hot(() => (
 	<App
 		basename="infrance"
 		rules={translateRules('en', ruleTranslations, rules)}
 	/>
-)
-
-if (process.env.NODE_ENV !== 'production') {
-	const { hot } = require('react-hot-loader/root')
-	Root = hot(Root)
-}
+))
 
 const anchor = document.querySelector('#js')
 render(<Root />, anchor)

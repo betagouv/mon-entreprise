@@ -64,7 +64,7 @@ export function evaluatePlafondUntilActiveTranche(
 					e
 				)
 			}
-			let plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
+			const plancherValue = tranches[i - 1] ? tranches[i - 1].plafondValue : 0
 			const isAfterActive =
 				plancherValue === null || assiette.nodeValue === null
 					? null
@@ -93,7 +93,7 @@ export function evaluatePlafondUntilActiveTranche(
 			if (
 				!!tranches[i - 1] &&
 				!!plancherValue &&
-				<number>plafondValue <= plancherValue
+				(plafondValue as number) <= plancherValue
 			) {
 				evaluationError(
 					cache._meta.contextRule,
@@ -110,7 +110,7 @@ export function evaluatePlafondUntilActiveTranche(
 				isAfterActive,
 				isActive:
 					assiette.nodeValue >= plancherValue &&
-					assiette.nodeValue < <number>plafondValue
+					assiette.nodeValue < (plafondValue as number)
 			}
 
 			return [[...tranches, tranche], tranche.isActive]

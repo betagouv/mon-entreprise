@@ -1,4 +1,6 @@
 /**
+ * Copied from https://gist.github.com/borgar/3317728
+ *
  * Searches the interval from <tt>lowerLimit</tt> to <tt>upperLimit</tt>
  * for a root (i.e., zero) of the function <tt>func</tt> with respect to
  * its first argument using Brent's method root-finding algorithm.
@@ -29,9 +31,9 @@ export default function uniroot(
 		fa = func(a),
 		fb = func(b),
 		fc = fa,
-		tol_act: number, // Actual tolerance
-		new_step: number, // Step at this iteration
-		prev_step: number, // Distance from the last but one to the last approximation
+		actualTolerance: number,
+		newStep: number, // Step at this iteration
+		prevStep: number, // Distance from the last but one to the last approximation
 		p: number, // Interpolation step is calculated in the form p/q; division is delayed until the last moment
 		q: number
 
@@ -39,7 +41,7 @@ export default function uniroot(
 	maxIter = maxIter || 1000
 
 	while (maxIter-- > 0) {
-		prev_step = b - a
+		prevStep = b - a
 
 		if (Math.abs(fc) < Math.abs(fb)) {
 			// Swap data for b to be the best approximation
@@ -47,18 +49,18 @@ export default function uniroot(
 			;(fa = fb), (fb = fc), (fc = fa)
 		}
 
-		tol_act = 1e-15 * Math.abs(b) + errorTol / 2
-		new_step = (c - b) / 2
+		actualTolerance = 1e-15 * Math.abs(b) + errorTol / 2
+		newStep = (c - b) / 2
 
-		if (Math.abs(new_step) <= tol_act || fb === 0) {
+		if (Math.abs(newStep) <= actualTolerance || fb === 0) {
 			return b // Acceptable approx. is found
 		}
 
 		// Decide if the interpolation can be tried
-		if (Math.abs(prev_step) >= tol_act && Math.abs(fa) > Math.abs(fb)) {
-			// If prev_step was large enough and was in true direction, Interpolatiom may be tried
-			let t1: number, cb: number, t2: number
-			cb = c - b
+		if (Math.abs(prevStep) >= actualTolerance && Math.abs(fa) > Math.abs(fb)) {
+			// If prevStep was large enough and was in true direction, Interpolatiom may be tried
+			let t1: number, t2: number
+			const cb = c - b
 			if (a === c) {
 				// If we have only two distinct points linear interpolation can only be applied
 				t1 = fb / fa
@@ -78,23 +80,23 @@ export default function uniroot(
 			}
 
 			if (
-				p < 0.75 * cb * q - Math.abs(tol_act * q) / 2 &&
-				p < Math.abs((prev_step * q) / 2)
+				p < 0.75 * cb * q - Math.abs(actualTolerance * q) / 2 &&
+				p < Math.abs((prevStep * q) / 2)
 			) {
 				// If (b + p / q) falls in [b,c] and isn't too large it is accepted
-				new_step = p / q
+				newStep = p / q
 			}
 
 			// If p/q is too large then the bissection procedure can reduce [b,c] range to more extent
 		}
 
-		if (Math.abs(new_step) < tol_act) {
+		if (Math.abs(newStep) < actualTolerance) {
 			// Adjust the step to be not less than tolerance
-			new_step = new_step > 0 ? tol_act : -tol_act
+			newStep = newStep > 0 ? actualTolerance : -actualTolerance
 		}
 
 		;(a = b), (fa = fb) // Save the previous approx.
-		;(b += new_step), (fb = func(b)) // Do step to a new approxim.
+		;(b += newStep), (fb = func(b)) // Do step to a new approxim.
 
 		if ((fb > 0 && fc > 0) || (fb < 0 && fc < 0)) {
 			;(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b

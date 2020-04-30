@@ -32,8 +32,7 @@ export default function RulePage() {
 		)
 	}
 
-	if (!parsedRules.hasOwnProperty(decodedRuleName))
-		return <Redirect to="/404" />
+	if (!(decodedRuleName in parsedRules)) return <Redirect to="/404" />
 
 	return renderRule(decodedRuleName as DottedName)
 }

@@ -1,6 +1,8 @@
 export type Action = InitializeHiringChecklistAction | CheckHiringItemAction
 
-type InitializeHiringChecklistAction = ReturnType<typeof initializeHiringChecklist>
+type InitializeHiringChecklistAction = ReturnType<
+	typeof initializeHiringChecklist
+>
 type CheckHiringItemAction = ReturnType<typeof checkHiringItem>
 
 export const initializeHiringChecklist = (checklistItems: Array<string>) =>

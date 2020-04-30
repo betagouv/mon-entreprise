@@ -150,7 +150,7 @@ const Target = ({ dottedName }: TargetProps) => {
 	)
 }
 
-let Header = ({ target }: { target: ParsedRule }) => {
+const Header = ({ target }: { target: ParsedRule }) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	const { pathname } = useLocation()

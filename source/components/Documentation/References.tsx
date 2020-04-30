@@ -5,10 +5,10 @@ import { capitalise0 } from '../../utils'
 import './References.css'
 
 const findRefKey = (link: string) =>
-	Object.keys(references).find(r => link.indexOf(r) > -1)
+	Object.keys(references).find(r => link.includes(r))
 
 const cleanDomain = (link: string) =>
-	(link.indexOf('://') > -1 ? link.split('/')[2] : link.split('/')[0]).replace(
+	(link.includes('://') ? link.split('/')[2] : link.split('/')[0]).replace(
 		'www.',
 		''
 	)
@@ -19,7 +19,7 @@ type RefProps = {
 }
 
 function Ref({ name, link }: RefProps) {
-	let refKey = findRefKey(link),
+	const refKey = findRefKey(link),
 		refData = (refKey && references[refKey]) || {},
 		domain = cleanDomain(link)
 	return (
@@ -54,7 +54,7 @@ type ReferencesProps = {
 }
 
 export default function References({ refs }: ReferencesProps) {
-	let references = toPairs(refs)
+	const references = toPairs(refs)
 	return (
 		<ul className="references">
 			{references.map(([name, link]) => (

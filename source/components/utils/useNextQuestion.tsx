@@ -41,15 +41,15 @@ type MissingVariables = Array<Partial<Record<DottedName, number>>>
 export function getNextSteps(
 	missingVariables: MissingVariables
 ): Array<DottedName> {
-	let byCount = ([, [count]]) => count
-	let byScore = ([, [, score]]) => score
+	const byCount = ([, [count]]) => count
+	const byScore = ([, [, score]]) => score
 
-	let missingByTotalScore = reduce(mergeWith(add), {}, missingVariables)
+	const missingByTotalScore = reduce(mergeWith(add), {}, missingVariables)
 
-	let innerKeys = flatten(map(keys, missingVariables)),
+	const innerKeys = flatten(map(keys, missingVariables)),
 		missingByTargetsAdvanced = countBy(identity, innerKeys)
 
-	let missingByCompound = mergeWith(
+	const missingByCompound = mergeWith(
 			pair,
 			missingByTargetsAdvanced,
 			missingByTotalScore
@@ -59,7 +59,7 @@ export function getNextSteps(
 	return map(head, sortedPairs)
 }
 
-const similarity = (rule1: string = '', rule2: string = '') =>
+const similarity = (rule1 = '', rule2 = '') =>
 	pipe(
 		zipWith(equals),
 		takeWhile(Boolean),

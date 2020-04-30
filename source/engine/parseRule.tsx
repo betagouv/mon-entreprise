@@ -36,7 +36,7 @@ export default function<Names extends string>(
 		during the evaluation phase, called "analyse".
 	*/
 
-	let parentDependencies = findParentDependencies(rules, dottedName)
+	const parentDependencies = findParentDependencies(rules, dottedName)
 	let rawRule = rules[dottedName]
 	if (rawRule == null) {
 		rawRule = {}
@@ -60,7 +60,7 @@ export default function<Names extends string>(
 	}
 
 	const name = nameLeaf(dottedName)
-	let unit = rawRule.unité != null ? parseUnit(rawRule.unité) : undefined
+	const unit = rawRule.unité != null ? parseUnit(rawRule.unité) : undefined
 
 	const rule = {
 		...rawRule,
@@ -76,16 +76,16 @@ export default function<Names extends string>(
 		defaultValue: rawRule['par défaut']
 	}
 
-	let parsedRule = evolve({
+	const parsedRule = evolve({
 		// Voilà les attributs d'une règle qui sont aujourd'hui dynamiques, donc à traiter
 		// Les métadonnées d'une règle n'en font pas aujourd'hui partie
 
 		// condition d'applicabilité de la règle
 		parentDependencies: parents =>
 			parents.map(parent => {
-				let node = parse(rules, rule, parsedRules)(parent)
+				const node = parse(rules, rule, parsedRules)(parent)
 
-				let jsx = ({ nodeValue, explanation }) =>
+				const jsx = ({ nodeValue, explanation }) =>
 					nodeValue === null ? (
 						<div>Active seulement si {makeJsx(explanation)}</div>
 					) : nodeValue === true ? (
@@ -122,8 +122,8 @@ export default function<Names extends string>(
 				? parse(rules, rule, parsedRules)(value)
 				: value,
 		formule: value => {
-			let evaluate = (cache, situationGate, parsedRules, node) => {
-				let explanation = evaluateNode(
+			const evaluate = (cache, situationGate, parsedRules, node) => {
+				const explanation = evaluateNode(
 						cache,
 						situationGate,
 						parsedRules,
@@ -141,9 +141,9 @@ export default function<Names extends string>(
 				}
 			}
 
-			let child = parse(rules, rule, parsedRules)(value)
+			const child = parse(rules, rule, parsedRules)(value)
 
-			let jsx = ({ explanation }) => makeJsx(explanation)
+			const jsx = ({ explanation }) => makeJsx(explanation)
 
 			return {
 				evaluate,
@@ -156,7 +156,7 @@ export default function<Names extends string>(
 			}
 		},
 		contrôles: map((control: any) => {
-			let testExpression = parse(rules, rule, parsedRules)(control.si)
+			const testExpression = parse(rules, rule, parsedRules)(control.si)
 			if (
 				!testExpression.explanation &&
 				!(testExpression.category === 'reference')
@@ -232,9 +232,9 @@ export default function<Names extends string>(
 	return parsedRules[dottedName]
 }
 
-let evolveCond = (dottedName, rule, rules, parsedRules) => value => {
-	let evaluate = (cache, situationGate, parsedRules, node) => {
-		let explanation = evaluateNode(
+const evolveCond = (dottedName, rule, rules, parsedRules) => value => {
+	const evaluate = (cache, situationGate, parsedRules, node) => {
+		const explanation = evaluateNode(
 				cache,
 				situationGate,
 				parsedRules,
@@ -246,9 +246,9 @@ let evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 		return { ...node, nodeValue, explanation, missingVariables }
 	}
 
-	let child = parse(rules, rule, parsedRules)(value)
+	const child = parse(rules, rule, parsedRules)(value)
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Node
 			classes="ruleProp mecanism cond"
 			name={dottedName}
@@ -274,7 +274,7 @@ let evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 	}
 }
 
-let evolveReplacement = (rules, rule, parsedRules) => replacements =>
+const evolveReplacement = (rules, rule, parsedRules) => replacements =>
 	coerceArray(replacements).map(reference => {
 		const referenceName =
 			typeof reference === 'string' ? reference : reference.règle
@@ -282,7 +282,7 @@ let evolveReplacement = (rules, rule, parsedRules) => replacements =>
 		if (replacementNode != null) {
 			replacementNode = parse(rules, rule, parsedRules)(replacementNode)
 		}
-		let [whiteListedNames, blackListedNames] = [
+		const [whiteListedNames, blackListedNames] = [
 			reference.dans,
 			reference['sauf dans']
 		]

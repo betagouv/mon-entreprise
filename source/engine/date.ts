@@ -21,7 +21,7 @@ export function normalizeDate(
 
 export function convertToDate(value: string): Date {
 	const [day, month, year] = normalizeDateString(value).split('/')
-	var result = new Date(+year, +month - 1, +day)
+	const result = new Date(+year, +month - 1, +day)
 	// Reset date to utc midnight for exact calculation of day difference (no
 	// daylight saving effect)
 	result.setMinutes(result.getMinutes() - result.getTimezoneOffset())

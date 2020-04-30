@@ -74,7 +74,7 @@ export default function AfterRegistration() {
 					).{' '}
 					<span
 						style={
-							statutChoisi && statutChoisi.match(/auto-entrepreneur|EI/)
+							statutChoisi && /auto-entrepreneur|EI/.exec(statutChoisi)
 								? { display: 'none' }
 								: {}
 						}

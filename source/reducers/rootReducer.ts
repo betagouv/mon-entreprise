@@ -138,7 +138,7 @@ function simulation(
 				foldedSteps: [],
 				unfoldedStep: null
 			}
-		case 'UPDATE_SITUATION':
+		case 'UPDATE_SITUATION': {
 			const targets = without(
 				['entreprise . charges'],
 				objectifsSelector({ simulation: state } as RootState)
@@ -154,7 +154,8 @@ function simulation(
 					[dottedName]: value
 				}
 			}
-		case 'STEP_ACTION':
+		}
+		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold')
 				return {
@@ -170,6 +171,7 @@ function simulation(
 				}
 			}
 			return state
+		}
 		case 'UPDATE_TARGET_UNIT':
 			return {
 				...state,

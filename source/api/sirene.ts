@@ -1,5 +1,5 @@
-const isSIREN = (input: string) => input.match(/^[\s]*([\d][\s]*){9}$/)
-const isSIRET = (input: string) => input.match(/^[\s]*([\d][\s]*){14}$/)
+const isSIREN = (input: string) => /^[\s]*([\d][\s]*){9}$/.exec(input)
+const isSIRET = (input: string) => /^[\s]*([\d][\s]*){14}$/.exec(input)
 
 export async function fetchCompanyDetails(siren: string) {
 	const response = await fetch(

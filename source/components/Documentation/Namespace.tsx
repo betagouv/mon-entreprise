@@ -27,14 +27,14 @@ export default function Namespace({ dottedName }: { dottedName: DottedName }) {
 					[]
 				)
 				.map((fragments: string[]) => {
-					let ruleName = fragments.join(' . ') as DottedName,
+					const ruleName = fragments.join(' . ') as DottedName,
 						rule = rules[ruleName]
 					if (!rule) {
 						throw new Error(
 							`Attention, il se peut que la règle ${ruleName}, ait été définie avec un namespace qui n'existe pas.`
 						)
 					}
-					let ruleText = rule.title || capitalise0(rule.name),
+					const ruleText = rule.title || capitalise0(rule.name),
 						style = { color: colors.textColor }
 
 					return (
