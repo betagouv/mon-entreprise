@@ -59,7 +59,7 @@ export default function Landing() {
 				))}
 			</ul>
 			{Object.entries(mecanisms).map(([name, data]) => (
-				<Mecanism {...(data as any)} name={name} />
+				<Mecanism {...(data as any)} name={name} key={name} />
 			))}
 		</div>
 	)

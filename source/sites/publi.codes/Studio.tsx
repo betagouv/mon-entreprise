@@ -173,6 +173,7 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 						padding: 20px;
 						border-radius: 5px;
 					`}
+					key={warning}
 				>
 					{nl2br(warning)}
 				</div>
