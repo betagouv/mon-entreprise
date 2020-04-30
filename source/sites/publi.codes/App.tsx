@@ -1,4 +1,5 @@
 // TODO : load translation only if en
+import { hot } from 'react-hot-loader'
 import 'iframe-resizer'
 import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -40,11 +41,4 @@ const App = () => {
 	)
 }
 
-let ExportedApp = Router
-
-if (process.env.NODE_ENV !== 'production') {
-	const { hot } = require('react-hot-loader')
-	ExportedApp = hot(module)(Router)
-}
-
-export default ExportedApp
+export default hot(module)(Router)
