@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function Landing() {
 	useEffect(() => {
-		var css = document.createElement('style')
+		const css = document.createElement('style')
 		css.type = 'text/css'
 		css.innerHTML = `
 		#js {

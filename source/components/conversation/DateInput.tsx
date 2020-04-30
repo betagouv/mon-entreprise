@@ -47,7 +47,7 @@ export default function DateInput({
 				<InputSuggestions
 					suggestions={suggestions}
 					onFirstClick={value => {
-						onChange(normalizeDateString(value as string))
+						onChange(normalizeDateString(value))
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
 				/>

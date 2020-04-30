@@ -25,7 +25,7 @@ export default function Controls() {
 	if (!controls) {
 		return null
 	}
-	let messages = inversionFail
+	const messages = inversionFail
 		? [
 				{
 					message: t([

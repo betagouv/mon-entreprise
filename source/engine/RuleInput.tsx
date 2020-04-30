@@ -46,12 +46,12 @@ export default function RuleInput({
 	className,
 	onSubmit
 }: RuleInputProps) {
-	let rule = rules[dottedName]
-	let unit = rule.unit
-	let language = useTranslation().i18n.language
-	let engine = useContext(EngineContext)
+	const rule = rules[dottedName]
+	const unit = rule.unit
+	const language = useTranslation().i18n.language
+	const engine = useContext(EngineContext)
 
-	let commonProps = {
+	const commonProps = {
 		key: dottedName,
 		dottedName,
 		value,
@@ -130,22 +130,22 @@ export default function RuleInput({
 	return <Input {...commonProps} unit={unit} />
 }
 
-let getVariant = (rule: ParsedRule) =>
+const getVariant = (rule: ParsedRule) =>
 	rule?.formule?.explanation['possibilités']
 
-export let buildVariantTree = <Name extends string>(
+export const buildVariantTree = <Name extends string>(
 	allRules: ParsedRules<Name>,
 	path: Name
 ) => {
-	let rec = (path: Name) => {
-		let node = allRules[path]
+	const rec = (path: Name) => {
+		const node = allRules[path]
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
-		let variant = getVariant(node)
+		const variant = getVariant(node)
 		const variants = variant && node.formule.explanation['possibilités']
 		const canGiveUp = variant && !node.formule.explanation['choix obligatoire']
 		return Object.assign(
 			node,
-			!!variant
+			variant
 				? {
 						canGiveUp,
 						children: variants.map((v: string) => rec(`${path} . ${v}` as Name))

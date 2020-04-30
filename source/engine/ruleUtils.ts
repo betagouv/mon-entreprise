@@ -17,7 +17,7 @@ export const encodeRuleName = name =>
 			.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
 			.replace(/\s/g, '-')
 	)
-export let decodeRuleName = name =>
+export const decodeRuleName = name =>
 	decodeURI(
 		name
 			.replace(/\//g, ' . ')
@@ -27,7 +27,7 @@ export let decodeRuleName = name =>
 export function ruleParents<Names extends string>(
 	dottedName: Names
 ): Array<Names> {
-	let fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
+	const fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
 	return range(1, fragments.length)
 		.map(nbEl => take(nbEl, fragments))
 		.map(joinName) //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD
@@ -80,14 +80,14 @@ export function findParentDependencies<Names extends string>(
 		.map(([name, _]) => name)
 }
 
-export let getRuleFromAnalysis = analysis => <Names extends string>(
+export const getRuleFromAnalysis = analysis => <Names extends string>(
 	dottedName: Names
 ): EvaluatedRule<Names> => {
 	if (!analysis) {
 		throw new Error("[getRuleFromAnalysis] The analysis can't be nil !")
 	}
 
-	let rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
+	const rule = coerceArray(analysis) // In some simulations, there are multiple "branches" : the analysis is run with e.g. 3 different input situations
 		.map(
 			analysis =>
 				analysis.cache[dottedName]?.explanation || // the cache stores a reference to a variable, the variable is contained in the 'explanation' attribute

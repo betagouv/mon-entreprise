@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 import './Destinataire.css'
 
 export default function Rule({ destinataire }: { destinataire: string }) {
-	let destinataireData = possiblesDestinataires[destinataire]
+	const destinataireData = possiblesDestinataires[destinataire]
 
 	return destinataire && destinataireData ? (
 		<div className="infobox__item" id="destinataire">

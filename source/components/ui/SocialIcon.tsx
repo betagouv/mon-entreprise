@@ -34,11 +34,7 @@ export const icons = {
 	}
 }
 
-export default function withSocialMedia({
-	media
-}: {
-	media: keyof typeof icons
-}) {
+export default function({ media }: { media: keyof typeof icons }) {
 	const { color } = useContext(ThemeColorsContext)
 	return (
 		<svg

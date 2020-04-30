@@ -68,7 +68,7 @@ export default class Engine<Names extends string> {
 	private evaluateExpression(
 		expression: string,
 		context: string,
-		useDefaultValues: boolean = true
+		useDefaultValues = true
 	): EvaluatedRule<Names> {
 		const result = simplifyNodeUnit(
 			evaluateNode(

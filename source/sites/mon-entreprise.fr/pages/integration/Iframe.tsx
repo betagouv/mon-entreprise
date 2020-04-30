@@ -16,7 +16,7 @@ import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
 
-let LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
+const LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
 
 function IntegrationCustomizer() {
 	const { search } = useLocation()

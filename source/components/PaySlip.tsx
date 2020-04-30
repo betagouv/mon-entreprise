@@ -101,7 +101,7 @@ export default function PaySlip() {
 					<Trans>Part salarié</Trans>
 				</h4>
 				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
-					let section = parsedRules[sectionDottedName]
+					const section = parsedRules[sectionDottedName]
 					return (
 						<Fragment key={section.dottedName}>
 							<h5 className="payslip__cotisationTitle">

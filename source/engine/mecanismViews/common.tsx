@@ -21,7 +21,7 @@ type NodeValuePointerProps = {
 	unit: Unit
 }
 
-export let NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
+export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 	<span
 		className={classnames('situationValue', {
 			boolean: typeof data == 'boolean'
@@ -58,7 +58,7 @@ export function Node({
 	inline,
 	unit
 }: NodeProps) {
-	let termDefinition = contains('mecanism', classes) && name
+	const termDefinition = contains('mecanism', classes) && name
 
 	return (
 		<div
@@ -166,7 +166,7 @@ export function SimpleRuleLink({
 	)
 }
 
-export let sortObjectByKeys = pipe(
+export const sortObjectByKeys = pipe(
 	toPairs as any,
 	// we don't rely on the sorting of objects
 	sort(([k1]: [number], [k2]: [number]) => k1 - k2)

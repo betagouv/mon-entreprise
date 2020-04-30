@@ -6,7 +6,7 @@ import { DottedName } from 'Rules'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 
-export let SalaireBrutSection = () => {
+export const SalaireBrutSection = () => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">
@@ -28,7 +28,7 @@ export let SalaireBrutSection = () => {
 	)
 }
 
-export let SalaireNetSection = () => {
+export const SalaireNetSection = () => {
 	return (
 		<div className="payslip__salarySection">
 			<h4 className="payslip__salaryTitle">

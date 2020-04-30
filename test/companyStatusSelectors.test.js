@@ -1,4 +1,3 @@
-
 import { expect } from 'chai'
 import { nextQuestionSelector } from 'Selectors/companyStatusSelectors'
 const state = companyLegalStatus => ({

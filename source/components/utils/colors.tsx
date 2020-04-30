@@ -5,7 +5,7 @@ import React, { createContext, useEffect, useRef } from 'react'
 	Hex to RGB conversion:
  	http://www.javascripter.net/faq/hextorgb.htm
 */
-let cutHex = (h: string) => (h.charAt(0) == '#' ? h.substring(1, 7) : h),
+const cutHex = (h: string) => (h.startsWith('#') ? h.substring(1, 7) : h),
 	hexToR = (h: string) => parseInt(cutHex(h).substring(0, 2), 16),
 	hexToG = (h: string) => parseInt(cutHex(h).substring(2, 4), 16),
 	hexToB = (h: string) => parseInt(cutHex(h).substring(4, 6), 16)
@@ -15,7 +15,7 @@ let cutHex = (h: string) => (h.charAt(0) == '#' ? h.substring(1, 7) : h),
    	Taken from http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#comment61936401_3943023
 */
 function findContrastedTextColor(color: string, simple: boolean) {
-	let r = hexToR(color),
+	const r = hexToR(color),
 		g = hexToG(color),
 		b = hexToB(color)
 
@@ -23,7 +23,7 @@ function findContrastedTextColor(color: string, simple: boolean) {
 		// The YIQ formula
 		return r * 0.299 + g * 0.587 + b * 0.114 > 128 ? '#000000' : '#ffffff'
 	} // else complex formula
-	let uicolors = [r / 255, g / 255, b / 255],
+	const uicolors = [r / 255, g / 255, b / 255],
 		c = uicolors.map(c =>
 			c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
 		),
@@ -56,7 +56,7 @@ const deriveAnalogousPalettes = (hex: string) => {
 }
 
 const generateTheme = (themeColor?: string) => {
-	let // Use the default theme color if the host page hasn't made a choice
+	const // Use the default theme color if the host page hasn't made a choice
 		color = themeColor || '#2975D1',
 		lightColor = lightenColor(color, 10),
 		darkColor = lightenColor(color, -20),

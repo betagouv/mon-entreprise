@@ -87,7 +87,7 @@ export const setSituationBranch = (id: number) =>
 
 export const setSimulationConfig = (
 	config: SimulationConfig,
-	useCompanyDetails: boolean = false
+	useCompanyDetails = false
 ): ThunkResult<void> => (dispatch, getState, { history }): void => {
 	if (getState().simulation?.config === config) {
 		return

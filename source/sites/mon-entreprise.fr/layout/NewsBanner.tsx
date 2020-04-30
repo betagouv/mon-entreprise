@@ -11,7 +11,7 @@ const localStorageKey = 'last-viewed-release'
 export const hideNewsBanner = () => writeStorage(localStorageKey, lastRelease)
 
 export const determinant = (word: string) =>
-	word.match(/^[aeiouy]/i) ? 'd’' : 'de '
+	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
 	const [lastViewedRelease] = useLocalStorage(localStorageKey)
