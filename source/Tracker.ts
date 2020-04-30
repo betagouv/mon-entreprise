@@ -13,9 +13,9 @@ type PushType = (args: PushArgs) => void
 const ua = window.navigator.userAgent
 // https://chromium.googlesource.com/chromium/src.git/+/master/docs/ios/user_agent.md
 const iOSSafari =
-	(!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
-	!!ua.match(/WebKit/i) &&
-	!ua.match(/CriOS/i)
+	(!!/iPad/i.exec(ua) || !!/iPhone/i.exec(ua)) &&
+	!!/WebKit/i.exec(ua) &&
+	!/CriOS/i.exec(ua)
 
 export default class Tracker {
 	push: PushType

@@ -80,7 +80,7 @@ function extractInlinedNames(rules: Record<string, Record<string, any>>) {
 		dottedName: string,
 		context: Array<string | number> = []
 	) => ([key, value]: [string, Record<string, any>]) => {
-		const match = key.match(/\[ref( (.+))?\]$/)
+		const match = /\[ref( (.+))?\]$/.exec(key)
 		if (match) {
 			const argumentType = key.replace(match[0], '').trim()
 			const argumentName = match[2]?.trim() || argumentType

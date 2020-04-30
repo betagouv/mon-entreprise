@@ -37,9 +37,9 @@ export const numberFormatter = ({
 }
 
 export const currencyFormat = (language: string | undefined) => ({
-	isCurrencyPrefixed: !!numberFormatter({ language, style: 'currency' })(
-		12
-	).match(/^€/),
+	isCurrencyPrefixed: !!/^€/.exec(
+		numberFormatter({ language, style: 'currency' })(12)
+	),
 	thousandSeparator: numberFormatter({ language })(1000).charAt(1),
 	decimalSeparator: numberFormatter({ language })(0.1).charAt(1)
 })
