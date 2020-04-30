@@ -340,8 +340,8 @@ export const mecanismReduction = (recurse, k, v) => {
 		{ assiette, abattement, plafond, franchise, décote },
 		cache
 	) => {
-		const v_assiette = assiette.nodeValue
-		if (v_assiette == null) return { nodeValue: null }
+		const assietteValue = assiette.nodeValue
+		if (assietteValue == null) return { nodeValue: null }
 		if (assiette.unit) {
 			try {
 				franchise = convertNodeToUnit(assiette.unit, franchise)
@@ -362,18 +362,18 @@ export const mecanismReduction = (recurse, k, v) => {
 			}
 		}
 		const montantFranchiséDécoté =
-			franchise.nodeValue && v_assiette < franchise.nodeValue
+			franchise.nodeValue && assietteValue < franchise.nodeValue
 				? 0
 				: décote
 				? (function() {
 						const plafondDécote = décote.plafond.nodeValue,
 							taux = décote.taux.nodeValue
 
-						return v_assiette > plafondDécote
-							? v_assiette
-							: max(0, (1 + taux) * v_assiette - taux * plafondDécote)
+						return assietteValue > plafondDécote
+							? assietteValue
+							: max(0, (1 + taux) * assietteValue - taux * plafondDécote)
 				  })()
-				: v_assiette
+				: assietteValue
 		const nodeValue = abattement
 			? abattement.nodeValue == null
 				? montantFranchiséDécoté === 0

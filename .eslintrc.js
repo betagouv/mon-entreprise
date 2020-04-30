@@ -65,7 +65,8 @@ module.exports = {
             delimiter: "none"
           }
         }],
-        "@typescript-eslint/explicit-function-return-type": 0
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/camelcase": 1
       },
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
