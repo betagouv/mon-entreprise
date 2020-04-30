@@ -66,7 +66,8 @@ module.exports = {
           }
         }],
         "@typescript-eslint/explicit-function-return-type": 0,
-        "@typescript-eslint/camelcase": 1
+        "@typescript-eslint/camelcase": 1,
+        '@typescript-eslint/prefer-string-starts-ends-with': 1,
       },
       extends: [
         "plugin:@typescript-eslint/eslint-recommended",
