@@ -40,7 +40,7 @@
 		"react-dom": "npm:@hot-loader/react-dom",
 		"react-easy-emoji": "^1.2.0",
 		"react-fuzzy-highlighter": "^0.3.1",
-		"react-helmet": "6.0.0-beta",
+		"react-helmet": "^6.0.0",
 		"react-i18next": "^11.0.0",
 		"react-loading-skeleton": "^2.0.1",
 		"react-markdown": "^4.1.0",
