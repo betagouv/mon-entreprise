@@ -5,8 +5,8 @@ import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 
 let script =
-	document.getElementById('script-monentreprise') ||
-	document.getElementById('script-simulateur-embauche'),
+		document.getElementById('script-monentreprise') ||
+		document.getElementById('script-simulateur-embauche'),
 	moduleName = script.dataset.module || 'simulateur-embauche',
 	couleur = encodeURIComponent(script.dataset.couleur),
 	lang = script.dataset.lang || 'fr',
@@ -50,15 +50,21 @@ const moduleToSitePath = {
 	'simulateur-embauche': '/simulateurs/salarié',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
-	'simulateur-assimilesalarie': '/simulateurs/assimilé-salarié',
+	'simulateur-assimilesalarie': '/simulateurs/assimilé-salarié'
 }
-const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace('${path}', moduleToSitePath[moduleName])
+const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
+	'${path}',
+	moduleToSitePath[moduleName]
+)
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem">
 		<a href="${simulateurLink}" target="_blank">
 			<img
 				style="height: 2.5rem; margin-right: 1rem"
-				src="${process.env.FR_SITE.replace('${path}', '/' + (lang === 'fr' ? logoFrSvg : logoEnSvg))}"
+				src="${process.env.FR_SITE.replace(
+					'${path}',
+					'/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)
+				)}"
 				alt="mon-entreprise.fr : l'assistant officiel du créateur d'entreprise"
 			/>
 		</a>
@@ -81,4 +87,3 @@ links.innerHTML = `
 
 script.parentNode.insertBefore(iframe, script)
 script.parentNode.insertBefore(links, script)
-

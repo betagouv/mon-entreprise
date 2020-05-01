@@ -94,7 +94,7 @@ export default (cache, situationGate, parsedRules, node) => {
 		} catch (e) {
 			typeWarning(
 				node.dottedName,
-				'L\'unité de la règle est incompatible avec celle de sa formule',
+				"L'unité de la règle est incompatible avec celle de sa formule",
 				e
 			)
 		}

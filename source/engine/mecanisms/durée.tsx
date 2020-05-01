@@ -34,7 +34,12 @@ const objectShape = {
 }
 
 const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(null, cache, situation, parsedRules)
+	const evaluateAttribute = evaluateNode.bind(
+		null,
+		cache,
+		situation,
+		parsedRules
+	)
 	const from = evaluateAttribute(node.explanation.depuis)
 	const to = evaluateAttribute(node.explanation["jusqu'à"])
 	let nodeValue

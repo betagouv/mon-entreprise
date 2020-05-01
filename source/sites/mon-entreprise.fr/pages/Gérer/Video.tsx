@@ -11,7 +11,8 @@ export default function Video() {
 				width: '100%',
 				height: '0',
 				paddingBottom: '56.25%'
-			}}>
+			}}
+		>
 			<iframe
 				style={{
 					position: 'absolute',
