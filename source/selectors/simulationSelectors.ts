@@ -1,9 +1,12 @@
 import { DottedName } from './../rules/index'
 import { createSelector } from 'reselect'
+import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 
-export const configSelector = state => state.simulation?.config ?? {}
+export const configSelector = (state: RootState): Partial<SimulationConfig> =>
+	state.simulation?.config ?? {}
+
 export const objectifsSelector = createSelector([configSelector], config => {
-	const primaryObjectifs = ((config.objectifs ?? []) as any)
+	const primaryObjectifs = (config.objectifs ?? ([] as any))
 		.map((obj: DottedName | { objectifs: Array<DottedName> }) =>
 			typeof obj === 'string' ? [obj] : obj.objectifs
 		)
@@ -12,10 +15,13 @@ export const objectifsSelector = createSelector([configSelector], config => {
 	const objectifs = [...primaryObjectifs, ...(config['objectifs cachés'] ?? [])]
 	return objectifs
 })
+
 const emptySituation = {}
-export const situationSelector = state =>
+
+export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation
-export const configSituationSelector = state =>
+
+export const configSituationSelector = (state: RootState) =>
 	configSelector(state).situation ?? emptySituation
 
 export const firstStepCompletedSelector = createSelector(
@@ -30,11 +36,11 @@ export const firstStepCompletedSelector = createSelector(
 	}
 )
 
-export const targetUnitSelector = state =>
+export const targetUnitSelector = (state: RootState) =>
 	state.simulation?.targetUnit ?? '€/mois'
 
-export const currentQuestionSelector = state =>
+export const currentQuestionSelector = (state: RootState) =>
 	state.simulation?.unfoldedStep ?? null
 
-export const answeredQuestionsSelector = state =>
+export const answeredQuestionsSelector = (state: RootState) =>
 	state.simulation?.foldedSteps ?? []

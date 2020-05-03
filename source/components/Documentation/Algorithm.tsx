@@ -3,13 +3,14 @@ import { any, identity, path } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import './Algorithm.css'
+import { EvaluatedRule, ParsedRule } from 'Rules'
 
 let Conditions = ({
 	'rendu non applicable': disabledBy,
 	parentDependencies,
 	'applicable si': applicable,
 	'non applicable si': notApplicable
-}) => {
+}: EvaluatedRule) => {
 	let listElements = [
 		...parentDependencies.map(
 			parentDependency =>
@@ -21,7 +22,7 @@ let Conditions = ({
 				)
 		),
 		...disabledBy?.explanation?.isDisabledBy?.map(
-			(dependency, i) =>
+			(dependency: EvaluatedRule, i: number) =>
 				dependency?.nodeValue === true && (
 					<ShowIfDisabled dependency={dependency} key={`dependency ${i}`} />
 				)
@@ -40,7 +41,7 @@ let Conditions = ({
 	) : null
 }
 
-function ShowIfDisabled({ dependency }) {
+function ShowIfDisabled({ dependency }: { dependency: EvaluatedRule }) {
 	return (
 		<li>
 			<span css="background: yellow">
@@ -51,7 +52,7 @@ function ShowIfDisabled({ dependency }) {
 	)
 }
 
-export default function Algorithm({ rule }) {
+export default function Algorithm({ rule }: { rule: EvaluatedRule }) {
 	let formula =
 			rule.formule ||
 			(rule.category === 'variable' && rule.explanation.formule),

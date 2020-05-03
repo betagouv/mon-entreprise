@@ -1,7 +1,6 @@
-import { ParsedRule } from 'Engine/types'
 import yaml from 'yaml'
 import React from 'react'
-import rules from 'Rules'
+import rules, { ParsedRule } from 'Rules'
 import PublicodeHighlighter from '../ui/PublicodeHighlighter'
 
 type RuleSourceProps = Pick<ParsedRule, 'dottedName'>

@@ -7,7 +7,7 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { ParsedRules } from 'Engine/types'
+import { ParsedRules, ParsedRule } from 'Engine/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -130,10 +130,14 @@ export default function RuleInput({
 	return <Input {...commonProps} unit={unit} />
 }
 
-let getVariant = rule => rule?.formule?.explanation['possibilités']
+let getVariant = (rule: ParsedRule) =>
+	rule?.formule?.explanation['possibilités']
 
-export let buildVariantTree = (allRules, path) => {
-	let rec = path => {
+export let buildVariantTree = <Name extends string>(
+	allRules: ParsedRules<Name>,
+	path: Name
+) => {
+	let rec = (path: Name) => {
 		let node = allRules[path]
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
 		let variant = getVariant(node)
@@ -144,7 +148,7 @@ export let buildVariantTree = (allRules, path) => {
 			!!variant
 				? {
 						canGiveUp,
-						children: variants.map(v => rec(path + ' . ' + v))
+						children: variants.map((v: string) => rec(`${path} . ${v}` as Name))
 				  }
 				: null
 		)

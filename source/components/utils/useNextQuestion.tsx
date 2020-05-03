@@ -22,7 +22,6 @@ import {
 	sortWith,
 	takeWhile,
 	toPairs,
-	values,
 	zipWith
 } from 'ramda'
 import { useSelector } from 'react-redux'
@@ -71,7 +70,7 @@ const similarity = (rule1: string = '', rule2: string = '') =>
 export function getNextQuestions(
 	missingVariables: MissingVariables,
 	questionConfig: SimulationConfig['questions'] = {},
-	answeredQuestions = [],
+	answeredQuestions: Array<DottedName> = [],
 	situation: Simulation['situation'] = {}
 ): Array<DottedName> {
 	const {

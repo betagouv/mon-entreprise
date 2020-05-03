@@ -1,4 +1,3 @@
-import { setSimulationConfig } from 'Actions/actions'
 import RuleLink from 'Components/RuleLink'
 import Simulation from 'Components/Simulation'
 import chomagePartielConfig from 'Components/simulationConfigs/chômage-partiel.yaml'
@@ -12,8 +11,6 @@ import { EvaluatedRule } from 'Engine/types'
 import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import Animate from 'Ui/animate'
@@ -26,14 +23,7 @@ declare global {
 }
 
 export default function ChômagePartiel() {
-	const dispatch = useDispatch()
-	const location = useLocation<{ fromGérer?: boolean }>()
 	const inIframe = useContext(IsEmbeddedContext)
-	useEffect(() => {
-		dispatch(
-			setSimulationConfig(chomagePartielConfig, location.state?.fromGérer)
-		)
-	}, [])
 	useEffect(() => {
 		if (inIframe || !productionMode) {
 			return
@@ -100,6 +90,7 @@ export default function ChômagePartiel() {
 				</ul>
 			</Warning>
 			<Simulation
+				config={chomagePartielConfig}
 				results={<ExplanationSection />}
 				customEndMessages={
 					<span className="ui__ notice">Voir les résultats au-dessus</span>

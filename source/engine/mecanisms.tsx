@@ -316,10 +316,7 @@ export let mecanismSum = (recurse, k, v) => {
 
 	return {
 		evaluate,
-		// eslint-disable-next-line
-		jsx: ({ nodeValue, explanation, unit }: EvaluatedRule) => (
-			<Somme nodeValue={nodeValue} explanation={explanation} unit={unit} />
-		),
+		jsx: Somme,
 		explanation,
 		category: 'mecanism',
 		name: 'somme',

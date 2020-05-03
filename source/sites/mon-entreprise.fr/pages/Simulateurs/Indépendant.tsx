@@ -1,4 +1,3 @@
-import { setSimulationConfig } from 'Actions/actions'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import indépendantConfig from 'Components/simulationConfigs/indépendant.yaml'
@@ -6,18 +5,11 @@ import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { default as React, useContext, useEffect } from 'react'
+import { default as React, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router'
 
 export default function Indépendant() {
-	const dispatch = useDispatch()
-	const location = useLocation<{ fromGérer?: boolean }>()
-	useEffect(() => {
-		dispatch(setSimulationConfig(indépendantConfig, location.state?.fromGérer))
-	}, [])
 	const { t } = useTranslation()
 	const inIframe = useContext(IsEmbeddedContext)
 
@@ -46,7 +38,10 @@ export default function Indépendant() {
 				</h1>
 			)}
 			<Warning simulateur="indépendant" />
-			<Simulation explanations={<ExplanationSection />} />
+			<Simulation
+				config={indépendantConfig}
+				explanations={<ExplanationSection />}
+			/>
 		</>
 	)
 }

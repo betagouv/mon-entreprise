@@ -20,13 +20,17 @@ artiste-auteur . revenus . BNC:
           - sinon: frais réels
 
 artiste-auteur . revenus . BNC . micro-bnc:
-  applicable si:
-    toutes ces conditions:
-      - recettes > 0
-      - recettes < 72500 €/an
+  non applicable si: contrôle micro-bnc
   par défaut: oui
   titre: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
+
+artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc:
+  description: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
+  formule:
+    toutes ces conditions:
+      - recettes != 0
+      - recettes > 72500 €/an
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC

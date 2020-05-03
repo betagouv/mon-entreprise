@@ -25,9 +25,9 @@ const ressources = {
 }
 
 export default function Budget() {
-	const [selectedYear, setSelectedYear] = useState('2020')
-	const years = ['2019', '2020']
+	const years = ['2019', '2020'] as const
 	const quarters = ['T1', 'T2', 'T3', 'T4']
+	const [selectedYear, setSelectedYear] = useState<typeof years[number]>('2020')
 	const categories = uniq(
 		quarters
 			.map(q => Object.keys(budget[2020][q] ?? {}))
@@ -44,7 +44,9 @@ export default function Budget() {
 				{emoji('📅')} Année{' '}
 				<select
 					value={selectedYear}
-					onChange={event => setSelectedYear(event.target.value)}
+					onChange={event =>
+						setSelectedYear(event.target.value as typeof years[number])
+					}
 				>
 					{years.map(year => (
 						<option key={year}>{year}</option>

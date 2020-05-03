@@ -8,17 +8,17 @@ import { useTranslation } from 'react-i18next'
 
 const ANIMATION_SPRING = config.gentle
 
-let ChartItemBar = ({ styles, color, numberToPlot, unit }) => {
+type ChartItemBarProps = {
+	numberToPlot: number
+	unit?: string
+	style: React.CSSProperties
+}
+
+function ChartItemBar({ style, numberToPlot, unit }: ChartItemBarProps) {
 	const language = useTranslation().i18n.language
 	return (
 		<div className="distribution-chart__bar-container">
-			<animated.div
-				className="distribution-chart__bar"
-				style={{
-					backgroundColor: color,
-					flex: styles.flex
-				}}
-			/>
+			<animated.div className="distribution-chart__bar" style={style} />
 			<div
 				css={`
 					font-weight: bold;
@@ -31,11 +31,14 @@ let ChartItemBar = ({ styles, color, numberToPlot, unit }) => {
 		</div>
 	)
 }
-let BranchIcône = ({ icône }) => (
-	<div className="distribution-chart__legend">
-		<span className="distribution-chart__icon">{emoji(icône)}</span>
-	</div>
-)
+
+function BranchIcon({ icon }: { icon: string }) {
+	return (
+		<div className="distribution-chart__legend">
+			<span className="distribution-chart__icon">{emoji(icon)}</span>
+		</div>
+	)
+}
 
 type BarChartBranchProps = {
 	value: number
@@ -73,7 +76,7 @@ export default function BarChartBranch({
 			className="distribution-chart__item"
 			style={{ opacity: styles.opacity }}
 		>
-			{icon && <BranchIcône icône={icon} />}
+			{icon && <BranchIcon icon={icon} />}
 			<div className="distribution-chart__item-content">
 				<p className="distribution-chart__counterparts">
 					<span className="distribution-chart__branche-name">{title}</span>
@@ -81,12 +84,12 @@ export default function BarChartBranch({
 					{description && <small>{description}</small>}
 				</p>
 				<ChartItemBar
-					{...{
-						styles,
-						color,
-						numberToPlot,
-						unit
+					style={{
+						backgroundColor: color,
+						flex: styles.flex
 					}}
+					numberToPlot={numberToPlot}
+					unit={unit}
 				/>
 			</div>
 		</animated.div>

@@ -3,10 +3,7 @@ import React from 'react'
 import { makeJsx } from '../evaluation'
 import { Node } from './common'
 
-export default function Allègement({
-	nodeValue,
-	explanations: rawExplanation
-}) {
+export default function Allègement({ nodeValue, explanation: rawExplanation }) {
 	// Don't display attributes with default values
 	let explanation = map(k => (k && !k.isDefault ? k : null), rawExplanation)
 	return (

@@ -123,7 +123,7 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 	// console.warn
 	const warnings: string[] = []
 	const originalWarn = console.warn
-	console.warn = warning => warnings.push(warning)
+	console.warn = (warning: string) => warnings.push(warning)
 	const evaluation = engine.evaluate(currentTarget)
 	console.warn = originalWarn
 

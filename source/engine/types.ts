@@ -48,6 +48,15 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	category?: string
 	rulePropType?: string
 	jsx?: Function
+	cotisation?: Partial<{
+		'dû par': string
+		branche: string
+		destinataire: string
+		responsable: string
+	}>
+	taxe?: {
+		'dû par': string
+	}
 }
 
 export type ParsedRules<Names extends string = string> = {
@@ -67,7 +76,7 @@ export type EvaluatedNode<
 	nodeValue: Evaluation<T>
 	explanation?: Object
 	isDefault?: boolean
-	jsx?: (node: EvaluatedNode) => JSX.Element
+	jsx: React.FunctionComponent<EvaluatedNode>
 	missingVariables: Partial<Record<Names, number>>
 } & (T extends number
 	? {
@@ -87,4 +96,7 @@ export type EvaluatedRule<
 	EvaluatedNode<Names, Type> & {
 		isApplicable: boolean
 		explanation: Explanation
+		'rendu non applicable': EvaluatedRule<Names, {}, Type>
+		'applicable si': EvaluatedNode<Names, Type>
+		'non applicable si': EvaluatedNode<Names, Type>
 	}

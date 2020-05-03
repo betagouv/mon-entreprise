@@ -3,6 +3,8 @@
 // future.
 import {
 	EvaluatedRule as GenericEvaluatedRule,
+	ParsedRule as GenericParsedRule,
+	ParsedRules as GenericParsedRules,
 	Rules as GenericRules
 } from 'Engine/types'
 import artisteAuteur from './artiste-auteur.yaml'
@@ -25,6 +27,8 @@ import situationPersonnelle from './situation-personnelle.yaml'
 
 export type DottedName = keyof typeof jsonRules
 export type Rules = GenericRules<DottedName>
+export type ParsedRules = GenericParsedRules<DottedName>
+export type ParsedRule = GenericParsedRule<DottedName>
 export type EvaluatedRule = GenericEvaluatedRule<DottedName>
 export type Situation = Partial<Record<DottedName, string>>
 
