@@ -1,6 +1,5 @@
 import { formatCurrency } from 'Engine/format'
 import React, { useRef } from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -62,14 +61,8 @@ export default function AnimatedTargetValue({
 
 const Evaporate = React.memo(
 	({ children, style }: { children: string; style: Object }) => (
-		<ReactCSSTransitionGroup
-			transitionName="evaporate"
-			transitionEnterTimeout={2500}
-			transitionLeaveTimeout={1}
-		>
-			<span key={children} style={style} className="evaporate">
-				{children}
-			</span>
-		</ReactCSSTransitionGroup>
+		<span key={children} style={style} className="evaporate">
+			{children}
+		</span>
 	)
 )
