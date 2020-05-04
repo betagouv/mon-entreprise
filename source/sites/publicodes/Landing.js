@@ -10,7 +10,6 @@ export default () => {
 		<div
 			css={`
 				border-radius: 1rem;
-				background: linear-gradient(0deg, white, #7ddfc3);
 				padding: 0.4rem;
 				h1 {
 					margin-top: 0.3rem;
