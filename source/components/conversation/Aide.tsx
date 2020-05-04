@@ -26,35 +26,21 @@ export default function Aide() {
 	return (
 		<Animate.fromTop>
 			<div
-				css={`
-					display: flex;
-					align-items: center;
-					img {
-						margin: 0 1em 0 !important;
-						width: 1.6em !important;
-						height: 1.6em !important;
-					}
-				`}
+				className="controlText ui__ card"
+				css="padding: 0.6rem 0; flex: 1; margin-bottom: 1rem"
 			>
-				{emoji('ℹ️')}
-
-				<div
-					className="controlText ui__ card"
-					css="padding: 0.6rem 0; flex: 1;"
-				>
-					<h4>{rule.title}</h4>
-					<p>
-						<Markdown source={text} />
-					</p>
-					{refs && (
-						<div>
-							<References refs={refs} />
-						</div>
-					)}
-					<button className="hide" aria-label="close" onClick={stopExplaining}>
-						×
-					</button>
-				</div>
+				<h4>{rule.title}</h4>
+				<p>
+					<Markdown source={text} />
+				</p>
+				{refs && (
+					<div>
+						<References refs={refs} />
+					</div>
+				)}
+				<button className="hide" aria-label="close" onClick={stopExplaining}>
+					×
+				</button>
 			</div>
 		</Animate.fromTop>
 	)
