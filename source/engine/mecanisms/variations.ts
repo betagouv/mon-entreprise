@@ -40,10 +40,10 @@ export default function parse(recurse, k, v, devariate) {
 type Variation =
 	| {
 			si: any
-			alors: Record<string, any>
+			alors: object
 	  }
 	| {
-			sinon: Record<string, any>
+			sinon: object
 	  }
 export const devariateExplanation = (
 	recurse,

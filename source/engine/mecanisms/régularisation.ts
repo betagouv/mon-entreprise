@@ -44,7 +44,7 @@ export default function parse(parse, k, v) {
 			)
 		}
 		return { value, dottedName: reference.dottedName }
-	}) as Array<{ dottedName: DottedName; value: Record<string, any> }>
+	}) as Array<{ dottedName: DottedName; value: object }>
 
 	return {
 		evaluate,

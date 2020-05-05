@@ -11,7 +11,7 @@ export const EngineProvider = EngineContext.Provider
 
 type SituationProviderProps = {
 	children: React.ReactNode
-	situation: Partial<Record<DottedName, string | number | Record<string, any>>>
+	situation: Partial<Record<DottedName, string | number | object>>
 }
 export function SituationProvider({
 	children,
