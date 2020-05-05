@@ -75,6 +75,12 @@ export function useSimulatorsMetadata() {
 			name: t('Coronavirus'),
 			icône: '👨‍🔬',
 			sitePath: sitePaths.coronavirus
+		},
+		{
+			name: t('Maternité'),
+			icône: '👶',
+			description: 'Simulez un congé maternité ou parental',
+			sitePath: sitePaths.simulateurs.maternité
 		}
 	] as Array<SimulatorMetaData>
 }
@@ -91,16 +97,7 @@ export default function Simulateurs() {
 
 			<section className="ui__ full-width light-bg">
 				<h1 css="min-width: 100%; text-align: center">{titre}</h1>
-				<div
-					className="ui__ center-flex"
-					// Il y a actuellement 6 simulateurs affichés, c'est plus beau
-					// d'afficher une grille de 3x2 sur les écrans larges.
-					//
-					// TODO: on pourrait généraliser cette logique sur toutes les grilles
-					// avec des blocs centrés pour éviter d'avoir 1 seul élements sur la
-					// dernière ligne.
-					style={{ maxWidth: 1100, margin: 'auto' }}
-				>
+				<div className="ui__ center-flex">
 					{simulatorsMetadata
 						.filter(({ name }) => name !== 'Coronavirus')
 						.map(({ name, description, sitePath, icône }) => (
