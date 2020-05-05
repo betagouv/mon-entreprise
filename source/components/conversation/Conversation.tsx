@@ -49,7 +49,7 @@ export default function Conversation({
 
 	const questionCategory = findRuleByDottedName(
 		flatRules,
-		'micmac . ' + currentQuestion.split(' . ')[1]
+		currentQuestion.split(' . ')[0]
 	)
 
 	return nextSteps.length ? (
