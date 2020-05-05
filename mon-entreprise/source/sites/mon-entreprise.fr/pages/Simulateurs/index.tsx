@@ -26,7 +26,6 @@ export default function Simulateurs() {
 			setLastState(state)
 		}
 	}, [setLastState, state])
-
 	return (
 		<>
 			<ScrollToTop key={pathname} />
@@ -84,6 +83,8 @@ export default function Simulateurs() {
 				<Route
 					path={sitePaths.simulateurs.économieCollaborative.index}
 					component={ÉconomieCollaborative}
+				/>
+				<Route
 					path={sitePaths.simulateurs['profession-libérale']}
 					component={ProfessionLibérale}
 				/>

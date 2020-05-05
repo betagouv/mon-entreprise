@@ -62,7 +62,7 @@ export default function Simulation({
 	)
 }
 
-function Questions({
+export function Questions({
 	customEndMessages
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']

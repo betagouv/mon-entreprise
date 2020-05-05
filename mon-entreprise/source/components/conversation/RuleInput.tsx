@@ -87,7 +87,9 @@ export default function RuleInput<Name extends string = DottedName>({
 	if (unit == null && (rule.type === 'booléen' || rule.type == undefined)) {
 		return useSwitch ? (
 			<ToggleSwitch
-				defaultChecked={value === 'oui' || rule.defaultValue === 'oui'}
+				defaultChecked={
+					value === true || value === 'oui' || rule.defaultValue === 'oui'
+				}
 				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
 					onChange(evt.target.checked ? 'oui' : 'non')
 				}
