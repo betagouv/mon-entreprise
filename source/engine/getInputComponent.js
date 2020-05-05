@@ -4,7 +4,11 @@ import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import { serialiseUnit } from 'Engine/units'
 import { is, pick, prop, unless } from 'ramda'
 import React, { Suspense } from 'react'
-import { findRuleByDottedName, queryRule } from './rules'
+import {
+	findRuleByDottedName,
+	queryRule,
+	disambiguateRuleReference,
+} from './rules'
 let SelectTwoAirports = React.lazy(() =>
 	import('Components/conversation/select/SelectTwoAirports')
 )
@@ -13,13 +17,13 @@ let SelectTwoAirports = React.lazy(() =>
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
 
 // eslint-disable-next-line react/display-name
-export default rules => dottedName => {
+export default (rules) => (dottedName) => {
 	let rule = findRuleByDottedName(rules, dottedName)
 
 	let commonProps = {
 		key: dottedName,
 		fieldName: dottedName,
-		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule)
+		...pick(['dottedName', 'title', 'question', 'defaultValue'], rule),
 	}
 	if (rule.dottedName === 'transport . avion . distance de vol aller')
 		return (
@@ -33,7 +37,7 @@ export default rules => dottedName => {
 			<Question
 				{...{
 					...commonProps,
-					choices: buildVariantTree(rules, dottedName)
+					choices: buildVariantTree(rules, dottedName),
 				}}
 			/>
 		)
@@ -44,7 +48,7 @@ export default rules => dottedName => {
 			<SelectAtmp
 				{...{
 					...commonProps,
-					suggestions: rule.suggestions
+					suggestions: rule.suggestions,
 				}}
 			/>
 		)
@@ -56,8 +60,8 @@ export default rules => dottedName => {
 					...commonProps,
 					choices: [
 						{ value: 'non', label: 'Non' },
-						{ value: 'oui', label: 'Oui' }
-					]
+						{ value: 'oui', label: 'Oui' },
+					],
 				}}
 			/>
 		)
@@ -69,16 +73,22 @@ export default rules => dottedName => {
 			{...{
 				...commonProps,
 				unit: serialiseUnit(rule.unit || rule.defaultUnit),
-				suggestions: rule.suggestions
+				suggestions: rule.suggestions,
+				inputEstimation:
+					rule.inputEstimation &&
+					findRuleByDottedName(
+						rules,
+						disambiguateRuleReference(rules, rule, rule.inputEstimation)
+					),
 			}}
 		/>
 	)
 }
 
-let getVariant = rule => queryRule(rule)('formule . une possibilité')
+let getVariant = (rule) => queryRule(rule)('formule . une possibilité')
 
 let buildVariantTree = (allRules, path) => {
-	let rec = path => {
+	let rec = (path) => {
 		let node = findRuleByDottedName(allRules, path)
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
 		let variant = getVariant(node),
@@ -91,7 +101,7 @@ let buildVariantTree = (allRules, path) => {
 			shouldBeExpanded
 				? {
 						canGiveUp,
-						children: variants.map(v => rec(path + ' . ' + v))
+						children: variants.map((v) => rec(path + ' . ' + v)),
 				  }
 				: null
 		)

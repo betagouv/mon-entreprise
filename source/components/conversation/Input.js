@@ -7,6 +7,7 @@ import NumberFormat from 'react-number-format'
 import { debounce } from '../../utils'
 import { FormDecorator } from './FormDecorator'
 import InputSuggestions from './InputSuggestions'
+import InputEstimation from './InputEstimation'
 import SendButton from './SendButton'
 
 // TODO: fusionner Input.js et CurrencyInput.js
@@ -16,7 +17,8 @@ export default compose(FormDecorator('input'))(function Input({
 	submit,
 	dottedName,
 	value,
-	unit
+	unit,
+	inputEstimation,
 }) {
 	const colors = useContext(ThemeColorsContext)
 	const debouncedSetFormValue = useCallback(debounce(750, setFormValue), [])
@@ -29,7 +31,7 @@ export default compose(FormDecorator('input'))(function Input({
 			<div css="width: 100%">
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={value => {
+					onFirstClick={(value) => {
 						setFormValue(value)
 					}}
 					onSecondClick={() => submit('suggestion')}
@@ -55,6 +57,16 @@ export default compose(FormDecorator('input'))(function Input({
 					{unit}
 				</label>
 				<SendButton {...{ disabled: value === undefined, submit }} />
+			</div>
+			<div css="width: 100%">
+				{inputEstimation && (
+					<InputEstimation
+						inputEstimation={inputEstimation}
+						setFinalValue={(value) => {
+							setFormValue(value)
+						}}
+					/>
+				)}
 			</div>
 		</>
 	)

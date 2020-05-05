@@ -159,7 +159,8 @@
 	display: none;
 }
 
-.step input[type='text'] {
+.step input[type='text'],
+.step input[type='number'] {
 	border-bottom: 1px solid;
 	border-radius: 0.3em;
 	color: var(--color);

@@ -59,6 +59,7 @@ export let enrichRule = (rule) => {
 			examples: rule['exemples'],
 			icons: rule['icônes'],
 			summary: rule['résumé'],
+			inputEstimation: rule['aide'],
 			unit,
 			defaultUnit,
 		}
