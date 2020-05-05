@@ -20,6 +20,7 @@ export default ({}) => {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const micmac = getRule('micmac')
+	if (!micmac) return null
 
 	const categories = sortBy(
 		({ nodeValue }) => -nodeValue,

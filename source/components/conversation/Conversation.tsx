@@ -46,11 +46,9 @@ export default function Conversation({
 			setDefault()
 		}
 	}
-
-	const questionCategory = findRuleByDottedName(
-		flatRules,
-		currentQuestion.split(' . ')[0]
-	)
+	const questionCategory =
+		currentQuestion &&
+		findRuleByDottedName(flatRules, currentQuestion.split(' . ')[0])
 
 	return nextSteps.length ? (
 		<>
@@ -58,23 +56,25 @@ export default function Conversation({
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				{currentQuestion && (
 					<React.Fragment key={currentQuestion}>
-						<div>
-							<span
-								css={`
-									background: darkblue;
-									color: white;
-									border-radius: 0.3rem;
-									padding: 0.15rem 0.6rem;
-									text-transform: uppercase;
-									img {
-										margin: 0 0.6rem 0 0 !important;
-									}
-								`}
-							>
-								{emoji(questionCategory.icônes || '🌍')}
-								{questionCategory.title}
-							</span>
-						</div>
+						{questionCategory && (
+							<div>
+								<span
+									css={`
+										background: darkblue;
+										color: white;
+										border-radius: 0.3rem;
+										padding: 0.15rem 0.6rem;
+										text-transform: uppercase;
+										img {
+											margin: 0 0.6rem 0 0 !important;
+										}
+									`}
+								>
+									{emoji(questionCategory.icônes || '🌍')}
+									{questionCategory.title}
+								</span>
+							</div>
+						)}
 						<Animate.fadeIn>
 							{getInputComponent(flatRules)(currentQuestion)}
 						</Animate.fadeIn>
