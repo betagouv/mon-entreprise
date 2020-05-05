@@ -64,7 +64,6 @@ export default function Provider({
 	onStoreCreated,
 	children
 }: ProviderProps) {
-	const { language } = useTranslation().i18n as { language: AvailableLangs }
 	const history = useMemo(
 		() =>
 			createBrowserHistory({
@@ -90,7 +89,10 @@ export default function Provider({
 		)
 	)
 
-	const store = createStore(reducers, initialStore, storeEnhancer)
+	// Hack: useMemo is used to persist the store across hot reloads.
+	const store = useMemo(() => {
+		return createStore(reducers, initialStore, storeEnhancer)
+	}, [])
 	onStoreCreated?.(store)
 
 	// Remove loader

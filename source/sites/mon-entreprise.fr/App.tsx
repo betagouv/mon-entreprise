@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import rulesFr, { Rules } from 'Rules'
+import { Rules } from 'Rules'
 import {
 	configSituationSelector,
 	situationSelector
@@ -84,14 +84,10 @@ type RootProps = {
 	rules: Rules
 }
 
-function Root({ basename, rules }: RootProps) {
+export default function Root({ basename, rules }: RootProps) {
 	const { language } = useTranslation().i18n
-	// Hot reload rules
-	if (process.env.NODE_ENV !== 'production' && language === 'fr') {
-		rules = rulesFr
-	}
-
 	const paths = constructLocalizedSitePath(language as AvailableLangs)
+
 	return (
 		<Provider
 			basename={basename}
@@ -182,12 +178,3 @@ const App = () => {
 		</div>
 	)
 }
-
-let ExportedApp = Root
-
-if (process.env.NODE_ENV !== 'production') {
-	const { hot } = require('react-hot-loader')
-	ExportedApp = hot(module)(Root)
-}
-
-export default ExportedApp
