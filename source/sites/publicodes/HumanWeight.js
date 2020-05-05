@@ -21,7 +21,7 @@ export default ({ nodeValue: possiblyNegativeValue }) => {
 				}
 			`}
 		>
-			<em>Votre total provisoire</em>
+			<em>Votre total provisoire annuel</em>
 			<div>
 				<strong>
 					{value}&nbsp;{unit}
