@@ -55,7 +55,7 @@ export default function Newsletter() {
 							<input
 								className="ui__ plain small button"
 								type="submit"
-								value={t("S'inscrire") ?? ''}
+								value={typeof sinscrire === 'string' ? sinscrire : ''}
 								name="subscribe"
 								id="mc-embedded-subscribe"
 							/>

@@ -213,13 +213,16 @@ type DefaultValues<Names extends string> = { [name in Names]: any } | {}
 export function collectDefaults<Names extends string>(
 	parsedRules: ParsedRules<Names>
 ): DefaultValues<Names> {
-	return Object.values(parsedRules).reduce((acc, parsedRule) => {
-		if (parsedRule?.['par défaut'] == null) {
-			return acc
-		}
-		return {
-			...acc,
-			[parsedRule.dottedName]: parsedRule['par défaut']
-		}
-	}, {})
+	return (Object.values(parsedRules) as Array<ParsedRule<Names>>).reduce(
+		(acc, parsedRule) => {
+			if (parsedRule?.['par défaut'] == null) {
+				return acc
+			}
+			return {
+				...acc,
+				[parsedRule.dottedName]: parsedRule['par défaut']
+			}
+		},
+		{}
+	)
 }
