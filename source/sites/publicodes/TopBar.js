@@ -4,10 +4,11 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
+import Logo from './logo.svg'
 
 export default withRouter(({ location }) => {
 	let {
-			state: { scenario: scenarioName }
+			state: { scenario: scenarioName },
 		} = useContext(StoreContext),
 		scenario = scenarios[scenarioName],
 		displayIntro = ['/', '/contribuer/', '/à-propos'].includes(
@@ -33,7 +34,7 @@ export default withRouter(({ location }) => {
 						}
 						margin-right: 1em;
 					`}
-					src={require('./logo.svg')}
+					src={Logo}
 					alt=""
 				/>
 			</Link>
@@ -42,8 +43,8 @@ export default withRouter(({ location }) => {
 					id="intro"
 					css="max-width: 60%; line-height: 1.4rem; margin-right: 1em; "
 				>
-					La catastrophe climatique n'est plus une menace lointaine, c'est
-					une actualité.&nbsp;<Link to="/à-propos">En savoir plus</Link>.
+					La catastrophe climatique n'est plus une menace lointaine, c'est une
+					actualité.&nbsp;<Link to="/à-propos">En savoir plus</Link>.
 				</p>
 			)}
 			{!location.pathname.includes('/scénarios') && (

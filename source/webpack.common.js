@@ -106,12 +106,8 @@ module.exports.commonLoaders = () => {
 
 module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 	new HTMLPlugin({
-		inject: false,
-
 		template: 'index.html',
 		logo: 'https://futur.eco/images/logo.svg',
-		chunks: ['publicodes'],
-
 		title: "Futureco 🔥 – L'impact climat de vos gestes quotidiens",
 		description:
 			"La catastrophe climatique n'est plus qu'une menace lointaine, c'est une actualité. Tous vos gestes et consommations quotidiennes impactent le climat. À vous de jouer !",

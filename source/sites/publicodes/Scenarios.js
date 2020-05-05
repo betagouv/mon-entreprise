@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import scenarios from './scenarios.yaml'
 import { StoreContext } from './StoreContext'
 import emoji from 'react-easy-emoji'
+import ScrollImage from './images/horizontal-scroll.png'
 
 export default () => {
 	let { state, dispatch } = useContext(StoreContext)
@@ -129,7 +130,7 @@ export default () => {
 			</ul>
 			<img
 				css="height: 3em; display: block; margin: 1em auto"
-				src={require('./images/horizontal-scroll.png')}
+				src={ScrollImage}
 			/>
 			<p>
 				Les conséquences de ces scénarios sont bien évidemment très compliquées

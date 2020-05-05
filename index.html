@@ -317,12 +317,6 @@
 				</h3>
 			</div>
 		</div>
-		<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-		<script
-			type="module"
-			src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"
-		></script>
-		<% } %>
 
 		<!-- Polyfill and source for old browser -->
 		<!-- Add polyfill.io for a very narrow web feature
