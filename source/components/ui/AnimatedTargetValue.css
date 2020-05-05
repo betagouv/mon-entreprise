@@ -3,11 +3,7 @@
 }
 
 .evaporate {
-	display: none;
 	font-size: 80%;
-	/* text-shadow: 0 0 2px var(--color); */
-}
-.evaporate-enter {
 	display: block;
 	position: absolute;
 	right: 0;
@@ -16,6 +12,7 @@
 	animation: evaporate 2.5s ease-out;
 	transform: scaleY(0.1);
 }
+
 @keyframes evaporate {
 	5% {
 		opacity: 1;

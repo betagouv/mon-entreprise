@@ -11,7 +11,8 @@ const path = require('path')
 const { readRules } = require('./rules')
 
 const sourceDirPath = path.resolve(__dirname, '../rules')
-const outPath = path.resolve(__dirname, '../rules/dottednames.json')
+// Note: we can't put the output file in the fs.watched directory
+const outPath = path.resolve(__dirname, '../types/dottednames.json')
 
 function persistJsonFileFromYaml() {
 	const rules = readRules()
