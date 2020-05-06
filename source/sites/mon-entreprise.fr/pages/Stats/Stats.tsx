@@ -339,18 +339,16 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 					/>
 				) : null}
 				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
-				{weekEndDays.map(days =>
-					days.length === 2 ? (
+				{weekEndDays
+					.filter(days => days.length === 2)
+					.map(days => (
 						<ReferenceArea
 							key={days[0]}
 							x1={days[0]}
 							x2={days[1]}
 							strokeOpacity={0.3}
 						/>
-					) : (
-						<ReferenceArea key={days[0]} x1={days[0]} strokeOpacity={0.3} />
-					)
-				)}
+					))}
 				<Line
 					type="monotone"
 					dataKey="visiteurs"
