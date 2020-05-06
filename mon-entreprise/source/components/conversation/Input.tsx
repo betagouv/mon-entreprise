@@ -24,35 +24,37 @@ export default function Input({
 
 	return (
 		<div className="step input">
-			<InputSuggestions
-				suggestions={suggestions}
-				onFirstClick={value => {
-					onChange(value)
-				}}
-				onSecondClick={() => onSubmit?.('suggestion')}
-				unit={unit}
-			/>
-			<NumberFormat
-				autoFocus={autoFocus}
-				className="suffixed"
-				id={'step-' + dottedName}
-				placeholder={defaultValue?.nodeValue ?? defaultValue}
-				thousandSeparator={thousandSeparator}
-				decimalSeparator={decimalSeparator}
-				allowEmptyFormatting={true}
-				style={{ border: `1px solid ${colors.textColorOnWhite}` }}
-				onValueChange={({ floatValue }) => {
-					debouncedOnChange(floatValue)
-				}}
-				value={value}
-				autoComplete="off"
-			/>
-			<span className="suffix">
-				{formatValue({ nodeValue: value ?? 0, unit }, { language }).replace(
-					/[\d,.]*/g,
-					''
-				)}
-			</span>
+			<div>
+				<InputSuggestions
+					suggestions={suggestions}
+					onFirstClick={value => {
+						onChange(value)
+					}}
+					onSecondClick={() => onSubmit?.('suggestion')}
+					unit={unit}
+				/>
+				<NumberFormat
+					autoFocus={autoFocus}
+					className="suffixed"
+					id={'step-' + dottedName}
+					placeholder={defaultValue?.nodeValue ?? defaultValue}
+					thousandSeparator={thousandSeparator}
+					decimalSeparator={decimalSeparator}
+					allowEmptyFormatting={true}
+					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
+					onValueChange={({ floatValue }) => {
+						debouncedOnChange(floatValue)
+					}}
+					value={value}
+					autoComplete="off"
+				/>
+				<span className="suffix">
+					{formatValue({ nodeValue: value ?? 0, unit }, { language }).replace(
+						/[\d,.]*/g,
+						''
+					)}
+				</span>
+			</div>
 		</div>
 	)
 }

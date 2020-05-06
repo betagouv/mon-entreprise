@@ -1,10 +1,14 @@
-import { goToQuestion, validateStepWithValue } from 'Actions/actions'
+import {
+	goToQuestion,
+	updateSituation,
+	validateStepWithValue
+} from 'Actions/actions'
 import RuleInput from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { default as React, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +18,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import Aide from './Aide'
 import './conversation.css'
-import FormDecorator from './FormDecorator'
+import { ExplicableRule } from './Explicable'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -37,26 +41,50 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		)
 	const goToPrevious = () =>
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
-	const handleKeyDown = ({ key }: React.KeyboardEvent) => {
-		if (['Escape'].includes(key)) {
-			setDefault()
-		}
-	}
-	const submit = source =>
+
+	const submit = (source: string) => {
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',
 			step: currentQuestion,
 			source
 		})
-	const DecoratedInputComponent = FormDecorator(RuleInput)
+	}
+
+	const setFormValue = value => {
+		dispatch(goToQuestion(currentQuestion))
+		dispatch(updateSituation(currentQuestion, value))
+	}
+
+	const handleKeyDown = ({ key }: React.KeyboardEvent) => {
+		if (key === 'Escape') {
+			setDefault()
+		} else if (key === 'Enter') {
+			submit('enter')
+		}
+	}
 
 	return currentQuestion ? (
 		<>
 			<Aide />
 			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<Animate.fadeIn>
-					<DecoratedInputComponent dottedName={currentQuestion} />
+					<div className="step">
+						<h3>
+							{rules[currentQuestion].question}{' '}
+							<ExplicableRule dottedName={currentQuestion} />
+						</h3>
+
+						<fieldset>
+							<RuleInput
+								dottedName={currentQuestion}
+								value={situation[currentQuestion]}
+								onChange={setFormValue}
+								onSubmit={submit}
+								rules={rules}
+							/>
+						</fieldset>
+					</div>
 				</Animate.fadeIn>
 				<div className="ui__ answer-group">
 					{previousAnswers.length > 0 && (
@@ -70,7 +98,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 						</>
 					)}
 					{currentQuestionIsAnswered ? (
-						<SendButton onSubmit={submit} />
+						<button
+							className="ui__ plain small button"
+							css="margin-left: 1.2rem"
+							onClick={() => submit('accept')}
+						>
+							<span className="text">
+								<Trans>Suivant</Trans> →
+							</span>
+						</button>
 					) : (
 						<button
 							onClick={setDefault}
@@ -89,7 +125,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				{emoji('🌟')}{' '}
 				<Trans i18nKey="simulation-end.title">
 					Vous avez complété cette simulation
-				</Trans>{' '}
+				</Trans>
 			</h3>
 			<p>
 				{customEndMessages ? (
@@ -101,35 +137,5 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				)}
 			</p>
 		</div>
-	)
-}
-
-type SendButtonProps = {
-	onSubmit: (cause: string) => void
-}
-
-function SendButton({ onSubmit }: SendButtonProps) {
-	useEffect(() => {
-		const handleKeyDown = ({ key }: KeyboardEvent) => {
-			if (key !== 'Enter') return
-			onSubmit('enter')
-		}
-
-		window.addEventListener('keydown', handleKeyDown)
-		return () => {
-			window.removeEventListener('keydown', handleKeyDown)
-		}
-	}, [onSubmit])
-
-	return (
-		<button
-			className="ui__ plain button "
-			css="margin-left: 1.2rem"
-			onClick={() => onSubmit('accept')}
-		>
-			<span className="text">
-				<Trans>Suivant</Trans> →
-			</span>
-		</button>
 	)
 }

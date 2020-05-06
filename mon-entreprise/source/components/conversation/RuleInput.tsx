@@ -12,11 +12,6 @@ import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from './DateInput'
 
-export const binaryOptionChoices = [
-	{ value: 'non', label: 'Non' },
-	{ value: 'oui', label: 'Oui' }
-]
-
 type Value = string | number | object | boolean | null
 export type RuleInputProps = {
 	rules: ParsedRules
@@ -27,7 +22,7 @@ export type RuleInputProps = {
 	autoFocus?: boolean
 	value?: Value
 	className?: string
-	onSubmit?: (value: Value) => void
+	onSubmit?: (source: string) => void
 }
 
 // This function takes the unknown rule and finds which React component should
@@ -55,7 +50,6 @@ export default function RuleInput({
 		dottedName,
 		value,
 		onChange,
-		onSubmit,
 		autoFocus,
 		className,
 		title: rule.title,
@@ -67,12 +61,13 @@ export default function RuleInput({
 		return (
 			<Question
 				{...commonProps}
+				onSubmit={onSubmit}
 				choices={buildVariantTree(rules, dottedName)}
 			/>
 		)
 	}
 	if (rule.API && rule.API === 'géo')
-		return <SelectGéo {...{ ...commonProps }} />
+		return <SelectGéo {...{ ...commonProps }} onSubmit={onSubmit} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
@@ -83,7 +78,7 @@ export default function RuleInput({
 			<DateInput
 				value={commonProps.value}
 				onChange={commonProps.onChange}
-				onSubmit={commonProps.onSubmit}
+				onSubmit={onSubmit}
 				suggestions={commonProps.suggestions}
 			/>
 		)
@@ -98,7 +93,14 @@ export default function RuleInput({
 				}
 			/>
 		) : (
-			<Question {...commonProps} choices={binaryOptionChoices} />
+			<Question
+				{...commonProps}
+				choices={[
+					{ value: 'non', label: 'Non' },
+					{ value: 'oui', label: 'Oui' }
+				]}
+				onSubmit={onSubmit}
+			/>
 		)
 	}
 
@@ -125,7 +127,7 @@ export default function RuleInput({
 		return <PercentageField {...commonProps} debounce={600} />
 	}
 
-	return <Input {...commonProps} unit={unit} />
+	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />
 }
 
 const getVariant = (rule: ParsedRule) =>
