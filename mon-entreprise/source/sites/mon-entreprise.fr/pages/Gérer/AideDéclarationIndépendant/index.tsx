@@ -341,7 +341,7 @@ type SimpleFieldProps = {
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const evaluatedRule = useEvaluation(dottedName, { useDefaultValues: false })
+	const evaluatedRule = useEvaluation(dottedName)
 	const rules = useContext(EngineContext).getParsedRules()
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)

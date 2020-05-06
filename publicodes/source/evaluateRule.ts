@@ -23,33 +23,42 @@ export const evaluateApplicability = (
 		} = evaluatedAttributes,
 		parentDependencies = node.parentDependencies.map(parent =>
 			evaluateNode(cache, situation, parsedRules, parent)
-		),
-		isApplicable =
-			parentDependencies.some(parent => parent?.nodeValue === false) ||
-			notApplicable?.nodeValue === true ||
-			applicable?.nodeValue === false ||
-			disabled?.nodeValue === true
-				? false
-				: [notApplicable, applicable, ...parentDependencies].some(
-						n => n?.nodeValue === null
-				  )
-				? null
-				: !notApplicable?.nodeValue &&
-				  (applicable?.nodeValue == undefined || !!applicable?.nodeValue),
-		missingVariables =
-			isApplicable === false
-				? {}
-				: mergeAll([
-						...parentDependencies.map(parent => parent.missingVariables),
-						notApplicable?.missingVariables || {},
-						disabled?.missingVariables || {},
-						applicable?.missingVariables || {}
-				  ])
+		)
+
+	const anyDisabledParent = parentDependencies.find(
+		parent => parent?.nodeValue === false
+	)
+
+	const { nodeValue, missingVariables } = anyDisabledParent
+		? anyDisabledParent
+		: notApplicable?.nodeValue === true
+		? {
+				nodeValue: false,
+				missingVariables: notApplicable.missingVariables
+		  }
+		: applicable?.nodeValue === false
+		? { nodeValue: false, missingVariables: applicable.missingVariables }
+		: disabled?.nodeValue === true
+		? { nodeValue: false, missingVariables: disabled.missingVariables }
+		: {
+				nodeValue: [notApplicable, applicable, ...parentDependencies].some(
+					n => n?.nodeValue === null
+				)
+					? null
+					: !notApplicable?.nodeValue &&
+					  (applicable?.nodeValue == undefined || !!applicable?.nodeValue),
+				missingVariables: mergeAll([
+					...parentDependencies.map(parent => parent.missingVariables),
+					notApplicable?.missingVariables || {},
+					disabled?.missingVariables || {},
+					applicable?.missingVariables || {}
+				])
+		  }
 
 	return {
 		...node,
-		isApplicable,
-		nodeValue: isApplicable,
+		nodeValue,
+		isApplicable: nodeValue,
 		missingVariables,
 		parentDependencies,
 		...evaluatedAttributes

@@ -31,7 +31,6 @@ type EvaluatedSituation<Names extends string> = Partial<
 
 export type EvaluationOptions = Partial<{
 	unit: string
-	useDefaultValues: boolean
 }>
 
 export * from './components'
@@ -42,50 +41,28 @@ export { parseRules }
 
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
-	defaultValues: Situation<Names>
 	situation: Situation<Names> = {}
-	cache: Cache
-	warnings: Array<string> = []
-	cacheWithoutDefault: Cache
+	private cache: Cache
+	private warnings: Array<string> = []
 
 	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
 		this.cache = emptyCache()
-		this.cacheWithoutDefault = emptyCache()
-
 		this.parsedRules =
 			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
 				? parseRules(rules)
 				: (rules as ParsedRules<Names>)
-
-		this.defaultValues = mapObjIndexed(
-			(value, name) =>
-				typeof value === 'string'
-					? this.evaluateExpression(value, `[valeur par défaut] ${name}`, false)
-					: value,
-			collectDefaults(this.parsedRules)
-		) as EvaluatedSituation<Names>
 	}
 
 	private resetCache() {
 		this.cache = emptyCache()
-		this.cacheWithoutDefault = emptyCache()
-	}
-
-	private situationWithDefaultValues(useDefaultValues = true) {
-		return {
-			...(useDefaultValues ? this.defaultValues : {}),
-			...this.situation
-		}
 	}
 
 	private evaluateExpression(
 		expression: string,
-		context: string,
-		useDefaultValues = true
+		context: string
 	): EvaluatedNode<Names> {
 		// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 		// console.warn
-		const warnings: string[] = []
 		const originalWarn = console.warn
 		console.warn = (warning: string) => {
 			this.warnings.push(warning)
@@ -93,8 +70,8 @@ export default class Engine<Names extends string> {
 		}
 		const result = simplifyNodeUnit(
 			evaluateNode(
-				useDefaultValues ? this.cache : this.cacheWithoutDefault,
-				this.situationWithDefaultValues(useDefaultValues),
+				this.cache,
+				this.situation,
 				this.parsedRules,
 				parse(
 					this.parsedRules,
@@ -121,7 +98,7 @@ export default class Engine<Names extends string> {
 		this.situation = mapObjIndexed(
 			(value, name) =>
 				typeof value === 'string'
-					? this.evaluateExpression(value, `[situation] ${name}`, true)
+					? this.evaluateExpression(value, `[situation] ${name}`)
 					: value,
 			situation
 		) as EvaluatedSituation<Names>
@@ -136,12 +113,12 @@ export default class Engine<Names extends string> {
 	evaluate(expression: string, options?: EvaluationOptions) {
 		let result = this.evaluateExpression(
 			expression,
-			`[evaluation] ${expression}`,
-			options?.useDefaultValues ?? true
+			`[evaluation] ${expression}`
 		)
 		if (result.category === 'reference' && result.explanation) {
 			result = {
 				nodeValue: result.nodeValue,
+				missingVariables: result.missingVariables,
 				...('unit' in result && { unit: result.unit }),
 				...('temporalValue' in result && {
 					temporalValue: result.temporalValue
@@ -164,19 +141,12 @@ export default class Engine<Names extends string> {
 		}
 		return result
 	}
+
 	controls() {
-		return evaluateControls(
-			this.cache,
-			this.situationWithDefaultValues(),
-			this.parsedRules
-		)
+		return evaluateControls(this.cache, this.situation, this.parsedRules)
 	}
 
 	getWarnings() {
-		return this.warnings
-	}
-
-	getRules() {
 		return this.warnings
 	}
 

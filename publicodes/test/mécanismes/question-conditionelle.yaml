@@ -13,7 +13,7 @@ famille nombreuse:
       situation:
         enfants: oui
       variables manquantes: ['nombre enfants']
-      valeur attendue: null
+      valeur attendue: true
     - nom: question non posée
       situation:
         enfants: non
