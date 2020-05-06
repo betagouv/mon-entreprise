@@ -259,8 +259,7 @@ const evaluateTransforms = (originalEval, rule, parseResult) => (
 	node
 ) => {
 	// Filter transformation
-	let filteringSituation = name =>
-		name == 'sys.filter' ? parseResult.filter : situation(name)
+	let filteringSituation = { ...situation, 'sys.filter': parseResult.filter }
 	let filteredNode = originalEval(
 		cache,
 		parseResult.filter ? filteringSituation : situation,

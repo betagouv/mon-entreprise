@@ -122,10 +122,10 @@ export default function<Names extends string>(
 				? parse(rules, rule, parsedRules)(value)
 				: value,
 		formule: value => {
-			const evaluate = (cache, situationGate, parsedRules, node) => {
+			const evaluate = (cache, situation, parsedRules, node) => {
 				const explanation = evaluateNode(
 						cache,
-						situationGate,
+						situation,
 						parsedRules,
 						node.explanation
 					),
@@ -233,10 +233,10 @@ export default function<Names extends string>(
 }
 
 const evolveCond = (dottedName, rule, rules, parsedRules) => value => {
-	const evaluate = (cache, situationGate, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		const explanation = evaluateNode(
 				cache,
-				situationGate,
+				situation,
 				parsedRules,
 				node.explanation
 			),

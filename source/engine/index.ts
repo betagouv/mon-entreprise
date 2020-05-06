@@ -59,10 +59,11 @@ export default class Engine<Names extends string> {
 		this.cacheWithoutDefault = emptyCache()
 	}
 
-	private situationGate(useDefaultValues = true) {
-		return dottedName =>
-			this.situation[dottedName] ??
-			(useDefaultValues ? this.defaultValues[dottedName] : null)
+	private situationWithDefaultValues(useDefaultValues = true) {
+		return {
+			...(useDefaultValues ? this.defaultValues : {}),
+			...this.situation
+		}
 	}
 
 	private evaluateExpression(
@@ -73,7 +74,7 @@ export default class Engine<Names extends string> {
 		const result = simplifyNodeUnit(
 			evaluateNode(
 				useDefaultValues ? this.cache : this.cacheWithoutDefault,
-				this.situationGate(useDefaultValues),
+				this.situationWithDefaultValues(useDefaultValues),
 				this.parsedRules,
 				parse(
 					this.parsedRules,
@@ -146,7 +147,11 @@ export default class Engine<Names extends string> {
 		return result
 	}
 	controls() {
-		return evaluateControls(this.cache, this.situationGate(), this.parsedRules)
+		return evaluateControls(
+			this.cache,
+			this.situationWithDefaultValues(),
+			this.parsedRules
+		)
 	}
 
 	inversionFail(): boolean {

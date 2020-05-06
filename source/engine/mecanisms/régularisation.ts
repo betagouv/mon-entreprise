@@ -14,6 +14,7 @@ import {
 import { Unit } from 'Engine/units'
 import { coerceArray } from '../../utils'
 import { DottedName } from './../../rules/index'
+import { map } from 'ramda'
 
 function stripTemporalTransform(node) {
 	if (!node?.explanation?.period) {
@@ -93,10 +94,13 @@ function evaluate(
 ) {
 	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
 
-	function recalculWith(situationGate: (dottedName: DottedName) => any, node) {
-		const newSituation = (dottedName: DottedName) =>
-			situationGate(dottedName) ?? situation(dottedName)
-		return evaluateNode({ _meta: cache._meta }, newSituation, parsedRules, node)
+	function recalculWith(newSituation, node) {
+		return evaluateNode(
+			{ _meta: cache._meta },
+			{ ...situation, ...newSituation },
+			parsedRules,
+			node
+		)
 	}
 
 	function regulariseYear(temporalEvaluation: Temporal<Evaluation<number>>) {
@@ -105,32 +109,34 @@ function evaluate(
 		}
 
 		const currentYear = getYear(temporalEvaluation[0].start as string)
-		const cumulatedVariables = node.explanation.variables.reduce(
-			(acc, { dottedName, value }) => {
-				const evaluation = evaluate(value)
-				if (!evaluation.unit.denominators.some(unit => unit === 'mois')) {
-					evaluationError(
-						cache._meta.contextRule,
-						`Dans le mécanisme régularisation, la valeur cumulée '${dottedName}' n'est pas une variable numérique définie sur le mois`
-					)
-				}
-				return {
-					...acc,
-					[dottedName]: getMonthlyCumulatedValuesOverYear(
-						currentYear,
-						evaluation.temporalValue ?? pureTemporal(evaluation.nodeValue),
-						evaluation.unit
-					)
-				}
-			},
-			{}
-		)
+		const cumulatedVariables = node.explanation.variables.reduce<
+			Record<string, Temporal<Evaluation<number>>>
+		>((acc, { dottedName, value }) => {
+			const evaluation = evaluate(value)
+			if (!evaluation.unit.denominators.some(unit => unit === 'mois')) {
+				evaluationError(
+					cache._meta.contextRule,
+					`Dans le mécanisme régularisation, la valeur cumulée '${dottedName}' n'est pas une variable numérique définie sur le mois`
+				)
+			}
+			return {
+				...acc,
+				[dottedName]: getMonthlyCumulatedValuesOverYear(
+					currentYear,
+					evaluation.temporalValue ?? pureTemporal(evaluation.nodeValue),
+					evaluation.unit
+				)
+			}
+		}, {})
 
 		const cumulatedMonthlyEvaluations = [...Array(12).keys()].map(i => ({
 			start: convertToString(new Date(currentYear, i, 1)),
 			end: convertToString(new Date(currentYear, i + 1, 0)),
 			value: recalculWith(
-				dottedName => cumulatedVariables[dottedName]?.[i].value,
+				map(
+					cumulatedVariable => cumulatedVariable?.[i].value,
+					cumulatedVariables
+				),
 				node.explanation.rule
 			).nodeValue
 		}))

@@ -1,7 +1,7 @@
 import { dropLast, isEmpty, last } from 'ramda'
 import { joinName, splitName } from './ruleUtils'
 
-let evaluateBottomUp = situationGate => startingFragments => {
+let evaluateBottomUp = situation => startingFragments => {
 	let rec = (parentFragments, childFragments = []) =>
 		parentFragments.length == 0
 			? null
@@ -11,23 +11,23 @@ let evaluateBottomUp = situationGate => startingFragments => {
 							? 'oui'
 							: joinName(childFragments)
 
-					return situationGate(query) == null
+					return situation[query] == null
 						? rec(dropLast(1)(parentFragments), [
 								last(parentFragments),
 								...childFragments
 						  ])
-						: situationGate(query) == expectedResult
+						: situation[query] == expectedResult
 			  })()
 
 	return rec(startingFragments)
 }
-export let getSituationValue = (situationGate, variableName, rule) => {
+export let getSituationValue = (situation, variableName, rule) => {
 	// get the current situation value
 	// it's the user input or test input, possibly with default values
-	let value = situationGate(variableName)
+	let value = situation[variableName]
 
-	if (rule.formule && rule.formule['une possibilité'])
-		return evaluateBottomUp(situationGate)(splitName(variableName))
+	if (rule.formule?.['une possibilité'])
+		return evaluateBottomUp(situation)(splitName(variableName))
 
 	return value
 }

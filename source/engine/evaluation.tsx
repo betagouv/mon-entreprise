@@ -37,9 +37,9 @@ export const mergeAllMissing = missings =>
 export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 
-export const evaluateNode = (cache, situationGate, parsedRules, node) => {
+export const evaluateNode = (cache, situation, parsedRules, node) => {
 	const evaluatedNode = node.evaluate
-		? node.evaluate(cache, situationGate, parsedRules, node)
+		? node.evaluate(cache, situation, parsedRules, node)
 		: node
 	return evaluatedNode
 }
@@ -67,11 +67,11 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 
 export const evaluateArray = (reducer, start) => (
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node
 ) => {
-	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
 	const evaluatedNodes = convertNodesToSameUnit(
 		node.explanation.map(evaluate),
 		cache._meta.contextRule,
@@ -111,13 +111,13 @@ export const evaluateArray = (reducer, start) => (
 
 export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node
 ) => {
-	return evaluateArray(reducer, start)(cache, situationGate, parsedRules, {
+	return evaluateArray(reducer, start)(cache, situation, parsedRules, {
 		...node,
-		explanation: filter(evaluationFilter(situationGate), node.explanation)
+		explanation: filter(evaluationFilter(situation), node.explanation)
 	})
 }
 
@@ -146,11 +146,11 @@ export const parseObject = (recurse, objectShape, value) => {
 
 export const evaluateObject = (objectShape, effect) => (
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node
 ) => {
-	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
 	const evaluations = map(evaluate, node.explanation)
 	const temporalExplanations = mapTemporal(
 		Object.fromEntries,
@@ -161,7 +161,7 @@ export const evaluateObject = (objectShape, effect) => (
 		)
 	)
 	const temporalExplanation = mapTemporal(explanations => {
-		const evaluation = effect(explanations, cache, situationGate, parsedRules)
+		const evaluation = effect(explanations, cache, situation, parsedRules)
 		return {
 			...evaluation,
 			explanation: {
