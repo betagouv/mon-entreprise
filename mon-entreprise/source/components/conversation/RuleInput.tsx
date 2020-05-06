@@ -1,3 +1,7 @@
+import Input from 'Components/conversation/Input'
+import Question from 'Components/conversation/Question'
+import SelectGéo from 'Components/conversation/select/SelectGeo'
+import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
@@ -7,11 +11,6 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from './DateInput'
-import Input from './Input'
-import Question from './Question'
-import SelectGéo from './select/SelectGeo'
-import SelectAtmp from './select/SelectTauxRisque'
-import SendButton from './SendButton'
 
 export const binaryOptionChoices = [
 	{ value: 'non', label: 'Non' },
@@ -119,7 +118,6 @@ export default function RuleInput({
 					className="targetInput"
 					onChange={evt => onChange(evt.target.value)}
 				/>
-				{onSubmit && <SendButton disabled={!value} onSubmit={onSubmit} />}
 			</>
 		)
 	}
