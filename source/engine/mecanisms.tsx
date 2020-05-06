@@ -61,9 +61,9 @@ export const mecanismOneOf = (recurse, k, v) => {
 		</Node>
 	)
 
-	const evaluate = (cache, situationGate, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		const evaluateOne = child =>
-				evaluateNode(cache, situationGate, parsedRules, child),
+				evaluateNode(cache, situation, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(true), values)
@@ -112,9 +112,9 @@ export const mecanismAllOf = (recurse, k, v) => {
 		</Node>
 	)
 
-	const evaluate = (cache, situationGate, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		const evaluateOne = child =>
-				evaluateNode(cache, situationGate, parsedRules, child),
+				evaluateNode(cache, situation, parsedRules, child),
 			explanation = map(evaluateOne, node.explanation),
 			values = pluck('nodeValue', explanation),
 			nodeValue = any(equals(false), values)
@@ -137,10 +137,10 @@ export const mecanismAllOf = (recurse, k, v) => {
 	}
 }
 
-const evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
+const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 	// TODO : take applicability into account here
 	let inversedWith = node.explanation.inversionCandidates.find(
-		n => situationGate(n.dottedName) != undefined
+		n => situation[n.dottedName] != undefined
 	)
 	if (!inversedWith) {
 		return {
@@ -154,12 +154,7 @@ const evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 			nodeValue: null
 		}
 	}
-	inversedWith = evaluateNode(
-		oldCache,
-		situationGate,
-		parsedRules,
-		inversedWith
-	)
+	inversedWith = evaluateNode(oldCache, situation, parsedRules, inversedWith)
 
 	let inversionCache
 	function resetInversionCache() {
@@ -168,18 +163,17 @@ const evaluateInversion = (oldCache, situationGate, parsedRules, node) => {
 		}
 		return inversionCache
 	}
-	const evaluateWithValue = n =>
+	const evaluateWithValue = (n: number) =>
 		evaluateNode(
 			resetInversionCache(),
-			dottedName =>
-				dottedName === node.explanation.ruleToInverse
-					? {
-							nodeValue: n,
-							unit: parsedRules[node.explanation.ruleToInverse].unit
-					  }
-					: dottedName === inversedWith.dottedName
-					? undefined
-					: situationGate(dottedName),
+			{
+				...situation,
+				[inversedWith.dottedName]: undefined,
+				[node.explanation.ruleToInverse]: {
+					nodeValue: n,
+					unit: parsedRules[node.explanation.ruleToInverse].unit
+				}
+			},
 			parsedRules,
 			inversedWith
 		)
@@ -251,25 +245,19 @@ export const mecanismInversion = dottedName => (recurse, k, v) => {
 }
 
 export const mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
-	const evaluate = (cache, situationGate, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		if (cache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
 		const recalculCache = { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
 		const amendedSituation = map(
-			value => evaluateNode(cache, situationGate, parsedRules, value),
+			value => evaluateNode(cache, situation, parsedRules, value),
 			node.explanation.amendedSituation
 		)
-		const amendedSituationGate = dottedName => {
-			if (!(dottedName in amendedSituation)) {
-				return situationGate(dottedName)
-			}
-			return amendedSituation[dottedName]
-		}
 
 		const evaluatedNode = evaluateNode(
 			recalculCache,
-			amendedSituationGate,
+			{ ...situation, ...amendedSituation },
 			parsedRules,
 			node.explanation.recalcul
 		)
@@ -586,10 +574,10 @@ export const mecanismMin = (recurse, k, v) => {
 }
 
 export const mecanismSynchronisation = (recurse, k, v) => {
-	const evaluate = (cache, situationGate, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		const APIExplanation = evaluateNode(
 			cache,
-			situationGate,
+			situation,
 			parsedRules,
 			node.explanation.API
 		)
@@ -633,7 +621,7 @@ export const mecanismSynchronisation = (recurse, k, v) => {
 export const mecanismOnePossibility = dottedName => (recurse, k, v) => ({
 	...v,
 	'une possibilité': 'oui',
-	evaluate: (cache, situationGate, parsedRules, node) => ({
+	evaluate: (cache, situation, parsedRules, node) => ({
 		...node,
 		missingVariables: { [dottedName]: 1 }
 	})

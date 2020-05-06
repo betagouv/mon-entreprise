@@ -66,11 +66,11 @@ export const devariateExplanation = (
 
 function evaluate(
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node: ReturnType<typeof parse>
 ) {
-	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
 
 	const [temporalValue, explanation, unit] = node.explanation.reduce(
 		(

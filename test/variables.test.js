@@ -4,30 +4,27 @@ import { getSituationValue } from '../source/engine/getSituationValue'
 describe('getSituationValue', function() {
 	it('should directly return the value of any rule that specifies a format (i.e currency, duration)', function() {
 		let rule = { unité: '€' },
-			state = { salaire: '2300' },
-			situationGate = name => state[name]
+			situation = { salaire: '2300' }
 
-		expect(getSituationValue(situationGate, 'salaire', rule)).to.equal('2300')
+		expect(getSituationValue(situation, 'salaire', rule)).to.equal('2300')
 	})
 
 	it("should interpret rules with 'one of these', with 'oui' for true", function() {
 		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
-			state = { condition: 'oui' },
-			situationGate = name => state[name]
+			situation = { condition: 'oui' }
 
-		expect(getSituationValue(situationGate, 'condition', rule)).to.be.true
+		expect(getSituationValue(situation, 'condition', rule)).to.be.true
 	})
 
 	it('should walk up the namespace chain until it finds the tail as the value', function() {
 		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
-			state = {
+			situation = {
 				'contrat salarié . CDD . motif': 'classique . accroissement activité'
-			},
-			situationGate = name => state[name]
+			}
 
 		expect(
 			getSituationValue(
-				situationGate,
+				situation,
 				'contrat salarié . CDD . motif . classique . accroissement activité',
 				rule
 			)
@@ -36,12 +33,11 @@ describe('getSituationValue', function() {
 
 	it("should return null if a value isn't found for the name given", function() {
 		let rule = { formule: { 'une possibilité': ['noir', 'blanc'] } },
-			state = { condition: 'classique . accroissement activité' },
-			situationGate = name => state[name]
+			situation = { condition: 'classique . accroissement activité' }
 
 		expect(
 			getSituationValue(
-				situationGate,
+				situation,
 				'contrat salarié . CDD . motif . classique . accroissement activité',
 				rule
 			)
@@ -53,10 +49,9 @@ describe('getSituationValue', function() {
 				nom: 'univers . ici',
 				formule: { 'une possibilité': ['noir', 'blanc'] }
 			},
-			state = { 'univers . ici': 'blanc' },
-			situationGate = name => state[name]
+			situation = { 'univers . ici': 'blanc' }
 
-		expect(getSituationValue(situationGate, 'univers . ici . noir', rule)).to.be
+		expect(getSituationValue(situation, 'univers . ici . noir', rule)).to.be
 			.false
 	})
 })

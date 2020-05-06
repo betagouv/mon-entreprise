@@ -6,7 +6,7 @@ import { convertNodeToUnit } from './nodeUnits'
 
 export const evaluateApplicability = (
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node: ParsedRule
 ) => {
@@ -14,7 +14,7 @@ export const evaluateApplicability = (
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
 				x: any
 			) => any,
-			map(value => evaluateNode(cache, situationGate, parsedRules, value))
+			map(value => evaluateNode(cache, situation, parsedRules, value))
 		)(node) as any,
 		{
 			'non applicable si': notApplicable,
@@ -22,7 +22,7 @@ export const evaluateApplicability = (
 			'rendu non applicable': disabled
 		} = evaluatedAttributes,
 		parentDependencies = node.parentDependencies.map(parent =>
-			evaluateNode(cache, situationGate, parsedRules, parent)
+			evaluateNode(cache, situation, parsedRules, parent)
 		),
 		isApplicable =
 			parentDependencies.some(parent => parent?.nodeValue === false) ||
@@ -56,11 +56,11 @@ export const evaluateApplicability = (
 	}
 }
 
-export default (cache, situationGate, parsedRules, node) => {
+export default (cache, situation, parsedRules, node) => {
 	cache._meta.contextRule.push(node.dottedName)
 	const applicabilityEvaluation = evaluateApplicability(
 		cache,
-		situationGate,
+		situation,
 		parsedRules,
 		node
 	)
@@ -71,7 +71,7 @@ export default (cache, situationGate, parsedRules, node) => {
 
 	const evaluateFormula = () =>
 		node.formule
-			? evaluateNode(cache, situationGate, parsedRules, node.formule)
+			? evaluateNode(cache, situation, parsedRules, node.formule)
 			: {}
 	// evaluate the formula lazily, only if the applicability is known and true
 	let evaluatedFormula = isApplicable

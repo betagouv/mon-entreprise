@@ -36,11 +36,11 @@ export default function parse(parse, k, v) {
 
 const evaluate = (
 	cache,
-	situationGate,
+	situation,
 	parsedRules,
 	node: ReturnType<typeof parse>
 ) => {
-	const evaluate = evaluateNode.bind(null, cache, situationGate, parsedRules)
+	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
 	const assiette = evaluate(node.explanation.assiette)
 	const multiplicateur = evaluate(node.explanation.multiplicateur)
 	const tranches = evaluatePlafondUntilActiveTranche(

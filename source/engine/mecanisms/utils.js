@@ -15,17 +15,15 @@ export let decompose = (recurse, k, v) => {
 			composante: c.nom ? { nom: c.nom } : c.attributs
 		}))
 
-	let filter = situationGate => c =>
-		!situationGate('sys.filter') ||
+	let filter = situation => c =>
+		!situation['sys.filter'] ||
 		!c.composante ||
 		((!c.composante['dû par'] ||
-			!['employeur', 'salarié'].includes(situationGate('sys.filter')) ||
-			c.composante['dû par'] == situationGate('sys.filter')) &&
+			!['employeur', 'salarié'].includes(situation['sys.filter']) ||
+			c.composante['dû par'] == situation['sys.filter']) &&
 			(!c.composante['impôt sur le revenu'] ||
-				!['déductible', 'non déductible'].includes(
-					situationGate('sys.filter')
-				) ||
-				c.composante['impôt sur le revenu'] == situationGate('sys.filter')))
+				!['déductible', 'non déductible'].includes(situation['sys.filter']) ||
+				c.composante['impôt sur le revenu'] == situation['sys.filter']))
 
 	return {
 		explanation,

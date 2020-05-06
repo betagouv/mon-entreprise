@@ -1,6 +1,6 @@
 import { evaluateNode } from 'Engine/evaluation'
 
-export let evaluateControls = (cache, situationGate, parsedRules) => {
+export let evaluateControls = (cache, situation, parsedRules) => {
 	return Object.values(parsedRules)
 		.filter(rule => !!rule.contrôles)
 		.map(rule =>
@@ -8,7 +8,7 @@ export let evaluateControls = (cache, situationGate, parsedRules) => {
 				...contrôle,
 				evaluated: evaluateNode(
 					{ ...cache, contextRule: [rule.dottedName] },
-					situationGate,
+					situation,
 					parsedRules,
 					contrôle.testExpression
 				)
