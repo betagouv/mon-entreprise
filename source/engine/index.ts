@@ -34,8 +34,8 @@ export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
 	defaultValues: Simulation['situation']
 	situation: Simulation['situation'] = {}
-	cache: Cache
-	cacheWithoutDefault: Cache
+	private cache: Cache
+	private cacheWithoutDefault: Cache
 
 	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
 		this.cache = emptyCache()
@@ -155,10 +155,5 @@ export default class Engine<Names extends string> {
 
 	getParsedRules(): ParsedRules<Names> {
 		return this.parsedRules
-	}
-
-	// TODO : this should be private
-	getCache(): Cache {
-		return this.cache
 	}
 }
