@@ -96,9 +96,6 @@ type FormuleExplanation<Name extends string> =
 export function isFormuleExplanation<Name extends string>(
 	node: ASTNode
 ): node is FormuleExplanation<Name> {
-	if (node.avec && node.règle) {
-		debugger
-	}
 	return (
 		isValue(node) ||
 		isOperation(node) ||
@@ -155,9 +152,8 @@ type Possibilities2 = ASTNode & {
 export function isPossibilities2(node: ASTNode): node is Possibilities2 {
 	const possibilities2 = node as Possibilities2
 	return (
-		R.all(
-			([k, v]) => isNaN(parseInt(k, 10)) || typeof v === 'string',
-			R.toPairs(possibilities2)
+		Object.entries(possibilities2).every(
+			([k, v]) => isNaN(parseInt(k, 10)) || typeof v === 'string'
 		) &&
 		(possibilities2['choix obligatoire'] === undefined ||
 			isOnOff(possibilities2['choix obligatoire'])) &&
@@ -377,7 +373,7 @@ export function isInversionNumMech<Name extends string>(
 		inversionNumMech.name === 'inversion numérique' &&
 		typeof inversionNumMech.explanation === 'object' &&
 		inversionNumMech.explanation.inversionCandidates instanceof Array &&
-		R.all(isReferenceSpec, inversionNumMech.explanation.inversionCandidates)
+		inversionNumMech.explanation.inversionCandidates.every(isReferenceSpec)
 	)
 }
 
@@ -639,11 +635,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 		operation: Operation
 	): Array<Name> {
 		logVisit(depth, 'operation', operation.operationType)
-		return R.chain(
+		return operation.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			operation.explanation
+			])
 		)
 	}
 
@@ -661,7 +656,7 @@ export function ruleDependenciesOfNode<Name extends string>(
 		logVisit(
 			depth,
 			'possibilities2',
-			R.filter(([k, _]) => !isNaN(parseInt(k, 10)), R.toPairs(possibilities))
+			Object.entries(possibilities).filter(([k]) => !isNaN(parseInt(k, 10)))
 		)
 		return []
 	}
@@ -691,15 +686,14 @@ export function ruleDependenciesOfNode<Name extends string>(
 		encadrementMech: EncadrementMech
 	): Array<Name> {
 		logVisit(depth, 'encadrement mechanism', '??')
-		const result = R.chain(
+		const result = [
+			encadrementMech.explanation.plafond,
+			encadrementMech.explanation.plancher,
+			encadrementMech.explanation.valeur
+		].flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			[
-				encadrementMech.explanation.plafond,
-				encadrementMech.explanation.plancher,
-				encadrementMech.explanation.valeur
-			]
+			])
 		)
 		return result
 	}
@@ -709,11 +703,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 		sommeMech: SommeMech
 	): Array<Name> {
 		logVisit(depth, 'somme mech', '??')
-		const result = R.chain(
+		const result = sommeMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			sommeMech.explanation
+			])
 		)
 		return result
 	}
@@ -723,16 +716,15 @@ export function ruleDependenciesOfNode<Name extends string>(
 		produitMech: ProduitMech
 	): Array<Name> {
 		logVisit(depth, 'produit mech', '??')
-		const result = R.chain(
+		const result = [
+			produitMech.explanation.assiette,
+			produitMech.explanation.plafond,
+			produitMech.explanation.facteur,
+			produitMech.explanation.taux
+		].flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			[
-				produitMech.explanation.assiette,
-				produitMech.explanation.plafond,
-				produitMech.explanation.facteur,
-				produitMech.explanation.taux
-			]
+			])
 		)
 		return result
 	}
@@ -755,7 +747,7 @@ export function ruleDependenciesOfNode<Name extends string>(
 				ruleDependenciesOfNode<Name>(depth + 1, consequence)
 			)
 		}
-		const result = R.chain(ruleOfVariation, variationsMech.explanation)
+		const result = variationsMech.explanation.flatMap(ruleOfVariation)
 		return result
 	}
 
@@ -778,11 +770,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 				  ]
 				: []
 		)
-		const result = R.chain(
+		const result = subNodes.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			subNodes
+			])
 		)
 		return result
 	}
@@ -792,21 +783,16 @@ export function ruleDependenciesOfNode<Name extends string>(
 		baremeMech: BaremeMech
 	): Array<Name> {
 		logVisit(depth, 'barème mech', '??')
-		const tranchesNodes = R.chain(
-			({ plafond, taux }) => [plafond, taux],
-			baremeMech.explanation.tranches
+		const tranchesNodes = baremeMech.explanation.tranches.flatMap(
+			({ plafond, taux }) => [plafond, taux]
 		)
-		const result = R.chain(
+		const result = R.concat(
+			[baremeMech.explanation.assiette, baremeMech.explanation.multiplicateur],
+			tranchesNodes
+		).flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			R.concat(
-				[
-					baremeMech.explanation.assiette,
-					baremeMech.explanation.multiplicateur
-				],
-				tranchesNodes
-			)
+			])
 		)
 		return result
 	}
@@ -827,11 +813,13 @@ export function ruleDependenciesOfNode<Name extends string>(
 		arrondiMech: ArrondiMech
 	): Array<Name> {
 		logVisit(depth, 'arrondi mech', '??')
-		const result = R.chain(
+		const result = [
+			arrondiMech.explanation.decimals,
+			arrondiMech.explanation.value
+		].flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			[arrondiMech.explanation.decimals, arrondiMech.explanation.value]
+			])
 		)
 		return result
 	}
@@ -842,11 +830,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 	): Array<Name> {
 		logVisit(depth, 'max mech', '??')
 
-		const result = R.chain(
+		const result = maxMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			maxMech.explanation
+			])
 		)
 		return result
 	}
@@ -857,11 +844,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 	): Array<Name> {
 		logVisit(depth, 'min mech', '??')
 
-		const result = R.chain(
+		const result = minMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			minMech.explanation
+			])
 		)
 		return result
 	}
@@ -872,11 +858,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 	): Array<Name> {
 		logVisit(depth, 'composantes mech', '??')
 
-		const result = R.chain(
+		const result = composantesMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			composantesMech.explanation
+			])
 		)
 		return result
 	}
@@ -887,11 +872,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 	): Array<Name> {
 		logVisit(depth, 'une conditions mech', '??')
 
-		const result = R.chain(
+		const result = uneConditionsMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			uneConditionsMech.explanation
+			])
 		)
 		return result
 	}
@@ -902,11 +886,10 @@ export function ruleDependenciesOfNode<Name extends string>(
 	): Array<Name> {
 		logVisit(depth, 'toutes conditions mech', '??')
 
-		const result = R.chain(
+		const result = toutesConditionsMech.explanation.flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			toutesConditionsMech.explanation
+			])
 		)
 		return result
 	}
@@ -921,21 +904,16 @@ export function ruleDependenciesOfNode<Name extends string>(
 		grilleMech: GrilleMech
 	): Array<Name> {
 		logVisit(depth, 'grille mech', '??')
-		const tranchesNodes = R.chain(
-			({ montant, plafond }) => [montant, plafond],
-			grilleMech.explanation.tranches
+		const tranchesNodes = grilleMech.explanation.tranches.flatMap(
+			({ montant, plafond }) => [montant, plafond]
 		)
-		const result = R.chain(
+		const result = R.concat(
+			[grilleMech.explanation.assiette, grilleMech.explanation.multiplicateur],
+			tranchesNodes
+		).flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			R.concat(
-				[
-					grilleMech.explanation.assiette,
-					grilleMech.explanation.multiplicateur
-				],
-				tranchesNodes
-			)
+			])
 		)
 		return result
 	}
@@ -945,21 +923,19 @@ export function ruleDependenciesOfNode<Name extends string>(
 		tauxProgMech: TauxProgMech
 	): Array<Name> {
 		logVisit(depth, 'taux progressif mech', '??')
-		const tranchesNodes = R.chain(
-			({ plafond, taux }) => [plafond, taux],
-			tauxProgMech.explanation.tranches
+		const tranchesNodes = tauxProgMech.explanation.tranches.flatMap(
+			({ plafond, taux }) => [plafond, taux]
 		)
-		const result = R.chain(
+		const result = R.concat(
+			[
+				tauxProgMech.explanation.assiette,
+				tauxProgMech.explanation.multiplicateur
+			],
+			tranchesNodes
+		).flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			R.concat(
-				[
-					tauxProgMech.explanation.assiette,
-					tauxProgMech.explanation.multiplicateur
-				],
-				tranchesNodes
-			)
+			])
 		)
 		return result
 	}
@@ -969,11 +945,13 @@ export function ruleDependenciesOfNode<Name extends string>(
 		dureeMech: DureeMech
 	): Array<Name> {
 		logVisit(depth, 'durée mech', '??')
-		const result = R.chain(
+		const result = [
+			dureeMech.explanation.depuis,
+			dureeMech.explanation["jusqu'à"]
+		].flatMap(
 			R.partial<number, ASTNode, Array<Name>>(ruleDependenciesOfNode, [
 				depth + 1
-			]),
-			[dureeMech.explanation.depuis, dureeMech.explanation["jusqu'à"]]
+			])
 		)
 		return result
 	}
@@ -1047,14 +1025,15 @@ function ruleDependenciesOfRuleNode<Name extends string>(
 ): Array<Name> {
 	logVisit(depth, 'Rule', rule.dottedName)
 
-	return R.chain<Array<Name>, Name>(
-		R.identity,
-		R.map(x => (x ? ruleDependenciesOfNode(depth + 1, x) : []), [
-			rule.formule,
-			rule['applicable si'],
-			rule['non applicable si']
-		])
+	const subNodes = [
+		rule.formule,
+		rule['applicable si'],
+		rule['non applicable si']
+	].filter(x => x !== undefined) as Array<ASTNode>
+	const dependenciesLists = subNodes.map(x =>
+		ruleDependenciesOfNode<Name>(depth + 1, x)
 	)
+	return dependenciesLists.flat(1)
 }
 
 export function buildRulesDependencies<Name extends string>(
@@ -1063,21 +1042,15 @@ export function buildRulesDependencies<Name extends string>(
 	// This stringPairs thing is necessary because `toPairs` is strictly considering that
 	// object keys are strings (same for `Object.entries`). Maybe we should build our own
 	// `toPairs`?
-	const stringPairs: Array<[string, RuleNode<Name>]> = R.toPairs(parsedRules)
+	const stringPairs: Array<[string, RuleNode<Name>]> = Object.entries(
+		parsedRules
+	)
 	const pairs: Array<[Name, RuleNode<Name>]> = stringPairs as Array<
 		[Name, RuleNode<Name>]
 	>
-	// const pairsResults: Array<Array<Name>> = R.map(
-	// 	([_, ruleNode]: [Name, RuleNode<Name>]): Array<Name> =>
-	// 		ruleDependenciesOfRule<Name>(0, ruleNode),
-	// 	pairs
-	// )
 
-	return R.map(
-		([dottedName, ruleNode]: [Name, RuleNode<Name>]): [Name, Array<Name>] => [
-			dottedName,
-			ruleDependenciesOfRuleNode<Name>(0, ruleNode)
-		],
-		pairs
-	)
+	return pairs.map(([dottedName, ruleNode]: [Name, RuleNode<Name>]): [
+		Name,
+		Array<Name>
+	] => [dottedName, ruleDependenciesOfRuleNode<Name>(0, ruleNode)])
 }
