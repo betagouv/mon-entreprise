@@ -2,7 +2,7 @@ import { encodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import { apply, concat, has, partition, pick, pipe } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { flatRulesSelector } from 'Selectors/analyseSelectors'
 import ItemCard from './ItemCard'
@@ -13,49 +13,48 @@ import Search from './Search'
 
 let ItemCardWithoutData = ItemCard()
 
-export default connect((state) => ({ rules: flatRulesSelector(state) }))(
-	({ rules }) => {
-		let exposedRules = rules.filter((rule) => rule?.exposé === 'oui')
-		let [results, setResults] = useState(exposedRules)
-		let [input, setInput] = useState(null)
+export default function Suggestions() {
+	const rules = useSelector(flatRulesSelector)
+	let exposedRules = rules.filter((rule) => rule?.exposé === 'oui')
+	let [results, setResults] = useState(exposedRules)
+	let [input, setInput] = useState(null)
 
-		useEffect(() => {
-			worker.postMessage({
-				rules: Object.values(exposedRules).map(
-					pick(['title', 'description', 'name', 'dottedName'])
-				),
-			})
+	useEffect(() => {
+		worker.postMessage({
+			rules: Object.values(exposedRules).map(
+				pick(['title', 'description', 'name', 'dottedName'])
+			),
+		})
 
-			worker.onmessage = ({ data: results }) => setResults(results)
-		}, [exposedRules])
+		worker.onmessage = ({ data: results }) => setResults(results)
+	}, [])
 
-		return (
-			<section>
-				<Search
-					setInput={(input) => {
-						setInput(input)
-						if (input.length > 2) worker.postMessage({ input })
-					}}
-				/>
-				<section style={{ marginTop: '1.3rem' }}>
-					{input ? (
-						results.length ? (
-							<>
-								<h2 css="font-size: 100%;">Résultats :</h2>
+	return (
+		<section>
+			<Search
+				setInput={(input) => {
+					setInput(input)
+					if (input.length > 2) worker.postMessage({ input })
+				}}
+			/>
+			<section style={{ marginTop: '1.3rem' }}>
+				{input ? (
+					results.length ? (
+						<>
+							<h2 css="font-size: 100%;">Résultats :</h2>
 
-								<RuleList {...{ rules: results, exposedRules }} />
-							</>
-						) : (
-							<p>Rien trouvé {emoji('😶')}</p>
-						)
+							<RuleList {...{ rules: results, exposedRules }} />
+						</>
 					) : (
-						<CategoryView exposedRules={exposedRules} />
-					)}
-				</section>
+						<p>Rien trouvé {emoji('😶')}</p>
+					)
+				) : (
+					<CategoryView exposedRules={exposedRules} />
+				)}
 			</section>
-		)
-	}
-)
+		</section>
+	)
+}
 
 const CategoryView = ({ exposedRules }) => {
 	const categories = byCategory(exposedRules)
