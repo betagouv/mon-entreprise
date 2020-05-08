@@ -19,11 +19,13 @@ describe('DottedNames graph', () => {
 
 		ruleDependencies.forEach(([ruleDottedName, dependenciesDottedNames]) => {
 			dependenciesDottedNames.forEach(depDottedName => {
-				g.setNode(ruleDottedName, depDottedName)
+				g.setEdge(ruleDottedName, depDottedName)
 			})
 		})
 		const cycles = graphlib.alg.findCycles(g)
 
-		expect(cycles).to.be.an('array').that.is.empty
+		expect(cycles, `There are cycles: ${JSON.stringify(cycles)}`).to.be.an(
+			'array'
+		).that.is.empty
 	})
 })
