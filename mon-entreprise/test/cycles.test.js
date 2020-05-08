@@ -24,8 +24,11 @@ describe('DottedNames graph', () => {
 		})
 		const cycles = graphlib.alg.findCycles(g)
 
-		expect(cycles, `There are cycles: ${JSON.stringify(cycles)}`).to.be.an(
-			'array'
-		).that.is.empty
+		expect(
+			cycles,
+			`\nThe following rules have cycles:\n\t- ${cycles
+				.map(x => x[0])
+				.join('\n\t- ')}\n\n`
+		).to.be.an('array').that.is.empty
 	})
 })
