@@ -581,123 +581,125 @@ export function isAnyMechanism<Names extends string>(
 	)
 }
 
-export function ruleDependenciesOfNode<Names extends string>(
+type RuleDependencies<Names extends string> = Array<Names>
+
+export function ruleDepsOfNode<Names extends string>(
 	ruleName: Names,
 	node: ASTNode
-): Array<Names> {
-	function ruleDependenciesOfApplicableSi(
+): RuleDependencies<Names> {
+	function ruleDepsOfApplicableSi(
 		applicableSi: ApplicableSi
-	): Array<Names> {
-		return ruleDependenciesOfNode(ruleName, applicableSi.explanation)
+	): RuleDependencies<Names> {
+		return ruleDepsOfNode(ruleName, applicableSi.explanation)
 	}
 
-	function ruleDependenciesOfNonApplicableSi(
+	function ruleDepsOfNonApplicableSi(
 		nonApplicableSi: NonApplicableSi
-	): Array<Names> {
-		return ruleDependenciesOfNode(ruleName, nonApplicableSi.explanation)
+	): RuleDependencies<Names> {
+		return ruleDepsOfNode(ruleName, nonApplicableSi.explanation)
 	}
 
-	function ruleDependenciesOfFormule(formule: Formule<Names>): Array<Names> {
-		return ruleDependenciesOfNode(ruleName, formule.explanation)
+	function ruleDepsOfFormule(formule: Formule<Names>): RuleDependencies<Names> {
+		return ruleDepsOfNode(ruleName, formule.explanation)
 	}
 
-	function ruleDependenciesOfValue(value: Value): Array<Names> {
+	function ruleDepsOfValue(value: Value): RuleDependencies<Names> {
 		return []
 	}
 
-	function ruleDependenciesOfOperation(operation: Operation): Array<Names> {
+	function ruleDepsOfOperation(operation: Operation): RuleDependencies<Names> {
 		return operation.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 	}
 
-	function ruleDependenciesOfPossibilities(
+	function ruleDepsOfPossibilities(
 		possibilities: Possibilities
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		return []
 	}
-	function ruleDependenciesOfPossibilities2(
+	function ruleDepsOfPossibilities2(
 		possibilities: Possibilities2
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		return []
 	}
 
-	function ruleDependenciesOfReference(
+	function ruleDepsOfReference(
 		reference: Reference<Names>
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		return [reference.dottedName]
 	}
 
-	function ruleDependenciesOfRecalculMech(
+	function ruleDepsOfRecalculMech(
 		recalculMech: RecalculMech<Names>
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		return [recalculMech.explanation.recalcul.partialReference]
 	}
 
-	function ruleDependenciesOfEncadrementMech(
+	function ruleDepsOfEncadrementMech(
 		encadrementMech: EncadrementMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = [
 			encadrementMech.explanation.plafond,
 			encadrementMech.explanation.plancher,
 			encadrementMech.explanation.valeur
 		].flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfSommeMech(sommeMech: SommeMech): Array<Names> {
+	function ruleDepsOfSommeMech(sommeMech: SommeMech): RuleDependencies<Names> {
 		const result = sommeMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfProduitMech(
+	function ruleDepsOfProduitMech(
 		produitMech: ProduitMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = [
 			produitMech.explanation.assiette,
 			produitMech.explanation.plafond,
 			produitMech.explanation.facteur,
 			produitMech.explanation.taux
 		].flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfVariationsMech(
+	function ruleDepsOfVariationsMech(
 		variationsMech: VariationsMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		function ruleOfVariation({
 			condition,
 			consequence
 		}: {
 			condition: ASTNode
 			consequence: ASTNode
-		}): Array<Names> {
+		}): RuleDependencies<Names> {
 			return R.concat(
-				ruleDependenciesOfNode<Names>(ruleName, condition),
-				ruleDependenciesOfNode<Names>(ruleName, consequence)
+				ruleDepsOfNode<Names>(ruleName, condition),
+				ruleDepsOfNode<Names>(ruleName, consequence)
 			)
 		}
 		const result = variationsMech.explanation.flatMap(ruleOfVariation)
 		return result
 	}
 
-	function ruleDependenciesOfAllegementMech(
+	function ruleDepsOfAllegementMech(
 		allegementMech: AllegementMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const subNodes = R.concat(
 			[
 				allegementMech.explanation.abattement,
@@ -713,14 +715,16 @@ export function ruleDependenciesOfNode<Names extends string>(
 				: []
 		)
 		const result = subNodes.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfBaremeMech(baremeMech: BaremeMech): Array<Names> {
+	function ruleDepsOfBaremeMech(
+		baremeMech: BaremeMech
+	): RuleDependencies<Names> {
 		const tranchesNodes = baremeMech.explanation.tranches.flatMap(
 			({ plafond, taux }) => [plafond, taux]
 		)
@@ -728,7 +732,7 @@ export function ruleDependenciesOfNode<Names extends string>(
 			[baremeMech.explanation.assiette, baremeMech.explanation.multiplicateur],
 			tranchesNodes
 		).flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
@@ -738,82 +742,84 @@ export function ruleDependenciesOfNode<Names extends string>(
 	/**
 	 * Returns 0 dependency for _inversion numérique_ as it's not creating a logical dependency.
 	 */
-	function ruleDependenciesOfInversionNumMech(
+	function ruleDepsOfInversionNumMech(
 		inversionNumMech: InversionNumMech<Names>
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		return []
 	}
 
-	function ruleDependenciesOfArrondiMech(
+	function ruleDepsOfArrondiMech(
 		arrondiMech: ArrondiMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = [
 			arrondiMech.explanation.decimals,
 			arrondiMech.explanation.value
 		].flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfMaxMech(maxMech: MaxMech): Array<Names> {
+	function ruleDepsOfMaxMech(maxMech: MaxMech): RuleDependencies<Names> {
 		const result = maxMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfMinMech(minMech: MinMech): Array<Names> {
+	function ruleDepsOfMinMech(minMech: MinMech): RuleDependencies<Names> {
 		const result = minMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfComposantesMech(
+	function ruleDepsOfComposantesMech(
 		composantesMech: ComposantesMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = composantesMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfUneConditionsMech(
+	function ruleDepsOfUneConditionsMech(
 		uneConditionsMech: UneConditionsMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = uneConditionsMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfToutesConditionsMech(
+	function ruleDepsOfToutesConditionsMech(
 		toutesConditionsMech: ToutesConditionsMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const result = toutesConditionsMech.explanation.flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfSyncMech(_: SyncMech): Array<Names> {
+	function ruleDepsOfSyncMech(_: SyncMech): RuleDependencies<Names> {
 		return []
 	}
 
-	function ruleDependenciesOfGrilleMech(grilleMech: GrilleMech): Array<Names> {
+	function ruleDepsOfGrilleMech(
+		grilleMech: GrilleMech
+	): RuleDependencies<Names> {
 		const tranchesNodes = grilleMech.explanation.tranches.flatMap(
 			({ montant, plafond }) => [montant, plafond]
 		)
@@ -821,16 +827,16 @@ export function ruleDependenciesOfNode<Names extends string>(
 			[grilleMech.explanation.assiette, grilleMech.explanation.multiplicateur],
 			tranchesNodes
 		).flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfTauxProgMech(
+	function ruleDepsOfTauxProgMech(
 		tauxProgMech: TauxProgMech
-	): Array<Names> {
+	): RuleDependencies<Names> {
 		const tranchesNodes = tauxProgMech.explanation.tranches.flatMap(
 			({ plafond, taux }) => [plafond, taux]
 		)
@@ -841,105 +847,109 @@ export function ruleDependenciesOfNode<Names extends string>(
 			],
 			tranchesNodes
 		).flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
-	function ruleDependenciesOfDureeMech(dureeMech: DureeMech): Array<Names> {
+	function ruleDepsOfDureeMech(dureeMech: DureeMech): RuleDependencies<Names> {
 		const result = [
 			dureeMech.explanation.depuis,
 			dureeMech.explanation["jusqu'à"]
 		].flatMap(
-			R.partial<Names, ASTNode, Array<Names>>(ruleDependenciesOfNode, [
+			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
 				ruleName
 			])
 		)
 		return result
 	}
 
+	let result
 	if (isApplicableSi(node)) {
-		return ruleDependenciesOfApplicableSi(node)
+		result = ruleDepsOfApplicableSi(node)
 	} else if (isNonApplicableSi(node)) {
-		return ruleDependenciesOfNonApplicableSi(node)
+		result = ruleDepsOfNonApplicableSi(node)
 	} else if (isFormule<Names>(node)) {
-		return ruleDependenciesOfFormule(node)
+		result = ruleDepsOfFormule(node)
 	} else if (isValue(node)) {
-		return ruleDependenciesOfValue(node)
+		result = ruleDepsOfValue(node)
 	} else if (isOperation(node)) {
-		return ruleDependenciesOfOperation(node)
+		result = ruleDepsOfOperation(node)
 	} else if (isReference<Names>(node)) {
-		return ruleDependenciesOfReference(node)
+		result = ruleDepsOfReference(node)
 	} else if (isPossibilities(node)) {
-		return ruleDependenciesOfPossibilities(node)
+		result = ruleDepsOfPossibilities(node)
 	} else if (isPossibilities2(node)) {
-		return ruleDependenciesOfPossibilities2(node)
+		result = ruleDepsOfPossibilities2(node)
 	} else if (isRecalculMech<Names>(node)) {
-		return ruleDependenciesOfRecalculMech(node)
+		result = ruleDepsOfRecalculMech(node)
 	} else if (isEncadrementMech(node)) {
-		return ruleDependenciesOfEncadrementMech(node)
+		result = ruleDepsOfEncadrementMech(node)
 	} else if (isSommeMech(node)) {
-		return ruleDependenciesOfSommeMech(node)
+		result = ruleDepsOfSommeMech(node)
 	} else if (isProduitMech(node)) {
-		return ruleDependenciesOfProduitMech(node)
+		result = ruleDepsOfProduitMech(node)
 	} else if (isVariationsMech(node)) {
-		return ruleDependenciesOfVariationsMech(node)
+		result = ruleDepsOfVariationsMech(node)
 	} else if (isAllegementMech(node)) {
-		return ruleDependenciesOfAllegementMech(node)
+		result = ruleDepsOfAllegementMech(node)
 	} else if (isBaremeMech(node)) {
-		return ruleDependenciesOfBaremeMech(node)
+		result = ruleDepsOfBaremeMech(node)
 	} else if (isInversionNumMech<Names>(node)) {
-		return ruleDependenciesOfInversionNumMech(node)
+		result = ruleDepsOfInversionNumMech(node)
 	} else if (isArrondiMech(node)) {
-		return ruleDependenciesOfArrondiMech(node)
+		result = ruleDepsOfArrondiMech(node)
 	} else if (isMaxMech(node)) {
-		return ruleDependenciesOfMaxMech(node)
+		result = ruleDepsOfMaxMech(node)
 	} else if (isMinMech(node)) {
-		return ruleDependenciesOfMinMech(node)
+		result = ruleDepsOfMinMech(node)
 	} else if (isComposantesMech(node)) {
-		return ruleDependenciesOfComposantesMech(node)
+		result = ruleDepsOfComposantesMech(node)
 	} else if (isUneConditionsMech(node)) {
-		return ruleDependenciesOfUneConditionsMech(node)
+		result = ruleDepsOfUneConditionsMech(node)
 	} else if (isToutesConditionsMech(node)) {
-		return ruleDependenciesOfToutesConditionsMech(node)
+		result = ruleDepsOfToutesConditionsMech(node)
 	} else if (isSyncMech(node)) {
-		return ruleDependenciesOfSyncMech(node)
+		result = ruleDepsOfSyncMech(node)
 	} else if (isGrilleMech(node)) {
-		return ruleDependenciesOfGrilleMech(node)
+		result = ruleDepsOfGrilleMech(node)
 	} else if (isTauxProgMech(node)) {
-		return ruleDependenciesOfTauxProgMech(node)
+		result = ruleDepsOfTauxProgMech(node)
 	} else if (isDureeMech(node)) {
-		return ruleDependenciesOfDureeMech(node)
+		result = ruleDepsOfDureeMech(node)
 	}
 
-	throw new Error(
-		`This node doesn't have a visitor method defined: ${JSON.stringify(
-			node,
-			null,
-			4
-		)}`
-	)
+	if (result === undefined) {
+		throw new Error(
+			`This node doesn't have a visitor method defined: ${JSON.stringify(
+				node,
+				null,
+				4
+			)}`
+		)
+	}
+	return result
 }
 
-function ruleDependenciesOfRuleNode<Names extends string>(
+function ruleDepsOfRuleNode<Names extends string>(
 	rule: RuleNode<Names>
-): Array<Names> {
+): RuleDependencies<Names> {
 	const subNodes = [
 		rule.formule,
 		rule['applicable si'],
 		rule['non applicable si']
 	].filter(x => x !== undefined) as Array<ASTNode>
 	const dependenciesLists = subNodes.map(x =>
-		ruleDependenciesOfNode<Names>(rule.dottedName, x)
+		ruleDepsOfNode<Names>(rule.dottedName, x)
 	)
 	return dependenciesLists.flat(1)
 }
 
 export function buildRulesDependencies<Names extends string>(
 	parsedRules: ParsedRules<Names>
-): Array<[Names, Array<Names>]> {
+): Array<[Names, RuleDependencies<Names>]> {
 	// This stringPairs thing is necessary because `toPairs` is strictly considering that
 	// object keys are strings (same for `Object.entries`). Maybe we should build our own
 	// `toPairs`?
@@ -952,6 +962,6 @@ export function buildRulesDependencies<Names extends string>(
 
 	return pairs.map(([dottedName, ruleNode]: [Names, RuleNode<Names>]): [
 		Names,
-		Array<Names>
-	] => [dottedName, ruleDependenciesOfRuleNode<Names>(ruleNode)])
+		RuleDependencies<Names>
+	] => [dottedName, ruleDepsOfRuleNode<Names>(ruleNode)])
 }
