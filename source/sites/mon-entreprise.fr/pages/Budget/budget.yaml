@@ -1,10 +1,10 @@
 # Ces données sont optenues avec la commande suivante depuis le repo privé
-# `compa-mon-entreprise` :
+# `mon-entreprise/compta` :
 #
 # $ hledger is -p 2020 -Q -B --depth 2
 #
-# La partie « frais de l'attributaire » est amortie par trimestre en prenant
-# 11,75% du total du trimestre.
+# La partie « marge du porteur » est amortie par trimestre en prenant 11,75% du
+# total du trimestre.
 
 2020:
   T1:
@@ -12,4 +12,4 @@
     Logiciels et hébergement: 170
     Déplacements: 742
     Documentation: 286
-    Frais de l'attributaire: 9946
+    Marge du porteur: 9946

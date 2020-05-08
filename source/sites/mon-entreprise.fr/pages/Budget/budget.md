@@ -4,8 +4,8 @@ manière dont elles sont employées.
 
 ## Principes
 
-Notre organisation souscrit aux principes établis dans le [manifeste des startup
-d'État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
+Notre organisation souscrit aux principes établis dans le [manifeste des
+startups d'État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
 
 > ### Considère les besoins des usagers avant ceux de l’administration
 
@@ -81,17 +81,17 @@ expertes provenant du réseau des URSSAF.
   Nous utilisons une petite équipe de développeurs freelances, qui sont
   pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
   métiers. Les rémunérations suivent
-  [la grille des startups d’Etat](https://beta-gouv.gitbook.io/beta-gouv/travailler-a-beta-gouv/recrutement/remuneration).
+  [la grille des startups d’Etat](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
 
 - **Logiciels et hébergement 💻**
 
   Notre modèle open-source nous permet d'accéder gratuitement à la majorité des
-  outils que nous utilisions (hébergement de code, serveurs de tests, etc.). Le
+  outils que nous utilisons (hébergement de code, serveurs de tests, etc.). Le
   site est hebergé sur [Netlify](https://www.netlify.com).
 
 - **Déplacements 🚅**
 
-  Le réseau des URSSAF est présent dans toutes la France. Nous organisions
+  Le réseau des URSSAF est présent dans toutes la France. Nous organisons
   plusieurs fois par an des ateliers avec des experts en région sur des
   thématiques particulières. Sont aussi inclus dans cette catégories la prise en
   charge des frais de déplacements des développeurs qui ne sont pas situés en
@@ -102,8 +102,7 @@ expertes provenant du réseau des URSSAF.
   Nous achetons de la documentation spécialisée à destination des professionnels
   du droit afin de faciliter l'implémentation des dipositifs législatifs.
 
-- **Frais de l'attributaire du marché 🤝**
+- **Marge du porteur 🤝**
 
-  Nous passons par un attributaire du
+  La marge du porteur attributaire du
   [marché public de l'Acoss](https://www.acoss.fr/home/fournisseurs.html).
-  Cet attributaire prend une marge correspondant aux frais de gestion du marché.
