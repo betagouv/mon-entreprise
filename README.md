@@ -2,7 +2,7 @@
 
 This repository powers [mycompanyinfrance.fr](https://mycompanyinfrance.fr) and [mon-entreprise.fr](https://mon-entreprise.fr) and [publi.codes](https://publi.codes).
 
-The hiring simulator, available on both websites, embeds a [model](https://github.com/betagouv/mon-entreprise/blob/master/source/rules) of the french tax system as a YAML domain specific language. It enables displaying the computing rules on the Web and having a single source of logic for both the computation engine (a JS library) and the generated end-user conversation-like form.
+The hiring simulator, available on both websites, embeds a [model](https://github.com/betagouv/mon-entreprise/blob/master/mon-entreprise/source/rules) of the french tax system as a YAML domain specific language. It enables displaying the computing rules on the Web and having a single source of logic for both the computation engine (a JS library) and the generated end-user conversation-like form.
 
 The engine with the French tax law is available as a NPM module and explained [on the wiki](https://github.com/betagouv/mon-entreprise/wiki/Librairie-de-calcul).
 

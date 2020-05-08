@@ -67,18 +67,11 @@ module.exports = {
 	moduleDirectories: ['node_modules', 'sources'],
 
 	// An array of file extensions your modules use
-	// moduleFileExtensions: [
-	//   "js",
-	//   "json",
-	//   "jsx",
-	//   "ts",
-	//   "tsx",
-	//   "node"
-	// ],
+	moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
 
 	// A map from regular expressions to module names that allow to stub out resources with a single module
 	moduleNameMapper: {
-		'\\.css$': '<rootDir>/test/regressions/styleMock.js'
+		'\\.css$': 'mon-entreprise/test/regressions/styleMock.js'
 	},
 
 	// An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -115,9 +108,7 @@ module.exports = {
 	// rootDir: null,
 
 	// A list of paths to directories that Jest should use to search for files in
-	// roots: [
-	//   "<rootDir>"
-	// ],
+	// roots: ['<rootDir>'],
 
 	// Allows you to use a custom runner instead of Jest's default test runner
 	// runner: "jest-runner",
@@ -141,13 +132,11 @@ module.exports = {
 	// testLocationInResults: false,
 
 	// The glob patterns Jest uses to detect test files
-	testMatch: [
-		// We have 2 test runners (Mocha and Jest), so we create a custom extension without `.test.js`
-		// to dissociate the two.
-		'**/*.jest.js'
-		//   "**/__tests__/**/*.[jt]s?(x)",
-		//   "**/?(*.)+(spec|test).[tj]s?(x)"
-	],
+	testMatch: ['**/*.jest.js'],
+	// [
+	//   "**/__tests__/**/*.[jt]s?(x)",
+	//   "**/?(*.)+(spec|test).[tj]s?(x)"
+	// ],
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
 	// testPathIgnorePatterns: [
@@ -173,13 +162,14 @@ module.exports = {
 	transform: {
 		// It's not possible to have 2 piped transformers like in webpack
 		// ie ['jest-transform-nearley', 'babel-jest'], so we removed ES6 module from nearley output.
-		'\\.ne$': 'jest-transform-nearley',
-		'\\.yaml$': 'yaml-jest',
-		'\\.(js|tsx?)$': 'babel-jest'
+		'\\.ne$': require.resolve('jest-transform-nearley'),
+		'\\.yaml$': require.resolve('yaml-jest'),
+		'\\.(js|tsx?)$': require.resolve('babel-jest')
 	},
 
-	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-	transformIgnorePatterns: ['/node_modules/(?!ramda).+\\.js$']
+	// An array of regexp pattern strings that are matched against all source file
+	// paths, matched files will skip transformation
+	transformIgnorePatterns: ['node_modules/(?!ramda|publicodes)/']
 
 	// An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
 	// unmockedModulePathPatterns: undefined,

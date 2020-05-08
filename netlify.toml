@@ -242,6 +242,12 @@
   to = "/mon-entreprise.html"
   status = 200
 
+[build]
+  # Hack while waiting for netlify to support workspace
+  # https://github.com/netlify/build-image/issues/196
+  command = "npm i yarn && yarn && yarn workspace mon-entreprise compile"
+  publish = "mon-entreprise/dist"
+
 [context.deploy-preview.environment]
   EN_SITE = "${path}?s=m"
   FR_SITE = "${path}"
