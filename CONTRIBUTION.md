@@ -2,15 +2,11 @@
 
 Merci de prendre le temps de contribuer ! 🎉
 
-Voici quelques informations pour démarrer :
+Pour contribuer aux modèles de calcul climat, direction [futureco-data](https://github.com/laem/futureco-data).
 
-## Rapport de bug, nouvelles fonctionnalités
+Pour contribuer au code du site, RDV dans la section *issues* pour voir les discussions et avancement actuels.
 
-Nous utilisons GitHub pour suivre tous les bugs et discussions sur les nouvelles fonctionnalités. Pour rapporter un bug ou proposer une évolution vous pouvez [ouvrir une nouvelle discussion](https://github.com/betagouv/mon-entreprise/issues/new). N'hésitez pas à utiliser la recherche pour vérifier si le sujet n'est pas déjà traité dans une discussion ouverte.
-
-## Développement
-
-Si vous voulez participer au développement de nouvelles fonctionnalités, vous pouvez consulter la liste des «[good first issue](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%3Anew%3A+good+first+issue%22) ». Ce sont des fonctionnalités intéressantes qui ne sont normalement pas trop complexe à implémenter. N'hésitez pas à poser toutes vos questions sur ces issues !
+Ci-dessous des informations plus générales sur la contribution.
 
 ### Technologies
 
@@ -70,25 +66,3 @@ Et ceux spécifiques au projet :
 - :alien: `:alien:` pour ajouter des traductions
 - :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
 - :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
-
-### Tests
-
-Pour executer les tests unitaires :
-
-```sh
-$ yarn run test-common
-```
-
-Pour le snapshot testing :
-
-```sh
-$ yarn run test-regressions
-```
-
-Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
-
-Enfin pour les tests d'intégration :
-
-```sh
-$ yarn run test-cypress
-```
