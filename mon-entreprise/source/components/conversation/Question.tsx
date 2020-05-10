@@ -1,11 +1,79 @@
-import classnames from 'classnames'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { is } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
 import { ExplicableRule } from './Explicable'
 import SendButton from './SendButton'
+import { CSSProp } from 'styled-components'
+
+type QuestionProps = {
+	question: string
+	currentValue?: RadioLabelContentProps['currentValue']
+	onChange: RadioLabelContentProps['onChange']
+	choices: Array<{
+		value: RadioLabelContentProps['value']
+		label?: RadioLabelContentProps['label']
+	}>
+}
+
+export function Question({
+	question,
+	currentValue,
+	choices,
+	onChange
+}: QuestionProps) {
+	return (
+		<div
+			className="step question"
+			// css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
+		>
+			<p>{question}</p>
+			{choices.map(({ value, label }) => (
+				<RadioLabelContent
+					key={value}
+					value={value}
+					label={label}
+					currentValue={currentValue}
+					onChange={onChange}
+				/>
+			))}
+		</div>
+	)
+}
+
+type BooleanQuestionProps = Omit<
+	QuestionProps,
+	'choices' | 'onChange' | 'currentValue'
+> & {
+	currentValue?: boolean | null
+	onChange: (val: boolean) => void
+}
+
+export function BooleanQuestion({
+	currentValue,
+	onChange,
+	...otherProps
+}: BooleanQuestionProps) {
+	return (
+		<Question
+			currentValue={
+				currentValue === undefined
+					? undefined
+					: currentValue === true
+					? 'Oui'
+					: 'Non'
+			}
+			choices={[
+				{
+					value: 'Oui'
+				},
+				{ value: 'Non' }
+			]}
+			onChange={val => onChange(val === 'Oui')}
+			{...otherProps}
+		/>
+	)
+}
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -23,7 +91,7 @@ import SendButton from './SendButton'
 
 */
 
-export default function Question({
+export default function RuleQuestion({
 	choices,
 	onSubmit,
 	dottedName,
@@ -127,6 +195,16 @@ export const RadioLabel = props => (
 	</>
 )
 
+type RadioLabelContentProps = {
+	value: string
+	label?: string
+	currentValue?: string
+	icons?: string
+	onChange?: (newValue: string) => void
+	onSubmit?: (source: string) => void
+	css?: CSSProp
+}
+
 function RadioLabelContent({
 	value,
 	label,
@@ -135,12 +213,14 @@ function RadioLabelContent({
 	onChange,
 	onSubmit,
 	css
-}) {
+}: RadioLabelContentProps) {
 	const labelStyle = value === '_' ? ({ fontWeight: 'bold' } as const) : {}
 	const selected = value === currentValue
 
-	const click = value => () => {
-		if (currentValue == value && onSubmit) onSubmit('dblClick')
+	const onClick = () => {
+		if (selected) {
+			onSubmit?.('dblClick')
+		}
 	}
 
 	return (
@@ -148,17 +228,17 @@ function RadioLabelContent({
 			key={value}
 			style={labelStyle}
 			css={css}
-			className={classnames('radio', 'userAnswerButton', 'ui__', 'button', {
-				selected
-			})}
+			className={`ui__ button radio userAnswerButton ${
+				selected ? 'selected' : ''
+			}`}
 		>
 			{icons && <>{emoji(icons)}&nbsp;</>}
-			<Trans>{label}</Trans>
+			{label ?? value}
 			<input
 				type="radio"
-				onClick={click(value)}
+				onClick={onClick}
 				value={value}
-				onChange={evt => onChange(evt.target.value)}
+				onChange={evt => onChange?.(evt.target.value)}
 				checked={selected}
 			/>
 		</label>
