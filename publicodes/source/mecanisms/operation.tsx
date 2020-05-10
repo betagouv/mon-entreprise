@@ -9,7 +9,7 @@ import { curry, map } from 'ramda'
 import React from 'react'
 
 export default (k, operatorFunction, symbol) => (recurse, k, v) => {
-	let evaluate = (cache, situation, parsedRules, node) => {
+	const evaluate = (cache, situation, parsedRules, node) => {
 		const explanation = map(
 			curry(evaluateNode)(cache, situation, parsedRules),
 			node.explanation
@@ -51,8 +51,8 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 			missingVariables
 		}
 
-		let temporalValue = liftTemporal2(
-			(a, b) => {
+		const temporalValue = liftTemporal2(
+			(a: string | false, b: string | false) => {
 				if (!['≠', '='].includes(node.operator) && a === false && b === false) {
 					return false
 				}
@@ -63,6 +63,8 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 					return false
 				}
 				if (
+					a !== false &&
+					b !== false &&
 					['≠', '=', '<', '>', '≤', '≥'].includes(node.operator) &&
 					[a, b].every(value => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
 				) {
@@ -82,11 +84,11 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 		}
 	}
 
-	let explanation = v.explanation.map(recurse)
-	let [node1, node2] = explanation
-	let unit = inferUnit(k, [node1.unit, node2.unit])
+	const explanation = v.explanation.map(recurse)
+	const [node1, node2] = explanation
+	const unit = inferUnit(k, [node1.unit, node2.unit])
 
-	let jsx = ({ nodeValue, explanation, unit }) => (
+	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Operation value={nodeValue} unit={unit}>
 			{(explanation[0].nodeValue !== 0 ||
 				symbol !== '−' ||

@@ -46,7 +46,7 @@ type NodeProps = {
 	displayName?: boolean
 }
 
-export function Operation({ value, children, unit }: NodeProps) {
+export function Operation({ value, children, unit }: Omit<NodeProps, 'name'>) {
 	return (
 		<StyledOperation className="operation">
 			{children}
