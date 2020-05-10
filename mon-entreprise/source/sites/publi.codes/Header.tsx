@@ -30,10 +30,14 @@ export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 		<nav css="display">
 			<NavLink activeStyle={activeStyle} to="/studio">
 				Bac à sable
-			</NavLink>{' '}
-			•{' '}
+			</NavLink>
+			{' • '}
 			<NavLink activeStyle={activeStyle} to="/mécanismes">
 				Liste des mécanismes
+			</NavLink>
+			{' • '}
+			<NavLink activeStyle={activeStyle} to="/api">
+				API
 			</NavLink>
 		</nav>
 	</header>
