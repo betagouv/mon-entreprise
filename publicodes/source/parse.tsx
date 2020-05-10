@@ -30,19 +30,17 @@ import React from 'react'
 import { EngineError, syntaxError } from './error'
 import { formatValue } from './format'
 import grammar from './grammar.ne'
-import {
-	mecanismAllOf,
-	mecanismInversion,
-	mecanismMax,
-	mecanismMin,
-	mecanismOneOf,
-	mecanismOnePossibility,
-	mecanismProduct,
-	mecanismRecalcul,
-	mecanismReduction,
-	mecanismSum,
-	mecanismSynchronisation
-} from './mecanisms'
+import { mecanismInversion } from './mecanisms/inversion'
+import { mecanismMax } from './mecanisms/max'
+import { mecanismReduction } from './mecanisms/reduction'
+import { mecanismProduct } from './mecanisms/product'
+import { mecanismSum } from './mecanisms/sum'
+import { mecanismMin } from './mecanisms/min'
+import { mecanismAllOf } from './mecanisms/condition-allof'
+import { mecanismOneOf } from './mecanisms/condition-oneof'
+import { mecanismOnePossibility } from './mecanisms/one-possibility'
+import { mecanismSynchronisation } from './mecanisms/synchronisation'
+import { mecanismRecalcul } from './mecanisms/recalcul'
 import { parseReferenceTransforms } from './parseReference'
 import { EvaluatedRule } from './types'
 
