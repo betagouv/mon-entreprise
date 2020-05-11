@@ -35,20 +35,25 @@ export default () => {
 			<p>
 				Ce simulateur vous permet d'évaluer votre empreinte climat personnelle,
 				puis de la situer par rapport aux objectifs climatiques. Il est basé sur
-				le modèle{' '}
-				<a href="http://avenirclimatique.org/micmac/simulationCarbone.php">
-					MicMac{' '}
+				le modèle MicMac de l'association{' '}
+				<a href="https://avenirclimatique.org/les-outils/">
+					Avenir Climatique{' '}
+					<img
+						src="https://avenirclimatique.org/wp-content/themes/JointsWP-master/library/images/logo_AC_simple_100px.png"
+						css="width:1rem; vertical-align: middle"
+					/>
 				</a>{' '}
-				de l'association Avenir Climatique.
+				.
 			</p>
-			<DocumentationButton />
 			<footer
 				css={`
 					margin-top: 1rem;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					flex-wrap: wrap;
+					> div {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						margin-bottom: 1rem;
+					}
 					img {
 						margin-left: 1rem;
 					}
@@ -57,15 +62,22 @@ export default () => {
 					}
 				`}
 			>
-				<p>Données bientôt validées par</p>
+				<div>
+					<em>Bientôt validé par</em>
+					{/* Un jour
 				<img
 					css="height: 3rem"
 					src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
 				/>
-				<img
-					css="height: 2rem"
-					src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
-				/>
+				*/}
+					<a href="https://www.associationbilancarbone.fr/">
+						<img
+							css="height: 2.5rem"
+							src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
+						/>
+					</a>
+				</div>
+				<DocumentationButton />
 			</footer>
 		</div>
 	)

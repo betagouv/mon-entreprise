@@ -35,15 +35,6 @@ class App extends Component {
 											height: 2rem;
 										}
 									`}
-									src="https://avenirclimatique.org/wp-content/themes/JointsWP-master/library/images/logo_AC_simple_100px.png"
-								/>
-								<img
-									css={`
-										height: 3rem;
-										@media (max-width: 800px) {
-											height: 2rem;
-										}
-									`}
 									src="https://ecolab-transport.netlify.com/images/ecolab.png"
 								/>
 							</Link>
