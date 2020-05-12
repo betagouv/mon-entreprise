@@ -25,6 +25,9 @@ class App extends Component {
 				reduxMiddlewares={[]}
 			>
 				<StoreProvider>
+					<div css="background: yellow; text-align: center; color: black; ">
+						Attention, démo ! Les calculs sont loin d'être validés.
+					</div>
 					<div className="ui__ container">
 						<nav css="display: flex; justify-content: center; margin-top: .6rem">
 							<Link to="/">
