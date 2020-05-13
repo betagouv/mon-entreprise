@@ -5,10 +5,10 @@ import { Question, BooleanQuestion } from 'Components/conversation/Question'
 type State = Partial<{
 	nbChildren: string
 	nbDependantChildren: string
-	isSick : boolean
-	isBorn : boolean
-	isPreterm : boolean
-	nbDaysPreterm : int
+	isSick: boolean
+	isBorn: boolean
+	isPreterm: boolean
+	nbDaysPreterm: number
 }>
 
 export default function Maternité() {
@@ -21,8 +21,8 @@ export default function Maternité() {
 	return (
 		<>
 			<h1>Simulateur de congé maternité {emoji('👶')}</h1>
-			Pour percevoir des indémnités journalières, vous devez prendre au minimum 8 semaines de congés : 2 semaines en prénatal et 6 en posnatal. 
-
+			Pour percevoir des indémnités journalières, vous devez prendre au minimum
+			8 semaines de congés : 2 semaines en prénatal et 6 en posnatal.
 			<Result state={state} />
 			<Question
 				question="Nombre d'enfants à naître ?"
@@ -51,22 +51,29 @@ export default function Maternité() {
 				question="L'accouchement a-t-il déjà eu lieu ?"
 				{...bind('isBorn')}
 			/>
-
-			{state.isBorn ? <BooleanQuestion
-				question="L'enfant est-il né prématuré ?"
-				{...bind('isPreterm') }
-			/> : null
-				}
-			
-			{state.isPreterm ? 
-			<>
-			<p> De combien de jours l'enfant est-il né prématuré ?</p>
-			<input type="text" name='nbDaysPreterm' value={state.nbDaysPreterm} onChange={(event) => setState((state) => ({...state, nbDaysPreterm: Number(event.target.value)}))} /> 
-			</>
-			: null }
-
-
-
+			{state.isBorn ? (
+				<BooleanQuestion
+					question="L'enfant est-il né prématuré ?"
+					{...bind('isPreterm')}
+				/>
+			) : null}
+			{state.isPreterm ? (
+				<>
+					<p> De combien de jours l'enfant est-il né prématuré ?</p>
+					<input
+						type="text"
+						name="nbDaysPreterm"
+						value={state.nbDaysPreterm ?? ''}
+						onChange={event => {
+							const val = event.target.value
+							setState(state => ({
+								...state,
+								nbDaysPreterm: Number(val)
+							}))
+						}}
+					/>
+				</>
+			) : null}
 		</>
 	)
 }
@@ -79,20 +86,26 @@ export default function Maternité() {
 
 function Result({ state }: { state: State }) {
 	//Number of dependent and unborn children
-	let prenatal = state.nbChildren === '3'
-	? 24
-	: state.nbChildren === '2'
-	? 12
-	: state.nbDependantChildren==='2' ? 8 : 6
-	let postnatal = state.nbChildren === '3'
-	? 22
-	: state.nbChildren === '2'
-	? 22
-	: state.nbDependantChildren ==='2' ? 18 : 10
+	let prenatal =
+		state.nbChildren === '3'
+			? 24
+			: state.nbChildren === '2'
+			? 12
+			: state.nbDependantChildren === '2'
+			? 8
+			: 6
+	let postnatal =
+		state.nbChildren === '3'
+			? 22
+			: state.nbChildren === '2'
+			? 22
+			: state.nbDependantChildren === '2'
+			? 18
+			: 10
 
 	//Pregnancy-related illness
 	prenatal += state.isSick ? 2 : 0
-	postnatal+= state.isSick ? 4 : 0
+	postnatal += state.isSick ? 4 : 0
 
 	//Preterm and Child Hospitalized after ChildBirth
 	//postnatal += state.isPreterm ? Math.min(42, state.nbDaysPreterm) : 0
@@ -106,7 +119,6 @@ function Result({ state }: { state: State }) {
 				width: 300px;
 			`}
 		>
-
 			<h3>Résulats</h3>
 			<ul>
 				<li>
@@ -114,12 +126,10 @@ function Result({ state }: { state: State }) {
 					{` ${postnatal + prenatal} semaines`}
 				</li>
 				<li>
-					<strong>Congé prénatal :</strong>{' '}
-					{` ${prenatal} semaines`}
+					<strong>Congé prénatal :</strong> {` ${prenatal} semaines`}
 				</li>
 				<li>
-					<strong>Congé posnatal :</strong>{' '}
-					{` ${postnatal} semaines`}
+					<strong>Congé posnatal :</strong> {` ${postnatal} semaines`}
 					{}
 				</li>
 			</ul>
