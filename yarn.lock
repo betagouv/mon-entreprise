@@ -9673,13 +9673,6 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
-react-to-print@^2.5.1:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.7.0.tgz#3afca47ac857c72d9b76f9944b0793d27714bcc5"
-  integrity sha512-1GdEskOHtQs7EMj9t7OYSiMcAjzGCZyasb1H6kJQf5GaRpoM3Qr4OLbxGQSHK659Sp1PRZMVSD9+DWu4atVOIw==
-  dependencies:
-    prop-types "^15.7.2"
-
 react-transition-group@^2.2.1, react-transition-group@^2.5.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"

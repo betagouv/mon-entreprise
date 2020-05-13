@@ -8,13 +8,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Components/conversation/RuleInput'
 import { ParsedRule } from 'publicodes'
-import React, {
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-	useContext
-} from 'react'
+import React, { useCallback, useEffect, useState, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -24,8 +18,11 @@ import styled from 'styled-components'
 import Animate from 'Components/ui/animate'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
-import { Results } from './Result'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import emoji from 'react-easy-emoji'
+import RuleLink from 'Components/RuleLink'
+import { formatValue } from 'Engine/format'
+import Skeleton from 'react-loading-skeleton'
 
 export default function() {
 	const dispatch = useDispatch()
@@ -37,37 +34,30 @@ export default function() {
 		dispatch(setSimulationConfig(simulationConfig, true))
 	}, [])
 
-	const { resultsRef, displayForm, updateIncome, currentIncome } = (() => {
-		const dottedName = 'dirigeant . rémunération totale'
-		const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
-			threshold: 0.5,
-			unobserve: false
-		})
-		const value = useSelector(situationSelector)[dottedName]
-		const [currentIncome, setCurrentIncome] = useState(value)
-		const [displayForm, setDisplayForm] = useState(currentIncome != null)
-		const updateIncome = useCallback(
-			income => {
-				setDisplayForm(income != null)
-				setCurrentIncome(income)
-			},
-			[setDisplayForm, setCurrentIncome]
-		)
-		const dispatch = useDispatch()
-		useEffect(() => {
-			if (resultsInViewPort && displayForm) {
-				dispatch(updateSituation(dottedName, currentIncome))
-			} else {
-				dispatch(updateSituation(dottedName, null))
-			}
-		}, [resultsInViewPort, displayForm, currentIncome])
+	const dottedName = 'dirigeant . rémunération totale'
+	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
+		threshold: 0.5,
+		unobserve: false
+	})
+	const value = useSelector(situationSelector)[dottedName]
+	const [currentIncome, setCurrentIncome] = useState(value)
+	const displayForm = currentIncome != null
+	const updateIncome = useCallback(
+		income => {
+			setCurrentIncome(income)
+		},
+		[setCurrentIncome]
+	)
+	useEffect(() => {
+		if (resultsInViewPort && displayForm) {
+			dispatch(updateSituation(dottedName, currentIncome))
+		} else {
+			dispatch(updateSituation(dottedName, null))
+		}
+	}, [resultsInViewPort, displayForm, currentIncome])
 
-		return { updateIncome, resultsRef, displayForm, currentIncome }
-	})()
-
-	const printComponentRef = useRef<HTMLDivElement>(null)
 	return (
-		<div ref={printComponentRef}>
+		<div>
 			<ScrollToTop />
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
@@ -197,7 +187,7 @@ export default function() {
 					</Animate.fromTop>
 
 					<div ref={resultsRef}>
-						<Results componentRef={printComponentRef} />
+						<Results />
 					</div>
 					<Aide />
 				</>
@@ -304,6 +294,60 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 					/>
 				</Question>
 			</Animate.fromTop>
+		</div>
+	)
+}
+
+function Results() {
+	const results = useEvaluation(simulationConfig.objectifs as Array<DottedName>)
+	const onGoingComputation = !results.filter(node => node.nodeValue != null)
+		.length
+	return (
+		<div
+			className="ui__ card lighter-bg"
+			css="margin-top: 3rem; padding: 1rem 0"
+		>
+			<h1 css="text-align: center; margin-bottom: 2rem">
+				<Trans i18nKey="aide-déclaration-indépendant.results.title">
+					Aide à la déclaration
+				</Trans>
+				{emoji('📄')}
+			</h1>
+			{onGoingComputation && (
+				<h2>
+					<small>
+						<Trans i18nKey="aide-déclaration-indépendant.results.ongoing">
+							Calcul en cours...
+						</Trans>
+					</small>
+				</h2>
+			)}
+			<>
+				<Animate.fromTop>
+					{results.map(r => (
+						<React.Fragment key={r.title}>
+							<h4>
+								{r.title} <small>{r.summary}</small>
+							</h4>
+							{r.description && <p className="ui__ notice">{r.description}</p>}
+							<p className="ui__ lead" css="margin-bottom: 1rem;">
+								<RuleLink dottedName={r.dottedName}>
+									{r.nodeValue != null ? (
+										formatValue({
+											nodeValue: r.nodeValue || 0,
+											language: 'fr',
+											unit: '€',
+											precision: 0
+										})
+									) : (
+										<Skeleton width={80} />
+									)}
+								</RuleLink>
+							</p>
+						</React.Fragment>
+					))}
+				</Animate.fromTop>
+			</>
 		</div>
 	)
 }

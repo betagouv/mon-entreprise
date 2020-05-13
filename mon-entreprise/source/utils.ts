@@ -33,7 +33,8 @@ export function inIframe(): boolean {
 // This is different from the process.env.NODE_ENV in that a feature branch may
 // be build in production mode (with the NODE_ENV) but we may still want to show
 // or hide some features.
-export const productionMode = ['master', 'next'].includes(process.env.HEAD)
+export const productionMode =
+	process.env.HEAD && ['master', 'next'].includes(process.env.HEAD)
 
 export function softCatch<ArgType, ReturnType>(
 	fn: (arg: ArgType) => ReturnType
