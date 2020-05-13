@@ -17,7 +17,6 @@ import { Link } from 'react-router-dom'
 import { Company } from 'Reducers/inFranceAppReducer'
 import { RootState } from 'Reducers/rootReducer'
 import * as Animate from 'Components/ui/animate'
-import { productionMode } from '../../../../utils'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
@@ -93,8 +92,7 @@ export default function SocialSecurity() {
 						</h2>
 						<div className="ui__ center-flex">
 							{company?.statutJuridique === 'EI' &&
-								!company.isAutoEntrepreneur &&
-								!productionMode && (
+								!company.isAutoEntrepreneur && (
 									<Link
 										className="ui__ interactive card box"
 										to={{
