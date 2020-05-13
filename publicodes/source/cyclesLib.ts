@@ -635,7 +635,8 @@ export function ruleDepsOfNode<Names extends string>(
 	function ruleDepsOfRecalculMech(
 		recalculMech: RecalculMech<Names>
 	): RuleDependencies<Names> {
-		return [recalculMech.explanation.recalcul.partialReference]
+		const ruleReference = recalculMech.explanation.recalcul.partialReference
+		return ruleReference === ruleName ? [] : [ruleReference]
 	}
 
 	function ruleDepsOfEncadrementMech(

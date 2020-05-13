@@ -1,12 +1,7 @@
-<<<<<<< HEAD:mon-entreprise/test/cycles.test.js
-import { parseRules, buildRulesDependencies } from 'publicodes'
-=======
 import graphlib from '@dagrejs/graphlib'
 import { expect } from 'chai'
-import { buildRulesDependencies } from 'Engine/cyclesLib'
-import parseRules from 'Engine/parseRules'
->>>>>>> cde4da75... WIP ⚙️ Detect cycles: test for cycles using @dagrejs/graphlib:test/cycles.test.js
-import rules from 'Rules'
+import { buildRulesDependencies, parseRules } from 'publicodes'
+import rules from '../source/rules'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
