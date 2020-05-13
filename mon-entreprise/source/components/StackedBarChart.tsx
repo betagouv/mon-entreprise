@@ -44,6 +44,24 @@ const BarStackLegendItem = styled.div`
 		margin-left: 8px;
 	}
 `
+const BarStackTicks = styled.div`
+	display: flex;
+	margin-top: 10px;
+	flex-direction: column;
+
+	@media (min-width: 800px) {
+		flex-direction: row;
+	}
+`
+const BarStackTicksItem = styled.div`
+	flex: 1 1 0px;
+	color: #555;
+
+	strong {
+		display: inline-block;
+		color: #111;
+	}
+`
 
 const SmallCircle = styled.span`
 	display: inline-block;
@@ -125,6 +143,92 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 						<SmallCircle style={{ backgroundColor: color }} />
 						{legend}
 						<strong>{percentage} %</strong>
+					</BarStackLegendItem>
+				))}
+			</BarStackLegend>
+		</animated.div>
+	)
+}
+
+type StackedBarChartTestProps = {
+	data: Array<{
+		color?: string
+		startDate?: string
+		endDate?: string
+		value: Evaluation<Types>
+		legend: React.ReactNode
+		key: string
+	}>
+}
+
+export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
+	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
+		threshold: 0.5
+	})
+	const percentages = roundedPercentages(
+		data.map(d => (typeof d.value === 'number' && d.value) || 0)
+	)
+	const dataWithPercentage = data.map((data, index) => ({
+		...data,
+		percentage: percentages[index]
+	}))
+
+	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
+	return (
+		<animated.div ref={intersectionRef} style={styles}>
+			<BarStack>
+				{dataWithPercentage
+					// <BarItem /> has a border so we don't want to display empty bars
+					// (even with width 0).
+					.filter(({ percentage }) => percentage !== 0)
+					.map(({ key, color, percentage }) => (
+						<BarItem
+							style={{
+								width: `${percentage}%`,
+								backgroundColor: color || 'green'
+							}}
+							key={key}
+						/>
+					))}
+			</BarStack>
+			<BarStackTicks>
+				{dataWithPercentage.map(({ key, startDate, endDate }) => (
+					<BarStackTicksItem key={key}>
+						{startDate ? (
+							<strong
+								css={`
+									text-align : left
+									margin-left: 1px;
+								`}
+							>
+								{startDate}
+							</strong>
+						) : null}
+						{endDate ? (
+							<strong
+								css={`
+									text-align: right;
+									align: right;
+								`}
+							>
+								{endDate}
+							</strong>
+						) : null}
+					</BarStackTicksItem>
+				))}
+			</BarStackTicks>
+			<BarStackLegend>
+				{dataWithPercentage.map(({ key, value, color, legend }) => (
+					<BarStackLegendItem key={key}>
+						<SmallCircle style={{ backgroundColor: color }} />
+						{legend}
+						{value % 7 === 0 ? (
+							<strong> {Math.trunc(value / 7)} semaines</strong>
+						) : (
+							<strong>
+								{Math.trunc(value / 7)} semaines et {value % 7} jours
+							</strong>
+						)}
 					</BarStackLegendItem>
 				))}
 			</BarStackLegend>

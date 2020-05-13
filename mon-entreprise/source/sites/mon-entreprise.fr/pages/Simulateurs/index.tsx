@@ -10,7 +10,7 @@ import AssimiléSalarié from './AssimiléSalarié'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
 import Indépendant from './Indépendant'
-import Maternité from './Maternité'
+import Maternité from './Maternite'
 import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
 
