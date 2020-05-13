@@ -1,18 +1,18 @@
 import { explainVariable } from 'Actions/actions'
-import React, { useContext } from 'react'
+import Overlay from 'Components/Overlay'
+import { EngineContext } from 'Components/utils/EngineContext'
+import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
+import { useDispatch } from 'react-redux'
 import { DottedName } from 'Rules'
 import { TrackerContext } from '../utils/withTracker'
 import './Explicable.css'
-import { EngineContext } from 'Components/utils/EngineContext'
+import usePortal from 'react-useportal'
 
-export default function Explicable({ dottedName }: { dottedName: DottedName }) {
+export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	const rules = useContext(EngineContext).getParsedRules()
 	const tracker = useContext(TrackerContext)
 	const dispatch = useDispatch()
-	const explained = useSelector((state: RootState) => state.explainedVariable)
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) return null
@@ -40,5 +40,30 @@ export default function Explicable({ dottedName }: { dottedName: DottedName }) {
 		>
 			{emoji('ℹ️')}
 		</button>
+	)
+}
+
+export function Explicable({ children }: { children: React.ReactNode }) {
+	const { Portal } = usePortal()
+	const [isOpen, setIsOpen] = useState(false)
+	return (
+		<>
+			{isOpen && (
+				<Portal>
+					<Overlay onClose={() => setIsOpen(false)}>{children}</Overlay>
+				</Portal>
+			)}
+			<button
+				className="ui__ link-button"
+				onClick={() => setIsOpen(true)}
+				css={`
+					margin-left: 0.3rem !important;
+					vertical-align: middle;
+					font-size: 110% !important;
+				`}
+			>
+				{emoji('ℹ️')}
+			</button>
+		</>
 	)
 }

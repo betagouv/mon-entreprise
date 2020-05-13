@@ -1,6 +1,6 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
-import Explicable from 'Components/conversation/Explicable'
+import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
 import { useEvaluation, EngineContext } from 'Components/utils/EngineContext'
@@ -21,7 +21,7 @@ import simulationConfig from './config.yaml'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import emoji from 'react-easy-emoji'
 import RuleLink from 'Components/RuleLink'
-import { formatValue } from 'Engine/format'
+import { formatValue } from 'publicodes'
 import Skeleton from 'react-loading-skeleton'
 
 export default function() {
@@ -32,29 +32,23 @@ export default function() {
 	)
 	useEffect(() => {
 		dispatch(setSimulationConfig(simulationConfig, true))
-	}, [])
+	}, [dispatch])
 
-	const dottedName = 'dirigeant . rémunération totale'
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
 		threshold: 0.5,
 		unobserve: false
 	})
+	const dottedName = 'dirigeant . rémunération totale'
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentIncome, setCurrentIncome] = useState(value)
 	const displayForm = currentIncome != null
-	const updateIncome = useCallback(
-		income => {
-			setCurrentIncome(income)
-		},
-		[setCurrentIncome]
-	)
 	useEffect(() => {
 		if (resultsInViewPort && displayForm) {
 			dispatch(updateSituation(dottedName, currentIncome))
 		} else {
 			dispatch(updateSituation(dottedName, null))
 		}
-	}, [resultsInViewPort, displayForm, currentIncome])
+	}, [dispatch, resultsInViewPort, displayForm, currentIncome])
 
 	return (
 		<div>
@@ -62,18 +56,17 @@ export default function() {
 			<Trans i18nKey="aide-déclaration-indépendant.description">
 				<h1>Aide à la déclaration de revenus au titre de l'année 2019</h1>
 				<p>
-					Cet outil est une aide aux déclarations fiscale (revenu) et sociale
-					(DSI) à destination des travailleurs indépendants. Il vous permet de
-					connaître le montant des charges sociales déductibles à partir de
-					votre résultat net fiscal.
+					Cet outil est une aide aux déclarations fiscale (revenu) et sociale (
+					<abbr title="Déclaration Sociale des Indépendants">DSI</abbr>) à
+					destination des travailleurs indépendants. Il vous permet de connaître
+					le montant des charges sociales déductibles à partir de votre résultat
+					net fiscal.
 				</p>
-				<div
-					css={`
-						@media print {
-							display: none;
-						}
-					`}
-				>
+				<p>
+					Vous restez entièrement responsable d'éventuelles omissions ou
+					inexactitudes dans vos déclarations.
+				</p>
+				<div>
 					<Warning localStorageKey="aide-déclaration-indépendant.warning">
 						<h3>
 							Cet outil vous concerne si vous êtes dans tous les cas suivants :
@@ -106,18 +99,21 @@ export default function() {
 				</div>
 				<h2>
 					Quel est votre résultat fiscal en 2019 ?<br />
-					<small>Charges sociales et exonérations fiscales non incluses</small>
+					<small>
+						Charges sociales et exonérations fiscales non incluses{' '}
+						<ExplicationsResultatFiscal />
+					</small>
 				</h2>
 				<p className="ui__ notice">
 					Le résultat fiscal correspond aux produits moins les charges. Il peut
-					être positif (bénéfice) ou négatif (pertes).
+					être positif (bénéfice) ou négatif (déficit).
 				</p>
 			</Trans>
 			<BigInput>
 				<RuleInput
 					rules={rules}
 					dottedName="dirigeant . rémunération totale"
-					onChange={updateIncome}
+					onChange={setCurrentIncome}
 					value={currentIncome}
 					autoFocus
 				/>
@@ -129,13 +125,7 @@ export default function() {
 							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
 								<h2>Entreprise et activité</h2>
 							</Trans>
-							<div
-								css={`
-									@media print {
-										display: none;
-									}
-								`}
-							>
+							<div>
 								{!company && (
 									<p className="ui__ notice">
 										<Trans i18nKey="aide-déclaration-indépendant.entreprise.description">
@@ -200,6 +190,123 @@ type SubSectionProp = {
 	dottedName: DottedName
 	hideTitle?: boolean
 }
+function ExplicationsResultatFiscal() {
+	return (
+		<Explicable>
+			<>
+				<h3>Quelles exonérations inclure ?</h3>
+				<p>
+					calculer le montant du résultat fiscal avant déduction d ations et des
+					charges sociales à indiquer dans ce simula s pouvez utiliser votre
+					liasse fiscale, en reprenant l ts indiqués dans les lignes fiscales du
+					tableau ci-desso nction de votre situation (imposition au réel normal
+					ou au réel simplifié).
+				</p>
+				<p>L’opération à effectuer est la suivante :</p>
+				<ul>
+					<li>
+						minez le résultat fiscal dans votre liasse, sans montant de vos
+						cotisations et contributions socia gimes obligatoires de sécurité
+						sociale. Prenez le résultat fiscal correspondant{' '}
+						<strong>(1)</strong>
+					</li>
+					<li>
+						Ajoutez les exonérations <strong>(2)</strong>
+					</li>
+				</ul>
+				<table
+					css={`
+						font-size: 0.85em;
+						text-align: center;
+
+						tr:nth-child(2n) {
+							background: #e5effa;
+						}
+
+						td {
+							padding: 0.5rem;
+						}
+					`}
+				>
+					<tr>
+						<td></td>
+						<td>
+							Résultat fiscal <strong>(1)</strong>
+						</td>
+						<td colSpan={4}>
+							Exonérations <strong>(2)</strong>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Exonérations liées aux zones / activités</td>
+						<td>Exonérations Madelin et plan d’épargne retraite</td>
+						<td>Exonérations de plus-values à court terme</td>
+						<td>Suramortissement productif</td>
+					</tr>
+					<tr>
+						<td>BIC réel normal</td>
+						<td>
+							<strong>2058-A-SD</strong>
+							<br />
+							Ligne XN (bénéfice) Ligne XO (déficit)
+						</td>
+						<td>
+							<strong>2058-A-SD</strong>
+							<br />
+							Lignes K9 / L6 / ØV / PP / L2 / 1F / L5 / PA / XC / PB
+						</td>
+						<td>
+							<strong>2053-SD</strong>
+							<br />
+							Lignes A7 et A8
+						</td>
+						<td>
+							<strong>2058-A-SD</strong>
+							<br />
+							Ligne XG (montant inclus)
+						</td>
+						<td>
+							<strong>2058-A-SD</strong>
+							<br />
+							Lignes X9 et YA
+						</td>
+					</tr>
+					<tr>
+						<td>BIC réel simplifié</td>
+						<td>
+							<strong>2033-B-SD</strong>
+							<br />
+							Ligne 370 (bénéfice) Ligne 372 déficit)
+						</td>
+						<td>
+							<strong>2033 B-SD</strong>
+							<br />
+							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 990 / 993
+						</td>
+						<td>
+							<strong>2033-SD</strong>
+							<br />
+							Lignes 325 et 327
+						</td>
+						<td>
+							<strong>2033 B-SD</strong>
+							<br />
+							Ligne 350 (montant inclus)
+						</td>
+						<td>
+							<strong>2033 B-SD</strong>
+							<br />
+							Lignes 655 et 643
+						</td>
+					</tr>
+				</table>
+			</>
+		</Explicable>
+	)
+}
+
 function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false
@@ -275,14 +382,11 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 						css={`
 							border-left: 3px solid var(--lightColor);
 							padding-left: 0.6rem;
-							@media print {
-								padding-left: 0 !important;
-							}
 						`}
 					>
 						<p>
 							{question ?? evaluatedRule.question}
-							<Explicable dottedName={dottedName} />
+							<ExplicableRule dottedName={dottedName} />
 						</p>
 						<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
 					</div>
