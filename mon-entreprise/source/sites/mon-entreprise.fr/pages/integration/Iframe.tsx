@@ -296,11 +296,11 @@ function IntegrationCode({
 			)}
 			<br />
 			<em>src</em>
-			="https://mon-entreprise.fr/simulateur-iframe-integration.js">
+			="https://mon-entreprise.fr/simulateur-iframe-integration.js"{'>'}
 			<span>{'<'}</span>
 			<span>/</span>
 			<em>script</em>
-			<span>></span>
+			<span>{'>'}</span>
 		</code>
 	)
 }
