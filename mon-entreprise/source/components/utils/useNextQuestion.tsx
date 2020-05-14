@@ -36,14 +36,18 @@ import { useMemo } from 'react'
 import { DottedName } from 'Rules'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
 
-type MissingVariables = Array<Partial<Record<DottedName, number>>>
+type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
-	missingVariables: MissingVariables
+	missingVariables: Array<MissingVariables>
 ): Array<DottedName> {
 	const byCount = ([, [count]]) => count
 	const byScore = ([, [, score]]) => score
 
-	const missingByTotalScore = reduce(mergeWith(add), {}, missingVariables)
+	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
+		mergeWith(add),
+		{},
+		missingVariables
+	)
 
 	const innerKeys = flatten(map(keys, missingVariables)),
 		missingByTargetsAdvanced = countBy(identity, innerKeys)
@@ -53,9 +57,9 @@ export function getNextSteps(
 			missingByTargetsAdvanced,
 			missingByTotalScore
 		),
-		pairs = toPairs(missingByCompound),
+		pairs = toPairs<number>(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
-	return map(head, sortedPairs)
+	return map(head, sortedPairs) as any
 }
 
 const similarity = (rule1 = '', rule2 = '') =>
@@ -67,7 +71,7 @@ const similarity = (rule1 = '', rule2 = '') =>
 	)(rule1.split(' . '), rule2.split(' . '))
 
 export function getNextQuestions(
-	missingVariables: MissingVariables,
+	missingVariables: Array<MissingVariables>,
 	questionConfig: SimulationConfig['questions'] = {},
 	answeredQuestions: Array<DottedName> = [],
 	situation: Simulation['situation'] = {}

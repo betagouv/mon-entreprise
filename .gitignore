@@ -4,6 +4,7 @@
 yarn-error.log
 package-lock.json
 node_modules/
+.env
 
 # Local Netlify folder
 .netlify

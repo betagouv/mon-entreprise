@@ -95,7 +95,7 @@
 		"source-map-support": "^0.5.4",
 		"style-loader": "^0.23.1",
 		"toml-loader": "^1.0.0",
-		"typescript": "^3.8.3",
+		"typescript": "^3.9.2",
 		"url-loader": "^1.0.1",
 		"webpack": "^4.39.3",
 		"webpack-bundle-analyzer": "^3.7.0",
@@ -121,7 +121,7 @@
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
 		"prepare": "yarn workspace mon-entreprise run prepare",
-		"test:type": "yarn workspaces run tsc --noEmit",
+		"test:type": "yarn workspaces run tsc",
 		"test:regressions": "jest",
 		"link:publicodes": "yarn workspace publicodes link && yarn workspace mon-entreprise link publicodes"
 	},

@@ -99,7 +99,7 @@ export const leftToRight = ({
 		delay={delay}
 		leave={{
 			opacity: 0,
-			position: 'absolute',
+			position: 'absolute' as const,
 			transform: 'translateX(-100%)'
 		}}
 		items={children}
