@@ -1,0 +1,203 @@
+/*
+	Règles CSS d'affichage des algorithmes
+*/
+
+.situationValue {
+	text-decoration: underline white;
+	border-bottom-left-radius: 3px;
+	font-weight: 400;
+	color: black;
+	font-family: monospace;
+}
+.name {
+	display: flex;
+	align-items: baseline;
+}
+
+.node.inlineExpression:not(.comparison) {
+	padding-left: 0;
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.nodeContent {
+	margin-right: 0.3em;
+}
+#rule-rules .inlineExpression:not(.comparison) > .situationValue {
+	margin-left: 0.3em;
+	margin-bottom: 0.6em;
+	margin-top: 0.3em;
+	align-items: flex-end;
+	text-align: right;
+}
+
+#declenchement > ul {
+	padding: 0;
+	list-style-type: none;
+}
+#declenchement > ul > li {
+	margin-bottom: 1em;
+}
+
+.mecanism > .nodeHead {
+	border-color: inherit;
+	margin-top: -1rem;
+	margin-left: -1rem;
+	margin-bottom: 0.4rem;
+}
+.inlineMecanism .name,
+.mecanism > .nodeHead .name {
+	padding: 0.2em 0.8em;
+	display: inline-block;
+	color: white !important;
+	font-weight: 600;
+	border-bottom-right-radius: 6px;
+}
+.inlineMecanism .name {
+	margin: 0 0.1em;
+	padding: 0.2em 0.4em;
+	border-radius: 6px;
+}
+.mecanism > .nodeHead .name::first-letter {
+	text-transform: capitalize;
+}
+.mecanism > .nodeHead > .situationValue {
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	padding: 0.2rem 1rem;
+	border: 1px solid;
+	border-color: inherit;
+	font-weight: 600;
+	border-bottom: none;
+	border-right: none;
+	border-radius: 0;
+	border-top-left-radius: 3px;
+}
+[data-term-definition] {
+	cursor: pointer;
+}
+[data-term-definition]:hover {
+	opacity: 0.8;
+}
+
+.mecanism .properties .key {
+	display: inline-block;
+	margin-bottom: 0.6em;
+	margin-right: 0.8em;
+}
+
+.mecanism.produit .key {
+	color: #2ecc71;
+}
+
+.produit li .key {
+	margin-right: 0.6em;
+}
+
+.leaf .situationValue {
+	text-align: center;
+}
+
+.variable a {
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.percentage .name {
+	font-weight: 600;
+}
+
+.inlineExpression .operator {
+	margin: 0 0.6em;
+	vertical-align: middle;
+}
+
+.json {
+	font-size: 60%;
+}
+
+.mecanism.inversion li {
+	margin-top: 0.6em;
+}
+
+.mecanism {
+	border: 1px solid;
+	max-width: 100%;
+	border-radius: 3px;
+	padding: 1rem;
+	position: relative;
+	flex: 1;
+}
+.mecanism-result {
+	position: relative;
+	bottom: calc(-1rem + 2px);
+	text-align: right;
+}
+.mecanism .mecanism {
+	flex: initial;
+}
+.mecanism + .mecanism {
+	margin-top: 1rem;
+}
+
+.mecanism .key::first-letter {
+	text-transform: capitalize;
+}
+
+.mecanism ul.properties > li {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+}
+.mecanism ul > li > .value {
+	flex: 1;
+}
+
+.variable,
+.operator {
+	display: inline-block;
+}
+
+.nodeHead .name .situationValue:not(.boolean)::before {
+	content: '(';
+}
+
+.nodeHead .name .situationValue:not(.boolean)::after {
+	content: ')';
+}
+
+/* Remove style for conditions */
+
+.mecanism.cond *:not(.nodeContent) > .variable .name,
+.mecanism.variations *:not(.nodeContent) > .variable .name,
+.inlineExpression.comparison {
+	display: flex;
+	align-items: baseline;
+}
+.mecanism.cond *:not(.nodeContent) > .variable .name .situationValue,
+.mecanism.variations
+	> condition
+	> *:first-child
+	*:not(.nodeContent)
+	> .variable
+	.name
+	.situationValue,
+.inlineExpression.comparison > .situationValue {
+	order: -1;
+}
+
+.mecanism.cond *:not(.nodeContent) > .variable .name > .situationValue,
+.mecanism.variations
+	> condition
+	> *:first-child
+	*:not(.nodeContent)
+	> .variable
+	.name
+	> .situationValue {
+	margin-bottom: -5px;
+	background-color: white;
+	margin-left: 0 !important;
+}

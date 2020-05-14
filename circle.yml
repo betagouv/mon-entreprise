@@ -5,12 +5,12 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - v1-deps-{{ .Branch }}
             - v1-deps
       - run: yarn install --frozen-lockfile
       - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
   cypress:
@@ -27,7 +27,9 @@ commands:
         type: string
         default: https://mon-entreprise.fr
     steps:
-      - run: CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
+      - run: |
+          cd mon-entreprise
+          CYPRESS_baseUrl=<< parameters.base_url >> yarn run cypress run --record --key 21660df5-36a5-4c49-b23d-801799b0c759 --env language=<< parameters.language >> --config integrationFolder=cypress/integration/<< parameters.integration_folder >>
 
 jobs:
   lint:
@@ -36,42 +38,45 @@ jobs:
     steps:
       - install
       - run: |
-          yarn eslintrc-check
-          yarn eslint-check --quiet
-          yarn prettier-check
+          yarn lint:eslintrc
+          yarn lint:eslint --quiet
+          yarn lint:prettier
   type-check:
     docker:
       - image: node:12.16.1-buster
     steps:
       - install
-      - run: |
-          yarn type-check
+      - run: yarn test:type
   i18n-check:
     docker:
       - image: node:12.16.1-buster
     steps:
       - install
-      - run: yarn run i18n:rules:check
-      - run: yarn run i18n:ui:check
+      - run: |
+          cd mon-entreprise
+          yarn run i18n:rules:check
+          yarn run i18n:ui:check
+
   unit-test:
     docker:
       - image: node:12.16.1-buster
     steps:
       - install
-      - run: |
-          git config --global core.quotepath false
-          yarn test
-          yarn test-regressions
+      - run: git config --global core.quotepath false
+      - run: yarn test
+      - run: yarn test:regressions
+
   end-to-end-test:
     docker:
       - image: cypress/base:12.16.1
         environment:
           TERM: xterm
+    resource_class: medium+
     steps:
       - install
-      - run: yarn run compile-dev
+      - run: yarn workspace mon-entreprise compile:dev
       - run:
-          command: yarn run serve-dev
+          command: yarn workspace mon-entreprise serve:dev
           background: true
       - cypress:
           base_url: http://localhost:5000
@@ -81,21 +86,13 @@ jobs:
       - cypress:
           base_url: http://localhost:5002
           integration_folder: publi.codes
-  bundlesize-test:
-    docker:
-      - image: cypress/base:12.16.1
-        environment:
-          TERM: xterm
-    steps:
-      - install
-      - run: |
-          yarn run simple-compile
-          yarn test-bundlesize
+
   production-end-to-end-test:
     docker:
       - image: cypress/base:12.16.1
         environment:
           TERM: xterm
+    resource_class: medium+
     parallelism: 3
     steps:
       - install
@@ -124,7 +121,6 @@ workflows:
       - i18n-check
       - unit-test
       - end-to-end-test
-      - bundlesize-test
       - production-end-to-end-test:
           filters:
             branches:

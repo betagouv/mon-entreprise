@@ -1,0 +1,19 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "source",
+		"typeRoots": ["source/types"],
+		"paths": {
+			"Actions/*": ["actions/*"],
+			"Components": ["components"],
+			"Components/*": ["components/*"],
+			"Images/*": ["images/*"],
+			"Reducers/*": ["reducers/*"],
+			"Rules/*": ["rules/*"],
+			"Rules": ["rules"],
+			"Selectors/*": ["selectors/*"],
+			"Types/*": ["types/*"]
+		}
+	},
+	"include": ["source"]
+}

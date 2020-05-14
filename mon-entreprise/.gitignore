@@ -1,0 +1,8 @@
+.env
+node_modules/
+package-lock.json
+yarn-error.log
+source/data
+dist/
+cypress/videos
+cypress/screenshots

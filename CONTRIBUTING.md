@@ -39,11 +39,20 @@ git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entre
 # Install the Javascript dependencies through Yarn
 yarn install
 
-# Run the server
+# Run the server for mon-entreprise
+cd mon-entreprise
 yarn start
 ```
 
 L'application est exécuté sur https://localhost:8080/mon-entreprise pour la version française et http://localhost:8080/infrance pour la version anglaise.
+
+Si vous souhaitez travailler sur le package publicode, on peut créer un lien
+symbolique depuis mon-entreprise en executant la commande suivante à la racine
+du projet :
+
+```
+yarn run link:publicodes
+```
 
 ### Messages de commit
 
@@ -90,7 +99,7 @@ Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètr
 Enfin pour les tests d'intégration :
 
 ```sh
-$ yarn run test-cypress
+$ yarn run cypress run
 ```
 
 ### Traduction 👽
@@ -121,7 +130,7 @@ $ yarn run i18n:rules:translate
 $ yarn run i18n:ui:translate
 ```
 
-N'oubliez pas de vérifier le diff que rien n'est choquant.
+N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### CI/CD
 
@@ -132,7 +141,7 @@ N'oubliez pas de vérifier le diff que rien n'est choquant.
 
 ### Analyse des bundles
 
-La commande `yarn run analyze-bundle` gènere une visualisation interactive du
+La commande `yarn run compile:analyse-bundle` gènere une visualisation interactive du
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
@@ -148,7 +157,7 @@ raisonnement ayant abouti à ce langage sont dispos sur le repository
 ailleurs inutilisé.
 
 Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
-contenant les règles elles-mêmes (dans le dossier `source/rules`) mais cela peut
+contenant les règles elles-mêmes (dans le dossier `rules`) mais cela peut
 s'avérer assez abrupt.
 
 Essayez plutôt de jeter un oeil [aux tests](./test/mécanismes/expressions.yaml)

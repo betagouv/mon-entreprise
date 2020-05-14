@@ -1,0 +1,32 @@
+{
+	"name": "publicodes",
+	"version": "1.0.0",
+	"description": "A declarative language for encoding public algorithm",
+	"main": "source/index.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "publicodes"
+	},
+	"license": "MIT",
+	"private": false,
+	"dependencies": {
+		"classnames": "^2.2.6",
+		"moo": "^0.5.1",
+		"nearley": "^2.19.2",
+		"ramda": "^0.27.0",
+		"react-easy-emoji": "^1.4.0",
+		"react-i18next": "^11.4.0",
+		"react-markdown": "^4.3.1",
+		"yaml": "^1.9.2"
+	},
+	"peerDependencies": {
+		"react": "^16.13.1",
+		"react-router-dom": "^5.1.1",
+		"react-router-hash-link": "^1.2.2"
+	},
+	"scripts": {
+		"test:file": "yarn mocha-webpack --webpack-config ../webpack.test.js --include test/setupIntl.js --require source-map-support/register ",
+		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
+	}
+}

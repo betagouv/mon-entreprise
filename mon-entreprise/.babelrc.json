@@ -1,0 +1,6 @@
+{
+	"plugins": [
+		"react-hot-loader/babel",
+		["webpack-alias", { "config": "./webpack.dev.js" }]
+	]
+}
