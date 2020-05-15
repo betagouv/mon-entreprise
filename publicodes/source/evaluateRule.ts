@@ -29,7 +29,7 @@ export const evaluateApplicability = (
 		parent => parent?.nodeValue === false
 	)
 
-	const { nodeValue, missingVariables } = anyDisabledParent
+	const { nodeValue, missingVariables = {} } = anyDisabledParent
 		? anyDisabledParent
 		: notApplicable?.nodeValue === true
 		? {
