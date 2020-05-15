@@ -1,11 +1,11 @@
 **Mon-Entreprise.fr** est une start-up d'État financée par de l'argent public,
-c'est pourquoi nous sommes transparents sur les ressources allouées et la
+c’est pourquoi nous sommes transparents sur les ressources allouées et la
 manière dont elles sont employées.
 
 ## Principes
 
 Notre organisation souscrit aux principes établis dans le [manifeste des
-startups d'État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
+startups d’État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
 
 > ### Considère les besoins des usagers avant ceux de l’administration
 
@@ -35,10 +35,10 @@ startups d'État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
 
 ## Budget
 
-En 2019, le projet dispose d'un budget de **250 000 € HT** pris en charge :
+En 2019, le projet dispose d’un budget de **250 000 € HT** pris en charge :
 
 - Par la DINSIC (ancien nom de la [DINUM](https://www.numerique.gouv.fr/dinum/)) à hauteur de 150 000 € HT
-- Par l'[ACOSS](https://www.acoss.fr) à hauteur de 100 000 € HT
+- Par l’[ACOSS](https://www.acoss.fr) à hauteur de 100 000 € HT
 
 [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
@@ -46,10 +46,10 @@ En 2019, le projet dispose d'un budget de **250 000 € HT** pris en charge :
 | -------------------------- | ---------------: |
 | Financement DINSIC         |     150 000 € HT |
 | Financement ACOSS initial  |     100 000 € HT |
-| Rallonge ACOSS fin d'année |      12 500 € HT |
+| Rallonge ACOSS fin d’année |      12 500 € HT |
 | **Total**                  | **262 500 € HT** |
 
-En fin d'année une rallonge est attribuée pour la réalisation d'un nouveau
+En fin d’année une rallonge est attribuée pour la réalisation d’un nouveau
 simulateur et une expérimentation sur la paie.
 
 ---
@@ -68,7 +68,7 @@ transformation de notre moteur de simulations en moteur de paie complète.
 | Budget expérimentation paie |      41 667 € HT |
 | **Total**                   | **291 667 € HT** |
 
-En plus de cette contribution financière, l'ACOSS fournit des ressources métier
+En plus de cette contribution financière, l’ACOSS fournit des ressources métier
 expertes provenant du réseau des URSSAF.
 
 ---
@@ -85,24 +85,24 @@ expertes provenant du réseau des URSSAF.
 
 - **Logiciels et hébergement 💻**
 
-  Notre modèle open-source nous permet d'accéder gratuitement à la majorité des
+  Notre modèle open-source nous permet d’accéder gratuitement à la majorité des
   outils que nous utilisons (hébergement de code, serveurs de tests, etc.). Le
   site est hebergé sur [Netlify](https://www.netlify.com).
 
 - **Déplacements 🚅**
 
-  Le réseau des URSSAF est présent dans toutes la France. Nous organisons
+  Le réseau des URSSAF est présent dans toute la France. Nous organisons
   plusieurs fois par an des ateliers avec des experts en région sur des
-  thématiques particulières. Sont aussi inclus dans cette catégories la prise en
-  charge des frais de déplacements des développeurs qui ne sont pas situés en
+  thématiques particulières. Sont aussi inclus dans cette catégorie la prise en
+  charge des frais de déplacement des développeurs qui ne sont pas situés en
   région parisienne.
 
 - **Documentation 📖**
 
   Nous achetons de la documentation spécialisée à destination des professionnels
-  du droit afin de faciliter l'implémentation des dipositifs législatifs.
+  du droit afin de faciliter l’implémentation des dispositifs législatifs.
 
 - **Marge du porteur 🤝**
 
   La marge du porteur attributaire du
-  [marché public de l'Acoss](https://www.acoss.fr/home/fournisseurs.html).
+  [marché public de l’Acoss](https://www.acoss.fr/home/fournisseurs.html).
