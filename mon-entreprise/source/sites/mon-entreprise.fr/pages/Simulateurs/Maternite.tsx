@@ -10,9 +10,10 @@ type State = Partial<{
 	isBorn: boolean
 	isPreterm: boolean
 	nbDaysPreterm: number
-	childIsHopitalized: boolean
+	childIsHospitalized: boolean
 	childBirthDate: string
 	isSharedLeaveAdotption: boolean
+	specialSituation: string
 }>
 
 type LeaveType = Partial<{ leaveType: string }>
@@ -32,7 +33,7 @@ export default function Maternité() {
 					{ value: 'maternity', label: 'Congé maternité' },
 					{
 						value: 'paternity',
-						label: "Congé paternité ou d'accueil d'enfant"
+						label: "Congé paternité et d'accueil d'enfant"
 					},
 					{ value: 'adoption', label: "Congé d'adoption" }
 				]}
@@ -42,6 +43,8 @@ export default function Maternité() {
 				<Adoption />
 			) : leaveType.leaveType === 'maternity' ? (
 				<Maternité2 />
+			) : leaveType.leaveType === 'paternity' ? (
+				<Paternité />
 			) : null}
 		</>
 	)
@@ -62,25 +65,6 @@ function Adoption() {
 		: 0
 	return (
 		<>
-			<div
-				css={`
-					background-color: var(--lightestColor);
-					float: right;
-					padding: 1rem;
-					width: 300px;
-				`}
-			>
-				<h3>Résulats</h3>
-				<strong>Durée du congé :</strong>
-				{state.isSharedLeaveAdotption
-					? `${congeAdoption} semaines et ${extraDays} jours`
-					: `${congeAdoption} semaines`}
-				<small>
-					Ce congé peut précéder de sept jours consécutifs, au plus, l'arrivée
-					de l'enfant au foyer.
-				</small>
-			</div>
-
 			<BooleanQuestion
 				question="Souhaitez-vous partager votre congé d'adoption avec votre conjoint ?"
 				{...bind('isSharedLeaveAdotption')}
@@ -115,6 +99,24 @@ function Adoption() {
 				Les enfants doivent être à charge effective et permanente
 				https://www.service-public.fr/particuliers/vosdroits/F16947{' '}
 			</small>
+
+			<div
+				css={`
+					background-color: var(--lightestColor);
+					float: right;
+					padding: 1rem;
+				`}
+			>
+				<h3>Résulats</h3>
+				<strong>Durée du congé :</strong>
+				{state.isSharedLeaveAdotption
+					? ` ${congeAdoption} semaines et ${extraDays} jours`
+					: ` ${congeAdoption} semaines`}
+				<small>
+					Ce congé peut précéder de sept jours consécutifs, au plus, l'arrivée
+					de l'enfant au foyer.
+				</small>
+			</div>
 		</>
 	)
 }
@@ -239,7 +241,7 @@ function Maternité2() {
 			{state.nbDaysPreterm > 42 && (
 				<BooleanQuestion
 					question="L'enfant a-t-il du être hospitalisé après l'accouchement ?"
-					{...bind('childIsHopitalized')}
+					{...bind('childIsHospitalized')}
 				/>
 			)}
 			<div>
@@ -250,9 +252,17 @@ function Maternité2() {
 							startDate: state.childBirthDate ? date_start_prenatal : '',
 							endDate: state.childBirthDate
 								? formatage_date(state.childBirthDate)
-								: '',
+								: 'Accouchement',
 							key: 'prenatal',
 							legend: 'Congé prenatal',
+							sublegend:
+								prenatal % 7 === 0 ? (
+									<strong> {Math.trunc(prenatal / 7)} semaines</strong>
+								) : (
+									<strong>
+										{Math.trunc(prenatal / 7)} semaines et {prenatal % 7} jours
+									</strong>
+								),
 							color: '#549f72'
 						},
 						{
@@ -260,6 +270,15 @@ function Maternité2() {
 							endDate: state.childBirthDate ? date_fin_postnatal : '',
 							key: 'postnatal',
 							legend: 'Congé postnatal',
+							sublegend:
+								postnatal % 7 === 0 ? (
+									<strong> {Math.trunc(postnatal / 7)} semaines</strong>
+								) : (
+									<strong>
+										{Math.trunc(postnatal / 7)} semaines et {postnatal % 7}{' '}
+										jours
+									</strong>
+								),
 							color: '#5a8adb'
 						}
 					]}
@@ -294,7 +313,7 @@ function Result({ state }: { state: State }) {
 
 	//Preterm and Child Hospitalized after ChildBirth
 	postnatal += state.isPreterm
-		? state.childIsHopitalized
+		? state.childIsHospitalized
 			? state.nbDaysPreterm
 			: Math.min(42, state.nbDaysPreterm)
 		: 0
@@ -311,6 +330,132 @@ function Result({ state }: { state: State }) {
 		postnatal,
 		prenatal
 	}
+}
+
+function Paternité() {
+	const [state, setState] = useState<State>({ nbDaysPreterm: 0 })
+	const bind = <Key extends keyof State>(key: Key) => ({
+		currentValue: state[key],
+		onChange: (val: State[Key]) => setState(s => ({ ...s, [key]: val }))
+	})
+	const today = new Date()
+	const pad = (n: number): string => (+n < 10 ? `0${n}` : '' + n)
+	const today_start_calendar =
+		today.getFullYear() +
+		'-' +
+		pad(today.getMonth() + 1) +
+		'-' +
+		today.getDate()
+
+	let conge = state.nbChildren === '1' ? 11 : 18
+	conge += state.childIsHospitalized ? 30 : 0
+	return (
+		<>
+			<p>
+				Le congé de paternité et d'accueil de l'enfant est ouvert à la personne
+				vivant en couple (Mariage, Pacs, concubinage) avec la mère de l'enfant.
+				Il peut être succéder au congé de naissance de 3 jours ou être pris
+				séparément.{' '}
+			</p>
+			<Question
+				question="Nombre d'enfants à naître ?"
+				choices={[{ value: '1' }, { value: '2', label: '2 ou plus' }]}
+				{...bind('nbChildren')}
+			/>
+
+			<BooleanQuestion
+				question="L'accouchement a-t-il déjà eu lieu ?"
+				{...bind('isBorn')}
+			/>
+
+			{state.isBorn ? (
+				<>
+					<p> Quand l'accouchement a-t-il eu lieu ? </p>
+					<input
+						type="date"
+						id="start"
+						name="trip-start"
+						value={state.childBirthDate ?? '2019-01-01'}
+						pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+						onChange={event => {
+							const val = event.target.value
+							setState(state => ({
+								...state,
+								childBirthDate: val
+							}))
+						}}
+					/>
+				</>
+			) : (
+				<>
+					<p> Quand l'accouchement est-il prévu ?</p>
+					<input
+						type="date"
+						id="start"
+						name="trip-start"
+						value={state.childBirthDate ?? today_start_calendar}
+						min={today_start_calendar}
+						pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+						onChange={event => {
+							const val = event.target.value
+							setState(state => ({
+								...state,
+								childBirthDate: val
+							}))
+						}}
+					/>
+				</>
+			)}
+
+			{state.isBorn && (
+				<Question
+					question="Vous trouvez-vous dans une de ces situations ?"
+					choices={[
+						{
+							value: 'childHospitalization',
+							label:
+								"Hospitalisation de l'enfant immédiatement après sa naissance dans une unité de soins spécialisés"
+						},
+						{ value: 'lifelessChild', label: "Naissance d'un enfant sans vie" },
+						{ value: 'motherDeath', label: 'Décès de la mère ' }
+					]}
+					{...bind('specialSituation')}
+				/>
+			)}
+
+			<div>
+				<StackedBarChartTest
+					data={[
+						{
+							value: 3,
+							startDate: state.childBirthDate
+								? formatage_date(state.childBirthDate)
+								: '',
+							key: 'naissance',
+							legend: 'Congé de naissance',
+							sublegend: <strong>3 jours</strong>,
+							color: '#549f72'
+						},
+						{
+							value: conge,
+							endDate: state.childBirthDate
+								? formatage_date(state.childBirthDate)
+								: '',
+							key: 'postnatal',
+							legend: 'Congé postnatal',
+							sublegend: <strong>{conge} jours</strong>,
+							color: '#5a8adb'
+						}
+					]}
+				/>
+			</div>
+			<small>
+				{' '}
+				Les jours de congés sont des jours calendaires consécutifs (samedi,
+				dimanche et jours fériés consécutifs)
+			</small>
+		</>
+	)
 }
 
 function formatage_date(date) {

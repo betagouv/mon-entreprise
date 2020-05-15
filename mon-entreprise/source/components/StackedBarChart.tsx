@@ -157,6 +157,7 @@ type StackedBarChartTestProps = {
 		endDate?: string
 		value: Evaluation<Types>
 		legend: React.ReactNode
+		sublegend?: React.ReactNode
 		key: string
 	}>
 }
@@ -194,41 +195,33 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 			<BarStackTicks>
 				{dataWithPercentage.map(({ key, startDate, endDate }) => (
 					<BarStackTicksItem key={key}>
-						{startDate ? (
-							<strong
+						{startDate && (
+							<div
 								css={`
-									text-align : left
-									margin-left: 1px;
+									text-align: left;
 								`}
 							>
-								{startDate}
-							</strong>
-						) : null}
-						{endDate ? (
-							<strong
+								<strong>{startDate}</strong>{' '}
+							</div>
+						)}
+						{endDate && (
+							<div
 								css={`
 									text-align: right;
-									margin-left: 150px;
 								`}
 							>
-								{endDate}
-							</strong>
-						) : null}
+								<strong>{endDate}</strong>{' '}
+							</div>
+						)}
 					</BarStackTicksItem>
 				))}
 			</BarStackTicks>
 			<BarStackLegend>
-				{dataWithPercentage.map(({ key, value, color, legend }) => (
+				{dataWithPercentage.map(({ key, value, color, legend, sublegend }) => (
 					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />
 						{legend}
-						{value % 7 === 0 ? (
-							<strong> {Math.trunc(value / 7)} semaines</strong>
-						) : (
-							<strong>
-								{Math.trunc(value / 7)} semaines et {value % 7} jours
-							</strong>
-						)}
+						{sublegend}
 					</BarStackLegendItem>
 				))}
 			</BarStackLegend>
