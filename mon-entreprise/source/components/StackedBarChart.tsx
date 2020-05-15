@@ -208,7 +208,7 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 							<strong
 								css={`
 									text-align: right;
-									align: right;
+									margin-left: 150px;
 								`}
 							>
 								{endDate}

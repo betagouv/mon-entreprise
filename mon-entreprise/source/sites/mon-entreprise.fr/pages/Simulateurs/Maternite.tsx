@@ -12,9 +12,114 @@ type State = Partial<{
 	nbDaysPreterm: number
 	childIsHopitalized: boolean
 	childBirthDate: string
+	isSharedLeaveAdotption: boolean
 }>
 
+type LeaveType = Partial<{ leaveType: string }>
+
 export default function Maternité() {
+	const [leaveType, setLeaveType] = useState<LeaveType>({})
+	const bindLeaveType = <Key extends keyof LeaveType>(key: Key) => ({
+		currentValue: leaveType[key],
+		onChange: (val: LeaveType[Key]) => setLeaveType(s => ({ ...s, [key]: val }))
+	})
+	return (
+		<>
+			<h1>Simulateur de congé maternité {emoji('👶')}</h1>
+			<Question
+				question="Vous voulez-prendre un ..."
+				choices={[
+					{ value: 'maternity', label: 'Congé maternité' },
+					{
+						value: 'paternity',
+						label: "Congé paternité ou d'accueil d'enfant"
+					},
+					{ value: 'adoption', label: "Congé d'adoption" }
+				]}
+				{...bindLeaveType('leaveType')}
+			/>
+			{leaveType.leaveType === 'adoption' ? (
+				<Adoption />
+			) : leaveType.leaveType === 'maternity' ? (
+				<Maternité2 />
+			) : null}
+		</>
+	)
+}
+
+function Adoption() {
+	const [state, setState] = useState<State>({})
+	const bind = <Key extends keyof State>(key: Key) => ({
+		currentValue: state[key],
+		onChange: (val: State[Key]) => setState(s => ({ ...s, [key]: val }))
+	})
+	let congeAdoption =
+		state.nbChildren === '1' ? (state.nbDependantChildren == '0' ? 10 : 18) : 22
+	let extraDays = state.isSharedLeaveAdotption
+		? state.nbChildren === '1'
+			? 11
+			: 18
+		: 0
+	return (
+		<>
+			<div
+				css={`
+					background-color: var(--lightestColor);
+					float: right;
+					padding: 1rem;
+					width: 300px;
+				`}
+			>
+				<h3>Résulats</h3>
+				<strong>Durée du congé :</strong>
+				{state.isSharedLeaveAdotption
+					? `${congeAdoption} semaines et ${extraDays} jours`
+					: `${congeAdoption} semaines`}
+				<small>
+					Ce congé peut précéder de sept jours consécutifs, au plus, l'arrivée
+					de l'enfant au foyer.
+				</small>
+			</div>
+
+			<BooleanQuestion
+				question="Souhaitez-vous partager votre congé d'adoption avec votre conjoint ?"
+				{...bind('isSharedLeaveAdotption')}
+			/>
+			<small>
+				S'il est partagé, le congé d'adoption doit être réparti en deux périodes
+				de temps dont la plus courte doit être au moins de 11 jours. Vous pouvez
+				prendre votre congé d'adoption en même temps que votre conjoint mais la
+				somme de vos deux périodes de congés ne peut dépasser la durée légale du
+				congé d'adoption.
+			</small>
+
+			<Question
+				question="Vous adoptez ..."
+				choices={[
+					{ value: '1', label: '1 enfant' },
+					{ value: '2', label: 'plusieurs enfants' }
+				]}
+				{...bind('nbChildren')}
+			/>
+
+			<Question
+				question="Combien d'enfant avez-vous déjà à charge ? "
+				choices={[
+					{ value: '0', label: '0 ou 1 enfant' },
+					{ value: '2', label: 'plusieurs enfants' }
+				]}
+				{...bind('nbDependantChildren')}
+			/>
+			<small>
+				{' '}
+				Les enfants doivent être à charge effective et permanente
+				https://www.service-public.fr/particuliers/vosdroits/F16947{' '}
+			</small>
+		</>
+	)
+}
+
+function Maternité2() {
 	const [state, setState] = useState<State>({ nbDaysPreterm: 0 })
 	const bind = <Key extends keyof State>(key: Key) => ({
 		currentValue: state[key],
@@ -36,50 +141,8 @@ export default function Maternité() {
 	} = Result({ state })
 	return (
 		<>
-			<h1>Simulateur de congé maternité {emoji('👶')}</h1>
 			Pour percevoir des indémnités journalières, vous devez prendre au minimum
 			8 semaines de congés : 2 semaines en prénatal et 6 en posnatal.
-			<div
-				css={`
-					background-color: var(--lightestColor);
-					float: right;
-					padding: 1rem;
-					width: 300px;
-				`}
-			>
-				<h3>Résulats</h3>
-				<ul>
-					<li>
-						<strong>Durée du congé maternel:</strong>{' '}
-						{(postnatal + prenatal) % 7 === 0
-							? `${Math.trunc((postnatal + prenatal) / 7)} semaines`
-							: `${Math.trunc(
-									(postnatal + prenatal) / 7
-							  )} semaines et ${(postnatal + prenatal) % 7} jours`}
-					</li>
-					<li>
-						<strong>Congé prénatal :</strong>{' '}
-						{prenatal % 7 === 0
-							? `${Math.trunc(prenatal / 7)} semaines`
-							: ` ${Math.trunc(prenatal / 7)} semaines et ${prenatal %
-									7} jours`}
-					</li>
-					<li>
-						<strong>Congé posnatal :</strong>{' '}
-						{postnatal % 7 === 0
-							? state.childBirthDate
-								? `${Math.trunc(
-										postnatal / 7
-								  )} semaines c'est-à-dire jusqu'au ${date_fin_postnatal}`
-								: `${Math.trunc(postnatal / 7)} semaines`
-							: state.childBirthDate
-							? `${Math.trunc(postnatal / 7)} semaines et ${postnatal %
-									7} jours c'est-à-dire jusqu'au ${date_fin_postnatal}`
-							: `${Math.trunc(postnatal / 7)} semaines et ${postnatal %
-									7} jours`}
-					</li>
-				</ul>
-			</div>
 			<Question
 				question="Nombre d'enfants à naître ?"
 				choices={[
