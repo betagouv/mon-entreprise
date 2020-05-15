@@ -13,7 +13,7 @@ import {
 	sortBy
 } from 'ramda'
 import { RootState } from 'Reducers/rootReducer'
-import { LegalStatusRequirements, State } from 'Types/companyTypes'
+import { LegalStatusRequirements, State } from '../types/companyTypes'
 
 const LEGAL_STATUS_DETAILS = {
 	'auto-entrepreneur': {

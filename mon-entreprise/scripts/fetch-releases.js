@@ -55,7 +55,7 @@ async function main() {
 	// we deduplicate the releases data in two separated files that can be
 	// bundled/fetched separately.
 	writeInDataDir('releases.json', releases)
-	writeInDataDir('last-release.json', { lastRelease: releases[0].name })
+	writeInDataDir('last-release.json', { name: releases[0].name })
 }
 
 async function fetchReleases() {

@@ -2,13 +2,21 @@
 	"name": "publicodes",
 	"version": "1.0.0",
 	"description": "A declarative language for encoding public algorithm",
-	"main": "source/index.ts",
+	"main": "dist/index.js",
+	"types": "dist/types/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
 		"directory": "publicodes"
 	},
+	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A\"%3Agear%3A+moteur\"",
+	"homepage": "https://publi.codes/",
 	"license": "MIT",
+	"files": [
+		"dist/index.js",
+		"dist/types",
+		"dist/images"
+	],
 	"private": false,
 	"dependencies": {
 		"classnames": "^2.2.6",
@@ -26,7 +34,12 @@
 		"react-router-hash-link": "^1.2.2"
 	},
 	"scripts": {
-		"test:file": "yarn mocha-webpack --webpack-config ../webpack.test.js --include test/setupIntl.js --require source-map-support/register ",
+		"prepare": "tsc && yarn run compile",
+		"compile": "yarn run webpack --config webpack.config.js",
+		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
+	},
+	"engines": {
+		"node": ">=12.16.1"
 	}
 }

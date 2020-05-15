@@ -4,11 +4,12 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { lastRelease } from '../../../data/last-release.json'
+import lastRelease from '../../../data/last-release.json'
 
 const localStorageKey = 'last-viewed-release'
 
-export const hideNewsBanner = () => writeStorage(localStorageKey, lastRelease)
+export const hideNewsBanner = () =>
+	writeStorage(localStorageKey, lastRelease.name)
 
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
@@ -25,13 +26,14 @@ export default function NewsBanner() {
 		return null
 	}
 
-	const showBanner = lastViewedRelease !== lastRelease && i18n.language === 'fr'
+	const showBanner =
+		lastViewedRelease !== lastRelease.name && i18n.language === 'fr'
 
 	return showBanner ? (
 		<div className="ui__ banner news">
 			<span>
-				{emoji('✨')} Découvrez les nouveautés {determinant(lastRelease)}
-				<Link to={sitePaths.nouveautés}>{lastRelease.toLowerCase()}</Link>
+				{emoji('✨')} Découvrez les nouveautés {determinant(lastRelease.name)}
+				<Link to={sitePaths.nouveautés}>{lastRelease.name.toLowerCase()}</Link>
 			</span>
 			<span onClick={hideNewsBanner} className="ui__ close-button">
 				&times;

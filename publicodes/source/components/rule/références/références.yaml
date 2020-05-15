@@ -17,7 +17,7 @@ senat.fr:
   image: senat.png
 ameli.fr:
   image: ameli.png
-bpifrance-creation: 
+bpifrance-creation:
   image: bpi-création.png
 wikipedia.org:
   image: wikipedia.png

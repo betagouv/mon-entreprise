@@ -1,11 +1,9 @@
+/* eslint-env node */
+
 const { map } = require('ramda')
 const webpack = require('webpack')
-const {
-	commonLoaders,
-	styleLoader,
-	HTMLPlugins,
-	default: common
-} = require('./webpack.common.js')
+const { commonLoaders, styleLoader } = require('../webpack/common')
+const { HTMLPlugins, default: common } = require('./webpack.common.js')
 
 module.exports = {
 	...common,

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import Engine from 'publicodes'
+import Engine from '../source/index'
 
 describe('Missing variables', function() {
 	it('should identify missing variables', function() {

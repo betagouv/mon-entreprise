@@ -7,13 +7,10 @@ import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { useEvaluation } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { formatValue } from 'publicodes'
-import { EvaluatedRule } from 'publicodes'
+import { EvaluatedRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { productionMode } from '../../../utils'
@@ -412,8 +409,8 @@ administrative OU qui auront connu une perte de chiffre d'affaires d'au moins
 aide de **1 500 euros**. Pour bénéficier de cette aide forfaitaire il faudra
 faire une déclaration sur le site de la DGFiP.
 
-➡ Plus d'informations sur le site du 
-[Ministère de l'Économie](https://www.economie.gouv.fr/coronavirus-soutien-entreprises) 
+➡ Plus d'informations sur le site du
+[Ministère de l'Économie](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
 et de l'[Urssaf](https://www.urssaf.fr/portail/home/actualites/foire-aux-questions.html).
 
 ## Prime pour les salariés présents 👨‍🔬

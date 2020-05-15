@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
-import Engine from 'publicodes'
+import Engine from '../source/index'
 
 describe('inversions', () => {
 	it('should handle non inverted example', () => {

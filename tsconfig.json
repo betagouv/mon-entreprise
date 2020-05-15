@@ -2,13 +2,12 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"module": "esnext",
-		"target": "es2019",
+		"target": "esnext",
 		"jsx": "react",
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
-		"noEmit": true,
 		// The end goal is to enable `"strict": true` which correspond to the
 		// following settings: noImplicitAny, noImplicitThis, alwaysStrict,
 		// strictBindCallApply, strictNullChecks, strictFunctionTypes, and

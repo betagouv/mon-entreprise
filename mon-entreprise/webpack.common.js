@@ -26,19 +26,15 @@ module.exports.default = {
 		publicodes: './source/sites/publi.codes/entry.tsx'
 	},
 	output: {
-		path: path.resolve('./dist/'),
 		globalObject: 'self'
 	},
 	plugins: [
 		new MonacoWebpackPlugin(),
-
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}'
 		}),
-
 		new EnvironmentPlugin({ HEAD: '', COMMIT_REF: '' }),
-
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			{
@@ -66,87 +62,6 @@ module.exports.default = {
 				to: 'favicon'
 			}
 		])
-	]
-}
-
-module.exports.styleLoader = styleLoader => ({
-	test: /\.css$/,
-	use: [
-		{ loader: styleLoader },
-		{
-			loader: 'css-loader',
-			options: {
-				sourceMap: true,
-				importLoaders: 1
-			}
-		},
-		{
-			loader: 'postcss-loader'
-		}
-	]
-})
-
-module.exports.commonLoaders = ({ legacy = false } = {}) => {
-	const babelLoader = {
-		loader: 'babel-loader',
-		options: {
-			cacheDirectory: true,
-			rootMode: 'upward',
-			presets: [
-				[
-					'@babel/preset-env',
-					{
-						targets: !legacy
-							? {
-									esmodules: true
-							  }
-							: {
-									esmodules: false,
-									browsers: ['ie 11']
-							  },
-						useBuiltIns: 'entry',
-						corejs: '3'
-					}
-				]
-			]
-		}
-	}
-
-	return [
-		{
-			test: /\.(js|ts|tsx)$/,
-			loader: babelLoader,
-			exclude: /node_modules(?!\/publicodes)|dist/
-		},
-		{
-			test: /\.(jpe?g|png|svg)$/,
-			use: {
-				loader: 'file-loader',
-				options: {
-					name: 'images/[name].[ext]'
-				}
-			}
-		},
-		{
-			test: /\.yaml$/,
-			use: ['json-loader', 'yaml-loader']
-		},
-		{
-			test: /\.toml$/,
-			use: ['toml-loader']
-		},
-		{
-			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader']
-		},
-		{
-			test: /\.md$/,
-			use: ['raw-loader']
-		},
-		{
-			test: /\.ttf$/,
-			use: ['file-loader']
-		}
 	]
 }
 
@@ -181,7 +96,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 	new HTMLPlugin({
 		template: 'index.html',
 		inject: false,
-		// mon-entreprise.fr :
+		// publicodes :
 		chunks: ['publicodes'],
 		title: 'publicodes - langage et plateforme de publication de calculs',
 		description:
