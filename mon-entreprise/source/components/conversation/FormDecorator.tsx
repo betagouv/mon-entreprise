@@ -1,5 +1,5 @@
 import { updateSituation, goToQuestion } from 'Actions/actions'
-import Explicable from 'Components/conversation/Explicable'
+import { ExplicableRule } from 'Components/conversation/Explicable'
 import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -34,7 +34,8 @@ export default function FormDecorator(RenderField) {
 		return (
 			<div className="step">
 				<h3>
-					{rules[dottedName].question} <Explicable dottedName={dottedName} />
+					{rules[dottedName].question}{' '}
+					<ExplicableRule dottedName={dottedName} />
 				</h3>
 
 				<fieldset>

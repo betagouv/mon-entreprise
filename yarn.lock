@@ -9673,13 +9673,6 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
-react-to-print@^2.5.1:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.7.0.tgz#3afca47ac857c72d9b76f9944b0793d27714bcc5"
-  integrity sha512-1GdEskOHtQs7EMj9t7OYSiMcAjzGCZyasb1H6kJQf5GaRpoM3Qr4OLbxGQSHK659Sp1PRZMVSD9+DWu4atVOIw==
-  dependencies:
-    prop-types "^15.7.2"
-
 react-transition-group@^2.2.1, react-transition-group@^2.5.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
@@ -9689,6 +9682,13 @@ react-transition-group@^2.2.1, react-transition-group@^2.5.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
+
+react-useportal@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/react-useportal/-/react-useportal-1.0.13.tgz#abfc29f8128756cd7382bff7c81a4f446b792199"
+  integrity sha512-83KpNTXUIHnRVTLeMberIblCtssvRSKCPnG/xT9NW60gDYfU13pQBNQKCVUF8MBK+7LnCQ/ZrOuXl8Mp+iXdXA==
+  dependencies:
+    use-ssr "^1.0.19"
 
 react@^16.13.1, react@^16.3.0:
   version "16.13.1"
@@ -11697,6 +11697,11 @@ url@0.11.0, url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-ssr@^1.0.19:
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/use-ssr/-/use-ssr-1.0.23.tgz#3bde1e10cd01b3b61ab6386d7cddb72e74828bf8"
+  integrity sha512-5bvlssgROgPgIrnILJe2mJch4e2Id0/bVm1SQzqvPvEAXmlsinCCVHWK3a2iHcPat7PkdJHBo0gmSmODIz6tNA==
 
 use@^3.1.0:
   version "3.1.1"

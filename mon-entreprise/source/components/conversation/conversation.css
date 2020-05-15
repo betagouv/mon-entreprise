@@ -68,13 +68,13 @@
 	z-index: -1;
 }
 
-.step.input {
+.step .input {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
 	align-items: flex-end;
 }
-.step.input > :first-child {
+.step .input > :first-child {
 	text-align: right;
 }
 

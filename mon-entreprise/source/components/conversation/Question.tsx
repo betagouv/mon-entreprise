@@ -4,7 +4,7 @@ import { is } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import Explicable from './Explicable'
+import { ExplicableRule } from './Explicable'
 import SendButton from './SendButton'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
@@ -123,7 +123,7 @@ export default function Question({
 export const RadioLabel = props => (
 	<>
 		<RadioLabelContent {...props} />
-		<Explicable dottedName={props.dottedName} />
+		<ExplicableRule dottedName={props.dottedName} />
 	</>
 )
 
