@@ -21,8 +21,8 @@ describe('DottedNames graph', () => {
 
 		expect(
 			cycles,
-			`\nThe following rules have cycles:\n\t- ${cycles
-				.map(x => x[0])
+			`\nThe cycles have been found in the rules dependencies graph:\n\t- ${cycles
+				.map((x, idx) => '#' + idx + ':\n\t\t- ' + x.join('\n\t\t- '))
 				.join('\n\t- ')}\n\n`
 		).to.be.an('array').that.is.empty
 	})

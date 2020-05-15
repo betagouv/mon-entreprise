@@ -41,7 +41,6 @@ export function isCondRuleProp(node: ASTNode): node is CondRuleProp {
 	return isRuleProp(node) && (node as CondRuleProp).rulePropType === 'cond'
 }
 
-// [XXX] - What about 'rend non applicable'? Unclear what to do in this case, it seems it would create a graph edge in the contrary sense?
 type ApplicableSi = CondRuleProp & {
 	dottedName: 'applicable si'
 	explanation: ASTNode
@@ -942,10 +941,17 @@ function ruleDepsOfRuleNode<Names extends string>(
 		rule['applicable si'],
 		rule['non applicable si']
 	].filter(x => x !== undefined) as Array<ASTNode>
-	const dependenciesLists = subNodes.map(x =>
-		ruleDepsOfNode<Names>(rule.dottedName, x)
+	const subNodesDeps = subNodes
+		.map(x => ruleDepsOfNode<Names>(rule.dottedName, x))
+		.flat(1)
+
+	const isDisabledByDependencies = rule.isDisabledBy.map(x => x.dottedName)
+	const replacedByDependencies = rule.replacedBy.map(
+		x => x.referenceNode.dottedName
 	)
-	return dependenciesLists.flat(1)
+	return [subNodesDeps, isDisabledByDependencies, replacedByDependencies].flat(
+		1
+	)
 }
 
 export function buildRulesDependencies<Names extends string>(
