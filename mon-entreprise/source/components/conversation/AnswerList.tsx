@@ -107,7 +107,7 @@ function StepsTable({
 									`}
 								>
 									<span className="answerContent">
-										{formatValue({ ...rule, language })}
+										{formatValue(rule, { language })}
 									</span>
 								</span>{' '}
 							</td>

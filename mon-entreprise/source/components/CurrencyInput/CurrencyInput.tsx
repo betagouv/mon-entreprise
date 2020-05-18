@@ -65,9 +65,6 @@ export default function CurrencyInput({
 		thousandSeparator,
 		decimalSeparator
 	} = currencyFormat(language)
-	// We display negative numbers iff this was the provided value (but we disallow the user to enter them)
-	const valueHasChanged = currentValue !== initialValue
-
 	// Autogrow the input
 	const valueLength = currentValue.toString().length
 	const width = `${5 + (valueLength - 5) * 0.75}em`
@@ -95,7 +92,7 @@ export default function CurrencyInput({
 					nextValue.current = value.toString().replace(/^0+/, '')
 				}}
 				onChange={handleChange}
-				value={currentValue?.toString().replace('.', decimalSeparator)}
+				value={currentValue ? +currentValue : ''}
 				autoComplete="off"
 			/>
 			{!isCurrencyPrefixed && <>&nbsp;€</>}

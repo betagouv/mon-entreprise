@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const EXAMPLE_CODE = `
-# Bienvenue dans le bac à sable du langage publicode ! 
+# Bienvenue dans le bac à sable du langage publicode !
 # Pour en savoir plus sur le langage, consultez le tutoriel :
 # => https://publi.codes
 
@@ -19,7 +19,7 @@ prix . champignons: 5€/kg
 prix . avocat: 2€/avocat
 
 dépenses primeur:
-  formule: 
+  formule:
     somme:
       - prix . carottes * 1.5 kg
       - prix . champignons * 500g
@@ -186,12 +186,7 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 					) : (
 						<>
 							<p>
-								<strong>
-									{formatValue({
-										...evaluation,
-										language: 'fr'
-									})}
-								</strong>
+								<strong>{formatValue(evaluation)}</strong>
 							</p>
 							<br />
 							{'temporalValue' in evaluation &&
@@ -206,8 +201,7 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 											<code>
 												{formatValue({
 													nodeValue: value,
-													unit: evaluation.unit,
-													language: 'fr'
+													unit: evaluation.unit
 												})}
 											</code>{' '}
 											<br />

@@ -148,13 +148,10 @@ function ExplanationSection() {
 										<span data-test-id="comparaison-net">
 											Soit{' '}
 											<strong>
-												{formatValue({
-													nodeValue:
-														(net.nodeValue / netHabituel.nodeValue) * 100,
-													unit: '%',
-													language: 'fr',
-													precision: 0
-												})}
+												{formatValue(
+													(net.nodeValue / netHabituel.nodeValue) * 100,
+													{ displayedUnit: '%', precision: 0 }
+												)}
 											</strong>{' '}
 											du revenu net
 										</span>
@@ -170,15 +167,15 @@ function ExplanationSection() {
 										<span data-test-id="comparaison-total">
 											Soit{' '}
 											<strong>
-												{formatValue({
-													nodeValue:
-														(totalEntreprise.nodeValue /
-															totalEntrepriseHabituel.nodeValue) *
+												{formatValue(
+													(totalEntreprise.nodeValue /
+														totalEntrepriseHabituel.nodeValue) *
 														100,
-													unit: '%',
-													language: 'fr',
-													precision: 0
-												})}
+													{
+														displayedUnit: '%',
+														precision: 0
+													}
+												)}
 											</strong>{' '}
 											du coût habituel
 										</span>
@@ -277,10 +274,9 @@ function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 	const { language } = useTranslation().i18n
 	return (
 		<RuleLink dottedName={rule.dottedName}>
-			{formatValue({
-				nodeValue: rule.nodeValue as number,
+			{formatValue(rule, {
 				language,
-				unit: '€',
+				displayedUnit: '€',
 				precision: 0
 			})}
 		</RuleLink>

@@ -243,14 +243,14 @@ function TargetInputOrValue({
 						language={language}
 					/>
 					<span className="targetInputBottomBorder">
-						{formatValue({ nodeValue: value, language, unit: '€' })}
+						{formatValue(value, { language, displayedUnit: '€' })}
 					</span>
 				</>
 			) : (
 				<span>
 					{value && Number.isNaN(value)
 						? '—'
-						: formatValue({ nodeValue: value, unit: '€', language })}
+						: formatValue(value, { displayedUnit: '€', language })}
 				</span>
 			)}
 			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
@@ -274,9 +274,8 @@ function TitreRestaurant() {
 				<RuleLink dottedName={titresRestaurant.dottedName}>
 					+{' '}
 					<strong>
-						{formatValue({
-							nodeValue: titresRestaurant.nodeValue,
-							unit: '€',
+						{formatValue(titresRestaurant, {
+							displayedUnit: '€',
 							language
 						})}
 					</strong>{' '}
@@ -304,13 +303,12 @@ function AidesGlimpse() {
 	return (
 		<Animate.fromTop>
 			<div className="aidesGlimpse">
-				<RuleLink dottedName={aides.dottedName}>
+				<RuleLink dottedName={aideLink.dottedName}>
 					<Trans>en incluant</Trans>{' '}
 					<strong>
 						<span>
-							{formatValue({
-								nodeValue: aides.nodeValue,
-								unit: '€',
+							{formatValue(aides, {
+								displayedUnit: '€',
 								language
 							})}
 						</span>

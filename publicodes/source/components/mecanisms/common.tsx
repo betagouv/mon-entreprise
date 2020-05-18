@@ -28,7 +28,7 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 			borderRadius: '0.2rem'
 		}}
 	>
-		{formatValue({ nodeValue: data, unit, language: 'fr' })}
+		{formatValue({ nodeValue: data, unit }, { language: 'fr' })}
 	</small>
 )
 

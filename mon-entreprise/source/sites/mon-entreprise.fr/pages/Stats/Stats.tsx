@@ -187,18 +187,14 @@ export default function Stats() {
 				<h2>Avis des visiteurs</h2>
 				<Indicators>
 					<Indicator
-						main={formatValue({
-							nodeValue: stats.feedback.simulator,
-							unit: '%',
-							language: 'fr'
+						main={formatValue(stats.feedback.simulator, {
+							displayedUnit: '%'
 						})}
 						subTitle="Taux de satisfaction sur les simulateurs"
 					/>
 					<Indicator
-						main={formatValue({
-							nodeValue: stats.feedback.content,
-							unit: '%',
-							language: 'fr'
+						main={formatValue(stats.feedback.content, {
+							displayedUnit: '%'
 						})}
 						subTitle="Taux de satisfaction sur le contenu"
 					/>
@@ -319,9 +315,7 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 				/>
 				<YAxis
 					dataKey="visiteurs"
-					tickFormatter={tickItem =>
-						formatValue({ nodeValue: tickItem, language: 'fr' })
-					}
+					tickFormatter={tickItem => formatValue(tickItem)}
 				/>
 				{periodicity === 'daily' ? (
 					<Legend
@@ -393,10 +387,7 @@ const CustomTooltip = ({
 					value: formatDate(payload[0].payload.date, periodicity)
 				},
 				{
-					value: formatValue({
-						nodeValue: payload[0].payload.visiteurs,
-						language: 'fr'
-					}),
+					value: formatValue(payload[0].payload.visiteurs),
 					unit: ' visiteurs'
 				}
 			]}

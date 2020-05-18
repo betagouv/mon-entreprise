@@ -10,13 +10,9 @@ describe('CurrencyInput', () => {
 		expect(getInput(<CurrencyInput />)).to.have.length(1)
 	})
 
-	it('should accept both . and , as decimal separator', () => {
-		let onChange = spy()
-		const input = getInput(<CurrencyInput onChange={onChange} />)
-		input.simulate('change', { target: { value: '12.1', focus: () => {} } })
-		expect(onChange).to.have.been.calledWith(
-			match.hasNested('target.value', '12.1')
-		)
+	it('should accept , as decimal separator in french', () => {
+		const onChange = spy()
+		const input = getInput(<CurrencyInput language="fr" onChange={onChange} />)
 		input.simulate('change', { target: { value: '12,1', focus: () => {} } })
 		expect(onChange).to.have.been.calledWith(
 			match.hasNested('target.value', '12.1')
@@ -58,7 +54,7 @@ describe('CurrencyInput', () => {
 
 	it('should not accept anything else than number', () => {
 		let onChange = spy()
-		const input = getInput(<CurrencyInput onChange={onChange} />)
+		const input = getInput(<CurrencyInput language="fr" onChange={onChange} />)
 		input.simulate('change', { target: { value: '*1/2abc3', focus: () => {} } })
 		expect(onChange).to.have.been.calledWith(
 			match.hasNested('target.value', '123')
@@ -72,7 +68,9 @@ describe('CurrencyInput', () => {
 
 	it('should not call onChange while the decimal part is being written', () => {
 		let onChange = spy()
-		const input = getInput(<CurrencyInput value="111" onChange={onChange} />)
+		const input = getInput(
+			<CurrencyInput language="fr" value="111" onChange={onChange} />
+		)
 		input.simulate('change', { target: { value: '111,', focus: () => {} } })
 		expect(onChange).not.to.have.been.called
 	})
@@ -98,7 +96,12 @@ describe('CurrencyInput', () => {
 		const clock = useFakeTimers()
 		let onChange = spy()
 		const input = getInput(
-			<CurrencyInput onChange={onChange} debounce={1000} currencySymbol={''} />
+			<CurrencyInput
+				language="fr"
+				onChange={onChange}
+				debounce={1000}
+				currencySymbol={''}
+			/>
 		)
 		input.simulate('change', { target: { value: '1', focus: () => {} } })
 		expect(onChange).not.to.have.been.called
@@ -126,7 +129,9 @@ describe('CurrencyInput', () => {
 
 	it('should not call onChange the value is the same as the current input value', () => {
 		let onChange = spy()
-		const wrapper = mount(<CurrencyInput value={2000} onChange={onChange} />)
+		const wrapper = mount(
+			<CurrencyInput language="fr" value={2000} onChange={onChange} />
+		)
 		const input = wrapper.find('input')
 		input.simulate('change', { target: { value: '2000', focus: () => {} } })
 		wrapper.setProps({ value: '2000' })
@@ -134,7 +139,7 @@ describe('CurrencyInput', () => {
 	})
 
 	it('should adapt its size to its content', () => {
-		const wrapper = mount(<CurrencyInput value={1000} />)
+		const wrapper = mount(<CurrencyInput language="fr" value={1000} />)
 		// It would be better to use `input.offsetWidth` but it's not supported by
 		// Enzyme/JSDOM
 		const getInlineWidth = () =>
@@ -148,25 +153,25 @@ describe('CurrencyInput', () => {
 
 	it('should not call onChange if the value is not a correct number', () => {
 		let onChange = spy()
-		mount(<CurrencyInput onChange={onChange} />)
+		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
 				target: { value: '-', focus: () => {} }
 			})
-		mount(<CurrencyInput onChange={onChange} />)
+		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: '.', focus: () => {} }
+				target: { value: ',', focus: () => {} }
 			})
-		mount(<CurrencyInput onChange={onChange} />)
+		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: '.5', focus: () => {} }
+				target: { value: ',5', focus: () => {} }
 			})
-		mount(<CurrencyInput onChange={onChange} />)
+		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: '8.', focus: () => {} }
+				target: { value: '8,', focus: () => {} }
 			})
 		expect(onChange).not.to.have.been.called
 	})

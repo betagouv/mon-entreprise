@@ -29,10 +29,9 @@ export default function PercentageField({ onChange, value, debounce = 0 }) {
 				max="1"
 			/>
 			<span style={{ display: 'inline-block', width: '3em' }}>
-				{formatValue({
-					nodeValue: localValue,
+				{formatValue(localValue, {
 					language,
-					unit: '%'
+					displayedUnit: '%'
 				})}
 			</span>
 		</div>

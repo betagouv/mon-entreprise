@@ -440,10 +440,8 @@ function Results() {
 							<p className="ui__ lead" css="margin-bottom: 1rem;">
 								<RuleLink dottedName={r.dottedName}>
 									{r.nodeValue != null ? (
-										formatValue({
-											nodeValue: r.nodeValue || 0,
-											language: 'fr',
-											unit: '€',
+										formatValue(r, {
+											displayedUnit: '€',
 											precision: 0
 										})
 									) : (

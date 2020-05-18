@@ -241,12 +241,9 @@ const statelessParseFunction = {
 		nodeValue: v.nodeValue,
 		unit: v.unit,
 		// eslint-disable-next-line
-		jsx: ({ nodeValue, unit }: EvaluatedRule) => (
+		jsx: (node: EvaluatedRule) => (
 			<span className={v.type}>
-				{formatValue({
-					unit,
-					nodeValue,
-					language: 'fr',
+				{formatValue(node, {
 					// We want to display constants with full precision,
 					// espacilly for percentages like APEC 0,036 %
 					precision: 5
