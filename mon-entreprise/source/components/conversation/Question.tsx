@@ -5,9 +5,11 @@ import emoji from 'react-easy-emoji'
 import { ExplicableRule } from './Explicable'
 import SendButton from './SendButton'
 import { CSSProp } from 'styled-components'
+import { Explicable } from 'Components/conversation/Explicable'
 
 type QuestionProps = {
-	question: string
+	question: React.ReactNode
+	explication?: string
 	currentValue?: RadioLabelContentProps['currentValue']
 	onChange: RadioLabelContentProps['onChange']
 	choices: Array<{
@@ -18,6 +20,7 @@ type QuestionProps = {
 
 export function Question({
 	question,
+	explication,
 	currentValue,
 	choices,
 	onChange
@@ -27,7 +30,13 @@ export function Question({
 			className="step question"
 			// css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
 		>
-			<p>{question}</p>
+			{explication ? (
+				<p>
+					{question} <Explicable>{explication}</Explicable>
+				</p>
+			) : (
+				<p>{question}</p>
+			)}
 			{choices.map(({ value, label }) => (
 				<RadioLabelContent
 					key={value}

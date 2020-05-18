@@ -2,6 +2,7 @@ import emoji from 'react-easy-emoji'
 import React, { useState } from 'react'
 import { Question, BooleanQuestion } from 'Components/conversation/Question'
 import { StackedBarChartTest } from 'Components/StackedBarChart'
+import { Explicable } from 'Components/conversation/Explicable'
 
 type State = Partial<{
 	nbChildren: string
@@ -13,7 +14,7 @@ type State = Partial<{
 	childIsHospitalized: boolean
 	childBirthDate: string
 	isSharedLeaveAdotption: boolean
-	specialSituation: string
+	childLongHospitalized: boolean
 }>
 
 type LeaveType = Partial<{ leaveType: string }>
@@ -67,15 +68,9 @@ function Adoption() {
 		<>
 			<BooleanQuestion
 				question="Souhaitez-vous partager votre congé d'adoption avec votre conjoint ?"
+				explication="S'il est partagé, le congé d'adoption doit être réparti en deux périodes de temps dont la plus courte doit être au moins de 11 jours. Vous pouvez prendre votre congé d'adoption en même temps que votre conjoint mais la somme de vos deux périodes de congés ne peut dépasser la durée légale du congé d'adoption."
 				{...bind('isSharedLeaveAdotption')}
 			/>
-			<small>
-				S'il est partagé, le congé d'adoption doit être réparti en deux périodes
-				de temps dont la plus courte doit être au moins de 11 jours. Vous pouvez
-				prendre votre congé d'adoption en même temps que votre conjoint mais la
-				somme de vos deux périodes de congés ne peut dépasser la durée légale du
-				congé d'adoption.
-			</small>
 
 			<Question
 				question="Vous adoptez ..."
@@ -87,35 +82,36 @@ function Adoption() {
 			/>
 
 			<Question
-				question="Combien d'enfant avez-vous déjà à charge ? "
+				question="Combien d'enfant avez-vous déjà à charge ?"
+				explication="Les enfants doivent être à charge effective et permanente https://www.service-public.fr/particuliers/vosdroits/F16947 "
 				choices={[
 					{ value: '0', label: '0 ou 1 enfant' },
 					{ value: '2', label: 'plusieurs enfants' }
 				]}
 				{...bind('nbDependantChildren')}
 			/>
-			<small>
-				{' '}
-				Les enfants doivent être à charge effective et permanente
-				https://www.service-public.fr/particuliers/vosdroits/F16947{' '}
-			</small>
 
 			<div
 				css={`
 					background-color: var(--lightestColor);
-					float: right;
+					margin: 2rem 0px;
 					padding: 1rem;
 				`}
 			>
 				<h3>Résulats</h3>
-				<strong>Durée du congé :</strong>
-				{state.isSharedLeaveAdotption
-					? ` ${congeAdoption} semaines et ${extraDays} jours`
-					: ` ${congeAdoption} semaines`}
-				<small>
+				<ul>
+					<li>
+						{' '}
+						<strong>Durée du congé :</strong>
+						{state.isSharedLeaveAdotption
+							? ` ${congeAdoption} semaines et ${extraDays} jours`
+							: ` ${congeAdoption} semaines`}{' '}
+					</li>
+				</ul>
+				<p>
 					Ce congé peut précéder de sept jours consécutifs, au plus, l'arrivée
-					de l'enfant au foyer.
-				</small>
+					de l'enfant au foyer.{' '}
+				</p>
 			</div>
 		</>
 	)
@@ -179,7 +175,8 @@ function Maternité2() {
 						type="date"
 						id="start"
 						name="trip-start"
-						value={state.childBirthDate ?? '2019-01-01'}
+						value={state.childBirthDate ?? today_start_calendar}
+						max={today_start_calendar}
 						pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
 						onChange={event => {
 							const val = event.target.value
@@ -340,15 +337,6 @@ function Paternité() {
 	})
 	const today = new Date()
 	const pad = (n: number): string => (+n < 10 ? `0${n}` : '' + n)
-	const today_start_calendar =
-		today.getFullYear() +
-		'-' +
-		pad(today.getMonth() + 1) +
-		'-' +
-		today.getDate()
-
-	let conge = state.nbChildren === '1' ? 11 : 18
-	conge += state.childIsHospitalized ? 30 : 0
 	return (
 		<>
 			<p>
@@ -367,93 +355,65 @@ function Paternité() {
 				question="L'accouchement a-t-il déjà eu lieu ?"
 				{...bind('isBorn')}
 			/>
-
-			{state.isBorn ? (
-				<>
-					<p> Quand l'accouchement a-t-il eu lieu ? </p>
-					<input
-						type="date"
-						id="start"
-						name="trip-start"
-						value={state.childBirthDate ?? '2019-01-01'}
-						pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-						onChange={event => {
-							const val = event.target.value
-							setState(state => ({
-								...state,
-								childBirthDate: val
-							}))
-						}}
-					/>
-				</>
-			) : (
-				<>
-					<p> Quand l'accouchement est-il prévu ?</p>
-					<input
-						type="date"
-						id="start"
-						name="trip-start"
-						value={state.childBirthDate ?? today_start_calendar}
-						min={today_start_calendar}
-						pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-						onChange={event => {
-							const val = event.target.value
-							setState(state => ({
-								...state,
-								childBirthDate: val
-							}))
-						}}
-					/>
-				</>
-			)}
-
 			{state.isBorn && (
-				<Question
-					question="Vous trouvez-vous dans une de ces situations ?"
-					choices={[
-						{
-							value: 'childHospitalization',
-							label:
-								"Hospitalisation de l'enfant immédiatement après sa naissance dans une unité de soins spécialisés"
-						},
-						{ value: 'lifelessChild', label: "Naissance d'un enfant sans vie" },
-						{ value: 'motherDeath', label: 'Décès de la mère ' }
-					]}
-					{...bind('specialSituation')}
+				<BooleanQuestion
+					question={
+						state.nbChildren === '2'
+							? 'Un enfant a-t-il été hospitalisé immédiatement après sa naissance dans une unité de soins spécialisés ?'
+							: "L'enfant a-t-il été hospitalisé immédiatement après sa naissance dans une unité de soins spécialisés ? "
+					}
+					{...bind('childIsHospitalized')}
 				/>
 			)}
 
-			<div>
-				<StackedBarChartTest
-					data={[
-						{
-							value: 3,
-							startDate: state.childBirthDate
-								? formatage_date(state.childBirthDate)
-								: '',
-							key: 'naissance',
-							legend: 'Congé de naissance',
-							sublegend: <strong>3 jours</strong>,
-							color: '#549f72'
-						},
-						{
-							value: conge,
-							endDate: state.childBirthDate
-								? formatage_date(state.childBirthDate)
-								: '',
-							key: 'postnatal',
-							legend: 'Congé postnatal',
-							sublegend: <strong>{conge} jours</strong>,
-							color: '#5a8adb'
-						}
-					]}
+			{state.childIsHospitalized && (
+				<BooleanQuestion
+					question="L'enfant a-t-il été hospitalisé plus de 6 semaines ?"
+					{...bind('childLongHospitalized')}
 				/>
+			)}
+
+			<div
+				css={`
+					background-color: var(--lightestColor);
+					margin: 2rem 0px;
+					padding: 1rem;
+				`}
+			>
+				<h3>Résulats </h3>
+				<ul>
+					<li>
+						<strong> Congé de naissance : </strong> 3 jours{' '}
+					</li>
+					<li>
+						<strong>Durée du congé :</strong>
+						{` ${state.nbChildren === '1' ? 11 : 18} jours`}
+						{state.childLongHospitalized
+							? " à prendre dans les 4 mois suivants la fin de l'hospitalisation de l'enfant."
+							: ' à prendre dans les 4 mois suivants la naissance.'}
+						<Explicable>
+							Les jours de congés sont des jours calendaires consécutifs
+							(samedi,dimanche et jours fériés compris). Ces congés ne sont pas
+							fractionnables. Le congé est aussi accordé en cas de naissance
+							d'un enfant sans vie. En cas de décès de la mère il sera accordé à
+							l'expiration du congé maternité. Il est accordé au père ou à la
+							personne vivant en couple avec la mère de l'enfant si le père de
+							l'enfant n'en bénéficie pas.
+						</Explicable>{' '}
+					</li>
+					{state.childIsHospitalized && (
+						<>
+							<li>
+								<strong>
+									Congé supplémentaire dû à l'hospitalisation de l'enfant :
+								</strong>{' '}
+								jusqu'à 30 jours consécutifs pendant la période
+								d'hospitalisation.
+							</li>
+						</>
+					)}
+				</ul>
 			</div>
-			<small>
-				{' '}
-				Les jours de congés sont des jours calendaires consécutifs (samedi,
-				dimanche et jours fériés consécutifs)
-			</small>
 		</>
 	)
 }
