@@ -139,7 +139,97 @@ pas dans les `missingVariables`
 
 ## Référence
 
-- Engine constructor
-- engine.evaluate
-- engine.setSituation
-- formatValue
+#### _new_ Engine(rules)
+
+Crée un moteur d'évaluation avec les règles publicodes données en argument.
+
+**Arguments**
+
+- `rules` : les règles publicodes utilisée. Ces dernières peuvent-être sous la
+  forme d'une chaine de caractère `yaml` publicodes, ou d'un object javascript
+  correspondant.
+
+**Retourne**
+Un moteur d'évaluation qui expose les fonctions suivantes :
+
+- setSituation
+- evaluate
+- getParsedRules
+
+#### _method_ engine.setSituation(situation)
+
+Permet de spécifier une situation en entrée. Toutes les prochaines évaluations
+seront effectuées en se basant sur ces valeurs plutôt que les valeurs présentes
+dans la base de règle.
+
+C'est le point d'entrée principal pour adapter les calculs de règles générales à
+une situation particulière. La situation est gardée en mémoire, et chaque appel
+à `setSituation` remplace la situation précédente. Le moteur
+contient donc un _état interne_. Cela permet d'obtenir de meilleure performance,
+avec une gestion plus fine du cache de calcul. En revanche, cela peut-être une
+source de bug si l'état interne est modifié lors d'effet de bord non prévus.
+
+**Arguments**
+
+- `situation` : un objet javascript qui associe le nom complet d'une règle à sa
+  valeur dans la situation. Cette valeur peut être de type `number`, ou
+  `string`. Dans ce dernier cas, elle sera évaluée par le moteur. Cela permet
+  de spécifier des nombre avec unité, des expressions, ou encore des références
+  vers d'autres règles.
+
+**Retourne**
+
+L'objet engine (`this`) sur lequel la fonction a été appelée, afin de pouvoir
+utiliser une écriture chaînée (`engine.setSituation(situation).evaluate()`)
+
+#### _method_ engine.evaluate(expression, \[options])
+
+Évalue l'expression dans le contexte du moteur (règle et situation).
+
+Pour des raisons de performance, les résultats intermédiaires sont enregistrés
+dans un cache. Par conséquent, les prochains appels seront plus rapides.
+
+**Arguments**
+
+- `expression`: la formule à évaluer (type `string`). Cela peut-être une
+  référence vers une règle, une expression arithmétique, tout ce que la
+  grammaire publicode permet.
+- `options`: un objet de configuration pour l'évaluation
+
+  - `unit`: spécifie l'unité dans laquelle le résultat doit être retourné.
+    Si la valeur retournée par le calcul est un nombre, ce dernier sera converti dans l'unité demandée. Ainsi `evaluate('prix', {unit: '€'})` équivaut à `evaluate('prix [€]')`. Une erreur est levée si l'unité n'est pas compatible avec la formule.
+  - `useDefaultValues` (par défaut `true`): option pour forcer l'utilisation des valeurs par défaut des règles.
+    Si sa valeur est à `false` et qu'il manque des valeurs dans la situation pour que le calcul soit effectué, ces dernières seront remontée dans les `missingsVariables` de l'objet retourné, et la valeur sera `null`.
+
+**Retourne**
+Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
+
+> **Attention !** Il est déconseillé d'utiliser directement les valeurs présentes
+> dans l'objet retourné, étant donné que leur forme va très probablement changer
+> au cours des prochaines versions du moteur.
+> Utilisez la fonction `formatNode(evaluationResult)` autant que possible pour
+> afficher la valeur retournée.
+
+- `missingVariables`: contient les valeur manquante lorsque `useDefaultValues`
+  est mis à `false`.
+- `nodeValue`: la valeur calculée
+- `isApplicable`: si l'expression évaluée est une référence à une règle, alors
+  ce booléen indique si la règle est applicable ou non
+
+#### _function_ formatValue(evaluatedNode, \[options])
+
+Formate la valeur evaluée.
+
+**Arguments**
+
+- `evaluatedNode` : l'objet retourné lors de l'appel à la fonction
+  d'évaluation du moteur `evaluate(expression)`
+- `options` : configuration pour le formatage
+
+  - `language`: le langage utilisé pour le formatage (par défaut `fr`)
+  - `precision`: le nombre de chiffre après la virgule pour le formatage des nombres (par défaut `2`)
+  - `displayedUnit`: l'unité à afficher pour le formatage des nombres. Outrepasse l'unité définie dans le calcul (on peut donc forcer l'unité affichée à une autre que celle retournée par le calcul, même si elle ne sont pas compatibles)
+
+**Retourne**
+
+La chaîne de caractère correspondant à la valeur bien formatée.
