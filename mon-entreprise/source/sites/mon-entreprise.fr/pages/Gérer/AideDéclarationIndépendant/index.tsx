@@ -196,19 +196,19 @@ function ExplicationsResultatFiscal() {
 			<>
 				<h3>Quelles exonérations inclure ?</h3>
 				<p>
-					calculer le montant du résultat fiscal avant déduction d ations et des
-					charges sociales à indiquer dans ce simula s pouvez utiliser votre
-					liasse fiscale, en reprenant l ts indiqués dans les lignes fiscales du
-					tableau ci-desso nction de votre situation (imposition au réel normal
-					ou au réel simplifié).
+					Pour calculer le montant du résultat fiscal avant déduction des
+					exonérations et des charges sociales à indiquer dans ce simulateur,
+					vous pouvez utiliser votre liasse fiscale, en reprenant les montants
+					indiqués dans les lignes fiscales du tableau ci-dessous, en fonction
+					de votre situation (imposition au réel normal ou au réel simplifié).
 				</p>
 				<p>L’opération à effectuer est la suivante :</p>
 				<ul>
 					<li>
-						minez le résultat fiscal dans votre liasse, sans montant de vos
-						cotisations et contributions socia gimes obligatoires de sécurité
-						sociale. Prenez le résultat fiscal correspondant{' '}
-						<strong>(1)</strong>
+						Déterminez le résultat fiscal dans votre liasse, sans déduire le
+						montant de vos cotisations et contributions sociales aux régimes
+						obligatoires de sécurité sociale. Prenez le résultat fiscal
+						correspondant <strong>(1)</strong>
 					</li>
 					<li>
 						Ajoutez les exonérations <strong>(2)</strong>
@@ -403,7 +403,10 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 }
 
 function Results() {
-	const results = useEvaluation(simulationConfig.objectifs as Array<DottedName>)
+	const results = useEvaluation(
+		simulationConfig.objectifs as Array<DottedName>,
+		{ unit: '€/an' }
+	)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
 	return (
