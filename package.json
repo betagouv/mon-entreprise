@@ -84,6 +84,7 @@
 		"prettier": "^1.19.1",
 		"raw-loader": "^0.5.1",
 		"react-hot-loader": "^4.12.15",
+		"rimraf": "^3.0.2",
 		"serve": "^11.1.0",
 		"sinon": "^4.5.0",
 		"sinon-chai": "^3.0.0",
@@ -110,13 +111,13 @@
 		"lint:prettier": "yarn workspaces run prettier --check \"{source,test,cypress}/**/*.{js,jsx,ts,tsx}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
+		"prepare": "if [ -z \"$NETLIFY\" ]; then yarn workspaces run prepare; fi",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
-		"prepare": "yarn link:publicodes && yarn workspaces run prepare",
 		"test:type": "yarn workspaces run tsc",
 		"test:regressions": "jest",
-		"link:publicodes": "yarn workspace publicodes link && yarn workspace mon-entreprise link publicodes",
-		"start": "yarn workspace publicodes compile --watch & yarn workspace mon-entreprise start"
+		"clean": "yarn workspaces run clean",
+		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start"
 	},
 	"workspaces": [
 		"mon-entreprise",

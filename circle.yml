@@ -74,7 +74,7 @@ jobs:
     resource_class: medium+
     steps:
       - install
-      - run: yarn workspace mon-entreprise compile:dev
+      - run: yarn workspace mon-entreprise build:dev
       - run:
           command: yarn workspace mon-entreprise serve:dev
           background: true

@@ -1,12 +1,9 @@
 const { map } = require('ramda')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
-const prod = require('./webpack.prod.js')
-const {
-	commonLoaders,
-	styleLoader,
-	HTMLPlugins
-} = require('./webpack.common.js')
+const prod = require('./webpack.prod')
+const { HTMLPlugins } = require('./webpack.common')
+const { commonLoaders, styleLoader } = require('../webpack/common')
 
 const { EnvironmentPlugin } = require('webpack')
 
@@ -14,8 +11,7 @@ module.exports = {
 	...prod,
 	entry: map(entry => ['whatwg-fetch', entry], prod.entry),
 	output: {
-		filename: '[name].legacy.bundle.js',
-		ecmaVersion: 5
+		filename: '[name].legacy.bundle.js'
 	},
 	module: {
 		rules: [...commonLoaders({ legacy: true }), styleLoader('style-loader')]

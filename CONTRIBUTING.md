@@ -39,20 +39,11 @@ git clone --depth 100 git@github.com:betagouv/mon-entreprise.git && cd mon-entre
 # Install the Javascript dependencies through Yarn
 yarn install
 
-# Run the server for mon-entreprise
-cd mon-entreprise
+# Watch changes in publicodes and run the server for mon-entreprise
 yarn start
 ```
 
 L'application est exécuté sur https://localhost:8080/mon-entreprise pour la version française et http://localhost:8080/infrance pour la version anglaise.
-
-Si vous souhaitez travailler sur le package publicode, on peut créer un lien
-symbolique depuis mon-entreprise en executant la commande suivante à la racine
-du projet :
-
-```
-yarn run link:publicodes
-```
 
 ### Messages de commit
 
@@ -141,7 +132,7 @@ N'oubliez pas de vérifier sur le diff que rien n'est choquant.
 
 ### Analyse des bundles
 
-La commande `yarn run compile:analyse-bundle` gènere une visualisation interactive du
+La commande `yarn run build:analyse-bundle` gènere une visualisation interactive du
 contenu packagé, cf.
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 

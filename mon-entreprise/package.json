@@ -20,7 +20,7 @@
 		"html-webpack-plugin": "^3.2.0",
 		"i18next-parser": "^1.0.6",
 		"monaco-editor-webpack-plugin": "^1.9.0",
-		"workbox-webpack-plugin": "^5.1.3",
+		"workbox-webpack-plugin": "^3.6.0",
 		"worker-loader": "^2.0.0"
 	},
 	"dependencies": {
@@ -36,7 +36,7 @@
 		"js-yaml": "^3.13.1",
 		"moo": "^0.5.0",
 		"nearley": "^2.19.0",
-		"publicodes": "^1.0.0",
+		"publicodes": "^1.0.0-beta.1",
 		"ramda": "^0.27.0",
 		"react": "^16.13.1",
 		"react-color": "^2.14.0",
@@ -69,12 +69,13 @@
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
-		"compile": "yarn run compile:prod && yarn run compile:legacy",
-		"compile:prod": "yarn run webpack --config webpack.prod.js",
-		"compile:legacy": "yarn run webpack --config webpack.prod.legacyBrowser.js",
-		"compile:stats": "webpack --config webpack.prod.js --profile --json > stats.json",
-		"compile:analyze-bundle": "ANALYZE_BUNDLE=1 yarn run compile",
-		"compile:dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run compile",
+		"build": "yarn run build:prod && yarn run build:legacy",
+		"build:prod": "yarn run webpack --config webpack.prod.js",
+		"build:legacy": "yarn run webpack --config webpack.prod.legacyBrowser.js",
+		"build:stats": "webpack --config webpack.prod.js --profile --json > stats.json",
+		"build:analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
+		"build:dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run build",
+		"clean": "rimraf dist node_modules source/data",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\"",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --include test/componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",
 		"test:bundlesize": "bundlesize",
@@ -89,6 +90,7 @@
 		"serve:dev": "yarn run serve:dev:mon-entreprise & yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes",
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",
 		"serve:dev:publicodes": "PORT=5002 serve --config serve.publicodes.json --no-clipboard",
-		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard"
+		"serve:dev:mycompanyinfrance": "PORT=5001 serve --config serve.infrance.json --no-clipboard",
+		"publish:publicodes": "yarn run lint && yarn run "
 	}
 }

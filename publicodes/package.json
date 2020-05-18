@@ -1,6 +1,6 @@
 {
 	"name": "publicodes",
-	"version": "1.0.0",
+	"version": "1.0.0-beta.1",
 	"description": "A declarative language for encoding public algorithm",
 	"main": "dist/index.js",
 	"types": "dist/types/index.d.ts",
@@ -34,8 +34,10 @@
 		"react-router-hash-link": "^1.2.2"
 	},
 	"scripts": {
-		"prepare": "tsc && yarn run compile",
-		"compile": "yarn run webpack --config webpack.config.js",
+		"prepublishOnly": "yarn test && yarn run build",
+		"clean": "rimraf dist node_modules",
+		"prepare": "yarn run clean && yarn run build",
+		"build": "tsc && yarn run webpack --config webpack.config.js",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
 	},
