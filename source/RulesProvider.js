@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 export default connect(
-	state => ({ rulesLoaded: state.rules != null }),
-	dispatch => ({ setRules: rules => dispatch({ type: 'SET_RULES', rules }) })
+	(state) => ({ rulesLoaded: state.rules != null }),
+	(dispatch) => ({
+		setRules: (rules) => dispatch({ type: 'SET_RULES', rules }),
+	})
 )(
 	class extends React.Component {
 		removeLoader() {
@@ -24,14 +26,14 @@ export default connect(
 			super(props)
 
 			if (process.env.NODE_ENV === 'development') {
-				import('../../data/co2.yaml').then(src => {
+				import('../../../ecolab-data/co2.yaml').then((src) => {
 					this.props.setRules(src.default)
 					this.removeLoader()
 				})
 			} else {
 				fetch(props.rulesURL, { mode: 'cors' })
-					.then(response => response.json())
-					.then(json => {
+					.then((response) => response.json())
+					.then((json) => {
 						this.props.setRules(json)
 						this.removeLoader()
 					})
