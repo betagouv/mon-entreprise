@@ -2,7 +2,6 @@
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
 		"baseUrl": "source",
-		"typeRoots": ["source/types"],
 		"paths": {
 			"Actions/*": ["actions/*"],
 			"Components": ["components"],
@@ -13,7 +12,8 @@
 			"Rules": ["rules"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
-		}
+		},
+		"noEmit": true
 	},
-	"include": ["source"]
+	"include": ["types", "source"]
 }

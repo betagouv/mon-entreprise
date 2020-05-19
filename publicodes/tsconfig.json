@@ -1,8 +1,9 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"baseUrl": "source",
-		"typeRoots": ["source/types"]
+		"outDir": "./dist/types",
+		"declaration": true,
+		"emitDeclarationOnly": true
 	},
-	"include": ["source"]
+	"include": ["source/index.ts", "source/types"]
 }

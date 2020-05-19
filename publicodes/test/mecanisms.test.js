@@ -6,7 +6,7 @@
 */
 
 import { expect } from 'chai'
-import Engine from 'publicodes'
+import Engine from '../source/index'
 import { parseUnit } from '../source/units'
 import { coerceArray } from '../source/utils'
 import testSuites from './load-mecanism-tests'

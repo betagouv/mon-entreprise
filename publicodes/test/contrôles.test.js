@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import Engine, { parseRules } from 'publicodes'
+import Engine, { parseRules } from '../source/index'
 
 describe('controls', function() {
 	let rawRules = {

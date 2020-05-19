@@ -1,12 +1,9 @@
 const { map } = require('ramda')
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
-const prod = require('./webpack.prod.js')
-const {
-	commonLoaders,
-	styleLoader,
-	HTMLPlugins
-} = require('./webpack.common.js')
+const prod = require('./webpack.prod')
+const { HTMLPlugins } = require('./webpack.common')
+const { commonLoaders, styleLoader } = require('../webpack/common')
 
 const { EnvironmentPlugin } = require('webpack')
 
