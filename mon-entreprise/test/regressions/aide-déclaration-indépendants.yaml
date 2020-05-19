@@ -1,0 +1,80 @@
+échelle de revenus:
+  - dirigeant . rémunération totale: 500 €/an
+  - dirigeant . rémunération totale: 1000 €/an
+  - dirigeant . rémunération totale: 1500 €/an
+  - dirigeant . rémunération totale: 2000 €/an
+  - dirigeant . rémunération totale: 5000 €/an
+  - dirigeant . rémunération totale: 10000 €/an
+  - dirigeant . rémunération totale: 100000 €/an
+  - dirigeant . rémunération totale: 1000000 €/an
+
+nature de l'activité:
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'artisanale'"
+    dirigeant . rémunération totale: 50000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'artisanale'"
+    dirigeant . rémunération totale: 5000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'commerciale ou industrielle'"
+    dirigeant . rémunération totale: 50000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'commerciale ou industrielle'"
+    dirigeant . rémunération totale: 5000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'libérale'"
+    dirigeant . rémunération totale: 50000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'libérale'"
+    dirigeant . rémunération totale: 5000 €/an
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'libérale'"
+    entreprise . date de création: 06/04/2019
+    dirigeant . rémunération totale: 50000 €/an
+    dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR: oui
+
+débit de tabac:
+  - aide déclaration revenu indépendant 2019 . nature de l'activité: "'commerciale ou industrielle'"
+    dirigeant . rémunération totale: 50000 €/an
+    entreprise . catégorie d'activité . débit de tabac: oui
+    dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac: 30000 €/an
+
+RSA:
+  - situation personnelle . RSA: oui
+    dirigeant . rémunération totale: 500 €/an
+  - situation personnelle . RSA: oui
+    dirigeant . rémunération totale: 5000 €/an
+
+conjoint collaborateur:
+  - dirigeant . indépendant . conjoint collaborateur: oui
+    dirigeant . rémunération totale: 50000 €/an
+  - dirigeant . indépendant . conjoint collaborateur: oui
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    dirigeant . rémunération totale: 50000 €/an
+  - dirigeant . indépendant . conjoint collaborateur: oui
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . rémunération totale: 50000 €/an
+  - dirigeant . indépendant . conjoint collaborateur: oui
+    aide déclaration revenu indépendant 2019 . nature de l'activité: "'artisanale'"
+    dirigeant . rémunération totale: 50000 €/an
+  - dirigeant . indépendant . conjoint collaborateur: oui
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . rémunération totale: 50000 €/an
+    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+
+IJSS (indemnité sécurité sociale):
+  - dirigeant . indépendant . IJSS: oui
+    dirigeant . indépendant . IJSS . total: 10000 €/an
+    dirigeant . indépendant . IJSS . imposable: 8000 €/an
+    dirigeant . rémunération totale: 50000 €/an
+
+ACRE:
+  - entreprise . ACRE: oui
+    dirigeant . rémunération totale: 50000 €/an
+  - entreprise . ACRE: oui
+    dirigeant . rémunération totale: 15000 €/an
+  - entreprise . ACRE: oui
+    dirigeant . rémunération totale: 5000 €/an
+  - entreprise . ACRE: oui
+    entreprise . date de création: 01/07/2018
+    dirigeant . rémunération totale: 10000 €/an
+
+international:
+  - situation personnelle . domiciliation fiscale à l'étranger: oui
+    dirigeant . rémunération totale: 50000 €/an
+  - dirigeant . indépendant . revenus étrangers: oui
+    dirigeant . indépendant . revenus étrangers . montant: 30000€/an
+    dirigeant . rémunération totale: 50000 €/an

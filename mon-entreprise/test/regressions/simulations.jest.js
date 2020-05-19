@@ -13,11 +13,13 @@ import autoentrepreneurConfig from '../../source/components/simulationConfigs/au
 import independantConfig from '../../source/components/simulationConfigs/indépendant.yaml'
 import remunerationDirigeantConfig from '../../source/components/simulationConfigs/rémunération-dirigeant.yaml'
 import employeeConfig from '../../source/components/simulationConfigs/salarié.yaml'
+import aideDéclarationConfig from '../../source/sites/mon-entreprise.fr/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import employeeSituations from './simulations-salarié.yaml'
+import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 
 const roundResult = arr => arr.map(x => Math.round(x))
 const engine = new Engine(rules)
@@ -98,5 +100,13 @@ it('calculate simulations-artiste-auteur', () => {
 		artisteAuteurSituations,
 		artisteAuteurConfig.objectifs,
 		artisteAuteurConfig.situation
+	)
+})
+
+it('calculate aide-déclaration-indépendant', () => {
+	runSimulations(
+		aideDéclarationIndépendantsSituations,
+		aideDéclarationConfig.objectifs,
+		aideDéclarationConfig.situation
 	)
 })

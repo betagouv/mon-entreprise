@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[50000,3366,9163,8,12630,37370]"`;
+
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,1139,900,8,2141,12859]"`;
+
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,386,295,8,782,4218]"`;
+
+exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[10000,630,2202,8,2934,7066]"`;
+
+exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[50000,3024,11424,8,14549,35451]"`;
+
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[500,25,82,8,209,291]"`;
+
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[5000,312,1021,8,1435,3565]"`;
+
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[50000,3175,14066,11,17378,32622]"`;
+
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[50000,3175,13590,11,16903,33097]"`;
+
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,11476,11,14788,35212]"`;
+
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,3176,14071,10,17364,32636]"`;
+
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,11476,11,14788,35212]"`;
+
+exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,8,8950,41050]"`;
+
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,8,14711,35289]"`;
+
+exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,8,13261,36739]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[50000,3176,11380,10,14673,35327]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[5000,311,1353,10,1781,3219]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[50000,3177,11384,8,14662,35338]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[5000,312,1354,8,1767,3233]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `"[50000,3177,11201,8,14480,35520]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[5000,312,1189,8,1603,3397]"`;
+
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `"[50000,3177,9270,8,12548,37452]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `"[500,25,1026,8,1152,0]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `"[1000,57,1026,8,1184,0]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1500,89,1052,8,1242,258]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[2000,121,1095,8,1317,683]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[5000,312,1354,8,1767,3233]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[10000,630,2202,8,2934,7066]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `"[100000,6361,20834,8,27296,72704]"`;
+
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `"[1000000,63664,106148,8,169913,830087]"`;
+
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
 
 exports[`calculate simulations-artiste-auteur: bnc 2`] = `"[1863]"`;
