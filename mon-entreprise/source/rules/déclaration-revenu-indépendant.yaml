@@ -31,7 +31,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
     Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
     caisse spécifique de retraite.
 
-    C'est le cas de toutes les professions libérale non reglementée depuis le
+    C'est le cas de toutes les professions libérale non réglementée depuis le
     1er janvier 2019.
 
   références:
@@ -77,7 +77,7 @@ aide déclaration revenu indépendant 2019 . revenu net fiscal:
 aide déclaration revenu indépendant 2019 . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
-  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS .déductible
+  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
 aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
   titre: cotisations sociales obligatoires déductibles
