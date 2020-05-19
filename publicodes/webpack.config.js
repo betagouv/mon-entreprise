@@ -10,7 +10,7 @@ const common = {
 	mode: 'development',
 	entry: path.resolve(__dirname, 'source', 'index.ts'),
 	module: {
-		rules: commonLoaders()
+		rules: commonLoaders({ file: false })
 	},
 	externals:
 		// Every non-relative module is external
