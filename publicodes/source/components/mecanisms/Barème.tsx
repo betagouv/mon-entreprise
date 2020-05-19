@@ -2,33 +2,35 @@ import classNames from 'classnames'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { makeJsx } from '../../evaluation'
-import './Barème.css'
-import { Node, NodeValuePointer } from './common'
+import styled from 'styled-components'
+import { Mecanism, NodeValuePointer } from './common'
 import { parseUnit } from '../../units'
 
 export default function Barème({ nodeValue, explanation, unit }) {
 	return (
-		<Node classes="mecanism barème" name="barème" value={nodeValue} unit={unit}>
-			<ul className="properties">
-				<BarèmeAttributes explanation={explanation} />
-				<TrancheTable
-					tranches={explanation.tranches}
-					multiplicateur={explanation.multiplicateur}
-				/>
-				{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
-				{nodeValue !== null && explanation.tranches.length > 2 && (
-					<>
-						<b>
-							<Trans>Taux moyen</Trans> :{' '}
-						</b>
-						<NodeValuePointer
-							data={(100 * nodeValue) / explanation.assiette.nodeValue}
-							unit={parseUnit('%')}
-						/>
-					</>
-				)}
-			</ul>
-		</Node>
+		<Mecanism name="barème" value={nodeValue} unit={unit}>
+			<StyledComponent>
+				<ul className="properties">
+					<BarèmeAttributes explanation={explanation} />
+					<TrancheTable
+						tranches={explanation.tranches}
+						multiplicateur={explanation.multiplicateur}
+					/>
+					{/* nous avons remarqué que la notion de taux moyen pour un barème à 2 tranches est moins pertinent pour les règles de calcul des indépendants. Règle empirique à faire évoluer ! */}
+					{nodeValue !== null && explanation.tranches.length > 2 && (
+						<>
+							<b>
+								<Trans>Taux moyen</Trans> :{' '}
+							</b>
+							<NodeValuePointer
+								data={(100 * nodeValue) / explanation.assiette.nodeValue}
+								unit={parseUnit('%')}
+							/>
+						</>
+					)}
+				</ul>
+			</StyledComponent>
+		</Mecanism>
 	)
 }
 
@@ -38,14 +40,14 @@ export const BarèmeAttributes = ({ explanation }) => {
 		<>
 			<li key="assiette">
 				<span className="key">
-					<Trans>assiette</Trans>:{' '}
+					<Trans>Assiette</Trans> :{' '}
 				</span>
 				<span className="value">{makeJsx(explanation.assiette)}</span>
 			</li>
 			{multiplicateur && !multiplicateur.isDefault && (
 				<li key="multiplicateur">
 					<span className="key">
-						<Trans>multiplicateur</Trans>:{' '}
+						<Trans>Multiplicateur</Trans> :{' '}
 					</span>
 					<span className="value">{makeJsx(multiplicateur)}</span>
 				</li>
@@ -116,3 +118,28 @@ const Tranche = ({ tranche, multiplicateur }) => {
 		</tr>
 	)
 }
+
+export const StyledComponent = styled.div`
+	table {
+		margin: 1em 0;
+		width: 100%;
+		text-align: left;
+		font-weight: 400;
+	}
+	table td {
+		padding: 0.1em 0.4em;
+	}
+	table th {
+		font-weight: 600;
+	}
+	table th:first-letter {
+		text-transform: uppercase;
+	}
+	.tranche:nth-child(2n) {
+		background: var(--lightestColor);
+	}
+	.tranche.activated {
+		background: var(--lighterColor);
+		font-weight: bold;
+	}
+`

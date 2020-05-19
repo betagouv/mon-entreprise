@@ -3,7 +3,6 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { EvaluatedRule } from '../../types'
 import { makeJsx } from '../../evaluation'
-import './Algorithm.css'
 
 const Conditions = ({
 	'rendu non applicable': disabledBy,
@@ -36,7 +35,14 @@ const Conditions = ({
 			<h2>
 				<Trans>Déclenchement</Trans>
 			</h2>
-			<ul>{listElements}</ul>
+			<ul
+				css={`
+					list-style: none;
+					padding: 0;
+				`}
+			>
+				{listElements}
+			</ul>
 		</>
 	) : null
 }
@@ -44,7 +50,7 @@ const Conditions = ({
 function ShowIfDisabled({ dependency }: { dependency: EvaluatedRule }) {
 	return (
 		<li>
-			<span style={{ background: 'yellow' }}>
+			<span style={{ background: 'var(--lighterColor)', fontWeight: 'bold' }}>
 				<Trans>Désactivée</Trans>
 			</span>{' '}
 			<Trans>car dépend de</Trans> {makeJsx(dependency)}

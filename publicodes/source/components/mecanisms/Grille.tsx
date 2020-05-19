@@ -1,18 +1,19 @@
 import React from 'react'
-import { BarèmeAttributes, TrancheTable } from './Barème'
-import './Barème.css'
-import { Node } from './common'
+import { BarèmeAttributes, TrancheTable, StyledComponent } from './Barème'
+import { Mecanism } from './common'
 
 export default function Grille({ nodeValue, explanation, unit }) {
 	return (
-		<Node classes="mecanism barème" name="grille" value={nodeValue} unit={unit}>
-			<ul className="properties">
-				<BarèmeAttributes explanation={explanation} />
-				<TrancheTable
-					tranches={explanation.tranches}
-					multiplicateur={explanation.multiplicateur}
-				/>
-			</ul>
-		</Node>
+		<StyledComponent>
+			<Mecanism name="grille" value={nodeValue} unit={unit}>
+				<ul className="properties">
+					<BarèmeAttributes explanation={explanation} />
+					<TrancheTable
+						tranches={explanation.tranches}
+						multiplicateur={explanation.multiplicateur}
+					/>
+				</ul>
+			</Mecanism>
+		</StyledComponent>
 	)
 }

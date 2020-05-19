@@ -1,33 +1,36 @@
 import { toPairs } from 'ramda'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { makeJsx } from '../../evaluation'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import colors from './colors'
-import { InlineMecanism, Node } from './common'
-import './Composantes.css'
+import { InlineMecanismName, Mecanism } from './common'
 
 export default function Composantes({ nodeValue, explanation, unit }) {
 	const { i18n } = useTranslation()
 
 	return (
-		<Node
-			classes="mecanism composantes"
+		<Mecanism
 			name="composantes"
 			inline
+			displayName={false}
 			value={nodeValue}
 			unit={unit}
 		>
-			<>
-				<p
-					style={{
-						marginBottom: '1rem'
-					}}
+			<StyledComponent>
+				<div
+					css={`
+						font-weight: bold;
+						:first-letter {
+							text-transform: capitalize;
+						}
+					`}
 				>
 					<Trans>La somme de</Trans>{' '}
 					{writtenNumbers[i18n.language][explanation.length]}{' '}
-					<InlineMecanism name="composantes" /> :
-				</p>
+					<InlineMecanismName name="composantes" /> :
+				</div>
 				<ol>
 					{explanation.map((c, i) => [
 						<li className="composante" key={JSON.stringify(c.composante)}>
@@ -66,7 +69,22 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 						</li>
 					])}
 				</ol>
-			</>
-		</Node>
+			</StyledComponent>
+		</Mecanism>
 	)
 }
+
+const StyledComponent = styled.div`
+	> ol {
+		list-style: none;
+		counter-reset: li;
+		padding-left: 1em;
+	}
+	> ol > li > ul > li {
+		list-style-type: none;
+	}
+
+	.composanteAttributes {
+		display: inline-block;
+	}
+`

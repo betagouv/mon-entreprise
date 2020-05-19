@@ -1,17 +1,12 @@
-import {
-	defaultNode,
-	evaluateNode,
-	makeJsx,
-	mergeAllMissing
-} from '../evaluation'
-import { Node } from '../components/mecanisms/common'
-import { simplifyNodeUnit } from '../nodeUnits'
-import { mapTemporal, pureTemporal, temporalAverage } from '../temporal'
-import { serializeUnit } from '../units'
-import { EvaluatedRule, Evaluation, EvaluatedNode } from '../types'
 import { has } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
+import { InfixMecanism } from '../components/mecanisms/common'
+import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
+import { simplifyNodeUnit } from '../nodeUnits'
+import { mapTemporal, pureTemporal, temporalAverage } from '../temporal'
+import { EvaluatedNode, EvaluatedRule, Evaluation } from '../types'
+import { serializeUnit } from '../units'
 
 type MecanismRoundProps = {
 	nodeValue: Evaluation<number>
@@ -25,27 +20,20 @@ type ArrondiExplanation = {
 
 function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
 	return (
-		<Node
-			classes="mecanism arrondi"
-			name="arrondi"
-			value={nodeValue}
-			unit={explanation.value.unit}
-		>
-			<>
-				{makeJsx(explanation.value)}
-				{explanation.decimals.nodeValue !== false &&
-					explanation.decimals.isDefault != false && (
-						<p>
-							<Trans
-								i18nKey="arrondi-to-decimals"
-								count={explanation.decimals.nodeValue ?? undefined}
-							>
-								Arrondi à {{ count: explanation.decimals.nodeValue }} décimales
-							</Trans>
-						</p>
-					)}
-			</>
-		</Node>
+		<InfixMecanism value={explanation.value}>
+			{explanation.decimals.nodeValue !== false &&
+				explanation.decimals.isDefault != false && (
+					<p>
+						<Trans
+							i18nKey="arrondi-to-decimals"
+							count={explanation.decimals.nodeValue ?? undefined}
+						>
+							<strong>Arrondi à : </strong>
+							{{ count: explanation.decimals.nodeValue }} décimales
+						</Trans>
+					</p>
+				)}
+		</InfixMecanism>
 	)
 }
 

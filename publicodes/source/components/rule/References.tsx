@@ -2,7 +2,7 @@ import references from './références/références.yaml'
 import { toPairs } from 'ramda'
 import React from 'react'
 import { capitalise0 } from '../../utils'
-import './References.css'
+import styled from 'styled-components'
 
 const findRefKey = (link: string) =>
 	Object.keys(references).find(r => link.includes(r))
@@ -56,10 +56,41 @@ type ReferencesProps = {
 export default function References({ refs }: ReferencesProps) {
 	const references = toPairs(refs)
 	return (
-		<ul className="references">
+		<StyledComponent>
 			{references.map(([name, link]) => (
 				<Ref key={link} name={name} link={link} />
 			))}
-		</ul>
+		</StyledComponent>
 	)
 }
+
+const StyledComponent = styled.ul`
+	list-style: none;
+	padding: 0;
+	a {
+		flex: 1;
+		min-width: 45%;
+		text-decoration: underline;
+	}
+
+	li {
+		margin-bottom: 0.6em;
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	.imageWrapper {
+		width: 4.5rem;
+		height: 3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 1rem;
+	}
+	img {
+		max-height: 3rem;
+		vertical-align: sub;
+		max-width: 100%;
+		border-radius: 0.3em;
+	}
+`

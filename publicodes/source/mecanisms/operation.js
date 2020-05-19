@@ -1,7 +1,7 @@
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
 import { evaluateNode, makeJsx, mergeMissing } from '../evaluation'
-import { Node } from '../components/mecanisms/common'
+import { Operation } from '../components/mecanisms/common'
 import { convertNodeToUnit } from '../nodeUnits'
 import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
 import { inferUnit, serializeUnit } from '../units'
@@ -87,20 +87,12 @@ export default (k, operatorFunction, symbol) => (recurse, k, v) => {
 	let unit = inferUnit(k, [node1.unit, node2.unit])
 
 	let jsx = ({ nodeValue, explanation, unit }) => (
-		<Node classes={'inlineExpression ' + k} value={nodeValue} unit={unit}>
-			<span className="nodeContent">
-				{(explanation[0].nodeValue !== 0 ||
-					symbol !== '−' ||
-					!v.explanation[0].constant) && (
-					<>
-						<span className="fa fa" />
-						{makeJsx(explanation[0])}
-					</>
-				)}
-				<span className="operator">{symbol || k}</span>
-				{makeJsx(explanation[1])}
-			</span>
-		</Node>
+		<Operation value={nodeValue} unit={unit}>
+			{(explanation[0].nodeValue !== 0 ||
+				symbol !== '−' ||
+				!v.explanation[0].constant) && <>{makeJsx(explanation[0])}</>}{' '}
+			{symbol || k} {makeJsx(explanation[1])}
+		</Operation>
 	)
 
 	return {

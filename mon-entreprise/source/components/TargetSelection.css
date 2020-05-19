@@ -160,14 +160,4 @@
 	vertical-align: middle;
 }
 
-.input-error {
-	padding: 0 0.6em;
-	margin-right: 0.6em;
-	font-size: 90%;
-	font-style: italic;
-	color: #c0392b;
-	background: yellow;
-	font-weight: 600;
-}
-
 /* Autre idée pour styler les checkboxes https://codepen.io/KenanYusuf/pen/PZKEKd */

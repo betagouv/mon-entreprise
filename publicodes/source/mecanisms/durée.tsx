@@ -6,13 +6,13 @@ import {
 	mergeMissing,
 	parseObject
 } from '../evaluation'
-import { Node } from '../components/mecanisms/common'
+import { Mecanism } from '../components/mecanisms/common'
 import { parseUnit } from '../units'
 import React from 'react'
 
 function MecanismDurée({ nodeValue, explanation, unit }) {
 	return (
-		<Node classes="mecanism durée" name="durée" value={nodeValue} unit={unit}>
+		<Mecanism name="durée" value={nodeValue} unit={unit}>
 			<>
 				<p>
 					<strong className="key">Depuis : </strong>
@@ -23,7 +23,7 @@ function MecanismDurée({ nodeValue, explanation, unit }) {
 					<span className="value">{makeJsx(explanation["jusqu'à"])}</span>
 				</p>
 			</>
-		</Node>
+		</Mecanism>
 	)
 }
 const todayString = convertToString(new Date())
