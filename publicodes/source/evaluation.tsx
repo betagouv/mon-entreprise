@@ -6,7 +6,8 @@ import {
 	keys,
 	map,
 	mergeWith,
-	reduce
+	reduce,
+	dissoc
 } from 'ramda'
 import React from 'react'
 import { typeWarning } from './error'
@@ -114,10 +115,15 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	parsedRules,
 	node
 ) => {
-	return evaluateArray(reducer, start)(cache, situation, parsedRules, {
-		...node,
-		explanation: filter(evaluationFilter(situation), node.explanation)
-	})
+	return evaluateArray(reducer, start)(
+		cache,
+		dissoc('_meta.filter', situation),
+		parsedRules,
+		{
+			...node,
+			explanation: filter(evaluationFilter(situation), node.explanation)
+		}
+	)
 }
 
 export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({

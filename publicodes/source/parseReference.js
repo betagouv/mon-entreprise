@@ -123,10 +123,10 @@ let evaluateReference = (filter, contextRuleName) => (
 	if (applicableReplacements.length) {
 		if (applicableReplacements.length > 1) {
 			console.warn(`
-Règle ${rule.dottedName}: plusieurs remplacements valides ont été trouvés : 
-\n\t${applicableReplacements.map(node => node.rawNode).join('\n\t')} 
+Règle ${rule.dottedName}: plusieurs remplacements valides ont été trouvés :
+\n\t${applicableReplacements.map(node => node.rawNode).join('\n\t')}
 
-Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, vous pouvez : 
+Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, vous pouvez :
 	- Restreindre son applicabilité via "applicable si" sur la règle de définition
 	- Restreindre sa portée en ajoutant une liste blanche (via le mot clé "dans") ou une liste noire (via le mot clé "sauf dans")
 `)
@@ -252,14 +252,14 @@ export let parseReference = (
 // See the unité-temporelle.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-const evaluateTransforms = (originalEval, rule, parseResult) => (
+const evaluateTransforms = (originalEval, _, parseResult) => (
 	cache,
 	situation,
 	parsedRules,
 	node
 ) => {
 	// Filter transformation
-	let filteringSituation = { ...situation, 'sys.filter': parseResult.filter }
+	let filteringSituation = { ...situation, '_meta.filter': parseResult.filter }
 	let filteredNode = originalEval(
 		cache,
 		parseResult.filter ? filteringSituation : situation,

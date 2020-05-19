@@ -16,14 +16,14 @@ export let decompose = (recurse, k, v) => {
 		}))
 
 	let filter = situation => c =>
-		!situation['sys.filter'] ||
+		!situation['_meta.filter'] ||
 		!c.composante ||
 		((!c.composante['dû par'] ||
-			!['employeur', 'salarié'].includes(situation['sys.filter']) ||
-			c.composante['dû par'] == situation['sys.filter']) &&
+			!['employeur', 'salarié'].includes(situation['_meta.filter']) ||
+			c.composante['dû par'] == situation['_meta.filter']) &&
 			(!c.composante['impôt sur le revenu'] ||
-				!['déductible', 'non déductible'].includes(situation['sys.filter']) ||
-				c.composante['impôt sur le revenu'] == situation['sys.filter']))
+				!['déductible', 'non déductible'].includes(situation['_meta.filter']) ||
+				c.composante['impôt sur le revenu'] == situation['_meta.filter']))
 
 	return {
 		explanation,
