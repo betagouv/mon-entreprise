@@ -217,7 +217,7 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 				))}
 			</BarStackTicks>
 			<BarStackLegend>
-				{dataWithPercentage.map(({ key, value, color, legend, sublegend }) => (
+				{dataWithPercentage.map(({ key, color, legend, sublegend }) => (
 					<BarStackLegendItem key={key}>
 						<SmallCircle style={{ backgroundColor: color }} />
 						{legend}

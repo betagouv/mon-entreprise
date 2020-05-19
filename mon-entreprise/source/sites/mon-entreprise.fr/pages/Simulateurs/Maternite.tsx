@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 import { Question, BooleanQuestion } from 'Components/conversation/Question'
 import { StackedBarChartTest } from 'Components/StackedBarChart'
 import { Explicable } from 'Components/conversation/Explicable'
+import StatutDescription from '../Créer/StatutDescription'
+import { mapAccumRight } from 'ramda'
 
 type State = Partial<{
 	nbChildren: string
 	nbDependantChildren: string
-	isSick: boolean
+	pregnancyRelatedIllness: boolean
+	childBirthRelatedIllness: boolean
 	isBorn: boolean
 	isPreterm: boolean
 	nbDaysPreterm: number
@@ -15,6 +18,8 @@ type State = Partial<{
 	childBirthDate: string
 	isSharedLeaveAdotption: boolean
 	childLongHospitalized: boolean
+	advancePrenatalLeave: boolean
+	nbDaysAdvancePrenatal: number
 }>
 
 type LeaveType = Partial<{ leaveType: string }>
@@ -155,14 +160,15 @@ function Maternité2() {
 					question="Combien d'enfants avez-vous déjà à charge ?"
 					choices={[
 						{ value: '0', label: '0 ou 1' },
-						{ value: '2', label: '3 ou plus' }
+						{ value: '2', label: '2 ou plus' }
 					]}
 					{...bind('nbDependantChildren')}
 				/>
 			)}
 			<BooleanQuestion
-				question="Avez-vous une maladie liée à la grossesse ?"
-				{...bind('isSick')}
+				question="Avez-vous une pathologie liée à la grossesse ?"
+				explication="Si la grossesse pathologique est due à une exposition de la mère in utero au distilbène, le congé de maternité débute le 1er jour d'arrêt de travail et peut durer jusqu'au congé prénatal normal."
+				{...bind('pregnancyRelatedIllness')}
 			/>
 			<BooleanQuestion
 				question="L'accouchement a-t-il déjà eu lieu ?"
@@ -207,10 +213,60 @@ function Maternité2() {
 					/>
 				</>
 			)}
+			{!state.isBorn &&
+				(state.nbChildren === '2' ||
+					state.nbChildren === '3' ||
+					state.nbDependantChildren == '2') && (
+					<BooleanQuestion
+						question="Souhaitez-vous avancer le début de votre congé prénatal ?"
+						explication={`
+						Vous pouvez avancer votre congé prénatal jusqu'à ${
+							!state.isBorn &&
+							(state.nbChildren === '2' || state.nbChildren === '3')
+								? 4
+								: 2
+						} semaines. La
+						durée du congé postnatal sera réduite d'autant de jours`}
+						{...bind('advancePrenatalLeave')}
+					/>
+				)}
+			{state.advancePrenatalLeave && (
+				<>
+					<p>De combien de jours souhaitez-vous avancer le congé prénatal ? </p>
+					<input
+						type="text"
+						name="nbDaysAdvancePrenatal"
+						value={state.nbDaysAdvancePrenatal ?? 0}
+						max={
+							state.nbChildren === '2' || state.nbChildren === '3'
+								? 4 * 7
+								: 2 * 7
+						}
+						onChange={event => {
+							const val = event.target.value
+							Number(val)
+								? setState(state => ({
+										...state,
+										nbDaysAdvancePrenatal: Number(val)
+								  }))
+								: setState(state => ({
+										...state,
+										nbDaysAdvancePrenatal: 0
+								  }))
+						}}
+					/>
+				</>
+			)}
 			{state.isBorn && (
 				<BooleanQuestion
 					question="L'enfant est-il né prématuré ?"
 					{...bind('isPreterm')}
+				/>
+			)}
+			{state.isBorn && (
+				<BooleanQuestion
+					question="Avez-vous une pathologie liée à l'accouchement ?"
+					{...bind('childBirthRelatedIllness')}
 				/>
 			)}
 			{state.isPreterm && (
@@ -219,7 +275,8 @@ function Maternité2() {
 					<input
 						type="text"
 						name="nbDaysPreterm"
-						value={state.nbDaysPreterm ?? ''}
+						value={state.nbDaysPreterm ?? 0}
+						max={140}
 						onChange={event => {
 							const val = event.target.value
 							Number(val)
@@ -241,14 +298,82 @@ function Maternité2() {
 					{...bind('childIsHospitalized')}
 				/>
 			)}
-			<div>
+			<div
+				css={`
+					margin: 2rem 0px;
+				`}
+			>
+				<h3>
+					Résultats :{' '}
+					<Explicable>
+						<ul>
+							{state.pregnancyRelatedIllness && (
+								<li>
+									{' '}
+									Du fait de la pathologie liée à la grossesse, 2 semaines de
+									congé avant le congé prénatal sont ici compatabilisées. Ce
+									congé supplémentaire peut être prescrit à tout moment à partir
+									de la déclaration de la grossesse et être pris en plusieurs
+									périodes.
+								</li>
+							)}
+							{state.childBirthRelatedIllness && (
+								<li>
+									{' '}
+									Du fait de la pathologie liée à l'accouchement, 4 semaines de
+									congé après le congé postnatal sont ici comptabilisées. Elles
+									peuvent être accordées sur prescription médicale.
+								</li>
+							)}
+							<li>
+								{' '}
+								La travailleuse indépendant en congé maternité pourra reprendre
+								son activité en temps partiel : 1 jour par semaine pendant les 4
+								semaines suivants la période minimale d'interruption d'activité
+								de 8 semaines puis 2 jours par semaines pendant les 4 semaines
+								suivantes.
+							</li>
+							<li>
+								Vous pouvez demander à votre médecin de reporter une partie de
+								votre congé prénatal sur votre congé posnatal dans la limite de
+								3 semaines. En cas d'arrêt maladie prescrit pendant la période
+								de report, le report est annulé que cet arrêt de travail soit en
+								lien ou non avec la grossesse.{' '}
+							</li>
+							<li>
+								En cas d'hospitalisation de l'enfant au-delà de la 6e semaine
+								après sa naissance, la mère peut choisir de reprendre son
+								travail. Elle devra prendre la période de congé postnatal non
+								utilisée dès la fin de l'hospitalisation de l'enfant.{' '}
+							</li>
+							<li>
+								Lorsque l'enfant décède après sa naissance, la mère conserve son
+								congé postnatal. En cas de décès lié à une naissance prématurée,
+								la mère a droit au congé de maternité en totalité si l'enfant
+								est né viable. Le seuil de viabilité se situe à 22 semaines
+								d'aménorrhée ou si le fœtus pesait au moins 500 grammes. Dans le
+								cas contraire, la mère est placée en congé de maladie ordinaire.
+							</li>
+						</ul>
+					</Explicable>{' '}
+				</h3>
 				<StackedBarChartTest
 					data={[
 						{
 							value: prenatal,
-							startDate: state.childBirthDate ? date_start_prenatal : '',
+							startDate: state.childBirthDate
+								? new Date(date_start_prenatal).toLocaleString('default', {
+										day: 'numeric',
+										month: 'short',
+										year: 'numeric'
+								  })
+								: '',
 							endDate: state.childBirthDate
-								? formatage_date(state.childBirthDate)
+								? new Date(state.childBirthDate).toLocaleString('default', {
+										day: 'numeric',
+										month: 'short',
+										year: 'numeric'
+								  })
 								: 'Accouchement',
 							key: 'prenatal',
 							legend: 'Congé prenatal',
@@ -264,7 +389,13 @@ function Maternité2() {
 						},
 						{
 							value: postnatal,
-							endDate: state.childBirthDate ? date_fin_postnatal : '',
+							endDate: state.childBirthDate
+								? new Date(date_fin_postnatal).toLocaleString('default', {
+										day: 'numeric',
+										month: 'short',
+										year: 'numeric'
+								  })
+								: '',
 							key: 'postnatal',
 							legend: 'Congé postnatal',
 							sublegend:
@@ -304,9 +435,9 @@ function Result({ state }: { state: State }) {
 			? 18 * 7
 			: 10 * 7
 
-	//Pregnancy-related illness
-	prenatal += state.isSick ? 2 * 7 : 0
-	postnatal += state.isSick ? 4 * 7 : 0
+	//Pregnancy-related or ChildBrith-related illness
+	prenatal += state.pregnancyRelatedIllness ? 2 * 7 : 0
+	postnatal += state.childBirthRelatedIllness ? 4 * 7 : 0
 
 	//Preterm and Child Hospitalized after ChildBirth
 	postnatal += state.isPreterm
@@ -315,15 +446,33 @@ function Result({ state }: { state: State }) {
 			: Math.min(42, state.nbDaysPreterm)
 		: 0
 
+	prenatal -= state.isPreterm ? state.nbDaysPreterm : 0
+
 	let date_fin_postnatal = new Date()
 	let date_start_prenatal = new Date()
 	const childBirthDate = new Date(state.childBirthDate)
 	date_fin_postnatal.setDate(childBirthDate.getDate() + postnatal)
 	date_start_prenatal.setDate(childBirthDate.getDate() - prenatal)
 
+	// Advanced Prenatal Leave
+	prenatal += state.advancePrenatalLeave
+		? state.nbDaysAdvancePrenatal
+			? state.nbChildren === '2' || state.nbChildren == '3'
+				? Math.min(28, state.nbDaysAdvancePrenatal)
+				: Math.min(14, state.nbDaysAdvancePrenatal)
+			: 0
+		: 0
+	postnatal -= state.advancePrenatalLeave
+		? state.nbDaysAdvancePrenatal
+			? state.nbChildren === '2' || state.nbChildren == '3'
+				? Math.min(28, state.nbDaysAdvancePrenatal)
+				: Math.min(14, state.nbDaysAdvancePrenatal)
+			: 0
+		: 0
+
 	return {
-		date_start_prenatal: formatage_date(date_start_prenatal),
-		date_fin_postnatal: formatage_date(date_fin_postnatal),
+		date_start_prenatal,
+		date_fin_postnatal,
 		postnatal,
 		prenatal
 	}
@@ -335,8 +484,6 @@ function Paternité() {
 		currentValue: state[key],
 		onChange: (val: State[Key]) => setState(s => ({ ...s, [key]: val }))
 	})
-	const today = new Date()
-	const pad = (n: number): string => (+n < 10 ? `0${n}` : '' + n)
 	return (
 		<>
 			<p>
