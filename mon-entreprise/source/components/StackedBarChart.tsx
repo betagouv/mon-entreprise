@@ -49,7 +49,7 @@ const BarStackTicks = styled.div`
 	margin-top: 10px;
 	flex-direction: column;
 
-	@media (min-width: 800px) {
+	@media {
 		flex-direction: row;
 	}
 `
@@ -155,8 +155,10 @@ type StackedBarChartTestProps = {
 		color?: string
 		startDate?: string
 		endDate?: string
+		topTickLeft?: string
+		topTickRight?: string
 		value: Evaluation<Types>
-		legend: React.ReactNode
+		legend?: React.ReactNode
 		sublegend?: React.ReactNode
 		key: string
 	}>
@@ -177,6 +179,34 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
 	return (
 		<animated.div ref={intersectionRef} style={styles}>
+			<BarStackTicks>
+				{dataWithPercentage.map(({ key, topTickLeft, topTickRight }) => (
+					<BarStackTicksItem key={key}>
+						{topTickLeft && (
+							<div
+								css={`
+									text-align: left;
+									margin-left: -70px;
+									margin-bottom: 10px;
+								`}
+							>
+								<strong>{topTickLeft}</strong>{' '}
+							</div>
+						)}
+						{topTickRight && (
+							<div
+								css={`
+									text-align: right;
+									margin-right: -70px;
+									margin-bottom: 10px;
+								`}
+							>
+								<strong>{topTickRight}</strong>{' '}
+							</div>
+						)}
+					</BarStackTicksItem>
+				))}
+			</BarStackTicks>
 			<BarStack>
 				{dataWithPercentage
 					// <BarItem /> has a border so we don't want to display empty bars
@@ -199,6 +229,7 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 							<div
 								css={`
 									text-align: left;
+									margin-top: 10px;
 								`}
 							>
 								<strong>{startDate}</strong>{' '}
@@ -208,6 +239,7 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 							<div
 								css={`
 									text-align: right;
+									margin-top: 10px;
 								`}
 							>
 								<strong>{endDate}</strong>{' '}
@@ -219,7 +251,7 @@ export function StackedBarChartTest({ data }: StackedBarChartTestProps) {
 			<BarStackLegend>
 				{dataWithPercentage.map(({ key, color, legend, sublegend }) => (
 					<BarStackLegendItem key={key}>
-						<SmallCircle style={{ backgroundColor: color }} />
+						{legend && <SmallCircle style={{ backgroundColor: color }} />}
 						{legend}
 						{sublegend}
 					</BarStackLegendItem>

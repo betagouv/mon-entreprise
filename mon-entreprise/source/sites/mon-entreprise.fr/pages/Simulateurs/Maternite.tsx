@@ -139,6 +139,8 @@ function Maternité2() {
 	let {
 		date_start_prenatal,
 		date_fin_postnatal,
+		min_date_fin_postnatal,
+		min_date_start_prenatal,
 		postnatal,
 		prenatal
 	} = Result({ state })
@@ -300,7 +302,7 @@ function Maternité2() {
 			)}
 			<div
 				css={`
-					margin: 2rem 0px;
+					margin: 3rem 0px;
 				`}
 			>
 				<h3>
@@ -360,9 +362,32 @@ function Maternité2() {
 				<StackedBarChartTest
 					data={[
 						{
-							value: prenatal,
+							value: prenatal - 14,
 							startDate: state.childBirthDate
 								? new Date(date_start_prenatal).toLocaleString('default', {
+										day: 'numeric',
+										month: 'short',
+										year: 'numeric'
+								  })
+								: '',
+							key: 'prenatal',
+							legend: 'Congé prénatal',
+							sublegend:
+								prenatal % 7 === 0 ? (
+									<strong> {Math.trunc(prenatal / 7)} semaines</strong>
+								) : (
+									<strong>
+										{Math.trunc(prenatal / 7)} semaines et {prenatal % 7} jours
+									</strong>
+								),
+							color: '#549f72'
+						},
+						{
+							value: 14,
+							key: 'obligatoire prenatal',
+							topTickLeft: 'Congé prénatal minimal',
+							startDate: state.childBirthDate
+								? new Date(min_date_start_prenatal).toLocaleString('default', {
 										day: 'numeric',
 										month: 'short',
 										year: 'numeric'
@@ -375,20 +400,23 @@ function Maternité2() {
 										year: 'numeric'
 								  })
 								: 'Accouchement',
-							key: 'prenatal',
-							legend: 'Congé prenatal',
-							sublegend:
-								prenatal % 7 === 0 ? (
-									<strong> {Math.trunc(prenatal / 7)} semaines</strong>
-								) : (
-									<strong>
-										{Math.trunc(prenatal / 7)} semaines et {prenatal % 7} jours
-									</strong>
-								),
 							color: '#549f72'
 						},
 						{
-							value: postnatal,
+							value: 42,
+							key: 'min postnatal',
+							topTickRight: 'Congé postnatal minimal',
+							endDate: state.childBirthDate
+								? new Date(min_date_fin_postnatal).toLocaleString('default', {
+										day: 'numeric',
+										month: 'short',
+										year: 'numeric'
+								  })
+								: '',
+							color: '#5a8adb'
+						},
+						{
+							value: postnatal - 42,
 							endDate: state.childBirthDate
 								? new Date(date_fin_postnatal).toLocaleString('default', {
 										day: 'numeric',
@@ -440,19 +468,22 @@ function Result({ state }: { state: State }) {
 	postnatal += state.childBirthRelatedIllness ? 4 * 7 : 0
 
 	//Preterm and Child Hospitalized after ChildBirth
-	postnatal += state.isPreterm
-		? state.childIsHospitalized
+	postnatal +=
+		state.isPreterm && state.childIsHospitalized
 			? state.nbDaysPreterm
 			: Math.min(42, state.nbDaysPreterm)
-		: 0
 
 	prenatal -= state.isPreterm ? state.nbDaysPreterm : 0
 
 	let date_fin_postnatal = new Date()
 	let date_start_prenatal = new Date()
+	let min_date_start_prenatal = new Date()
+	let min_date_fin_postnatal = new Date()
 	const childBirthDate = new Date(state.childBirthDate)
 	date_fin_postnatal.setDate(childBirthDate.getDate() + postnatal)
 	date_start_prenatal.setDate(childBirthDate.getDate() - prenatal)
+	min_date_start_prenatal.setDate(childBirthDate.getDate() - 14)
+	min_date_fin_postnatal.setDate(childBirthDate.getDate() + 42)
 
 	// Advanced Prenatal Leave
 	prenatal += state.advancePrenatalLeave
@@ -473,6 +504,8 @@ function Result({ state }: { state: State }) {
 	return {
 		date_start_prenatal,
 		date_fin_postnatal,
+		min_date_fin_postnatal,
+		min_date_start_prenatal,
 		postnatal,
 		prenatal
 	}
