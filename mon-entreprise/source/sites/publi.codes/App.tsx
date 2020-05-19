@@ -6,6 +6,7 @@ import { hot } from 'react-hot-loader'
 import { Route, Switch } from 'react-router-dom'
 import Provider from '../../Provider'
 import redirects from '../mon-entreprise.fr/redirects'
+import Api from './Api'
 import Landing from './Landing'
 import Studio from './LazyStudio'
 import Mécanismes from './Mécanismes'
@@ -25,6 +26,7 @@ const RouterSwitch = () => {
 				<Route exact path="/" component={Landing} />
 				<Route exact path="/studio" component={Studio} />
 				<Route exact path="/mécanismes" component={Mécanismes} />
+				<Route exact path="/api" component={Api} />
 				<Route component={App} />
 			</Switch>
 		</>
