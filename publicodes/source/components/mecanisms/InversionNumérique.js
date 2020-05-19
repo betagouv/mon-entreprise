@@ -1,15 +1,10 @@
 import React from 'react'
 import { makeJsx } from '../../evaluation'
-import { Node } from './common'
-import './InversionNumérique.css'
+import { Mecanism } from './common'
 
 export default function InversionNumérique({ nodeValue, explanation }) {
 	return (
-		<Node
-			classes="mecanism inversionNumérique"
-			name="inversion numérique"
-			value={nodeValue}
-		>
+		<Mecanism name="inversion numérique" value={nodeValue}>
 			{explanation.inversionFailed ? (
 				<>
 					{' '}
@@ -47,6 +42,6 @@ export default function InversionNumérique({ nodeValue, explanation }) {
 					</ul>
 				</>
 			)}
-		</Node>
+		</Mecanism>
 	)
 }

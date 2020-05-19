@@ -1,7 +1,7 @@
 import { evolve, map } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { Node } from './components/mecanisms/common'
+import { Mecanism } from './components/mecanisms/common'
 import { RuleLinkWithContext } from './components/RuleLink'
 import { warning } from './error'
 import evaluate from './evaluateRule'
@@ -249,18 +249,13 @@ const evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 	const child = parse(rules, rule, parsedRules)(value)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Node
-			classes="ruleProp mecanism cond"
-			name={dottedName}
-			value={nodeValue}
-			unit={unit}
-		>
+		<Mecanism name={dottedName} value={nodeValue} unit={unit}>
 			{explanation.category === 'variable' ? (
 				<div className="node">{makeJsx(explanation)}</div>
 			) : (
 				makeJsx(explanation)
 			)}
-		</Node>
+		</Mecanism>
 	)
 
 	return {

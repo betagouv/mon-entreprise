@@ -2,16 +2,11 @@ import { RuleLinkWithContext } from '../RuleLink'
 import { makeJsx } from '../../evaluation'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { Node } from './common'
+import { Mecanism } from './common'
 
 export default function Recalcul({ nodeValue, explanation }) {
 	return (
-		<Node
-			classes="mecanism recalcul"
-			name="recalcul"
-			value={nodeValue}
-			unit={explanation.unit}
-		>
+		<Mecanism name="recalcul" value={nodeValue} unit={explanation.unit}>
 			<>
 				{explanation.recalcul && (
 					<Trans i18nKey="calcul-avec">
@@ -29,6 +24,6 @@ export default function Recalcul({ nodeValue, explanation }) {
 					))}
 				</ul>
 			</>
-		</Node>
+		</Mecanism>
 	)
 }

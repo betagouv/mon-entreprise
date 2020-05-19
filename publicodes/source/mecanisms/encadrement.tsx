@@ -1,5 +1,5 @@
 import React from 'react'
-import { Node } from '../components/mecanisms/common'
+import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
 import {
 	defaultNode,
@@ -9,42 +9,38 @@ import {
 } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 
-function MecanismEncadrement({ nodeValue, explanation, unit }) {
+function MecanismEncadrement({ nodeValue, explanation }) {
 	return (
-		<div>
-			{makeJsx(explanation.valeur)}
+		<InfixMecanism value={explanation.valeur}>
 			{!explanation.plancher.isDefault && (
 				<>
-					<br />
-
-					<span
+					<p
 						style={
 							nodeValue === explanation.plancher.nodeValue
-								? { background: 'yellow' }
+								? { background: 'var(--lighterColor)', fontWeight: 'bold' }
 								: {}
 						}
 					>
-						<strong className="key">Minimum : </strong>
-						<span className="value">{makeJsx(explanation.plancher)}</span>
-					</span>
+						<strong>Minimum : </strong>
+						{makeJsx(explanation.plancher)}
+					</p>
 				</>
 			)}
 			{!explanation.plafond.isDefault && (
 				<>
-					<br />
-					<span
+					<p
 						style={
 							nodeValue === explanation.plancher.nodeValue
-								? { background: 'yellow' }
+								? { background: 'var(--lighterColor)', fontWeight: 'bold' }
 								: {}
 						}
 					>
-						<strong className="key">Plafonné à : </strong>
-						<span className="value">{makeJsx(explanation.plafond)}</span>
-					</span>
+						<strong>Plafonné à : </strong>
+						{makeJsx(explanation.plafond)}
+					</p>
 				</>
 			)}
-		</div>
+		</InfixMecanism>
 	)
 }
 

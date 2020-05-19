@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 const path = require('path')
-const { commonLoaders, styleLoader } = require('../webpack/common')
+const { commonLoaders } = require('../webpack/common')
 
 const common = {
 	resolve: {
@@ -10,14 +10,14 @@ const common = {
 	mode: 'development',
 	entry: path.resolve(__dirname, 'source', 'index.ts'),
 	module: {
-		rules: [...commonLoaders(), styleLoader('isomorphic-style-loader')]
+		rules: commonLoaders()
 	},
 	externals:
 		// Every non-relative module is external
 		/^[a-z\-0-9]+$/
 }
 
-module.exports = [
+module.exports =
 	// Config for UMD export (browser / node)
 	{
 		...common,
@@ -28,17 +28,3 @@ module.exports = [
 			globalObject: 'this'
 		}
 	}
-]
-
-// Config for esmodule export, not used here, since it conflict with css import.
-// Maybe we should use styled-component everywhere, to simplify things
-
-// const futurBuild = {
-// 	...common,
-// 	output: {
-// 		path: path.resolve(__dirname, 'dist', 'es')
-// 	},
-// 	experiments: {
-// 		outputModule: true
-// 	}
-// }

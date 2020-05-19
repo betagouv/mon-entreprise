@@ -216,7 +216,7 @@ Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
 - `isApplicable`: si l'expression évaluée est une référence à une règle, alors
   ce booléen indique si la règle est applicable ou non
 
-#### _function_ formatValue(evaluatedNode, \[options])
+#### _function_ formatValue(evaluatedNode, \[options\])
 
 Formate la valeur evaluée.
 

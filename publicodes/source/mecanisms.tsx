@@ -12,11 +12,12 @@ import {
 } from 'ramda'
 import React from 'react'
 import Allègement from './components/mecanisms/Allègement'
-import { Node } from './components/mecanisms/common'
+import { Mecanism } from './components/mecanisms/common'
 import InversionNumérique from './components/mecanisms/InversionNumérique'
 import Product from './components/mecanisms/Product'
 import Recalcul from './components/mecanisms/Recalcul'
 import Somme from './components/mecanisms/Somme'
+import { RuleLinkWithContext } from './components/RuleLink'
 import { typeWarning } from './error'
 import {
 	collectNodeMissing,
@@ -31,7 +32,6 @@ import {
 import { decompose } from './mecanisms/utils'
 import variations from './mecanisms/variations'
 import { convertNodeToUnit } from './nodeUnits'
-import { EvaluatedRule } from './types'
 import uniroot from './uniroot'
 import {
 	areUnitConvertible,
@@ -40,7 +40,6 @@ import {
 	parseUnit,
 	serializeUnit
 } from './units'
-import { RuleLinkWithContext } from './components/RuleLink'
 
 export const mecanismOneOf = (recurse, k, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
@@ -48,18 +47,13 @@ export const mecanismOneOf = (recurse, k, v) => {
 	const explanation = map(recurse, v)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Node
-			classes="mecanism conditions list"
-			name="une de ces conditions"
-			value={nodeValue}
-			unit={unit}
-		>
+		<Mecanism name="une de ces conditions" value={nodeValue} unit={unit}>
 			<ul>
 				{explanation.map((item, i) => (
 					<li key={i}>{makeJsx(item)}</li>
 				))}
 			</ul>
-		</Node>
+		</Mecanism>
 	)
 
 	const evaluate = (cache, situation, parsedRules, node) => {
@@ -99,18 +93,13 @@ export const mecanismAllOf = (recurse, k, v) => {
 	const explanation = map(recurse, v)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Node
-			classes="mecanism conditions list"
-			name="toutes ces conditions"
-			value={nodeValue}
-			unit={unit}
-		>
+		<Mecanism name="toutes ces conditions" value={nodeValue} unit={unit}>
 			<ul>
 				{explanation.map((item, i) => (
 					<li key={i}>{makeJsx(item)}</li>
 				))}
 			</ul>
-		</Node>
+		</Mecanism>
 	)
 
 	const evaluate = (cache, situation, parsedRules, node) => {
@@ -512,12 +501,7 @@ export const mecanismMax = (recurse, k, v) => {
 	const evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Node
-			classes="mecanism list maximum"
-			name="le maximum de"
-			value={nodeValue}
-			unit={unit}
-		>
+		<Mecanism name="le maximum de" value={nodeValue} unit={unit}>
 			<ul>
 				{explanation.map((item, i) => (
 					<li key={i}>
@@ -526,7 +510,7 @@ export const mecanismMax = (recurse, k, v) => {
 					</li>
 				))}
 			</ul>
-		</Node>
+		</Mecanism>
 	)
 
 	return {
@@ -546,12 +530,7 @@ export const mecanismMin = (recurse, k, v) => {
 	const evaluate = evaluateArray(min, Infinity)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Node
-			classes="mecanism list minimum"
-			name="le minimum de"
-			value={nodeValue}
-			unit={unit}
-		>
+		<Mecanism name="le minimum de" value={nodeValue} unit={unit}>
 			<ul>
 				{explanation.map((item, i) => (
 					<li key={i}>
@@ -560,7 +539,7 @@ export const mecanismMin = (recurse, k, v) => {
 					</li>
 				))}
 			</ul>
-		</Node>
+		</Mecanism>
 	)
 
 	return {
