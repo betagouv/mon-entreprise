@@ -1,8 +1,21 @@
-import references from './références/références.yaml'
 import { toPairs } from 'ramda'
 import React from 'react'
 import { capitalise0 } from '../../utils'
 import styled from 'styled-components'
+
+const references = {
+	'service-public.fr': require('url-loader!./références/marianne.png').default,
+	'urssaf.fr': require('url-loader!./références/URSSAF.png').default,
+	'gouv.fr': require('url-loader!./références/marianne.png').default,
+	'agirc-arrco.fr': require('url-loader!./références/agirc-arrco.png').default,
+	'pole-emploi.fr': require('url-loader!./références/pole-emploi.png').default,
+	'ladocumentationfrançaise.fr': require('url-loader!./références/ladocumentationfrançaise.png')
+		.default,
+	'senat.fr': require('url-loader!./références/senat.png').default,
+	'ameli.fr': require('url-loader!./références/ameli.png').default,
+	'bpifrance-creation': require('url-loader!./références/bpi-création.png')
+		.default
+}
 
 const findRefKey = (link: string) =>
 	Object.keys(references).find(r => link.includes(r))
@@ -20,20 +33,17 @@ type RefProps = {
 
 function Ref({ name, link }: RefProps) {
 	const refKey = findRefKey(link),
-		refData = (refKey && references[refKey]) || {},
 		domain = cleanDomain(link)
 	return (
 		<li
 			style={{
 				display: 'flex',
-				alignItems: 'baseline'
+				alignItems: 'center'
 			}}
 			key={name}
 		>
 			<span className="imageWrapper">
-				{refData.image && (
-					<img src={require('./références/' + refData.image)} />
-				)}
+				{refKey && <img src={references[refKey]} />}
 			</span>
 			<a
 				href={link}

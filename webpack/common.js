@@ -17,7 +17,7 @@ module.exports.styleLoader = styleLoader => ({
 	]
 })
 
-module.exports.commonLoaders = ({ legacy = false } = {}) => {
+module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 	const babelLoader = {
 		loader: 'babel-loader',
 		options: {
@@ -49,15 +49,22 @@ module.exports.commonLoaders = ({ legacy = false } = {}) => {
 			use: babelLoader,
 			exclude: /node_modules|dist/
 		},
-		{
-			test: /\.(jpe?g|png|svg)$/,
-			use: {
-				loader: 'file-loader',
-				options: {
-					name: 'images/[name].[ext]'
-				}
-			}
-		},
+		...(file
+			? [
+					{
+						test: /\.(jpe?g|png|svg)$/,
+						use: [
+							{
+								loader: 'url-loader',
+								options: {
+									limit: 8192,
+									name: 'images/[name].[ext]'
+								}
+							}
+						]
+					}
+			  ]
+			: []),
 		{
 			test: /\.yaml$/,
 			use: ['json-loader', 'yaml-loader']
