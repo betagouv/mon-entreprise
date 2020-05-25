@@ -572,6 +572,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retra
       - 200 heures/an * SMIC horaire
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
+  unité: €/an
   formule:
     barème:
       assiette: assiette retraite
@@ -582,6 +583,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de ba
         - taux: 0.6%
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  unité: €/an
   formule:
     barème:
       assiette: retraite complémentaire . assiette
@@ -608,6 +610,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       - cotisations . assiette
       - 20% * plafond sécurité sociale temps plein
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  unité: €/an
   formule:
     produit:
       assiette: assiette
@@ -615,6 +618,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       plafond: plafond sécurité sociale temps plein
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
+  unité: €/an
   formule:
     produit:
       assiette: plafond sécurité sociale temps plein
