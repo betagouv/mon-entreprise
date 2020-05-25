@@ -5,6 +5,11 @@ import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
+import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript'
+import style from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+
+SyntaxHighlighter.registerLanguage('js', js)
 
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',
@@ -61,9 +66,9 @@ const CodeBlock = ({ value, language }: { value: string; language: string }) =>
 	language === 'yaml' ? (
 		<PublicodeHighlighter source={value} />
 	) : (
-		<pre>
-			<code>{value}</code>
-		</pre>
+		<SyntaxHighlighter language={language} style={style}>
+			{value}
+		</SyntaxHighlighter>
 	)
 
 export const Markdown = ({
