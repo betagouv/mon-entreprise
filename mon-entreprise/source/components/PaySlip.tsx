@@ -3,7 +3,7 @@ import RuleLink from 'Components/RuleLink'
 import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
 import { formatValue, ParsedRule, ParsedRules } from 'publicodes'
 import React, { Fragment, useContext } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
@@ -149,6 +149,7 @@ export default function PaySlip() {
 }
 
 function Cotisation({ dottedName }: { dottedName: DottedName }) {
+	const language = useTranslation().i18n.language
 	const partSalariale = useEvaluation(
 		'contrat salarié . cotisations . salariales'
 	)?.formule.explanation.explanation.find(
@@ -170,12 +171,12 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 			/>
 			<span style={{ backgroundColor: 'var(--lightestColor)' }}>
 				{partPatronale?.nodeValue
-					? formatValue({ ...partPatronale, unit: '€' })
+					? formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 			<span style={{ backgroundColor: 'var(--lightestColor)' }}>
 				{partSalariale?.nodeValue
-					? formatValue({ ...partSalariale, unit: '€' })
+					? formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 		</>

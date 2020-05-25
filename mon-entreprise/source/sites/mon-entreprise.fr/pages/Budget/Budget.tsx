@@ -75,9 +75,8 @@ export default function Budget() {
 										return (
 											<td key={q}>
 												{value
-													? formatValue({
-															nodeValue: value,
-															unit: '€',
+													? formatValue(value, {
+															displayedUnit: '€',
 															language
 													  })
 													: '-'}
@@ -91,10 +90,9 @@ export default function Budget() {
 							<tr>
 								<td>Total</td>
 								<td>
-									{formatValue({
-										nodeValue: sum(Object.values(budget[2020]['T1'])),
+									{formatValue(sum(Object.values(budget[2020]['T1'])), {
 										language,
-										unit: '€'
+										displayedUnit: '€'
 									})}
 								</td>
 								<td>-</td>

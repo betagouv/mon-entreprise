@@ -50,7 +50,7 @@ export default function Input({
 					autoComplete="off"
 				/>
 				<span className="suffix">
-					{formatValue({ nodeValue: value ?? 0, unit, language }).replace(
+					{formatValue({ nodeValue: value ?? 0, unit }, { language }).replace(
 						/[\d,.]*/g,
 						''
 					)}

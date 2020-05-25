@@ -32,11 +32,8 @@ export default function Value({
 		expression,
 		{ unit }
 	)
-	const nodeValue = evaluation.nodeValue
-	const value = formatValue({
-		nodeValue,
-		unit:
-			displayedUnit ?? (evaluation as EvaluatedNode<DottedName, number>).unit,
+	const value = formatValue(evaluation, {
+		displayedUnit,
 		language,
 		precision
 	})

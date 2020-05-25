@@ -1,6 +1,6 @@
 import { serializeUnit } from './units'
 import { memoizeWith } from 'ramda'
-import { Evaluation, Unit } from './types'
+import { Unit, EvaluatedNode, Evaluation } from './types'
 import { capitalise0 } from './utils'
 
 const NumberFormat = memoizeWith(
@@ -68,11 +68,8 @@ function formatNumber({
 	if (typeof value !== 'number') {
 		return value
 	}
-	let serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
-	if (serializedUnit === '') {
-		serializedUnit = '%'
-		value *= 100
-	}
+	const serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
+
 	switch (serializedUnit) {
 		case '€':
 			return numberFormatter({
@@ -105,22 +102,31 @@ const booleanTranslations = {
 	en: { true: 'Yes', false: 'No' }
 }
 
-type ValueArg = {
-	nodeValue: Evaluation
-	language: string
-	unit?: string | Unit
+type Options = {
+	language?: string
+	displayedUnit?: string
 	precision?: number
 }
 
-export function formatValue({
-	nodeValue,
-	language,
-	unit,
-	precision = 2
-}: ValueArg) {
+export function formatValue(
+	value: number | { nodeValue: Evaluation; unit?: Unit } | undefined,
+	{ language = 'fr', displayedUnit, precision = 2 }: Options = {}
+) {
+	const nodeValue =
+		typeof value === 'number' || typeof value === 'undefined'
+			? value
+			: value.nodeValue
+	const unit =
+		displayedUnit ??
+		(typeof value === 'number' ||
+		typeof value === 'undefined' ||
+		!('unit' in value)
+			? undefined
+			: value.unit)
+
 	if (
 		(typeof nodeValue === 'number' && Number.isNaN(nodeValue)) ||
-		nodeValue === null
+		nodeValue == null
 	) {
 		return '-'
 	}

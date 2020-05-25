@@ -72,11 +72,9 @@ export function getSessionStorage() {
 }
 
 export const currencyFormat = (language: string) => ({
-	isCurrencyPrefixed: !!formatValue({
-		language,
-		nodeValue: 12,
-		unit: '€'
-	}).match(/^€/),
-	thousandSeparator: formatValue({ language, nodeValue: 1000 }).charAt(1),
-	decimalSeparator: formatValue({ language, nodeValue: 0.1 }).charAt(1)
+	isCurrencyPrefixed: !!formatValue(12, { language, displayedUnit: '€' }).match(
+		/^€/
+	),
+	thousandSeparator: formatValue(1000, { language }).charAt(1),
+	decimalSeparator: formatValue(0.1, { language }).charAt(1)
 })

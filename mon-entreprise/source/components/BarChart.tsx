@@ -26,7 +26,11 @@ function ChartItemBar({ style, numberToPlot, unit }: ChartItemBarProps) {
 					color: var(--textColorOnWhite);
 				`}
 			>
-				{formatValue({ nodeValue: numberToPlot, unit, precision: 0, language })}
+				{formatValue(numberToPlot, {
+					displayedUnit: unit,
+					precision: 0,
+					language
+				})}
 			</div>
 		</div>
 	)

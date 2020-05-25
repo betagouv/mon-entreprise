@@ -111,11 +111,10 @@ export default function Activité({
 												defaultChecked={seuilRevenus === 'AUCUN'}
 											/>{' '}
 											<Trans>inférieurs à</Trans>{' '}
-											{formatValue({
-												nodeValue: activité['seuil déclaration'],
+											{formatValue(activité['seuil déclaration'], {
 												precision: 0,
 												language,
-												unit: '€'
+												displayedUnit: '€'
 											})}
 										</label>
 									</li>
@@ -129,11 +128,10 @@ export default function Activité({
 										defaultChecked={seuilRevenus === 'IMPOSITION'}
 									/>{' '}
 									<Trans>inférieurs à</Trans>{' '}
-									{formatValue({
-										nodeValue: activité['seuil pro'],
+									{formatValue(activité['seuil pro'], {
 										precision: 0,
 										language,
-										unit: '€'
+										displayedUnit: '€'
 									})}
 								</label>
 							</li>
@@ -149,11 +147,10 @@ export default function Activité({
 											}
 										/>{' '}
 										<Trans>supérieurs à</Trans>{' '}
-										{formatValue({
-											nodeValue: activité['seuil pro'],
+										{formatValue(activité['seuil pro'], {
 											precision: 0,
 											language,
-											unit: '€'
+											displayedUnit: '€'
 										})}
 									</label>
 								</li>
@@ -170,13 +167,14 @@ export default function Activité({
 										}
 									/>{' '}
 									<Trans>supérieurs à</Trans>{' '}
-									{formatValue({
-										nodeValue:
-											activité['seuil régime général'] || activité['seuil pro'],
-										precision: 0,
-										language,
-										unit: '€'
-									})}
+									{formatValue(
+										activité['seuil régime général'] || activité['seuil pro'],
+										{
+											precision: 0,
+											language,
+											displayedUnit: '€'
+										}
+									)}
 								</label>
 							</li>
 						</ul>

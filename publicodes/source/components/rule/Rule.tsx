@@ -41,7 +41,7 @@ export default function Rule({
 					>
 						{rule.nodeValue != null && (
 							<>
-								{formatValue({ ...rule, language })}
+								{formatValue(rule, { language })}
 								<br />
 							</>
 						)}
@@ -49,8 +49,7 @@ export default function Rule({
 							<>
 								<small>
 									Valeur par défaut :{' '}
-									{formatValue({
-										...rule.defaultValue,
+									{formatValue(rule.defaultValue, {
 										language
 									})}
 								</small>
