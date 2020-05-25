@@ -1,6 +1,6 @@
 {
 	"name": "publicodes",
-	"version": "1.0.0-beta.1",
+	"version": "1.0.0-beta.2",
 	"description": "A declarative language for encoding public algorithm",
 	"main": "dist/index.js",
 	"types": "dist/types/index.d.ts",
@@ -20,6 +20,7 @@
 	"private": false,
 	"dependencies": {
 		"classnames": "^2.2.6",
+		"i18next": "^19.4.4",
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
 		"ramda": "^0.27.0",

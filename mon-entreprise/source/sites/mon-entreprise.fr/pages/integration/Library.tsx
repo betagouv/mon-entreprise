@@ -13,96 +13,142 @@ export default function Library() {
 					Si vous pensez que votre site ou service gagnerait à afficher des
 					calculs de salaire, par exemple passer du salaire brut au salaire net,
 					bonne nouvelle : tous les calculs de cotisations et impôts qui sont
-					derrière mon-entreprise.fr sont libres et{' '}
-					<b>
-						intégrables sous forme d'une{' '}
-						<a href="https://www.npmjs.com/package/mon-entreprise">
-							bibliothèque NPM
-						</a>
-					</b>
+					derrière mon-entreprise.fr sont libres et facilement réutilisable
+					grâce à la{' '}
+					<a href="https://www.npmjs.com/package/publicodes">
+						bibliothèque NPM publicodes
+					</a>
 					.
 				</p>
+				<h2>Comment utiliser cette librairie ?</h2>
 				<p>
-					Dit plus simplement, les développeurs de votre équipe sont en mesure
-					d'intégrer le calcul dans votre interface en 5 minutes
-					{emoji('⌚')}, sans avoir à gérer la complexité de la paie et la mise
-					à jour régulière des règles de calcul.
+					Toutes nos règles de calculs sont écrite en `publicodes`, un language
+					déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder des
+					algorithme d'intérêt public.{' '}
+					<a href="https://publi.codes">En savoir plus sur publicodes</a>
 				</p>
 				<p>
-					Cette bibliothèque est un commun numérique développé par l'Etat et
-					l'ACOSS. Elle repose sur un nouveau langage de programmation,{' '}
-					<a href="https://publi.codes">publicodes</a>.
+					Pour effectuer vos propre calcul, il suffit donc d'installer
+					l'interpreteur publicode, de télécharger les règles de mon-entreprise,
+					et d'appeler la fonction d'évaluation.
 				</p>
-				<h2>Comment l'utiliser ?</h2>
+				<h3>1) Installer publicodes</h3>
+				Dans votre projet :
+				<pre>
+					<code>$ npm install --save publicodes</code>
+				</pre>
+				<h3>2) Télécharger les règles mon-entreprise</h3>
 				<p>
-					Les exemples suivants vous montrent comment utiliser la bibliothèque
-					sur un site ReactJs très simple.
+					Les règles de calculs de mon-entreprise ne sont pas (encore)
+					disponible sous forme de paquet npm. Il faudra donc les télécharger
+					manuellement.
 				</p>
-				<h3>1) Faire un calcul très simple : du brut au net</h3>
-				<div className="ui__ full-width">
+				<a href="https://github.com/betagouv/mon-entreprise/tree/master/mon-entreprise/source/rules">
+					Voir les fichiers de règles publicodes de mon-entreprise
+				</a>
+				<p>
+					Pour le faire rapidement, vous pouvez copier coller la commande
+					suivante :
+				</p>
+				<blockquote>
+					<code>
+						wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/base.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/dirigeant.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/salarié.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/protection-sociale.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/entreprise-établissement.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/impôt.yaml
+						& wget
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/situation-personelle.yaml
+					</code>
+				</blockquote>
+				<p>
+					<strong>Attention</strong> : bien que les règles soient décomposées en
+					fichier séparé, les dépendances ne sont pas encore bien gérées avec
+					publicode. Il vous faudra donc veiller à bien télécharger et importer
+					les fichiers "socles" pour être sûr de ne pas avoir de dépendances non
+					satisfaite.
+				</p>
+				<h3>3) Lancer le calcul</h3>
+				<p>
+					Il ne vous reste plus qu'à paramètrer le moteur avec les règles
+					téléchargées et à appeler la fonction `evaluate` sur la règle que dont
+					vous souhaitez la valeur. Voici un exemple pour le calcul brut / net
+				</p>
+				<div
+					className="ui__ full-width"
+					css={`
+						text-align: center;
+					`}
+				>
 					<iframe
-						src="https://codesandbox.io/embed/damp-bird-0m8gl?fontsize=14&hidenavigation=1"
-						title="mon-entreprise 1"
-						allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-						css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+						src="https://codesandbox.io/embed/zen-keller-2dpct?fontsize=14&hidenavigation=1&theme=dark"
+						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+						title="mon-entreprise (exemple 1)"
 					></iframe>
 				</div>
-				<h3>2) Parcourir la documentation en ligne</h3>
+				<h2>Paramétrer le calcul</h2>
 				<p>
 					Vous l'aurez constaté dans l'exemple précédent, la recette d'un calcul
 					est simple : des variables d'entrée (le salaire brut), une ou
 					plusieurs variables de sorties (le salaire net).
 				</p>
 				<p>
-					Toutes ces variables sont listées et expliquées sur notre{' '}
+					Le calcul est cependant paramétrable avec toutes les possibilités
+					permise dans la legislation.
+				</p>
+				<p>
+					Toutes ces variables sont listées et expliquées sur la{' '}
 					<a target="_blank" href="/documentation">
 						documentation en ligne
 					</a>
-					.
-				</p>
-
-				<p>
-					Utilisez le moteur de recherche pour trouver la bonne variable, puis
-					cliquez sur "Voir le code source" pour obtenir l'ensemble de la
-					documentation : valeur par défaut, valeurs possibles quand c'est une
-					énumération de choix, unité quand c'est un nombre, description,
-					question utilisateur associée, etc.
+					. Cette documentation est auto-générée depuis les fichiers de règles
+					publicode, elle est donc constament à jour.
 				</p>
 				<p>
 					Lançons un calcul plus proche d'une fiche de paie : voici une
 					description de la situation d'entrée annotée de liens vers les pages
 					correspondantes de la documentation :
 				</p>
-
-				<p css="background: #eee">
-					{' '}
-					Un{' '}
-					<a href="https://mon-entreprise.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
-						cadre
-					</a>{' '}
-					gagnant{' '}
-					<a href="https://mon-entreprise.fr/documentation/contrat-salarié/rémunération/brut-de-base">
-						3 400€ bruts
-					</a>{' '}
-					, qui bénéficie de l'
-					<a href="https://mon-entreprise.fr/documentation/contrat-salarié/indemnité-kilométrique-vélo/active">
-						indemnité kilométrique vélo
-					</a>{' '}
-					et qui travaille dans une entreprise de{' '}
-					<a href="https://mon-entreprise.fr/documentation/entreprise/effectif">
-						12 salariés
-					</a>
-					.
-				</p>
+				<blockquote>
+					<p>
+						{' '}
+						Un{' '}
+						<a href="https://mon-entreprise.fr/documentation/contrat-salarié/statut-cadre/choix-statut-cadre">
+							cadre
+						</a>{' '}
+						gagnant{' '}
+						<a href="https://mon-entreprise.fr/documentation/contrat-salarié/rémunération/brut-de-base">
+							3 400€ bruts
+						</a>{' '}
+						, qui bénéficie de{' '}
+						<a href="https://mon-entreprise.fr/documentation/contrat-salari%C3%A9/frais-professionnels/titres%E2%80%91restaurant">
+							titres-restaurant
+						</a>{' '}
+						et qui travaille dans une entreprise de{' '}
+						<a href="https://mon-entreprise.fr/documentation/entreprise/effectif">
+							22 salariés
+						</a>
+						.
+					</p>
+				</blockquote>
 				<p>Voici ce que donne le calcul pour cet exemple plus complet :</p>
-				<div className="ui__ full-width">
+				<div
+					className="ui__ full-width"
+					css={`
+						text-align: center;
+					`}
+				>
 					<iframe
-						src="https://codesandbox.io/embed/mon-entreprise-2-60d6d?fontsize=14&hidenavigation=1"
-						title="mon-entreprise 2"
-						allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-						css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+						src="https://codesandbox.io/embed/mon-entreprise-exemple-2-cev02?fontsize=14&hidenavigation=1&theme=dark"
+						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+						title="mon-entreprise (exemple 2)"
 					></iframe>
 				</div>
 				<p>
@@ -140,23 +186,16 @@ export default function Library() {
 					dit, les hauts salaires paient une partie des cotisations sociales des
 					bas salaires.
 				</p>
-				<p>
-					{emoji('⚠️ ')}Attention, cet exemple fait pas mal de calculs d'un
-					coup, ce qui peut bloquer votre navigateur quelques secondes. Pour
-					palier à ce problème, il faudrait faire l'appel à la bibliothèque dans
-					un Web Worker, mais ça n'est pas possible{' '}
-					<a href="https://github.com/facebook/create-react-app/pull/5886">
-						pour l'instant
-					</a>{' '}
-					dans ces démos.
-				</p>
-				<div className="ui__ full-width">
+				<div
+					className="ui__ full-width"
+					css={`
+						text-align: center;
+					`}
+				>
 					<iframe
-						src="https://codesandbox.io/embed/mon-entreprise-3-248rg?fontsize=14&hidenavigation=1"
-						title="mon-entreprise 2"
-						allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-						css="width: 80%; margin-left: 10%; height: 600px; border:0; border-radius: 4px; overflow:hidden;"
-						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+						src="https://codesandbox.io/embed/mon-entreprise-exemple-3-4j11c?fontsize=14&hidenavigation=1&theme=dark"
+						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+						title="mon-entreprise (exemple 3)"
 					></iframe>
 				</div>
 			</Trans>

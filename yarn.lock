@@ -5878,7 +5878,7 @@ i18next-parser@^1.0.6:
     vue-template-compiler "^2.6.11"
     yamljs "^0.3.0"
 
-i18next@^19.0.1:
+i18next@^19.0.1, i18next@^19.4.4:
   version "19.4.4"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-19.4.4.tgz#c0a18bc2f2be554da636e67bfbf5200c7948b60d"
   integrity sha512-ofaHtdsDdX3A5nYur1HWblB7J4hIcjr2ACdnwTAJgc8hTfPbyzZfGX0hVkKpI3vzDIgO6Uzc4v1ffW2W6gG6zw==
