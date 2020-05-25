@@ -158,9 +158,9 @@ entreprise . ACRE:
     une de ces conditions:
       - toutes ces conditions:
           - dirigeant . auto-entrepreneur
-          - entreprise . durée d'activité < 3 ans
+          - entreprise . durée d'activité <= 3 ans
           - entreprise . date de création < 01/01/2020
-      - entreprise . durée d'activité . en début d'année < 1 an
+      - entreprise . durée d'activité . en début d'année <= 1 an
   par défaut: non
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
 

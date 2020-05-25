@@ -68,6 +68,13 @@ aide déclaration revenu indépendant 2019 . SMIC 2019:
   remplace: SMIC horaire
   formule: 10.03 €/heure
 
+aide déclaration revenu indépendant 2019 . période:
+  remplace:
+    - règle: période . début d'année
+      par: 01/01/2019
+    - règle: période . fin d'année
+      par: 31/12/2019
+
 aide déclaration revenu indépendant 2019 . revenu net fiscal:
   titre: revenu net fiscal
   résumé: avant déduction des charges sociales et exonérations fiscales [A]
