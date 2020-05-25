@@ -6,10 +6,12 @@ import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
 import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript'
+import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 import style from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 SyntaxHighlighter.registerLanguage('js', js)
+SyntaxHighlighter.registerLanguage('jsx', jsx)
 
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',

@@ -12,12 +12,6 @@ Le paquet est disponble sur NPM :
 $ npm install publicodes
 ```
 
-Il est aussi possible d'utiliser la librairie directement dans le navigateur :
-
-```html
-<script src="https://publi.codes/publicode.js"></script>
-```
-
 ## Utilisation
 
 ### Introduction
@@ -136,6 +130,49 @@ elle est effectivement nécessaire au calcul. Si elle est présente dans une
 portion non active de l'évaluation (par exemple dans un bloc condition non
 actif, ou la tranche d'un barème non actif) elle sera filtrée et n'apparaîtra
 pas dans les `missingVariables`
+
+### Documentation intéractive
+
+Publicodes génère également pour vous une documentation interactive, très
+facilement intégrable dans une app react. Pour cela, il vous suffit d'importer
+le composant dédié, et passer l'engine à afficher dans les props.
+
+```jsx
+import { Documentation } from 'publicodes'
+
+function MonApp() {
+	return (
+		<ReactRouter>
+			<Documentation engine={engine} documentationPath={'/documentation'} />
+			{/* Composants de l'app */}
+		</ReactRouter>
+	)
+}
+```
+
+Vous pourrez ensuite faire un lien vers la documentation avec le composant
+`RuleLink`.
+
+```jsx
+import { RuleLink } from 'publicodes'
+
+function MesDépenses() {
+	return (
+		<p>
+			Accéder aux{' '}
+			<RuleLink
+				dottedName={'dépenses primeur'}
+				engine={engine}
+				documentationPath={'/documentation'}
+			/>
+		</p>
+	)
+}
+```
+
+> Note : ces composants n'ont pas vocation à rester dans la bibliothèque coeur,
+> et seront prochainement disponible dans un paquet séparé, ce afin de ne pas
+> avoir `react` dans les dépendances de publicodes.
 
 ## Référence
 
