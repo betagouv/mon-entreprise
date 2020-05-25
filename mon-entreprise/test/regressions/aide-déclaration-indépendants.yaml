@@ -71,6 +71,9 @@ ACRE:
   - entreprise . ACRE: oui
     entreprise . date de création: 01/07/2018
     dirigeant . rémunération totale: 10000 €/an
+  - entreprise . ACRE: oui
+    entreprise . date de création: 01/07/2019
+    dirigeant . rémunération totale: 10000 €/an
 
 international:
   - situation personnelle . domiciliation fiscale à l'étranger: oui

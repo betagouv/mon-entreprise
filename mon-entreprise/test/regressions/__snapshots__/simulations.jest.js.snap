@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[50000,3366,9163,8,12630,37370]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[50000,3177,11384,8,14662,35338]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,1139,900,8,2141,12859]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,949,3261,8,4311,10689]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,386,295,8,782,4218]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,312,1354,8,1767,3233]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[10000,630,2202,8,2934,7066]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `"[10000,689,1477,8,2267,7733]"`;
+
+exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `"[10000,760,598,8,1459,8541]"`;
 
 exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[50000,3024,11424,8,14549,35451]"`;
 
