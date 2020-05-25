@@ -54,12 +54,14 @@ méthode `evaluate`.
 console.log(engine.evaluate('dépenses primeur'))
 ```
 
-La valeur numérique du nœud est disponible dans l'attribut `nodeValue`, son
-unité est disponible dans l'attribut `unit` :
+La valeur du nœud est disponible dans l'attribut `nodeValue`, son
+unité est disponible dans l'attribut `unit`. Mais pour un formattage sans
+effort, on préfèrera utiliser la fonction `formatValue`
 
 ```js
-const { nodeValue, unit } = engine.evaluate('dépenses primeur')
-console.log(`j'ai dépensé ${nodeValue} ${unit} chez le primeur`)
+import Engine, { formatValue } from 'publicodes'
+const dépenses = engine.evaluate('dépenses primeur')
+console.log(`j'ai dépensé ${formatValue(dépenses)} chez le primeur`)
 ```
 
 La méthode `setSituation` permet de forcer la valeur d'une liste de règle. Elle
@@ -76,7 +78,9 @@ La valeur de `dépenses primeur` se base maintenant sur un avocat à 3€ :
 
 ```js
 // On ré-évalue la règle dans la nouvelle situation
-console.log(`Nouveau prix ! ${engine.evaluate('dépenses primeur').nodeValue}`)
+console.log(
+	`Nouveau prix ! ${formatValue(engine.evaluate('dépenses primeur'))}`
+)
 ```
 
 ### Évaluation d'expressions
@@ -94,7 +98,7 @@ Publicode permet de réaliser des conversions d'unités. Pour celà il faut
 indiquer l'unité désirée comme paramètre à la méthode `evaluate` :
 
 ```js
-// on va au march" une fois par semaine, combien dépense-t-on par mois ?
+// on va au marché une fois par semaine en moyenne, combien dépense-t-on par mois ?
 engine.evaluate('dépenses primeurs / 7 jours', { unit: '€/mois' })
 ```
 
@@ -126,16 +130,12 @@ attendre que l'utilisateur n'ait répondu à l'intégralité des questions tout 
 utilisant la liste des variables manquantes pour déterminer les questions
 restant à poser.
 
-<!-- TODO : Exemple -->
-
 Les variables manquantes sont calculées lors de l'évaluation. Si une variable
 apparaît dans la formule de calcul d'une règle elle ne sera rapportée que si
 elle est effectivement nécessaire au calcul. Si elle est présente dans une
 portion non active de l'évaluation (par exemple dans un bloc condition non
 actif, ou la tranche d'un barème non actif) elle sera filtrée et n'apparaîtra
 pas dans les `missingVariables`
-
-<!-- TODO : Exemple -->
 
 ## Référence
 
