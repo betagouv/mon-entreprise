@@ -132,14 +132,21 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 			setCurrentTarget(last(targets))
 		}
 	})
-	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
-	// console.warn
-	const warnings: string[] = []
-	const originalWarn = console.warn
-	console.warn = (warning: string) => warnings.push(warning)
 
 	return (
 		<>
+			{engine.getWarnings().map(warning => (
+				<div
+					css={`
+						background: lightyellow;
+						padding: 20px;
+						border-radius: 5px;
+					`}
+					key={warning}
+				>
+					{nl2br(warning)}
+				</div>
+			))}
 			<div
 				css={`
 					display: flex;
@@ -176,18 +183,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 					</button>
 				</div>
 			</div>
-			{warnings.map(warning => (
-				<div
-					css={`
-						background: lightyellow;
-						padding: 20px;
-						border-radius: 5px;
-					`}
-					key={warning}
-				>
-					{nl2br(warning)}
-				</div>
-			))}
+
 			<ErrorBoundary>
 				<Documentation
 					engine={engine}

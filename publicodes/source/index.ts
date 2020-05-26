@@ -45,6 +45,7 @@ export default class Engine<Names extends string> {
 	defaultValues: Situation<Names>
 	situation: Situation<Names> = {}
 	cache: Cache
+	warnings: Array<string> = []
 	cacheWithoutDefault: Cache
 
 	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
@@ -81,6 +82,14 @@ export default class Engine<Names extends string> {
 		context: string,
 		useDefaultValues = true
 	): EvaluatedNode<Names> {
+		// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
+		// console.warn
+		const warnings: string[] = []
+		const originalWarn = console.warn
+		console.warn = (warning: string) => {
+			this.warnings.push(warning)
+			originalWarn(warning)
+		}
 		const result = simplifyNodeUnit(
 			evaluateNode(
 				useDefaultValues ? this.cache : this.cacheWithoutDefault,
@@ -93,6 +102,7 @@ export default class Engine<Names extends string> {
 				)(expression)
 			)
 		)
+		console.warn = originalWarn
 
 		if (Object.keys(result.defaultValue?.missingVariable ?? {}).length) {
 			throw evaluationError(
@@ -159,6 +169,10 @@ export default class Engine<Names extends string> {
 			this.situationWithDefaultValues(),
 			this.parsedRules
 		)
+	}
+
+	getWarnings() {
+		return this.warnings
 	}
 
 	inversionFail(): boolean {
