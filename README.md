@@ -15,3 +15,8 @@ Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résulta
 C'est pour l'instant un _fork_ d'un simulateur de cotisations sociales, mon-entreprise.fr, lui-même forké pour futur.eco, qui permet de coder en français des règles de calculs, dans un langage (qui se veut) simple et extensible. De ces règles de calcul, des simulateurs (pour l'utilisateur lambda) et des pages de documentation qui expliquent le calcul (pour l'expert ou le curieux) sont générés automatiquement.
 
 La bibliothèque de calcul publicodes, qui fournit le langage du modèle, vient d'être publiée comme un [paquet NPM](https://www.npmjs.com/package/publicodes), qui sera bientôt intégré ici pour simplifier énormément la base de code et se concentrer sur le domaine métier.
+
+### Installation
+
+`yarn && yarn start` 
+
