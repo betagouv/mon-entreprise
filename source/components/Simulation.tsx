@@ -57,10 +57,7 @@ export default function Simulation({
 							)}
 							<SeeAnswersButton />
 						</div>
-						<section
-							css={'background: red !important;'}
-							className="ui__ full-width lighter-bg"
-						>
+						<section className="ui__ full-width lighter-bg">
 							<div className="ui__ container">
 								<Controls />
 								<Conversation

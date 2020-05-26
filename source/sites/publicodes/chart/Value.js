@@ -12,7 +12,7 @@ const humanWeightUnit = (v) =>
 export default ({ nodeValue }) => {
 	const [value, unit] = humanWeightUnit(nodeValue)
 	return (
-		<span css="color: purple; font-weight: 600; vertical-align: baseline;">
+		<span css="color: var(--textColorOnWhite); font-weight: 600; vertical-align: baseline;">
 			{value < 10 ? value.toFixed(1) : Math.round(value)}&nbsp;{unit}
 		</span>
 	)

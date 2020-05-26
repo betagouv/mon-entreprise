@@ -8,17 +8,43 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import {
-	currentQuestionSelector,
 	flatRulesSelector,
 	nextStepsSelector,
+	analysisWithDefaultsOnlySelector,
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
 import './conversation.css'
+import { createSelector } from 'reselect'
+import { head, sortBy } from 'ramda'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 }
+
+const orderedCurrentQuestionSelector = createSelector(
+	[
+		analysisWithDefaultsOnlySelector,
+		nextStepsSelector,
+		(state) => state.conversationSteps.unfoldedStep,
+	],
+	(analysis, nextSteps, unfoldedStep) => {
+		const firstTargetFormula = analysis.targets[0].formule.explanation,
+			isSum = firstTargetFormula.name === 'somme',
+			currentQuestion = unfoldedStep || head(nextSteps)
+
+		if (!isSum) return currentQuestion
+		const items = firstTargetFormula.explanation
+		console.log('ns', items, nextSteps)
+		const sortedSteps = sortBy(
+			(question) =>
+				-items.find((item) => question.indexOf(item.dottedName) === 0)
+					.nodeValue,
+			nextSteps
+		)
+		return unfoldedStep || head(sortedSteps)
+	}
+)
 
 export default function Conversation({
 	customEndMessages,
@@ -26,7 +52,7 @@ export default function Conversation({
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const flatRules = useSelector(flatRulesSelector)
-	const currentQuestion = useSelector(currentQuestionSelector)
+	const currentQuestion = useSelector(orderedCurrentQuestionSelector)
 	const previousAnswers = useSelector(
 		(state: RootState) => state.conversationSteps.foldedSteps
 	)
@@ -60,7 +86,7 @@ export default function Conversation({
 							<div>
 								<span
 									css={`
-										background: darkblue;
+										background: ${questionCategory.couleur || 'darkblue'};
 										color: white;
 										border-radius: 0.3rem;
 										padding: 0.15rem 0.6rem;
