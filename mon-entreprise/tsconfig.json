@@ -15,5 +15,9 @@
 		},
 		"noEmit": true
 	},
-	"include": ["types", "source"]
+	"include": [
+		"types",
+		"source",
+		"../publicodes/source/components/PublicodeHighlighter.tsx"
+	]
 }

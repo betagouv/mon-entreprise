@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { formatValue } from '../../format'
@@ -7,8 +7,10 @@ import { Evaluation, ParsedRule, Types, Unit, EvaluatedNode } from '../../types'
 import { capitalise0 } from '../../utils'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
+import Modal from '../Modal'
 import { makeJsx } from '../../evaluation'
-
+import MecanismExplanation from './Explanation'
+import mecanismsDoc from '../../../docs/mecanisms.yaml'
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
 	unit: Unit
@@ -65,9 +67,9 @@ export function Mecanism({
 	return (
 		<StyledMecanism name={name}>
 			{displayName && (
-				<StyledMecanismName name={name}>
+				<MecanismName name={name}>
 					<Trans>{name}</Trans>
-				</StyledMecanismName>
+				</MecanismName>
 			)}
 			<>
 				{children}
@@ -100,6 +102,7 @@ export const InfixMecanism = ({
 		<div
 			className="infix-mecanism"
 			css={`
+				line-height: 1.7rem;
 				border: 1px solid var(--darkColor);
 				padding: 1rem;
 				border-radius: 0.3rem;
@@ -119,13 +122,44 @@ export const InfixMecanism = ({
 }
 export const InlineMecanismName = ({ name }: { name: string }) => {
 	return (
-		<StyledMecanismName inline name={name}>
+		<MecanismName inline name={name}>
 			<Trans>{name}</Trans>
-		</StyledMecanismName>
+		</MecanismName>
+	)
+}
+
+const MecanismName = ({
+	name,
+	inline = false,
+	children
+}: {
+	name: string
+	inline?: boolean
+	children: React.ReactNode
+}) => {
+	const [showExplanation, setShowExplanation] = useState(false)
+
+	return (
+		<>
+			<StyledMecanismName
+				name={name}
+				inline={inline}
+				onClick={() => setShowExplanation(true)}
+			>
+				{children}
+			</StyledMecanismName>
+			{showExplanation && (
+				<Modal onClose={() => setShowExplanation(false)}>
+					<MecanismExplanation name={name} {...mecanismsDoc[name]} />
+				</Modal>
+			)}
+		</>
 	)
 }
 
 const StyledOperation = styled.span`
+	line-height: 1.7rem;
+
 	::before {
 		content: '(';
 	}

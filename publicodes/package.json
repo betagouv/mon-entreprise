@@ -27,6 +27,8 @@
 		"react-easy-emoji": "^1.4.0",
 		"react-i18next": "^11.4.0",
 		"react-markdown": "^4.3.1",
+		"focus-trap-react": "^3.1.2",
+		"react-syntax-highlighter": "^12.2.1",
 		"styled-components": "^5.1.0",
 		"yaml": "^1.9.2"
 	},
@@ -38,7 +40,7 @@
 	"scripts": {
 		"prepublishOnly": "yarn test && yarn run build",
 		"clean": "rimraf dist node_modules",
-		"prepare": "yarn run clean && yarn run build",
+		"prepare": "rimraf dist && yarn run build",
 		"build": "tsc && yarn run webpack --config webpack.config.js",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""

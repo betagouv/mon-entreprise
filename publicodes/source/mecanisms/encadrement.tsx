@@ -16,7 +16,7 @@ function MecanismEncadrement({ nodeValue, explanation }) {
 				<>
 					<p
 						style={
-							nodeValue === explanation.plancher.nodeValue
+							nodeValue && nodeValue === explanation.plancher.nodeValue
 								? { background: 'var(--lighterColor)', fontWeight: 'bold' }
 								: {}
 						}
@@ -30,7 +30,7 @@ function MecanismEncadrement({ nodeValue, explanation }) {
 				<>
 					<p
 						style={
-							nodeValue === explanation.plancher.nodeValue
+							nodeValue && nodeValue === explanation.plancher.nodeValue
 								? { background: 'var(--lighterColor)', fontWeight: 'bold' }
 								: {}
 						}

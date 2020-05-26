@@ -1,9 +1,9 @@
 /* eslint-env node */
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
+const { EnvironmentPlugin } = require('webpack')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports.default = {
 	resolve: {

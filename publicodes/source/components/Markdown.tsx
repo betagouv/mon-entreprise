@@ -4,12 +4,7 @@ import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { HashLink as Link } from 'react-router-hash-link'
 import { EngineContext } from './contexts'
 import { RuleLinkWithContext } from './RuleLink'
-
-const internalURLs = {
-	'mon-entreprise.fr': 'mon-entreprise',
-	'mycompanyinfrance.fr': 'infrance',
-	'publi.codes': 'publicodes'
-} as const
+import PublicodeHighlighter from './PublicodeHighlighter'
 
 export function LinkRenderer({
 	href,
@@ -44,6 +39,14 @@ export function LinkRenderer({
 		</a>
 	)
 }
+
+const CodeBlock = ({ value, language }: { value: string; language: string }) =>
+	language === 'yaml' ? (
+		<PublicodeHighlighter source={value} />
+	) : (
+		<code>{value}</code>
+	)
+
 const TextRenderer = ({ children }: { children: string }) => (
 	<>{emoji(children)}</>
 )
@@ -65,6 +68,7 @@ export const Markdown = ({
 		renderers={{
 			link: LinkRenderer,
 			text: TextRenderer,
+			code: CodeBlock,
 			...renderers
 		}}
 		{...otherProps}

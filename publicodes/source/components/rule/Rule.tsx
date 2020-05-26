@@ -24,7 +24,7 @@ export default function Rule({
 	const { description, question } = rule
 
 	return (
-		<div id="rule">
+		<div id="documentationRuleRoot">
 			<RuleHeader dottedName={dottedName} />
 			<section>
 				<Markdown source={description || question} />

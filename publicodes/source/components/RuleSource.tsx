@@ -1,14 +1,17 @@
-import { ParsedRule } from 'publicodes'
 import yaml from 'yaml'
 import React from 'react'
-import rules from 'Rules'
-import PublicodeHighlighter from './ui/PublicodeHighlighter'
+import Engine from '../index'
+import PublicodeHighlighter from './PublicodeHighlighter'
 
-type RuleSourceProps = Pick<ParsedRule, 'dottedName'>
-
-export default function RuleSource({ dottedName }: RuleSourceProps) {
-	const source = rules[dottedName]
-
+type Props<Rules extends string> = { dottedName: Rules; engine: Engine<Rules> }
+export default function RuleSource<Rules extends string>({
+	engine,
+	dottedName
+}: Props<Rules>) {
+	const source = engine.getRules()[dottedName]
+	if (!source) {
+		return
+	}
 	return (
 		<section>
 			<h3>Source publicode</h3>

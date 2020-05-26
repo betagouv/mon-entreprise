@@ -1,20 +1,18 @@
-import * as animate from 'Components/ui/animate'
-import { LinkButton } from 'Components/ui/Button'
 import FocusTrap from 'focus-trap-react'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
-type OverlayProps = React.HTMLAttributes<HTMLDivElement> & {
+type ModalProps = React.HTMLAttributes<HTMLDivElement> & {
 	onClose?: () => void
 	children: React.ReactNode
 }
 
-export default function Overlay({
+export default function Modal({
 	onClose,
 	children,
 	className,
 	...otherProps
-}: OverlayProps) {
+}: ModalProps) {
 	useEffect(() => {
 		const body = document.getElementsByTagName('body')[0]
 		body.classList.add('no-scroll')
@@ -23,37 +21,35 @@ export default function Overlay({
 		}
 	}, [])
 	return (
-		<StyledOverlayWrapper>
-			<animate.fromBottom>
-				<FocusTrap
-					focusTrapOptions={{
-						onDeactivate: onClose,
-						clickOutsideDeactivates: !!onClose
-					}}
+		<StyledModalWrapper>
+			<FocusTrap
+				focusTrapOptions={{
+					onDeactivate: onClose,
+					clickOutsideDeactivates: !!onClose
+				}}
+			>
+				<div
+					aria-modal="true"
+					className={'ui__ card overlayContent ' + className ?? ''}
+					{...otherProps}
 				>
-					<div
-						aria-modal="true"
-						className={'ui__ card overlayContent ' + className ?? ''}
-						{...otherProps}
-					>
-						{children}
-						{onClose && (
-							<LinkButton
-								aria-label="close"
-								onClick={onClose}
-								className="overlayCloseButton"
-							>
-								×
-							</LinkButton>
-						)}
-					</div>
-				</FocusTrap>
-			</animate.fromBottom>
-		</StyledOverlayWrapper>
+					{children}
+					{onClose && (
+						<button
+							aria-label="close"
+							onClick={onClose}
+							className="overlayCloseButton"
+						>
+							×
+						</button>
+					)}
+				</div>
+			</FocusTrap>
+		</StyledModalWrapper>
 	)
 }
 
-const StyledOverlayWrapper = styled.div`
+const StyledModalWrapper = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -62,10 +58,14 @@ const StyledOverlayWrapper = styled.div`
 	background: rgba(255, 255, 255, 0.9);
 	overflow: auto;
 	z-index: 1;
+
 	.overlayContent {
 		position: absolute;
 		padding-bottom: 1rem;
 		min-height: 6em;
+	}
+	.overlayContent > * {
+		animation: fromBottom 0.4s;
 	}
 	.overlayCloseButton {
 		position: absolute;
@@ -82,6 +82,16 @@ const StyledOverlayWrapper = styled.div`
 			left: 50%;
 			width: 80%;
 			max-width: 40em;
+		}
+	}
+	@keyframes fromBottom {
+		from {
+			transform: translateY(-10px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
 		}
 	}
 `
