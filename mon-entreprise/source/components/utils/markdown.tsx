@@ -1,4 +1,4 @@
-import PublicodeHighlighter from 'Components/ui/PublicodeHighlighter'
+import PublicodeHighlighter from '../../../../publicodes/source/components/PublicodeHighlighter'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
