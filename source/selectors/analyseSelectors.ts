@@ -1,7 +1,32 @@
-import { collectMissingVariablesByTarget, getNextSteps } from 'Engine/generateQuestions'
-import { collectDefaults, disambiguateExampleSituation, enrichRule, findRuleByDottedName, splitName } from 'Engine/rules'
+import {
+	collectMissingVariablesByTarget,
+	getNextSteps,
+} from 'Engine/generateQuestions'
+import {
+	collectDefaults,
+	disambiguateExampleSituation,
+	enrichRule,
+	findRuleByDottedName,
+	splitName,
+} from 'Engine/rules'
 import { analyse, analyseMany, parseAll } from 'Engine/traverse'
-import { add, difference, equals, head, intersection, isNil, last, length, mergeDeepWith, negate, pick, pipe, sortBy, takeWhile, zipWith } from 'ramda'
+import {
+	add,
+	difference,
+	equals,
+	head,
+	intersection,
+	isNil,
+	last,
+	length,
+	mergeDeepWith,
+	negate,
+	pick,
+	pipe,
+	sortBy,
+	takeWhile,
+	zipWith,
+} from 'ramda'
 import { useSelector } from 'react-redux'
 import { RootState, Simulation } from 'Reducers/rootReducer'
 import { createSelector, createSelectorCreator, defaultMemoize } from 'reselect'
@@ -14,14 +39,16 @@ let configSelector = (state: RootState) =>
 	(state.simulation && state.simulation.config) || {}
 
 // We must here compute parsedRules, flatRules, analyse which contains both targets and cache objects
-export let flatRulesSelector = (state: RootState) => 
-Object.entries(state.rules).map(([dottedName, rule]) => ({ ...rule, dottedName })).map(enrichRule)
+export let flatRulesSelector = (state: RootState) =>
+	Object.entries(state.rules)
+		.map(([dottedName, rule]) => ({ ...rule, dottedName }))
+		.map(enrichRule)
 
-export let parsedRulesSelector = createSelector([flatRulesSelector], rules =>
+export let parsedRulesSelector = createSelector([flatRulesSelector], (rules) =>
 	parseAll(rules)
 )
 
-export let ruleDefaultsSelector = createSelector([flatRulesSelector], rules =>
+export let ruleDefaultsSelector = createSelector([flatRulesSelector], (rules) =>
 	collectDefaults(rules)
 )
 
@@ -31,7 +58,7 @@ export let targetNamesSelector = (state: RootState) => {
 		return []
 	}
 	const targetNames = [].concat(
-		...(objectifs as any).map(objectifOrGroup =>
+		...(objectifs as any).map((objectifOrGroup) =>
 			typeof objectifOrGroup === 'string'
 				? [objectifOrGroup]
 				: objectifOrGroup.objectifs
@@ -53,7 +80,7 @@ export const useTarget = (dottedName: DottedName) => {
 	const targets = useSelector(
 		(state: RootState) => analysisWithDefaultsSelector(state).targets
 	)
-	return targets && targets.find(t => t.dottedName === dottedName)
+	return targets && targets.find((t) => t.dottedName === dottedName)
 }
 
 export let noUserInputSelector = (state: RootState) =>
@@ -68,10 +95,10 @@ export let firstStepCompletedSelector = createSelector(
 		const situations = Object.keys(situation)
 		const allBlockingAreAnswered =
 			config.bloquant &&
-			config.bloquant.every(rule => situations.includes(rule))
+			config.bloquant.every((rule) => situations.includes(rule))
 		const targetIsAnswered =
 			targetNames &&
-			targetNames.some(targetName => {
+			targetNames.some((targetName) => {
 				const rule = findRuleByDottedName(parsedRules, targetName)
 				return rule && rule.formule && targetName in situation
 			})
@@ -80,7 +107,7 @@ export let firstStepCompletedSelector = createSelector(
 )
 
 let validatedStepsSelector = createSelector(
-	[state => state.conversationSteps.foldedSteps, targetNamesSelector],
+	[(state) => state.conversationSteps.foldedSteps, targetNamesSelector],
 	(foldedSteps, targetNames) => [...foldedSteps, ...targetNames]
 )
 export const defaultUnitsSelector = (state: RootState) =>
@@ -103,7 +130,7 @@ const createSituationBrancheSelector = (
 				return branches.map(({ situation: branchSituation }) => ({
 					...configSituation,
 					...branchSituation,
-					...situation
+					...situation,
 				}))
 			}
 			if (configSituation) {
@@ -117,7 +144,7 @@ export let situationBranchesSelector = createSituationBrancheSelector(
 	situationSelector
 )
 export let situationBranchNameSelector = createSelector(
-	[branchesSelector, state => state.situationBranch],
+	[branchesSelector, (state) => state.situationBranch],
 	(branches, currentBranch) =>
 		branches && !isNil(currentBranch) && branches[currentBranch].nom
 )
@@ -133,7 +160,7 @@ export let validatedSituationBranchesSelector = createSituationBrancheSelector(
 export let situationsWithDefaultsSelector = createSelector(
 	[ruleDefaultsSelector, situationBranchesSelector],
 	(defaults, situations) =>
-		mapOrApply(situation => ({ ...defaults, ...situation }), situations)
+		mapOrApply((situation) => ({ ...defaults, ...situation }), situations)
 )
 
 let analyseRule = (parsedRules, ruleDottedName, situationGate, defaultUnits) =>
@@ -144,14 +171,14 @@ export let ruleAnalysisSelector = createSelector(
 		parsedRulesSelector,
 		(_, props: { dottedName: DottedName }) => props.dottedName,
 		situationsWithDefaultsSelector,
-		state => state.situationBranch || 0,
-		defaultUnitsSelector
+		(state) => state.situationBranch || 0,
+		defaultUnitsSelector,
 	],
 	(rules, dottedName, situations, situationBranch, defaultUnits) => {
 		return analyseRule(
 			rules,
 			dottedName,
-			dottedName => {
+			(dottedName) => {
 				const currentSituation = Array.isArray(situations)
 					? situations[situationBranch]
 					: situations
@@ -166,7 +193,7 @@ let exampleSituationSelector = createSelector(
 	[
 		parsedRulesSelector,
 		situationsWithDefaultsSelector,
-		({ currentExample }) => currentExample
+		({ currentExample }) => currentExample,
 	],
 	(rules, situations, example) =>
 		example && {
@@ -174,7 +201,7 @@ let exampleSituationSelector = createSelector(
 			...disambiguateExampleSituation(
 				rules,
 				findRuleByDottedName(rules, example.dottedName)
-			)(example.situation)
+			)(example.situation),
 		}
 )
 export let exampleAnalysisSelector = createSelector(
@@ -182,7 +209,7 @@ export let exampleAnalysisSelector = createSelector(
 		parsedRulesSelector,
 		(_, props: { dottedName: DottedName }) => props.dottedName,
 		exampleSituationSelector,
-		({ currentExample }) => currentExample
+		({ currentExample }) => currentExample,
 	],
 	(rules, dottedName, situation, example) =>
 		situation &&
@@ -200,11 +227,11 @@ let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 			parsedRulesSelector,
 			targetNamesSelector,
 			situationSelector,
-			defaultUnitsSelector
+			defaultUnitsSelector,
 		],
 		(parsedRules, targetNames, situations, defaultUnits) => {
 			return mapOrApply(
-				situation =>
+				(situation) =>
 					analyseMany(
 						parsedRules,
 						targetNames,
@@ -225,13 +252,15 @@ export let branchAnalyseSelector = createSelector(
 	[
 		analysisWithDefaultsSelector,
 		(_, props: { situationBranchName: string }) => props?.situationBranchName,
-		branchesSelector
+		branchesSelector,
 	],
 	(analysedSituations, branchName, branches) => {
 		if (!Array.isArray(analysedSituations) || !branchName || !branches) {
 			return analysedSituations
 		}
-		const branchIndex = branches.findIndex(branch => branch.nom === branchName)
+		const branchIndex = branches.findIndex(
+			(branch) => branch.nom === branchName
+		)
 		return analysedSituations[branchIndex]
 	}
 )
@@ -242,9 +271,9 @@ let analysisValidatedOnlySelector = makeAnalysisSelector(
 
 let currentMissingVariablesByTargetSelector = createSelector(
 	[analysisValidatedOnlySelector],
-	analyses => {
+	(analyses) => {
 		const variables = mapOrApply(
-			analysis => collectMissingVariablesByTarget(analysis.targets),
+			(analysis) => collectMissingVariablesByTarget(analysis.targets),
 			analyses
 		)
 		if (Array.isArray(variables)) {
@@ -267,7 +296,7 @@ export let nextStepsSelector = createSelector(
 		currentMissingVariablesByTargetSelector,
 		configSelector,
 		(state: RootState) => state.conversationSteps.foldedSteps,
-		situationSelector
+		situationSelector,
 	],
 	(
 		mv,
@@ -275,8 +304,8 @@ export let nextStepsSelector = createSelector(
 			questions: {
 				'non prioritaires': notPriority = [],
 				uniquement: only = null,
-				'liste noire': blacklist = []
-			} = {}
+				'liste noire': blacklist = [],
+			} = {},
 		},
 		foldedSteps = [],
 		situation
@@ -296,7 +325,7 @@ export let nextStepsSelector = createSelector(
 					: lastStep
 
 		nextSteps = sortBy(
-			question =>
+			(question) =>
 				similarity(question, lastStepWithAnswer) +
 				notPriority.indexOf(question),
 			nextSteps
@@ -307,6 +336,6 @@ export let nextStepsSelector = createSelector(
 )
 
 export let currentQuestionSelector = createSelector(
-	[nextStepsSelector, state => state.conversationSteps.unfoldedStep],
+	[nextStepsSelector, (state) => state.conversationSteps.unfoldedStep],
 	(nextSteps, unfoldedStep) => unfoldedStep || head(nextSteps)
 )
