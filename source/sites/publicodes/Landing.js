@@ -4,6 +4,7 @@ import DocumentationButton from './DocumentationButton'
 import Suggestions from './Suggestions'
 import { Link } from 'react-router-dom'
 import Illustration from 'Images/illustration-micmac.png'
+import emoji from 'react-easy-emoji'
 
 export default () => {
 	return (
@@ -77,6 +78,10 @@ export default () => {
 						/>
 					</a>
 				</div>
+				<a href="https://github.com/betagouv/ecolab-data#ecolab-climat-">
+					{emoji('🖊️ ')}
+					Comment contribuer
+				</a>
 				<DocumentationButton />
 			</footer>
 		</div>
