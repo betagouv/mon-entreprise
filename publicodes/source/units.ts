@@ -38,7 +38,7 @@ function getUnitKey(unit: string, lng: string): string {
 
 const printUnits = (units: Array<string>, count: number, lng: string): string =>
 	units
-		.filter(unit => unit !== '%')
+		.sort()
 		.map(unit => i18n.t(`units:${unit}`, { count, lng }))
 		.join('.')
 
@@ -55,9 +55,6 @@ export const serializeUnit = (
 	}
 	const unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
-	// the unit '%' is only displayed when it is the only unit
-	const merge = [...numerators, ...denominators]
-	if (merge.length === 1 && merge[0] === '%') return '%'
 
 	const n = !isEmpty(numerators)
 	const d = !isEmpty(denominators)

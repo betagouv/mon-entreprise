@@ -166,3 +166,22 @@ variations sans unité:
   exemples:
     - valeur attendue: 7
       unité attendue: '%'
+
+taux réduit:
+variations dans un produit:
+  formule:
+    produit:
+      assiette: 2300 €/mois
+      variations:
+        - si: taux réduit
+          alors:
+            taux: 3.45%
+        - sinon:
+            taux: 5.25%
+  exemples:
+    - situation:
+        taux réduit: oui
+      valeur attendue: 79.35
+    - situation:
+        taux réduit: non
+      valeur attendue: 120.75

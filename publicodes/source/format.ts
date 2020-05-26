@@ -1,6 +1,6 @@
-import { serializeUnit } from './units'
 import { memoizeWith } from 'ramda'
-import { Unit, EvaluatedNode, Evaluation } from './types'
+import { Evaluation, Unit } from './types'
+import { serializeUnit } from './units'
 import { capitalise0 } from './utils'
 
 const NumberFormat = memoizeWith(
@@ -69,7 +69,6 @@ function formatNumber({
 		return value
 	}
 	const serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
-
 	switch (serializedUnit) {
 		case '€':
 			return numberFormatter({

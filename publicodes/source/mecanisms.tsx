@@ -456,7 +456,6 @@ export const mecanismProduct = (recurse, k, v) => {
 		}
 		return {
 			nodeValue,
-
 			unit,
 			explanation: {
 				plafondActif: assiette.nodeValue > plafond.nodeValue
