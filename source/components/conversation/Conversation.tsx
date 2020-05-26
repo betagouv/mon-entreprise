@@ -60,7 +60,7 @@ export default function Conversation({
 							<div>
 								<span
 									css={`
-										background: darkblue;
+										background: ${questionCategory.couleur || 'darkblue'};
 										color: white;
 										border-radius: 0.3rem;
 										padding: 0.15rem 0.6rem;
