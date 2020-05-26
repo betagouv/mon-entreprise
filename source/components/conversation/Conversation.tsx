@@ -10,7 +10,7 @@ import { RootState } from 'Reducers/rootReducer'
 import {
 	flatRulesSelector,
 	nextStepsSelector,
-	analysisWithDefaultsSelector,
+	analysisWithDefaultsOnlySelector,
 } from 'Selectors/analyseSelectors'
 import * as Animate from 'Ui/animate'
 import Aide from './Aide'
@@ -24,7 +24,7 @@ export type ConversationProps = {
 
 const orderedCurrentQuestionSelector = createSelector(
 	[
-		analysisWithDefaultsSelector,
+		analysisWithDefaultsOnlySelector,
 		nextStepsSelector,
 		(state) => state.conversationSteps.unfoldedStep,
 	],

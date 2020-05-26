@@ -247,6 +247,9 @@ let makeAnalysisSelector = (situationSelector: SituationSelectorType) =>
 export let analysisWithDefaultsSelector = makeAnalysisSelector(
 	situationsWithDefaultsSelector
 )
+export let analysisWithDefaultsOnlySelector = makeAnalysisSelector(
+	ruleDefaultsSelector
+)
 
 export let branchAnalyseSelector = createSelector(
 	[
