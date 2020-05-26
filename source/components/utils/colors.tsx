@@ -25,7 +25,7 @@ function findContrastedTextColor(color: string, simple: boolean) {
 		return r * 0.299 + g * 0.587 + b * 0.114 > 128 ? '#000000' : '#ffffff'
 	} // else complex formula
 	let uicolors = [r / 255, g / 255, b / 255],
-		c = uicolors.map(c =>
+		c = uicolors.map((c) =>
 			c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
 		),
 		L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
@@ -43,7 +43,7 @@ const generateDarkenVariations = (
 	[h, s, l]: [number, number, number]
 ) => {
 	return [...Array(numberOfVariation).keys()].map(
-		i => '#' + convert.hsl.hex([h, s, l * 0.8 ** i])
+		(i) => '#' + convert.hsl.hex([h, s, l * 0.8 ** i])
 	)
 }
 
@@ -51,13 +51,13 @@ const deriveAnalogousPalettes = (hex: string) => {
 	const [h, s, l] = convert.hex.hsl(hex.split('#')[1])
 	return [
 		generateDarkenVariations(4, [(h - 45) % 360, 0.75 * s, l]),
-		generateDarkenVariations(4, [(h + 45) % 360, 0.75 * s, l])
+		generateDarkenVariations(4, [(h + 45) % 360, 0.75 * s, l]),
 	]
 }
 
 const generateTheme = (themeColor?: string) => {
 	let // Use the default theme color if the host page hasn't made a choice
-		color = themeColor || '#5f27cd',
+		color = themeColor || '#5758BB',
 		lightColor = lightenColor(color, 10),
 		darkColor = lightenColor(color, -20),
 		lighterColor = lightenColor(color, 45),
@@ -66,7 +66,7 @@ const generateTheme = (themeColor?: string) => {
 		grayColor = '#00000099',
 		textColor = findContrastedTextColor(color, true), // the 'simple' version feels better...
 		inverseTextColor = textColor === '#ffffff' ? '#000' : '#fff',
-		lightenTextColor = textColor =>
+		lightenTextColor = (textColor) =>
 			textColor === '#ffffff' ? 'rgba(255, 255, 255, .7)' : 'rgba(0, 0, 0, .7)',
 		lighterTextColor = darkColor + 'cc',
 		lighterInverseTextColor = lightenTextColor(inverseTextColor),
@@ -86,7 +86,7 @@ const generateTheme = (themeColor?: string) => {
 		lighterColor,
 		lightestColor,
 		darkestColor,
-		palettes
+		palettes,
 	}
 }
 
