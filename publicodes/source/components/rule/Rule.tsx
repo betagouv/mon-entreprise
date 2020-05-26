@@ -17,10 +17,13 @@ export default function Rule({
 	engine,
 	language
 }) {
+	const [viewSource, setViewSource] = useState(false)
+	if (!engine.getParsedRules()[dottedName]) {
+		return <p>Cette règle est introuvable dans la base</p>
+	}
 	const rule = engine.evaluate(dottedName, {
 		useDefaultValues
 	})
-	const [viewSource, setViewSource] = useState(false)
 	const { description, question } = rule
 
 	return (

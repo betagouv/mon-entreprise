@@ -2,7 +2,7 @@ declare namespace NodeJS {
 	interface ProcessEnv {
 		EN_SITE: string
 		FR_SITE: string
-		NODE_ENV: 'development' | 'production'
+		NODE_ENV: 'development' | 'production' | 'test'
 		ANALYZE_BUNDLE: '0' | '1'
 
 		// Netlify variables

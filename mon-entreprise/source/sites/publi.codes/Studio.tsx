@@ -4,7 +4,7 @@ import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import yaml from 'yaml'
 
@@ -55,19 +55,11 @@ export default function Studio() {
 	const [editorValue, setEditorValue] = useState(initialValue)
 	const debouncedEditorValue = useDebounce(editorValue, 1000)
 
-	const targets = useMemo(() => {
-		try {
-			return Object.keys(yaml.parse(debouncedEditorValue) ?? {})
-		} catch (e) {
-			console.error(e)
-			return []
-		}
-	}, [debouncedEditorValue])
-
 	const history = useHistory()
 	useEffect(() => {
 		history.replace({
 			pathname,
+			state: { useDefaultValues: true },
 			search: `?code=${encodeURIComponent(debouncedEditorValue)}`
 		})
 	}, [debouncedEditorValue, history])
@@ -96,11 +88,7 @@ export default function Studio() {
 				<ErrorBoundary key={debouncedEditorValue}>
 					{/* TODO: prévoir de changer la signature de EngineProvider */}
 
-					<Results
-						targets={targets}
-						rules={debouncedEditorValue}
-						onClickShare={handleShare}
-					/>
+					<Results rules={debouncedEditorValue} onClickShare={handleShare} />
 				</ErrorBoundary>
 			</section>
 		</Layout>
@@ -108,27 +96,42 @@ export default function Studio() {
 }
 
 type ResultsProps = {
-	targets: string[]
 	rules: string
 	onClickShare: React.MouseEventHandler
 }
 
-export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
+export const Results = ({ onClickShare, rules }: ResultsProps) => {
+	const targets = useMemo(() => {
+		try {
+			return Object.keys(yaml.parse(rules) ?? {})
+		} catch (e) {
+			console.error(e)
+			return []
+		}
+	}, [rules])
 	const engine = useMemo(() => new Engine(rules), [rules])
 	const documentationPath = '/studio'
-	const pathToRule = useMemo(
+	const pathToRules = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	const ruleToPaths = useMemo(() => invertObj(pathToRule), [pathToRule])
+	const ruleToPaths = useMemo(() => invertObj(pathToRules), [pathToRules])
 	const { search, pathname } = useLocation()
-	const currentTarget = pathToRule[pathname] ?? (last(targets) as string)
 	const history = useHistory()
 	const setCurrentTarget = useCallback(
-		target => history.replace({ pathname: ruleToPaths[target], search }),
+		target =>
+			history.replace({
+				pathname: ruleToPaths[target],
+				search,
+				state: { useDefaultValues: true }
+			}),
 		[ruleToPaths, history, search]
 	)
-
+	useEffect(() => {
+		if (!pathToRules[pathname]) {
+			setCurrentTarget(last(targets))
+		}
+	})
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 	// console.warn
 	const warnings: string[] = []
@@ -160,7 +163,7 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 							<option
 								key={target}
 								value={target}
-								selected={currentTarget === target}
+								selected={pathToRules[pathname] === target}
 							>
 								{target}
 							</option>
@@ -249,6 +252,9 @@ class ErrorBoundary extends React.Component {
 					<strong>{this.state.error.name}</strong>
 					<br />
 					{nl2br(this.state.error.message)}
+					<br />
+					<br />
+					<a onClick={() => window.location.reload()}>Rafraichir</a>
 				</div>
 			)
 		}
