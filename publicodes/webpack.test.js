@@ -1,4 +1,5 @@
 const { commonLoaders } = require('../webpack/common')
+const { EnvironmentPlugin } = require('webpack')
 
 module.exports = {
 	resolve: {
@@ -17,5 +18,10 @@ module.exports = {
 				use: ['css-loader', 'postcss-loader']
 			}
 		]
-	}
+	},
+	plugins: [
+		new EnvironmentPlugin({
+			NODE_ENV: 'test'
+		})
+	]
 }

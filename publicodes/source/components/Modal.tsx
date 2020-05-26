@@ -14,6 +14,9 @@ export default function Modal({
 	...otherProps
 }: ModalProps) {
 	useEffect(() => {
+		if (typeof document === 'undefined') {
+			return
+		}
 		const body = document.getElementsByTagName('body')[0]
 		body.classList.add('no-scroll')
 		return () => {
