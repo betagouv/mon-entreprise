@@ -1,19 +1,19 @@
 // import { ControlledEditor } from '@monaco-editor/react'
-import Engine from 'publicodes'
-import { formatValue } from 'publicodes'
-import yaml from 'yaml'
-import { last } from 'ramda'
+import Engine, { Documentation, getDocumentationSiteMap } from 'publicodes'
+import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import yaml from 'yaml'
 
 const EXAMPLE_CODE = `
 # Bienvenue dans le bac à sable du langage publicode !
 # Pour en savoir plus sur le langage, consultez le tutoriel :
 # => https://publi.codes
 
+prix:
 prix . carottes: 2€/kg
 prix . champignons: 5€/kg
 prix . avocat: 2€/avocat
@@ -47,7 +47,7 @@ function useDebounce<T>(value: T, delay: number) {
 	return debouncedValue
 }
 export default function Studio() {
-	const search = useLocation().search
+	const { search, pathname } = useLocation()
 	const initialValue = useMemo(() => {
 		const code = new URLSearchParams(search ?? '').get('code')
 		return code ? code : EXAMPLE_CODE
@@ -64,15 +64,13 @@ export default function Studio() {
 		}
 	}, [debouncedEditorValue])
 
+	const history = useHistory()
 	useEffect(() => {
-		history.replaceState(
-			null,
-			'',
-			`${window.location.pathname}?code=${encodeURIComponent(
-				debouncedEditorValue
-			)}`
-		)
-	}, [debouncedEditorValue])
+		history.replace({
+			pathname,
+			search: `?code=${encodeURIComponent(debouncedEditorValue)}`
+		})
+	}, [debouncedEditorValue, history])
 
 	const handleShare = useCallback(() => {
 		navigator.clipboard.writeText(window.location.href)
@@ -116,52 +114,61 @@ type ResultsProps = {
 }
 
 export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
-	const [rule, setCurrentTarget] = useState<string>()
-	const currentTarget = rule ?? (last(targets) as string)
 	const engine = useMemo(() => new Engine(rules), [rules])
+	const documentationPath = '/studio'
+	const pathToRule = useMemo(
+		() => getDocumentationSiteMap({ engine, documentationPath }),
+		[engine, documentationPath]
+	)
+	const ruleToPaths = useMemo(() => invertObj(pathToRule), [pathToRule])
+	const { search, pathname } = useLocation()
+	const currentTarget = pathToRule[pathname] ?? (last(targets) as string)
+	const history = useHistory()
+	const setCurrentTarget = useCallback(
+		target => history.replace({ pathname: ruleToPaths[target], search }),
+		[ruleToPaths, history, search]
+	)
+
 	// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 	// console.warn
 	const warnings: string[] = []
 	const originalWarn = console.warn
 	console.warn = (warning: string) => warnings.push(warning)
-	const evaluation = engine.evaluate(currentTarget)
-	console.warn = originalWarn
 
 	return (
 		<>
 			<div
 				css={`
-					background: var(--lighterColor);
-					padding: 20px;
-					border-radius: 5px;
+					display: flex;
+					justify-content: space-between;
+					align-items: baseline;
 				`}
 			>
-				<p className="ui__ notice">
-					<label htmlFor="objectif">Que voulez-vous calculer ? </label>
-				</p>
-				<select
-					id="objectif"
-					onChange={e => {
-						setCurrentTarget(e.target.value)
-					}}
-					css={`
-						padding: 5px;
-					`}
-				>
-					{targets.map(target => (
-						<option
-							key={target}
-							value={target}
-							selected={currentTarget === target}
-						>
-							{target}
-						</option>
-					))}
-				</select>
-				<br />
-				<br />
+				<small>
+					Aller à{' '}
+					<select
+						onChange={e => {
+							setCurrentTarget(e.target.value)
+						}}
+						css={`
+							font-size: inherit;
+							color: inherit;
+							font-family: inherit;
+						`}
+					>
+						{targets.map(target => (
+							<option
+								key={target}
+								value={target}
+								selected={currentTarget === target}
+							>
+								{target}
+							</option>
+						))}
+					</select>
+				</small>
 				<div className="ui__ answer-group">
-					<button className="ui__ button small" onClick={onClickShare}>
+					<button className="ui__ simple small button" onClick={onClickShare}>
 						{emoji('🔗')} Copier le lien
 					</button>
 				</div>
@@ -178,39 +185,13 @@ export const Results = ({ targets, onClickShare, rules }: ResultsProps) => {
 					{nl2br(warning)}
 				</div>
 			))}
-			{evaluation ? (
-				<div>
-					<h2>Résultats</h2>
-					{evaluation.isApplicable === false ? (
-						<>{emoji('❌')} Cette règle n'est pas applicable</>
-					) : (
-						<>
-							<p>
-								<strong>{formatValue(evaluation)}</strong>
-							</p>
-							<br />
-							{'temporalValue' in evaluation &&
-								evaluation.temporalValue &&
-								evaluation.temporalValue
-									.filter(({ value }) => value !== false)
-									.map(({ start: du, end: au, value }) => (
-										<span key={`${du ?? ''}-${au ?? ''}`}>
-											<small>
-												Du <em>{du}</em> au <em>{au}</em> :{' '}
-											</small>
-											<code>
-												{formatValue({
-													nodeValue: value,
-													unit: evaluation.unit
-												})}
-											</code>{' '}
-											<br />
-										</span>
-									))}
-						</>
-					)}
-				</div>
-			) : null}
+			<ErrorBoundary>
+				<Documentation
+					engine={engine}
+					documentationPath={documentationPath}
+					language="fr"
+				/>
+			</ErrorBoundary>
 		</>
 	)
 }
@@ -249,11 +230,11 @@ const Layout = styled.div`
 `
 
 class ErrorBoundary extends React.Component {
-	state: { error: false | string } = { error: false }
+	state: { error: false | { message: string; name: string } } = { error: false }
 
-	static getDerivedStateFromError(error) {
+	static getDerivedStateFromError(error: Error) {
 		console.error(error)
-		return { error: error.message }
+		return { error: { message: error.message, name: error.name } }
 	}
 	render() {
 		if (this.state.error) {
@@ -265,7 +246,9 @@ class ErrorBoundary extends React.Component {
 						border-radius: 5px;
 					`}
 				>
-					{nl2br(this.state.error)}
+					<strong>{this.state.error.name}</strong>
+					<br />
+					{nl2br(this.state.error.message)}
 				</div>
 			)
 		}

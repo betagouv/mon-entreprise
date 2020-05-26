@@ -24,7 +24,7 @@ const RouterSwitch = () => {
 		<>
 			<Switch>
 				<Route exact path="/" component={Landing} />
-				<Route exact path="/studio" component={Studio} />
+				<Route path="/studio" component={Studio} />
 				<Route exact path="/mécanismes" component={Mécanismes} />
 				<Route exact path="/api" component={Api} />
 				<Route component={App} />
