@@ -193,7 +193,6 @@ export const evaluateObject = (objectShape, effect) => (
 		sameUnitTemporalExplanation
 	)
 	const nodeValue = temporalAverage(temporalValue)
-
 	const baseEvaluation = {
 		...node,
 		nodeValue,

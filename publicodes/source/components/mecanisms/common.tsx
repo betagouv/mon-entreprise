@@ -11,6 +11,7 @@ import Modal from '../Modal'
 import { makeJsx } from '../../evaluation'
 import MecanismExplanation from './Explanation'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
+import { simplifyNodeUnit } from '../../nodeUnits'
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
 	unit: Unit
@@ -30,7 +31,9 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 			borderRadius: '0.2rem'
 		}}
 	>
-		{formatValue({ nodeValue: data, unit }, { language: 'fr' })}
+		{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
+			language: 'fr'
+		})}
 	</small>
 )
 

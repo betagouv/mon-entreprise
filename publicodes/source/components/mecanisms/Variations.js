@@ -28,7 +28,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 							}
 						`}
 					>
-						{writtenNumbers[i18n.language][explanation.length]}{' '}
+						{writtenNumbers[i18n.language ?? 'fr'][explanation.length]}{' '}
 						<InlineMecanismName name="variations" /> possibles :
 					</div>
 					<ol>
