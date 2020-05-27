@@ -33,10 +33,18 @@ export default function Library() {
 					et d'appeler la fonction d'évaluation.
 				</p>
 				<h3>1) Installer publicodes</h3>
-				Dans votre projet :
 				<pre>
-					<code>$ npm install --save publicodes</code>
+					<code>
+						npm install --save publicodes react react-router-dom
+						react-router-hash-link
+					</code>
 				</pre>
+				<em>
+					Pour plus de détails sur l'installation, se référer à la{' '}
+					<a href="https://publi.codes/api#installation" target="_blank">
+						documentation dédiée
+					</a>
+				</em>
 				<h3>2) Télécharger les règles mon-entreprise</h3>
 				<p>
 					Les règles de calculs de mon-entreprise ne sont pas (encore)

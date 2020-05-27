@@ -16,7 +16,7 @@ $ npm install react react-router-dom react-router-hash-link
 
 > Note : publicodes requiert l'installation de ses peerDependancy pour
 > fonctionner. La raison est qu'en l'état actuel des choses, la
-> documentation interactive (en react) n'a pas été extraite du coeur du moteur
+> [documentation interactive (en react)](#composants-react) n'a pas été extraite du coeur du moteur
 > (calcul). Cela est **temporaire** et nous avons prévu d'y remedier dans une
 > prochaine version, en créant deux paquets séparés : publicodes et publicodes/react
 
@@ -278,3 +278,54 @@ Formate la valeur evaluée.
 **Retourne**
 
 La chaîne de caractère correspondant à la valeur bien formatée.
+
+### Composants react
+
+Publicodes exporte des composants react permettant d'afficher une documentation
+explorable des calculs. Cette documentation est auto-générée en s'appuyant sur
+les données descriptives contenues dans les règles publicodes (description,
+références, titre, note, etc.) et en affichant pour chaque règle les étapes
+intermédiaires qui permettent d'aboutir au résultat affiché.
+
+[Voir un exemple sur mon-entreprise.fr](https://mon-entreprise.fr/documentation/imp%C3%B4t/foyer-fiscal/imp%C3%B4t-sur-le-revenu/imp%C3%B4t-brut-par-part)
+
+#### <Documentation />
+
+Composant react permettant d'afficher une documentation explorable d'une base de règles
+publicodes. Se base sur react-router pour créer une arborescence de pages
+correspondant aux espaces de noms existants dans les règles.
+
+Voir le [bac à sable](https://publi.codes/studio) pour voir le composant en
+action (il est affiché sur l'écran de droite).
+
+**Props**
+
+- `engine`: l'objet moteur dont on veut afficher les calculs.
+- `documentationPath` : (`string`) le chemin de base sur lequel la documentation sera
+  montée. Par exemple, si c'est `/documentation` l'url de la règle 'rémunération
+  . primes' sera `/documentation/rémunération/primes`
+- `language`: le language dans lequel afficher la documentation (pour l'instant,
+  seul `fr` et `en` sont supportés)
+
+> Note : les valeurs des règles `par défaut` ne sont pas utilisée dans la doc.
+> Si l'on souhaite afficher la documentation avec les calculs utilisant les
+> valeurs par défaut, il suffit d'ajouter la clé `useDefaultValues: true` dans
+> le `state` de l'objet
+> [`location`](https://reacttraining.com/react-router/web/api/location) du
+> navigateur. On peut également utiliser [RuleLink](#<rulelink-/>) (ci-dessous)
+> qui s'en occupe pour nous.
+
+#### <RuleLink />
+
+Composant react permettant de faire un lien vers une page de la documentation.
+Par défaut, le texte affiché est le nom de la règle.
+
+**Props**
+
+- `engine`: l'objet moteur dont on veut afficher la règle.
+- `documentationPath` : (`string`) le chemin de base sur lequel la documentation est
+  montée. Doit correspondre à celui précisé pour le composant `<Documentation />`
+- `dottedName`: le nom de la règle à afficher
+- `displayIcon`: affiche l'icône de la règle dans le lien (par défaut à `false`)
+- `useDefaultValues`: utilise les valeurs `par défaut` des règles (par défaut à `false`)
+- `children`: N'importe quel noeud react. Par défaut, c'est le nom de la règle qui est utilisé.

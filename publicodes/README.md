@@ -7,20 +7,17 @@ décomposés en règles élémentaires simples (comme la [législation socio-fis
 [un bilan carbone](https://github.com/laem/futureco-data/blob/master/co2.yaml),
 un estimateur de rendement locatif, etc.).
 
-Il permet de
-générer facilement des simulateurs web interactifs où l'on peut affiner
-progressivement le résultat affiché, et explorer une documentation du calcul.
+Il permet de générer facilement des simulateurs web interactifs où l'on peut affiner
+progressivement le résultat affiché, et d'exposer une documentation du calcul explorable.
 
 ## Projets phares
 
-- [mon-entreprise.fr](https://mon-entreprise.fr/simulateurs) : utilise publicode
+- **[mon-entreprise.fr](https://mon-entreprise.fr/simulateurs)** utilise publicodes
   pour spécifier l'ensemble des calculs relatifs à la législation socio-fiscale
   en France. Le site permet entre autre de simuler une fiche de paie complète,
   de calculer les cotisations sociales pour un indépendant ou encore connaître
-  le montant du chômage partiel. Les règles sont publiées sous la forme d'une
-  [bibliothèque de calcul autonome](https://mon-entreprise.fr/intégration/bibliothèque-de-calcul), libre de droit.
-
-- [futur.eco](https://futur.eco/) utilise publicode pour calculer les bilans
+  le montant du chômage partiel.
+- **[futur.eco](https://futur.eco/)** utilise publicodes pour calculer les bilans
   carbone d'un grand nombre d'activités, plats, transports ou biens.
 
 ## Principe de base
