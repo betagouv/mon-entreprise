@@ -39,6 +39,7 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	name: string
 	title: string
 	parentDependencies: Array<any>
+	rawRule: Rule
 	unit?: Unit
 	summary?: string
 	defaultValue?: any

@@ -51,6 +51,7 @@ export default class Engine<Names extends string> {
 	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
 		this.cache = emptyCache()
 		this.cacheWithoutDefault = emptyCache()
+
 		this.parsedRules =
 			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
 				? parseRules(rules)
@@ -172,6 +173,10 @@ export default class Engine<Names extends string> {
 	}
 
 	getWarnings() {
+		return this.warnings
+	}
+
+	getRules() {
 		return this.warnings
 	}
 
