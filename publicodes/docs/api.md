@@ -10,7 +10,15 @@ Le paquet est disponble sur NPM :
 
 ```sh
 $ npm install publicodes
+# installation des peer dependancies
+$ npm install react react-router-dom react-router-hash-link
 ```
+
+> Note : publicodes requiert l'installation de ses peerDependancy pour
+> fonctionner. La raison est qu'en l'état actuel des choses, la
+> documentation interactive (en react) n'a pas été extraite du coeur du moteur
+> (calcul). Cela est **temporaire** et nous avons prévu d'y remedier dans une
+> prochaine version, en créant deux paquets séparés : publicodes et publicodes/react
 
 ## Utilisation
 
