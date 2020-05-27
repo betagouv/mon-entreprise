@@ -64,6 +64,7 @@ export default function<Names extends string>(
 
 	const rule = {
 		...rawRule,
+		rawRule,
 		name,
 		dottedName,
 		type: rawRule.type,

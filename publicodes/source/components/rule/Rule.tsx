@@ -8,6 +8,7 @@ import { RuleLinkWithContext } from '../RuleLink'
 import Algorithm from './Algorithm'
 import RuleHeader from './Header'
 import References from './References'
+import RuleSource from './RuleSource'
 
 // let LazySource = React.lazy(() => import('../../../../mon-entreprise/source/components/RuleSource'))
 
@@ -69,7 +70,7 @@ export default function Rule({
 			)}
 
 			<Algorithm rule={rule} />
-
+			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 			{rule['rend non applicable'] && (
 				<>
 					<h2>

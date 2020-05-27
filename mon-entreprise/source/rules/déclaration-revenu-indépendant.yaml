@@ -21,6 +21,44 @@ aide déclaration revenu indépendant 2019 . nature de l'activité:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
 
+aide déclaration revenu indépendant 2019 . ACRE:
+  remplace: entreprise . ACRE
+  description: >-
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d'activité pendant 12 mois. 
+
+
+    Elle est automatique pour les sociétés et les entreprises individuelles
+    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les
+    trois dernières années).
+
+
+    De plus, pour les travailleurs indépendants classique il est nécessaire de
+    respecter la condition d’être considéré comme créateur au sens de [l’article
+    R131-3 du Code de Sécurité Sociale](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&cidTexte=LEGITEXT000006073189&dateTexte=20170511).
+
+
+    ### Détails
+
+
+    Cette exonération porte sur l’ensemble des cotisations à l’exception de la
+    cotisation retraite complémentaire et les contributions CSG/CRDS et CFP.
+
+
+    Cette exonération peut être totale, partielle ou nulle en fonction des revenus déclarés :
+
+
+    - Si le revenu est inférieur à 75% du PASS l’exonération est totale.
+
+    - Si le revenu est compris entre 75% et 100% du PASS l’exonération est dégressive. 
+
+    - Si le revenu est supérieur à 100% du PASS l’exonération est nulle.
+
+  question: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  applicable si: entreprise . durée d'activité . en début d'année <= 1 an
+  par défaut: non
+
 aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
   remplace:
     - règle: dirigeant . rattachement CIPAV

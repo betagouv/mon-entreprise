@@ -153,7 +153,7 @@ export default function() {
 							<h2>
 								<Trans>Exonérations</Trans>
 							</h2>
-							<SimpleField dottedName="entreprise . ACRE" />
+							<SimpleField dottedName="aide déclaration revenu indépendant 2019 . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<SubSection
 								hideTitle

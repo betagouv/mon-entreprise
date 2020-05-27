@@ -20,6 +20,63 @@ aide déclaration revenu indépendant 2019:
     sociale et fiscale des indépendants de 2020 sur les revenus 2019
   titre.en: "[automatic] self-employment income assistance 2019"
   titre.fr: aide déclaration revenu indépendant 2019
+aide déclaration revenu indépendant 2019 . ACRE:
+  description.en: >-
+    [automatic] The aid for the creation or takeover of a business (Acre)
+    consists of a partial exemption from social security contributions, known as
+    the exemption for the start of activity for 12 months. 
+
+
+    It is automatic for companies and sole proprietorships (under certain conditions, such as not having benefited from it in the last three years).
+
+
+    Moreover, for classic self-employed workers it is necessary to respect the condition of being considered as a creator in the sense of [article R131-3 of the Social Security Code](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582idTexte=LEGITEXT000006073189ateTexte=20170511).
+
+
+    ### Details
+
+
+    This exemption covers all contributions except for the supplementary pension contribution and the CSG/CRDS and CFP contributions.
+
+
+    This exemption may be total, partial or nil depending on the income declared:
+
+
+    - If the income is less than 75% of the PASS, the exemption is total.
+
+    - If the income is between 75% and 100% of the PASS, the exemption is degressive. 
+
+    - If the income is higher than 100% of the PASS, the exemption is nil.
+  description.fr: >-
+    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d'activité pendant 12 mois. 
+
+
+    Elle est automatique pour les sociétés et les entreprises individuelles (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+
+
+    De plus, pour les travailleurs indépendants classique il est nécessaire de respecter la condition d’être considéré comme créateur au sens de [l’article R131-3 du Code de Sécurité Sociale](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&cidTexte=LEGITEXT000006073189&dateTexte=20170511).
+
+
+    ### Détails
+
+
+    Cette exonération porte sur l’ensemble des cotisations à l’exception de la cotisation retraite complémentaire et les contributions CSG/CRDS et CFP.
+
+
+    Cette exonération peut être totale, partielle ou nulle en fonction des revenus déclarés :
+
+
+    - Si le revenu est inférieur à 75% du PASS l’exonération est totale.
+
+    - Si le revenu est compris entre 75% et 100% du PASS l’exonération est dégressive. 
+
+    - Si le revenu est supérieur à 100% du PASS l’exonération est nulle.
+  question.en: "[automatic] Does your company benefit from ACRE?"
+  question.fr: Votre entreprise bénéficie-t'elle de l'ACRE ?
+  titre.en: "[automatic] ACRE"
+  titre.fr: ACRE
 aide déclaration revenu indépendant 2019 . CFP:
   résumé.en: "[automatic] contribution to vocational training [D]"
   résumé.fr: contribution à la formation professionnelle [D]
@@ -4251,36 +4308,36 @@ entreprise:
   titre.fr: entreprise
 entreprise . ACRE:
   description.en: >-
-    The aid for the creation or takeover of a firm (Acre) consists of a partial
-    exemption from social security contributions from the start of activity for
-    12 months. 
+    [automatic] The aid for the creation or takeover of a business (Acre)
+    consists of a partial exemption from social security contributions, known as
+    the exemption for the start of activity for 12 months. 
 
-    It is automatic for companies and sole proprietorships (provided they have not benefited from it in the last three years).
+    It is automatic for companies and sole proprietorships (under certain conditions, such as not having benefited from it in the last three years).
 
-    For auto-entrepreneurs, on the other hand, it must be requested and is reserved for the following beneficiaries: 
+    For auto-entrepreneurs, on the other hand, it must be applied for and is reserved for the following beneficiaries: 
 
-    - Jobseekers (compensated or not compensated but with at least 6 months of registration with Pôle Emploi in the last 18 months).
+    - Jobseekers (compensated or not compensated but having at least 6 months of registration with Pôle Emploi in the last 18 months).
 
-    - Recipients of social assistance (RSA, ASS, ATA)
+    - Recipients of social assistance (RSA, ASS, ATA).
 
     - Young people between 18 and 25 years old (up to 29 years old for persons recognized as disabled)
 
-    - People starting a micro-enterprise in a priority district of the city (QPPV)
+    - People creating a micro-enterprise in a priority district of the city (QPPV)
 
 
     *Historical*:
 
-    - For self-employed persons established from 1 January 2020, the reduction is again subject to conditions.
+    - For self-enterprises created from 1 January 2020, the exemption is again subject to conditions.
 
-    - For companies created between January 1, 2019 and December 31, 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the three previous years.
+    - For companies created between 1 January 2019 and 31 December 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the three previous years.
 
-    - For companies created before January 1, 2019, the contribution reduction was called ACCRE was subject to conditions and was not automatic: it had to be applied for.
+    - For companies created before 1 January 2019, the contribution exemption was called ACCRE and was subject to conditions and was not automatic: it had to be applied for.
   description.fr: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
     d'activité pendant 12 mois. 
 
-    Elle est automatique pour les société et les entreprise individuelle (à condition de ne pas en avoir bénéficier les trois dernières années)
+    Elle est automatique pour les sociétés et les entreprises individuelles (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
     Pour les auto-entrepreneurs en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants: 
 
@@ -4293,14 +4350,13 @@ entreprise . ACRE:
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
 
 
-
     *Historique*:
 
-    - Pour les auto-entreprise créées à partir du 1er janvier 2020, la réduction est de nouveau soumise à condition.
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est de nouveau soumise à condition.
 
     - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
 
-    - Pour les entreprises créées avant le 1er janvier 2019, la réduction de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
+    - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
   note.en: "[automatic] Self-companies created between January 1 and December 31,
     2019 benefit from a more favorable scheme, active for 3 years."
   note.fr: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019
