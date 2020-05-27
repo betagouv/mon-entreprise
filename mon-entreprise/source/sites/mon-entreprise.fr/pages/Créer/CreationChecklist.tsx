@@ -523,13 +523,31 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						</small>
 					</Trans>
 				</Link>
-				{i18n.language === 'fr' && (
+				{i18n.language === 'fr' && isAutoentrepreneur && (
 					<a
 						target="_blank"
 						className="ui__ interactive card button-choice lighter-bg"
-						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/SSI-Guide-Objectif-Entreprise.pdf"
+						href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guide_Auto-Entrepreneur.pdf"
 					>
-						<p>Guide de création de l'Urssaf </p>
+						<p>Guide URSSAF auto-entrepreneur 2020</p>
+						<small>
+							Des conseils sur comment préparer son projet pour se lancer dans
+							la création et une présentation détaillée de votre protection
+							sociale.
+						</small>
+						<br />
+						<div css="text-align: right">
+							<small className="ui__ label">PDF</small>
+						</div>
+					</a>
+				)}
+				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
+					<a
+						target="_blank"
+						className="ui__ interactive card button-choice lighter-bg"
+						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Travailleurs-independants.pdf"
+					>
+						<p>Guide Urssaf pour les travailleur indépendant 2020</p>
 						<small>
 							Des conseils sur comment préparer son projet pour se lancer dans
 							la création et une présentation détaillée de votre protection
