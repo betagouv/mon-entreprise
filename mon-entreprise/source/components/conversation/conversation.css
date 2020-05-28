@@ -55,7 +55,6 @@
 	background: none;
 	border-radius: 1em;
 	padding: 0.25em 0.85em;
-	line-height: 1.3em;
 	font-size: 120%;
 }
 
@@ -85,8 +84,7 @@
 	background-color: white;
 	color: var(--color);
 	display: inline-block;
-	line-height: 1.6em;
-	height: 1.6em; /* IE 11 needs this */
+	height: 1.7em; /* IE 11 needs this */
 	font-size: 120%;
 	padding: 0;
 	padding-right: 0.4em;

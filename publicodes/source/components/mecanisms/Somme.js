@@ -86,7 +86,6 @@ const StyledRow = styled.div`
 	display: flex;
 	align-items: center;
 	flex-flow: row nowrap;
-	line-height: 1.7rem;
 	:nth-child(2n) {
 		background-color: var(--lightestColor);
 	}

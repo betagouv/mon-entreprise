@@ -26,7 +26,6 @@
 
 .distribution-chart__counterparts {
 	width: 28em;
-	line-height: 1.2em;
 }
 
 @media screen and (max-width: 600px) {
