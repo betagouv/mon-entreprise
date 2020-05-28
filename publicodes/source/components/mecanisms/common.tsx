@@ -105,7 +105,6 @@ export const InfixMecanism = ({
 		<div
 			className="infix-mecanism"
 			css={`
-				line-height: 1.7rem;
 				border: 1px solid var(--darkColor);
 				padding: 1rem;
 				border-radius: 0.3rem;
@@ -161,8 +160,6 @@ const MecanismName = ({
 }
 
 const StyledOperation = styled.span`
-	line-height: 1.7rem;
-
 	::before {
 		content: '(';
 	}

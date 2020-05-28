@@ -9,6 +9,7 @@ const {
 } = require('./utils')
 
 const missingTranslations = getUiMissingTranslations()
+
 let translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 
 Object.entries(missingTranslations)

@@ -52,8 +52,7 @@ export default function Simulation({
 								display: 'flex',
 								justifyContent: 'space-between',
 								marginTop: '1.2rem',
-								marginBottom: '0.6rem',
-								alignItems: 'baseline'
+								marginBottom: '0.6rem'
 							}}
 						>
 							{progress < 1 ? (

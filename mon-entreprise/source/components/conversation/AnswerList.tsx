@@ -93,7 +93,7 @@ function StepsTable({
 								<span
 									css={`
 										display: inline-block;
-										padding: 0.6rem;
+										padding: 0.2rem;
 										color: inherit;
 										font-size: inherit;
 										width: 100%;

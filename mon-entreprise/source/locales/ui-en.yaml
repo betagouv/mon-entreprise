@@ -794,6 +794,9 @@ non applicable si: not applicable if
 non déductible: not deductible
 noresults: No results
 oui: yes
+page:
+  documentation:
+    title: Documentation
 pages:
   dévelopeurs:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your

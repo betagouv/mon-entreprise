@@ -1,5 +1,6 @@
 html {
 	transition: none !important;
+	line-height: 1.7rem;
 }
 @media (max-width: 500px) {
 	html {
@@ -74,10 +75,8 @@ h6 {
 button {
 	font-weight: normal;
 }
-
 p,
 ul {
-	line-height: 1.7rem;
 	margin: 0 0 0.6rem;
 }
 
@@ -130,5 +129,9 @@ small,
 	color: rgba(0, 0, 0, 0.6);
 	color: var(--lighterTextColor);
 	font-size: 85%;
-	line-height: 1.2rem;
+	line-height: 1.5rem;
+}
+
+small {
+	display: inline-block;
 }

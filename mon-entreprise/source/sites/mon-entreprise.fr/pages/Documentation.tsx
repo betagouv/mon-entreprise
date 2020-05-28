@@ -10,6 +10,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import SearchBar from 'Components/SearchBar'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
@@ -24,6 +25,9 @@ export default function RulePage() {
 	)
 	const { i18n } = useTranslation()
 
+	if (pathname === '/documentation') {
+		return <DocumentationLanding rules={engine.getParsedRules()} />
+	}
 	if (!documentationSitePaths[pathname]) {
 		return <Redirect to="/404" />
 	}
@@ -61,5 +65,17 @@ function BackToSimulation() {
 		>
 			← <Trans i18nKey="back">Reprendre la simulation</Trans>
 		</button>
+	)
+}
+
+function DocumentationLanding({ rules }) {
+	return (
+		<>
+			<h1>
+				<Trans i18nKey="page.documentation.title">Documentation</Trans>
+			</h1>
+			<p>Explorez toutes les règles de la documentation</p>
+			<SearchBar rules={rules} showDefaultList={true} />
+		</>
 	)
 }
