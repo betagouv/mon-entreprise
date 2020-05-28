@@ -119,7 +119,7 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 					setInput(input)
 				}}
 			/>
-			{!!input.length && !showDefaultList && !results.length ? (
+			{!!input.length && !results.length ? (
 				<p
 					className="ui__ notice light-bg"
 					css={`
@@ -140,16 +140,22 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 						list-style: none;
 					`}
 				>
-					{(showDefaultList && !results.length
-						? searchIndex.map(item => ({ item, matches: [] }))
+					{(showDefaultList && !results.length && !input.length
+						? searchIndex
+								.filter(item => item.espace.length === 2)
+								.map(item => ({ item, matches: [] }))
 						: results
 					)
-						.slice(0, 6)
+						.slice(0, showDefaultList ? 100 : 6)
 						.map(({ item, matches }) => (
 							<li key={item.dottedName}>
 								<RuleLink
 									dottedName={item.dottedName}
-									style={{ width: '100%', textDecoration: 'none' }}
+									style={{
+										width: '100%',
+										textDecoration: 'none',
+										lineHeight: '1.5rem'
+									}}
 								>
 									<small>
 										{item.espace
@@ -166,8 +172,8 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 													›{' '}
 												</span>
 											))}
-									</small>{' '}
-									<br />
+										<br />
+									</small>
 									{highlightMatches(
 										item.title,
 										matches.filter(m => m.key === 'title')
