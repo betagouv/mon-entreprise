@@ -18,7 +18,6 @@ function SelectComponent({ onChange, onSubmit, options }) {
 
 		worker.onmessage = ({ data: results }) => setSearchResults(results)
 	}, [])
-
 	return (
 		<>
 			<input
@@ -113,19 +112,6 @@ function SelectComponent({ onChange, onSubmit, options }) {
 						</span>
 					</div>
 				))}
-			{/*
-		<ReactSelect
-			options={options}
-			onChange={submitOnChange}
-			labelKey="Nature du risque"
-			valueKey="Code risque"
-			placeholder="Tapez des mots ou déroulez la liste complète"
-			optionRenderer={SelectOption}
-			valueRenderer={value => value['Taux net']}
-			clearable={false}
-			value={selectValue}
-		/>
-				*/}
 		</>
 	)
 }

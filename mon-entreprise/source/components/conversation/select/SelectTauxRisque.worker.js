@@ -9,7 +9,7 @@ onmessage = function(event) {
 		})
 
 	if (event.data.input) {
-		let results = fuse.search(event.data.input)
+		let results = fuse.search(event.data.input).map(({ item }) => item)
 		postMessage(results)
 	}
 }
