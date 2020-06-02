@@ -22,6 +22,8 @@ export default ({ dismiss, questionCategory }) => {
 				h2 {
 					color: white;
 					margin: 0.4rem;
+					text-transform: uppercase;
+					font-weight: 300;
 				}
 				img {
 					font-size: 350%;
