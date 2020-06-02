@@ -18,6 +18,7 @@ import './conversation.css'
 import { createSelector } from 'reselect'
 import { head, sortBy } from 'ramda'
 import Controls from 'Components/Controls'
+import CategoryRespiration from './CategoryRespiration'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -188,30 +189,3 @@ export let EndingCongratulations = () => (
 	</h3>
 )
 
-const CategoryRespiration = ({ dismiss, questionCategory }) => (
-	<section
-		className="ui__ full-width "
-		css={`
-			background: ${questionCategory.couleur}30;
-			text-align: center;
-			padding: 1rem;
-			h2 {
-				margin: 0.4rem;
-			}
-			img {
-				font-size: 300%;
-				margin: 0.4rem;
-			}
-			button {
-				display: block !important;
-				margin: 1rem auto;
-			}
-		`}
-	>
-		<h2>{questionCategory.title}</h2>
-		{emoji(questionCategory.icônes)}
-		<button className="ui__ button" onClick={dismiss}>
-			C'est parti !
-		</button>
-	</section>
-)
