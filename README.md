@@ -2,8 +2,7 @@ Ce repo contient :
 - Le code source du site [mon-entreprise.fr](https://mon-entreprise.fr)
 - La documentation et le code source du langage [publicodes](https://publi.codes)
 
-### Mon-entreprise.fr 
-![logo mon-entreprise.fr](https://mon-entreprise.fr/images/logo.svg)
+<a href="https://mon-entreprise.fr"><img src="https://mon-entreprise.fr/images/logo.svg" alt="mon-entreprise" width="200"/></a>
 
 Site développé en partenariat avec l'Urssaf, qui a pour mission d'accompagner des créateurs d’entreprise dans le développement de leur activité. 
 
@@ -14,7 +13,8 @@ Les développeurs ont la possibilité d'intégrer ces simulateurs sur d'autres s
 > 🧰 [Voir les outils à disposition des développeurs](https://mon-entreprise.fr/int%C3%A9gration)
 
 
-### Publicodes
+
+<a href="https://publi.codes"><img src="https://mon-entreprise.fr/images/logo-publicodes.png" alt="publicodes" width="200"/></a>
 
 Publicodes est un langage déclaratif pour encoder les algorithmes d'intérêt public. Il permet de réaliser des calculs généraux tout en fournissant une explication permettant de comprendre et de documenter ces calculs.
 
