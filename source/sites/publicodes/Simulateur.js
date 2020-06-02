@@ -30,7 +30,7 @@ const Simulateur = (props) => {
 	if (!configSet) return null
 
 	return (
-		<div className="ui__ container" css="margin-bottom: 1em">
+		<div css="margin-bottom: 1em">
 			<Helmet>
 				<title>{rule.title}</title>
 				{rule.description && (

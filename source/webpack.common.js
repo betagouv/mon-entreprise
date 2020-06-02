@@ -111,7 +111,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 		chunks: ['publicodes'],
 
 		title: 'Ecolab climat',
-		description: 'Connais-tu ton empreinte sur le climat ?',
+		description: 'Connaissez-vous votre empreinte sur le climat ?',
 		filename: 'publicodes.html',
 	}),
 ]
