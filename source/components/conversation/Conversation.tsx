@@ -34,15 +34,18 @@ const orderedCurrentQuestionSelector = createSelector(
 			currentQuestion = unfoldedStep || head(nextSteps)
 
 		if (!isSum) return currentQuestion
-		const items = firstTargetFormula.explanation
-		console.log('ns', items, nextSteps)
-		const sortedSteps = sortBy(
-			(question) =>
-				-items.find((item) => question.indexOf(item.dottedName) === 0)
-					.nodeValue,
-			nextSteps
-		)
-		return unfoldedStep || head(sortedSteps)
+		try {
+			const items = firstTargetFormula.explanation
+			const sortedSteps = sortBy(
+				(question) =>
+					-items.find((item) => question.indexOf(item.dottedName) === 0)
+						.nodeValue,
+				nextSteps
+			)
+			return unfoldedStep || head(sortedSteps)
+		} catch (e) {
+			return currentQuestion
+		}
 	}
 )
 
