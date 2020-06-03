@@ -25,11 +25,59 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
 import { EngineContext } from './utils/EngineContext'
+import { Situation, DottedName } from 'Rules'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
 	hideAssimiléSalarié?: boolean
 }
+
+export type ComparaisonEngine = {
+	name: string
+	situation: Situation
+	engine: Engine<DottedName>
+}
+
+export function useComparaisonEngines(
+	baseSituations: Array<Omit<ComparaisonEngine, 'engine'>>
+) {
+	const parsedRules = useContext(EngineContext).getParsedRules()
+	const situation = useSelector(situationSelector)
+	const engines = useMemo(
+		() =>
+			baseSituations.map(base => ({
+				...base,
+				engine: new Engine(parsedRules).setSituation({
+					...situation,
+					...(base.situation as {})
+				})
+			})),
+		[parsedRules, baseSituations, situation]
+	)
+
+	return engines
+}
+
+const situationsToCompare = [
+	{
+		name: 'Assimilé salarié',
+		situation: {
+			dirigeant: "'assimilé salarié'"
+		}
+	},
+	{
+		name: 'Indépendant',
+		situation: {
+			dirigeant: "'indépendant'"
+		}
+	},
+	{
+		name: 'Auto-entrepreneur',
+		situation: {
+			dirigeant: "'auto-entrepreneur'"
+		}
+	}
+]
 
 export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
@@ -54,34 +102,11 @@ export default function SchemeComparaison({
 		setConversationStarted
 	])
 
-	const parsedRules = useContext(EngineContext).getParsedRules()
-	const situation = useSelector(situationSelector)
 	const displayResult =
 		useSelector(situationSelector)['entreprise . charges'] != undefined
-	const assimiléEngine = useMemo(
-		() =>
-			new Engine(parsedRules).setSituation({
-				...situation,
-				dirigeant: "'assimilé salarié'"
-			}),
-		[situation]
-	)
-	const autoEntrepreneurEngine = useMemo(
-		() =>
-			new Engine(parsedRules).setSituation({
-				...situation,
-				dirigeant: "'auto-entrepreneur'"
-			}),
-		[situation]
-	)
-	const indépendantEngine = useMemo(
-		() =>
-			new Engine(parsedRules).setSituation({
-				...situation,
-				dirigeant: "'indépendant'"
-			}),
-		[situation]
-	)
+
+	const comparaisonEngines = useComparaisonEngines(situationsToCompare)
+
 	return (
 		<>
 			<div
@@ -340,8 +365,8 @@ export default function SchemeComparaison({
 						</Trans>
 						<div className="AS">
 							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Assimilé salarié"
 								precision={0}
 								unit="€/an"
 								expression="contrat salarié . rémunération . net"
@@ -349,8 +374,8 @@ export default function SchemeComparaison({
 						</div>
 						<div className="indep">
 							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Indépendant"
 								precision={0}
 								expression="dirigeant . indépendant . revenu net de cotisations"
 							/>
@@ -359,8 +384,8 @@ export default function SchemeComparaison({
 							<>
 								{plafondAutoEntrepreneurDépassé && 'Plafond de CA dépassé'}
 								<Value
-									linkToRule={false}
-									engine={autoEntrepreneurEngine}
+									comparaisonEngines={comparaisonEngines}
+									currentComparaisonEngine="Auto-entrepreneur"
 									precision={0}
 									className={''}
 									unit="€/an"
@@ -376,8 +401,8 @@ export default function SchemeComparaison({
 						</h3>
 						<div className="AS">
 							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Assimilé salarié"
 								precision={0}
 								expression="protection sociale . retraite"
 							/>{' '}
@@ -390,8 +415,8 @@ export default function SchemeComparaison({
 						</div>
 						<div className="indep">
 							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Indépendant"
 								precision={0}
 								expression="protection sociale . retraite"
 							/>{' '}
@@ -408,8 +433,8 @@ export default function SchemeComparaison({
 							) : (
 								<>
 									<Value
-										linkToRule={false}
-										engine={autoEntrepreneurEngine}
+										comparaisonEngines={comparaisonEngines}
+										currentComparaisonEngine="Auto-entrepreneur"
 										precision={0}
 										expression="protection sociale . retraite"
 									/>{' '}
@@ -429,8 +454,8 @@ export default function SchemeComparaison({
 						</Trans>
 						<div className="AS">
 							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Assimilé salarié"
 								precision={0}
 								displayedUnit="trimestre"
 								expression="protection sociale . retraite . trimestres validés"
@@ -438,8 +463,8 @@ export default function SchemeComparaison({
 						</div>
 						<div className="indep">
 							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Indépendant"
 								precision={0}
 								expression="protection sociale . retraite . trimestres validés"
 								displayedUnit="trimestre"
@@ -450,8 +475,8 @@ export default function SchemeComparaison({
 								'—'
 							) : (
 								<Value
-									linkToRule={false}
-									engine={autoEntrepreneurEngine}
+									comparaisonEngines={comparaisonEngines}
+									currentComparaisonEngine="Auto-entrepreneur"
 									precision={0}
 									expression="protection sociale . retraite . trimestres validés"
 									displayedUnit="trimestres"
@@ -466,8 +491,8 @@ export default function SchemeComparaison({
 						<div className="AS">
 							<span>
 								<Value
-									linkToRule={false}
-									engine={assimiléEngine}
+									comparaisonEngines={comparaisonEngines}
+									currentComparaisonEngine="Assimilé salarié"
 									precision={0}
 									expression="protection sociale . santé . indemnités journalières"
 								/>
@@ -475,8 +500,8 @@ export default function SchemeComparaison({
 							<small>
 								(
 								<Value
-									linkToRule={false}
-									engine={assimiléEngine}
+									comparaisonEngines={comparaisonEngines}
+									currentComparaisonEngine="Assimilé salarié"
 									precision={0}
 									expression="protection sociale . accidents du travail et maladies professionnelles"
 								/>{' '}
@@ -488,8 +513,8 @@ export default function SchemeComparaison({
 						</div>
 						<div className="indep">
 							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
+								comparaisonEngines={comparaisonEngines}
+								currentComparaisonEngine="Indépendant"
 								precision={0}
 								expression="protection sociale . santé . indemnités journalières"
 							/>
@@ -500,8 +525,8 @@ export default function SchemeComparaison({
 							) : (
 								<span>
 									<Value
-										linkToRule={false}
-										engine={autoEntrepreneurEngine}
+										comparaisonEngines={comparaisonEngines}
+										currentComparaisonEngine="Auto-entrepreneur"
 										precision={0}
 										expression="protection sociale . santé . indemnités journalières"
 									/>

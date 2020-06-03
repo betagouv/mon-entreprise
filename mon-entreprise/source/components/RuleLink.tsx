@@ -8,6 +8,7 @@ import { SitePathsContext } from './utils/SitePathsContext'
 export default function RuleLink(
 	props: {
 		dottedName: DottedName
+		documentationState?: object
 		displayIcon?: boolean
 	} & Omit<React.ComponentProps<Link>, 'to'>
 ) {
@@ -17,6 +18,7 @@ export default function RuleLink(
 		<EngineRuleLink
 			{...props}
 			engine={engine}
+			documentationState={props.documentationState}
 			documentationPath={sitePaths.documentation.index}
 		/>
 	)

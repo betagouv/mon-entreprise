@@ -1,9 +1,9 @@
-import Engine, { EvaluatedNode, formatValue } from 'publicodes'
+import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'Rules'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
+import { ComparaisonEngine } from './SchemeComparaison'
 import { EngineContext } from './utils/EngineContext'
 
 export type ValueProps = {
@@ -11,7 +11,8 @@ export type ValueProps = {
 	unit?: string
 	displayedUnit?: string
 	precision?: number
-	engine?: Engine<DottedName>
+	comparaisonEngines?: Array<ComparaisonEngine>
+	currentComparaisonEngine?: string
 	linkToRule?: boolean
 } & React.HTMLProps<HTMLSpanElement>
 
@@ -20,7 +21,8 @@ export default function Value({
 	unit,
 	displayedUnit,
 	precision,
-	engine,
+	comparaisonEngines,
+	currentComparaisonEngine,
 	linkToRule = true,
 	...props
 }: ValueProps) {
@@ -28,18 +30,31 @@ export default function Value({
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
-	const evaluation = (engine ?? useContext(EngineContext)).evaluate(
-		expression,
-		{ unit }
-	)
+	const engine =
+		comparaisonEngines?.find(({ name }) => name === currentComparaisonEngine)
+			?.engine ?? useContext(EngineContext)
+
+	const evaluation = engine.evaluate(expression, { unit })
 	const value = formatValue(evaluation, {
 		displayedUnit,
 		language,
 		precision
 	})
 	if ('dottedName' in evaluation && linkToRule) {
+		const documentationState =
+			comparaisonEngines && currentComparaisonEngine
+				? {
+						currentComparaisonEngine,
+						comparaisonSituations: comparaisonEngines.map(
+							({ name, situation }) => ({ name, situation })
+						)
+				  }
+				: {}
 		return (
-			<RuleLink dottedName={evaluation.dottedName}>
+			<RuleLink
+				documentationState={documentationState}
+				dottedName={evaluation.dottedName}
+			>
 				<span {...props}>{value}</span>
 			</RuleLink>
 		)

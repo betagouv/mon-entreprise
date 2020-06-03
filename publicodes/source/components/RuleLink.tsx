@@ -12,6 +12,7 @@ type RuleLinkProps<Name extends string> = Omit<
 	dottedName: Name
 	engine: Engine<Name>
 	documentationPath: string
+	documentationState?: {}
 	displayIcon?: boolean
 	children?: React.ReactNode
 }
@@ -20,15 +21,21 @@ export function RuleLink<Name extends string>({
 	dottedName,
 	engine,
 	documentationPath,
+	documentationState,
 	displayIcon = false,
 	children,
 	...props
 }: RuleLinkProps<Name>) {
 	const rule = engine.getParsedRules()[dottedName]
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
-
 	return (
-		<Link to={newPath} {...props}>
+		<Link
+			to={{
+				pathname: newPath,
+				state: documentationState
+			}}
+			{...props}
+		>
 			{children || rule.title}{' '}
 			{displayIcon && rule.icons && <span>{emoji(rule.icons)} </span>}
 		</Link>

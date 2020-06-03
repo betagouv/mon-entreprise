@@ -5,20 +5,32 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Documentation, getDocumentationSiteMap } from 'publicodes'
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import SearchBar from 'Components/SearchBar'
+import { useComparaisonEngines } from 'Components/SchemeComparaison'
 
 export default function RulePage() {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
-	const engine = useContext(EngineContext)
 	const documentationPath = useContext(SitePathsContext).documentation.index
 	const { pathname } = useLocation()
+	const {
+		comparaisonSituations = [],
+		currentComparaisonEngine: initialComparaisonSituationName
+	} = useLocation().state ?? {}
+	const [currentComparaisonEngine, setCurrentComparaisonEngine] = useState(
+		initialComparaisonSituationName
+	)
+	const comparaisonEngines = useComparaisonEngines(comparaisonSituations)
+	const engine =
+		comparaisonEngines?.find(({ name }) => name === currentComparaisonEngine)
+			?.engine ?? useContext(EngineContext)
+
 	const documentationSitePaths = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
@@ -31,6 +43,7 @@ export default function RulePage() {
 	if (!documentationSitePaths[pathname]) {
 		return <Redirect to="/404" />
 	}
+
 	return (
 		<Animate.fromBottom>
 			<ScrollToTop key={pathname} />
@@ -42,6 +55,18 @@ export default function RulePage() {
 				`}
 			>
 				{currentSimulation ? <BackToSimulation /> : <span />}
+				{comparaisonEngines.length > 0 && (
+					<select
+						value={currentComparaisonEngine}
+						onChange={evt => setCurrentComparaisonEngine(evt.target.value)}
+					>
+						{comparaisonEngines.map(({ name }) => (
+							<option key={name} value={name}>
+								{name}
+							</option>
+						))}
+					</select>
+				)}
 				<SearchButton key={pathname} />
 			</div>
 			<Documentation

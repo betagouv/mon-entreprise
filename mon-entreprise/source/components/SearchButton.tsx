@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import Overlay from './Overlay'
 import { EngineContext } from 'Components/utils/EngineContext'
 import SearchBar from './SearchBar'
-import { useLocation } from 'react-router'
 
 type SearchButtonProps = {
 	invisibleButton?: boolean
