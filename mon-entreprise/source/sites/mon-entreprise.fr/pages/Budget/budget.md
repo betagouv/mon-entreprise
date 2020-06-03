@@ -5,7 +5,7 @@ manière dont elles sont employées.
 ## Principes
 
 Notre organisation souscrit aux principes établis dans le [manifeste des
-startups d’État](https://beta.gouv.fr/incubateurs) que nous rappelons ici :
+startups d’État](https://beta.gouv.fr/approche/manifeste) que nous rappelons ici :
 
 > ### Considère les besoins des usagers avant ceux de l’administration
 
@@ -77,17 +77,17 @@ expertes provenant du réseau des URSSAF.
 
 - **Développement 👨‍💻**
 
-  Les coûts de développement répresentent la grande majorité de notre budget.
+  Les coûts de développement représentent la grande majorité de notre budget.
   Nous utilisons une petite équipe de développeurs freelances, qui sont
   pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
   métiers. Les rémunérations suivent
-  [la grille des startups d’Etat](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
+  [la grille des startups d’État](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
 
 - **Logiciels et hébergement 💻**
 
   Notre modèle open-source nous permet d’accéder gratuitement à la majorité des
   outils que nous utilisons (hébergement de code, serveurs de tests, etc.). Le
-  site est hebergé sur [Netlify](https://www.netlify.com).
+  site est hébergé sur [Netlify](https://www.netlify.com).
 
 - **Déplacements 🚅**
 
