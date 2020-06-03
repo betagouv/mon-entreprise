@@ -76,9 +76,9 @@ exports[`calculate simulations-artiste-auteur: salarié 3`] = `"[12410]"`;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 1`] = `"[21394,116,1667,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `"[31029,86,2500,0,30000]"`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `"[33228,269,2500,0,30000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `"[44304,359,3333,0,40000]"`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `"[45267,439,3333,0,40000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5348,29,417,0,5000]"`;
 
@@ -150,7 +150,7 @@ exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14596,
 
 exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139594,39594,100000,103788,24245,75755,0,139594]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,467505,532494,0,1239955]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,467505,532495,0,1239955]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
 
@@ -370,7 +370,7 @@ exports[`calculate simulations-salarié: frais pro - DFS 2`] = `"[2335,0,2000,15
 
 exports[`calculate simulations-salarié: frais pro - DFS 3`] = `"[2265,0,2000,1606,1563]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 4`] = `"[2243,0,2000,1613,1567]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 4`] = `"[2243,0,2000,1613,1569]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 5`] = `"[2437,0,2000,1590,1590]"`;
 

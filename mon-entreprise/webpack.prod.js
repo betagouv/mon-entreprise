@@ -65,10 +65,7 @@ module.exports = {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
-				parallel:
-					process.env.CI === 'true' && process.env.CIRCLECI === 'true'
-						? 2
-						: true
+				parallel: 2
 			})
 		]
 	},
