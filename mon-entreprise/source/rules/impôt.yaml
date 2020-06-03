@@ -431,7 +431,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut:
           - recalcul:
               règle: impôt brut . sans plafonnement
               avec:
-                nombre de parts . rattachées: 0
+                nombre de parts . rattachées: 0 part
           - (- quotient familial . plafond avantage)
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans plafonnement:

@@ -239,11 +239,27 @@ export const mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 		if (cache._meta.inRecalcul) {
 			return defaultNode(false)
 		}
-		const recalculCache = { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
-		const amendedSituation = map(
-			value => evaluateNode(cache, situation, parsedRules, value),
+
+		const amendedSituation = Object.fromEntries(
 			node.explanation.amendedSituation
+				.map(([originRule, replacement]) => [
+					evaluateNode(cache, situation, parsedRules, originRule),
+					evaluateNode(cache, situation, parsedRules, replacement)
+				])
+				.filter(
+					([originRule, replacement]) =>
+						originRule.nodeValue !== replacement.nodeValue ||
+						serializeUnit(originRule.unit) !== serializeUnit(replacement.unit)
+				)
+				.map(([originRule, replacement]) => [
+					originRule.dottedName,
+					replacement
+				])
 		)
+		// Optimisation : no need for recalcul if situation is the same
+		const recalculCache = Object.keys(amendedSituation).length
+			? { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
+			: cache
 
 		const evaluatedNode = evaluateNode(
 			recalculCache,
@@ -266,12 +282,10 @@ export const mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
 		}
 	}
 
-	const amendedSituation = Object.fromEntries(
-		Object.keys(v.avec).map(dottedName => [
-			recurse(dottedName).dottedName,
-			recurse(v.avec[dottedName])
-		])
-	)
+	const amendedSituation = Object.keys(v.avec).map(dottedName => [
+		recurse(dottedName),
+		recurse(v.avec[dottedName])
+	])
 	const defaultRuleToEvaluate = dottedNameContext
 	const nodeToEvaluate = recurse(v.règle ?? defaultRuleToEvaluate)
 	return {

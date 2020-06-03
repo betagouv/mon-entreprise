@@ -70,8 +70,8 @@
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"build": "yarn run build:prod && yarn run build:legacy",
-		"build:prod": "yarn run webpack --config webpack.prod.js --progress --loglevel notice",
-		"build:legacy": "yarn run webpack --config webpack.prod.legacyBrowser.js --progress --loglevel notice",
+		"build:prod": "yarn run webpack --config webpack.prod.js",
+		"build:legacy": "yarn run webpack --config webpack.prod.legacyBrowser.js",
 		"build:stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"build:analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
 		"build:dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run build",
