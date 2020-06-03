@@ -38,55 +38,66 @@ export default function Simulation({
 		dispatch(setSimulationConfig(config, location.state?.fromGérer))
 	}, [config])
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
-	const progress = useSimulationProgress()
 	return (
 		<>
 			<TargetSelection showPeriodSwitch={showPeriodSwitch} />
 			<SearchButton invisibleButton />
 			{firstStepCompleted && (
-				<>
-					<Animate.fromTop>
-						{results}
-						<div
-							style={{
-								display: 'flex',
-								justifyContent: 'space-between',
-								marginTop: '1.2rem',
-								marginBottom: '0.6rem'
-							}}
-						>
-							{progress < 1 ? (
-								<small css="padding: 0.4rem 0">
-									<Trans i18nKey="simulateurs.précision.défaut">
-										Affinez la simulation en répondant aux questions :
-									</Trans>
-								</small>
-							) : (
-								<span />
-							)}
-							<SeeAnswersButton />
-						</div>
-						<section className="ui__ full-width lighter-bg">
-							<div className="ui__ container">
-								<Controls />
-								<Conversation customEndMessages={customEndMessages} />
-							</div>
-						</section>
-						{progress < 1 && (
-							<Progress progress={progress} className="ui__ full-width" />
-						)}
-						<br />
-						<PageFeedback
-							customMessage={
-								<Trans i18nKey="feedback.simulator">
-									Êtes-vous satisfait de ce simulateur ?
-								</Trans>
-							}
-							customEventName="rate simulator"
-						/>{' '}
-						{explanations}
-					</Animate.fromTop>
-				</>
+				<Animate.fromTop>
+					{results}
+					<Questions customEndMessages={customEndMessages} />
+					<br />
+					<PageFeedback
+						customMessage={
+							<Trans i18nKey="feedback.simulator">
+								Êtes-vous satisfait de ce simulateur ?
+							</Trans>
+						}
+						customEventName="rate simulator"
+					/>{' '}
+					{explanations}
+				</Animate.fromTop>
+			)}
+		</>
+	)
+}
+
+function Questions({
+	customEndMessages
+}: {
+	customEndMessages?: ConversationProps['customEndMessages']
+}) {
+	const progress = useSimulationProgress()
+
+	return (
+		<>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					marginTop: '1.2rem',
+					marginBottom: '0.6rem'
+				}}
+			>
+				{progress < 1 ? (
+					<small css="padding: 0.4rem 0">
+						<Trans i18nKey="simulateurs.précision.défaut">
+							Affinez la simulation en répondant aux questions :
+						</Trans>
+					</small>
+				) : (
+					<span />
+				)}
+				<SeeAnswersButton />
+			</div>
+			<section className="ui__ full-width lighter-bg">
+				<div className="ui__ container">
+					<Controls />
+					<Conversation customEndMessages={customEndMessages} />
+				</div>
+			</section>
+			{progress < 1 && (
+				<Progress progress={progress} className="ui__ full-width" />
 			)}
 		</>
 	)

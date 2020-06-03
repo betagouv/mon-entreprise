@@ -18,6 +18,7 @@ module.exports = {
 	},
 	plugins: [
 		...HTMLPlugins({ injectTrackingScript: true }),
+
 		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',

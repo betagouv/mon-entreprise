@@ -1,8 +1,8 @@
-import yaml from 'yaml'
 import React, { useState } from 'react'
-import Engine from '../../index'
-import PublicodeHighlighter from '../PublicodeHighlighter'
 import emoji from 'react-easy-emoji'
+import yaml from 'yaml'
+import Engine from '../../index'
+import PublicodesBlock from '../PublicodesBlock'
 
 type Props<Rules extends string> = { dottedName: Rules; engine: Engine<Rules> }
 export default function RuleSource<Rules extends string>({
@@ -14,7 +14,7 @@ export default function RuleSource<Rules extends string>({
 	return showSource ? (
 		<section>
 			<h3>Source publicode</h3>
-			<PublicodeHighlighter source={yaml.stringify({ [dottedName]: source })} />
+			<PublicodesBlock source={yaml.stringify({ [dottedName]: source })} />
 			<p className="ui__ notice">
 				Ci-dessus la règle d'origine, écrite en publicodes. Publicodes est un
 				langage déclaratif développé par beta.gouv.fr en partenariat avec

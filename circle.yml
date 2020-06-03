@@ -71,10 +71,9 @@ jobs:
       - image: cypress/base:12.16.1
         environment:
           TERM: xterm
-    resource_class: medium+
     steps:
       - install
-      - run: yarn workspace mon-entreprise build:dev
+      - run: export NODE_OPTIONS="--max-old-space-size=4096" && yarn workspace mon-entreprise build:dev
       - run:
           command: yarn workspace mon-entreprise serve:dev
           background: true
@@ -92,7 +91,6 @@ jobs:
       - image: cypress/base:12.16.1
         environment:
           TERM: xterm
-    resource_class: medium+
     parallelism: 3
     steps:
       - install

@@ -1,11 +1,8 @@
-import Engine, { EvaluationOptions } from 'publicodes'
-import { EvaluatedRule } from 'publicodes'
+import Engine, { EvaluatedRule, EvaluationOptions } from 'publicodes'
 import React, { createContext, useContext } from 'react'
-import rules, { DottedName } from 'Rules'
+import { DottedName } from 'Rules'
 
-export const EngineContext = createContext<Engine<DottedName>>(
-	new Engine(rules)
-)
+export const EngineContext = createContext<Engine<DottedName>>(null as any)
 
 export const EngineProvider = EngineContext.Provider
 

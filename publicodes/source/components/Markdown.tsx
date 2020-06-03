@@ -4,7 +4,7 @@ import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { HashLink as Link } from 'react-router-hash-link'
 import { EngineContext } from './contexts'
 import { RuleLinkWithContext } from './RuleLink'
-import PublicodeHighlighter from './PublicodeHighlighter'
+import PublicodesBlock from './PublicodesBlock'
 
 export function LinkRenderer({
 	href,
@@ -42,9 +42,11 @@ export function LinkRenderer({
 
 const CodeBlock = ({ value, language }: { value: string; language: string }) =>
 	language === 'yaml' ? (
-		<PublicodeHighlighter source={value} />
+		<PublicodesBlock source={value} />
 	) : (
-		<code>{value}</code>
+		<pre>
+			<code>{value}</code>
+		</pre>
 	)
 
 const TextRenderer = ({ children }: { children: string }) => (

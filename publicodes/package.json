@@ -28,7 +28,6 @@
 		"react-i18next": "^11.4.0",
 		"react-markdown": "^4.3.1",
 		"focus-trap-react": "^3.1.2",
-		"react-syntax-highlighter": "^12.2.1",
 		"styled-components": "^5.1.0",
 		"yaml": "^1.9.2"
 	},

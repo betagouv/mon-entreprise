@@ -6,9 +6,8 @@ import {
 	SituationProvider
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import Engine from 'publicodes'
-import { AvailableLangs } from 'i18n'
 import 'iframe-resizer'
+import Engine from 'publicodes'
 import React, { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
@@ -87,7 +86,7 @@ type RootProps = {
 export default function Root({ basename, rules }: RootProps) {
 	const { language } = useTranslation().i18n
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
-
+	const engine = useMemo(() => new Engine(rules), [rules])
 	return (
 		<Provider
 			basename={basename}
@@ -103,7 +102,7 @@ export default function Root({ basename, rules }: RootProps) {
 				previousSimulation: retrievePersistedSimulation()
 			}}
 		>
-			<EngineProvider value={new Engine(rules)}>
+			<EngineProvider value={engine}>
 				<Router />
 			</EngineProvider>
 		</Provider>
