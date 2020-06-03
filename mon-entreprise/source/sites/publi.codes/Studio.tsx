@@ -59,7 +59,6 @@ export default function Studio() {
 	useEffect(() => {
 		history.replace({
 			pathname,
-			state: { useDefaultValues: true },
 			search: `?code=${encodeURIComponent(debouncedEditorValue)}`
 		})
 	}, [debouncedEditorValue, history])
@@ -122,8 +121,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 		target =>
 			history.replace({
 				pathname: ruleToPaths[target],
-				search,
-				state: { useDefaultValues: true }
+				search
 			}),
 		[ruleToPaths, history, search]
 	)
