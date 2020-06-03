@@ -1,17 +1,9 @@
-import PublicodeHighlighter from '../../../../publicodes/source/components/PublicodeHighlighter'
-import React, { useContext } from 'react'
+import React, { Suspense, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import { SiteNameContext } from '../../Provider'
-import js from 'react-syntax-highlighter/dist/esm/languages/prism/javascript'
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
-import style from 'react-syntax-highlighter/dist/esm/styles/prism/atom-dark'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-
-SyntaxHighlighter.registerLanguage('js', js)
-SyntaxHighlighter.registerLanguage('jsx', jsx)
 
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',
@@ -64,14 +56,39 @@ type MarkdownProps = ReactMarkdownProps & {
 	className?: string
 }
 
-const CodeBlock = ({ value, language }: { value: string; language: string }) =>
-	language === 'yaml' ? (
-		<PublicodeHighlighter source={value} />
-	) : (
-		<SyntaxHighlighter language={language} style={style}>
-			{value}
-		</SyntaxHighlighter>
-	)
+const LazySyntaxHighlighter = React.lazy(() => import('../SyntaxHighlighter'))
+const CodeBlock = ({
+	value,
+	language
+}: {
+	value: string
+	language: string
+}) => (
+	<div
+		css={`
+			position: relative;
+		`}
+	>
+		<Suspense
+			fallback={
+				<pre className="ui__ code">
+					<code>{value}</code>
+				</pre>
+			}
+		>
+			<LazySyntaxHighlighter language={language} source={value} />
+		</Suspense>
+		{language === 'yaml' && (
+			<a
+				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}
+				target="_blank"
+				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
+			>
+				{emoji('⚡')} Lancer le calcul
+			</a>
+		)}
+	</div>
+)
 
 export const Markdown = ({
 	source,

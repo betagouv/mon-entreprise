@@ -1,9 +1,10 @@
+import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import mecanisms from '../../../../publicodes/docs/mecanisms.yaml'
-import MecanismExplanation from '../../../../publicodes/source/components/mecanisms/Explanation'
+import { capitalise0 } from '../../utils'
 import { Header } from './Header'
 
 export default function Landing() {
@@ -35,10 +36,38 @@ export default function Landing() {
 			</ul>
 			{Object.entries(mecanisms).map(([name, data]) => (
 				<React.Fragment key={name}>
-					<MecanismExplanation {...(data as any)} name={name} />
+					<Explanation {...(data as any)} name={name} />
 					<Link to={pathname + '#top'}>Retour à la liste</Link>
 				</React.Fragment>
 			))}
 		</div>
+	)
+}
+
+type ExplanationProp = {
+	exemples: { base: string }
+	description: string
+	name: string
+}
+function Explanation({ name, description, exemples }: ExplanationProp) {
+	return (
+		<>
+			{!!name && (
+				<h2 id={name}>
+					<pre>{name}</pre>
+				</h2>
+			)}
+			<Markdown source={description} />
+			{exemples && (
+				<>
+					{Object.entries(exemples).map(([name, exemple]) => (
+						<React.Fragment key={name}>
+							<h3>{name === 'base' ? 'Exemple' : capitalise0(name)}</h3>
+							<Markdown source={`\`\`\`yaml\n${exemple}\n\`\`\``} />
+						</React.Fragment>
+					))}{' '}
+				</>
+			)}
+		</>
 	)
 }
