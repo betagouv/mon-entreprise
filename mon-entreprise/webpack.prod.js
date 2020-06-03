@@ -12,6 +12,7 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const path = require('path')
 const cheerio = require('cheerio')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const prerenderConfig = () => ({
 	staticDir: path.resolve('dist'),
@@ -60,6 +61,17 @@ module.exports = {
 	},
 	mode: 'production',
 	devtool: 'source-map',
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserPlugin({
+				parallel:
+					process.env.CI === 'true' && process.env.CIRCLECI === 'true'
+						? 2
+						: true
+			})
+		]
+	},
 	plugins: [
 		...common.plugins,
 		...HTMLPlugins({ injectTrackingScript: true }),
