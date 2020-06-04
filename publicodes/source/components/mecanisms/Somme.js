@@ -13,6 +13,15 @@ const SommeNode = ({ explanation, nodeValue, unit }) => (
 )
 export default SommeNode
 
+// We want to put non applicable rules a the bottom of list #1055
+function sortByApplicability(a, b) {
+	const isApplicable = x => x.nodeValue === false
+	if (isApplicable(a) === isApplicable(b)) {
+		return 0
+	}
+	return isApplicable(a) ? 1 : -1
+}
+
 let Table = ({ explanation, unit }) => (
 	<div
 		css={`
@@ -22,7 +31,7 @@ let Table = ({ explanation, unit }) => (
 		`}
 	>
 		<div>
-			{explanation.map((v, i) => (
+			{explanation.sort(sortByApplicability).map((v, i) => (
 				<Row key={i} {...{ v, i }} unit={unit} />
 			))}
 		</div>
@@ -39,6 +48,7 @@ function Row({ v, i, unit }) {
 		<StyledRow
 			key={v.name || i}
 			// className={isSomme ? '' : 'noNest'}
+			className={v.nodeValue === false ? 'notApplicable' : ''}
 			onClick={() => setFolded(!folded)}
 		>
 			<div className="element">
@@ -89,6 +99,11 @@ const StyledRow = styled.div`
 	:nth-child(2n) {
 		background-color: var(--lightestColor);
 	}
+
+	&.notApplicable {
+		opacity: 0.6;
+	}
+
 	.element .result,
 	.element .nodeValue {
 		display: none;
