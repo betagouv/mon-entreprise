@@ -14,6 +14,7 @@ export function useSimulatorsMetadata() {
 		icône: string
 		description?: string
 		sitePath: string
+		label?: string
 	}
 
 	return [
@@ -67,14 +68,29 @@ export function useSimulatorsMetadata() {
 			icône: '📊',
 			description: t(
 				'simulateurs.résumé.comparaison',
-				'Simulez les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)'
+				'Découvrir les différences entre les régimes (cotisations,retraite, maternité, maladie, etc.)'
 			),
 			sitePath: sitePaths.simulateurs.comparaison
 		},
 		{
-			name: t('Coronavirus'),
-			icône: '👨‍🔬',
+			name: t('Chômage partiel'),
+			description: t(
+				'simulateurs.résumé.chômage-partiel',
+				`Simuler le revenu net versé au salarié, ainsi que le coût total restant à charge pour l'entreprise en cas de recours à l'activité partielle.`
+			),
+			icône: '😷',
+			label: t('Covid 19'),
 			sitePath: sitePaths.coronavirus
+		},
+		{
+			name: t('Aide à la déclaration de revenu'),
+			description: t(
+				'simulateurs.résumé.aide-déclaration-revenu-indep',
+				`Calculez facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2019.`
+			),
+			icône: '✍️',
+			label: t('Indépendant'),
+			sitePath: sitePaths.gérer.déclarationIndépendant
 		}
 	] as Array<SimulatorMetaData>
 }
@@ -101,9 +117,8 @@ export default function Simulateurs() {
 					// dernière ligne.
 					style={{ maxWidth: 1100, margin: 'auto' }}
 				>
-					{simulatorsMetadata
-						.filter(({ name }) => name !== 'Coronavirus')
-						.map(({ name, description, sitePath, icône }) => (
+					{simulatorsMetadata.map(
+						({ name, description, sitePath, icône, label }) => (
 							<Link
 								className="ui__ interactive card box"
 								key={sitePath}
@@ -117,8 +132,10 @@ export default function Simulateurs() {
 								<p className="ui__ notice" css="flex: 1">
 									{description}
 								</p>
+								{label && <span className="ui__ label">{label}</span>}
 							</Link>
-						))}
+						)
+					)}
 				</div>
 			</section>
 			<section>
