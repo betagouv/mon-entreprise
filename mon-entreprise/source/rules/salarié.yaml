@@ -335,13 +335,34 @@ contrat salarié . activité partielle . indemnisation entreprise:
     Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
-    encadrement:
-      valeur: indemnités . base
-      plancher: 8.03 €/heure * heures chômées
-      plafond:
-        recalcul:
-          avec:
-            rémunération . brut de base: 4.5 * SMIC
+    multiplication:
+      assiette: retrait absence
+      taux: taux d'indemnisation
+    plancher: 8.03 €/heure * heures chômées
+    plafond:
+      recalcul:
+        avec:
+          rémunération . brut de base: 4.5 * SMIC
+
+contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  description: >-
+    Depuis le 1er juin, le taux d'indemnisation de l'entreprise passe à 60%.
+    L'indemnité versée à l'employé reste inchangée et c'est donc l'entreprise
+    qui devra prendre en charge la différence.
+
+    Cette mesure ne concerne pas les secteurs faisant l’objet de restrictions
+    législatives ou réglementaires particulières en raison de la crise sanitaire
+  formule:
+    variations:
+      - si: secteur d'activité restreint
+        alors: 70%
+      - sinon: 60%
+
+contrat salarié . activité partielle . secteur d'activité restreint:
+  question: >-
+    Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
+    réglementaires ? (ex. : tourisme, restauration, culture)
+  par défaut: non
 
 # TODO : This should be merged with other convention collectives
 contrat salarié . activité partielle . convention syntec:
@@ -376,11 +397,10 @@ contrat salarié . déduction forfaitaire spécifique:
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
   formule:
-    valeur:
-      allègement:
-        assiette: cotisations . assiette
-        abattement: taux
-        plafond: 7600 €/an
+    allègement:
+      assiette: cotisations . assiette
+      abattement: taux
+      plafond: 7600 €/an
     plancher: cotisations . assiette minimale
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html

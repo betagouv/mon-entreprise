@@ -26,6 +26,6 @@ describe('Page covid-19', function() {
 	it('should display 85 % de prise en charge pour un salaire médian', () => {
 		cy.contains('salaire médian').click()
 		testText('comparaison-net', 'Soit 85 % du revenu net')
-		testText('comparaison-total', 'Soit 0 % du coût habituel')
+		testText('comparaison-total', 'Soit 8 % du coût habituel')
 	})
 })
