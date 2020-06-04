@@ -979,6 +979,21 @@ contrat salarié . activité partielle . indemnisation entreprise:
     l'état.
   titre.en: "[automatic] Reimbursement of partial activity allowance"
   titre.fr: Remboursement de l'indemnité d'activité partielle
+contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
+  description.en: >-
+    [automatic] As of June 1, the company's compensation rate increases to 60%.
+    The compensation paid to the employee remains unchanged and it is therefore
+    the company that will have to pay the difference.
+
+    This measure does not concern sectors subject to specific legislative or regulatory restrictions due to the health crisis.
+  description.fr: >-
+    Depuis le 1er juin, le taux d'indemnisation de l'entreprise passe à 60%.
+    L'indemnité versée à l'employé reste inchangée et c'est donc l'entreprise
+    qui devra prendre en charge la différence.
+
+    Cette mesure ne concerne pas les secteurs faisant l’objet de restrictions législatives ou réglementaires particulières en raison de la crise sanitaire
+  titre.en: "[automatic] compensation rate"
+  titre.fr: taux d'indemnisation
 contrat salarié . activité partielle . indemnités:
   description.en: >-
     [automatic] If you are placed on short-time work, you are not entitled to a
@@ -1024,6 +1039,13 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
     versement complémentaire de l’employeur.
   titre.en: "[automatic] minimum monthly pay"
   titre.fr: rémunération mensuelle minimale
+contrat salarié . activité partielle . secteur d'activité restreint:
+  question.en: "[automatic] Are there any regulatory restrictions on the company's
+    line of business? (e.g. tourism, catering, culture)"
+  question.fr: "Le secteur d'activité de l'entreprise fait-il l'objet de
+    restrictions réglementaires ? (ex. : tourisme, restauration, culture)"
+  titre.en: "[automatic] narrow focus"
+  titre.fr: secteur d'activité restreint
 contrat salarié . aides employeur:
   description.en: >
     Some aids can be requested by the employer to help hires.
