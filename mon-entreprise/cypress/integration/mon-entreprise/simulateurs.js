@@ -81,10 +81,9 @@ describe('Simulateurs', function() {
 							.type('{selectall}50000')
 						cy.contains('Passer').click()
 						cy.contains('Passer').click()
-						cy.contains('Début 2020').click()
-						cy.wait(200)
-						cy.contains('Suivant').click()
 						cy.contains('ACRE')
+						cy.contains('Passer').click()
+						cy.contains('Début 2020').click()
 					})
 					it('should not have negative value', () => {
 						cy.contains('€/mois').click()

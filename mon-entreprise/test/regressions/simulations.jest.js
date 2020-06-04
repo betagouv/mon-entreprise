@@ -107,6 +107,10 @@ it('calculate aide-déclaration-indépendant', () => {
 	runSimulations(
 		aideDéclarationIndépendantsSituations,
 		aideDéclarationConfig.objectifs,
-		aideDéclarationConfig.situation
+		{
+			"aide déclaration revenu indépendant 2019 . nature de l'activité":
+				"'commerciale ou industrielle'",
+			...aideDéclarationConfig.situation
+		}
 	)
 })

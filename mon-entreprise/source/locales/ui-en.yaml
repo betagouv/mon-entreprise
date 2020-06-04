@@ -6,6 +6,7 @@
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
 Afficher la description publicode: Display publicode description
+Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Alors: Then
 Année d'activité: Years of activity
@@ -23,6 +24,7 @@ Changer: Change
 Chercher dans la documentation: Search the documentation
 Choisir la forme juridique: Choose your legal status
 Choisir plus tard: Choose later
+Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
 "Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
@@ -31,6 +33,7 @@ Continuer: Continue
 Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
+Covid 19: Covid 19
 "Covid-19 : Découvrez les mesures de soutien aux entreprises": "Covid-19: Find out about business support measures"
 "Covid-19 : Découvrir les mesures de soutien aux entreprises": "Covid-19: Discovering Business Support Measures"
 Coût pour l'entreprise: Cost to the company
@@ -1007,11 +1010,15 @@ simulateurs:
     faible: Low accuracy
     moyenne: Medium accuracy
   résumé:
+    aide-déclaration-revenu-indep: Easily calculate the amount of payroll taxes to
+      report on your 2019 income tax return.
     artiste-auteur: Estimating the social security contributions of an artist or author
     assimilé: |
       Calculate the income of an officer of a minority SAS, SASU or SARL
     auto: |
       Calculate the income (or turnover) of an auto-entrepreneur
+    chômage-partiel: Simulate the net income paid to the employee, as well as the
+      total remaining cost to the company if the partial activity is used.
     comparaison: >
       Simulate the differences between the plans (contributions, retirement,
       maternity, illness, etc.)

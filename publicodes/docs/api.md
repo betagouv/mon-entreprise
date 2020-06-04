@@ -243,8 +243,6 @@ dans un cache. Par conséquent, les prochains appels seront plus rapides.
 
   - `unit`: spécifie l'unité dans laquelle le résultat doit être retourné.
     Si la valeur retournée par le calcul est un nombre, ce dernier sera converti dans l'unité demandée. Ainsi `evaluate('prix', {unit: '€'})` équivaut à `evaluate('prix [€]')`. Une erreur est levée si l'unité n'est pas compatible avec la formule.
-  - `useDefaultValues` (par défaut `true`): option pour forcer l'utilisation des valeurs par défaut des règles.
-    Si sa valeur est à `false` et qu'il manque des valeurs dans la situation pour que le calcul soit effectué, ces dernières seront remontée dans les `missingsVariables` de l'objet retourné, et la valeur sera `null`.
 
 **Retourne**
 Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
@@ -255,8 +253,7 @@ Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
 > Utilisez la fonction `formatNode(evaluationResult)` autant que possible pour
 > afficher la valeur retournée.
 
-- `missingVariables`: contient les valeur manquante lorsque `useDefaultValues`
-  est mis à `false`.
+- `missingVariables`: contient les règles dont la valeur est manquante dans la situation
 - `nodeValue`: la valeur calculée
 - `isApplicable`: si l'expression évaluée est une référence à une règle, alors
   ce booléen indique si la règle est applicable ou non
@@ -307,14 +304,6 @@ action (il est affiché sur l'écran de droite).
 - `language`: le language dans lequel afficher la documentation (pour l'instant,
   seul `fr` et `en` sont supportés)
 
-> Note : les valeurs des règles `par défaut` ne sont pas utilisée dans la doc.
-> Si l'on souhaite afficher la documentation avec les calculs utilisant les
-> valeurs par défaut, il suffit d'ajouter la clé `useDefaultValues: true` dans
-> le `state` de l'objet
-> [`location`](https://reacttraining.com/react-router/web/api/location) du
-> navigateur. On peut également utiliser [RuleLink](#<rulelink-/>) (ci-dessous)
-> qui s'en occupe pour nous.
-
 #### <RuleLink />
 
 Composant react permettant de faire un lien vers une page de la documentation.
@@ -327,5 +316,4 @@ Par défaut, le texte affiché est le nom de la règle.
   montée. Doit correspondre à celui précisé pour le composant `<Documentation />`
 - `dottedName`: le nom de la règle à afficher
 - `displayIcon`: affiche l'icône de la règle dans le lien (par défaut à `false`)
-- `useDefaultValues`: utilise les valeurs `par défaut` des règles (par défaut à `false`)
 - `children`: N'importe quel noeud react. Par défaut, c'est le nom de la règle qui est utilisé.

@@ -122,6 +122,7 @@ let evaluateReference = (filter, contextRuleName) => (
 
 	if (applicableReplacements.length) {
 		if (applicableReplacements.length > 1) {
+			// eslint-disable-next-line no-console
 			console.warn(`
 Règle ${rule.dottedName}: plusieurs remplacements valides ont été trouvés :
 \n\t${applicableReplacements.map(node => node.rawNode).join('\n\t')}
@@ -195,6 +196,14 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		)
 	}
 
+	if (rule.defaultValue != null) {
+		const evaluation = evaluateNode(cache, situation, rules, rule.defaultValue)
+		return cacheNode(evaluation.nodeValue ?? evaluation, {
+			...evaluation.missingVariables,
+			[dottedName]: 1
+		})
+	}
+
 	if (rule.formule != null) {
 		const evaluation = evaluateNode(cache, situation, rules, rule)
 		return cacheNode(
@@ -205,7 +214,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		)
 	}
 
-	return cacheNode(null, { [dottedName]: rule.defaultValue ? 1 : 2 })
+	return cacheNode(null, { [dottedName]: 2 })
 }
 
 export let parseReference = (

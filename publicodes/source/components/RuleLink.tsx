@@ -3,11 +3,7 @@ import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Engine from '..'
 import { encodeRuleName } from '../ruleUtils'
-import {
-	BasepathContext,
-	EngineContext,
-	UseDefaultValuesContext
-} from './contexts'
+import { BasepathContext, EngineContext } from './contexts'
 
 type RuleLinkProps<Name extends string> = Omit<
 	React.ComponentProps<Link>,
@@ -17,7 +13,6 @@ type RuleLinkProps<Name extends string> = Omit<
 	engine: Engine<Name>
 	documentationPath: string
 	displayIcon?: boolean
-	useDefaultValues?: boolean
 	children?: React.ReactNode
 }
 
@@ -26,7 +21,6 @@ export function RuleLink<Name extends string>({
 	engine,
 	documentationPath,
 	displayIcon = false,
-	useDefaultValues = false,
 	children,
 	...props
 }: RuleLinkProps<Name>) {
@@ -34,7 +28,7 @@ export function RuleLink<Name extends string>({
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
 	return (
-		<Link to={{ pathname: newPath, state: { useDefaultValues } }} {...props}>
+		<Link to={newPath} {...props}>
 			{children || rule.title}{' '}
 			{displayIcon && rule.icons && <span>{emoji(rule.icons)} </span>}
 		</Link>
@@ -49,13 +43,11 @@ export function RuleLinkWithContext(
 		throw new Error('an engine should be provided in context')
 	}
 	const documentationPath = useContext(BasepathContext)
-	const useDefaultValues = useContext(UseDefaultValuesContext)
 
 	return (
 		<RuleLink
 			engine={engine}
 			documentationPath={documentationPath}
-			useDefaultValues={useDefaultValues}
 			{...props}
 		/>
 	)

@@ -50,7 +50,15 @@ export function getNextSteps(
 	)
 
 	const innerKeys = flatten(map(keys, missingVariables)),
-		missingByTargetsAdvanced = countBy(identity, innerKeys)
+		missingByTargetsAdvanced = Object.fromEntries(
+			Object.entries(countBy(identity, innerKeys)).map(
+				// Give higher score to top level questions
+				([name, score]) => [
+					name,
+					score + Math.max(0, 4 - name.split('.').length)
+				]
+			)
+		)
 
 	const missingByCompound = mergeWith(
 			pair,
@@ -116,9 +124,9 @@ export const useNextQuestions = function(): Array<DottedName> {
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions ?? {}
 	const situation = useSelector(situationSelector)
-	const missingVariables = useEvaluation(objectifs, {
-		useDefaultValues: false
-	}).map(node => node.missingVariables ?? {})
+	const missingVariables = useEvaluation(objectifs).map(
+		node => node.missingVariables ?? {}
+	)
 	const nextQuestions = useMemo(() => {
 		return getNextQuestions(
 			missingVariables,

@@ -61,12 +61,6 @@ describe('conversation', function() {
 
 		expect(
 			getNextQuestions([engine.evaluate('net').missingVariables])[0]
-		).to.equal(undefined)
-
-		expect(
-			getNextQuestions([
-				engine.evaluate('net', { useDefaultValues: false }).missingVariables
-			])[0]
 		).to.equal('cadre')
 	})
 
@@ -78,9 +72,7 @@ describe('conversation', function() {
 					'contrat salarié . CDD': 'oui',
 					'contrat salarié . rémunération . brut de base': '2300'
 				})
-				.evaluate('contrat salarié . rémunération . net', {
-					useDefaultValues: false
-				}).missingVariables
+				.evaluate('contrat salarié . rémunération . net').missingVariables
 		)
 
 		expect(result).to.include('contrat salarié . CDD . motif')

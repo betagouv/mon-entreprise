@@ -2363,6 +2363,9 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     vieillesse.
   titre.en: "[automatic] proration waiver"
   titre.fr: renonciation proratisation
+contrat salarié . plafond sécurité sociale . renonciation proratisation . plafond sécurité sociale:
+  titre.en: "[automatic] social security ceiling"
+  titre.fr: plafond sécurité sociale
 contrat salarié . prime d'impatriation:
   description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
   description.fr: La prime d'impatriation est une partie de la rémunération

@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
-import { Route, useLocation } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Engine from '..'
 import i18n from '../i18n'
 import { decodeRuleName, encodeRuleName } from '../ruleUtils'
-import {
-	BasepathContext,
-	EngineContext,
-	UseDefaultValuesContext
-} from './contexts'
+import { BasepathContext, EngineContext } from './contexts'
 import RulePage from './rule/Rule'
 
 export { RuleLink } from './RuleLink'
@@ -28,27 +24,21 @@ export function Documentation<Names extends string>({
 			i18n.changeLanguage(language)
 		}
 	}, [language])
-	const state: { useDefaultValues?: boolean } = useLocation().state ?? {}
-	const useDefaultValues =
-		('useDefaultValues' in state && state.useDefaultValues) || false
 	return (
 		<EngineContext.Provider value={engine}>
 			<BasepathContext.Provider value={documentationPath}>
-				<UseDefaultValuesContext.Provider value={useDefaultValues}>
-					<Route
-						path={documentationPath + '/:name+'}
-						render={({ match }) => {
-							return (
-								<RulePage
-									dottedName={decodeRuleName(match.params.name)}
-									engine={engine}
-									useDefaultValues={useDefaultValues}
-									language={'fr'}
-								/>
-							)
-						}}
-					/>
-				</UseDefaultValuesContext.Provider>
+				<Route
+					path={documentationPath + '/:name+'}
+					render={({ match }) => {
+						return (
+							<RulePage
+								dottedName={decodeRuleName(match.params.name)}
+								engine={engine}
+								language={'fr'}
+							/>
+						)
+					}}
+				/>
 			</BasepathContext.Provider>
 		</EngineContext.Provider>
 	)

@@ -39,8 +39,7 @@ testSuites.forEach(([suiteName, suite]) => {
 								const result = engine
 									.setSituation(situation ?? {})
 									.evaluate(name, {
-										unit: defaultUnit,
-										useDefaultValues: false
+										unit: defaultUnit
 									})
 								if (typeof valeur === 'number') {
 									expect(result.nodeValue).to.be.closeTo(valeur, 0.001)

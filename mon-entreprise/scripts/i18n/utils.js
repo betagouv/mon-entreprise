@@ -117,7 +117,7 @@ function getRulesMissingTranslations() {
 
 const getUiMissingTranslations = () => {
 	const staticKeys = require(path.resolve(
-		'../../source/locales/static-analysis-fr.json'
+		'source/locales/static-analysis-fr.json'
 	))
 	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 

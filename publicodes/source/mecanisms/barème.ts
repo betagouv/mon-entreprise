@@ -76,7 +76,8 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 			nodeValue:
 				(Math.min(assiette.nodeValue, tranche.plafondValue) -
 					tranche.plancherValue) *
-				convertUnit(taux.unit, parseUnit(''), taux.nodeValue as number)
+				convertUnit(taux.unit, parseUnit(''), taux.nodeValue as number),
+			missingVariables: mergeAllMissing([taux, tranche])
 		}
 	})
 }

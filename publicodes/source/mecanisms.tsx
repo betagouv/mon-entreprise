@@ -58,21 +58,23 @@ export const mecanismOneOf = (recurse, k, v) => {
 
 	const evaluate = (cache, situation, parsedRules, node) => {
 		const evaluateOne = child =>
-				evaluateNode(cache, situation, parsedRules, child),
-			explanation = map(evaluateOne, node.explanation),
-			values = pluck('nodeValue', explanation),
-			nodeValue = any(equals(true), values)
-				? true
-				: any(equals(null), values)
-				? null
-				: false,
-			// Unlike most other array merges of missing variables this is a "flat" merge
-			// because "one of these conditions" tend to be several tests of the same variable
-			// (e.g. contract type is one of x, y, z)
-			missingVariables =
-				nodeValue == null
-					? reduce(mergeWith(max), {}, map(collectNodeMissing, explanation))
-					: {}
+			evaluateNode(cache, situation, parsedRules, child)
+		const explanation = map(evaluateOne, node.explanation)
+
+		const anyTrue = explanation.find(e => e.nodeValue === true)
+		const anyNull = explanation.find(e => e.nodeValue === null)
+		const { nodeValue, missingVariables } = anyTrue ??
+			anyNull ?? {
+				nodeValue: false,
+				// Unlike most other array merges of missing variables this is a "flat" merge
+				// because "one of these conditions" tend to be several tests of the same variable
+				// (e.g. contract type is one of x, y, z)
+				missingVariables: reduce(
+					mergeWith(max),
+					{},
+					map(collectNodeMissing, explanation)
+				)
+			}
 
 		return { ...node, nodeValue, explanation, missingVariables }
 	}
@@ -105,14 +107,13 @@ export const mecanismAllOf = (recurse, k, v) => {
 	const evaluate = (cache, situation, parsedRules, node) => {
 		const evaluateOne = child =>
 				evaluateNode(cache, situation, parsedRules, child),
-			explanation = map(evaluateOne, node.explanation),
-			values = pluck('nodeValue', explanation),
-			nodeValue = any(equals(false), values)
-				? false // court-circuit
-				: any(equals(null), values)
-				? null
-				: true,
-			missingVariables = nodeValue == null ? mergeAllMissing(explanation) : {}
+			explanation = map(evaluateOne, node.explanation)
+
+		const anyFalse = explanation.find(e => e.nodeValue === false) // court-circuit
+		const { nodeValue, missingVariables } = anyFalse ?? {
+			nodeValue: explanation.some(e => e.nodeValue === null) ? null : true,
+			missingVariables: mergeAllMissing(explanation)
+		}
 
 		return { ...node, nodeValue, explanation, missingVariables }
 	}
@@ -588,10 +589,12 @@ export const mecanismSynchronisation = (recurse, k, v) => {
 				? path(valuePath, APIExplanation.explanation.defaultValue)
 				: nodeValue
 
-		const missingVariables =
-			APIExplanation.nodeValue === null
+		const missingVariables = {
+			...APIExplanation.missingVariables,
+			...(APIExplanation.nodeValue === null
 				? { [APIExplanation.dottedName]: 1 }
-				: {}
+				: {})
+		}
 		const explanation = { ...v, API: APIExplanation }
 		return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
 	}

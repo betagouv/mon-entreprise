@@ -10,21 +10,12 @@ import RuleHeader from './Header'
 import References from './References'
 import RuleSource from './RuleSource'
 
-// let LazySource = React.lazy(() => import('../../../../mon-entreprise/source/components/RuleSource'))
-
-export default function Rule({
-	dottedName,
-	useDefaultValues,
-	engine,
-	language
-}) {
-	const [viewSource, setViewSource] = useState(false)
+export default function Rule({ dottedName, engine, language }) {
 	if (!engine.getParsedRules()[dottedName]) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluate(dottedName, {
-		useDefaultValues
-	})
+	const rule = engine.evaluate(dottedName)
+	const isSetInStituation = engine.situation[dottedName] !== undefined
 	const { description, question } = rule
 
 	return (
@@ -43,7 +34,9 @@ export default function Rule({
 							padding: '1rem'
 						}}
 					>
-						{rule.nodeValue != null && (
+						{((rule.defaultValue?.nodeValue == null &&
+							rule.nodeValue != null) ||
+							(rule.defaultValue?.nodeValue != null && isSetInStituation)) && (
 							<>
 								{formatValue(rule, { language })}
 								<br />
