@@ -9,7 +9,6 @@ aide déclaration revenu indépendant 2019:
 aide déclaration revenu indépendant 2019 . nature de l'activité:
   remplace: entreprise . catégorie d'activité
   question: Quelle est la nature de votre activité ?
-  par défaut: "'commerciale ou industrielle'"
   formule:
     une possibilité:
       choix obligatoire: oui
