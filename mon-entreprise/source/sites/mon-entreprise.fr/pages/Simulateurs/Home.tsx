@@ -76,7 +76,7 @@ export function useSimulatorsMetadata() {
 			name: t('Chômage partiel'),
 			description: t(
 				'simulateurs.résumé.chômage-partiel',
-				`Simuler le revenu net versé au salarié, ainsi que le coût total restant à charge pour l'entreprise en cas de recours à l'activité partielle.`
+				"Simuler le revenu net versé au salarié, ainsi que le coût total restant à charge pour l'entreprise en cas de recours à l'activité partielle."
 			),
 			icône: '😷',
 			label: t('Covid 19'),
@@ -86,7 +86,7 @@ export function useSimulatorsMetadata() {
 			name: t('Aide à la déclaration de revenu'),
 			description: t(
 				'simulateurs.résumé.aide-déclaration-revenu-indep',
-				`Calculez facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2019.`
+				'Calculer facilement les montants des charges sociales à reporter dans votre déclaration de revenu 2019.'
 			),
 			icône: '✍️',
 			label: t('Indépendant'),
