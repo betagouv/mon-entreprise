@@ -1,7 +1,6 @@
 // This should be the new way to implement mecanisms
 // In a specific file
 // TODO import them automatically
-// TODO convert the legacy functions to new files
 import mecanismRound, { unchainRoundMecanism } from './mecanisms/arrondi'
 import barème from './mecanisms/barème'
 import durée from './mecanisms/durée'
@@ -11,7 +10,7 @@ import operation from './mecanisms/operation'
 import régularisation from './mecanisms/régularisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
 import variableTemporelle from './mecanisms/variableTemporelle'
-import variations from './mecanisms/variations'
+import variations, { devariate } from './mecanisms/variations'
 import { Grammar, Parser } from 'nearley'
 import {
 	add,
@@ -163,9 +162,9 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 			return decompose(recurse, mecanismName, values)
 		}
 		if (values?.variations) {
-			return variations(recurse, mecanismName, values, true)
+			return devariate(recurse, mecanismName, values)
 		}
-		return parseFn(recurse, mecanismName, values)
+		return parseFn(recurse, values)
 	} catch (e) {
 		if (e instanceof EngineError) {
 			throw e
@@ -242,8 +241,8 @@ const statelessParseFunction = {
 	allègement: mecanismReduction,
 	variations,
 	synchronisation: mecanismSynchronisation,
-	valeur: (recurse, __, v) => recurse(v),
-	constant: (_, __, v) => ({
+	valeur: (recurse, v) => recurse(v),
+	constant: (_, v) => ({
 		type: v.type,
 		constant: true,
 		nodeValue: v.nodeValue,

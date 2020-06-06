@@ -4,7 +4,7 @@ import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import { areUnitConvertible, convertUnit, inferUnit } from '../units'
 
-export const mecanismProduct = (recurse, k, v) => {
+export const mecanismProduct = (recurse, v) => {
 	const objectShape = {
 		assiette: false,
 		taux: defaultNode(1),

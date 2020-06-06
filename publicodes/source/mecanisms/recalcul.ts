@@ -45,7 +45,7 @@ const evaluateRecalcul = (cache, situation, parsedRules, node) => {
 	}
 }
 
-export const mecanismRecalcul = dottedNameContext => (recurse, k, v) => {
+export const mecanismRecalcul = dottedNameContext => (recurse, v) => {
 	const amendedSituation = Object.keys(v.avec).map(dottedName => [
 		recurse(dottedName),
 		recurse(v.avec[dottedName])

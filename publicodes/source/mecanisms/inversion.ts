@@ -86,7 +86,7 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 	}
 }
 
-export const mecanismInversion = dottedName => (recurse, k, v) => {
+export const mecanismInversion = dottedName => (recurse, v) => {
 	if (!v.avec) {
 		throw new Error(
 			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"

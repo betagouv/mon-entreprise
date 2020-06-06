@@ -7,7 +7,7 @@ const evaluate = evaluateArray(
 	false
 )
 
-export const mecanismSum = (recurse, k, v) => {
+export const mecanismSum = (recurse, v) => {
 	const explanation = v.map(recurse)
 	return {
 		evaluate,

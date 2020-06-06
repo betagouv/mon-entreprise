@@ -5,11 +5,10 @@ import { InfixMecanism } from '../components/mecanisms/common'
 import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
 import { simplifyNodeUnit } from '../nodeUnits'
 import { mapTemporal, pureTemporal, temporalAverage } from '../temporal'
-import { EvaluatedNode, EvaluatedRule, Evaluation } from '../types'
+import { EvaluatedNode, EvaluatedRule } from '../types'
 import { serializeUnit } from '../units'
 
 type MecanismRoundProps = {
-	nodeValue: Evaluation<number>
 	explanation: ArrondiExplanation
 }
 
@@ -18,7 +17,7 @@ type ArrondiExplanation = {
 	decimals: EvaluatedNode<string, number>
 }
 
-function MecanismRound({ nodeValue, explanation }: MecanismRoundProps) {
+function MecanismRound({ explanation }: MecanismRoundProps) {
 	return (
 		<InfixMecanism value={explanation.value}>
 			{explanation.decimals.nodeValue !== false &&
@@ -75,7 +74,7 @@ function evaluate<Names extends string>(
 	}
 }
 
-export default (recurse, k, v) => {
+export default (recurse, v) => {
 	const explanation = {
 		value: has('valeur', v) ? recurse(v['valeur']) : recurse(v),
 		decimals: has('décimales', v) ? recurse(v['décimales']) : defaultNode(0)

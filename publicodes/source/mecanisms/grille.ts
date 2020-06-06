@@ -13,7 +13,7 @@ import {
 	parseTranches
 } from './trancheUtils'
 
-export default function parse(parse, k, v) {
+export default function parse(parse, v) {
 	const defaultUnit = v['unité'] && parseUnit(v['unité'])
 	const explanation = {
 		assiette: parse(v.assiette),

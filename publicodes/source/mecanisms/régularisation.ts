@@ -20,7 +20,7 @@ function stripTemporalTransform(node) {
 	}
 	return stripTemporalTransform(node.explanation.value)
 }
-export default function parse<Name extends string>(parse, k, v) {
+export default function parse<Name extends string>(parse, v) {
 	const rule = parse(v.règle)
 	if (!v['valeurs cumulées']) {
 		throw new Error(
