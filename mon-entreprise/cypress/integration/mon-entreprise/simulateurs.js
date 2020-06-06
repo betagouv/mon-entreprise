@@ -142,7 +142,7 @@ describe('Simulateur salarié', () => {
 		)
 		cy.contains('Steenvoorde (Nord)').click()
 		cy.wait(900)
-		cy.contains('Voir toutes les questions').click()
+		cy.contains('Voir ma situation').click()
 		cy.contains('Steenvoorde')
 	})
 })
