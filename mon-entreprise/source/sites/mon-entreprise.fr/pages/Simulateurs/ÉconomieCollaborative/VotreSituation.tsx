@@ -20,7 +20,7 @@ export default function VotreSituation() {
 	const { state } = useContext(StoreContext)
 	const { t } = useTranslation()
 	if (!activitésEffectuéesSelector(state).length) {
-		return <Redirect to={sitePaths.économieCollaborative.index} />
+		return <Redirect to={sitePaths.simulateurs.économieCollaborative.index} />
 	}
 	const titre = t(
 		'économieCollaborative.obligations.titre',
@@ -31,7 +31,9 @@ export default function VotreSituation() {
 	if (nextActivité) {
 		return (
 			<Redirect
-				to={sitePaths.économieCollaborative.index + '/' + nextActivité}
+				to={
+					sitePaths.simulateurs.économieCollaborative.index + '/' + nextActivité
+				}
 			/>
 		)
 	}

@@ -54,11 +54,11 @@ const sitePathsFr = {
 		comparaison: '/comparaison-régimes-sociaux',
 		salarié: '/salarié',
 		'artiste-auteur': '/artiste-auteur',
-		'chômage-partiel': '/chômage-partiel'
-	},
-	économieCollaborative: {
-		index: '/économie-collaborative',
-		votreSituation: '/votre-situation'
+		'chômage-partiel': '/chômage-partiel',
+		économieCollaborative: {
+			index: '/économie-collaborative',
+			votreSituation: '/votre-situation'
+		}
 	},
 	nouveautés: '/nouveautés',
 	stats: '/stats',
@@ -103,11 +103,11 @@ const sitePathsEn = {
 		comparaison: '/social-scheme-comparaison',
 		salarié: '/salaried',
 		'artiste-auteur': '/artist-author',
-		'chômage-partiel': '/partial-unemployement'
-	},
-	économieCollaborative: {
-		index: '/sharing-economy',
-		votreSituation: '/your-situation'
+		'chômage-partiel': '/partial-unemployement',
+		économieCollaborative: {
+			index: '/sharing-economy',
+			votreSituation: '/your-situation'
+		}
 	},
 	nouveautés: '/news',
 	integration: {

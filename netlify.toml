@@ -69,6 +69,11 @@
   to="/simulateurs/ch%C3%B4mage-partiel"
   status = 301
 
+[[redirects]]
+  from="/%C3%A9conomie-collaborative"
+  to="/simulateurs/%C3%A9conomie-collaborative"
+  status = 301
+
 # SEO redirect
 [[redirects]]
   from = "/documentation/contrat-salari%C3%A9/salaire/*"

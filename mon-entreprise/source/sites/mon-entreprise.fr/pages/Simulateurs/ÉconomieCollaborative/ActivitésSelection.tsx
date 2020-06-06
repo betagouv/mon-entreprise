@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import Animate from 'Components/ui/animate'
 import Checkbox from 'Components/ui/Checkbox'
 import InfoBulle from 'Components/ui/InfoBulle'
-import { debounce } from '../../../../utils'
+import { debounce } from '../../../../../utils'
 import { toggleActivité } from './actions'
 import { activités, getTranslatedActivité } from './activitésData'
 import NextButton from './NextButton'
@@ -168,7 +168,7 @@ export const ActivitéCard = ({
 				<Link
 					onClick={e => e.stopPropagation()}
 					className="ui__ small simple button"
-					to={sitePaths.économieCollaborative.index + '/' + title}
+					to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
 				>
 					<Trans>Modifier</Trans>
 				</Link>

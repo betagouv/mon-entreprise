@@ -47,7 +47,6 @@ import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautés/Nouveautés'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
-import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
@@ -145,10 +144,6 @@ const App = () => {
 						{redirects}
 						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route path={sitePaths.gérer.index} component={Gérer} />
-						<Route
-							path={sitePaths.économieCollaborative.index}
-							component={ÉconomieCollaborative}
-						/>
 						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
 						<Route
 							path={sitePaths.documentation.index}

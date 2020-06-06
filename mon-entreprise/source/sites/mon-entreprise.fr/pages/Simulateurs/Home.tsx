@@ -79,7 +79,7 @@ export function useSimulatorsMetadata() {
 				'Un guide pour savoir comment déclarer vos revenus issus de plateformes en ligne (AirBnb, leboncoin, blablacar, etc.)'
 			),
 			icône: '🙋',
-			sitePath: sitePaths.économieCollaborative.index
+			sitePath: sitePaths.simulateurs.économieCollaborative.index
 		},
 		{
 			name: t('Chômage partiel'),

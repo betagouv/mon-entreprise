@@ -31,8 +31,10 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 				}}
 				to={
 					nextActivité
-						? sitePaths.économieCollaborative.index + '/' + nextActivité
-						: sitePaths.économieCollaborative.votreSituation
+						? sitePaths.simulateurs.économieCollaborative.index +
+						  '/' +
+						  nextActivité
+						: sitePaths.simulateurs.économieCollaborative.votreSituation
 				}
 			>
 				{nextActivité || disabled ? (

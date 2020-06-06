@@ -12,6 +12,7 @@ import Home from './Home'
 import Indépendant from './Indépendant'
 import Salarié from './Salarié'
 import SchemeComparaison from './SchemeComparaison'
+import ÉconomieCollaborative from './ÉconomieCollaborative'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
@@ -82,6 +83,10 @@ export default function Simulateurs() {
 				<Route
 					path={sitePaths.simulateurs['chômage-partiel']}
 					component={ChômagePartiel}
+				/>
+				<Route
+					path={sitePaths.simulateurs.économieCollaborative.index}
+					component={ÉconomieCollaborative}
 				/>
 			</Switch>
 		</>

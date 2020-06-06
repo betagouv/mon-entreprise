@@ -15,7 +15,7 @@ export default function ÉconomieCollaborative() {
 		<>
 			<div css="transform: translateY(2rem)">
 				<NavLink
-					to={sitePaths.économieCollaborative.index}
+					to={sitePaths.simulateurs.économieCollaborative.index}
 					exact
 					activeClassName="ui__ hide"
 					className="ui__ simple small push-left button "
@@ -33,15 +33,15 @@ export default function ÉconomieCollaborative() {
 				<Switch>
 					<Route
 						exact
-						path={sitePaths.économieCollaborative.index}
+						path={sitePaths.simulateurs.économieCollaborative.index}
 						component={ActivitésSelection}
 					/>
 					<Route
-						path={sitePaths.économieCollaborative.votreSituation}
+						path={sitePaths.simulateurs.économieCollaborative.votreSituation}
 						component={VotreSituation}
 					/>
 					<Route
-						path={sitePaths.économieCollaborative.index + '/:title'}
+						path={sitePaths.simulateurs.économieCollaborative.index + '/:title'}
 						component={Activité}
 					/>
 				</Switch>
