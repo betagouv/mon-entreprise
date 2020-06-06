@@ -43,6 +43,7 @@ import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import { mecanismRecalcul } from './mecanisms/recalcul'
 import { parseReferenceTransforms } from './parseReference'
 import { EvaluatedRule } from './types'
+import { decompose } from './mecanisms/utils'
 
 export const parse = (rules, rule, parsedRules) => rawNode => {
 	if (rawNode == null) {
@@ -146,6 +147,7 @@ Cela vient probablement d'une erreur dans l'indentation
 	}
 
 	const parseFn = parseFunctions[mecanismName]
+
 	if (!parseFn) {
 		syntaxError(
 			rule.dottedName,
@@ -155,7 +157,15 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 		)
 	}
 	try {
-		return parseFn(parse(rules, rule, parsedRules), mecanismName, values)
+		const recurse = parse(rules, rule, parsedRules)
+		// Mécanisme de composantes. Voir mécanismes.md/composantes
+		if (values?.composantes) {
+			return decompose(recurse, mecanismName, values)
+		}
+		if (values?.variations) {
+			return variations(recurse, mecanismName, values, true)
+		}
+		return parseFn(recurse, mecanismName, values)
 	} catch (e) {
 		if (e instanceof EngineError) {
 			throw e

@@ -1,6 +1,4 @@
 import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
-import { decompose } from './utils'
-import variations from './variations'
 import tauxProgressif from '../components/mecanisms/TauxProgressif'
 import { convertNodeToUnit } from '../nodeUnits'
 import { parseUnit } from '../units'
@@ -10,14 +8,6 @@ import {
 } from './trancheUtils'
 
 export default function parse(parse, k, v) {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir mécanismes.md/composantes
-		return decompose(parse, k, v)
-	}
-	if (v.variations) {
-		return variations(parse, k, v, true)
-	}
-
 	const explanation = {
 		assiette: parse(v.assiette),
 		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),

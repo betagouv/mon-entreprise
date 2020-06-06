@@ -12,19 +12,9 @@ import {
 	evaluatePlafondUntilActiveTranche,
 	parseTranches
 } from './trancheUtils'
-import { decompose } from './utils'
-import variations from './variations'
 
+// Barème en taux marginaux.
 export default function parse(parse, k, v) {
-	// Barème en taux marginaux.
-
-	if (v.composantes) {
-		//mécanisme de composantes. Voir mécanismes.md/composantes
-		return decompose(parse, k, v)
-	}
-	if (v.variations) {
-		return variations(parse, k, v, true)
-	}
 	const explanation = {
 		assiette: parse(v.assiette),
 		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),

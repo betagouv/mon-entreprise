@@ -1,19 +1,10 @@
 import Product from '../components/mecanisms/Product'
 import { typeWarning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
-import { decompose } from './utils'
-import variations from './variations'
 import { convertNodeToUnit } from '../nodeUnits'
 import { areUnitConvertible, convertUnit, inferUnit } from '../units'
 
 export const mecanismProduct = (recurse, k, v) => {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir mécanismes.md/composantes
-		return decompose(recurse, k, v)
-	}
-	if (v.variations) {
-		return variations(recurse, k, v, true)
-	}
 	const objectShape = {
 		assiette: false,
 		taux: defaultNode(1),
