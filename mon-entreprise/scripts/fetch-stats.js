@@ -141,7 +141,9 @@ async function fetchSimulators(dt) {
 		)
 
 		const groupSimulateursIframesVisits = ({ label }) =>
-			label.startsWith('/simulateur-embauche')
+			label.startsWith('/coronavirus')
+				? '/chômage-partiel'
+				: label.startsWith('/simulateur-embauche')
 				? '/salarié'
 				: label.startsWith('/simulateur-autoentrepreneur')
 				? '/auto-entrepreneur'
@@ -152,9 +154,7 @@ async function fetchSimulators(dt) {
 			sumVisits,
 			0,
 			groupSimulateursIframesVisits,
-			[...resultSimulateurs, ...resultIframes, coronavirusPage].filter(
-				x => x !== undefined
-			)
+			[...resultSimulateurs, ...resultIframes, coronavirusPage].filter(Boolean)
 		)
 		return Object.entries(results)
 			.map(([label, nb_visits]) => ({ label, nb_visits }))

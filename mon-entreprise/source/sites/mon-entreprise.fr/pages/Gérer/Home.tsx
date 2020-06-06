@@ -137,11 +137,11 @@ export default function SocialSecurity() {
 										className="ui__ interactive card box"
 										css="width: 100%"
 										to={{
-											pathname: sitePaths.coronavirus
+											pathname: sitePaths.simulateurs['chômage-partiel']
 										}}
 									>
 										<div className="ui__ big box-icon">{emoji('😷')}</div>
-										<Trans i18nKey="gérer.choix.embauche">
+										<Trans i18nKey="gérer.choix.chomage-partiel">
 											<h3>Connaître les aides</h3>
 											<p className="ui__ notice">
 												Calculez le montant des indemnités de chômage partiel.

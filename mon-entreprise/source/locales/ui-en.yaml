@@ -34,6 +34,7 @@ Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 Covid 19: Covid 19
+"Covid-19 : Calculer l'impact du chômage partiel": "Covid-19: Calculating the impact of short-time work"
 "Covid-19 : Découvrez les mesures de soutien aux entreprises": "Covid-19: Find out about business support measures"
 "Covid-19 : Découvrir les mesures de soutien aux entreprises": "Covid-19: Discovering Business Support Measures"
 Coût pour l'entreprise: Cost to the company
@@ -691,6 +692,8 @@ gérant minoritaire:
   titre: Chairman or managing director
 gérer:
   choix:
+    chomage-partiel: <0>Find out about aid</0><1>Calculate the amount of short-time
+      working benefits. Discover the list of business support schemes.</1>
     déclaration: <0>Completing my tax return</0><1>Easily calculate the amounts to
       carry forward on your 2019 tax return</1>
     embauche: >
@@ -1026,6 +1029,8 @@ simulateurs:
     salarié: >
       Calculate the net, gross, or total salary of an employee, trainee, or
       similar
+    économie-collaborative: A guide to know how to declare your income from online
+      platforms (AirBnb, leboncoin, blablacar, etc.).
   salarié:
     page:
       description: Estimate the contributions for an employee based on gross, net or
@@ -1119,6 +1124,7 @@ trouver:
 une de ces conditions: one of these applies
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Échap: Esc
+Économie collaborative: Collaborative Economy
 État: State
 à: to
 économieCollaborative:

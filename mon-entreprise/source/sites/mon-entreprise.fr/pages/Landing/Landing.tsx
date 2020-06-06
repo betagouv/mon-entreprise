@@ -41,11 +41,12 @@ export default function Landing() {
 
 			<section className="ui__ full-width light-bg center-flex">
 				<div style={{ textAlign: 'center', width: '100%' }}>
-					<Link to={sitePaths.coronavirus} className="ui__ plain small button">
+					<Link
+						to={sitePaths.simulateurs['chômage-partiel']}
+						className="ui__ plain small button"
+					>
 						{emoji('😷')}{' '}
-						<Trans>
-							Covid-19 : Découvrir les mesures de soutien aux entreprises
-						</Trans>
+						<Trans>Covid-19 : Calculer l'impact du chômage partiel</Trans>
 					</Link>
 				</div>
 				<Link

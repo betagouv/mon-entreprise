@@ -1,14 +1,12 @@
-import { SituationProvider } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
 import AssimiléSalarié from './AssimiléSalarié'
+import ChômagePartiel from './ChômagePartiel'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
 import Indépendant from './Indépendant'
@@ -80,6 +78,10 @@ export default function Simulateurs() {
 				<Route
 					path={sitePaths.simulateurs['artiste-auteur']}
 					component={ArtisteAuteur}
+				/>
+				<Route
+					path={sitePaths.simulateurs['chômage-partiel']}
+					component={ChômagePartiel}
 				/>
 			</Switch>
 		</>

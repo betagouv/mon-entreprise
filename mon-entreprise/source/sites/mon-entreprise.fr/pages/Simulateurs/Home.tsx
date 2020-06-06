@@ -89,7 +89,7 @@ export function useSimulatorsMetadata() {
 			),
 			icône: '😷',
 			label: t('Covid 19'),
-			sitePath: sitePaths.coronavirus
+			sitePath: sitePaths.simulateurs['chômage-partiel']
 		},
 		{
 			name: t('Aide à la déclaration de revenu'),
