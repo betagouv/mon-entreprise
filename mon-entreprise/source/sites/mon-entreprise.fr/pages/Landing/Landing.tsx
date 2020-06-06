@@ -72,8 +72,8 @@ export default function Landing() {
 					<Trans i18nKey="landing.choice.manage">
 						<h3>Gérer mon activité</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Des simulateurs pour anticiper le montant des cotisations sociales
-							à payer et mieux gérer votre trésorerie
+							Des outils personnalisés pour anticiper le montant des cotisations
+							sociales à payer et mieux gérer votre trésorerie.
 						</p>
 					</Trans>
 					<div className="ui__ small simple button">
@@ -86,9 +86,10 @@ export default function Landing() {
 				>
 					<div className="ui__ big box-icon">{emoji('🧮')}</div>
 					<Trans i18nKey="landing.choice.simulators">
-						<h3>Les simulateurs</h3>
+						<h3>Accéder aux simulateurs</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Accédez directement à l'ensemble de nos simulateurs.
+							La liste exhaustive de tous les simulateurs disponibles sur le
+							site.
 						</p>
 					</Trans>
 					<div className="ui__ small simple button">

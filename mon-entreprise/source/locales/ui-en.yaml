@@ -1,7 +1,7 @@
-"404":
+'404':
   action: Return to safe place
   message: This page does not exist or no longer exists
-"<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
+'<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>': '<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>'
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
@@ -27,16 +27,16 @@ Choisir plus tard: Choose later
 Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
-"Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
+'Commerçant, artisan, ou libéral ?': Trader, craftsman, or liberal?
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 Covid 19: Covid 19
-"Covid-19 : Calculer l'impact du chômage partiel": "Covid-19: Calculating the impact of short-time work"
-"Covid-19 : Découvrez les mesures de soutien aux entreprises": "Covid-19: Find out about business support measures"
-"Covid-19 : Découvrir les mesures de soutien aux entreprises": "Covid-19: Discovering Business Support Measures"
+"Covid-19 : Calculer l'impact du chômage partiel": 'Covid-19: Calculating the impact of short-time work'
+'Covid-19 : Découvrez les mesures de soutien aux entreprises': 'Covid-19: Find out about business support measures'
+'Covid-19 : Découvrir les mesures de soutien aux entreprises': 'Covid-19: Discovering Business Support Measures'
 Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 Créer une: Create a
@@ -69,7 +69,7 @@ Gérant minoritaire: Managing director
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
-"Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
+"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
 Indépendant: Indépendant
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
@@ -100,7 +100,7 @@ Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
 Personnalisez l'integration: Customize the integration
-"Perte de revenu net :": "Loss of net income :"
+'Perte de revenu net :': 'Loss of net income :'
 Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
@@ -128,7 +128,7 @@ Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
-"Revenu net avec chômage partiel :": "Net income with short-time work :"
+'Revenu net avec chômage partiel :': 'Net income with short-time work :'
 Revenu net mensuel: Monthly net income
 Réductions: Discounts
 Rémunération du dirigeant: Director's remuneration
@@ -152,7 +152,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-"Total payé par l'entreprise :": "Total paid by the company :"
+"Total payé par l'entreprise :": 'Total paid by the company :'
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -211,11 +211,11 @@ après:
     registered, you'll have access to the following
   kbis:
     description:
-      "1": It is the official document attesting to <2>the legal existence of a
+      '1': It is the official document attesting to <2>the legal existence of a
         commercial enterprise</2>. In most cases, to be opposable and authentic
         for administrative procedures, the extract must be less than 3 months
         old.
-      "2": This document is generally requested when applying for a public tender,
+      '2': This document is generally requested when applying for a public tender,
         opening a professional bank account, purchasing professional equipment
         from distributors, etc.
     titre: The Kbis
@@ -269,7 +269,7 @@ autoentrepreneur:
   titre: Auto-entrepeneur
 back: Resume simulation
 barème: scale
-calcul-avec: "Calculation from <1></1>with :"
+calcul-avec: 'Calculation from <1></1>with :'
 cancelExample: Back to your situation
 car dépend de: because it depends on
 cible: target
@@ -381,8 +381,8 @@ comparaisonRégimes:
     AS: SAS, SASU or SARL with minority director
     auto: Auto-entreprise
     indep:
-      "1": EI, EIRL, EURL or SARL with majority director
-      "2": EI or EIRL
+      '1': EI, EIRL, EURL or SARL with majority director
+      '2': EI or EIRL
     legend: Possible legal status
   sécuritéSociale: |
     <0> Social security</0>
@@ -396,13 +396,13 @@ comparaisonRégimes:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
 composantes: components
 coronavirus:
-  description: "<0>Coronavirus and short-time working: what impact on my
+  description: '<0>Coronavirus and short-time working: what impact on my
     income?</0><1>The government is putting in place measures to support
     employees affected by the Coronavirus crisis. One of the key measures is the
-    assumption of the entire short-time working compensation by the State.</1>"
+    assumption of the entire short-time working compensation by the State.</1>'
   page:
     description: Estimate net income with short-time working benefits
-    titre: "Coronavirus and short-time working: what impact on your income?"
+    titre: 'Coronavirus and short-time working: what impact on your income?'
 cotisation: contribution
 créer:
   cta:
@@ -421,7 +421,7 @@ créer:
       <0>List of legal statuses</0>
       <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
   titre: Create a company
-  warningPL: "Note: the case of regulated liberal professions is not covered"
+  warningPL: 'Note: the case of regulated liberal professions is not covered'
 d'aides: of aid
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
@@ -537,9 +537,9 @@ entreprise:
       creation process. It is automatically saved in your browser.
     banque:
       description:
-        "1": The purpose of a <1>professional bank account</1> is to separate your
+        '1': The purpose of a <1>professional bank account</1> is to separate your
           company's assets from your personal assets.
-        "2": "The professional bank account allows you to:"
+        '2': 'The professional bank account allows you to:'
         EI: If its opening is not obligatory for an EI, it is strongly recommended.
         liste: >
           <0>Differentiate your private and professional operations and simplify
@@ -741,19 +741,21 @@ indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
 landing:
-  aboutUs: "<0>Who are we?</0><1>We are a small<2>, autonomous and
+  aboutUs: '<0>Who are we?</0><1>We are a small<2>, autonomous and
     multidisciplinary team</2> within<4> USSAF</4>. We have at heart to be close
     to your needs in order to continuously improve this site in accordance with
     the <7>State Startup</7> method.</1><2>We have developed this site to
     <2>support entrepreneurs</2> in the development of their business.</2><3>Our
     goal is to <2>remove all uncertainties with regard to administration</2> so
-    that you can concentrate on what matters: your business.</3>"
+    that you can concentrate on what matters: your business.</3>'
   choice:
     create: <0>Create a company</0><1>Assistance in choosing the status and the
       complete list of creation steps</1>
-    manage: <0>Manage my business</0><1>Simulators to anticipate the amount of
-      contributions and better manage your cash flow</1>
-    simulators: <0>The simulators</0><1>Get direct access to all our simulators.</1>
+    manage: <0>Manage my business</0><1>Personalised tools to anticipate the amount
+      of social security contributions to be paid and better manage your cash
+      flow.</1>
+    simulators: <0>Access the simulators</0><1>The exhaustive list of all the
+      simulators available on the site.</1>
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
     to hiring.
@@ -804,13 +806,13 @@ page:
     title: Documentation
 pages:
   dévelopeurs:
-    bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
+    bibliothèque: '<0>Integrate our calculation library</0><1>If you think that your
       site or service would benefit from displaying salary calculations, for
       example switching from gross salary to net salary, good news: all the
       contribution and tax calculations behind my-company.fr are free and <2>can
       be integrated in the form of an <2>NPM library</2></2>.</1><2>Put simply,
-      your team's developers are able to integrate the calculation into your
-      interface in 5 minutes{emoji('⌚')}, without having to deal with the
+      your team''s developers are able to integrate the calculation into your
+      interface in 5 minutes{emoji(''⌚'')}, without having to deal with the
       complexity of payroll and the regular updating of calculation
       rules.</2><3>This library is a common digital library developed by the
       State and ACOSS. It is based on a new programming language,
@@ -821,36 +823,36 @@ pages:
       recipe for a calculation is simple: input variables (gross wage), one or
       more output variables (net wage).</9><10>All these variables are listed
       and explained in our <2>online documentation</2>.</10><11>Use the search
-      engine to find the right variable, then click on \"View source code\" to
-      get all the documentation: default value, possible values when it's an
-      enumeration of choice, unit when it's a number, description, associated
-      user question, etc.</11><12>Let's run a calculation closer to a payslip:
+      engine to find the right variable, then click on "View source code" to
+      get all the documentation: default value, possible values when it''s an
+      enumeration of choice, unit when it''s a number, description, associated
+      user question, etc.</11><12>Let''s run a calculation closer to a payslip:
       Here is a description of the input situation with links to the
       corresponding pages of the documentation :</12><13> An <3>executive</3>
       earning <7>€3,400 gross</7>, who benefits from the<10> bicycle mileage
       allowance</10> and works in a company with <14>12
       employees</14>.</13><14>The calculation for this more complete example is
-      as follows:</14><15><0></0></15><16>{emoji('ℹ️ ')} Note that in the
+      as follows:</14><15><0></0></15><16>{emoji(''ℹ️ '')} Note that in the
       previous example we have to specify the transport payment rate
       ourselves.</16><17>Whereas in the <2>employee</2> simulator, it is
       sufficient to fill in the municipality and the corresponding rate is
-      automatically determined. It's intentional: to keep the library (and the
+      automatically determined. It''s intentional: to keep the library (and the
       site) light, we use two online APIs. The<4> Geo API - communes</4> to
       switch from the commune name to the common code. Then the<7> transport
       payout API</7>, developed and maintained by us, which is not documented
       but its use is very simple and understandable <10>in this React component
       that calls it</10>, a component that also uses the common
-      API.</17><18>Making economic charts{emoji(' 📈')}</18><19>It is also
+      API.</17><18>Making economic charts{emoji('' 📈'')}</18><19>It is also
       possible to use the library for economic or political analysis
       calculations. Here, the price of labour and the net wage is plotted
       against the gross wage.</19><20>We can see the progressiveness of the
       total wage, which is in percent lower for a minimum wage than for a high
       income. In other words, high-wage earners pay part of the social security
-      contributions of low-wage earners.</20><21>{emoji('⚠️ ')}Beware, this
+      contributions of low-wage earners.</20><21>{emoji(''⚠️ '')}Beware, this
       example does a lot of calculations in one go, which can block your browser
       for a few seconds. To overcome this problem, you would have to call the
       library in a Web Worker, but this is not possible for the <3>moment</3> in
-      these demos.</21><22><0></0></22>"
+      these demos.</21><22><0></0></22>'
   développeurs:
     choice:
       github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
@@ -861,10 +863,10 @@ pages:
       publicode: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
         language for encoding "explainable" algorithms.</1>
     code:
-      description: "Here is the code to copy and paste on your site:"
+      description: 'Here is the code to copy and paste on your site:'
       titre: Integration Code
-    code à copier: "Here is the code to copy and paste on your site:"
-    couleur: "What color? "
+    code à copier: 'Here is the code to copy and paste on your site:'
+    couleur: 'What color? '
     home:
       choice:
         iframe: <0>Integrating a simulator</0><1>Integrate one of our simulators in one
@@ -888,7 +890,7 @@ payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
     Lots of financial aids for your enterprise exist, explore them on
     <1>aides-entreprises.fr (French)</1>.
-  heures: "Hours worked per month: "
+  heures: 'Hours worked per month: '
   notice: This simulation helps you understand your French payslip, but it should
     not be used as one. For further details, check <1>service-public.fr
     (French)</1>.
@@ -1008,7 +1010,7 @@ simulateurs:
     invite you to try another value.
   précision:
     bonne: Good accuracy
-    défaut: "Refine the simulation by answering the following questions:"
+    défaut: 'Refine the simulation by answering the following questions:'
     faible: Low accuracy
     moyenne: Medium accuracy
   résumé:
@@ -1060,7 +1062,7 @@ simulateurs:
         insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
         not all taken into account by our simulator, you can find them on the
         <6>official portal</6>.</8>
-      titre: "Calculation of net and gross salary: official simulator"
+      titre: 'Calculation of net and gross salary: official simulator'
     titre: Income simulator for employees
   warning:
     artiste-auteur: This estimate is proposed for information only. It is based on
@@ -1136,8 +1138,8 @@ une de ces conditions: one of these applies
       onwards, these revenues will be automatically reported by the platforms to
       the tax authorities and Urssaf.</2>
     question: What types of activity did you undertake?
-    réassurance: "PS: this tool is only there to inform you, no data will be
-      transmitted to the administrations"
+    réassurance: 'PS: this tool is only there to inform you, no data will be
+      transmitted to the administrations'
     titre: How to declare income from digital platforms?
   activité:
     choix: What are more precisely the activities carried out?
