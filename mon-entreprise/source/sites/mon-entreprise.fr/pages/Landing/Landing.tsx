@@ -81,31 +81,19 @@ export default function Landing() {
 				</Link>
 				<Link
 					className="ui__ interactive card box"
-					to={sitePaths.économieCollaborative.index}
+					to={sitePaths.simulateurs.index}
 				>
-					<div className="ui__ big box-icon">{emoji('🙋')}</div>
-					<Trans i18nKey="landing.choice.declare">
-						<h3>Que dois-je déclarer ?</h3>
+					<div className="ui__ big box-icon">{emoji('🧮')}</div>
+					<Trans i18nKey="landing.choice.simulators">
+						<h3>Les simulateurs</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Un guide pour savoir comment déclarer vos revenus issus de
-							plateformes en ligne (AirBnb, leboncoin, blablacar, etc.)
+							Accédez directement à l'ensemble de nos simulateurs.
 						</p>
 					</Trans>
 					<div className="ui__ small simple button">
-						<Trans>Commencer</Trans>
+						<Trans>Découvrir</Trans>
 					</div>
 				</Link>
-				<div style={{ width: '100%', textAlign: 'center' }}>
-					<Link
-						to={sitePaths.simulateurs.index}
-						className="ui__  small button "
-					>
-						{emoji('🧮')}{' '}
-						<Trans i18nKey="landing.seeSimulators">
-							Voir la liste des simulateurs
-						</Trans>
-					</Link>
-				</div>
 			</section>
 			<section className="ui__ container">
 				<Trans i18nKey="landing.aboutUs">

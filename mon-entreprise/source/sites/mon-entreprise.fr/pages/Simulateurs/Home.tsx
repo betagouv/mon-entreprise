@@ -73,6 +73,15 @@ export function useSimulatorsMetadata() {
 			sitePath: sitePaths.simulateurs.comparaison
 		},
 		{
+			name: t('Économie collaborative'),
+			description: t(
+				'simulateurs.résumé.économie-collaborative',
+				'Un guide pour savoir comment déclarer vos revenus issus de plateformes en ligne (AirBnb, leboncoin, blablacar, etc.)'
+			),
+			icône: '🙋',
+			sitePath: sitePaths.économieCollaborative.index
+		},
+		{
 			name: t('Chômage partiel'),
 			description: t(
 				'simulateurs.résumé.chômage-partiel',

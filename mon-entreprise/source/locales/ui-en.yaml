@@ -748,10 +748,9 @@ landing:
   choice:
     create: <0>Create a company</0><1>Assistance in choosing the status and the
       complete list of creation steps</1>
-    declare: <0>What income should I declare?</0><1>How to report your income from
-      online platforms (AirBnb, leboncoin, blablacar, etc.)</1>
     manage: <0>Manage my business</0><1>Simulators to anticipate the amount of
       contributions and better manage your cash flow</1>
+    simulators: <0>The simulators</0><1>Get direct access to all our simulators.</1>
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
     to hiring.
