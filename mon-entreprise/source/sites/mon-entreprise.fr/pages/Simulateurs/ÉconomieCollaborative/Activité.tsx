@@ -26,7 +26,7 @@ export default function Activité({
 	const { state, dispatch } = useContext(StoreContext)
 	const activité = getTranslatedActivité(title, language)
 	if (!(title in state)) {
-		return <Redirect to={sitePaths.économieCollaborative.index} />
+		return <Redirect to={sitePaths.simulateurs.économieCollaborative.index} />
 	}
 
 	if (activité.activités) {

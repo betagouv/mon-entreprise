@@ -53,16 +53,16 @@ const sitePathsFr = {
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
 		salarié: '/salarié',
-		'artiste-auteur': '/artiste-auteur'
-	},
-	économieCollaborative: {
-		index: '/économie-collaborative',
-		votreSituation: '/votre-situation'
+		'artiste-auteur': '/artiste-auteur',
+		'chômage-partiel': '/chômage-partiel',
+		économieCollaborative: {
+			index: '/économie-collaborative',
+			votreSituation: '/votre-situation'
+		}
 	},
 	nouveautés: '/nouveautés',
 	stats: '/stats',
 	budget: '/budget',
-	coronavirus: '/coronavirus',
 	integration: {
 		index: '/intégration',
 		iframe: '/iframe',
@@ -102,11 +102,12 @@ const sitePathsEn = {
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/social-scheme-comparaison',
 		salarié: '/salaried',
-		'artiste-auteur': '/artist-author'
-	},
-	économieCollaborative: {
-		index: '/sharing-economy',
-		votreSituation: '/your-situation'
+		'artiste-auteur': '/artist-author',
+		'chômage-partiel': '/partial-unemployement',
+		économieCollaborative: {
+			index: '/sharing-economy',
+			votreSituation: '/your-situation'
+		}
 	},
 	nouveautés: '/news',
 	integration: {

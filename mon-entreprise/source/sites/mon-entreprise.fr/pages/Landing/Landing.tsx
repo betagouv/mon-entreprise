@@ -41,11 +41,12 @@ export default function Landing() {
 
 			<section className="ui__ full-width light-bg center-flex">
 				<div style={{ textAlign: 'center', width: '100%' }}>
-					<Link to={sitePaths.coronavirus} className="ui__ plain small button">
+					<Link
+						to={sitePaths.simulateurs['chômage-partiel']}
+						className="ui__ plain small button"
+					>
 						{emoji('😷')}{' '}
-						<Trans>
-							Covid-19 : Découvrir les mesures de soutien aux entreprises
-						</Trans>
+						<Trans>Covid-19 : Calculer l'impact du chômage partiel</Trans>
 					</Link>
 				</div>
 				<Link
@@ -71,8 +72,8 @@ export default function Landing() {
 					<Trans i18nKey="landing.choice.manage">
 						<h3>Gérer mon activité</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Des simulateurs pour anticiper le montant des cotisations sociales
-							à payer et mieux gérer votre trésorerie
+							Des outils personnalisés pour anticiper le montant des cotisations
+							sociales à payer et mieux gérer votre trésorerie.
 						</p>
 					</Trans>
 					<div className="ui__ small simple button">
@@ -81,31 +82,20 @@ export default function Landing() {
 				</Link>
 				<Link
 					className="ui__ interactive card box"
-					to={sitePaths.économieCollaborative.index}
+					to={sitePaths.simulateurs.index}
 				>
-					<div className="ui__ big box-icon">{emoji('🙋')}</div>
-					<Trans i18nKey="landing.choice.declare">
-						<h3>Que dois-je déclarer ?</h3>
+					<div className="ui__ big box-icon">{emoji('🧮')}</div>
+					<Trans i18nKey="landing.choice.simulators">
+						<h3>Accéder aux simulateurs</h3>
 						<p className="ui__ notice" css="flex: 1">
-							Un guide pour savoir comment déclarer vos revenus issus de
-							plateformes en ligne (AirBnb, leboncoin, blablacar, etc.)
+							La liste exhaustive de tous les simulateurs disponibles sur le
+							site.
 						</p>
 					</Trans>
 					<div className="ui__ small simple button">
-						<Trans>Commencer</Trans>
+						<Trans>Découvrir</Trans>
 					</div>
 				</Link>
-				<div style={{ width: '100%', textAlign: 'center' }}>
-					<Link
-						to={sitePaths.simulateurs.index}
-						className="ui__  small button "
-					>
-						{emoji('🧮')}{' '}
-						<Trans i18nKey="landing.seeSimulators">
-							Voir la liste des simulateurs
-						</Trans>
-					</Link>
-				</div>
 			</section>
 			<section className="ui__ container">
 				<Trans i18nKey="landing.aboutUs">

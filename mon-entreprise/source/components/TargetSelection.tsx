@@ -158,7 +158,7 @@ const Header = ({ target }: { target: ParsedRule }) => {
 	// TODO : Super hacky, we want to amend one label in the covid simulator, but
 	// because the label is fetched from the global state we have to do a hack
 	// here based on the URL.
-	const hackyShowPeriod = pathname === sitePaths.coronavirus
+	const hackyShowPeriod = pathname === sitePaths.simulateurs['chômage-partiel']
 	return (
 		<span className="header">
 			<span className="texts">

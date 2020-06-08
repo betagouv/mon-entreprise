@@ -35,7 +35,6 @@ import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
 import trackSimulatorActions from './middlewares/trackSimulatorActions'
 import Budget from './pages/Budget/Budget'
-import Coronavirus from './pages/Coronavirus'
 import Créer from './pages/Créer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
@@ -48,7 +47,6 @@ import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautés/Nouveautés'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
-import ÉconomieCollaborative from './pages/ÉconomieCollaborative'
 import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
@@ -146,10 +144,6 @@ const App = () => {
 						{redirects}
 						<Route path={sitePaths.créer.index} component={Créer} />
 						<Route path={sitePaths.gérer.index} component={Gérer} />
-						<Route
-							path={sitePaths.économieCollaborative.index}
-							component={ÉconomieCollaborative}
-						/>
 						<Route path={sitePaths.simulateurs.index} component={Simulateurs} />
 						<Route
 							path={sitePaths.documentation.index}
@@ -158,7 +152,6 @@ const App = () => {
 						<Route path={sitePaths.integration.index} component={Integration} />
 						<Route path={sitePaths.nouveautés} component={Nouveautés} />
 						<Route path={sitePaths.stats} component={Stats} />
-						<Route path={sitePaths.coronavirus} component={Coronavirus} />
 						<Route path={sitePaths.budget} component={Budget} />
 						<Route exact path="/dev/sitemap" component={Sitemap} />
 						<Route

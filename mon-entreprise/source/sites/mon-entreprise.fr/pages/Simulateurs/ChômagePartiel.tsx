@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
-import { productionMode } from '../../../utils'
+import { productionMode } from '../../../../utils'
 
 declare global {
 	interface Window {
@@ -58,13 +58,7 @@ export default function ChômagePartiel() {
 			<ScrollToTop />
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
-					<h1
-						css={`
-							margin-top: 1rem;
-						`}
-					>
-						Covid-19 : Simulateur de chômage partiel
-					</h1>
+					<h1>Covid-19 : Simulateur de chômage partiel</h1>
 					<h2 style={{ marginTop: 0 }}>
 						<small>Comment calculer l'indemnité de chômage partiel ?</small>
 					</h2>
@@ -396,28 +390,6 @@ du chômage partiel.
 > L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
 contribution maladie dans certains cas.
 [➡ En savoir plus sur le site de l'URSSAF](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html)
-
-## Indépendants 🚶‍♀️
-
-Les petites entreprises et les indépendants qui subissent une fermeture
-administrative OU qui auront connu une perte de chiffre d'affaires d'au moins
-70% au mois de mars 2020 par rapport au mois de mars 2019 bénéficieront d'une
-aide de **1 500 euros**. Pour bénéficier de cette aide forfaitaire il faudra
-faire une déclaration sur le site de la DGFiP.
-
-➡ Plus d'informations sur le site du
-[Ministère de l'Économie](https://www.economie.gouv.fr/coronavirus-soutien-entreprises)
-et de l'[Urssaf](https://www.urssaf.fr/portail/home/actualites/foire-aux-questions.html).
-
-## Prime pour les salariés présents 👨‍🔬
-
-Le gouvernement invite les entreprises à verser une prime de **1 000 euros**
-défiscalisée et désocialisée à leurs salariés qui se rendent sur leur lieu de
-travail pendant la crise sanitaire du coronavirus. Il s'agit de la « prime
-exceptionnelle de pouvoir d'achat » décidée à la suite de la crise des gilets
-jaunes dont le recours est encouragé, notamment en supprimant l'obligation de
-signer un accord d'intéressement pour bénéficier de l'exonération sociale et
-fiscale.
 	`}
 		/>
 	)

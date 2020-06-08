@@ -134,8 +134,8 @@ module.exports = {
 					'/simulateurs/artiste-auteur',
 					'/simulateurs/assimilé-salarié',
 					'/simulateurs/indépendant',
+					'/simulateurs/chômage-partiel',
 					'/créer',
-					'/coronavirus',
 					'/gérer',
 					'/iframes/simulateur-embauche',
 					'/iframes/simulateur-chomage-partiel'

@@ -64,6 +64,15 @@
   to="/create/:splat"
   status = 301
 
+[[redirects]]
+  from="/coronavirus"
+  to="/simulateurs/ch%C3%B4mage-partiel"
+  status = 301
+
+[[redirects]]
+  from="/%C3%A9conomie-collaborative"
+  to="/simulateurs/%C3%A9conomie-collaborative"
+  status = 301
 
 # SEO redirect
 [[redirects]]
@@ -197,10 +206,9 @@
   status = 200
 
 [[redirects]]
-  from = "/coronavirus"
-  to = "/prerender/mon-entreprise/coronavirus/index.html"
+  from = "/simulateurs/ch%C3%B4mage-partiel"
+  to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
   status = 200
-
 
 [[redirects]]
   from = "/simulateurs/salari%C3%A9"
