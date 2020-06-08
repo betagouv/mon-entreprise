@@ -14,9 +14,9 @@ type InputSuggestionsProps = {
 
 export default function InputSuggestions({
 	suggestions,
-	onSecondClick = x => x,
+	onSecondClick = (x) => x,
 	onFirstClick,
-	unit
+	unit,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<number>()
 	const { t } = useTranslation()
@@ -25,8 +25,6 @@ export default function InputSuggestions({
 
 	return (
 		<div css="display: flex; align-items: baseline; justify-content: flex-end;">
-			<small>Suggestions :</small>
-
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {
 				value = unit ? convertUnit(unit, defaultUnit, value) : value
 				return (
