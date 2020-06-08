@@ -144,7 +144,7 @@ export default function Conversation({
 											onClick={setDefault}
 											className="ui__ simple small push-right button"
 										>
-											<T>Passer</T> →
+											<T>Je ne sais pas</T> →
 										</button>
 									</div>
 								</React.Fragment>
