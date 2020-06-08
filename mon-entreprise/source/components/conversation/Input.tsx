@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { debounce, currencyFormat } from '../../utils'
 import InputSuggestions from './InputSuggestions'
-import SendButton from './SendButton'
 import { formatValue } from 'publicodes'
 
 // TODO: fusionner Input.js et CurrencyInput.js
@@ -31,7 +30,7 @@ export default function Input({
 					onFirstClick={value => {
 						onChange(value)
 					}}
-					onSecondClick={() => onSubmit && onSubmit('suggestion')}
+					onSecondClick={() => onSubmit?.('suggestion')}
 					unit={unit}
 				/>
 				<NumberFormat
@@ -56,9 +55,6 @@ export default function Input({
 					)}
 				</span>
 			</div>
-			{onSubmit && (
-				<SendButton disabled={value === undefined} onSubmit={onSubmit} />
-			)}
 		</div>
 	)
 }

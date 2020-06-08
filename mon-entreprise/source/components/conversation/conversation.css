@@ -71,7 +71,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	align-items: flex-end;
+	align-items: baseline;
 }
 .step .input > :first-child {
 	text-align: right;
