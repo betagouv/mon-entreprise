@@ -66,8 +66,8 @@ const dépenses = engine.evaluate('dépenses primeur')
 console.log(`j'ai dépensé ${formatValue(dépenses)} chez le primeur`)
 ```
 
-La méthode `setSituation` permet de forcer la valeur d'une liste de règle. Elle
-utile pour pour présier les paramètres spécifiques à une simulation.
+La méthode `setSituation` permet de forcer la valeur d'une liste de règle. Elle est 
+utile pour préciser les paramètres spécifiques à une simulation.
 
 ```js
 // Ici on change le prix des avocats
@@ -128,7 +128,7 @@ Il est aussi possible d'utiliser des valeurs par défaut. Dans ce cas la règle
 sera calculée avec la valeur par défaut de sa dépendance, mais cette dernière
 apparaîtra tout de même dans les `missingVariables`. Cette fonctionnalité est
 utile pour réaliser des simulateurs où l'on veut proposer un résultat sans
-attendre que l'utilisateur n'ait répondu à l'intégralité des questions tout en
+attendre que l'utilisateur ait répondu à l'intégralité des questions tout en
 utilisant la liste des variables manquantes pour déterminer les questions
 restant à poser.
 
@@ -137,13 +137,13 @@ apparaît dans la formule de calcul d'une règle elle ne sera rapportée que si
 elle est effectivement nécessaire au calcul. Si elle est présente dans une
 portion non active de l'évaluation (par exemple dans un bloc condition non
 actif, ou la tranche d'un barème non actif) elle sera filtrée et n'apparaîtra
-pas dans les `missingVariables`
+pas dans les `missingVariables`.
 
 ### Documentation intéractive
 
 Publicodes génère également pour vous une documentation interactive, très
 facilement intégrable dans une app react. Pour cela, il vous suffit d'importer
-le composant dédié, et passer l'engine à afficher dans les props.
+le composant dédié, et passer l'`engine` à afficher dans les props.
 
 ```jsx
 import { Documentation } from 'publicodes'
