@@ -3,7 +3,7 @@ import { T } from 'Components'
 import QuickLinks from 'Components/QuickLinks'
 import getInputComponent from 'Engine/getInputComponent'
 import { findRuleByDottedName } from 'Engine/rules'
-import React from 'react'
+import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -17,6 +17,8 @@ import Aide from './Aide'
 import './conversation.css'
 import { createSelector } from 'reselect'
 import { head, sortBy } from 'ramda'
+import Controls from 'Components/Controls'
+import CategoryRespiration from './CategoryRespiration'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -53,6 +55,7 @@ export default function Conversation({
 	customEndMessages,
 	customEnd,
 }: ConversationProps) {
+	const [dismissedRespirations, dismissRespiration] = useState([])
 	const dispatch = useDispatch()
 	const flatRules = useSelector(flatRulesSelector)
 	const currentQuestion = useSelector(orderedCurrentQuestionSelector)
@@ -79,81 +82,103 @@ export default function Conversation({
 		currentQuestion &&
 		findRuleByDottedName(flatRules, currentQuestion.split(' . ')[0])
 
-	return nextSteps.length ? (
-		<>
-			<Aide />
-			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
-				{currentQuestion && (
-					<React.Fragment key={currentQuestion}>
-						{questionCategory && (
-							<div>
-								<span
-									css={`
-										background: ${questionCategory.couleur || 'darkblue'};
-										color: white;
-										border-radius: 0.3rem;
-										padding: 0.15rem 0.6rem;
-										text-transform: uppercase;
-										img {
-											margin: 0 0.6rem 0 0 !important;
-										}
-									`}
-								>
-									{emoji(questionCategory.icônes || '🌍')}
-									{questionCategory.title}
-								</span>
-							</div>
-						)}
-						<Animate.fadeIn>
-							{getInputComponent(flatRules)(currentQuestion)}
-						</Animate.fadeIn>
-						<div className="ui__ answer-group">
-							{previousAnswers.length > 0 && (
-								<>
-									<button
-										onClick={goToPrevious}
-										className="ui__ simple small push-left button"
-									>
-										← <T>Précédent</T>
-									</button>
-								</>
+	const firstCategoryQuestion =
+		previousAnswers.find(
+			(a) => a.split(' . ')[0] === questionCategory.dottedName
+		) === undefined
+
+	return firstCategoryQuestion &&
+		!dismissedRespirations.includes(questionCategory.dottedName) ? (
+		<CategoryRespiration
+			questionCategory={questionCategory}
+			dismiss={() => dismissRespiration(questionCategory.dottedName)}
+		/>
+	) : (
+		<section className="ui__ full-width lighter-bg">
+			<div className="ui__ container">
+				<Controls />
+				{nextSteps.length ? (
+					<>
+						<Aide />
+						<div
+							tabIndex={0}
+							style={{ outline: 'none' }}
+							onKeyDown={handleKeyDown}
+						>
+							{currentQuestion && (
+								<React.Fragment key={currentQuestion}>
+									{questionCategory && (
+										<div>
+											<span
+												css={`
+													background: ${questionCategory.couleur || 'darkblue'};
+													color: white;
+													border-radius: 0.3rem;
+													padding: 0.15rem 0.6rem;
+													text-transform: uppercase;
+													img {
+														margin: 0 0.6rem 0 0 !important;
+													}
+												`}
+											>
+												{emoji(questionCategory.icônes || '🌍')}
+												{questionCategory.title}
+											</span>
+										</div>
+									)}
+									<Animate.fadeIn>
+										{getInputComponent(flatRules)(currentQuestion)}
+									</Animate.fadeIn>
+									<div className="ui__ answer-group">
+										{previousAnswers.length > 0 && (
+											<>
+												<button
+													onClick={goToPrevious}
+													className="ui__ simple small push-left button"
+												>
+													← <T>Précédent</T>
+												</button>
+											</>
+										)}
+										<button
+											onClick={setDefault}
+											className="ui__ simple small push-right button"
+										>
+											<T>Passer</T> →
+										</button>
+									</div>
+								</React.Fragment>
 							)}
-							<button
-								onClick={setDefault}
-								className="ui__ simple small push-right button"
-							>
-								<T>Passer</T> →
-							</button>
 						</div>
-					</React.Fragment>
+						<QuickLinks />
+					</>
+				) : (
+					<div style={{ textAlign: 'center' }}>
+						{customEnd || (
+							<>
+								<EndingCongratulations />
+								<p>
+									{customEndMessages ? (
+										customEndMessages
+									) : (
+										<T k="simulation-end.text">
+											Vous avez maintenant accès à l'estimation la plus précise
+											possible.
+										</T>
+									)}
+								</p>
+								<button
+									className="ui__ small simple  button "
+									onClick={resetSimulation}
+								>
+									<T>Recommencer</T>
+								</button>
+							</>
+						)}
+					</div>
 				)}
 			</div>
-			<QuickLinks />
-		</>
-	) : (
-		<div style={{ textAlign: 'center' }}>
-			{customEnd || (
-				<>
-					<EndingCongratulations />
-					<p>
-						{customEndMessages ? (
-							customEndMessages
-						) : (
-							<T k="simulation-end.text">
-								Vous avez maintenant accès à l'estimation la plus précise
-								possible.
-							</T>
-						)}
-					</p>
-					<button
-						className="ui__ small simple  button "
-						onClick={resetSimulation}
-					>
-						<T>Recommencer</T>
-					</button>
-				</>
-			)}
-		</div>
+		</section>
 	)
 }
 
@@ -163,3 +188,4 @@ export let EndingCongratulations = () => (
 		<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
 	</h3>
 )
+
