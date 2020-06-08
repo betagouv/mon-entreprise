@@ -115,6 +115,7 @@ export function formatValue(
 		typeof value === 'number' || typeof value === 'undefined'
 			? value
 			: value.nodeValue
+
 	const unit =
 		displayedUnit ??
 		(typeof value === 'number' ||

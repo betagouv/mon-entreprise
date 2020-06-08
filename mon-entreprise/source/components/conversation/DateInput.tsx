@@ -42,15 +42,17 @@ export default function DateInput({
 	return (
 		<div className="step input">
 			<div>
-				<InputSuggestions
-					suggestions={suggestions}
-					onFirstClick={value => {
-						onChange(value)
-					}}
-					onSecondClick={() => onSubmit?.('suggestion')}
-				/>
+				{suggestions && (
+					<InputSuggestions
+						suggestions={suggestions}
+						onFirstClick={value => {
+							onChange(value)
+						}}
+						onSecondClick={() => onSubmit?.('suggestion')}
+					/>
+				)}
 				<DateStyledInput
-					className="ui__ input suffixed"
+					className="ui__ input"
 					type="date"
 					value={dateValue}
 					onChange={handleDateChange}

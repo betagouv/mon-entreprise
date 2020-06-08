@@ -9,7 +9,7 @@
 const {
   string, filteredVariable, date, variable, variableWithConversion,
   temporalNumericValue, binaryOperation, unaryOperation, boolean, number,
-  numberWithUnit 
+  numberWithUnit
 } = require('./grammarFunctions')
 
 const moo = require("moo");
@@ -35,7 +35,7 @@ const lexer = moo.compile({
   periodWord: new RegExp(periodWord),
   words: new RegExp(words),
   number: new RegExp(numberRegExp),
-  string: /'[ \t\.'a-zA-Z\-\u00C0-\u017F0-9 ]+'/,
+  string: /'.*'/,
   additionSubstraction: /[\+-]/,
   multiplicationDivision: ['*','/'],
   dot: ' . ',
@@ -56,15 +56,15 @@ main ->
   | Date {% id %}
   | NonNumericTerminal {% id %}
 
-NumericValue -> 
+NumericValue ->
     AdditionSubstraction {% id %}
   | Negation {% id %}
   | TemporalNumericValue {% id %}
 
-TemporalNumericValue -> 
+TemporalNumericValue ->
     NumericValue %space %periodWord %space %date {% ([value,,word,,dateString]) => temporalNumericValue(value, word, date([dateString])) %}
   | NumericValue %space %periodWord %colon Date {% ([value,,word,,date]) => temporalNumericValue(value, word, date) %}
-  
+
 NumericTerminal ->
 	 	Variable {% id %}
   | VariableWithUnitConversion {% id %}
@@ -78,11 +78,11 @@ Parentheses ->
     "(" NumericValue ")"  {% ([,e]) => e %}
   |  NumericTerminal               {% id %}
 
-Date -> 
+Date ->
     Variable {% id %}
   | %date {% date %}
 
-Comparison -> 
+Comparison ->
     Comparable %space %comparison %space Comparable {% binaryOperation('comparison')%}
   | Date %space %comparison %space Date {% binaryOperation('comparison')%}
 
@@ -98,9 +98,9 @@ UnitDenominator ->
   (%space):? "/" %words {% join %}
 UnitNumerator -> %words ("." %words):? {% flattenJoin %}
 
-Unit -> UnitNumerator:? UnitDenominator:* {% flattenJoin %} 
+Unit -> UnitNumerator:? UnitDenominator:* {% flattenJoin %}
 UnitConversion -> "[" Unit "]" {% ([,unit]) => unit %}
-VariableWithUnitConversion -> 
+VariableWithUnitConversion ->
     Variable %space UnitConversion {% variableWithConversion %}
   # | FilteredVariable %space UnitConversion {% variableWithConversion %}  TODO
 

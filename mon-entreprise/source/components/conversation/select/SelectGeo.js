@@ -1,5 +1,6 @@
+import * as Animate from 'Components/ui/animate'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { debounce } from '../../../utils'
 
 async function tauxVersementTransport(codeCommune) {
@@ -25,7 +26,8 @@ async function searchCommunes(input) {
 	return json
 }
 
-export default function Select({ onChange, onSubmit }) {
+export default function Select({ onChange, onSubmit, value }) {
+	const [name, setName] = useState(value?.nom)
 	const [searchResults, setSearchResults] = useState()
 	const [isLoading, setLoadingState] = useState(false)
 
@@ -41,7 +43,6 @@ export default function Select({ onChange, onSubmit }) {
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
 		handleSearch
 	])
-	const { t } = useTranslation()
 
 	let submitOnChange = option => {
 		tauxVersementTransport(option.code)
@@ -55,7 +56,6 @@ export default function Select({ onChange, onSubmit }) {
 						  }
 						: {})
 				})
-				onSubmit()
 			})
 			.catch(error => {
 				//eslint-disable-next-line no-console
@@ -63,31 +63,23 @@ export default function Select({ onChange, onSubmit }) {
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
 				) || onChange(option)
+			})
+			.finally(() => {
 				onSubmit() // eslint-disable-line no-console
+				setSearchResults(null)
+				setName(option.nom)
 			})
 	}
 
 	return (
-		<>
+		<div>
 			<input
 				type="search"
-				css={`
-					padding: 0.4rem;
-					margin: 0.2rem 0;
-					width: 100%;
-					border: 1px solid var(--lighterTextColor);
-					border-radius: 0.3rem;
-					color: inherit;
-					font-size: inherit;
-					transition: border-color 0.1s;
-					position: relative;
-
-					:focus {
-						border-color: var(--color);
-					}
-				`}
-				placeholder={t("Saisissez le nom d'une commune")}
+				className="ui__"
+				value={name}
+				// placeholder={t("Saisissez le nom d'une commune")}
 				onChange={e => {
+					setName(e.target.value)
 					if (e.target.value.length < 2) {
 						setSearchResults(undefined)
 						return
@@ -102,35 +94,39 @@ export default function Select({ onChange, onSubmit }) {
 				</p>
 			)}
 
-			{searchResults &&
-				searchResults.map(result => {
-					const { nom, departement } = result
-					return (
-						<button
-							onClick={() => submitOnChange(result)}
-							key={nom + departement?.nom}
-							css={`
-								text-align: left;
-								width: 100%;
-								padding: 0 0.4rem;
-								border-radius: 0.3rem;
-								:hover,
-								:focus {
-									background-color: var(--lighterColor);
-								}
-								background: white;
-								border-radius: 0.6remv;
-								margin-bottom: 0.3rem;
-								font-size: 100%;
-								padding: 0.6rem;
-								color: inherit;
-								margin-right: 2rem;
-							`}
-						>
-							{nom + ` (${departement?.nom})`}
-						</button>
-					)
-				})}
-		</>
+			<Animate.fromTop>
+				{searchResults &&
+					searchResults.map(result => {
+						const { nom, departement } = result
+						return (
+							<button
+								onClick={() => submitOnChange(result)}
+								key={nom + departement?.nom}
+								css={`
+									text-align: left;
+									display: block;
+									color: inherit;
+									background-color: var(--lightestColor) !important;
+									width: 100%;
+									border-radius: 0.3rem;
+									:hover,
+									:focus {
+										background-color: var(--lighterColor) !important;
+									}
+									background: white;
+									transition: background-color 0.2s;
+									width: 25rem;
+									max-width: 100%;
+									margin-bottom: 0.3rem;
+									font-size: 100%;
+									padding: 0.6rem;
+								`}
+							>
+								{nom + ` (${departement?.nom})`}
+							</button>
+						)
+					})}
+			</Animate.fromTop>
+		</div>
 	)
 }

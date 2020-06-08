@@ -76,7 +76,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					<div className="step">
 						<h3>
 							{rules[currentQuestion].question}{' '}
-							<ExplicableRule dottedName={currentQuestion} />
+							<ExplicableRule rules={rules} dottedName={currentQuestion} />
 						</h3>
 
 						<fieldset>
@@ -104,7 +104,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
-							css="margin-left: 1.2rem"
 							onClick={() => submit('accept')}
 						>
 							<span className="text">

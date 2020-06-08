@@ -4,7 +4,8 @@ import { is } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { ExplicableRule } from './Explicable'
+import { Explicable } from './Explicable'
+import { Markdown } from 'Components/utils/markdown'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -38,12 +39,12 @@ export default function Question({
 	)
 
 	const renderBinaryQuestion = () => {
-		return choices.map(({ value, label }) => (
+		return choices.map(({ value, label }, i: number) => (
 			<RadioLabel
 				key={value}
 				{...{
 					value,
-					css: 'margin-right: 0.6rem',
+					css: i < choices.length - 1 ? 'margin-right: 0.6rem' : 0,
 					label,
 					currentValue,
 					onSubmit,
@@ -60,7 +61,7 @@ export default function Question({
 			radioDottedName.split(dottedName + ' . ')[1]
 
 		return (
-			<ul css="width: 100%">
+			<ul css="width: 100%; padding: 0; margin:0">
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -77,28 +78,30 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
-					choices.children.map(({ title, dottedName, children, icons }) =>
-						children ? (
-							<li key={dottedName} className="variant">
-								<div>{title}</div>
-								{renderChildren({ children })}
-							</li>
-						) : (
-							<li key={dottedName} className="variantLeaf">
-								<RadioLabel
-									{...{
-										value: `'${relativeDottedName(dottedName)}'`,
-										label: title,
-										dottedName,
-										currentValue,
-										icons,
-										onSubmit,
-										colors,
-										onChange: handleChange
-									}}
-								/>
-							</li>
-						)
+					choices.children.map(
+						({ title, dottedName, description, children, icons }) =>
+							children ? (
+								<li key={dottedName} className="variant">
+									<div>{title}</div>
+									{renderChildren({ children })}
+								</li>
+							) : (
+								<li key={dottedName} className="variantLeaf">
+									<RadioLabel
+										{...{
+											value: `'${relativeDottedName(dottedName)}'`,
+											label: title,
+											dottedName,
+											currentValue,
+											icons,
+											onSubmit,
+											description,
+											colors,
+											onChange: handleChange
+										}}
+									/>
+								</li>
+							)
 					)}
 			</ul>
 		)
@@ -111,7 +114,12 @@ export default function Question({
 	return (
 		<div
 			className="step question"
-			css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap;"
+			css={`
+				margin: 0.3rem 0;
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+			`}
 		>
 			{choiceElements}
 		</div>
@@ -121,7 +129,12 @@ export default function Question({
 export const RadioLabel = props => (
 	<>
 		<RadioLabelContent {...props} />
-		<ExplicableRule dottedName={props.dottedName} />
+		{props.description && (
+			<Explicable>
+				<h3>{props.label}</h3>
+				<Markdown source={props.description} />
+			</Explicable>
+		)}
 	</>
 )
 

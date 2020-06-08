@@ -8,6 +8,7 @@ import AideDéclarationIndépendant from './AideDéclarationIndépendant/index'
 import Embaucher from './Embaucher'
 import Home from './Home'
 import SécuritéSociale from './SécuritéSociale'
+import FormulaireDétachementIndépendant from './DétachementIndépendant'
 
 export default function Gérer() {
 	const sitePaths = useContext(SitePathsContext)
@@ -34,6 +35,11 @@ export default function Gérer() {
 					exact
 					path={sitePaths.gérer.déclarationIndépendant}
 					component={AideDéclarationIndépendant}
+				/>
+				<Route
+					exact
+					path={sitePaths.gérer.formulaireDétachement}
+					component={FormulaireDétachementIndépendant}
 				/>
 			</Switch>
 		</>

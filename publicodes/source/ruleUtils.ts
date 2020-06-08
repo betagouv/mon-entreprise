@@ -53,9 +53,10 @@ export function findParentDependencies<Names extends string>(
 		.map(parent => [parent, rules[parent]] as [Names, Rule])
 		.filter(([_, rule]) => !!rule)
 		.filter(
-			([_, { question, unité, formule }]) =>
+			([_, { question, unité, formule, type }]) =>
 				//Find the first "calculable" parent
 				(question && !unité && !formule) ||
+				type === 'groupe' ||
 				(question && formule?.['une possibilité'] !== undefined) ||
 				(typeof formule === 'string' && formule.includes(' = ')) ||
 				formule === 'oui' ||

@@ -11,6 +11,7 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from './DateInput'
+import TextInput from './TextInput'
 
 type Value = string | number | object | boolean | null
 export type RuleInputProps = {
@@ -44,7 +45,7 @@ export default function RuleInput({
 	const unit = rule.unit
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-
+	const handleSubmit = onSubmit ?? (() => null)
 	const commonProps = {
 		key: dottedName,
 		dottedName,
@@ -61,7 +62,7 @@ export default function RuleInput({
 		return (
 			<Question
 				{...commonProps}
-				onSubmit={onSubmit}
+				onSubmit={handleSubmit}
 				choices={buildVariantTree(rules, dottedName)}
 			/>
 		)
@@ -78,13 +79,13 @@ export default function RuleInput({
 			<DateInput
 				value={commonProps.value}
 				onChange={commonProps.onChange}
-				onSubmit={onSubmit}
+				onSubmit={handleSubmit}
 				suggestions={commonProps.suggestions}
 			/>
 		)
 	}
 
-	if (unit == null) {
+	if (unit == null && (rule.type === 'booléen' || rule.type == undefined)) {
 		return useSwitch ? (
 			<ToggleSwitch
 				defaultChecked={value === 'oui' || rule.defaultValue === 'oui'}
@@ -99,7 +100,7 @@ export default function RuleInput({
 					{ value: 'non', label: 'Non' },
 					{ value: 'oui', label: 'Oui' }
 				]}
-				onSubmit={onSubmit}
+				onSubmit={handleSubmit}
 			/>
 		)
 	}
@@ -127,7 +128,11 @@ export default function RuleInput({
 		return <PercentageField {...commonProps} debounce={600} />
 	}
 
-	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />
+	if (rule.type === 'texte') {
+		return <TextInput {...commonProps} />
+	}
+
+	return <Input {...commonProps} unit={unit} onSubmit={handleSubmit} />
 }
 
 const getVariant = (rule: ParsedRule) =>

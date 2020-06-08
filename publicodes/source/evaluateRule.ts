@@ -1,6 +1,11 @@
 import { map, mergeAll, pick, pipe } from 'ramda'
 import { typeWarning } from './error'
-import { bonus, evaluateNode, mergeMissing } from './evaluation'
+import {
+	bonus,
+	evaluateNode,
+	mergeMissing,
+	mergeAllMissing
+} from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
 import { ParsedRule } from './types'
 
@@ -47,12 +52,11 @@ export const evaluateApplicability = (
 					? null
 					: !notApplicable?.nodeValue &&
 					  (applicable?.nodeValue == undefined || !!applicable?.nodeValue),
-				missingVariables: mergeAll([
-					...parentDependencies.map(parent => parent.missingVariables),
-					notApplicable?.missingVariables || {},
-					disabled?.missingVariables || {},
-					applicable?.missingVariables || {}
-				])
+				missingVariables: mergeAllMissing(
+					[...parentDependencies, notApplicable, disabled, applicable].filter(
+						Boolean
+					)
+				)
 		  }
 
 	return {
@@ -78,24 +82,11 @@ export default (cache, situation, parsedRules, node) => {
 		nodeValue: isApplicable
 	} = applicabilityEvaluation
 
-	const evaluateFormula = () =>
-		node.formule
-			? evaluateNode(cache, situation, parsedRules, node.formule)
-			: {}
 	// evaluate the formula lazily, only if the applicability is known and true
-	let evaluatedFormula = isApplicable
-		? evaluateFormula()
-		: isApplicable === false
-		? {
-				...node.formule,
-				missingVariables: {},
-				nodeValue: 0
-		  }
-		: {
-				...node.formule,
-				missingVariables: {},
-				nodeValue: null
-		  }
+	let evaluatedFormula =
+		isApplicable && node.formule
+			? evaluateNode(cache, situation, parsedRules, node.formule)
+			: node.formule
 
 	if (node.unit) {
 		try {
