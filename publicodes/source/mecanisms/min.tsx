@@ -3,7 +3,7 @@ import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
 import { evaluateArray, makeJsx } from '../evaluation'
 
-export const mecanismMin = (recurse, k, v) => {
+export const mecanismMin = (recurse, v) => {
 	const explanation = v.map(recurse)
 	const evaluate = evaluateArray(min, Infinity)
 	const jsx = ({ nodeValue, explanation, unit }) => (

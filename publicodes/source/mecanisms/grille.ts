@@ -1,8 +1,6 @@
 import { lensPath, over } from 'ramda'
 import grille from '../components/mecanisms/Grille'
 import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
-import { decompose } from '../mecanisms/utils'
-import variations from '../mecanisms/variations'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -15,14 +13,7 @@ import {
 	parseTranches
 } from './trancheUtils'
 
-export default function parse(parse, k, v) {
-	if (v.composantes) {
-		//mécanisme de composantes. Voir mécanismes.md/composantes
-		return decompose(parse, k, v)
-	}
-	if (v.variations) {
-		return variations(parse, k, v, true)
-	}
+export default function parse(parse, v) {
 	const defaultUnit = v['unité'] && parseUnit(v['unité'])
 	const explanation = {
 		assiette: parse(v.assiette),

@@ -46,7 +46,7 @@ function evaluate(
 	}
 }
 
-export default function parseVariableTemporelle(parse, __, v: any) {
+export default function parseVariableTemporelle(parse, v) {
 	const explanation = parse(v.explanation)
 	return {
 		evaluate,

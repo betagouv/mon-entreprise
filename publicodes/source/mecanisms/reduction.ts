@@ -5,7 +5,7 @@ import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import { parseUnit, serializeUnit } from '../units'
 
-export const mecanismReduction = (recurse, k, v) => {
+export const mecanismReduction = (recurse, v) => {
 	const objectShape = {
 		assiette: false,
 		abattement: defaultNode(0),

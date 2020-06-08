@@ -2,7 +2,7 @@ import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
 import { evaluateArray, makeJsx } from '../evaluation'
 
-export const mecanismMax = (recurse, k, v) => {
+export const mecanismMax = (recurse, v) => {
 	const explanation = v.map(recurse)
 
 	const max = (a, b) => {

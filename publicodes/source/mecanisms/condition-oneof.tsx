@@ -26,7 +26,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	return { ...node, nodeValue, explanation, missingVariables }
 }
 
-export const mecanismOneOf = (recurse, k, v) => {
+export const mecanismOneOf = (recurse, v) => {
 	if (!is(Array, v)) throw new Error('should be array')
 	const explanation = map(recurse, v)
 	const jsx = ({ nodeValue, explanation, unit }) => (

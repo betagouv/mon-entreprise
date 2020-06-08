@@ -12,15 +12,12 @@ import {
 import { inferUnit } from '../units'
 import { mergeAllMissing } from './../evaluation'
 
-/* @devariate = true => This function will produce variations of a same mecanism (e.g. product) that share some common properties */
-export default function parse(recurse, k, v, devariate) {
-	const explanation = devariate
-		? devariateExplanation(recurse, k, v)
-		: v.map(({ si, alors, sinon }) =>
-				sinon !== undefined
-					? { consequence: recurse(sinon), condition: defaultNode(true) }
-					: { consequence: recurse(alors), condition: recurse(si) }
-		  )
+export default function parse(recurse, v) {
+	const explanation = v.map(({ si, alors, sinon }) =>
+		sinon !== undefined
+			? { consequence: recurse(sinon), condition: defaultNode(true) }
+			: { consequence: recurse(alors), condition: recurse(si) }
+	)
 
 	// TODO - find an appropriate representation
 	return {
@@ -36,6 +33,23 @@ export default function parse(recurse, k, v, devariate) {
 		)
 	}
 }
+
+export function devariate(recurse, k, v) {
+	const explanation = devariateExplanation(recurse, k, v)
+	return {
+		explanation,
+		evaluate,
+		jsx: Variations,
+		category: 'mecanism',
+		name: 'variations',
+		type: 'numeric',
+		unit: inferUnit(
+			'+',
+			explanation.map(r => r.consequence.unit)
+		)
+	}
+}
+
 type Variation =
 	| {
 			si: any
@@ -44,7 +58,7 @@ type Variation =
 	| {
 			sinon: object
 	  }
-export const devariateExplanation = (
+const devariateExplanation = (
 	recurse,
 	mecanismKey,
 	v: { variations: Array<Variation> }

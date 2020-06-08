@@ -33,7 +33,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	return { ...node, nodeValue: safeNodeValue, explanation, missingVariables }
 }
 
-export const mecanismSynchronisation = (recurse, k, v) => {
+export const mecanismSynchronisation = (recurse, v) => {
 	return {
 		explanation: { ...v, API: recurse(v.API) },
 		evaluate,

@@ -69,7 +69,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 	}
 }
 
-export default (recurse, k, v) => {
+export default (recurse, v) => {
 	const explanation = parseObject(recurse, objectShape, v)
 
 	return {
