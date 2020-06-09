@@ -45,6 +45,7 @@ const AnimatedDiv = animated(({ score, value }) => (
 			h1 {
 				margin: 0.3rem;
 			}
+			font-size: 110%;
 		`}
 	>
 		<h1>Mon empreinte sur le climat</h1>
@@ -62,8 +63,20 @@ const AnimatedDiv = animated(({ score, value }) => (
 				</span>{' '}
 				tonnes
 			</p>
-			<p>Moyenne {emoji('🇫🇷')} : 11 tonnes</p>
-			<p>Objectif {emoji('😇')} : 2 tonnes</p>
+			<p>Moyenne française {emoji('🇫🇷')} : 11 tonnes</p>
+			<p>Objectif neutralité {emoji('😇')} : 2 tonnes</p>
+		</div>
+		<div
+			css={`
+				border: 2px dashed white;
+				border-radius: 1rem;
+				padding: 1rem;
+				margin: 1rem;
+				color: white;
+			`}
+		>
+			{' '}
+			Bientôt : des actions concrètes et chiffrées pour réduire votre empreinte
 		</div>
 	</div>
 ))
