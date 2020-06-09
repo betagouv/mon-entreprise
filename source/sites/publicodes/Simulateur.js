@@ -8,10 +8,14 @@ import { decodeRuleName, findRuleByDottedName } from 'Engine/rules'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
-import { flatRulesSelector } from 'Selectors/analyseSelectors'
+import {
+	flatRulesSelector,
+	analysisWithDefaultsSelector,
+} from 'Selectors/analyseSelectors'
 import CarbonImpact from './CarbonImpact'
 import withTarget from './withTarget'
 import Chart from './chart/index.js'
+import { Redirect } from 'react-router'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
 
@@ -20,6 +24,7 @@ const Simulateur = (props) => {
 		decoded = decodeRuleName(objectif),
 		rules = useSelector(flatRulesSelector),
 		rule = findRuleByDottedName(rules, decoded),
+		analysis = useSelector(analysisWithDefaultsSelector),
 		dispatch = useDispatch(),
 		config = {
 			objectifs: [decoded],
@@ -42,7 +47,9 @@ const Simulateur = (props) => {
 				noProgressMessage
 				showConversation
 				customEnd={
-					rule.description ? (
+					rule.dottedName === 'micmac' ? (
+						<Redirect to={`/fin/${analysis.targets[0].nodeValue}`} />
+					) : rule.description ? (
 						<Markdown source={rule.description} />
 					) : (
 						<EndingCongratulations />
