@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
 import { animated, useSpring, config } from 'react-spring'
+import ShareButton from 'Components/ShareButton'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -65,6 +66,15 @@ const AnimatedDiv = animated(({ score, value }) => (
 			</p>
 			<p>Moyenne française {emoji('🇫🇷')} : 11 tonnes</p>
 			<p>Objectif neutralité {emoji('😇')} : 2 tonnes</p>
+		</div>
+
+		<div css="display: flex; flex-direction: column;">
+			<ShareButton
+				text="Mesure ton impact sur le simulateur Ecolab climat !"
+				url={window.location}
+				title={'Ecolab-climat'}
+			/>
+			Partager
 		</div>
 		<div
 			css={`
