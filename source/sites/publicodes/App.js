@@ -26,8 +26,8 @@ class App extends Component {
 			>
 				<StoreProvider>
 					<div css="background: yellow; text-align: center; color: black; ">
-						Attention, démo ! Les calculs sont loin d'être validés.{' '}
-						<Link to="/contribuer">Faites-nous des retours !</Link>
+						Attention, ceci est une démo aux calculs non validés.{' '}
+						<Link to="/contribuer">Faites-nous vos retours !</Link>
 					</div>
 					<div className="ui__ container">
 						<nav css="display: flex; justify-content: center; margin-top: .6rem">
