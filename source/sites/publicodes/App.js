@@ -48,7 +48,6 @@ class App extends Component {
 							<Route path="/documentation" component={RulesList} />
 							<Route path="/simulateur/:name+" component={Simulateur} />
 							<Route path="/contribuer/:input?" component={Contribution} />
-							<Route path="/scénarios" component={Scenarios} />
 							<Route path="/à-propos" component={About} />
 							<Route
 								path="/studio"
