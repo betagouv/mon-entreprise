@@ -149,14 +149,18 @@ export const SalarySimulation = () => {
 				}
 			/>
 			<br />
-			<Banner icon={'😷'}>
-				<Trans>
-					<strong>Covid-19 et chômage partiel </strong>:{' '}
-					<Link to={sitePaths.simulateurs['chômage-partiel']}>
-						Calculez votre indemnité
-					</Link>
-				</Trans>
-			</Banner>
+			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
+			 * le simulateur de chômage partiel sur son site. */}
+			{!document.referrer?.includes('code.travail.gouv.fr') && (
+				<Banner icon={'😷'}>
+					<Trans>
+						<strong>Covid-19 et chômage partiel </strong>:{' '}
+						<Link to={sitePaths.simulateurs['chômage-partiel']}>
+							Calculez votre indemnité
+						</Link>
+					</Trans>
+				</Banner>
+			)}
 			<PreviousSimulationBanner />
 		</>
 	)
