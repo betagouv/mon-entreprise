@@ -77,10 +77,9 @@ export function Line({
 	className,
 	...props
 }: LineProps) {
-	const parsedRules = useContext(EngineContext).getParsedRules()
 	return (
 		<Condition expression={rule}>
-			<RuleLink {...parsedRules[rule]} className={className} />
+			<RuleLink dottedName={rule} className={className} />
 			<Value
 				linkToRule={false}
 				expression={(negative ? '- ' : '') + rule}
