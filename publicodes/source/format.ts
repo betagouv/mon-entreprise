@@ -145,3 +145,14 @@ export function formatValue(
 		  })
 		: null
 }
+
+export function serializeValue(
+	{ nodeValue, unit }: { nodeValue: Evaluation; unit?: Unit },
+	{ language = 'fr' }
+) {
+	const serializedUnit = (unit && typeof nodeValue === 'number'
+		? serializeUnit(unit, nodeValue, language)
+		: ''
+	)?.replace(/\s*\/\s*/g, '/')
+	return `${nodeValue} ${serializedUnit}`.trim()
+}

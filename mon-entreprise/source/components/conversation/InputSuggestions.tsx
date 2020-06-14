@@ -1,4 +1,4 @@
-import { formatValue } from 'publicodes'
+import { serializeValue } from 'publicodes'
 import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -30,15 +30,13 @@ export default function InputSuggestions({
 			`}
 		>
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {
-				const valueWithUnit: string = formatValue(
+				const valueWithUnit: string = serializeValue(
 					{
 						nodeValue: value,
 						unit
 					},
 					{ language: i18n.language }
 				)
-					.replace(/[\s]/g, '')
-					.replace(/,/, '.')
 				return (
 					<button
 						className="ui__ link-button"

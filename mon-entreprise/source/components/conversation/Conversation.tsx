@@ -8,7 +8,7 @@ import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -30,8 +30,13 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	const currentQuestion = useNextQuestions()[0]
 	const situation = useSelector(situationSelector)
 	const currentQuestionIsAnswered = !!situation[currentQuestion]
-
 	const previousAnswers = useSelector(answeredQuestionsSelector)
+	useEffect(() => {
+		if (currentQuestion) {
+			dispatch(goToQuestion(currentQuestion))
+		}
+	}, [dispatch, currentQuestion])
+
 	const setDefault = () =>
 		dispatch(
 			validateStepWithValue(
@@ -51,8 +56,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		})
 	}
 
-	const setFormValue = value => {
-		dispatch(goToQuestion(currentQuestion))
+	const onChange = value => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 
@@ -79,7 +83,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 							<RuleInput
 								dottedName={currentQuestion}
 								value={situation[currentQuestion]}
-								onChange={setFormValue}
+								onChange={onChange}
 								onSubmit={submit}
 								rules={rules}
 							/>

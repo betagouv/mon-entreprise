@@ -1,7 +1,7 @@
 import { mapObjIndexed } from 'ramda'
 import { evaluateControls } from './controls'
 import { evaluationError, warning } from './error'
-import { collectDefaults, evaluateNode } from './evaluation'
+import { evaluateNode } from './evaluation'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import { parse } from './parse'
 import parseRules from './parseRules'
@@ -34,7 +34,7 @@ export type EvaluationOptions = Partial<{
 }>
 
 export * from './components'
-export { formatValue } from './format'
+export { formatValue, serializeValue } from './format'
 export { default as translateRules } from './translateRules'
 export * from './types'
 export { parseRules }
