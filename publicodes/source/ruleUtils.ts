@@ -1,13 +1,8 @@
-import { dropLast, last, pipe, range, take } from 'ramda'
+import { last, pipe, range, take } from 'ramda'
 import { Rule, Rules } from './types'
 
-export const splitName = (str: string) => str.split(' . ')
-export const joinName = strs => strs.join(' . ')
-export const parentName = pipe(
-	splitName,
-	dropLast(1) as (a: string[]) => string[],
-	joinName
-)
+const splitName = (str: string) => str.split(' . ')
+const joinName = strs => strs.join(' . ')
 export const nameLeaf = pipe(splitName, last)
 export const encodeRuleName = name =>
 	name
@@ -46,10 +41,6 @@ export function disambiguateRuleReference<Names extends string>(
 	}
 	return dottedName
 }
-
-/*********************************
- Autres 
- */
 
 export function findParentDependencies<Names extends string>(
 	rules: Rules<Names>,
