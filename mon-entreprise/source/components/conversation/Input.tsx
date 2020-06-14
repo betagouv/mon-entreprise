@@ -42,6 +42,9 @@ export default function Input({
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
 					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
+					// We don't want to call `onValueChange` in case this component is
+					// re-render with a new "value" prop from the outside.
+					key={value}
 					onValueChange={({ floatValue }) => {
 						debouncedOnChange(floatValue)
 					}}
