@@ -3,7 +3,6 @@ import { Leaf } from './components/mecanisms/common'
 import { typeWarning } from './error'
 import { evaluateApplicability } from './evaluateRule'
 import { evaluateNode, mergeMissing } from './evaluation'
-import { getSituationValue } from './getSituationValue'
 import { convertNodeToUnit } from './nodeUnits'
 import parseRule from './parseRule'
 import { disambiguateRuleReference } from './ruleUtils'
@@ -48,11 +47,7 @@ const getApplicableReplacements = (
 		// Remove remplacement defined in a node whose situation value is false
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
-			const situationValue = getSituationValue(
-				situation,
-				referenceRule.dottedName,
-				referenceRule
-			)
+			const situationValue = situation[referenceRule.dottedName]
 			if (referenceNode.question && situationValue == null) {
 				missingVariableList.push({ [referenceNode.dottedName]: 1 })
 			}
@@ -177,7 +172,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			applicabilityEvaluation
 		)
 	}
-	const situationValue = getSituationValue(situation, dottedName, rule)
+	const situationValue = situation[dottedName]
 	if (situationValue != null) {
 		const unit =
 			!situationValue.unit || serializeUnit(situationValue.unit) === ''
