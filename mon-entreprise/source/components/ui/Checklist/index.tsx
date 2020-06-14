@@ -11,7 +11,7 @@ type CheckItemProps = {
 	title: React.ReactNode
 	name: string
 	explanations?: React.ReactNode
-	onChange?: (checked: boolean) => void
+	onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void
 	defaultChecked?: boolean
 }
 
@@ -29,7 +29,7 @@ export function CheckItem({
 		if (e.target.checked) {
 			setDisplayExplanations(false)
 		}
-		onChange && onChange(e.target.checked)
+		onChange?.(e)
 		tracker.push([
 			'trackEvent',
 			'CheckItem',
@@ -98,8 +98,8 @@ export function Checklist({
 				throw new Error('Invalid child passed to Checklist')
 			}
 			return React.cloneElement(child, {
-				onChange: (checked: React.ChangeEvent<HTMLInputElement>) =>
-					onItemCheck?.(child.props.name, checked.target.checked),
+				onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
+					onItemCheck?.(child.props.name, evt.target.checked),
 				defaultChecked:
 					child.props.defaultChecked || defaultChecked?.[child.props.name]
 			})
@@ -107,7 +107,7 @@ export function Checklist({
 
 	useEffect(() => {
 		onInitialization?.(checklist.map(child => child.props.name))
-	})
+	}, [])
 
 	return (
 		<ul className="ui__ no-bullet checklist">
