@@ -32,61 +32,60 @@ export default ({}) => {
 }
 
 const AnimatedDiv = animated(({ score, value }) => (
-	<div
-		className="ui__ full-width"
-		css={`
-			background: ${getBackgroundColor(value)};
-			width: 100vw;
-			height: 85vh;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
-
-			text-align: center;
-			h1 {
-				margin: 0.3rem;
-			}
-			font-size: 110%;
-		`}
-	>
-		<h1>Mon empreinte sur le climat</h1>
-
+	<>
+		<h1 css="margin: 0 .6rem;font-size: 160%">Mon empreinte climat</h1>
 		<div
+			className=""
 			css={`
-				> p:first-child {
-					font-size: 250%;
-				}
+				background: ${getBackgroundColor(value)};
+				margin: 0 auto;
+				border-radius: 1rem;
+				width: 92vw;
+				height: 70vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+
+				text-align: center;
+				font-size: 110%;
 			`}
 		>
-			<p>
-				<span css="width: 4.8rem; text-align: left; display: inline-block">
-					{Math.round(value / 100) / 10}
-				</span>{' '}
-				tonnes
-			</p>
-			<p>Moyenne française {emoji('🇫🇷')} : 11 tonnes</p>
-			<p>Objectif neutralité {emoji('😇')} : 2 tonnes</p>
-		</div>
+			<div
+				css={`
+					> p:first-child {
+						font-size: 250%;
+					}
+				`}
+			>
+				<p>
+					<span css="width: 4.8rem; text-align: left; display: inline-block">
+						{Math.round(value / 100) / 10}
+					</span>{' '}
+					tonnes
+				</p>
+				<p>Moyenne française {emoji('🇫🇷')} : 11 tonnes</p>
+				<p>Objectif neutralité {emoji('😇')} : 2 tonnes</p>
+			</div>
 
-		<div css="display: flex; flex-direction: column;">
-			<ShareButton
-				text="Mesure ton impact sur le simulateur Ecolab climat !"
-				url={window.location}
-				title={'Ecolab-climat'}
-			/>
-			Partager
+			<div css="display: flex; flex-direction: column;">
+				<ShareButton
+					text="Mesure ton impact sur le simulateur Ecolab climat !"
+					url={window.location}
+					title={'Ecolab-climat'}
+				/>
+				Partager
+			</div>
 		</div>
 		<div
 			css={`
-				border: 2px dashed white;
+				border: 2px dashed black;
 				border-radius: 1rem;
 				padding: 1rem;
 				margin: 1rem;
-				color: white;
 			`}
 		>
 			{' '}
 			Bientôt : des actions concrètes et chiffrées pour réduire votre empreinte
 		</div>
-	</div>
+	</>
 ))
