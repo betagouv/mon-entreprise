@@ -3,7 +3,7 @@
  * We don't exepect the parent rule to explain the type of the contained formula, for example.
  */
 
-import R from 'ramda'
+import * as R from 'ramda'
 import { ArrondiExplanation } from './mecanisms/arrondi'
 import { ParsedRule, ParsedRules } from './types'
 
