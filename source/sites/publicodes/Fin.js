@@ -32,15 +32,14 @@ export default ({}) => {
 }
 
 const AnimatedDiv = animated(({ score, value }) => (
-	<>
-		<h1 css="margin: 0 .6rem;font-size: 160%">Mon empreinte climat</h1>
+	<div css="padding: 0 .3rem; max-width: 600px; margin: 0 auto;">
+		<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
 		<div
 			className=""
 			css={`
 				background: ${getBackgroundColor(value)};
 				margin: 0 auto;
-				border-radius: 1rem;
-				width: 92vw;
+				border-radius: 0.6rem;
 				height: 65vh;
 				display: flex;
 				flex-direction: column;
@@ -82,18 +81,17 @@ const AnimatedDiv = animated(({ score, value }) => (
 				/>
 			</div>
 		</div>
-		<h2 css="margin: 1rem .6rem .6rem;font-size: 120%">Que faire ?</h2>
+		<h2 css="margin: 1rem 0 .6rem;font-size: 120%">Que faire ?</h2>
 		<div
 			css={`
 				border: 2px dashed black;
-				border-radius: 1rem;
+				border-radius: 0.6rem;
 				padding: 1rem;
-				width: 92vw;
 				margin: 0 auto;
 			`}
 		>
 			{' '}
 			Bientôt : des actions concrètes et chiffrées pour réduire votre empreinte
 		</div>
-	</>
+	</div>
 ))
