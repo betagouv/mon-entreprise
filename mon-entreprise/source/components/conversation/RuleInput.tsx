@@ -67,11 +67,11 @@ export default function RuleInput({
 		)
 	}
 	if (rule.API && rule.API === 'géo')
-		return <SelectGéo {...{ ...commonProps }} onSubmit={onSubmit} />
+		return <SelectGéo {...commonProps} onSubmit={onSubmit} />
 	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
-		return <SelectAtmp {...commonProps} />
+		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
 
 	if (rule.type === 'date') {
 		return (
