@@ -23,7 +23,7 @@ const getBackgroundColor = (score) =>
 export default ({}) => {
 	const { score } = useParams()
 	const { value } = useSpring({
-		config: { mass: 1, tension: 100, friction: 220 },
+		config: { mass: 1, tension: 200, friction: 100 },
 		value: +score,
 		from: { value: 0 },
 	})
@@ -41,30 +41,37 @@ const AnimatedDiv = animated(({ score, value }) => (
 				margin: 0 auto;
 				border-radius: 1rem;
 				width: 92vw;
-				height: 70vh;
+				height: 65vh;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-evenly;
 
 				text-align: center;
 				font-size: 110%;
+				> div > p {
+					display: flex;
+					justify-content: space-around;
+				}
 			`}
 		>
-			<div
-				css={`
-					> p:first-child {
-						font-size: 250%;
-					}
-				`}
-			>
-				<p>
+			<p>
+				<span css="font-weight: bold; font-size: 260%; margin-bottom: .3rem">
 					<span css="width: 3.6rem; text-align: left; display: inline-block">
 						{Math.round(value / 1000)}
 					</span>{' '}
 					tonnes
+				</span>
+			</p>
+			<div>
+				<p>
+					<span>{emoji('🇫🇷 ')}</span>
+					<span> Moyenne française</span> <span> 11 tonnes</span>
 				</p>
-				<p>Moyenne française {emoji('🇫🇷')} : 11 tonnes</p>
-				<p>Objectif neutralité {emoji('😇')} : 2 tonnes</p>
+				<p>
+					<span>{emoji('😇 ')} </span>
+					<span>Objectif neutralité</span>
+					<span>2 tonnes</span>
+				</p>
 			</div>
 
 			<div css="display: flex; flex-direction: column;">
@@ -76,12 +83,14 @@ const AnimatedDiv = animated(({ score, value }) => (
 				Partager
 			</div>
 		</div>
+		<h2 css="margin: 1rem .6rem .6rem;font-size: 120%">Que faire ?</h2>
 		<div
 			css={`
 				border: 2px dashed black;
 				border-radius: 1rem;
 				padding: 1rem;
-				margin: 1rem;
+				width: 92vw;
+				margin: 0 auto;
 			`}
 		>
 			{' '}
