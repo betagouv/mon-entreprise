@@ -34,9 +34,9 @@ export default () => {
 				</Link>
 			</div>
 			<p>
-				Ce simulateur vous permet d'évaluer votre empreinte climat personnelle,
-				puis de la situer par rapport aux objectifs climatiques. Il est basé sur
-				le modèle MicMac de l'association{' '}
+				Ce simulateur vous permet d'évaluer votre empreinte carbone
+				individuelle, puis de la situer par rapport aux objectifs climatiques.
+				Il est basé sur le modèle MicMac de l'association{' '}
 				<a href="https://avenirclimatique.org/les-outils/">
 					Avenir Climatique{' '}
 					<img

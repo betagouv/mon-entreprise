@@ -1,6 +1,5 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import RuleLink from 'Components/RuleLink'
 import Value from 'Components/Value'
 import { getRuleFromAnalysis } from 'Engine/rules'
 import React from 'react'
@@ -11,7 +10,7 @@ import { RootState } from 'Reducers/rootReducer'
 import { createSelector } from 'reselect'
 import {
 	analysisWithDefaultsSelector,
-	nextStepsSelector
+	nextStepsSelector,
 } from 'Selectors/analyseSelectors'
 import { softCatch } from '../../utils'
 import './AnswerList.css'
@@ -52,16 +51,14 @@ function StepsTable({ rules, onClose }) {
 	return (
 		<table>
 			<tbody>
-				{rules.map(rule => (
+				{rules.map((rule) => (
 					<tr
 						key={rule.dottedName}
 						css={`
 							background: var(--lightestColor);
 						`}
 					>
-						<td>
-							<RuleLink {...rule} />
-						</td>
+						<td>{rule.title}</td>
 						<td>
 							<button
 								className="answer"
@@ -107,6 +104,6 @@ const stepsToRules = createSelector(
 			.filter(Boolean),
 		next: nextSteps
 			.map(softCatch(getRuleFromAnalysis(analysis)))
-			.filter(Boolean)
+			.filter(Boolean),
 	})
 )
