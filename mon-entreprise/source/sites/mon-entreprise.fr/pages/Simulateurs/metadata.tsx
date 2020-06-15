@@ -35,7 +35,7 @@ import SalariéSimulation from './SalariéSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
 
-const simulateurs = [
+export const simulateurs = [
 	'salarié',
 	'auto-entrepreneur',
 	'indépendant',

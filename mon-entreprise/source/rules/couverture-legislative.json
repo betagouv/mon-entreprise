@@ -1,0 +1,104 @@
+[
+	[
+		"📃 Formes de travail",
+		[
+			[
+				"Salariés et assimilés",
+				[
+					{
+						"rule": "contrat salarié . CDI",
+						"label": "CDI Contrat à Durée Indéterminée"
+					},
+					{
+						"rule": "contrat salarié . CDD",
+						"label": "CDD Contrat à Durée Déterminée"
+					},
+					"CDIC CDI de chantier",
+					"CUI Contrat unique d'insertion",
+					"CTT Contrat de Travail Temporaire (intérim)",
+					{
+						"rule": "contrat salarié . apprentissage",
+						"label": "Contrat d’apprentissage"
+					},
+					{
+						"rule": "contrat salarié . professionnalisation",
+						"label": "Contrat de professionnalisation"
+					},
+					{
+						"rule": "contrat salarié . stage",
+						"label": "Convention de stage"
+					},
+					"Doctorat",
+					"Travailleurs à domicile",
+					"Assistants maternels et familiaux"
+				]
+			],
+			[
+				"Indépendants",
+				[
+					{ "label": "Auto-entrepreneurs", "simulator": "auto-entrepreneur" },
+					"Artisan, commerçant",
+					"Professions libérales",
+					[
+						"Professions libérales réglementées",
+						["médecin", "auxiliaire", "sage-femme", "avocat", "notaire", "etc."]
+					],
+					"Dirigeants assimilés salarié",
+					"Agriculteurs",
+					{ "rule": "artiste-auteur", "simulator": "artiste-auteur" },
+					"Marins",
+					"Conjoint collaborateur"
+				]
+			],
+			[
+				"Fonction publique",
+				[
+					"Titulaires",
+					[
+						"Non titulaires",
+						["contractuels", "auxiliaires", "vacataires", "etc."]
+					],
+					"Élus",
+					"Militaires"
+				]
+			]
+		]
+	],
+	[
+		"🏢 Formes sociales",
+		[
+			"Micro-entreprise",
+			"Entreprise individuelle (EI, EIRL)",
+			"Sociétés anonymes avec un gérant indépendant (SARL, EURL)",
+			"Sociétés anonymes avec un président assimilé salarié (SA, SAS, SASU)",
+			"Entreprises d'exercice libéral (SELARL, SELAFA, SELCA, SELAS, SELASU)",
+			"Sociétés civiles (SCI, SCP, SCCV, SEP)",
+			"Sociétés de personnes (SNC, SCS)",
+			"Coopératives (SCOP, SCIC, SCA)",
+			"Exploitations agricoles (EARL, GAEC, SCEA)",
+			"Societas europaea (SE)",
+			"Associations (loi 1901, AARPI)",
+			"Sociétés d'économie mixte (SAEM, SAEML, SAIEM)",
+			"Sociétés d'investissement et titrisation (SIIC, FCT, ST)",
+			"Groupements (GIE, GIP, GFF, GFI)",
+			"Établissements publics (EPA, EPIC)",
+			"Fondations, fonds de dotation"
+		]
+	],
+	"🦿 Aides",
+	"☂ Cotisations sociales",
+	[
+		"📚 Conventions collectives",
+		[
+			{ "rule": "contrat salarié . convention collective . HCR" },
+			"Optique",
+			"Sportifs",
+			"Intermittents du spectacle",
+			"BTP"
+		]
+	],
+	"💶 Rémunération",
+	"⏲ Conditions de travail",
+	"🏛 Fiscalité société",
+	"👨‍👩‍👧‍👦 Fiscalité particulier"
+]

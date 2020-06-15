@@ -93,12 +93,15 @@ export default function Simulateurs() {
 						</li>
 						<li>
 							<strong>Améliorés en continu</strong> afin d'augmenter le nombre
-							de dispositifs pris en compte
+							de{' '}
+							<Link to={sitePaths.documentation.index}>
+								dispositifs pris en compte
+							</Link>
 						</li>
 						<li>
 							<strong>Intégrable facilement et gratuitement</strong> sur
 							n'importe quel site internet.{' '}
-							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
+							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>
 						</li>
 					</ul>
 				</Trans>
