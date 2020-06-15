@@ -33,7 +33,7 @@ export default ({}) => {
 
 const AnimatedDiv = animated(({ score, value }) => {
 	const backgroundColor = getBackgroundColor(value).toHexString(),
-		a = console.log(typeof backgroundColor),
+		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true)
 
 	return (
@@ -43,6 +43,11 @@ const AnimatedDiv = animated(({ score, value }) => {
 				className=""
 				css={`
 					background: ${backgroundColor};
+					background: linear-gradient(
+						180deg,
+						${backgroundColor} 0%,
+						${backgroundColor2} 100%
+					);
 					color: ${textColor};
 					margin: 0 auto;
 					border-radius: 0.6rem;
