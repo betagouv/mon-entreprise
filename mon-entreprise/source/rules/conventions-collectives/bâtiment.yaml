@@ -6,6 +6,7 @@ contrat salarié . convention collective . BTP:
     L'entreprise dépend de la convention collective nationale du bâtiment. Cette
     convention définit trois catégories de salariés : les ouvriers, les ETAM
     (employés, techniciens et agents de maîtrise) et les cadres.
+  rend non applicable: CDD . compensation pour congés non pris
 
 contrat salarié . convention collective . BTP . catégorie du salarié:
   question: À quelle catégorie la salarié appartient-t'il ?
@@ -132,7 +133,6 @@ contrat salarié . convention collective . BTP . cotisations conventionnelles:
       - OPPBTP
 
 contrat salarié . convention collective . BTP . congés intempéries:
-  rend non applicable: CDD . compensation pour congés non pris
   formule:
     produit:
       assiette: cotisations . assiette
@@ -175,6 +175,7 @@ contrat salarié . convention collective . BTP . congés intempéries . caisse d
         - rhône alpes auvergne
         - méditerranée
         - sud ouest
+  par défaut: "'idf'"
 
 contrat salarié . convention collective . BTP . congés intempéries . caisse de rattachement . idf:
   titre: Île-de-France
