@@ -15,7 +15,7 @@ let cutHex = (h: string) => (h.charAt(0) == '#' ? h.substring(1, 7) : h),
 	Given a background color, should you write on it in black or white ?
    	Taken from http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#comment61936401_3943023
 */
-function findContrastedTextColor(color: string, simple: boolean) {
+export function findContrastedTextColor(color: string, simple: boolean) {
 	let r = hexToR(color),
 		g = hexToG(color),
 		b = hexToB(color)
