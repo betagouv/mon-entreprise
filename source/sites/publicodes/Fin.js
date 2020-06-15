@@ -58,8 +58,8 @@ const AnimatedDiv = animated(({ score, value }) => (
 				`}
 			>
 				<p>
-					<span css="width: 4.8rem; text-align: left; display: inline-block">
-						{Math.round(value / 100) / 10}
+					<span css="width: 3.6rem; text-align: left; display: inline-block">
+						{Math.round(value / 1000)}
 					</span>{' '}
 					tonnes
 				</p>
