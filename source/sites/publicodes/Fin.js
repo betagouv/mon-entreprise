@@ -23,7 +23,7 @@ const getBackgroundColor = (score) =>
 export default ({}) => {
 	const { score } = useParams()
 	const { value } = useSpring({
-		config: { mass: 1, tension: 150, friction: 150 },
+		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
 		value: +score,
 		from: { value: 0 },
 	})
@@ -32,6 +32,7 @@ export default ({}) => {
 }
 
 const AnimatedDiv = animated(({ score, value }) => {
+	console.log('SCORE', value)
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true)
