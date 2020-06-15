@@ -70,11 +70,13 @@ export default function Select({ onChange, onSubmit, value }) {
 				setName(option.nom)
 			})
 	}
+	const noResult = !isLoading && searchResults && searchResults.length === 0
 
 	return (
 		<div>
 			<input
 				type="search"
+				css={noResult && 'border-color: firebrick !important'}
 				className="ui__"
 				value={name}
 				// placeholder={t("Saisissez le nom d'une commune")}
@@ -88,9 +90,15 @@ export default function Select({ onChange, onSubmit, value }) {
 					debouncedHandleSearch(e.target.value)
 				}}
 			/>
-			{!isLoading && searchResults && searchResults.length === 0 && (
-				<p>
-					<Trans>Aucun résultat</Trans>
+			{noResult && (
+				<p
+					className="ui__ notice"
+					css={`
+						color: firebrick !important;
+						margin-top: -0.4rem;
+					`}
+				>
+					<Trans>Cette commune n'existe pas</Trans>
 				</p>
 			)}
 

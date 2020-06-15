@@ -39,13 +39,12 @@ export default function RuleInput({
 	isTarget = false,
 	autoFocus = false,
 	className,
-	onSubmit
+	onSubmit = () => null
 }: RuleInputProps) {
 	const rule = rules[dottedName]
 	const unit = rule.unit
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-	const handleSubmit = onSubmit ?? (() => null)
 	const commonProps = {
 		key: dottedName,
 		dottedName,
@@ -62,7 +61,7 @@ export default function RuleInput({
 		return (
 			<Question
 				{...commonProps}
-				onSubmit={handleSubmit}
+				onSubmit={onSubmit}
 				choices={buildVariantTree(rules, dottedName)}
 			/>
 		)
@@ -79,7 +78,7 @@ export default function RuleInput({
 			<DateInput
 				value={commonProps.value}
 				onChange={commonProps.onChange}
-				onSubmit={handleSubmit}
+				onSubmit={onSubmit}
 				suggestions={commonProps.suggestions}
 			/>
 		)
@@ -100,7 +99,7 @@ export default function RuleInput({
 					{ value: 'non', label: 'Non' },
 					{ value: 'oui', label: 'Oui' }
 				]}
-				onSubmit={handleSubmit}
+				onSubmit={onSubmit}
 			/>
 		)
 	}
@@ -132,7 +131,7 @@ export default function RuleInput({
 		return <TextInput {...commonProps} />
 	}
 
-	return <Input {...commonProps} unit={unit} onSubmit={handleSubmit} />
+	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />
 }
 
 const getVariant = (rule: ParsedRule) =>
