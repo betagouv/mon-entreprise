@@ -1,6 +1,18 @@
 import React from 'react'
+import emoji from 'react-easy-emoji'
+import { useSelector } from 'react-redux'
+
 export default ({ nodeValue: possiblyNegativeValue }) => {
-	let unitSuffix = "d'équivalent CO₂",
+	const foldedSteps = useSelector(
+			(state) => state.conversationSteps?.foldedSteps
+		),
+		simulationStarted = foldedSteps && foldedSteps.length
+	console.log('FS', foldedSteps)
+	let unitSuffix = (
+			<span>
+				de <strong>CO₂</strong>e par an
+			</span>
+		),
 		v = Math.abs(possiblyNegativeValue),
 		[raw, unit] =
 			v === 0
@@ -13,17 +25,19 @@ export default ({ nodeValue: possiblyNegativeValue }) => {
 		value = raw.toFixed(1) * (possiblyNegativeValue < 0 ? -1 : 1)
 
 	return (
-		<span
-			css={`
-				strong {
-					font-size: 160%;
-					font-weight: 600;
-				}
-			`}
-		>
-			<em>Votre total provisoire annuel</em>
+		<span>
+			{!simulationStarted ? (
+				<em>{emoji('🇫🇷 ')} Un français émet en moyenne</em>
+			) : (
+				<em>Votre total provisoire</em>
+			)}
 			<div>
-				<strong>
+				<strong
+					css={`
+						font-size: 160%;
+						font-weight: 600;
+					`}
+				>
 					{value}&nbsp;{unit}
 				</strong>{' '}
 				{unitSuffix}
