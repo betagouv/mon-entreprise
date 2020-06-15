@@ -62,6 +62,9 @@ cdd:
     contrat salarié . temps de travail . heures supplémentaires: 5
     contrat salarié . indemnité kilométrique vélo: oui
     contrat salarié . avantages en nature . montant: 200
+  - contrat salarié: "'CDD'"
+    contrat salarié . rémunération . brut de base: 2400 €/mois
+    contrat salarié . convention collective: "'BTP'"
 
 atmp:
   - contrat salarié . rémunération . brut de base: 2000 €/mois

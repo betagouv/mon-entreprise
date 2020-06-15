@@ -4,6 +4,7 @@ contrat salarié . convention collective . SVP:
   icônes: 🎭
   description: |
     L'entreprise dépend de la convention collective nationale des entreprises privée du spectacle
+  rend non applicable: CDD . compensation pour congés non pris
 
 contrat salarié . convention collective . SVP . cotisations patronales:
   titre: cotisations conventionnelles
@@ -77,7 +78,6 @@ contrat salarié . intermittents du spectacle . formation professionnelle:
           taux: 2.10%
 
 contrat salarié . intermittents du spectacle . caisse des congés spectacle:
-  rend non applicable: CDD . compensation pour congés non pris
   formule:
     produit:
       assiette: rémunération . brut
