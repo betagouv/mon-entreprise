@@ -80,7 +80,6 @@ const AnimatedDiv = animated(({ score, value }) => (
 					url={window.location}
 					title={'Ecolab-climat'}
 				/>
-				Partager
 			</div>
 		</div>
 		<h2 css="margin: 1rem .6rem .6rem;font-size: 120%">Que faire ?</h2>
