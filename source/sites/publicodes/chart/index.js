@@ -43,6 +43,7 @@ export default ({}) => {
 					margin: 0.6rem 0 0.1rem;
 					font-size: 140%;
 				}
+				padding: 0;
 			`}
 		>
 			<div
