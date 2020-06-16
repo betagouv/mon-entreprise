@@ -16,6 +16,7 @@ import CarbonImpact from './CarbonImpact'
 import withTarget from './withTarget'
 import Chart from './chart/index.js'
 import { Redirect } from 'react-router'
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
 
@@ -42,6 +43,7 @@ const Simulateur = (props) => {
 					<meta name="description" content={rule.description} />
 				)}
 			</Helmet>
+			<PreviousSimulationBanner />
 			<Simulation
 				noFeedback
 				noProgressMessage

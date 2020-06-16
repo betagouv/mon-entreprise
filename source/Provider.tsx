@@ -30,11 +30,11 @@ if (
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
 			.register('/sw.js')
-			.then(registration => {
+			.then((registration) => {
 				// eslint-disable-next-line no-console
 				console.log('SW registered: ', registration)
 			})
-			.catch(registrationError => {
+			.catch((registrationError) => {
 				// eslint-disable-next-line no-console
 				console.log('SW registration failed: ', registrationError)
 			})
@@ -57,7 +57,8 @@ export default class Provider extends PureComponent<ProviderProps> {
 	constructor(props: ProviderProps) {
 		super(props)
 		this.history = createBrowserHistory({
-			basename: process.env.NODE_ENV === 'production' ? '' : this.props.basename
+			basename:
+				process.env.NODE_ENV === 'production' ? '' : this.props.basename,
 		})
 		this.props.tracker?.connectToHistory(this.history)
 		const storeEnhancer = composeEnhancers(
@@ -65,7 +66,7 @@ export default class Provider extends PureComponent<ProviderProps> {
 				// Allows us to painlessly do route transition in action creators
 				thunk.withExtraArgument({
 					history: this.history,
-					sitePaths: this.props.sitePaths
+					sitePaths: this.props.sitePaths,
 				}),
 				...props.reduxMiddlewares
 			)
