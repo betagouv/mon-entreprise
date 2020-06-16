@@ -90,6 +90,8 @@ const AnimatedDiv = animated(({ score, value }) => {
 						text="Mesure ton impact sur le simulateur Ecolab climat !"
 						url={window.location}
 						title={'Ecolab-climat'}
+						color={textColor}
+						label="Partager mes résultats"
 					/>
 				</div>
 			</div>
