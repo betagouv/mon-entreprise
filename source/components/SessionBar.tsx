@@ -1,6 +1,7 @@
 import {
 	deletePreviousSimulation,
 	loadPreviousSimulation,
+	goToQuestion,
 } from 'Actions/actions'
 import React, { useState } from 'react'
 import { T } from 'Components'
@@ -11,6 +12,8 @@ import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import emoji from 'react-easy-emoji'
 import { Button } from 'Components/ui/Button'
 import Answers from './conversation/AnswerList'
+import { useLocation, useHistory } from 'react-router-dom'
+import { last } from 'ramda'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(
@@ -18,10 +21,49 @@ export default function PreviousSimulationBanner() {
 	)
 	const newSimulationStarted = !useSelector(noUserInputSelector)
 	const dispatch = useDispatch()
-	const arePreviousAnswers = !!useSelector(
-		(state: RootState) => state.conversationSteps.foldedSteps.length
+	const foldedSteps = useSelector(
+		(state: RootState) => state.conversationSteps.foldedSteps
 	)
+	const arePreviousAnswers = !!foldedSteps.length
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
+	const history = useHistory()
+	const location = useLocation()
+
+	if (location.pathname.includes('/fin'))
+		return (
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					button {
+						margin: 0 0.2rem;
+					}
+				`}
+			>
+				{arePreviousAnswers ? (
+					<Button
+						className="simple small"
+						onClick={() => {
+							console.log('dispatch', last(foldedSteps))
+							dispatch(goToQuestion(last(foldedSteps)))
+							history.push('/simulateur/micmac')
+						}}
+					>
+						{emoji('📊 ')}
+						<T>Revenir à la simulation</T>
+					</Button>
+				) : (
+					<Button
+						className="plain"
+						onClick={() => {
+							history.push('/simulateur/micmac')
+						}}
+					>
+						<T>Faire le test</T>
+					</Button>
+				)}
+			</div>
+		)
 
 	return (
 		<div

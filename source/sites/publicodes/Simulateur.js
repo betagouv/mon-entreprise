@@ -50,7 +50,9 @@ const Simulateur = (props) => {
 				showConversation
 				customEnd={
 					rule.dottedName === 'micmac' ? (
-						<Redirect to={`/fin/${analysis.targets[0].nodeValue}`} />
+						<Redirect
+							to={`/fin/${Math.round(analysis.targets[0].nodeValue)}`}
+						/>
 					) : rule.description ? (
 						<Markdown source={rule.description} />
 					) : (

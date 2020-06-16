@@ -6,7 +6,9 @@ import { animated, useSpring, config } from 'react-spring'
 import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
+
 import BallonGES from './images/ballonGES.svg'
+import SessionBar from 'Components/SessionBar'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -40,6 +42,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 
 	return (
 		<div css="padding: 0 .3rem; max-width: 600px; margin: 0 auto;">
+			<SessionBar />
 			<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
 			<motion.div
 				animate={{ scale: [0.85, 1] }}
