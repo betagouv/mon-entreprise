@@ -10,13 +10,8 @@ import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import emoji from 'react-easy-emoji'
 
 const buttonStyle = `
-    background: var(--color);
-    color: var(--textColor);
-	border-radius: .3rem;
-	padding: .1rem .6rem;
 	font-size: 100%;
 	margin: .1rem;
-	box-shadow: 0px 2px 4px -1px rgba(41,117,209,0.2),0px 4px 5px 0px rgba(41,117,209,0.14),0px 1px 10px 0px rgba(41,117,209,0.12);
 `
 
 export default function PreviousSimulationBanner() {
@@ -30,7 +25,10 @@ export default function PreviousSimulationBanner() {
 	return (
 		<div
 			css={`
+				box-shadow: 0 0 0 1px #aaa, 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 				display: flex;
+				border-radius: 0.3rem;
+				padding: 0.1rem 0.6rem;
 				justify-content: center;
 			`}
 		>
