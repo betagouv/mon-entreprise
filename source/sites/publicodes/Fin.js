@@ -62,10 +62,6 @@ const AnimatedDiv = animated(({ score, value }) => {
 
 					text-align: center;
 					font-size: 110%;
-					> div > p {
-						display: flex;
-						justify-content: space-around;
-					}
 				`}
 			>
 				<p css="display: flex; align-items: center; justify-content: center">
@@ -77,7 +73,20 @@ const AnimatedDiv = animated(({ score, value }) => {
 						tonnes
 					</span>
 				</p>
-				<div>
+				<div
+					css={`
+						background: #ffffff3d;
+						width: 90%;
+						border-radius: 0.6rem;
+						margin: 0 auto;
+						padding-top: 0.6rem;
+
+						> p {
+							display: flex;
+							justify-content: space-around;
+						}
+					`}
+				>
 					<p>
 						<span>{emoji('🇫🇷 ')}</span>
 						<span> Moyenne française</span> <span> 11 tonnes</span>
