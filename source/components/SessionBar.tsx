@@ -76,13 +76,22 @@ export default function PreviousSimulationBanner() {
 			`}
 		>
 			{arePreviousAnswers && (
-				<Button
-					className="simple small"
-					onClick={() => setShowAnswerModal(true)}
-				>
-					{emoji('📋 ')}
-					<T>Modifier mes réponses</T>
-				</Button>
+				<>
+					<Button
+						className="simple small"
+						onClick={() => setShowAnswerModal(true)}
+					>
+						{emoji('📋 ')}
+						<T>Modifier mes réponses</T>
+					</Button>
+					<Button
+						className="simple small"
+						onClick={() => history.push('/fin/6666')}
+					>
+						{emoji('💤 ')}
+						<T>Fin</T>
+					</Button>
+				</>
 			)}
 			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
 			{previousSimulation && !newSimulationStarted && (
