@@ -2,17 +2,15 @@ import {
 	deletePreviousSimulation,
 	loadPreviousSimulation,
 } from 'Actions/actions'
-import React from 'react'
+import React, { useState } from 'react'
+import { T } from 'Components'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { noUserInputSelector } from 'Selectors/analyseSelectors'
 import emoji from 'react-easy-emoji'
-
-const buttonStyle = `
-	font-size: 100%;
-	margin: .1rem;
-`
+import { Button } from 'Components/ui/Button'
+import Answers from './conversation/AnswerList'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(
@@ -20,32 +18,49 @@ export default function PreviousSimulationBanner() {
 	)
 	const newSimulationStarted = !useSelector(noUserInputSelector)
 	const dispatch = useDispatch()
+	const arePreviousAnswers = !!useSelector(
+		(state: RootState) => state.conversationSteps.foldedSteps.length
+	)
+	const [showAnswerModal, setShowAnswerModal] = useState(false)
 
-	if (!previousSimulation || newSimulationStarted) return null
 	return (
 		<div
 			css={`
-				box-shadow: 0 0 0 1px #aaa, 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 				display: flex;
-				border-radius: 0.3rem;
-				padding: 0.1rem 0.6rem;
 				justify-content: center;
+				button {
+					margin: 0 0.2rem;
+				}
 			`}
 		>
-			<button
-				css={buttonStyle}
-				onClick={() => dispatch(loadPreviousSimulation())}
-			>
-				{emoji('💾 ')}
-				<Trans>Ma dernière simulation</Trans>
-			</button>
-			<button
-				css={buttonStyle}
-				onClick={() => dispatch(deletePreviousSimulation())}
-			>
-				{emoji('🗑️ ')}
-				<Trans>Effacer</Trans>
-			</button>
+			{arePreviousAnswers && (
+				<Button
+					className="simple small"
+					onClick={() => setShowAnswerModal(true)}
+				>
+					{emoji('📋 ')}
+					<T>Modifier mes réponses</T>
+				</Button>
+			)}
+			{showAnswerModal && <Answers onClose={() => setShowAnswerModal(false)} />}
+			{previousSimulation && !newSimulationStarted && (
+				<>
+					<Button
+						className="simple small"
+						onClick={() => dispatch(loadPreviousSimulation())}
+					>
+						{emoji('💾 ')}
+						<Trans>Ma dernière simulation</Trans>
+					</Button>
+					<Button
+						className="simple small"
+						onClick={() => dispatch(deletePreviousSimulation())}
+					>
+						{emoji('🗑️ ')}
+						<Trans>Effacer</Trans>
+					</Button>
+				</>
+			)}
 		</div>
 	)
 }
