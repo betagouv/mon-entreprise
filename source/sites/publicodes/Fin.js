@@ -5,6 +5,7 @@ import tinygradient from 'tinygradient'
 import { animated, useSpring, config } from 'react-spring'
 import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
+import { motion } from 'framer-motion'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -32,7 +33,6 @@ export default ({}) => {
 }
 
 const AnimatedDiv = animated(({ score, value }) => {
-	console.log('SCORE', value)
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true)
@@ -40,7 +40,9 @@ const AnimatedDiv = animated(({ score, value }) => {
 	return (
 		<div css="padding: 0 .3rem; max-width: 600px; margin: 0 auto;">
 			<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
-			<div
+			<motion.div
+				animate={{ scale: [0.85, 1] }}
+				transition={{ duration: 0.2, ease: 'easeIn' }}
 				className=""
 				css={`
 					background: ${backgroundColor};
@@ -94,7 +96,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 						label="Partager mes résultats"
 					/>
 				</div>
-			</div>
+			</motion.div>
 			<h2 css="margin: 1rem 0 .6rem;font-size: 120%">Que faire ?</h2>
 			<div
 				css={`
