@@ -6,6 +6,7 @@ import { animated, useSpring, config } from 'react-spring'
 import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
+import BallonGES from './images/ballonGES.svg'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -67,7 +68,8 @@ const AnimatedDiv = animated(({ score, value }) => {
 					}
 				`}
 			>
-				<p>
+				<p css="display: flex; align-items: center; justify-content: center">
+					<img src={BallonGES} css="width: 8rem" />
 					<span css="font-weight: bold; font-size: 260%; margin-bottom: .3rem">
 						<span css="width: 3.6rem; text-align: left; display: inline-block">
 							{Math.round(value / 1000)}

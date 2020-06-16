@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="balonGES.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg2549"
+   version="1.1"
+   viewBox="0 0 210 297"
+   height="297mm"
+   width="210mm">
+  <defs
+     id="defs2543" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-height="920"
+     inkscape:window-width="1427"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="726.69276"
+     inkscape:cx="644.61335"
+     inkscape:zoom="0.35"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata2546">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Calque 1">
+    <path
+       d="m 103.64656,156.43125 c -0.21605,13.22914 -11.582411,23.03676 -7.320103,37.37014 5.569323,16.47409 21.912923,28.09231 20.344563,48.83643 -1.56824,20.74409 -9.58587,33.19738 -8.99994,41.91479"
+       fill="none"
+       stroke="#535461"
+       stroke-miterlimit="10"
+       stroke-width="2.43599"
+       id="path1899"
+       sodipodi:nodetypes="ccsc"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+    <polygon
+       transform="matrix(3.2479927,0,0,3.2479927,-2040.1781,-877.14791)"
+       points="662.22,318.23 658.06,318.23 658.79,315.73 661.28,315.73 "
+       fill="#6c63ff"
+       opacity="0.3"
+       id="polygon1889"
+       style="opacity:1;fill:#000000;fill-opacity:1" />
+    <path
+       d="m 159.59007,71.071108 c 0,30.920902 -25.07447,76.230392 -55.99544,76.230392 -30.920849,0 -55.995307,-45.4719 -55.995307,-76.230392 a 55.995396,55.995396 0 1 1 111.990747,0 z"
+       fill="#6c63ff"
+       opacity="0.3"
+       id="path1891"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:3.24799" />
+    <polygon
+       transform="matrix(3.2479927,0,0,3.2479927,-2040.1781,-877.14791)"
+       points="661.28,315.84 658.79,315.84 657.34,315.01 662.74,315.01 "
+       fill="#535461"
+       id="polygon1893"
+       style="fill:#ffffff;fill-opacity:1;opacity:0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:26.4px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.660002"
+       x="79.883064"
+       y="79.042496"
+       id="text2481"><tspan
+         sodipodi:role="line"
+         id="tspan2479"
+         x="79.883064"
+         y="79.042496"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.660002">CO₂</tspan></text>
+    <text
+       id="text2481-4"
+       y="101.00154"
+       x="70.254707"
+       style="font-style:normal;font-weight:normal;font-size:12.7346px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.318364"
+       xml:space="preserve"><tspan
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.318364"
+         y="101.00154"
+         x="70.254707"
+         id="tspan2479-4"
+         sodipodi:role="line">CH₄</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.19657px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.204914"
+       x="110.98262"
+       y="107.72923"
+       id="text2503"><tspan
+         sodipodi:role="line"
+         id="tspan2501"
+         x="110.98262"
+         y="107.72923"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.204914">N₂O</tspan></text>
+    <path
+       style="stroke-width:3.24799;fill:#fffafa;fill-opacity:1;opacity:0.31290323"
+       d="m 83.359691,27.580478 c 0,0 -23.612894,12.82958 -26.990853,38.45624"
+       fill="#ffffff"
+       opacity="0.1"
+       id="path1895" />
+  </g>
+</svg>
