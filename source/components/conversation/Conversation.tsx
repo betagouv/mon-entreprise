@@ -83,6 +83,7 @@ export default function Conversation({
 		findRuleByDottedName(flatRules, currentQuestion.split(' . ')[0])
 
 	const firstCategoryQuestion =
+		questionCategory &&
 		previousAnswers.find(
 			(a) => a.split(' . ')[0] === questionCategory.dottedName
 		) === undefined
@@ -188,4 +189,3 @@ export let EndingCongratulations = () => (
 		<T k="simulation-end.title">Vous avez complété cette simulation</T>{' '}
 	</h3>
 )
-

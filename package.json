@@ -57,6 +57,7 @@
 		"regenerator-runtime": "^0.13.3",
 		"reselect": "^4.0.0",
 		"screenfull": "^3.3.2",
+		"tinygradient": "^1.1.2",
 		"whatwg-fetch": "^3.0.0",
 		"yaml": "^1.7.2"
 	},

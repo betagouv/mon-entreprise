@@ -10,6 +10,7 @@ import Contribution from './Contribution'
 import Landing from './Landing'
 import Scenarios from './Scenarios'
 import Simulateur from './Simulateur'
+import Fin from './Fin'
 import sitePaths from './sitePaths'
 import { StoreProvider } from './StoreContext'
 
@@ -26,7 +27,7 @@ class App extends Component {
 			>
 				<StoreProvider>
 					<div css="background: yellow; text-align: center; color: black; ">
-						Attention, ceci est version{' '}
+						Attention, version{' '}
 						<span
 							css={`
 								display: inline-block;
@@ -78,6 +79,7 @@ class App extends Component {
 							<Route path="/documentation/:name+" component={RulePage} />
 							<Route path="/documentation" component={RulesList} />
 							<Route path="/simulateur/:name+" component={Simulateur} />
+							<Route path="/fin/:score" component={Fin} />
 							<Route path="/contribuer/:input?" component={Contribution} />
 							<Route path="/à-propos" component={About} />
 							<Route
