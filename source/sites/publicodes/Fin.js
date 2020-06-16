@@ -55,7 +55,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 					color: ${textColor};
 					margin: 0 auto;
 					border-radius: 0.6rem;
-					height: 65vh;
+					height: 60vh;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-evenly;
@@ -115,11 +115,23 @@ const AnimatedDiv = animated(({ score, value }) => {
 					border-radius: 0.6rem;
 					padding: 1rem;
 					margin: 0 auto;
+					p {
+						line-height: 1.1rem;
+					}
+					strong {
+						font-weight: bold;
+					}
 				`}
 			>
 				{' '}
-				Bientôt : des actions concrètes et chiffrées pour réduire votre
-				empreinte
+				<p>
+					{emoji('👏')} Connaître son empreinte, c'est déjà un début de
+					solution.
+				</p>
+				<p>
+					<strong>Bientôt</strong>, des actions concrètes et chiffrées pour
+					réduire votre empreinte.
+				</p>
 			</div>
 		</div>
 	)
