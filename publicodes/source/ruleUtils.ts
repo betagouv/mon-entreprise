@@ -48,7 +48,7 @@ export function disambiguateRuleReference<Names extends string>(
 }
 
 /*********************************
- Autres 
+ Autres
  */
 
 export function findParentDependencies<Names extends string>(

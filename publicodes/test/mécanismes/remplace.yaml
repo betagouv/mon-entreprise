@@ -181,3 +181,14 @@ remplacement non applicable car branche desactivée:
   formule: z
   exemples:
     - valeur attendue: 1
+
+# Remplacement non effectué dans la formule du remplacement
+espace . valeur:
+  formule: 20
+espace . remplacement:
+  remplace: valeur
+  formule: valeur + 10
+test remplacement non effectué dans la formule du remplacement:
+  formule: espace . valeur
+  exemples:
+    - valeur attendue: 30
