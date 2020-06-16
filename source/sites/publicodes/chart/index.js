@@ -43,6 +43,7 @@ export default ({}) => {
 					margin: 0.6rem 0 0.1rem;
 					font-size: 140%;
 				}
+				padding: 0;
 			`}
 		>
 			<div
@@ -83,7 +84,7 @@ export default ({}) => {
 								stiffness: 100,
 							}}
 							key={category.title}
-							css="margin: .3rem 0; list-style-type: none; cursor: pointer"
+							css="margin: .4rem 0; list-style-type: none; cursor: pointer"
 						>
 							<Bar {...{ ...category, empreinteMaximum }} />
 						</motion.li>

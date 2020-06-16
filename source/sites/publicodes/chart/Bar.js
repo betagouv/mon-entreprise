@@ -11,20 +11,21 @@ export default ({
 	empreinteMaximum,
 }) => (
 	<>
-		<div>
+		<div css="color: var(--textColorOnWhite)">
 			<span>{title}</span>
 		</div>
 		<div
 			css={`
 				display: flex;
 				align-items: center;
+				height: 0.85rem;
 			`}
 		>
 			<span
 				css={`
 					font-size: 140%;
-					width: 2.3rem;
-					margin-left: -2.3rem;
+					width: 2.1rem;
+					margin-left: -2.1rem;
 				`}
 			>
 				{emoji(icônes)}
