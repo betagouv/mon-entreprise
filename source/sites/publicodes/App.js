@@ -40,7 +40,6 @@ class App extends Component {
 					previousSimulation: retrievePersistedSimulation(),
 				}}
 			>
-				>
 				<StoreProvider>
 					<div css="background: yellow; text-align: center; color: black; ">
 						Attention, version{' '}
