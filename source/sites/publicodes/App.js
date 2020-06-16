@@ -27,7 +27,7 @@ class App extends Component {
 			>
 				<StoreProvider>
 					<div css="background: yellow; text-align: center; color: black; ">
-						Attention, ceci est version{' '}
+						Attention, version{' '}
 						<span
 							css={`
 								display: inline-block;
