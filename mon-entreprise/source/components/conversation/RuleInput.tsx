@@ -1,6 +1,6 @@
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
-import SelectGéo from 'Components/conversation/select/SelectGeo'
+import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
@@ -66,9 +66,9 @@ export default function RuleInput({
 			/>
 		)
 	}
-	if (rule.API && rule.API === 'géo')
-		return <SelectGéo {...commonProps} onSubmit={onSubmit} />
-	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
+	if (rule.API && rule.API === 'commune')
+		return <SelectCommune {...commonProps} onSubmit={onSubmit} />
+	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
 		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />

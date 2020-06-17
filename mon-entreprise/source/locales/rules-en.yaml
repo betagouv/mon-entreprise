@@ -2233,7 +2233,7 @@ contrat salarié . lodeom . secteurs d'activité:
   titre.fr: secteurs d'activité
 contrat salarié . lodeom . zone un:
   titre.en: Geographical area 1 (Guadeloupe, Martinique, Reunion Island, French Guiana)
-  titre.fr: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
+  titre.fr: Zone communegraphique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
 contrat salarié . lodeom . écart au plafond de l'assiette:
   titre.en: deviation from the base ceiling
   titre.fr: écart au plafond de l'assiette
@@ -4808,10 +4808,10 @@ entreprise . rattachée à la CIPAV:
     Les auto-entrepreneurs exerçant une activité de profession libérale
     règlementée sont affiliés pour leur assurance retraite à la Cipav. Ces
     professions libérales règlementées sont : architectes, architectes
-    d’intérieur, économistes de la construction, géomètres, ingénieurs-conseils,
-    maîtres d’oeuvre, psychologues, psychothérapeutes, ostéopathes,
-    ergothérapeutes, chiropracteurs, diététiciens, artistes autres que les
-    artistes-auteurs, experts devant les tribunaux, experts automobiles,
+    d’intérieur, économistes de la construction, communemètres,
+    ingénieurs-conseils, maîtres d’oeuvre, psychologues, psychothérapeutes,
+    ostéopathes, ergothérapeutes, chiropracteurs, diététiciens, artistes autres
+    que les artistes-auteurs, experts devant les tribunaux, experts automobiles,
     mandataires judiciaires à la protection des majeurs, courtiers en valeur,
     guides-conférenciers, guides de haute montagne, accompagnateurs de moyenne
     montagne et moniteurs de ski.

@@ -14,20 +14,30 @@ async function tauxVersementTransport(codeCommune) {
 	const json = await response.json()
 	return json
 }
-
+function formatCommune(value) {
+	return value && `${value.nom} (${value.codePostal})`
+}
 async function searchCommunes(input) {
+	const number = input.match(/[\d]+/)?.join('') ?? ''
+	const text = input.match(/[^\d]+/)?.join(' ') ?? ''
 	const response = await fetch(
-		`https://geo.api.gouv.fr/communes?nom=${input}&fields=nom,code,departement,region&boost=population`
+		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,region,codesPostaux${
+			text ? `&nom=${text}` : ''
+		}${number.match(/[\d]{5}/) ? `&codePostal=${number}` : ''}&boost=population`
 	)
 	if (!response.ok) {
 		return null
 	}
 	const json = await response.json()
-	return json
+	return json.flatMap(({ codesPostaux, ...commune }) =>
+		codesPostaux
+			.map(codePostal => ({ ...commune, codePostal }))
+			.filter(({ codePostal }) => codePostal.includes(number))
+	)
 }
 
 export default function Select({ onChange, onSubmit, value }) {
-	const [name, setName] = useState(value?.nom)
+	const [name, setName] = useState(formatCommune(value))
 	const [searchResults, setSearchResults] = useState()
 	const [isLoading, setLoadingState] = useState(false)
 
@@ -67,7 +77,7 @@ export default function Select({ onChange, onSubmit, value }) {
 			.finally(() => {
 				onSubmit() // eslint-disable-line no-console
 				setSearchResults(null)
-				setName(option.nom)
+				setName(formatCommune(option))
 			})
 	}
 	const noResult = !isLoading && searchResults && searchResults.length === 0
@@ -105,11 +115,11 @@ export default function Select({ onChange, onSubmit, value }) {
 			<Animate.fromTop>
 				{searchResults &&
 					searchResults.map(result => {
-						const { nom, departement } = result
+						const nom = formatCommune(result)
 						return (
 							<button
 								onClick={() => submitOnChange(result)}
-								key={nom + departement?.nom}
+								key={nom}
 								css={`
 									text-align: left;
 									display: block;
@@ -130,7 +140,7 @@ export default function Select({ onChange, onSubmit, value }) {
 									padding: 0.6rem;
 								`}
 							>
-								{nom + ` (${departement?.nom})`}
+								{nom}
 							</button>
 						)
 					})}

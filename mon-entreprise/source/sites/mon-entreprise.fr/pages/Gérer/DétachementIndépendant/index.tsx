@@ -37,7 +37,7 @@ const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
 	return fields
 }
 
-const VERSION = hash(JSON.stringify(Object.keys(formulaire)))
+const VERSION = hash(JSON.stringify(formulaire))
 function FormulairePublicodes({ engine }) {
 	const [situation, setSituation] = usePersistingState(
 		`formulaire-détachement:${VERSION}`,

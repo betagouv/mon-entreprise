@@ -75,10 +75,22 @@ function FormPDF({ fields, title, description }) {
 				{fields.map(field => (
 					<View style={styles.field} key={field.dottedName} wrap={false}>
 						{field.type === 'groupe' ? (
-							<Text style={styles.subtitle}>{field.title}</Text>
+							<>
+								<Text style={styles.subtitle}>
+									{field.title}{' '}
+									{field.note && (
+										<Text style={styles.fieldNumber}>({field.note})</Text>
+									)}
+								</Text>
+							</>
 						) : (
 							<>
-								<Text style={styles.name}>{field.question ?? field.title}</Text>
+								<Text style={styles.name}>
+									{field.question ?? field.title}{' '}
+									{field.note && (
+										<Text style={styles.fieldNumber}>({field.note})</Text>
+									)}
+								</Text>
 								{field.nodeValue != null && (
 									<Text style={styles.value}>{formatValue(field)}</Text>
 								)}
@@ -107,6 +119,9 @@ const styles = StyleSheet.create({
 		lineHeight: 1.5,
 		paddingBottom: 65,
 		paddingHorizontal: 35
+	},
+	fieldNumber: {
+		opacity: 0.7
 	},
 	title: {
 		fontSize: 20,

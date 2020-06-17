@@ -2,18 +2,25 @@ coordonnées assuré:
   titre: Vos coordonnées
   type: groupe
   formule: oui
+  note: 1
 coordonnées assuré . nom:
   type: texte
+  note: 1.2
 coordonnées assuré . prénoms:
   type: texte
+  note: 1.3
 coordonnées assuré . nationalité:
   type: texte
+  note: 1.6
 coordonnées assuré . date de naissance:
   type: date
+  note: 1.5
 coordonnées assuré . commune de naissance:
-  API: géo
+  API: commune
+  note: 1.7
 coordonnées assuré . numéro de sécurité sociale:
   type: texte
+  note: 1.1
 coordonnées assuré . organisme urssaf:
   type: texte
   description: >
@@ -22,24 +29,32 @@ coordonnées assuré . organisme urssaf:
 coordonnées assuré . domicile personnel:
   type: groupe
   formule: oui
+  note: 1.8
 coordonnées assuré . domicile personnel . adresse:
   type: texte
+  note: 1.9.1
 coordonnées assuré . domicile personnel . commune:
-  API: géo
+  API: commune
+  note: 1.9.2 / 1.9.3
 
 activité france:
+  note: 4 / 4.1.2
   type: groupe
   formule: oui
   titre: Votre activité indépendante en France
 activité france . SIREN:
+  note: 4.2
   type: texte
 activité france . nom:
+  note: 4.3
   titre: Nom de l'entreprise
   type: texte
 activité france . adresse:
+  note: 4.4.1
   type: texte
 activité france . commune:
-  API: géo
+  API: commune
+  note:: 4.4.3 / 4.4.4
 
 demande:
   question: Quelle demande souhaitez-vous effectuer ?
@@ -51,6 +66,7 @@ demande:
         - activité transfrontalière simultanée
 
 demande . détachement:
+  note: 3.3
   type: groupe
   formule: oui
   applicable si: demande = 'détachement'
@@ -100,6 +116,7 @@ demande . détachement . période . date de fin:
   type: date
 
 demande . activité transfrontalière simultanée:
+  note: 3.4
   applicable si: demande = 'activité transfrontalière simultanée'
   type: groupe
   formule: oui
