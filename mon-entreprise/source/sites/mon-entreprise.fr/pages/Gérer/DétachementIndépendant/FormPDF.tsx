@@ -46,8 +46,16 @@ export default function FormPDFDownloadLink({
 	className,
 	description,
 	fileName,
+	disabled,
 	children
 }) {
+	if (disabled) {
+		return (
+			<button disabled className={className}>
+				{children}
+			</button>
+		)
+	}
 	return (
 		<PDFDownloadLink
 			document={

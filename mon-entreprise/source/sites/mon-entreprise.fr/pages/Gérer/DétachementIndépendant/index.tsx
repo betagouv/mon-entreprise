@@ -43,16 +43,14 @@ function FormulairePublicodes({ engine }) {
 		`formulaire-détachement:${VERSION}`,
 		{}
 	)
-	const [renderPdf, setRenderPdf] = useState(false)
 	const onChange = useCallback(
 		(dottedName, value) => {
 			setSituation(situation => ({
 				...situation,
 				[dottedName]: value
 			}))
-			setRenderPdf(false)
 		},
-		[setSituation, setRenderPdf]
+		[setSituation]
 	)
 	engine.setSituation(situation)
 	const fields = useFields(engine, Object.keys(formulaire))
@@ -106,7 +104,6 @@ function FormulairePublicodes({ engine }) {
 					)}
 				</Animate.fromTop>
 			))}
-
 			<LazyPDFButton
 				className="ui__ plain cta button"
 				fields={fields}
@@ -114,6 +111,12 @@ function FormulairePublicodes({ engine }) {
 			>
 				Générer la demande
 			</LazyPDFButton>
+			{isMissingValues && (
+				<p className="ui__ notice">
+					Vous devez compléter l'intégralité du formulaire pour générer la
+					demande.{' '}
+				</p>
+			)}
 		</Animate.fromTop>
 	)
 }
@@ -121,18 +124,18 @@ function FormulairePublicodes({ engine }) {
 const LazyPDFDownloadLink = React.lazy(() => import('./FormPDF'))
 function LazyPDFButton({ fields, className, disabled, children }) {
 	const fieldsDebounced = useDebounce(fields.slice(1), 1000)
-	const DisabledButton = (
-		<button className={className} disabled>
-			{children}
-		</button>
-	)
-	if (disabled) {
-		return DisabledButton
-	}
+
 	return (
-		<Suspense fallback={DisabledButton}>
+		<Suspense
+			fallback={
+				<button className={className} disabled>
+					{children}
+				</button>
+			}
+		>
 			<LazyPDFDownloadLink
 				className={className}
+				disabled={disabled}
 				fields={fieldsDebounced}
 				fileName={'demande-détachement.pdf'}
 				title={'Demande de mobilité en Europe'}
