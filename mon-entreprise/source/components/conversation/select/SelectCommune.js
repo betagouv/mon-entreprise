@@ -29,11 +29,14 @@ async function searchCommunes(input) {
 		return null
 	}
 	const json = await response.json()
-	return json.flatMap(({ codesPostaux, ...commune }) =>
-		codesPostaux
-			.map(codePostal => ({ ...commune, codePostal }))
-			.filter(({ codePostal }) => codePostal.includes(number))
-	)
+	return json
+		.flatMap(({ codesPostaux, ...commune }) =>
+			codesPostaux
+				.sort()
+				.map(codePostal => ({ ...commune, codePostal }))
+				.filter(({ codePostal }) => codePostal.includes(number))
+		)
+		.slice(0, 10)
 }
 
 export default function Select({ onChange, onSubmit, value }) {

@@ -61,7 +61,7 @@ const StyledOverlayWrapper = styled.div`
 	bottom: 0;
 	background: rgba(255, 255, 255, 0.9);
 	overflow: auto;
-	z-index: 1;
+	z-index: 2;
 	.overlayContent {
 		position: absolute;
 		padding-bottom: 1rem;
@@ -77,8 +77,8 @@ const StyledOverlayWrapper = styled.div`
 	}
 	@media (min-width: 600px) {
 		.overlayContent {
-			transform: translateX(-50%);
-			top: 100px;
+			transform: translateX(-50%) translateY(10vh);
+			top: 0;
 			left: 50%;
 			width: 80%;
 			max-width: 40em;

@@ -246,8 +246,8 @@ entreprise . ratio alternants:
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   suggestions:
-    1%: 0.01
-    5%: 0.05
+    1%: 1%
+    5%: 5%
   par défaut: 0%
 
 entreprise . association non lucrative:

@@ -37,7 +37,9 @@ export default function Question({
 		},
 		[onChange]
 	)
-
+	// if (choices.length > 4) {
+	// 	return <Select {...{choices, onSubmit, dottedName, onChange, value: CurrentValue}}
+	// }
 	const renderBinaryQuestion = () => {
 		return choices.map(({ value, label }, i: number) => (
 			<RadioLabel
@@ -131,7 +133,7 @@ export const RadioLabel = props => (
 		<RadioLabelContent {...props} />
 		{props.description && (
 			<Explicable>
-				<h3>{props.label}</h3>
+				<h2>{props.label}</h2>
 				<Markdown source={props.description} />
 			</Explicable>
 		)}
