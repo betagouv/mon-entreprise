@@ -246,8 +246,8 @@ entreprise . ratio alternants:
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
   suggestions:
-    1%: 0.01
-    5%: 0.05
+    1%: 1%
+    5%: 5%
   par défaut: 0%
 
 entreprise . association non lucrative:
@@ -481,7 +481,7 @@ entreprise . auto entreprise impossible:
     Lorsqu'une entreprise dispose de plusieurs établissements, certaines cotisations sont
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   question: Dans quelle commune l'établissement est-il implanté ?
-  API: géo
+  API: commune
   par défaut:
     code: 29019
     nom: Non renseignée

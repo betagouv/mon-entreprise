@@ -1,10 +1,9 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
-import React, { useCallback, useContext } from 'react'
+import { formatValue } from 'publicodes'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
-import { debounce, currencyFormat } from '../../utils'
+import { currencyFormat, debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
-import { formatValue } from 'publicodes'
 
 // TODO: fusionner Input.js et CurrencyInput.js
 export default function Input({
@@ -17,7 +16,6 @@ export default function Input({
 	autoFocus,
 	unit
 }) {
-	const colors = useContext(ThemeColorsContext)
 	const debouncedOnChange = useCallback(debounce(750, onChange), [])
 	const { language } = useTranslation().i18n
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
@@ -35,13 +33,12 @@ export default function Input({
 				/>
 				<NumberFormat
 					autoFocus={autoFocus}
-					className="suffixed"
+					className="suffixed ui__"
 					id={'step-' + dottedName}
 					placeholder={defaultValue?.nodeValue ?? defaultValue}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
-					style={{ border: `1px solid ${colors.textColorOnWhite}` }}
 					// We don't want to call `onValueChange` in case this component is
 					// re-render with a new "value" prop from the outside.
 					key={value}

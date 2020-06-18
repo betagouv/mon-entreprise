@@ -136,7 +136,7 @@ const Target = ({ dottedName }: TargetProps) => {
 					</div>
 					{isActiveInput && (
 						<Animate.fromTop>
-							<div css="display: flex; justify-content: flex-end">
+							<div css="display: flex; justify-content: flex-end; margin-bottom: -0.4rem">
 								<InputSuggestions
 									suggestions={target.suggestions}
 									onFirstClick={onSuggestionClick}

@@ -1,5 +1,6 @@
 var { stringify } = require('yaml')
 var fs = require('fs')
+var prettier = require('prettier')
 
 const {
 	getRulesMissingTranslations,
@@ -18,12 +19,17 @@ missingTranslations.forEach(async ([dottedName, attr, value]) => {
 	try {
 		const translation = await fetchTranslation(value)
 		resolved[dottedName][attr] = '[automatic] ' + translation
-		// C'est très bourrin, mais on ne veut pas perdre une traduction qu'on a payé
-		fs.writeFileSync(
-			rulesTranslationPath,
-			stringify(resolved, { sortMapEntries: true })
-		)
 	} catch (e) {
 		console.log(e)
 	}
+})
+
+prettier.resolveConfig(rulesTranslationPath).then(options => {
+	fs.writeFileSync(
+		rulesTranslationPath,
+		prettier.format(stringify(resolved, { sortMapEntries: true }), {
+			...options,
+			parser: 'yaml'
+		})
+	)
 })

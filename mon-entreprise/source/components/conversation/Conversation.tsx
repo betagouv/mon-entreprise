@@ -104,7 +104,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
-							css="margin-left: 1.2rem"
 							onClick={() => submit('accept')}
 						>
 							<span className="text">

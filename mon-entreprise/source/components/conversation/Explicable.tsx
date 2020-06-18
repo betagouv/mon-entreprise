@@ -16,7 +16,6 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) return null
-
 	const rule = rules[dottedName]
 
 	if (rule.description == null) return null

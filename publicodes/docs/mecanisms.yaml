@@ -488,7 +488,7 @@ synchronisation:
   description: Pour éviter trop de saisies à l'utilisateur, certaines informations sont
     récupérées à partir de ce que l'on appelle des API. Ce sont des services
     auxquels ont fait appel pour obtenir des informations sur un sujet précis.
-    Par exemple, l'État français fournit gratuitement l'API géo, qui permet à
+    Par exemple, l'État français fournit gratuitement l'API commune, qui permet à
     partir du nom d'une ville, d'obtenir son code postal, son département, la
     population etc.
 

@@ -96,21 +96,7 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 		<>
 			<input
 				type="search"
-				css={`
-					padding: 0.4rem;
-					margin: 0.2rem 0;
-					width: 100%;
-					border: 1px solid var(--lighterTextColor);
-					border-radius: 0.3rem;
-					color: inherit;
-					font-size: inherit;
-					transition: border-color 0.1s;
-					position: relative;
-
-					:focus {
-						border-color: var(--color);
-					}
-				`}
+				className="ui__"
 				value={input}
 				placeholder={i18n.t('Entrez des mots clefs ici')}
 				onChange={e => {

@@ -44,7 +44,7 @@ testSuites.forEach(([suiteName, suite]) => {
 								if (typeof valeur === 'number') {
 									expect(result.nodeValue).to.be.closeTo(valeur, 0.001)
 								} else if (valeur !== undefined) {
-									expect(result.nodeValue).to.be.eq(valeur)
+									expect(result.nodeValue).to.be.deep.eq(valeur)
 								}
 								if (expectedMissing) {
 									expect(Object.keys(result.missingVariables)).to.eql(

@@ -43,9 +43,6 @@ blockquote {
 	align-items: center;
 	justify-content: flex-end;
 }
-.ui__.answer-group > * {
-	margin: 0.6rem 0 0 1rem !important;
-}
 @media (min-width: 500px) {
 	.ui__.answer-group > :not(:last-child) {
 		margin-right: 1rem;
@@ -197,4 +194,40 @@ pre.ui__.code > code {
 	line-height: 1.5;
 	tab-size: 4;
 	hyphens: none;
+}
+
+input.ui__ {
+	padding: 0.4rem;
+	width: 25rem;
+	max-width: 100%;
+	margin-bottom: 0.6rem;
+	border: 1px solid var(--lighterTextColor);
+	border-radius: 0.3rem;
+	color: inherit;
+	font-size: inherit;
+	transition: border-color 0.1s;
+	position: relative;
+}
+input.ui__[inputmode='numeric'] {
+	width: 10rem;
+}
+input.ui__[type='date'] {
+	width: auto;
+}
+input.ui__.suffixed {
+	text-align: right;
+}
+input.ui__:focus {
+	border-color: var(--color);
+}
+
+/* Remove IE's clear button the appears before our suffix */
+input.ui__::-ms-clear {
+	width: 0;
+	height: 0;
+}
+
+input.ui__::placeholder {
+	opacity: 0.6;
+	color: grey;
 }

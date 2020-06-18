@@ -1,6 +1,6 @@
 import Input from 'Components/conversation/Input'
 import Question from 'Components/conversation/Question'
-import SelectGéo from 'Components/conversation/select/SelectGeo'
+import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
@@ -11,11 +11,12 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from './DateInput'
+import TextInput from './TextInput'
 
 type Value = string | number | object | boolean | null
-export type RuleInputProps = {
-	rules: ParsedRules
-	dottedName: DottedName
+export type RuleInputProps<Name extends string = DottedName> = {
+	rules: ParsedRules<Name>
+	dottedName: Name
 	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
@@ -29,7 +30,7 @@ export type RuleInputProps = {
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput({
+export default function RuleInput<Name extends string = DottedName>({
 	rules,
 	dottedName,
 	onChange,
@@ -38,13 +39,12 @@ export default function RuleInput({
 	isTarget = false,
 	autoFocus = false,
 	className,
-	onSubmit
-}: RuleInputProps) {
+	onSubmit = () => null
+}: RuleInputProps<Name>) {
 	const rule = rules[dottedName]
 	const unit = rule.unit
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-
 	const commonProps = {
 		key: dottedName,
 		dottedName,
@@ -66,9 +66,9 @@ export default function RuleInput({
 			/>
 		)
 	}
-	if (rule.API && rule.API === 'géo')
-		return <SelectGéo {...commonProps} onSubmit={onSubmit} />
-	if (rule.API) throw new Error("Le seul API implémenté est l'API géo")
+	if (rule.API && rule.API === 'commune')
+		return <SelectCommune {...commonProps} onSubmit={onSubmit} />
+	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
 		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
@@ -84,7 +84,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (unit == null) {
+	if (unit == null && (rule.type === 'booléen' || rule.type == undefined)) {
 		return useSwitch ? (
 			<ToggleSwitch
 				defaultChecked={value === 'oui' || rule.defaultValue === 'oui'}
@@ -125,6 +125,10 @@ export default function RuleInput({
 	}
 	if (unit?.numerators.includes('%') && isTarget) {
 		return <PercentageField {...commonProps} debounce={600} />
+	}
+
+	if (rule.type === 'texte') {
+		return <TextInput {...commonProps} />
 	}
 
 	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />

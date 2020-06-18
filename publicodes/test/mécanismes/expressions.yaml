@@ -31,6 +31,7 @@ parenthèses:
 salaire de base:
   unité: $
 
+contrat:
 contrat . salaire de base:
 
 produit:
@@ -286,6 +287,17 @@ expression dans situation 2:
         salaire: 48k€/an
       unité attendue: €/mois
       valeur attendue: 400
+
+chaine de charactère:
+  formule: "'loup y es-tu ? 🐺'"
+  exemples:
+    - valeur attendue: loup y es-tu ? 🐺
+    - situation:
+        chaine de charactère: "'je suis là !'"
+      valeur attendue: je suis là !
+    - situation:
+        chaine de charactère: "'je t'y vois'"
+      valeur attendue: je t'y vois
 # TODO
 # expression sur plusieurs lignes:
 #   formule: >

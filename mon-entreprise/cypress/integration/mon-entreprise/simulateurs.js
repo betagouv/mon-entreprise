@@ -137,12 +137,10 @@ describe('Simulateur salarié', () => {
 
 	it('should not crash when selecting localisation', function() {
 		cy.contains('Commune').click()
-		cy.get('input[placeholder="Saisissez le nom d\'une commune"]').type(
-			'Steenvoorde'
-		)
-		cy.contains('Steenvoorde (Nord)').click()
+		cy.get('fieldset input[type="search"]').type('Steenvoorde')
+		cy.contains('Steenvoorde (59114)').click()
 		cy.wait(900)
 		cy.contains('Voir ma situation').click()
-		cy.contains('Steenvoorde')
+		cy.contains('Steenvoorde (59114)')
 	})
 })

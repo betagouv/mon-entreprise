@@ -26,7 +26,7 @@ export default function InputSuggestions({
 			css={`
 				display: flex;
 				align-items: baseline;
-				margin-top: 0.2rem;
+				margin-bottom: 0.4rem;
 			`}
 		>
 			{toPairs(suggestions).map(([text, value]: [string, number]) => {

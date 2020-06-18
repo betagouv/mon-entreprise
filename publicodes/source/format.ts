@@ -107,14 +107,32 @@ type Options = {
 	precision?: number
 }
 
+type Commune = {
+	nom: string
+	codePostal?: string
+	departement: { nom: string }
+}
+
+function formatCommune(commune: Commune) {
+	return `${commune.nom} (${commune.codePostal ?? commune.departement.nom})`
+}
 export function formatValue(
-	value: number | { nodeValue: Evaluation; unit?: Unit } | undefined,
+	value:
+		| number
+		| { nodeValue: Evaluation; unit?: Unit }
+		| {
+				nodeValue: Commune
+				API: 'commune'
+		  }
+		| undefined,
+
 	{ language = 'fr', displayedUnit, precision = 2 }: Options = {}
 ) {
 	const nodeValue =
 		typeof value === 'number' || typeof value === 'undefined'
 			? value
 			: value.nodeValue
+
 	const unit =
 		displayedUnit ??
 		(typeof value === 'number' ||
@@ -131,6 +149,8 @@ export function formatValue(
 	}
 	return typeof nodeValue === 'string'
 		? capitalise0(nodeValue)
+		: typeof value === 'object' && 'API' in value && value.API === 'commune'
+		? formatCommune(nodeValue as Commune)
 		: typeof nodeValue === 'object'
 		? (nodeValue as any).nom
 		: typeof nodeValue === 'boolean'
