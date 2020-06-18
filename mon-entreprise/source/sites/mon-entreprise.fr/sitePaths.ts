@@ -94,7 +94,8 @@ const sitePathsEn = {
 		index: '/manage',
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
-		déclarationIndépendant: '/declaration-aid-independent'
+		déclarationIndépendant: '/declaration-aid-independent',
+		formulaireDétachement: '/posting-demand'
 	},
 	simulateurs: {
 		index: '/simulators',

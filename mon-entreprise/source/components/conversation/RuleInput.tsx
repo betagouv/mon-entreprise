@@ -14,9 +14,9 @@ import DateInput from './DateInput'
 import TextInput from './TextInput'
 
 type Value = string | number | object | boolean | null
-export type RuleInputProps = {
-	rules: ParsedRules
-	dottedName: DottedName
+export type RuleInputProps<Name extends string = DottedName> = {
+	rules: ParsedRules<Name>
+	dottedName: Name
 	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
@@ -30,7 +30,7 @@ export type RuleInputProps = {
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput({
+export default function RuleInput<Name extends string = DottedName>({
 	rules,
 	dottedName,
 	onChange,
@@ -40,7 +40,7 @@ export default function RuleInput({
 	autoFocus = false,
 	className,
 	onSubmit = () => null
-}: RuleInputProps) {
+}: RuleInputProps<Name>) {
 	const rule = rules[dottedName]
 	const unit = rule.unit
 	const language = useTranslation().i18n.language

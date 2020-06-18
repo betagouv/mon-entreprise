@@ -25,7 +25,7 @@ export default function FormulaireDétachementIndépendant() {
 				</a>
 				.
 			</p>
-			<FormulairePublicodes engine={engine} dottedName="formulaire" />
+			<FormulairePublicodes engine={engine} />
 		</>
 	)
 }

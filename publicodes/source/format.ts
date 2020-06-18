@@ -111,7 +111,7 @@ export function formatValue(
 	value:
 		| number
 		| { nodeValue: Evaluation; unit?: Unit }
-		| { nodeValue: { nom: string; code: string }; API: 'géo' }
+		| { nodeValue: { nom: string; code: string }; API: 'commune' }
 		| undefined,
 
 	{ language = 'fr', displayedUnit, precision = 2 }: Options = {}
@@ -137,7 +137,7 @@ export function formatValue(
 	}
 	return typeof nodeValue === 'string'
 		? capitalise0(nodeValue)
-		: typeof value === 'object' && 'API' in value && value.API === 'géo'
+		: typeof value === 'object' && 'API' in value && value.API === 'commune'
 		? `${(nodeValue as any).nom} (${(nodeValue as any).code})`
 		: typeof nodeValue === 'object'
 		? (nodeValue as any).nom

@@ -76,7 +76,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 					<div className="step">
 						<h3>
 							{rules[currentQuestion].question}{' '}
-							<ExplicableRule rules={rules} dottedName={currentQuestion} />
+							<ExplicableRule dottedName={currentQuestion} />
 						</h3>
 
 						<fieldset>
