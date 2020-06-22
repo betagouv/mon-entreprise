@@ -113,7 +113,7 @@ module.exports.HTMLPlugins = ({
 		logo: 'https://ecolab-transport.netlify.app/images/ecolab.png',
 		chunks: ['publicodes'],
 
-		title: 'Ecolab climat',
+		title: 'Ecolab - MicMac',
 		description: 'Connaissez-vous votre empreinte sur le climat ?',
 		filename: 'publicodes.html',
 		...(prodPath ? { base: prodPath } : {}),
