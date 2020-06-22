@@ -2,7 +2,9 @@
 
 Merci de prendre le temps de contribuer ! 🎉
 
-Pour contribuer aux modèles de calcul climat, direction [futureco-data](https://github.com/laem/futureco-data).
+Pour contribuer aux modèles de calcul climat, direction [ecolab-data](https://github.com/betagouv/ecolab-data).
+
+Une fois que vous y aurez créé une PR (Pull Request), ajoutez simplement `?branch=votre-nouvelle-branche` à l'adresse pour tester le site avec vos modifications des modèles.
 
 Pour contribuer au code du site, RDV dans la section *issues* pour voir les discussions et avancement actuels.
 
