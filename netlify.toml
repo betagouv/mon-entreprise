@@ -4,9 +4,9 @@
   status = 200
   
 [[redirects]]
-  from = "https://ecolab-climat.netlify.app"
-  to = "https://ecolab.ademe.fr/apps/climat"
-  status = 301
+  from = "https://ecolab-climat.netlify.app/*"
+  to = "https://ecolab.ademe.fr/apps/climat/:splat"
+  status = 301!
 
 [dev]
   framework = "#custom"
