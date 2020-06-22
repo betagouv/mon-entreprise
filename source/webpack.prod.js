@@ -2,7 +2,7 @@ const {
 	commonLoaders,
 	styleLoader,
 	HTMLPlugins,
-	default: common
+	default: common,
 } = require('./webpack.common.js')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -12,7 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
 	...common,
 	module: {
-		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)]
+		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)],
 	},
 	mode: 'production',
 	devtool: 'source-map',
@@ -23,7 +23,7 @@ module.exports = {
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
 			filename: '[name].[hash].css',
-			chunkFilename: '[id].[hash].css'
-		})
-	]
+			chunkFilename: '[id].[hash].css',
+		}),
+	],
 }
