@@ -29,7 +29,7 @@ class App extends Component {
 			<Provider
 				basename="publicodes"
 				rulesURL={`https://${
-					branch && `${branch}--`
+					branch ? `${branch}--` : ''
 				}ecolab-data.netlify.app/co2.json`}
 				dataBranch={branch}
 				sitePaths={sitePaths()}
