@@ -25,13 +25,18 @@ class App extends Component {
 		/* This enables loading the rules of a branch,
 		 * to showcase the app as it would be once this branch of -data  has been merged*/
 		const branch = urlParams.get('branch')
+		const pullRequestNumber = urlParams.get('PR')
 		return (
 			<Provider
 				basename="publicodes"
 				rulesURL={`https://${
-					branch ? `${branch}--` : ''
+					branch
+						? `${branch}--`
+						: pullRequestNumber
+						? `deploy-preview-${pullRequestNumber}--`
+						: ''
 				}ecolab-data.netlify.app/co2.json`}
-				dataBranch={branch}
+				dataBranch={branch || pullRequestNumber}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}
 				onStoreCreated={(store) => {
