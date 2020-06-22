@@ -8,11 +8,18 @@ import RulesList from '../mon-entreprise.fr/pages/Documentation/RulesList'
 import About from './About'
 import Contribution from './Contribution'
 import Landing from './Landing'
-import Scenarios from './Scenarios'
 import Simulateur from './Simulateur'
 import Fin from './Fin'
 import sitePaths from './sitePaths'
 import { StoreProvider } from './StoreContext'
+import {
+	persistEverything,
+	retrievePersistedState,
+} from '../../storage/persistEverything'
+import {
+	persistSimulation,
+	retrievePersistedSimulation,
+} from '../../storage/persistSimulation'
 
 let Studio = React.lazy(() => import('./Studio'))
 
@@ -24,6 +31,14 @@ class App extends Component {
 				rulesURL="https://ecolab-data.netlify.app/co2.json"
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}
+				onStoreCreated={(store) => {
+					//persistEverything({ except: ['rules', 'simulation'] })(store)
+					persistSimulation(store)
+				}}
+				initialStore={{
+					//...retrievePersistedState(),
+					previousSimulation: retrievePersistedSimulation(),
+				}}
 			>
 				<StoreProvider>
 					<div css="background: yellow; text-align: center; color: black; ">

@@ -2,7 +2,6 @@ import { T } from 'Components'
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
-import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import SearchButton from 'Components/SearchButton'
 import TargetSelection from 'Components/TargetSelection'
@@ -54,7 +53,6 @@ export default function Simulation({
 							) : (
 								<span />
 							)}
-							<SeeAnswersButton />
 						</div>
 						<Conversation
 							customEnd={customEnd}

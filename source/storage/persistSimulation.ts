@@ -6,9 +6,9 @@ import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 
-const VERSION = 3
+const VERSION = 0
 
-const LOCAL_STORAGE_KEY = 'embauche.gouv.fr::persisted-simulation::v' + VERSION
+const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
 
 export function persistSimulation(store: Store<RootState, Action>) {
 	const listener = () => {

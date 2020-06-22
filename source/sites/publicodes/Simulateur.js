@@ -16,6 +16,7 @@ import CarbonImpact from './CarbonImpact'
 import withTarget from './withTarget'
 import Chart from './chart/index.js'
 import { Redirect } from 'react-router'
+import SessionBar from 'Components/SessionBar'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
 
@@ -42,13 +43,16 @@ const Simulateur = (props) => {
 					<meta name="description" content={rule.description} />
 				)}
 			</Helmet>
+			<SessionBar />
 			<Simulation
 				noFeedback
 				noProgressMessage
 				showConversation
 				customEnd={
 					rule.dottedName === 'micmac' ? (
-						<Redirect to={`/fin/${analysis.targets[0].nodeValue}`} />
+						<Redirect
+							to={`/fin/${Math.round(analysis.targets[0].nodeValue)}`}
+						/>
 					) : rule.description ? (
 						<Markdown source={rule.description} />
 					) : (
