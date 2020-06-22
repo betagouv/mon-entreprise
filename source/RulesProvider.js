@@ -25,7 +25,7 @@ export default connect(
 		constructor(props) {
 			super(props)
 
-			if (process.env.NODE_ENV === 'development') {
+			if (process.env.NODE_ENV === 'development' && !props.dataBranch) {
 				import('../../../ecolab-data/co2.yaml').then((src) => {
 					this.props.setRules(src.default)
 					this.removeLoader()

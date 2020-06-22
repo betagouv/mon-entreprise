@@ -13,10 +13,6 @@ import Fin from './Fin'
 import sitePaths from './sitePaths'
 import { StoreProvider } from './StoreContext'
 import {
-	persistEverything,
-	retrievePersistedState,
-} from '../../storage/persistEverything'
-import {
 	persistSimulation,
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
@@ -25,10 +21,17 @@ let Studio = React.lazy(() => import('./Studio'))
 
 class App extends Component {
 	render() {
+		const urlParams = new URLSearchParams(window.location.search)
+		/* This enables loading the rules of a branch,
+		 * to showcase the app as it would be once this branch of -data  has been merged*/
+		const branch = urlParams.get('branch')
 		return (
 			<Provider
 				basename="publicodes"
-				rulesURL="https://ecolab-data.netlify.app/co2.json"
+				rulesURL={`https://${
+					branch && `${branch}--`
+				}ecolab-data.netlify.app/co2.json`}
+				dataBranch={branch}
 				sitePaths={sitePaths()}
 				reduxMiddlewares={[]}
 				onStoreCreated={(store) => {
