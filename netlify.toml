@@ -1,13 +1,13 @@
 [[redirects]]
-  from = "/*"
-  to = "/publicodes.html"
-  status = 200
-  
-[[redirects]]
   from = "https://ecolab-climat.netlify.app/*"
   to = "https://ecolab.ademe.fr/apps/climat/:splat"
   force = true
   status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/publicodes.html"
+  status = 200
 
 [dev]
   framework = "#custom"
