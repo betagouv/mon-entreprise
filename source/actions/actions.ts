@@ -67,32 +67,32 @@ type UpdateDefaultUnit = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({
-		type: 'RESET_SIMULATION'
+		type: 'RESET_SIMULATION',
 	} as const)
 
 export const goToQuestion = (question: string) =>
 	({
 		type: 'STEP_ACTION',
 		name: 'unfold',
-		step: question
+		step: question,
 	} as const)
 
 export const validateStepWithValue = (
 	dottedName: DottedName,
 	value: unknown
-): ThunkResult<void> => dispatch => {
+): ThunkResult<void> => (dispatch) => {
 	dispatch(updateSituation(dottedName, value))
 	dispatch({
 		type: 'STEP_ACTION',
 		name: 'fold',
-		step: dottedName
+		step: dottedName,
 	})
 }
 
 export const setSituationBranch = (id: number) =>
 	({
 		type: 'SET_SITUATION_BRANCH',
-		id
+		id,
 	} as const)
 
 export const setSimulationConfig = (config: Object): ThunkResult<void> => (
@@ -100,26 +100,27 @@ export const setSimulationConfig = (config: Object): ThunkResult<void> => (
 	getState,
 	{ history }
 ): void => {
-	if (getState().simulation?.config === config) {
+	const pastSimulationConfig = getState().simulation?.config
+	if (pastSimulationConfig === config) {
 		return
 	}
 	const url = history.location.pathname
 	dispatch({
 		type: 'SET_SIMULATION',
 		url,
-		config
+		config,
 	})
 }
 
 export const setActiveTarget = (targetName: DottedName) =>
 	({
 		type: 'SET_ACTIVE_TARGET_INPUT',
-		name: targetName
+		name: targetName,
 	} as const)
 
-export const deletePreviousSimulation = (): ThunkResult<void> => dispatch => {
+export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
 	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION'
+		type: 'DELETE_PREVIOUS_SIMULATION',
 	})
 	deletePersistedSimulation()
 }
@@ -128,13 +129,13 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
 		type: 'UPDATE_SITUATION',
 		fieldName,
-		value
+		value,
 	} as const)
 
 export const updateUnit = (defaultUnit: string) =>
 	({
 		type: 'UPDATE_DEFAULT_UNIT',
-		defaultUnit
+		defaultUnit,
 	} as const)
 
 export function setExample(name: string, situation, dottedName: DottedName) {
@@ -153,7 +154,7 @@ export const goBackToSimulation = (): ThunkResult<void> => (
 
 export function loadPreviousSimulation() {
 	return {
-		type: 'LOAD_PREVIOUS_SIMULATION'
+		type: 'LOAD_PREVIOUS_SIMULATION',
 	} as const
 }
 
@@ -164,5 +165,5 @@ export function hideControl(id: string) {
 export const explainVariable = (variableName: DottedName | null = null) =>
 	({
 		type: 'EXPLAIN_VARIABLE',
-		variableName
+		variableName,
 	} as const)

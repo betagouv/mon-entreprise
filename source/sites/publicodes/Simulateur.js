@@ -17,8 +17,10 @@ import withTarget from './withTarget'
 import Chart from './chart/index.js'
 import { Redirect } from 'react-router'
 import SessionBar from 'Components/SessionBar'
+import { isEmpty, symmetricDifference, compose } from 'ramda'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
+const eqValues = compose(isEmpty, symmetricDifference)
 
 const Simulateur = (props) => {
 	const objectif = props.match.params.name,
@@ -31,7 +33,13 @@ const Simulateur = (props) => {
 			objectifs: [decoded],
 		},
 		configSet = useSelector((state) => state.simulation?.config)
-	useEffect(() => dispatch(setSimulationConfig(config)), [])
+	useEffect(
+		() =>
+			!eqValues(config.objectifs, configSet?.objectifs || [])
+				? dispatch(setSimulationConfig(config))
+				: () => null,
+		[]
+	)
 
 	if (!configSet) return null
 

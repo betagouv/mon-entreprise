@@ -7,7 +7,6 @@ export default ({ nodeValue: possiblyNegativeValue }) => {
 			(state) => state.conversationSteps?.foldedSteps
 		),
 		simulationStarted = foldedSteps && foldedSteps.length
-	console.log('FS', foldedSteps)
 	let unitSuffix = (
 			<span>
 				de <strong>CO₂</strong>e par an

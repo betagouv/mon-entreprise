@@ -34,8 +34,6 @@ export default ({}) => {
 		-1
 	).nodeValue
 
-	console.log(categories)
-
 	return (
 		<section
 			css={`
