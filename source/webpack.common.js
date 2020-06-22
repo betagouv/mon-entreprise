@@ -4,12 +4,6 @@ const CopyPlugin = require('copy-webpack-plugin')
 const { EnvironmentPlugin } = require('webpack')
 const path = require('path')
 
-// If on master, with a URL_PATH env (used by the yarn build commmand)
-// inject a base path, since the website is used from ecolab.ademe.fr/apps/transport/
-//
-// Only for the master branch, to enable netlify branch reviews to work
-export const prodPath = process.env.BRANCH === 'master' && process.env.URL_PATH
-
 module.exports.default = {
 	resolve: {
 		alias: {
@@ -31,7 +25,6 @@ module.exports.default = {
 	output: {
 		path: path.resolve('./dist/'),
 		globalObject: 'self',
-		...(prodPath && { publicPath: prodPath }),
 	},
 	plugins: [new CopyPlugin(['./manifest.webmanifest'])],
 }
@@ -111,7 +104,10 @@ module.exports.commonLoaders = () => {
 	]
 }
 
-module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
+module.exports.HTMLPlugins = ({
+	injectTrackingScript = false,
+	prodPath,
+} = {}) => [
 	new HTMLPlugin({
 		template: 'index.html',
 		logo: 'https://ecolab-transport.netlify.app/images/ecolab.png',
