@@ -4,8 +4,10 @@ const {
 	HTMLPlugins,
 	default: common,
 } = require('./webpack.common.js')
-
+const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const { prodPath } = require('./webpack.common.js')
 
 // Server-side prerendering is not activated here. If you want to work on this, go see this fork's parent, github.com/betagouv/mon-entreprise
 
@@ -24,6 +26,10 @@ module.exports = {
 			// both options are optional
 			filename: '[name].[hash].css',
 			chunkFilename: '[id].[hash].css',
+		}),
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: 'production',
+			URL_PATH: prodPath,
 		}),
 	],
 }
