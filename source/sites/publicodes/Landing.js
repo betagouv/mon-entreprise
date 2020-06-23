@@ -36,11 +36,19 @@ export default () => {
 			<p>
 				Ce simulateur vous permet d'évaluer votre empreinte carbone
 				individuelle, puis de la situer par rapport aux objectifs climatiques.
-				Il est basé sur le modèle MicMac de l'association{' '}
+				Il est basé sur le modèle MicMac des associations{' '}
 				<a href="https://avenirclimatique.org/les-outils/">
 					Avenir Climatique{' '}
 					<img
 						src="https://avenirclimatique.org/wp-content/themes/JointsWP-master/library/images/logo_AC_simple_100px.png"
+						css="width:1rem; vertical-align: middle"
+					/>
+				</a>{' '}
+				et
+				<a href="https://www.taca.asso.fr/">
+					TaCa
+					<img
+						src="https://www.taca.asso.fr/uploaded/logo/43e623b7a04c7fca399a4a26d15ebe20.png"
 						css="width:1rem; vertical-align: middle"
 					/>
 				</a>{' '}
