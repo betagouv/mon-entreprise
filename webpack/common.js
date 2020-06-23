@@ -82,7 +82,7 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 			use: ['raw-loader']
 		},
 		{
-			test: /\.ttf$/,
+			test: /\.(ttf|pdf)$/,
 			use: ['file-loader']
 		}
 	]

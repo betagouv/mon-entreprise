@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
+import GuideAutoEntrepreneurUrl from './Guide_Auto-Entrepreneur.pdf'
+
 import * as Animate from 'Components/ui/animate'
 import { CheckItem, Checklist } from 'Components/ui/Checklist'
 import StatutDescription from './StatutDescription'
@@ -525,9 +527,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				</Link>
 				{i18n.language === 'fr' && isAutoentrepreneur && (
 					<a
-						target="_blank"
 						className="ui__ interactive card button-choice lighter-bg"
-						href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guide_Auto-Entrepreneur.pdf"
+						href={GuideAutoEntrepreneurUrl}
+						download="guide-devenir-auto-entrepreneur-en-2020"
 					>
 						<p>Guide URSSAF auto-entrepreneur 2020</p>
 						<small>
