@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
 import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis, encodeRuleName } from 'Engine/rules'
 import Bar from './Bar'
 import { sortBy } from 'ramda'
+import { Link } from 'react-router-dom'
 
 const showBudget = false
 const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
@@ -82,9 +83,21 @@ export default ({}) => {
 								stiffness: 100,
 							}}
 							key={category.title}
-							css="margin: .4rem 0; list-style-type: none; cursor: pointer"
+							css={`
+								margin: 0.4rem 0;
+								list-style-type: none;
+								> a {
+									display: block;
+									text-decoration: none;
+									line-height: inherit;
+								}
+							`}
 						>
-							<Bar {...{ ...category, empreinteMaximum }} />
+							<Link
+								to={'/documentation/' + encodeRuleName(category.dottedName)}
+							>
+								<Bar {...{ ...category, empreinteMaximum }} />
+							</Link>
 						</motion.li>
 					))}
 				</ul>

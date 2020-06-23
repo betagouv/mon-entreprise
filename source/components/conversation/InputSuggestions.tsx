@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { defaultUnitsSelector } from 'Selectors/analyseSelectors'
 import { convertUnit, parseUnit, Unit } from '../../engine/units'
+import emoji from 'react-easy-emoji'
 
 type InputSuggestionsProps = {
 	suggestions: Record<string, number>
@@ -39,7 +40,7 @@ export default function InputSuggestions({
 						}}
 						title={t('cliquez pour insérer cette suggestion')}
 					>
-						{text}
+						{emoji(text)}
 					</button>
 				)
 			})}

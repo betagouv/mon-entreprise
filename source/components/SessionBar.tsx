@@ -50,7 +50,7 @@ export default function PreviousSimulationBanner() {
 						}}
 					>
 						{emoji('📊 ')}
-						<T>Revenir à la simulation</T>
+						<T>Revenir à ma simulation</T>
 					</Button>
 				) : (
 					<Button
