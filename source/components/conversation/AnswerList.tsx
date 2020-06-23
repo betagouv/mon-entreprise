@@ -1,7 +1,7 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import Value from 'Components/Value'
-import { getRuleFromAnalysis } from 'Engine/rules'
+import { getRuleFromAnalysis, parentName } from 'Engine/rules'
 import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -58,7 +58,12 @@ function StepsTable({ rules, onClose }) {
 							background: var(--lightestColor);
 						`}
 					>
-						<td>{rule.title}</td>
+						<td>
+							<div>
+								<small>{parentName(rule.dottedName)}</small>
+							</div>
+							<div css="font-size: 110%">{rule.title}</div>
+						</td>
 						<td>
 							<button
 								className="answer"
@@ -68,11 +73,12 @@ function StepsTable({ rules, onClose }) {
 									color: inherit;
 									font-size: inherit;
 									width: 100%;
-									text-align: start;
+									text-align: end;
 									font-weight: 500;
 									> span {
-										border-bottom: 1px dashed blue;
-										border-bottom-color: var(--textColorOnWhite);
+										text-decoration: underline;
+										text-decoration-style: dashed;
+										text-underline-offset: 4px;
 										padding: 0.05em 0em;
 										display: inline-block;
 									}
