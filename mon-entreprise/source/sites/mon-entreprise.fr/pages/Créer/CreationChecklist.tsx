@@ -525,24 +525,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						</small>
 					</Trans>
 				</Link>
-				{i18n.language === 'fr' && isAutoentrepreneur && (
-					<a
-						className="ui__ interactive card button-choice lighter-bg"
-						href={GuideAutoEntrepreneurUrl}
-						download="guide-devenir-auto-entrepreneur-en-2020"
-					>
-						<p>Guide URSSAF auto-entrepreneur 2020</p>
-						<small>
-							Des conseils sur comment préparer son projet pour se lancer dans
-							la création et une présentation détaillée de votre protection
-							sociale.
-						</small>
-						<br />
-						<div css="text-align: right">
-							<small className="ui__ label">PDF</small>
-						</div>
-					</a>
-				)}
+				{isAutoentrepreneur && <RessourceAutoEntrepreneur />}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<a
 						target="_blank"
@@ -585,5 +568,58 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 			</Trans>{' '}
 			{statut}
 		</a>
+	)
+}
+
+export function RessourceAutoEntrepreneur() {
+	const { i18n } = useTranslation()
+	return (
+		<>
+			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ">
+				<a
+					className="ui__ interactive card button-choice lighter-bg"
+					href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
+					target="_blank"
+				>
+					<p>Questions fréquentes</p>
+					<small>
+						Une liste exhaustive et maintenue à jour de toutes les questions
+						fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+						qu'auto-entrepreneur
+					</small>
+				</a>
+			</Trans>
+			{i18n.language === 'fr' && (
+				<a
+					className="ui__ interactive card button-choice lighter-bg"
+					href={GuideAutoEntrepreneurUrl}
+					download="guide-devenir-auto-entrepreneur-en-2020"
+				>
+					<p>Guide partique Urssaf 2020</p>
+					<small>
+						Des conseils pour les auto-entrepreneurs : comment préparer son
+						projet pour se lancer dans la création et une présentation détaillée
+						de votre protection sociale.
+					</small>
+					<br />
+					<div css="text-align: right">
+						<small className="ui__ label">PDF</small>
+					</div>
+				</a>
+			)}
+			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt">
+				<a
+					className="ui__ interactive card button-choice lighter-bg"
+					target="_blank"
+					href="https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur"
+				>
+					<p>Comment déclarer son revenu aux impôts ?</p>
+					<small>
+						Les informations officielles de l'administration fiscale concernant
+						les auto-entrepreneurs et le régime de la micro-entreprise.
+					</small>
+				</a>
+			</Trans>
+		</>
 	)
 }

@@ -355,7 +355,7 @@ comparaisonRégimes:
     infobulles:
       AS: Pension calculated for 172 quarters contributed to the general scheme with
         no change in income.
-      auto: Pension calculated for 172 quarters of self-employed contributions with no
+      auto: Pension calculated for 172 quarters of auto-entrepreneur contributions with no
         change in income.
       indep: Pension calculated for 172 quarters of contributions to the self-employed
         scheme with no change in income.
@@ -805,6 +805,14 @@ page:
   documentation:
     title: Documentation
 pages:
+  common:
+    ressources-auto-entrepreneur:
+      FAQ: <0><0>Frequently Asked Questions</0><1>An exhaustive and up-to-date list of
+        all the frequently (and less frequently) asked questions that you may
+        have as an auto-entrepreneur (in french).</1></0>
+      impôt: <0><0>How to declare your income?</0><1>Official
+        information from the tax authorities concerning auto-entrepreneurs and
+        the micro-enterprise scheme (in french).</1></0>
   dévelopeurs:
     bibliothèque: '<0>Integrate our calculation library</0><1>If you think that your
       site or service would benefit from displaying salary calculations, for
@@ -886,6 +894,44 @@ pages:
       simulator language.</3>
     module: What module?
   simulateurs:
+    auto-entrepreneur:
+      meta:
+        description: Calculation of your income based on turnover, after deduction of
+          contributions and income tax.
+        ogDescription: 'Thanks to the auto-entrepreneur income simulator developed by
+          URSSAF, you can estimate the amount of your income based on your
+          monthly or annual turnover to better manage your cash flow. Or in the
+          opposite direction: to know what amount to invoice to achieve a
+          certain income.'
+        ogTitle: 'Auto-entrepreneur: quickly calculate your net income from sales and
+          vice versa'
+        titre: 'Auto-entrepreneurs: income simulator'
+      seo explanation: '<0>How do you calculate the net income for an
+        auto-entrepreneur?</0><1>An auto-entrepreneur has to pay social
+        security         contributions to the administration (also known as
+        "social charge"). These social contributions are used to finance
+        social security, and give rights for retirement or health insurance.
+        They are also used to finance vocational training.</1><2><0></0> <2>See
+        details of how the contributions are calculated</2></2><3>But this is
+        not the only expense: to calculate net income, one must also take into
+        account all expenses incurred in the course of the professional activity
+        (assets, raw materials, premises, transport). Although they are not
+        useful for the calculation of contributions and taxes, they must be
+        taken into account to estimate the viability of one''''s
+        activity.</3><4>The complete calculation formula is therefore:<1><0>Net
+        income = Turnover - Social contributions - Professional
+        expenses</0></1></4><5>How to calculate income tax for an auto-entrepreneur
+        ?</5><6>If you opted for the flat-rate payment when you set up
+        your business, income tax is paid at the same time as
+        social security contributions.</6><7><0></0> <2>See how the amount of
+        the flat-rate tax is calculated</2></7><8>Otherwise, you will be taxed
+        according to the standard income tax schedule. The taxable income is
+        then calculated as a percentage of turnover. This is called the lump-sum
+        allowance. This percentage varies according to the type of activity
+        carried out. It is said to be lump-sum because it does not take into
+        account the actual expenses incurred in the activity.</8><9><0></0>
+        <2>See details of the calculation of the income allowance for an auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
+      titre: Auto-entrepreneur income simulator
     salarié:
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount
@@ -921,8 +967,8 @@ pages:
           (executive status, internship, apprenticeship, overtime, restaurant
           vouchers, mutual insurance, part-time work, collective agreement,
           etc.).
-        ogTitle: 'Gross, net, net after-tax salary, total cost: the ultimate
-          simulator for employees and employers'
+        ogTitle: 'Gross, net, net after-tax salary, total cost: the ultimate simulator
+          for employees and employers'
         titre: 'Gross / net salary: the Urssaf converter'
       titre: Income simulator for employees
 par: per
