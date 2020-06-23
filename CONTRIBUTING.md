@@ -70,6 +70,7 @@ Et ceux spécifiques au projet :
 - :alien: `:alien:` pour ajouter des traductions
 - :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
 - :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
+- :mag: `:mag:` pour les modifications liées au référencement naturel
 
 ### Tests
 

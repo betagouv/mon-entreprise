@@ -885,6 +885,46 @@ pages:
       attribute <1>data-lang="en"</1> allows you to choose English as the
       simulator language.</3>
     module: What module?
+  simulateurs:
+    salarié:
+      explication seo: <0>Calculate your net salary</0><1>During the job interview,
+        the employer usually offers a "gross" remuneration. The announced amount
+        thus includes employee contributions, which are used to finance the
+        employee's social protection and which are deducted from the "net"
+        salary received by the employee.</1><2>You can use our simulator to
+        convert the <2>gross salary into net</2> salary. To do this, simply
+        enter the salary shown in the gross salary box. The simulation can be
+        refined by answering different questions (on CDD, framework status,
+        etc.).</2><3></3><4>Furthermore, since 2019,<1> income tax</1> is
+        withheld at source. To do this, the “Direction Générale des Finances
+        Publiques” (DGFiP) sends the employer the tax rate calculated from the
+        employee's tax return. If this rate is unknown, for example in the first
+        year of employment, the employer uses the <5>neutral
+        rate</5>.</4><5>Cost of hiring</5><6>If you are looking to hire, you can
+        calculate the total cost of your employee's remuneration, as well as the
+        corresponding employer and employee contribution amounts. This enables
+        you to define the pay level in knowledge of the overall amount of
+        expense this represents for your company.</6><7>In addition to salary,
+        our simulator takes into account the calculation of benefits in kind
+        (telephone, company car, etc.), as well as the compulsory health
+        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
+        not all taken into account by our simulator, you can find them on the
+        <6>official portal</6>.</8>
+      meta:
+        description: Calculation of net salary, net after tax and total employer cost in
+          France. Many options are available (executive, internship,
+          apprenticeship, overtime, etc.)
+        ogDescription: As an employee, calculate your net income after tax immediately
+          from the monthly or annual gross income. As an employee, estimate the
+          total cost of hiring from gross. This simulator is developed with
+          URSSAF experts, and it adapts the calculations to your situation
+          (executive status, internship, apprenticeship, overtime, restaurant
+          vouchers, mutual insurance, part-time work, collective agreement,
+          etc.).
+        ogTitle: 'Gross, net, net after-tax salary, total cost: the ultimate
+          simulator for employees and employers'
+        titre: 'Gross / net salary: the Urssaf converter'
+      titre: Income simulator for employees
 par: per
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
@@ -1033,37 +1073,6 @@ simulateurs:
       similar
     économie-collaborative: A guide to know how to declare your income from online
       platforms (AirBnb, leboncoin, blablacar, etc.).
-  salarié:
-    page:
-      description: Estimate the contributions for an employee based on gross, net or
-        "super gross" salary. All contributions from the general system and
-        income tax are taken into account. Discover the counterparties
-        guaranteed by social security'.
-      explication seo: <0>Calculate your net salary</0><1>During the job interview,
-        the employer usually offers a "gross" remuneration. The announced amount
-        thus includes employee contributions, which are used to finance the
-        employee's social protection and which are deducted from the "net"
-        salary received by the employee.</1><2>You can use our simulator to
-        convert the <2>gross salary into net</2> salary. To do this, simply
-        enter the salary shown in the gross salary box. The simulation can be
-        refined by answering different questions (on CDD, framework status,
-        etc.).</2><3></3><4>Furthermore, since 2019,<1> income tax</1> is
-        withheld at source. To do this, the “Direction Générale des Finances
-        Publiques” (DGFiP) sends the employer the tax rate calculated from the
-        employee's tax return. If this rate is unknown, for example in the first
-        year of employment, the employer uses the <5>neutral
-        rate</5>.</4><5>Cost of hiring</5><6>If you are looking to hire, you can
-        calculate the total cost of your employee's remuneration, as well as the
-        corresponding employer and employee contribution amounts. This enables
-        you to define the pay level in knowledge of the overall amount of
-        expense this represents for your company.</6><7>In addition to salary,
-        our simulator takes into account the calculation of benefits in kind
-        (telephone, company car, etc.), as well as the compulsory health
-        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
-        not all taken into account by our simulator, you can find them on the
-        <6>official portal</6>.</8>
-      titre: 'Calculation of net and gross salary: official simulator'
-    titre: Income simulator for employees
   warning:
     artiste-auteur: This estimate is proposed for information only. It is based on
       the applicable regulatory elements and the elements that you have entered,
@@ -1087,7 +1096,8 @@ simulation-end:
     text: You can now turn your hiring project into reality.
   text: You have reached the most accurate estimate.
   title: No more questions left!
-siteName: My company in France
+site:
+  titleTemplate: '%s'
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms

@@ -135,7 +135,9 @@ const App = () => {
 
 	return (
 		<div className="app-container">
-			<Helmet titleTemplate={`%s - ${t(['siteName', 'Mon-entreprise.fr'])}`} />
+			<Helmet
+				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
+			/>
 			{/* Passing location down to prevent update blocking */}
 
 			<div className="app-content">

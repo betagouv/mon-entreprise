@@ -1,68 +1,5 @@
-# Redirects following architectural changes on the end of October 2018
-[[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale"
-  to="/g%C3%A9rer"
-  status = 301
-
-[[redirects]]
-  from="/d%C3%A9marches-embauche"
-  to="/g%C3%A9rer/embaucher"
-  status = 301
-
-[[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale/s%C3%A9lection-du-r%C3%A9gime"
-  to="/simulateurs"
-  status = 301
-
-[[redirects]]
-  from="/s%C3%A9curit%C3%A9-sociale/*"
-  to="/simulateurs/:splat"
-  status = 301
-
-[[redirects]]
-  from="/entreprise/cr%C3%A9er-une-*"
-  to="/cr%C3%A9er/:splat"
-  status = 301
-
-[[redirects]]
-  from="/entreprise/devenir-*"
-  to="/cr%C3%A9er/:splat"
-  status = 301
-
-[[redirects]]
-  from="/entreprise/*"
-  to="/cr%C3%A9er/:splat"
-  status = 301
-
-[[redirects]]
-  from="/social-security"
-  to="/manage"
-  status = 301
-
-[[redirects]]
-  from="/social-security/assimilated-salaried"
-  to="/social-security/assimile-salarie"
-  status = 301
-
-[[redirects]]
-  from="/social-security/*"
-  to="/simulators/:splat"
-  status = 301
-
-[[redirects]]
-  from="/company/create-a-*"
-  to="/create/:splat"
-  status = 301
-
-[[redirects]]
-  from="/company/become-*"
-  to="/create/:splat"
-  status = 301
-
-[[redirects]]
-  from="/company/*"
-  to="/create/:splat"
-  status = 301
+############
+# Redirects following architectural changes
 
 [[redirects]]
   from="/coronavirus"
@@ -74,11 +11,33 @@
   to="/simulateurs/%C3%A9conomie-collaborative"
   status = 301
 
+# EN | salaried -> salary
+[[redirects]]
+  from="/simulators/salaried"
+  to="/calcultors/salary"
+  status = 301
+
+# EN | simulator -> calculator
+[[redirects]]
+  from="/simulators/*"
+  to="/calcultors/:splat"
+  status = 301
+
+# FR | salarié -> salaire-brut-net
+[[redirects]]
+  from="/simulateurs/salari%C3%A9"
+  to="/simulateurs/salaire-brut-net"
+  status = 301
+
+
 # SEO redirect
 [[redirects]]
   from = "/documentation/contrat-salari%C3%A9/salaire/*"
   to = "/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
   status = 301
+
+############
+# Redirects for single page app config & prerendering purpose
 
 # InFrance PRODUCTION settings
 [[redirects]]

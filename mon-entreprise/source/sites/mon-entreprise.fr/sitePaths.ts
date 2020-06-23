@@ -53,7 +53,7 @@ const sitePathsFr = {
 		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
-		salarié: '/salarié',
+		salarié: '/salaire-brut-net',
 		'artiste-auteur': '/artiste-auteur',
 		'chômage-partiel': '/chômage-partiel',
 		économieCollaborative: {
@@ -98,12 +98,12 @@ const sitePathsEn = {
 		formulaireMobilité: '/posting-demand'
 	},
 	simulateurs: {
-		index: '/simulators',
+		index: '/calculators',
 		'assimilé-salarié': '/assimile-salarie',
 		indépendant: '/independant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/social-scheme-comparaison',
-		salarié: '/salaried',
+		salarié: '/salary',
 		'artiste-auteur': '/artist-author',
 		'chômage-partiel': '/partial-unemployement',
 		économieCollaborative: {
