@@ -62,7 +62,7 @@ function StepsTable({ rules, onClose }) {
 							<div>
 								<small>{parentName(rule.dottedName)}</small>
 							</div>
-							<div>{rule.title}</div>
+							<div css="font-size: 110%">{rule.title}</div>
 						</td>
 						<td>
 							<button
