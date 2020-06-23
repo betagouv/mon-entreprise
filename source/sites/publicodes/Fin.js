@@ -41,7 +41,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 		textColor = findContrastedTextColor(backgroundColor, true)
 
 	return (
-		<div css="padding: 0 .3rem; max-width: 600px; margin: 0 auto;">
+		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 0 auto;">
 			<SessionBar />
 			<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
 			<motion.div
