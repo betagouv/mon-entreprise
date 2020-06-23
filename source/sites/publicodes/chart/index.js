@@ -20,12 +20,12 @@ export default ({}) => {
 	const analysis = useSelector(analysisWithDefaultsSelector)
 	const getRule = getRuleFromAnalysis(analysis)
 
-	const micmac = getRule('micmac')
-	if (!micmac) return null
+	const bilan = getRule('bilan')
+	if (!bilan) return null
 
 	const categories = sortBy(
 		({ nodeValue }) => -nodeValue,
-		micmac.formule.explanation.explanation.map(
+		bilan.formule.explanation.explanation.map(
 			(category) => category.explanation
 		)
 	)

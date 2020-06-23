@@ -46,7 +46,7 @@ export default function PreviousSimulationBanner() {
 						onClick={() => {
 							console.log('dispatch', last(foldedSteps))
 							dispatch(goToQuestion(last(foldedSteps)))
-							history.push('/simulateur/micmac')
+							history.push('/simulateur/bilan')
 						}}
 					>
 						{emoji('📊 ')}
@@ -56,7 +56,7 @@ export default function PreviousSimulationBanner() {
 					<Button
 						className="plain"
 						onClick={() => {
-							history.push('/simulateur/micmac')
+							history.push('/simulateur/bilan')
 						}}
 					>
 						<T>Faire le test</T>

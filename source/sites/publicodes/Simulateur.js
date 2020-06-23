@@ -57,7 +57,7 @@ const Simulateur = (props) => {
 				noProgressMessage
 				showConversation
 				customEnd={
-					rule.dottedName === 'micmac' ? (
+					rule.dottedName === 'bilan' ? (
 						<Redirect
 							to={`/fin/${Math.round(analysis.targets[0].nodeValue)}`}
 						/>
