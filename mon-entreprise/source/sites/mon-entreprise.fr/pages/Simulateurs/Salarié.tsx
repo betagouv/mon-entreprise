@@ -24,7 +24,7 @@ export default function Salarié() {
 		),
 		description: t(
 			'pages.simulateurs.salarié.meta.description',
-			"Calcul du salaire net, net après impôt et coût total employeur. Beaucoup d'options  disponibles (cadre, stage, apprentissage, heures supplémentaires, etc.)"
+			"Calcul du salaire net, net après impôt et coût total employeur. Beaucoup d'options disponibles (cadre, stage, apprentissage, heures supplémentaires, etc.)"
 		),
 		ogTitle: t(
 			'pages.simulateurs.salarié.meta.ogTitle',

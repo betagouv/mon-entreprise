@@ -9,11 +9,12 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { EvaluatedRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { productionMode } from '../../../../utils'
+import ChômagePartielPreview from './images/ChômagePartielPreview.png'
+import Meta from 'Components/utils/Meta'
 
 declare global {
 	interface Window {
@@ -36,41 +37,34 @@ export default function ChômagePartiel() {
 			document.body.removeChild(script)
 		}
 	}, [])
-	const { t } = useTranslation()
-
+	const { t, i18n } = useTranslation()
+	const META = {
+		title: t(
+			'pages.simulateurs.chômage-partiel.meta.titre',
+			"Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
+		),
+		description: t(
+			'pages.simulateurs.chômage-partiel.meta.description',
+			"Calcul du revenu net pour l'employé et du reste à charge pour l'employeur après remboursement de l'Etat, en prenant en compte toutes les cotisations sociales."
+		),
+		ogTitle: t(
+			'pages.simulateurs.chômage-partiel.meta.ogTitle',
+			"Simulateur chômage partiel : découvrez l'impact sur le revenu net salarié et le coût total employeur."
+		),
+		ogDescription: t(
+			'pages.simulateurs.chômage-partiel.meta.ogDescription',
+			"Accédez à une première estimation en saisissant à partir d'un salaire brut. Vous pourrez ensuite personaliser votre situation (temps partiel, convention, etc). Prends en compte la totalité des cotisations, y compris celles spécifiques à l'indemnité (CSG et CRDS)."
+		),
+		...(i18n.language === 'fr' && { ogImage: ChômagePartielPreview })
+	}
 	return (
 		<>
-			<Helmet>
-				<title>
-					{t(
-						'coronavirus.page.titre',
-						'Coronavirus et chômage partiel : quel impact sur vos revenus ?'
-					)}
-				</title>
-				<meta
-					name="description"
-					content={t(
-						'coronavirus.page.description',
-						'Estimez le revenus net avec les indemnités de chômage partiel'
-					)}
-				/>
-			</Helmet>
+			<Meta {...META} />
+
 			<ScrollToTop />
 			{!inIframe && (
 				<Trans i18nKey="coronavirus.description">
 					<h1>Covid-19 : Simulateur de chômage partiel</h1>
-					<h2 style={{ marginTop: 0 }}>
-						<small>Comment calculer l'indemnité de chômage partiel ?</small>
-					</h2>
-					<p>
-						Ce simulateur permet de connaître le revenu net versé au salarié,
-						ainsi que le coût total restant à charge pour l'entreprise en cas de
-						recours à l'activité partielle.
-					</p>
-					<p>
-						Toutes les indemnités d'activité partielle sont prises en compte,
-						ainsi que les cotisations qui leur sont associées.
-					</p>
 				</Trans>
 			)}
 
@@ -361,21 +355,38 @@ const ResultTable = styled.table`
 `
 
 function TextExplanations() {
-	const { i18n } = useTranslation()
-	if (i18n.language !== 'fr') {
-		return null
-	}
+	const { t } = useTranslation()
+
 	return (
 		<Markdown
 			css={`
 				margin-top: 2rem;
 			`}
-			source={`
+			source={t(
+				'pages.simulateurs.chômage-partiel.explications seo',
+				`
 [👨‍💻 Intégrer ce simulateur sur votre site](/intégration/iframe?module=simulateur-chomage-partiel)
 
+## Comment calculer l'indemnité d'activité partielle ?
 
-## Pour l'entreprise : déclarer une activité partielle 📫
+L'indemnité d'activité partielle de base est fixée par la loi à **70% du brut**. Elle est proratisée en fonction du nombre d'heures chômées. Pour un salarié à 2300 € brut mensuel, qui travaille à 50% de son temps usuel, cela donne  **2300 € × 50% × 70% = 805 €**
 
+A cette indemnité de base s'ajoute l'indemnité complémentaire pour les salaires proches du SMIC. Ce complément intervient lorsque le cumul de la rémunération et de l'indemnité de base est en dessous d'un SMIC net.
+
+Ces indemnités sont prises en charge par l'employeur, qui sera ensuite remboursé en parti ou en totalité par l'Etat.
+
+👉 [Voir le détail du calcul de l'indemnité](/documentation/contrat-salarié/activité-partielle/indemnités)
+
+
+## Comment calculer la part remboursée par l'État ?
+
+L'Etat prend en charge une partie de l'indemnité partielle pour les salaires allant jusqu'à **4,5 SMIC**, avec un minimum à 8,03€ par heures chômée.
+
+Concrètement, cela abouti à une prise en charge à **100%** pour les salaires proches du SMIC. Celle-ci diminue progressivement jusqu'à se stabiliser à **93%** pour les salaires compris **entre 2000 € et 7000 €** (salaire correspondant à la limite de 4.5 SMIC).
+
+👉 [Voir le détail du calcul du remboursement de l'indemnité](/documentation/contrat-salarié/activité-partielle/indemnisation-entreprise)
+
+## Comment déclarer une activité partielle ?
 
 Face à la crise du coronavirus, les modalités de passage en activité partielle
 ont été allégées. L'employeur est autorisé a placer ses salariés en activité
@@ -384,13 +395,16 @@ ensuite d'un délai de **30 jours** pour se mettre en règle. Les
 indemnités seront versées avec un effet rétro-actif débutant à la mise en place
 du chômage partiel.
 
-[➡ Effectuer la demande de chômage partiel](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001).
+👉 [Effectuer la demande de chômage partiel](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001)
 
-> #### ⚠ Cotisations sociales
-> L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
-contribution maladie dans certains cas.
-[➡ En savoir plus sur le site de l'URSSAF](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html)
-	`}
+## Quelles sont les cotisations sociales à payer pour l'indemnité d'activité partielle ?
+
+L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
+contribution maladie dans certains cas. Pour en savoir plus, voir la page explicative sur [le site de l'URSSAF](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html).
+
+
+`
+			)}
 		/>
 	)
 }

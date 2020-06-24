@@ -355,8 +355,8 @@ comparaisonRégimes:
     infobulles:
       AS: Pension calculated for 172 quarters contributed to the general scheme with
         no change in income.
-      auto: Pension calculated for 172 quarters of auto-entrepreneur contributions with no
-        change in income.
+      auto: Pension calculated for 172 quarters of auto-entrepreneur contributions
+        with no change in income.
       indep: Pension calculated for 172 quarters of contributions to the self-employed
         scheme with no change in income.
     legend: |
@@ -810,9 +810,9 @@ pages:
       FAQ: <0><0>Frequently Asked Questions</0><1>An exhaustive and up-to-date list of
         all the frequently (and less frequently) asked questions that you may
         have as an auto-entrepreneur (in french).</1></0>
-      impôt: <0><0>How to declare your income?</0><1>Official
-        information from the tax authorities concerning auto-entrepreneurs and
-        the micro-enterprise scheme (in french).</1></0>
+      impôt: <0><0>How to declare your income?</0><1>Official information from the tax
+        authorities concerning auto-entrepreneurs and the micro-enterprise
+        scheme (in french).</1></0>
   dévelopeurs:
     bibliothèque: '<0>Integrate our calculation library</0><1>If you think that your
       site or service would benefit from displaying salary calculations, for
@@ -920,18 +920,69 @@ pages:
         taken into account to estimate the viability of one''''s
         activity.</3><4>The complete calculation formula is therefore:<1><0>Net
         income = Turnover - Social contributions - Professional
-        expenses</0></1></4><5>How to calculate income tax for an auto-entrepreneur
-        ?</5><6>If you opted for the flat-rate payment when you set up
-        your business, income tax is paid at the same time as
-        social security contributions.</6><7><0></0> <2>See how the amount of
-        the flat-rate tax is calculated</2></7><8>Otherwise, you will be taxed
+        expenses</0></1></4><5>How to calculate income tax for an
+        auto-entrepreneur ?</5><6>If you opted for the flat-rate payment when
+        you set up your business, income tax is paid at the same time as social
+        security contributions.</6><7><0></0> <2>See how the amount of the
+        flat-rate tax is calculated</2></7><8>Otherwise, you will be taxed
         according to the standard income tax schedule. The taxable income is
         then calculated as a percentage of turnover. This is called the lump-sum
         allowance. This percentage varies according to the type of activity
         carried out. It is said to be lump-sum because it does not take into
         account the actual expenses incurred in the activity.</8><9><0></0>
-        <2>See details of the calculation of the income allowance for an auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
+        <2>See details of the calculation of the income allowance for an
+        auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
       titre: Auto-entrepreneur income simulator
+    chômage-partiel:
+      explications seo: >-
+        [👨 Integrate this simulator on your site](/integration/iframe?module=simulateur-chomage-partiel)
+
+        ## How do you calculate the partial activity allowance?
+
+        The basic partial activity allowance is set by law at 70% of gross earnings. It is prorated according to the number of hours off work. For an employee at €2,300 gross who works 50% of his usual time, this gives **€2,300 × 50% × 70% = €805**.
+
+        In addition to this basic allowance, there is a supplementary allowance for salaries close to the minimum wage. This additional allowance is paid when the combined remuneration and basic allowance are below a net SMIC.
+
+        These allowances must be paid by the employer, who will then be reimbursed in part or in full by the State.
+
+        👉 [See details of the calculation of the allowance](/documentation/contrat-salarié/activité-partielle/indemnités)
+
+
+        ## How do you calculate the portion reimbursed by the state? ##
+
+        The State covers part of the partial compensation for wages up to 4.5 SMIC, with a minimum of €8.03 per hour off.
+
+        In concrete terms, this results in **100%** coverage for wages close to the SMIC. It then gradually decreases until it stabilizes at **93%** for wages between €2,000 and €7,000 (~ 4.5 SMIC).
+
+        👉 [See the details of the calculation of the reimbursement of the allowance](/documentation/contrat-salarié/activité-partielle/indemnisation-entreprise)
+
+        ## How do you report a partial activity?
+
+        In the face of the coronavirus crisis, the modalities for partial activity
+        have been lightened. The employer is allowed to place his employees in activity
+        partial before the formal application is filed. It shall provide that
+        then a period of **30 days** to comply. The
+        benefits will be paid retroactively from the date of inception of the plan.
+        of short-time work.
+
+        👉 [Apply for short-time work](https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001) (french)
+
+        ## What are the social contributions to be paid for the partial activity allowance?
+
+        The partial activity allowance is subject to the CSG/CRDS and to an
+        disease contribution in some cases. For more information, see the explanatory page on [the URSSAF website](https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html) (french).
+
+      meta:
+        description: Calculation of the net income for the employee and the remaining
+          amount to be paid by the employer after reimbursement by the State,
+          taking into account all social contributions.
+        ogDescription: Access a first estimate by entering from a gross wage. You will
+          then be able to personalize your situation (part-time, agreement,
+          etc). Take into account all contributions, including those specific to
+          the allowance (CSG and CRDS).
+        ogTitle: 'Short-time working simulator: find out the impact on the net salaried
+          income and the total employer cost.'
+        titre: Calculation of the short-time working allowance in France
     salarié:
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount
