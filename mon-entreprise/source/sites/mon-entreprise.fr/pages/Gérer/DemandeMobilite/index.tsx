@@ -2,15 +2,17 @@ import RuleInput from 'Components/conversation/RuleInput'
 import * as Animate from 'Components/ui/animate'
 import InfoBulle from 'Components/ui/InfoBulle'
 import { Markdown } from 'Components/utils/markdown'
-import Engine from 'publicodes'
-import React, { useCallback, useState, Suspense } from 'react'
-import formulaire from './formulaire-détachement.yaml'
 import { usePersistingState } from 'Components/utils/persistState'
-import { hash } from '../../../../../utils'
-import Overlay from 'Components/Overlay'
-import { useDebounce } from 'Components/utils'
+import Engine from 'publicodes'
+import React, { Suspense, useCallback } from 'react'
 import emoji from 'react-easy-emoji'
-export default function FormulaireDétachementIndépendant() {
+import { hash } from '../../../../../utils'
+import formulaire from './formulaire-détachement.yaml'
+import { Explicable } from 'Components/conversation/Explicable'
+
+const LazyEndBlock = React.lazy(() => import('./EndBlock'))
+
+export default function formulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
 		<>
@@ -25,6 +27,19 @@ export default function FormulaireDétachementIndépendant() {
 				</a>
 				.
 			</p>
+			<blockquote>
+				<p className="ui__ lead">
+					<strong>Ce document nécessite votre signature {emoji('✍️')}</strong>
+				</p>
+				<p>
+					Nous vous suggérons d'utiliser un appareil avec écran tactile pour
+					compléter ce formulaire (téléphone, tablette, etc.).{' '}
+				</p>
+				<p>
+					Autremenent, il vous faudra imprimer, signer et scanner le document
+					généré.
+				</p>
+			</blockquote>
 			<FormulairePublicodes engine={engine} />
 		</>
 	)
@@ -33,7 +48,12 @@ export default function FormulaireDétachementIndépendant() {
 const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
 	const fields = fieldNames
 		.map(name => engine.evaluate(name))
-		.filter(node => node.isApplicable !== false && node.isApplicable !== null)
+		.filter(
+			node =>
+				node.isApplicable !== false &&
+				node.isApplicable !== null &&
+				(node.question || node.type || node.API)
+		)
 	return fields
 }
 
@@ -79,20 +99,21 @@ function FormulairePublicodes({ engine }) {
 							`}
 						>
 							{field.question ? (
-								<div
+								<span
 									css={`
 										margin-top: 0.6rem;
 									`}
 								>
 									{field.question}
-								</div>
+								</span>
 							) : (
 								<small>{field.title}</small>
 							)}{' '}
 							{field.description && (
-								<InfoBulle>
+								<Explicable>
+									<h3>{field.title}</h3>
 									<Markdown source={field.description} />
-								</InfoBulle>
+								</Explicable>
 							)}
 							<RuleInput
 								dottedName={field.dottedName}
@@ -104,45 +125,9 @@ function FormulairePublicodes({ engine }) {
 					)}
 				</Animate.fromTop>
 			))}
-			<LazyPDFButton
-				className="ui__ plain cta button"
-				fields={fields}
-				disabled={isMissingValues}
-			>
-				Générer la demande
-			</LazyPDFButton>
-			{isMissingValues && (
-				<p className="ui__ notice">
-					Vous devez compléter l'intégralité du formulaire pour générer la
-					demande.{' '}
-				</p>
-			)}
+			<Suspense fallback={null}>
+				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />
+			</Suspense>
 		</Animate.fromTop>
-	)
-}
-
-const LazyPDFDownloadLink = React.lazy(() => import('./FormPDF'))
-function LazyPDFButton({ fields, className, disabled, children }) {
-	const fieldsDebounced = useDebounce(fields.slice(1), 1000)
-
-	return (
-		<Suspense
-			fallback={
-				<button className={className} disabled>
-					{children}
-				</button>
-			}
-		>
-			<LazyPDFDownloadLink
-				className={className}
-				disabled={disabled}
-				fields={fieldsDebounced}
-				fileName={'demande-détachement.pdf'}
-				title={'Demande de mobilité en Europe'}
-				description="Afin d’examiner votre situation au regard des règlements communautaires UE/EEE de Sécurité sociale (CE 883/2004), veuillez envoyer ce document à relations.internationales@urssaf.fr"
-			>
-				{children}
-			</LazyPDFDownloadLink>
-		</Suspense>
 	)
 }

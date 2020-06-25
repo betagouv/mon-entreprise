@@ -48,10 +48,8 @@ function IntegrationCustomizer() {
 						margin: auto;
 
 						.ui__.left-side {
-							width: 40%;
-							padding-right: 25px;
-							margin-right: 35px;
-							border-right: 2px solid var(--lighterColor);
+							width: 30%;
+							padding-right: 1rem;
 
 							select {
 								padding: 7px;
@@ -59,7 +57,8 @@ function IntegrationCustomizer() {
 						}
 
 						.ui__.right-side {
-							width: 60%;
+							width: 70%;
+							padding-left: 1rem;
 						}
 
 						@media (max-width: 800px) {
@@ -127,14 +126,23 @@ function IntegrationCustomizer() {
 						<h3>
 							<Trans>Prévisualisation</Trans>
 						</h3>
-						<MemoryRouter
-							key={currentModule}
-							initialEntries={[`/iframes/${currentModule}`]}
+						<div
+							css={`
+								background-color: white;
+								border: 2px solid var(--lighterColor);
+								border-radius: 0.3rem;
+								padding: 1rem;
+							`}
 						>
-							<ThemeColorsProvider color={color}>
-								<Iframes />
-							</ThemeColorsProvider>
-						</MemoryRouter>
+							<MemoryRouter
+								key={currentModule}
+								initialEntries={[`/iframes/${currentModule}`]}
+							>
+								<ThemeColorsProvider color={color}>
+									<Iframes />
+								</ThemeColorsProvider>
+							</MemoryRouter>
+						</div>
 					</div>
 				</div>
 			</div>

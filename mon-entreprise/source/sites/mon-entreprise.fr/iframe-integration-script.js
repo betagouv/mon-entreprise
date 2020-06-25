@@ -1,7 +1,6 @@
 import { iframeResizer } from 'iframe-resizer'
 import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoFrSvg from 'Images/logo.svg'
-import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
 
 let script =
@@ -71,15 +70,8 @@ links.innerHTML = `
 		<a href="https://www.urssaf.fr" target="_blank">
 			<img
 				style="height: 2.5rem; margin-right: 1rem"
-				src="${process.env.FR_SITE.replace('${path}', '/' + urssafSvg)}"
+				src="${urssafSvg}"
 				alt="un service fourni par l'Urssaf"
-			/>
-		</a>
-		<a href="https://beta.gouv.fr" target="_blank">
-			<img
-				style="height: 2.5rem"
-				src="${process.env.FR_SITE.replace('${path}', '/' + marianneSvg)}"
-				alt="incubé par beta.gouv.fr (direction du numérique)"
 			/>
 		</a>
 	</div>

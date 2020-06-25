@@ -16,7 +16,7 @@ const moo = require("moo");
 
 const dateRegexp = `(?:(?:0?[1-9]|[12][0-9]|3[01])\\/)?(?:0?[1-9]|1[012])\\/\\d{4}`
 const letter = '[a-zA-Z\u00C0-\u017F€$%]';
-const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\']';
+const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\'°]';
 const word = `${letter}(?:[-']?${letterOrNumber}+)*`;
 const wordOrNumber = `(?:${word}|${letterOrNumber}+)`
 const words = `${word}(?:[\\s]?${wordOrNumber}+)*`

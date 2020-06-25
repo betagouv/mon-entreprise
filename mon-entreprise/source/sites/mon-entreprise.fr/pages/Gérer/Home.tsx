@@ -45,7 +45,7 @@ const infereRégimeFromCompanyDetails = (company: Company | null) => {
 }
 
 export default function SocialSecurity() {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
@@ -189,6 +189,22 @@ export default function SocialSecurity() {
 							}
 						`}
 					>
+						{régime === 'indépendant' &&
+							i18n.language === 'fr' &&
+							process.env.HEAD !== 'master' && (
+								<Link
+									className="ui__ interactive card button-choice lighter-bg"
+									to={sitePaths.gérer.formulaireMobilité}
+								>
+									<Trans i18nKey="gérer.ressources.embaucher">
+										<p>Exporter son activité en Europe</p>
+										<p className="ui__ notice">
+											Le formulaire pour effectuer une demande de mobilité en
+											Europe (détachement ou pluriactivité)
+										</p>
+									</Trans>
+								</Link>
+							)}
 						{!company?.isAutoEntrepreneur && (
 							<Link
 								className="ui__ interactive card button-choice lighter-bg"

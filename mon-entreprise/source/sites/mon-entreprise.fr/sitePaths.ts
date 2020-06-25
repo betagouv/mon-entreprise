@@ -45,7 +45,7 @@ const sitePathsFr = {
 		embaucher: '/embaucher',
 		sécuritéSociale: '/sécurité-sociale',
 		déclarationIndépendant: '/aide-declaration-independants',
-		formulaireDétachement: '/demande-détachement'
+		formulaireMobilité: '/demande-mobilité'
 	},
 	simulateurs: {
 		index: '/simulateurs',
@@ -95,7 +95,7 @@ const sitePathsEn = {
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
 		déclarationIndépendant: '/declaration-aid-independent',
-		formulaireDétachement: '/posting-demand'
+		formulaireMobilité: '/posting-demand'
 	},
 	simulateurs: {
 		index: '/simulators',

@@ -196,18 +196,28 @@ pre.ui__.code > code {
 	hyphens: none;
 }
 
-input.ui__ {
+input.ui__,
+textarea.ui__,
+select.ui__ {
 	padding: 0.4rem;
-	width: 25rem;
 	max-width: 100%;
 	margin-bottom: 0.6rem;
 	border: 1px solid var(--lighterTextColor);
 	border-radius: 0.3rem;
+	background-color: inherit;
 	color: inherit;
 	font-size: inherit;
 	transition: border-color 0.1s;
 	position: relative;
+	font-family: inherit;
 }
+input.ui__ {
+	width: 25rem;
+}
+textarea.ui__ {
+	width: 100%;
+}
+
 input.ui__[inputmode='numeric'] {
 	width: 10rem;
 }
@@ -217,7 +227,8 @@ input.ui__[type='date'] {
 input.ui__.suffixed {
 	text-align: right;
 }
-input.ui__:focus {
+input.ui__:focus,
+select.ui__:focus {
 	border-color: var(--color);
 }
 

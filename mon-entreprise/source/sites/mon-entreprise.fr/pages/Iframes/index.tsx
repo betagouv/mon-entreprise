@@ -7,6 +7,7 @@ import SimulateurArtisteAuteur from '../Simulateurs/ArtisteAuteur'
 import SimulateurAssimiléSalarié from '../Simulateurs/AssimiléSalarié'
 import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
 import SimulateurIndépendant from '../Simulateurs/Indépendant'
+import DemandeMobilite from '../Gérer/DemandeMobilite'
 import IframeFooter from './IframeFooter'
 import SimulateurEmbauche from './SimulateurEmbauche'
 
@@ -42,6 +43,8 @@ export default function Iframes() {
 					path="/iframes/simulateur-chomage-partiel"
 					component={SimulateurChômagePartiel}
 				/>
+				<Route path="/iframes/demande-mobilite" component={DemandeMobilite} />
+
 				{inIframe() && <IframeFooter />}
 			</div>
 		</IsEmbeddedContext.Provider>
