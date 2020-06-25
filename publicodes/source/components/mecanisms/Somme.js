@@ -105,7 +105,7 @@ const StyledRow = styled.div`
 	}
 
 	.element .result,
-	.element .nodeValue {
+	.element > .variable > .nodeHead > .nodeValue {
 		display: none;
 	}
 	:first-child {

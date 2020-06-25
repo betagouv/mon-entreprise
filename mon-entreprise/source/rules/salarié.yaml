@@ -1713,13 +1713,24 @@ contrat salarié . rémunération . total:
       - activité partielle . indemnités
 
 contrat salarié . cotisations . patronales . réductions de cotisations:
+  description: >-
+    À l'exception de la déduction heure supplémentaire, les 
+    dispositifs de réduction de cotisations patronales sont 
+    mutuellement exclusif.
+
+    Le formule ci dessous selectionne donc automatiquement 
+    le plus avantageux pour l'employeur.
   formule:
     somme:
-      - réduction générale
-      - lodeom . réduction outre-mer
-      - statut JEI . exonération de cotisations
-      - réduction ACRE
       - déduction heures supplémentaires
+      - le maximum de:
+          - réduction générale
+          - lodeom . réduction outre-mer
+          - statut JEI . exonération de cotisations
+          - dirigeant . assimilé salarié . réduction ACRE
+  références:
+    urssaf.fr (cumul réduction générale): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/les-regles-relatives-au-cumul.html
+    urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
 
 contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires:
   applicable si: entreprise . effectif < 20
@@ -1731,32 +1742,6 @@ contrat salarié . cotisations . patronales . réductions de cotisations . dédu
   note: La déduction ne s’applique pas aux heures complémentaires
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
-
-contrat salarié . réduction ACRE:
-  applicable si:
-    toutes ces conditions:
-      - dirigeant . assimilé salarié
-      - entreprise . ACRE
-  formule:
-    produit:
-      assiette:
-        somme:
-          - maladie
-          - allocations familiales
-          - vieillesse
-      taux: taux
-
-contrat salarié . réduction ACRE . taux:
-  titre: taux ACRE
-  formule:
-    taux progressif:
-      assiette: cotisations . assiette
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - plafond: 75%
-          taux: 100%
-        - plafond: 100%
-          taux: 0%
 
 contrat salarié . cotisations . salariales . réduction heures supplémentaires:
   cotisation:
