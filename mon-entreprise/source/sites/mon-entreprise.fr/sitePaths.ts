@@ -49,7 +49,7 @@ const sitePathsFr = {
 	},
 	simulateurs: {
 		index: '/simulateurs',
-		'assimilé-salarié': '/assimilé-salarié',
+		sasu: '/dirigeant-sasu',
 		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
@@ -99,7 +99,7 @@ const sitePathsEn = {
 	},
 	simulateurs: {
 		index: '/calculators',
-		'assimilé-salarié': '/assimile-salarie',
+		sasu: '/SASU-chairman',
 		indépendant: '/independant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/social-scheme-comparaison',

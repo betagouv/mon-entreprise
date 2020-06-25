@@ -500,12 +500,12 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					<Link
 						className="ui__ interactive card button-choice lighter-bg"
 						to={{
-							pathname: sitePaths.simulateurs['assimilé-salarié'],
+							pathname: sitePaths.simulateurs.sasu,
 							state: { fromCréer: true }
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.assimilé">
-							<p>Simulateur de cotisations assimilé-salarié</p>
+							<p>Simulateur de rémunération pour dirigeant de SAS(U)</p>
 							<small>
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.

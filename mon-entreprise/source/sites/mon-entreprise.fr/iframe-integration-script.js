@@ -49,7 +49,7 @@ const moduleToSitePath = {
 	'simulateur-embauche': '/simulateurs/salarié',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
-	'simulateur-assimilesalarie': '/simulateurs/assimilé-salarié'
+	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu'
 }
 const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
 	'${path}',

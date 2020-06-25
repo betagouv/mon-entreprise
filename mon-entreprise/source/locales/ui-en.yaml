@@ -692,8 +692,6 @@ gérant minoritaire:
   titre: Chairman or managing director
 gérer:
   choix:
-    chomage-partiel: <0>Find out about aid</0><1>Calculate the amount of short-time
-      working benefits. Discover the list of business support schemes.</1>
     déclaration: <0>Completing my tax return</0><1>Easily calculate the amounts to
       carry forward on your 2019 tax return</1>
     embauche: >
@@ -1096,10 +1094,7 @@ selectionRégime:
   page:
     titre: Social scheme selection
   titre: Which social scheme would you like to explore?
-simlateurs:
-  warning:
-    artiste-auteur: This simulator allows you to estimate the amount of your
-      contributions for the year 2020 based on your projected income.
+
 simulateurs:
   accueil:
     description: >-

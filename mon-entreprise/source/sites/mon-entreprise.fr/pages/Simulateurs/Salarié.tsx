@@ -58,7 +58,7 @@ function SeoExplanations() {
 
 	return (
 		<Trans i18nKey="pages.simulateurs.salarié.explication seo">
-			<h2>Calculer son salaire net</h2>
+			<h2>Comment calculer le salaire net ?</h2>
 
 			<p>
 				Lors de l'entretien d'embauche l'employeur propose en général une
@@ -96,7 +96,7 @@ function SeoExplanations() {
 				.
 			</p>
 
-			<h2>Coût d'embauche</h2>
+			<h2>Comment calculer le coût d'embauche ?</h2>
 
 			<p>
 				Si vous cherchez à embaucher, vous pouvez calculer le coût total de la
@@ -154,19 +154,15 @@ export const SalarySimulation = () => {
 				}
 			/>
 			<br />
-			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
-			 * le simulateur de chômage partiel sur son site. */}
-			{!document.referrer?.includes('code.travail.gouv.fr') && (
-				<Banner icon={'😷'}>
-					<Trans>
-						<strong>Covid-19 et chômage partiel </strong>:{' '}
-						<Link to={sitePaths.simulateurs['chômage-partiel']}>
-							Calculez votre indemnité
-						</Link>
-					</Trans>
-				</Banner>
-			)}
 			<PreviousSimulationBanner />
+			<Banner icon={'👨‍✈️'}>
+				<Trans>
+					Vous êtes dirigeant d'une SAS(U) ?{' '}
+					<Link to={sitePaths.simulateurs.sasu}>
+						Accéder au simulateur de revenu dédié
+					</Link>
+				</Trans>
+			</Banner>
 		</>
 	)
 }

@@ -1,6 +1,7 @@
 ############
 # Redirects following architectural changes
 
+# FR | coronavirus -> simulateurs/chômage-partiel
 [[redirects]]
   from="/coronavirus"
   to="/simulateurs/ch%C3%B4mage-partiel"
@@ -17,7 +18,7 @@
   to="/calcultors/salary"
   status = 301
 
-# EN | simulator -> calculator
+# EN | simulators -> calculators
 [[redirects]]
   from="/simulators/*"
   to="/calcultors/:splat"
@@ -27,6 +28,12 @@
 [[redirects]]
   from="/simulateurs/salari%C3%A9"
   to="/simulateurs/salaire-brut-net"
+  status = 301
+
+# FR | assimilé-salarié -> dirigeant-SASU
+[[redirects]]
+  from="/simulateurs/assimil%C3%A9-salari%C3%A9"
+  to="/simulateurs/dirigeant-sasu"
   status = 301
 
 
