@@ -1,3 +1,4 @@
+import RuleLink from 'Components/RuleLink'
 import SalaryExplanation from 'Components/SalaryExplanation'
 import Warning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
@@ -7,7 +8,6 @@ import Meta from 'Components/utils/Meta'
 import React, { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
-import RuleLink from 'Components/RuleLink'
 
 export default function RémunérationSASU() {
 	const { t } = useTranslation()
@@ -38,11 +38,11 @@ export default function RémunérationSASU() {
 			{!inIframe && (
 				<h1>
 					<Trans i18nKey="pages.simulateurs.sasu.titre">
-						Simulateur de revenus pour dirigeant de SAS(U)
+						Simulateur de revenus pour dirigeant de SASU
 					</Trans>
 				</h1>
 			)}
-			<Warning simulateur="sasu" />
+			<Warning simulateur="SASU" />
 			<Simulation
 				config={assimiléConfig}
 				explanations={<SalaryExplanation />}
@@ -53,8 +53,6 @@ export default function RémunérationSASU() {
 }
 
 function SeoExplanations() {
-	const { i18n } = useTranslation()
-
 	return (
 		<Trans i18nKey="pages.simulateurs.dirigean sasu.explication seo">
 			<h2>Comment calculer le salaire d'un dirigeant de SASU ? </h2>
@@ -82,8 +80,10 @@ function SeoExplanations() {
 
 			<p>
 				Il peut en revanche prétendre à la{' '}
-				<RuleLink dottedName="contrat salarié . ">réduction ACRE</RuleLink> en
-				debut d'activité, sous certaines conditions.
+				<RuleLink dottedName="dirigeant . assimilé salarié . réduction ACRE">
+					réduction ACRE
+				</RuleLink>{' '}
+				en debut d'activité, sous certaines conditions.
 			</p>
 
 			<p>

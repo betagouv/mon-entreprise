@@ -35,7 +35,7 @@ const infereDirigeantFromCompanyDetails = (company: Company | null) => {
 	}
 
 	if (['SASU', 'SAS'].includes(company.statutJuridique ?? '')) {
-		return 'sasu'
+		return 'SASU'
 	}
 
 	return null
@@ -121,7 +121,7 @@ export default function SocialSecurity() {
 										<h3>Calculer mon revenu net de cotisations</h3>
 										<p className="ui__ notice">
 											Estimez précisément le montant de vos cotisations grâce au
-											simulateur spécifique {{ régime: dirigeant }} de l'Urssaf
+											simulateur {{ régime: dirigeant }} de l'Urssaf
 										</p>
 									</Trans>
 									<div className="ui__ small simple button hide-mobile">
@@ -138,7 +138,7 @@ export default function SocialSecurity() {
 											pathname: sitePaths.simulateurs['chômage-partiel']
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('😷')}</div>
+										<div className="ui__ big box-icon">{emoji('🕟')}</div>
 										<Trans i18nKey="gérer.choix.chomage-partiel">
 											<h3>Activité partielle</h3>
 											<p className="ui__ notice">

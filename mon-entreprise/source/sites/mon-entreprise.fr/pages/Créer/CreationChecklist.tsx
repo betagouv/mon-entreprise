@@ -500,12 +500,12 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					<Link
 						className="ui__ interactive card button-choice lighter-bg"
 						to={{
-							pathname: sitePaths.simulateurs.sasu,
+							pathname: sitePaths.simulateurs.SASU,
 							state: { fromCréer: true }
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.assimilé">
-							<p>Simulateur de rémunération pour dirigeant de SAS(U)</p>
+							<p>Simulateur de rémunération pour dirigeant de SASU</p>
 							<small>
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.

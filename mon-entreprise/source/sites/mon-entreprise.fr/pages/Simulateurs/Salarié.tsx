@@ -158,7 +158,7 @@ export const SalarySimulation = () => {
 			<Banner icon={'👨‍✈️'}>
 				<Trans>
 					Vous êtes dirigeant d'une SAS(U) ?{' '}
-					<Link to={sitePaths.simulateurs.sasu}>
+					<Link to={sitePaths.simulateurs.SASU}>
 						Accéder au simulateur de revenu dédié
 					</Link>
 				</Trans>

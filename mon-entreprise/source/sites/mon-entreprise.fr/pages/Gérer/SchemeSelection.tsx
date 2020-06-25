@@ -21,7 +21,7 @@ export default function SchemeChoice() {
 			</h1>
 			<p>
 				<Link
-					to={sitePaths.simulateurs.sasu}
+					to={sitePaths.simulateurs.SASU}
 					className="ui__ interactive card light-bg button-choice"
 				>
 					{emoji('☂')}

@@ -64,10 +64,7 @@ export default function Simulateurs() {
 					path={sitePaths.simulateurs.comparaison}
 					component={SchemeComparaison}
 				/>
-				<Route
-					path={sitePaths.simulateurs['assimilé-salarié']}
-					component={AssimiléSalarié}
-				/>
+				<Route path={sitePaths.simulateurs.SASU} component={AssimiléSalarié} />
 				<Route
 					path={sitePaths.simulateurs.indépendant}
 					component={Indépendant}

@@ -49,7 +49,7 @@ const sitePathsFr = {
 	},
 	simulateurs: {
 		index: '/simulateurs',
-		sasu: '/dirigeant-sasu',
+		SASU: '/dirigeant-sasu',
 		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
@@ -99,7 +99,7 @@ const sitePathsEn = {
 	},
 	simulateurs: {
 		index: '/calculators',
-		sasu: '/SASU-chairman',
+		SASU: '/sasu-chairman',
 		indépendant: '/independant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/social-scheme-comparaison',

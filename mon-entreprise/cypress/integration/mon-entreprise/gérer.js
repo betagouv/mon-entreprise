@@ -12,11 +12,9 @@ describe('Manage page test', function() {
 			.first()
 			.type('menoz')
 		cy.contains('834364291').click()
-		cy.contains('assimilé-salarié').click()
+		cy.contains(fr ? 'simulateur SASU' : 'simulator for SASU').click()
 		cy.location().should(loc => {
-			expect(loc.pathname).to.match(
-				fr ? /assimil%C3%A9-salari%C3%A9$/ : /assimile-salarie$/
-			)
+			expect(loc.pathname).to.match(fr ? /dirigeant-sasu$/ : /sasu-chairman$/)
 		})
 	})
 	it('should allow auto entrepreneur to access the corresponding income simulator', function() {

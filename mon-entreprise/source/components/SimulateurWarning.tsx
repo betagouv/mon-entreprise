@@ -49,7 +49,7 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
-				{simulateur === 'sasu' && (
+				{simulateur === 'SASU' && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.sasu">
 							L'impôt sur les société et la gestion des dividendes ne sont pas

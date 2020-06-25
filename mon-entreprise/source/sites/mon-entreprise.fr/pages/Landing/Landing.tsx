@@ -46,7 +46,9 @@ export default function Landing() {
 						className="ui__ plain small button"
 					>
 						{emoji('😷')}{' '}
-						<Trans>Covid-19 : Calculer l'impact du chômage partiel</Trans>
+						<Trans i18nKey="landing.covid19">
+							Covid-19 : Calculer l'impact du chômage partiel
+						</Trans>
 					</Link>
 				</div>
 				<Link

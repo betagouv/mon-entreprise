@@ -30,7 +30,7 @@
   to="/simulateurs/salaire-brut-net"
   status = 301
 
-# FR | assimilé-salarié -> dirigeant-SASU
+# FR | assimilé-salarié -> dirigeant-sasu
 [[redirects]]
   from="/simulateurs/assimil%C3%A9-salari%C3%A9"
   to="/simulateurs/dirigeant-sasu"
