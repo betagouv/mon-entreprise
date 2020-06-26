@@ -68,38 +68,51 @@ const AnimatedDiv = animated(({ score, value }) => {
 					font-size: 110%;
 				`}
 			>
-				<p css="display: flex; align-items: center; justify-content: center">
-					<img src={BallonGES} css="width: 8rem" />
-					<span css="font-weight: bold; font-size: 260%; margin-bottom: .3rem">
-						<span css="width: 3.6rem; text-align: right; display: inline-block">
-							{Math.round(value / 1000)}
-						</span>{' '}
-						tonnes
-					</span>
-				</p>
-				<div
-					css={`
-						background: #ffffff3d;
-						width: 90%;
-						border-radius: 0.6rem;
-						margin: 0 auto;
-						padding-top: 0.6rem;
+				<div css="display: flex; align-items: center; justify-content: center">
+					<img src={BallonGES} css="width: 30%" />
+					<div>
+						<div css="font-weight: bold; font-size: 280%; margin-bottom: .3rem">
+							<span css="width: 3.6rem; text-align: right; display: inline-block">
+								{Math.round(value / 1000)}
+							</span>{' '}
+							tonnes
+						</div>
+						<div
+							css={`
+								background: #ffffff3d;
+								border-radius: 0.6rem;
+								margin: 0 auto;
+								padding: 0.4rem 1rem;
 
-						> p {
-							display: flex;
-							justify-content: space-around;
-						}
-					`}
-				>
-					<p>
-						<span>{emoji('🇫🇷 ')}</span>
-						<span> Moyenne française</span> <span> 11 tonnes</span>
-					</p>
-					<p>
-						<span>{emoji('😇 ')} </span>
-						<span>Objectif neutralité</span>
-						<span>2 tonnes</span>
-					</p>
+								> div {
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;
+								}
+								strong {
+									font-weight: bold;
+								}
+								> img {
+									margin: 0 0.6rem !important;
+								}
+							`}
+						>
+							<div>
+								<span>
+									{emoji('🇫🇷 ')}
+									moyenne{' '}
+								</span>{' '}
+								<strong> 11 tonnes</strong>
+							</div>
+							<div>
+								<span>
+									{emoji('😇 ')}
+									objectif{' '}
+								</span>
+								<strong>2 tonnes</strong>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div css="display: flex; flex-direction: column;">
