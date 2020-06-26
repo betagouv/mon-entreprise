@@ -111,6 +111,14 @@ const AnimatedDiv = animated(({ score, value }) => {
 								</span>
 								<strong>2 tonnes</strong>
 							</div>
+							<div css="margin-top: .4rem;justify-content: flex-end !important">
+								<a
+									css="color: inherit"
+									href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+								>
+									Comment ça ?
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
