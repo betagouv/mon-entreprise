@@ -21,14 +21,14 @@ import { extractCategories } from '../sites/publicodes/chart'
 
 export const buildEndURL = (analysis) => {
 	const total = analysis.targets[0].nodeValue,
-		details = 's2t4l5n1f1a4b2',
 		categories = extractCategories(analysis),
 		detailsString = categories.reduce(
-			(memo, next) => memo + next.name[0] + Math.round(next.nodeValue / 1000),
+			(memo, next) =>
+				memo + next.name[0] + Math.round(next.nodeValue / 100) / 10,
 			''
 		)
 
-	return `/fin?total=${Math.round(total)}&détails=${detailsString}`
+	return `/fin?total=${Math.round(total)}&details=${detailsString}`
 }
 
 export default function PreviousSimulationBanner() {
