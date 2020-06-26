@@ -16,19 +16,22 @@ const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
 	transportShare = 1 / 4,
 	transportClimateBudget = climateBudgetPerDay * transportShare
 
-export default ({}) => {
-	const analysis = useSelector(analysisWithDefaultsSelector)
+export const extractCategories = (analysis) => {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const bilan = getRule('bilan')
 	if (!bilan) return null
 
-	const categories = sortBy(
+	return sortBy(
 		({ nodeValue }) => -nodeValue,
 		bilan.formule.explanation.explanation.map(
 			(category) => category.explanation
 		)
 	)
+}
+export default ({}) => {
+	const analysis = useSelector(analysisWithDefaultsSelector)
+	const categories = extractCategories(analysis)
 
 	const empreinteMaximum = categories.reduce(
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),

@@ -112,7 +112,7 @@ class App extends Component {
 							<Route path="/documentation/:name+" component={RulePage} />
 							<Route path="/documentation" component={RulesList} />
 							<Route path="/simulateur/:name+" component={Simulateur} />
-							<Route path="/fin/:score" component={Fin} />
+							<Route path="/fin" component={Fin} />
 							<Route path="/contribuer/:input?" component={Contribution} />
 							<Route path="/à-propos" component={About} />
 							<Route

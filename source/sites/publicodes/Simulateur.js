@@ -18,6 +18,7 @@ import Chart from './chart/index.js'
 import { Redirect } from 'react-router'
 import SessionBar from 'Components/SessionBar'
 import { isEmpty, symmetricDifference, compose } from 'ramda'
+import { buildEndURL } from 'Components/SessionBar'
 
 let CarbonImpactWithData = withTarget(CarbonImpact)
 const eqValues = compose(isEmpty, symmetricDifference)
@@ -58,9 +59,7 @@ const Simulateur = (props) => {
 				showConversation
 				customEnd={
 					rule.dottedName === 'bilan' ? (
-						<Redirect
-							to={`/fin/${Math.round(analysis.targets[0].nodeValue)}`}
-						/>
+						<Redirect to={buildEndURL(analysis)} />
 					) : rule.description ? (
 						<Markdown source={rule.description} />
 					) : (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useLocation } from 'react-router'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
 import { animated, useSpring, config } from 'react-spring'
@@ -25,7 +25,8 @@ const getBackgroundColor = (score) =>
 	]
 
 export default ({}) => {
-	const { score } = useParams()
+	const query = new URLSearchParams(useLocation().search),
+		score = query.get('total')
 	const { value } = useSpring({
 		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
 		value: +score,
