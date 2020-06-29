@@ -35,6 +35,8 @@ const DesktopShareButton = (props) => {
 		// I prefer to not show the the whole text area selected.
 		e.target.focus()
 		setCopySuccess(true)
+		e.preventDefault()
+		return null
 	}
 
 	return (
