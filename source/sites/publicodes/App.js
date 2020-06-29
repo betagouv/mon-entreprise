@@ -1,7 +1,7 @@
 import Route404 from 'Components/Route404'
 import RulePage from 'Components/RulePage'
 import React, { Component, Suspense } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, Route, Redirect, Switch } from 'react-router-dom'
 import 'Ui/index.css'
 import Provider from '../../Provider'
 import RulesList from '../mon-entreprise.fr/pages/Documentation/RulesList'
@@ -112,7 +112,9 @@ class App extends Component {
 							<Route path="/documentation/:name+" component={RulePage} />
 							<Route path="/documentation" component={RulesList} />
 							<Route path="/simulateur/:name+" component={Simulateur} />
+							{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
 							<Route path="/fin/:score" component={Fin} />
+							<Route path="/fin" component={Fin} />
 							<Route path="/contribuer/:input?" component={Contribution} />
 							<Route path="/à-propos" component={About} />
 							<Route

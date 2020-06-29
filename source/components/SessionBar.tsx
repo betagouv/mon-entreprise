@@ -8,12 +8,30 @@ import { T } from 'Components'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { noUserInputSelector } from 'Selectors/analyseSelectors'
+import {
+	noUserInputSelector,
+	analysisWithDefaultsSelector,
+} from 'Selectors/analyseSelectors'
 import emoji from 'react-easy-emoji'
 import { Button } from 'Components/ui/Button'
 import Answers from './conversation/AnswerList'
 import { useLocation, useHistory } from 'react-router-dom'
 import { last } from 'ramda'
+import { extractCategories } from '../sites/publicodes/chart'
+
+export const buildEndURL = (analysis) => {
+	const total = analysis.targets[0].nodeValue,
+		categories = extractCategories(analysis),
+		detailsString = categories.reduce(
+			(memo, next) =>
+				memo +
+				next.name[0] +
+				(Math.round(next.nodeValue / 10) / 100).toFixed(2),
+			''
+		)
+
+	return `/fin?total=${Math.round(total)}&details=${detailsString}`
+}
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(
@@ -26,6 +44,7 @@ export default function PreviousSimulationBanner() {
 	)
 	const arePreviousAnswers = !!foldedSteps.length
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
+	const analysis = useSelector(analysisWithDefaultsSelector)
 	const history = useHistory()
 	const location = useLocation()
 
@@ -38,6 +57,7 @@ export default function PreviousSimulationBanner() {
 					button {
 						margin: 0 0.2rem;
 					}
+					margin: 0.6rem;
 				`}
 			>
 				{arePreviousAnswers ? (
@@ -73,6 +93,7 @@ export default function PreviousSimulationBanner() {
 				button {
 					margin: 0 0.2rem;
 				}
+				margin: 0.6rem;
 			`}
 		>
 			{arePreviousAnswers && (
@@ -86,7 +107,7 @@ export default function PreviousSimulationBanner() {
 					</Button>
 					<Button
 						className="simple small"
-						onClick={() => history.push('/fin/6666')}
+						onClick={() => history.push(buildEndURL(analysis))}
 					>
 						{emoji('💤 ')}
 						<T>Fin</T>

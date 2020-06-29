@@ -9,23 +9,27 @@ export default ({
 	icônes = '🌍',
 	title,
 	empreinteMaximum,
+	noText,
+	color,
 }) => (
 	<>
-		<div css="color: var(--textColorOnWhite)">
-			<span>{title}</span>
-		</div>
+		{!noText && (
+			<div css="color: var(--textColorOnWhite)">
+				<span>{title}</span>
+			</div>
+		)}
 		<div
 			css={`
 				display: flex;
 				align-items: center;
-				height: 0.85rem;
+				height: 1rem;
 			`}
 		>
 			<span
 				css={`
 					font-size: 140%;
-					width: 2.1rem;
-					margin-left: -2.1rem;
+					width: 2.3rem;
+					margin-left: -2.3rem;
 				`}
 			>
 				{emoji(icônes)}
@@ -44,7 +48,7 @@ export default ({
 					${shadowStyle}
 				`}
 			></span>
-			<Value {...{ nodeValue }} />
+			<Value {...{ color, nodeValue }} />
 		</div>
 	</>
 )

@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	parsedRulesSelector,
+} from 'Selectors/analyseSelectors'
 import { getRuleFromAnalysis, encodeRuleName } from 'Engine/rules'
 import Bar from './Bar'
 import { sortBy } from 'ramda'
@@ -16,19 +19,35 @@ const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
 	transportShare = 1 / 4,
 	transportClimateBudget = climateBudgetPerDay * transportShare
 
-export default ({}) => {
-	const analysis = useSelector(analysisWithDefaultsSelector)
+const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
+export const extractCategories = (analysis) => {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const bilan = getRule('bilan')
 	if (!bilan) return null
-
-	const categories = sortBy(
-		({ nodeValue }) => -nodeValue,
-		bilan.formule.explanation.explanation.map(
-			(category) => category.explanation
-		)
+	const categories = bilan.formule.explanation.explanation.map(
+		(category) => category.explanation
 	)
+
+	return sortCategories(categories)
+}
+export default ({ details, color, noText, noAnimation }) => {
+	const analysis = useSelector(analysisWithDefaultsSelector),
+		rules = useSelector(parsedRulesSelector)
+
+	const categories = analysis?.targets.length
+		? extractCategories(analysis)
+		: details &&
+		  sortCategories(
+				rules['bilan'].formule.explanation.explanation.map((reference) => {
+					const category = rules[reference.dottedName]
+					return {
+						...category,
+						nodeValue: details[category.name[0]],
+					}
+				})
+		  )
+	if (!categories) return null
 
 	const empreinteMaximum = categories.reduce(
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),
@@ -71,17 +90,21 @@ export default ({}) => {
 						margin-left: 2rem;
 
 						@media (min-width: 800px) {
-							width: 35rem;
+							max-width: 35rem;
 						}
 					`}
 				>
 					{categories.map((category) => (
 						<motion.li
-							layoutTransition={{
-								type: 'spring',
-								damping: 100,
-								stiffness: 100,
-							}}
+							layoutTransition={
+								noAnimation
+									? null
+									: {
+											type: 'spring',
+											damping: 100,
+											stiffness: 100,
+									  }
+							}
 							key={category.title}
 							css={`
 								margin: 0.4rem 0;
@@ -96,7 +119,7 @@ export default ({}) => {
 							<Link
 								to={'/documentation/' + encodeRuleName(category.dottedName)}
 							>
-								<Bar {...{ ...category, empreinteMaximum }} />
+								<Bar {...{ ...category, color, noText, empreinteMaximum }} />
 							</Link>
 						</motion.li>
 					))}

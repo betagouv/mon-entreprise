@@ -1,14 +1,15 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
-import { animated, useSpring, config } from 'react-spring'
+import { animated, useSpring } from 'react-spring'
 import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
 
 import BallonGES from './images/ballonGES.svg'
 import SessionBar from 'Components/SessionBar'
+import Chart from './chart'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -25,17 +26,28 @@ const getBackgroundColor = (score) =>
 	]
 
 export default ({}) => {
-	const { score } = useParams()
+	const query = new URLSearchParams(useLocation().search),
+		score = query.get('total') || useParams().score
+
+	// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
+	const encodedDetails = query.get('details'),
+		rehydratedDetails =
+			encodedDetails &&
+			Object.fromEntries(
+				encodedDetails
+					.match(/[a-z][0-9]+\.[0-9][0-9]/g)
+					.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+			)
 	const { value } = useSpring({
 		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
 		value: +score,
 		from: { value: 0 },
 	})
 
-	return <AnimatedDiv value={value} score={score} />
+	return <AnimatedDiv value={value} score={score} details={rehydratedDetails} />
 }
 
-const AnimatedDiv = animated(({ score, value }) => {
+const AnimatedDiv = animated(({ score, value, details }) => {
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true)
@@ -43,7 +55,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 0 auto;">
 			<SessionBar />
-			<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
+			<h1 css="margin: 0;font-size: 160%">Mon empreinte</h1>
 			<motion.div
 				animate={{ scale: [0.85, 1] }}
 				transition={{ duration: 0.2, ease: 'easeIn' }}
@@ -58,7 +70,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 					color: ${textColor};
 					margin: 0 auto;
 					border-radius: 0.6rem;
-					height: 60vh;
+					height: 65vh;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-evenly;
@@ -67,38 +79,62 @@ const AnimatedDiv = animated(({ score, value }) => {
 					font-size: 110%;
 				`}
 			>
-				<p css="display: flex; align-items: center; justify-content: center">
-					<img src={BallonGES} css="width: 8rem" />
-					<span css="font-weight: bold; font-size: 260%; margin-bottom: .3rem">
-						<span css="width: 3.6rem; text-align: right; display: inline-block">
-							{Math.round(value / 1000)}
-						</span>{' '}
-						tonnes
-					</span>
-				</p>
-				<div
-					css={`
-						background: #ffffff3d;
-						width: 90%;
-						border-radius: 0.6rem;
-						margin: 0 auto;
-						padding-top: 0.6rem;
+				<div css="display: flex; align-items: center; justify-content: center">
+					<img src={BallonGES} css="height: 10rem" />
+					<div>
+						<div css="font-weight: bold; font-size: 280%; margin-bottom: .3rem">
+							<span css="width: 3.6rem; text-align: right; display: inline-block">
+								{Math.round(value / 1000)}
+							</span>{' '}
+							tonnes
+						</div>
+						<div
+							css={`
+								background: #ffffff3d;
+								border-radius: 0.6rem;
+								margin: 0 auto;
+								padding: 0.4rem 1rem;
 
-						> p {
-							display: flex;
-							justify-content: space-around;
-						}
-					`}
-				>
-					<p>
-						<span>{emoji('🇫🇷 ')}</span>
-						<span> Moyenne française</span> <span> 11 tonnes</span>
-					</p>
-					<p>
-						<span>{emoji('😇 ')} </span>
-						<span>Objectif neutralité</span>
-						<span>2 tonnes</span>
-					</p>
+								> div {
+									display: flex;
+									justify-content: space-between;
+									flex-wrap: wrap;
+								}
+								strong {
+									font-weight: bold;
+								}
+								> img {
+									margin: 0 0.6rem !important;
+								}
+							`}
+						>
+							<div>
+								<span>
+									{emoji('🇫🇷 ')}
+									moyenne{' '}
+								</span>{' '}
+								<strong> 11 tonnes</strong>
+							</div>
+							<div>
+								<span>
+									{emoji('😇 ')}
+									objectif{' '}
+								</span>
+								<strong>2 tonnes</strong>
+							</div>
+							<div css="margin-top: .2rem;justify-content: flex-end !important">
+								<a
+									css="color: inherit"
+									href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+								>
+									Comment ça ?
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div css="padding: 1rem">
+					<Chart details={details} color={textColor} noAnimation noText />
 				</div>
 
 				<div css="display: flex; flex-direction: column;">
