@@ -103,8 +103,8 @@ class App extends Component {
 									`}
 									alt="Ecolab"
 									src="https://ecolab-transport.netlify.com/images/ecolab.png"
-								/>{' '}
-								- Nos gestes climat
+								/>
+								<span css="margin-bottom: -1px">- Nos gestes climat</span>
 							</Link>
 						</nav>
 						<Switch>
