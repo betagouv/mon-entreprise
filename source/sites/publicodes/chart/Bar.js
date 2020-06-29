@@ -21,14 +21,14 @@ export default ({
 			css={`
 				display: flex;
 				align-items: center;
-				height: 0.85rem;
+				height: 1rem;
 			`}
 		>
 			<span
 				css={`
 					font-size: 140%;
-					width: 2.1rem;
-					margin-left: -2.1rem;
+					width: 2.3rem;
+					margin-left: -2.3rem;
 				`}
 			>
 				{emoji(icônes)}
