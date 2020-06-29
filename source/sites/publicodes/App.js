@@ -92,6 +92,7 @@ class App extends Component {
 									align-items: center;
 									text-decoration: none;
 									font-size: 150%;
+									margin-bottom: 0.4rem;
 								`}
 							>
 								<img
