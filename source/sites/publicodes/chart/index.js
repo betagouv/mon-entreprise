@@ -31,7 +31,7 @@ export const extractCategories = (analysis) => {
 
 	return sortCategories(categories)
 }
-export default ({ details, noText }) => {
+export default ({ details, color, noText, noAnimation }) => {
 	const analysis = useSelector(analysisWithDefaultsSelector),
 		rules = useSelector(parsedRulesSelector)
 
@@ -96,11 +96,15 @@ export default ({ details, noText }) => {
 				>
 					{categories.map((category) => (
 						<motion.li
-							layoutTransition={{
-								type: 'spring',
-								damping: 100,
-								stiffness: 100,
-							}}
+							layoutTransition={
+								noAnimation
+									? null
+									: {
+											type: 'spring',
+											damping: 100,
+											stiffness: 100,
+									  }
+							}
 							key={category.title}
 							css={`
 								margin: 0.4rem 0;
@@ -115,7 +119,7 @@ export default ({ details, noText }) => {
 							<Link
 								to={'/documentation/' + encodeRuleName(category.dottedName)}
 							>
-								<Bar {...{ ...category, noText, empreinteMaximum }} />
+								<Bar {...{ ...category, color, noText, empreinteMaximum }} />
 							</Link>
 						</motion.li>
 					))}

@@ -10,6 +10,7 @@ export default ({
 	title,
 	empreinteMaximum,
 	noText,
+	color,
 }) => (
 	<>
 		{!noText && (
@@ -47,7 +48,7 @@ export default ({
 					${shadowStyle}
 				`}
 			></span>
-			<Value {...{ nodeValue }} />
+			<Value {...{ color, nodeValue }} />
 		</div>
 	</>
 )
