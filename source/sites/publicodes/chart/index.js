@@ -37,7 +37,8 @@ export default ({ details, color, noText, noAnimation }) => {
 
 	const categories = analysis?.targets.length
 		? extractCategories(analysis)
-		: sortCategories(
+		: details &&
+		  sortCategories(
 				rules['bilan'].formule.explanation.explanation.map((reference) => {
 					const category = rules[reference.dottedName]
 					return {
@@ -46,8 +47,7 @@ export default ({ details, color, noText, noAnimation }) => {
 					}
 				})
 		  )
-
-	console.log(categories[0])
+	if (!categories) return null
 
 	const empreinteMaximum = categories.reduce(
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),

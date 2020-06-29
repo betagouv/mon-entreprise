@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
 import { animated, useSpring } from 'react-spring'
@@ -27,14 +27,17 @@ const getBackgroundColor = (score) =>
 
 export default ({}) => {
 	const query = new URLSearchParams(useLocation().search),
-		score = query.get('total'),
-		// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
-		encodedDetails = query.get('details'),
-		rehydratedDetails = Object.fromEntries(
-			encodedDetails
-				.match(/[a-z][0-9]+\.[0-9][0-9]/g)
-				.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
-		)
+		score = query.get('total') || useParams().score
+
+	// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
+	const encodedDetails = query.get('details'),
+		rehydratedDetails =
+			encodedDetails &&
+			Object.fromEntries(
+				encodedDetails
+					.match(/[a-z][0-9]+\.[0-9][0-9]/g)
+					.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+			)
 	const { value } = useSpring({
 		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
 		value: +score,
