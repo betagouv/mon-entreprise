@@ -65,7 +65,7 @@ export default () => {
 				`}
 			>
 				<div>
-					<em>Bientôt validé par</em>
+					<em>En partenariat avec l'</em>
 					{/* Un jour
 				<img
 					css="height: 3rem"
