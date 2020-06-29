@@ -91,7 +91,7 @@ class App extends Component {
 									display: flex;
 									align-items: center;
 									text-decoration: none;
-									font-size: 150%;
+									font-size: 170%;
 									margin-bottom: 0.4rem;
 								`}
 							>
