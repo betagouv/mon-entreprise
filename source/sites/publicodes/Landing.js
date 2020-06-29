@@ -57,7 +57,7 @@ export default () => {
 						margin-bottom: 1rem;
 					}
 					img {
-						margin-left: 1rem;
+						margin-left: 0.4rem;
 					}
 					p {
 						width: 100%;
@@ -65,7 +65,7 @@ export default () => {
 				`}
 			>
 				<div>
-					<em>Bientôt validé par</em>
+					<em>En partenariat avec l'</em>
 					{/* Un jour
 				<img
 					css="height: 3rem"
