@@ -130,7 +130,9 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 						</div>
 					</div>
 				</div>
-				<Chart details={details} noText />
+				<div css="padding: 1rem">
+					<Chart details={details} noText />
+				</div>
 
 				<div css="display: flex; flex-direction: column;">
 					<ShareButton

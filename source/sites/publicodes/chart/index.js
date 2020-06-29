@@ -90,7 +90,7 @@ export default ({ details, noText }) => {
 						margin-left: 2rem;
 
 						@media (min-width: 800px) {
-							width: 35rem;
+							max-width: 35rem;
 						}
 					`}
 				>
