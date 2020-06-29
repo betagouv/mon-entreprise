@@ -22,7 +22,12 @@ export default () => {
 				text-align: center;
 				> img {
 					width: 70%;
-					min-width: 25rem;
+					border-radius: 0.8rem;
+				}
+				@media (max-width: 800px) {
+					> img {
+						width: 95%;
+					}
 				}
 			`}
 		>
