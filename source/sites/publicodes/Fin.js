@@ -32,7 +32,7 @@ export default ({}) => {
 		encodedDetails = query.get('details'),
 		rehydratedDetails = Object.fromEntries(
 			encodedDetails
-				.match(/.{1,4}/g)
+				.match(/[a-z][0-9]+\.[0-9][0-9]/g)
 				.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
 		)
 	const { value } = useSpring({

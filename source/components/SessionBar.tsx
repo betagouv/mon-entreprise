@@ -26,7 +26,7 @@ export const buildEndURL = (analysis) => {
 			(memo, next) =>
 				memo +
 				next.name[0] +
-				(Math.round(next.nodeValue / 100) / 10).toFixed(1),
+				(Math.round(next.nodeValue / 10) / 100).toFixed(2),
 			''
 		)
 
