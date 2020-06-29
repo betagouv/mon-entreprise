@@ -52,7 +52,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 0 auto;">
 			<SessionBar />
-			<h1 css="margin: 0;font-size: 160%">Mon empreinte climat</h1>
+			<h1 css="margin: 0;font-size: 160%">Mon empreinte</h1>
 			<motion.div
 				animate={{ scale: [0.85, 1] }}
 				transition={{ duration: 0.2, ease: 'easeIn' }}
@@ -67,7 +67,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 					color: ${textColor};
 					margin: 0 auto;
 					border-radius: 0.6rem;
-					height: 60vh;
+					height: 65vh;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-evenly;
@@ -77,7 +77,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 				`}
 			>
 				<div css="display: flex; align-items: center; justify-content: center">
-					<img src={BallonGES} css="width: 30%" />
+					<img src={BallonGES} css="height: 10rem" />
 					<div>
 						<div css="font-weight: bold; font-size: 280%; margin-bottom: .3rem">
 							<span css="width: 3.6rem; text-align: right; display: inline-block">
@@ -119,7 +119,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 								</span>
 								<strong>2 tonnes</strong>
 							</div>
-							<div css="margin-top: .4rem;justify-content: flex-end !important">
+							<div css="margin-top: .2rem;justify-content: flex-end !important">
 								<a
 									css="color: inherit"
 									href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
