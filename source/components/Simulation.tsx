@@ -35,25 +35,6 @@ export default function Simulation({
 			{(showConversation || firstStepCompleted) && (
 				<>
 					<Animate.fromTop>
-						<div
-							style={{
-								display: 'flex',
-								justifyContent: 'space-between',
-								marginTop: '1.2rem',
-								marginBottom: '0.6rem',
-								alignItems: 'baseline',
-							}}
-						>
-							{progress < 1 && !noProgressMessage ? (
-								<small css="padding: 0.4rem 0">
-									<T k="simulateurs.précision.défaut">
-										Affinez la simulation en répondant aux questions :
-									</T>
-								</small>
-							) : (
-								<span />
-							)}
-						</div>
 						<Conversation
 							customEnd={customEnd}
 							customEndMessages={customEndMessages}

@@ -25,7 +25,7 @@ export default (props) =>
 	)
 
 const DesktopShareButton = (props) => {
-	const [copySuccess, setCopySuccess] = useState('')
+	const [copySuccess, setCopySuccess] = useState(false)
 	const textAreaRef = useRef(null)
 
 	function copyToClipboard(e) {
@@ -34,7 +34,7 @@ const DesktopShareButton = (props) => {
 		// This is just personal preference.
 		// I prefer to not show the the whole text area selected.
 		e.target.focus()
-		setCopySuccess('Copié !')
+		setCopySuccess(true)
 	}
 
 	return (
@@ -58,30 +58,44 @@ const DesktopShareButton = (props) => {
 					css={`
 						box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
 						border-radius: 0.3rem;
+						border-top-right-radius: 0;
+						border-bottom-right-radius: 0;
     border: 1px solid var(--color);
     padding: 0.2rem 0.4rem;
     width: 60%;
     margin: 0 0 0.4rem;
     background: #fffffff2;
+	height: 1.6rem;
+	
 }
 					`}
 					readOnly
 					ref={textAreaRef}
 					value={props.url}
 				/>
-			</form>
-			{
-				/* Logical shortcut for only displaying the 
+				{
+					/* Logical shortcut for only displaying the 
           button if the copy command exists */
-				document.queryCommandSupported('copy') && (
-					<div>
-						<button className="ui__ button small" onClick={copyToClipboard}>
-							Copier le lien
-						</button>{' '}
-						{copySuccess}
-					</div>
-				)
-			}
+					document.queryCommandSupported('copy') && (
+						<button
+							css={`
+								border-radius: 0.3rem;
+								border-bottom-left-radius: 0;
+								border-top-left-radius: 0;
+								border: 1px solid var(--color);
+								margin-left: -1px;
+								height: 1.6rem;
+								background: #ffffffb3;
+								box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04),
+									inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
+							`}
+							onClick={copyToClipboard}
+						>
+							{!copySuccess ? 'Copier le lien' : 'Copié'}
+						</button>
+					)
+				}
+			</form>
 		</div>
 	)
 }

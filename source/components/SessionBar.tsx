@@ -57,6 +57,7 @@ export default function PreviousSimulationBanner() {
 					button {
 						margin: 0 0.2rem;
 					}
+					margin: 0.6rem;
 				`}
 			>
 				{arePreviousAnswers ? (
@@ -92,6 +93,7 @@ export default function PreviousSimulationBanner() {
 				button {
 					margin: 0 0.2rem;
 				}
+				margin: 0.6rem;
 			`}
 		>
 			{arePreviousAnswers && (
