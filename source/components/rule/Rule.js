@@ -6,7 +6,7 @@ import knownMecanisms from 'Engine/known-mecanisms.yaml'
 import {
 	encodeRuleName,
 	findRuleByDottedName,
-	findRuleByNamespace
+	findRuleByNamespace,
 } from 'Engine/rules'
 import { isEmpty } from 'ramda'
 import React, { Suspense, useContext, useState } from 'react'
@@ -19,7 +19,7 @@ import {
 	exampleAnalysisSelector,
 	flatRulesSelector,
 	noUserInputSelector,
-	ruleAnalysisSelector
+	ruleAnalysisSelector,
 } from 'Selectors/analyseSelectors'
 import Animate from 'Ui/animate'
 import { AttachDictionary } from '../AttachDictionary'
@@ -34,13 +34,13 @@ import './Rule.css'
 let LazySource = React.lazy(() => import('./RuleSource'))
 
 export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
-	const currentExample = useSelector(state => state.currentExample)
+	const currentExample = useSelector((state) => state.currentExample)
 	const flatRules = useSelector(flatRulesSelector)
 	const valuesToShow = !useSelector(noUserInputSelector)
-	const analysedRule = useSelector(state =>
+	const analysedRule = useSelector((state) =>
 		ruleAnalysisSelector(state, { dottedName })
 	)
-	const analysedExample = useSelector(state =>
+	const analysedExample = useSelector((state) =>
 		exampleAnalysisSelector(state, { dottedName })
 	)
 	const sitePaths = useContext(SitePathsContext)
@@ -94,8 +94,8 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 							meta={[
 								{
 									name: 'description',
-									content: description
-								}
+									content: description,
+								},
 							]}
 						/>
 						<RuleHeader
@@ -110,7 +110,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 								acronyme,
 								title,
 								icon,
-								valuesToShow
+								valuesToShow,
 							}}
 						/>
 
@@ -136,7 +136,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 								<Value
 									{...displayedRule}
 									nilValueSymbol={displayedRule.parentDependencies.some(
-										parent => parent?.nodeValue == false
+										(parent) => parent?.nodeValue == false
 									)}
 								/>
 							</div>
@@ -154,19 +154,9 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 								<div style={{ textAlign: 'center', marginTop: '1em' }}>
 									<Link
 										className="ui__ cta plain button"
-										target="_parent"
-										to={
-											dottedName.includes('contrat salarié')
-												? sitePaths.simulateurs.salarié
-												: dottedName.includes('auto-entrepreneur')
-												? sitePaths.simulateurs['auto-entrepreneur']
-												: dottedName.includes('indépendant')
-												? sitePaths.simulateurs.indépendant
-												: // otherwise
-												  sitePaths?.simulateurs?.index
-										}
+										to={'/simulateur/bilan'}
 									>
-										<T>Faire une simulation</T>
+										<T>Faire le test</T>
 									</Link>
 								</div>
 							)}
@@ -180,7 +170,7 @@ export default AttachDictionary(knownMecanisms)(function Rule({ dottedName }) {
 										<T>Rend non applicable les règles suivantes</T> :{' '}
 									</h3>
 									<ul>
-										{displayedRule['rend non applicable'].map(ruleName => (
+										{displayedRule['rend non applicable'].map((ruleName) => (
 											<li key={ruleName}>
 												<RuleLink dottedName={ruleName} />
 											</li>
@@ -221,12 +211,12 @@ function NamespaceRulesList({ namespaceRules }) {
 				<Trans>Pages associées</Trans>
 			</h2>
 			<ul>
-				{namespaceRules.map(r => (
+				{namespaceRules.map((r) => (
 					<li key={r.name}>
 						<Link
 							style={{
 								color: colors.textColorOnWhite,
-								textDecoration: 'underline'
+								textDecoration: 'underline',
 							}}
 							to={
 								sitePaths.documentation.index +
