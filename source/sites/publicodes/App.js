@@ -85,7 +85,15 @@ class App extends Component {
 					</div>
 					<div className="ui__ container">
 						<nav css="display: flex; justify-content: center; margin-top: .6rem">
-							<Link to="/">
+							<Link
+								to="/"
+								css={`
+									display: flex;
+									align-items: center;
+									text-decoration: none;
+									font-size: 130%;
+								`}
+							>
 								<img
 									css={`
 										height: 3rem;
@@ -93,8 +101,10 @@ class App extends Component {
 											height: 2rem;
 										}
 									`}
+									alt="Ecolab"
 									src="https://ecolab-transport.netlify.com/images/ecolab.png"
-								/>
+								/>{' '}
+								- Nos gestes climat
 							</Link>
 						</nav>
 						<Switch>
