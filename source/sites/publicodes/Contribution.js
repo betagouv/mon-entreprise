@@ -46,7 +46,10 @@ export default ({ match }) => {
 			<p>
 				{emoji('➡ ')}Vous connaissez Github ? Dans ce cas, venez contribuer
 				directement sur le projet{' '}
-				<a href="https://github.com/betagouv/ecolab-data/blob/master/CONTRIBUTING.md">
+				<a
+					href="https://github.com/betagouv/ecolab-data/blob/master/CONTRIBUTING.md"
+					target="_blank"
+				>
 					en suivant ce guide
 				</a>
 				.
