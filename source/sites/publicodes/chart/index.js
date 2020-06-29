@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
-import { analysisWithDefaultsSelector } from 'Selectors/analyseSelectors'
+import {
+	analysisWithDefaultsSelector,
+	parsedRulesSelector,
+} from 'Selectors/analyseSelectors'
 import { getRuleFromAnalysis, encodeRuleName } from 'Engine/rules'
 import Bar from './Bar'
 import { sortBy } from 'ramda'
@@ -16,22 +19,35 @@ const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
 	transportShare = 1 / 4,
 	transportClimateBudget = climateBudgetPerDay * transportShare
 
+const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 export const extractCategories = (analysis) => {
 	const getRule = getRuleFromAnalysis(analysis)
 
 	const bilan = getRule('bilan')
 	if (!bilan) return null
-
-	return sortBy(
-		({ nodeValue }) => -nodeValue,
-		bilan.formule.explanation.explanation.map(
-			(category) => category.explanation
-		)
+	const categories = bilan.formule.explanation.explanation.map(
+		(category) => category.explanation
 	)
+
+	return sortCategories(categories)
 }
-export default ({}) => {
-	const analysis = useSelector(analysisWithDefaultsSelector)
-	const categories = extractCategories(analysis)
+export default ({ details, noText }) => {
+	const analysis = useSelector(analysisWithDefaultsSelector),
+		rules = useSelector(parsedRulesSelector)
+
+	const categories = analysis?.targets.length
+		? extractCategories(analysis)
+		: sortCategories(
+				rules['bilan'].formule.explanation.explanation.map((reference) => {
+					const category = rules[reference.dottedName]
+					return {
+						...category,
+						nodeValue: details[category.name[0]],
+					}
+				})
+		  )
+
+	console.log(categories[0])
 
 	const empreinteMaximum = categories.reduce(
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),
@@ -99,7 +115,7 @@ export default ({}) => {
 							<Link
 								to={'/documentation/' + encodeRuleName(category.dottedName)}
 							>
-								<Bar {...{ ...category, empreinteMaximum }} />
+								<Bar {...{ ...category, noText, empreinteMaximum }} />
 							</Link>
 						</motion.li>
 					))}

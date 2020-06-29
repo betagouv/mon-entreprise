@@ -2,13 +2,14 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
-import { animated, useSpring, config } from 'react-spring'
+import { animated, useSpring } from 'react-spring'
 import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
 
 import BallonGES from './images/ballonGES.svg'
 import SessionBar from 'Components/SessionBar'
+import Chart from './chart'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -26,17 +27,24 @@ const getBackgroundColor = (score) =>
 
 export default ({}) => {
 	const query = new URLSearchParams(useLocation().search),
-		score = query.get('total')
+		score = query.get('total'),
+		// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
+		encodedDetails = query.get('details'),
+		rehydratedDetails = Object.fromEntries(
+			encodedDetails
+				.match(/.{1,4}/g)
+				.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+		)
 	const { value } = useSpring({
 		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
 		value: +score,
 		from: { value: 0 },
 	})
 
-	return <AnimatedDiv value={value} score={score} />
+	return <AnimatedDiv value={value} score={score} details={rehydratedDetails} />
 }
 
-const AnimatedDiv = animated(({ score, value }) => {
+const AnimatedDiv = animated(({ score, value, details }) => {
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true)
@@ -122,6 +130,7 @@ const AnimatedDiv = animated(({ score, value }) => {
 						</div>
 					</div>
 				</div>
+				<Chart details={details} noText />
 
 				<div css="display: flex; flex-direction: column;">
 					<ShareButton

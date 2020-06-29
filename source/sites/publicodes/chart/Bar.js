@@ -9,11 +9,14 @@ export default ({
 	icônes = '🌍',
 	title,
 	empreinteMaximum,
+	noText,
 }) => (
 	<>
-		<div css="color: var(--textColorOnWhite)">
-			<span>{title}</span>
-		</div>
+		{!noText && (
+			<div css="color: var(--textColorOnWhite)">
+				<span>{title}</span>
+			</div>
+		)}
 		<div
 			css={`
 				display: flex;

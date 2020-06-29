@@ -24,7 +24,9 @@ export const buildEndURL = (analysis) => {
 		categories = extractCategories(analysis),
 		detailsString = categories.reduce(
 			(memo, next) =>
-				memo + next.name[0] + Math.round(next.nodeValue / 100) / 10,
+				memo +
+				next.name[0] +
+				(Math.round(next.nodeValue / 100) / 10).toFixed(1),
 			''
 		)
 
