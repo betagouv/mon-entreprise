@@ -28,7 +28,7 @@ module.exports = {
 	},
 	plugins: [
 		...(common.plugins || []),
-		...HTMLPlugins({ prodPath }),
+		...HTMLPlugins({ prodPath, injectTrackingScript: true }),
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional

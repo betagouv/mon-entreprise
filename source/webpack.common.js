@@ -112,10 +112,10 @@ module.exports.HTMLPlugins = ({
 		template: 'index.html',
 		logo: 'https://ecolab-transport.netlify.app/images/ecolab.png',
 		chunks: ['publicodes'],
-
 		title: 'Ecolab - Climat',
 		description: 'Connaissez-vous votre empreinte sur le climat ?',
 		filename: 'publicodes.html',
+		injectTrackingScript,
 		...(prodPath ? { base: prodPath } : {}),
 	}),
 ]
