@@ -55,7 +55,7 @@ const DesktopShareButton = (props) => {
 				<Icon color={props.color} />
 				{props.label && <span>{props.label}</span>}
 			</div>
-			<form>
+			<form css="text-align: center">
 				<input
 					css={`
 						box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
