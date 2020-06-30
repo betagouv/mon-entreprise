@@ -6,6 +6,7 @@ import 'Ui/index.css'
 import Provider from '../../Provider'
 import RulesList from '../mon-entreprise.fr/pages/Documentation/RulesList'
 import About from './About'
+import Privacy from './Privacy'
 import Contribution from './Contribution'
 import Landing from './Landing'
 import Simulateur from './Simulateur'
@@ -130,6 +131,7 @@ class App extends Component {
 							<Route path="/fin" component={Fin} />
 							<Route path="/contribuer/:input?" component={Contribution} />
 							<Route path="/à-propos" component={About} />
+							<Route path="/vie-privée" component={Privacy} />
 							<Route
 								path="/studio"
 								component={() => (

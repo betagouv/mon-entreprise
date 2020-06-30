@@ -84,6 +84,8 @@ export default () => {
 					Comment contribuer
 				</a>
 				<DocumentationButton />
+				{emoji('🙈 ')}
+				<Link to="/vie-privée">Vie privée</Link>
 			</footer>
 		</div>
 	)
