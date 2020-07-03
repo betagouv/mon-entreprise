@@ -32,6 +32,9 @@ export default function DateInput({
 			if (+year < 1700) {
 				return
 			}
+			if (year.length > 4) {
+				return
+			}
 			if ([day, month, year].some(x => Number.isNaN(+x))) {
 				return
 			}

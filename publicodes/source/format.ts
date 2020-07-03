@@ -148,7 +148,7 @@ export function formatValue(
 		return '-'
 	}
 	return typeof nodeValue === 'string'
-		? capitalise0(nodeValue)
+		? capitalise0(nodeValue.replace('\\n', '\n'))
 		: typeof value === 'object' && 'API' in value && value.API === 'commune'
 		? formatCommune(nodeValue as Commune)
 		: typeof nodeValue === 'object'

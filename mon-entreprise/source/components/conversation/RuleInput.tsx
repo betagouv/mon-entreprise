@@ -12,6 +12,8 @@ import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import DateInput from './DateInput'
 import TextInput from './TextInput'
+import SelectEuropeCountry from './select/SelectEuropeCountry'
+import ParagrapheInput from './ParagrapheInput'
 
 type Value = string | number | object | boolean | null
 export type RuleInputProps<Name extends string = DottedName> = {
@@ -68,6 +70,8 @@ export default function RuleInput<Name extends string = DottedName>({
 	}
 	if (rule.API && rule.API === 'commune')
 		return <SelectCommune {...commonProps} onSubmit={onSubmit} />
+	if (rule.API && rule.API === 'pays européen')
+		return <SelectEuropeCountry {...commonProps} onSubmit={onSubmit} />
 	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
@@ -129,6 +133,9 @@ export default function RuleInput<Name extends string = DottedName>({
 
 	if (rule.type === 'texte') {
 		return <TextInput {...commonProps} />
+	}
+	if (rule.type === 'paragraphe') {
+		return <ParagrapheInput {...commonProps} />
 	}
 
 	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />
