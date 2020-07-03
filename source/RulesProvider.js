@@ -26,10 +26,14 @@ export default connect(
 			super(props)
 
 			if (process.env.NODE_ENV === 'development' && !props.dataBranch) {
-				import('../../../ecolab-data/data/co2.yaml').then((src) => {
-					this.props.setRules(src.default)
-					this.removeLoader()
-				})
+				var req = require.context('../../ecolab-data/data/', true, /\.(yaml)$/)
+
+				const rules = req.keys().reduce((memo, key) => {
+					const jsonRuleSet = req(key)
+					return { ...memo, ...jsonRuleSet }
+				}, {})
+				this.props.setRules(rules)
+				this.removeLoader()
 			} else {
 				fetch(props.rulesURL, { mode: 'cors' })
 					.then((response) => response.json())
