@@ -1,4 +1,3 @@
-https://mon-entreprise.fr
 https://mon-entreprise.fr/créer
 https://mon-entreprise.fr/créer/EI
 https://mon-entreprise.fr/créer/EIRL
@@ -9,7 +8,7 @@ https://mon-entreprise.fr/créer/SASU
 https://mon-entreprise.fr/créer/auto-entrepreneur
 https://mon-entreprise.fr/créer/auto-entrepreneur-EIRL
 https://mon-entreprise.fr/créer/SA
-https://mon-entreprise.fr/créer/créer/après-la-création
+https://mon-entreprise.fr/créer/après-la-création
 https://mon-entreprise.fr/créer/statut-juridique
 https://mon-entreprise.fr/créer/statut-juridique/liste
 https://mon-entreprise.fr/créer/statut-juridique/responsabilité
@@ -21,20 +20,22 @@ https://mon-entreprise.fr/gérer
 https://mon-entreprise.fr/gérer/embaucher
 https://mon-entreprise.fr/gérer/sécurité-sociale
 https://mon-entreprise.fr/gérer/aide-declaration-independants
-https://mon-entreprise.fr/gérer/aide-declaration-independants/récapitulatif
+https://mon-entreprise.fr/gérer/demande-mobilité
 https://mon-entreprise.fr/simulateurs
-https://mon-entreprise.fr/simulateurs/assimilé-salarié
+https://mon-entreprise.fr/simulateurs/dirigeant-sasu
 https://mon-entreprise.fr/simulateurs/indépendant
 https://mon-entreprise.fr/simulateurs/auto-entrepreneur
 https://mon-entreprise.fr/simulateurs/comparaison-régimes-sociaux
-https://mon-entreprise.fr/simulateurs/salarié
+https://mon-entreprise.fr/simulateurs/salaire-brut-net
 https://mon-entreprise.fr/simulateurs/artiste-auteur
-https://mon-entreprise.fr/économie-collaborative
-https://mon-entreprise.fr/économie-collaborative/votre-situation
+https://mon-entreprise.fr/simulateurs/chômage-partiel
+https://mon-entreprise.fr/simulateurs/économie-collaborative
+https://mon-entreprise.fr/simulateurs/économie-collaborative/votre-situation
 https://mon-entreprise.fr/nouveautés
-https://mon-entreprise.fr/documentation
-https://mon-entreprise.fr/coronavirus
+https://mon-entreprise.fr/stats
+https://mon-entreprise.fr/budget
 https://mon-entreprise.fr/intégration
 https://mon-entreprise.fr/intégration/iframe
 https://mon-entreprise.fr/intégration/bibliothèque-de-calcul
+https://mon-entreprise.fr/documentation
 

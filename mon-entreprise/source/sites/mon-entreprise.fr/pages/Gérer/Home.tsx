@@ -193,7 +193,7 @@ export default function SocialSecurity() {
 							}
 						`}
 					>
-						{régime === 'indépendant' &&
+						{dirigeant === 'indépendant' &&
 							i18n.language === 'fr' &&
 							process.env.HEAD !== 'master' && (
 								<Link
