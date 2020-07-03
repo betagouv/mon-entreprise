@@ -89,15 +89,19 @@ export default function Budget() {
 						<tfoot>
 							<tr>
 								<td>Total</td>
-								<td>
-									{formatValue(sum(Object.values(budget[2020]['T1'])), {
-										language,
-										displayedUnit: '€'
-									})}
-								</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
+								{quarters.map(q => {
+									const value = sum(Object.values(budget[2020]?.[q] ?? {}))
+									return (
+										<td key={q}>
+											{value
+												? formatValue(value, {
+														displayedUnit: '€',
+														language
+												  })
+												: '-'}
+										</td>
+									)
+								})}
 							</tr>
 						</tfoot>
 					</RessourcesAllocationTable>
