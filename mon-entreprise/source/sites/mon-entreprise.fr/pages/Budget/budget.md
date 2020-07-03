@@ -4,32 +4,19 @@ manière dont elles sont employées.
 
 ## Principes
 
-Notre organisation souscrit aux principes établis dans le [manifeste des
-startups d’État](https://beta.gouv.fr/approche/manifeste) que nous rappelons ici :
+Notre organisation souscrit aux principes établis dans le [manifeste beta.gouv](https://beta.gouv.fr/approche/manifeste) que nous rappelons ici :
 
-> ### Considère les besoins des usagers avant ceux de l’administration
+> ### Les besoins des utilisateurs sont prioritaires sur les besoins de l’administration
+>
+> Que ce soient des usagers (citoyens, entreprises, associations, etc) ou des agents publics, l’objectif premier est de construire un service utile et facile à utiliser, qui résolve efficacement un problème ou qui contribue à la mise en oeuvre d’une politique publique. Le choix des priorités de développement du service est donc guidé par les retours de ses utilisateurs et non par les besoins de la structure.
 
-> Il cible ses investissements sur des sujets qui en valent la peine,
-> c’est-à-dire où existe un réel irritant supporté par des milliers ou des
-> millions de personnes. Il ne soutient pas d’investissement qui n’ait obtenu de
-> plébiscite usagers au-delà de 6 mois, il incite donc à la confrontation la
-> plus rapide au terrain.
+> ### L’équipe travaille sans préjuger à l’avance du résultat final et progresse en se confrontant le plus rapidement possible à de premiers utilisateurs
+>
+> Dans un premier temps, la nature et l’étendue des besoins des utilisateurs ne sont pas déterminées avec précision. L’équipe lance rapidement une première version fonctionnelle du service de façon à tester son utilité et à l’ajuster selon les retours du terrain par des améliorations successives, appelées « itérations » ; le service, imparfait au départ, s’améliore en continu pour élargir progressivement le périmètre couvert et maximiser son impact. En particulier, l’équipe ne suit jamais de cahier des charges.
 
-> ### Pilote ses équipes par la finalité plus que par les moyens
-
-> Son mode de gestion repose sur la confiance. Une autonomie maximale est
-> concédée aux équipes, pilotées uniquement par leurs objectifs d’impact et non
-> par leurs moyens. Il veille en particulier à ne leur imposer aucune des
-> contraintes inhérentes à la structure (comitologie, communication, achat,
-> standard technologique…).
-
-> ### S’améliore en continu plus qu’il n’obéit à un plan
-
-> Il s’impose à lui-même la méthode frugale et incrémentale qu’il promeut. En
-> particulier, son objectif initial est de lancer le plus rapidement possible
-> une première startup puis d’améliorer en continu ses méthodes, ses produits et
-> les compétences de ses membres. Dans son portefeuille, rien n’est en
-> maintenance, tout est soit en vie, soit stoppé.
+> ### Le mode de gestion de l’équipe repose sur la confiance.
+>
+> Une fois son objectif fixé, une autonomie la plus large possible lui est accordée : l’équipe a toute latitude pour prendre les décisions nécessaires au succès du service ; elle a la main sur les décisions opérationnelles (recrutement, communication, organisation interne, gestion du budget alloué). Les commanditaires veillent à imposer le minimum des contraintes inhérentes à la structure (comitologie, reporting, communication, achat, standard technologique) afin de garantir à l’équipe un espace de liberté pour innover. En contrepartie de cette autonomie, l’équipe assure une transparence la plus large possible sur son travail (code source ouvert, mesure de l’impact publique, démonstrations fréquentes, documentation facilement accessible)
 
 ---
 
@@ -81,7 +68,7 @@ expertes provenant du réseau des URSSAF.
   Nous utilisons une petite équipe de développeurs freelances, qui sont
   pluridisciplinaires aussi bien sur les aspects techniques, stratégiques et
   métiers. Les rémunérations suivent
-  [la grille des startups d’État](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
+  [la grille de beta.gouv](https://doc.incubateur.net/communaute/travailler-a-beta-gouv/recrutement/remuneration).
 
 - **Logiciels et hébergement 💻**
 

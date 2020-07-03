@@ -100,7 +100,9 @@ async function fetchSimulators(dt) {
 		const resultSimulateurs = dataSimulateurs
 			.filter(({ label }) =>
 				[
+					'/salaire-brut-net',
 					'/salarié',
+					'/chômage-partiel',
 					'/auto-entrepreneur',
 					'/artiste-auteur',
 					'/indépendant',
@@ -143,10 +145,13 @@ async function fetchSimulators(dt) {
 		const groupSimulateursIframesVisits = ({ label }) =>
 			label.startsWith('/coronavirus')
 				? '/chômage-partiel'
-				: label.startsWith('/simulateur-embauche')
+				: label.startsWith('/simulateur-embauche') ||
+				  label === '/salaire-brut-net'
 				? '/salarié'
 				: label.startsWith('/simulateur-autoentrepreneur')
 				? '/auto-entrepreneur'
+				: label === '/assimilé-salarié'
+				? '/dirigeant-sasu'
 				: label
 
 		const sumVisits = (acc, { nb_visits }) => acc + nb_visits

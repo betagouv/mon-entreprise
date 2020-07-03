@@ -116,11 +116,7 @@ module.exports = {
 			new PrerenderSPAPlugin({
 				...prerenderConfig(),
 				outputDir: path.resolve('dist', 'prerender', 'infrance'),
-				routes: [
-					'/',
-					'/social-security/salaried',
-					'/iframes/simulateur-embauche'
-				],
+				routes: ['/', '/calculators/salary', '/iframes/simulateur-embauche'],
 				indexPath: path.resolve('dist', 'infrance.html')
 			}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
@@ -129,10 +125,10 @@ module.exports = {
 				outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
 				routes: [
 					'/',
-					'/simulateurs/salarié',
+					'/simulateurs/salaire-brut-net',
 					'/simulateurs/auto-entrepreneur',
 					'/simulateurs/artiste-auteur',
-					'/simulateurs/assimilé-salarié',
+					'/simulateurs/dirigeant-sasu',
 					'/simulateurs/indépendant',
 					'/simulateurs/chômage-partiel',
 					'/créer',

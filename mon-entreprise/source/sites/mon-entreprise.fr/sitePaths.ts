@@ -49,11 +49,11 @@ const sitePathsFr = {
 	},
 	simulateurs: {
 		index: '/simulateurs',
-		'assimilé-salarié': '/assimilé-salarié',
+		SASU: '/dirigeant-sasu',
 		indépendant: '/indépendant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/comparaison-régimes-sociaux',
-		salarié: '/salarié',
+		salarié: '/salaire-brut-net',
 		'artiste-auteur': '/artiste-auteur',
 		'chômage-partiel': '/chômage-partiel',
 		économieCollaborative: {
@@ -98,12 +98,12 @@ const sitePathsEn = {
 		formulaireMobilité: '/posting-demand'
 	},
 	simulateurs: {
-		index: '/simulators',
-		'assimilé-salarié': '/assimile-salarie',
+		index: '/calculators',
+		SASU: '/sasu-chairman',
 		indépendant: '/independant',
 		'auto-entrepreneur': '/auto-entrepreneur',
 		comparaison: '/social-scheme-comparaison',
-		salarié: '/salaried',
+		salarié: '/salary',
 		'artiste-auteur': '/artist-author',
 		'chômage-partiel': '/partial-unemployement',
 		économieCollaborative: {

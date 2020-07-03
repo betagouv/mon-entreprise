@@ -46,7 +46,9 @@ export default function Landing() {
 						className="ui__ plain small button"
 					>
 						{emoji('😷')}{' '}
-						<Trans>Covid-19 : Calculer l'impact du chômage partiel</Trans>
+						<Trans i18nKey="landing.covid19">
+							Covid-19 : Calculer l'impact du chômage partiel
+						</Trans>
 					</Link>
 				</div>
 				<Link
@@ -105,8 +107,8 @@ export default function Landing() {
 						<strong>équipe autonome et pluridisciplinaire</strong> au sein de l’
 						<a href="https://www.urssaf.fr">Urssaf</a>. Nous avons à coeur
 						d’être au près de vos besoins afin d’améliorer en permanence ce site
-						conformément à la méthode des{' '}
-						<a href="https://beta.gouv.fr">Startup d’État</a>.
+						conformément à l'approche{' '}
+						<a href="https://beta.gouv.fr/approche/manifeste">beta.gouv.fr</a>.
 					</p>
 					<p>
 						Nous avons développé ce site pour{' '}

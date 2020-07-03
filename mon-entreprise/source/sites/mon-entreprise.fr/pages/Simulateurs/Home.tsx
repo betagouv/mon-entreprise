@@ -25,7 +25,7 @@ export function useSimulatorsMetadata() {
 				'simulateurs.résumé.assimilé',
 				"Calculer le revenu d'un dirigeant de SAS, SASU ou SARL minoritaire"
 			),
-			sitePath: sitePaths.simulateurs['assimilé-salarié']
+			sitePath: sitePaths.simulateurs.SASU
 		},
 		{
 			name: t('Indépendant'),

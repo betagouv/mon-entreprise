@@ -49,11 +49,18 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
-
+				{simulateur === 'SASU' && (
+					<li>
+						<Trans i18nKey="simulateurs.warning.sasu">
+							L'impôt sur les société et la gestion des dividendes ne sont pas
+							encore implémentées.
+						</Trans>
+					</li>
+				)}
 				{simulateur === 'artiste-auteur' && (
 					<>
 						<li>
-							<Trans i18nKey="simulateurs.warning.artiste-auteur">
+							<Trans i18nKey="simulateurs.warning.artiste-auteur.1">
 								Cette estimation est proposée à titre indicatif. Elle est faite
 								à partir des éléments réglementaires applicables et des éléments
 								que vous avez saisis, mais elle ne tient pas compte de
@@ -62,7 +69,7 @@ export default function SimulateurWarning({
 							</Trans>
 						</li>
 						<li>
-							<Trans i18nKey="simlateurs.warning.artiste-auteur">
+							<Trans i18nKey="simulateurs.warning.artiste-auteur.2">
 								Ce simulateur permet d'estimer le montant de vos cotisations
 								pour l'année 2020 à partir de votre revenu projeté
 							</Trans>

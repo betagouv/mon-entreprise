@@ -18,7 +18,7 @@ const feedbackBlacklist = [
 	['entreprise', 'statutJuridique', 'index'],
 	['simulateurs', 'indépendant'],
 	['simulateurs', 'auto-entrepreneur'],
-	['simulateurs', 'assimilé-salarié'],
+	['simulateurs', 'sasu'],
 	['simulateurs', 'salarié'],
 	['coronavirus', 'chômagePartiel']
 ].map(lensPath)

@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
-import AssimiléSalarié from './AssimiléSalarié'
+import AssimiléSalarié from './RémunérationSASU'
 import ChômagePartiel from './ChômagePartiel'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
@@ -64,10 +64,7 @@ export default function Simulateurs() {
 					path={sitePaths.simulateurs.comparaison}
 					component={SchemeComparaison}
 				/>
-				<Route
-					path={sitePaths.simulateurs['assimilé-salarié']}
-					component={AssimiléSalarié}
-				/>
+				<Route path={sitePaths.simulateurs.SASU} component={AssimiléSalarié} />
 				<Route
 					path={sitePaths.simulateurs.indépendant}
 					component={Indépendant}

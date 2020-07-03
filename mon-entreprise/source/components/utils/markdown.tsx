@@ -17,6 +17,15 @@ export function LinkRenderer({
 	...otherProps
 }: Omit<React.ComponentProps<'a'>, 'ref'>) {
 	const siteName = useContext(SiteNameContext)
+
+	if (href && !href.startsWith('http')) {
+		return (
+			<Link to={href} {...otherProps}>
+				{children}
+			</Link>
+		)
+	}
+
 	if (href && !href.startsWith('http')) {
 		return (
 			<Link to={href} {...otherProps}>
@@ -97,6 +106,7 @@ export const Markdown = ({
 	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
+		transformLinkUri={src => src}
 		source={source}
 		className={`markdown ${className}`}
 		renderers={{

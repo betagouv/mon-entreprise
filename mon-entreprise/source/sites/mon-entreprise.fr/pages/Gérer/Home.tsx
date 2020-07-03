@@ -20,7 +20,7 @@ import * as Animate from 'Components/ui/animate'
 import AideOrganismeLocal from './AideOrganismeLocal'
 import businessPlan from './businessPlan.svg'
 
-const infereRégimeFromCompanyDetails = (company: Company | null) => {
+const infereDirigeantFromCompanyDetails = (company: Company | null) => {
 	if (!company) {
 		return null
 	}
@@ -34,11 +34,8 @@ const infereRégimeFromCompanyDetails = (company: Company | null) => {
 		return 'indépendant'
 	}
 
-	if (
-		['SASU', 'SAS'].includes(company.statutJuridique ?? '') ||
-		(company.statutJuridique === 'SARL' && !company.isDirigeantMajoritaire)
-	) {
-		return 'assimilé-salarié'
+	if (['SASU', 'SAS'].includes(company.statutJuridique ?? '')) {
+		return 'SASU'
 	}
 
 	return null
@@ -50,7 +47,7 @@ export default function SocialSecurity() {
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
 	const sitePaths = useContext(SitePathsContext)
-	const régime = infereRégimeFromCompanyDetails(company)
+	const dirigeant = infereDirigeantFromCompanyDetails(company)
 
 	return (
 		<>
@@ -109,11 +106,11 @@ export default function SocialSecurity() {
 									</Link>
 								)}
 
-							{!!régime && (
+							{!!dirigeant && (
 								<Link
 									className="ui__ interactive card box"
 									to={{
-										pathname: sitePaths.simulateurs[régime],
+										pathname: sitePaths.simulateurs[dirigeant],
 										state: {
 											fromGérer: true
 										}
@@ -124,7 +121,7 @@ export default function SocialSecurity() {
 										<h3>Calculer mon revenu net de cotisations</h3>
 										<p className="ui__ notice">
 											Estimez précisément le montant de vos cotisations grâce au
-											simulateur {{ régime }} de l'Urssaf
+											simulateur {{ régime: dirigeant }} de l'Urssaf
 										</p>
 									</Trans>
 									<div className="ui__ small simple button hide-mobile">
@@ -132,7 +129,7 @@ export default function SocialSecurity() {
 									</div>
 								</Link>
 							)}
-							{régime !== 'auto-entrepreneur' && (
+							{dirigeant !== 'auto-entrepreneur' && (
 								<>
 									<Link
 										className="ui__ interactive card box"
@@ -141,13 +138,12 @@ export default function SocialSecurity() {
 											pathname: sitePaths.simulateurs['chômage-partiel']
 										}}
 									>
-										<div className="ui__ big box-icon">{emoji('😷')}</div>
+										<div className="ui__ big box-icon">{emoji('🕟')}</div>
 										<Trans i18nKey="gérer.choix.chomage-partiel">
-											<h3>Connaître les aides</h3>
+											<h3>Activité partielle</h3>
 											<p className="ui__ notice">
-												Calculez le montant des indemnités de chômage partiel.
-												Découvrez la liste des dispositifs d'aides aux
-												entreprises.
+												Calculez le reste à payer après remboursement de l'État
+												lorsque vous activez le dispositif pour un employé.
 											</p>
 										</Trans>
 										<span className="ui__ label">Covid-19</span>

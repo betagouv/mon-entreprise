@@ -5,38 +5,44 @@ import SalaryExplanation from 'Components/SalaryExplanation'
 import Simulation from 'Components/Simulation'
 import salariéConfig from 'Components/simulationConfigs/salarié.yaml'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import Meta from 'Components/utils/Meta'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import urlIllustrationNetBrutEn from 'Images/illustration-net-brut-en.png'
-import urlIllustrationNetBrut from 'Images/illustration-net-brut.png'
 import { default as React, useContext } from 'react'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
+import urlIllustrationNetBrut from './images/illustration-net-brut.png'
+import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
+import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 
 export default function Salarié() {
-	const { t } = useTranslation()
-
+	const { t, i18n } = useTranslation()
+	const META = {
+		title: t(
+			'pages.simulateurs.salarié.meta.titre',
+			'Salaire brut / net : le convertisseur Urssaf'
+		),
+		description: t(
+			'pages.simulateurs.salarié.meta.description',
+			"Calcul du salaire net, net après impôt et coût total employeur. Beaucoup d'options disponibles (cadre, stage, apprentissage, heures supplémentaires, etc.)"
+		),
+		ogTitle: t(
+			'pages.simulateurs.salarié.meta.ogTitle',
+			'Salaire brut, net, net après impôt, coût total : le simulateur ultime pour salariés et employeurs'
+		),
+		ogDescription: t(
+			'pages.simulateurs.salarié.meta.ogDescription',
+			"En tant que salarié, calculez immédiatement votre revenu net après impôt à partir du brut mensuel ou annuel. En tant qu'employé, estimez le coût total d'une embauche à partir du brut. Ce simulateur est développé avec les experts de l'Urssaf, et il adapte les calculs à votre situation (statut cadre, stage, apprentissage, heures supplémentaire, titre-restaurants, mutuelle, temps partiel, convention collective, etc.)"
+		),
+		ogImage:
+			i18n.language === 'fr' ? salaireBrutNetPreviewFR : salaireBrutNetPreviewEN
+	}
 	const isEmbedded = React.useContext(IsEmbeddedContext)
 	return (
 		<>
-			<Helmet>
-				<title>
-					{t(
-						'simulateurs.salarié.page.titre',
-						"Calcul du salaire brut / net : le simulateur de l'Urssaf"
-					)}
-				</title>
-				<meta
-					name="description"
-					content={t(
-						'simulateurs.salarié.page.description',
-						'Estimez les cotisations sociales pour un salarié à partir du salaire brut, net ou "superbrut". Prise en compte de toutes les cotisations du régime général et de l\'impôt sur le revenu. Découvrez les contreparties garanties par sécurité sociale'
-					)}
-				/>
-			</Helmet>
-
+			<Meta {...META} />
 			<h1>
-				<Trans i18nKey="simulateurs.salarié.titre">
+				<Trans i18nKey="pages.simulateurs.salarié.titre">
 					Simulateur de revenus pour salarié
 				</Trans>
 			</h1>
@@ -48,12 +54,11 @@ export default function Salarié() {
 }
 
 function SeoExplanations() {
-	const { t, i18n } = useTranslation()
-	const sitePaths = useContext(SitePathsContext)
+	const { i18n } = useTranslation()
 
 	return (
-		<Trans i18nKey="simulateurs.salarié.page.explication seo">
-			<h2>Calculer son salaire net</h2>
+		<Trans i18nKey="pages.simulateurs.salarié.explication seo">
+			<h2>Comment calculer le salaire net ?</h2>
 
 			<p>
 				Lors de l'entretien d'embauche l'employeur propose en général une
@@ -65,8 +70,8 @@ function SeoExplanations() {
 				Vous pouvez utiliser notre simulateur pour convertir le{' '}
 				<strong>salaire brut en net</strong> : il vous suffit pour cela saisir
 				la rémunération annoncée dans la case salaire brut. La simulation
-				peut-être affinée en répondant aux différentes questions (sur le CDD,
-				statut cadre, etc.).
+				peut-être affinée en répondant aux différentes questions (CDD, statut
+				cadre, heures supplémentaires, temps partiel, titre-restaurants, etc.).
 			</p>
 			<img
 				src={
@@ -91,7 +96,7 @@ function SeoExplanations() {
 				.
 			</p>
 
-			<h2>Coût d'embauche</h2>
+			<h2>Comment calculer le coût d'embauche ?</h2>
 
 			<p>
 				Si vous cherchez à embaucher, vous pouvez calculer le coût total de la
@@ -149,19 +154,15 @@ export const SalarySimulation = () => {
 				}
 			/>
 			<br />
-			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
-			 * le simulateur de chômage partiel sur son site. */}
-			{!document.referrer?.includes('code.travail.gouv.fr') && (
-				<Banner icon={'😷'}>
-					<Trans>
-						<strong>Covid-19 et chômage partiel </strong>:{' '}
-						<Link to={sitePaths.simulateurs['chômage-partiel']}>
-							Calculez votre indemnité
-						</Link>
-					</Trans>
-				</Banner>
-			)}
 			<PreviousSimulationBanner />
+			<Banner icon={'👨‍✈️'}>
+				<Trans>
+					Vous êtes dirigeant d'une SAS(U) ?{' '}
+					<Link to={sitePaths.simulateurs.SASU}>
+						Accéder au simulateur de revenu dédié
+					</Link>
+				</Trans>
+			</Banner>
 		</>
 	)
 }

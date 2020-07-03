@@ -17,7 +17,7 @@ export const mecanismMax = (recurse, v) => {
 		}
 		return Math.max(a, b)
 	}
-	const evaluate = evaluateArray(max, Number.NEGATIVE_INFINITY)
+	const evaluate = evaluateArray(max, false)
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le maximum de" value={nodeValue} unit={unit}>
