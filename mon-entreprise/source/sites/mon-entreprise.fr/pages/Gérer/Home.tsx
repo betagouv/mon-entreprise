@@ -80,16 +80,11 @@ export default function SocialSecurity() {
 					<img
 						className="ui__ hide-mobile"
 						src={businessPlan}
-						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(-2.3rem) scale(1.4);"
+						css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(-2.5rem) scale(1.2);"
 					/>
 				</div>
 				<>
 					<section className="ui__ full-width light-bg">
-						<h2 className="ui__ center-flex">
-							<Trans i18nKey="gérer.choix.titre">
-								Que souhaitez-vous faire ?
-							</Trans>
-						</h2>
 						<div className="ui__ center-flex">
 							{company?.statutJuridique === 'EI' &&
 								!company.isAutoEntrepreneur && (
@@ -108,6 +103,9 @@ export default function SocialSecurity() {
 												2019
 											</p>
 										</Trans>
+										<div className="ui__ small simple button hide-mobile">
+											<Trans>Commencer</Trans>
+										</div>
 									</Link>
 								)}
 
@@ -129,6 +127,9 @@ export default function SocialSecurity() {
 											simulateur {{ régime }} de l'Urssaf
 										</p>
 									</Trans>
+									<div className="ui__ small simple button hide-mobile">
+										<Trans>Commencer</Trans>
+									</div>
 								</Link>
 							)}
 							{régime !== 'auto-entrepreneur' && (
@@ -150,6 +151,9 @@ export default function SocialSecurity() {
 											</p>
 										</Trans>
 										<span className="ui__ label">Covid-19</span>
+										<div className="ui__ small simple button hide-mobile">
+											<Trans>Découvrir</Trans>
+										</div>
 									</Link>
 									<Link
 										className="ui__ interactive card box"
@@ -169,12 +173,16 @@ export default function SocialSecurity() {
 												dépenser pour rémunérer votre prochain employé
 											</p>
 										</Trans>
+										<div className="ui__ small simple button hide-mobile">
+											<Trans>Commencer</Trans>
+										</div>
 									</Link>
 								</>
 							)}
 						</div>
 					</section>
 					<AideOrganismeLocal />
+
 					<h2>
 						{emoji('🧰 ')}
 						<Trans>Ressources utiles</Trans>
