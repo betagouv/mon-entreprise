@@ -204,7 +204,7 @@ select.ui__ {
 	margin-bottom: 0.6rem;
 	border: 1px solid var(--lighterTextColor);
 	border-radius: 0.3rem;
-	background-color: inherit;
+	background-color: white;
 	color: inherit;
 	font-size: inherit;
 	transition: border-color 0.1s;
