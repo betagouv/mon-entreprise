@@ -11,8 +11,6 @@ const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {
 		return false
 	}
 	return (
-		company.dateDeCréation &&
-		new Date(company.dateDeCréation) > new Date('2019-04-01') &&
 		company.isAutoEntrepreneur &&
 		company.localisation &&
 		['09', '12', '31', '32', '46', '65', '81', '82'].includes(
@@ -30,21 +28,24 @@ export default function AideOrganismeLocal() {
 	}
 	return (
 		<animate.fromTop>
-			<section className="ui__ full-width light-bg" css="margin-top: 1rem;">
+			<section className="ui__ full-width" css="margin-top: 1rem;">
 				<div className="ui__ container" css="position:relative">
 					<img
 						src={aideOrganismeSvg}
 						className="ui__ hide-mobile"
 						css="width: 230px; position: absolute; left: -230px; bottom: 0; padding: 1rem;"
 					/>
-					<h2>L'Urssaf Midi-Pyrénées vous accompagne !</h2>
+					<h2>
+						COVID-19 et auto-entrepreneurs : l'Urssaf Midi-Pyrénées vous
+						accompagne
+					</h2>
 					<p>
-						Assistez au webinar dédié aux auto-entrepreneur en début d'activité,
-						où vous pourrez poser toutes vos questions.
+						Assistez au webinar dédié aux auto-entrepreneur pour faire le point
+						sur vos échéances et les mesures d’accompagnement.
 					</p>
 					<a
-						className="ui__ simple button"
-						href="https://webikeo.fr/webinar/auto-entrepreneurs-maitrisez-les-fondamentaux-pour-une-installation-reussie-3"
+						className="ui__ simple small button"
+						href="https://webikeo.fr/webinar/covid-19-auto-entrepreneurs-le-point-sur-vos-echeances-et-les-mesures-d-accompagnement"
 					>
 						En savoir plus
 					</a>
