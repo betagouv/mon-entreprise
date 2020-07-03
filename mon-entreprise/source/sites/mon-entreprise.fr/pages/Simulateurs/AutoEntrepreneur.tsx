@@ -118,12 +118,11 @@ function SeoExplanations() {
 				</RuleLink>
 			</p>
 			<p>
-				Il ne faut pas oublier de prendre en compte toutes les dépenses
-				effectuées dans le cadre de l'activité professionnelle (équipements,
-				matière premières, local, transport). Bien qu'elles ne soient pas
-				utilisées pour le calcul des cotisations et de l'impôt, elles doivent
-				être prises en compte pour vérifier si l'activité est viable
-				économiquement.
+				Il ne faut pas oublier de retrancher toutes les dépenses effectuées dans
+				le cadre de l'activité professionnelle (équipements, matière premières,
+				local, transport). Bien qu'elles ne soient pas utilisées pour le calcul
+				des cotisations et de l'impôt, elles doivent être prises en compte pour
+				vérifier si l'activité est viable économiquement.
 			</p>
 			<p>
 				La formule de calcul complète est donc :
