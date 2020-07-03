@@ -60,12 +60,12 @@ function SeoExplanations() {
 			<p>
 				Comme pour un salarié classique, le <strong>dirigeant de sasu</strong>{' '}
 				paye des cotisations sociales sur la rémunération qu'il se verse. Les
-				cotisations sont calculées de la même manière que pour le salarié : elle
-				sont décomposée en partie employeur et partie salarié et sont exprimée
-				comme un pourcentage du salaire brut.
+				cotisations sont calculées de la même manière que pour le salarié :
+				elles sont décomposées en partie employeur et partie salarié et sont
+				exprimées comme un pourcentage du salaire brut.
 			</p>
 			<p>
-				En revanche, le dirigeant assimilé-salarié ne paye pas de{' '}
+				Le dirigeant assimilé-salarié ne paye pas de{' '}
 				<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie pas
 				de la{' '}
 				<RuleLink dottedName="contrat salarié . réduction générale">
@@ -90,7 +90,7 @@ function SeoExplanations() {
 				Vous pouvez utiliser notre simulateur pour calculer la{' '}
 				<strong>rémunération nette</strong> à partir d'un montant superbrut
 				alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
-				la rémunération annoncée dans la case total chargé. La simulation peut
+				le montant total alloué dans la case "total chargé". La simulation peut
 				ensuite être affinée en répondant aux différentes questions.
 			</p>
 		</Trans>
