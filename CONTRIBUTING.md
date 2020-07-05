@@ -152,6 +152,6 @@ Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
 contenant les règles elles-mêmes (dans le dossier `rules`) mais cela peut
 s'avérer assez abrupt.
 
-Essayez plutôt de jeter un oeil [aux tests](./test/mécanismes/expressions.yaml)
+Essayez plutôt de jeter un oeil [aux tests](./publicodes/test/mécanismes/expressions.yaml)
 dans un premier temps, puis au [mécanismes en
-place](./source/engine/mecanisms.yaml).
+place](./publicodes/source/mecanisms).
