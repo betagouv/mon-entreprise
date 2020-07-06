@@ -26,7 +26,12 @@ module.exports.default = {
 		path: path.resolve('./dist/'),
 		globalObject: 'self',
 	},
-	plugins: [new CopyPlugin(['./manifest.webmanifest'])],
+	plugins: [
+		new CopyPlugin([
+			'./manifest.webmanifest',
+			'./source/sites/publicodes/sitemap.txt',
+		]),
+	],
 }
 
 module.exports.styleLoader = (styleLoader) => ({
