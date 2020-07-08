@@ -32,8 +32,9 @@ export const collectNodeMissing = node => node.missingVariables || {}
 
 export const bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
-export const mergeAllMissing = missings =>
-	reduce(mergeWith(add), {}, map(collectNodeMissing, missings))
+export const mergeAllMissing = (
+	nodes: Array<Pick<EvaluatedNode, 'missingVariables'>>
+) => reduce(mergeWith(add), {}, map(collectNodeMissing, nodes))
 export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 

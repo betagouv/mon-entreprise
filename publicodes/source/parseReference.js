@@ -37,10 +37,13 @@ const getApplicableReplacements = (
 		// Remove remplacement defined in a not applicable node
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
-			const {
-				nodeValue: isApplicable,
-				missingVariables
-			} = evaluateApplicability(cache, situation, rules, referenceRule)
+			const { isApplicable, missingVariables } = evaluateApplicability(
+				cache,
+				situation,
+				rules,
+				referenceRule
+			)
+			console.log(referenceRule.dottedName, isApplicable)
 			missingVariableList.push(missingVariables)
 			return isApplicable
 		})
@@ -165,9 +168,9 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		rules,
 		rule
 	)
-	if (!applicabilityEvaluation.nodeValue) {
+	if (!applicabilityEvaluation.isApplicable) {
 		return cacheNode(
-			applicabilityEvaluation.nodeValue,
+			false,
 			applicabilityEvaluation.missingVariables,
 			applicabilityEvaluation
 		)

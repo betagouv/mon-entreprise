@@ -1,4 +1,3 @@
-import { map, mergeAll, pick, pipe } from 'ramda'
 import { typeWarning } from './error'
 import {
 	bonus,
@@ -7,80 +6,83 @@ import {
 	mergeAllMissing
 } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
-import { ParsedRule } from './types'
+import { ParsedRule, EvaluatedNode } from './types'
 
-export const evaluateApplicability = (
+type ApplicabilityWithMissings = {
+	isApplicable: boolean
+	missingVariables: EvaluatedNode['missingVariables']
+}
+
+type ApplicabilityAttribute =
+	| 'non applicable si'
+	| 'applicable si'
+	| 'rendu non applicable'
+
+export function evaluateApplicability(
 	cache,
 	situation,
 	parsedRules,
 	node: ParsedRule
-) => {
-	const evaluatedAttributes = pipe(
-			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
-				x: any
-			) => any,
-			map(value => evaluateNode(cache, situation, parsedRules, value))
-		)(node) as any,
-		{
-			'non applicable si': notApplicable,
-			'applicable si': applicable,
-			'rendu non applicable': disabled
-		} = evaluatedAttributes,
-		parentDependencies = node.parentDependencies.map(parent =>
-			evaluateNode(cache, situation, parsedRules, parent)
-		)
-
-	const anyDisabledParent = parentDependencies.find(
-		parent => parent?.nodeValue === false
+): ApplicabilityWithMissings {
+	const parentsApplicability = node.parentDependencies?.map(parentNode =>
+		evaluateApplicability(cache, situation, parsedRules, parentNode)
 	)
+	if (node.dottedName === 'x . y') {
+		console.log(node.parentDependencies)
+	}
+	const notApplicableParent = parentsApplicability?.find(
+		({ isApplicable }) => isApplicable === false
+	)
+	return (
+		notApplicableParent ??
+		evaluateApplicabilityAttributes(cache, situation, parsedRules, node)
+	)
+}
 
-	const { nodeValue, missingVariables = {} } = anyDisabledParent
-		? anyDisabledParent
-		: notApplicable?.nodeValue === true
-		? {
-				nodeValue: false,
-				missingVariables: notApplicable.missingVariables
-		  }
-		: applicable?.nodeValue === false
-		? { nodeValue: false, missingVariables: applicable.missingVariables }
-		: disabled?.nodeValue === true
-		? { nodeValue: false, missingVariables: disabled.missingVariables }
-		: {
-				nodeValue: [notApplicable, applicable, ...parentDependencies].some(
-					n => n?.nodeValue === null
-				)
-					? null
-					: !notApplicable?.nodeValue &&
-					  (applicable?.nodeValue == undefined || !!applicable?.nodeValue),
-				missingVariables: mergeAllMissing(
-					[...parentDependencies, notApplicable, disabled, applicable].filter(
-						Boolean
-					)
-				)
-		  }
+function evaluateApplicabilityAttributes(
+	cache,
+	situation,
+	parsedRules,
+	node: ParsedRule
+): ApplicabilityWithMissings {
+	const evaluateAttribute = (attributeName: ApplicabilityAttribute) =>
+		node?.[attributeName] &&
+		evaluateNode(cache, situation, parsedRules, node[attributeName])
+	const notApplicableAttribute = evaluateAttribute('non applicable si')
+	const applicableAttribute = evaluateAttribute('applicable si')
+	const disabledAttribute = evaluateAttribute('rendu non applicable')
+
+	for (const [attribute, notApplicableValue] of [
+		[notApplicableAttribute, true],
+		[applicableAttribute, false],
+		[disabledAttribute, true]
+	]) {
+		if (attribute?.nodeValue === notApplicableValue) {
+			return {
+				isApplicable: false,
+				missingVariables: attribute.missingVariables
+			}
+		}
+	}
 
 	return {
-		...node,
-		nodeValue,
-		isApplicable: nodeValue,
-		missingVariables,
-		parentDependencies,
-		...evaluatedAttributes
+		isApplicable: true,
+		missingVariables: mergeAllMissing(
+			[notApplicableAttribute, applicableAttribute, disabledAttribute].filter(
+				Boolean
+			)
+		)
 	}
 }
 
-export default (cache, situation, parsedRules, node) => {
+export default function evaluateRule(cache, situation, parsedRules, node) {
 	cache._meta.contextRule.push(node.dottedName)
-	const applicabilityEvaluation = evaluateApplicability(
+	const { missingVariables: condMissing, isApplicable } = evaluateApplicability(
 		cache,
 		situation,
 		parsedRules,
 		node
 	)
-	const {
-		missingVariables: condMissing,
-		nodeValue: isApplicable
-	} = applicabilityEvaluation
 
 	// evaluate the formula lazily, only if the applicability is known and true
 	let evaluatedFormula =
@@ -103,13 +105,11 @@ export default (cache, situation, parsedRules, node) => {
 		bonus(condMissing, !!Object.keys(condMissing).length),
 		evaluatedFormula.missingVariables
 	)
-	// console.log(node.dottedName, evaluatedFormula.unit)
 
 	const temporalValue = evaluatedFormula.temporalValue
 	cache._meta.contextRule.pop()
 	return {
 		...node,
-		...applicabilityEvaluation,
 		...(node.formule && { formule: evaluatedFormula }),
 		nodeValue: evaluatedFormula.nodeValue,
 		unit: node.unit ?? evaluatedFormula.unit,
