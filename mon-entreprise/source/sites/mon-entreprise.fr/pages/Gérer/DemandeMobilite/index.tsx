@@ -9,6 +9,7 @@ import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
 import { Explicable } from 'Components/conversation/Explicable'
+import Emoji from 'Components/utils/Emoji'
 
 const LazyEndBlock = React.lazy(() => import('./EndBlock'))
 
@@ -26,6 +27,12 @@ export default function formulaireMobilitéIndépendant() {
 					relations.internationales@urssaf.fr
 				</a>
 				.
+			</p>
+			<p>
+				En cas de doutes sur les réponses à apporter aux questions de ce
+				formulaire, vous pouvez envoyer un email à l'adresse ci-dessus, ou
+				directement contacter l'administation au numéro suivant :{' '}
+				<strong>03 20 2000 3400</strong>
 			</p>
 			<blockquote>
 				<p className="ui__ lead">
@@ -125,9 +132,24 @@ function FormulairePublicodes({ engine }) {
 					)}
 				</Animate.fromTop>
 			))}
+
 			<Suspense fallback={null}>
 				<LazyEndBlock fields={fields} isMissingValues={isMissingValues} />
 			</Suspense>
+			{!!Object.keys(situation).length && (
+				<div
+					css={`
+						text-align: right;
+					`}
+				>
+					<button
+						className="ui__  small button"
+						onClick={() => setSituation({})}
+					>
+						<Emoji emoji={'🗑️'} /> Effacer mes réponses
+					</button>
+				</div>
+			)}
 		</Animate.fromTop>
 	)
 }

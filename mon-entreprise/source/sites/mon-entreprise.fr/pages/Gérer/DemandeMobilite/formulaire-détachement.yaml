@@ -151,10 +151,6 @@ détachement . activité . ville:
   type: texte
 détachement . activité . code postal:
   type: texte
-détachement . commentaires additionnels:
-  question: Souhaitez-vous partager d'autres informations pour l'instruction de votre dossier (adresses supplémentaires, commentaires, etc) ?
-détachement . commentaires additionnels . commentaires:
-  type: paragraphe
 
 activité transfrontalière simultanée:
   non applicable si: demande . détachement possible
@@ -216,9 +212,7 @@ activité transfrontalière simultanée . part subtentielle France:
     une de ces conditions:
       - activité salariée = non
       - activité salariée . activité indépendante additionnelle
-  question: Est-ce qu'au moins 25% de votre activité professionnelle des 12 prochains mois aura lieu en France ?
-  description: >-
-    Ce pourcentage peut être celui du temps de travail ou du chiffre d'affaires
+  question: Est-ce qu'au moins 25% de votre chiffre d'affaires des 12 prochains mois aura lieu en France ?
 
 activité transfrontalière simultanée . activité non salariée:
   applicable si:
@@ -310,15 +304,39 @@ activité transfrontalière simultanée . activité non salariée . pays centre 
       - activité salariée . activité substantielle
   applicable si: nombre >= 2
   description: >-
-    Pour determiner votre pays "centre d'intêret", vous devez prendre en compte les critères suivants (au choix) :
+    Pour determiner votre pays "centre d'intêret", vous devez prendre en compte
+    un ensemble d'éléments de votre activité professionelle :
 
-    - Le pays d'où découlera la majorité des revenus de vos activités / de votre chiffre d'affaires
-
+    - Le pays d'où découlera la plus grande partie des revenus de vos activités / de votre chiffre d'affaires
     - Le pays où vous réaliserez vos activités de manière habituelle / où vous passerez le plus de temps de travail
+    - Le lieu où se trouve le siège fixe permanent de vos activités
 
-    - En cas d'ambiguité pour les deux critères ci-dessus, le pays où sera situé le siège fixe de vos activités
+    ** Exemple **
+    > M. Z est travailleur non salarié. Il exerce une partie de son activité en
+    Belgique et une partie aux Pays-Bas. Il vit en France. Il ne possède pas
+    de locaux fixes et permanents. Cependant, il travaille principalement aux
+    Pays-Bas et gagne la majorité de ses revenus dans ce pays. Son intention
+    d’établir son activité aux Pays-Bas, où il est en voie d’acquérir des locaux
+    permanents. Bien que M. Z n’exerce pas une partie substantielle de son
+    activité aux Pays-Bas, il a l’intention, comme en témoignent les
+    circonstances (notamment ses projets), de faire des Pays-Bas le centre
+    d’intérêt de son activité.
 
 activité transfrontalière simultanée . activité non salariée . pays centre d'intérêt . pays:
   API: pays européen
   titre: Pays "centre d'intêret"
   type: texte
+
+commentaires additionnels:
+  type: groupe
+  formule: oui
+  applicable si:
+    une de ces conditions:
+      - détachement
+      - activité transfrontalière simultanée
+
+commentaires additionnels . commentaires:
+  question: Souhaitez-vous partager d'autres informations pour l'instruction de votre dossier (adresses supplémentaires, commentaires, etc) ?
+
+commentaires additionnels . commentaires . texte:
+  type: paragraphe
