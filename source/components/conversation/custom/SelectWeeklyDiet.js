@@ -50,33 +50,52 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 				flex-wrap: wrap;
 
 				> li {
-					max-width: 12rem;
+					width: 12rem;
+					margin-left: 1rem;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: center;
+					padding-bottom: 1rem;
+				}
+
+				> li h4 {
+				}
+				> li p {
+					font-style: italic;
 				}
 			`}
 		>
-			{dietRules.map(([{ name, title, dottedName, icônes }, question]) => {
-				const value = situation[question.dottedName] || question.defaultValue
-				return (
-					<li key={name}>
-						<div css="border: 1px solid var(--color)">{title}</div>
-						<button
-							onClick={() =>
-								dispatch(updateSituation(question.dottedName, value - 1))
-							}
-						>
-							-
-						</button>
-						{value}
-						<button
-							onClick={() =>
-								dispatch(updateSituation(question.dottedName, value + 1))
-							}
-						>
-							+
-						</button>
-					</li>
-				)
-			})}
+			{dietRules.map(
+				([{ name, title, description, dottedName, icônes }, question]) => {
+					const value = situation[question.dottedName] || question.defaultValue
+					return (
+						<li className="ui__ card" key={name}>
+							<h4>{title}</h4>
+							<p>{description}</p>
+							<div css={' span {margin: .4rem; font-size: 120%}'}>
+								<button
+									className="ui__ button small plain"
+									onClick={() =>
+										dispatch(updateSituation(question.dottedName, value - 1))
+									}
+								>
+									-
+								</button>
+								<span>{value}</span>
+								<button
+									className="ui__ button small plain"
+									onClick={() =>
+										dispatch(updateSituation(question.dottedName, value + 1))
+									}
+								>
+									+
+								</button>
+							</div>
+						</li>
+					)
+				}
+			)}
 		</ul>
 	)
 
