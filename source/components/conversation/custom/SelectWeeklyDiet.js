@@ -43,60 +43,72 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	console.log('DIETRULES', dietRules)
 
 	return (
-		<ul
-			css={`
-				display: flex;
-				justify-content: flex-end;
-				flex-wrap: wrap;
-
-				> li {
-					width: 12rem;
-					margin-left: 1rem;
+		<div>
+			<ul
+				css={`
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
-					align-items: center;
-					padding-bottom: 1rem;
-				}
+					justify-content: flex-end;
+					flex-wrap: wrap;
 
-				> li h4 {
-				}
-				> li p {
-					font-style: italic;
-				}
-			`}
-		>
-			{dietRules.map(
-				([{ name, title, description, dottedName, icônes }, question]) => {
-					const value = situation[question.dottedName] || question.defaultValue
-					return (
-						<li className="ui__ card" key={name}>
-							<h4>{title}</h4>
-							<p>{description}</p>
-							<div css={' span {margin: .4rem; font-size: 120%}'}>
-								<button
-									className="ui__ button small plain"
-									onClick={() =>
-										dispatch(updateSituation(question.dottedName, value - 1))
-									}
-								>
-									-
-								</button>
-								<span>{value}</span>
-								<button
-									className="ui__ button small plain"
-									onClick={() =>
-										dispatch(updateSituation(question.dottedName, value + 1))
-									}
-								>
-									+
-								</button>
-							</div>
-						</li>
-					)
-				}
-			)}
-		</ul>
+					> li {
+						width: 12rem;
+						margin-left: 1rem;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+						align-items: center;
+						padding-bottom: 1rem;
+					}
+
+					> li h4 {
+					}
+					> li p {
+						font-style: italic;
+					}
+				`}
+			>
+				{dietRules.map(
+					([{ name, title, description, dottedName, icônes }, question]) => {
+						const value =
+							situation[question.dottedName] || question.defaultValue
+						return (
+							<li className="ui__ card" key={name}>
+								<h4>{title}</h4>
+								<p>{description}</p>
+								<div css={' span {margin: .8rem; font-size: 120%}'}>
+									<button
+										className="ui__ button small plain"
+										onClick={() =>
+											dispatch(updateSituation(question.dottedName, value - 1))
+										}
+									>
+										-
+									</button>
+									<span>{value}</span>
+									<button
+										className="ui__ button small plain"
+										onClick={() =>
+											dispatch(updateSituation(question.dottedName, value + 1))
+										}
+									>
+										+
+									</button>
+								</div>
+							</li>
+						)
+					}
+				)}
+			</ul>
+			<p>
+				Il vous reste{' '}
+				{7 -
+					dietRules.reduce(
+						(memo, [_, { dottedName }]) => memo + situation[dottedName] || 0,
+						0
+					)}{' '}
+				choix à faire.
+			</p>
+		</div>
 	)
 
 	return (
