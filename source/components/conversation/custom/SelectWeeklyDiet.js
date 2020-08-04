@@ -12,24 +12,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/analyseSelectors'
 import { updateSituation } from 'Actions/actions'
 
-/* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
-	Les données @choices sont un arbre de type:
-	- nom: motif CDD # La racine, unique, qui formera la Question. Ses enfants sont les choix possibles
-		enfants:
-		- nom: motif classique
-			enfants:
-			- nom: motif saisonnier
-			- nom: motif remplacement
-		- nom: motif contrat aidé
-		- nom: motif complément de formation
+// This is the number of possible answers in this very custom input component
+const chipsCount = 7
 
-	A chaque nom est associé une propriété 'données' contenant l'entité complète (et donc le titre, le texte d'aide etc.) : ce n'est pas à
-	ce composant (une vue) d'aller les chercher.
-
-*/
-
-// FormDecorator permet de factoriser du code partagé par les différents types de saisie,
-// dont Question est un example
 export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	submit,
 	name,
@@ -53,8 +38,13 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 						text-align: center;
 					}
 
+					> li > div > img {
+						margin-right: 0.4rem !important;
+						font-size: 110%;
+					}
+
 					> li {
-						width: 12rem;
+						width: 14rem;
 						margin: 1rem;
 						display: flex;
 						flex-direction: column;
@@ -64,24 +54,33 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 					}
 
 					> li h4 {
+						margin: 0;
 					}
 					> li p {
 						font-style: italic;
+						font-size: 85%;
+						line-height: 1.2rem;
 					}
 				`}
 			>
 				{dietRules.map(
 					([{ name, title, description, dottedName, icônes }, question]) => {
-						const value =
-							situation[question.dottedName] || question.defaultValue
+						const situationValue = situation[question.dottedName],
+							value =
+								situationValue != null ? situationValue : question.defaultValue
 						return (
 							<li className="ui__ card" key={name}>
 								<h4>{title}</h4>
-								<p>{description}</p>
+								<div>{emoji(icônes)}</div>
+
+								<p>{description.split('\n')[0]}</p>
 								<div css={' span {margin: .8rem; font-size: 120%}'}>
 									<button
-										className="ui__ button small plain"
+										className={`ui__ button small plain ${
+											!value ? 'disabled' : ''
+										}`}
 										onClick={() =>
+											value > 0 &&
 											dispatch(updateSituation(question.dottedName, value - 1))
 										}
 									>
@@ -104,7 +103,7 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 			</ul>
 			<p>
 				Il vous reste{' '}
-				{7 -
+				{chipsCount -
 					dietRules.reduce(
 						(memo, [_, { dottedName }]) => memo + situation[dottedName] || 0,
 						0
