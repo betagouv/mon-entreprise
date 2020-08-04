@@ -65,13 +65,12 @@ export default () => {
 				`}
 			>
 				<div>
-					<em>En partenariat avec l'</em>
-					{/* Un jour
-				<img
-					css="height: 3rem"
-					src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
-				/>
-				*/}
+					<a href="https://ademe.fr">
+						<img
+							css="height: 4rem; margin-right: .6rem"
+							src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
+						/>
+					</a>
 					<a href="https://www.associationbilancarbone.fr/">
 						<img
 							css="height: 2.5rem"
