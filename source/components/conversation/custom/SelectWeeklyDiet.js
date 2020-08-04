@@ -47,12 +47,15 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 			<ul
 				css={`
 					display: flex;
-					justify-content: flex-end;
+					justify-content: center;
 					flex-wrap: wrap;
+					p {
+						text-align: center;
+					}
 
 					> li {
 						width: 12rem;
-						margin-left: 1rem;
+						margin: 1rem;
 						display: flex;
 						flex-direction: column;
 						justify-content: space-between;

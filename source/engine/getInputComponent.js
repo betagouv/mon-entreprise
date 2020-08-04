@@ -44,7 +44,7 @@ export default (rules) => (dottedName) => {
 				{...{
 					...commonProps,
 					question:
-						'Choisissez les plats les plus représentatifs de vos repas du midi et dîners',
+						'Choisissez les plats les plus représentatifs de vos midis et dîners',
 					dietRules: rules
 						.filter((rule) => weeklyDietQuestion(rule.dottedName))
 						.map((question) => [
