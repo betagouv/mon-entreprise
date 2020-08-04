@@ -8,6 +8,9 @@ import { FormDecorator } from 'Components/conversation/FormDecorator'
 import 'Components/conversation/Question.css'
 import SendButton from 'Components/conversation/SendButton'
 import emoji from 'react-easy-emoji'
+import { useDispatch, useSelector } from 'react-redux'
+import { situationSelector } from 'Selectors/analyseSelectors'
+import { updateSituation } from 'Actions/actions'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans une liste, ou une liste de listes.
 	Les données @choices sont un arbre de type:
@@ -34,6 +37,9 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	dietRules,
 	value: currentValue,
 }) {
+	const dispatch = useDispatch()
+	const situation = useSelector(situationSelector)
+
 	console.log('DIETRULES', dietRules)
 
 	return (
@@ -48,14 +54,29 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 				}
 			`}
 		>
-			{dietRules.map(([{ name, title, dottedName, icônes, value = 8 }]) => (
-				<li key={name}>
-					<div css="border: 1px solid var(--color)">{title}</div>
-					<button onClick={() => null}>-</button>
-					{value}
-					<button onClick={() => null}>+</button>
-				</li>
-			))}
+			{dietRules.map(([{ name, title, dottedName, icônes }, question]) => {
+				const value = situation[question.dottedName] || question.defaultValue
+				return (
+					<li key={name}>
+						<div css="border: 1px solid var(--color)">{title}</div>
+						<button
+							onClick={() =>
+								dispatch(updateSituation(question.dottedName, value - 1))
+							}
+						>
+							-
+						</button>
+						{value}
+						<button
+							onClick={() =>
+								dispatch(updateSituation(question.dottedName, value + 1))
+							}
+						>
+							+
+						</button>
+					</li>
+				)
+			})}
 		</ul>
 	)
 
