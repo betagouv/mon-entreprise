@@ -113,6 +113,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		typeof commonProps.value === 'string'
 			? engine.evaluate(commonProps.value as DottedName).nodeValue
 			: commonProps.value
+
 	if (unit?.numerators.includes('€') && isTarget) {
 		return (
 			<>

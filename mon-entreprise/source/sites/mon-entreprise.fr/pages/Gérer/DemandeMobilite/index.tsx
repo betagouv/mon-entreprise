@@ -5,7 +5,7 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import Engine from 'publicodes'
-import React, { Suspense, useCallback } from 'react'
+import React, { Suspense, useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
@@ -106,15 +106,24 @@ function FormulairePublicodes({ engine }) {
 		},
 		[setSituation]
 	)
+
+	// This is a hack to reset value inside all uncontrolled fields input on clear
+	const [clearFieldsKey, setKey] = useState(0)
+	const handleClear = useCallback(() => {
+		setSituation({})
+		setKey(clearFieldsKey + 1)
+	}, [clearFieldsKey, setSituation])
+
 	engine.setSituation(situation)
 	const fields = useFields(engine, Object.keys(formulaire))
-	const isMissingValues = fields.some(
+	const missingValues = fields.filter(
 		({ dottedName, type }) =>
 			type !== 'groupe' &&
 			(situation[dottedName] == null || situation[dottedName] === '')
 	)
+	const isMissingValues = !!missingValues.length
 	return (
-		<Animate.fromTop>
+		<Animate.fromTop key={clearFieldsKey}>
 			{fields.map(field => (
 				<Animate.fromTop key={field.dottedName}>
 					{field.type === 'groupe' ? (
@@ -169,10 +178,7 @@ function FormulairePublicodes({ engine }) {
 						text-align: right;
 					`}
 				>
-					<button
-						className="ui__  small button"
-						onClick={() => setSituation({})}
-					>
+					<button className="ui__  small button" onClick={handleClear}>
 						<Emoji emoji={'🗑️'} /> Effacer mes réponses
 					</button>
 				</div>
