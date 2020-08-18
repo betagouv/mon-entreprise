@@ -31,7 +31,7 @@ const STATES = [
 	'Slovénie',
 	'Suède',
 	'Suisse'
-]
+] as const
 
 export default function SelectEuropeCountry({ value, onChange, onSubmit }) {
 	return (
@@ -42,6 +42,7 @@ export default function SelectEuropeCountry({ value, onChange, onSubmit }) {
 				defaultValue={value?.slice(1, -1)}
 				onChange={e => onChange(`'${e.target.value}'`)}
 			>
+				<option disabled selected hidden></option>
 				{STATES.map(state => (
 					<option key={state} value={state}>
 						{state}

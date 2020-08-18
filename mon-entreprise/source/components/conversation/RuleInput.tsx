@@ -57,7 +57,8 @@ export default function RuleInput<Name extends string = DottedName>({
 		title: rule.title,
 		question: rule.question,
 		defaultValue: rule.defaultValue,
-		suggestions: rule.suggestions
+		suggestions: rule.suggestions,
+		required: true
 	}
 	if (getVariant(rule)) {
 		return (

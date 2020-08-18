@@ -1,6 +1,7 @@
+import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import * as Animate from 'Components/ui/animate'
-import InfoBulle from 'Components/ui/InfoBulle'
+import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import Engine from 'publicodes'
@@ -8,8 +9,6 @@ import React, { Suspense, useCallback } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
-import { Explicable } from 'Components/conversation/Explicable'
-import Emoji from 'Components/utils/Emoji'
 
 const LazyEndBlock = React.lazy(() => import('./EndBlock'))
 
@@ -18,35 +17,63 @@ export default function formulaireMobilitéIndépendant() {
 	return (
 		<>
 			<h1>Demande de mobilité en Europe pour travailleur indépendant</h1>
+			<h2>
+				<small>
+					Travailleur indépendant exerçant son activité à l’étranger : Régime de
+					Sécurité sociale applicable{' '}
+				</small>
+			</h2>
 			<p>
 				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
-				Etats (pays) membres de l’UE, de l’EEE ou en Suisse. Remplissez ce
-				formulaire pour définir votre régime de Sécurité sociale applicable, et
-				envoyez la demande générée à l'adresse :{' '}
+				Etats (pays) membres de l’UE, de l’
+				<abbr title="Espace Économique Européen">EEE</abbr>* ou en Suisse. A ce
+				titre, vous devez <strong>compléter ce formulaire</strong> pour définir
+				votre régime de Sécurité sociale applicable durant cette période et
+				l’envoyer par email à{' '}
 				<a href="mailto:relations.internationales@urssaf.fr">
 					relations.internationales@urssaf.fr
 				</a>
 				.
 			</p>
 			<p>
-				En cas de doutes sur les réponses à apporter aux questions de ce
-				formulaire, vous pouvez envoyer un email à l'adresse ci-dessus, ou
-				directement contacter l'administation au numéro suivant :{' '}
-				<strong>03 20 2000 3400</strong>
+				Après étude de votre demande, si les conditions le permettent, vous
+				recevrez un certificat A1 attestant du maintien à la Sécurité sociale
+				française.
 			</p>
+
+			<p>
+				<small>
+					* Pays concernés : Allemagne, Autriche, Belgique, Bulgarie, Chypre,
+					Croatie, Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie,
+					Irlande, Islande, Italie, Lettonie, Liechtenstein, Lituanie,
+					Luxembourg, Malte, Norvège, Pays-Bas, Pologne, Portugal, République
+					Tchèque, Roumanie, Royaume-Uni, Slovaquie, Slovénie, Suède, Suisse
+				</small>
+			</p>
+
 			<blockquote>
 				<p className="ui__ lead">
-					<strong>Ce document nécessite votre signature {emoji('✍️')}</strong>
+					<strong>Attention, ce document doit être signé {emoji('✍️')}</strong>
 				</p>
 				<p>
-					Nous vous suggérons d'utiliser un appareil avec écran tactile pour
-					compléter ce formulaire (téléphone, tablette, etc.).{' '}
-				</p>
-				<p>
-					Autremenent, il vous faudra imprimer, signer et scanner le document
-					généré.
+					Aussi, nous vous invitons à utiliser un écran tactile pour le
+					compléter (téléphone, tablette, etc.). Sinon, vous devrez l’imprimer,
+					le signer et le scanner avant envoi par mail.
 				</p>
 			</blockquote>
+			<p className="ui__ notice">
+				En cas de difficultés pour{' '}
+				<strong>remplir ce formulaire, contactez un conseiller</strong> par
+				email{' '}
+				<a href="mailto:relations.internationales@urssaf.fr">
+					relations.internationales@urssaf.fr
+				</a>{' '}
+				ou par téléphone au{' '}
+				<strong>
+					<a href="tel:+33320003400">+33 (0)3 2000 3400</a>
+				</strong>{' '}
+				de 9h00 à 12h00 et de 13h00 à 16h00.
+			</p>
 			<FormulairePublicodes engine={engine} />
 		</>
 	)
