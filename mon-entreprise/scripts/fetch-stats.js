@@ -101,13 +101,13 @@ async function fetchSimulators(dt) {
 			.filter(({ label }) =>
 				[
 					'/salaire-brut-net',
-					'/salarié',
 					'/chômage-partiel',
 					'/auto-entrepreneur',
 					'/artiste-auteur',
+					'/aide-declaration-independants',
 					'/indépendant',
 					'/comparaison-régimes-sociaux',
-					'/assimilé-salarié'
+					'/dirigeant-sasu'
 				].includes(label)
 			)
 
@@ -146,11 +146,11 @@ async function fetchSimulators(dt) {
 			label.startsWith('/coronavirus')
 				? '/chômage-partiel'
 				: label.startsWith('/simulateur-embauche') ||
-				  label === '/salaire-brut-net'
-				? '/salarié'
+				  label.startsWith('/salarié')
+				? '/salaire-brut-net'
 				: label.startsWith('/simulateur-autoentrepreneur')
 				? '/auto-entrepreneur'
-				: label === '/assimilé-salarié'
+				: label.startsWith('/assimilé-salarié')
 				? '/dirigeant-sasu'
 				: label
 
