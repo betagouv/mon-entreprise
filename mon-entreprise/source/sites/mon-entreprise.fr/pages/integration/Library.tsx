@@ -73,7 +73,7 @@ export default function Library() {
 						& wget
 						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/impôt.yaml
 						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/situation-personelle.yaml
+						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/situation-personnelle.yaml
 					</code>
 				</blockquote>
 				<p>
