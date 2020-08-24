@@ -9,7 +9,7 @@ questions:
   à l'affiche:
     Chômage partiel: contrat salarié . activité partielle
     Temps partiel: contrat salarié . temps de travail . temps partiel
-    Cadre: contrat salarié . statut cadre . choix statut cadre
+    Cadre: contrat salarié . statut cadre
     Heures supplémentaires: contrat salarié . temps de travail . heures supplémentaires
     Titres-restaurant: contrat salarié . frais professionnels . titres-restaurant
     Impôt: impôt . méthode de calcul
