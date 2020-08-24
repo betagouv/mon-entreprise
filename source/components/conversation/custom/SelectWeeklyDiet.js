@@ -13,7 +13,7 @@ import { situationSelector } from 'Selectors/analyseSelectors'
 import { updateSituation } from 'Actions/actions'
 
 // This is the number of possible answers in this very custom input component
-const chipsCount = 7
+const chipsTotal = 7
 
 export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	submit,
@@ -25,9 +25,18 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 
-	console.log('DIETRULES', dietRules)
+	console.log('DIETRULES', dietRules, situation)
 
-	return (
+	const chipsCount = dietRules.reduce(
+		(memo, [_, { dottedName, defaultValue }]) =>
+			memo +
+			(situation[dottedName] != undefined
+				? situation[dottedName]
+				: defaultValue),
+		0
+	)
+
+	const choiceElements = (
 		<div>
 			<ul
 				css={`
@@ -40,7 +49,7 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 
 					> li > div > img {
 						margin-right: 0.4rem !important;
-						font-size: 110%;
+						font-size: 130% !important;
 					}
 
 					> li {
@@ -72,7 +81,6 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 							<li className="ui__ card" key={name}>
 								<h4>{title}</h4>
 								<div>{emoji(icônes)}</div>
-
 								<p>{description.split('\n')[0]}</p>
 								<div css={' span {margin: .8rem; font-size: 120%}'}>
 									<button
@@ -101,15 +109,17 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 					}
 				)}
 			</ul>
-			<p>
-				Il vous reste{' '}
-				{chipsCount -
-					dietRules.reduce(
-						(memo, [_, { dottedName }]) => memo + situation[dottedName] || 0,
-						0
-					)}{' '}
-				choix à faire.
-			</p>
+			<div css="p {text-align: center}">
+				{chipsCount > chipsTotal ? (
+					<p css="text-decoration: underline; text-decoration-color: red">
+						Vous avez fait {chipsCount - chipsTotal} choix en trop !
+					</p>
+				) : chipsCount === chipsTotal ? (
+					<p>{emoji('👍')}</p>
+				) : (
+					<p>Il vous reste {chipsTotal - chipsCount} choix à faire.</p>
+				)}
+			</div>
 		</div>
 	)
 
@@ -118,9 +128,7 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 			{choiceElements}
 			<SendButton
 				{...{
-					disabled: !touched,
-					colors,
-					error: false,
+					disabled: chipsCount !== chipsTotal,
 					submit,
 				}}
 			/>
@@ -156,6 +164,7 @@ function RadioLabelContent({
 				fontweight: ${value === '_' ? 'bold' : 'normal'};
 				> img {
 					margin-right: 0.3rem !important;
+					font-size: 130%;
 				}
 			`}
 			className={classnames('radio', 'userAnswerButton', { selected })}
