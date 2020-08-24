@@ -1,17 +1,17 @@
+import { map } from 'ramda'
+import React from 'react'
+import { Operation } from '../components/mecanisms/common'
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
 import { evaluateNode, makeJsx, mergeMissing } from '../evaluation'
-import { Operation } from '../components/mecanisms/common'
 import { convertNodeToUnit } from '../nodeUnits'
 import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
 import { inferUnit, serializeUnit } from '../units'
-import { curry, map } from 'ramda'
-import React from 'react'
 
 export default (k, operatorFunction, symbol) => (recurse, v) => {
 	const evaluate = (cache, situation, parsedRules, node) => {
 		const explanation = map(
-			curry(evaluateNode)(cache, situation, parsedRules),
+			node => evaluateNode(cache, situation, parsedRules, node),
 			node.explanation
 		)
 		let [node1, node2] = explanation

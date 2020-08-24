@@ -50,7 +50,7 @@ export function useSimulatorsMetadata() {
 			icône: '🤝',
 			description: t(
 				'simulateurs.résumé.salarié',
-				"Calculer le salaire net, brut, ou total d'un salarié, stagiaire,ou assimilé"
+				"Calculer le salaire net, brut, ou total d'un salarié, stagiaire, ou assimilé"
 			),
 			sitePath: sitePaths.simulateurs.salarié
 		},
