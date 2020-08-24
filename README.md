@@ -18,5 +18,9 @@ La bibliothèque de calcul publicodes, qui fournit le langage du modèle, vient 
 
 ### Installation
 
+You need to clone another repo, https://github.com/betagouv/ecolab-data, in the same directory than this one. The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly. 
+
+Then run this command in this repo :
+
 `yarn && yarn start` 
 
