@@ -16,7 +16,6 @@ import { updateSituation } from 'Actions/actions'
 const chipsTotal = 7
 
 export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
-	submit,
 	name,
 	setFormValue,
 	dietRules,
@@ -129,7 +128,15 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 			<SendButton
 				{...{
 					disabled: chipsCount !== chipsTotal,
-					submit,
+					// This component is special : it folds multiple questions at a time
+					submit: () =>
+						dietRules.map(([_, { dottedName }]) =>
+							dispatch({
+								type: 'STEP_ACTION',
+								name: 'fold',
+								step: dottedName,
+							})
+						),
 				}}
 			/>
 		</div>
