@@ -1,19 +1,18 @@
 import { updateUnit } from 'Actions/actions'
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import './PeriodSwitch.css'
 
 export default function PeriodSwitch() {
 	const dispatch = useDispatch()
-	const language = useTranslation().i18n.language
 	const currentUnit = useSelector(targetUnitSelector)
 
 	const units = ['€/mois', '€/an']
 	return (
 		<span id="PeriodSwitch">
-			<span className="base ui__ small toggle">
+			<span className="base ui__ small radio toggle">
 				{units.map(unit => (
 					<label key={unit}>
 						<input

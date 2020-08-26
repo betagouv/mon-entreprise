@@ -9,6 +9,12 @@
 	--darkColor: rgb(24, 69, 123);
 	--textColor: rgb(24, 69, 123);
 }
+:focus:not(:active) {
+	outline: 1px dashed var(--darkColor);
+}
+:active {
+	outline: none;
+}
 
 html,
 body,

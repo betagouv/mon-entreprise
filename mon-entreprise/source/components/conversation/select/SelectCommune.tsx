@@ -19,18 +19,18 @@ async function tauxVersementTransport(codeCommune) {
 		return null
 	}
 	const json = await response.json()
-	return json
+	return json.taux
 }
 function formatCommune(value: Commune) {
 	return value && `${value.nom} (${value.codePostal})`
 }
 async function searchCommunes(input: string): Promise<Array<Commune> | null> {
-	const number = input.match(/[\d]+/)?.join('') ?? ''
-	const text = input.match(/[^\d]+/)?.join(' ') ?? ''
+	const number = /[\d]+/.exec(input)?.join('') ?? ''
+	const text = /[^\d]+/.exec(input)?.join(' ') ?? ''
 	const response = await fetch(
 		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,region,codesPostaux${
 			text ? `&nom=${text}` : ''
-		}${number.match(/[\d]{5}/) ? `&codePostal=${number}` : ''}&boost=population`
+		}${/[\d]{5}/.exec(number) ? `&codePostal=${number}` : ''}&boost=population`
 	)
 	if (!response.ok) {
 		return null
@@ -46,7 +46,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, onSubmit, value }) {
+export default function Select({ onChange, value }) {
 	const [name, setName] = useState(formatCommune(value))
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null
@@ -67,34 +67,30 @@ export default function Select({ onChange, onSubmit, value }) {
 	])
 
 	const handleSubmit = useCallback(
-		(option: { code: string }) => {
-			console.log('zbab', option)
-			tauxVersementTransport(option.code)
-				.then(({ taux }) => {
-					// serialize to not mix our data schema and the API response's
-					onChange({
-						...option,
-						...(taux != undefined
-							? {
-									'taux du versement transport': taux
-							  }
-							: {})
-					})
-				})
-				.catch(error => {
-					//eslint-disable-next-line no-console
-					console.log(
-						'Erreur dans la récupération du taux de versement transport à partir du code commune',
-						error
-					) || onChange(option)
-				})
-				.finally(() => {
-					onSubmit() // eslint-disable-line no-console
-					setSearchResults(null)
-					setName(formatCommune(option))
-				})
+		async (commune: Commune) => {
+			setSearchResults(null)
+			setName(formatCommune(commune))
+			let taux: number | null = null
+			try {
+				taux = await tauxVersementTransport(commune.code)
+			} catch (error) {
+				console.log(
+					'Erreur dans la récupération du taux de versement transport à partir du code commune',
+					error
+				)
+			}
+			// await
+			// serialize to not mix our data schema and the API response's
+			onChange({
+				...commune,
+				...(taux != null
+					? {
+							'taux du versement transport': taux
+					  }
+					: {})
+			})
 		},
-		[onSubmit, setSearchResults, setName]
+		[setSearchResults, setName]
 	)
 	const noResult =
 		!isLoading && searchResults != null && searchResults?.length === 0
@@ -141,6 +137,8 @@ export default function Select({ onChange, onSubmit, value }) {
 					break
 				case 'Enter':
 					submitFocusedElem()
+					e.preventDefault()
+					e.stopPropagation()
 					break
 			}
 		},
@@ -153,12 +151,12 @@ export default function Select({ onChange, onSubmit, value }) {
 				role="combobox"
 				type="search"
 				onBlur={submitFocusedElem}
-				ariaAutocomplete="list"
-				ariaReadonly="true"
+				aria-autocomplete="list"
+				aria-readonly="true"
 				css={noResult ? 'border-color: firebrick !important' : ''}
 				className="ui__"
 				onKeyDown={handleKeyDown}
-				ariaControls="liste-commune"
+				aria-controls="liste-commune"
 				value={name}
 				onChange={handleChange}
 			/>
@@ -178,7 +176,7 @@ export default function Select({ onChange, onSubmit, value }) {
 				<Animate.fromTop>
 					<ul
 						role="listbox"
-						ariaExpanded="true"
+						aria-expanded="true"
 						id="liste-commune"
 						css={`
 							padding: 0;

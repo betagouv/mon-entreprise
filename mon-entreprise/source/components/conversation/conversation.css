@@ -43,27 +43,13 @@
 	display: inline-flex;
 	align-items: center;
 }
+
+.step.question .variant .variantLeaf:not(:first-child) {
+	margin-left: 0.6rem;
+}
 .step.question .variantLeaf.aucun label {
 	font-weight: 800;
 	text-decoration: underline;
-}
-
-.step label.radio {
-	margin-bottom: 0.6rem;
-	text-align: center;
-	cursor: pointer;
-	background: none;
-	border-radius: 1em;
-	padding: 0.25em 0.85em;
-	font-size: 120%;
-}
-.step.question input[type='radio'] {
-	opacity: 0;
-	width: 0;
-	height: 0;
-	margin: 0;
-	position: absolute;
-	z-index: -1;
 }
 
 .step .input > :first-child {
@@ -76,16 +62,18 @@
 	margin-left: 0.6rem;
 }
 .step label.userAnswerButton {
+	margin-bottom: 0.6rem;
+	background: none;
 	border: 1px solid var(--color) !important;
 	text-transform: none !important;
 	background-color: white;
 	color: var(--textColorOnWhite) !important;
 }
 .step label.userAnswerButton.selected {
-	background: var(--color);
-	border: 1px solid var(--color);
+	background: var(--lightColor);
 	color: var(--textColor) !important;
 }
+
 @media print {
 	.step label.userAnswerButton.selected {
 		border: none;
@@ -97,9 +85,7 @@
 }
 @media (hover) {
 	.step label.userAnswerButton:hover:not(.selected) {
-		background: var(--color);
-		border: 1px solid var(--color);
-		color: var(--textColor) !important;
+		background: var(--lighterColor);
 		transition: all 0.05s;
 	}
 }
