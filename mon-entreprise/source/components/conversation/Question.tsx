@@ -1,11 +1,10 @@
 import classnames from 'classnames'
-import { ThemeColorsContext } from 'Components/utils/colors'
+import { Markdown } from 'Components/utils/markdown'
 import { is } from 'ramda'
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
-import { Markdown } from 'Components/utils/markdown'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -26,53 +25,70 @@ import { Markdown } from 'Components/utils/markdown'
 export default function Question({
 	choices,
 	onSubmit,
-	dottedName,
+	dottedName: questionDottedName,
 	onChange,
 	value: currentValue
 }) {
-	const colors = useContext(ThemeColorsContext)
+	const [currentSelection, setCurrentSelection] = useState(currentValue)
 	const handleChange = useCallback(
 		value => {
-			onChange(value)
+			setCurrentSelection(value)
 		},
-		[onChange]
+		[setCurrentSelection]
 	)
-	// if (choices.length > 4) {
-	// 	return <Select {...{choices, onSubmit, dottedName, onChange, value: CurrentValue}}
-	// }
+
+	useEffect(() => {
+		if (currentSelection != null) {
+			const timeoutId = setTimeout(() => onChange(currentSelection), 300)
+			return () => clearTimeout(timeoutId)
+		}
+	}, [currentSelection])
+
 	const renderBinaryQuestion = () => {
-		return choices.map(({ value, label }, i: number) => (
-			<RadioLabel
+		return choices.map(({ value, label }) => (
+			<span
 				key={value}
-				{...{
-					value,
-					css: i < choices.length - 1 ? 'margin-right: 0.6rem' : 0,
-					label,
-					currentValue,
-					onSubmit,
-					colors,
-					onChange: handleChange
-				}}
-			/>
+				css={`
+					:not(:first-child) {
+						margin-left: 0.6rem;
+					}
+					input {
+						width: 0;
+						opacity: 0;
+						height: 0;
+						position: absolute;
+					}
+				`}
+			>
+				<RadioLabel
+					{...{
+						value,
+						label,
+						currentSelection,
+						onSubmit,
+						name: questionDottedName,
+						onChange: handleChange
+					}}
+				/>
+			</span>
 		))
 	}
 	const renderChildren = choices => {
 		// seront stockées ainsi dans le state :
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = radioDottedName =>
-			radioDottedName.split(dottedName + ' . ')[1]
-
+			radioDottedName.split(questionDottedName + ' . ')[1]
 		return (
-			<ul css="width: 100%; padding: 0; margin:0">
+			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
 							{...{
 								value: 'non',
 								label: 'Aucun',
-								currentValue,
+								currentSelection,
+								name: questionDottedName,
 								onSubmit,
-								colors,
 								dottedName: null,
 								onChange: handleChange
 							}}
@@ -94,11 +110,11 @@ export default function Question({
 											value: `'${relativeDottedName(dottedName)}'`,
 											label: title,
 											dottedName,
-											currentValue,
+											currentSelection,
+											name: questionDottedName,
 											icons,
 											onSubmit,
 											description,
-											colors,
 											onChange: handleChange
 										}}
 									/>
@@ -143,37 +159,35 @@ export const RadioLabel = props => (
 function RadioLabelContent({
 	value,
 	label,
-	currentValue,
+	name,
+	currentSelection,
 	icons,
 	onChange,
-	onSubmit,
-	css
+	onSubmit
 }) {
 	const labelStyle = value === '_' ? ({ fontWeight: 'bold' } as const) : {}
-	const selected = value === currentValue
-
-	const click = value => () => {
-		if (currentValue == value && onSubmit) onSubmit('dblClick')
-	}
+	const selected = value === currentSelection
 
 	return (
 		<label
 			key={value}
+			onDoubleClick={() => onSubmit('dblClick')}
 			style={labelStyle}
-			css={css}
-			className={classnames('radio', 'userAnswerButton', 'ui__', 'button', {
+			className={classnames('userAnswerButton ui__ button', {
 				selected
 			})}
 		>
-			{icons && <>{emoji(icons)}&nbsp;</>}
-			<Trans>{label}</Trans>
 			<input
 				type="radio"
-				onClick={click(value)}
+				name={name}
 				value={value}
 				onChange={evt => onChange(evt.target.value)}
 				checked={selected}
 			/>
+			<span>
+				{icons && <>{emoji(icons)}&nbsp;</>}
+				<Trans>{label}</Trans>
+			</span>
 		</label>
 	)
 }

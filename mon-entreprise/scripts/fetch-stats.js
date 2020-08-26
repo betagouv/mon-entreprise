@@ -61,7 +61,9 @@ async function fetchSimulatorsMonth() {
 	return {
 		currentMonth: await getDataFromXMonthAgo(0),
 		oneMonthAgo: await getDataFromXMonthAgo(1),
-		twoMonthAgo: await getDataFromXMonthAgo(2)
+		twoMonthAgo: await getDataFromXMonthAgo(2),
+		threeMonthAgo: await getDataFromXMonthAgo(3),
+		fourMonthAgo: await getDataFromXMonthAgo(4)
 	}
 }
 

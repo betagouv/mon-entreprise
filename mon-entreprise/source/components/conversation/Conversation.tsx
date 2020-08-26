@@ -71,7 +71,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	return currentQuestion ? (
 		<>
 			<Aide />
-			<div tabIndex={0} style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
+			<div style={{ outline: 'none' }} onKeyDown={handleKeyDown}>
 				<Animate.fadeIn>
 					<div className="step">
 						<h3>

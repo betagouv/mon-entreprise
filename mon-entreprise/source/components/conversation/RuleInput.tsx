@@ -70,7 +70,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 	}
 	if (rule.API && rule.API === 'commune')
-		return <SelectCommune {...commonProps} onSubmit={onSubmit} />
+		return <SelectCommune {...commonProps} />
 	if (rule.API && rule.API === 'pays européen')
 		return <SelectEuropeCountry {...commonProps} onSubmit={onSubmit} />
 	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
@@ -101,8 +101,8 @@ export default function RuleInput<Name extends string = DottedName>({
 			<Question
 				{...commonProps}
 				choices={[
-					{ value: 'non', label: 'Non' },
-					{ value: 'oui', label: 'Oui' }
+					{ value: 'oui', label: 'Oui' },
+					{ value: 'non', label: 'Non' }
 				]}
 				onSubmit={onSubmit}
 			/>

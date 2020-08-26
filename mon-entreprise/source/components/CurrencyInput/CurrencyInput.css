@@ -4,6 +4,9 @@
 	justify-content: flex-end;
 }
 
+.currencyInput__input:focus {
+	outline: none;
+}
 .currencyInput__input {
 	height: inherit;
 	max-height: inherit;

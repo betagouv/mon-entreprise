@@ -161,8 +161,10 @@ function SeoExplanations() {
 					Voir le détail du calcul du revenu abattu pour un auto-entrepreneur
 				</RuleLink>
 			</p>
-			<h2>Ressources utiles</h2>
-			<div style={{ display: 'flex' }}>
+			<h2>
+				<Trans>Ressources utiles</Trans>
+			</h2>
+			<div style={{ display: 'flex', flexWrap: 'wrap' }}>
 				<RessourceAutoEntrepreneur />
 			</div>
 		</Trans>
