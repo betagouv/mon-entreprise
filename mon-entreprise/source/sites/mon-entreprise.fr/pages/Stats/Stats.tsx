@@ -28,7 +28,13 @@ import { useSimulatorsMetadata } from '../Simulateurs/Home'
 
 const stats: StatsData = statsJson as any
 
-const monthPeriods = ['currentMonth', 'oneMonthAgo', 'twoMonthAgo'] as const
+const monthPeriods = [
+	'currentMonth',
+	'oneMonthAgo',
+	'twoMonthAgo',
+	'threeMonthAgo',
+	'fourMonthAgo'
+] as const
 type MonthPeriod = typeof monthPeriods[number]
 
 type Periodicity = 'daily' | 'monthly'
