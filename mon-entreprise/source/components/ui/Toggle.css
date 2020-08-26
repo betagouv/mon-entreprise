@@ -56,7 +56,7 @@
 }
 
 .ui__.radio input[type='radio']:focus ~ *::before {
-	box-shadow: 0 0 0px 2px var(--color), 0 0 5px 2px white;
+	box-shadow: 0 0 0px 2px var(--color), 0 0 5px 3px var(--lightColor);
 }
 
 .ui__.radio input[type='radio'] {

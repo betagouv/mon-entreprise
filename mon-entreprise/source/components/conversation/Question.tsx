@@ -52,6 +52,12 @@ export default function Question({
 					:not(:first-child) {
 						margin-left: 0.6rem;
 					}
+					input {
+						width: 0;
+						opacity: 0;
+						height: 0;
+						position: absolute;
+					}
 				`}
 			>
 				<RadioLabel
@@ -165,6 +171,7 @@ function RadioLabelContent({
 	return (
 		<label
 			key={value}
+			onDoubleClick={() => onSubmit('dblClick')}
 			style={labelStyle}
 			className={classnames('userAnswerButton ui__ button', {
 				selected
@@ -173,7 +180,6 @@ function RadioLabelContent({
 			<input
 				type="radio"
 				name={name}
-				onDoubleClick={() => onSubmit('dblClick')}
 				value={value}
 				onChange={evt => onChange(evt.target.value)}
 				checked={selected}
