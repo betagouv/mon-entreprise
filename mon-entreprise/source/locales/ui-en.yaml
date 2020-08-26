@@ -41,6 +41,7 @@ Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 Créer une: Create a
 De: From
+Demande de mobilité: Demand for mobility
 Destinataire: Levied by
 Devenir: Become
 Déclenchement: Applicability
@@ -1183,6 +1184,7 @@ simulateurs:
     comparaison: >
       Simulate the differences between the plans (contributions, retirement,
       maternity, illness, etc.)
+    demande-mobilité: Application form for mobility in Europe for self-employed workers
     indépendant: |
       Calculate the income of a majority manager of EURL, EI, or SARL
     salarié: >

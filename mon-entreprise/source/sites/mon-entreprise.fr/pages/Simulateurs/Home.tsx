@@ -100,6 +100,16 @@ export function useSimulatorsMetadata() {
 			icône: '✍️',
 			label: t('Indépendant'),
 			sitePath: sitePaths.gérer.déclarationIndépendant
+		},
+		{
+			name: t('Demande de mobilité'),
+			description: t(
+				'simulateurs.résumé.demande-mobilité',
+				'Formulaire de demande de mobilité en Europe pour les travailleurs indépendants'
+			),
+			icône: '🧳',
+			label: t('Indépendant'),
+			sitePath: sitePaths.gérer.formulaireMobilité
 		}
 	] as Array<SimulatorMetaData>
 }
