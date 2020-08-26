@@ -9,7 +9,7 @@
 	--darkColor: rgb(24, 69, 123);
 	--textColor: rgb(24, 69, 123);
 }
-:focus:not(:active) {
+:focus:not(:active):not(input) {
 	outline: 1px dashed var(--darkColor);
 }
 :active {
