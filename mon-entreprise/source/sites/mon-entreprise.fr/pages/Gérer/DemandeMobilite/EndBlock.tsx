@@ -2,7 +2,8 @@ import { BlobProvider } from '@react-pdf/renderer'
 import Overlay from 'Components/Overlay'
 import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import React, { useContext, useRef, useState, Suspense } from 'react'
+import { TrackerContext } from 'Components/utils/withTracker'
+import React, { Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
 import PDFDocument from './PDFDocument'
@@ -20,6 +21,7 @@ export default function EndBlock({ fields, isMissingValues }) {
 
 	const { darkColor } = useContext(ThemeColorsContext)
 	const signatureRef = useRef<SignaturePadInstance>()
+	const tracker = useContext(TrackerContext)
 
 	if (isMissingValues) {
 		return (
@@ -160,6 +162,13 @@ export default function EndBlock({ fields, isMissingValues }) {
 											)}
 											<a
 												href={url}
+												onClick={() =>
+													tracker.push([
+														'trackEvent',
+														'Demande mobilité',
+														'Formulaire téléchargé'
+													])
+												}
 												className="ui__ cta plain button"
 												download="demande-mobilité-europe.pdf"
 											>

@@ -97,17 +97,34 @@ async function fetchSimulators(dt) {
 		)
 
 		const dataSimulateurs = await responseSimulateurs.json()
-		const resultSimulateurs = dataSimulateurs
+
+		// Visits on "manage" pages
+		const idSubTableManage = firstLevelData.find(page => page.label === 'gérer')
+			.idsubdatatable
+
+		const responseManage = await fetch(
+			apiURL({
+				date: `${dt}`,
+				method: 'Actions.getPageUrls',
+				search_recursive: 1,
+				filter_limits: -1,
+				idSubtable: idSubTableManage
+			})
+		)
+		const dataManage = await responseManage.json()
+
+		const resultSimulateurs = [...dataSimulateurs, ...dataManage]
 			.filter(({ label }) =>
 				[
 					'/salaire-brut-net',
 					'/chômage-partiel',
 					'/auto-entrepreneur',
 					'/artiste-auteur',
-					'/aide-declaration-independants',
 					'/indépendant',
 					'/comparaison-régimes-sociaux',
-					'/dirigeant-sasu'
+					'/dirigeant-sasu',
+					'/aide-declaration-independants',
+					'/demande-mobilité'
 				].includes(label)
 			)
 
