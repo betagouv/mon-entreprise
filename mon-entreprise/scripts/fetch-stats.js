@@ -6,7 +6,6 @@
 //
 // Matomo API documentation:
 // https://developer.matomo.org/api-reference/reporting-api
-
 require('dotenv').config()
 require('isomorphic-fetch')
 const querystring = require('querystring')
@@ -321,7 +320,7 @@ async function fetchChannelType() {
 		const response = await fetch(
 			apiURL({
 				period: 'month',
-				date: 'last3',
+				date: 'last6',
 				method: 'Referrers.getReferrerType'
 			})
 		)
@@ -346,7 +345,9 @@ async function fetchChannelType() {
 		return {
 			currentMonth: { date: dates[0], visites: result[dates[0]] },
 			oneMonthAgo: { date: dates[1], visites: result[dates[1]] },
-			twoMonthAgo: { date: dates[2], visites: result[dates[2]] }
+			twoMonthAgo: { date: dates[2], visites: result[dates[2]] },
+			threeMonthAgo: { date: dates[3], visites: result[dates[3]] },
+			fourMonthAgo: { date: dates[4], visites: result[dates[4]] }
 		}
 	} catch (e) {
 		console.log('fail to fetch channel type')
