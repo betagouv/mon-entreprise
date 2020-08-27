@@ -137,14 +137,16 @@ export default function EndBlock({ fields, isMissingValues }) {
 						>
 							{({ url, loading, error }) =>
 								error ? (
-									<blockquote>
-										<strong>Erreur lors de la génération du pdf</strong>
-										<br />
-										<small>
-											Veuillez envoyer un mail à
-											contact@mon-entreprise.beat.gouv.fr
-										</small>
-									</blockquote>
+									console.error(error) || (
+										<blockquote>
+											<strong>Erreur lors de la génération du pdf</strong>
+											<br />
+											<small>
+												Veuillez envoyer un mail à
+												contact@mon-entreprise.beat.gouv.fr
+											</small>
+										</blockquote>
+									)
 								) : loading ? (
 									<blockquote>
 										<small>Génération du pdf en cours...</small>

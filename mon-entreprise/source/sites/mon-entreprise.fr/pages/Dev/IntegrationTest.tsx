@@ -7,6 +7,7 @@ export const integrableModuleNames = [
 	'simulateur-independant',
 	'simulateur-assimilesalarie',
 	'simulateur-artiste-auteur',
+	'demande-mobilite',
 	'simulateur-chomage-partiel'
 ]
 

@@ -112,14 +112,7 @@ export function ThemeColorsProvider({ color, children }: ProviderProps) {
 	return (
 		<ThemeColorsContext.Provider value={colors}>
 			{/* This div is only used to set the CSS variables */}
-			<div
-				ref={divRef}
-				css={`
-					height: inherit;
-				`}
-			>
-				{children}
-			</div>
+			<div ref={divRef}>{children}</div>
 		</ThemeColorsContext.Provider>
 	)
 }
