@@ -3529,7 +3529,34 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: Chamber of Crafts taxes
   titre.fr: taxe pour frais de chambre des métiers
 ? dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle
-: titre.en: Contribution to vocational trainingyay
+: description.en: >
+    [automatic] In addition to social security charges, self-employed
+    entrepreneurs are liable for a
+
+    contribution to vocational training enabling them to benefit from the
+
+    the right to vocational training (provided that you have declared a figure
+
+    of positive business over the last 12 months).
+  description.fr: |
+    En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
+    contribution à la formation professionnelle leur permettant de bénéficier du
+    droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
+    d’affaires positif au cours des 12 derniers mois).
+  note.en: >
+    [automatic] The rules specified on the autoentrepreneur.urssaf.fr website
+    and those of the
+
+    in the text of the law differ. We have chosen to implement those 
+
+    of the USSAF documentation while waiting for more information from them.
+  note.fr: >
+    Les règles précisées sur le site autoentrepreneur.urssaf.fr et celles
+
+    inscrites dans le texte de loi diffèrent. Nous avons choisi d'implémenter celles 
+
+    de la documentation urssaf en attendant plus d'informations de leur part.
+  titre.en: Contribution to vocational trainingyay
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >

@@ -142,7 +142,7 @@ export default function EndBlock({ fields, isMissingValues }) {
 										<br />
 										<small>
 											Veuillez envoyer un mail à
-											contact@mon-entreprise.beat.gouv.fr
+											contact@mon-entreprise.beta.gouv.fr
 										</small>
 									</blockquote>
 								) : loading ? (

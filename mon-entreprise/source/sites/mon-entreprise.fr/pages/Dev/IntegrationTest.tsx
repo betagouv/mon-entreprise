@@ -10,6 +10,9 @@ export const integrableModuleNames = [
 	'simulateur-chomage-partiel'
 ]
 
+// Intégrations "cachées" (non diffusées)
+const privateModuleNames = ['demande-mobilite']
+
 export default function IntegrationTest() {
 	const [currentModule, setCurrentModule] = React.useState(
 		integrableModuleNames[0]

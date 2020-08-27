@@ -49,8 +49,8 @@
 	vertical-align: middle;
 	border-radius: 100%;
 	cursor: pointer;
-	box-shadow: 0 0 0px 2px var(--color);
 	box-shadow: 0 0 0px 2px rgb(41, 117, 209);
+	box-shadow: 0 0 0px 2px var(--color);
 	transition: all 0.1s;
 	border: 0.4em solid white;
 }

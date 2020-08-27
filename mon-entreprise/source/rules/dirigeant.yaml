@@ -182,10 +182,23 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . contribution formation professionnelle:
   titre: Contribution à la formation professionnelle
+  description: |
+    En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
+    contribution à la formation professionnelle leur permettant de bénéficier du
+    droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
+    d’affaires positif au cours des 12 derniers mois).
+  acronyme: CFP
   unité: €/mois
   références:
-    shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
+    Article L6331-48 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006904325
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
+    shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
+  note: |
+    Les règles précisées sur le site autoentrepreneur.urssaf.fr et celles
+    inscrites dans le texte de loi diffèrent. Nous avons choisi d'implémenter celles 
+    de la documentation urssaf en attendant plus d'informations de leur part.
+
   formule:
     produit:
       assiette: base des cotisations
