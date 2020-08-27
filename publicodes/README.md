@@ -3,7 +3,7 @@ public. Il permet de réaliser des calculs généraux tout en fournissant une
 explication permettant de comprendre et de documenter ces calculs.
 
 Publicode est adapté pour modéliser des domaines métiers complexes pouvant être
-décomposés en règles élémentaires simples (comme la [législation socio-fiscale](https://github.com/betagouv/mon-entreprise/tree/master/publicode),
+décomposés en règles élémentaires simples (comme la [législation socio-fiscale](https://github.com/betagouv/mon-entreprise/tree/master/publicodes),
 [un bilan carbone](https://github.com/laem/futureco-data/blob/master/co2.yaml),
 un estimateur de rendement locatif, etc.).
 
