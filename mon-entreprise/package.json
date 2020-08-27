@@ -58,7 +58,7 @@
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",
-		"@react-pdf/renderer": "^2.0.0-beta.6",
+		"@react-pdf/renderer": "^1.6.10",
 		"@rehooks/local-storage": "^2.1.1",
 		"@sentry/browser": "5.15.5",
 		"classnames": "^2.2.5",
