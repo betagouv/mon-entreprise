@@ -7,6 +7,11 @@ type OverlayProps = React.HTMLAttributes<HTMLDivElement> & {
 	xPosition?: number
 	children: React.ReactNode
 }
+declare global {
+	interface Window {
+		parentIFrame?: any
+	}
+}
 
 const useIFrameOffset = () => {
 	const [offsetTop, setOffset] = useState<number | null>(null)

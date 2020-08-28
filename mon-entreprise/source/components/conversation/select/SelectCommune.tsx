@@ -150,8 +150,8 @@ export default function Select({ onChange, value }) {
 			<input
 				role="combobox"
 				type="search"
-				onBlur={submitFocusedElem}
 				aria-autocomplete="list"
+				onBlur={submitFocusedElem}
 				aria-readonly="true"
 				css={noResult ? 'border-color: firebrick !important' : ''}
 				className="ui__"
@@ -186,9 +186,14 @@ export default function Select({ onChange, value }) {
 							const nom = formatCommune(result)
 							return (
 								<Option
+									onMouseDown={
+										// Prevent input blur and focus elem selection
+										e => e.preventDefault()
+									}
 									onClick={() => handleSubmit(result)}
 									role="option"
 									focused={i === focusedElem}
+									data-role="commune-option"
 									key={nom}
 									onFocus={() => setFocusedElem(i)}
 								>
