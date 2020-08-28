@@ -1,17 +1,17 @@
 import classnames from 'classnames'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+import mecanismsDoc from '../../../docs/mecanisms.yaml'
+import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
-import { Evaluation, ParsedRule, Types, Unit, EvaluatedNode } from '../../types'
+import { simplifyNodeUnit } from '../../nodeUnits'
+import { EvaluatedNode, Evaluation, ParsedRule, Types, Unit } from '../../types'
 import { capitalise0 } from '../../utils'
+import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
-import Modal from '../Modal'
-import { makeJsx } from '../../evaluation'
 import MecanismExplanation from './Explanation'
-import mecanismsDoc from '../../../docs/mecanisms.yaml'
-import { simplifyNodeUnit } from '../../nodeUnits'
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
 	unit: Unit
@@ -151,9 +151,9 @@ const MecanismName = ({
 				{children}
 			</StyledMecanismName>
 			{showExplanation && (
-				<Modal onClose={() => setShowExplanation(false)}>
+				<Overlay onClose={() => setShowExplanation(false)}>
 					<MecanismExplanation name={name} {...mecanismsDoc[name]} />
-				</Modal>
+				</Overlay>
 			)}
 		</>
 	)
