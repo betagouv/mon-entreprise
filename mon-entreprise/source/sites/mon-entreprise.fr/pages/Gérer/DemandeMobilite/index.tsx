@@ -136,22 +136,20 @@ function FormulairePublicodes({ engine }) {
 							{field.description && <Markdown source={field.description} />}
 						</>
 					) : (
-						<label
-							css={`
-								display: block;
-							`}
-						>
-							{field.question ? (
-								<span
-									css={`
-										margin-top: 0.6rem;
-									`}
-								>
-									{field.question}
-								</span>
-							) : (
-								<small>{field.title}</small>
-							)}{' '}
+						<>
+							<label htmlFor={`step-${field.dottedName}`}>
+								{field.question ? (
+									<span
+										css={`
+											margin-top: 0.6rem;
+										`}
+									>
+										{field.question}
+									</span>
+								) : (
+									<small>{field.title}</small>
+								)}{' '}
+							</label>
 							{field.description && (
 								<Explicable>
 									<h3>{field.title}</h3>
@@ -164,7 +162,7 @@ function FormulairePublicodes({ engine }) {
 								value={situation[field.dottedName]}
 								onChange={value => onChange(field.dottedName, value)}
 							/>
-						</label>
+						</>
 					)}
 				</Animate.fromTop>
 			))}
