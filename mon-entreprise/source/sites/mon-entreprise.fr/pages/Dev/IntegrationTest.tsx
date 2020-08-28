@@ -34,15 +34,9 @@ export default function IntegrationTest() {
 	}, [version])
 	return (
 		<>
-			<p>
-				Les 4 simulateurs mon-entreprise.fr sont disponibles à l'intégration sur
-				un site tiers. Ils sont hébergés chez nous, et il suffit de placer un
-				simple bout de code Javascript dans votre code HTML.
-			</p>
-			<p>Choisissez d'abord le module et la couleur qui vous conviennent.</p>
 			<h2>Quel module ?</h2>
 			<select onChange={event => setCurrentModule(event.target.value)}>
-				{integrableModuleNames.map(name => (
+				{[...integrableModuleNames, ...privateModuleNames].map(name => (
 					<option key={name}>{name}</option>
 				))}
 			</select>
