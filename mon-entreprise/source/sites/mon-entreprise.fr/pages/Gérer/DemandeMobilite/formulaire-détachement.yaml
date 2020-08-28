@@ -64,8 +64,9 @@ activité france . commune:
   note:: 4.4.3 / 4.4.4
 activité france . organisme urssaf:
   type: texte
+  titre: Organisme Urssaf
   description: >
-    Nom de l'organisme Urssaf dont vous relevez en france
+    Nom de l'organisme Urssaf dont vous relevez en France
 activité france . nature de l'activité:
   question: Quel est la nature de votre activité en France ?
   type: texte
