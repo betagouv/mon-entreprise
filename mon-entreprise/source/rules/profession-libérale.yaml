@@ -2,6 +2,8 @@
 dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . catégorie d'activité = 'libérale'
+  formule: oui
+  rend non applicable: cotisations et contributions . cotisations . indemnités journalières maladie
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
@@ -72,10 +74,10 @@ dirigeant . indépendant . PL . option régime général:
   par défaut: non
 
 dirigeant . indépendant . PL . régime général:
-  non applicable si:
-    une de ces conditions:
-      - CIPAV
-      - entreprise . catégorie d'activité . libérale règlementée
+  formule:
+    toutes ces conditions:
+      - CIPAV = non
+      - entreprise . catégorie d'activité . libérale règlementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
@@ -105,7 +107,6 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
 dirigeant . indépendant . PL . régime général . maladie:
   titre: maladie (taux PLNR)
   remplace: cotisations et contributions . cotisations . maladie
-  rend non applicable: cotisations et contributions . cotisations . indemnités journalières maladie
   formule:
     produit:
       assiette: indépendant . assiette des cotisations
@@ -146,20 +147,6 @@ dirigeant . indépendant . PL . CIPAV:
           - entreprise . date de création < 01/2019
           - entreprise . catégorie d'activité . libérale règlementée = non
       - métier = 'rattaché CIPAV'
-
-dirigeant . indépendant . PL . CIPAV . retraite de base:
-  remplace: cotisations et contributions . cotisations . retraite de base
-  formule:
-    produit:
-      assiette: cotisations et contributions . cotisations . retraite de base . assiette
-      multiplicateur:
-      composantes:
-        - nom: tranche 1
-          taux: 8.23%
-          plafond: plafond sécurité sociale temps plein
-        - nom: tranche 2
-          taux: 1.87%
-          plafond: 5 * plafond sécurité sociale temps plein
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
@@ -251,3 +238,91 @@ dirigeant . indépendant . PL . PAM . contribution aux unions régionales des pr
     plafond: 50% * plafond sécurité sociale temps plein
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
+
+dirigeant . indépendant . PL . PAM . maladie:
+  remplace: cotisations et contributions . cotisations . maladie
+  titre: maladie (après participation CPAM)
+  formule:
+    somme:
+      - produit:
+          assiette: assiette des cotisations
+          taux: 6.50%
+      - contribution additionnelle
+      - (- remboursement CPAM)
+
+dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
+  question: Quels est votre dépassement honoraires moyen (estimation) ?
+  par défaut: 0%
+
+dirigeant . indépendant . PL . PAM . revenus conventionnés:
+  formule: assiette des cotisations / (100% + dépassement d'honoraire moyen)
+
+dirigeant . indépendant . PL . PAM . secteur II:
+  applicable si: dirigeant . indépendant . PL . métier = 'PAM . médecin'
+  question: Êtes-vous conventionné secteur II ?
+  par défaut: non
+
+dirigeant . indépendant . PL . PAM . maladie . remboursement CPAM:
+  non applicable si: secteur II
+  formule:
+    produit:
+      assiette: revenus conventionnés
+      taux: 6.40%
+
+dirigeant . indépendant . PL . PAM . maladie . contribution additionnelle:
+  formule:
+    produit:
+      assiette: (assiette des cotisations - revenus conventionnés)
+      taux: 3.25%
+
+dirigeant . indépendant . PL . retraite CNAVPL:
+  non applicable si: régime général
+  titre: retraite de base (CNAVPL)
+  description: |
+    Toutes les professions libérale (à l'exception des avocats)
+    ont les mêmes taux de cotisations pour leur retraite de base.
+
+    La caisse nationale d'assurance vieillesse des professions
+    libérales est l'organisme qui fédère les différentes caisses 
+    existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
+
+  remplace: cotisations et contributions . cotisations . retraite de base
+  formule:
+    produit:
+      assiette: cotisations et contributions . cotisations . retraite de base . assiette
+      multiplicateur:
+      composantes:
+        - nom: tranche 1
+          taux: 8.23%
+          plafond: plafond sécurité sociale temps plein
+        - nom: tranche 2
+          taux: 1.87%
+          plafond: 5 * plafond sécurité sociale temps plein
+  références:
+    cnavpl.fr: https://www.cnavpl.fr/
+    liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
+
+dirigeant . indépendant . PL . CARPIMKO:
+  formule: oui
+  applicable si: métier = 'PAM . auxiliaire médical'
+
+dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  titre: retraite complémentaire (CARPIMKO)
+  formule:
+    somme:
+      - 1648 €/an
+      - barème:
+          assiette: assiette des cotisations
+          tranches:
+            - taux: 0%
+              plafond: 25246 €/an
+            - taux: 3%
+              plafond: 176413 €/an
+  références:
+    Site CARPIMKO: http://www.carpimko.com/cotisations/cotisations_cas_general
+
+dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
+  titre: invalidité et décès (CARPIMKO)
+  remplace: cotisations et contributions . cotisations . invalidité et décès
+  formule: 678 €/an
