@@ -1085,6 +1085,21 @@ contrat salarié . aides employeur:
   résumé.fr: Pour l'employeur, différées dans le temps
   titre.en: '[automatic] employer assistance'
   titre.fr: aides employeur
+? contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis
+: description.en: >-
+    [automatic] As part of the economic recovery plan for the start of the new
+    school year in 2020, the government is putting in place exceptional
+    assistance for the recruitment of apprentices.
+
+    This aid is open for contracts signed between 1 July 2020 and 28 February 2021. It replaces the one-off aid available to companies with fewer than 250 employees who hire an apprentice with a CAP (vocational training certificate) at Bac level.
+  description.fr: >-
+    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
+    gouvernement met en place une aide exceptionnelle au recrutement des
+    apprentis.
+
+    Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à Bac.
+  titre.en: '[automatic] exceptional assistance in hiring apprentices'
+  titre.fr: aide exceptionnelle à l'embauche d'apprentis
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description.en: >
     Since 2019, a single hiring aid has replaced four previous schemes. The
@@ -3115,6 +3130,11 @@ contrat salarié . rémunération . total:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
   titre.fr: Total chargé
+contrat salarié . salarié majeur:
+  question.en: Is the employee over 18 (age of majority)?
+  question.fr: Le salarié est-il majeur ?
+  titre.en: '[automatic] major employee'
+  titre.fr: salarié majeur
 contrat salarié . stage:
   description.en: >
     An employer who employs an intern must pay a minimum bonus to the intern.

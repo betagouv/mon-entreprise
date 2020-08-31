@@ -330,9 +330,9 @@ exports[`calculate simulations-salarié: aides 3`] = `"[2062,0,2000,1561,1524]"`
 
 exports[`calculate simulations-salarié: aides 4`] = `"[2292,0,2000,1561,1524]"`;
 
-exports[`calculate simulations-salarié: apprentissage 1`] = `"[1552,0,1500,1448,1448]"`;
+exports[`calculate simulations-salarié: apprentissage 1`] = `"[885,0,1500,1448,1448]"`;
 
-exports[`calculate simulations-salarié: apprentissage 2`] = `"[1385,0,1500,1448,1448]"`;
+exports[`calculate simulations-salarié: apprentissage 2`] = `"[885,0,1500,1448,1448]"`;
 
 exports[`calculate simulations-salarié: assimilé salarié 1`] = `"[7015,0,5000,3943,3318]"`;
 
