@@ -97,10 +97,10 @@ export default function Select({ onChange, value }) {
 
 	const [focusedElem, setFocusedElem] = useState(0)
 	const submitFocusedElem = useCallback(() => {
-		if (noResult) {
+		if (noResult || searchResults == null) {
 			return
 		}
-		handleSubmit((searchResults as Array<Commune>)[focusedElem])
+		handleSubmit(searchResults[focusedElem])
 	}, [searchResults, focusedElem, noResult, handleSubmit])
 
 	const handleChange = useCallback(
@@ -122,12 +122,12 @@ export default function Select({ onChange, value }) {
 			switch (e.key) {
 				case 'ArrowDown':
 				case 'ArrowUp':
-					if (noResult) {
+					if (noResult || searchResults == null) {
 						return
 					}
 					setFocusedElem(
 						(focusedElem + (e.key === 'ArrowDown' ? 1 : -1)) %
-							(searchResults as Array<Commune>).length
+							searchResults.length
 					)
 					e.preventDefault()
 					break
