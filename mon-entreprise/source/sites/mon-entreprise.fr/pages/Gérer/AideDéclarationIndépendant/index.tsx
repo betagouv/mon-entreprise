@@ -22,7 +22,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import emoji from 'react-easy-emoji'
 import RuleLink from 'Components/RuleLink'
 import { formatValue } from 'publicodes'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from 'Components/ui/Skeleton'
 
 export default function() {
 	const dispatch = useDispatch()

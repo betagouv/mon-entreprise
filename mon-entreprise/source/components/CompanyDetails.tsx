@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from 'Components/ui/Skeleton'
 import { Etablissement, fetchCompanyDetails } from '../api/sirene'
 
 type Company = {
