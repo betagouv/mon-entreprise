@@ -39,9 +39,11 @@ stage:
 
 apprentissage:
   - contrat salarié: "'apprentissage'"
+    contrat salarié . ancienneté . date d'embauche: 01/01/2020 # pour éviter l'aide exceptionnelle covid
     contrat salarié . rémunération . brut de base: 1500 €/mois
   - contrat salarié: "'apprentissage'"
     contrat salarié . rémunération . brut de base: 1500 €/mois
+    contrat salarié . ancienneté . date d'embauche: 01/01/2020 # pour éviter l'aide exceptionnelle covid
     contrat salarié . apprentissage . diplôme préparé: "'niveau bac ou moins'"
     contrat salarié . apprentissage . ancienneté: "'moins de deux ans'"
 
@@ -91,6 +93,22 @@ aides:
     contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . CDD . durée contrat: 6
     contrat salarié . aides employeur . emploi franc . éligible: oui
+
+aides embauche covid:
+  - ancienneté . date d'embauche: 01/08/2020
+    contrat salarié . jeune de moins de 26 ans: oui
+    contrat salarié . rémunération . brut de base: 1500 €/mois
+  - ancienneté . date d'embauche: 01/08/2020
+    contrat salarié . jeune de moins de 26 ans: oui
+    contrat salarié . rémunération . brut de base: 5000 €/mois
+  - ancienneté . date d'embauche: 01/08/2020
+    contrat salarié: "'CDD'"
+    contrat salarié . CDD . durée contrat: 3 mois
+    contrat salarié . jeune de moins de 26 ans: oui
+    contrat salarié . rémunération . brut de base: 1500 €/mois
+  - ancienneté . date d'embauche: 01/08/2020
+    contrat salarié: "'apprentissage'"
+    contrat salarié . rémunération . brut de base: 1500 €/mois
 
 temps partiel:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
