@@ -1,0 +1,253 @@
+# TODO: rules have a lot to share with artiste-author (BNC-regime) and independant
+dirigeant . indépendant . PL:
+  titre: Profession libérale
+  applicable si: entreprise . catégorie d'activité = 'libérale'
+
+dirigeant . indépendant . PL . métier:
+  applicable si: entreprise . catégorie d'activité . libérale règlementée
+  question: Quelle est le métier exercé en libéral ?
+  par défaut: "'rattaché CIPAV'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - PAM
+        - rattaché CIPAV
+
+dirigeant . indépendant . PL . métier . rattaché CIPAV:
+  titre: Autre métier rattaché à la CIPAV
+  description: |
+    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est : 
+
+    - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
+    - Guide-montage (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
+    - Ostéopathe
+    - Psychologue
+    - Psychothérapeute
+    - Ergothérapeute
+    - Diététicien
+    - Chiropracteur
+    - Ingénieur conseil
+    - Guide-conférencier
+
+dirigeant . indépendant . PL . métier . PAM:
+  titre: Practicien ou auxiliaire médical
+  description: |
+    Si vous êtes praticien ou auxiliaire médical conventionné, vous relevez du
+    régime d'assurance maladie des praticiens et auxiliaires médicaux
+    conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
+    de ce régime d'assurance maladie et sur les modalités de votre protection
+    sociale.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - médecin
+        - chirurgien-dentiste
+        - sage-femme
+        - auxiliaire médical
+        - étudiant remplaçant
+
+dirigeant . indépendant . PL . métier . PAM . auxiliaire médical:
+  description: |
+    Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute, orthophoniste, orthoptiste ou pédicure-podologue.
+dirigeant . indépendant . PL . métier . PAM . médecin:
+dirigeant . indépendant . PL . métier . PAM . chirurgien-dentiste:
+dirigeant . indépendant . PL . métier . PAM . sage-femme:
+dirigeant . indépendant . PL . métier . PAM . étudiant remplaçant:
+  description: |
+    Étudiants en médecine ayant validé au moins le diplôme de fin de deuxième
+    cycle des études médicales et qui effectuent le remplacement d'un docteur en
+    médecine.
+
+dirigeant . indépendant . PL . option régime général:
+  applicable si:
+    toutes ces conditions:
+      - entreprise . catégorie d'activité . libérale règlementée = non
+      - entreprise . date de création < 01/2019
+  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
+  description: |
+    En tant que profession libéral non reglementée, vous pouvez choisir d'être
+    rattaché au régime général plutôt que la CIPAV
+  par défaut: non
+
+dirigeant . indépendant . PL . régime général:
+  non applicable si:
+    une de ces conditions:
+      - CIPAV
+      - entreprise . catégorie d'activité . libérale règlementée
+
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
+  titre: taux spécifique profession libérale non reglementée
+  question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
+  description: |
+    Les professions libérales non règlementées qui ont débuté leur activité à
+    compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
+    date du 1er janvier 2019  et ont opté pour le régime général des
+    travailleurs indépendants  ont la possibilité d’opter pour des taux
+    spécifique de la cotisation retraite complémentaire.
+  références:
+    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
+  titre: retraite complémentaire (taux PLNR)
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  formule:
+    barème:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - taux: 0%
+          plafond: 1
+        - taux: 14%
+          plafond: 4
+
+dirigeant . indépendant . PL . régime général . maladie:
+  titre: maladie (taux PLNR)
+  remplace: cotisations et contributions . cotisations . maladie
+  rend non applicable: cotisations et contributions . cotisations . indemnités journalières maladie
+  formule:
+    produit:
+      assiette: indépendant . assiette des cotisations
+      taux:
+        taux progressif:
+          assiette: indépendant . assiette des cotisations
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - plafond: 0%
+              taux: 1.5%
+            - plafond: 110%
+              taux: 6.5%
+  références:
+    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
+    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
+  note: |
+    Les professions libérales ne cotisent pour la part correspondante aux
+    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
+    maladie.
+
+dirigeant . indépendant . PL . CIPAV:
+  description: |
+    Les entreprises libérales non règlementées créées étaient rattachées aux
+    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
+    plus le cas pour les auto-entrepreneurs (2019 pour les entreprise
+    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
+    donc dépendent de la sécurité sociale des indépendants.
+  références:
+    article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
+  non applicable si: option régime général
+  rend non applicable:
+    - protection sociale . retraite
+    - protection sociale . santé . indemnités journalières
+    - conjoint collaborateur
+  formule:
+    une de ces conditions:
+      - toutes ces conditions:
+          - entreprise . date de création < 01/2019
+          - entreprise . catégorie d'activité . libérale règlementée = non
+      - métier = 'rattaché CIPAV'
+
+dirigeant . indépendant . PL . CIPAV . retraite de base:
+  remplace: cotisations et contributions . cotisations . retraite de base
+  formule:
+    produit:
+      assiette: cotisations et contributions . cotisations . retraite de base . assiette
+      multiplicateur:
+      composantes:
+        - nom: tranche 1
+          taux: 8.23%
+          plafond: plafond sécurité sociale temps plein
+        - nom: tranche 2
+          taux: 1.87%
+          plafond: 5 * plafond sécurité sociale temps plein
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      unité: €/an
+      tranches:
+        - montant: 1353
+          plafond: 26581 €/an
+        - montant: 2705
+          plafond: 49281 €/an
+        - montant: 4058
+          plafond: 57851 €/an
+        - montant: 6763
+          plafond: 66401 €/an
+        - montant: 9468
+          plafond: 83061 €/an
+        - montant: 14878
+          plafond: 103181 €/an
+        - montant: 16231
+          plafond: 123301 €/an
+        - montant: 17583
+
+dirigeant . indépendant . PL . CIPAV . invalidité et décès:
+  remplace: cotisations et contributions . cotisations . invalidité et décès
+  formule:
+    variations:
+      - si: classe de cotisation = 'A'
+        alors: 76 €/an
+      - si: classe de cotisation = 'B'
+        alors: 228 €/an
+      - si: classe de cotisation = 'C'
+        alors: 380 €/an
+
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
+  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
+  description: >-
+    La Cipav gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
+    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
+    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - A
+        - B
+        - C
+  par défaut: "'A'"
+
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
+  titre: classe A
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
+  titre: classe B
+dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
+  titre: classe C
+
+# WIP implémentation des cotisations
+
+# Retraite de base, même calcul de la cotisation pour CIPAV, CARCDSF, CAVP, CARMF, CARPIMKO, CARPV
+
+dirigeant . indépendant . PL . PAM:
+  applicable si:
+    une de ces conditions:
+      - métier = 'PAM . auxiliaire médical'
+      - métier = 'PAM . médecin'
+      - métier = 'PAM . chirurgien-dentiste'
+      - métier = 'PAM . sage-femme'
+      - métier = 'PAM . étudiant remplaçant'
+
+dirigeant . indépendant . PL . PAM . contribution aux unions régionales des professionnels de santé:
+  acronyme: CURPS
+  remplace: cotisations et contributions . PLR
+  applicable si: revenu professionnel > 0
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      taux:
+        variations:
+          - si: métier = 'PAM . médecin'
+            alors: 0.5%
+          - si:
+              métier = 'PAM . chirurgien-dentiste'
+              # TODO pharmacien et lab
+            alors: 0.3%
+          - sinon: 0.1%
+    plafond: 50% * plafond sécurité sociale temps plein
+  références:
+    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html

@@ -19,6 +19,7 @@ import CCSport from './conventions-collectives/sport.yaml'
 import dirigeant from './dirigeant.yaml'
 import jsonRules from '../types/dottednames.json'
 import déclarationIndépendant from './déclaration-revenu-indépendant.yaml'
+import professionLibérale from './profession-libérale.yaml'
 import entrepriseEtablissement from './entreprise-établissement.yaml'
 import impot from './impôt.yaml'
 import protectionSociale from './protection-sociale.yaml'
@@ -40,6 +41,7 @@ const rules: Rules = {
 	...déclarationIndépendant,
 	...artisteAuteur,
 	...dirigeant,
+	...professionLibérale,
 	...entrepriseEtablissement,
 	...protectionSociale,
 	...salarié,

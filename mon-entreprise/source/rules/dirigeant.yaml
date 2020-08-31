@@ -699,7 +699,13 @@ dirigeant . indépendant . cotisations et contributions:
       - CSG et CRDS
       - formation professionnelle
       - conjoint collaborateur . cotisations
+      - PLR
       - (- exonérations)
+
+dirigeant . indépendant . cotisations et contributions . PLR:
+  titre: cotisations professions libérales réglementées
+  description: Cotisations spécifique aux professions libérales réglementées (medecins, avocats, etc.)
+  formule: non
 
 dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac:
   applicable si: entreprise . catégorie d'activité . débit de tabac
@@ -822,63 +828,6 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
     Bofip: https://bofip.impots.gouv.fr/bofip/1124-PGP.html
     LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
 
-dirigeant . rattachement CIPAV:
-  description: |
-    Les entreprises libérales non règlementées créées étaient rattachées aux règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est plus le cas pour les auto-entrepreneurs (2019 pour les entreprise individuelles). Elles sont maintenant rattachées aux artisans-commerçants, donc dépendent de la sécurité sociale des indépendants.
-  références:
-    article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
-  note: pour l'instant, nous n'avons retenu que la CIPAV pour les calculs
-  formule:
-    une de ces conditions:
-      - toutes ces conditions:
-          - contrat salarié = non
-          - entreprise . catégorie d'activité . libérale règlementée
-      - toutes ces conditions:
-          - dirigeant . indépendant
-          - entreprise . date de création < 01/2019
-          - entreprise . catégorie d'activité = 'libérale'
-      - toutes ces conditions:
-          - dirigeant . auto-entrepreneur
-          - entreprise . date de création < 01/2018
-          - entreprise . catégorie d'activité = 'libérale'
-
-  rend non applicable:
-    - protection sociale . retraite
-    - protection sociale . santé . indemnités journalières
-    - dirigeant . indépendant . conjoint collaborateur
-
-dirigeant . indépendant . PLNR régime général:
-  applicable si:
-    toutes ces conditions:
-      - entreprise . catégorie d'activité = 'libérale'
-      - entreprise . catégorie d'activité . libérale règlementée = non
-      - entreprise . date de création < 01/2019
-  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
-  description: En tant que profession libéral non reglementée, vous pouvez choisir d'être rattaché au régime général plutôt que la CIPAV
-  rend non applicable: rattachement CIPAV
-  par défaut: non
-
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie profession libérale:
-  applicable si: entreprise . catégorie d'activité = 'libérale'
-  remplace: maladie
-  rend non applicable: indemnités journalières maladie
-  formule:
-    produit:
-      assiette: indépendant . assiette des cotisations
-      taux:
-        taux progressif:
-          assiette: indépendant . assiette des cotisations
-          multiplicateur: plafond sécurité sociale temps plein
-          tranches:
-            - plafond: 0%
-              taux: 1.5%
-            - plafond: 110%
-              taux: 6.5%
-  références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
-    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
-  note: Les professions libérales ne cotisent pour la part correspondante aux indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de maladie.
-
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   titre: Maladie 2
   description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
@@ -952,78 +901,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie 
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
 
-dirigeant . rattachement CIPAV . retraite de base:
-  remplace: indépendant . cotisations et contributions . cotisations . retraite de base
-  formule:
-    produit:
-      assiette: indépendant . cotisations et contributions . cotisations . retraite de base . assiette
-      multiplicateur:
-      composantes:
-        - nom: tranche 1
-          taux: 8.23%
-          plafond: plafond sécurité sociale temps plein
-        - nom: tranche 2
-          taux: 1.87%
-          plafond: 5 * plafond sécurité sociale temps plein
-
-dirigeant . rattachement CIPAV . retraite complémentaire:
-  remplace: indépendant . cotisations et contributions . cotisations . retraite complémentaire
-  formule:
-    grille:
-      assiette: indépendant . assiette des cotisations
-      unité: €/an
-      tranches:
-        - montant: 1353
-          plafond: 26581 €/an
-        - montant: 2705
-          plafond: 49281 €/an
-        - montant: 4058
-          plafond: 57851 €/an
-        - montant: 6763
-          plafond: 66401 €/an
-        - montant: 9468
-          plafond: 83061 €/an
-        - montant: 14878
-          plafond: 103181 €/an
-        - montant: 16231
-          plafond: 123301 €/an
-        - montant: 17583
-
-dirigeant . rattachement CIPAV . invalidité et décès:
-  remplace: indépendant . cotisations et contributions . cotisations . invalidité et décès
-  formule:
-    variations:
-      - si: classe de cotisation = 'A'
-        alors: 76 €/an
-      - si: classe de cotisation = 'B'
-        alors: 228 €/an
-      - si: classe de cotisation = 'C'
-        alors: 380 €/an
-
-dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation:
-  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
-  description: >-
-    La Cipav gère un régime de prévoyance versant une pension en cas
-    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
-    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
-    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A
-        - B
-        - C
-  par défaut: "'A'"
-
-dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . A:
-  titre: classe A
-dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . B:
-  titre: classe B
-dirigeant . rattachement CIPAV . invalidité et décès . classe de cotisation . C:
-  titre: classe C
-
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base:
   formule:
     barème:
@@ -1038,32 +915,6 @@ dirigeant . indépendant . cotisations et contributions . cotisations . retraite
         - taux: 0.6%
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR:
-  applicable si:
-    toutes ces conditions:
-      - entreprise . catégorie d'activité = 'libérale'
-      - rattachement CIPAV = non
-  titre: taux spécifique profession libérale non reglementée
-  question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
-  description: |
-    Les professions libérales non règlementées qui ont débuté leur activité à compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la date du 1er janvier 2019  et ont opté pour le régime général des travailleurs indépendants  ont la possibilité d’opter pour des taux spécifique de la cotisation retraite complémentaire.
-  références:
-    Guide PL urssaf (page 10): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
-
-dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR . taux:
-  titre: retraite complémentaire (taux PLNR)
-  description: la retraite complémentaire avec taux spécifiques
-  remplace: retraite complémentaire
-  formule:
-    barème:
-      assiette: assiette des cotisations
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - taux: 0%
-          plafond: 1
-        - taux: 14%
-          plafond: 4
 
 dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   formule:

@@ -60,7 +60,7 @@ aide déclaration revenu indépendant 2019 . ACRE:
 
 aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
   remplace:
-    - règle: dirigeant . rattachement CIPAV
+    - règle: dirigeant . indépendant . PL . CIPAV
       par: non
     - entreprise . catégorie d'activité . libérale
   titre: Libérale rattachée au régime général
