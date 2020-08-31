@@ -107,7 +107,19 @@ describe('Simulateur salarié', () => {
 	}
 	before(() => cy.visit('/simulateurs/salarié'))
 
-	it.skip('should save the current simulation', function() {
+	it('should ask for CDD motif directly after CDD is selected', function() {
+		cy.get(inputSelector)
+			.eq(1)
+			.type('{selectall}3000')
+		cy.wait(1000)
+		cy.get('.step')
+			.find('input[value="\'CDD\'"]')
+			.click({ force: true })
+		cy.contains('Suivant').click()
+		cy.contains('Motifs classiques')
+	})
+
+	it('should save the current simulation', function() {
 		cy.get(inputSelector)
 			.first()
 			.type('{selectall}2137')
@@ -123,23 +135,11 @@ describe('Simulateur salarié', () => {
 			.should('match', /2[\s]137/)
 	})
 
-	it('should ask for CDD motif directly after CDD is selected', function() {
-		cy.get(inputSelector)
-			.eq(1)
-			.type('{selectall}3000')
-		cy.wait(1000)
-		cy.get('.step')
-			.find('input[value="\'CDD\'"]')
-			.click({ force: true })
-		cy.contains('Suivant').click()
-		cy.contains('Motifs classiques')
-	})
-
 	it('should not crash when selecting localisation', function() {
 		cy.contains('Commune').click()
 		cy.get('fieldset input[type="search"]').type('Steenvoorde')
 		cy.contains('Steenvoorde (59114)').click()
-		cy.wait(900)
+		cy.contains('Suivant').click()
 		cy.contains('Voir ma situation').click()
 		cy.contains('Steenvoorde (59114)')
 	})

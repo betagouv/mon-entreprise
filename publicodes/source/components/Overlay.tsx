@@ -1,5 +1,3 @@
-import * as animate from 'Components/ui/animate'
-import { LinkButton } from 'Components/ui/Button'
 import FocusTrap from 'focus-trap-react'
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
@@ -8,6 +6,11 @@ type OverlayProps = React.HTMLAttributes<HTMLDivElement> & {
 	onClose?: () => void
 	xPosition?: number
 	children: React.ReactNode
+}
+declare global {
+	interface Window {
+		parentIFrame?: any
+	}
 }
 
 const useIFrameOffset = () => {
@@ -45,36 +48,34 @@ export default function Overlay({
 	return (
 		<StyledOverlayWrapper offsetTop={offsetTop}>
 			<div className="overlayContent">
-				<animate.fromBottom>
-					<FocusTrap
-						focusTrapOptions={{
-							onDeactivate: onClose,
-							clickOutsideDeactivates: !!onClose
-						}}
+				<FocusTrap
+					focusTrapOptions={{
+						onDeactivate: onClose,
+						clickOutsideDeactivates: !!onClose
+					}}
+				>
+					<div
+						aria-modal="true"
+						className={'ui__ card  ' + className ?? ''}
+						css={`
+							padding-bottom: 3rem;
+							display: flex;
+							flex-direction: column;
+						`}
+						{...otherProps}
 					>
-						<div
-							aria-modal="true"
-							className={'ui__ card  ' + className ?? ''}
-							css={`
-								padding-bottom: 3rem;
-								display: flex;
-								flex-direction: column;
-							`}
-							{...otherProps}
-						>
-							{children}
-							{onClose && (
-								<button
-									aria-label="Fermer"
-									onClick={onClose}
-									className="overlayCloseButton"
-								>
-									×
-								</button>
-							)}
-						</div>
-					</FocusTrap>
-				</animate.fromBottom>
+						{children}
+						{onClose && (
+							<button
+								aria-label="Fermer"
+								onClick={onClose}
+								className="overlayCloseButton"
+							>
+								×
+							</button>
+						)}
+					</div>
+				</FocusTrap>
 			</div>
 		</StyledOverlayWrapper>
 	)

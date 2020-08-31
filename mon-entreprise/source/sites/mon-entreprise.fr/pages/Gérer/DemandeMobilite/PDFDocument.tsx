@@ -5,7 +5,8 @@ import {
 	Page,
 	StyleSheet,
 	Text,
-	View
+	View,
+	Link
 } from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/URSSAF.png'
 import React from 'react'
@@ -29,7 +30,10 @@ export default function PDFDocument({ fields, signatureURL, place }) {
 					<Text style={styles.texte}>
 						Afin d’examiner votre situation au regard des règlements
 						communautaires de Sécurité sociale (CE 883/2004 et CE 987/2009),
-						veuillez envoyer ce document à relations.internationales@urssaf.fr
+						veuillez envoyer ce document à{' '}
+						<Link src="mailto:relations.internationales@urssaf.fr">
+							relations.internationales@urssaf.fr
+						</Link>
 					</Text>
 				</View>
 				<FieldsPDF fields={fields} />
@@ -73,7 +77,7 @@ export default function PDFDocument({ fields, signatureURL, place }) {
 		</Document>
 	)
 }
-
+Font.registerHyphenationCallback(word => [word])
 Font.register({
 	family: 'Roboto',
 	src: robotoUrl

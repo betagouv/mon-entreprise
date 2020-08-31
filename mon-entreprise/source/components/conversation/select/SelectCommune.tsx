@@ -97,10 +97,10 @@ export default function Select({ onChange, value }) {
 
 	const [focusedElem, setFocusedElem] = useState(0)
 	const submitFocusedElem = useCallback(() => {
-		if (noResult) {
+		if (noResult || searchResults == null) {
 			return
 		}
-		handleSubmit((searchResults as Array<Commune>)[focusedElem])
+		handleSubmit(searchResults[focusedElem])
 	}, [searchResults, focusedElem, noResult, handleSubmit])
 
 	const handleChange = useCallback(
@@ -122,12 +122,12 @@ export default function Select({ onChange, value }) {
 			switch (e.key) {
 				case 'ArrowDown':
 				case 'ArrowUp':
-					if (noResult) {
+					if (noResult || searchResults == null) {
 						return
 					}
 					setFocusedElem(
 						(focusedElem + (e.key === 'ArrowDown' ? 1 : -1)) %
-							(searchResults as Array<Commune>).length
+							searchResults.length
 					)
 					e.preventDefault()
 					break
@@ -150,8 +150,8 @@ export default function Select({ onChange, value }) {
 			<input
 				role="combobox"
 				type="search"
-				onBlur={submitFocusedElem}
 				aria-autocomplete="list"
+				onBlur={submitFocusedElem}
 				aria-readonly="true"
 				css={noResult ? 'border-color: firebrick !important' : ''}
 				className="ui__"
@@ -186,9 +186,14 @@ export default function Select({ onChange, value }) {
 							const nom = formatCommune(result)
 							return (
 								<Option
+									onMouseDown={
+										// Prevent input blur and focus elem selection
+										e => e.preventDefault()
+									}
 									onClick={() => handleSubmit(result)}
 									role="option"
 									focused={i === focusedElem}
+									data-role="commune-option"
 									key={nom}
 									onFocus={() => setFocusedElem(i)}
 								>
