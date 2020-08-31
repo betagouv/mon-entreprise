@@ -40,12 +40,16 @@ contrat salarié . ancienneté:
 
 contrat salarié . ancienneté . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
-  par défaut: 01/01/2020
+  par défaut: 01/07/2020
   suggestions:
     Début 2020: 01/01/2020
     Début 2019: 01/01/2019
     Fin 2017: 31/12/2017
   type: date
+
+contrat salarié . salarié majeur:
+  question: Le salarié est-il majeur ?
+  par défaut: oui
 
 contrat salarié . frais professionnels:
   titre: remboursement de frais
@@ -1809,6 +1813,7 @@ contrat salarié . aides employeur:
   formule:
     somme:
       - aide à l'embauche d'apprentis
+      - aide exceptionnelle à l'embauche d'apprentis
       - activité partielle . indemnisation entreprise
       - emploi franc
 
@@ -1836,6 +1841,28 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       - sinon: 1200 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+
+contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprentis:
+  description: >-
+    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
+    gouvernement met en place une aide exceptionnelle au recrutement des
+    apprentis.
+
+    Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et
+    le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les
+    entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à
+    Bac.
+  applicable si:
+    toutes ces conditions:
+      - apprentissage
+      - ancienneté . date d'embauche >= 01/07/2020
+      - ancienneté . date d'embauche <= 28/02/2021
+  formule:
+    variations:
+      - si: salarié majeur
+        alors: 8000 €/an
+      - sinon: 5000 €/an
+  rend non applicable: aide à l'embauche d'apprentis
 
 contrat salarié . aides employeur . emploi franc:
   description: >-
