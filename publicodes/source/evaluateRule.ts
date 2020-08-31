@@ -1,4 +1,4 @@
-import { map, mergeAll, pick, pipe } from 'ramda'
+import { map, pick, pipe } from 'ramda'
 import { typeWarning } from './error'
 import {
 	bonus,
@@ -41,10 +41,10 @@ export const evaluateApplicability = (
 				nodeValue: false,
 				missingVariables: notApplicable.missingVariables
 		  }
+		: disabled?.nodeValue === true
+		? { nodeValue: false }
 		: applicable?.nodeValue === false
 		? { nodeValue: false, missingVariables: applicable.missingVariables }
-		: disabled?.nodeValue === true
-		? { nodeValue: false, missingVariables: disabled.missingVariables }
 		: {
 				nodeValue: [notApplicable, applicable, ...parentDependencies].some(
 					n => n?.nodeValue === null
