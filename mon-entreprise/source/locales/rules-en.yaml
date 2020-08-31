@@ -704,7 +704,8 @@ contrat salarié . CDD . prime de fin de contrat:
   titre.fr: prime de fin de contrat
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description.en: >
-    [automatic] As of January 1, 2020, the employer must pay a tax
+    [automatic] As of January 1, 2020, the employer must pay a tax on the
+    following
 
     for each conclusion of a customary fixed-term contract. The objective of this
 
@@ -715,7 +716,7 @@ contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
 
     concerned by this tax.
   description.fr: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquiter d'une taxe
+    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
     forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
     taxe est de décourager le recours excessif aux contrats courts.
 
@@ -943,7 +944,7 @@ contrat salarié . activité partielle:
     dispositif de chômage partiel étendu dans lequel l'État prend en charge
     l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
 
-    La déclaration d'activité partielle est simplifiée est l'effet est rétroactif.
+    La déclaration d'activité partielle est simplifiée et l'effet est rétroactif.
   question.en: '[automatic] Is the employee on short-time work?'
   question.fr: Le salarié est-il en chômage partiel ?
   titre.en: '[automatic] partial activity'
@@ -975,8 +976,8 @@ contrat salarié . activité partielle . heures travaillées:
     Dans le cadre de l'activité partielle, le temps de travail doit
     être inférieur à celui inscrit dans le contrat de travail.
   description.en: '[automatic] In the case of short-time working, the number of
-    hours remaining worked. Must be less than the contractual time.'
-  description.fr: Dans le cadre du chômage partiel, le nombre d'heure restante
+    remaining hours worked. Must be less than the contractual time.'
+  description.fr: Dans le cadre du chômage partiel, le nombre d'heure restantes
     travaillées. Doit être inférieur au temps contractuel.
   question.en: '[automatic] What is the number of hours worked over the month?'
   question.fr: Quelle est le nombre d'heures travaillées sur le mois ?
@@ -993,7 +994,7 @@ contrat salarié . activité partielle . indemnisation entreprise:
     government has announced that the short-time working allowance will be 100%
     paid by the state.'
   description.fr: Dans le cadre de la crise du Coronavirus, le gouvernement a
-    anoncé que l'indemnité de chômage partiel sera prise à 100% en charge par
+    annoncé que l'indemnité de chômage partiel sera prise à 100% en charge par
     l'état.
   titre.en: '[automatic] Reimbursement of partial activity allowance'
   titre.fr: Remboursement de l'indemnité d'activité partielle
@@ -1070,14 +1071,16 @@ contrat salarié . activité partielle . secteur d'activité restreint:
   titre.fr: secteur d'activité restreint
 contrat salarié . aides employeur:
   description.en: >
-    Some aids can be requested by the employer to help hires.
+    [automatic] This aid is known as deferred aid because it does not consist of
+    a simple reduction in monthly contributions: it will be granted a
+    posteriori, for example in the form of a tax credit.
 
 
-    These aids are deferred : they can for example be given indirectly as a tax credit.
+    The simulator does not integrate all the countless aids available in France. Discover them on the [official portal](http://www.aides-entreprises.fr).
   description.fr: >
     Ces aides sont appelées différées, car elles ne consistent pas en une simple
     réduction des cotisations mensuelles : elles interviendront a posteriori par
-    exemple sous forme de crédit d'impôt.
+    exemple sous la forme d’un crédit d'impôt.
 
 
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
@@ -1934,7 +1937,7 @@ contrat salarié . formation professionnelle:
 contrat salarié . frais professionnels:
   description.en: >-
     [automatic] Business expenses correspond to expenses incurred by the
-    employee for the needs of his professional activity. These costs are then
+    employee for the needs of his professional activity. These expenses are then
     reimbursed by the employer.
 
 
@@ -1942,12 +1945,12 @@ contrat salarié . frais professionnels:
 
       - reimbursement of actual expenditure on the basis of supporting documents;
 
-      - a lump sum payment ;
+      - a lump sum payment;
 
-      - the application of a specific lump-sum deduction on the salary subject to contributions; this possibility is only open to certain professions.
+      - the application of a specific lump-sum deduction from the salary subject to contributions; this possibility is only open to certain professions.
 
 
-    Professional expenses are generally excluded from the basis of calculation of Social Security and CSG-CRDS contributions, except in the case of exceeding the ceiling for lump-sum reimbursements (bicycle mileage allowance, basket costs, restaurant vouchers, etc.).
+    Professional expenses are generally excluded from the basis of calculation of social security contributions and CSG-CRDS, except in the case of exceeding the ceiling for flat-rate reimbursements (bicycle mileage allowance, basket costs, restaurant vouchers, etc.).
   description.fr: >-
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont
@@ -1963,7 +1966,7 @@ contrat salarié . frais professionnels:
       - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de Sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursement forfaitaires (indemnité kilométrique vélo, frais de panier, titre-restaurants...).
+    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursement forfaitaires (indemnité kilométrique vélo, frais de panier, titres-restaurant...).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
@@ -2108,8 +2111,8 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre.en: '[automatic] employer contribution rate'
   titre.fr: taux participation employeur
 ? contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois
-: question.en: '[automatic] How many restaurant vouchers are distributed to the employee?'
-  question.fr: Combien de titres-restaurants sont distribués au salarié ?
+: question.en: '[automatic] How many meal vouchers are distributed to the employee?'
+  question.fr: Combien de titres-restaurant sont distribués au salarié ?
   titre.en: '[automatic] meal vouchers per month'
   titre.fr: titres-restaurant par mois
 contrat salarié . intermittents du spectacle:
@@ -2770,7 +2773,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     [automatic] Restaurant vouchers are not considered a benefit in kind but a
     reimbursement of expenses.
   description.fr: >
-    Les titres-restaurants ne sont pas considérés comme un avantage en nature
+    Les titres-restaurant ne sont pas considérés comme un avantage en nature
     mais comme un remboursement de frais.
   question.en: |
     Does the employer provide free meals?

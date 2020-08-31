@@ -69,9 +69,9 @@ contrat salarié . frais professionnels:
 
 
     Les frais professionnels sont généralement exclus de la base de calcul des
-    cotisations de Sécurité sociale et de la CSG-CRDS, sauf en cas de
+    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de
     dépassement de plafond pour les remboursement forfaitaires (indemnité
-    kilométrique vélo, frais de panier, titre-restaurants...).
+    kilométrique vélo, frais de panier, titres-restaurant...).
   formule:
     somme:
       - indemnité kilométrique vélo . montant
@@ -133,7 +133,7 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
 contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
-  question: Combien de titres-restaurants sont distribués au salarié ?
+  question: Combien de titres-restaurant sont distribués au salarié ?
   par défaut: 19 titres-restaurant/mois
 
 contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
@@ -210,7 +210,7 @@ contrat salarié . activité partielle:
     dispositif de chômage partiel étendu dans lequel l'État prend en charge
     l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
 
-    La déclaration d'activité partielle est simplifiée est l'effet est
+    La déclaration d'activité partielle est simplifiée et l'effet est
     rétroactif.
 
   par défaut: non
@@ -248,7 +248,7 @@ contrat salarié . activité partielle . heures travaillées:
   titre: heures travaillées restantes
   question: Quelle est le nombre d'heures travaillées sur le mois ?
   description: >-
-    Dans le cadre du chômage partiel, le nombre d'heure restante travaillées. Doit être
+    Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées. Doit être
     inférieur au temps contractuel.
   par défaut: 0 heures/mois
   suggestions:
@@ -336,7 +336,7 @@ contrat salarié . activité partielle . retrait absence:
 contrat salarié . activité partielle . indemnisation entreprise:
   titre: Remboursement de l'indemnité d'activité partielle
   description: >-
-    Dans le cadre de la crise du Coronavirus, le gouvernement a anoncé que
+    Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
     l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
   formule:
     multiplication:
@@ -435,7 +435,7 @@ contrat salarié . déduction forfaitaire spécifique . application:
 
 contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
   description: |
-    À compter du 1er janvier 2020, l'employeur doit s'acquiter d'une taxe
+    À compter du 1er janvier 2020, l'employeur doit s'acquitter d'une taxe
     forfaitaire pour chaque conclusion d'un CDD d'usage. L'objectif de cette
     taxe est de décourager le recours excessif aux contrats courts.
 
@@ -1442,7 +1442,7 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     L'employeur fournit-il gratuitement les repas ?
   par défaut: non
   description: >
-    Les titres-restaurants ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
+    Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
 
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre: nourriture
@@ -1807,7 +1807,7 @@ contrat salarié . aides employeur:
   titre: aides employeur
   résumé: Pour l'employeur, différées dans le temps
   description: |
-    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous forme de crédit d'impôt.
+    Ces aides sont appelées différées, car elles ne consistent pas en une simple réduction des cotisations mensuelles : elles interviendront a posteriori par exemple sous la forme d’un crédit d'impôt.
 
     Le simulateur n'intègre pas toutes les innombrables aides disponibles en France. Découvrez-les sur le [portail officiel](http://www.aides-entreprises.fr).
   formule:
