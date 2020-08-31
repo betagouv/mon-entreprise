@@ -83,7 +83,7 @@ $ yarn run test-common
 Pour le snapshot testing :
 
 ```sh
-$ yarn run test-regressions
+$ yarn run test:regressions
 ```
 
 Si vous souhaitez mettre à jour les snapshots vous pouvez utiliser le paramètre `--updateSnapshot`, son raccourci `-u`, ou encore le [mode interactif](https://jestjs.io/docs/en/snapshot-testing#interactive-snapshot-mode).
