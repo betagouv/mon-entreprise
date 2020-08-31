@@ -72,7 +72,6 @@ module.exports = {
         '@typescript-eslint/no-inferrable-types': 1,  // causes problems with unknown values v 2.29.0 typescript v 3.8.3
       },
       extends: [
-        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ]
