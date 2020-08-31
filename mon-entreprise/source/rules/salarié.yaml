@@ -40,7 +40,7 @@ contrat salarié . ancienneté:
 
 contrat salarié . ancienneté . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
-  par défaut: 01/07/2020
+  par défaut: 01/09/2020
   suggestions:
     Début 2020: 01/01/2020
     Début 2019: 01/01/2019
@@ -1814,6 +1814,7 @@ contrat salarié . aides employeur:
     somme:
       - aide à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche d'apprentis
+      - aide exceptionnelle à l'embauche des jeunes
       - activité partielle . indemnisation entreprise
       - emploi franc
 
@@ -1863,6 +1864,40 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
         alors: 8000 €/an
       - sinon: 5000 €/an
   rend non applicable: aide à l'embauche d'apprentis
+  références:
+    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
+
+contrat salarié . jeune de moins de 26 ans:
+  question: Le salarié embauché a-t'il moins de 26 ans ?
+  par défaut: non
+
+contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
+  non applicable si: aides employeur . emploi franc
+  description: >-
+    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
+    gouvernement met en place une aide exceptionnelle au recrutement des
+    jeunes de moins de 26 ans.
+
+    L’aide est de 4 000 euros sur un an pour un salarié à temps plein. Ce
+    montant est proratisé en fonction du temps de travail et de la durée du
+    contrat de travail.
+  applicable si:
+    toutes ces conditions:
+      - contrat salarié . jeune de moins de 26 ans
+      - ancienneté . date d'embauche >= 01/08/2020
+      - ancienneté . date d'embauche <= 31/01/2021
+      - rémunération . brut de base <= 2 * SMIC
+      - une de ces conditions:
+          - CDI
+          - toutes ces conditions:
+              - CDD
+              - CDD . durée contrat >= 3 mois
+  formule:
+    produit:
+      assiette: 4000 €/an
+      facteur: temps de travail . quotité de travail
+  références:
+    Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
 contrat salarié . aides employeur . emploi franc:
   description: >-

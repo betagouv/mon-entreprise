@@ -1100,6 +1100,21 @@ contrat salarié . aides employeur:
     Cette aide est ouverte pour les contrats signés entre le 1er juillet 2020 et le 28 février 2021. Elle se substitue à l’aide unique, dont bénéficient les entreprises de moins de 250 salariés embauchant un apprenti de niveau CAP à Bac.
   titre.en: '[automatic] exceptional assistance in hiring apprentices'
   titre.fr: aide exceptionnelle à l'embauche d'apprentis
+contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
+  description.en: >-
+    [automatic] As part of the economic recovery plan for the autumn of 2020,
+    the government is putting in place exceptional assistance for the
+    recruitment of young people under 26 years of age.
+
+    The aid amounts to 4,000 euros over one year for a full-time employee. This amount is pro-rated according to working hours and the duration of the employment contract.
+  description.fr: >-
+    Dans le cadre du plan de relance de l'économie de la rentrée 2020, le
+    gouvernement met en place une aide exceptionnelle au recrutement des jeunes
+    de moins de 26 ans.
+
+    L’aide est de 4 000 euros sur un an pour un salarié à temps plein. Ce montant est proratisé en fonction du temps de travail et de la durée du contrat de travail.
+  titre.en: '[automatic] exceptional support for youth employment'
+  titre.fr: aide exceptionnelle à l'embauche des jeunes
 contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   description.en: >
     Since 2019, a single hiring aid has replaced four previous schemes. The
@@ -2214,6 +2229,11 @@ contrat salarié . intermittents du spectacle . technicien:
 contrat salarié . intermittents du spectacle . technicien . non cadre:
   titre.en: not "cadre"
   titre.fr: non cadre
+contrat salarié . jeune de moins de 26 ans:
+  question.en: '[automatic] Is the employee hired under the age of 26?'
+  question.fr: Le salarié embauché a-t'il moins de 26 ans ?
+  titre.en: '[automatic] under 26 years old'
+  titre.fr: jeune de moins de 26 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas
