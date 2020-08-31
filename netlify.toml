@@ -36,6 +36,11 @@
   to="/simulateurs/dirigeant-sasu"
   status = 301
 
+# FR | s%C3%A9curit%C3%A9-sociale/auto-entrepreneur -> simulateurs/auto-entrepreneur
+[[redirects]]
+  from="/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
+  to="/simulateurs/auto-entrepreneur"
+  status = 301
 
 # SEO redirect
 [[redirects]]
