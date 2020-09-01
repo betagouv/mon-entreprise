@@ -11,7 +11,7 @@ import {
 	pipe,
 	set,
 	uniq,
-	without
+	without,
 } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
@@ -89,7 +89,7 @@ type ConversationSteps = {
 function conversationSteps(
 	state: ConversationSteps = {
 		foldedSteps: [],
-		unfoldedStep: null
+		unfoldedStep: null,
 	},
 	action: Action
 ): ConversationSteps {
@@ -100,13 +100,13 @@ function conversationSteps(
 	const { name, step } = action
 	if (name === 'fold')
 		return {
-			foldedSteps: [...state.foldedSteps, step],
-			unfoldedStep: null
+			foldedSteps: [...without([step], state.foldedSteps), step],
+			unfoldedStep: null,
 		}
 	if (name === 'unfold') {
 		return {
 			foldedSteps: without([step], state.foldedSteps),
-			unfoldedStep: step
+			unfoldedStep: step,
 		}
 	}
 	return state
@@ -117,7 +117,7 @@ function updateSituation(
 	{
 		fieldName,
 		value,
-		analysis
+		analysis,
 	}: {
 		fieldName: DottedName
 		value: any
@@ -127,8 +127,8 @@ function updateSituation(
 	const goals =
 		analysis &&
 		(Array.isArray(analysis) ? analysis[0] : analysis).targets
-			.map(target => target.explanation || target)
-			.filter(target => !!target.formule == !!target.question)
+			.map((target) => target.explanation || target)
+			.filter((target) => !!target.formule == !!target.question)
 			.map(({ dottedName }) => dottedName)
 	const removePreviousTarget = goals?.includes(fieldName)
 		? omit(goals)
@@ -141,12 +141,12 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 
 	const convertedSituation = Object.keys(situation)
 		.map(
-			dottedName =>
-				analysis.targets.find(target => target.dottedName === dottedName) ||
+			(dottedName) =>
+				analysis.targets.find((target) => target.dottedName === dottedName) ||
 				analysis.cache[dottedName]
 		)
 		.filter(
-			rule =>
+			(rule) =>
 				(rule.unit || rule.defaultUnit) &&
 				!rule.unité &&
 				areUnitConvertible(rule.unit || rule.defaultUnit, unit)
@@ -158,7 +158,7 @@ function updateDefaultUnit(situation, { toUnit, analysis }) {
 					rule.unit || rule.defaultUnit,
 					unit,
 					situation[rule.dottedName]
-				)
+				),
 			}),
 			situation
 		)
@@ -205,7 +205,7 @@ function simulation(
 			url,
 			hiddenControls: [],
 			situation: {},
-			defaultUnits: config['unités par défaut'] || ['€/mois']
+			defaultUnits: config['unités par défaut'] || ['€/mois'],
 		}
 	}
 	if (state === null) {
@@ -222,8 +222,8 @@ function simulation(
 				situation: updateSituation(state.situation, {
 					fieldName: action.fieldName,
 					value: action.value,
-					analysis
-				})
+					analysis,
+				}),
 			}
 		case 'UPDATE_DEFAULT_UNIT':
 			return {
@@ -231,8 +231,8 @@ function simulation(
 				defaultUnits: [action.defaultUnit],
 				situation: updateDefaultUnit(state.situation, {
 					toUnit: action.defaultUnit,
-					analysis
-				})
+					analysis,
+				}),
 			}
 	}
 	return state
@@ -297,7 +297,7 @@ const mainReducer = (state, action: Action) =>
 		currentExample,
 		situationBranch,
 		activeTargetInput,
-		inFranceApp: inFranceAppReducer
+		inFranceApp: inFranceAppReducer,
 	})(state, action)
 
 export default reduceReducers<RootState>(

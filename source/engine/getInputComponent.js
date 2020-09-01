@@ -8,10 +8,12 @@ import {
 	findRuleByDottedName,
 	queryRule,
 	disambiguateRuleReference,
+	parentName,
 } from './rules'
 let SelectTwoAirports = React.lazy(() =>
 	import('Components/conversation/select/SelectTwoAirports')
 )
+import SelectWeeklyDiet from 'Components/conversation/custom/SelectWeeklyDiet'
 
 // This function takes the unknown rule and finds which React component should be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse input components and a better type system.
@@ -32,6 +34,29 @@ export default (rules) => (dottedName) => {
 			</Suspense>
 		)
 
+	const weeklyDietQuestion = (dottedName) =>
+		dottedName.includes('alimentation . plats') &&
+		dottedName.includes(' . nombre')
+	if (weeklyDietQuestion(rule.dottedName))
+		// This selected a precise set of questions to bypass their regular components and answer all of them in one big custom UI
+		return (
+			<SelectWeeklyDiet
+				{...{
+					...commonProps,
+					question:
+						'Choisissez les plats de vos midis et dîners pour une semaine type',
+					dietRules: rules
+						.filter((rule) => weeklyDietQuestion(rule.dottedName))
+						.map((question) => [
+							rules.find(
+								({ dottedName }) =>
+									dottedName === parentName(question.dottedName)
+							),
+							question,
+						]),
+				}}
+			/>
+		)
 	if (getVariant(rule))
 		return (
 			<Question
