@@ -62,8 +62,8 @@ cdd:
     contrat salarié . rémunération . brut de base: 2400 €/mois
     contrat salarié . CDD . durée contrat: 10
     contrat salarié . temps de travail . heures supplémentaires: 5
-    contrat salarié . indemnité kilométrique vélo: oui
-    contrat salarié . avantages en nature . montant: 200
+    contrat salarié . frais professionnels . indemnité kilométrique vélo: oui
+    contrat salarié . rémunération . avantages en nature . montant: 200
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2400 €/mois
     contrat salarié . convention collective: "'BTP'"
@@ -95,18 +95,18 @@ aides:
     contrat salarié . aides employeur . emploi franc . éligible: oui
 
 aides embauche covid:
-  - ancienneté . date d'embauche: 01/08/2020
+  - contrat salarié . ancienneté . date d'embauche: 01/08/2020
     contrat salarié . jeune de moins de 26 ans: oui
     contrat salarié . rémunération . brut de base: 1500 €/mois
-  - ancienneté . date d'embauche: 01/08/2020
+  - contrat salarié . ancienneté . date d'embauche: 01/08/2020
     contrat salarié . jeune de moins de 26 ans: oui
     contrat salarié . rémunération . brut de base: 5000 €/mois
-  - ancienneté . date d'embauche: 01/08/2020
+  - contrat salarié . ancienneté . date d'embauche: 01/08/2020
     contrat salarié: "'CDD'"
     contrat salarié . CDD . durée contrat: 3 mois
     contrat salarié . jeune de moins de 26 ans: oui
     contrat salarié . rémunération . brut de base: 1500 €/mois
-  - ancienneté . date d'embauche: 01/08/2020
+  - contrat salarié . ancienneté . date d'embauche: 01/08/2020
     contrat salarié: "'apprentissage'"
     contrat salarié . rémunération . brut de base: 1500 €/mois
 

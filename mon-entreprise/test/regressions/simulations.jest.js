@@ -26,6 +26,14 @@ const engine = new Engine(rules)
 const runSimulations = (situations, targets, baseSituation = {}) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach(situation => {
+			Object.keys(situation).forEach(situationRuleName => {
+				// TODO: This check may be moved in the `engine.setSituation` method
+				if (!Object.keys(engine.getParsedRules()).includes(situationRuleName)) {
+					throw new Error(
+						`La règle ${situationRuleName} n'existe pas dans la base de règles.`
+					)
+				}
+			})
 			engine.setSituation({ ...baseSituation, ...situation })
 			const res = targets.map(target => engine.evaluate(target).nodeValue)
 			// Stringify is not required, but allows the result to be displayed in a single
