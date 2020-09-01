@@ -2350,7 +2350,7 @@ contrat salarié . retraite supplémentaire . part déductible:
   formule:
     allègement:
       assiette: retraite supplémentaire . employeur
-      abbatement: plafond d'exonération sociale employeur
+      abattement: plafond d'exonération sociale employeur
 
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
   formule:

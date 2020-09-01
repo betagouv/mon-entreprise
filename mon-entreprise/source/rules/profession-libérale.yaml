@@ -7,6 +7,10 @@ dirigeant . indépendant . PL:
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
+  rend non applicable:
+    - protection sociale . retraite
+    - protection sociale . santé . indemnités journalières
+    - conjoint collaborateur
   question: Quelle est le métier exercé en libéral ?
   par défaut: "'rattaché CIPAV'"
   formule:
@@ -137,10 +141,7 @@ dirigeant . indépendant . PL . CIPAV:
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   non applicable si: option régime général
-  rend non applicable:
-    - protection sociale . retraite
-    - protection sociale . santé . indemnités journalières
-    - conjoint collaborateur
+
   formule:
     une de ces conditions:
       - toutes ces conditions:
@@ -206,75 +207,6 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
   titre: classe C
 
-# WIP implémentation des cotisations
-
-# Retraite de base, même calcul de la cotisation pour CIPAV, CARCDSF, CAVP, CARMF, CARPIMKO, CARPV
-
-dirigeant . indépendant . PL . PAM:
-  applicable si:
-    une de ces conditions:
-      - métier = 'PAM . auxiliaire médical'
-      - métier = 'PAM . médecin'
-      - métier = 'PAM . chirurgien-dentiste'
-      - métier = 'PAM . sage-femme'
-      - métier = 'PAM . étudiant remplaçant'
-
-dirigeant . indépendant . PL . PAM . contribution aux unions régionales des professionnels de santé:
-  acronyme: CURPS
-  remplace: cotisations et contributions . PLR
-  applicable si: revenu professionnel > 0
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      taux:
-        variations:
-          - si: métier = 'PAM . médecin'
-            alors: 0.5%
-          - si:
-              métier = 'PAM . chirurgien-dentiste'
-              # TODO pharmacien et lab
-            alors: 0.3%
-          - sinon: 0.1%
-    plafond: 50% * plafond sécurité sociale temps plein
-  références:
-    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
-
-dirigeant . indépendant . PL . PAM . maladie:
-  remplace: cotisations et contributions . cotisations . maladie
-  titre: maladie (après participation CPAM)
-  formule:
-    somme:
-      - produit:
-          assiette: assiette des cotisations
-          taux: 6.50%
-      - contribution additionnelle
-      - (- remboursement CPAM)
-
-dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
-  question: Quels est votre dépassement honoraires moyen (estimation) ?
-  par défaut: 0%
-
-dirigeant . indépendant . PL . PAM . revenus conventionnés:
-  formule: assiette des cotisations / (100% + dépassement d'honoraire moyen)
-
-dirigeant . indépendant . PL . PAM . secteur II:
-  applicable si: dirigeant . indépendant . PL . métier = 'PAM . médecin'
-  question: Êtes-vous conventionné secteur II ?
-  par défaut: non
-
-dirigeant . indépendant . PL . PAM . maladie . remboursement CPAM:
-  non applicable si: secteur II
-  formule:
-    produit:
-      assiette: revenus conventionnés
-      taux: 6.40%
-
-dirigeant . indépendant . PL . PAM . maladie . contribution additionnelle:
-  formule:
-    produit:
-      assiette: (assiette des cotisations - revenus conventionnés)
-      taux: 3.25%
-
 dirigeant . indépendant . PL . retraite CNAVPL:
   non applicable si: régime général
   titre: retraite de base (CNAVPL)
@@ -290,7 +222,6 @@ dirigeant . indépendant . PL . retraite CNAVPL:
   formule:
     produit:
       assiette: cotisations et contributions . cotisations . retraite de base . assiette
-      multiplicateur:
       composantes:
         - nom: tranche 1
           taux: 8.23%
@@ -302,11 +233,138 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
 
-dirigeant . indépendant . PL . CARPIMKO:
+dirigeant . indépendant . PL . PAM:
+  applicable si:
+    une de ces conditions:
+      - métier = 'PAM . auxiliaire médical'
+      - métier = 'PAM . médecin'
+      - métier = 'PAM . chirurgien-dentiste'
+      - métier = 'PAM . sage-femme'
+      - métier = 'PAM . étudiant remplaçant'
+  formule: oui
+
+dirigeant . indépendant . PL . PAM . cotisations additionnelles PAM:
+  remplace: cotisations et contributions . PLR
+  formule:
+    somme:
+      - CURPS
+      - PCV
+dirigeant . indépendant . PL . PAM . CURPS:
+  titre: Contribution aux unions régionales des professionnels de santé
+  description: |
+    Les professions libérales de santé sont représentées par des unions
+    régionales des professionnels de santé qui contribuent à l’organisation et à
+    l’évolution de l’offre de santé au niveau régional, notamment à la
+    préparation du projet régional de santé et à sa mise en œuvre.
+
+    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
+    contribution aux unions régionales des professionnels de santé (Curps).
+
+  acronyme: CURPS
+  applicable si: revenu professionnel > 0
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      taux:
+        variations:
+          - si: métier = 'PAM . médecin'
+            alors: 0.5%
+          - si:
+              métier = 'PAM . chirurgien-dentiste'
+              # TODO pharmacien et lab
+            alors: 0.3%
+          - sinon: 0.1%
+    plafond: 0.50% * plafond sécurité sociale temps plein
+  références:
+    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
+
+dirigeant . indépendant . PL . PAM . maladie:
+  remplace: cotisations et contributions . cotisations . maladie
+  titre: maladie (après participation CPAM)
+  formule:
+    somme:
+      - produit:
+          assiette: assiette des cotisations
+          taux: 6.50%
+      - contribution additionnelle
+      - (- participation CPAM)
+
+dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
+  question: Quels est votre dépassement honoraires moyen (estimation) ?
+  par défaut: 0%
+
+dirigeant . indépendant . PL . PAM . assiette participation CPAM:
+  description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets de dépassement.
+  formule: assiette des cotisations / (100% + dépassement d'honoraire moyen)
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
+
+dirigeant . indépendant . PL . PAM . secteur:
+  applicable si: dirigeant . indépendant . PL . métier = 'PAM . médecin'
+  question: Sur quel secteur êtes-vous conventionné ?
+  description: |
+    Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
+    fonction du régime de tarification choisie par le praticien.
+  par défaut: "'1'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - '1'
+        - '2'
+
+dirigeant . indépendant . PL . PAM . secteur . 1:
+  titre: Secteur 1
+dirigeant . indépendant . PL . PAM . secteur . 2:
+  titre: Secteur 2
+
+dirigeant . indépendant . PL . PAM . maladie . participation CPAM:
+  non applicable si: secteur = '2'
+  formule:
+    produit:
+      assiette: assiette participation CPAM
+      taux: 6.40%
+
+dirigeant . indépendant . PL . PAM . maladie . contribution additionnelle:
+  formule:
+    produit:
+      assiette: (assiette des cotisations - assiette participation CPAM)
+      taux: 3.25%
+
+dirigeant . indépendant . PL . PAM . allocations familiales:
+  applicable si: secteur = '1'
+  titre: allocations familiales (après participation CPAM)
+  remplace: cotisations et contributions . cotisations . allocations familiales
+  formule:
+    allègement:
+      assiette: cotisations et contributions . cotisations . allocations familiales
+      abattement: participation CPAM
+
+dirigeant . indépendant . PL . PAM . allocations familiales . participation CPAM:
+  formule:
+    produit:
+      assiette: assiette participation CPAM
+      taux: cotisations et contributions . cotisations . allocations familiales . taux
+      facteur:
+        grille:
+          assiette: assiette participation CPAM
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - montant: 100%
+              plafond: 140%
+            - montant: 75%
+              plafond: 250%
+            - montant: 60%
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
+
+dirigeant . indépendant . PL . PAM . CARPIMKO:
   formule: oui
   applicable si: métier = 'PAM . auxiliaire médical'
+  références:
+    Site CARPIMKO: https://www.carpimko.com
 
-dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
+dirigeant . indépendant . PL . PAM . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
   titre: retraite complémentaire (CARPIMKO)
   formule:
@@ -320,9 +378,125 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
             - taux: 3%
               plafond: 176413 €/an
   références:
-    Site CARPIMKO: http://www.carpimko.com/cotisations/cotisations_cas_general
+    Site CARPIMKO: https://www.carpimko.com/cotisations/cotisations_cas_general
 
-dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
+dirigeant . indépendant . PL . PAM . CARPIMKO . invalidité et décès:
   titre: invalidité et décès (CARPIMKO)
   remplace: cotisations et contributions . cotisations . invalidité et décès
   formule: 678 €/an
+  références:
+    Site CARPIMKO: https://www.carpimko.com/cotisations/cotisations_cas_general
+
+dirigeant . indépendant . PL . PAM . CARPIMKO . ASV:
+  titre: Avantage social vieillesse (CARPIMKO)
+  remplace: PAM . PCV
+  formule:
+    somme:
+      - forfaitaire
+      - proportionnelle
+      - (- participation CPAM)
+  références:
+    Taux 2020: http://www.carpimko.com/cotisations/cotisations_cas_general
+
+dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . forfaitaire:
+  formule: 590 €/an
+dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . proportionnelle:
+  formule:
+    produit:
+      assiette: assiette participation CPAM
+      taux: 0.40%
+dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . participation CPAM:
+  formule:
+    somme:
+      - arrondi:
+          valeur:
+            produit:
+              assiette: forfaitaire
+              taux: 2 / 3
+      - 60% * proportionnelle
+  références:
+    Prise en charge CPAM: http://www.carpimko.com/cotisations/cotisations_cas_general
+
+dirigeant . indépendant . PL . PAM . CARMF:
+  formule: oui
+  applicable si: métier = 'PAM . médecin'
+  références:
+    Site CARMF: https://www.carmf.fr
+
+dirigeant . indépendant . PL . PAM . CARMF . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  titre: retraite complémentaire (CARMF)
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      plafond: 3.5 * plafond sécurité sociale temps plein
+      taux: 9.80%
+  références:
+    Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
+
+dirigeant . indépendant . PL . PAM . CARMF . invalidité décès:
+  titre: invalidité et décès (CARPIMKO)
+  remplace: cotisations et contributions . cotisations . invalidité et décès
+  description: >-
+    La CARMF gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré. 
+
+    La cotisation comporte trois classes forfaitaires dont le montant est
+    déterminé en fonction de vos revenus nets d'activité indépendante de
+    l’avant-dernière année.
+
+    Sans communication des revenus professionnels non salariés et de l’avis
+    d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être
+    fixé. Dans l’attente de la réception de ce document l’indemnisation sera
+    basée sur le taux prévu pour la classe A.
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - montant: 631 €/an
+          plafond: 100%
+        - montant: 738 €/an
+          plafond: 300%
+        - montant: 863 €/an
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm#base
+    Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
+
+dirigeant . indépendant . PL . PAM . CARMF . ASV:
+  titre: Avantage social vieillesse (CARMF)
+  remplace: PAM . PCV
+  formule:
+    allègement:
+      assiette:
+        somme:
+          - 5253 €/an
+          - produit:
+              assiette: assiette participation CPAM
+              plafond: 5 * plafond sécurité sociale temps plein
+              taux: 3.80%
+      abattement: taux participation CPAM
+
+  références:
+    Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
+
+dirigeant . indépendant . PL . PAM . CARMF . ASV . taux participation CPAM:
+  applicable si: secteur = '1'
+  unité: '%'
+  formule: 2 / 3
+
+dirigeant . indépendant . PL . PAM . PCV:
+  titre: Prestations complémentaires vieillesse
+  acronyme: PCV
+  formule: non
+  description: |
+    Les régimes de prestations complémentaires vieillesse (PCV, anciennement «
+    avantage social vieillesse » – ASV -) sont des régimes de retraite « sur
+    complémentaires » dont les cotisations sont partiellement prises en charge
+    par l’assurance maladie pour les professionnels de santé exerçant dans un
+    cadre conventionnel. Ils ont été rendus obligatoires pour les médecins en
+    1972, pour les auxiliaires médicaux en 1975, pour les chirurgiens-dentistes
+    en 1978, pour les directeurs de laboratoires privés d’analyses médicales non
+    médecins en 1981 et pour les sages-femmes en 1984. Ces régimes fonctionnent
+    en points.

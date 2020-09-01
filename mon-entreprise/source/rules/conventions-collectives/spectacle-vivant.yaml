@@ -31,7 +31,7 @@ contrat salarié . convention collective . SVP . FCAP:
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
   formule:
     produit:
-      plafonnée à: plafond sécurité sociale
+      plafond: plafond sécurité sociale
       assiette: rémunération . brut
       taux: 0.1%
     plancher: 80 €.employés/an / entreprise . effectif
@@ -44,7 +44,7 @@ contrat salarié . convention collective . SVP . FCAP:
 contrat salarié . convention collective . SVP . prévoyance:
   formule:
     produit:
-      plafonnée à: plafond sécurité sociale
+      plafond: plafond sécurité sociale
       assiette: cotisations . assiette
       taux: 1.20%
   non applicable si: prévoyance obligatoire cadre

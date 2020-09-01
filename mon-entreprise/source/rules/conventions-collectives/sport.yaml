@@ -38,7 +38,7 @@ contrat salarié . convention collective . sport . cotisations . prévoyance:
   formule:
     produit:
       assiette: cotisations . assiette
-      plafonnée à: 8 * plafond sécurité sociale
+      plafond: 8 * plafond sécurité sociale
       composantes:
         - attributs:
             dû par: employeur
