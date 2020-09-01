@@ -23,6 +23,4 @@ questions:
 unité par défaut: €/an
 situation:
   entreprise . catégorie d'activité: "'libérale'"
-  entreprise . catégorie d'activité . libérale règlementée: oui
   dirigeant: "'indépendant'"
-  dirigeant . indépendant . PL . métier: "'PAM'"
