@@ -37,6 +37,11 @@ export default ({}) => {
 				encodedDetails
 					.match(/[a-z][0-9]+\.[0-9][0-9]/g)
 					.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+					// Here we convert categories with an old name to the new one
+					// 'biens divers' was renamed to 'divers'
+					.map(([category, ...rest]) =>
+						category === 'b' ? ['d', ...rest] : [category, ...rest]
+					)
 			)
 	const { value } = useSpring({
 		config: { mass: 1, tension: 150, friction: 150, precision: 1000 },
