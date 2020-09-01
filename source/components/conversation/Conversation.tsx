@@ -41,11 +41,12 @@ const orderedCurrentQuestionSelector = createSelector(
 			const sortedSteps = sortBy(
 				(question) =>
 					-items.find((item) => question.indexOf(item.dottedName) === 0)
-						.nodeValue,
+						?.nodeValue,
 				nextSteps
 			)
 			return unfoldedStep || head(sortedSteps)
 		} catch (e) {
+			console.log(e)
 			return currentQuestion
 		}
 	}

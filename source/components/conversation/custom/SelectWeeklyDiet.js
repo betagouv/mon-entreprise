@@ -24,8 +24,6 @@ export default compose(FormDecorator('selectWeeklyDiet'))(function Question({
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 
-	console.log('DIETRULES', dietRules, situation)
-
 	const chipsCount = dietRules.reduce(
 		(memo, [_, { dottedName, defaultValue }]) =>
 			memo +
