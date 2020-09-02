@@ -1,6 +1,6 @@
-**Mon-Entreprise.fr** est une start-up d'État financée par de l'argent public,
-c’est pourquoi nous sommes transparents sur les ressources allouées et la
-manière dont elles sont employées.
+**Mon-Entreprise.fr** est un service public numérique, c’est pourquoi nous
+sommes transparents sur les ressources allouées et la manière dont elles sont
+employées.
 
 ## Principes
 
@@ -8,15 +8,15 @@ Notre organisation souscrit aux principes établis dans le [manifeste beta.gouv]
 
 > ### Les besoins des utilisateurs sont prioritaires sur les besoins de l’administration
 >
-> Que ce soient des usagers (citoyens, entreprises, associations, etc) ou des agents publics, l’objectif premier est de construire un service utile et facile à utiliser, qui résolve efficacement un problème ou qui contribue à la mise en oeuvre d’une politique publique. Le choix des priorités de développement du service est donc guidé par les retours de ses utilisateurs et non par les besoins de la structure.
+> Que ce soient des usagers (citoyens, entreprises, associations, etc) ou des agents publics, l’objectif premier est de **construire un service utile et facile à utiliser**, qui résolve efficacement un problème ou qui contribue à la mise en œuvre d’une politique publique. Le choix des priorités de développement du service est donc guidé par les retours de ses utilisateurs et non par les besoins de la structure.
 
 > ### L’équipe travaille sans préjuger à l’avance du résultat final et progresse en se confrontant le plus rapidement possible à de premiers utilisateurs
 >
-> Dans un premier temps, la nature et l’étendue des besoins des utilisateurs ne sont pas déterminées avec précision. L’équipe lance rapidement une première version fonctionnelle du service de façon à tester son utilité et à l’ajuster selon les retours du terrain par des améliorations successives, appelées « itérations » ; le service, imparfait au départ, s’améliore en continu pour élargir progressivement le périmètre couvert et maximiser son impact. En particulier, l’équipe ne suit jamais de cahier des charges.
+> Dans un premier temps, la nature et l’étendue des besoins des utilisateurs ne sont pas déterminées avec précision. L’équipe lance rapidement une première version fonctionnelle du service de façon à tester son utilité et à l’ajuster selon les retours du terrain par des améliorations successives, appelées « itérations » ; le service, imparfait au départ, s’améliore en continu pour élargir progressivement le périmètre couvert et maximiser son impact. En particulier, **l’équipe ne suit jamais de cahier des charges**.
 
 > ### Le mode de gestion de l’équipe repose sur la confiance.
 >
-> Une fois son objectif fixé, une autonomie la plus large possible lui est accordée : l’équipe a toute latitude pour prendre les décisions nécessaires au succès du service ; elle a la main sur les décisions opérationnelles (recrutement, communication, organisation interne, gestion du budget alloué). Les commanditaires veillent à imposer le minimum des contraintes inhérentes à la structure (comitologie, reporting, communication, achat, standard technologique) afin de garantir à l’équipe un espace de liberté pour innover. En contrepartie de cette autonomie, l’équipe assure une transparence la plus large possible sur son travail (code source ouvert, mesure de l’impact publique, démonstrations fréquentes, documentation facilement accessible)
+> Une fois son objectif fixé, une **autonomie la plus large possible** lui est accordée : l’équipe a toute latitude pour prendre les décisions nécessaires au succès du service ; elle a la main sur les décisions opérationnelles (recrutement, communication, organisation interne, gestion du budget alloué). Les commanditaires veillent à imposer le minimum des contraintes inhérentes à la structure (comitologie, reporting, communication, achat, standard technologique) afin de garantir à l’équipe un espace de liberté pour innover. En contrepartie de cette autonomie, l’équipe assure une **transparence la plus large possible** sur son travail (code source ouvert, mesure de l’impact publique, démonstrations fréquentes, documentation facilement accessible)
 
 ---
 
