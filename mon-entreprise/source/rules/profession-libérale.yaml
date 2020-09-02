@@ -3,14 +3,12 @@ dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . catégorie d'activité = 'libérale'
   formule: oui
-  rend non applicable: cotisations et contributions . cotisations . indemnités journalières maladie
+  rend non applicable:
+    - cotisations et contributions . cotisations . indemnités journalières maladie
+    - conjoint collaborateur
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
-  rend non applicable:
-    - protection sociale . retraite
-    - protection sociale . santé . indemnités journalières
-    - conjoint collaborateur
   question: Quelle est le métier exercé en libéral ?
   par défaut: "'rattaché CIPAV'"
   formule:

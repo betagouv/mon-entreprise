@@ -1,0 +1,60 @@
+médecin:
+  - dirigeant . indépendant . PL . métier: "'PAM . médecin'"
+    dirigeant . rémunération totale: 50000 €/an
+  - # Dépassement honoraire
+    dirigeant . indépendant . PL . métier: "'PAM . médecin'"
+    dirigeant . rémunération totale: 50000 €/an
+    dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen: 20%
+  - # Secteur 2
+    dirigeant . indépendant . PL . métier: "'PAM . médecin'"
+    dirigeant . rémunération totale: 50000 €/an
+    dirigeant . indépendant . PL . PAM . secteur: "'2'"
+  - # Secteur 2 avec dépassement honoraire et gros se rémunération
+    dirigeant . indépendant . PL . métier: "'PAM . médecin'"
+    dirigeant . rémunération totale: 300000 €/an
+    dirigeant . indépendant . PL . PAM . secteur: "'2'"
+    dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen: 50%
+
+sage-femme:
+  - dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 50000 €/an
+  -  # Réduction retraite complémentaire
+  - dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 20000 €/an
+  - # Exonération RID
+    dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 4000 €/an
+  - # Classe A
+    dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 20000 €/an
+    dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe: "'A'"
+  - # Classe B
+    dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 20000 €/an
+    dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe: "'B'"
+  - # Classe C
+    dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+    dirigeant . rémunération totale: 20000 €/an
+    dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe: "'C'"
+
+auxiliaire médical:
+  - dirigeant . indépendant . PL . métier: "'PAM . auxiliaire médical'"
+    dirigeant . rémunération totale: 30000 €/an
+  - # Dépassement honoraire
+    dirigeant . indépendant . PL . métier: "'PAM . auxiliaire médical'"
+    dirigeant . rémunération totale: 30000 €/an
+    dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen: 20%
+  - # Grosse rémunération
+    dirigeant . indépendant . PL . métier: "'PAM . auxiliaire médical'"
+    dirigeant . rémunération totale: 300000 €/an
+    dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen: 100%
+
+échelle de revenus CIPAV:
+  - dirigeant . indépendant . revenu net de cotisations: 500 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1500 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 2000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 5000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 10000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 100000 €/an
+  - dirigeant . indépendant . revenu net de cotisations: 1000000 €/an

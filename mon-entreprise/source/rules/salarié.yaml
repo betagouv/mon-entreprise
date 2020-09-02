@@ -2354,7 +2354,7 @@ contrat salarié . retraite supplémentaire . part déductible:
 
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
   formule:
-    valeur: 5% * cotisations . assiette
+    valeur: 5% * rémunération . brut
     plafond: 5% * plafond sécurité sociale
   références:
     Article D242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037456320&cidTexte=LEGITEXT000006073189&dateTexte=20180930
@@ -2365,10 +2365,9 @@ contrat salarié . retraite supplémentaire . exonération fiscale:
     valeur: retraite supplémentaire
     plafond:
       produit:
+        assiette: rémunération . brut
+        plafond: 8 * plafond sécurité sociale temps plein
         taux: 8%
-        assiette:
-          valeur: rémunération . brut
-          plafond: 8 * plafond sécurité sociale temps plein
   références:
     Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
@@ -2379,7 +2378,6 @@ contrat salarié . AGS:
     branche: assurance chômage
   references:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
-
   formule:
     produit:
       assiette: cotisations . assiette
@@ -2969,13 +2967,13 @@ contrat salarié . prévoyance . part déductible:
   formule:
     allègement:
       assiette: prévoyance . employeur
-      abbatement: plafond exonération sociale employeur
+      abattement: plafond exonération sociale employeur
 
 contrat salarié . prévoyance . plafond exonération sociale employeur:
   formule:
     somme:
       - 6% * plafond sécurité sociale
-      - 1.5% * cotisations . assiette
+      - 1.5% * rémunération . brut
     plafond: 12% * plafond sécurité sociale
 
 # TODO: À fusionner avec `contrat salarié . prévoyance`. Pour l'instant pas

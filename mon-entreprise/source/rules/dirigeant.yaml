@@ -438,6 +438,7 @@ dirigeant . indépendant:
         toutes ces conditions:
           - dirigeant = 'indépendant'
           - entreprise . durée d'activité . en fin d'année < 2 ans
+          - entreprise . date de création != 02/01/2020
       message: |
         Lorsque vous commencez votre activité, vos revenus professionnels
         n’étant pas connus, les cotisations et contributions des deux premières

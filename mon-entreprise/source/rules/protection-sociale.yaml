@@ -8,6 +8,7 @@ protection sociale . retraite:
   icônes: 👵
   type: branche
   résumé: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
+  non applicable si: entreprise . catégorie d'activité . libérale règlementée
   description: |
     Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
@@ -266,7 +267,7 @@ protection sociale . santé . indemnités journalières:
     Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
     votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
     brut et versées tous les 14 jours en moyenne.
-  # TODO : période : jour
+  non applicable si: entreprise . catégorie d'activité = 'libérale'
   unité: €/jour
 
   formule:

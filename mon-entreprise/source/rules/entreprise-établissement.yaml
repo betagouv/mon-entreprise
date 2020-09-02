@@ -4,7 +4,7 @@ entreprise:
 
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
-  par défaut: 01/01/2018
+  par défaut: 02/01/2020
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.  
