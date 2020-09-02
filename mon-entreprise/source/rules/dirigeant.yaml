@@ -430,6 +430,30 @@ dirigeant . rémunération totale:
       - si: assimilé salarié
         alors: contrat salarié . rémunération . total
 
+dirigeant . indépendant:
+  rend non applicable: contrat salarié
+  formule: dirigeant = 'indépendant'
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - dirigeant = 'indépendant'
+          - entreprise . durée d'activité . en fin d'année < 2 ans
+      message: |
+        Lorsque vous commencez votre activité, vos revenus professionnels
+        n’étant pas connus, les cotisations et contributions des deux premières
+        années sont calculées sur une base forfaitaire.
+
+        Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
+        la première et de la deuxième année d’activité.
+
+        Il y a un ajustement la troisième année en fonction des revenus réels
+        déclarées lors des deux années précédentes.
+
+        Ce simulateur calcul les cotisations au régime de croisière (après
+        régularisation). Il vous permet donc de connaître le montant à
+        provisionner pour la régularisation.
+      niveau: info
+
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
   formule:
@@ -676,10 +700,6 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités jo
       facteur: 40%
       taux: 0.85%
 
-dirigeant . indépendant:
-  rend non applicable: contrat salarié
-  formule: dirigeant = 'indépendant'
-
 dirigeant . indépendant . cotisations et contributions . cotisations:
   références:
     assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
@@ -829,8 +849,11 @@ dirigeant . indépendant . contrats madelin . retraite . plafond:
     LegiFiscal: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html
 
 dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
-  titre: Maladie 2
-  description: Cotisations pour les indemnités journalières des indépendants. Si l'état de santé des artisans, commerçants, industriels et conjoints collaborateurs nécessite un arrêt de travail, une part de leur ancien revenu leur sera versé.
+  description: |
+    Cotisations pour les indemnités journalières des indépendants. Si l'état de
+    santé des artisans, commerçants, industriels et conjoints collaborateurs
+    nécessite un arrêt de travail, une part de leur ancien revenu leur sera
+    versé.
   formule:
     produit:
       assiette: maladie . assiette

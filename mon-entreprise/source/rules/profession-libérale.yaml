@@ -52,7 +52,6 @@ dirigeant . indépendant . PL . métier . PAM:
         - chirurgien-dentiste
         - sage-femme
         - auxiliaire médical
-        - étudiant remplaçant
 
 dirigeant . indépendant . PL . métier . PAM . auxiliaire médical:
   description: |
@@ -60,11 +59,15 @@ dirigeant . indépendant . PL . métier . PAM . auxiliaire médical:
 dirigeant . indépendant . PL . métier . PAM . médecin:
 dirigeant . indépendant . PL . métier . PAM . chirurgien-dentiste:
 dirigeant . indépendant . PL . métier . PAM . sage-femme:
-dirigeant . indépendant . PL . métier . PAM . étudiant remplaçant:
+dirigeant . indépendant . PL . métier . PAM . médecin remplaçant:
   description: |
-    Étudiants en médecine ayant validé au moins le diplôme de fin de deuxième
-    cycle des études médicales et qui effectuent le remplacement d'un docteur en
-    médecine.
+    Les médecin remplaçant généraliste ou spécialiste (étudiant, salarié ou
+    retraité) sont les honoraires rétrocédés ne dépassent pas 19 000 € par année
+    civile peuvent bénéficier d'un dispositif particulier pour le paiement de
+    leur cotisation de sécurité sociale.
+
+    Cela consiste en un taux unique de cotisations à 13,30%
+  références: https://www.calcul.urssaf.fr/medecin_remplacant.html
 
 dirigeant . indépendant . PL . option régime général:
   applicable si:
@@ -151,6 +154,7 @@ dirigeant . indépendant . PL . CIPAV:
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
+  titre: retraite complémentaire (CIPAV)
   formule:
     grille:
       assiette: assiette des cotisations
@@ -174,6 +178,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . cotisations . invalidité et décès
+  titre: invalidité et décès (CIPAV)
   formule:
     variations:
       - si: classe de cotisation = 'A'
@@ -240,8 +245,62 @@ dirigeant . indépendant . PL . PAM:
       - métier = 'PAM . médecin'
       - métier = 'PAM . chirurgien-dentiste'
       - métier = 'PAM . sage-femme'
-      - métier = 'PAM . étudiant remplaçant'
   formule: oui
+
+# TODO : medecins remplacant comme micro-BNC avec taux cotisation unique (comme les auto-entrepreneurs)
+# dirigeant . indépendant . PL . PAM . remplaçant:
+#   applicable si: métier = 'PAM . médecin'
+#   rend non applicable:
+#     - entreprise . chiffre d'affaires
+#     - entreprise . charges
+#     - revenu professionnel
+#     - cotisations et contributions
+#   remplace:
+#     - règle: revenu net de cotisations
+#       par: rémunération totale - cotisations
+#     - règle: résultat fiscal
+#       par: revenu net de cotisations
+#   question: Bénéficiez-vous du dispositif de taux unique pour les médecins remplaçant ?
+#   par défaut: non
+#   description: |
+#     Les médecin remplaçant généraliste ou spécialiste (étudiant, salarié ou
+#     retraité) peuvent bénéficier d'un dispositif de taux unique de cotisations
+#     pour le paiement de leur cotisation de sécurité sociale.
+
+#     Pour cela trois critères doivent être respecté:
+
+#     - Vous effectuez exclusivement des remplacements
+
+#     - Vos honoraires rétrocédés ne dépassent pas 19 000 € par année civile
+
+#     - Vous n'exercez pas d'autre activité en tant que travailleur indépendant
+#   références:
+#     Portail médecins remplaçants: https://www.medecins-remplacants.urssaf.fr/accueil
+#   contrôles:
+#     - si:
+#         toutes ces conditions:
+#           - remplaçant
+#           - rémunération totale > 19000 €/an
+#       message: |
+#         Pour pouvoir bénéficier de ce dispositif, les revenus de remplacement ne
+#         doivent pas dépasser 19000€ pendant plus de deux années consécutives,
+#         ou 38000€ au cours d'une seule année.
+#       niveau: avertissement
+
+# dirigeant . indépendant . PL . PAM . remplaçant . cotisations:
+#   remplace:
+#     - règle: rémunération totale
+#       par:
+#         inversion numérique:
+#           avec:
+#             - revenu net de cotisations
+#             - revenu net après impôt
+#   formule:
+#     somme:
+#       - produit:
+#           assiette: rémunération totale
+#           taux: 13.30 %
+#       - 158 €/an
 
 dirigeant . indépendant . PL . PAM . cotisations additionnelles PAM:
   remplace: cotisations et contributions . PLR
@@ -259,7 +318,11 @@ dirigeant . indépendant . PL . PAM . CURPS:
 
     Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
     contribution aux unions régionales des professionnels de santé (Curps).
-
+  note: |
+    Les remplaçants, quelle que soit leur activité, ne sont pas redevables de la
+    Curps. Si la Curps est présente sur leur échéancier de cotisations, ils sont
+    invités à se rapprocher de leur Urssaf pour que leur dossier cotisant soit
+    régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   acronyme: CURPS
   applicable si: revenu professionnel > 0
   formule:
@@ -269,9 +332,7 @@ dirigeant . indépendant . PL . PAM . CURPS:
         variations:
           - si: métier = 'PAM . médecin'
             alors: 0.5%
-          - si:
-              métier = 'PAM . chirurgien-dentiste'
-              # TODO pharmacien et lab
+          - si: métier = 'PAM . chirurgien-dentiste'
             alors: 0.3%
           - sinon: 0.1%
     plafond: 0.50% * plafond sécurité sociale temps plein
@@ -294,7 +355,8 @@ dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
   par défaut: 0%
 
 dirigeant . indépendant . PL . PAM . assiette participation CPAM:
-  description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets de dépassement.
+  description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
+    de dépassement.
   formule: assiette des cotisations / (100% + dépassement d'honoraire moyen)
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
@@ -389,7 +451,7 @@ dirigeant . indépendant . PL . PAM . CARPIMKO . invalidité et décès:
 
 dirigeant . indépendant . PL . PAM . CARPIMKO . ASV:
   titre: Avantage social vieillesse (CARPIMKO)
-  remplace: PAM . PCV
+  remplace: PCV
   formule:
     somme:
       - forfaitaire
@@ -405,20 +467,30 @@ dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . proportionnelle:
     produit:
       assiette: assiette participation CPAM
       taux: 0.40%
+
 dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . participation CPAM:
   formule:
     somme:
-      - arrondi:
-          valeur:
-            produit:
-              assiette: forfaitaire
-              taux: 2 / 3
+      - produit:
+          assiette: forfaitaire
+          taux: 2 / 3
+        arrondi: oui
       - 60% * proportionnelle
   références:
     Prise en charge CPAM: http://www.carpimko.com/cotisations/cotisations_cas_general
 
 dirigeant . indépendant . PL . PAM . CARMF:
   formule: oui
+  description: |
+    La CARMF est la caisse de retraite autonome des médecins de France.
+
+    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
+    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
+    libérale (installation, remplacements, expertises pour les compagnies
+    d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
+    société d’exercice libéral ou toute autre activité rémunérée sous forme
+    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
+    métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
   applicable si: métier = 'PAM . médecin'
   références:
     Site CARMF: https://www.carmf.fr
@@ -435,7 +507,7 @@ dirigeant . indépendant . PL . PAM . CARMF . retraite complémentaire:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
 dirigeant . indépendant . PL . PAM . CARMF . invalidité décès:
-  titre: invalidité et décès (CARPIMKO)
+  titre: invalidité et décès (CARMF)
   remplace: cotisations et contributions . cotisations . invalidité et décès
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
@@ -466,7 +538,7 @@ dirigeant . indépendant . PL . PAM . CARMF . invalidité décès:
 
 dirigeant . indépendant . PL . PAM . CARMF . ASV:
   titre: Avantage social vieillesse (CARMF)
-  remplace: PAM . PCV
+  remplace: PCV
   formule:
     allègement:
       assiette:
@@ -486,17 +558,234 @@ dirigeant . indépendant . PL . PAM . CARMF . ASV . taux participation CPAM:
   unité: '%'
   formule: 2 / 3
 
+dirigeant . indépendant . PL . PAM . CARCDSF:
+  formule: oui
+  description: |
+    La CARCDSF est la caisse de retraite autonome des chirurgiens dentiste et des sages femmes.
+
+  applicable si:
+    une de ces conditions:
+      - métier = 'PAM . chirurgien-dentiste'
+      - métier = 'PAM . sage-femme'
+  références:
+    Site CARMF: https://www.carcdsf.fr
+
+dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire:
+  titre: retraite complémentaire (CARCDSF)
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
+  formule:
+    somme:
+      - produit:
+          assiette: 2960.40 €/an
+          taux: réduction de la cotisation forfaitaire
+      - barème:
+          assiette: assiette des cotisations
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - taux: 0%
+              plafond: 0.85
+            - taux: 10.65%
+              plafond: 5
+  références:
+    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire:
+  applicable si: assiette des cotisations < 85% * plafond sécurité sociale temps plein
+  description: |
+    Les affiliés dont les revenus professionnels nets sur l'année N-1 sont inférieurs à 85
+    % du PASS en vigueur au 1er janvier de l’année considérée (34 966 € en 2020)
+    peuvent, sur demande, obtenir une réduction de la cotisation forfaitaire.
+
+    Le coefficient de réduction appliqué est égal au rapport des revenus
+    professionnels non-salariés sur le seuil mentionné ci-dessus.
+
+    La demande doit être adressée à la CARCDSF et être accompagnée d’une
+    photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
+    annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+  unité: '%'
+  formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - dirigeant . indépendant . PL . PAM . CARCDSF
+          - assiette des cotisations < 85% * plafond sécurité sociale temps plein
+      message: |
+        Vous avez la possibilité de bénéficier d'une réduction de cotisation
+        pour la retraite complémentaire si vous en faites la demande. [En savoir
+        plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
+  références:
+    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste:
+  applicable si: métier = 'PAM . chirurgien-dentiste'
+  formule: oui
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . RID:
+  titre: invalidité et décès (CARCDSF chirurgien-dentiste)
+  remplace: cotisations et contributions . cotisations . invalidité et décès
+  formule: 1078 €/an
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . prix d'une consultation:
+  formule: 23 €/consultation
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . PCV:
+  remplace: PAM . PCV
+  non applicable si: (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
+  note: Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+    inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
+    soit 11 500 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
+    A) de l’année 2019.
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points
+    non cotisés ne sont pas rachetables.
+  formule:
+    somme:
+      - 1440.60  €/an
+      - produit:
+          assiette: assiette des cotisations
+          plafond: 5 * plafond sécurité sociale temps plein
+          taux: 0.725 %
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - chirurgien-dentiste
+          - (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
+      niveau: info
+      message: |
+        Vous avez la possibilité de bénéficier d'une éxonération totale de cotisation
+        pour la prestation complémentaire de vieillesse (PCV) si vous en faites la demande. [En savoir
+        plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+  références:
+    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . taux Urssaf:
+  description: |
+    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
+    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
+
+    Ce taux est pré-rempli sur votre déclaration de revenus professionnels et
+    est issu des données de votre Relevé individuel d’activité et de
+    prescriptions (RIAP).
+
+    Plus le taux est faible, plus la participation CPAM est importante et donc
+    la part à la charge du praticien est faible.
+
+    ## Calcul du taux
+
+    La formule de calcul du taux de dépassement est la suivante : 
+    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
+  question: Quel est votre "taux Urssaf" ?
+  unité: ''
+  par défaut: 1
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . assiette participation CPAM:
+  remplace: PAM . assiette participation CPAM
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      taux: 1 - taux Urssaf / (1 + taux Urssaf)
+  référence:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-chirurgien-dentiste/assiette-de-participation-de-la.html
+    Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
+
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme:
+  applicable si: métier = 'PAM . sage-femme'
+  formule: oui
+
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID:
+  titre: invalidité et décès (CARCDSF sage-femme)
+  description: |
+    Il existe classes de cotisations aux choix, correspondant à des cotisations
+    et des degrés d'indemnisations différents.
+
+    Le changement d'option pour une classe supérieure doit être demandé avant le
+    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
+    l'année suivante.
+
+    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
+  remplace: cotisations et contributions . cotisations . invalidité et décès
+  formule:
+    variations:
+      - si: classe = 'A'
+        alors: 91 €/an
+      - si: classe = 'B'
+        alors: 182 €/an
+      - si: classe = 'C'
+        alors: 273 €/an
+  références:
+    Montant des cotisations: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe:
+  titre: Classe de cotisation
+  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CARCDSF ?
+  description: |
+    Il existe classes de cotisations aux choix, correspondant à des cotisations
+    et des degrés d'indemnisations différents.
+  par défaut: "'A'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - A
+        - B
+        - C
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . A:
+  titre: classe A
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . B:
+  titre: classe B
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . C:
+  titre: classe C
+
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV:
+  remplace: PAM . PCV
+  non applicable si: assiette des cotisations <= 3120 €/an
+  description: |
+    Pour 2020, le montant est fixé à 780 € dont un tiers, soit 260 € à votre
+    charge et 520 € à la charge des Caisses Primaires d’Assurance Maladie
+    (CPAM).
+
+    ### Possibilités de réduction ou dispense
+
+    Une dispense peut être accordée lorsque les revenus professionnels sont
+    inférieurs ou égaux à 3120 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
+    A).
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points
+    non cotisés ne sont pas rachetables.
+
+  formule:
+    produit:
+      assiette: 780 €/an
+      taux: 1 / 3
+  contrôles:
+    - si:
+        toutes ces conditions:
+          - sage-femme
+          - assiette des cotisations <= 3120 €/an
+      niveau: info
+      message: |
+        Vous avez la possibilité de bénéficier d'une éxonération totale de cotisation
+        pour la prestation complémentaire de vieillesse (PCV) si vous en faites la demande. [En savoir
+        plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+  références:
+    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
 dirigeant . indépendant . PL . PAM . PCV:
   titre: Prestations complémentaires vieillesse
   acronyme: PCV
   formule: non
   description: |
-    Les régimes de prestations complémentaires vieillesse (PCV, anciennement «
-    avantage social vieillesse » – ASV -) sont des régimes de retraite « sur
-    complémentaires » dont les cotisations sont partiellement prises en charge
-    par l’assurance maladie pour les professionnels de santé exerçant dans un
-    cadre conventionnel. Ils ont été rendus obligatoires pour les médecins en
-    1972, pour les auxiliaires médicaux en 1975, pour les chirurgiens-dentistes
-    en 1978, pour les directeurs de laboratoires privés d’analyses médicales non
-    médecins en 1981 et pour les sages-femmes en 1984. Ces régimes fonctionnent
-    en points.
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.

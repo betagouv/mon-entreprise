@@ -24,7 +24,7 @@ nature de l'activité:
   - aide déclaration revenu indépendant 2019 . nature de l'activité: "'libérale'"
     entreprise . date de création: 06/04/2019
     dirigeant . rémunération totale: 50000 €/an
-    dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR: oui
+    dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire: oui
 
 débit de tabac:
   - aide déclaration revenu indépendant 2019 . nature de l'activité: "'commerciale ou industrielle'"

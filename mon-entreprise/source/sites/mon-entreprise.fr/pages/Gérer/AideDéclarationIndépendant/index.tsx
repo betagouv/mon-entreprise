@@ -141,7 +141,7 @@ export default function() {
 							{/* PLNR */}
 							<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR" />
+							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 
 							<h2>
 								<Trans>Situation personnelle</Trans>

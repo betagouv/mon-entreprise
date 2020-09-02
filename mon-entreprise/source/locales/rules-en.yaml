@@ -4236,7 +4236,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
 ? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond
 : titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
   titre.fr: plafond retraite complémentaire des indépendants
-? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR
+? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire
 : description.en: >
     Non-regulated liberal professions who started their activity as of 1 January
     2019 or those who started their activity before the date of 1 January 2019
@@ -4254,7 +4254,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
     complémentaire ?
   titre.en: unregulated specific rate for unregulated professions
   titre.fr: taux spécifique profession libérale non reglementée
-? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux spécifique PLNR . taux
+? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . taux
 : description.en: supplementary pension with specific rates
   description.fr: la retraite complémentaire avec taux spécifiques
   titre.en: supplementary pension (PLNR rate)
