@@ -9,7 +9,7 @@ dirigeant . indépendant . PL:
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
-  question: Quelle est le métier exercé en libéral ?
+  question: A quelle catégorie appartient votre profession ?
   par défaut: "'rattaché CIPAV'"
   formule:
     une possibilité:
@@ -36,12 +36,14 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
 
 dirigeant . indépendant . PL . métier . PAM:
   titre: Practicien ou auxiliaire médical
+  question: Quel métier exercez-vous en tant que professionnel de santé ?
   description: |
     Si vous êtes praticien ou auxiliaire médical conventionné, vous relevez du
     régime d'assurance maladie des praticiens et auxiliaires médicaux
     conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
     de ce régime d'assurance maladie et sur les modalités de votre protection
     sociale.
+  par défaut: "'médecin'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -237,17 +239,22 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
 
 dirigeant . indépendant . PL . PAM:
-  applicable si:
-    une de ces conditions:
-      - métier = 'PAM . auxiliaire médical'
-      - métier = 'PAM . médecin'
-      - métier = 'PAM . chirurgien-dentiste'
-      - métier = 'PAM . sage-femme'
+  applicable si: métier = 'PAM'
   formule: oui
+  rend non applicable:
+    - entreprise . franchise de TVA
+    - cotisations et contributions . exonérations . ACRE
+
+dirigeant . indépendant . PL . PAM . honoraires:
+  titre: Total des honoraires
+  question: Quel est le montant total de vos honoraires ?
+  résumé: En incluant les dépassements
+  unité: €/an
+  formule: entreprise . chiffre d'affaires
 
 # TODO : medecins remplacant comme micro-BNC avec taux cotisation unique (comme les auto-entrepreneurs)
 # dirigeant . indépendant . PL . PAM . remplaçant:
-#   applicable si: métier = 'PAM . médecin'
+#   applicable si: métier . PAM = 'médecin'
 #   rend non applicable:
 #     - entreprise . chiffre d'affaires
 #     - entreprise . charges
@@ -328,9 +335,9 @@ dirigeant . indépendant . PL . PAM . CURPS:
       assiette: assiette des cotisations
       taux:
         variations:
-          - si: métier = 'PAM . médecin'
+          - si: métier . PAM = 'médecin'
             alors: 0.5%
-          - si: métier = 'PAM . chirurgien-dentiste'
+          - si: métier . PAM = 'chirurgien-dentiste'
             alors: 0.3%
           - sinon: 0.1%
     plafond: 0.50% * plafond sécurité sociale temps plein
@@ -360,7 +367,7 @@ dirigeant . indépendant . PL . PAM . assiette participation CPAM:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
 
 dirigeant . indépendant . PL . PAM . secteur:
-  applicable si: dirigeant . indépendant . PL . métier = 'PAM . médecin'
+  applicable si: métier . PAM = 'médecin'
   question: Sur quel secteur êtes-vous conventionné ?
   description: |
     Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
@@ -420,7 +427,7 @@ dirigeant . indépendant . PL . PAM . allocations familiales . participation CPA
 
 dirigeant . indépendant . PL . PAM . CARPIMKO:
   formule: oui
-  applicable si: métier = 'PAM . auxiliaire médical'
+  applicable si: métier . PAM = 'auxiliaire médical'
   références:
     Site CARPIMKO: https://www.carpimko.com
 
@@ -489,7 +496,7 @@ dirigeant . indépendant . PL . PAM . CARMF:
     société d’exercice libéral ou toute autre activité rémunérée sous forme
     d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
-  applicable si: métier = 'PAM . médecin'
+  applicable si: métier . PAM = 'médecin'
   références:
     Site CARMF: https://www.carmf.fr
 
@@ -563,8 +570,8 @@ dirigeant . indépendant . PL . PAM . CARCDSF:
 
   applicable si:
     une de ces conditions:
-      - métier = 'PAM . chirurgien-dentiste'
-      - métier = 'PAM . sage-femme'
+      - métier . PAM = 'chirurgien-dentiste'
+      - métier . PAM = 'sage-femme'
   références:
     Site CARMF: https://www.carcdsf.fr
 
@@ -615,7 +622,7 @@ dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . rédu
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste:
-  applicable si: métier = 'PAM . chirurgien-dentiste'
+  applicable si: métier . PAM = 'chirurgien-dentiste'
   formule: oui
 
 dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . RID:
@@ -690,7 +697,7 @@ dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . assiette p
     Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
 
 dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme:
-  applicable si: métier = 'PAM . sage-femme'
+  applicable si: métier . PAM = 'sage-femme'
   formule: oui
 
 dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID:

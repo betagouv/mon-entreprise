@@ -7,6 +7,7 @@ import { Link, Route, Switch, useLocation } from 'react-router-dom'
 import ArtisteAuteur from './ArtisteAuteur'
 import AssimiléSalarié from './RémunérationSASU'
 import ChômagePartiel from './ChômagePartiel'
+import ProfessionnelSanté from './ProfessionnelSanté'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import Home from './Home'
 import Indépendant from './Indépendant'
@@ -80,6 +81,10 @@ export default function Simulateurs() {
 				<Route
 					path={sitePaths.simulateurs['chômage-partiel']}
 					component={ChômagePartiel}
+				/>
+				<Route
+					path={sitePaths.simulateurs['professionnel-santé']}
+					component={ProfessionnelSanté}
 				/>
 				<Route
 					path={sitePaths.simulateurs.économieCollaborative.index}

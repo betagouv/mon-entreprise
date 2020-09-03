@@ -56,6 +56,7 @@ const sitePathsFr = {
 		salarié: '/salaire-brut-net',
 		'artiste-auteur': '/artiste-auteur',
 		'chômage-partiel': '/chômage-partiel',
+		'professionnel-santé': '/professionnel-santé',
 		économieCollaborative: {
 			index: '/économie-collaborative',
 			votreSituation: '/votre-situation'

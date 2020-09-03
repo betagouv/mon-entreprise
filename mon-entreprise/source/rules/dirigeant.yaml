@@ -535,12 +535,14 @@ dirigeant . indépendant . revenu professionnel:
   formule:
     inversion numérique:
       avec:
-        - dirigeant . indépendant . revenu net de cotisations
-        - dirigeant . indépendant . résultat fiscal
-        - dirigeant . rémunération totale
+        - revenu net de cotisations
+        - résultat fiscal
+        - rémunération totale
         - revenu net après impôt
+        - PL . PAM . honoraires
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
+
       valeurs négatives possibles: oui
 
 dirigeant . indépendant . assiette des cotisations:

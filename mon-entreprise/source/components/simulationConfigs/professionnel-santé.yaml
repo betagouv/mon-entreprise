@@ -1,0 +1,28 @@
+objectifs:
+  - dirigeant . indépendant . PL . PAM . honoraires
+  - entreprise . charges
+  - dirigeant . indépendant . cotisations et contributions
+  - dirigeant . indépendant . revenu net de cotisations
+  - impôt
+  - revenu net après impôt
+
+questions:
+  liste noire:
+    - entreprise . charges
+  non prioritaires:
+    - entreprise . date de création
+    - dirigeant . indépendant . contrats madelin . mutuelle . montant
+    - dirigeant . indépendant . contrats madelin . retraite . montant
+    - dirigeant . indépendant . IJSS
+    - entreprise . ZFU
+    - dirigeant . indépendant . cotisations et contributions . exonérations . âge
+    - dirigeant . indépendant . cotisations et contributions . exonérations . invalidité
+    - situation personnelle . RSA
+    - situation personnelle . domiciliation fiscale à l'étranger
+    - dirigeant . indépendant . revenus étrangers
+unité par défaut: €/an
+situation:
+  entreprise . catégorie d'activité: "'libérale'"
+  entreprise . catégorie d'activité . libérale règlementée: oui
+  dirigeant: "'indépendant'"
+  dirigeant . indépendant . PL . métier: "'PAM'"
