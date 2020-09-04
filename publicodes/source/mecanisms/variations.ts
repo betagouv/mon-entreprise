@@ -132,9 +132,10 @@ function evaluate(
 			try {
 				evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
 			} catch (e) {
-				return typeWarning(
+				typeWarning(
 					cache._meta.contexRule,
-					`L'unité de la branche n° ${i} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
+					`L'unité de la branche n° ${i +
+						1} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
 					e
 				)
 			}

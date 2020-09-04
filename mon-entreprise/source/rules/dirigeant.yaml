@@ -109,10 +109,7 @@ dirigeant . auto-entrepreneur . plafond:
   unité: €/an
   formule:
     variations:
-      - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement
+      - si: vente ou hébergement
         alors: 176200 €/an
       - sinon: 72500 €/an
 
@@ -160,10 +157,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
       assiette: base des cotisations
       taux:
         variations:
-          - si:
-              une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente'
-                - entreprise . catégorie d'activité . restauration ou hébergement
+          - si: vente ou hébergement
             alors: 0.015%
           - sinon: 0.044%
 
@@ -210,21 +204,41 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
             alors: 0.2%
           - sinon: 0.1%
 
+dirigeant . auto-entrepreneur . vente ou hébergement:
+  titre: Vente, restauration ou hébergement
+  formule:
+    une de ces conditions:
+      - entreprise . catégorie d'activité . service ou vente = 'vente'
+      - entreprise . catégorie d'activité . restauration ou hébergement
+
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
-    Les cotisations sociales donnent à l'auto-entrepreneur accès à une protection sociale minimale : une retraite, des soins de santé, des allocations familiales, etc.
+    Les cotisations sociales donnent à l'auto-entrepreneur accès à une
+    protection sociale minimale : une retraite, des soins de santé, des
+    allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
+    complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
+    taux dépend de la catégorie d'activité.
 
   formule:
-    barème:
-      assiette: base des cotisations
-      multiplicateur: plafond ACRE
-      tranches:
-        - taux: taux de cotisation * (100% - taux ACRE)
-          plafond: 1
-        - taux: taux de cotisation
-
+    variations:
+      - si: entreprise . ACRE
+        alors:
+          barème:
+            assiette: base des cotisations
+            tranches:
+              - taux: taux de cotisation * taux ACRE
+                plafond: plafond ACRE
+              - taux: taux de cotisation
+      - sinon:
+          produit:
+            assiette: base des cotisations [€/mois]
+            taux [ref taux de cotisation]:
+              variations:
+                - si: vente ou hébergement
+                  alors: 12.8%
+                - sinon: 22%
   références:
     La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
 
@@ -237,50 +251,57 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ret
       assiette: base des cotisations
       taux:
         variations:
-          - si:
-              une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente'
-                - entreprise . catégorie d'activité . restauration ou hébergement
+          - si: vente ou hébergement
             alors: 2.04%
-          - si:
-              une de ces conditions:
-                - entreprise . catégorie d'activité = 'commerciale ou industrielle'
-                - entreprise . catégorie d'activité = 'artisanale'
-            alors: 3.50%
-
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation:
-  description: |
-    Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a qu'une ligne unique dont le taux dépend de la catégorie d'activité.
-  formule:
-    variations:
-      - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement
-        alors: 12.8%
-      - sinon: 22%
+          - sinon: 3.50%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   titre: taux ACRE auto-entrepreneur
   applicable si: entreprise . ACRE
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
-    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 25% signifie que
-    l'auto-entrepreneur bénéficie de 25% de réduction sur le montant des cotisations dûes.
+    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
+    l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
+    cotisations.
+  unité: '%'
   formule:
     variations:
-      - si: entreprise . date de création >= 01/2020
-        alors: 50%
-      - si: entreprise . durée d'activité < 1 an
-        alors: 75%
-      - si: entreprise . durée d'activité < 2 ans
-        alors: 25%
-      - si: entreprise . durée d'activité < 3 ans
-        alors: 10%
+      - si: entreprise . date de création < 01/04/2019
+        alors:
+          grille:
+            assiette: entreprise . durée d'activité
+            tranches:
+              - montant: 25%
+                plafond: 1 an
+              - montant: 50%
+                plafond: 2 ans
+              - montant: 90%
+                plafond: 3 ans
+      - si: entreprise . date de création < 01/04/2020
+        alors:
+          grille:
+            assiette: entreprise . durée d'activité
+            tranches:
+              - montant: 25%
+                plafond: 1 an
+              - montant: 75%
+                plafond: 2 ans
+              - montant: 90%
+                plafond: 3 ans
+      - sinon:
+          grille:
+            assiette: entreprise . durée d'activité
+            tranches:
+              - montant: 50%
+                plafond: 1 an
+              - montant: 75%
+                plafond: 2 ans
+              - montant: 90%
+                plafond: 3 ans
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
-    FAQ Urssaf depuis 01/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
-    FAQ Urssaf avant 01/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
+    FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
+    FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
@@ -306,10 +327,7 @@ dirigeant . auto-entrepreneur . impôt . abattement . taux:
     variations:
       - si: entreprise . catégorie d'activité = 'libérale'
         alors: 34%
-      - si:
-          une de ces conditions:
-            - entreprise . catégorie d'activité . service ou vente = 'vente'
-            - entreprise . catégorie d'activité . restauration ou hébergement
+      - si: vente ou hébergement
         alors: 71%
       - sinon: 50%
 
@@ -341,10 +359,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
       assiette: base des cotisations
       taux:
         variations:
-          - si:
-              une de ces conditions:
-                - entreprise . catégorie d'activité . service ou vente = 'vente'
-                - entreprise . catégorie d'activité . restauration ou hébergement
+          - si: vente ou hébergement
             alors: 1%
           - si: entreprise . catégorie d'activité . service ou vente = 'service'
             alors: 1.7%

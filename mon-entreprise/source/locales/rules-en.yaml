@@ -3603,19 +3603,27 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description.en: >
-    [automatic] Social security contributions give the self-employed person
-    access to a minimum social protection: a pension, health care, family
-    allowances, etc.
+    [automatic] Social security contributions give the auto-entrepreneur access
+    to an
+
+    minimum social protection: a pension, health care, social security, health care
+
+    family allowances, etc.
 
 
-    Self-employment is a simplified plan: rather than a complex payslip, all contributions are grouped into a *package* whose rate depends on the activity category.
-  description.fr: >
+    Self-employment is a simplified plan: rather than a pay slip
+
+    complex, all the contributions are grouped in a *package* with the
+
+    rate depends on the activity category.
+  description.fr: |
     Les cotisations sociales donnent à l'auto-entrepreneur accès à une
     protection sociale minimale : une retraite, des soins de santé, des
     allocations familiales, etc.
 
-
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie complexe, toutes les cotisations sont groupées dans un *forfait* dont le taux dépend de la catégorie d'activité.
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
+    complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
+    taux dépend de la catégorie d'activité.
   titre.en: contributions
   titre.fr: cotisations
 ? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE
@@ -3633,28 +3641,22 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   titre.fr: retraite complémentaire
 ? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE
 : description.en: >
+    [automatic] This rate corresponds to the contribution reduction that applies
+    to
 
-    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 25% signifie que
+    the auto-entrepreneur benefiting from Acre. A rate of 75% means that
 
-    l'auto-entrepreneur bénéficie de 25% de réduction sur le montant des cotisations dûes.
-  description.fr: >
+    the auto-entrepreneur has to pay 75% of the original amount of the
+
+    contributions.
+  description.fr: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
-
-    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 25% signifie que
-
-    l'auto-entrepreneur bénéficie de 25% de réduction sur le montant des cotisations dûes.
+    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
+    l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
+    cotisations.
   titre.en: |
     "ACRE" rate
   titre.fr: taux ACRE auto-entrepreneur
-? dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux de cotisation
-: description.en: >
-    The social contributions of the self-employed are simplified: there is no
-    than a single line whose rate depends on the category of activity.
-  description.fr: >
-    Les cotisations sociales de l'auto-entreprise sont simplifiées : il n'y a
-    qu'une ligne unique dont le taux dépend de la catégorie d'activité.
-  titre.en: contribution rate
-  titre.fr: taux de cotisation
 dirigeant . auto-entrepreneur . impôt:
   titre.en: tax
   titre.fr: impôt
@@ -3812,6 +3814,9 @@ dirigeant . auto-entrepreneur . plafond:
     Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
   titre.en: upper limit
   titre.fr: plafond
+dirigeant . auto-entrepreneur . vente ou hébergement:
+  titre.en: '[automatic] Sales, catering or accommodation'
+  titre.fr: Vente, restauration ou hébergement
 dirigeant . indépendant:
   titre.en: indépendant
   titre.fr: indépendant
