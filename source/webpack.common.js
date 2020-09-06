@@ -21,6 +21,7 @@ module.exports.default = {
 	},
 	entry: {
 		publicodes: './source/sites/publicodes/entry.js',
+		iframe: './source/sites/publicodes/iframe.js',
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -30,6 +31,7 @@ module.exports.default = {
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/publicodes/sitemap.txt',
+			'iframeResizer.contentWindows.min.js',
 		]),
 	],
 }

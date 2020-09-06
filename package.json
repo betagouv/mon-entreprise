@@ -22,7 +22,7 @@
 		"fuse.js": "^3.4.5",
 		"great-circle": "^0.2.8",
 		"i18next": "^18.0.1",
-		"iframe-resizer": "^4.1.1",
+		"iframe-resizer": "^4.2.11",
 		"js-yaml": "^3.13.1",
 		"monaco-editor": "^0.17.1",
 		"moo": "^0.5.0",
