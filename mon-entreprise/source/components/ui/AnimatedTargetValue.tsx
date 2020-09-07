@@ -33,9 +33,11 @@ export default function AnimatedTargetValue({
 			? null
 			: (value || 0) - (previousValue.current || 0)
 	const shouldDisplayDifference =
-		difference !== null &&
+		difference != null &&
 		previousUnit.current === currentUnit &&
-		Math.abs(difference) > 1
+		Math.abs(difference) > 1 &&
+		previousValue.current != null &&
+		value != null
 
 	previousValue.current = value
 	previousUnit.current = currentUnit
