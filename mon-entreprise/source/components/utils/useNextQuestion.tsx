@@ -7,7 +7,6 @@ import {
 	flatten,
 	head,
 	identity,
-	intersection,
 	keys,
 	last,
 	length,
@@ -23,18 +22,18 @@ import {
 	toPairs,
 	zipWith
 } from 'ramda'
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useEvaluation } from './EngineContext'
+import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
+import { DottedName } from 'Rules'
 import {
-	objectifsSelector,
-	configSelector,
 	answeredQuestionsSelector,
+	configSelector,
 	currentQuestionSelector,
+	objectifsSelector,
 	situationSelector
 } from 'Selectors/simulationSelectors'
-import { useMemo } from 'react'
-import { DottedName } from 'Rules'
-import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
+import { useEvaluation } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
@@ -70,13 +69,16 @@ export function getNextSteps(
 	return map(head, sortedPairs) as any
 }
 
-const similarity = (rule1 = '', rule2 = '') =>
-	pipe(
-		zipWith(equals),
-		takeWhile(Boolean),
-		length,
-		negate
-	)(rule1.split(' . '), rule2.split(' . '))
+// Max : 1
+// Min -> 0
+const questionDifference = (rule1 = '', rule2 = '') =>
+	1 /
+	(1 +
+		pipe(
+			zipWith(equals),
+			takeWhile(Boolean),
+			length
+		)(rule1.split(' . '), rule2.split(' . ')))
 
 export function getNextQuestions(
 	missingVariables: Array<MissingVariables>,
@@ -86,20 +88,19 @@ export function getNextQuestions(
 ): Array<DottedName> {
 	const {
 		'non prioritaires': notPriority = [],
-		uniquement: only = null,
+		liste: whitelist = [],
 		'liste noire': blacklist = []
 	} = questionConfig
 	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
-
-	if (only) {
-		nextSteps = intersection(nextSteps, [...only, ...notPriority])
-	}
-	if (blacklist) {
-		nextSteps = difference(nextSteps, blacklist)
-	}
+	nextSteps = nextSteps.filter(
+		step =>
+			(!whitelist.length || whitelist.some(name => step.startsWith(name))) &&
+			(!blacklist.length || !blacklist.some(name => step.startsWith(name)))
+	)
 
 	const lastStep = last(answeredQuestions)
-	// L'ajout de la réponse permet de traiter les questions dont la réponse est "une possibilité", exemple "contrat salarié . cdd"
+	// L'ajout de la réponse permet de traiter les questions dont la réponse est
+	// "une possibilité", exemple "contrat salarié . cdd"
 	const lastStepWithAnswer =
 		lastStep && situation[lastStep]
 			? ([lastStep, situation[lastStep]]
@@ -107,15 +108,13 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
-
-	return sortBy(
-		question =>
-			notPriority.includes(question)
-				? notPriority.indexOf(question)
-				: similarity(question, lastStepWithAnswer),
-
-		nextSteps
-	)
+	return sortBy(question => {
+		const indexList = whitelist.findIndex(name => question.startsWith(name)) + 1
+		const indexNotPriority =
+			notPriority.findIndex(name => question.startsWith(name)) + 1
+		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
+		return indexList + indexNotPriority + differenceCoeff
+	}, nextSteps)
 }
 
 export const useNextQuestions = function(): Array<DottedName> {
@@ -134,7 +133,7 @@ export const useNextQuestions = function(): Array<DottedName> {
 			answeredQuestions,
 			situation
 		)
-	}, [missingVariables, questionsConfig, answeredQuestions])
+	}, [missingVariables, questionsConfig, answeredQuestions, situation])
 	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
 		return [currentQuestion, ...nextQuestions]
 	}

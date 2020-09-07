@@ -30,8 +30,7 @@ questions:
     - entreprise . effectif
     - établissement . localisation
     - entreprise . ratio alternants
-    - contrat salarié . indemnité kilométrique vélo . active
-    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . complémentaire santé
     - contrat salarié . régime des impatriés
 
 unité par défaut: €/an
