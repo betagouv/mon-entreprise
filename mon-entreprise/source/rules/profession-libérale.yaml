@@ -10,7 +10,6 @@ dirigeant . indépendant . PL:
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
   question: A quelle catégorie appartient votre profession ?
-  par défaut: "'rattaché CIPAV'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -43,6 +42,10 @@ dirigeant . indépendant . PL . métier . PAM:
     conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
     de ce régime d'assurance maladie et sur les modalités de votre protection
     sociale.
+
+    > *Exceptions* : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
+    diététicien et chiropracteur ne dépendent pas du régime PAMC mais de la
+    CIPAV pour leur retraite et invalidité.
   par défaut: "'médecin'"
   formule:
     une possibilité:
@@ -156,25 +159,46 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
   titre: retraite complémentaire (CIPAV)
   formule:
-    grille:
-      assiette: assiette des cotisations
-      unité: €/an
-      tranches:
-        - montant: 1353
-          plafond: 26581 €/an
-        - montant: 2705
-          plafond: 49281 €/an
-        - montant: 4058
-          plafond: 57851 €/an
-        - montant: 6763
-          plafond: 66401 €/an
-        - montant: 9468
-          plafond: 83061 €/an
-        - montant: 14878
-          plafond: 103181 €/an
-        - montant: 16231
-          plafond: 123301 €/an
-        - montant: 17583
+    somme:
+      - grille:
+          assiette: assiette des cotisations
+          unité: €/an
+          tranches:
+            - montant: 1353
+              plafond: 26581 €/an
+            - montant: 2705
+              plafond: 49281 €/an
+            - montant: 4058
+              plafond: 57851 €/an
+            - montant: 6763
+              plafond: 66401 €/an
+            - montant: 9468
+              plafond: 83061 €/an
+            - montant: 14878
+              plafond: 103181 €/an
+            - montant: 16231
+              plafond: 123301 €/an
+            - montant: 17583
+      - (- réduction COVID . montant)
+    plancher: 0
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID:
+  applicable si: entreprise . date de création < 01/01/2020
+  question: |
+    Avez-vous fait une demande pour bénéficier de la réduction de cotisations de
+    retraite complémentaire sans conditions de revenus ?
+  description: |
+    La Cipav met en place une réduction jusqu'à 1392€ de cotisation sur la
+    retraire complémentaire sans diminution du nombre de points acquis. Cette
+    aide n'est pas automatique, mais peut-être obtenue sur simple demande via la
+    messagerie de l'espace adhérent.
+
+    [Faire votre demande](https://www.lacipav.fr/dispositif-exceptionnel-procedure)
+  par défaut: non
+
+dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant:
+  titre: réduction COVID
+  formule: 1392 €/an
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . cotisations . invalidité et décès
@@ -614,6 +638,7 @@ dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . rédu
         toutes ces conditions:
           - dirigeant . indépendant . PL . PAM . CARCDSF
           - assiette des cotisations < 85% * plafond sécurité sociale temps plein
+      niveau: info
       message: |
         Vous avez la possibilité de bénéficier d'une réduction de cotisation
         pour la retraite complémentaire si vous en faites la demande. [En savoir
