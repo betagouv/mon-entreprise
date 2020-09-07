@@ -5113,6 +5113,21 @@ impôt . foyer fiscal . impôt à payer:
 impôt . foyer fiscal . nombre de parts:
   titre.en: '[automatic] number of shares'
   titre.fr: nombre de parts
+impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
+  description.en: >-
+    [automatic] A widow with dependent children receives an additional share for
+    the calculation of the family quotient, which corresponds to the maintenance
+    of the deceased's share.
+
+    A widow with no dependent children, on the other hand, receives no increase.
+  description.fr: >-
+    Une personne veuve avec des enfants à charge bénéficie d'une part
+    supplémentaire pour le calcul du quotient familial, ce qui correspond au
+    maintient de la part de la personne décédée.
+
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune majoration.
+  titre.en: '[automatic] widow with child increase'
+  titre.fr: majoration personne veuve avec enfant
 impôt . foyer fiscal . nombre de parts . principales:
   titre.en: '[automatic] main'
   titre.fr: principales
@@ -5165,8 +5180,11 @@ impôt . foyer fiscal . situation de famille . couple:
   titre.en: '[automatic] Married / Pacsé(e)s'
   titre.fr: Marié(e)s / Pacsé(e)s
 impôt . foyer fiscal . situation de famille . célibataire:
-  titre.en: '[automatic] Single / Divorced / Widowed / Common-law union'
-  titre.fr: Célibataire / Divorcé(e) / Veuf(ve) / Union libre
+  titre.en: '[automatic] Single / Divorced / Common-law union'
+  titre.fr: Célibataire / Divorcé(e) / Union libre
+impôt . foyer fiscal . situation de famille . veuf:
+  titre.en: '[automatic] Widow(er)'
+  titre.fr: Veuf(ve)
 impôt . foyer fiscal . taux effectif:
   titre.en: '[automatic] yield rate'
   titre.fr: taux effectif
