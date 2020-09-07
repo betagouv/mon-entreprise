@@ -289,13 +289,17 @@ impôt . foyer fiscal . situation de famille:
       possibilités:
         - célibataire
         - couple
+        - veuf
   par défaut: "'célibataire'"
 
 impôt . foyer fiscal . situation de famille . célibataire:
-  titre: Célibataire / Divorcé(e) / Veuf(ve) / Union libre
+  titre: Célibataire / Divorcé(e) / Union libre
 
 impôt . foyer fiscal . situation de famille . couple:
   titre: Marié(e)s / Pacsé(e)s
+
+impôt . foyer fiscal . situation de famille . veuf:
+  titre: Veuf(ve)
 
 impôt . foyer fiscal . enfants à charge:
   question: Combien d'enfants sont à charge du foyer fiscal ?
@@ -307,6 +311,7 @@ impôt . foyer fiscal . nombre de parts:
     somme:
       - principales
       - rattachées
+      - majoration personne veuve avec enfant
 
 impôt . foyer fiscal . nombre de parts . principales:
   formule:
@@ -321,6 +326,22 @@ impôt . foyer fiscal . nombre de parts . rattachées:
       - si: enfants à charge <= 2 enfants
         alors: 0.5 part/enfant * enfants à charge
       - sinon: (1 part/enfant * enfants à charge) - 1 part
+
+impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
+  description: >-
+    Une personne veuve avec des enfants à charge bénéficie d'une part
+    supplémentaire pour le calcul du quotient familial, ce qui correspond au
+    maintient de la part de la personne décédée.
+
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune
+    majoration.
+  applicable si:
+    toutes ces conditions:
+      - situation de famille = 'veuf'
+      - enfants à charge > 0 enfants
+  formule: 1 part
+  références:
+    Quotient familial d'une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
 
 impôt . foyer fiscal . taux effectif:
   formule: impôt à payer / impôt . revenu imposable

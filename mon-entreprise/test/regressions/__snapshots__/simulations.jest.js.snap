@@ -432,6 +432,10 @@ exports[`calculate simulations-salarié: impôt sur le revenu - quotient familia
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12890,0,9000,7156,6538]"`;
 
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2187]"`;
+
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 10`] = `"[4076,0,3000,2353,2353]"`;
+
 exports[`calculate simulations-salarié: impôt sur le revenu 1`] = `"[4076,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 2`] = `"[41834,0,30000,24227,14685]"`;

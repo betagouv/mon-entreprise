@@ -177,6 +177,11 @@ impôt sur le revenu - quotient familial:
   - contrat salarié . rémunération . brut de base: 9000 €/mois
     impôt . foyer fiscal . situation de famille: "'couple'"
     impôt . foyer fiscal . enfants à charge: 4
+  - contrat salarié . rémunération . brut de base: 3000 €/mois
+    impôt . foyer fiscal . situation de famille: "'veuf'"
+  - contrat salarié . rémunération . brut de base: 3000 €/mois
+    impôt . foyer fiscal . situation de famille: "'veuf'"
+    impôt . foyer fiscal . enfants à charge: 2
 
 heures supplémentaires et complémentaires:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
