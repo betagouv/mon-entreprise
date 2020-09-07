@@ -45,7 +45,7 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 type QuestionsKind =
 	| "à l'affiche"
 	| 'non prioritaires'
-	| 'uniquement'
+	| 'liste'
 	| 'liste noire'
 
 export type SimulationConfig = {

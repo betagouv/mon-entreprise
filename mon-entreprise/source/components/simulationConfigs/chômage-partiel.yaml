@@ -8,12 +8,9 @@ objectifs cachés:
   - chômage partiel . coût employeur habituel
 
 questions:
-  uniquement:
-    - contrat salarié . activité partielle . heures travaillées
-    - contrat salarié . activité partielle . secteur d'activité restreint
-    - contrat salarié . temps de travail . temps partiel
-    - contrat salarié . temps de travail . temps partiel . heures par semaine
-    - contrat salarié . activité partielle . convention syntec
+  liste:
+    - contrat salarié . activité partielle
+    - contrat salarié . temps de travail
     - contrat salarié . profession spécifique
     - établissement . localisation
 

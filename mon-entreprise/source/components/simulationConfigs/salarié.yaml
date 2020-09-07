@@ -15,12 +15,12 @@ questions:
     Impôt: impôt . méthode de calcul
     Commune: établissement . localisation
   non prioritaires:
-    - contrat salarié . frais professionnels . indemnité kilométrique vélo . active
+    - contrat salarié . frais professionnels
     - contrat salarié . rémunération . avantages en nature
     - entreprise . établissement bancaire
     - entreprise . association non lucrative
     - contrat salarié . statut JEI
-    - contrat salarié . complémentaire santé . part employeur
+    - contrat salarié . complémentaire santé
     - contrat salarié . régime des impatriés
 unité par défaut: €/mois
 situation:
