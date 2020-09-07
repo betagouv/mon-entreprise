@@ -36,6 +36,14 @@ export default function Question({
 		},
 		[setCurrentSelection]
 	)
+	const handleSubmit = useCallback(
+		(src, value) => {
+			setCurrentSelection(value)
+			onChange(value)
+			onSubmit(src)
+		},
+		[onSubmit, onChange, setCurrentSelection]
+	)
 
 	useEffect(() => {
 		if (currentSelection != null) {
@@ -65,7 +73,7 @@ export default function Question({
 						value,
 						label,
 						currentSelection,
-						onSubmit,
+						onSubmit: handleSubmit,
 						name: questionDottedName,
 						onChange: handleChange
 					}}
@@ -88,7 +96,7 @@ export default function Question({
 								label: 'Aucun',
 								currentSelection,
 								name: questionDottedName,
-								onSubmit,
+								onSubmit: handleSubmit,
 								dottedName: null,
 								onChange: handleChange
 							}}
@@ -113,7 +121,7 @@ export default function Question({
 											currentSelection,
 											name: questionDottedName,
 											icons,
-											onSubmit,
+											onSubmit: handleSubmit,
 											description,
 											onChange: handleChange
 										}}
@@ -171,7 +179,9 @@ function RadioLabelContent({
 	return (
 		<label
 			key={value}
-			onDoubleClick={() => onSubmit('dblClick')}
+			onDoubleClick={() => {
+				onSubmit('dblClick', value)
+			}}
 			style={labelStyle}
 			className={classnames('userAnswerButton ui__ button', {
 				selected
