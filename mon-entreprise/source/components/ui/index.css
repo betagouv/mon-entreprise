@@ -21,7 +21,7 @@
 html,
 body,
 #js {
-	height: 100%;
+	min-height: 100%;
 }
 
 html:fullscreen {
