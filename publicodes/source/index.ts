@@ -27,7 +27,7 @@ type Situation<Names extends string> = Partial<
 >
 
 type EvaluatedSituation<Names extends string> = Partial<
-	Record<Names, object | number | EvaluatedNode<Names>>
+	Record<Names, EvaluatedNode<Names>>
 >
 
 export type EvaluationOptions = Partial<{
@@ -43,7 +43,7 @@ export { utils }
 
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
-	situation: Situation<Names> = {}
+	situation: EvaluatedSituation<Names> = {}
 	private cache: Cache
 	private warnings: Array<string> = []
 
