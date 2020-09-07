@@ -658,18 +658,16 @@ dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . rédu
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
   formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - dirigeant . indépendant . PL . PAM . CARCDSF
-          - assiette des cotisations < 85% * plafond sécurité sociale temps plein
-      niveau: info
-      message: |
-        Vous avez la possibilité de bénéficier d'une réduction de cotisation
-        pour la retraite complémentaire si vous en faites la demande. [En savoir
-        plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction:
+  type: notification
+  applicable si: assiette des cotisations < 85% * plafond sécurité sociale temps plein
+  description: >-
+    Vous avez la possibilité de bénéficier d'une réduction de cotisation
+    pour la retraite complémentaire si vous en faites la demande. [En savoir
+    plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
 
 dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste:
   applicable si: métier = 'PAM . chirurgien-dentiste'
@@ -703,18 +701,17 @@ dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . PCV:
           assiette: assiette des cotisations
           plafond: 5 * plafond sécurité sociale temps plein
           taux: 0.725 %
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - chirurgien-dentiste
-          - (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
-      niveau: info
-      message: |
-        Vous avez la possibilité de bénéficier d'une éxonération totale de cotisation
-        pour la prestation complémentaire de vieillesse (PCV) si vous en faites la demande. [En savoir
-        plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . PCV . info exonération:
+  type: notification
+  applicable si: (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
+  description: >-
+    Vous avez la possibilité de bénéficier d'une exonération totale de
+    cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
+    faites la demande. [En savoir
+    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
 dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . taux Urssaf:
   description: |
@@ -818,18 +815,17 @@ dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV:
     produit:
       assiette: 780 €/an
       taux: 1 / 3
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - sage-femme
-          - assiette des cotisations <= 3120 €/an
-      niveau: info
-      message: |
-        Vous avez la possibilité de bénéficier d'une éxonération totale de cotisation
-        pour la prestation complémentaire de vieillesse (PCV) si vous en faites la demande. [En savoir
-        plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV . info exonération:
+  type: notification
+  applicable si: assiette des cotisations <= 3120 €/an
+  description: >-
+    Vous avez la possibilité de bénéficier d'une exonération totale de
+    cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
+    faites la demande. [En savoir
+    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
 dirigeant . indépendant . PL . PAM . PCV:
   titre: Prestations complémentaires vieillesse

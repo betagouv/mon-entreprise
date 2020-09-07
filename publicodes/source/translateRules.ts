@@ -10,19 +10,6 @@ type translateAttribute = (
 ) => Rule
 
 /* Traduction */
-const translateContrôle: translateAttribute = (prop, rule, translation, lang) =>
-	assoc(
-		'contrôles',
-		rule.contrôles!.map((control, i) => ({
-			...control,
-			message: translation[`${prop}.${i}.${lang}`]?.replace(
-				/^\[automatic\] /,
-				''
-			)
-		})),
-		rule
-	)
-
 const translateSuggestion: translateAttribute = (
 	prop,
 	rule,
@@ -50,7 +37,6 @@ export const attributesToTranslate = [
 	'question',
 	'résumé',
 	'suggestions',
-	'contrôles',
 	'note'
 ]
 
@@ -58,9 +44,6 @@ const translateProp = (lang: string, translation: Translation) => (
 	rule: Rule,
 	prop: string
 ) => {
-	if (prop === 'contrôles' && rule?.contrôles) {
-		return translateContrôle(prop, rule, translation, lang)
-	}
 	if (prop === 'suggestions' && rule?.suggestions) {
 		return translateSuggestion(prop, rule, translation, lang)
 	}

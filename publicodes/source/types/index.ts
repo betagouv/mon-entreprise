@@ -1,15 +1,5 @@
 import { Temporal } from '../temporal'
 
-type Contrôle = {
-	si: string
-	message: string
-	niveau: 'avertissement' | 'information'
-	solution?: {
-		cible: string
-		texte: string
-	}
-}
-
 type BaseUnit = string
 
 export type Unit = {
@@ -30,7 +20,6 @@ export type Rule = {
 	note?: string
 	suggestions?: { [description: string]: number }
 	références?: { [source: string]: string }
-	contrôles?: Array<Contrôle>
 }
 export type Rules<Names extends string = string> = Record<Names, Rule>
 

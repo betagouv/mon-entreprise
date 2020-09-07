@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
-import { EngineContext } from './utils/EngineContext'
+import { EngineContext, useEvaluation } from './utils/EngineContext'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -39,12 +39,9 @@ export default function SchemeComparaison({
 	useEffect(() => {
 		dispatch(setSimulationConfig(dirigeantComparaison))
 	}, [])
-	const plafondAutoEntrepreneurDépassé = useContext(EngineContext)
-		.controls()
-		.find(
-			({ test }) =>
-				test.includes && test.includes('base des cotisations > plafond')
-		)
+	const plafondAutoEntrepreneurDépassé = useEvaluation(
+		'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
+	).isApplicable
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(

@@ -39,6 +39,7 @@ dirigeant . assimilé salarié:
     - contrat salarié . temps de travail . heures supplémentaires
     - contrat salarié . déduction forfaitaire spécifique
     - contrat salarié . régime des impatriés
+    - contrat salarié . rémunération . contrôle smic
     - entreprise . association non lucrative
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-rattaches-au-regi.html
@@ -75,13 +76,17 @@ dirigeant . auto-entrepreneur:
 
 dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
-  contrôles:
-    - si: base des cotisations > plafond
-      message: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
-      niveau: avertissement
-    - si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
-      message: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-      niveau: information
+
+dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
+  type: notification
+  sévérité: avertissement
+  applicable si: base des cotisations > plafond
+  description: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
+
+dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
+  type: notification
+  applicable si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
+  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 dirigeant . auto-entrepreneur . plafond:
   description: |
@@ -337,13 +342,14 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
   question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   par défaut: non
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - impôt . foyer fiscal . revenu fiscal de référence > 27086 €/an
-          - versement libératoire
-      message: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
-      niveau: info
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seuil:
+  type: notification
+  applicable si:
+    toutes ces conditions:
+      - impôt . foyer fiscal . revenu fiscal de référence > 27086 €/an
+      - versement libératoire
+  description: Le versement libératoire n'est pas disponible si les revenus de votre ménage sont supérieurs à 27 086 € par part en 2018
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre: versement libératoire auto-entrepreneur
@@ -433,27 +439,27 @@ dirigeant . rémunération totale:
 dirigeant . indépendant:
   rend non applicable: contrat salarié
   formule: dirigeant = 'indépendant'
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - dirigeant = 'indépendant'
-          - entreprise . durée d'activité . en fin d'année < 2 ans
-          - entreprise . date de création != 02/01/2020
-      message: |
-        Lorsque vous commencez votre activité, vos revenus professionnels
-        n’étant pas connus, les cotisations et contributions des deux premières
-        années sont calculées sur une base forfaitaire.
 
-        Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
-        la première et de la deuxième année d’activité.
+dirigeant . indépendant . contrôle base forfaitaire:
+  type: notification
+  applicable si:
+    toutes ces conditions:
+      - entreprise . durée d'activité . en fin d'année < 2 ans
+      - entreprise . date de création != 02/01/2020
+  description: >-
+    Lorsque vous commencez votre activité, vos revenus professionnels
+    n’étant pas connus, les cotisations et contributions des deux premières
+    années sont calculées sur une base forfaitaire.
 
-        Il y a un ajustement la troisième année en fonction des revenus réels
-        déclarées lors des deux années précédentes.
+    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
+    la première et de la deuxième année d’activité.
 
-        Ce simulateur calcul les cotisations au régime de croisière (après
-        régularisation). Il vous permet donc de connaître le montant à
-        provisionner pour la régularisation.
-      niveau: info
+    Il y a un ajustement la troisième année en fonction des revenus réels
+    déclarées lors des deux années précédentes.
+
+    Ce simulateur calcul les cotisations au régime de croisière (après
+    régularisation). Il vous permet donc de connaître le montant à
+    provisionner pour la régularisation.
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: entreprise . ACRE
@@ -761,13 +767,14 @@ dirigeant . indépendant . contrats madelin . montant:
     somme:
       - mutuelle . montant
       - retraite . montant
-  contrôles:
-    - si: entreprise . charges < montant
-      niveau: avertissement
-      message: |
-        Le montant de l'ensemble des cotisations à vos contrats Madelin
-        doit être inclus dans vos charges de fonctionnement, or ce vous
-        avez indiqué un montant de cotisations supérieur aux charges.
+
+dirigeant . indépendant . contrats madelin . contrôle montant charges:
+  type: notification
+  applicable si: entreprise . charges < montant
+  description: >-
+    Le montant de l'ensemble des cotisations à vos contrats Madelin
+    doit être inclus dans vos charges de fonctionnement, or ce vous
+    avez indiqué un montant de cotisations supérieur aux charges.
 
 dirigeant . indépendant . contrats madelin . part déductible fiscalement:
   titre: Part de la cotisation à contrat Madelin qui est déductible fiscalement

@@ -19,13 +19,18 @@ entreprise . date de création:
     Début 2019: 01/01/2019
     Fin 2017: 31/12/2017
   type: date
-  contrôles:
-    - si: date de création > 01/2021
-      niveau: avertissement
-      message: Nous ne pouvons voir aussi loin dans le futur
-    - si: date de création < 01/1900
-      niveau: avertissement
-      message: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
+
+entreprise . date de création . contrôle date future:
+  type: notification
+  sévérité: avertissement
+  applicable si: date de création > 01/2021
+  description: Nous ne pouvons voir aussi loin dans le futur
+
+entreprise . date de création . contrôle date passée:
+  type: notification
+  sévérité: avertissement
+  applicable si: date de création < 01/1900
+  description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
 entreprise . durée d'activité:
   formule:
@@ -377,9 +382,18 @@ entreprise . catégorie d'activité . libérale règlementée:
     Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
-
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . catégorie d'activité . libérale règlementée . avertissement:
+  type: notification
+  sévérité: avertissement
+  description: >-
+    Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées :
+
+    - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
+    - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
+    - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
 entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
   formule:

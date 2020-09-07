@@ -1,5 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
-import Controls from 'Components/Controls'
+import Notifications from 'Components/Notifications'
 import Conversation, {
 	ConversationProps
 } from 'Components/conversation/Conversation'
@@ -92,7 +92,7 @@ function Questions({
 			</div>
 			<section className="ui__ full-width lighter-bg">
 				<div className="ui__ container">
-					<Controls />
+					<Notifications />
 					<Conversation customEndMessages={customEndMessages} />
 				</div>
 			</section>

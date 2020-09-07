@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { mapObjIndexed } from 'ramda'
-import { evaluateControls } from './controls'
 import { evaluationError, warning } from './error'
 import { evaluateNode } from './evaluation'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
@@ -143,10 +142,6 @@ export default class Engine<Names extends string> {
 			}
 		}
 		return result
-	}
-
-	controls() {
-		return evaluateControls(this.cache, this.situation, this.parsedRules)
 	}
 
 	getWarnings() {

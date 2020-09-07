@@ -64,7 +64,7 @@ type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
 	config: SimulationConfig
 	url: string
-	hiddenControls: Array<string>
+	hiddenNotifications: Array<string>
 	situation: Situation
 	initialSituation: Situation
 	targetUnit: string
@@ -101,7 +101,7 @@ function simulation(
 		return {
 			config,
 			url,
-			hiddenControls: [],
+			hiddenNotifications: [],
 			situation: companySituation,
 			initialSituation: companySituation,
 			targetUnit: config['unité par défaut'] || '€/mois',
@@ -114,12 +114,15 @@ function simulation(
 	}
 
 	switch (action.type) {
-		case 'HIDE_CONTROL':
-			return { ...state, hiddenControls: [...state.hiddenControls, action.id] }
+		case 'HIDE_NOTIFICATION':
+			return {
+				...state,
+				hiddenNotifications: [...state.hiddenNotifications, action.id]
+			}
 		case 'RESET_SIMULATION':
 			return {
 				...state,
-				hiddenControls: [],
+				hiddenNotifications: [],
 				situation: state.initialSituation,
 				foldedSteps: [],
 				unfoldedStep: null
