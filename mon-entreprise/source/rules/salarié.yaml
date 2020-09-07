@@ -17,19 +17,6 @@ contrat salarié:
     - Particuliers employeurs : Plus de 8 heures par semaine ou de plus de 4 semaines consécutives dans l'année.
     - CDI : La signature d’un contrat de travail n’est pas obligatoire dans certains cas. C’est le cas du Contrat de travail à Durée Indéterminée, considéré comme la forme normale et générale de la relation de travail entre un salarié et un employeur (Art. L1221-2 du Code du travail).
 
-  contrôles:
-    - si: CDD
-      niveau: information
-      message: |
-        Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
-        [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
-    - si: stage
-      niveau: avertissement
-      message: |
-        Une convention de stage **n'est pas un contrat de travail**, et ne peut pas être conclue pour réaliser une tâche régulière correspondant à un poste de travail permanent, ou à un accroissement temporaire de l'activité de l'entreprise. [Code de l'éducation - Article L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
-
-        Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
-
 contrat salarié . CDI:
   formule: contrat salarié = 'CDI'
 
@@ -157,13 +144,18 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   suggestions:
     50%: 50
     60%: 60
-  contrôles:
-    - si: taux participation employeur < 50%
-      niveau: avertissement
-      message: La part employeur du titre-restaurant doit être de 50% au minimum
-    - si: taux participation employeur > 60%
-      niveau: avertissement
-      message: La part employeur du titre-restaurant doit être de 60% au maximum
+
+contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min:
+  type: notification
+  sévérité: avertissement
+  applicable si: taux participation employeur < 50%
+  description: La part employeur du titre-restaurant doit être de 50% au minimum
+
+contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
+  type: notification
+  sévérité: avertissement
+  applicable si: taux participation employeur > 60%
+  description: La part employeur du titre-restaurant doit être de 60% au maximum
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
   icônes: 🚴
@@ -255,12 +247,14 @@ contrat salarié . activité partielle . heures travaillées:
     30 h/semaine: 130
     20 h/semaine: 86.6666
     10 h/semaine: 43.3333
-  contrôles:
-    - si: heures travaillées > temps de travail . temps contractuel
-      niveau: avertissement
-      message: >-
-        Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
-        à celui inscrit dans le contrat de travail.
+
+contrat salarié . activité partielle . heures travaillées . contrôle temps de travail:
+  type: notification
+  sévérité: avertissement
+  applicable si: heures travaillées > temps de travail . temps contractuel
+  description: >-
+    Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
+    à celui inscrit dans le contrat de travail.
 
 contrat salarié . activité partielle . indemnités:
   titre: indemnités activité partielle
@@ -910,13 +904,12 @@ contrat salarié . CDD . congés non pris:
     3 jours: 3
     10 jours: 10
   par défaut: 0 jour ouvré
-  contrôles:
-    - si: congés non pris > congés dus en jours ouvrés
-      message: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
-      niveau: avertissement
-      solution:
-        cible: contrat salarié . CDD . durée contrat
-        texte: Définir la durée de contrat
+
+contrat salarié . CDD . contrôle congés non pris max:
+  type: notification
+  sévérité: avertissement
+  applicable si: congés non pris > congés dus en jours ouvrés
+  description: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
 
 contrat salarié . CDD . contrat jeune vacances:
   titre: Contrat jeune vacances
@@ -974,10 +967,6 @@ contrat salarié . apprentissage . ancienneté:
         - moins de trois ans
         - moins de quatre ans
   par défaut: "'moins d'un an'"
-  contrôles:
-    - si: moins de quatre ans
-      niveau: information
-      message: La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de travailleur handicapé est reconnue à l'apprenti.
 
 contrat salarié . apprentissage . ancienneté . moins d'un an:
   formule: ancienneté = 'moins d'un an'
@@ -990,6 +979,12 @@ contrat salarié . apprentissage . ancienneté . moins de trois ans:
 
 contrat salarié . apprentissage . ancienneté . moins de quatre ans:
   formule: ancienneté = 'moins de quatre ans'
+
+contrat salarié . apprentissage . ancienneté . moins de quatre ans . information:
+  type: notification
+  description: >-
+    La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
+    travailleur handicapé est reconnue à l'apprenti.
 
 contrat salarié . stage:
   description: |
@@ -1012,6 +1007,22 @@ contrat salarié . stage:
     - temps de travail . temps partiel
     - temps de travail . heures supplémentaires
     - régime des impatriés
+    - rémunération . contrôle smic
+
+contrat salarié . stage . avertissement:
+  type: notification
+  sévérité: avertissement
+  description: >-
+    Une convention de stage **n'est pas un contrat de travail**, et ne peut pas être conclue pour réaliser une tâche régulière correspondant à un poste de travail permanent, ou à un accroissement temporaire de l'activité de l'entreprise. [Code de l'éducation - Article L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
+    Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+
+contrat salarié . stage . contrôle gratification minimale:
+  type: notification
+  sévérité: avertissement
+  applicable si: rémunération . brut de base < stage . gratification minimale
+  description: >-
+    La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
 
 contrat salarié . stage . gratification minimale:
   formule: 15% * plafond sécurité sociale temps plein
@@ -1035,17 +1046,12 @@ contrat salarié . CDD:
     Par défaut, faire travailler quelqu'un en France établit automatiquement un CDI à temps plein.
     Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
 
-  # TODO: règle de type : il faut qu'un motif et une durée soient sélectionnés pour qu'un contrat soit un CDD. Cela revient à dire que les variables CDD et motif sont obligatoires *dans le contexte* de leur attache
-  #   implique:
-  #     - emploi temporaire
-  #     - motif de recours
-  #   # C'est ici que l'on dit : si le CDD a été choisi, la réponses à motif CDD doit être donnée (on ne peut ne pas y répondre)
-  #
-  # - Variable: emploi temporaire
-  #   description: Le contrat n'a ni pour objet ni pour effet de pourvoir durablement un emploi lié à l'activité normale et permanente de l'entreprise.
-  #   références:
-  #     Code du travail - Article L1242-1
-  #
+contrat salarié . CDD . information:
+  type: notification
+  description: >-
+    Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
+    [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+
 contrat salarié . cotisations . assiette:
   titre: Assiette des cotisations sociales
   description: |
@@ -1096,32 +1102,6 @@ contrat salarié . rémunération . brut de base:
   suggestions:
     salaire médian: 2300 €/mois
     SMIC: 1539 €/mois
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - rémunération . assiette de vérification du SMIC < (SMIC contractuel - 1 €/mois)
-          - dirigeant != 'assimilé salarié'
-          - stage != oui
-          - apprentissage != oui
-      niveau: avertissement
-      message: |
-        Le salaire saisi est inférieur au SMIC.
-
-    - si:
-        toutes ces conditions:
-          - stage
-          - brut de base < stage . gratification minimale
-      niveau: avertissement
-      message: |
-        La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
-
-    - si:
-        toutes ces conditions:
-          - brut de base > 10000 €/mois
-          - dirigeant = non
-      niveau: information
-      message: |
-        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
   formule:
     inversion numérique:
       question: Quel est le salaire ?
@@ -1138,6 +1118,21 @@ contrat salarié . rémunération . brut de base:
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
+
+contrat salarié . rémunération . contrôle smic:
+  type: notification
+  sévérité: avertissement
+  applicable si: assiette de vérification du SMIC < (SMIC contractuel - 1 €/mois)
+  description: Le salaire saisi est inférieur au SMIC.
+
+contrat salarié . rémunération . contrôle salaire élevé:
+  type: notification
+  applicable si:
+    toutes ces conditions:
+      - brut de base >= 10000 €/mois
+      - dirigeant = non
+  description: >-
+    Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
 
 contrat salarié . rémunération . brut de base . équivalent temps plein:
   applicable si: temps de travail . temps partiel
@@ -1979,16 +1974,18 @@ contrat salarié . temps de travail . temps partiel:
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   par défaut: 32 heures/semaine
   question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - temps partiel
-          - heures par semaine < 24
-      niveau: avertissement
-      message: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
-    - si: heures par semaine >= base légale
-      niveau: avertissement
-      message: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+
+contrat salarié . temps de travail . temps partiel . contrôle temps min:
+  type: notification
+  sévérité: avertissement
+  applicable si: heures par semaine < 24
+  description: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+
+contrat salarié . temps de travail . temps partiel . contrôle temps max:
+  type: notification
+  sévérité: avertissement
+  applicable si: heures par semaine >= base légale
+  description: Un temps partiel doit être en dessous de la durée de travail légale (35h)
 
 contrat salarié . temps de travail . quotité de travail:
   description: Temps de travail en proportion du temps complet légal.
@@ -2013,19 +2010,22 @@ contrat salarié . temps de travail . heures supplémentaires:
     aucune: 0
     39h / semaine: 17.33
     42h / semaine: 30.33
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - heures supplémentaires > 9 heures/semaine * période . semaines par mois
-          - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
-      niveau: info
-      message: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
-    - si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
-      niveau: avertissement
-      message: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
-
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
+
+contrat salarié . temps de travail . contrôle 44h max:
+  type: notification
+  applicable si:
+    toutes ces conditions:
+      - heures supplémentaires > 9 heures/semaine * période . semaines par mois
+      - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
+  description: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+
+contrat salarié . temps de travail . contrôle 48h max:
+  type: notification
+  sévérité: avertissement
+  applicable si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
+  description: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
 
 contrat salarié . temps de travail . heures supplémentaires . majoration:
   description: |
@@ -2055,14 +2055,18 @@ contrat salarié . temps de travail . heures complémentaires:
   applicable si: temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0 heure/mois
-  contrôles:
-    - si: heures complémentaires > seuil légal
-      niveau: information
-      message: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
-    # TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
-    - si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale * période . semaines par mois
-      niveau: avertissement
-      message: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
+
+contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents:
+  type: notification
+  applicable si: heures complémentaires > heures complémentaires . seuil légal
+  description: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
+
+# TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
+contrat salarié . temps de travail . contrôle heures complémentaires max:
+  type: notification
+  sévérité: avertissement
+  applicable si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale * période . semaines par mois
+  description: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
 
 contrat salarié . temps de travail . heures complémentaires . majoration:
   description: >
@@ -2502,10 +2506,12 @@ contrat salarié . complémentaire santé . part employeur:
     50%: 50
     100%: 100
   par défaut: 50%
-  contrôles:
-    - si: part employeur < 50%
-      niveau: avertissement
-      message: La part employeur de la complémentaire santé doit être de 50% au minimum
+
+contrat salarié . complémentaire santé . part employeur min:
+  type: notification
+  sévérité: avertissement
+  applicable si: part employeur < 50%
+  description: La part employeur de la complémentaire santé doit être de 50% au minimum
 
 contrat salarié . complémentaire santé . part salarié:
   description: Part de la complémentaire santé payée par l'employé. Ne peut pas être supérieure à 50%
@@ -2537,10 +2543,12 @@ contrat salarié . complémentaire santé . forfait:
     basique: 40
     élevé: 100
     alsace moselle basique: 30
-  contrôles:
-    - si: complémentaire santé . forfait < 15 €/mois
-      message: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
-      niveau: avertissement
+
+contrat salarié . complémentaire santé . contrôle min:
+  type: notification
+  sévérité: avertissement
+  applicable si: complémentaire santé . forfait < 15 €/mois
+  description: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
 contrat salarié . régime alsace moselle:
   titre: Régime Alsace-Moselle
@@ -3220,19 +3228,19 @@ contrat salarié . régime des impatriés:
     - vieillesse
     - retraite complémentaire
     - protection sociale . retraite . base
-  contrôles:
-    - si: contrat salarié . régime des impatriés
-      niveau: information
-      message: |
-        Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
-        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
-        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
-
-        [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
   références:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+
+contrat salarié . régime des impatriés . information:
+  type: notification
+  description: >-
+    Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
+    - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
+    - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+
+    [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
 
 contrat salarié . taxe sur les salaires:
   unité: €/mois
@@ -3583,17 +3591,18 @@ contrat salarié . convention collective:
         - SVP
         - compta
         - optique
-  contrôles:
-    - si:
-        toutes ces conditions:
-          - convention collective != non
-          - convention collective != 'droit commun'
-      niveau: avertissement
-      message: |
-        Attention, l'implémentation des conventions collective est encore
-        partielle et non vérifiée.
-        Néanmoins, cela permet d'obtenir une première estimation, plus précise
-        que le régime général.
+
+contrat salarié . convention collective . contrôle décharge:
+  type: notification
+  sévérité: avertissement
+  applicable si:
+    toutes ces conditions:
+      - convention collective != non
+      - convention collective != 'droit commun'
+  description: >-
+    Attention, l'implémentation des conventions collective est encore partielle
+    et non vérifiée. Néanmoins, cela permet d'obtenir une première estimation,
+    plus précise que le régime général.
 
 contrat salarié . convention collective . droit commun:
   formule: convention collective = 'droit commun'

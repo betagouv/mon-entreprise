@@ -227,16 +227,20 @@ activité transfrontalière simultanée . activité non salariée:
 activité transfrontalière simultanée . activité non salariée . nombre:
   question: Dans combien de pays autre que la France exercerez-vous une activité non salariée ?
   type: nombre
-  contrôles:
-    - si: nombre > 2
-      message: >
-        Ce formulaire ne permet pas de déclarer une activité dans plus de
-        3 pays
-      niveau: avertissement
-    - si: nombre < 1
-      message: >
-        Vous devez déclarer un pays au moins
-      niveau: avertissement
+
+activité transfrontalière simultanée . activité non salariée . nombre max:
+  type: notification
+  sévérité: avertissement
+  applicable si: nombre > 2
+  description: >
+    Ce formulaire ne permet pas de déclarer une activité dans plus de 3 pays
+
+activité transfrontalière simultanée . activité non salariée . nombre min:
+  type: notification
+  sévérité: avertissement
+  applicable si: nombre < 1
+  description: >
+    Vous devez déclarer un pays au moins
 
 activité transfrontalière simultanée . activité non salariée . n°1:
   titre: activité non salarié n°1

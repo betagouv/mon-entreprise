@@ -45,7 +45,3 @@ export function useEvaluation(
 export function useInversionFail() {
 	return useContext(EngineContext).inversionFail()
 }
-
-export function useControls() {
-	return useContext(EngineContext).controls()
-}

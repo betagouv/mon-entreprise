@@ -16,7 +16,6 @@ let attributesToTranslate = [
 	'question',
 	'résumé',
 	'suggestions',
-	'contrôles',
 	'note'
 ]
 
@@ -66,28 +65,6 @@ function getRulesMissingTranslations() {
 								return {
 									...acc,
 									[frTrad]: suggestion
-								}
-							}, {})
-						}
-						if ('contrôles' === attrToTranslate) {
-							return v.reduce((acc, control, i) => {
-								const enTrad = `contrôles.${i}.en`
-								const frTrad = `contrôles.${i}.fr`
-								if (
-									currentTranslation &&
-									currentTranslation[enTrad] &&
-									currentTranslation[frTrad] === control.message
-								) {
-									return {
-										...acc,
-										[frTrad]: currentTranslation[frTrad],
-										[enTrad]: currentTranslation[enTrad]
-									}
-								}
-								missingTranslations.push([dottedName, enTrad, control.message])
-								return {
-									...acc,
-									[frTrad]: control.message
 								}
 							}, {})
 						}

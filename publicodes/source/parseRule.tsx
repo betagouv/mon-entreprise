@@ -160,26 +160,7 @@ export default function<Names extends string>(
 				unit: child.unit,
 				explanation: child
 			}
-		},
-		contrôles: map((control: any) => {
-			const testExpression = parse(rules, rule, parsedRules)(control.si)
-			if (
-				!testExpression.explanation &&
-				!(testExpression.category === 'reference')
-			)
-				throw new Error(
-					'Ce contrôle ne semble pas être compris :' + control['si']
-				)
-
-			return {
-				dottedName: dottedName,
-				level: control['niveau'],
-				test: control['si'],
-				message: control['message'],
-				testExpression,
-				solution: control['solution']
-			}
-		})
+		}
 	})(rule)
 
 	parsedRules[dottedName] = {

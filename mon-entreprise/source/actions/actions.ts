@@ -14,7 +14,7 @@ export type Action =
 	| DeletePreviousSimulationAction
 	| ExplainVariableAction
 	| UpdateSituationAction
-	| HideControlAction
+	| HideNotificationAction
 	| LoadPreviousSimulationAction
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
@@ -51,7 +51,7 @@ type UpdateSituationAction = ReturnType<typeof updateSituation>
 type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
 type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
-type HideControlAction = ReturnType<typeof hideControl>
+type HideNotificationAction = ReturnType<typeof hideNotification>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
 type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
 
@@ -142,8 +142,8 @@ export function loadPreviousSimulation() {
 	} as const
 }
 
-export function hideControl(id: string) {
-	return { type: 'HIDE_CONTROL', id } as const
+export function hideNotification(id: string) {
+	return { type: 'HIDE_NOTIFICATION', id } as const
 }
 
 export const explainVariable = (variableName: DottedName | null = null) =>
