@@ -15,7 +15,7 @@ import TextInput from './TextInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import ParagrapheInput from './ParagrapheInput'
 
-type Value = string | number | object | boolean | null
+type Value = string | number | Record<string, unknown> | boolean | null
 export type RuleInputProps<Name extends string = DottedName> = {
 	rules: ParsedRules<Name>
 	dottedName: Name

@@ -214,7 +214,7 @@ export const evaluateObject = (objectShape, effect) => (
 }
 
 type DefaultValues<Names extends string> = Partial<
-	Record<Names, number | string | object>
+	Record<Names, number | string | Record<string, unknown>>
 >
 export function collectDefaults<Names extends string>(
 	parsedRules: ParsedRules<Names>

@@ -48,12 +48,12 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	API?: string
 	icons?: string
 	formule?: any
-	evaluate?: Function
+	evaluate?: () => EvaluatedRule<Name>
 	explanation?: any
 	isDisabledBy?: Array<any>
 	replacedBy?: Array<any>
 	rulePropType?: string
-	jsx?: Function
+	jsx?: () => React.Component
 	cotisation?: Partial<{
 		'dû par': string
 		branche: string
@@ -89,7 +89,7 @@ export type EvaluatedNode<
 	? {
 			unit: Unit
 			temporalValue?: Temporal<Evaluation<number>>
-	  }
+	  } // eslint-disable-next-line @typescript-eslint/ban-types
 	: {})
 
 // This type should be defined inline by the function evaluating the rule (and
@@ -103,6 +103,7 @@ export type EvaluatedRule<
 	EvaluatedNode<Names, Type> & {
 		isApplicable: boolean
 		explanation: Explanation
+		// eslint-disable-next-line @typescript-eslint/ban-types
 		'rendu non applicable': EvaluatedRule<Names, {}, Type>
 		'applicable si': EvaluatedNode<Names, Type>
 		'non applicable si': EvaluatedNode<Names, Type>

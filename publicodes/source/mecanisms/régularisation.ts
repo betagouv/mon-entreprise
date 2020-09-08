@@ -43,7 +43,7 @@ export default function parse<Name extends string>(parse, v) {
 			)
 		}
 		return { value, dottedName: reference.dottedName }
-	}) as Array<{ dottedName: Name; value: object }>
+	}) as Array<{ dottedName: Name; value: Record<string, unknown> }>
 
 	return {
 		evaluate,
@@ -104,7 +104,7 @@ function evaluate(cache, situation, parsedRules, node) {
 		const currentYear = getYear(temporalEvaluation[0].start as string)
 		const cumulatedVariables = (node.explanation.variables as Array<{
 			dottedName: string
-			value: object
+			value: Record<string, unknown>
 		}>).reduce<Record<string, Temporal<Evaluation<number>>>>(
 			(acc, { dottedName, value }) => {
 				const evaluation = evaluate(value)
