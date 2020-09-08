@@ -53,10 +53,10 @@ export function devariate(recurse, k, v) {
 type Variation =
 	| {
 			si: any
-			alors: object
+			alors: Record<string, unknown>
 	  }
 	| {
-			sinon: object
+			sinon: Record<string, unknown>
 	  }
 const devariateExplanation = (
 	recurse,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { mapObjIndexed } from 'ramda'
 import { evaluateControls } from './controls'
 import { evaluationError, warning } from './error'

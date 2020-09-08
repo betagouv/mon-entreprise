@@ -61,10 +61,16 @@ export default function AnimatedTargetValue({
 	)
 }
 
-const Evaporate = React.memo(
-	({ children, style }: { children: string; style: object }) => (
+const Evaporate = React.memo(function Evaporate({
+	children,
+	style
+}: {
+	children: string
+	style: React.CSSProperties
+}) {
+	return (
 		<span key={children} style={style} className="evaporate">
 			{children}
 		</span>
 	)
-)
+})
