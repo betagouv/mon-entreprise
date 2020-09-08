@@ -9,21 +9,17 @@ import parseRule from './parseRule'
 import { disambiguateRuleReference } from './ruleUtils'
 import { areUnitConvertible, serializeUnit } from './units'
 
-const getApplicableReplacements = (
-	filter,
-	contextRuleName,
-	cache,
-	situation,
-	rules,
-	rule
-) => {
-	let missingVariableList = []
-	const applicableReplacements = rule.replacedBy
+/**
+ * Statically filter out replacements from `replaceBy`.
+ * Note: whitelist and blacklist filtering are applicable to the replacement
+ * itself or any parent namespace.
+ */
+export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
+	replacedBy
 		.sort(
 			(replacement1, replacement2) =>
 				!!replacement2.whiteListedNames - !!replacement1.whiteListedNames
 		)
-		// Remove remplacement not in whitelist
 		.filter(
 			({ whiteListedNames }) =>
 				!whiteListedNames ||
@@ -35,6 +31,23 @@ const getApplicableReplacements = (
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
 		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
+
+/**
+ * Filter-out replacements at runtime.
+ */
+const getApplicableReplacements = (
+	filter,
+	contextRuleName,
+	cache,
+	situation,
+	rules,
+	rule
+) => {
+	let missingVariableList = []
+	const applicableReplacements = getApplicableReplacedBy(
+		contextRuleName,
+		rule.replacedBy
+	)
 		// Remove remplacement defined in a not applicable node
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
