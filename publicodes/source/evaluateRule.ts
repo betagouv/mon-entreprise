@@ -7,14 +7,14 @@ import {
 	mergeAllMissing
 } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
-import { ParsedRule } from './types'
+import { EvaluatedNode, ParsedRule } from './types'
 
 export const evaluateApplicability = (
 	cache,
 	situation,
 	parsedRules,
 	node: ParsedRule
-) => {
+): EvaluatedNode => {
 	const evaluatedAttributes = pipe(
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
 				x: any

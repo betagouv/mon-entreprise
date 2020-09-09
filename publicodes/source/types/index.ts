@@ -51,7 +51,12 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	evaluate?: () => EvaluatedRule<Name>
 	explanation?: any
 	isDisabledBy?: Array<any>
-	replacedBy?: Array<any>
+	replacedBy: Array<{
+		whiteListedNames: Array<Name>
+		blackListedNames: Array<Name>
+		referenceNode: ParsedRule<Name>
+		replacementNode: ParsedRule<Name>
+	}>
 	rulePropType?: string
 	jsx?: () => React.Component
 	cotisation?: Partial<{
