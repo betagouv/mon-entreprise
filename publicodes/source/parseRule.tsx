@@ -121,6 +121,11 @@ export default function<Names extends string>(
 		defaultValue: value =>
 			typeof value === 'string'
 				? parse(rules, rule, parsedRules)(value)
+				: // TODO : An "object" default value is only used in the
+				// "synchronisation" mecanism. This should be refactored to not use the
+				// attribute "defaultValue"
+				typeof value === 'object'
+				? { ...value, evaluate: () => value }
 				: value,
 		formule: value => {
 			const evaluate = (cache, situation, parsedRules, node) => {
