@@ -1,4 +1,3 @@
-import classnames from 'classnames'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
@@ -6,7 +5,13 @@ import mecanismsDoc from '../../../docs/mecanisms.yaml'
 import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
 import { simplifyNodeUnit } from '../../nodeUnits'
-import { EvaluatedNode, Evaluation, ParsedRule, Types, Unit } from '../../types'
+import {
+	EvaluatedNode,
+	Evaluation,
+	EvaluatedRule,
+	Types,
+	Unit
+} from '../../types'
 import { capitalise0 } from '../../utils'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
@@ -222,27 +227,26 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 	}
 `
 
-type LeafProps = {
-	className: string
-	rule: ParsedRule
-	nodeValue: NodeValuePointerProps['data']
-	filter: string
-	unit: NodeValuePointerProps['unit']
-}
-
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Leaf({ className, rule, nodeValue, filter, unit }: LeafProps) {
-	const title = rule.title || capitalise0(rule.name)
+export function Leaf({
+	dottedName,
+	acronyme,
+	title,
+	nodeValue,
+	unit
+}: EvaluatedRule) {
+	const ruleTitle = title || capitalise0(name)
 	return (
-		<span className={classnames(className, 'leaf')}>
+		<span className="variable filtered leaf">
 			<span className="nodeHead">
-				<RuleLinkWithContext dottedName={rule.dottedName}>
+				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
-						{rule.acronyme ? <abbr title={title}>{rule.acronyme}</abbr> : title}{' '}
-						{filter}
+						{acronyme ? <abbr title={ruleTitle}>{acronyme}</abbr> : ruleTitle}
 					</span>
 				</RuleLinkWithContext>
-				{nodeValue != null && <NodeValuePointer data={nodeValue} unit={unit} />}
+				{nodeValue != null && unit && (
+					<NodeValuePointer data={nodeValue} unit={unit} />
+				)}
 			</span>
 		</span>
 	)

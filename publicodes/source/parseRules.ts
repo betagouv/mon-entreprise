@@ -48,7 +48,7 @@ export default function parseRules<Names extends string>(
 	Object.entries(nonApplicableMapping).forEach(([a, b]) => {
 		b.forEach(ruleName => {
 			parsedRules[ruleName].isDisabledBy.push(
-				parseReference(rules, parsedRules[ruleName], parsedRules)(a)
+				parseReference(rules, parsedRules[ruleName], parsedRules, undefined)(a)
 			)
 		})
 	})
@@ -57,7 +57,8 @@ export default function parseRules<Names extends string>(
 			referenceNode: parseReference(
 				rules,
 				parsedRules[referenceName],
-				parsedRules
+				parsedRules,
+				undefined
 			)(referenceName),
 			...other
 		}))

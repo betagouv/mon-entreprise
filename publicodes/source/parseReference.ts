@@ -6,6 +6,7 @@ import { evaluateNode, mergeMissing } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
 import parseRule from './parseRule'
 import { disambiguateRuleReference } from './ruleUtils'
+import { EvaluatedNode, ParsedRule } from './types'
 import { areUnitConvertible, serializeUnit } from './units'
 
 const getApplicableReplacements = (
@@ -14,13 +15,13 @@ const getApplicableReplacements = (
 	cache,
 	situation,
 	rules,
-	rule
+	rule: ParsedRule
 ) => {
-	let missingVariableList = []
+	let missingVariableList: Array<EvaluatedNode['missingVariables']> = []
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>
-				!!replacement2.whiteListedNames - !!replacement1.whiteListedNames
+				+!!replacement2.whiteListedNames - +!!replacement1.whiteListedNames
 		)
 		// Remove remplacement not in whitelist
 		.filter(
@@ -71,7 +72,7 @@ const getApplicableReplacements = (
 		.map(({ referenceNode, replacementNode }) =>
 			replacementNode != null
 				? evaluateNode(cache, situation, rules, replacementNode)
-				: evaluateReference(filter)(cache, situation, rules, referenceNode)
+				: evaluateReference(filter, '')(cache, situation, rules, referenceNode)
 		)
 		.map(replacementNode => {
 			const replacedRuleUnit = rule.unit
@@ -94,13 +95,13 @@ const getApplicableReplacements = (
 	return [applicableReplacements, missingVariableList]
 }
 
-let evaluateReference = (filter, contextRuleName) => (
+const evaluateReference = (filter: string, contextRuleName: string) => (
 	cache,
 	situation,
 	rules,
 	node
 ) => {
-	let rule = rules[node.dottedName]
+	const rule = rules[node.dottedName]
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const [
@@ -136,15 +137,19 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			node.missingVariables
 		)
 	})
-	let dottedName = node.dottedName,
-		// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
-		// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-		cacheName = dottedName + (filter ? ' .' + filter : ''),
-		cached = cache[cacheName]
+	const dottedName = node.dottedName
+	// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
+	// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
+	const cacheName = dottedName + (filter ? ' .' + filter : '')
+	const cached = cache[cacheName]
 
 	if (cached) return addReplacementMissingVariable(cached)
 
-	let cacheNode = (nodeValue, missingVariables, explanation) => {
+	const cacheNode = (
+		nodeValue: EvaluatedNode['nodeValue'],
+		missingVariables: EvaluatedNode['missingVariables'],
+		explanation?: Record<string, unknown>
+	) => {
 		cache[cacheName] = {
 			...node,
 			nodeValue,
@@ -204,44 +209,35 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		return cacheNode(
 			evaluation.nodeValue,
 			evaluation.missingVariables,
-			evaluation,
-			evaluation.temporalValue
+			evaluation
 		)
 	}
 
 	return cacheNode(null, { [dottedName]: 2 })
 }
 
-export let parseReference = (
+export const parseReference = (
 	rules,
 	rule,
 	parsedRules,
 	filter
 ) => partialReference => {
-	let dottedName = disambiguateRuleReference(
+	const dottedName = disambiguateRuleReference(
 		rules,
 		rule.dottedName,
 		partialReference
 	)
 
-	let inInversionFormula = rule.formule?.['inversion numérique']
+	const inInversionFormula = rule.formule?.['inversion numérique']
 
-	let parsedRule =
+	const parsedRule =
 		parsedRules[dottedName] ||
 		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
 		(!inInversionFormula && parseRule(rules, dottedName, parsedRules))
 	const unit = parsedRule.unit
 	return {
 		evaluate: evaluateReference(filter, rule.dottedName),
-		//eslint-disable-next-line react/display-name
-		jsx: ({ nodeValue, unit: nodeUnit }) => (
-			<Leaf
-				className="variable filtered"
-				rule={parsedRules[dottedName]}
-				nodeValue={nodeValue}
-				unit={nodeUnit || parsedRules[dottedName]?.unit || unit}
-			/>
-		),
+		jsx: Leaf,
 		name: partialReference,
 		category: 'reference',
 		partialReference,
@@ -263,8 +259,11 @@ const evaluateTransforms = (originalEval, _, parseResult) => (
 	node
 ) => {
 	// Filter transformation
-	let filteringSituation = { ...situation, '_meta.filter': parseResult.filter }
-	let filteredNode = originalEval(
+	const filteringSituation = {
+		...situation,
+		'_meta.filter': parseResult.filter
+	}
+	const filteredNode = originalEval(
 		cache,
 		parseResult.filter ? filteringSituation : situation,
 		parsedRules,
@@ -289,13 +288,13 @@ const evaluateTransforms = (originalEval, _, parseResult) => (
 
 	return filteredNode
 }
-export let parseReferenceTransforms = (
+export const parseReferenceTransforms = (
 	rules,
 	rule,
 	parsedRules
 ) => parseResult => {
 	const referenceName = parseResult.variable.fragments.join(' . ')
-	let node = parseReference(
+	const node = parseReference(
 		rules,
 		rule,
 		parsedRules,
@@ -308,7 +307,7 @@ export let parseReferenceTransforms = (
 		...(parseResult.filter
 			? {
 					cotisation: {
-						...node.cotisation,
+						...(node as any).cotisation,
 						'dû par': parseResult.filter,
 						'impôt sur le revenu': parseResult.filter
 					}
