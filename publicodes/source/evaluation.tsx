@@ -212,24 +212,3 @@ export const evaluateObject = (objectShape, effect) => (
 		temporalExplanation
 	}
 }
-
-type DefaultValues<Names extends string> = Partial<
-	Record<Names, number | string | Record<string, unknown>>
->
-export function collectDefaults<Names extends string>(
-	parsedRules: ParsedRules<Names>
-): DefaultValues<Names> {
-	const values: Array<ParsedRule<Names>> = Object.values(parsedRules)
-	return values.reduce(
-		(acc: DefaultValues<Names>, parsedRule: ParsedRule<Names>) => {
-			if (parsedRule?.['par défaut'] == null) {
-				return acc
-			}
-			return {
-				...acc,
-				[parsedRule.dottedName]: parsedRule['par défaut']
-			}
-		},
-		{}
-	)
-}
