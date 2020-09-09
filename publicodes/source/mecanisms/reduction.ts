@@ -86,7 +86,10 @@ export const mecanismReduction = (recurse, v) => {
 		explanation = v.décote
 			? {
 					...base,
-					décote: map(recurse, v.décote)
+					décote: {
+						...map(recurse, v.décote),
+						evaluate: () => map(recurse, v.décote)
+					}
 			  }
 			: base,
 		evaluate = evaluateObject(objectShape, effect)

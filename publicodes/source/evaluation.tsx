@@ -38,10 +38,7 @@ export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 
 export const evaluateNode = (cache, situation, parsedRules, node) => {
-	const evaluatedNode = node.evaluate
-		? node.evaluate(cache, situation, parsedRules, node)
-		: node
-	return evaluatedNode
+	return node.evaluate(cache, situation, parsedRules, node)
 }
 
 function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
@@ -126,14 +123,17 @@ export const evaluateArrayWithFilter = (evaluationFilter, reducer, start) => (
 	)
 }
 
-export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
-	nodeValue,
-	// eslint-disable-next-line
-	jsx: ({ nodeValue }: EvaluatedNode) => (
-		<span className="value">{nodeValue}</span>
-	),
-	isDefault: true
-})
+export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => {
+	const defaultNode = {
+		nodeValue,
+		// eslint-disable-next-line
+		jsx: ({ nodeValue }: EvaluatedNode) => (
+			<span className="value">{nodeValue}</span>
+		),
+		isDefault: true
+	}
+	return { ...defaultNode, evaluate: () => defaultNode }
+}
 
 export const parseObject = (recurse, objectShape, value) => {
 	const recurseOne = key => defaultValue => {
