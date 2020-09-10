@@ -1167,6 +1167,11 @@ simulateurs:
     titre: Self-employed income simulator
   inversionFail: The amount entered does not enable us to calculate a result, we
     invite you to try another value.
+  profession-libérale:
+    page:
+      description: simulators.profession-liberal.page.description
+      titre: simulators.profession-liberal.page.title
+    titre: Income simulator for {professionName}.
   précision:
     bonne: Good accuracy
     défaut: "Refine the simulation by answering the following questions:"

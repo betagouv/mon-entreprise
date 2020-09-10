@@ -7,6 +7,7 @@ import { parse } from './parse'
 import parseRules from './parseRules'
 import { EvaluatedNode, EvaluatedRule, ParsedRules, Rules } from './types'
 import { parseUnit } from './units'
+import * as utils from './ruleUtils'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] }
@@ -26,7 +27,7 @@ type Situation<Names extends string> = Partial<
 >
 
 type EvaluatedSituation<Names extends string> = Partial<
-	Record<Names, object | number | EvaluatedNode<Names>>
+	Record<Names, EvaluatedNode<Names>>
 >
 
 export type EvaluationOptions = Partial<{
@@ -38,10 +39,11 @@ export { formatValue, serializeValue } from './format'
 export { default as translateRules } from './translateRules'
 export * from './types'
 export { parseRules }
+export { utils }
 
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
-	situation: Situation<Names> = {}
+	situation: EvaluatedSituation<Names> = {}
 	private cache: Cache
 	private warnings: Array<string> = []
 

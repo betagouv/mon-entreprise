@@ -6,7 +6,7 @@ const joinName = strs => strs.join(' . ')
 export const nameLeaf = pipe(splitName, last)
 export const encodeRuleName = name =>
 	name
-		.replace(/\s\.\s/g, '/')
+		?.replace(/\s\.\s/g, '/')
 		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
 		.replace(/\s/g, '-')
 export const decodeRuleName = name =>

@@ -16,6 +16,7 @@ import employeeConfig from '../../source/components/simulationConfigs/salarié.y
 import aideDéclarationConfig from '../../source/sites/mon-entreprise.fr/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
+import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import employeeSituations from './simulations-salarié.yaml'
@@ -119,6 +120,19 @@ it('calculate aide-déclaration-indépendant', () => {
 			"aide déclaration revenu indépendant 2019 . nature de l'activité":
 				"'commerciale ou industrielle'",
 			...aideDéclarationConfig.situation
+		}
+	)
+})
+
+it('calculate simulations-professions-libérales', () => {
+	runSimulations(
+		professionsLibéralesSituations,
+		remunerationDirigeantConfig.objectifs,
+		{
+			...remunerationDirigeantConfig.situation,
+			dirigeant: "'indépendant'",
+			"entreprise . catégorie d'activité": "'libérale'",
+			"entreprise . catégorie d'activité . libérale règlementée": 'oui'
 		}
 	)
 })
