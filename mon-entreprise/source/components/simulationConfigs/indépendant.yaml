@@ -22,6 +22,7 @@ questions:
     Impôt sur le revenu: impôt . méthode de calcul
   liste noire:
     - entreprise . charges
+    - dirigeant . indépendant . PL . métier
   liste:
     - entreprise
     - établissement

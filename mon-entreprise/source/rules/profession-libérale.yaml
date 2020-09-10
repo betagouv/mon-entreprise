@@ -3,12 +3,10 @@ dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . catégorie d'activité = 'libérale'
   formule: oui
-  rend non applicable:
-    - cotisations et contributions . cotisations . indemnités journalières maladie
-    - conjoint collaborateur
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
+
   question: A quelle catégorie appartient votre profession ?
   formule:
     une possibilité:
@@ -79,11 +77,34 @@ dirigeant . indépendant . PL . option régime général:
       - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: |
-    En tant que profession libéral non reglementée, vous pouvez choisir d'être
-    rattaché au régime général plutôt que la CIPAV
+    Les personnes exerçant déjà une profession libérale non réglementée avant
+    2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
+    indépendants, à condition d’être à jour dans le paiement de toutes leurs
+    cotisations à la CIPAV. 
+
+    Cette option leur permettra de bénéficier des mêmes droits que les artisans
+    et commerçants (indemnités journalières, retraite, invalidité, etc.).
+
+    Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
+    travail ou de maternité, ce qui n'est pas le cas à la CIPAV.
+
+    La demande est à effectuer auprès de la CIPAV. Elle prendra effet au 1er
+    janvier de l’année suivante et sera définitive.
+  références:
+    fiche information droit d'option (PDF CIPAV): https://www.lacipav.fr/sites/default/files/2019-03/Fiche%20pratique%20droit%20d%27option.pdf
+    bpi-france: https://bpifrance-creation.fr/entrepreneur/actualites/nouvelle-liste-activites-liberales-non-reglementees-relevant-cipav
+    sécu-indépendant.fr: https://www.secu-independants.fr/creation-entreprise/professions-liberales/professions-de-sante/definir-son-concept/choisir-son-activite/
+
   par défaut: non
 
 dirigeant . indépendant . PL . régime général:
+  description: |
+    Les professions libérales non règlementées affiliées au régime général
+    bénéficient de la même protection sociale que les artisans et commerçants.
+
+    C'est le cas des professions libérales non règlementées crées avant le
+    01/2019, ou celles ayant exercé leur [droit
+    d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
   formule:
     toutes ces conditions:
       - CIPAV = non
@@ -138,22 +159,18 @@ dirigeant . indépendant . PL . régime général . maladie:
     maladie.
 
 dirigeant . indépendant . PL . CIPAV:
-  description: |
-    Les entreprises libérales non règlementées créées étaient rattachées aux
-    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
-    plus le cas pour les auto-entrepreneurs (2019 pour les entreprise
-    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
-    donc dépendent de la sécurité sociale des indépendants.
+  rend non applicable:
+    - cotisations et contributions . cotisations . indemnités journalières maladie
+    - conjoint collaborateur
   références:
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
-  non applicable si: option régime général
-
   formule:
     une de ces conditions:
+      - métier = 'rattaché CIPAV'
       - toutes ces conditions:
           - entreprise . date de création < 01/2019
+          - option régime général = non
           - entreprise . catégorie d'activité . libérale règlementée = non
-      - métier = 'rattaché CIPAV'
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
@@ -238,6 +255,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
 
 dirigeant . indépendant . PL . retraite CNAVPL:
   non applicable si: régime général
+
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -264,14 +282,17 @@ dirigeant . indépendant . PL . retraite CNAVPL:
 
 dirigeant . indépendant . PL . PAM:
   applicable si:
-    - métier = 'PAM . médecin'
-    - métier = 'PAM . sage-femme'
-    - métier = 'PAM . chirugien-dentiste'
-    - métier = 'PAM . auxiliaire médical'
-  formule: oui
+    une de ces conditions:
+      - métier = 'PAM . médecin'
+      - métier = 'PAM . sage-femme'
+      - métier = 'PAM . chirugien-dentiste'
+      - métier = 'PAM . auxiliaire médical'
   rend non applicable:
+    - cotisations et contributions . cotisations . indemnités journalières maladie
+    - conjoint collaborateur
     - entreprise . franchise de TVA
     - cotisations et contributions . exonérations . ACRE
+  formule: oui
 
 dirigeant . indépendant . PL . PAM . honoraires:
   titre: Total des honoraires

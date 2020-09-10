@@ -3929,22 +3929,6 @@ dirigeant . indépendant . PL:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
 dirigeant . indépendant . PL . CIPAV:
-  description.en: >
-    [automatic] The unregulated liberal enterprises created were attached to the
-
-    regulated for the calculation of social security contributions. Since 2018 it is
-
-    plus the case for auto-entrepreneurs (2019 for businesses
-
-    individual). They are now attached to the craftsmen-merchants,
-
-    therefore depend on the social security of the self-employed.
-  description.fr: |
-    Les entreprises libérales non règlementées créées étaient rattachées aux
-    règlementées pour le calcul des cotisations sociales. Depuis 2018 ce n'est
-    plus le cas pour les auto-entrepreneurs (2019 pour les entreprise
-    individuelles). Elles sont maintenant rattachées aux artisans-commerçants,
-    donc dépendent de la sécurité sociale des indépendants.
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
@@ -3980,6 +3964,41 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CIPAV)'
   titre.fr: retraite complémentaire (CIPAV)
+? dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID
+: description.en: >
+    [automatic] The Cipav is offering a reduction of up to €1392 on its
+    membership fees for the
+
+    additional retirement without reducing the number of points earned. This
+
+    help is not automatic, but can be obtained upon request via the
+
+    member's area messaging.
+
+
+    [Apply](https://www.lacipav.fr/dispositif-exceptionnel-procedure)
+  description.fr: >
+    La Cipav met en place une réduction jusqu'à 1392€ de cotisation sur la
+
+    retraire complémentaire sans diminution du nombre de points acquis. Cette
+
+    aide n'est pas automatique, mais peut-être obtenue sur simple demande via la
+
+    messagerie de l'espace adhérent.
+
+
+    [Faire votre demande](https://www.lacipav.fr/dispositif-exceptionnel-procedure)
+  question.en: |
+    [automatic] Have you applied for the reduction of
+    supplementary pension without income conditions?
+  question.fr: |
+    Avez-vous fait une demande pour bénéficier de la réduction de cotisations de
+    retraite complémentaire sans conditions de revenus ?
+  titre.en: '[automatic] VIDOC reduction'
+  titre.fr: réduction COVID
+? dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant
+: titre.en: '[automatic] VIDOC reduction'
+  titre.fr: réduction COVID
 dirigeant . indépendant . PL . PAM:
   titre.en: '[automatic] WFP'
   titre.fr: PAM
@@ -4435,6 +4454,13 @@ dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
+dirigeant . indépendant . PL . PAM . honoraires:
+  question.en: '[automatic] What is the total amount of your fees?'
+  question.fr: Quel est le montant total de vos honoraires ?
+  résumé.en: '[automatic] Including overruns'
+  résumé.fr: En incluant les dépassements
+  titre.en: '[automatic] Total fees'
+  titre.fr: Total des honoraires
 dirigeant . indépendant . PL . PAM . maladie:
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
@@ -4462,8 +4488,8 @@ dirigeant . indépendant . PL . PAM . secteur . 2:
   titre.en: '[automatic] Sector 2'
   titre.fr: Secteur 2
 dirigeant . indépendant . PL . métier:
-  question.en: '[automatic] What is the profession practiced as a liberal?'
-  question.fr: Quelle est le métier exercé en libéral ?
+  question.en: '[automatic] To which category does your profession belong?'
+  question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] profession'
   titre.fr: métier
 dirigeant . indépendant . PL . métier . PAM:
@@ -4478,12 +4504,32 @@ dirigeant . indépendant . PL . métier . PAM:
     of this health insurance plan and the terms and conditions of your coverage
 
     social.
-  description.fr: |
+
+
+    &gt; *Exceptions* : Osteopath, psychologist, psychotherapist, occupational therapist,
+
+    dietician and chiropractor do not depend on the PAMC diet but on the
+
+    CIPAV for their retirement and disability.
+  description.fr: >
     Si vous êtes praticien ou auxiliaire médical conventionné, vous relevez du
+
     régime d'assurance maladie des praticiens et auxiliaires médicaux
+
     conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
+
     de ce régime d'assurance maladie et sur les modalités de votre protection
+
     sociale.
+
+
+    > *Exceptions* : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
+
+    diététicien et chiropracteur ne dépendent pas du régime PAMC mais de la
+
+    CIPAV pour leur retraite et invalidité.
+  question.en: '[automatic] What do you do as a healthcare professional?'
+  question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
   titre.en: '[automatic] Medical practitioner or paramedic'
   titre.fr: Practicien ou auxiliaire médical
 dirigeant . indépendant . PL . métier . PAM . auxiliaire médical:
@@ -4578,12 +4624,44 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre.en: '[automatic] Other CIPAV-related professions'
   titre.fr: Autre métier rattaché à la CIPAV
 dirigeant . indépendant . PL . option régime général:
-  description.en: |
-    [automatic] As an unregulated liberal profession, you can choose to be
-    under the general scheme rather than the CIPAV
+  description.en: >
+    [automatic] Persons already practising an unregulated professional practice
+    before
+
+    2019 may opt between 2019 and 2023 for Social Security for the
+
+    independent, provided that they are up to date in the payment of all of their
+
+    contributions to the CIPAV. 
+
+
+    This option will allow them to benefit from the same rights as artisans
+
+    and traders (daily allowances, retirement, disability, etc.).
+
+
+    In particular, they will have access to per diems in the event of the cessation of
+
+    work or maternity, which is not the case at the CIPAV.
+
+
+    The application must be made to the CIPAV. It will take effect on 1 January 2010.
+
+    January of the following year and will be final.
   description.fr: |
-    En tant que profession libéral non reglementée, vous pouvez choisir d'être
-    rattaché au régime général plutôt que la CIPAV
+    Les personnes exerçant déjà une profession libérale non réglementée avant
+    2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
+    indépendants, à condition d’être à jour dans le paiement de toutes leurs
+    cotisations à la CIPAV. 
+
+    Cette option leur permettra de bénéficier des mêmes droits que les artisans
+    et commerçants (indemnités journalières, retraite, invalidité, etc.).
+
+    Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
+    travail ou de maternité, ce qui n'est pas le cas à la CIPAV.
+
+    La demande est à effectuer auprès de la CIPAV. Elle prendra effet au 1er
+    janvier de l’année suivante et sera définitive.
   question.en: '[automatic] Have you opted to join the general scheme for
     self-employed persons?'
   question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
@@ -4607,6 +4685,20 @@ dirigeant . indépendant . PL . retraite CNAVPL:
   titre.en: '[automatic] basic retirement (CNAVPL)'
   titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . régime général:
+  description.en: |
+    [automatic] Unregulated liberal professions affiliated to the general scheme
+    benefit from the same social protection as craftsmen and traders.
+
+    This is the case for the unregulated professions created before the
+    01/2019, or those who have exercised their [right
+    option-option](/documentation/lead/independent/PL/option-regiment-general)
+  description.fr: |
+    Les professions libérales non règlementées affiliées au régime général
+    bénéficient de la même protection sociale que les artisans et commerçants.
+
+    C'est le cas des professions libérales non règlementées crées avant le
+    01/2019, ou celles ayant exercé leur [droit
+    d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
   titre.en: '[automatic] overall regime'
   titre.fr: régime général
 dirigeant . indépendant . PL . régime général . maladie:
@@ -6357,6 +6449,22 @@ protection sociale . santé . indemnités journalières:
     Maladie pour compenser votre revenu pendant un arrêt de travail. Elles sont
     calculées à partir de votre revenu brut et versées tous les 14 jours en
     moyenne.
+  note.en: >
+    [automatic] We have not implemented the benefits of the
+
+    regulated professions. For an exhaustive list of
+
+    compensation, see [this
+
+    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
+  note.fr: >
+    Nous n'avons implémenté les indemnités des régimes particuliers des
+
+    professions libérales réglementées. Pour une liste exaustive des
+
+    indemnisation, consultez [ce
+
+    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
   titre.en: Daily allowances
   titre.fr: indemnités journalières
 protection sociale . santé . indemnités journalières . auto-entrepreneur:
