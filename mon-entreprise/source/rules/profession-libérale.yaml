@@ -291,7 +291,7 @@ dirigeant . indépendant . PL . PAM:
     - cotisations et contributions . cotisations . indemnités journalières maladie
     - conjoint collaborateur
     - entreprise . franchise de TVA
-    - cotisations et contributions . exonérations . ACRE
+    - dirigeant . indépendant . revenus étrangers
   formule: oui
 
 dirigeant . indépendant . PL . PAM . honoraires:

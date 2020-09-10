@@ -21,7 +21,10 @@ import { capitalise0 } from '../../../../utils'
 // - `namespace` correspond to the question in the rule set
 // - `sitepath` is a React Router path descriptor which must contain a
 //   `:subsimulator?` argument
-function useSubSimulators(namespace: DottedName, sitepath: string): string {
+function useSubSimulators(
+	namespace: DottedName,
+	sitepath: string
+): string | undefined {
 	const engine = useContext(EngineContext)
 	const history = useHistory()
 	const dispatch = useDispatch()
@@ -35,6 +38,7 @@ function useSubSimulators(namespace: DottedName, sitepath: string): string {
 
 	// TODO: ajouter le support de l'attribut "titre" de la règle
 	const situationState = engine.situation[namespace]?.nodeValue
+
 	const encodedSituationState = utils.encodeRuleName(situationState)
 	const subSimulatorsList = Object.keys(engine.getParsedRules())
 		.filter(dottedname => dottedname.startsWith(namespace))
@@ -50,8 +54,10 @@ function useSubSimulators(namespace: DottedName, sitepath: string): string {
 			dispatch(updateSituation(namespace, `'${urlState}'`))
 		}
 	}, [urlState, encodedSituationState])
-
-	return situationState?.toString()
+	if (typeof situationState !== 'string') {
+		return
+	}
+	return situationState
 }
 
 export default function ProfessionLibérale() {

@@ -18,8 +18,8 @@ médecin:
 sage-femme:
   - dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
     dirigeant . rémunération totale: 50000 €/an
-  -  # Réduction retraite complémentaire
-  - dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
+  - # Réduction retraite complémentaire
+    dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
     dirigeant . rémunération totale: 20000 €/an
   - # Exonération RID
     dirigeant . indépendant . PL . métier: "'PAM . sage-femme'"
@@ -49,7 +49,7 @@ auxiliaire médical:
     dirigeant . rémunération totale: 300000 €/an
     dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen: 100%
 
-échelle de revenus CIPAV:
+CIPAV:
   - dirigeant . indépendant . revenu net de cotisations: 500 €/an
   - dirigeant . indépendant . revenu net de cotisations: 1000 €/an
   - dirigeant . indépendant . revenu net de cotisations: 1500 €/an
