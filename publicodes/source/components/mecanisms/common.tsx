@@ -231,7 +231,8 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 export function Leaf({
 	dottedName,
 	acronyme,
-	title,
+	name,
+	explanation: { title },
 	nodeValue,
 	unit
 }: EvaluatedRule) {
