@@ -144,3 +144,14 @@ describe('Simulateur salarié', () => {
 		cy.contains('Steenvoorde (59114)')
 	})
 })
+
+describe('Simulateurs professions-libérales', () => {
+	if (!fr) {
+		return
+	}
+	before(() => cy.visit('/simulateurs/profession-libérale/médecin'))
+
+	it('should put the profession name in page title', () => {
+		cy.get('h1').contains('médecin')
+	})
+})

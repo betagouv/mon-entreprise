@@ -8,7 +8,7 @@ import React, { useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateSituation } from 'Actions/actions'
 import { DottedName } from 'Rules'
@@ -37,7 +37,17 @@ function useSubSimulators(
 	const defaultUrl = sitepath.replace(subsimulatorUrlParam, '')
 
 	// TODO: ajouter le support de l'attribut "titre" de la règle
-	const situationState = engine.situation[namespace]?.nodeValue
+	let situationState = engine.situation[namespace]?.nodeValue
+
+	// This is hacky but the goal is to retrieve the state of sub-levels of "one of these
+	// possibilities" question.
+	if (!situationState) {
+		const parentSituationState =
+			engine.situation[utils.ruleParents(namespace)[0]]
+		if (typeof parentSituationState?.nodeValue === 'string') {
+			situationState = parentSituationState?.nodeValue.split('.')[1].trim()
+		}
+	}
 
 	const encodedSituationState = utils.encodeRuleName(situationState)
 	const subSimulatorsList = Object.keys(engine.getParsedRules())
@@ -53,7 +63,15 @@ function useSubSimulators(
 		} else if (urlState && urlState !== encodedSituationState) {
 			dispatch(updateSituation(namespace, `'${urlState}'`))
 		}
-	}, [urlState, encodedSituationState])
+	}, [
+		urlState,
+		encodedSituationState,
+		subSimulatorsList,
+		history,
+		defaultUrl,
+		dispatch,
+		namespace
+	])
 	if (typeof situationState !== 'string') {
 		return
 	}
