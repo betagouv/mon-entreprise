@@ -332,7 +332,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
   description: >-
     Les contribuables célibataires, divorcés ou séparés, qui vivent seuls et
     supportent effectivement la charge d’un ou plusieurs enfants bénéficient
-    d’une demi-part supplémentaire de quotient familial.
+    d’une demie-part supplémentaire de quotient familial.
   applicable si:
     toutes ces conditions:
       - situation de famille = 'célibataire'
@@ -404,20 +404,27 @@ impôt . foyer fiscal . impôt à payer:
       - CEHR
 
 impôt . foyer fiscal . impôt sur le revenu:
-  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
   unité: €/an
   formule:
     allègement:
       assiette: impôt brut
-      décote:
-        taux: 45.25%
-        plafond: 1717 €/an
+      abattement: décote
   exemples:
     - nom: Salaire d'un cadre
       situation:
         contrat salarié . rémunération . net imposable: 4000
       valeur attendue: 6977
-  note: Le calcul utilisé pour la décôte concerne uniquement les foyers célibataires, le calcul est différent pour les couples.
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F34328
+
+impôt . foyer fiscal . impôt sur le revenu . décote:
+  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
+  formule:
+    variations:
+      - si: foyer fiscal . situation de famille = 'couple'
+        alors: 45.25% * (2842 €/an - impôt brut)
+      - sinon: 45.25% * (1717 €/an - impôt brut)
+    plancher: 0 €/an
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an

@@ -5811,17 +5811,16 @@ impôt . foyer fiscal . enfants à charge:
   titre.en: '[automatic] dependent children'
   titre.fr: enfants à charge
 impôt . foyer fiscal . impôt sur le revenu:
+  titre.en: '[automatic] personal income tax'
+  titre.fr: impôt sur le revenu
+impôt . foyer fiscal . impôt sur le revenu . décote:
   description.en:
     '[automatic] A discount is applied after the income tax scale to
     reduce the tax for low income earners.'
   description.fr: Une décote est appliquée après le barème de l'impôt sur le
     revenu, pour réduire l'impôt des bas revenus.
-  note.en: '[automatic] The calculation used for the discount is for single
-    households only, the calculation is different for couples.'
-  note.fr: Le calcul utilisé pour la décôte concerne uniquement les foyers
-    célibataires, le calcul est différent pour les couples.
-  titre.en: '[automatic] personal income tax'
-  titre.fr: impôt sur le revenu
+  titre.en: '[automatic] discount'
+  titre.fr: décote
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   titre.en: '[automatic] gross tax'
   titre.fr: impôt brut
@@ -5862,11 +5861,11 @@ impôt . foyer fiscal . nombre de parts:
 impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
   description.en: '[automatic] Single, divorced or separated taxpayers who live
     alone and effectively support one or more children receive an additional
-    half share of the family allowance.'
+    half of the family allowance.'
   description.fr:
     Les contribuables célibataires, divorcés ou séparés, qui vivent
     seuls et supportent effectivement la charge d’un ou plusieurs enfants
-    bénéficient d’une demi-part supplémentaire de quotient familial.
+    bénéficient d’une demie-part supplémentaire de quotient familial.
   titre.en: '[automatic] single person with child surcharge'
   titre.fr: majoration personne seule avec enfant
 impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
