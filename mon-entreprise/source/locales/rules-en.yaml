@@ -5859,6 +5859,16 @@ impôt . foyer fiscal . impôt à payer:
 impôt . foyer fiscal . nombre de parts:
   titre.en: '[automatic] number of shares'
   titre.fr: nombre de parts
+impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
+  description.en: '[automatic] Single, divorced or separated taxpayers who live
+    alone and effectively support one or more children receive an additional
+    half share of the family allowance.'
+  description.fr:
+    Les contribuables célibataires, divorcés ou séparés, qui vivent
+    seuls et supportent effectivement la charge d’un ou plusieurs enfants
+    bénéficient d’une demi-part supplémentaire de quotient familial.
+  titre.en: '[automatic] single person with child surcharge'
+  titre.fr: majoration personne seule avec enfant
 impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
   description.en: >-
     [automatic] A widow with dependent children receives an additional share for

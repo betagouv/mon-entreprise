@@ -311,6 +311,7 @@ impôt . foyer fiscal . nombre de parts:
     somme:
       - principales
       - rattachées
+      - majoration personne seule avec enfant
       - majoration personne veuve avec enfant
 
 impôt . foyer fiscal . nombre de parts . principales:
@@ -326,6 +327,19 @@ impôt . foyer fiscal . nombre de parts . rattachées:
       - si: enfants à charge <= 2 enfants
         alors: 0.5 part/enfant * enfants à charge
       - sinon: (1 part/enfant * enfants à charge) - 1 part
+
+impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
+  description: >-
+    Les contribuables célibataires, divorcés ou séparés, qui vivent seuls et
+    supportent effectivement la charge d’un ou plusieurs enfants bénéficient
+    d’une demi-part supplémentaire de quotient familial.
+  applicable si:
+    toutes ces conditions:
+      - situation de famille = 'célibataire'
+      - enfants à charge > 0 enfants
+  formule: 0.5 part
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/2028-PGP.html/identifiant=BOI-IR-LIQ-10-20-20-10-20140326#Majoration_pour_les_personn_22
 
 impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
   description: >-
@@ -411,11 +425,21 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   formule:
-    produit:
-      assiette: nombre de parts . rattachées
-      facteur: 1567 €/part/an
-  référendes:
+    somme:
+      - produit:
+          assiette:
+            variations:
+              - si: nombre de parts . majoration personne seule avec enfant
+                alors: nombre de parts . rattachées - 0.5 part
+              - sinon: nombre de parts . rattachées
+          facteur: 2 * 1567 €/part/an
+      - variations:
+          - si: nombre de parts . majoration personne seule avec enfant
+            alors: 3697 €/an
+          - sinon: 0 €/an
+  références:
     Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041464047&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20190608
+    Bofip: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut par part:
   description: |
