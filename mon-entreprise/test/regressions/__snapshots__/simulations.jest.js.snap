@@ -458,21 +458,21 @@ exports[`calculate simulations-salarié: heures supplémentaires et complémenta
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 8`] = `"[3286,2286,2000,1889,1859]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4076,0,3000,2353,2265]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4076,0,3000,2353,2332]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 2`] = `"[4076,0,3000,2353,2332]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 2`] = `"[4076,0,3000,2353,2353]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 3`] = `"[4076,0,3000,2353,2353]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 4`] = `"[4076,0,3000,2353,1587]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,1718]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,2120]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12890,0,9000,7156,6146]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12890,0,9000,7156,6277]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12890,0,9000,7156,6407]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12890,0,9000,7156,6538]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12890,0,9000,7156,6882]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2187]"`;
 
