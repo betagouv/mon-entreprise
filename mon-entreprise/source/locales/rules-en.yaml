@@ -2247,6 +2247,11 @@ contrat salarié . jeune de moins de 26 ans:
   question.fr: Le salarié embauché a-t'il moins de 26 ans ?
   titre.en: '[automatic] under 26 years old'
   titre.fr: jeune de moins de 26 ans
+contrat salarié . jeune de moins de 30 ans:
+  question.en: '[automatic] Is the employee hired under the age of 30?'
+  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
+  titre.en: '[automatic] under 30 years old'
+  titre.fr: jeune de moins de 30 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas
@@ -2549,6 +2554,36 @@ contrat salarié . profession spécifique . pilote de ligne ou personnel navigan
     pilotes moniteurs d’aéro-clubs et des écoles d’aviation civile
   titre.en: '[automatic] airline pilot or flight crew'
   titre.fr: pilote de ligne ou personnel navigant
+contrat salarié . professionnalisation:
+  description.en: >
+    [automatic] The professionalization contract is a work-study contract
+
+    reserved for a priority audience: young people between 16 and 25 years of age in the context of
+
+    their initial training, job seekers, RSA, ASS or
+
+    AAH, and people who have benefited from a single integration contract.
+
+
+    It may take the form of a fixed-term contract (CDD) or
+
+    indeterminate (CDI), the period of professionalization itself, known as the period of
+
+    expected to last between 6 and 12 months. In some cases this period can be
+
+    extended to 36 months.
+  description.fr: |
+    Le contrat de professionnalisation est un contrat de travail en alternance
+    réservé à un public prioritaire : jeunes de 16 à 25 ans dans le cadre de
+    leur formation initiale, demandeurs d'emplois, bénéficiaires du RSA, ASS ou
+    AAH, et les personnes ayant bénéficié d'un contrat unique d'insertion.
+
+    Il peut prendre la forme d'un contrat à durée déterminée (CDD) ou
+    indéterminée (CDI), la période de professionnalisation proprement-dite
+    devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
+    prolongée jusqu'à 36 mois.
+  titre.en: '[automatic] professionalization'
+  titre.fr: professionnalisation
 contrat salarié . prévoyance:
   titre.en: '[automatic] foresight'
   titre.fr: prévoyance
