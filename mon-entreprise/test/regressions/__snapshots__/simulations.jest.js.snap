@@ -82,7 +82,7 @@ exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `"[45267,439,3333,0
 
 exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5171,14,417,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[51714,143,4167,11,49989]"`;
+exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[51714,143,4167,0,50000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,2083,706,24294]"`;
 
@@ -98,19 +98,19 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 5`] = `"[1
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 6`] = `"[22966,247,1667,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 7`] = `"[57415,618,4167,275,49725]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 7`] = `"[57415,618,4167,0,50000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[80381,865,5833,1340,68660]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[80381,865,5833,956,69044]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 9`] = `"[114830,1236,8333,4008,95992]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 9`] = `"[114830,1236,8333,3297,96703]"`;
 
-exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `"[1148303,12359,83333,131979,868021]"`;
+exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `"[1148303,12359,83333,126543,873457]"`;
 
-exports[`calculate simulations-indépendant: acre 1`] = `"[73024,23024,50000,51980,8052,41948,0,73024]"`;
+exports[`calculate simulations-indépendant: acre 1`] = `"[73024,23024,50000,51980,8213,41787,0,73024]"`;
 
-exports[`calculate simulations-indépendant: activité 1`] = `"[29120,9120,20000,20788,604,19396,0,29120]"`;
+exports[`calculate simulations-indépendant: activité 1`] = `"[29120,9120,20000,20788,603,19397,0,29120]"`;
 
-exports[`calculate simulations-indépendant: activité 2`] = `"[29101,9101,20000,20787,604,19396,0,29101]"`;
+exports[`calculate simulations-indépendant: activité 2`] = `"[29101,9101,20000,20787,603,19397,0,29101]"`;
 
 exports[`calculate simulations-indépendant: cotisations minimales 1`] = `"[1373,1273,100,134,0,100,0,1373]"`;
 
@@ -124,11 +124,11 @@ exports[`calculate simulations-indépendant: impôt sur le revenu 3`] = `"[29085
 
 exports[`calculate simulations-indépendant: inversions 1`] = `"[2000,1384,616,667,0,616,0,2000]"`;
 
-exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33997,35352,3563,30435,0,50000]"`;
+exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33997,35352,3500,30498,0,50000]"`;
 
 exports[`calculate simulations-indépendant: inversions 3`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
 
-exports[`calculate simulations-indépendant: inversions 4`] = `"[88547,27360,61187,63588,11187,50000,0,88547]"`;
+exports[`calculate simulations-indépendant: inversions 4`] = `"[88863,27436,61427,63837,11427,50000,0,88863]"`;
 
 exports[`calculate simulations-indépendant: inversions 5`] = `"[14596,4596,10000,10394,0,10000,1000,15596]"`;
 
@@ -148,9 +148,9 @@ exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7427,2
 
 exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139594,39594,100000,103788,24245,75755,0,139594]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139594,39594,100000,103788,24909,75091,0,139594]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,467505,532495,0,1239955]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,444477,555523,0,1239955]"`;
 
 exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[0,500,0,0,3,0]"`;
 
@@ -338,43 +338,43 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `"[0,69895,0,36431,4,56]"`;
 
-exports[`calculate simulations-salarié: JEI 1`] = `"[3440,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: JEI 1`] = `"[3440,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: JEI 2`] = `"[26635,0,20000,15969,10681]"`;
+exports[`calculate simulations-salarié: JEI 2`] = `"[26635,0,20000,15969,10503]"`;
 
-exports[`calculate simulations-salarié: JEI 3`] = `"[4517,0,4000,3141,2741]"`;
+exports[`calculate simulations-salarié: JEI 3`] = `"[4517,0,4000,3141,2745]"`;
 
 exports[`calculate simulations-salarié: activité partielle 1`] = `"[27,0,1560,1197,1197]"`;
 
-exports[`calculate simulations-salarié: activité partielle 2`] = `"[427,0,4000,2594,2365]"`;
+exports[`calculate simulations-salarié: activité partielle 2`] = `"[427,0,4000,2594,2392]"`;
 
-exports[`calculate simulations-salarié: activité partielle 3`] = `"[1470,0,8000,5209,4253]"`;
+exports[`calculate simulations-salarié: activité partielle 3`] = `"[1470,0,8000,5209,4245]"`;
 
-exports[`calculate simulations-salarié: activité partielle 4`] = `"[1172,0,4000,2704,2444]"`;
+exports[`calculate simulations-salarié: activité partielle 4`] = `"[1172,0,4000,2704,2426]"`;
 
-exports[`calculate simulations-salarié: activité partielle 5`] = `"[2683,0,4000,2870,2562]"`;
+exports[`calculate simulations-salarié: activité partielle 5`] = `"[2683,0,4000,2870,2574]"`;
 
-exports[`calculate simulations-salarié: activité partielle 6`] = `"[327,3750,3000,1940,1848]"`;
+exports[`calculate simulations-salarié: activité partielle 6`] = `"[327,3750,3000,1940,1833]"`;
 
-exports[`calculate simulations-salarié: activité partielle 7`] = `"[427,0,4000,2594,2497]"`;
+exports[`calculate simulations-salarié: activité partielle 7`] = `"[427,0,4000,2594,2485]"`;
 
-exports[`calculate simulations-salarié: activité partielle 8`] = `"[409,0,2000,1578,1547]"`;
+exports[`calculate simulations-salarié: activité partielle 8`] = `"[409,0,2000,1578,1544]"`;
 
-exports[`calculate simulations-salarié: activité partielle 9`] = `"[1247,0,2000,1540,1510]"`;
+exports[`calculate simulations-salarié: activité partielle 9`] = `"[1247,0,2000,1540,1506]"`;
 
-exports[`calculate simulations-salarié: activité partielle 10`] = `"[927,0,6000,4182,3511]"`;
+exports[`calculate simulations-salarié: activité partielle 10`] = `"[927,0,6000,4182,3498]"`;
 
-exports[`calculate simulations-salarié: aides 1`] = `"[2302,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: aides 1`] = `"[2302,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: aides 2`] = `"[12823,0,10000,8911,7667]"`;
+exports[`calculate simulations-salarié: aides 2`] = `"[12823,0,10000,8911,7620]"`;
 
-exports[`calculate simulations-salarié: aides 3`] = `"[2062,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: aides 3`] = `"[2062,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: aides 4`] = `"[2292,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: aides 4`] = `"[2292,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 1`] = `"[1237,0,1500,1165,1165]"`;
 
-exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7085,0,5000,3948,3336]"`;
+exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7085,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 3`] = `"[1256,0,1500,1165,1165]"`;
 
@@ -384,79 +384,79 @@ exports[`calculate simulations-salarié: apprentissage 1`] = `"[1552,0,1500,1448
 
 exports[`calculate simulations-salarié: apprentissage 2`] = `"[1385,0,1500,1448,1448]"`;
 
-exports[`calculate simulations-salarié: assimilé salarié 1`] = `"[7015,0,5000,3943,3318]"`;
+exports[`calculate simulations-salarié: assimilé salarié 1`] = `"[7015,0,5000,3943,3286]"`;
 
 exports[`calculate simulations-salarié: assimilé salarié 2`] = `"[1583,0,1500,1163,1163]"`;
 
-exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[3685,0,3000,2348,2172]"`;
+exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[3685,0,3000,2348,2161]"`;
 
-exports[`calculate simulations-salarié: atmp 1`] = `"[2534,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: atmp 1`] = `"[2534,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: avantages 1`] = `"[2667,0,2000,1540,1492]"`;
+exports[`calculate simulations-salarié: avantages 1`] = `"[2667,0,2000,1540,1491]"`;
 
-exports[`calculate simulations-salarié: avantages 2`] = `"[2677,0,2000,1539,1490]"`;
+exports[`calculate simulations-salarié: avantages 2`] = `"[2677,0,2000,1539,1489]"`;
 
-exports[`calculate simulations-salarié: avantages 3`] = `"[2587,0,2000,1549,1506]"`;
+exports[`calculate simulations-salarié: avantages 3`] = `"[2587,0,2000,1549,1500]"`;
 
-exports[`calculate simulations-salarié: cadre 1`] = `"[4122,0,3000,2348,2171]"`;
+exports[`calculate simulations-salarié: cadre 1`] = `"[4122,0,3000,2348,2160]"`;
 
-exports[`calculate simulations-salarié: cdd 1`] = `"[2509,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: cdd 1`] = `"[2509,0,2000,1561,1528]"`;
 
-exports[`calculate simulations-salarié: cdd 2`] = `"[2591,0,2000,1599,1557]"`;
+exports[`calculate simulations-salarié: cdd 2`] = `"[2591,0,2000,1599,1551]"`;
 
-exports[`calculate simulations-salarié: cdd 3`] = `"[3417,0,2400,1987,1902]"`;
+exports[`calculate simulations-salarié: cdd 3`] = `"[3417,0,2400,1987,1906]"`;
 
-exports[`calculate simulations-salarié: cdd 4`] = `"[3745,0,2400,1878,1794]"`;
+exports[`calculate simulations-salarié: cdd 4`] = `"[3745,0,2400,1878,1799]"`;
 
-exports[`calculate simulations-salarié: effectif 1`] = `"[2479,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: effectif 1`] = `"[2479,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: effectif 2`] = `"[2525,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: effectif 2`] = `"[2525,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: effectif 3`] = `"[2539,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: effectif 3`] = `"[2539,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: effectif 4`] = `"[2539,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: effectif 4`] = `"[2539,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 1`] = `"[2242,0,2000,1630,1630]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 2`] = `"[2335,0,2000,1584,1544]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 2`] = `"[2335,0,2000,1584,1549]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 3`] = `"[2265,0,2000,1606,1563]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 3`] = `"[2265,0,2000,1606,1558]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 4`] = `"[2243,0,2000,1613,1569]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 4`] = `"[2243,0,2000,1613,1564]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 5`] = `"[2437,0,2000,1590,1590]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 6`] = `"[1767,0,1700,1364,1364]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 7`] = `"[3287,0,2600,2125,2097]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 7`] = `"[3287,0,2600,2125,2092]"`;
 
-exports[`calculate simulations-salarié: frais pro - IKV 1`] = `"[4367,0,3200,2530,2320]"`;
+exports[`calculate simulations-salarié: frais pro - IKV 1`] = `"[4367,0,3200,2530,2334]"`;
 
-exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4346,0,3200,2511,2302]"`;
+exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4346,0,3200,2511,2314]"`;
 
-exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2774,0,2157,1685,1630]"`;
+exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2764,0,2151,1681,1630]"`;
 
-exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2519,0,2000,1521,1484]"`;
+exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2519,0,2000,1521,1487]"`;
 
-exports[`calculate simulations-salarié: frais pro - titres restaurant 2`] = `"[4307,0,3000,2134,1949]"`;
+exports[`calculate simulations-salarié: frais pro - titres restaurant 2`] = `"[4307,0,3000,2134,1944]"`;
 
-exports[`calculate simulations-salarié: frais pro - titres restaurant 3`] = `"[2562,0,2000,1493,1456]"`;
+exports[`calculate simulations-salarié: frais pro - titres restaurant 3`] = `"[2562,0,2000,1493,1458]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 1`] = `"[2583,0,2000,1636,1599]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 1`] = `"[2583,0,2000,1636,1601]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 2`] = `"[3105,0,2000,2009,1965]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 2`] = `"[3105,0,2000,2009,1960]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 3`] = `"[2654,0,2000,1636,1599]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 3`] = `"[2654,0,2000,1636,1601]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 4`] = `"[2565,0,2000,1627,1590]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 4`] = `"[2565,0,2000,1627,1592]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 5`] = `"[3025,0,2000,1970,1932]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 5`] = `"[3025,0,2000,1970,1936]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 6`] = `"[3041,0,2000,1978,1939]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 6`] = `"[3041,0,2000,1978,1943]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 7`] = `"[3336,2446,2000,1919,1889]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 7`] = `"[3336,2446,2000,1919,1886]"`;
 
-exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 8`] = `"[3286,2286,2000,1889,1859]"`;
+exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 8`] = `"[3286,2286,2000,1889,1856]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4076,0,3000,2353,2332]"`;
 
@@ -496,39 +496,39 @@ exports[`calculate simulations-salarié: impôt sur le revenu 8`] = `"[4076,0,30
 
 exports[`calculate simulations-salarié: inversions 1`] = `"[2000,0,1746,1360,1353]"`;
 
-exports[`calculate simulations-salarié: inversions 2`] = `"[3474,0,2554,2000,1898]"`;
+exports[`calculate simulations-salarié: inversions 2`] = `"[3474,0,2554,2000,1889]"`;
 
-exports[`calculate simulations-salarié: inversions 3`] = `"[3679,0,2706,2120,2000]"`;
+exports[`calculate simulations-salarié: inversions 3`] = `"[3674,0,2703,2117,2000]"`;
 
 exports[`calculate simulations-salarié: lodeom 1`] = `"[1592,0,1521,1182,1182]"`;
 
-exports[`calculate simulations-salarié: lodeom 2`] = `"[2085,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: lodeom 2`] = `"[2085,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: lodeom 3`] = `"[3896,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: lodeom 3`] = `"[3896,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: lodeom 4`] = `"[5674,0,4000,3146,2759]"`;
+exports[`calculate simulations-salarié: lodeom 4`] = `"[5674,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom 5`] = `"[7889,0,5500,4349,3625]"`;
+exports[`calculate simulations-salarié: lodeom 5`] = `"[7889,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: lodeom compétitivité renforcée 1`] = `"[1592,0,1521,1182,1182]"`;
 
-exports[`calculate simulations-salarié: lodeom compétitivité renforcée 2`] = `"[2085,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: lodeom compétitivité renforcée 2`] = `"[2085,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: lodeom compétitivité renforcée 3`] = `"[3444,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: lodeom compétitivité renforcée 3`] = `"[3444,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: lodeom compétitivité renforcée 4`] = `"[5588,0,4000,3146,2759]"`;
+exports[`calculate simulations-salarié: lodeom compétitivité renforcée 4`] = `"[5588,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom compétitivité renforcée 5`] = `"[7889,0,5500,4349,3625]"`;
+exports[`calculate simulations-salarié: lodeom compétitivité renforcée 5`] = `"[7889,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: lodeom innovation et croissance 1`] = `"[1592,0,1521,1182,1182]"`;
 
-exports[`calculate simulations-salarié: lodeom innovation et croissance 2`] = `"[2085,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: lodeom innovation et croissance 2`] = `"[2085,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: lodeom innovation et croissance 3`] = `"[3235,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: lodeom innovation et croissance 3`] = `"[3235,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: lodeom innovation et croissance 4`] = `"[4915,0,4000,3146,2759]"`;
+exports[`calculate simulations-salarié: lodeom innovation et croissance 4`] = `"[4915,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom innovation et croissance 5`] = `"[7889,0,5500,4349,3625]"`;
+exports[`calculate simulations-salarié: lodeom innovation et croissance 5`] = `"[7889,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: stage 1`] = `"[507,0,500,500,500]"`;
 
@@ -536,23 +536,23 @@ exports[`calculate simulations-salarié: stage 2`] = `"[2490,0,2000,1750,1750]"`
 
 exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 1`] = `"[1606,0,1521,1195,1195]"`;
 
-exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 2`] = `"[3423,0,2500,1979,1880]"`;
+exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 2`] = `"[3423,0,2500,1979,1869]"`;
 
 exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 3`] = `"[1592,0,1521,1170,1170]"`;
 
-exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 4`] = `"[3382,0,2500,1938,1844]"`;
+exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 4`] = `"[3382,0,2500,1938,1830]"`;
 
-exports[`calculate simulations-salarié: temps partiel 1`] = `"[2592,2188,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: temps partiel 1`] = `"[2592,2188,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: temps partiel 2`] = `"[2533,2500,1857,1448,1428]"`;
 
 exports[`calculate simulations-salarié: temps partiel 3`] = `"[1159,1750,1000,770,770]"`;
 
-exports[`calculate simulations-salarié: treizième mois 1`] = `"[3390,0,2300,1950,1856]"`;
+exports[`calculate simulations-salarié: treizième mois 1`] = `"[3390,0,2300,1950,1842]"`;
 
-exports[`calculate simulations-salarié: treizième mois 2`] = `"[3800,2965,2300,2186,2073]"`;
+exports[`calculate simulations-salarié: treizième mois 2`] = `"[3800,2965,2300,2186,2071]"`;
 
-exports[`calculate simulations-salarié: treizième mois 3`] = `"[3044,0,2300,1799,1726]"`;
+exports[`calculate simulations-salarié: treizième mois 3`] = `"[3044,0,2300,1799,1721]"`;
 
 exports[`calculate simulations-salarié: échelle de salaires 1`] = `"[130,0,100,57,57]"`;
 
@@ -568,20 +568,20 @@ exports[`calculate simulations-salarié: échelle de salaires 6`] = `"[1313,0,12
 
 exports[`calculate simulations-salarié: échelle de salaires 7`] = `"[1571,0,1500,1165,1165]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 8`] = `"[2479,0,2000,1561,1524]"`;
+exports[`calculate simulations-salarié: échelle de salaires 8`] = `"[2479,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 9`] = `"[3401,0,2500,1957,1861]"`;
+exports[`calculate simulations-salarié: échelle de salaires 9`] = `"[3401,0,2500,1957,1848]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 10`] = `"[4076,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: échelle de salaires 10`] = `"[4076,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 11`] = `"[5674,0,4000,3146,2759]"`;
+exports[`calculate simulations-salarié: échelle de salaires 11`] = `"[5674,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 12`] = `"[7085,0,5000,3948,3336]"`;
+exports[`calculate simulations-salarié: échelle de salaires 12`] = `"[7085,0,5000,3948,3298]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 13`] = `"[14319,0,10000,7958,6080]"`;
+exports[`calculate simulations-salarié: échelle de salaires 13`] = `"[14319,0,10000,7958,5975]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 14`] = `"[28345,0,20000,15969,10681]"`;
+exports[`calculate simulations-salarié: échelle de salaires 14`] = `"[28345,0,20000,15969,10503]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 15`] = `"[128575,0,100000,87157,46271]"`;
+exports[`calculate simulations-salarié: échelle de salaires 15`] = `"[128575,0,100000,87157,48426]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 16`] = `"[1243819,0,1000000,896257,446123]"`;
+exports[`calculate simulations-salarié: échelle de salaires 16`] = `"[1243819,0,1000000,896257,498390]"`;

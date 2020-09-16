@@ -158,28 +158,38 @@ impôt sur le revenu:
     impôt . taux personnalisé: 10
 
 impôt sur le revenu - quotient familial:
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . enfants à charge: 1
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . enfants à charge: 2
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . enfants à charge: 3
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . revenu imposable . autres revenus imposables: 2000 €/mois
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . revenu imposable . autres revenus imposables: 2000 €/mois
     impôt . foyer fiscal . enfants à charge: 2
-  - contrat salarié . rémunération . brut de base: 9000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 9000 €/mois
     impôt . foyer fiscal . situation de famille: "'couple'"
-  - contrat salarié . rémunération . brut de base: 9000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 9000 €/mois
     impôt . foyer fiscal . situation de famille: "'couple'"
     impôt . foyer fiscal . enfants à charge: 2
-  - contrat salarié . rémunération . brut de base: 9000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 9000 €/mois
     impôt . foyer fiscal . situation de famille: "'couple'"
     impôt . foyer fiscal . enfants à charge: 4
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . situation de famille: "'veuf'"
-  - contrat salarié . rémunération . brut de base: 3000 €/mois
+  - impôt . méthode de calcul: "'barème standard'"
+    contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . foyer fiscal . situation de famille: "'veuf'"
     impôt . foyer fiscal . enfants à charge: 2
 
