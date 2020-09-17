@@ -52,9 +52,8 @@ entreprise . durée d'activité . en début d'année:
       jusqu'à: période . début d'année
 
 entreprise . chiffre d'affaires:
-  titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
-  résumé: Le montant des ventes réalisées
+  résumé: Le montant total des transactions (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
 

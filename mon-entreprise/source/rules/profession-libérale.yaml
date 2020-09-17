@@ -294,13 +294,6 @@ dirigeant . indépendant . PL . PAM:
     - dirigeant . indépendant . revenus étrangers
   formule: oui
 
-dirigeant . indépendant . PL . PAM . honoraires:
-  titre: Total des honoraires
-  question: Quel est le montant total de vos honoraires ?
-  résumé: En incluant les dépassements
-  unité: €/an
-  formule: entreprise . chiffre d'affaires
-
 # TODO : medecins remplacant comme micro-BNC avec taux cotisation unique (comme les auto-entrepreneurs)
 # dirigeant . indépendant . PL . PAM . remplaçant:
 #   applicable si: métier = 'PAM . médecin'
