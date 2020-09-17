@@ -26,7 +26,7 @@ export default function RulePage() {
 	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
-		return <DocumentationLanding rules={engine.getParsedRules()} />
+		return <DocumentationLanding />
 	}
 	if (!documentationSitePaths[pathname]) {
 		return <Redirect to="/404" />
@@ -68,14 +68,14 @@ function BackToSimulation() {
 	)
 }
 
-function DocumentationLanding({ rules }) {
+function DocumentationLanding() {
 	return (
 		<>
 			<h1>
 				<Trans i18nKey="page.documentation.title">Documentation</Trans>
 			</h1>
 			<p>Explorez toutes les règles de la documentation</p>
-			<SearchBar rules={rules} showDefaultList={true} />
+			<SearchBar showListByDefault={true} />
 		</>
 	)
 }

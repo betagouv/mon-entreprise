@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import Engine from '..'
 import i18n from '../i18n'
-import { decodeRuleName, encodeRuleName } from '../ruleUtils'
+import {
+	decodeRuleName,
+	encodeRuleName,
+	ruleWithDedicatedDocumentationPage
+} from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
 import RulePage from './rule/Rule'
 
@@ -45,10 +49,15 @@ export function Documentation<Names extends string>({
 }
 
 export function getDocumentationSiteMap({ engine, documentationPath }) {
+	const parsedRules = engine.getParsedRules()
 	return Object.fromEntries(
-		Object.keys(engine.getParsedRules()).map(dottedName => [
-			documentationPath + '/' + encodeRuleName(dottedName),
-			dottedName
-		])
+		Object.keys(parsedRules)
+			.filter(dottedName =>
+				ruleWithDedicatedDocumentationPage(parsedRules[dottedName])
+			)
+			.map(dottedName => [
+				documentationPath + '/' + encodeRuleName(dottedName),
+				dottedName
+			])
 	)
 }
