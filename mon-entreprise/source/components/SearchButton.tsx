@@ -1,18 +1,14 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import Overlay from './Overlay'
-import { EngineContext } from 'Components/utils/EngineContext'
 import SearchBar from './SearchBar'
-import { useLocation } from 'react-router'
 
 type SearchButtonProps = {
 	invisibleButton?: boolean
 }
 
 export default function SearchButton({ invisibleButton }: SearchButtonProps) {
-	const rules = useContext(EngineContext).getParsedRules()
 	const [visible, setVisible] = useState(false)
 
 	useEffect(() => {
@@ -36,7 +32,7 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			<h1>
 				<Trans>Chercher dans la documentation</Trans>
 			</h1>
-			<SearchBar showDefaultList={false} rules={rules} />
+			<SearchBar />
 		</Overlay>
 	) : invisibleButton ? null : (
 		<button

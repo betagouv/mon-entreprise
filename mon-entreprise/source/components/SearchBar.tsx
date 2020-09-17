@@ -1,16 +1,16 @@
-import { ParsedRules } from 'publicodes'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
+import { EngineContext } from './utils/EngineContext'
+import { utils } from 'publicodes'
 
 const worker = new Worker()
 
 type SearchBarProps = {
-	rules: ParsedRules<DottedName>
-	showDefaultList: boolean
+	showListByDefault?: boolean
 }
 
 type SearchItem = {
@@ -59,7 +59,10 @@ function highlightMatches(str: string, matches: Matches) {
 		[false, 0, []] as [boolean, number, Array<React.ReactNode>]
 	)[2]
 }
-export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
+export default function SearchBar({
+	showListByDefault = false
+}: SearchBarProps) {
+	const rules = useContext(EngineContext).getParsedRules()
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
 		Array<{
@@ -71,13 +74,15 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
-			Object.values(rules).map(rule => ({
-				title:
-					rule.title ??
-					rule.name + (rule.acronyme ? ` (${rule.acronyme})` : ''),
-				dottedName: rule.dottedName,
-				espace: rule.dottedName.split(' . ').reverse()
-			})),
+			Object.values(rules)
+				.filter(utils.ruleWithDedicatedDocumentationPage)
+				.map(rule => ({
+					title:
+						rule.title ??
+						rule.name + (rule.acronyme ? ` (${rule.acronyme})` : ''),
+					dottedName: rule.dottedName,
+					espace: rule.dottedName.split(' . ').reverse()
+				})),
 		[rules]
 	)
 
@@ -126,13 +131,13 @@ export default function SearchBar({ rules, showDefaultList }: SearchBarProps) {
 						list-style: none;
 					`}
 				>
-					{(showDefaultList && !results.length && !input.length
+					{(showListByDefault && !results.length && !input.length
 						? searchIndex
 								.filter(item => item.espace.length === 2)
 								.map(item => ({ item, matches: [] }))
 						: results
 					)
-						.slice(0, showDefaultList ? 100 : 6)
+						.slice(0, showListByDefault ? 100 : 6)
 						.map(({ item, matches }) => (
 							<li key={item.dottedName}>
 								<RuleLink

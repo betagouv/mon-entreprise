@@ -66,3 +66,13 @@ export function findParentDependencies<Names extends string>(
 		)
 		.map(([name, _]) => name)
 }
+
+export function ruleWithDedicatedDocumentationPage(rule) {
+	return (
+		rule.virtualRule !== true &&
+		rule.type !== 'groupe' &&
+		rule.type !== 'texte' &&
+		rule.type !== 'paragraphe' &&
+		rule.type !== 'notification'
+	)
+}

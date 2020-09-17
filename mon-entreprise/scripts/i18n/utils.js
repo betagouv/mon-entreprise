@@ -5,6 +5,7 @@ var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
 let { readRules } = require('../rules')
+let { utils } = require('publicodes')
 
 let { parse } = require('yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
@@ -30,7 +31,7 @@ function getRulesMissingTranslations() {
 	let resolved = Object.entries(rules)
 		.map(([dottedName, rule]) => [
 			dottedName,
-			!rule || !rule.titre
+			!rule || (!rule.titre && utils.ruleWithDedicatedDocumentationPage(rule))
 				? { ...rule, titre: dottedName.split(' . ').slice(-1)[0] }
 				: rule
 		])
