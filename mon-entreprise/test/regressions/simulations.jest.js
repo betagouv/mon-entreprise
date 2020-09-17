@@ -37,10 +37,23 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			})
 			engine.setSituation({ ...baseSituation, ...situation })
 			const res = targets.map(target => engine.evaluate(target).nodeValue)
+
+			const evaluatedNotifications = Object.values(engine.getParsedRules())
+				.filter(rule => rule['type'] === 'notification')
+				.filter(
+					notification => engine.evaluate(notification.dottedName).isApplicable
+				)
+				.map(notification => notification.dottedName)
+
+			const snapshotedDisplayedNotifications = evaluatedNotifications.length
+				? `\nNotifications affichées : ${evaluatedNotifications.join(', ')}`
+				: ''
 			// Stringify is not required, but allows the result to be displayed in a single
 			// line in the snapshot, which considerably reduce the number of lines of this snapshot
 			// and improve its readability.
-			expect(JSON.stringify(roundResult(res))).toMatchSnapshot(name)
+			expect(
+				JSON.stringify(roundResult(res)) + snapshotedDisplayedNotifications
+			).toMatchSnapshot(name)
 		})
 	)
 
