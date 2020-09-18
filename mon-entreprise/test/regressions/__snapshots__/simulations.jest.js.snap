@@ -1,75 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[50000,3177,11384,8,14662,35338]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 1`] = `"[50000,3177,11384,101,14662,35338]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,949,3261,8,4311,10689]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,949,3261,101,4311,10689]"`;
 
-exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,312,1354,8,1767,3233]"`;
+exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,312,1354,101,1767,3233]"`;
 
 exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `
-"[10000,689,1477,8,2267,7733]
+"[10000,630,560,101,1292,8708]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `
-"[10000,760,598,8,1459,8541]
+"[10000,630,-1456,101,-724,10724]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 
-exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[50000,3024,11424,8,14549,35451]"`;
+exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[50000,3024,11424,101,14549,35451]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[500,25,82,8,209,291]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[500,25,82,101,209,291]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[5000,312,1021,8,1435,3565]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[5000,312,1021,101,1435,3565]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[50000,3175,14066,11,17378,32622]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[50000,3175,17727,138,21039,28961]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[50000,3175,13590,11,16903,33097]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[50000,3175,16595,138,19907,30093]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,11476,11,14788,35212]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,14662,138,17974,32026]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,3176,14071,10,17364,32636]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,3176,17732,118,21025,28975]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,11476,11,14788,35212]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,16206,138,19518,30482]"`;
 
-exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,8,8950,41050]"`;
+exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,101,8950,41050]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,8,14711,35289]"`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,101,14711,35289]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,8,13261,36739]"`;
+exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,101,13261,36739]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[50000,3176,11380,10,14673,35327]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[50000,3176,11380,118,14673,35327]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[5000,311,1353,10,1781,3219]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[5000,311,1353,118,1781,3219]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[50000,3177,11384,8,14662,35338]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[50000,3177,11384,101,14662,35338]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[5000,312,1354,8,1767,3233]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `"[5000,312,1354,101,1767,3233]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `"[50000,3177,11423,8,14701,35299]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `"[50000,3177,11423,101,14701,35299]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[5000,312,1316,8,1729,3271]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[5000,312,1316,101,1729,3271]"`;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
-"[50000,3177,9515,8,12793,37207]
+"[50000,3177,9515,101,12793,37207]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `"[500,25,1026,8,1152,0]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `"[500,25,1026,101,1152,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `"[1000,57,1026,8,1184,0]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `"[1000,57,1026,101,1184,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1500,89,1052,8,1242,258]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1500,89,1052,101,1242,258]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[2000,121,1095,8,1317,683]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[2000,121,1095,101,1317,683]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[5000,312,1354,8,1767,3233]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[5000,312,1354,101,1767,3233]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[10000,630,2202,8,2934,7066]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[10000,630,2202,101,2934,7066]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `"[100000,6361,20834,8,27296,72704]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `"[100000,6361,20834,101,27296,72704]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `"[1000000,63664,106148,8,169913,830087]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `"[1000000,63664,106148,101,169913,830087]"`;
 
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
 
@@ -208,68 +208,73 @@ Notifications affichées : entreprise . catégorie d'activité . libérale règl
 `;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `
-"[0,22269,0,0,4,0]
+"[0,22249,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `
-"[0,21942,0,0,4,0]
+"[0,21923,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `
-"[0,238250,0,0,4,0]
+"[0,238216,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 1`] = `
-"[0,35248,0,0,4,0]
+"[0,35072,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 2`] = `
-"[0,34827,0,0,4,0]
+"[0,29772,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 3`] = `
-"[0,30391,0,0,4,0]
+"[0,213519,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 4`] = `
-"[0,216374,0,0,4,0]
+"[0,293799,0,0,4,0]
+Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
+`;
+
+exports[`calculate simulations-professions-libérales: médecin 5`] = `
+"[0,81099,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `
-"[0,40107,0,0,4,0]
+"[0,40085,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
-"[0,14873,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,14852,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
 "[0,2729,0,0,3,0]
-Notifications affichées : dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction, dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV . info exonération, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV, entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
-"[0,14873,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,14852,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
-"[0,14796,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,14775,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[0,14720,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,14699,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
@@ -381,17 +386,17 @@ Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de TV
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `
-"[0,8215,0,6018,4,21]
+"[0,8392,0,6103,4,21]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `
-"[0,16527,0,12103,4,24]
+"[0,16871,0,12270,4,24]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`] = `
-"[0,21570,0,15799,4,31]
+"[0,21650,0,15828,4,31]
 Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
 `;
 

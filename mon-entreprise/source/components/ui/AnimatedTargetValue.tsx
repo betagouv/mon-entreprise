@@ -37,6 +37,7 @@ export default function AnimatedTargetValue({
 		previousUnit.current === currentUnit &&
 		Math.abs(difference) > 1 &&
 		previousValue.current != null &&
+		previousValue.current != 0 &&
 		value != null
 
 	previousValue.current = value

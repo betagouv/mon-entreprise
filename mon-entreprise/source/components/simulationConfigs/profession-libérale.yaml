@@ -24,5 +24,5 @@ questions:
     - entreprise . ZFU
 unité par défaut: €/an
 situation:
-  entreprise . catégorie d'activité: "'libérale'"
   dirigeant: "'indépendant'"
+  entreprise . catégorie d'activité: "'libérale'"

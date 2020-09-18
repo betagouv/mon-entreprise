@@ -3898,6 +3898,245 @@ dirigeant . indépendant . IJSS . total:
 dirigeant . indépendant . PL:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
+dirigeant . indépendant . PL . CARCDSF:
+  description.en: >
+    [automatic] CARCDSF is the autonomous pension fund for dental surgeons and
+    midwives.
+  description.fr: >
+    La CARCDSF est la caisse de retraite autonome des chirurgiens dentiste et
+    des sages femmes.
+  titre.en: '[automatic] CARCDSF'
+  titre.fr: CARCDSF
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
+  titre.en: '[automatic] dental surgeon'
+  titre.fr: chirurgien-dentiste
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
+  note.en: >-
+    [automatic] An exemption can be granted when the 2019 professional income is
+    less than or equal to C 500 (value on 1 January of the year in question),
+    i.e. € 11,500.
+
+    The application must be accompanied by a photocopy of the tax return n° 2042 C or 2035 or 2065 and their annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
+
+    This exemption results in the cancellation of the fees for the year and the unassessed points are not redeemable.
+  note.fr: >-
+    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+    inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
+    soit 11 500 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
+  titre.en: '[automatic] Supplementary old-age benefit (CARCDSF dental surgeon)'
+  titre.fr: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
+  titre.en: '[automatic] disability and death (CARCDSF Dental Surgeon)'
+  titre.fr: invalidité et décès (CARCDSF chirurgien-dentiste)
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
+  description.en: "[automatic] You have the option of taking a full contribution
+    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
+    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
+    isations)"
+  description.fr:
+    Vous avez la possibilité de bénéficier d'une exonération totale
+    de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
+    en faites la demande. [En savoir
+    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV . prix d'une consultation
+: titre.en: '[automatic] consulting fee'
+  titre.fr: prix d'une consultation
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CARCDSF)'
+  titre.fr: retraite complémentaire (CARCDSF)
+dirigeant . indépendant . PL . CARCDSF . sage-femme:
+  titre.en: '[automatic] midwife'
+  titre.fr: sage-femme
+dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
+  description.en: >
+    [automatic] For 2020, the amount is set at €780, a third of which, i.e. €260
+    to your
+
+    and 520 € to be paid by the Primary Health Insurance Funds.
+
+    (CPAM).
+  description.fr: |
+    Pour 2020, le montant est fixé à 780 € dont un tiers, soit 260 € à votre
+    charge et 520 € à la charge des Caisses Primaires d’Assurance Maladie
+    (CPAM).
+  note.en: >
+    [automatic] An exemption may be granted where the professional income is
+
+    less than or equal to 3120 €.
+
+
+    The application must be accompanied by a photocopy of the tax return.
+
+    No 2042 C or 2035 or 2065 and their annexes (2033 B and D or 2053 and 2058
+
+    A).
+
+
+    This waiver will result in the cancellation of the fees for the year and the points for the year.
+
+    are not redeemable.
+  note.fr: |
+    Une dispense peut être accordée lorsque les revenus professionnels sont
+    inférieurs ou égaux à 3120 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
+    A).
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points
+    non cotisés ne sont pas rachetables.
+  titre.en: '[automatic] PCV'
+  titre.fr: PCV
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
+  description.en: >
+    [automatic] There are contribution classes to choose from, corresponding to
+    contributions
+
+    and different levels of compensation.
+
+
+    The change of option to a higher class must be requested before the
+
+    1 July of the current year, to take effect on 1 January of
+
+    the following year.
+
+
+    No change of class is permitted after July 1 of the 56th birthday.
+  description.fr: >
+    Il existe classes de cotisations aux choix, correspondant à des cotisations
+
+    et des degrés d'indemnisations différents.
+
+
+    Le changement d'option pour une classe supérieure doit être demandé avant le
+
+    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
+
+    l'année suivante.
+
+
+    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
+  titre.en: '[automatic] disability and death (CARCDSF midwife)'
+  titre.fr: invalidité et décès (CARCDSF sage-femme)
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
+  description.en: >
+    [automatic] There are contribution classes to choose from, corresponding to
+    contributions
+
+    and different levels of compensation.
+  description.fr: |
+    Il existe classes de cotisations aux choix, correspondant à des cotisations
+    et des degrés d'indemnisations différents.
+  question.en: '[automatic] In which class do you contribute to the DCFDC
+    Disability Death Plan?'
+  question.fr:
+    Dans quelle classe cotisez-vous pour le régime invalidité-décès de
+    la CARCDSF ?
+  titre.en: '[automatic] Contribution class'
+  titre.fr: Classe de cotisation
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . A:
+  titre.en: '[automatic] class A'
+  titre.fr: classe A
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . B:
+  titre.en: '[automatic] class B'
+  titre.fr: classe B
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . C:
+  titre.en: '[automatic] class C'
+  titre.fr: classe C
+dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
+  description.en: "[automatic] You have the option of taking a full contribution
+    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
+    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
+    isations)"
+  description.fr:
+    Vous avez la possibilité de bénéficier d'une exonération totale
+    de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
+    en faites la demande. [En savoir
+    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+dirigeant . indépendant . PL . CARMF:
+  description.en: >
+    [automatic] The CARMF is the autonomous pension fund for doctors in France.
+
+
+    Affiliation is compulsory for doctors holding the diploma of
+
+    doctor of medicine, registered with the Council of the Order and exercising an activity
+
+    (installation, replacements, expertise for companies, etc.).
+
+    insurance companies or private laboratories, private sector to hospital, in
+
+    or any other remunerated activity in the form of a private practice or any other
+
+    of fees, even if it is not a question of medical care) in France
+
+    metropolitan France and in the overseas departments or Monaco.
+  description.fr: |
+    La CARMF est la caisse de retraite autonome des médecins de France.
+
+    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
+    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
+    libérale (installation, remplacements, expertises pour les compagnies
+    d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
+    société d’exercice libéral ou toute autre activité rémunérée sous forme
+    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
+    métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
+  titre.en: '[automatic] CARMF'
+  titre.fr: CARMF
+dirigeant . indépendant . PL . CARMF . ASV:
+  titre.en: '[automatic] Advantage social vieillesse (CARMF)'
+  titre.fr: Avantage social vieillesse (CARMF)
+dirigeant . indépendant . PL . CARMF . ASV . taux participation CPAM:
+  titre.en: '[automatic] CPAM participation rate'
+  titre.fr: taux participation CPAM
+dirigeant . indépendant . PL . CARMF . invalidité décès:
+  description.en: >-
+    [automatic] The CARMF manages a provident scheme paying a pension in the
+    event of permanent disability and a death benefit as well as a pension for
+    surviving spouses and children in the event of the death of the insured. 
+
+    The contribution is divided into three flat-rate classes, the amount of which is determined according to your net income from self-employment in the penultimate year.
+
+    Without communication of the self-employed earnings and the tax notice of the penultimate year, the compensation rate cannot be determined. Pending receipt of this document, compensation will be based on the rate for class A.
+  description.fr: >-
+    La CARMF gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré. 
+
+    La cotisation comporte trois classes forfaitaires dont le montant est déterminé en fonction de vos revenus nets d'activité indépendante de l’avant-dernière année.
+
+    Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
+  titre.en: '[automatic] disability and death (CARMF)'
+  titre.fr: invalidité et décès (CARMF)
+dirigeant . indépendant . PL . CARMF . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CARMF)'
+  titre.fr: retraite complémentaire (CARMF)
+dirigeant . indépendant . PL . CARPIMKO:
+  titre.en: '[automatic] CARPIMKO'
+  titre.fr: CARPIMKO
+dirigeant . indépendant . PL . CARPIMKO . ASV:
+  titre.en: '[automatic] Old-age benefit (CARPIMKO)'
+  titre.fr: Avantage social vieillesse (CARPIMKO)
+dirigeant . indépendant . PL . CARPIMKO . ASV . forfaitaire:
+  titre.en: '[automatic] lump sum'
+  titre.fr: forfaitaire
+dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
+  titre.en: '[automatic] CPAM participation'
+  titre.fr: participation CPAM
+dirigeant . indépendant . PL . CARPIMKO . ASV . proportionnelle:
+  titre.en: '[automatic] proportional'
+  titre.fr: proportionnelle
+dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
+  titre.en: '[automatic] disability and death (CARPIMKO)'
+  titre.fr: invalidité et décès (CARPIMKO)
+dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CARPIMKO)'
+  titre.fr: retraite complémentaire (CARPIMKO)
 dirigeant . indépendant . PL . CIPAV:
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
@@ -3969,363 +4208,10 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
 ? dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant
 : titre.en: '[automatic] VIDOC reduction'
   titre.fr: réduction COVID
-dirigeant . indépendant . PL . PAM:
-  titre.en: '[automatic] WFP'
-  titre.fr: PAM
-dirigeant . indépendant . PL . PAM . CARCDSF:
-  description.en: >
-    [automatic] CARCDSF is the autonomous pension fund for dental surgeons and
-    midwives.
-  description.fr: >
-    La CARCDSF est la caisse de retraite autonome des chirurgiens dentiste et
-    des sages femmes.
-  titre.en: '[automatic] CARCDSF'
-  titre.fr: CARCDSF
-dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste:
-  titre.en: '[automatic] dental surgeon'
-  titre.fr: chirurgien-dentiste
-dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . PCV:
-  note.en: >-
-    [automatic] An exemption can be granted when the 2019 professional income is
-    less than or equal to C 500 (value on 1 January of the year in question),
-    i.e. € 11,500.
-
-    The application must be accompanied by a photocopy of the tax return n° 2042 C or 2035 or 2065 and their annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
-
-    This exemption results in the cancellation of the fees for the year and the unassessed points are not redeemable.
-  note.fr: >-
-    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
-    inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
-    soit 11 500 €.
-
-    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
-
-    Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
-  titre.en: '[automatic] PCV'
-  titre.fr: PCV
-? dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . PCV . info exonération
-: description.en: "[automatic] You have the option of taking a full contribution
-    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
-    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
-    isations)"
-  description.fr:
-    Vous avez la possibilité de bénéficier d'une exonération totale
-    de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
-    en faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
-dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . RID:
-  titre.en: '[automatic] disability and death (CARCDSF Dental Surgeon)'
-  titre.fr: invalidité et décès (CARCDSF chirurgien-dentiste)
-? dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . assiette participation CPAM
-: titre.en: '[automatic] CPAM contribution base'
-  titre.fr: assiette participation CPAM
-? dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . prix d'une consultation
-: titre.en: '[automatic] consulting fee'
-  titre.fr: prix d'une consultation
-? dirigeant . indépendant . PL . PAM . CARCDSF . chirurgien-dentiste . taux Urssaf
-: description.en: >
-    [automatic] The "Urssaf rate" (UR rate) is used to calculate the share of
-    your
-
-    health and maternity insurance contribution paid by the CPAM. 
-
-
-    This rate is pre-filled on your professional income tax return and
-
-    is derived from your Individual Activity Report data and from
-
-    requirements (RIAP).
-
-
-    The lower the rate, the greater the CPAM participation, and therefore the greater the CPAM participation and therefore the greater the CPAM participation.
-
-    the share to be borne by the practitioner is low.
-
-
-    ## Rate calculation
-
-
-    The formula for calculating the rate of overshoot is as follows: 
-
-    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursed acts + amounts reimbursed CMU lump sums)
-  description.fr: >
-    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
-
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
-
-
-    Ce taux est pré-rempli sur votre déclaration de revenus professionnels et
-
-    est issu des données de votre Relevé individuel d’activité et de
-
-    prescriptions (RIAP).
-
-
-    Plus le taux est faible, plus la participation CPAM est importante et donc
-
-    la part à la charge du praticien est faible.
-
-
-    ## Calcul du taux
-
-
-    La formule de calcul du taux de dépassement est la suivante : 
-
-    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
-  question.en: '[automatic] What is your "Urssaf rate"?'
-  question.fr: Quel est votre "taux Urssaf" ?
-  titre.en: '[automatic] URSSAF rate'
-  titre.fr: taux Urssaf
-dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire:
-  titre.en: '[automatic] supplementary pension (CARCDSF)'
-  titre.fr: retraite complémentaire (CARCDSF)
-? dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire
-: description.en: >
-    [automatic] Affiliates whose net professional income for the year N-1 is
-    less than 85%.
-
-    % of the PASS in force on 1 January of the year in question (€34,966 in 2020)
-
-    may, on request, obtain a reduction in the lump-sum contribution.
-
-
-    The reduction coefficient applied shall be equal to the ratio of income
-
-    non-salaried professionals on the above-mentioned threshold.
-
-
-    The request must be addressed to the CARDSF and be accompanied by a
-
-    photocopy of the tax return no. 2042 C or 2035 or 2065 and their
-
-    annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
-  description.fr: >
-    Les affiliés dont les revenus professionnels nets sur l'année N-1 sont
-    inférieurs à 85
-
-    % du PASS en vigueur au 1er janvier de l’année considérée (34 966 € en 2020)
-
-    peuvent, sur demande, obtenir une réduction de la cotisation forfaitaire.
-
-
-    Le coefficient de réduction appliqué est égal au rapport des revenus
-
-    professionnels non-salariés sur le seuil mentionné ci-dessus.
-
-
-    La demande doit être adressée à la CARCDSF et être accompagnée d’une
-
-    photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
-
-    annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
-  titre.en: '[automatic] reduced flat-rate contribution'
-  titre.fr: réduction de la cotisation forfaitaire
-? dirigeant . indépendant . PL . PAM . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire . info réduction
-: description.en: "[automatic] You have the possibility to benefit from a
-    contribution reduction for the supplementary pension if you apply for it.
-    Find out
-    more](/documentation/documentation/manager/self-employed/PL/PAM/CARCDSF/com\
-    plementary pension/deduction)"
-  description.fr: Vous avez la possibilité de bénéficier d'une réduction de
-    cotisation pour la retraite complémentaire si vous en faites la demande. [En
-    savoir
-    plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme:
-  titre.en: '[automatic] midwife'
-  titre.fr: sage-femme
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV:
-  description.en: >
-    [automatic] For 2020, the amount is set at €780, a third of which, i.e. €260
-    to your
-
-    and 520 € to be paid by the Primary Health Insurance Funds.
-
-    (CPAM).
-
-
-    ### Possibilities of reduction or dispensation
-
-
-    An exemption may be granted where the professional income is
-
-    less than or equal to 3120 €.
-
-
-    The application must be accompanied by a photocopy of the tax return.
-
-    No 2042 C or 2035 or 2065 and their annexes (2033 B and D or 2053 and 2058
-
-    A).
-
-
-    This waiver will result in the cancellation of the fees for the year and the points for the year.
-
-    are not redeemable.
-  description.fr: |
-    Pour 2020, le montant est fixé à 780 € dont un tiers, soit 260 € à votre
-    charge et 520 € à la charge des Caisses Primaires d’Assurance Maladie
-    (CPAM).
-
-    ### Possibilités de réduction ou dispense
-
-    Une dispense peut être accordée lorsque les revenus professionnels sont
-    inférieurs ou égaux à 3120 €.
-
-    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
-    n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
-    A).
-
-    Cette dispense entraîne l’annulation des droits pour l’année et les points
-    non cotisés ne sont pas rachetables.
-  titre.en: '[automatic] PCV'
-  titre.fr: PCV
-? dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . PCV . info exonération
-: description.en: "[automatic] You have the option of taking a full contribution
-    waiver for supplementary old-age benefits (AVC) if you apply for it. [More
-    information](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cot\
-    isations)"
-  description.fr:
-    Vous avez la possibilité de bénéficier d'une exonération totale
-    de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
-    en faites la demande. [En savoir
-    plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID:
-  description.en: >
-    [automatic] There are contribution classes to choose from, corresponding to
-    contributions
-
-    and different levels of compensation.
-
-
-    The change of option to a higher class must be requested before the
-
-    1 July of the current year, to take effect on 1 January of
-
-    the following year.
-
-
-    No change of class is permitted after July 1 of the 56th birthday.
-  description.fr: >
-    Il existe classes de cotisations aux choix, correspondant à des cotisations
-
-    et des degrés d'indemnisations différents.
-
-
-    Le changement d'option pour une classe supérieure doit être demandé avant le
-
-    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-
-    l'année suivante.
-
-
-    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-  titre.en: '[automatic] disability and death (CARCDSF midwife)'
-  titre.fr: invalidité et décès (CARCDSF sage-femme)
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe:
-  description.en: >
-    [automatic] There are contribution classes to choose from, corresponding to
-    contributions
-
-    and different levels of compensation.
-  description.fr: |
-    Il existe classes de cotisations aux choix, correspondant à des cotisations
-    et des degrés d'indemnisations différents.
-  question.en: '[automatic] In which class do you contribute to the DCFDC
-    Disability Death Plan?'
-  question.fr:
-    Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-    la CARCDSF ?
-  titre.en: '[automatic] Contribution class'
-  titre.fr: Classe de cotisation
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . A:
-  titre.en: '[automatic] class A'
-  titre.fr: classe A
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . B:
-  titre.en: '[automatic] class B'
-  titre.fr: classe B
-dirigeant . indépendant . PL . PAM . CARCDSF . sage-femme . RID . classe . C:
-  titre.en: '[automatic] class C'
-  titre.fr: classe C
-dirigeant . indépendant . PL . PAM . CARMF:
-  description.en: >
-    [automatic] The CARMF is the autonomous pension fund for doctors in France.
-
-
-    Affiliation is compulsory for doctors holding the diploma of
-
-    doctor of medicine, registered with the Council of the Order and exercising an activity
-
-    (installation, replacements, expertise for companies, etc.).
-
-    insurance companies or private laboratories, private sector to hospital, in
-
-    or any other remunerated activity in the form of a private practice or any other
-
-    of fees, even if it is not a question of medical care) in France
-
-    metropolitan France and in the overseas departments or Monaco.
-  description.fr: |
-    La CARMF est la caisse de retraite autonome des médecins de France.
-
-    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
-    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
-    libérale (installation, remplacements, expertises pour les compagnies
-    d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
-    société d’exercice libéral ou toute autre activité rémunérée sous forme
-    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
-    métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
-  titre.en: '[automatic] CARMF'
-  titre.fr: CARMF
-dirigeant . indépendant . PL . PAM . CARMF . ASV:
-  titre.en: '[automatic] Advantage social vieillesse (CARMF)'
-  titre.fr: Avantage social vieillesse (CARMF)
-dirigeant . indépendant . PL . PAM . CARMF . ASV . taux participation CPAM:
-  titre.en: '[automatic] CPAM participation rate'
-  titre.fr: taux participation CPAM
-dirigeant . indépendant . PL . PAM . CARMF . invalidité décès:
-  description.en: >-
-    [automatic] The CARMF manages a provident scheme paying a pension in the
-    event of permanent disability and a death benefit as well as a pension for
-    surviving spouses and children in the event of the death of the insured. 
-
-    The contribution is divided into three flat-rate classes, the amount of which is determined according to your net income from self-employment in the penultimate year.
-
-    Without communication of the self-employed earnings and the tax notice of the penultimate year, the compensation rate cannot be determined. Pending receipt of this document, compensation will be based on the rate for class A.
-  description.fr: >-
-    La CARMF gère un régime de prévoyance versant une pension en cas
-    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. 
-
-    La cotisation comporte trois classes forfaitaires dont le montant est déterminé en fonction de vos revenus nets d'activité indépendante de l’avant-dernière année.
-
-    Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
-  titre.en: '[automatic] disability and death (CARMF)'
-  titre.fr: invalidité et décès (CARMF)
-dirigeant . indépendant . PL . PAM . CARMF . retraite complémentaire:
-  titre.en: '[automatic] supplementary pension (CARMF)'
-  titre.fr: retraite complémentaire (CARMF)
-dirigeant . indépendant . PL . PAM . CARPIMKO:
-  titre.en: '[automatic] CARPIMKO'
-  titre.fr: CARPIMKO
-dirigeant . indépendant . PL . PAM . CARPIMKO . ASV:
-  titre.en: '[automatic] Old-age benefit (CARPIMKO)'
-  titre.fr: Avantage social vieillesse (CARPIMKO)
-dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . forfaitaire:
-  titre.en: '[automatic] lump sum'
-  titre.fr: forfaitaire
-dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . participation CPAM:
-  titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
-dirigeant . indépendant . PL . PAM . CARPIMKO . ASV . proportionnelle:
-  titre.en: '[automatic] proportional'
-  titre.fr: proportionnelle
-dirigeant . indépendant . PL . PAM . CARPIMKO . invalidité et décès:
-  titre.en: '[automatic] disability and death (CARPIMKO)'
-  titre.fr: invalidité et décès (CARPIMKO)
-dirigeant . indépendant . PL . PAM . CARPIMKO . retraite complémentaire:
-  titre.en: '[automatic] supplementary pension (CARPIMKO)'
-  titre.fr: retraite complémentaire (CARPIMKO)
-dirigeant . indépendant . PL . PAM . CURPS:
+dirigeant . indépendant . PL . PAMC:
+  titre.en: '[automatic] PAMC'
+  titre.fr: PAMC
+dirigeant . indépendant . PL . PAMC . CURPS:
   description.en: >
     [automatic] The health professions are represented by the following unions
 
@@ -4363,174 +4249,230 @@ dirigeant . indépendant . PL . PAM . CURPS:
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   titre.en: '[automatic] Contribution to regional unions of health professionals'
   titre.fr: Contribution aux unions régionales des professionnels de santé
-dirigeant . indépendant . PL . PAM . PCV:
-  description.en: >
-    [automatic] Certain professional categories benefit from
-
-    supplementary old-age benefits (PCV), previously known as "benefits".
-
-    social old age" (ASV). This concerns general practitioners, the
-
-    dental surgeons, midwives, paramedics and medical assistants, and
-
-    laboratory directors. This scheme results from
-
-    partial by the Health Insurance of their insurance contributions
-
-    old age, provided that they have exercised their activity within the framework of the
-
-    conventional.
-  description.fr: |
-    Certaines catégories professionnelles bénéficient de
-    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
-    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
-    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
-    directeurs de laboratoires. Ce régime résulte de la prise en charge
-    partielle par l’Assurance maladie de leurs cotisations d’assurance
-    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
-    conventionnel.
-  titre.en: '[automatic] Supplementary old-age benefits'
-  titre.fr: Prestations complémentaires vieillesse
-dirigeant . indépendant . PL . PAM . allocations familiales:
+dirigeant . indépendant . PL . PAMC . allocations familiales:
   titre.en: '[automatic] family allowances (after CPAM participation)'
   titre.fr: allocations familiales (après participation CPAM)
-? dirigeant . indépendant . PL . PAM . allocations familiales . participation CPAM
-: titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
-dirigeant . indépendant . PL . PAM . assiette participation CPAM:
+dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description.en:
     '[automatic] Also known as conventional income, this is the net
     overrun fee income.'
   description.fr: Aussi appelé revenu conventionnel, il s'agit du revenu des
     honoraires nets de dépassement.
+  note.en: >
+    [automatic] The formula referenced in the Urssaf texts is as follows: 
+
+    &gt; (income from the agreed activity) x (total fees - total fee overruns) / total amount of fees. 
+
+
+    This formula can be simplified into: 
+
+    &gt; (income from the activity covered by the agreement) / (100% + average fee overrun)
+
+
+    ### Proof
+
+    If we take the following variables, 
+
+    &gt; `h+`: total fees (with overruns)
+      `h` : fees without exceeding
+      d%': percentage by which the average fee is exceeded
+
+    We've got: 
+
+    &gt;  
+      `h+ = h + h * d%`
+      `h+ = h * (100% + d%)`
+
+    If we replace in the formula the CPAM participation base, we have :
+
+    &gt; 1. `(income from the activity covered by the agreement) * h / h+`
+
+    &gt; 2. `(income from the activity covered by the agreement) * h / (h * (100% + d%)) 
+
+    &gt; 3. `(income from the agreement activity) / (100% + d%)`.
+  note.fr: >
+    La formule référencée dans les textes Urssaf est la suivante : 
+
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires. 
+
+
+    On peut simplififer cette formule en : 
+
+    > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
+
+
+    ### Preuve
+
+    Si on prends les variables suivantes, 
+
+    > `h+` : total des honoraires (avec dépassement)
+      `h` : honoraires sans dépassement
+      `d%`: pourcentage de dépassement d'honoraire moyen
+
+    On a : 
+
+    >  
+      `h+ = h + h * d%`
+      `h+ = h * (100% + d%)`
+
+    Si on remplace dans la formule de l'assiette participation CPAM, on a :
+
+    > 1. `(revenu de l’activité conventionnée) * h / h+`
+
+    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%)) 
+
+    > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
-dirigeant . indépendant . PL . PAM . cotisations additionnelles PAM:
-  titre.en: '[automatic] WFP additional contributions'
-  titre.fr: cotisations additionnelles PAM
-dirigeant . indépendant . PL . PAM . dépassement d'honoraire moyen:
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste
+: titre.en: '[automatic] CPAM participation plate (dental surgeon)'
+  titre.fr: assiette participation CPAM (chirurgien dentiste)
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf
+: description.en: >
+    [automatic] The "Urssaf rate" (UR rate) is used to calculate the share of
+    your
+
+    health and maternity insurance contribution paid by the CPAM. 
+
+
+    This rate is pre-filled on your professional income tax return and
+
+    is derived from your Individual Activity Report data and from
+
+    requirements (RIAP).
+
+
+    The lower the rate, the greater the CPAM participation, and therefore the greater the CPAM participation and therefore the greater the CPAM participation.
+
+    the share to be borne by the practitioner is small.
+
+
+    ## Rate calculation
+
+
+    The formula for calculating the rate of overshoot is as follows: 
+
+    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursed acts + amounts reimbursed CMU lump sums)
+  description.fr: >
+    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
+
+    cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
+
+
+    Ce taux est pré-rempli sur votre déclaration de revenus professionnels et
+
+    est issu des données de votre Relevé individuel d’activité et de
+
+    prescriptions (RIAP).
+
+
+    Plus le taux est faible, plus la participation CPAM est importante et donc
+
+    la part à la charge du praticien est faible.
+
+
+    ## Calcul du taux
+
+
+    La formule de calcul du taux de dépassement est la suivante : 
+
+    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
+  question.en: '[automatic] What is your "Urssaf rate"?'
+  question.fr: Quel est votre "taux Urssaf" ?
+  titre.en: '[automatic] URSSAF rate'
+  titre.fr: taux Urssaf
+dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question.en: '[automatic] What is your average fee overrun (estimate)?'
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
-dirigeant . indépendant . PL . PAM . honoraires:
-  question.en: '[automatic] What is the total amount of your fees?'
-  question.fr: Quel est le montant total de vos honoraires ?
-  résumé.en: '[automatic] Including overruns'
-  résumé.fr: En incluant les dépassements
-  titre.en: '[automatic] Total fees'
-  titre.fr: Total des honoraires
-dirigeant . indépendant . PL . PAM . maladie:
+dirigeant . indépendant . PL . PAMC . maladie:
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
-dirigeant . indépendant . PL . PAM . maladie . contribution additionnelle:
+dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.en: '[automatic] supplementary contribution'
   titre.fr: contribution additionnelle
-dirigeant . indépendant . PL . PAM . maladie . participation CPAM:
+dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
-dirigeant . indépendant . PL . PAM . secteur:
-  description.en: |
-    [automatic] The rates of contributions and CPAM refunds are not the same in
-    depending on the pricing regime chosen by the practitioner.
+? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée
+: description.en: >
+    [automatic] Non-agreement revenues are all those which do not fall within
+    the scope of
+
+    the following categories: 
+        
+    - Reimbursable deed fees (including the
+
+    fee overruns and travel expenses shown on the statement
+
+    SNIR)
+
+
+    - Fees resulting from retrocessions concerning reimbursable deeds
+
+    received as a substitute
+
+
+    - All lump sums paid by health insurance
+
+    (teletransmission assistance, compensation, compensation for training, etc.).
+
+    continuous, installation bonus, ...)
   description.fr: |
-    Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
-    fonction du régime de tarification choisie par le praticien.
-  question.en: '[automatic] What sector are you contracted to?'
-  question.fr: Sur quel secteur êtes-vous conventionné ?
-  titre.en: '[automatic] sector'
-  titre.fr: secteur
-dirigeant . indépendant . PL . PAM . secteur . 1:
-  titre.en: '[automatic] Sector 1'
-  titre.fr: Secteur 1
-dirigeant . indépendant . PL . PAM . secteur . 2:
-  titre.en: '[automatic] Sector 2'
-  titre.fr: Secteur 2
+    Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
+    les catégories suivantes : 
+        
+    - Honoraires tirés des actes remboursables (y compris les
+    dépassements d’honoraires et les frais de déplacement figurant sur le relevé
+    SNIR)
+
+    - Honoraires issus de rétrocessions concernant les actes remboursables
+    perçues en qualité de remplaçant
+
+    - Toutes les rémunérations forfaitaires versées par l’assurance maladie
+    (aide à la télétransmission, indemnisation, indemnisation de la formation
+    continue, prime à l’installation, ...)
+  question.en: |
+    [automatic] How much of your turnover is related to a non-trading activity?
+    conventionnée (estimate) ?
+  question.fr: |
+    Quel est la part de votre chiffre d'affaires liée à une activité non
+    conventionnée (estimation) ?
+  titre.en: '[automatic] proportion of revenue from non-agreement activities'
+  titre.fr: proportion recette activité non conventionnée
+dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
+  description.en: >
+    [automatic] The revenues covered by the agreement are those corresponding to
+    revenues from
+
+    fees and flat-rate remuneration paid by CPAM.
+  description.fr: |
+    Les revenus conventionnés sont ceux correspondant aux recettes tirées des
+    honoraires et des rémunérations forfaitaires versées par la CPAM.
+  note.en: >
+    [automatic] To avoid having to distribute loads between those from
+
+    the activities covered by the agreements and those that are not (which would result in
+
+    two separate accounts), it can be calculated from income
+
+    which is adjusted according to the share of the turnover
+
+    from the acts covered by the agreements.
+  note.fr: |
+    Pour éviter d'avoir à ventiler les charges entre celles issues de
+    l'activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
+    deux comptabilités distinct), on peut le calculer à partir du revenu
+    professionnel que l'on ajuste en fonction de la part du chiffre d'affaires
+    provenant des actes conventionnés.
+  titre.en: '[automatic] income from agreement activity'
+  titre.fr: revenus activité conventionnée
 dirigeant . indépendant . PL . métier:
   question.en: '[automatic] To which category does your profession belong?'
   question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] profession'
   titre.fr: métier
-dirigeant . indépendant . PL . métier . PAM:
-  description.en: >
-    [automatic] If you are a licensed medical practitioner or paramedic, you are
-    under the jurisdiction of the
-
-    health insurance scheme for medical practitioners and medical auxiliaries
-
-    (PAMC). The point on the conditions to be met to benefit from
-
-    of this health insurance plan and the terms and conditions of your coverage
-
-    social.
-
-
-    &gt; *Exceptions* : Osteopath, psychologist, psychotherapist, occupational therapist,
-
-    dietician and chiropractor do not depend on the PAMC diet but on the
-
-    CIPAV for their retirement and disability.
-  description.fr: >
-    Si vous êtes praticien ou auxiliaire médical conventionné, vous relevez du
-
-    régime d'assurance maladie des praticiens et auxiliaires médicaux
-
-    conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
-
-    de ce régime d'assurance maladie et sur les modalités de votre protection
-
-    sociale.
-
-
-    > *Exceptions* : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
-
-    diététicien et chiropracteur ne dépendent pas du régime PAMC mais de la
-
-    CIPAV pour leur retraite et invalidité.
-  question.en: '[automatic] What do you do as a healthcare professional?'
-  question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
-  titre.en: '[automatic] Medical practitioner or paramedic'
-  titre.fr: Practicien ou auxiliaire médical
-dirigeant . indépendant . PL . métier . PAM . auxiliaire médical:
-  description.en: >
-    [automatic] You work in one of the following professions: nurse,
-    masseur-physiotherapist, speech therapist, orthoptist or podiatrist.
-  description.fr: >
-    Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute,
-    orthophoniste, orthoptiste ou pédicure-podologue.
-  titre.en: '[automatic] medical auxiliary'
-  titre.fr: auxiliaire médical
-dirigeant . indépendant . PL . métier . PAM . chirurgien-dentiste:
-  titre.en: '[automatic] dental surgeon'
-  titre.fr: chirurgien-dentiste
-dirigeant . indépendant . PL . métier . PAM . médecin:
-  titre.en: '[automatic] doctor'
-  titre.fr: médecin
-dirigeant . indépendant . PL . métier . PAM . médecin remplaçant:
-  description.en: >
-    [automatic] Replacement general practitioner or specialist (student,
-    salaried employee or
-
-    pensioner) are the retroceded fees do not exceed €19,000 per year
-
-    civil society organisations can benefit from a special scheme for the payment of
-
-    their social security contributions.
-
-
-    This consists of a single contribution rate of 13.30%.
-  description.fr: |
-    Les médecin remplaçant généraliste ou spécialiste (étudiant, salarié ou
-    retraité) sont les honoraires rétrocédés ne dépassent pas 19 000 € par année
-    civile peuvent bénéficier d'un dispositif particulier pour le paiement de
-    leur cotisation de sécurité sociale.
-
-    Cela consiste en un taux unique de cotisations à 13,30%
-  titre.en: '[automatic] substitute physician'
-  titre.fr: médecin remplaçant
-dirigeant . indépendant . PL . métier . PAM . sage-femme:
-  titre.en: '[automatic] midwife'
-  titre.fr: sage-femme
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
     [automatic] You work in a regulated profession attached to the CIPAV. The
@@ -4582,6 +4524,84 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
     - Guide-conférencier
   titre.en: '[automatic] Other CIPAV-related professions'
   titre.fr: Autre métier rattaché à la CIPAV
+dirigeant . indépendant . PL . métier . santé:
+  description.en: >
+    [automatic] If you are a licensed medical practitioner or paramedic, you are
+    under the jurisdiction of the
+
+    health insurance scheme for medical practitioners and medical auxiliaries
+
+    (PAMC). The point on the conditions to be met to benefit from
+
+    of this health insurance plan and the terms and conditions of your coverage
+
+    social.
+
+
+    &gt; *Exceptions* : Osteopath, psychologist, psychotherapist, occupational therapist,
+
+    dietician and chiropractor do not depend on the PAMC diet but on the
+
+    CIPAV for their retirement and disability.
+  description.fr: >
+    Si vous êtes praticien ou auxiliaire médical conventionné, vous relevez du
+
+    régime d'assurance maladie des praticiens et auxiliaires médicaux
+
+    conventionnés (PAMC). Le point sur les conditions à remplir pour bénéficier
+
+    de ce régime d'assurance maladie et sur les modalités de votre protection
+
+    sociale.
+
+
+    > *Exceptions* : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
+
+    diététicien et chiropracteur ne dépendent pas du régime PAMC mais de la
+
+    CIPAV pour leur retraite et invalidité.
+  question.en: '[automatic] What do you do as a healthcare professional?'
+  question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
+  titre.en: '[automatic] Medical practitioner or paramedic'
+  titre.fr: Practicien ou auxiliaire médical
+dirigeant . indépendant . PL . métier . santé . auxiliaire médical:
+  description.en: >
+    [automatic] You work in one of the following professions: nurse,
+    masseur-physiotherapist, speech therapist, orthoptist or podiatrist.
+  description.fr: >
+    Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute,
+    orthophoniste, orthoptiste ou pédicure-podologue.
+  titre.en: '[automatic] medical auxiliary'
+  titre.fr: auxiliaire médical
+dirigeant . indépendant . PL . métier . santé . chirurgien-dentiste:
+  titre.en: '[automatic] dental surgeon'
+  titre.fr: chirurgien-dentiste
+dirigeant . indépendant . PL . métier . santé . médecin:
+  titre.en: '[automatic] doctor'
+  titre.fr: médecin
+dirigeant . indépendant . PL . métier . santé . sage-femme:
+  titre.en: '[automatic] midwife'
+  titre.fr: sage-femme
+dirigeant . indépendant . PL . métier . secteur médecin:
+  description.en: |
+    [automatic] The rates of contributions and CPAM refunds are not the same in
+    depending on the pricing regime chosen by the practitioner.
+  description.fr: |
+    Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
+    fonction du régime de tarification choisie par le praticien.
+  question.en: '[automatic] What sector are you contracted to?'
+  question.fr: Sur quel secteur êtes-vous conventionné ?
+  titre.en: '[automatic] medical sector'
+  titre.fr: secteur médecin
+dirigeant . indépendant . PL . métier . secteur médecin . 1:
+  titre.en: '[automatic] Sector 1'
+  titre.fr: Secteur 1
+dirigeant . indépendant . PL . métier . secteur médecin . 2:
+  titre.en: '[automatic] Sector 2'
+  titre.fr: Secteur 2
+dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:
+  titre.en: '[automatic] non-treaty'
+  titre.fr: non conventionné
 dirigeant . indépendant . PL . option régime général:
   description.en: >
     [automatic] Persons already practising an unregulated professional practice
@@ -4906,6 +4926,22 @@ dirigeant . indépendant . contrôle base forfaitaire:
 
     Ce simulateur calcul les cotisations au régime de croisière (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
 dirigeant . indépendant . cotisations et contributions:
+  description.en: >
+    [automatic] This is the total amount owed by the self-employed person in
+    respect of contributions and
+
+    mandatory contributions.
+  description.fr: |
+    C'est le montant total dû par l'indépendant au titre des cotisations et
+    contributions obligatoire.
+  note.en: |
+    [automatic] Unlike contributions, contributions are not reintroduced
+    for the calculation of the CSG/CRDS. They also do not benefit from the
+    ACRE reduction.
+  note.fr: |
+    À la différence des cotisations, les contributions ne sont pas réintroduites
+    pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
+    réduction ACRE.
   titre.en: all contributions
   titre.fr: cotisations et contributions
 dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
@@ -4921,28 +4957,58 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     fiscal fourni
   titre.en: basis
   titre.fr: assiette
-dirigeant . indépendant . cotisations et contributions . PLR:
-  description.en: '[automatic] Specific contributions for regulated liberal
-    professions (doctors, lawyers, etc.)'
-  description.fr: Cotisations spécifique aux professions libérales réglementées
-    (medecins, avocats, etc.)
-  titre.en: '[automatic] regulated professional fees'
-  titre.fr: cotisations professions libérales réglementées
+dirigeant . indépendant . cotisations et contributions . PCV:
+  description.en: >
+    [automatic] Certain professional categories benefit from
+
+    supplementary old-age benefits (PCV), previously known as "benefits".
+
+    social old age" (ASV). This concerns general practitioners, the
+
+    dental surgeons, midwives, paramedics and medical assistants, and
+
+    laboratory directors. This scheme results from
+
+    partial by the Health Insurance of their insurance contributions
+
+    old age, provided that they have exercised their activity within the framework of the
+
+    conventional.
+  description.fr: |
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.
+  titre.en: '[automatic] Supplementary old-age benefits'
+  titre.fr: Prestations complémentaires vieillesse
+dirigeant . indépendant . cotisations et contributions . allocations familiales:
+  titre.en: '[automatic] child benefit'
+  titre.fr: allocations familiales
+? dirigeant . indépendant . cotisations et contributions . contributions spéciales
+: description.en: |
+    [automatic] Some special plans may add additional contributions
+    (e.g. CURPS for the CPAMs)
+  description.fr: |
+    Certains régimes spéciaux peuvent ajouter des contributions additionnelles
+    (par exemple, la CURPS pour les CPAM)
+  titre.en: '[automatic] special contributions'
+  titre.fr: contributions spéciales
 dirigeant . indépendant . cotisations et contributions . cotisations:
   titre.en: social contributions
   titre.fr: cotisations
-? dirigeant . indépendant . cotisations et contributions . cotisations . allocations familiales
-: titre.en: family allowances
-  titre.fr: allocations familiales
-? dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac
-: description.en: >
-    activité commerciale, vous avez la possibilité d’opter pour le calcul de
-    votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre
-    activité commerciale (en effet, les remises pour débit de tabac sont
-    soumises par ailleurs à un prélèvement vieillesse particulier). Nous
-    attirons cependant votre attention sur le fait qu’en cotisant sur une base
-    moins importante, excluant les revenus de débit de tabac, vos droits à
-    retraite pour l’assurance vieillesse des commerçants en seront diminués.
+dirigeant . indépendant . cotisations et contributions . déduction tabac:
+  description.en: >
+    [automatic] If you are also engaged in a commercial activity as a
+    tobacconist, you can opt to have your pension insurance contribution
+    calculated solely on the income from your commercial activity (since tobacco
+    discounts are also subject to a special pension levy). However, we would
+    like to draw your attention to the fact that by contributing on a lower
+    basis, excluding tobacco debit income, your pension rights for the
+    merchant's pension insurance will be reduced.
   description.fr: >
     Si vous exercez une activité de débit de tabac simultanément à une activité
     commerciale, vous avez la possibilité d’opter pour le calcul de votre
@@ -4952,116 +5018,19 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
     votre attention sur le fait qu’en cotisant sur une base moins importante,
     excluant les revenus de débit de tabac, vos droits à retraite pour
     l’assurance vieillesse des commerçants en seront diminués.
-  question.en: souhaitez exonérer de cotisation vieillesse ?
+  question.en: '[automatic] How much income from the sale of tobacco do you wish
+    to exempt from paying pension contributions?'
   question.fr:
     Quel est le montant des revenus issus de la vente de tabac que vous
     souhaitez exonérer de cotisation vieillesse ?
-  titre.en: tobacco deduction
+  titre.en: '[automatic] tobacco deduction'
   titre.fr: déduction tabac
-? dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac . revenus déduits
+? dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits
 : titre.en: '[automatic] contribution base (with tobacco deduction)'
   titre.fr: assiette des cotisations (avec déduction tabac)
-? dirigeant . indépendant . cotisations et contributions . cotisations . exonération de cotisations minimales
+? dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales
 : titre.en: '[automatic] minimum contribution holiday'
   titre.fr: exonération de cotisations minimales
-? dirigeant . indépendant . cotisations et contributions . cotisations . indemnités journalières maladie
-: description.en: >
-    [automatic] Contributions for daily allowances for self-employed persons. If
-    the
-
-    health of craftsmen, traders, industrialists and collaborating spouses
-
-    requires a work stoppage, a portion of their former income will be returned to them.
-
-    paid up.
-  description.fr: |
-    Cotisations pour les indemnités journalières des indépendants. Si l'état de
-    santé des artisans, commerçants, industriels et conjoints collaborateurs
-    nécessite un arrêt de travail, une part de leur ancien revenu leur sera
-    versé.
-  titre.en: '[automatic] sick pay'
-  titre.fr: indemnités journalières maladie
-? dirigeant . indépendant . cotisations et contributions . cotisations . invalidité et décès
-: titre.en: disability and death
-  titre.fr: invalidité et décès
-dirigeant . indépendant . cotisations et contributions . cotisations . maladie:
-  note.en: >
-    [automatic] The decree below contains the following sentence:
-
-
-    &gt; I.- By way of derogation from the first paragraph, the rate of the contribution shall be fixed at 6.5% where earned income is greater than five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
-
-
-    The word "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that an opposite interpretation is to be preferred: only the share above this threshold is subject to this rate, and it is this implementation that we have chosen.
-  note.fr: >
-    On retrouve dans le décret ci-dessous la phrase suivante :
-
-
-    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
-
-
-    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
-  titre.en: health insurance
-  titre.fr: maladie
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux
-: note.en: >
-    [automatic] This contribution is basically very simple: the health
-    contribution is 7.2% up to 5 times the social security ceiling, then 6.5%
-    above. However:
-
-    - for its collection, this contribution is separated into 2: sickness and sickness 2, the latter at the rate of 0.85%. Thus the amount of 7.2% quoted in the decree is reduced to 6.35% in our calculations.
-
-    - Contribution reductions have been introduced: a simple exemption below 110% of the social security ceiling, then a reinforced exemption below 40%. The above scale takes these reductions into account.
-  note.fr: >
-    Cette cotisation est à la base très simple : la cotisation maladie est de
-    7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà.
-    Cependant :
-
-    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
-
-    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
-  titre.en: rates
-  titre.fr: taux
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA
-: note.en: >
-    [automatic] For self-employed persons with an RSA, only the simple reduction
-    defined in the decree for calculating the health contribution is taken into
-    account. The reinforced reduction below 40% of the social security ceiling
-    is not, as there is no minimum base.
-  note.fr: >
-    Pour les indépendants au RSA, seule la réduction simple définie dans le
-    décret de calcul de la cotisation maladie est prise en compte. La réduction
-    renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas,
-    car il n'y a pas d'assiette minimale.
-  titre.en: RSA rate
-  titre.fr: taux RSA
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux RSA part variable
-: titre.en: rate RSA variable portion
-  titre.fr: taux RSA part variable
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie . taux variable
-: titre.en: variable rate
-  titre.fr: taux variable
-? dirigeant . indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger
-: description.en:
-    '[automatic] In return for the CSG exemption, contributors have
-    a higher sickness rate. Unlike other insured tradesmen/artisans, they do not
-    benefit from the reduction of the health contribution rate according to
-    their declared income.'
-  description.fr: En contrepartie de l'exonération de CSG, les cotisants ont un
-    taux maladie plus elevé. Contrairement aux autres assurés
-    commerçants/artisans ils ne bénéficient pas de la réduction du taux de la
-    cotisation maladie en fonction du revenu déclaré.
-  titre.en: Illness (tax domicile abroad)
-  titre.fr: Maladie (domiciliation fiscale à l'étranger)
-? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
-: titre.en: supplementary pension
-  titre.fr: retraite complémentaire
-? dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire . plafond
-: titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
-  titre.fr: plafond retraite complémentaire des indépendants
-? dirigeant . indépendant . cotisations et contributions . cotisations . retraite de base
-: titre.en: pension
-  titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions . exonérations:
   titre.en: exemptions
   titre.fr: exonérations
@@ -5139,6 +5108,104 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   note.fr: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
   titre.en: professional training
   titre.fr: formation professionnelle
+? dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie
+: description.en: >
+    [automatic] Contributions for daily allowances for self-employed persons. If
+    the
+
+    health of craftsmen, traders, industrialists and collaborating spouses
+
+    requires a work stoppage, a portion of their former income will be returned to them.
+
+    paid up.
+  description.fr: |
+    Cotisations pour les indemnités journalières des indépendants. Si l'état de
+    santé des artisans, commerçants, industriels et conjoints collaborateurs
+    nécessite un arrêt de travail, une part de leur ancien revenu leur sera
+    versé.
+  titre.en: '[automatic] sick pay'
+  titre.fr: indemnités journalières maladie
+dirigeant . indépendant . cotisations et contributions . invalidité et décès:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
+dirigeant . indépendant . cotisations et contributions . maladie:
+  note.en: >
+    [automatic] The decree below contains the following sentence:
+
+
+    &gt; I.- By derogation from the first paragraph, the contribution rate shall be set at 6.5% where earned income exceeds five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
+
+
+    The word "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that an opposite interpretation is to be preferred: only the portion above this threshold is subject to this rate, and it is this implementation that we have chosen.
+  note.fr: >
+    On retrouve dans le décret ci-dessous la phrase suivante :
+
+
+    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
+
+
+    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
+  titre.en: '[automatic] disease'
+  titre.fr: maladie
+dirigeant . indépendant . cotisations et contributions . maladie . taux:
+  note.en: >
+    [automatic] This contribution is basically very simple: the health
+    contribution is 7.2% up to 5 times the social security ceiling, then 6.5%
+    beyond that. However:
+
+    - for its recovery, this contribution is separated into 2: sickness and sickness 2, the latter at the rate of 0.85%. Thus the amount of 7.2% quoted in the decree is reduced to 6.35% in our calculations.
+
+    - Contribution reductions have been introduced: a simple exemption below 110% of the social security ceiling, then a reinforced exemption below 40%. The above scale takes these reductions into account.
+  note.fr: >
+    Cette cotisation est à la base très simple : la cotisation maladie est de
+    7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà.
+    Cependant :
+
+    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
+
+    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
+  titre.en: '[automatic] rate'
+  titre.fr: taux
+dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
+  note.en: >
+    [automatic] For self-employed persons with the RSA, only the simple
+    reduction defined in the decree for calculating the health contribution is
+    taken into account. The reinforced reduction below 40% of the social
+    security ceiling is not, as there is no minimum base.
+  note.fr: >
+    Pour les indépendants au RSA, seule la réduction simple définie dans le
+    décret de calcul de la cotisation maladie est prise en compte. La réduction
+    renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas,
+    car il n'y a pas d'assiette minimale.
+  titre.en: '[automatic] RSA rate'
+  titre.fr: taux RSA
+? dirigeant . indépendant . cotisations et contributions . maladie . taux RSA part variable
+: titre.en: '[automatic] rate RSA variable part'
+  titre.fr: taux RSA part variable
+? dirigeant . indépendant . cotisations et contributions . maladie . taux variable
+: titre.en: '[automatic] floating rate'
+  titre.fr: taux variable
+? dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
+: description.en:
+    '[automatic] In return for the CSG exemption, contributors have
+    a higher sickness rate. In contrast to other insured tradesmen/artisans,
+    they do not benefit from the reduction of the health contribution rate
+    according to their declared income.'
+  description.fr: En contrepartie de l'exonération de CSG, les cotisants ont un
+    taux maladie plus elevé. Contrairement aux autres assurés
+    commerçants/artisans ils ne bénéficient pas de la réduction du taux de la
+    cotisation maladie en fonction du revenu déclaré.
+  titre.en: '[automatic] Illness (tax domicile abroad)'
+  titre.fr: Maladie (domiciliation fiscale à l'étranger)
+? dirigeant . indépendant . cotisations et contributions . retraite complémentaire
+: titre.en: '[automatic] retirement supplement'
+  titre.fr: retraite complémentaire
+? dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond
+: titre.en: '[automatic] supplementary pension ceiling for self-employed persons'
+  titre.fr: plafond retraite complémentaire des indépendants
+dirigeant . indépendant . cotisations et contributions . retraite de base:
+  titre.en: '[automatic] basic retirement'
+  titre.fr: retraite de base
 dirigeant . indépendant . revenu net de cotisations:
   description.en:
     This is the income net of contributions and expenses, before the
@@ -5551,10 +5618,10 @@ entreprise . charges dont rémunération dirigeant:
 entreprise . chiffre d'affaires:
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
-  résumé.en: The amount of sales
-  résumé.fr: Le montant des ventes réalisées
-  titre.en: Turnover
-  titre.fr: chiffre d'affaires (H.T.)
+  résumé.en: '[automatic] Total amount of transactions (excluding tax)'
+  résumé.fr: Le montant total des transactions (hors taxe)
+  titre.en: '[automatic] revenues'
+  titre.fr: chiffre d'affaires
 entreprise . chiffre d'affaires de société:
   titre.en: company turnover
   titre.fr: chiffre d'affaires de société

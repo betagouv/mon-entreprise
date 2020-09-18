@@ -234,7 +234,7 @@ protection sociale . retraite . complémentaire sécurité des indépendants . p
     produit:
       assiette:
         somme:
-          - dirigeant . indépendant . cotisations et contributions . cotisations . retraite complémentaire
+          - dirigeant . indépendant . cotisations et contributions . retraite complémentaire
           - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . retraite complémentaire
       facteur: 1 / prix d'achat du point
 
