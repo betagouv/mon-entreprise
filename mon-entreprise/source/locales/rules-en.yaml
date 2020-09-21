@@ -3948,6 +3948,58 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARCDSF)'
   titre.fr: retraite complémentaire (CARCDSF)
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire
+: description.en: >
+    [automatic] You have the possibility of benefiting from a contribution
+    reduction
+
+    for the supplementary pension if you apply for it. More information
+
+    more](/documentation/lead/independent/WFP/WFP/CARCDSF/additional withdrawal/removal)
+  description.fr: >
+    Vous avez la possibilité de bénéficier d'une réduction de cotisation
+
+    pour la retraite complémentaire si vous en faites la demande. [En savoir
+
+    plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
+  note.en: >
+    [automatic] Affiliates whose net professional income for the year N-1 is
+    less than 85%.
+
+    % of the PASS in force on 1 January of the year in question (€34,966 in 2020)
+
+    may, on request, obtain a reduction in the lump-sum contribution.
+
+
+    The reduction coefficient applied shall be equal to the ratio of income
+
+    non-salaried professionals on the above-mentioned threshold.
+
+
+    The request must be addressed to the CARDSF and be accompanied by a
+
+    photocopy of the tax return no. 2042 C or 2035 or 2065 and their
+
+    annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
+  note.fr: >
+    Les affiliés dont les revenus professionnels nets sur l'année N-1 sont
+    inférieurs à 85
+
+    % du PASS en vigueur au 1er janvier de l’année considérée (34 966 € en 2020)
+
+    peuvent, sur demande, obtenir une réduction de la cotisation forfaitaire.
+
+
+    Le coefficient de réduction appliqué est égal au rapport des revenus
+
+    professionnels non-salariés sur le seuil mentionné ci-dessus.
+
+
+    La demande doit être adressée à la CARCDSF et être accompagnée d’une
+
+    photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
+
+    annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
@@ -4724,6 +4776,27 @@ dirigeant . indépendant . assiette des cotisations:
   description.fr: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
   titre.en: '[automatic] contribution base'
   titre.fr: assiette des cotisations
+dirigeant . indépendant . avertissement base forfaitaire:
+  description.en: >-
+    [automatic] When you start your activity, as your professional income is not
+    known, the contributions and fees for the first two years are calculated on
+    a flat-rate basis.
+
+    This base is 19% of the annual Social Security ceiling for the first and second year of activity.
+
+    There is an adjustment in the second year based on the actual income declared for the previous year.
+
+    This simulator calculates the cruise contributions (after adjustment). It therefore allows you to know the amount to be accrued for the regularization.
+  description.fr: >-
+    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
+    pas connus, les cotisations et contributions des deux premières années sont
+    calculées sur une base forfaitaire.
+
+    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de la première et de la deuxième année d’activité.
+
+    Il y a un ajustement au cours de la deuxième année en fonction des revenus réels déclarés pour l'année précédente.
+
+    Ce simulateur calcul les cotisations au régime de croisière (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the executive's spouse to be covered by social protection
@@ -4904,27 +4977,6 @@ dirigeant . indépendant . contrats madelin . retraite . montant:
 dirigeant . indépendant . contrats madelin . retraite . plafond:
   titre.en: ceiling
   titre.fr: plafond
-dirigeant . indépendant . contrôle base forfaitaire:
-  description.en: >-
-    [automatic] When you start your activity, as your professional income is not
-    known, the contributions and fees for the first two years are calculated on
-    a flat-rate basis.
-
-    This base is 19% of the annual Social Security ceiling for the first and second year of activity.
-
-    There is an adjustment in the third year based on the actual income declared in the two previous years.
-
-    This simulator calculates the contributions to the cruise scheme (after regularisation). It therefore allows you to know the amount to be accrued for the regularization.
-  description.fr: >-
-    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
-    pas connus, les cotisations et contributions des deux premières années sont
-    calculées sur une base forfaitaire.
-
-    Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de la première et de la deuxième année d’activité.
-
-    Il y a un ajustement la troisième année en fonction des revenus réels déclarées lors des deux années précédentes.
-
-    Ce simulateur calcul les cotisations au régime de croisière (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
 dirigeant . indépendant . cotisations et contributions:
   description.en: >
     [automatic] This is the total amount owed by the self-employed person in

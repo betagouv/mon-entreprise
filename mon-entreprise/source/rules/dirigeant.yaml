@@ -440,7 +440,7 @@ dirigeant . indépendant:
   rend non applicable: contrat salarié
   formule: dirigeant = 'indépendant'
 
-dirigeant . indépendant . contrôle base forfaitaire:
+dirigeant . indépendant . avertissement base forfaitaire:
   type: notification
   applicable si:
     toutes ces conditions:
@@ -454,8 +454,8 @@ dirigeant . indépendant . contrôle base forfaitaire:
     Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
     la première et de la deuxième année d’activité.
 
-    Il y a un ajustement la troisième année en fonction des revenus réels
-    déclarées lors des deux années précédentes.
+    Il y a un ajustement au cours de la deuxième année en fonction des
+    revenus réels déclarés pour l'année précédente.
 
     Ce simulateur calcul les cotisations au régime de croisière (après
     régularisation). Il vous permet donc de connaître le montant à
