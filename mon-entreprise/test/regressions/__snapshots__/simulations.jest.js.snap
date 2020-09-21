@@ -7,40 +7,40 @@ exports[`calculate aide-déclaration-indépendant: ACRE 2`] = `"[15000,949,3261,
 exports[`calculate aide-déclaration-indépendant: ACRE 3`] = `"[5000,312,1354,101,1767,3233]"`;
 
 exports[`calculate aide-déclaration-indépendant: ACRE 4`] = `
-"[10000,630,560,101,1292,8708]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+"[10000,630,560,101,1291,8709]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: ACRE 5`] = `
-"[10000,630,-1456,101,-724,10724]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+"[10000,630,-1457,101,-726,10726]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: IJSS (indemnité sécurité sociale) 1`] = `"[50000,3024,11424,101,14549,35451]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[500,25,82,101,209,291]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 1`] = `"[500,25,82,101,208,292]"`;
 
-exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[5000,312,1021,101,1435,3565]"`;
+exports[`calculate aide-déclaration-indépendant: RSA 2`] = `"[5000,312,1021,101,1434,3566]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[50000,3175,17727,138,21039,28961]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 1`] = `"[50000,3175,17728,138,21041,28959]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[50000,3175,16595,138,19907,30093]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = `"[50000,3175,16580,138,19893,30107]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,14662,138,17974,32026]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,14664,138,17977,32023]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,3176,17732,118,21025,28975]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,0,0,118,0,0]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,16206,138,19518,30482]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,16186,138,19499,30501]"`;
 
 exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,101,8950,41050]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,101,14711,35289]"`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,0,101,0,0]"`;
 
 exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,101,13261,36739]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[50000,3176,11380,118,14673,35327]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 1`] = `"[50000,3176,11379,118,14673,35327]"`;
 
-exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[5000,311,1353,118,1781,3219]"`;
+exports[`calculate aide-déclaration-indépendant: nature de l'activité 2`] = `"[5000,311,1353,118,1782,3218]"`;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 3`] = `"[50000,3177,11384,101,14662,35338]"`;
 
@@ -52,7 +52,7 @@ exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
 "[50000,3177,9515,101,12793,37207]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `"[500,25,1026,101,1152,0]"`;
@@ -61,13 +61,13 @@ exports[`calculate aide-déclaration-indépendant: échelle de revenus 2`] = `"[
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 3`] = `"[1500,89,1052,101,1242,258]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[2000,121,1095,101,1317,683]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 4`] = `"[2000,121,1096,101,1318,682]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 5`] = `"[5000,312,1354,101,1767,3233]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[10000,630,2202,101,2934,7066]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[10000,630,2203,101,2934,7066]"`;
 
-exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `"[100000,6361,20834,101,27296,72704]"`;
+exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `"[100000,6361,20835,101,27297,72703]"`;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `"[1000000,63664,106148,101,169913,830087]"`;
 
@@ -121,37 +121,37 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé"
 `;
 
-exports[`calculate simulations-indépendant: acre 1`] = `"[73024,23024,50000,51980,8213,41787,0,73024]"`;
+exports[`calculate simulations-indépendant: acre 1`] = `"[73025,23025,50000,51980,8213,41787,0,73025]"`;
 
-exports[`calculate simulations-indépendant: activité 1`] = `"[29120,9120,20000,20788,603,19397,0,29120]"`;
+exports[`calculate simulations-indépendant: activité 1`] = `"[29119,9119,20000,20788,603,19397,0,29119]"`;
 
 exports[`calculate simulations-indépendant: activité 2`] = `"[29101,9101,20000,20787,603,19397,0,29101]"`;
 
-exports[`calculate simulations-indépendant: cotisations minimales 1`] = `"[1373,1273,100,134,0,100,0,1373]"`;
+exports[`calculate simulations-indépendant: cotisations minimales 1`] = `"[1372,1272,100,134,0,100,0,1372]"`;
 
-exports[`calculate simulations-indépendant: cotisations minimales 2`] = `"[245,145,100,104,0,100,0,245]"`;
+exports[`calculate simulations-indépendant: cotisations minimales 2`] = `"[244,144,100,104,0,100,0,244]"`;
 
 exports[`calculate simulations-indépendant: impôt sur le revenu 1`] = `"[29085,9085,20000,20787,603,19397,0,29085]"`;
 
-exports[`calculate simulations-indépendant: impôt sur le revenu 2`] = `"[73024,23024,50000,51980,8213,41787,0,73024]"`;
+exports[`calculate simulations-indépendant: impôt sur le revenu 2`] = `"[73025,23025,50000,51980,8213,41787,0,73025]"`;
 
 exports[`calculate simulations-indépendant: impôt sur le revenu 3`] = `"[29085,9085,20000,20787,2079,17921,0,29085]"`;
 
-exports[`calculate simulations-indépendant: inversions 1`] = `"[2000,1384,616,667,0,616,0,2000]"`;
+exports[`calculate simulations-indépendant: inversions 1`] = `"[2000,1384,616,668,0,616,0,2000]"`;
 
-exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33997,35352,3500,30498,0,50000]"`;
+exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,33997,35352,3500,30497,0,50000]"`;
 
 exports[`calculate simulations-indépendant: inversions 3`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
 
-exports[`calculate simulations-indépendant: inversions 4`] = `"[88863,27436,61427,63837,11427,50000,0,88863]"`;
+exports[`calculate simulations-indépendant: inversions 4`] = `"[0,0,0,0,0,50000,0,0]"`;
 
 exports[`calculate simulations-indépendant: inversions 5`] = `"[14596,4596,10000,10394,0,10000,1000,15596]"`;
 
 exports[`calculate simulations-indépendant: inversions 6`] = `"[19000,5928,13072,13585,0,13072,1000,20000]"`;
 
-exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5626,12374,12860,0,12374,2000,20000]"`;
+exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5625,12375,12861,0,12375,2000,20000]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1859,1359,500,548,0,500,0,1859]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1858,1358,500,548,0,500,0,1858]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 2`] = `"[2467,1467,1000,1064,0,1000,0,2467]"`;
 
@@ -159,122 +159,71 @@ exports[`calculate simulations-indépendant: échelle de revenus 3`] = `"[3075,1
 
 exports[`calculate simulations-indépendant: échelle de revenus 4`] = `"[3682,1682,2000,2097,0,2000,0,3682]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7427,2427,5000,5199,0,5000,0,7427]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7428,2428,5000,5199,0,5000,0,7428]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14595,4595,10000,10393,0,10000,0,14595]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139594,39594,100000,103788,24909,75091,0,139594]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139595,39595,100000,103788,24909,75091,0,139595]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,444477,555523,0,1239955]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,444476,555524,0,1239955]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 1`] = `
-"[0,500,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[0,500,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 2`] = `
-"[0,1000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[0,1000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 3`] = `
-"[0,1500,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[0,1500,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 4`] = `
-"[0,2000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[0,2000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 5`] = `
-"[0,5000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[0,5000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 6`] = `
-"[0,10000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[0,10000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 7`] = `
-"[0,100000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 7`] = `"[0,100000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
-"[0,1000000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 8`] = `"[0,1000000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `
-"[0,22249,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[0,22249,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `
-"[0,21923,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[0,21923,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `
-"[0,238216,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238215,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 1`] = `
-"[0,35072,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: médecin 1`] = `"[0,35073,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 2`] = `
-"[0,29772,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: médecin 2`] = `"[0,29771,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `
-"[0,213519,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,213518,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `
-"[0,293799,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293798,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 5`] = `
-"[0,81099,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,81098,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 1`] = `
-"[0,40085,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[0,40086,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
-"[0,2729,0,0,3,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,2728,0,0,3,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
 "[0,14775,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[0,14699,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . avertissement"
+"[0,14698,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
@@ -297,10 +246,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[915,0,0,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `
-"[915,0,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[915,0,0,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[915,0,0,10742,4,19]"`;
 
@@ -351,10 +297,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Con
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,0,1298,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `
-"[0,0,1297,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,0,1297,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,0,1445,4093,3,8]"`;
 
@@ -386,49 +329,46 @@ Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de TV
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `
-"[0,8392,0,6103,4,21]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+"[0,8392,0,6102,4,21]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `
 "[0,16871,0,12270,4,24]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`] = `
-"[0,21650,0,15828,4,31]
-Notifications affichées : dirigeant . indépendant . contrôle base forfaitaire"
+"[0,21650,0,15827,4,31]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,20567,0,15183,4,30]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,0,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,20264,0,15648,4,30]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,20264,0,15647,4,30]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 3`] = `"[0,20620,0,15102,4,29]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 4`] = `"[0,13769,0,10084,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `"[0,226878,0,57937,4,56]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `"[0,226877,0,57936,4,56]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `
 "[0,13769,0,10084,4,21]
 Notifications affichées : dirigeant . indépendant . contrats madelin . contrôle montant charges"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13779,0,10090,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13779,0,10089,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `
-"[0,14670,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . avertissement"
-`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14669,0,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 3`] = `"[0,13758,0,10075,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 3`] = `"[0,13757,0,10075,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 4`] = `"[0,13769,0,10084,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 5`] = `"[0,13769,0,10084,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): avec charges 1`] = `"[0,6795,0,4977,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): avec charges 1`] = `"[0,6794,0,4976,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): avec charges 2`] = `"[0,13769,0,10084,4,21]"`;
 
@@ -436,15 +376,15 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 2`] = `"[0,-225,0,0,3,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 3`] = `"[0,616,0,470,3,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 3`] = `"[0,616,0,471,3,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 4`] = `"[0,3084,0,2267,3,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 4`] = `"[0,3084,0,2266,3,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 5`] = `"[0,6795,0,4977,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 5`] = `"[0,6794,0,4976,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 6`] = `"[0,13769,0,10084,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 7`] = `"[0,33997,0,24912,4,48]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 7`] = `"[0,33997,0,24913,4,48]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `"[0,69895,0,36431,4,56]"`;
 

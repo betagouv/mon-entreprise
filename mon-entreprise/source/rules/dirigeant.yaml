@@ -474,6 +474,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
           - allocations familiales
       taux: taux
       facteur: prorata sur l'année
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
   formule:
@@ -511,7 +512,8 @@ dirigeant . indépendant . revenu net de cotisations:
     - résultat comptable
   formule:
     somme:
-      - revenu professionnel
+      - valeur: revenu professionnel
+        arrondi: oui
       - (- cotisations et contributions . CSG et CRDS .non déductible)
       - (- contrats madelin . part non-déductible fiscalement)
   résumé: Avant déduction de l'impôt sur le revenu
@@ -553,8 +555,8 @@ dirigeant . indépendant . revenu professionnel:
         - revenu net après impôt
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
-
       valeurs négatives possibles: oui
+    arrondi: oui
 
 dirigeant . indépendant . assiette des cotisations:
   description: Il s'agit de l'assiette des cotisations sociales, nombre forcément positif
@@ -659,6 +661,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retra
       - cotisations . assiette
       - 5.25% * plafond sécurité sociale temps plein
       - 200 heures/an * SMIC horaire
+    arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
   unité: €/an
@@ -670,6 +673,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de ba
         - taux: 17.75%
           plafond: 1
         - taux: 0.6%
+    arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   unité: €/an
@@ -706,6 +710,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       assiette: assiette
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
+    arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
   unité: €/an
@@ -714,6 +719,7 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités jo
       assiette: plafond sécurité sociale temps plein
       facteur: 40%
       taux: 0.85%
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
   références:
@@ -898,6 +904,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
       assiette: maladie . assiette
       taux: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . maladie:
   formule:
@@ -911,6 +918,7 @@ dirigeant . indépendant . cotisations et contributions . maladie:
         - taux: taux variable
           plafond: 5
         - taux: 6.5%
+    arrondi: oui
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -975,6 +983,7 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
         - taux: 17.75%
           plafond: 1
         - taux: 0.6%
+    arrondi: oui
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -987,6 +996,7 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
           plafond: plafond
         - taux: 8%
           plafond: 4 * plafond sécurité sociale temps plein
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire . plafond:
   acronyme: PRCI
@@ -1002,6 +1012,7 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
           plancher [ref]: 11.5% * plafond sécurité sociale temps plein
       taux: 1.3%
       plafond: plafond sécurité sociale temps plein
+    arrondi: oui
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -1036,6 +1047,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
             impôt sur le revenu: déductible
           assiette: dirigeant . indépendant . IJSS . total
           taux: 3.8%
+    arrondi: oui
 
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
@@ -1083,6 +1095,7 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
           - si: conjoint collaborateur
             alors: 0.34%
           - sinon: 0.25%
+    arrondi: oui
   note: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
 
   références:
@@ -1103,6 +1116,7 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
               taux: 0%
             - plafond: 140%
               taux: 3.1%
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
   formule:
@@ -1121,6 +1135,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
         recalcul:
           avec:
             dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
+    arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"
@@ -1187,6 +1202,7 @@ dirigeant . indépendant . cotisations et contributions . maladie domiciliation 
     produit:
       assiette: maladie . assiette
       taux: 14.5%
+  arrondi: oui
 
 dirigeant . indépendant . IJSS:
   titre: indemnités journalières de sécurité sociale

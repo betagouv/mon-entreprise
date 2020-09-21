@@ -5558,17 +5558,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   question.fr: Est-ce une activité libérale règlementée ?
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-entreprise . catégorie d'activité . libérale règlementée . avertissement:
-  description.en: >-
-    [automatic] Attention, the simulator is not yet complete for regulated
-    professions:
-
-    - for supplementary retirement, only the interprofessional scale, that of the CIPAV, has been integrated for the moment. - Make sure that the auto-entrepreneur status is compatible with your regulated profession - for medical practitioners and medical auxiliaries (PAM), [the specificities of contribution calculation](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) and the [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) are not yet integrated.
-  description.fr: >-
-    Attention, le simulateur n'est pas encore complet pour les professions
-    libérales règlementées :
-
-    - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant. - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 ? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
 : titre.en: type of regulated liberal activity
   titre.fr: type d'activité libérale règlementée

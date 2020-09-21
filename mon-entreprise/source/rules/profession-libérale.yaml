@@ -154,6 +154,7 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
           plafond: 1
         - taux: 14%
           plafond: 4
+    arrondi: oui
 
 dirigeant . indépendant . PL . régime général . maladie:
   titre: maladie (taux PLNR)
@@ -170,6 +171,7 @@ dirigeant . indépendant . PL . régime général . maladie:
               taux: 1.5%
             - plafond: 110%
               taux: 6.5%
+    arrondi: oui
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
     guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
@@ -296,6 +298,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
         - nom: tranche 2
           taux: 1.87%
           plafond: 5 * plafond sécurité sociale temps plein
+    arrondi: oui
   références:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
@@ -368,6 +371,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
             alors: 0.3%
           - sinon: 0.1%
     plafond: 0.50% * plafond sécurité sociale temps plein
+    arrondi: oui
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
 
@@ -379,6 +383,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
       - produit:
           assiette: assiette des cotisations
           taux: 6.50%
+        arrondi: oui
       - contribution additionnelle
       - (- participation CPAM)
 
@@ -438,12 +443,14 @@ dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
     produit:
       assiette: assiette participation CPAM
       taux: 6.40%
+    arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
     produit:
       assiette: (assiette des cotisations - assiette participation CPAM)
       taux: 3.25%
+    arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . secteur médecin = '1'
@@ -462,6 +469,7 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
             - montant: 75%
               plafond: 250%
             - montant: 60%
+    arrondi: oui
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
 
@@ -516,6 +524,7 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
               plafond: 25246 €/an
             - taux: 3%
               plafond: 176413 €/an
+        arrondi: oui
   références:
     Site CARPIMKO: https://www.carpimko.com/cotisations/cotisations_cas_general
 
@@ -534,6 +543,7 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
       - forfaitaire
       - proportionnelle
       - (- participation CPAM)
+    arrondi: oui
   références:
     Taux 2020: http://www.carpimko.com/cotisations/cotisations_cas_general
 
@@ -554,6 +564,7 @@ dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
           taux: 2 / 3
         arrondi: oui
       - 60% * proportionnelle
+
   références:
     Prise en charge CPAM: http://www.carpimko.com/cotisations/cotisations_cas_general
 
@@ -581,6 +592,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
       assiette: assiette des cotisations
       plafond: 3.5 * plafond sécurité sociale temps plein
       taux: 9.80%
+    arrondi: oui
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
 
@@ -610,6 +622,7 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
         - montant: 738 €/an
           plafond: 300%
         - montant: 863 €/an
+    arrondi: oui
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm#base
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
@@ -628,6 +641,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
               plafond: 5 * plafond sécurité sociale temps plein
               taux: 3.80%
       abattement: taux participation CPAM
+    arrondi: oui
 
   références:
     Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
@@ -657,6 +671,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
       - produit:
           assiette: 2960.40 €/an
           taux: réduction de la cotisation forfaitaire
+        arrondi: oui
       - barème:
           assiette: assiette des cotisations
           multiplicateur: plafond sécurité sociale temps plein
@@ -665,6 +680,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
               plafond: 0.85
             - taux: 10.65%
               plafond: 5
+    arrondi: oui
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -722,6 +738,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
           assiette: assiette des cotisations
           plafond: 5 * plafond sécurité sociale temps plein
           taux: 0.725 %
+    arrondi: oui
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -796,6 +813,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     produit:
       assiette: 780 €/an
       taux: 1 / 3
+    arrondi: oui
   références:
     Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |
