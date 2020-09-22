@@ -33,7 +33,7 @@ export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
 		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
 
 /**
- * Filter-out replacements at runtime.
+ * Filter-out and apply all possible replacements at runtime.
  */
 const getApplicableReplacements = (
 	filter,

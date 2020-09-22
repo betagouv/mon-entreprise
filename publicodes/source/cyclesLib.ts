@@ -580,7 +580,15 @@ export function isAnyMechanism<Names extends string>(
 	)
 }
 
-type RuleDependencies<Names extends string> = Array<Names>
+enum DependencyType {
+	formule,
+	replacedBy,
+	disabledBy
+}
+
+type RuleDependency<Names extends string> = [Names, DependencyType]
+
+type RuleDependencies<Names extends string> = Array<RuleDependency<Names>>
 
 export function ruleDepsOfNode<Names extends string>(
 	ruleName: Names,
@@ -628,14 +636,16 @@ export function ruleDepsOfNode<Names extends string>(
 	function ruleDepsOfReference(
 		reference: Reference<Names>
 	): RuleDependencies<Names> {
-		return [reference.dottedName]
+		return [[reference.dottedName, DependencyType.formule]]
 	}
 
 	function ruleDepsOfRecalculMech(
 		recalculMech: RecalculMech<Names>
 	): RuleDependencies<Names> {
 		const ruleReference = recalculMech.explanation.recalcul.partialReference
-		return ruleReference === ruleName ? [] : [ruleReference]
+		return ruleReference === ruleName
+			? []
+			: [[ruleReference, DependencyType.formule]]
 	}
 
 	function ruleDepsOfEncadrementMech(
@@ -945,9 +955,11 @@ function ruleDepsOfRuleNode<Names extends string>(
 		.map(x => ruleDepsOfNode<Names>(rule.dottedName, x))
 		.flat(1)
 
-	const isDisabledByDependencies = rule.isDisabledBy.map(x => x.dottedName)
-	const replacedByDependencies = rule.replacedBy.map(
-		x => x.referenceNode.dottedName
+	const isDisabledByDependencies: RuleDependencies<Names> = rule.isDisabledBy.map(
+		x => [x.dottedName, DependencyType.disabledBy]
+	)
+	const replacedByDependencies: RuleDependencies<Names> = rule.replacedBy.map(
+		x => [x.referenceNode.dottedName, DependencyType.replacedBy]
 	)
 	return [subNodesDeps, isDisabledByDependencies, replacedByDependencies].flat(
 		1
