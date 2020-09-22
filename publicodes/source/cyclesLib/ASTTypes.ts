@@ -2,30 +2,27 @@
  * Note: all here is strictly based on duck typing.
  * We don't exepect the parent rule to explain the type of the contained formula, for example.
  */
-
 import * as R from 'ramda'
-import graphlib from '@dagrejs/graphlib'
-import { ArrondiExplanation } from './mecanisms/arrondi'
-import parseRules from './parseRules'
-import { ParsedRule, ParsedRules, Rules } from './types'
+import { ParsedRule } from '../types'
+import { ArrondiExplanation } from '../mecanisms/arrondi'
 
-type OnOff = 'oui' | 'non'
+export type OnOff = 'oui' | 'non'
 export function isOnOff(a: string): a is OnOff {
 	return a === 'oui' || a === 'non'
 }
 
 // Note: to build type-guards, we would need to have a `isNames` guard. That's
 // pretty cumbersome, so for now we rely on this.
-type WannabeDottedName = string
+export type WannabeDottedName = string
 export function isWannabeDottedName(a: string): a is WannabeDottedName {
 	return typeof a === 'string'
 }
 
-type ASTNode = { [_: string]: {} | undefined }
+export type ASTNode = { [_: string]: {} | undefined }
 
-type RuleNode<Names extends string> = ASTNode & ParsedRule<Names>
+export type RuleNode<Names extends string> = ASTNode & ParsedRule<Names>
 
-type RuleProp = ASTNode & {
+export type RuleProp = ASTNode & {
 	category: 'ruleProp'
 	rulePropType: string
 }
@@ -36,14 +33,14 @@ export function isRuleProp(node: ASTNode): node is RuleProp {
 	)
 }
 
-type CondRuleProp = RuleProp & {
+export type CondRuleProp = RuleProp & {
 	rulePropType: 'cond'
 }
 export function isCondRuleProp(node: ASTNode): node is CondRuleProp {
 	return isRuleProp(node) && (node as CondRuleProp).rulePropType === 'cond'
 }
 
-type ApplicableSi = CondRuleProp & {
+export type ApplicableSi = CondRuleProp & {
 	dottedName: 'applicable si'
 	explanation: ASTNode
 }
@@ -56,7 +53,7 @@ export function isApplicableSi(node: ASTNode): node is ApplicableSi {
 	)
 }
 
-type NonApplicableSi = CondRuleProp & {
+export type NonApplicableSi = CondRuleProp & {
 	dottedName: 'non applicable si'
 	explanation: ASTNode
 }
@@ -69,7 +66,7 @@ export function isNonApplicableSi(node: ASTNode): node is NonApplicableSi {
 	)
 }
 
-type Formule<Names extends string> = RuleProp & {
+export type Formule<Names extends string> = RuleProp & {
 	name: 'formule'
 	rulePropType: 'formula'
 	explanation: FormuleExplanation<Names>
@@ -86,7 +83,7 @@ export function isFormule<Names extends string>(
 	)
 }
 
-type FormuleExplanation<Names extends string> =
+export type FormuleExplanation<Names extends string> =
 	| Value
 	| Operation
 	| Possibilities
@@ -106,7 +103,7 @@ export function isFormuleExplanation<Names extends string>(
 	)
 }
 
-type Value = ASTNode & {
+export type Value = ASTNode & {
 	nodeValue: number | string | boolean
 }
 export function isValue(node: ASTNode): node is Value {
@@ -118,7 +115,7 @@ export function isValue(node: ASTNode): node is Value {
 	)
 }
 
-type Operation = ASTNode & {
+export type Operation = ASTNode & {
 	operationType: 'comparison' | 'calculation'
 	explanation: Array<ASTNode>
 }
@@ -129,7 +126,7 @@ export function isOperation(node: ASTNode): node is Operation {
 	])
 }
 
-type Possibilities = ASTNode & {
+export type Possibilities = ASTNode & {
 	possibilités: Array<string>
 	'choix obligatoire'?: OnOff
 	'une possibilité': OnOff
@@ -144,7 +141,7 @@ export function isPossibilities(node: ASTNode): node is Possibilities {
 		isOnOff(possibilities['une possibilité'])
 	)
 }
-type Possibilities2 = ASTNode & {
+export type Possibilities2 = ASTNode & {
 	[index: number]: string // short dotted name
 	'choix obligatoire'?: OnOff
 	'une possibilité': OnOff
@@ -161,7 +158,7 @@ export function isPossibilities2(node: ASTNode): node is Possibilities2 {
 	)
 }
 
-type Reference<Names extends string> = ASTNode & {
+export type Reference<Names extends string> = ASTNode & {
 	category: 'reference'
 	name: Names
 	partialReference: Names
@@ -179,7 +176,7 @@ export function isReference<Names extends string>(
 	)
 }
 
-type AbstractMechanism = ASTNode & {
+export type AbstractMechanism = ASTNode & {
 	category: 'mecanism'
 	name: string
 }
@@ -190,7 +187,7 @@ export function isAbstractMechanism(node: ASTNode): node is AbstractMechanism {
 	)
 }
 
-type RecalculMech<Names extends string> = AbstractMechanism & {
+export type RecalculMech<Names extends string> = AbstractMechanism & {
 	explanation: {
 		recalcul: Reference<Names>
 		amendedSituation: Record<Names, Reference<Names>>
@@ -211,7 +208,7 @@ export function isRecalculMech<Names extends string>(
 	)
 }
 
-type EncadrementMech = AbstractMechanism & {
+export type EncadrementMech = AbstractMechanism & {
 	name: 'encadrement'
 	explanation: {
 		valeur: ASTNode
@@ -231,7 +228,7 @@ export function isEncadrementMech(node: ASTNode): node is EncadrementMech {
 	)
 }
 
-type SommeMech = AbstractMechanism & {
+export type SommeMech = AbstractMechanism & {
 	name: 'somme'
 	explanation: Array<ASTNode>
 }
@@ -244,7 +241,7 @@ export function isSommeMech(node: ASTNode): node is SommeMech {
 	)
 }
 
-type ProduitMech = AbstractMechanism & {
+export type ProduitMech = AbstractMechanism & {
 	name: 'produit'
 	explanation: {
 		assiette: ASTNode
@@ -266,7 +263,7 @@ export function isProduitMech(node: ASTNode): node is ProduitMech {
 	)
 }
 
-type VariationsMech = AbstractMechanism & {
+export type VariationsMech = AbstractMechanism & {
 	name: 'variations'
 	explanation: {
 		condition: ASTNode
@@ -288,7 +285,7 @@ export function isVariationsMech(node: ASTNode): node is VariationsMech {
 	)
 }
 
-type AllegementMech = AbstractMechanism & {
+export type AllegementMech = AbstractMechanism & {
 	name: 'allègement'
 	explanation: {
 		abattement: ASTNode
@@ -320,7 +317,7 @@ export function isAllegementMech(node: ASTNode): node is AllegementMech {
 	)
 }
 
-type BaremeMech = AbstractMechanism & {
+export type BaremeMech = AbstractMechanism & {
 	name: 'barème'
 	explanation: {
 		assiette: ASTNode
@@ -349,7 +346,7 @@ export function isBaremeMech(node: ASTNode): node is BaremeMech {
 	)
 }
 
-type InversionNumMech<Names extends string> = AbstractMechanism & {
+export type InversionNumMech<Names extends string> = AbstractMechanism & {
 	name: 'inversion numérique'
 	explanation: {
 		inversionCandidates: Array<Reference<Names>>
@@ -371,7 +368,7 @@ export function isInversionNumMech<Names extends string>(
 	)
 }
 
-type ArrondiMech = AbstractMechanism & {
+export type ArrondiMech = AbstractMechanism & {
 	name: 'arrondi'
 	explanation: Record<keyof ArrondiExplanation, ASTNode>
 }
@@ -386,7 +383,7 @@ export function isArrondiMech(node: ASTNode): node is ArrondiMech {
 	)
 }
 
-type MaxMech = AbstractMechanism & {
+export type MaxMech = AbstractMechanism & {
 	name: 'le maximum de'
 	explanation: Array<ASTNode>
 }
@@ -399,7 +396,7 @@ export function isMaxMech(node: ASTNode): node is MaxMech {
 	)
 }
 
-type MinMech = AbstractMechanism & {
+export type MinMech = AbstractMechanism & {
 	name: 'le minimum de'
 	explanation: Array<ASTNode>
 }
@@ -412,7 +409,7 @@ export function isMinMech(node: ASTNode): node is MinMech {
 	)
 }
 
-type ComposantesMech = AbstractMechanism & {
+export type ComposantesMech = AbstractMechanism & {
 	name: 'composantes'
 	explanation: Array<ASTNode>
 }
@@ -425,7 +422,7 @@ export function isComposantesMech(node: ASTNode): node is ComposantesMech {
 	)
 }
 
-type UneConditionsMech = AbstractMechanism & {
+export type UneConditionsMech = AbstractMechanism & {
 	name: 'une de ces conditions'
 	explanation: Array<ASTNode>
 }
@@ -438,7 +435,7 @@ export function isUneConditionsMech(node: ASTNode): node is UneConditionsMech {
 	)
 }
 
-type ToutesConditionsMech = AbstractMechanism & {
+export type ToutesConditionsMech = AbstractMechanism & {
 	name: 'toutes ces conditions'
 	explanation: Array<ASTNode>
 }
@@ -453,7 +450,7 @@ export function isToutesConditionsMech(
 	)
 }
 
-type SyncMech = AbstractMechanism & {
+export type SyncMech = AbstractMechanism & {
 	name: 'synchronisation'
 	API: {}
 }
@@ -462,7 +459,7 @@ export function isSyncMech(node: ASTNode): node is SyncMech {
 	return isAbstractMechanism(syncMech) && syncMech.name === 'synchronisation'
 }
 
-type GrilleMech = AbstractMechanism & {
+export type GrilleMech = AbstractMechanism & {
 	name: 'grille'
 	explanation: {
 		assiette: ASTNode
@@ -491,7 +488,7 @@ export function isGrilleMech(node: ASTNode): node is GrilleMech {
 	)
 }
 
-type TauxProgMech = AbstractMechanism & {
+export type TauxProgMech = AbstractMechanism & {
 	name: 'taux progressif'
 	explanation: {
 		assiette: ASTNode
@@ -520,7 +517,7 @@ export function isTauxProgMech(node: ASTNode): node is TauxProgMech {
 	)
 }
 
-type DureeMech = AbstractMechanism & {
+export type DureeMech = AbstractMechanism & {
 	name: 'Durée'
 	explanation: {
 		depuis: ASTNode
@@ -538,7 +535,7 @@ export function isDureeMech(node: ASTNode): node is DureeMech {
 	)
 }
 
-type AnyMechanism<Names extends string> =
+export type AnyMechanism<Names extends string> =
 	| RecalculMech<Names>
 	| EncadrementMech
 	| SommeMech
@@ -580,428 +577,4 @@ export function isAnyMechanism<Names extends string>(
 		isTauxProgMech(node) ||
 		isDureeMech(node)
 	)
-}
-
-enum DependencyType {
-	formule,
-	replacedBy,
-	disabledBy
-}
-
-type RuleDependency<Names extends string> = [Names, DependencyType]
-
-type RuleDependencies<Names extends string> = Array<RuleDependency<Names>>
-
-export function ruleDepsOfNode<Names extends string>(
-	ruleName: Names,
-	node: ASTNode
-): RuleDependencies<Names> {
-	function ruleDepsOfApplicableSi(
-		applicableSi: ApplicableSi
-	): RuleDependencies<Names> {
-		return ruleDepsOfNode(ruleName, applicableSi.explanation)
-	}
-
-	function ruleDepsOfNonApplicableSi(
-		nonApplicableSi: NonApplicableSi
-	): RuleDependencies<Names> {
-		return ruleDepsOfNode(ruleName, nonApplicableSi.explanation)
-	}
-
-	function ruleDepsOfFormule(formule: Formule<Names>): RuleDependencies<Names> {
-		return ruleDepsOfNode(ruleName, formule.explanation)
-	}
-
-	function ruleDepsOfValue(value: Value): RuleDependencies<Names> {
-		return []
-	}
-
-	function ruleDepsOfOperation(operation: Operation): RuleDependencies<Names> {
-		return operation.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-	}
-
-	function ruleDepsOfPossibilities(
-		possibilities: Possibilities
-	): RuleDependencies<Names> {
-		return []
-	}
-	function ruleDepsOfPossibilities2(
-		possibilities: Possibilities2
-	): RuleDependencies<Names> {
-		return []
-	}
-
-	function ruleDepsOfReference(
-		reference: Reference<Names>
-	): RuleDependencies<Names> {
-		return [[reference.dottedName, DependencyType.formule]]
-	}
-
-	function ruleDepsOfRecalculMech(
-		recalculMech: RecalculMech<Names>
-	): RuleDependencies<Names> {
-		const ruleReference = recalculMech.explanation.recalcul.partialReference
-		return ruleReference === ruleName
-			? []
-			: [[ruleReference, DependencyType.formule]]
-	}
-
-	function ruleDepsOfEncadrementMech(
-		encadrementMech: EncadrementMech
-	): RuleDependencies<Names> {
-		const result = [
-			encadrementMech.explanation.plafond,
-			encadrementMech.explanation.plancher,
-			encadrementMech.explanation.valeur
-		].flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfSommeMech(sommeMech: SommeMech): RuleDependencies<Names> {
-		const result = sommeMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfProduitMech(
-		produitMech: ProduitMech
-	): RuleDependencies<Names> {
-		const result = [
-			produitMech.explanation.assiette,
-			produitMech.explanation.plafond,
-			produitMech.explanation.facteur,
-			produitMech.explanation.taux
-		].flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfVariationsMech(
-		variationsMech: VariationsMech
-	): RuleDependencies<Names> {
-		function ruleOfVariation({
-			condition,
-			consequence
-		}: {
-			condition: ASTNode
-			consequence: ASTNode
-		}): RuleDependencies<Names> {
-			return R.concat(
-				ruleDepsOfNode<Names>(ruleName, condition),
-				ruleDepsOfNode<Names>(ruleName, consequence)
-			)
-		}
-		const result = variationsMech.explanation.flatMap(ruleOfVariation)
-		return result
-	}
-
-	function ruleDepsOfAllegementMech(
-		allegementMech: AllegementMech
-	): RuleDependencies<Names> {
-		const subNodes = R.concat(
-			[
-				allegementMech.explanation.abattement,
-				allegementMech.explanation.assiette,
-				allegementMech.explanation.franchise,
-				allegementMech.explanation.plafond
-			],
-			allegementMech.explanation.décote
-				? [
-						allegementMech.explanation.décote.plafond,
-						allegementMech.explanation.décote.taux
-				  ]
-				: []
-		)
-		const result = subNodes.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfBaremeMech(
-		baremeMech: BaremeMech
-	): RuleDependencies<Names> {
-		const tranchesNodes = baremeMech.explanation.tranches.flatMap(
-			({ plafond, taux }) => [plafond, taux]
-		)
-		const result = R.concat(
-			[baremeMech.explanation.assiette, baremeMech.explanation.multiplicateur],
-			tranchesNodes
-		).flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	/**
-	 * Returns 0 dependency for _inversion numérique_ as it's not creating a logical dependency.
-	 */
-	function ruleDepsOfInversionNumMech(
-		inversionNumMech: InversionNumMech<Names>
-	): RuleDependencies<Names> {
-		return []
-	}
-
-	function ruleDepsOfArrondiMech(
-		arrondiMech: ArrondiMech
-	): RuleDependencies<Names> {
-		const result = [
-			arrondiMech.explanation.decimals,
-			arrondiMech.explanation.value
-		].flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfMaxMech(maxMech: MaxMech): RuleDependencies<Names> {
-		const result = maxMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfMinMech(minMech: MinMech): RuleDependencies<Names> {
-		const result = minMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfComposantesMech(
-		composantesMech: ComposantesMech
-	): RuleDependencies<Names> {
-		const result = composantesMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfUneConditionsMech(
-		uneConditionsMech: UneConditionsMech
-	): RuleDependencies<Names> {
-		const result = uneConditionsMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfToutesConditionsMech(
-		toutesConditionsMech: ToutesConditionsMech
-	): RuleDependencies<Names> {
-		const result = toutesConditionsMech.explanation.flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfSyncMech(_: SyncMech): RuleDependencies<Names> {
-		return []
-	}
-
-	function ruleDepsOfGrilleMech(
-		grilleMech: GrilleMech
-	): RuleDependencies<Names> {
-		const tranchesNodes = grilleMech.explanation.tranches.flatMap(
-			({ montant, plafond }) => [montant, plafond]
-		)
-		const result = R.concat(
-			[grilleMech.explanation.assiette, grilleMech.explanation.multiplicateur],
-			tranchesNodes
-		).flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfTauxProgMech(
-		tauxProgMech: TauxProgMech
-	): RuleDependencies<Names> {
-		const tranchesNodes = tauxProgMech.explanation.tranches.flatMap(
-			({ plafond, taux }) => [plafond, taux]
-		)
-		const result = R.concat(
-			[
-				tauxProgMech.explanation.assiette,
-				tauxProgMech.explanation.multiplicateur
-			],
-			tranchesNodes
-		).flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	function ruleDepsOfDureeMech(dureeMech: DureeMech): RuleDependencies<Names> {
-		const result = [
-			dureeMech.explanation.depuis,
-			dureeMech.explanation["jusqu'à"]
-		].flatMap(
-			R.partial<Names, ASTNode, RuleDependencies<Names>>(ruleDepsOfNode, [
-				ruleName
-			])
-		)
-		return result
-	}
-
-	let result
-	if (isApplicableSi(node)) {
-		result = ruleDepsOfApplicableSi(node)
-	} else if (isNonApplicableSi(node)) {
-		result = ruleDepsOfNonApplicableSi(node)
-	} else if (isFormule<Names>(node)) {
-		result = ruleDepsOfFormule(node)
-	} else if (isValue(node)) {
-		result = ruleDepsOfValue(node)
-	} else if (isOperation(node)) {
-		result = ruleDepsOfOperation(node)
-	} else if (isReference<Names>(node)) {
-		result = ruleDepsOfReference(node)
-	} else if (isPossibilities(node)) {
-		result = ruleDepsOfPossibilities(node)
-	} else if (isPossibilities2(node)) {
-		result = ruleDepsOfPossibilities2(node)
-	} else if (isRecalculMech<Names>(node)) {
-		result = ruleDepsOfRecalculMech(node)
-	} else if (isEncadrementMech(node)) {
-		result = ruleDepsOfEncadrementMech(node)
-	} else if (isSommeMech(node)) {
-		result = ruleDepsOfSommeMech(node)
-	} else if (isProduitMech(node)) {
-		result = ruleDepsOfProduitMech(node)
-	} else if (isVariationsMech(node)) {
-		result = ruleDepsOfVariationsMech(node)
-	} else if (isAllegementMech(node)) {
-		result = ruleDepsOfAllegementMech(node)
-	} else if (isBaremeMech(node)) {
-		result = ruleDepsOfBaremeMech(node)
-	} else if (isInversionNumMech<Names>(node)) {
-		result = ruleDepsOfInversionNumMech(node)
-	} else if (isArrondiMech(node)) {
-		result = ruleDepsOfArrondiMech(node)
-	} else if (isMaxMech(node)) {
-		result = ruleDepsOfMaxMech(node)
-	} else if (isMinMech(node)) {
-		result = ruleDepsOfMinMech(node)
-	} else if (isComposantesMech(node)) {
-		result = ruleDepsOfComposantesMech(node)
-	} else if (isUneConditionsMech(node)) {
-		result = ruleDepsOfUneConditionsMech(node)
-	} else if (isToutesConditionsMech(node)) {
-		result = ruleDepsOfToutesConditionsMech(node)
-	} else if (isSyncMech(node)) {
-		result = ruleDepsOfSyncMech(node)
-	} else if (isGrilleMech(node)) {
-		result = ruleDepsOfGrilleMech(node)
-	} else if (isTauxProgMech(node)) {
-		result = ruleDepsOfTauxProgMech(node)
-	} else if (isDureeMech(node)) {
-		result = ruleDepsOfDureeMech(node)
-	}
-
-	if (result === undefined) {
-		throw new Error(
-			`This node doesn't have a visitor method defined: ${JSON.stringify(
-				node,
-				null,
-				4
-			)}`
-		)
-	}
-	return result
-}
-
-function ruleDepsOfRuleNode<Names extends string>(
-	rule: RuleNode<Names>
-): RuleDependencies<Names> {
-	const subNodes = [
-		rule.formule,
-		rule['applicable si'],
-		rule['non applicable si']
-	].filter(x => x !== undefined) as Array<ASTNode>
-	const subNodesDeps = subNodes
-		.map(x => ruleDepsOfNode<Names>(rule.dottedName, x))
-		.flat(1)
-
-	const isDisabledByDependencies: RuleDependencies<Names> = rule.isDisabledBy.map(
-		x => [x.dottedName, DependencyType.disabledBy]
-	)
-	const replacedByDependencies: RuleDependencies<Names> = rule.replacedBy.map(
-		x => [x.referenceNode.dottedName, DependencyType.replacedBy]
-	)
-	return [subNodesDeps, isDisabledByDependencies, replacedByDependencies].flat(
-		1
-	)
-}
-
-function buildRulesDependencies<Names extends string>(
-	parsedRules: ParsedRules<Names>
-): Array<[Names, RuleDependencies<Names>]> {
-	// This stringPairs thing is necessary because `toPairs` is strictly considering that
-	// object keys are strings (same for `Object.entries`). Maybe we should build our own
-	// `toPairs`?
-	const stringPairs: Array<[string, RuleNode<Names>]> = Object.entries(
-		parsedRules
-	)
-	const pairs: Array<[Names, RuleNode<Names>]> = stringPairs as Array<
-		[Names, RuleNode<Names>]
-	>
-
-	return pairs.map(([dottedName, ruleNode]: [Names, RuleNode<Names>]): [
-		Names,
-		RuleDependencies<Names>
-	] => [dottedName, ruleDepsOfRuleNode<Names>(ruleNode)])
-}
-
-type GraphNodeRepr = string
-type GraphCycles = Array<Array<GraphNodeRepr>>
-
-// [XXX] Rename with cyclicDependencies and split this file in 3 parts
-export function hasCycles<Names extends string>(
-	rawRules: Rules<Names> | string
-): GraphCycles {
-	const parsedRules = parseRules(rawRules)
-	const ruleDependencies = buildRulesDependencies(parsedRules)
-	const g = new graphlib.Graph()
-
-	ruleDependencies.forEach(([ruleDottedName, dependencies]) => {
-		dependencies.forEach(([depDottedName, depType]) => {
-			g.setEdge(ruleDottedName, depDottedName, { type: depType })
-		})
-	})
-	return graphlib.alg.findCycles(g)
 }

@@ -1,11 +1,11 @@
 import graphlib from '@dagrejs/graphlib'
 import { expect } from 'chai'
-import { hasCycles } from 'publicodes'
+import { cyclicDependencies } from 'publicodes'
 import rules from '../source/rules'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
-		let cycles = hasCycles(rules)
+		let cycles = cyclicDependencies(rules)
 
 		expect(
 			cycles,

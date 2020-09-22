@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
 
-import { hasCycles } from '../source/cyclesLib'
+import { cyclicDependencies } from '../source/cyclesLib'
 
 describe('Cyclic dependencies detector 3000 ™', () => {
 	it('should detect the trivial formule cycle', () => {
@@ -9,7 +9,7 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 			a:
 				formule: a + 1
 		`
-		const cycles = hasCycles(rules)
+		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.deep.equal([['a']])
 	})
 
@@ -18,7 +18,7 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 			a:
 				remplace: a
 		`
-		const cycles = hasCycles(rules)
+		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.deep.equal([['a']])
 	})
 
@@ -33,7 +33,7 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 			d:
 				formule: b + 1
 		`
-		const cycles = hasCycles(rules)
+		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.deep.equal([['d', 'c', 'b', 'a']])
 	})
 
@@ -45,7 +45,7 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 			c:
 				formule: 0
 		`
-		const cycles = hasCycles(rules)
+		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.be.empty
 	})
 
@@ -59,7 +59,7 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 			c:
 				formule: 0
 		`
-		const cycles = hasCycles(rules)
+		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.deep.equal([['c', 'b', 'a']])
 	})
 })

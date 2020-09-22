@@ -36,7 +36,7 @@ export type EvaluationOptions = Partial<{
 export * from './components'
 export { formatValue } from './format'
 export { default as translateRules } from './translateRules'
-export { hasCycles } from './cyclesLib'
+export { cyclicDependencies } from './cyclesLib/index'
 export * from './types'
 export { parseRules }
 
