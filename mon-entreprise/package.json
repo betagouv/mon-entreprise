@@ -21,8 +21,7 @@
 		"i18next-parser": "^1.0.6",
 		"monaco-editor-webpack-plugin": "^1.9.0",
 		"workbox-webpack-plugin": "^3.6.0",
-		"worker-loader": "^2.0.0",
-		"@dagrejs/graphlib": "^2.1.4"
+		"worker-loader": "^2.0.0"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.3.4",

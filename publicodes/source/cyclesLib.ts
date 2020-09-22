@@ -4,8 +4,10 @@
  */
 
 import * as R from 'ramda'
+import graphlib from '@dagrejs/graphlib'
 import { ArrondiExplanation } from './mecanisms/arrondi'
-import { ParsedRule, ParsedRules } from './types'
+import parseRules from './parseRules'
+import { ParsedRule, ParsedRules, Rules } from './types'
 
 type OnOff = 'oui' | 'non'
 export function isOnOff(a: string): a is OnOff {
@@ -966,7 +968,7 @@ function ruleDepsOfRuleNode<Names extends string>(
 	)
 }
 
-export function buildRulesDependencies<Names extends string>(
+function buildRulesDependencies<Names extends string>(
 	parsedRules: ParsedRules<Names>
 ): Array<[Names, RuleDependencies<Names>]> {
 	// This stringPairs thing is necessary because `toPairs` is strictly considering that
@@ -983,4 +985,23 @@ export function buildRulesDependencies<Names extends string>(
 		Names,
 		RuleDependencies<Names>
 	] => [dottedName, ruleDepsOfRuleNode<Names>(ruleNode)])
+}
+
+type GraphNodeRepr = string
+type GraphCycles = Array<Array<GraphNodeRepr>>
+
+// [XXX] Rename with cyclicDependencies and split this file in 3 parts
+export function hasCycles<Names extends string>(
+	rawRules: Rules<Names> | string
+): GraphCycles {
+	const parsedRules = parseRules(rawRules)
+	const ruleDependencies = buildRulesDependencies(parsedRules)
+	const g = new graphlib.Graph()
+
+	ruleDependencies.forEach(([ruleDottedName, dependencies]) => {
+		dependencies.forEach(([depDottedName, depType]) => {
+			g.setEdge(ruleDottedName, depDottedName, { type: depType })
+		})
+	})
+	return graphlib.alg.findCycles(g)
 }

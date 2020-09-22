@@ -1,23 +1,11 @@
 import graphlib from '@dagrejs/graphlib'
 import { expect } from 'chai'
-import { buildRulesDependencies, parseRules } from 'publicodes'
+import { hasCycles } from 'publicodes'
 import rules from '../source/rules'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {
-		// debugger
-		let parsedRules = parseRules(rules)
-		let ruleDependencies = buildRulesDependencies(parsedRules)
-
-		// console.log(ruleDependencies)
-		let g = new graphlib.Graph()
-
-		ruleDependencies.forEach(([ruleDottedName, dependenciesDottedNames]) => {
-			dependenciesDottedNames.forEach(depDottedName => {
-				g.setEdge(ruleDottedName, depDottedName)
-			})
-		})
-		const cycles = graphlib.alg.findCycles(g)
+		let cycles = hasCycles(rules)
 
 		expect(
 			cycles,
