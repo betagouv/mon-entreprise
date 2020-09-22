@@ -143,7 +143,7 @@ exports[`calculate simulations-indépendant: inversions 2`] = `"[50000,16003,339
 
 exports[`calculate simulations-indépendant: inversions 3`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
 
-exports[`calculate simulations-indépendant: inversions 4`] = `"[0,0,0,0,0,50000,0,0]"`;
+exports[`calculate simulations-indépendant: inversions 4`] = `"[69940,22078,47862,49758,7862,40000,0,69940]"`;
 
 exports[`calculate simulations-indépendant: inversions 5`] = `"[14596,4596,10000,10394,0,10000,1000,15596]"`;
 
@@ -343,7 +343,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,0,0,0,0,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 1`] = `"[0,20620,0,15102,4,29]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 2`] = `"[0,20264,0,15647,4,30]"`;
 
@@ -466,7 +466,7 @@ exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[3685,0,3000
 
 exports[`calculate simulations-salarié: atmp 1`] = `"[2534,0,2000,1561,1527]"`;
 
-exports[`calculate simulations-salarié: avantages 1`] = `"[2667,0,2000,1540,1491]"`;
+exports[`calculate simulations-salarié: avantages 1`] = `"[2667,0,2000,1540,1490]"`;
 
 exports[`calculate simulations-salarié: avantages 2`] = `"[2677,0,2000,1539,1489]"`;
 
@@ -520,7 +520,7 @@ exports[`calculate simulations-salarié: frais pro - IKV 1`] = `"[4367,0,3200,25
 
 exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4346,0,3200,2511,2314]"`;
 
-exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2764,0,2151,1681,1630]"`;
+exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2764,0,2152,1681,1630]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2519,0,2000,1521,1487]"`;
 
@@ -611,7 +611,7 @@ exports[`calculate simulations-salarié: inversions 1`] = `"[2000,0,1746,1360,13
 
 exports[`calculate simulations-salarié: inversions 2`] = `"[3474,0,2554,2000,1889]"`;
 
-exports[`calculate simulations-salarié: inversions 3`] = `"[3674,0,2703,2117,2000]"`;
+exports[`calculate simulations-salarié: inversions 3`] = `"[3675,0,2703,2117,2000]"`;
 
 exports[`calculate simulations-salarié: lodeom 1`] = `
 "[1592,0,1521,1182,1182]
