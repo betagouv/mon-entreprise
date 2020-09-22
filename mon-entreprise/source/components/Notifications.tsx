@@ -39,10 +39,10 @@ export default function Notifications() {
 		? [
 				{
 					dottedName: 'inversion fail',
-					description: t([
+					description: t(
 						'simulateurs.inversionFail',
-						'Le montant saisi ne permet pas de calculer un résultat, nous vous invitons à essayer une autre valeur.'
-					]),
+						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseignée (quelques euros de plus par exemple).'
+					),
 					type: 'notification',
 					sévérité: 'avertissement'
 				}
