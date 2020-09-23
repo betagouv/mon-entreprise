@@ -26,7 +26,10 @@ export default function Notifications() {
 	const notifications = Object.values(engine.getParsedRules())
 		.filter(rule => rule['type'] === 'notification')
 		.filter(
-			notification => engine.evaluate(notification.dottedName).isApplicable
+			notification =>
+				![null, false].includes(
+					engine.evaluate(notification.dottedName).isApplicable
+				)
 		)
 
 	const inversionFail = useInversionFail()
