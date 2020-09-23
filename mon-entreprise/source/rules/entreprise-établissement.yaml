@@ -52,9 +52,8 @@ entreprise . durée d'activité . en début d'année:
       jusqu'à: période . début d'année
 
 entreprise . chiffre d'affaires:
-  titre: chiffre d'affaires (H.T.)
   question: Quel est votre chiffre d'affaires envisagé ?
-  résumé: Le montant des ventes réalisées
+  résumé: Le montant total des transactions (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
 
@@ -384,16 +383,6 @@ entreprise . catégorie d'activité . libérale règlementée:
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
-
-entreprise . catégorie d'activité . libérale règlementée . avertissement:
-  type: notification
-  sévérité: avertissement
-  description: >-
-    Attention, le simulateur n'est pas encore complet pour les professions libérales règlementées :
-
-    - pour la retraite complémentaire, seul le barème interprofessionnel, celui de la CIPAV, a été intégré pour l'instant.
-    - assurez-vous que le statut auto-entrepreneur est bien compatible avec votre profession règlementée
-    - pour les praticiens et auxiliaires médicaux (PAM), [les spécificités de calcul des cotisations](https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html) et la [CURPS](https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/qui-est-redevable-de-la-curps.html) ne sont pas encore intégrées.
 
 entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
   formule:

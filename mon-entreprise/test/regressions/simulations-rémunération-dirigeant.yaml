@@ -47,7 +47,7 @@ Contrats Madelin:
   # cotisations ne change pas:
   - dirigeant . rémunération totale: 30000 €/an
     entreprise . charges: 10000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 4000 # plafond: 10% PSS donc environ 4100
+    dirigeant . indépendant . contrats madelin . mutuelle . montant: 3800 # plafond: 10% PSS donc environ 4100
   # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - dirigeant . rémunération totale: 30000 €/an

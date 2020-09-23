@@ -119,7 +119,7 @@ export default function<Names extends string>(
 			}),
 		remplace: evolveReplacement(rules, rule, parsedRules),
 		defaultValue: value =>
-			typeof value === 'string'
+			typeof value === 'string' || typeof value === 'number'
 				? parse(rules, rule, parsedRules)(value)
 				: // TODO : An "object" default value is only used in the
 				// "synchronisation" mecanism. This should be refactored to not use the

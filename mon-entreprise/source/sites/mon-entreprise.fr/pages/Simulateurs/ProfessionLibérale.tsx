@@ -64,11 +64,11 @@ export default function ProfessionLibérale() {
 	const { t } = useTranslation()
 	const inIframe = useContext(IsEmbeddedContext)
 	const sitePaths = useContext(SitePathsContext)
-	const professionName =
-		useSubSimulators(
-			'dirigeant . indépendant . PL . métier . PAM',
-			sitePaths.simulateurs['profession-libérale']
-		) ?? 'professionnel de santé'
+	const professionName = 'profession libérale'
+	// useSubSimulators(
+	// 	'dirigeant . indépendant . PL . métier . santé',
+	// 	sitePaths.simulateurs['profession-libérale']
+	// ) ?? 'profession libérale'
 
 	return (
 		<>

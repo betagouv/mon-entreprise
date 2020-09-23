@@ -140,7 +140,7 @@ export default function() {
 							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
 							{/* PLNR */}
 							<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . cotisations . déduction tabac" />
+							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 
 							<h2>

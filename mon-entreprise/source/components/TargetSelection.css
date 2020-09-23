@@ -64,7 +64,11 @@
 	font-weight: bold;
 	text-decoration: none;
 }
+#targetSelection .small-target .targetInputOrValue a {
+	text-decoration: none;
+}
 #targetSelection .optionTitle a:hover,
+#targetSelection .small-target .targetInputOrValue a:hover,
 #targetSelection .aidesGlimpse a:hover {
 	text-decoration: underline;
 }
@@ -76,7 +80,8 @@
 }
 
 @media (hover: none) {
-	#targetSelection .optionTitle a {
+	#targetSelection .optionTitle a,
+	#targetSelection .small-target .targetInputOrValue a {
 		text-decoration: underline;
 	}
 }

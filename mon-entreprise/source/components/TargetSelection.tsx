@@ -126,6 +126,7 @@ const Target = ({ dottedName }: TargetProps) => {
 								}}
 							/>
 						)}
+
 						<TargetInputOrValue
 							{...{
 								target,
@@ -248,9 +249,13 @@ function TargetInputOrValue({
 				</>
 			) : (
 				<span>
-					{value && Number.isNaN(value)
-						? '—'
-						: formatValue(value, { displayedUnit: '€', language })}
+					{value && Number.isNaN(value) ? (
+						'—'
+					) : (
+						<RuleLink dottedName={target.dottedName}>
+							{formatValue(value, { displayedUnit: '€', language })}
+						</RuleLink>
+					)}
 				</span>
 			)}
 			{target.dottedName.includes('prix du travail') && <AidesGlimpse />}
