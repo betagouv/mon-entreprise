@@ -33,11 +33,12 @@ const STATES = [
 	'Suisse'
 ] as const
 
-export default function SelectEuropeCountry({ value, onChange, onSubmit }) {
+export default function SelectEuropeCountry({ value, onChange, id }) {
 	return (
 		<div>
 			<select
 				name="country"
+				id={id}
 				className="ui__"
 				defaultValue={value?.slice(1, -1)}
 				onChange={e => onChange(`'${e.target.value}'`)}

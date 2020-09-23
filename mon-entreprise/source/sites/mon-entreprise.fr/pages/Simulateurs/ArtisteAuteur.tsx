@@ -81,7 +81,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 			<Animate.appear unless={initialRender}>
 				<div className="main">
 					<div className="header">
-						<label htmlFor={`step-${dottedName}`}>
+						<label htmlFor={dottedName}>
 							<span className="optionTitle">{rule.question || rule.titre}</span>
 							<p className="ui__ notice">{rule.résumé}</p>
 						</label>
