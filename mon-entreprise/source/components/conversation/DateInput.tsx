@@ -6,6 +6,7 @@ import InputSuggestions from './InputSuggestions'
 
 type DateInputProps = {
 	onChange: RuleInputProps['onChange']
+	id: RuleInputProps['id']
 	onSubmit: RuleInputProps['onSubmit']
 	value: RuleInputProps['value']
 	suggestions: Rule['suggestions']
@@ -14,6 +15,7 @@ type DateInputProps = {
 export default function DateInput({
 	suggestions,
 	onChange,
+	id,
 	onSubmit,
 	value
 }: DateInputProps) {
@@ -56,6 +58,7 @@ export default function DateInput({
 				)}
 				<DateStyledInput
 					className="ui__ input"
+					id={id}
 					type="date"
 					value={dateValue}
 					onChange={handleDateChange}

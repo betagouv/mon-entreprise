@@ -23,6 +23,7 @@ export type RuleInputProps<Name extends string = DottedName> = {
 	useSwitch?: boolean
 	isTarget?: boolean
 	autoFocus?: boolean
+	id?: string
 	value?: Value
 	className?: string
 	onSubmit?: (source: string) => void
@@ -38,6 +39,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	onChange,
 	value,
 	useSwitch = false,
+	id,
 	isTarget = false,
 	autoFocus = false,
 	className,
@@ -55,6 +57,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		autoFocus,
 		className,
 		title: rule.title,
+		id: id ?? dottedName,
 		question: rule.question,
 		defaultValue: rule.defaultValue,
 		suggestions: rule.suggestions,
@@ -72,7 +75,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	if (rule.API && rule.API === 'commune')
 		return <SelectCommune {...commonProps} />
 	if (rule.API && rule.API === 'pays européen')
-		return <SelectEuropeCountry {...commonProps} onSubmit={onSubmit} />
+		return <SelectEuropeCountry {...commonProps} />
 	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
@@ -81,6 +84,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	if (rule.type === 'date') {
 		return (
 			<DateInput
+				{...commonProps}
 				value={commonProps.value}
 				onChange={commonProps.onChange}
 				onSubmit={onSubmit}

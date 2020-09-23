@@ -41,7 +41,10 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
 				.filter(rule => rule['type'] === 'notification')
 				.filter(
-					notification => engine.evaluate(notification.dottedName).isApplicable
+					notification =>
+						![null, false].includes(
+							engine.evaluate(notification.dottedName).isApplicable
+						)
 				)
 				.map(notification => notification.dottedName)
 

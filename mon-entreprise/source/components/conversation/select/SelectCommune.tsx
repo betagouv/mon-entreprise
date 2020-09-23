@@ -46,7 +46,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, value }) {
+export default function Select({ onChange, value, id }) {
 	const [name, setName] = useState(formatCommune(value))
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null
@@ -150,6 +150,7 @@ export default function Select({ onChange, value }) {
 			<input
 				role="combobox"
 				type="search"
+				id={id}
 				aria-autocomplete="list"
 				onBlur={submitFocusedElem}
 				aria-readonly="true"

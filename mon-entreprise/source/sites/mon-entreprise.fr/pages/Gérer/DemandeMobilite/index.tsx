@@ -137,7 +137,7 @@ function FormulairePublicodes({ engine }) {
 						</>
 					) : (
 						<>
-							<label htmlFor={`step-${field.dottedName}`}>
+							<label htmlFor={field.dottedName}>
 								{field.question ? (
 									<span
 										css={`
@@ -157,6 +157,7 @@ function FormulairePublicodes({ engine }) {
 								</Explicable>
 							)}
 							<RuleInput
+								id={field.dottedName}
 								dottedName={field.dottedName}
 								rules={engine.getParsedRules()}
 								value={situation[field.dottedName]}

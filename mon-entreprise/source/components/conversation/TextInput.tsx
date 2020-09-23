@@ -6,6 +6,7 @@ export default function TextInput({
 	onChange,
 	dottedName,
 	value,
+	id,
 	defaultValue,
 	autoFocus
 }) {
@@ -17,7 +18,7 @@ export default function TextInput({
 				autoFocus={autoFocus}
 				className="ui__"
 				type="text"
-				id={'step-' + dottedName}
+				id={id}
 				placeholder={defaultValue?.nodeValue ?? defaultValue}
 				onChange={({ target }) => {
 					debouncedOnChange(`'${target.value}'`)

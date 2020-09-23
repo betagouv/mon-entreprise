@@ -5,6 +5,7 @@ export default function ParagrapheInput({
 	onChange,
 	dottedName,
 	value,
+	id,
 	defaultValue,
 	autoFocus
 }) {
@@ -17,7 +18,7 @@ export default function ParagrapheInput({
 				className="ui__"
 				rows={6}
 				style={{ resize: 'none' }}
-				id={'step-' + dottedName}
+				id={id}
 				placeholder={(defaultValue?.nodeValue ?? defaultValue)?.replace(
 					'\\n',
 					'\n'

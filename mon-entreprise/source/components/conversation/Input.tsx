@@ -11,6 +11,7 @@ export default function Input({
 	onChange,
 	onSubmit,
 	dottedName,
+	id,
 	value,
 	defaultValue,
 	autoFocus,
@@ -34,7 +35,7 @@ export default function Input({
 				<NumberFormat
 					autoFocus={autoFocus}
 					className="suffixed ui__"
-					id={'step-' + dottedName}
+					id={id}
 					placeholder={defaultValue?.nodeValue ?? defaultValue}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
