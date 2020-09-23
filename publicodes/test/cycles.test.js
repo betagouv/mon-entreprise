@@ -1,9 +1,24 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
+import graphlib from '@dagrejs/graphlib'
+import { DependencyType } from '../source/cyclesLib/rulesDependencies'
+import { flattenOneLevelRemplaceLoops } from '../source/cyclesLib/graph'
 
 import { cyclicDependencies } from '../source/cyclesLib'
 
-describe('Cyclic dependencies detector 3000 ™', () => {
+describe('Remplace loops flatten-o-tron 2500 ™', () => {
+	it(`should replace 2 nodes referencing each other with formule and replacedBy by
+	4 nodes without loop`, () => {
+		const g = new graphlib.Graph()
+
+		g.setEdge('b', 'c', { type: DependencyType.formule })
+		g.setEdge('c', 'b', { type: DependencyType.replacedBy })
+
+		const flattenedGraph = flattenOneLevelRemplaceLoops(g)
+	})
+})
+
+describe('Cyclic dependencies detectron 3000 ™', () => {
 	it('should detect the trivial formule cycle', () => {
 		const rules = dedent`
 			a:
@@ -47,6 +62,17 @@ describe('Cyclic dependencies detector 3000 ™', () => {
 		`
 		const cycles = cyclicDependencies(rules)
 		expect(cycles).to.be.empty
+	})
+
+	it('should detect 1 level rend non applicable + remplace ❓', () => {
+		const rules = dedent`
+			b:
+				remplace: c
+			c:
+				rend non applicable: b
+		`
+		const cycles = cyclicDependencies(rules)
+		expect(cycles).to.deep.equal([['c', 'b']])
 	})
 
 	it('should detect a 2 levels formuleX2 + remplace (but why? 😢)', () => {

@@ -1,4 +1,3 @@
-import graphlib from '@dagrejs/graphlib'
 import { expect } from 'chai'
 import { cyclicDependencies } from 'publicodes'
 import rules from '../source/rules'

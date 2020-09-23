@@ -2,15 +2,16 @@ import * as R from 'ramda'
 import { ParsedRules } from '../types'
 import * as ASTTypes from './ASTTypes'
 
-enum DependencyType {
+export enum DependencyType {
 	formule,
 	replacedBy,
-	disabledBy
+	isDisabledBy
 }
-
 type RuleDependency<Names extends string> = [Names, DependencyType]
-
 type RuleDependencies<Names extends string> = Array<RuleDependency<Names>>
+export type RulesDependencies<Names extends string> = Array<
+	[Names, RuleDependencies<Names>]
+>
 
 export function ruleDepsOfNode<Names extends string>(
 	ruleName: Names,
@@ -405,7 +406,7 @@ function ruleDepsOfRuleNode<Names extends string>(
 		.flat(1)
 
 	const isDisabledByDependencies: RuleDependencies<Names> = rule.isDisabledBy.map(
-		x => [x.dottedName, DependencyType.disabledBy]
+		x => [x.dottedName, DependencyType.isDisabledBy]
 	)
 	const replacedByDependencies: RuleDependencies<Names> = rule.replacedBy.map(
 		x => [x.referenceNode.dottedName, DependencyType.replacedBy]
@@ -417,7 +418,7 @@ function ruleDepsOfRuleNode<Names extends string>(
 
 export function buildRulesDependencies<Names extends string>(
 	parsedRules: ParsedRules<Names>
-): Array<[Names, RuleDependencies<Names>]> {
+): RulesDependencies<Names> {
 	// This stringPairs thing is necessary because `toPairs` is strictly considering that
 	// object keys are strings (same for `Object.entries`). Maybe we should build our own
 	// `toPairs`?
