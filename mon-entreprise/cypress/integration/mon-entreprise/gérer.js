@@ -37,6 +37,6 @@ describe('Manage page test', function() {
 	})
 	it('should be able to navigate to the hiring simulator', function() {
 		cy.contains(fr ? 'une embauche' : 'hiring').click()
-		cy.contains(fr ? 'salarié' : 'employees')
+		cy.contains(fr ? 'salarié' : 'employee')
 	})
 })

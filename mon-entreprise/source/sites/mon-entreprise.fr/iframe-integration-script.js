@@ -53,7 +53,7 @@ const moduleToSitePath = {
 }
 const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
 	'${path}',
-	moduleToSitePath[moduleName]
+	moduleToSitePath[moduleName] ?? ''
 )
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem">

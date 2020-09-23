@@ -1,7 +1,7 @@
-'404':
+"404":
   action: Return to safe place
   message: This page does not exist or no longer exists
-'<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>': '<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>'
+"<0>Covid-19 et chômage partiel </0>: <3>Calculez votre indemnité</3>": "<0>Covid-19 and Short-Time </0>Work: <3>Calculate Your Benefit</3>"
 <0>Oui</0>: <0>Yes</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 Accueil: Home
@@ -28,16 +28,16 @@ Choisir plus tard: Choose later
 Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
-'Commerçant, artisan, ou libéral ?': Trader, craftsman, or liberal?
+"Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 Covid 19: Covid 19
-"Covid-19 : Calculer l'impact du chômage partiel": 'Covid-19: Calculating the impact of short-time work'
-'Covid-19 : Découvrez les mesures de soutien aux entreprises': 'Covid-19: Find out about business support measures'
-'Covid-19 : Découvrir les mesures de soutien aux entreprises': 'Covid-19: Discovering Business Support Measures'
+"Covid-19 : Calculer l'impact du chômage partiel": "Covid-19: Calculating the impact of short-time work"
+"Covid-19 : Découvrez les mesures de soutien aux entreprises": "Covid-19: Find out about business support measures"
+"Covid-19 : Découvrir les mesures de soutien aux entreprises": "Covid-19: Discovering Business Support Measures"
 Coût pour l'entreprise: Cost to the company
 Crée le: Created on
 Créer une: Create a
@@ -71,12 +71,13 @@ Gérant minoritaire: Managing director
 Habituellement: Usually
 Imprimer: Print
 Impôts: Taxes
-"Indemnité chômage partiel prise en charge par l'état :": 'State-paid short-time working allowance :'
+"Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
 Indépendant: Indépendant
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
 Intégrer nos simulateurs: Integrate our simulators
+Intégrer un simulateur: Integrating a simulator
 J'ai compris: understood
 Janvier 2019: January 2019
 La somme de: This rule is the sum of
@@ -102,7 +103,7 @@ Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
 Personnalisez l'integration: Customize the integration
-'Perte de revenu net :': 'Loss of net income :'
+"Perte de revenu net :": "Loss of net income :"
 Plafonds des tranches: Wafer ceilings
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
@@ -130,7 +131,7 @@ Retour à mon activité: Back to my business
 Revenir à la documentation: Go back to documentation
 Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
 Revenu disponible: Disposable income
-'Revenu net avec chômage partiel :': 'Net income with short-time work :'
+"Revenu net avec chômage partiel :": "Net income with short-time work :"
 Revenu net mensuel: Monthly net income
 Réductions: Discounts
 Rémunération du dirigeant: Director's remuneration
@@ -154,7 +155,7 @@ Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
 Total des retenues: Total withheld
-"Total payé par l'entreprise :": 'Total paid by the company :'
+"Total payé par l'entreprise :": "Total paid by the company :"
 Tout effacer: Delete all
 Tranche de l'assiette: Scale bracket
 Un seul associé: Only one partner
@@ -214,11 +215,11 @@ après:
     registered, you'll have access to the following
   kbis:
     description:
-      '1': It is the official document attesting to <2>the legal existence of a
+      "1": It is the official document attesting to <2>the legal existence of a
         commercial enterprise</2>. In most cases, to be opposable and authentic
         for administrative procedures, the extract must be less than 3 months
         old.
-      '2': This document is generally requested when applying for a public tender,
+      "2": This document is generally requested when applying for a public tender,
         opening a professional bank account, purchasing professional equipment
         from distributors, etc.
     titre: The Kbis
@@ -272,7 +273,7 @@ autoentrepreneur:
   titre: Auto-entrepeneur
 back: Resume simulation
 barème: scale
-calcul-avec: 'Calculation from <1></1>with :'
+calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on
 cible: target
@@ -384,8 +385,8 @@ comparaisonRégimes:
     AS: SAS, SASU or SARL with minority director
     auto: Auto-entreprise
     indep:
-      '1': EI, EIRL, EURL or SARL with majority director
-      '2': EI or EIRL
+      "1": EI, EIRL, EURL or SARL with majority director
+      "2": EI or EIRL
     legend: Possible legal status
   sécuritéSociale: |
     <0> Social security</0>
@@ -399,13 +400,13 @@ comparaisonRégimes:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
 composantes: components
 coronavirus:
-  description: '<0>Coronavirus and short-time working: what impact on my
+  description: "<0>Coronavirus and short-time working: what impact on my
     income?</0><1>The government is putting in place measures to support
     employees affected by the Coronavirus crisis. One of the key measures is the
-    assumption of the entire short-time working compensation by the State.</1>'
+    assumption of the entire short-time working compensation by the State.</1>"
   page:
     description: Estimate net income with short-time working benefits
-    titre: 'Coronavirus and short-time working: what impact on your income?'
+    titre: "Coronavirus and short-time working: what impact on your income?"
 cotisation: contribution
 créer:
   cta:
@@ -424,7 +425,7 @@ créer:
       <0>List of legal statuses</0>
       <1>EURL, SARL, SASU, etc: a shortcut if you already know your status </1>
   titre: Create a company
-  warningPL: 'Note: the case of regulated liberal professions is not covered'
+  warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: of aid
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
@@ -540,9 +541,9 @@ entreprise:
       creation process. It is automatically saved in your browser.
     banque:
       description:
-        '1': The purpose of a <1>professional bank account</1> is to separate your
+        "1": The purpose of a <1>professional bank account</1> is to separate your
           company's assets from your personal assets.
-        '2': 'The professional bank account allows you to:'
+        "2": "The professional bank account allows you to:"
         EI: If its opening is not obligatory for an EI, it is strongly recommended.
         liste: >
           <0>Differentiate your private and professional operations and simplify
@@ -745,13 +746,13 @@ indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
 jour: day
 landing:
-  aboutUs: '<0>Who are we ?</0><1>We are a small<2>, autonomous and
+  aboutUs: "<0>Who are we ?</0><1>We are a small<2>, autonomous and
     multidisciplinary team</2> within<4> URSSAF</4>. We have at heart to be
     close to your needs in order to constantly improve this site in accordance
     with the <7>beta.gouv.fr</7> approach.</1><2>We have developed this site to
     <2>support entrepreneurs</2> in the development of their business.</2><3>Our
     goal is to <2>remove all uncertainties with regard to the administration</2>
-    so that you can concentrate on what matters: your business.</3>'
+    so that you can concentrate on what matters: your business.</3>"
   choice:
     create: <0>Create a company</0><1>Assistance in choosing the status and the
       complete list of creation steps</1>
@@ -760,7 +761,7 @@ landing:
       flow.</1>
     simulators: <0>Access the simulators</0><1>The exhaustive list of all the
       simulators available on the site.</1>
-  covid19: 'Covid-19: Calculating the impact of short-time work'
+  covid19: "Covid-19: Calculating the impact of short-time work"
   seeSimulators: See the simulators list
   subtitle: All the resources you need to develop your business, from legal status
     to hiring.
@@ -819,13 +820,13 @@ pages:
         authorities concerning auto-entrepreneurs and the micro-enterprise
         scheme (in french).</1></0>
   dévelopeurs:
-    bibliothèque: '<0>Integrate our calculation library</0><1>If you think that your
+    bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       site or service would benefit from displaying salary calculations, for
       example switching from gross salary to net salary, good news: all the
       contribution and tax calculations behind my-company.fr are free and <2>can
       be integrated in the form of an <2>NPM library</2></2>.</1><2>Put simply,
-      your team''s developers are able to integrate the calculation into your
-      interface in 5 minutes{emoji(''⌚'')}, without having to deal with the
+      your team's developers are able to integrate the calculation into your
+      interface in 5 minutes{emoji('⌚')}, without having to deal with the
       complexity of payroll and the regular updating of calculation
       rules.</2><3>This library is a common digital library developed by the
       State and ACOSS. It is based on a new programming language,
@@ -836,36 +837,36 @@ pages:
       recipe for a calculation is simple: input variables (gross wage), one or
       more output variables (net wage).</9><10>All these variables are listed
       and explained in our <2>online documentation</2>.</10><11>Use the search
-      engine to find the right variable, then click on "View source code" to
-      get all the documentation: default value, possible values when it''s an
-      enumeration of choice, unit when it''s a number, description, associated
-      user question, etc.</11><12>Let''s run a calculation closer to a payslip:
+      engine to find the right variable, then click on \"View source code\" to
+      get all the documentation: default value, possible values when it's an
+      enumeration of choice, unit when it's a number, description, associated
+      user question, etc.</11><12>Let's run a calculation closer to a payslip:
       Here is a description of the input situation with links to the
       corresponding pages of the documentation :</12><13> An <3>executive</3>
       earning <7>€3,400 gross</7>, who benefits from the<10> bicycle mileage
       allowance</10> and works in a company with <14>12
       employees</14>.</13><14>The calculation for this more complete example is
-      as follows:</14><15><0></0></15><16>{emoji(''ℹ️ '')} Note that in the
+      as follows:</14><15><0></0></15><16>{emoji('ℹ️ ')} Note that in the
       previous example we have to specify the transport payment rate
       ourselves.</16><17>Whereas in the <2>employee</2> simulator, it is
       sufficient to fill in the municipality and the corresponding rate is
-      automatically determined. It''s intentional: to keep the library (and the
+      automatically determined. It's intentional: to keep the library (and the
       site) light, we use two online APIs. The<4> Geo API - communes</4> to
       switch from the commune name to the common code. Then the<7> transport
       payout API</7>, developed and maintained by us, which is not documented
       but its use is very simple and understandable <10>in this React component
       that calls it</10>, a component that also uses the common
-      API.</17><18>Making economic charts{emoji('' 📈'')}</18><19>It is also
+      API.</17><18>Making economic charts{emoji(' 📈')}</18><19>It is also
       possible to use the library for economic or political analysis
       calculations. Here, the price of labour and the net wage is plotted
       against the gross wage.</19><20>We can see the progressiveness of the
       total wage, which is in percent lower for a minimum wage than for a high
       income. In other words, high-wage earners pay part of the social security
-      contributions of low-wage earners.</20><21>{emoji(''⚠️ '')}Beware, this
+      contributions of low-wage earners.</20><21>{emoji('⚠️ ')}Beware, this
       example does a lot of calculations in one go, which can block your browser
       for a few seconds. To overcome this problem, you would have to call the
       library in a Web Worker, but this is not possible for the <3>moment</3> in
-      these demos.</21><22><0></0></22>'
+      these demos.</21><22><0></0></22>"
   développeurs:
     choice:
       github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
@@ -876,10 +877,10 @@ pages:
       publicode: <0>Publicodes</0><1>Our tools are powered by Publicodes, a new
         language for encoding "explainable" algorithms.</1>
     code:
-      description: 'Here is the code to copy and paste on your site:'
+      description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
-    code à copier: 'Here is the code to copy and paste on your site:'
-    couleur: 'What color? '
+    code à copier: "Here is the code to copy and paste on your site:"
+    couleur: "What color? "
     home:
       choice:
         iframe: <0>Integrating a simulator</0><1>Integrate one of our simulators in one
@@ -898,23 +899,43 @@ pages:
       attribute <1>data-lang="en"</1> allows you to choose English as the
       simulator language.</3>
     module: What module?
+  gérer:
+    aide-déclaration-indépendant:
+      meta:
+        description: Easily calculate the amount of payroll taxes to report on your 2019
+          income tax return.
+        title: "Self-employed tax return: calculation of the amount of contributions"
+      shortname: Income tax return assistance
+      title: Help with your 2019 income tax return
+    demande-mobilité:
+      meta:
+        description: Interactive form to be completed for self-employed persons wishing
+          to carry out their activity in other European countries
+        title: "Self-employed: demand for mobility in Europe"
+      shortname: Demand for mobility in Europe
   simulateurs:
+    artiste-auteur:
+      meta:
+        description: Estimate social contributions on copyright and BNC income
+        title: "Artist-author: calculation of URSSAF membership fees"
+      shortname: Artist-author
+      title: Estimate my artist/author dues
     auto-entrepreneur:
       meta:
         description: Calculation of your income based on turnover, after deduction of
           contributions and income tax.
-        ogDescription: 'Thanks to the auto-entrepreneur income simulator developed by
+        ogDescription: "Thanks to the auto-entrepreneur income simulator developed by
           URSSAF, you can estimate the amount of your income based on your
           monthly or annual turnover to better manage your cash flow. Or in the
           opposite direction: to know what amount to invoice to achieve a
-          certain income.'
-        ogTitle: 'Auto-entrepreneur: quickly calculate your net income from sales and
-          vice versa'
-        titre: 'Auto-entrepreneurs: income simulator'
-      seo explanation: '<0>How do you calculate the net income for an
+          certain income."
+        ogTitle: "Auto-entrepreneur: quickly calculate your net income from sales and
+          vice versa"
+        titre: "Auto-entrepreneurs: income simulator"
+      seo explanation: "<0>How do you calculate the net income for an
         auto-entrepreneur?</0><1>An auto-entrepreneur has to pay social
         security         contributions to the administration (also known as
-        "social charge"). These social contributions are used to finance
+        \"social charge\"). These social contributions are used to finance
         social security, and give rights for retirement or health insurance.
         They are also used to finance vocational training.</1><2><0></0> <2>See
         details of how the contributions are calculated</2></2><3>But this is
@@ -922,7 +943,7 @@ pages:
         account all expenses incurred in the course of the professional activity
         (assets, raw materials, premises, transport). Although they are not
         useful for the calculation of contributions and taxes, they must be
-        taken into account to estimate the viability of one''''s
+        taken into account to estimate the viability of one''s
         activity.</3><4>The complete calculation formula is therefore:<1><0>Net
         income = Turnover - Social contributions - Professional
         expenses</0></1></4><5>How to calculate income tax for an
@@ -936,8 +957,16 @@ pages:
         carried out. It is said to be lump-sum because it does not take into
         account the actual expenses incurred in the activity.</8><9><0></0>
         <2>See details of the calculation of the income allowance for an
-        auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
+        auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'"
+      shortname: Auto-entrepreneur
+      title: Self-entrepreneur Income Simulator
       titre: Auto-entrepreneur income simulator
+    auxiliaire:
+      shortname: Medical Axiliary
+      title: Income simulator for a private medical assistant
+    chirurgien-dentiste:
+      shortname: Dental surgeon
+      title: Income simulator for a private dental surgeon
     chômage-partiel:
       explications seo: >-
         [👨 Integrate this simulator on your
@@ -979,11 +1008,50 @@ pages:
           then be able to personalize your situation (part-time, agreement,
           etc). Take into account all contributions, including those specific to
           the allowance (CSG and CRDS).
-        ogTitle: 'Short-time working simulator: find out the impact on the net salaried
-          income and the total employer cost.'
+        ogTitle: "Short-time working simulator: find out the impact on the net salaried
+          income and the total employer cost."
         titre: Calculation of the short-time working allowance in France
+      seo: <0>How is the partial activity allowance calculated?</0><1>The basic
+        partial activity allowance is fixed by law at <2>70% of gross</2>
+        salary. It is prorated according to the number of hours off work. For an
+        employee at € 2300 gross monthly, who works 50% of his usual time, this
+        gives <5>€ 2300 × 50% × 70% = € 805</5>.</1><2>In addition to this basic
+        allowance, there is a supplementary allowance for salaries close to the
+        minimum wage. This additional allowance is paid when the combined
+        remuneration and basic allowance are below a net SMIC. These allowances
+        are paid by the employer, who will then be reimbursed in part or in full
+        by the State.</2><3>👉 <2>See the details of the calculation of</2> the
+        allowance</3><4> How to calculate the part reimbursed by the
+        State?</4><5>The State covers part of the partial compensation for wages
+        up to **4.5 SMIC**, with a minimum of €8.03 per unemployed hour. In
+        concrete terms, this results in 100% coverage for salaries close to the
+        SMIC. This gradually decreases until it stabilizes at **93%** for wages
+        <3>between €2,000 and €7,000</3> (wage corresponding to the limit of 4.5
+        SMIC).</5><6>👉 <2>See details of the calculation of the reimbursement
+        of the allowance</2></6><7> How to report a partial activity?</7><8>In
+        response to the coronavirus crisis, the conditions for partial
+        employment have been eased. The employer is allowed to place his
+        employees in partial activity before the official application is filed.
+        The employee then has a period of <2>30 days</2> to comply with the
+        regulations. Benefits will be paid retroactively from the date of the
+        partial unemployment.</8><9>👉 <2>Applying for partial unemployment</2>
+        benefit</9><10> What social security contributions must be paid for the
+        partial activity allowance?</10><11>The partial activity allowance is
+        subject to the CSG/CRDS and to a sickness contribution in certain cases.
+        For more information, see the explanatory page on the <2>URSSAF
+        website</2>.</11>
+      shortname: Partial unemployment
+      title: "Covid-19: Short-time work simulator"
+    comparaison:
+      meta:
+        description: Self-employed, self-employed or similarly employed? With this
+          comparison, find the plan that suits you best
+        title: "Starting a business: a comparison of social schemes"
+      shortname: Status Comparison
+      title: "Self-employed, assimilated employee or auto-entrepreneur: which plan to
+        choose?"
     dirigean sasu:
-      explication seo: '<0>How to calculate the salary of a SASU executive? </0><1>As
+      explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
         security contributions on the salary he or she pays. The contributions
         are calculated in the same way as for the employee: they are broken down
@@ -992,15 +1060,35 @@ pages:
         manager-employee does not pay <2>unemployment contributions</2>.
         Moreover, they do not benefit from the <5>general reduction</5> in
         contributions or from the schemes governed by the Labour Code, such as
-        <9>overtime</9> or bonuses.</2><3>A SASU executive''s salary can be
-        calculated by entering the total amount of the salary in the "total
-        expense" box, but he or she can claim the <2>ACRE reduction</2> at the
+        <9>overtime</9> or bonuses.</2><3>A SASU executive's salary can be
+        calculated by entering the total amount of the salary in the \"total
+        expense\" box, but he or she can claim the <2>ACRE reduction</2> at the
         beginning of the activity, under certain conditions.</3><4>You can use
         our simulator to calculate the <2>net remuneration</2> from a
-        super-gross amount allocated to the executive''s remuneration. To do
+        super-gross amount allocated to the executive's remuneration. To do
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
-        questions.</4>'
+        questions.</4>"
+    indépendant:
+      meta:
+        description: Calculation of net income after tax and contributions based on
+          turnover and vice versa
+        title: "Independent: Urssaf income simulator"
+      shortname: Independent
+      title: Income simulator for the self-employed
+    médecin:
+      shortname: Doctor
+      title: Income simulator for private practitioners
+    profession-libérale:
+      meta:
+        description: Net Income Calculation for Self-Employed Persons in Liberal Income
+          Tax (IR, BNC)
+        title: "Liberal professions: the Urssaf simulator"
+      shortname: Liberal profession
+      title: Professional Income Simulator
+    sage-femme:
+      shortname: Midwife
+      title: Income simulator for private midwives
     salarié:
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount
@@ -1036,24 +1124,74 @@ pages:
           (executive status, internship, apprenticeship, overtime, restaurant
           vouchers, mutual insurance, part-time work, collective agreement,
           etc.).
-        ogTitle: 'Gross, net, net after-tax salary, total cost: the ultimate simulator
-          for employees and employers'
-        titre: 'Gross / net salary: the Urssaf converter'
+        ogTitle: "Gross, net, net after-tax salary, total cost: the ultimate simulator
+          for employees and employers"
+        titre: "Gross / net salary: the Urssaf converter"
+      seo: <0>How is the net salary calculated?</0><1>At the job interview, the
+        employer usually proposes a "gross" remuneration. The amount announced
+        thus includes employee contributions, which are used to finance the
+        employee's social protection and which are deducted from the "net"
+        salary received by the employee.</1><2>You can use our simulator to
+        convert the <2>gross salary into net</2> salary. Simply enter the
+        advertised remuneration in the gross salary box. The simulation can be
+        refined by answering the various questions (fixed-term contract,
+        executive status, overtime, part-time, meal vouchers,
+        etc.).</2><3></3><4>Moreover, since 2019,<1> income tax</1> is deducted
+        at source. To do this, the Directorate General of Public Finance (DGFiP)
+        sends the employer the tax rate calculated from the employee's income
+        tax return. If this rate is unknown, for example in the first year of
+        employment, the employer uses the <4>neutral rate</4>.</4><5>How to
+        calculate the cost of hiring?</5><6>If you are looking to hire, you can
+        calculate the total cost of your employee's remuneration, as well as the
+        corresponding employer and employee contribution amounts. This enables
+        you to define the remuneration level by knowing the overall amount of
+        expense this represents for your company.</6><7>In addition to the
+        salary, our simulator takes into account the calculation of benefits in
+        kind (telephone, company car, etc.), as well as the compulsory health
+        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
+        not all taken into account by our simulator, you can find them on <6>the
+        official portal</6>.</8>
+      shortname: Employee
+      title: Employee income simulator
       titre: Income simulator for employees
     sasu:
       meta:
         description: Calculation of net salary from turnover + expenses and vice versa.
         ogDescription: As an officer in a similar position, immediately calculate your
           net income after tax from the total allocated to your compensation.
-        ogTitle: 'SASU executive compensation: a simulator to find out your net salary'
-        titre: 'Head of SASU: Urssaf revenue simulator'
+        ogTitle: "SASU executive compensation: a simulator to find out your net salary"
+        titre: "Head of SASU: Urssaf revenue simulator"
+      seo-explanation: "<0>How to calculate the salary of a SASU executive? </0><1>As
+        for a classic employee, the SASU <2>manager</2> pays social security
+        contributions on the remuneration he pays himself. The contributions are
+        calculated in the same way as for the employee: they are broken down
+        into the employer and employee parts and are expressed as a percentage
+        of the gross salary.</1><2>The assimilated manager-employee does not pay
+        <2>unemployment contributions</2>. Furthermore, they do not benefit from
+        the <5>general reduction</5> in contributions or from the provisions of
+        the French Labour Code, such as <9>overtime</9> or
+        bonuses.</2><3>However, the employee is entitled to the <2>ACRE
+        reduction</2> at the start of employment, under certain
+        conditions.</3><4>You can use our simulator to calculate the <2>net
+        remuneration</2> from a super-gross amount allocated to the executive's
+        remuneration. To do this, simply enter the total amount allocated in the
+        \"total charged\" box. The simulation can then be refined by answering
+        the various questions.</4>"
+      shortname: Head of SASU
+      title: Income simulator for SASU manager
       titre: Revenue simulator for SAS(U) executive
+  économie-collaborative:
+    meta:
+      description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
+        in your declarations
+      title: "Online platform income tax return: interactive guide"
+    shortname: Collaborative Economy Guide
 par: per
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
     Lots of financial aids for your enterprise exist, explore them on
     <1>aides-entreprises.fr (French)</1>.
-  heures: 'Hours worked per month: '
+  heures: "Hours worked per month: "
   notice: This simulation helps you understand your French payslip, but it should
     not be used as one. For further details, check <1>service-public.fr
     (French)</1>.
@@ -1165,9 +1303,11 @@ simulateurs:
         and income tax are taken into account. Official URSSAF simulator
       titre: Official income simulator for self-employed person
     titre: Self-employed income simulator
-  inversionFail: |
+  inversionFail: >
     The amount entered results in an impossible result. This is due to a
+
     threshold effect in the calculation of contributions.
+
 
     We invite you to try again by slightly modifying the amount entered (a few euros more for example).
   profession-libérale:
@@ -1177,7 +1317,7 @@ simulateurs:
     titre: Income simulator for {professionName}.
   précision:
     bonne: Good accuracy
-    défaut: 'Refine the simulation by answering the following questions:'
+    défaut: "Refine the simulation by answering the following questions:"
     faible: Low accuracy
     moyenne: Medium accuracy
   résumé:
@@ -1226,7 +1366,7 @@ simulation-end:
   text: You have reached the most accurate estimate.
   title: No more questions left!
 site:
-  titleTemplate: '%s'
+  titleTemplate: "%s"
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms
@@ -1277,8 +1417,8 @@ une de ces conditions: one of these applies
       onwards, these revenues will be automatically reported by the platforms to
       the tax authorities and Urssaf.</2>
     question: What types of activity did you undertake?
-    réassurance: 'PS: this tool is only there to inform you, no data will be
-      transmitted to the administrations'
+    réassurance: "PS: this tool is only there to inform you, no data will be
+      transmitted to the administrations"
     titre: How to declare income from digital platforms?
   activité:
     choix: What are more precisely the activities carried out?

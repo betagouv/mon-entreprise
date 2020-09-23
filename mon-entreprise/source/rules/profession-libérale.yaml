@@ -317,6 +317,8 @@ dirigeant . indépendant . PL . PAMC:
     - conjoint collaborateur
     - entreprise . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
+    - dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales
+    - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
 
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
@@ -661,28 +663,36 @@ dirigeant . indépendant . PL . CARCDSF:
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . sage-femme'
   références:
-    Site CARMF: https://www.carcdsf.fr
+    Site CARMF: http://www.carcdsf.fr
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   titre: retraite complémentaire (CARCDSF)
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     somme:
-      - produit:
-          assiette: 2960.40 €/an
-          taux: réduction de la cotisation forfaitaire
-        arrondi: oui
-      - barème:
-          assiette: assiette des cotisations
-          multiplicateur: plafond sécurité sociale temps plein
-          tranches:
-            - taux: 0%
-              plafond: 0.85
-            - taux: 10.65%
-              plafond: 5
-    arrondi: oui
+      - cotisation forfaitaire
+      - cotisation proportionnelle
   références:
-    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
+  formule:
+    barème:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale temps plein
+      tranches:
+        - taux: 0%
+          plafond: 0.85
+        - taux: 10.65%
+          plafond: 5
+    arrondi: oui
+
+dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire:
+  formule:
+    produit:
+      assiette: 2960.40 €/an
+      taux: réduction de la cotisation forfaitaire
+    arrondi: oui
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire:
   applicable si: assiette des cotisations < 85% * plafond sécurité sociale temps plein
@@ -706,7 +716,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction 
   formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
 
   références:
-    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   applicable si: métier = 'santé . chirurgien-dentiste'
@@ -740,22 +750,24 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
           taux: 0.725 %
     arrondi: oui
   références:
-    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification
   applicable si: (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
+  formule: oui
   description: >-
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
     faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV . prix d'une consultation:
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   formule: 23 €/consultation
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
-  applicable si: métier = 'PAM . sage-femme'
+  applicable si: métier = 'santé . sage-femme'
+  formule: oui
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
   titre: invalidité et décès (CARCDSF sage-femme)
@@ -778,7 +790,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
       - si: classe = 'C'
         alors: 273 €/an
   références:
-    Montant des cotisations: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Montant des cotisations: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
   titre: Classe de cotisation
@@ -815,7 +827,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
       taux: 1 / 3
     arrondi: oui
   références:
-    Site CARCDSF: www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |
     Une dispense peut être accordée lorsque les revenus professionnels sont
     inférieurs ou égaux à 3120 €.
@@ -830,6 +842,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   type: notification
   applicable si: assiette des cotisations <= 3120 €/an
+  formule: oui
   description: >-
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en

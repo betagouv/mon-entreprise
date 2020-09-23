@@ -9,6 +9,10 @@
 	border-radius: 0.3rem;
 	transition: box-shadow 0.2s;
 }
+.ui__.card.small {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
 
 .ui__.card.disabled .ui__.button.simple,
 .ui__.card.disabled a {
@@ -108,15 +112,21 @@
 	color: inherit;
 	font-size: inherit !important;
 }
+
+.ui__.card.box.small {
+	padding-top: 0.5rem;
+	margin: 0.5rem;
+	min-width: 10rem;
+	padding-bottom: 0.5rem;
+}
 .ui__.card.box .ui__.box-icon > img {
-	margin: 0.8rem !important;
+	margin: 0.4rem !important;
 	transform: scale(1.5) translateY(0.1rem);
 }
-.ui__.card.box:active .ui__.box-icon > img {
-	transform: scale(1.5) translateY(0.1rem);
-}
+
 .ui__.card.box .ui__.big.box-icon > img {
 	transform: scale(2.3) translateY(0.2rem);
+	margin: 0.8rem !important;
 }
 
 .ui__.card.box.inverted-colors {

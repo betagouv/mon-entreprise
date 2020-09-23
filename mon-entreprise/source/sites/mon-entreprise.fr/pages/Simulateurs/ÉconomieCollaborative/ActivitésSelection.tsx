@@ -28,9 +28,6 @@ export default function ActivitésSelection() {
 	)
 	return (
 		<>
-			<Helmet>
-				<title>{titre}</title>
-			</Helmet>
 			<Animate.fromBottom>
 				<ScrollToTop />
 				<h1>{titre}</h1>

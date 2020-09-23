@@ -1,19 +1,16 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useMemo } from 'react'
+import useSimulatorsData from '../Simulateurs/metadata'
 const LazyColorPicker = React.lazy(() => import('./ColorPicker'))
 
-export const integrableModuleNames = [
-	'simulateur-embauche',
-	'simulateur-autoentrepreneur',
-	'simulateur-independant',
-	'simulateur-assimilesalarie',
-	'simulateur-artiste-auteur',
-	'simulateur-chomage-partiel'
-]
-
-// Intégrations "cachées" (non diffusées)
-const privateModuleNames = ['demande-mobilite']
-
 export default function IntegrationTest() {
+	const simulators = useSimulatorsData()
+	const integrableModuleNames = useMemo(
+		() =>
+			Object.values(simulators)
+				.map(s => s.iframe)
+				.filter(Boolean),
+		[simulators]
+	)
 	const [currentModule, setCurrentModule] = React.useState(
 		integrableModuleNames[0]
 	)
@@ -36,7 +33,7 @@ export default function IntegrationTest() {
 		<>
 			<h2>Quel module ?</h2>
 			<select onChange={event => setCurrentModule(event.target.value)}>
-				{[...integrableModuleNames, ...privateModuleNames].map(name => (
+				{integrableModuleNames.map(name => (
 					<option key={name}>{name}</option>
 				))}
 			</select>
