@@ -213,7 +213,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		)
 	}
 
-	return cacheNode(null, { [dottedName]: 2 }, { isApplicable: true })
+	return cacheNode(null, { [dottedName]: 2 })
 }
 
 export const parseReference = (
