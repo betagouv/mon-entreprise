@@ -4985,7 +4985,7 @@ dirigeant . indépendant . cotisations et contributions:
     mandatory contributions.
   description.fr: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
-    contributions obligatoire.
+    contributions obligatoires.
   note.en: |
     [automatic] Unlike contributions, contributions are not reintroduced
     for the calculation of the CSG/CRDS. They also do not benefit from the

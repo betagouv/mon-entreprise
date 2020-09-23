@@ -739,7 +739,7 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
 dirigeant . indépendant . cotisations et contributions:
   description: |
     C'est le montant total dû par l'indépendant au titre des cotisations et
-    contributions obligatoire.
+    contributions obligatoires.
 
   formule:
     somme:
