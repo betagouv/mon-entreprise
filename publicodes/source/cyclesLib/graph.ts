@@ -60,7 +60,8 @@ export function flattenOneLevelRemplaceLoops(naiveGraph: Graph) {
 	const ROLLNodesTypes = new Proxy(
 		{},
 		{
-			get: (target, name) => (name in target ? target[name] : new Set())
+			get: (target, name) =>
+				name in target ? target[name] : (target[name] = new Set())
 		}
 	)
 	ROLLEdges.forEach(e => {
