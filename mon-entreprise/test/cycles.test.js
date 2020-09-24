@@ -1,10 +1,15 @@
 import { expect } from 'chai'
-import { cyclicDependencies } from 'publicodes'
+import { cyclesLib } from 'publicodes'
 import rules from '../source/rules'
 
 describe('DottedNames graph', () => {
+	it("shouldn't have multi-dependencies edges", () => {
+		expect(() => cyclesLib.cyclicDependencies(rules, true)).to.not.throw(
+			cyclesLib.GraphError
+		)
+	})
 	it("shouldn't have cycles", () => {
-		let cycles = cyclicDependencies(rules)
+		let cycles = cyclesLib.cyclicDependencies(rules)
 
 		expect(
 			cycles,

@@ -2,9 +2,24 @@ import { expect } from 'chai'
 import dedent from 'dedent-js'
 import graphlib from '@dagrejs/graphlib'
 import { DependencyType } from '../source/cyclesLib/rulesDependencies'
-import { flattenOneLevelRemplaceLoops } from '../source/cyclesLib/graph'
+import {
+	cyclicDependencies,
+	flattenOneLevelRemplaceLoops,
+	GraphError
+} from '../source/cyclesLib/graph'
 
-import { cyclicDependencies } from '../source/cyclesLib'
+describe('Naive dependencies builder', () => {
+	it('catches double-dependecies', () => {
+		const rules = dedent`
+			aa:
+				formule: a + 1
+			a:
+				remplace: aa
+		`
+
+		expect(() => cyclicDependencies(rules, true)).to.throw(GraphError)
+	})
+})
 
 describe('ROLL flatten-o-tron 2500 ™', () => {
 	it('should replace 2 ROLL nodes with	4 nodes without loop', () => {

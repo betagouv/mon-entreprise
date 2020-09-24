@@ -7,20 +7,40 @@ import {
 	DependencyType
 } from './rulesDependencies'
 
-type Graph = any
 type GraphNodeRepr = string
 type GraphCycles = Array<Array<GraphNodeRepr>>
 
-function buildNaiveDependenciesGraph<Names extends string>(
-	rulesDeps: RulesDependencies<Names>
-): Graph {
+export class GraphError extends Error {}
+
+export function buildNaiveDependenciesGraph<Names extends string>(
+	rulesDeps: RulesDependencies<Names>,
+	assertNoMultiDependency = false
+): graphlib.Graph {
 	const g = new graphlib.Graph()
+	const multiDependencies: Set<[Names, Names]> = new Set()
 
 	rulesDeps.forEach(([ruleDottedName, dependencies]) => {
 		dependencies.forEach(([depDottedName, depType]) => {
+			if (
+				assertNoMultiDependency &&
+				g.edge(ruleDottedName, depDottedName) !== undefined &&
+				g.edge(ruleDottedName, depDottedName).type != depType
+			) {
+				multiDependencies.add([ruleDottedName, depDottedName])
+			}
 			g.setEdge(ruleDottedName, depDottedName, { type: depType })
 		})
 	})
+
+	if (assertNoMultiDependency && multiDependencies.size > 0)
+		throw new GraphError(
+			`The following rules dependencies have multiple types
+			(formule, remplace and/or rend non applicable), which is
+			forbidden:${Array.from(
+				multiDependencies.values(),
+				rules => '\n' + rules.join(' ➡️  ')
+			)}`
+		)
 
 	return g
 }
@@ -38,7 +58,7 @@ function buildNaiveDependenciesGraph<Names extends string>(
  * This operation is destroying the initial loop, and corresponds closely to
  * the behavior of the `parseReference.js:getApplicableReplacedBy` function.
  */
-export function flattenOneLevelRemplaceLoops(naiveGraph: Graph) {
+export function flattenOneLevelRemplaceLoops(naiveGraph: graphlib.Graph) {
 	const replacedByEdges = naiveGraph
 		.edges()
 		.filter(e => naiveGraph.edge(e).type == DependencyType.replacedBy)
@@ -119,12 +139,15 @@ export function flattenOneLevelRemplaceLoops(naiveGraph: Graph) {
 }
 
 export function cyclicDependencies<Names extends string>(
-	rawRules: Rules<Names> | string
+	rawRules: Rules<Names> | string,
+	assertNoMultiDependency = false
 ): GraphCycles {
 	const parsedRules = parseRules(rawRules)
 	const rulesDependencies = buildRulesDependencies(parsedRules)
-	const naiveGraph = buildNaiveDependenciesGraph(rulesDependencies)
+	const naiveGraph = buildNaiveDependenciesGraph(
+		rulesDependencies,
+		assertNoMultiDependency
+	)
 	const flattenedGraph = flattenOneLevelRemplaceLoops(naiveGraph)
-	debugger
 	return graphlib.alg.findCycles(flattenedGraph)
 }

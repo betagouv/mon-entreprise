@@ -1,1 +1,3 @@
-export { cyclicDependencies } from './graph'
+import { cyclicDependencies, GraphError } from './graph'
+
+export default { cyclicDependencies, GraphError }
