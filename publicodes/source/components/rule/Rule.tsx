@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Trans } from 'react-i18next'
 import Engine from '../..'
 import { formatValue } from '../../format'
+import { ruleWithDedicatedDocumentationPage } from '../../ruleUtils'
 import { serializeUnit } from '../../units'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
@@ -112,11 +113,14 @@ function AssociatedRules<Name extends string>({
 	dottedName: Name
 	engine: Engine<Name>
 }) {
-	const namespaceRules = Object.keys(engine.getParsedRules()).filter(
-		ruleDottedName =>
-			ruleDottedName.startsWith(dottedName) &&
-			ruleDottedName.split(' . ').length === dottedName.split(' . ').length + 1
-	)
+	const namespaceRules = Object.keys(engine.getParsedRules())
+		.filter(
+			ruleDottedName =>
+				ruleDottedName.startsWith(dottedName) &&
+				ruleDottedName.split(' . ').length ===
+					dottedName.split(' . ').length + 1
+		)
+		.filter(rule => !ruleWithDedicatedDocumentationPage(rule))
 	if (!namespaceRules.length) {
 		return null
 	}
