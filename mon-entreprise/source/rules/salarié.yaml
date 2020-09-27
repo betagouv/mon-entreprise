@@ -40,6 +40,7 @@ contrat salarié . salarié majeur:
 
 contrat salarié . frais professionnels:
   titre: remboursement de frais
+  unité: €/mois
   description: >-
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont
