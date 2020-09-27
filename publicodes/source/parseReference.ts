@@ -1,4 +1,3 @@
-import React from 'react'
 import { Leaf } from './components/mecanisms/common'
 import { typeWarning } from './error'
 import { evaluateApplicability } from './evaluateRule'
@@ -193,7 +192,9 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			applicabilityEvaluation
 		)
 	}
-	const situationValue = situation[dottedName]
+	const situationValue = situation[dottedName]?.evaluate
+		? evaluateNode(cache, situation, rules, situation[dottedName])
+		: situation[dottedName]
 	if (situationValue != null) {
 		const unit =
 			!situationValue.unit || serializeUnit(situationValue.unit) === ''
