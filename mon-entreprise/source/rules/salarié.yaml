@@ -132,9 +132,9 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
     dépasser 11,10€ par titre en 2020.
   par défaut: 8 €/titre-restaurant
   suggestions:
-    faible: 6
-    moyenne: 8
-    max exonéré: 11.10
+    faible: 6 €/titre-restaurant
+    moyenne: 8 €/titre-restaurant
+    max exonéré: 11.10 €/titre-restaurant
 
 contrat salarié . frais professionnels . titres-restaurant . taux participation employeur:
   description: >-
@@ -143,8 +143,8 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
   question: Quelle est la participation de l'employeur ?
   par défaut: 50 %
   suggestions:
-    50%: 50
-    60%: 60
+    50%: 50 %
+    60%: 60 %
 
 contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min:
   type: notification
@@ -191,9 +191,9 @@ contrat salarié . frais professionnels . indemnité kilométrique vélo . dista
   question: >-
     Quelle est la distance parcourue en vélo chaque mois pour le trajet domicile / travail ?
   suggestions:
-    2 km/jour: 40
-    5 km/jour: 100
-    10 km/jour: 200
+    2 km/jour: 40 km/mois
+    5 km/jour: 100 km/mois
+    10 km/jour: 200 km/mois
   par défaut: 80 km/mois
 
 contrat salarié . activité partielle:
@@ -245,9 +245,9 @@ contrat salarié . activité partielle . heures travaillées:
     inférieur au temps contractuel.
   par défaut: 0 heures/mois
   suggestions:
-    30 h/semaine: 130
-    20 h/semaine: 86.6666
-    10 h/semaine: 43.3333
+    30 h/semaine: 130 heures/mois
+    20 h/semaine: 86.6666 heures/mois
+    10 h/semaine: 43.3333 heures/mois
 
 contrat salarié . activité partielle . heures travaillées . contrôle temps de travail:
   type: notification
@@ -889,10 +889,10 @@ contrat salarié . CDD . durée contrat:
   références:
     Durée maximale d'un CDD (service-public.fr): https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211
   suggestions:
-    18 mois: 18
-    1 an: 12
-    6 mois: 6
-    3 mois: 3
+    18 mois: 18 mois
+    1 an: 12 mois
+    6 mois: 6 mois
+    3 mois: 3 mois
   # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
   par défaut: 1 mois
 
@@ -902,8 +902,8 @@ contrat salarié . CDD . congés non pris:
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
   suggestions:
-    3 jours: 3
-    10 jours: 10
+    3 jours: 3 jour ouvré
+    10 jours: 10 jour ouvré
   par défaut: 0 jour ouvré
 
 contrat salarié . CDD . contrôle congés non pris max:
@@ -1391,7 +1391,7 @@ contrat salarié . rémunération . avantages en nature . autres . montant:
     Quel est le montant de ces autres avantages ?
   par défaut: 0 €/mois
   suggestions:
-    🚗 véhicule: 260
+    🚗 véhicule: 260 €/mois
 
 contrat salarié . rémunération . avantages en nature . ntic . montant:
   titre: outils NTIC
@@ -1419,18 +1419,18 @@ contrat salarié . rémunération . avantages en nature . ntic . coût appareils
   par défaut: 800 €
   # TODO : vérifier et documenter les chiffres
   suggestions:
-    📱: 400
-    📱✨ (haut de gamme): 850
-    💻: 1200
-    💻 + 📱✨: 2050
+    📱: 400 €
+    📱✨ (haut de gamme): 850 €
+    💻: 1200 €
+    💻 + 📱✨: 2050 €
 
 contrat salarié . rémunération . avantages en nature . ntic . abonnements:
   question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
   par défaut: 20 €/mois
   suggestions:
-    aucun: 0
-    standard: 20
-    international: 40
+    aucun: 0 €/mois
+    standard: 20 €/mois
+    international: 40 €/mois
 
 contrat salarié . rémunération . avantages en nature . nourriture:
   icônes: 🍝
@@ -1455,8 +1455,8 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
     Combien de repas par mois sont payés par l'employeur ?
   par défaut: 21 repas/mois
   suggestions:
-    1 par jour: 21
-    2 par jour: 42
+    1 par jour: 21 repas/mois
+    2 par jour: 42 repas/mois
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
@@ -2008,9 +2008,9 @@ contrat salarié . temps de travail . heures supplémentaires:
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées par mois ?
   par défaut: 0 heure/mois
   suggestions:
-    aucune: 0
-    39h / semaine: 17.33
-    42h / semaine: 30.33
+    aucune: 0 heure/mois
+    39h / semaine: 17.33 heures/mois
+    42h / semaine: 30.33 heures/mois
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
 
@@ -2504,8 +2504,8 @@ contrat salarié . complémentaire santé . part employeur:
   description: Part de la complémentaire santé payée par l'employeur. Doit être de 50% minimum
   question: Quelle est la part de la complémentaire santé payée par l'employeur ?
   suggestions:
-    50%: 50
-    100%: 100
+    50%: 50%
+    100%: 100%
   par défaut: 50%
 
 contrat salarié . complémentaire santé . part employeur min:
@@ -2541,9 +2541,9 @@ contrat salarié . complémentaire santé . forfait:
   question: Quel est le montant mensuel total (salarié et employeur) de la complémentaire santé entreprise ?
   par défaut: 40 €/mois
   suggestions:
-    basique: 40
-    élevé: 100
-    alsace moselle basique: 30
+    basique: 40 €/mois
+    élevé: 100 €/mois
+    alsace moselle basique: 30 €/mois
 
 contrat salarié . complémentaire santé . contrôle min:
   type: notification

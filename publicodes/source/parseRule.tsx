@@ -3,7 +3,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { Mecanism } from './components/mecanisms/common'
 import { RuleLinkWithContext } from './components/RuleLink'
-import { warning } from './error'
+import { compilationError, warning } from './error'
 import evaluate from './evaluateRule'
 import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
 import { parse } from './parse'
@@ -13,7 +13,12 @@ import {
 	nameLeaf
 } from './ruleUtils'
 import { ParsedRule, Rule, Rules } from './types'
-import { parseUnit, simplifyUnit } from './units'
+import {
+	areUnitConvertible,
+	parseUnit,
+	serializeUnit,
+	simplifyUnit
+} from './units'
 import { capitalise0, coerceArray } from './utils'
 
 export default function<Names extends string>(
@@ -215,6 +220,29 @@ export default function<Names extends string>(
 		name: 'rendu non applicable',
 		type: 'boolean',
 		explanation: parsedRules[dottedName]
+	}
+
+	if (process.env.NODE_ENV === 'development') {
+		Object.values(parsedRules[dottedName]['suggestions'] ?? {}).forEach(
+			suggestion => {
+				const parsedSuggestion = parse(rules, rule, parsedRules)(suggestion)
+				if (
+					!areUnitConvertible(
+						parsedRules[dottedName].unit,
+						parsedSuggestion.unit
+					) &&
+					parsedSuggestion.category !== 'reference'
+				) {
+					compilationError(
+						dottedName,
+						`La suggestion "${suggestion}" n'a pas une unité compatible avec la règle :
+						"${serializeUnit(parsedRules[dottedName].unit)}" et "${serializeUnit(
+							parsedSuggestion.unit
+						)}"`
+					)
+				}
+			}
+		)
 	}
 	return parsedRules[dottedName]
 }
