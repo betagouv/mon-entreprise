@@ -1102,7 +1102,7 @@ contrat salarié . rémunération . brut de base:
   unité: €/mois
   suggestions:
     salaire médian: 2300 €/mois
-    SMIC: 1539 €/mois
+    SMIC: contrat salarié . SMIC contractuel
   formule:
     inversion numérique:
       question: Quel est le salaire ?
@@ -1143,8 +1143,8 @@ contrat salarié . rémunération . brut de base . équivalent temps plein:
   unité: €/mois
   formule: brut de base / temps de travail . quotité de travail
   suggestions:
-    salaire médian: 2300
-    SMIC: 1522
+    salaire médian: 2300 €/mois
+    SMIC: SMIC temps plein
 
 contrat salarié . rémunération . taux horaire:
   unité: €/heure

@@ -105,7 +105,7 @@ const Target = ({ dottedName }: TargetProps) => {
 
 	return (
 		<li
-			key={target.name}
+			key={target.dottedName}
 			className={isSmallTarget ? 'small-target' : undefined}
 		>
 			<Animate.appear unless={!isSmallTarget}>
@@ -203,7 +203,6 @@ function TargetInputOrValue({
 			: target?.nodeValue != null
 			? Math.round(+target.nodeValue)
 			: undefined
-
 	const blurValue = useInversionFail() && !isActiveInput
 
 	const onChange = useCallback(

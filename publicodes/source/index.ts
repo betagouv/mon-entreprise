@@ -22,9 +22,6 @@ type Cache = {
 		}
 	}
 }
-type Situation<Names extends string> = Partial<
-	Record<Names, object | string | number>
->
 
 type EvaluatedSituation<Names extends string> = Partial<
 	Record<Names, EvaluatedNode<Names>>
@@ -63,7 +60,7 @@ export default class Engine<Names extends string> {
 	private evaluateExpression(
 		expression: string,
 		context: string
-	): EvaluatedNode<Names> {
+	): EvaluatedRule<Names> {
 		// EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker
 		// console.warn
 		const originalWarn = console.warn
@@ -105,6 +102,7 @@ export default class Engine<Names extends string> {
 					: value,
 			situation
 		) as EvaluatedSituation<Names>
+		this.resetCache()
 		return this
 	}
 
@@ -120,13 +118,14 @@ export default class Engine<Names extends string> {
 		)
 		if (result.category === 'reference' && result.explanation) {
 			result = {
+				...result.explanation,
 				nodeValue: result.nodeValue,
 				missingVariables: result.missingVariables,
 				...('unit' in result && { unit: result.unit }),
 				...('temporalValue' in result && {
 					temporalValue: result.temporalValue
 				}),
-				...result.explanation
+				dottedName: result.dottedName
 			} as EvaluatedRule<Names>
 		}
 		if (options?.unit) {
