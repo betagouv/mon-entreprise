@@ -35,7 +35,6 @@ export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
  * Filter-out and apply all possible replacements at runtime.
  */
 const getApplicableReplacements = (
-	filter,
 	contextRuleName,
 	cache,
 	situation,
@@ -87,7 +86,7 @@ const getApplicableReplacements = (
 		.map(({ referenceNode, replacementNode }) =>
 			replacementNode != null
 				? evaluateNode(cache, situation, rules, replacementNode)
-				: evaluateReference(filter, '')(cache, situation, rules, referenceNode)
+				: evaluateReference(cache, situation, rules, referenceNode)
 		)
 		.map(replacementNode => {
 			const replacedRuleUnit = rule.unit
@@ -110,12 +109,7 @@ const getApplicableReplacements = (
 	return [applicableReplacements, missingVariableList]
 }
 
-const evaluateReference = (filter: string, contextRuleName: string) => (
-	cache,
-	situation,
-	rules,
-	node
-) => {
+const evaluateReference = (cache, situation, rules, node) => {
 	const rule = rules[node.dottedName]
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
@@ -123,8 +117,7 @@ const evaluateReference = (filter: string, contextRuleName: string) => (
 		applicableReplacements,
 		replacementMissingVariableList
 	] = getApplicableReplacements(
-		filter,
-		contextRuleName,
+		node.explanation?.contextRuleName ?? '',
 		cache,
 		situation,
 		rules,
@@ -155,7 +148,8 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	const dottedName = node.dottedName
 	// On va vérifier dans le cache courant, dict, si la variable n'a pas été déjà évaluée
 	// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
-	const cacheName = dottedName + (filter ? ' .' + filter : '')
+	const cacheName =
+		dottedName + (node.explanation.filter ? ' .' + node.explanation.filter : '')
 	const cached = cache[cacheName]
 
 	if (cached) return addReplacementMissingVariable(cached)
@@ -255,13 +249,13 @@ export const parseReference = (
 		(!inInversionFormula && parseRule(rules, dottedName, parsedRules))
 	const unit = parsedRule.unit
 	return {
-		evaluate: evaluateReference(filter, rule.dottedName),
+		evaluate: evaluateReference,
 		jsx: Leaf,
 		name: partialReference,
 		category: 'reference',
 		partialReference,
 		dottedName,
-		explanation: parsedRule,
+		explanation: { ...parsedRule, filter, contextRuleName: rule.dottedName },
 		unit
 	}
 }
@@ -271,28 +265,23 @@ export const parseReference = (
 // See the unité-temporelle.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-const evaluateTransforms = (originalEval, _, parseResult) => (
-	cache,
-	situation,
-	parsedRules,
-	node
-) => {
+const evaluateReferenceTransforms = (cache, situation, parsedRules, node) => {
 	// Filter transformation
 	const filteringSituation = {
 		...situation,
-		'_meta.filter': parseResult.filter
+		'_meta.filter': node.explanation.filter
 	}
-	const filteredNode = originalEval(
+	const filteredNode = evaluateNode(
 		cache,
-		parseResult.filter ? filteringSituation : situation,
+		node.explanation.filter ? filteringSituation : situation,
 		parsedRules,
-		node
+		node.explanation.originalNode
 	)
 	const { explanation, nodeValue } = filteredNode
 	if (!explanation || nodeValue === null) {
 		return filteredNode
 	}
-	const unit = parseResult.unit
+	const unit = node.explanation.unit
 	if (unit) {
 		try {
 			return convertNodeToUnit(unit, filteredNode)
@@ -307,32 +296,44 @@ const evaluateTransforms = (originalEval, _, parseResult) => (
 
 	return filteredNode
 }
-export const parseReferenceTransforms = (
-	rules,
-	rule,
-	parsedRules
-) => parseResult => {
-	const referenceName = parseResult.variable.fragments.join(' . ')
-	const node = parseReference(
+
+type parseReferenceTransformsParameters = {
+	variable: { fragments: Array<string> }
+	filter?: string
+	unit?: string
+}
+
+export const parseReferenceTransforms = (rules, rule, parsedRules) => ({
+	variable,
+	filter,
+	unit
+}: parseReferenceTransformsParameters) => {
+	const referenceName = variable.fragments.join(' . ')
+	const originalNode = parseReference(
 		rules,
 		rule,
 		parsedRules,
-		parseResult.filter
+		filter
 	)(referenceName)
 
 	return {
-		...node,
+		...originalNode,
+		explanation: {
+			originalNode,
+			filter,
+			unit
+		},
 		// Decorate node with the composante filter (either who is paying, either tax free)
-		...(parseResult.filter
+		...(filter
 			? {
 					cotisation: {
-						...(node as any).cotisation,
-						'dû par': parseResult.filter,
-						'impôt sur le revenu': parseResult.filter
+						...(originalNode as any).cotisation,
+						'dû par': filter,
+						'impôt sur le revenu': filter
 					}
 			  }
 			: {}),
-		evaluate: evaluateTransforms(node.evaluate, rule, parseResult),
-		unit: parseResult.unit || node.unit
+		evaluate: evaluateReferenceTransforms,
+		unit: unit || originalNode.unit
 	}
 }
