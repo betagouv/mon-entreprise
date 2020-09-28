@@ -127,20 +127,12 @@ export function isPossibilities2(node: ASTNode): node is Possibilities2 {
 
 export type Reference<Names extends string> = ASTNode & {
 	category: 'reference'
-	name: Names
-	partialReference: Names
-	dottedName: Names
 }
 export function isReference<Names extends string>(
 	node: ASTNode
 ): node is Reference<Names> {
 	const reference = node as Reference<Names>
-	return (
-		reference.category === 'reference' &&
-		isWannabeDottedName(reference.name) &&
-		isWannabeDottedName(reference.partialReference) &&
-		isWannabeDottedName(reference.dottedName)
-	)
+	return reference.category === 'reference'
 }
 
 export type AbstractMechanism = ASTNode & {
