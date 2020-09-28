@@ -5872,14 +5872,20 @@ entreprise . résultat net:
   titre.en: net result
   titre.fr: résultat net
 entreprise . taxe sur les salaires:
+  description.en: '[automatic] When the amount of payroll tax is less than
+    €1200/year, there is no need to make a declaration and the tax is not
+    recovered. Between €1200/year and €2400/year a discount applies.'
+  description.fr: Lorsque le montant de la taxe sur les salaires est inférieur à
+    1200 €/an, il n'y a pas besoin de faire de déclaration et la taxe n'est pas
+    recouvré. Entre 1200 €/an et 2400 €/an une décote s'applique.
   titre.en: tax on salaries
   titre.fr: taxe sur les salaires
 entreprise . taxe sur les salaires . abattement associations:
   titre.en: associations abatement
   titre.fr: abattement associations
-entreprise . taxe sur les salaires . barème:
-  titre.en: scale
-  titre.fr: barème
+entreprise . taxe sur les salaires . montant avant décote:
+  titre.en: '[automatic] pre-discount amount'
+  titre.fr: montant avant décote
 entreprise . établissement bancaire:
   description.en:
     The company is a banking, financial or insurance institution. It

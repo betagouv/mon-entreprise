@@ -48,10 +48,10 @@ impôt sur le revenu:
 impôt sur le revenu à payer:
   formule:
     allègement:
-      assiette: impôt sur le revenu
-      décote:
-        taux: 75%
-        plafond: 1177
+			assiette: impôt sur le revenu
+			abattement:
+				valeur: 1177 - (75% * impôt sur le revenu)
+				plancher: 0
 `
 
 		let engine = new Engine(rules)

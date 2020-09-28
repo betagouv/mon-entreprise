@@ -268,23 +268,29 @@ entreprise . établissement bancaire:
   question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
   par défaut: non
 
-entreprise . taxe sur les salaires . barème:
-  formule: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
+entreprise . taxe sur les salaires . montant avant décote:
+  formule:
+    allègement:
+      assiette: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
+      abattement: abattement associations
 
 entreprise . taxe sur les salaires . abattement associations:
   applicable si: entreprise . association non lucrative
-  # TODO : 20835
-  formule: 20507 €/an
+  formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
+  description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
+    n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
+    Entre 1200 €/an et 2400 €/an une décote s'applique.
   formule:
-    allègement:
-      assiette: barème
-      franchise: 1200 €/an
-      décote:
-        taux: 75%
-        plafond: 2040 €/an
-      abattement: abattement associations
+    variations:
+      - si: montant avant décote <= 1200 €/an
+        alors: 0 €/an
+      - si: montant avant décote <= 2400 €/an
+        alors: montant avant décote - (2400 €/an - montant avant décote * 75%)
+      - sinon: montant avant décote
+  références:
+    Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
 entreprise . catégorie d'activité:
   titre: nature de l'activité

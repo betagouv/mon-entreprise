@@ -1,11 +1,8 @@
-import { map, mapObjIndexed, values } from 'ramda'
 import React from 'react'
 import { makeJsx } from '../../evaluation'
 import { Mecanism } from './common'
 
-export default function Allègement({ nodeValue, explanation: rawExplanation }) {
-	// Don't display attributes with default values
-	let explanation = map(k => (k && !k.isDefault ? k : null), rawExplanation)
+export default function Allègement({ nodeValue, explanation }) {
 	return (
 		<div>
 			<Mecanism name="allègement" value={nodeValue} unit={explanation.unit}>
@@ -14,27 +11,13 @@ export default function Allègement({ nodeValue, explanation: rawExplanation }) 
 						<span className="key">Assiette : </span>
 						<span className="value">{makeJsx(explanation.assiette)}</span>
 					</li>
-					{explanation.franchise && (
-						<li key="franchise">
-							<span className="key">Franchise : </span>
-							<span className="value">{makeJsx(explanation.franchise)}</span>
-						</li>
-					)}
-					{explanation.décote && (
-						<li key="décote">
-							<span className="key">Décote : </span>
-							<span className="value">
-								<ObjectView data={explanation.décote} />
-							</span>
-						</li>
-					)}
-					{explanation.abattement && (
+					{!explanation.abattement?.isDefault && (
 						<li key="abattement">
 							<span className="key">Abattement : </span>
 							<span className="value">{makeJsx(explanation.abattement)}</span>
 						</li>
 					)}
-					{explanation.plafond && (
+					{!explanation.plafond?.isDefault && (
 						<li key="plafond">
 							<span className="key">Plafond : </span>
 							<span className="value">{makeJsx(explanation.plafond)}</span>
@@ -45,20 +28,3 @@ export default function Allègement({ nodeValue, explanation: rawExplanation }) 
 		</div>
 	)
 }
-
-let ObjectView = ({ data }) => (
-	<ul className="properties">
-		{values(
-			mapObjIndexed(
-				(v, k) => (
-					<li key={k}>
-						{' '}
-						<span className="key">{k}: </span>
-						<span className="value">{makeJsx(v)}</span>
-					</li>
-				),
-				data
-			)
-		)}
-	</ul>
-)
