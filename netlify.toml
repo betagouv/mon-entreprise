@@ -51,7 +51,7 @@
 ############
 # Redirects for single page app config & prerendering purpose
 
-# InFrance PRODUCTION settings
+# Mycompanyinfrance
 [[redirects]]
   from = "https://www.mycompanyinfrance.fr/*"
   to = "https://mycompanyinfrance.fr/:splat"
@@ -83,12 +83,12 @@
   status = 200
 
 [[redirects]]
-  from = "https://mycompanyinfrance.fr/social-security/salaried"
-  to = "/prerender/infrance/social-security/salaried/index.html"
+  from = "https://mycompanyinfrance.com/calculators/salary"
+  to = "/prerender/infrance/calculators/salary/index.html"
   status = 200
 
 [[redirects]]
-  from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
+  from = "https://mycompanyinfrance.com/iframes/simulateur-embauche"
   to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
   status = 200
 
@@ -97,6 +97,20 @@
   to = "/infrance.html"
   status = 200
 
+[[redirects]]
+  from = "/"
+  query = {s = "m"}
+  to = "/prerender/infrance/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  query = {s = "m"}
+  to = "/infrance.html"
+  status = 200
+
+
+# Publicode 
 [[redirects]]
   from = "https://publi.codes/*"
   to = "/publicodes.html"
@@ -108,7 +122,7 @@
   to = "/publicodes.html"
   status = 200
 
-# Mon-entreprise.fr PRODUCTION settings
+# Mon-entreprise.fr 
 [[redirects]]
   from = "https://mon-entreprise.fr/robots.txt"
   to = "/robots.infrance.txt"
@@ -119,8 +133,69 @@
   to = "/sitemap.infrance.fr.txt"
   status = 200
 
+[[redirects]]
+  from = "/"
+  to = "/prerender/mon-entreprise/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cr%C3%A9er"
+  to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/g%C3%A9rer"
+  to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/ch%C3%B4mage-partiel"
+  to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/salaire-brut-net"
+  to = "/prerender/mon-entreprise/simulateurs/salaire-brut-net/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/auto-entrepreneur"
+  to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/ind%C3%A9pendant"
+  to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/dirigeant-sasu"
+  to = "/prerender/mon-entreprise/simulateurs/dirigeant-sasu/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/simulateurs/artiste-auteur"
+  to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/iframes/simulateur-embauche"
+  to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/iframes/simulateur-chomage-partiel"
+  to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/mon-entreprise.html"
+  status = 200
+
 
 # Embauche redirection settings
+
 [[redirects]]
   from = "https://embauche.beta.gouv.fr/"
   to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
@@ -147,79 +222,7 @@
   to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
   status = 301
 
-# Redirection pour les pages en anglais
-[[redirects]]
-  from = "/"
-  query = {s = "m"}
-  to = "/prerender/infrance/index.html"
-  status = 200
 
-[[redirects]]
-  from = "/*"
-  query = {s = "m"}
-  to = "/infrance.html"
-  status = 200
-
-# Redirection pour les pages en français
-[[redirects]]
-  from = "/"
-  to = "/prerender/mon-entreprise/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/cr%C3%A9er"
-  to = "/prerender/mon-entreprise/cr%C3%A9er/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/g%C3%A9rer"
-  to = "/prerender/mon-entreprise/g%C3%A9rer/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/ch%C3%B4mage-partiel"
-  to = "/prerender/mon-entreprise/simulateurs/ch%C3%B4mage-partiel/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/salari%C3%A9"
-  to = "/prerender/mon-entreprise/simulateurs/salari%C3%A9/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/auto-entrepreneur"
-  to = "/prerender/mon-entreprise/simulateurs/auto-entrepreneur/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/ind%C3%A9pendant"
-  to = "/prerender/mon-entreprise/simulateurs/ind%C3%A9pendant/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/assimil%C3%A9-salari%C3%A9"
-  to = "/prerender/mon-entreprise/simulateurs/assimil%C3%A9-salari%C3%A9/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/simulateurs/artiste-auteur"
-  to = "/prerender/mon-entreprise/simulateurs/artiste-auteur/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/iframes/simulateur-embauche"
-  to = "/prerender/mon-entreprise/iframes/simulateur-embauche/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/iframes/simulateur-chomage-partiel"
-  to = "/prerender/mon-entreprise/iframes/simulateur-chomage-partiel/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/mon-entreprise.html"
-  status = 200
 
 [build]
   # Hack while waiting for netlify to support workspace
