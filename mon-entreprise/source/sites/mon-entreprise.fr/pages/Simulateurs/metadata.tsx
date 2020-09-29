@@ -3,11 +3,13 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import AutoEntrepreneurExplanation from 'Components/simulationExplanation/AutoEntrepreneurExplanation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
+import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { SimulationConfig } from 'Reducers/rootReducer'
 import { constructLocalizedSitePath } from '../../sitePaths'
+import { RessourceAutoEntrepreneur } from '../Créer/CreationChecklist'
 import AideDéclarationIndépendant from '../Gérer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gérer/DemandeMobilite'
 import ArtisteAuteur from './ArtisteAuteur'
@@ -215,6 +217,77 @@ export function getSimulatorsData({
 			title: t(
 				'pages.simulateurs.auto-entrepreneur.title',
 				'Simulateur de revenus auto-entrepreneur'
+			),
+			seoExplanations: (
+				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
+					<h2>Comment calculer le revenu net d'un auto-entrepreneur ?</h2>
+					<p>
+						Un auto-entrepreneur doit payer des cotisations sociales à
+						l'administration. Ces cotisations servent au financement de la
+						sécurité sociale, et ouvrent des droits pour la retraite ou pour
+						l'assurance maladie. Elle permettent également de financer la
+						formation professionnelle. Leur montant varie en fonction du type
+						d'activité.
+					</p>
+					<p>
+						<Emoji emoji="👉" />{' '}
+						<RuleLink dottedName="dirigeant . auto-entrepreneur . cotisations et contributions">
+							Voir le détail du calcul des cotisations
+						</RuleLink>
+					</p>
+					<p>
+						Il ne faut pas oublier de retrancher toutes les dépenses effectuées
+						dans le cadre de l'activité professionnelle (équipements, matière
+						premières, local, transport). Bien qu'elles ne soient pas utilisées
+						pour le calcul des cotisations et de l'impôt, elles doivent être
+						prises en compte pour vérifier si l'activité est viable
+						économiquement.
+					</p>
+					<p>
+						La formule de calcul complète est donc :
+						<blockquote>
+							<strong>
+								Revenu net = Chiffres d'affaires − Cotisations sociales −
+								Dépenses professionnelles
+							</strong>
+						</blockquote>
+					</p>
+					<h2>
+						Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?
+					</h2>
+					<p>
+						Si vous avez opté pour le versement libératoire lors de la création
+						de votre auto-entreprise, l'impôt sur le revenu est payé en même
+						temps que les cotisations sociales.
+					</p>
+					<p>
+						<Emoji emoji="👉" />{' '}
+						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . versement libératoire . montant">
+							Voir comment est calculé le montant du versement libératoire
+						</RuleLink>
+					</p>
+					<p>
+						Sinon, vous serez imposé selon le barème standard de l'impôt sur le
+						revenu. Le revenu imposable est alors calculé comme un pourcentage
+						du chiffre d'affaires. C'est qu'on appel l'abattement forfaitaire.
+						Ce pourcentage varie en fonction du type d'activité excercé. On dit
+						qu'il est forfaitaire car il ne prends pas en compte les dépenses
+						réelles effectuées dans le cadre de l'activité.
+					</p>
+					<p>
+						<Emoji emoji="👉" />{' '}
+						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . revenu abattu">
+							Voir le détail du calcul du revenu abattu pour un
+							auto-entrepreneur
+						</RuleLink>
+					</p>
+					<h2>
+						<Trans>Ressources utiles</Trans>
+					</h2>
+					<div style={{ display: 'flex', flexWrap: 'wrap' }}>
+						<RessourceAutoEntrepreneur />
+					</div>
+				</Trans>
 			)
 		},
 		indépendant: {
@@ -538,6 +611,7 @@ export function getSimulatorsData({
 		},
 		médecin: {
 			config: médecinConfig,
+			private: true,
 			icône: '⚕️',
 			iframe: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
@@ -549,6 +623,7 @@ export function getSimulatorsData({
 			component: IndépendantSimulation
 		},
 		'chirurgien-dentiste': {
+			private: true,
 			config: dentisteConfig,
 			icône: '🦷',
 			iframe: 'chirurgien-dentiste',
@@ -564,6 +639,7 @@ export function getSimulatorsData({
 			component: IndépendantSimulation
 		},
 		'sage-femme': {
+			private: true,
 			config: sageFemmeConfig,
 			icône: '👶',
 			iframe: 'sage-femme',
@@ -576,6 +652,7 @@ export function getSimulatorsData({
 			component: IndépendantSimulation
 		},
 		'auxiliaire-médical': {
+			private: true,
 			config: auxiliaireConfig,
 			icône: '🩹',
 			iframe: 'auxiliaire-médical',
@@ -591,6 +668,7 @@ export function getSimulatorsData({
 			component: IndépendantSimulation
 		},
 		'profession-libérale': {
+			private: true,
 			config: professionLibéraleConfig,
 			icône: '💻',
 			meta: {

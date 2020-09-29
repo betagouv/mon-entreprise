@@ -13,7 +13,7 @@ export default function Simulateurs() {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
 	const simulators = useSimulatorsData()
-	const titre = t('simulateurs.accueil.titre', 'Simulateurs disponibles')
+	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
 		<>
 			<Helmet>
@@ -23,23 +23,11 @@ export default function Simulateurs() {
 				<div>
 					<h1>{titre}</h1>
 					<p className="ui__ lead">
-						<Trans i18nKey="créer.description">
+						<Trans i18nKey="pages.simulateurs.accueil.header">
 							Tous les simulateurs sur ce site sont maintenus à jour avec les
 							dernières évolutions législatives.
 						</Trans>
 					</p>
-					<Link
-						className="ui__ button plain cta"
-						to={sitePaths.integration.iframe}
-					>
-						<Trans>Intégrer un simulateur</Trans>
-					</Link>
-					{/* <p className="ui__ notice">
-						<Trans i18nKey="créer.warningPL">
-							Le cas des professions libérales réglementées n'est pas encore
-							traité
-						</Trans>
-					</p> */}
 				</div>
 
 				<img
@@ -48,67 +36,46 @@ export default function Simulateurs() {
 					css="margin-left: 3rem; max-width: 15rem; transform: translateX(2rem) translateY(3rem) scale(1.4);"
 				/>
 			</section>
-			<section className="ui__ full-width light-bg">
-				<h2 css="min-width: 100%; text-align: center">
-					Salariés et employeurs
+			<section>
+				<h2>
+					<Trans>Salariés et employeurs</Trans>
 				</h2>
-				<div className="ui__ center-flex">
+				<div className="ui__ box-container">
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
 				</div>
-			</section>
-			<section>
-				<h2>Par type de société</h2>
-				<div
-					className="ui__ center-flex"
-					css={`
-						margin: 0 -1rem;
-						> .card {
-							border: 4px solid var(--lighterColor);
-						}
-					`}
-				>
+
+				<h2>
+					<Trans>Par statut</Trans>
+				</h2>
+				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators.sasu} />
-				</div>
-
-				<h2>Par métier</h2>
-				<div
-					css={`
-						display: flex;
-						flex-wrap: wrap;
-						margin: 0 -1rem;
-						> .card {
-							border: 4px solid var(--lighterColor);
-						}
-					`}
-				>
 					<SimulateurCard {...simulators['artiste-auteur']} />
-					<SimulateurCard {...simulators['profession-libérale']} />
+					{process.env.HEAD !== 'master' && (
+						<SimulateurCard {...simulators['profession-libérale']} />
+					)}
 				</div>
-				<h3>
-					<small>Professionnels de santé {emoji('🏥')}</small>
-				</h3>
-				<div
-					className="ui__ center-flex"
-					css={`
-						margin: 0 -0.5rem;
-						> .card {
-							border: 4px solid var(--lighterColor);
-						}
-					`}
-				>
-					<SimulateurCard small {...simulators['auxiliaire-médical']} />
-					<SimulateurCard small {...simulators['chirurgien-dentiste']} />
-					<SimulateurCard small {...simulators.médecin} />
-					<SimulateurCard small {...simulators['sage-femme']} />
-				</div>
-			</section>
-
-			<section className="ui__ full-width light-bg">
-				<h2 css="min-width: 100%; text-align: center">Autres outils</h2>
-				<div className="ui__ center-flex">
+				{process.env.HEAD !== 'master' && (
+					<>
+						<h3>
+							<small>
+								<Trans>Professionnels de santé</Trans> {emoji('🏥')}
+							</small>
+						</h3>
+						<div className="ui__ small box-container">
+							<SimulateurCard small {...simulators['auxiliaire-médical']} />
+							<SimulateurCard small {...simulators['chirurgien-dentiste']} />
+							<SimulateurCard small {...simulators.médecin} />
+							<SimulateurCard small {...simulators['sage-femme']} />
+						</div>
+					</>
+				)}
+				<h2>
+					<Trans>Autres outils</Trans>
+				</h2>
+				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['demande-mobilité']} />
 					<SimulateurCard {...simulators['comparaison-statuts']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
@@ -116,7 +83,7 @@ export default function Simulateurs() {
 				</div>
 			</section>
 			<section>
-				<Trans i18nKey="simulateurs.accueil.description">
+				<Trans i18nKey="page.simulateurs.accueil.description">
 					<p>Tous les simulateurs sur ce site sont :</p>
 					<ul>
 						<li>
@@ -128,7 +95,9 @@ export default function Simulateurs() {
 							de dispositifs pris en compte
 						</li>
 						<li>
-							Développés en <strong>partenariat avec l'Urssaf</strong>
+							<strong>Intégrable facilement et gratuitement</strong> sur
+							n'importe quel site internet.{' '}
+							<Link to={sitePaths.integration.iframe}>En savoir plus</Link>.
 						</li>
 					</ul>
 				</Trans>
@@ -146,7 +115,9 @@ function SimulateurCard({
 }: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
 	return (
 		<Link
-			className={classnames('ui__ interactive card box', { small })}
+			className={classnames('ui__ interactive card box light-border', {
+				small
+			})}
 			key={path}
 			to={{
 				state: { fromSimulateurs: true },
