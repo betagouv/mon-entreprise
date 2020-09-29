@@ -17,8 +17,6 @@ module.exports = {
 		rules: [...commonLoaders({ legacy: true }), styleLoader('style-loader')]
 	},
 	plugins: [
-		...HTMLPlugins({ injectTrackingScript: true }),
-
 		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({ HEAD: '', COMMIT_REF: '' }),
 		new EnvironmentPlugin({
