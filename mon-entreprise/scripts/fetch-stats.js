@@ -125,8 +125,7 @@ async function fetchSimulators(dt) {
 					'/comparaison-régimes-sociaux',
 					'/dirigeant-sasu',
 					'/aide-declaration-independants',
-					'/demande-mobilité',
-					'/économie-collaborative'
+					'/demande-mobilité'
 				].includes(label)
 			)
 
@@ -156,13 +155,9 @@ async function fetchSimulators(dt) {
 		const dataIframes = await responseIframes.json()
 		const resultIframes = dataIframes.filter(x =>
 			[
-				'/simulateur-embauche',
-				'/simulateur-autoentrepreneur',
-				'/simulateur-assimilesalarie',
-				'/simulateur-artiste-auteur',
-				'/simulateur-independant',
-				'/demande-mobilite'
-			].some(path => x.label.startsWith(path))
+				'/simulateur-embauche?couleur=',
+				'/simulateur-autoentrepreneur?couleur='
+			].includes(x.label)
 		)
 
 		const groupSimulateursIframesVisits = ({ label }) =>
@@ -173,15 +168,8 @@ async function fetchSimulators(dt) {
 				? '/salaire-brut-net'
 				: label.startsWith('/simulateur-autoentrepreneur')
 				? '/auto-entrepreneur'
-				: label.startsWith('/assimilé-salarié') ||
-				  label.startsWith('/simulateur-assimilesalarie')
+				: label.startsWith('/assimilé-salarié')
 				? '/dirigeant-sasu'
-				: label.startsWith('/simulateur-independant')
-				? '/indépendant'
-				: label.startsWith('/simulateur-artiste-auteur')
-				? '/artiste-auteur'
-				: label.startsWith('/demande-mobilite')
-				? '/demande-mobilité'
 				: label
 
 		const sumVisits = (acc, { nb_visits }) => acc + nb_visits

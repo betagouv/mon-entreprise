@@ -12,7 +12,7 @@ import formulaire from './formulaire-détachement.yaml'
 
 const LazyEndBlock = React.lazy(() => import('./EndBlock'))
 
-export default function FormulaireMobilitéIndépendant() {
+export default function formulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
 		<>

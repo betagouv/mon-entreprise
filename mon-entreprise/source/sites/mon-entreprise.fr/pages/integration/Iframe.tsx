@@ -4,12 +4,12 @@ import {
 } from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/urssaf.svg'
-import React, { Suspense, useContext, useMemo, useRef, useState } from 'react'
+import React, { Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { MemoryRouter, useLocation } from 'react-router-dom'
+import { integrableModuleNames } from '../Dev/IntegrationTest'
 import Iframes from '../Iframes'
-import useSimulatorsData from '../Simulateurs/metadata'
 import './iframe.css'
 import apecLogo from './images/apec.png'
 import cciLogo from './images/cci.png'
@@ -20,14 +20,6 @@ const LazyColorPicker = React.lazy(() => import('../Dev/ColorPicker'))
 
 function IntegrationCustomizer() {
 	const { search } = useLocation()
-	const simulators = useSimulatorsData()
-	const integrableModuleNames = useMemo(
-		() =>
-			Object.values(simulators)
-				.filter(s => s.iframe && !s.private)
-				.map(s => s.iframe),
-		[simulators]
-	)
 	const defaultModuleFromUrl =
 		new URLSearchParams(search ?? '').get('module') ?? ''
 	const [currentModule, setCurrentModule] = React.useState(

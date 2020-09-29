@@ -17,7 +17,6 @@ Au-dessus de: Above
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
-Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
 Calcul: Formula
 Cette commune n'existe pas: This commune does not exist
@@ -78,7 +77,6 @@ International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
 Intégrer nos simulateurs: Integrate our simulators
-Intégrer un simulateur: Integrating a simulator
 J'ai compris: understood
 Janvier 2019: January 2019
 La somme de: This rule is the sum of
@@ -96,7 +94,6 @@ Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 Pages associées: Related pages
-Par statut: By status
 Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
 Part salariale: Employee share
@@ -112,7 +109,6 @@ Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
 Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
-Professionnels de santé: Health Care Professionals
 Protection sociale: Social security
 Précédent: Previous
 Prévisualisation: Preview
@@ -147,7 +143,6 @@ Salaire: Salary
 Salaire net: Net Salary
 Salaire net et brut: Net and gross salary
 Salarié: Employee
-Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
 Si: If
 Simulateur de salaire: Employee salary simulation
@@ -814,13 +809,6 @@ oui: yes
 page:
   documentation:
     title: Documentation
-  simulateurs:
-    accueil:
-      description: <0>All the simulators on this site are :</0><1><0><0>Maintained
-        up</0> to date with the latest legislative
-        developments</0><1><0>Continuously improved</0> to increase the number
-        of devices considered</1><2><0>Easily and freely integrates</0> on any
-        website. <3>Learn more about</3> it.</2></1>
 pages:
   common:
     ressources-auto-entrepreneur:
@@ -910,31 +898,7 @@ pages:
       attribute <1>data-lang="en"</1> allows you to choose English as the
       simulator language.</3>
     module: What module?
-  gérer:
-    aide-déclaration-indépendant:
-      meta:
-        description: Easily calculate the amount of payroll taxes to report on your 2019
-          income tax return.
-        title: 'Self-employed tax return: calculation of the amount of contributions'
-      shortname: Income tax return assistance
-      title: Help with your 2019 income tax return
-    demande-mobilité:
-      meta:
-        description: Interactive form to be completed for self-employed persons wishing
-          to carry out their activity in other European countries
-        title: 'Self-employed: demand for mobility in Europe'
-      shortname: Demand for mobility in Europe
   simulateurs:
-    accueil:
-      header: All the simulators on this site are kept up to date with the latest
-        legislative developments.
-      titre: Simulators available
-    artiste-auteur:
-      meta:
-        description: Estimate social contributions on copyright and BNC income
-        title: 'Artist-author: calculation of URSSAF membership fees'
-      shortname: Artist-author
-      title: Estimate my artist/author dues
     auto-entrepreneur:
       meta:
         description: Calculation of your income based on turnover, after deduction of
@@ -973,15 +937,7 @@ pages:
         account the actual expenses incurred in the activity.</8><9><0></0>
         <2>See details of the calculation of the income allowance for an
         auto-entrepreneur</2></9><10>Useful resources</10><11><0></0></11>'''
-      shortname: Auto-entrepreneur
-      title: Self-entrepreneur Income Simulator
       titre: Auto-entrepreneur income simulator
-    auxiliaire:
-      shortname: Medical Axiliary
-      title: Income simulator for a private medical assistant
-    chirurgien-dentiste:
-      shortname: Dental surgeon
-      title: Income simulator for a private dental surgeon
     chômage-partiel:
       explications seo: >-
         [👨 Integrate this simulator on your
@@ -1026,45 +982,6 @@ pages:
         ogTitle: 'Short-time working simulator: find out the impact on the net salaried
           income and the total employer cost.'
         titre: Calculation of the short-time working allowance in France
-      seo: <0>How is the partial activity allowance calculated?</0><1>The basic
-        partial activity allowance is fixed by law at <2>70% of gross</2>
-        salary. It is prorated according to the number of hours off work. For an
-        employee at € 2300 gross monthly, who works 50% of his usual time, this
-        gives <5>€ 2300 × 50% × 70% = € 805</5>.</1><2>In addition to this basic
-        allowance, there is a supplementary allowance for salaries close to the
-        minimum wage. This additional allowance is paid when the combined
-        remuneration and basic allowance are below a net SMIC. These allowances
-        are paid by the employer, who will then be reimbursed in part or in full
-        by the State.</2><3>👉 <2>See the details of the calculation of</2> the
-        allowance</3><4> How to calculate the part reimbursed by the
-        State?</4><5>The State covers part of the partial compensation for wages
-        up to **4.5 SMIC**, with a minimum of €8.03 per unemployed hour. In
-        concrete terms, this results in 100% coverage for salaries close to the
-        SMIC. This gradually decreases until it stabilizes at **93%** for wages
-        <3>between €2,000 and €7,000</3> (wage corresponding to the limit of 4.5
-        SMIC).</5><6>👉 <2>See details of the calculation of the reimbursement
-        of the allowance</2></6><7> How to report a partial activity?</7><8>In
-        response to the coronavirus crisis, the conditions for partial
-        employment have been eased. The employer is allowed to place his
-        employees in partial activity before the official application is filed.
-        The employee then has a period of <2>30 days</2> to comply with the
-        regulations. Benefits will be paid retroactively from the date of the
-        partial unemployment.</8><9>👉 <2>Applying for partial unemployment</2>
-        benefit</9><10> What social security contributions must be paid for the
-        partial activity allowance?</10><11>The partial activity allowance is
-        subject to the CSG/CRDS and to a sickness contribution in certain cases.
-        For more information, see the explanatory page on the <2>URSSAF
-        website</2>.</11>
-      shortname: Partial unemployment
-      title: 'Covid-19: Short-time work simulator'
-    comparaison:
-      meta:
-        description: Self-employed, self-employed or similarly employed? With this
-          comparison, find the plan that suits you best
-        title: 'Starting a business: a comparison of social schemes'
-      shortname: Status Comparison
-      title: 'Self-employed, assimilated employee or auto-entrepreneur: which plan to
-        choose?'
     dirigean sasu:
       explication seo: '<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
@@ -1084,26 +1001,6 @@ pages:
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
         questions.</4>'
-    indépendant:
-      meta:
-        description: Calculation of net income after tax and contributions based on
-          turnover and vice versa
-        title: 'Independent: Urssaf income simulator'
-      shortname: Independent
-      title: Income simulator for the self-employed
-    médecin:
-      shortname: Doctor
-      title: Income simulator for private practitioners
-    profession-libérale:
-      meta:
-        description: Net Income Calculation for Self-Employed Persons in Liberal Income
-          Tax (IR, BNC)
-        title: 'Liberal professions: the Urssaf simulator'
-      shortname: Liberal profession
-      title: Professional Income Simulator
-    sage-femme:
-      shortname: Midwife
-      title: Income simulator for private midwives
     salarié:
       explication seo: <0>Calculate your net salary</0><1>During the job interview,
         the employer usually offers a "gross" remuneration. The announced amount
@@ -1142,32 +1039,6 @@ pages:
         ogTitle: 'Gross, net, net after-tax salary, total cost: the ultimate simulator
           for employees and employers'
         titre: 'Gross / net salary: the Urssaf converter'
-      seo: <0>How is the net salary calculated?</0><1>At the job interview, the
-        employer usually proposes a "gross" remuneration. The amount announced
-        thus includes employee contributions, which are used to finance the
-        employee's social protection and which are deducted from the "net"
-        salary received by the employee.</1><2>You can use our simulator to
-        convert the <2>gross salary into net</2> salary. Simply enter the
-        advertised remuneration in the gross salary box. The simulation can be
-        refined by answering the various questions (fixed-term contract,
-        executive status, overtime, part-time, meal vouchers,
-        etc.).</2><3></3><4>Moreover, since 2019,<1> income tax</1> is deducted
-        at source. To do this, the Directorate General of Public Finance (DGFiP)
-        sends the employer the tax rate calculated from the employee's income
-        tax return. If this rate is unknown, for example in the first year of
-        employment, the employer uses the <4>neutral rate</4>.</4><5>How to
-        calculate the cost of hiring?</5><6>If you are looking to hire, you can
-        calculate the total cost of your employee's remuneration, as well as the
-        corresponding employer and employee contribution amounts. This enables
-        you to define the remuneration level by knowing the overall amount of
-        expense this represents for your company.</6><7>In addition to the
-        salary, our simulator takes into account the calculation of benefits in
-        kind (telephone, company car, etc.), as well as the compulsory health
-        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> which are
-        not all taken into account by our simulator, you can find them on <6>the
-        official portal</6>.</8>
-      shortname: Employee
-      title: Employee income simulator
       titre: Income simulator for employees
     sasu:
       meta:
@@ -1176,31 +1047,7 @@ pages:
           net income after tax from the total allocated to your compensation.
         ogTitle: 'SASU executive compensation: a simulator to find out your net salary'
         titre: 'Head of SASU: Urssaf revenue simulator'
-      seo-explanation: '<0>How to calculate the salary of a SASU executive? </0><1>As
-        for a classic employee, the SASU <2>manager</2> pays social security
-        contributions on the remuneration he pays himself. The contributions are
-        calculated in the same way as for the employee: they are broken down
-        into the employer and employee parts and are expressed as a percentage
-        of the gross salary.</1><2>The assimilated manager-employee does not pay
-        <2>unemployment contributions</2>. Furthermore, they do not benefit from
-        the <5>general reduction</5> in contributions or from the provisions of
-        the French Labour Code, such as <9>overtime</9> or
-        bonuses.</2><3>However, the employee is entitled to the <2>ACRE
-        reduction</2> at the start of employment, under certain
-        conditions.</3><4>You can use our simulator to calculate the <2>net
-        remuneration</2> from a super-gross amount allocated to the executive''s
-        remuneration. To do this, simply enter the total amount allocated in the
-        "total charged" box. The simulation can then be refined by answering
-        the various questions.</4>'
-      shortname: Head of SASU
-      title: Income simulator for SASU manager
       titre: Revenue simulator for SAS(U) executive
-  économie-collaborative:
-    meta:
-      description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to be in order
-        in your declarations
-      title: 'Online platform income tax return: interactive guide'
-    shortname: Collaborative Economy Guide
 par: per
 payslip:
   disclaimer: It takes into account national law but not union negotiated rules.
@@ -1275,6 +1122,85 @@ selectionRégime:
   page:
     titre: Social scheme selection
   titre: Which social scheme would you like to explore?
+simulateurs:
+  accueil:
+    description: >-
+      <0>All the simulators on this site are:</0>
+
+      <1><0>Maintained with the latest legislation</0> <1>Continuously improved to increase the number of devices taken into account</1> <2>Developed in partnership with the Urssaf (the contribution collector entity in France)<2> </1>
+    titre: Available simulators
+  artiste-auteur:
+    titre: Estimate my artist/author contributions
+  assimilé-salarié:
+    explications: The equal or minority directors of SARL or the directors of SA and
+      SAS are considered as "assimilé salarié" and are subject to the general
+      regime. Consequently, the director has the same social protection as an
+      employee, apart from unemployment coverage.
+    page:
+      description: Estimate your income as a SASU or SAS director based on your
+        turnover. All contributions and income tax are taken into account.
+        Official URSSAF simulator
+      titre: Official salary simulator for SASU and SAS directors
+    titre: SAS and SASU directors income simulator
+  auto-entrepreneur:
+    page:
+      description: Estimate your income as an auto-entrepreneur based on your
+        turnover. All contributions and income tax are taken into account.
+        Official URSSAF simulator.
+      titre: Official income simulator for auto-entrepreneur
+    titre: Auto-entrepreneur income simulator
+  indépendant:
+    explication1: Our estimate takes into account the <1>actual contributions</1>
+      due by the self-employed person. During the first year of his activity, he
+      will pay a reduced flat rate (a sum of around 1300€ / year for a craftsman
+      benefiting from ACRE)... but it will be regularized the following year
+      according to this real amount.
+    explication2: Unemployment and occupational accident insurance are not covered
+      by the Social Security for the self-employed. Retirement based on
+      professional income is generally lower. To be covered, the professional
+      may take out additional insurance.
+    page:
+      description: Estimate your income as a self-employed person based on your
+        turnover (for EI, EURL and SARL majority directors). All contributions
+        and income tax are taken into account. Official URSSAF simulator
+      titre: Official income simulator for self-employed person
+    titre: Self-employed income simulator
+  inversionFail: |
+    The amount entered results in an impossible result. This is due to a
+    threshold effect in the calculation of contributions.
+
+    We invite you to try again by slightly modifying the amount entered (a few euros more for example).
+  profession-libérale:
+    page:
+      description: simulators.profession-liberal.page.description
+      titre: simulators.profession-liberal.page.title
+    titre: Income simulator for {professionName}.
+  précision:
+    bonne: Good accuracy
+    défaut: 'Refine the simulation by answering the following questions:'
+    faible: Low accuracy
+    moyenne: Medium accuracy
+  résumé:
+    aide-déclaration-revenu-indep: Easily calculate the amount of payroll taxes to
+      report on your 2019 income tax return.
+    artiste-auteur: Estimating the social security contributions of an artist or author
+    assimilé: |
+      Calculate the income of an officer of a minority SAS, SASU or SARL
+    auto: |
+      Calculate the income (or turnover) of an auto-entrepreneur
+    chômage-partiel: Simulate the net income paid to the employee, as well as the
+      total remaining cost to the company if the partial activity is used.
+    comparaison: >
+      Simulate the differences between the plans (contributions, retirement,
+      maternity, illness, etc.)
+    demande-mobilité: Application form for mobility in Europe for self-employed workers
+    indépendant: |
+      Calculate the income of a majority manager of EURL, EI, or SARL
+    salarié: >
+      Calculate the net, gross, or total salary of an employee, trainee, or
+      similar
+    économie-collaborative: A guide to know how to declare your income from online
+      platforms (AirBnb, leboncoin, blablacar, etc.).
   warning:
     artiste-auteur: This estimate is proposed for information only. It is based on
       the applicable regulatory elements and the elements that you have entered,
@@ -1292,35 +1218,6 @@ selectionRégime:
     titre: Before starting...
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
-simulateurs:
-  inversionFail: >-
-    The amount entered results in an impossible result. This is due to a
-    threshold effect in the calculation of contributions.
-
-
-    We invite you to try again by slightly modifying the amount entered (a few euros more for example).
-  précision:
-    défaut: 'Refine the simulation by answering the questions:'
-  warning:
-    artiste-auteur:
-      '1': This estimate is provided for information purposes. It is based on the
-        applicable regulatory elements and the elements that you have entered,
-        but it does not take into account your entire situation. The actual
-        amount of your contributions may therefore be different.
-      '2': This simulator allows you to estimate the amount of your contributions for
-        the year 2020 based on your projected income.
-    auto-entrepreneur: ' Self-entrepreneurs cannot deduct their expenses from their
-      turnover. Therefore, <3>all costs related to the business</3> must be
-      <3>netted out to obtain the income actually received</3>.'
-    cfe: The simulator does not include the business property tax (CFE), which is
-      due from the second year of the fiscal year. Its amount varies greatly
-      depending on the company's turnover and domiciliation. <2>More
-      information.</2>
-    plus: Read the details
-    sasu: Corporate income tax and dividend management are not yet implemented.
-    titre: Before we start...
-    urssaf: The calculations are indicative and are not a substitute for the actual
-      statements of URSSAF, impots.gouv.fr, or others.
 simulation-end:
   cta: Know the steps to take
   hiring:

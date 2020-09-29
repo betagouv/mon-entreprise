@@ -311,14 +311,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
-dirigeant . auto-entrepreneur . notification valeur annuelle:
-  applicable si: entreprise . ACRE
-  type: notification
-  description: |
-    Le taux ACRE utilisé est celui correspondant au mois courant. Le
-    simulateur ne prends pas encore en compte le chevauchement de 2 période
-    d'acre sur une meme année.
-
 dirigeant . auto-entrepreneur . impôt:
 
 dirigeant . auto-entrepreneur . impôt . abattement:

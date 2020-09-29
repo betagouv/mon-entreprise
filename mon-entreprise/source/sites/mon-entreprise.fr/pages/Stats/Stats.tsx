@@ -24,7 +24,7 @@ import styled from 'styled-components'
 import statsJson from '../../../../data/stats.json'
 import { capitalise0 } from '../../../../utils'
 import Privacy from '../../layout/Footer/Privacy'
-import useSimulatorsData from '../Simulateurs/metadata'
+import { useSimulatorsMetadata } from '../Simulateurs/Home'
 
 const stats: StatsData = statsJson as any
 
@@ -78,7 +78,7 @@ export default function Stats() {
 		'oneMonthAgo'
 	)
 	const { palettes } = useContext(ThemeColorsContext)
-	const simulators = Object.values(useSimulatorsData())
+	const simulatorsMetadata = useSimulatorsMetadata()
 	return (
 		<>
 			<ScrollToTop />
@@ -130,7 +130,9 @@ export default function Stats() {
 
 				{stats.simulators[choicesimulators].visites.map(
 					({ label, nb_visits }) => {
-						const details = simulators.find(({ path }) => path.includes(label))
+						const details = simulatorsMetadata.find(({ sitePath }) =>
+							sitePath.includes(label)
+						)
 						if (!details) {
 							return null
 						}
@@ -140,12 +142,12 @@ export default function Stats() {
 								value={nb_visits}
 								title={
 									<>
-										{details.shortName}{' '}
+										{details.name}{' '}
 										<Link
 											className="distribution-chart__link_icone"
 											to={{
 												state: { fromSimulateurs: true },
-												pathname: details.path
+												pathname: details.sitePath
 											}}
 											title="Accéder au simulateur"
 											css="font-size:0.75em"

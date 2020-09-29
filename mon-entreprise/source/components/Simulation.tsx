@@ -1,20 +1,24 @@
+import { setSimulationConfig } from 'Actions/actions'
+import Notifications from 'Components/Notifications'
 import Conversation, {
 	ConversationProps
 } from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import Notifications from 'Components/Notifications'
 import SearchButton from 'Components/SearchButton'
 import TargetSelection from 'Components/TargetSelection'
+import { useSimulationProgress } from 'Components/utils/useNextQuestion'
+import React, { useEffect } from 'react'
+import { Trans } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router'
+import { SimulationConfig } from 'Reducers/rootReducer'
+import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import * as Animate from 'Components/ui/animate'
 import Progress from 'Components/ui/Progress'
-import { useSimulationProgress } from 'Components/utils/useNextQuestion'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 
 type SimulationProps = {
+	config: SimulationConfig
 	explanations?: React.ReactNode
 	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
@@ -22,11 +26,17 @@ type SimulationProps = {
 }
 
 export default function Simulation({
+	config,
 	explanations,
 	results,
 	customEndMessages,
 	showPeriodSwitch
 }: SimulationProps) {
+	const dispatch = useDispatch()
+	const location = useLocation<{ fromGérer?: boolean }>()
+	useEffect(() => {
+		dispatch(setSimulationConfig(config, location.state?.fromGérer))
+	}, [config])
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	return (
 		<>

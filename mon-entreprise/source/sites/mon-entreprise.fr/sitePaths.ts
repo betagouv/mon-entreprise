@@ -55,14 +55,8 @@ const sitePathsFr = {
 		comparaison: '/comparaison-régimes-sociaux',
 		salarié: '/salaire-brut-net',
 		'artiste-auteur': '/artiste-auteur',
-		'profession-libérale': {
-			index: '/profession-liberale',
-			médecin: '/medecin',
-			auxiliaire: '/auxiliaire-médical',
-			'chirurgien-dentiste': '/chirurgien-dentiste',
-			'sage-femme': '/sage-femme'
-		},
 		'chômage-partiel': '/chômage-partiel',
+		'profession-libérale': '/profession-libérale/:subsimulator?',
 		économieCollaborative: {
 			index: '/économie-collaborative',
 			votreSituation: '/votre-situation'
@@ -113,13 +107,6 @@ const sitePathsEn = {
 		salarié: '/salary',
 		'artiste-auteur': '/artist-author',
 		'chômage-partiel': '/partial-unemployement',
-		'profession-libérale': {
-			index: '/liberal-profession',
-			médecin: '/doctor',
-			auxiliaire: '/medical-auxiliary',
-			'chirurgien-dentiste': '/dental-surgeon',
-			'sage-femme': '/midwife'
-		},
 		économieCollaborative: {
 			index: '/sharing-economy',
 			votreSituation: '/your-situation'

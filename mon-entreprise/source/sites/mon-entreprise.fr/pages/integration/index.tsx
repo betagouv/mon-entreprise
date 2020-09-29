@@ -16,11 +16,16 @@ export default function Integration() {
 			<ScrollToTop />
 			{pathname !== sitePaths.integration.index && (
 				<div className="ui__ card dark-bg" css="text-align: center">
-					🛠{' '}
-					<Link className="ui__ simple button" to={sitePaths.integration.index}>
-						<Trans>Outils pour les développeurs</Trans>
-					</Link>{' '}
-					🛠
+					<h2>
+						🛠{' '}
+						<Link
+							className="ui__ simple button"
+							to={sitePaths.integration.index}
+						>
+							<Trans>Outils pour les développeurs</Trans>
+						</Link>{' '}
+						🛠
+					</h2>
 				</div>
 			)}
 			<Switch>

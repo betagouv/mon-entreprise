@@ -82,11 +82,6 @@ blockquote {
 	color: #f3f3f3;
 }
 
-.ui__.light-border {
-	border: 4px solid var(--lighterColor);
-	border-radius: 0.3rem;
-}
-
 .ui__.center-flex {
 	display: flex;
 	justify-content: center;

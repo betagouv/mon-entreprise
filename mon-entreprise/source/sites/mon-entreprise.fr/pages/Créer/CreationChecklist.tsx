@@ -452,10 +452,19 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			<h2>
 				{emoji('🧰')} <Trans>Ressources utiles</Trans>
 			</h2>
-			<div className="ui__ box-container">
+			<div
+				css={`
+					display: flex;
+					margin-right: -1rem;
+					flex-wrap: wrap;
+					> * {
+						flex: 1;
+					}
+				`}
+			>
 				{isAutoentrepreneur && (
 					<Link
-						className="ui__ interactive card small box lighter-bg"
+						className="ui__ interactive card button-choice lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs['auto-entrepreneur'],
 							state: { fromCréer: true }
@@ -463,16 +472,16 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					>
 						<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur">
 							<p>Simulateur de revenus auto-entrepreneur</p>
-							<p className="ui__ notice">
+							<small>
 								Simuler le montant de vos cotisations sociales et de votre impôt
 								et estimez votre futur revenu net.
-							</p>
+							</small>
 						</Trans>
 					</Link>
 				)}
 				{['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<Link
-						className="ui__ interactive card small box lighter-bg"
+						className="ui__ interactive card button-choice lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs.indépendant,
 							state: { fromCréer: true }
@@ -480,16 +489,16 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					>
 						<Trans i18nKey="entreprise.ressources.simu.indépendant">
 							<p>Simulateur de cotisations indépendant</p>
-							<p className="ui__ notice">
+							<small>
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.
-							</p>
+							</small>
 						</Trans>
 					</Link>
 				)}
 				{['SAS', 'SASU'].includes(statut) && (
 					<Link
-						className="ui__ interactive card small box lighter-bg"
+						className="ui__ interactive card button-choice lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs.SASU,
 							state: { fromCréer: true }
@@ -497,38 +506,38 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					>
 						<Trans i18nKey="entreprise.ressources.simu.assimilé">
 							<p>Simulateur de rémunération pour dirigeant de SASU</p>
-							<p className="ui__ notice">
+							<small>
 								Simuler le montant de vos cotisations sociales pour bien
 								préparer votre business plan.
-							</p>
+							</small>
 						</Trans>
 					</Link>
 				)}
 				<Link
-					className="ui__ interactive card small box lighter-bg"
+					className="ui__ interactive card button-choice lighter-bg"
 					to={sitePaths.créer.après}
 				>
 					<Trans i18nKey="entreprise.ressources.après">
 						<p>Après la création</p>
-						<p className="ui__ notice">
+						<small>
 							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
 							vous pourrez (éventuellement) rencontrer après la création.
-						</p>
+						</small>
 					</Trans>
 				</Link>
 				{isAutoentrepreneur && <RessourceAutoEntrepreneur />}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
 					<a
 						target="_blank"
-						className="ui__ interactive card small box lighter-bg"
+						className="ui__ interactive card button-choice lighter-bg"
 						href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Travailleurs-independants.pdf"
 					>
-						<p>Guide Urssaf pour les travailleur indépendant</p>
-						<p className="ui__ notice">
+						<p>Guide Urssaf pour les travailleur indépendant 2020</p>
+						<small>
 							Des conseils sur comment préparer son projet pour se lancer dans
 							la création et une présentation détaillée de votre protection
 							sociale.
-						</p>
+						</small>
 						<br />
 						<div css="text-align: right">
 							<small className="ui__ label">PDF</small>
@@ -568,31 +577,31 @@ export function RessourceAutoEntrepreneur() {
 		<>
 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ">
 				<a
-					className="ui__ interactive card small box lighter-bg"
+					className="ui__ interactive card button-choice lighter-bg"
 					href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
 					target="_blank"
 				>
 					<p>Questions fréquentes</p>
-					<p className="ui__ notice">
+					<small>
 						Une liste exhaustive et maintenue à jour de toutes les questions
 						fréquentes (et moins fréquentes) que l'on est amené à poser en tant
 						qu'auto-entrepreneur
-					</p>
+					</small>
 				</a>
 			</Trans>
 			{i18n.language === 'fr' && (
 				<a
-					className="ui__ interactive card small box lighter-bg"
+					className="ui__ interactive card button-choice lighter-bg"
 					href={GuideAutoEntrepreneurUrl}
 					download="guide-devenir-auto-entrepreneur-en-2020"
 				>
-					<p>Guide pratique Urssaf</p>
-					<p className="ui__ notice">
+					<p>Guide partique Urssaf 2020</p>
+					<small>
 						Des conseils pour les auto-entrepreneurs : comment préparer son
 						projet pour se lancer dans la création et une présentation détaillée
 						de votre protection sociale.
-					</p>
-
+					</small>
+					<br />
 					<div css="text-align: right">
 						<small className="ui__ label">PDF</small>
 					</div>
@@ -600,15 +609,15 @@ export function RessourceAutoEntrepreneur() {
 			)}
 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.impôt">
 				<a
-					className="ui__ interactive card small box lighter-bg"
+					className="ui__ interactive card button-choice lighter-bg"
 					target="_blank"
 					href="https://www.impots.gouv.fr/portail/professionnel/je-choisis-le-regime-du-micro-entrepreneur-auto-entrepreneur"
 				>
 					<p>Comment déclarer son revenu aux impôts ?</p>
-					<p className="ui__ notice">
+					<small>
 						Les informations officielles de l'administration fiscale concernant
 						les auto-entrepreneurs et le régime de la micro-entreprise.
-					</p>
+					</small>
 				</a>
 			</Trans>
 		</>

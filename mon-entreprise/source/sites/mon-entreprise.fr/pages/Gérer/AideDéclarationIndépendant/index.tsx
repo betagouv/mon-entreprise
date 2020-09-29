@@ -24,7 +24,7 @@ import RuleLink from 'Components/RuleLink'
 import { formatValue } from 'publicodes'
 import Skeleton from 'Components/ui/Skeleton'
 
-export default function AideDéclarationIndépendant() {
+export default function() {
 	const dispatch = useDispatch()
 	const rules = useContext(EngineContext).getParsedRules()
 	const company = useSelector(

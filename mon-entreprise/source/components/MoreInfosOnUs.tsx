@@ -16,7 +16,7 @@ export default function MoreInfosOnUs() {
 
 	return (
 		<section
-			className="ui__ full-width light-bg box-container"
+			className="ui__ full-width light-bg center-flex"
 			css={`
 				margin-top: 3rem;
 			`}

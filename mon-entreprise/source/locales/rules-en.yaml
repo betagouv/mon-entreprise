@@ -3787,18 +3787,6 @@ dirigeant . auto-entrepreneur . net de cotisations:
   résumé.fr: Avant impôt
   titre.en: Net contribution income
   titre.fr: Revenu net de cotisations
-dirigeant . auto-entrepreneur . notification valeur annuelle:
-  description.en: >
-    [automatic] The ACRE rate used is the one corresponding to the current
-    month. The
-
-    simulator does not yet take into account the overlap of 2 periods
-
-    of an acre in a single year.
-  description.fr: |
-    Le taux ACRE utilisé est celui correspondant au mois courant. Le
-    simulateur ne prends pas encore en compte le chevauchement de 2 période
-    d'acre sur une meme année.
 dirigeant . auto-entrepreneur . plafond:
   description.en: >
     The status of microentrepreneur applies as long as the annual turnover
@@ -3954,18 +3942,12 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
     de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
     en faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
-? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV . prix d'une consultation
 : titre.en: '[automatic] consulting fee'
   titre.fr: prix d'une consultation
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARCDSF)'
   titre.fr: retraite complémentaire (CARCDSF)
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire
-: titre.en: '[automatic] flat-rate contribution'
-  titre.fr: cotisation forfaitaire
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle
-: titre.en: '[automatic] proportional contribution'
-  titre.fr: cotisation proportionnelle
 ? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire
 : description.en: >
     [automatic] You have the possibility of benefiting from a contribution

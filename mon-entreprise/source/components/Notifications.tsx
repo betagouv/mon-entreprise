@@ -31,7 +31,6 @@ export default function Notifications() {
 					engine.evaluate(notification.dottedName).isApplicable
 				)
 		)
-	console.log(notifications.map(n => engine.evaluate(n.dottedName)))
 
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(

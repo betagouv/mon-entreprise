@@ -5,6 +5,7 @@ import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
+import { capitalise0 } from '../utils'
 
 const BarStack = styled.div`
 	display: flex;

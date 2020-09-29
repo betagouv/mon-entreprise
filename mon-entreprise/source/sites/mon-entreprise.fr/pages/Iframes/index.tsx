@@ -1,41 +1,50 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { inIframe } from '../../../../utils'
-import useSimulatorsData from '../Simulateurs/metadata'
-import SimulateurPage from '../Simulateurs/Page'
+import SimulateurChômagePartiel from '../Simulateurs/ChômagePartiel'
+import SimulateurArtisteAuteur from '../Simulateurs/ArtisteAuteur'
+import SimulateurAssimiléSalarié from '../Simulateurs/RémunérationSASU'
+import SimulateurAutoEntrepreneur from '../Simulateurs/AutoEntrepreneur'
+import SimulateurIndépendant from '../Simulateurs/Indépendant'
+import DemandeMobilite from '../Gérer/DemandeMobilite'
 import IframeFooter from './IframeFooter'
-import { Helmet } from 'react-helmet'
+import SimulateurEmbauche from './SimulateurEmbauche'
 
 export default function Iframes() {
-	const simulators = useSimulatorsData()
 	return (
 		<IsEmbeddedContext.Provider value={true}>
 			{/** Open external links in the parent frame.
 			This behavior can be configured on individual link, eg <a target="_blank" />.
-			Our own link are handled in-app by the router, and aren't affected by this directive.
-			*/}
-
+			Our own link are handled in-app by the router, and aren't affected by this directive. */}
 			<base target="_parent" />
 			<div className="ui__ container">
-				<Switch>
-					{Object.values(simulators)
-						.filter(({ iframe }) => !!iframe)
-						.map(s => (
-							<Route
-								key={s.iframe}
-								path={`/iframes/${s.iframe}`}
-								render={() => (
-									<>
-										<Helmet>
-											<link rel="canonical" href={s.path} />
-										</Helmet>
-										<SimulateurPage {...s} />
-									</>
-								)}
-							/>
-						))}
-				</Switch>
+				<Route
+					path="/iframes/simulateur-embauche"
+					component={SimulateurEmbauche}
+				/>
+				<Route
+					path="/iframes/simulateur-autoentrepreneur"
+					component={SimulateurAutoEntrepreneur}
+				/>
+				<Route
+					path="/iframes/simulateur-independant"
+					component={SimulateurIndépendant}
+				/>
+				<Route
+					path="/iframes/simulateur-assimilesalarie"
+					component={SimulateurAssimiléSalarié}
+				/>
+				<Route
+					path="/iframes/simulateur-artiste-auteur"
+					component={SimulateurArtisteAuteur}
+				/>
+				<Route
+					path="/iframes/simulateur-chomage-partiel"
+					component={SimulateurChômagePartiel}
+				/>
+				<Route path="/iframes/demande-mobilite" component={DemandeMobilite} />
+
 				{inIframe() && <IframeFooter />}
 			</div>
 		</IsEmbeddedContext.Provider>

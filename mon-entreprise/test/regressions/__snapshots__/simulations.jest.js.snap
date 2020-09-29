@@ -83,30 +83,15 @@ exports[`calculate simulations-artiste-auteur: salarié 2`] = `"[1603]"`;
 
 exports[`calculate simulations-artiste-auteur: salarié 3`] = `"[12410]"`;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 1`] = `
-"[20686,57,1667,0,20000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 1`] = `"[20686,57,1667,0,20000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `
-"[33228,269,2500,0,30000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `"[33228,269,2500,0,30000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
-"[45267,439,3333,0,40000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `"[45267,439,3333,0,40000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: aides 1`] = `
-"[5171,14,417,0,5000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5171,14,417,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: aides 2`] = `
-"[51714,143,4167,0,50000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[51714,143,4167,0,50000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,2083,706,24294]"`;
 
@@ -289,20 +274,11 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): é
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4751,0,0,52684,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
-"[0,0,806,2046,2,0]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `"[0,0,806,2046,2,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 2`] = `
-"[0,0,1611,4093,3,8]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 2`] = `"[0,0,1611,4093,3,8]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 3`] = `
-"[0,0,2337,6139,4,12]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 3`] = `"[0,0,2337,6139,4,12]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 1`] = `"[0,0,2070,8186,4,16]"`;
 

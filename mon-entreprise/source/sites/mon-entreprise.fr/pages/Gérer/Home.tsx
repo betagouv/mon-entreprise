@@ -81,12 +81,12 @@ export default function SocialSecurity() {
 					/>
 				</div>
 				<>
-					<section>
-						<div className="ui__ full-width box-container">
+					<section className="ui__ full-width light-bg">
+						<div className="ui__ center-flex">
 							{company?.statutJuridique === 'EI' &&
 								!company.isAutoEntrepreneur && (
 									<Link
-										className="ui__ interactive card box light-border"
+										className="ui__ interactive card box"
 										to={{
 											pathname: sitePaths.gérer.déclarationIndépendant
 										}}
@@ -108,7 +108,7 @@ export default function SocialSecurity() {
 
 							{!!dirigeant && (
 								<Link
-									className="ui__ interactive card box light-border"
+									className="ui__ interactive card box"
 									to={{
 										pathname: sitePaths.simulateurs[dirigeant],
 										state: {
@@ -132,7 +132,8 @@ export default function SocialSecurity() {
 							{dirigeant !== 'auto-entrepreneur' && (
 								<>
 									<Link
-										className="ui__ interactive card box light-border"
+										className="ui__ interactive card box"
+										css="width: 100%"
 										to={{
 											pathname: sitePaths.simulateurs['chômage-partiel']
 										}}
@@ -145,13 +146,14 @@ export default function SocialSecurity() {
 												lorsque vous activez le dispositif pour un employé.
 											</p>
 										</Trans>
+										<span className="ui__ label">Covid-19</span>
 										<div className="ui__ small simple button hide-mobile">
 											<Trans>Découvrir</Trans>
 										</div>
-										<span className="ui__ label">Covid-19</span>
 									</Link>
 									<Link
-										className="ui__ interactive card box light-border"
+										className="ui__ interactive card box"
+										css="width: 100%"
 										to={{
 											pathname: sitePaths.simulateurs.salarié,
 											state: {
@@ -181,12 +183,21 @@ export default function SocialSecurity() {
 						{emoji('🧰 ')}
 						<Trans>Ressources utiles</Trans>
 					</h2>
-					<div className="ui__ box-container">
+					<div
+						css={`
+							display: flex;
+							margin-right: -1rem;
+							flex-wrap: wrap;
+							> * {
+								flex: 1;
+							}
+						`}
+					>
 						{dirigeant === 'indépendant' &&
 							i18n.language === 'fr' &&
 							process.env.HEAD !== 'master' && (
 								<Link
-									className="ui__ interactive card box lighter-bg"
+									className="ui__ interactive card button-choice lighter-bg"
 									to={sitePaths.gérer.formulaireMobilité}
 								>
 									<Trans i18nKey="gérer.ressources.embaucher">
@@ -200,7 +211,7 @@ export default function SocialSecurity() {
 							)}
 						{!company?.isAutoEntrepreneur && (
 							<Link
-								className="ui__ interactive card box lighter-bg"
+								className="ui__ interactive card button-choice lighter-bg"
 								to={sitePaths.gérer.embaucher}
 							>
 								<Trans i18nKey="gérer.ressources.embaucher">
@@ -214,7 +225,7 @@ export default function SocialSecurity() {
 						)}
 						{company?.isAutoEntrepreneur && (
 							<a
-								className="ui__ interactive card box lighter-bg"
+								className="ui__ interactive card button-choice lighter-bg"
 								href="https://autoentrepreneur.urssaf.fr"
 							>
 								<Trans i18nKey="gérer.ressources.autoEntrepreneur">
@@ -229,7 +240,7 @@ export default function SocialSecurity() {
 							</a>
 						)}
 						<Link
-							className="ui__ interactive card box lighter-bg"
+							className="ui__ interactive card button-choice lighter-bg"
 							to={sitePaths.gérer.sécuritéSociale}
 						>
 							<Trans i18nKey="gérer.ressources.sécuritéSociale">

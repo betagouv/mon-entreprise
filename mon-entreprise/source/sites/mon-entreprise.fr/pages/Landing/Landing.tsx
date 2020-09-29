@@ -17,8 +17,8 @@ export default function Landing() {
 	)
 	return (
 		<>
-			<div className="app-content ui__ container">
-				<section className="landing-title">
+			<div className="app-content">
+				<section className="ui__ container landing-title">
 					<img
 						alt="logo mon-entreprise.fr"
 						className="landing-title__logo"
@@ -40,9 +40,9 @@ export default function Landing() {
 					<img src={illustrationSvg} className="landing-title__img" />
 				</section>
 
-				<section className="ui__ full-width box-container">
+				<section className="ui__ full-width light-bg center-flex">
 					<Link
-						className="ui__ interactive card light-border box"
+						className="ui__ interactive card box"
 						to={
 							statutChoisi
 								? sitePaths.créer[statutChoisi]
@@ -66,7 +66,7 @@ export default function Landing() {
 						</div>
 					</Link>
 					<Link
-						className="ui__ interactive card light-border box "
+						className="ui__ interactive card box "
 						to={sitePaths.gérer.index}
 					>
 						<div className="ui__ big box-icon">{emoji('💶')}</div>
@@ -82,7 +82,7 @@ export default function Landing() {
 						</div>
 					</Link>
 					<Link
-						className="ui__ interactive card light-border box"
+						className="ui__ interactive card box"
 						to={sitePaths.simulateurs.index}
 					>
 						<div className="ui__ big box-icon">{emoji('🧮')}</div>
@@ -98,7 +98,7 @@ export default function Landing() {
 						</div>
 					</Link>
 				</section>
-				<section>
+				<section className="ui__ container">
 					<Trans i18nKey="landing.aboutUs">
 						<h2>Qui sommes-nous ?</h2>
 						<p>
