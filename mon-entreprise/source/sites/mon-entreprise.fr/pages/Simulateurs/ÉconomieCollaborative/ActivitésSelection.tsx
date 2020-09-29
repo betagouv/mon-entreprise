@@ -1,15 +1,14 @@
 import classnames from 'classnames'
+import Animate from 'Components/ui/animate'
+import Checkbox from 'Components/ui/Checkbox'
+import InfoBulle from 'Components/ui/InfoBulle'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { intersection } from 'ramda'
 import React, { useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import Animate from 'Components/ui/animate'
-import Checkbox from 'Components/ui/Checkbox'
-import InfoBulle from 'Components/ui/InfoBulle'
 import { debounce } from '../../../../../utils'
 import { toggleActivité } from './actions'
 import { activités, getTranslatedActivité } from './activitésData'
@@ -28,9 +27,6 @@ export default function ActivitésSelection() {
 	)
 	return (
 		<>
-			<Helmet>
-				<title>{titre}</title>
-			</Helmet>
 			<Animate.fromBottom>
 				<ScrollToTop />
 				<h1>{titre}</h1>
@@ -150,11 +146,15 @@ export const ActivitéCard = ({
 				selected,
 				interactive
 			}),
+			style: {
+				flex: 1,
+				minWidth: '15rem'
+			},
 			key: title,
 			...(interactive && { tabIndex: -1 }),
 			onMouseDown: toggle
 		},
-		<div css="display: flex; flex-direction: column; height: 100%; width: 100%">
+		<div css="display: flex; flex-direction: column; height: 100%; width: 100%; align-items: center">
 			{selected !== undefined && (
 				<div css="font-size: 1.5rem;">
 					<Checkbox name={title} id={title} checked={selected} readOnly />

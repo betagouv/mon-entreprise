@@ -1,20 +1,18 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
-import { DistributionBranch } from 'Components/Distribution'
-import { Condition } from 'Components/EngineValue'
-import SimulateurWarning from 'Components/SimulateurWarning'
-import config from 'Components/simulationConfigs/artiste-auteur.yaml'
-import 'Components/TargetSelection.css'
-import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
-import Value from 'Components/EngineValue'
 import RuleInput from 'Components/conversation/RuleInput'
+import { DistributionBranch } from 'Components/Distribution'
+import Value, { Condition } from 'Components/EngineValue'
+import SimulateurWarning from 'Components/SimulateurWarning'
+import 'Components/TargetSelection.css'
+import Animate from 'Components/ui/animate'
+import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import Animate from 'Components/ui/animate'
+import config from './configs/artiste-auteur.yaml'
 
 const InitialRenderContext = createContext(false)
 function useInitialRender() {
@@ -31,17 +29,9 @@ export default function ArtisteAuteur() {
 		dispatch(setSimulationConfig(config))
 	}, [])
 	const initialRender = useInitialRender()
-	const inIframe = useContext(IsEmbeddedContext)
 
 	return (
 		<>
-			{!inIframe && (
-				<h1>
-					<Trans i18nKey="simulateurs.artiste-auteur.titre">
-						Estimer mes cotisations d’artiste-auteur
-					</Trans>
-				</h1>
-			)}
 			<SimulateurWarning simulateur="artiste-auteur" />
 			<section className="ui__ light card">
 				<div id="targetSelection">

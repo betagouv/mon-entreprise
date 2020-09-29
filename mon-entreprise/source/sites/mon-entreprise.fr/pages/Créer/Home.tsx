@@ -66,18 +66,9 @@ export default function Créer() {
 			<h2>
 				<Trans>Ressources utiles</Trans>
 			</h2>
-			<div
-				css={`
-					display: flex;
-					margin-right: -1rem;
-					flex-wrap: wrap;
-					> * {
-						flex: 1;
-					}
-				`}
-			>
+			<div className="ui__ box-container">
 				<Link
-					className="ui__ interactive card button-choice lighter-bg"
+					className="ui__ interactive card box lighter-bg"
 					to={sitePaths.créer.guideStatut.liste}
 				>
 					<Trans i18nKey="créer.ressources.listeStatuts">
@@ -89,7 +80,7 @@ export default function Créer() {
 					</Trans>
 				</Link>
 				<Link
-					className="ui__ interactive card button-choice lighter-bg"
+					className="ui__ interactive card box lighter-bg"
 					to={{
 						pathname: sitePaths.simulateurs.comparaison,
 						state: { fromCréer: true }
@@ -105,7 +96,7 @@ export default function Créer() {
 				</Link>
 
 				<Link
-					className="ui__ interactive card button-choice lighter-bg"
+					className="ui__ interactive card box lighter-bg"
 					to={sitePaths.créer['auto-entrepreneur']}
 				>
 					<Trans i18nKey="créer.ressources.autoEntrepreneur">

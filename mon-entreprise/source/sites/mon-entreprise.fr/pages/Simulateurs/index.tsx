@@ -1,19 +1,12 @@
 import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import React, { useContext, useEffect } from 'react'
+import { default as React, useContext, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
-import ArtisteAuteur from './ArtisteAuteur'
-import AssimiléSalarié from './RémunérationSASU'
-import ChômagePartiel from './ChômagePartiel'
-import ProfessionLibérale from './ProfessionLibérale'
-import AutoEntrepreneur from './AutoEntrepreneur'
+import useSimulatorsData from './metadata'
+import SimulateurPage from './Page'
 import Home from './Home'
-import Indépendant from './Indépendant'
-import Salarié from './Salarié'
-import SchemeComparaison from './SchemeComparaison'
-import ÉconomieCollaborative from './ÉconomieCollaborative'
 
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
@@ -26,7 +19,20 @@ export default function Simulateurs() {
 			setLastState(state)
 		}
 	}, [setLastState, state])
-
+	const simulatorsData = useSimulatorsData()
+	const simulatorRoutes = useMemo(
+		() =>
+			Object.values(simulatorsData)
+				.filter(({ path }) => path.startsWith(sitePaths.simulateurs.index))
+				.map(s => (
+					<Route
+						key={s.path}
+						path={s.path}
+						render={() => <SimulateurPage {...s} />}
+					/>
+				)),
+		[simulatorsData, sitePaths]
+	)
 	return (
 		<>
 			<ScrollToTop key={pathname} />
@@ -60,36 +66,7 @@ export default function Simulateurs() {
 			)}
 			<Switch>
 				<Route exact path={sitePaths.simulateurs.index} component={Home} />
-				<Route path={sitePaths.simulateurs.salarié} component={Salarié} />
-				<Route
-					path={sitePaths.simulateurs.comparaison}
-					component={SchemeComparaison}
-				/>
-				<Route path={sitePaths.simulateurs.SASU} component={AssimiléSalarié} />
-				<Route
-					path={sitePaths.simulateurs.indépendant}
-					component={Indépendant}
-				/>
-				<Route
-					path={sitePaths.simulateurs['auto-entrepreneur']}
-					component={AutoEntrepreneur}
-				/>
-				<Route
-					path={sitePaths.simulateurs['artiste-auteur']}
-					component={ArtisteAuteur}
-				/>
-				<Route
-					path={sitePaths.simulateurs['chômage-partiel']}
-					component={ChômagePartiel}
-				/>
-				<Route
-					path={sitePaths.simulateurs['profession-libérale']}
-					component={ProfessionLibérale}
-				/>
-				<Route
-					path={sitePaths.simulateurs.économieCollaborative.index}
-					component={ÉconomieCollaborative}
-				/>
+				{simulatorRoutes}
 			</Switch>
 		</>
 	)
