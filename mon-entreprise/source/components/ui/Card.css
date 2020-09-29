@@ -4,10 +4,10 @@
 	padding-left: 1rem;
 	padding-right: 1rem;
 	background: white;
-	will-change: transform;
+	will-change: box-shadow;
 	user-select: text;
+	transition: box-shadow 0.15s, border-color 0.15s;
 	border-radius: 0.3rem;
-	transition: box-shadow 0.2s;
 }
 
 .ui__.card.disabled .ui__.button.simple,
@@ -105,7 +105,10 @@
 	color: inherit;
 	font-size: inherit !important;
 }
-
+.ui__.card.box.ui__.interactive.light-border:hover {
+	border-color: var(--lightColor);
+	/* border-color: var(--lightColor); */
+}
 .ui__.card.box .ui__.box-icon > img {
 	margin: 0.4rem !important;
 	transform: scale(1.5) translateY(0.1rem);

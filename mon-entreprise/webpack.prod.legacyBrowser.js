@@ -20,6 +20,7 @@ module.exports = {
 		...HTMLPlugins({ injectTrackingScript: true }),
 
 		new MonacoWebpackPlugin(),
+		new EnvironmentPlugin({ HEAD: '', COMMIT_REF: '' }),
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}'
