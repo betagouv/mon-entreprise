@@ -83,12 +83,12 @@
   status = 200
 
 [[redirects]]
-  from = "https://mycompanyinfrance.com/calculators/salary"
+  from = "https://mycompanyinfrance.fr/calculators/salary"
   to = "/prerender/infrance/calculators/salary/index.html"
   status = 200
 
 [[redirects]]
-  from = "https://mycompanyinfrance.com/iframes/simulateur-embauche"
+  from = "https://mycompanyinfrance.fr/iframes/simulateur-embauche"
   to = "/prerender/infrance/iframes/simulateur-embauche/index.html"
   status = 200
 
@@ -121,6 +121,37 @@
   query = {s = "p"}
   to = "/publicodes.html"
   status = 200
+
+
+# Embauche redirection settings
+
+[[redirects]]
+  from = "https://embauche.beta.gouv.fr/"
+  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  status = 301
+
+[[redirects]]
+  from = "https://embauche.beta.gouv.fr/simulation"
+  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  status = 301
+
+[[redirects]]
+  from = "https://embauche.beta.gouv.fr/documentation/*"
+  to = "https://mon-entreprise.fr/documentation/:splat"
+  status = 301
+
+## Old iframe adresse
+[[redirects]]
+  from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
+  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  status = 301
+
+[[redirects]]
+  from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
+  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
+  status = 301
+
+
 
 # Mon-entreprise.fr 
 [[redirects]]
@@ -192,37 +223,6 @@
   from = "/*"
   to = "/mon-entreprise.html"
   status = 200
-
-
-# Embauche redirection settings
-
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/"
-  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  status = 301
-
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/simulation"
-  to = "https://mon-entreprise.fr/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  status = 301
-
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/documentation/*"
-  to = "https://mon-entreprise.fr/documentation/:splat"
-  status = 301
-
-## Old iframe adresse
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/modules/v2/dist/simulateur.js"
-  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
-  status = 301
-
-[[redirects]]
-  from = "https://embauche.beta.gouv.fr/dist/simulateur.js"
-  to = "https://mon-entreprise.fr/simulateur-iframe-integration.js"
-  status = 301
-
-
 
 [build]
   # Hack while waiting for netlify to support workspace
