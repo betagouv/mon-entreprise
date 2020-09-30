@@ -321,6 +321,8 @@ dirigeant . indépendant . PL . PAMC:
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
 
+  
+
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
   question: |
     Quel est la part de votre chiffre d'affaires liée à une activité non
@@ -585,6 +587,35 @@ dirigeant . indépendant . PL . CARMF:
   applicable si: métier = 'santé . médecin'
   références:
     Site CARMF: https://www.carmf.fr
+
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  titre: retraite de base CNAVPL (après participation CPAM)
+  applicable si: métier . secteur médecin = '1'
+  description: |
+    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
+  remplace: PL . retraite CNAVPL
+  formule: 
+    allègement:
+      assiette: PL . retraite CNAVPL
+      abattement: 
+        produit:
+          assiette: assiette des cotisations
+          taux [ref]:     
+            grille:
+              assiette: assiette des cotisations
+              multiplicateur: plafond sécurité sociale temps plein
+              tranches:
+                - montant: 2.15%
+                  plafond: 140%
+                - montant: 1.51%
+                  plafond: 250%
+                - montant: 1.12%
+        arrondi: oui
+  références:
+    Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
+
+
+
 
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
