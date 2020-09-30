@@ -390,16 +390,18 @@ entreprise . catégorie d'activité . libérale règlementée:
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
-entreprise . catégorie d'activité . libérale règlementée . notification:
+
+entreprise . catégorie d'activité . libérale règlementée . notification CIPAV:
+  formule: oui
+entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte: 
   type: notification
   sévérité: avertissement
   description: |
     Pour l'instant, seul les professions libérales affiliées à la CIPAV ont
     été implémentées dans le simulateur. Par ailleurs, les calculs sont indicatifs
     et n'ont pas encore fait l'objet de validation officielle.
-
-? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-: formule:
+entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée: 
+  formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:

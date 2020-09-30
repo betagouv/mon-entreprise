@@ -57,6 +57,15 @@ export default function SimulateurWarning({
 						</li>
 					</Trans>
 				)}
+				{simulateur == 'profession-libérale' && (
+					<Trans i18nKey="simulateurs.warning.profession-libérale">
+						<li>
+							Ce simulateur est à destination des professions libérale en BNC.
+							Il ne prends pas en compte les société d'exercice libérales ni le
+							régime micro-BNC.
+						</li>
+					</Trans>
+				)}
 				{simulateur === 'SASU' && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.sasu">

@@ -27,7 +27,9 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
-import IndépendantSimulation from './IndépendantSimulation'
+import IndépendantSimulation, {
+	IndépendantPLSimulation
+} from './IndépendantSimulation'
 import SalariéSimulation from './SalariéSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
@@ -620,7 +622,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.médecin.title',
 				'Simulateur de revenus pour médecin en libéral'
 			),
-			component: IndépendantSimulation
+			component: IndépendantPLSimulation
 		},
 		'chirurgien-dentiste': {
 			private: true,
@@ -636,7 +638,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.chirurgien-dentiste.title',
 				'Simulateur de revenus pour chirurgien-dentiste en libéral'
 			),
-			component: IndépendantSimulation
+			component: IndépendantPLSimulation
 		},
 		'sage-femme': {
 			private: true,
@@ -649,7 +651,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.sage-femme.title',
 				'Simulateur de revenus pour sage-femme en libéral'
 			),
-			component: IndépendantSimulation
+			component: IndépendantPLSimulation
 		},
 		'auxiliaire-médical': {
 			private: true,
@@ -665,7 +667,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
 			),
-			component: IndépendantSimulation
+			component: IndépendantPLSimulation
 		},
 		'profession-libérale': {
 			private: true,
@@ -691,7 +693,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.profession-libérale.title',
 				'Simulateur de revenus pour profession libérale'
 			),
-			component: IndépendantSimulation
+			component: IndépendantPLSimulation
 		}
 	}
 }

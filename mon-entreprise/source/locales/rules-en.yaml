@@ -5576,6 +5576,23 @@ entreprise . catégorie d'activité . libérale règlementée:
   question.fr: Est-ce une activité libérale règlementée ?
   titre.en: regulated liberal
   titre.fr: libérale règlementée
+entreprise . catégorie d'activité . libérale règlementée . notification CIPAV:
+  titre.en: '[automatic] CIPAV notification'
+  titre.fr: notification CIPAV
+? entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte
+: description.en: >
+    [automatic] For the time being, only the liberal professions affiliated to
+    the CIPAV have
+
+    have been implemented in the simulator. In addition, the calculations are indicative
+
+    and have not yet been officially validated.
+  description.fr: >
+    Pour l'instant, seul les professions libérales affiliées à la CIPAV ont
+
+    été implémentées dans le simulateur. Par ailleurs, les calculs sont indicatifs
+
+    et n'ont pas encore fait l'objet de validation officielle.
 ? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
 : titre.en: type of regulated liberal activity
   titre.fr: type d'activité libérale règlementée

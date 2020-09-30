@@ -10,3 +10,11 @@ export default function IndépendantSimulation() {
 		</>
 	)
 }
+export function IndépendantPLSimulation() {
+	return (
+		<>
+			<SimulateurWarning simulateur="profession-libérale" />
+			<Simulation explanations={<IndépendantExplanation />} />
+		</>
+	)
+}

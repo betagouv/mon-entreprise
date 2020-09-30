@@ -302,6 +302,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
   références:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
+    Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:
@@ -317,7 +318,6 @@ dirigeant . indépendant . PL . PAMC:
     - conjoint collaborateur
     - entreprise . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
-    - dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
 

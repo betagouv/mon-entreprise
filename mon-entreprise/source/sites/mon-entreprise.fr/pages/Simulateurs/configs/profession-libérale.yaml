@@ -26,3 +26,4 @@ unité par défaut: €/an
 situation:
   dirigeant: "'indépendant'"
   entreprise . catégorie d'activité: "'libérale'"
+  entreprise . catégorie d'activité . libérale règlementée . notification CIPAV: non
