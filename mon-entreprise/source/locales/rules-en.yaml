@@ -4183,6 +4183,18 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
     Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
   titre.en: '[automatic] disability and death (CARMF)'
   titre.fr: invalidité et décès (CARMF)
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  description.en: >
+    [automatic] To compensate for the increase in the CSG, sector 1 doctors
+    benefit from a contribution from the health insurance (rider No. 5 of the
+    medical agreement) to the financing of their contributions to the basic
+    scheme.
+  description.fr: >
+    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient
+    d'une participation de l'assurance maladie (avenant n°5 de la convention
+    médicale) au financement de leurs cotisations du régime de base.
+  titre.en: '[automatic] CNAVPL basic pension (after CPAM participation)'
+  titre.fr: retraite de base CNAVPL (après participation CPAM)
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARMF)'
   titre.fr: retraite complémentaire (CARMF)
