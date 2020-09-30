@@ -18,6 +18,9 @@ const getApplicableReplacements = (
 	rule: ParsedRule
 ) => {
 	let missingVariableList: Array<EvaluatedNode['missingVariables']> = []
+	if (contextRuleName.startsWith('[evaluation]')) {
+		return [[], []]
+	}
 	const applicableReplacements = rule.replacedBy
 		.sort(
 			(replacement1, replacement2) =>

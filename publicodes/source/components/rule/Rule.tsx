@@ -16,6 +16,7 @@ export default function Rule({ dottedName, engine, language }) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
 	const rule = engine.evaluate(dottedName)
+
 	const isSetInStituation = engine.situation[dottedName] !== undefined
 	const { description, question } = rule
 
