@@ -49,6 +49,14 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
+				{simulateur == 'indépendant' && (
+					<Trans i18nKey="simulateurs.warning.indépendant">
+						<li>
+							Le simulateur ne prends pas en compte les régimes micro-BNC et
+							micro-BIC
+						</li>
+					</Trans>
+				)}
 				{simulateur === 'SASU' && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.sasu">

@@ -6,7 +6,7 @@ dirigeant . indépendant . PL:
 
 dirigeant . indépendant . PL . métier:
   applicable si: entreprise . catégorie d'activité . libérale règlementée
-
+  par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   formule:
     une possibilité:

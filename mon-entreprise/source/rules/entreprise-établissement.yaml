@@ -279,7 +279,8 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
-  description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
+  description:
+    Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
     Entre 1200 €/an et 2400 €/an une décote s'applique.
   formule:
@@ -389,9 +390,16 @@ entreprise . catégorie d'activité . libérale règlementée:
     > Exemples de professions non-règlementées : développeur, historien, urbaniste...
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+entreprise . catégorie d'activité . libérale règlementée . notification:
+  type: notification
+  sévérité: avertissement
+  description: |
+    Pour l'instant, seul les professions libérales affiliées à la CIPAV ont
+    été implémentées dans le simulateur. Par ailleurs, les calculs sont indicatifs
+    et n'ont pas encore fait l'objet de validation officielle.
 
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
-  formule:
+? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
+: formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
