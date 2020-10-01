@@ -1,58 +1,62 @@
+import * as R from 'ramda'
 import graphlib from '@dagrejs/graphlib'
 import parseRules from '../parseRules'
 import { Rules } from '../types'
 import {
 	buildRulesDependencies,
-	RulesDependencies,
-	DependencyType
+	RuleDependencies,
+	RulesDependencies
 } from './rulesDependencies'
 
-type GraphNodeRepr = string
-type GraphCycles = Array<Array<GraphNodeRepr>>
+type GraphNodeRepr<Names extends string> = Names
+type GraphCycles<Names extends string> = Array<Array<GraphNodeRepr<Names>>>
+type GraphCyclesWithDependencies<Names extends string> = Array<
+	Array<[GraphNodeRepr<Names>, RuleDependencies<Names>]>
+>
 
-export class GraphError extends Error {}
-
-export function buildDependenciesGraph<Names extends string>(
-	rulesDeps: RulesDependencies<Names>,
-	assertNoMultiDependency = false
+function buildDependenciesGraph<Names extends string>(
+	rulesDeps: RulesDependencies<Names>
 ): graphlib.Graph {
 	const g = new graphlib.Graph()
-	const multiDependencies: Set<[Names, Names]> = new Set()
 
 	rulesDeps.forEach(([ruleDottedName, dependencies]) => {
-		dependencies.forEach(([depDottedName, depType]) => {
-			if (
-				assertNoMultiDependency &&
-				g.edge(ruleDottedName, depDottedName) !== undefined &&
-				g.edge(ruleDottedName, depDottedName).type != depType
-			) {
-				multiDependencies.add([ruleDottedName, depDottedName])
-			}
-			g.setEdge(ruleDottedName, depDottedName, { type: depType })
+		dependencies.forEach(depDottedName => {
+			g.setEdge(ruleDottedName, depDottedName)
 		})
 	})
 
-	if (assertNoMultiDependency && multiDependencies.size > 0)
-		throw new GraphError(
-			`The following rules dependencies have multiple types
-			(formule, remplace and/or rend non applicable), which is
-			forbidden:${Array.from(
-				multiDependencies.values(),
-				rules => '\n' + rules.join(' ➡️  ')
-			)}`
-		)
-
 	return g
 }
-export function cyclicDependencies<Names extends string>(
-	rawRules: Rules<Names> | string,
-	assertNoMultiDependency = false
-): GraphCycles {
+
+export function cyclesInDependenciesGraph<Names extends string>(
+	rawRules: Rules<Names> | string
+): GraphCycles<Names> {
 	const parsedRules = parseRules(rawRules)
 	const rulesDependencies = buildRulesDependencies(parsedRules)
-	const dependenciesGraph = buildDependenciesGraph(
-		rulesDependencies,
-		assertNoMultiDependency
+	const dependenciesGraph = buildDependenciesGraph(rulesDependencies)
+	const cycles = graphlib.alg.findCycles(dependenciesGraph)
+
+	return cycles
+}
+
+/**
+ * This function is useful so as to print the dependencies at each node of the
+ * cycle.
+ * ⚠️  Indeed, the graphlib.findCycles function returns the cycle found using the
+ * Tarjan method, which is **not necessarily the smallest cycle**. However, the
+ * smallest cycle would be the most legibe one…
+ */
+export function cyclicDependencies<Names extends string>(
+	rawRules: Rules<Names> | string
+): GraphCyclesWithDependencies<Names> {
+	const parsedRules = parseRules(rawRules)
+	const rulesDependencies = buildRulesDependencies(parsedRules)
+	const dependenciesGraph = buildDependenciesGraph(rulesDependencies)
+	const cycles = graphlib.alg.findCycles(dependenciesGraph)
+
+	const rulesDependenciesObject = R.fromPairs(rulesDependencies)
+
+	return cycles.map(cycle =>
+		cycle.map(ruleName => [ruleName, rulesDependenciesObject[ruleName]])
 	)
-	return graphlib.alg.findCycles(dependenciesGraph)
 }

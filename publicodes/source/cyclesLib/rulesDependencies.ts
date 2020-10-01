@@ -3,13 +3,7 @@ import { ParsedRules } from '../types'
 import { getApplicableReplacedBy } from '../parseReference'
 import * as ASTTypes from './ASTTypes'
 
-export enum DependencyType {
-	formule,
-	replacedBy,
-	isDisabledBy
-}
-type RuleDependency<Names extends string> = [Names, DependencyType]
-type RuleDependencies<Names extends string> = Array<RuleDependency<Names>>
+export type RuleDependencies<Names extends string> = Array<Names>
 export type RulesDependencies<Names extends string> = Array<
 	[Names, RuleDependencies<Names>]
 >
@@ -75,16 +69,14 @@ export function ruleDepsOfNode<Names extends string>(
 		// - call ruleDepsOfRuleNode on (reference.dottedName, newStack)
 		//   - rewire accordingly
 		//   - and indeed in the function make the call to getApplicableReplacedBy
-		return [[reference.dottedName, DependencyType.formule]]
+		return [reference.dottedName]
 	}
 
 	function ruleDepsOfRecalculMech(
 		recalculMech: ASTTypes.RecalculMech<Names>
 	): RuleDependencies<Names> {
 		const ruleReference = recalculMech.explanation.recalcul.partialReference
-		return ruleReference === ruleName
-			? []
-			: [[ruleReference, DependencyType.formule]]
+		return ruleReference === ruleName ? [] : [ruleReference]
 	}
 
 	function ruleDepsOfEncadrementMech(
@@ -405,28 +397,11 @@ export function ruleDepsOfNode<Names extends string>(
 }
 
 function ruleDepsOfRuleNode<Names extends string>(
-	rule: ASTTypes.RuleNode<Names>,
-	parentRuleName: Names | ''
+	ruleNode: ASTTypes.RuleNode<Names>
 ): RuleDependencies<Names> {
-	const subNodes = [
-		rule.formule,
-		rule['applicable si'],
-		rule['non applicable si']
-	].filter(x => x !== undefined) as Array<ASTTypes.ASTNode>
-	const subNodesDeps = subNodes
-		.map(subNode => ruleDepsOfNode<Names>(rule.dottedName, subNode))
-		.flat(1)
-
-	const isDisabledByDependencies: RuleDependencies<Names> = rule.isDisabledBy.map(
-		x => [x.dottedName, DependencyType.isDisabledBy]
-	)
-	const replacedByDependencies: RuleDependencies<Names> = getApplicableReplacedBy(
-		parentRuleName,
-		rule.replacedBy
-	).map(x => [x.referenceNode.dottedName, DependencyType.replacedBy])
-	return [subNodesDeps, isDisabledByDependencies, replacedByDependencies].flat(
-		1
-	)
+	return ruleNode.formule === undefined
+		? []
+		: ruleDepsOfNode(ruleNode.dottedName, ruleNode.formule)
 }
 
 export function buildRulesDependencies<Names extends string>(
@@ -446,7 +421,6 @@ export function buildRulesDependencies<Names extends string>(
 		([dottedName, ruleNode]: [Names, ASTTypes.RuleNode<Names>]): [
 			Names,
 			RuleDependencies<Names>
-			// [XXX] Check how the root nodes are contextRuleName'd:
-		] => [dottedName, ruleDepsOfRuleNode<Names>(ruleNode, '')]
+		] => [dottedName, ruleDepsOfRuleNode<Names>(ruleNode)]
 	)
 }
