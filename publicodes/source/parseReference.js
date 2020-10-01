@@ -30,7 +30,6 @@ export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
 				!blackListedNames ||
 				blackListedNames.every(name => !contextRuleName.startsWith(name))
 		)
-		// ⚠️  this behavior is referenced in `cyclesLib/graph.ts`
 		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
 
 /**
