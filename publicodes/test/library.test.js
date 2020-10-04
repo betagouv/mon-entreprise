@@ -72,4 +72,20 @@ impôt sur le revenu à payer:
 		let value = engine.evaluate('douche . impact')
 		expect(value.nodeValue).to.be.within(20, 21)
 	})
+
+	it('should let the user reference rules in the situation', function() {
+		let rules = `
+referenced in situation:
+  formule: 200
+overwrited in situation:
+  formule:  100
+result:
+  formule: overwrited in situation + 22
+`
+		let engine = new Engine(rules)
+		engine.setSituation({
+			'overwrited in situation': 'referenced in situation'
+		})
+		expect(engine.evaluate('result').nodeValue).to.equal(222)
+	})
 })
