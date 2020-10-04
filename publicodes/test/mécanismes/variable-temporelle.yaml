@@ -76,7 +76,7 @@ variable temporelle numérique . test addition:
   exemples:
     - situation:
         date: 01/01/2019
-        valeur attendue: false
+        valeur attendue: non
     - situation:
         date: 15/12/2019
         valeur attendue: 20

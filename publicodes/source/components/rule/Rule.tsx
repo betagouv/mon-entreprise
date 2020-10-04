@@ -17,7 +17,7 @@ export default function Rule({ dottedName, engine, language }) {
 	}
 	const rule = engine.evaluate(dottedName)
 
-	const isSetInStituation = engine.situation[dottedName] !== undefined
+	const isSetInStituation = engine.parsedSituation[dottedName] !== undefined
 	const { description, question } = rule
 
 	return (
