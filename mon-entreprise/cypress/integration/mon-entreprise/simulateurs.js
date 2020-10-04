@@ -143,4 +143,21 @@ describe('Simulateur salarié', () => {
 		cy.contains('Voir ma situation').click()
 		cy.contains('Steenvoorde (59114)')
 	})
+
+	it.only('should permit selecting the smic before part-time contrat', function() {
+		cy.get('input[name$="brut de base"').click()
+		cy.get('button')
+			.contains('SMIC')
+			.click()
+		cy.contains('Voir ma situation').click()
+		cy.contains('Temps partiel').click()
+		cy.get('input[value="oui"]')
+			.parent()
+			.click()
+		cy.get('input[name$="brut de base"').should($input => {
+			expect(+$input.val().replace(/[\s,.]/g, ''))
+				.to.be.above(1300)
+				.and.to.be.below(1500)
+		})
+	})
 })
