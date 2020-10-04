@@ -64,6 +64,7 @@ export default function Budget() {
 								{quarters.map(q => (
 									<td key={q}>{q}</td>
 								))}
+								<td>Total</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,6 +84,15 @@ export default function Budget() {
 											</td>
 										)
 									})}
+									<td>
+										{formatValue(
+											sum(quarters.map(q => budget[2020]?.[q]?.[label] ?? 0)),
+											{
+												displayedUnit: '€',
+												language
+											}
+										)}
+									</td>
 								</tr>
 							))}
 						</tbody>
@@ -102,6 +112,19 @@ export default function Budget() {
 										</td>
 									)
 								})}
+								<td>
+									{formatValue(
+										sum(
+											quarters.map(q =>
+												sum(Object.values(budget[2020]?.[q] ?? {}))
+											)
+										),
+										{
+											displayedUnit: '€',
+											language
+										}
+									)}
+								</td>
 							</tr>
 						</tfoot>
 					</RessourcesAllocationTable>
