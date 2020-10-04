@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { mapObjIndexed } from 'ramda'
+import { map } from 'ramda'
 import { evaluationError, warning } from './error'
 import { evaluateNode } from './evaluation'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
@@ -23,9 +23,7 @@ type Cache = {
 	}
 }
 
-type EvaluatedSituation<Names extends string> = Partial<
-	Record<Names, EvaluatedNode<Names>>
->
+type ParsedSituation<Names extends string> = Partial<ParsedRules<Names>>
 
 export type EvaluationOptions = Partial<{
 	unit: string
@@ -41,7 +39,7 @@ export { utils }
 
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
-	situation: EvaluatedSituation<Names> = {}
+	parsedSituation: ParsedSituation<Names> = {}
 	private cache: Cache
 	private warnings: Array<string> = []
 
@@ -71,7 +69,7 @@ export default class Engine<Names extends string> {
 		const result = simplifyNodeUnit(
 			evaluateNode(
 				this.cache,
-				this.situation,
+				this.parsedSituation,
 				this.parsedRules,
 				parse(
 					this.parsedRules,
@@ -95,14 +93,17 @@ export default class Engine<Names extends string> {
 		situation: Partial<Record<Names, string | number | object>> = {}
 	) {
 		this.resetCache()
-		this.situation = mapObjIndexed(
-			(value, name) =>
-				typeof value === 'string'
-					? this.evaluateExpression(value, `[situation] ${name}`)
-					: value,
+		this.parsedSituation = map(
+			value =>
+				typeof value === 'object'
+					? value
+					: parse(
+							this.parsedRules,
+							{ dottedName: '' },
+							this.parsedRules
+					  )(value),
 			situation
-		) as EvaluatedSituation<Names>
-		this.resetCache()
+		)
 		return this
 	}
 

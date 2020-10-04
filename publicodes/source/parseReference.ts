@@ -192,10 +192,12 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			applicabilityEvaluation
 		)
 	}
-	const situationValue = situation[dottedName]?.evaluate
-		? evaluateNode(cache, situation, rules, situation[dottedName])
-		: situation[dottedName]
-	if (situationValue != null) {
+	if (situation[dottedName]) {
+		// Conditional evaluation is required because some mecanisms like
+		// "synchronisation" store raw JS objects in the situation.
+		const situationValue = situation[dottedName]?.evaluate
+			? evaluateNode(cache, situation, rules, situation[dottedName])
+			: situation[dottedName]
 		const unit =
 			!situationValue.unit || serializeUnit(situationValue.unit) === ''
 				? rule.unit

@@ -33,7 +33,7 @@ activité:
 
 acre:
   - dirigeant . indépendant . revenu net de cotisations: 50000 €/an
-    entreprise . ACRE: true
+    entreprise . ACRE: oui
 
 impôt sur le revenu:
   - dirigeant . indépendant . revenu net de cotisations: 20000 €/an
