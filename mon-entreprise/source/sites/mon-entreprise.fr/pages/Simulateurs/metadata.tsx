@@ -609,7 +609,7 @@ export function getSimulatorsData({
 				'Demande de mobilité en Europe'
 			),
 			private: true,
-			iframe: 'demande-mobilité'
+			iframe: 'demande-mobilite'
 		},
 		médecin: {
 			config: médecinConfig,
