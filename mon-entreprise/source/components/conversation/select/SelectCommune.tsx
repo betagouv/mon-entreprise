@@ -1,6 +1,6 @@
 import * as Animate from 'Components/ui/animate'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { debounce } from '../../../utils'
 import styled, { css } from 'styled-components'
 
@@ -51,6 +51,7 @@ export default function Select({ onChange, value, id }) {
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null
 	)
+	const { t } = useTranslation()
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
@@ -158,6 +159,7 @@ export default function Select({ onChange, value, id }) {
 				className="ui__"
 				onKeyDown={handleKeyDown}
 				aria-controls="liste-commune"
+				placeholder={t('commune')}
 				value={name}
 				onChange={handleChange}
 			/>

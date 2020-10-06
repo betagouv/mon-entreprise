@@ -180,11 +180,41 @@ dirigeant . indépendant . PL . régime général . maladie:
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
     maladie.
 
+
+dirigeant . indépendant . PL . cotisations Urssaf:
+  description: |
+    Les cotisations recouvrées par l'Urssaf, qui servent au financement
+    de la sécurité sociale (assurance maladie, allocations familiales,
+    dépendance).
+  formule: 
+    somme:
+      - cotisations et contributions . CSG et CRDS
+      - cotisations et contributions . maladie
+      - cotisations et contributions . allocations familiales
+      - cotisations et contributions . formation professionnelle
+      - PAMC . CURPS
+    arrondi: oui
+      
+
+dirigeant . indépendant . PL . cotisations caisse de retraite:
+  description: | 
+    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
+  formule: 
+    somme:
+      - cotisations et contributions . retraite de base
+      - cotisations et contributions . retraite complémentaire
+      - cotisations et contributions . invalidité et décès
+      - cotisations et contributions . PCV
+    arrondi: oui
+
 dirigeant . indépendant . PL . CIPAV:
+  description: |
+    La CIPAV est la caisse de retraite autonomes des professions libérales réglementée
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
   références:
+    Site web: https://www.lacipav.fr/
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
   formule:
     une de ces conditions:
@@ -443,6 +473,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
   non applicable si: métier . secteur médecin = '2'
+  titre: Participation CPAM à la maladie
   formule:
     produit:
       assiette: assiette participation CPAM
@@ -459,11 +490,22 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . secteur médecin = '1'
   titre: allocations familiales (après participation CPAM)
-  remplace: cotisations et contributions . allocations familiales
+  remplace: 
+    règle: cotisations et contributions . allocations familiales
+    sauf dans: participation CPAM
   formule:
     allègement:
       assiette: cotisations et contributions . allocations familiales
-      abattement:
+      abattement: participation CPAM 
+       
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
+dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
+  titre: Participation CPAM aux allocations familiales
+  formule: 
+    produit: 
+      assiette: cotisations et contributions . allocations familiales
+      taux: 
         grille:
           assiette: assiette participation CPAM
           multiplicateur: plafond sécurité sociale temps plein
@@ -474,8 +516,6 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
               plafond: 250%
             - montant: 60%
     arrondi: oui
-  références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
   applicable si: métier = 'santé . chirurgien-dentiste'
@@ -509,7 +549,25 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   unité: ''
   par défaut: 1
 
+dirigeant . indépendant . PL . PAMC . participation CPAM:
+  titre: Participation assurance maladie
+  description: 						 |
+    Les professionnels de santé conventionnés bénéficient d'une prise en charge d'une partie de leur cotisations par l'Assurance Maladie.
+  formule: 
+    somme:
+      - PAMC . allocations familiales . participation CPAM
+      - PAMC . maladie . participation CPAM
+      - CARMF . ASV . participation CPAM
+      - CARPIMKO . ASV . participation CPAM
+      - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
+      - CARCDSF . sage-femme . PCV . participation CPAM
+      - CARMF . retraite CNAVPL . participation CPAM
+    arrondi: oui
+
+      
+
 dirigeant . indépendant . PL . CARPIMKO:
+  description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
   formule: oui
   applicable si: métier = 'santé . auxiliaire médical'
   références:
@@ -560,6 +618,7 @@ dirigeant . indépendant . PL . CARPIMKO . ASV . proportionnelle:
       taux: 0.40%
 
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
+  titre: Participation CPAM à l'avantage social vieillesse
   applicable si: PAMC
   formule:
     somme:
@@ -576,7 +635,10 @@ dirigeant . indépendant . PL . CARMF:
   formule: oui
   description: |
     La CARMF est la caisse de retraite autonome des médecins de France.
-
+  applicable si: métier = 'santé . médecin'
+  références:
+    Site CARMF: https://www.carmf.fr
+  note: |
     L’affiliation est obligatoire pour les médecins titulaires du diplôme de
     docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
     libérale (installation, remplacements, expertises pour les compagnies
@@ -584,9 +646,6 @@ dirigeant . indépendant . PL . CARMF:
     société d’exercice libéral ou toute autre activité rémunérée sous forme
     d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
-  applicable si: métier = 'santé . médecin'
-  références:
-    Site CARMF: https://www.carmf.fr
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   titre: retraite de base CNAVPL (après participation CPAM)
@@ -597,24 +656,29 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   formule: 
     allègement:
       assiette: PL . retraite CNAVPL
-      abattement: 
-        produit:
-          assiette: assiette des cotisations
-          taux [ref]:     
-            grille:
-              assiette: assiette des cotisations
-              multiplicateur: plafond sécurité sociale temps plein
-              tranches:
-                - montant: 2.15%
-                  plafond: 140%
-                - montant: 1.51%
-                  plafond: 250%
-                - montant: 1.12%
-        arrondi: oui
+      abattement: participation CPAM 
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
+  titre: participation CPAM à la retraite de base
+  formule: 
+    produit:
+      assiette: assiette des cotisations
+      taux:     
+        grille:
+          assiette: assiette des cotisations
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - montant: 2.15%
+              plafond: 140%
+            - montant: 1.51%
+              plafond: 250%
+            - montant: 1.12%
+    arrondi: oui
+  références:
+    Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
@@ -666,35 +730,39 @@ dirigeant . indépendant . PL . CARMF . ASV:
   remplace: cotisations et contributions . PCV
   formule:
     allègement:
-      assiette:
+      assiette [ref]:
         somme:
           - 5253 €/an
           - produit:
               assiette: PAMC . revenus activité conventionnée
               plafond: 5 * plafond sécurité sociale temps plein
               taux: 3.80%
-      abattement: taux participation CPAM
+      abattement: participation CPAM
     arrondi: oui
-
   références:
     Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
 
-dirigeant . indépendant . PL . CARMF . ASV . taux participation CPAM:
+dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
+  titre: Participation CPAM à l'avantage social vieillesse
   applicable si: métier . secteur médecin = '1'
-  unité: '%'
-  formule: 2 / 3
+  formule: 
+    produit:
+      assiette: assiette
+      taux:  2 / 3
+
+
 
 dirigeant . indépendant . PL . CARCDSF:
   formule: oui
   description: |
-    La CARCDSF est la caisse de retraite autonome des chirurgiens dentiste et des sages femmes.
+    La CARCDSF est la caisse de retraite des chirurgiens dentiste et des sages femmes.
 
   applicable si:
     une de ces conditions:
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . sage-femme'
   références:
-    Site CARMF: http://www.carcdsf.fr
+    Site Web: http://www.carcdsf.fr
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   titre: retraite complémentaire (CARCDSF)
@@ -774,14 +842,28 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
     non cotisés ne sont pas rachetables.
   formule:
     somme:
-      - 1440.60  €/an
-      - produit:
-          assiette: assiette des cotisations
-          plafond: 5 * plafond sécurité sociale temps plein
-          taux: 0.725 %
+      - forfaitaire
+      - proportionnelle
     arrondi: oui
+    
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
+  formule: 1440.60 €/an
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      plafond: 5 * plafond sécurité sociale temps plein
+      taux: 0.725 %
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
+  titre: Participation CPAM à la prestation complémentaire vieillesse
+  formule: 
+    somme:
+      - 2 * forfaitaire
+      - proportionnelle
+  références: 
+    Guide CARCDSF (PDF, page 6) : http://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification
@@ -853,10 +935,9 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     (CPAM).
 
   formule:
-    produit:
+    allègement:
       assiette: 780 €/an
-      taux: 1 / 3
-    arrondi: oui
+      abattement [ref participation CPAM]: 520 €/an
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |
