@@ -187,7 +187,9 @@ export default function<Names extends string>(
 			const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
 				evaluateNode(cache, situation, parsedRules, disablerNode)
 			)
-			const nodeValue = isDisabledBy.some(x => !!x.nodeValue)
+			const nodeValue = isDisabledBy.some(
+				x => x.nodeValue !== false && x.nodeValue !== null
+			)
 			const explanation = { ...node.explanation, isDisabledBy }
 			return {
 				...node,

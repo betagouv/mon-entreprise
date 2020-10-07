@@ -130,6 +130,7 @@ dirigeant . indépendant . PL . régime général:
       - CIPAV = non
       - entreprise . catégorie d'activité . libérale règlementée = non
 
+
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
@@ -343,6 +344,7 @@ dirigeant . indépendant . PL . PAMC:
       - métier = 'santé . sage-femme'
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . auxiliaire médical'
+      
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
@@ -582,6 +584,22 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
     arrondi: oui
 
       
+dirigeant . indépendant . PL . PAMC . IJSS:
+  remplace: indépendant . IJSS . imposable
+  rend non applicable: indépendant . IJSS
+  titre: indemnités journalières de sécurité sociale
+  description: >-
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versée dans le cas de congé maternité/paternité/adoption/
+
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité
+    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
+    des revenus de remplacement.
+     
+    Note: Les prestations d’invalidité versées par les régimes
+    d’invalidité-décès ne sont pas concernées
+
+  question: Quel est le montant des indemnités journalières de maternité ou paternité perçu au titre de votre activité libérale ?
+  par défaut: 0€/an
 
 dirigeant . indépendant . PL . CARPIMKO:
   description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
