@@ -8,7 +8,10 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import {
+	answeredQuestionsSelector,
+	situationSelector
+} from 'Selectors/simulationSelectors'
 import './AnswerList.css'
 
 type AnswerListProps = {
@@ -17,7 +20,9 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const answeredQuestions: DottedName[] = Object.keys(
+		useSelector(situationSelector)
+	)
 	const nextSteps = useNextQuestions()
 
 	return (

@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { currencyFormat, debounce } from '../../utils'
@@ -21,6 +21,7 @@ export default function Input({
 	const { language } = useTranslation().i18n
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
 
+	// const [currentValue, setCurrentValue] = useState(value)
 	return (
 		<div className="step input">
 			<div>
@@ -42,9 +43,10 @@ export default function Input({
 					allowEmptyFormatting={true}
 					// We don't want to call `onValueChange` in case this component is
 					// re-render with a new "value" prop from the outside.
-					key={value}
 					onValueChange={({ floatValue }) => {
-						debouncedOnChange(floatValue)
+						if (floatValue !== value) {
+							debouncedOnChange(floatValue)
+						}
 					}}
 					value={value}
 					autoComplete="off"
