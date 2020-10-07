@@ -3917,12 +3917,11 @@ dirigeant . indépendant . PL:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
 dirigeant . indépendant . PL . CARCDSF:
-  description.en: >
-    [automatic] CARCDSF is the autonomous pension fund for dental surgeons and
-    midwives.
+  description.en: |
+    [automatic] CARCDSF is the pension fund for dental surgeons and midwives.
   description.fr: >
-    La CARCDSF est la caisse de retraite autonome des chirurgiens dentiste et
-    des sages femmes.
+    La CARCDSF est la caisse de retraite des chirurgiens dentiste et des sages
+    femmes.
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
@@ -3947,6 +3946,15 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
     Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
   titre.en: '[automatic] Supplementary old-age benefit (CARCDSF dental surgeon)'
   titre.fr: Prestation complémentaire vieillesse (CARCDSF chirurgien-dentiste)
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire
+: titre.en: '[automatic] lump sum'
+  titre.fr: forfaitaire
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM
+: titre.en: '[automatic] CPAM participation in the supplementary old-age benefit'
+  titre.fr: Participation CPAM à la prestation complémentaire vieillesse
+? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle
+: titre.en: '[automatic] proportional'
+  titre.fr: proportionnelle
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre.en: '[automatic] disability and death (CARCDSF Dental Surgeon)'
   titre.fr: invalidité et décès (CARCDSF chirurgien-dentiste)
@@ -3969,24 +3977,22 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
 ? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire
 : titre.en: '[automatic] flat-rate contribution'
   titre.fr: cotisation forfaitaire
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle
-: titre.en: '[automatic] proportional contribution'
-  titre.fr: cotisation proportionnelle
-? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable
 : description.en: >
     [automatic] You have the possibility of benefiting from a contribution
     reduction
 
     for the supplementary pension if you apply for it. More information
 
-    more](/documentation/lead/independent/WFP/WFP/CARCDSF/additional withdrawal/removal)
+    more](/documentation/documentation/lead/independent/PL/CARCDSF/additional withdrawal/ flat rate contribution/reduction)
   description.fr: >
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
 
     pour la retraite complémentaire si vous en faites la demande. [En savoir
 
-    plus](/documentation/dirigeant/indépendant/PL/PAM/CARCDSF/retraite-complémentaire/forfaitaire/réduction)
-  note.en: >
+    plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/réduction)
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction
+: description.en: >
     [automatic] Affiliates whose net professional income for the year N-1 is
     less than 85%.
 
@@ -4005,7 +4011,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     photocopy of the tax return no. 2042 C or 2035 or 2065 and their
 
     annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
-  note.fr: >
+  description.fr: >
     Les affiliés dont les revenus professionnels nets sur l'année N-1 sont
     inférieurs à 85
 
@@ -4024,6 +4030,11 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
 
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+  titre.en: '[automatic] discount rate'
+  titre.fr: taux réduction
+? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle
+: titre.en: '[automatic] proportional contribution'
+  titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
@@ -4135,11 +4146,12 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
     en faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 dirigeant . indépendant . PL . CARMF:
-  description.en: >
+  description.en: |
     [automatic] The CARMF is the autonomous pension fund for doctors in France.
-
-
-    Affiliation is compulsory for doctors holding the diploma of
+  description.fr: |
+    La CARMF est la caisse de retraite autonome des médecins de France.
+  note.en: >
+    [automatic] Affiliation is compulsory for doctors holding the diploma of
 
     doctor of medicine, registered with the Council of the Order and exercising an activity
 
@@ -4152,9 +4164,7 @@ dirigeant . indépendant . PL . CARMF:
     of fees, even if it is not a question of medical care) in France
 
     metropolitan France and in the overseas departments or Monaco.
-  description.fr: |
-    La CARMF est la caisse de retraite autonome des médecins de France.
-
+  note.fr: |
     L’affiliation est obligatoire pour les médecins titulaires du diplôme de
     docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
     libérale (installation, remplacements, expertises pour les compagnies
@@ -4167,9 +4177,9 @@ dirigeant . indépendant . PL . CARMF:
 dirigeant . indépendant . PL . CARMF . ASV:
   titre.en: '[automatic] Advantage social vieillesse (CARMF)'
   titre.fr: Avantage social vieillesse (CARMF)
-dirigeant . indépendant . PL . CARMF . ASV . taux participation CPAM:
-  titre.en: '[automatic] CPAM participation rate'
-  titre.fr: taux participation CPAM
+dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
+  titre.en: '[automatic] CPAM contribution to the old-age benefit'
+  titre.fr: Participation CPAM à l'avantage social vieillesse
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the
@@ -4201,10 +4211,17 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
     médicale) au financement de leurs cotisations du régime de base.
   titre.en: '[automatic] CNAVPL basic pension (after CPAM participation)'
   titre.fr: retraite de base CNAVPL (après participation CPAM)
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
+  titre.en: '[automatic] CPAM participation in basic retirement'
+  titre.fr: participation CPAM à la retraite de base
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARMF)'
   titre.fr: retraite complémentaire (CARMF)
 dirigeant . indépendant . PL . CARPIMKO:
+  description.en:
+    '[automatic] CARPIMKO is the autonomous pension fund for medical
+    auxiliaries.'
+  description.fr: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
   titre.en: '[automatic] CARPIMKO'
   titre.fr: CARPIMKO
 dirigeant . indépendant . PL . CARPIMKO . ASV:
@@ -4214,8 +4231,8 @@ dirigeant . indépendant . PL . CARPIMKO . ASV . forfaitaire:
   titre.en: '[automatic] lump sum'
   titre.fr: forfaitaire
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
-  titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
+  titre.en: '[automatic] CPAM contribution to the old-age benefit'
+  titre.fr: Participation CPAM à l'avantage social vieillesse
 dirigeant . indépendant . PL . CARPIMKO . ASV . proportionnelle:
   titre.en: '[automatic] proportional'
   titre.fr: proportionnelle
@@ -4226,6 +4243,12 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARPIMKO)'
   titre.fr: retraite complémentaire (CARPIMKO)
 dirigeant . indépendant . PL . CIPAV:
+  description.en: >
+    [automatic] CIPAV is the regulated independent professional pension fund for
+    the self-employed.
+  description.fr: >
+    La CIPAV est la caisse de retraite autonomes des professions libérales
+    réglementée
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
@@ -4337,9 +4360,34 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   titre.en: '[automatic] Contribution to regional unions of health professionals'
   titre.fr: Contribution aux unions régionales des professionnels de santé
+dirigeant . indépendant . PL . PAMC . IJSS:
+  description.en: >-
+    [automatic] Social Security (IJSS) daily allowances are paid in the case of
+    maternity/paternity/adoption/ leave.
+
+    Compensation in addition to the Social Security daily allowances paid under a provident fund contract does not constitute replacement income.
+     
+    Note: Disability benefits paid by disability/death plans are not affected.
+  description.fr: >-
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versée dans le
+    cas de congé maternité/paternité/adoption/
+
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
+     
+    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées
+  question.en:
+    '[automatic] What is the amount of the daily maternity or paternity
+    allowances received for your liberal profession?'
+  question.fr: Quel est le montant des indemnités journalières de maternité ou
+    paternité perçu au titre de votre activité libérale ?
+  titre.en: '[automatic] social security daily allowances'
+  titre.fr: indemnités journalières de sécurité sociale
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   titre.en: '[automatic] family allowances (after CPAM participation)'
   titre.fr: allocations familiales (après participation CPAM)
+? dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM
+: titre.en: '[automatic] CPAM participation in family allowances'
+  titre.fr: Participation CPAM aux allocations familiales
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description.en:
     '[automatic] Also known as conventional income, this is the net
@@ -4469,6 +4517,9 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   question.fr: Quel est votre "taux Urssaf" ?
   titre.en: '[automatic] URSSAF rate'
   titre.fr: taux Urssaf
+? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification
+: description.en: '[automatic] The Urssaf rate must be less than 100'
+  description.fr: Le taux Urssaf doit être inférieur à 100
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question.en: '[automatic] What is your average fee overrun (estimate)?'
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
@@ -4481,8 +4532,18 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.en: '[automatic] supplementary contribution'
   titre.fr: contribution additionnelle
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
-  titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
+  titre.en: '[automatic] CPAM involvement in the disease'
+  titre.fr: Participation CPAM à la maladie
+dirigeant . indépendant . PL . PAMC . participation CPAM:
+  description.en: >
+    [automatic] Health professionals who are members of the agreement benefit
+    from part of their contributions being covered by the Assurance Maladie
+    (Health Insurance).
+  description.fr: >
+    Les professionnels de santé conventionnés bénéficient d'une prise en charge
+    d'une partie de leur cotisations par l'Assurance Maladie.
+  titre.en: '[automatic] Health insurance participation'
+  titre.fr: Participation assurance maladie
 ? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée
 : description.en: >
     [automatic] Non-agreement revenues are all those which do not fall within
@@ -4527,8 +4588,17 @@ dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
   question.fr: |
     Quel est la part de votre chiffre d'affaires liée à une activité non
     conventionnée (estimation) ?
+  suggestions.10%.en: '[automatic] 10%'
+  suggestions.10%.fr: 10%
+  suggestions.30%.en: '[automatic] 30%'
+  suggestions.30%.fr: 30%
   titre.en: '[automatic] proportion of revenue from non-agreement activities'
   titre.fr: proportion recette activité non conventionnée
+? dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification
+: description.en: |
+    [automatic] The proportion cannot be more than 100%.
+  description.fr: |
+    La proportion ne peut pas être supérieure à 100%
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   description.en: >
     [automatic] The revenues covered by the agreement are those corresponding to
@@ -4556,6 +4626,26 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     provenant des actes conventionnés.
   titre.en: '[automatic] income from agreement activity'
   titre.fr: revenus activité conventionnée
+dirigeant . indépendant . PL . cotisations Urssaf:
+  description.en: |
+    [automatic] The contributions collected by URSSAF, which are used to finance
+    social security (health insurance, family allowances, etc.),
+    dependency).
+  description.fr: |
+    Les cotisations recouvrées par l'Urssaf, qui servent au financement
+    de la sécurité sociale (assurance maladie, allocations familiales,
+    dépendance).
+  titre.en: '[automatic] URSSAF contributions'
+  titre.fr: cotisations Urssaf
+dirigeant . indépendant . PL . cotisations caisse de retraite:
+  description.en: >
+    [automatic] The contributions recovered by the autonomous pension fund
+    specific to the liberal profession carried out.
+  description.fr: >
+    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
+    profession libérale effectuée.
+  titre.en: '[automatic] pension fund contributions'
+  titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . métier:
   question.en: '[automatic] To which category does your profession belong?'
   question.fr: A quelle catégorie appartient votre profession ?
