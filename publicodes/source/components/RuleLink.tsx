@@ -32,6 +32,9 @@ export function RuleLink<Name extends string>({
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
 	if (!ruleWithDedicatedDocumentationPage(rule)) {
+		// There is a problem with this line of code : we loose the information
+		// about the applicability of the formula.
+		// Besides, sometimes nodes don't have formula (which makes the doc page crash)
 		return makeJsx(engine.evaluate(rule.dottedName).formule)
 	}
 

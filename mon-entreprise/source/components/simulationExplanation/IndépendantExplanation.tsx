@@ -49,7 +49,7 @@ function PLExplanation() {
 			<h2>Vos institutions partenaires</h2>
 			<div className="ui__ box-container">
 				<div className="ui__  card box">
-					<a href="https://www.urssaf.fr/portail/home.html">
+					<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
 						<LogoImg src={urssafSrc} title="logo Urssaf" />
 					</a>
 					<p
@@ -69,7 +69,10 @@ function PLExplanation() {
 				<CaisseRetraite />
 				<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
 					<div className="ui__  card box">
-						<a href="https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html">
+						<a
+							target="_blank"
+							href="https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html"
+						>
 							<LogoImg src={assuranceMaladieSrc} title="Logo CPAM" />
 						</a>
 						<p
@@ -103,7 +106,10 @@ function CaisseRetraite() {
 				return (
 					<Condition expression={dottedName}>
 						<div className="ui__  card box">
-							<a href={références && Object.values(références)[0]}>
+							<a
+								target="_blank"
+								href={références && Object.values(références)[0]}
+							>
 								<LogoImg src={logosSrc[caisse]} title={`logo ${caisse}`} />
 							</a>
 							<p

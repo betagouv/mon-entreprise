@@ -110,9 +110,6 @@ export const InfixMecanism = ({
 		<div
 			className="infix-mecanism"
 			css={`
-				border: 1px solid var(--darkColor);
-				padding: 1rem;
-				border-radius: 0.3rem;
 				.value > .infix-mecanism {
 					border: none;
 					padding: 0;

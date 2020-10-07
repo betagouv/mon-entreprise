@@ -122,6 +122,7 @@ function AssociatedRules<Name extends string>({
 					dottedName.split(' . ').length + 1
 		)
 		.filter(rule => !ruleWithDedicatedDocumentationPage(rule))
+	console.log(namespaceRules)
 	if (!namespaceRules.length) {
 		return null
 	}
