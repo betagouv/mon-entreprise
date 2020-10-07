@@ -93,6 +93,14 @@ export default function SimulateurWarning({
 						</li>
 					</>
 				)}
+				{['indépendant', 'profession-libérale'].includes(simulateur) && (
+					<li>
+						<Trans i18nKey="simulateurs.warning.année-courante">
+							Le montant des cotisations est calculé pour un revenu sur l'année
+							2020
+						</Trans>
+					</li>
+				)}
 			</ul>
 		</Warning>
 	)

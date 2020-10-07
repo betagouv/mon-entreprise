@@ -41,7 +41,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 			codesPostaux
 				.sort()
 				.map(codePostal => ({ ...commune, codePostal }))
-				.filter(({ codePostal }) => codePostal.includes(number))
+				.filter(({ codePostal }) => codePostal.startsWith(number))
 		)
 		.slice(0, 10)
 }
@@ -159,7 +159,7 @@ export default function Select({ onChange, value, id }) {
 				className="ui__"
 				onKeyDown={handleKeyDown}
 				aria-controls="liste-commune"
-				placeholder={t('commune')}
+				placeholder={t('Commune ou code postal')}
 				value={name}
 				onChange={handleChange}
 			/>
