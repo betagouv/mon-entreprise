@@ -358,7 +358,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     Quel est la part de votre chiffre d'affaires liée à une activité non
     conventionnée (estimation) ?
   par défaut: 0%
-  suggestion:
+  suggestions:
     10%: 10%
     30%: 30%
   description: |
@@ -375,6 +375,13 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     - Toutes les rémunérations forfaitaires versées par l’assurance maladie
     (aide à la télétransmission, indemnisation, indemnisation de la formation
     continue, prime à l’installation, ...)
+
+dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
+  type: notification
+  sévérité: avertissement
+  applicable si:  proportion recette activité non conventionnée > 100%
+  description: |
+    La proportion ne peut pas être supérieure à 100%
 
 dirigeant . indépendant . PL . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
@@ -427,6 +434,7 @@ dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
+
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   description: |
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
@@ -440,7 +448,9 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   formule:
     produit:
       assiette: assiette des cotisations
-      facteur: 100% - proportion recette activité non conventionnée
+      facteur: 
+        valeur: 100% - proportion recette activité non conventionnée
+        plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description: Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
@@ -549,6 +559,12 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   question: Quel est votre "taux Urssaf" ?
   unité: ''
   par défaut: 1
+
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
+  applicable si: taux Urssaf >= 100 
+  type: notification
+  sévérité: avertissement
+  description: Le taux Urssaf doit être inférieur à 100
 
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   titre: Participation assurance maladie

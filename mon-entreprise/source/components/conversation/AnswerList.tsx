@@ -20,9 +20,9 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
-	const answeredQuestions: DottedName[] = Object.keys(
+	const answeredQuestions = Object.keys(
 		useSelector(situationSelector)
-	)
+	) as Array<DottedName>
 	const nextSteps = useNextQuestions()
 
 	return (

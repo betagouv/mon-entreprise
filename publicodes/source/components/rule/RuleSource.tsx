@@ -14,12 +14,25 @@ export default function RuleSource<Rules extends string>({
 	return showSource ? (
 		<section>
 			<h3>Source publicode</h3>
-			<PublicodesBlock source={yaml.stringify({ [dottedName]: source })} />
 			<p className="ui__ notice">
-				Ci-dessus la règle d'origine, écrite en publicodes. Publicodes est un
+				Ci-dessous la règle d'origine, écrite en publicodes. Publicodes est un
 				langage déclaratif développé par beta.gouv.fr en partenariat avec
 				l'Acoss pour encoder les algorithmes d'intérêt public.{' '}
 				<a href="https://publi.codes">En savoir plus.</a>
+			</p>
+			<PublicodesBlock source={yaml.stringify({ [dottedName]: source })} />
+
+			<p
+				css={`
+					text-align: right;
+				`}
+			>
+				<button
+					className="ui__ simple small button"
+					onClick={() => setShowSource(false)}
+				>
+					{emoji('❌')} Cacher la règle publicodes
+				</button>
 			</p>
 		</section>
 	) : (
