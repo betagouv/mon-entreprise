@@ -110,6 +110,13 @@ function PLExplanation() {
 							</div>
 						</Condition>
 					</div>
+					<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
+						<p className="ui__ notice">
+							{' '}
+							Les montant indiqués ci-dessus sont calculés sans prendre en
+							compte l'exonération de début d'activité ACRE
+						</p>
+					</Condition>
 				</Animate.fromBottom>
 			</Trans>
 		</section>
@@ -161,7 +168,7 @@ const LogoImg = styled.img`
 	height: 5rem;
 `
 
-const CotisationsSection: Record<DottedName, DottedName[]> = {
+const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . retraite': [
 		'dirigeant . indépendant . cotisations et contributions . retraite de base',
 		'dirigeant . indépendant . cotisations et contributions . retraite complémentaire',
@@ -195,7 +202,7 @@ function Distribution() {
 		CotisationsSection
 	).map(([section, cotisations]) => [
 		section,
-		cotisations
+		(cotisations as string[])
 			.map(c => engine.evaluate(c, { unit: targetUnit }))
 			.reduce(
 				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),

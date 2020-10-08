@@ -182,114 +182,63 @@ exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139595
 
 exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,444476,555524,0,1239955]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 1`] = `
-"[0,500,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[0,500,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 2`] = `
-"[0,1000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[0,1000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 3`] = `
-"[0,1500,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[0,1500,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 4`] = `
-"[0,2000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[0,2000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 5`] = `
-"[0,5000,0,0,3,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[0,5000,0,0,3,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 6`] = `
-"[0,10000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[0,10000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 7`] = `
-"[0,100000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 7`] = `"[0,100000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
-"[0,1000000,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: CIPAV 8`] = `"[0,1000000,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `
-"[0,22249,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[0,22249,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `
-"[0,21923,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[0,21923,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `
-"[0,238215,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238215,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 1`] = `
-"[0,35727,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: médecin 1`] = `"[0,35727,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 2`] = `
-"[0,29771,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: médecin 2`] = `"[0,29771,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `
-"[0,213518,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,213518,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `
-"[0,293798,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293798,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 5`] = `
-"[0,81098,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,81098,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 1`] = `
-"[0,37617,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[0,37617,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
 "[0,2728,0,0,3,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
 "[0,14775,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
 "[0,14699,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
@@ -312,10 +261,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[915,0,0,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `
-"[915,0,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[915,0,0,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[915,0,0,10742,4,19]"`;
 
@@ -375,10 +321,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Con
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 1`] = `"[0,0,1298,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `
-"[0,0,1297,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 2`] = `"[0,0,1297,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): activités 3`] = `"[0,0,1445,4093,3,8]"`;
 
@@ -441,10 +384,7 @@ Notifications affichées : dirigeant . indépendant . contrats madelin . contrô
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13779,0,10089,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `
-"[0,14646,0,0,4,0]
-Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
-`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14646,0,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 3`] = `"[0,13757,0,10075,4,21]"`;
 

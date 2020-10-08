@@ -11,8 +11,8 @@ questions:
     - entreprise . charges
   liste:
     - entreprise . catégorie d'activité
-    - dirigeant . indépendant . PL
     - dirigeant . indépendant
+    - entreprise
     - établissement
     - situation personnelle
     - impôt
@@ -26,4 +26,3 @@ unité par défaut: €/an
 situation:
   dirigeant: "'indépendant'"
   entreprise . catégorie d'activité: "'libérale'"
-  entreprise . catégorie d'activité . libérale règlementée . notification CIPAV: non

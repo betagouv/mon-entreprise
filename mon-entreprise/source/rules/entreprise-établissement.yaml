@@ -162,9 +162,9 @@ entreprise . ACRE:
     une de ces conditions:
       - toutes ces conditions:
           - dirigeant . auto-entrepreneur
-          - entreprise . durée d'activité <= 3 ans
-          - entreprise . date de création < 01/01/2020
-      - entreprise . durée d'activité . en début d'année <= 1 an
+          - entreprise . durée d'activité < 3 ans
+          - entreprise . date de création < 01/2020
+      - entreprise . durée d'activité . en début d'année < 1 an
   par défaut: non
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
 
@@ -391,15 +391,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . libérale règlementée . notification CIPAV:
-  formule: oui
-entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte: 
-  type: notification
-  sévérité: avertissement
-  description: |
-    Pour l'instant, seul les professions libérales affiliées à la CIPAV ont
-    été implémentées dans le simulateur. Par ailleurs, les calculs sont indicatifs
-    et n'ont pas encore fait l'objet de validation officielle.
 entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée: 
   formule:
     une possibilité:

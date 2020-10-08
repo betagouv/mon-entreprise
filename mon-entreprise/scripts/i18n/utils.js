@@ -5,7 +5,7 @@ var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
 let { readRules } = require('../rules')
-let { utils } = require('publicodes')
+// let { utils } = require('publicodes')
 
 let { parse } = require('yaml')
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
