@@ -8,8 +8,7 @@ situation personnelle . RSA:
 
 situation personnelle . domiciliation fiscale à l'étranger:
   description: >-
-    Ces assurés ne sont pas redevables de la CSG/CRDS mais, en contrepartie ils
-    sont redevables de la cotisation maladie sur la base d’un taux plus elevé.
+    Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt sur le revenu.
   question: La résidence fiscale est-elle située à l'étranger ?
   rend non applicable:
     - dirigeant . indépendant . cotisations et contributions . CSG et CRDS

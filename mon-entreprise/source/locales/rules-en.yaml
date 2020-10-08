@@ -514,6 +514,8 @@ contrat salarié . CDD . contrat jeune vacances:
 contrat salarié . CDD . contrôle congés non pris max:
   description.en: '[automatic] An employee normally earns 2.08 working days off per month.'
   description.fr: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
+  titre.en: '[automatic] check leave not taken max'
+  titre.fr: contrôle congés non pris max
 contrat salarié . CDD . durée contrat:
   description.en: '[Click here]
     (https://www.service-public.fr/professionnels-entreprises/vosdroits/F31211)
@@ -547,6 +549,8 @@ contrat salarié . CDD . information:
   description.fr: Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
     temporaire de l'entreprise. [Code du travail - Article
     L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+  titre.en: '[automatic] information'
+  titre.fr: information
 contrat salarié . CDD . motif:
   description.en:
     'The CDD is an exceptional contract: the reason for its use must
@@ -971,6 +975,8 @@ contrat salarié . activité partielle . heures travaillées:
   description.fr:
     Dans le cadre de l'activité partielle, le temps de travail doit
     être inférieur à celui inscrit dans le contrat de travail.
+  titre.en: '[automatic] working-time control'
+  titre.fr: contrôle temps de travail
 contrat salarié . activité partielle . indemnisation entreprise:
   description.en: '[automatic] In the context of the Coronavirus crisis, the
     government has announced that the short-time working allowance will be 100%
@@ -1212,6 +1218,8 @@ contrat salarié . apprentissage . ancienneté . moins de quatre ans:
   description.fr:
     La durée maximale du contrat peut être portée à 4 ans lorsque la
     qualité de travailleur handicapé est reconnue à l'apprenti.
+  titre.en: '[automatic] information'
+  titre.fr: information
 contrat salarié . apprentissage . ancienneté . moins de trois ans:
   titre.en: less than three years
   titre.fr: moins de trois ans
@@ -1278,6 +1286,8 @@ contrat salarié . complémentaire santé . contrôle min:
   description.fr:
     Vérifiez bien qu'une complémentaire santé si peu chère couvre le
     panier de soin minimal défini dans la loi.
+  titre.en: '[automatic] minimum control'
+  titre.fr: contrôle min
 contrat salarié . complémentaire santé . forfait:
   description.en: >-
     [automatic] The employer has the obligation to offer a complementary health
@@ -1330,6 +1340,8 @@ contrat salarié . complémentaire santé . part employeur min:
   description.en: "[automatic] The employer's share of the supplementary health
     insurance must be at least 50%."
   description.fr: La part employeur de la complémentaire santé doit être de 50% au minimum
+  titre.en: "[automatic] employer's minimum share"
+  titre.fr: part employeur min
 contrat salarié . complémentaire santé . part salarié:
   description.en: Share of the complementary health insurance paid by the
     employee. Cannot be more than 50%.
@@ -1555,6 +1567,8 @@ contrat salarié . convention collective . contrôle décharge:
   description.fr: Attention, l'implémentation des conventions collective est
     encore partielle et non vérifiée. Néanmoins, cela permet d'obtenir une
     première estimation, plus précise que le régime général.
+  titre.en: '[automatic] discharge control'
+  titre.fr: contrôle décharge
 contrat salarié . convention collective . droit commun:
   titre.en: common law
   titre.fr: droit commun
@@ -2057,9 +2071,13 @@ contrat salarié . frais professionnels . titres-restaurant:
     "[automatic] The employer's share of the meal voucher must be a
     maximum of 60%."
   description.fr: La part employeur du titre-restaurant doit être de 60% au maximum
+  titre.en: '[automatic] control max. employer rate'
+  titre.fr: contrôle taux employeur max
 ? contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min
 : description.en: "[automatic] The employer's share of the meal voucher must be at least 50%."
   description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
+  titre.en: '[automatic] control minimum employer rate'
+  titre.fr: contrôle taux employeur min
 contrat salarié . frais professionnels . titres-restaurant . montant:
   titre.en: '[automatic] Restaurant vouchers'
   titre.fr: Titres-restaurant
@@ -2676,6 +2694,8 @@ contrat salarié . régime des impatriés . information:
     accessoires, de caractère saisonnier ou pour les études.
 
     [Lire le texte de loi](https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626)
+  titre.en: '[automatic] information'
+  titre.fr: information
 contrat salarié . rémunération:
   description.en: The remuneration is distinguished from the salary by including
     non-monetary benefits paid for work. It is therefore wider than the sums of
@@ -2911,9 +2931,13 @@ contrat salarié . rémunération . contrôle salaire élevé:
   description.fr:
     Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé
     de période de calcul ?
+  titre.en: '[automatic] high wage control'
+  titre.fr: contrôle salaire élevé
 contrat salarié . rémunération . contrôle smic:
   description.en: '[automatic] The wage entered is below the minimum wage.'
   description.fr: Le salaire saisi est inférieur au SMIC.
+  titre.en: '[automatic] smic control'
+  titre.fr: contrôle smic
 contrat salarié . rémunération . heures complémentaires:
   description.en: '[automatic] Compensation for overtime'
   description.fr: La rémunération relative aux heures complémentaires
@@ -3164,6 +3188,8 @@ contrat salarié . stage . avertissement:
     L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
 
     Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 contrat salarié . stage . contrôle gratification minimale:
   description.en: "[automatic] The remuneration for the traineeship is less than
     the [minimum bonus]
@@ -3171,6 +3197,8 @@ contrat salarié . stage . contrôle gratification minimale:
     ."
   description.fr: La rémunération du stage est inférieure à la [gratification
     minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+  titre.en: '[automatic] minimum reward check'
+  titre.fr: contrôle gratification minimale
 contrat salarié . stage . gratification minimale:
   titre.en: minimum bonus
   titre.fr: gratification minimale
@@ -3320,9 +3348,13 @@ contrat salarié . temps de travail . base légale:
 contrat salarié . temps de travail . contrôle 44h max:
   description.en: '[automatic] The average working week may not exceed 44 hours.'
   description.fr: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+  titre.en: '[automatic] control 44h max'
+  titre.fr: contrôle 44h max
 contrat salarié . temps de travail . contrôle 48h max:
   description.en: '[automatic] The maximum weekly working time may not exceed 48 hours.'
   description.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+  titre.en: '[automatic] control 48h max'
+  titre.fr: contrôle 48h max
 ? contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents
 : description.en:
     '[automatic] Unless otherwise provided by agreement, the number
@@ -3331,6 +3363,8 @@ contrat salarié . temps de travail . contrôle 48h max:
   description.fr: Sauf disposition conventionnelle, le nombre d'heures
     complémentaires ne peut être supérieur à un dixième de la durée
     contractuelle du temps partiel.
+  titre.en: '[automatic] overtime control 10 percent'
+  titre.fr: contrôle heures complémentaires 10 pourcents
 contrat salarié . temps de travail . contrôle heures complémentaires max:
   description.en:
     '[automatic] Overtime must not cause the employee to work for a
@@ -3338,6 +3372,8 @@ contrat salarié . temps de travail . contrôle heures complémentaires max:
   description.fr: Les heures complémentaires ne doivent pas amener le salarié à
     travailler pour une durée supérieure ou égale à la durée légale du travail
     (35h)
+  titre.en: '[automatic] max. overtime control'
+  titre.fr: contrôle heures complémentaires max
 contrat salarié . temps de travail . heures complémentaires:
   description.en: >
     [automatic] Overtime hours are the hours worked by a part-time employee in
@@ -3482,6 +3518,8 @@ contrat salarié . temps de travail . temps partiel:
 contrat salarié . temps de travail . temps partiel . contrôle temps max:
   description.en: '[automatic] Part-time work must be below the legal working time (35 hours).'
   description.fr: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+  titre.en: '[automatic] max time control'
+  titre.fr: contrôle temps max
 contrat salarié . temps de travail . temps partiel . contrôle temps min:
   description.en: '[automatic] The minimum number of hours per week is 24,
     although it is possible to go lower in some cases only. [More
@@ -3489,6 +3527,8 @@ contrat salarié . temps de travail . temps partiel . contrôle temps min:
   description.fr: Le nombre minimum d'heures par semaine est 24. Il est possible
     de descendre plus bas dans certains cas seulement. [Plus
     d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+  titre.en: '[automatic] min time control'
+  titre.fr: contrôle temps min
 contrat salarié . temps de travail . temps partiel . heures par semaine:
   question.en: What is the number of hours worked per week as part of part-time work?
   question.fr: Quel est le nombre d'heures travaillées par semaine dans le cadre
@@ -3555,12 +3595,16 @@ dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   description.fr: Le seuil annuel de chiffre d'affaires pour le régime de
     l'auto-entreprise est dépassé. [En savoir
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
+  titre.en: '[automatic] Threshold control of turnover exceeded'
+  titre.fr: contrôle seuil de CA dépassé
 dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
   description.en:
     '[automatic] The annual turnover threshold for VAT exemption is
     exceeded. More information](/documentation/enterprise/VAT-exemption)'
   description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
     est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+  titre.en: '[automatic] VAT threshold control'
+  titre.fr: contrôle seuil de TVA dépassé
 dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -3715,6 +3759,8 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seui
   description.fr:
     Le versement libératoire n'est pas disponible si les revenus de
     votre ménage sont supérieurs à 27 086 € par part en 2018
+  titre.en: '[automatic] threshold control'
+  titre.fr: contrôle seuil
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   description.en: >
     If you have opted for the discharge payment, the income tax is paid at the
@@ -3805,6 +3851,8 @@ dirigeant . auto-entrepreneur . notification valeur annuelle:
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
     simulateur ne prends pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
+  titre.en: '[automatic] notification annual value'
+  titre.fr: notification valeur annuelle
 dirigeant . auto-entrepreneur . plafond:
   description.en: >
     The status of microentrepreneur applies as long as the annual turnover
@@ -3968,6 +4016,8 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
     de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
     en faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+  titre.en: '[automatic] PCV exemption'
+  titre.fr: exonération PCV
 ? dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation
 : titre.en: '[automatic] consulting fee'
   titre.fr: prix d'une consultation
@@ -3991,6 +4041,8 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     pour la retraite complémentaire si vous en faites la demande. [En savoir
 
     plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/réduction)
+  titre.en: '[automatic] applicable reduction'
+  titre.fr: réduction applicable
 ? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction
 : description.en: >
     [automatic] Affiliates whose net professional income for the year N-1 is
@@ -4145,6 +4197,8 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
     de cotisation pour la prestation complémentaire de vieillesse (PCV) si vous
     en faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+  titre.en: '[automatic] PCV exemption'
+  titre.fr: exonération PCV
 dirigeant . indépendant . PL . CARMF:
   description.en: |
     [automatic] The CARMF is the autonomous pension fund for doctors in France.
@@ -4520,6 +4574,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 ? dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification
 : description.en: '[automatic] The Urssaf rate must be less than 100'
   description.fr: Le taux Urssaf doit être inférieur à 100
+  titre.en: '[automatic] notification'
+  titre.fr: notification
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question.en: '[automatic] What is your average fee overrun (estimate)?'
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
@@ -4599,6 +4655,8 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
     [automatic] The proportion cannot be more than 100%.
   description.fr: |
     La proportion ne peut pas être supérieure à 100%
+  titre.en: '[automatic] notification'
+  titre.fr: notification
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   description.en: >
     [automatic] The revenues covered by the agreement are those corresponding to
@@ -4923,6 +4981,8 @@ dirigeant . indépendant . avertissement base forfaitaire:
     Il y a un ajustement au cours de la deuxième année en fonction des revenus réels déclarés pour l'année précédente.
 
     Ce simulateur calcule les cotisations au régime de croisière (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
+  titre.en: '[automatic] flat-rate warning'
+  titre.fr: avertissement base forfaitaire
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] Allows the executive's spouse to be covered by social protection
@@ -5056,6 +5116,8 @@ dirigeant . indépendant . contrats madelin . contrôle montant charges:
     Le montant de l'ensemble des cotisations à vos contrats Madelin
     doit être inclus dans vos charges de fonctionnement, or ce vous avez indiqué
     un montant de cotisations supérieur aux charges.
+  titre.en: '[automatic] expense control'
+  titre.fr: contrôle montant charges
 dirigeant . indépendant . contrats madelin . montant:
   titre.en: Sum of subscriptions to Madelin contracts
   titre.fr: Somme des cotisations à contrats Madelin
@@ -5701,6 +5763,8 @@ entreprise . catégorie d'activité . libérale règlementée . notification CIP
     été implémentées dans le simulateur. Par ailleurs, les calculs sont indicatifs
 
     et n'ont pas encore fait l'objet de validation officielle.
+  titre.en: '[automatic] text'
+  titre.fr: texte
 ? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
 : titre.en: type of regulated liberal activity
   titre.fr: type d'activité libérale règlementée
@@ -5857,12 +5921,16 @@ entreprise . date de création:
 entreprise . date de création . contrôle date future:
   description.en: '[automatic] We can only see so far into the future'
   description.fr: Nous ne pouvons voir aussi loin dans le futur
+  titre.en: '[automatic] check future date'
+  titre.fr: contrôle date future
 entreprise . date de création . contrôle date passée:
   description.en:
     "[automatic] This is a very old company! Are you sure you didn't
     make a mistake in the seizure?"
   description.fr: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne
     pas vous être trompé dans la saisie ?
+  titre.en: '[automatic] past date check'
+  titre.fr: contrôle date passée
 entreprise . durée d'activité:
   titre.en: length of service
   titre.fr: durée d'activité
@@ -6886,12 +6954,10 @@ situation personnelle . RSA:
   titre.en: '[automatic] beneficiary RSA or activity bonus'
   titre.fr: bénéficiaire RSA ou prime d'activité
 situation personnelle . domiciliation fiscale à l'étranger:
-  description.en: '[automatic] These insured persons are not liable for the
-    CSG/CRDS but, in return, they are liable for the health contribution at a
-    higher rate.'
-  description.fr: Ces assurés ne sont pas redevables de la CSG/CRDS mais, en
-    contrepartie ils sont redevables de la cotisation maladie sur la base d’un
-    taux plus elevé.
+  description.en: '[automatic] These insureds are not liable for CSG/CRDS or income tax.'
+  description.fr:
+    Ces assurés ne sont pas redevables de la CSG/CRDS ni de l'impôt
+    sur le revenu.
   question.en: '[automatic] Is the tax residence located abroad?'
   question.fr: La résidence fiscale est-elle située à l'étranger ?
   titre.en: tax domicile abroad
