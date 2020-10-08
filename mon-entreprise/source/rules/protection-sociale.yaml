@@ -13,7 +13,7 @@ protection sociale . retraite:
       - entreprise . catégorie d'activité = 'libérale'
       - dirigeant . indépendant . PL . régime général = non
   description: |
-    Tous les salariés en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
+    Tous les travailleurs en France cotisent tout au long de leur vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont l’âge de cesser leur activité.
 
     Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
 
@@ -265,6 +265,21 @@ protection sociale . santé:
     ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
     OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
 
+
+protection sociale . invaditité et décès:
+  icônes: 👻
+  type: branche
+  résumé: Garantit le versement d'une pension en cas d'invalidité et un capital à vos proche en cas de décès.
+  description: |
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain est réduite d'au moins 2/3 à la suite d'un accident ou d'une maladie d'origine non professionnelle. Vous pouvez obtenir le versement d'une pension d'invalidité afin de compenser la perte de revenus.
+
+    Le capital décès est une indemnité qui garantit le versement d'un capital aux ayants droit d'un travailleur décédé, sous certaines conditions. Son montant est forfaitaire.
+  références:
+    capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
+    capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
+    pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
+
+
 protection sociale . santé . indemnités journalières:
   description: >-
     Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
@@ -408,7 +423,7 @@ protection sociale . accidents du travail et maladies professionnelles:
 
 protection sociale . formation:
   icônes: 👩‍🎓
-  résumé: Donne aux employés la possibilité de suivre des formations professionnelles.
+  résumé: Finance la possibilité de suivre des formations professionnelles.
   description: |
     La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
 

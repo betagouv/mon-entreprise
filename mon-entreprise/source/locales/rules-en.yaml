@@ -4363,14 +4363,14 @@ dirigeant . indépendant . PL . PAMC . CURPS:
 dirigeant . indépendant . PL . PAMC . IJSS:
   description.en: >-
     [automatic] Social Security (IJSS) daily allowances are paid in the case of
-    maternity/paternity/adoption/ leave.
+    maternity/paternity/adoption leave.
 
-    Compensation in addition to the Social Security daily allowances paid under a provident fund contract does not constitute replacement income.
+    Benefits in addition to the Social Security daily allowances paid under a provident scheme do not constitute replacement income.
      
     Note: Disability benefits paid by disability/death plans are not affected.
   description.fr: >-
-    Les indemnités journalières de Sécurité sociale (IJSS) sont versée dans le
-    cas de congé maternité/paternité/adoption/
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
+    cas de congé maternité/paternité/adoption.
 
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
      
@@ -5802,8 +5802,8 @@ entreprise . charges dont rémunération dirigeant:
 entreprise . chiffre d'affaires:
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
-  résumé.en: '[automatic] Total amount of transactions (excluding tax)'
-  résumé.fr: Le montant total des transactions (hors taxe)
+  résumé.en: '[automatic] Total gross revenues (excluding tax)'
+  résumé.fr: Le montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
 entreprise . chiffre d'affaires de société:
@@ -6503,28 +6503,55 @@ protection sociale . formation:
 
 
     Pour avoir un compte-rendu personnalisé de vos droits à la formation, rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
-  résumé.en: Gives employees the opportunity to take vocationnal training.
-  résumé.fr: Donne aux employés la possibilité de suivre des formations professionnelles.
+  résumé.en: '[automatic] Finances the possibility of following professional
+    training courses.'
+  résumé.fr: Finance la possibilité de suivre des formations professionnelles.
   titre.en: training
   titre.fr: formation
+protection sociale . invaditité et décès:
+  description.en: >
+    [automatic] You may be recognised as disabled if your capacity for work and
+    earning is reduced by at least 2/3 as a result of an accident or illness of
+    non-occupational origin. You can obtain payment of a disability pension to
+    compensate for the loss of income.
+
+
+    The death benefit is an indemnity that guarantees the payment of a lump sum to the heirs of a deceased worker, under certain conditions. The amount is a lump sum.
+  description.fr: >
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain
+    est réduite d'au moins 2/3 à la suite d'un accident ou d'une maladie
+    d'origine non professionnelle. Vous pouvez obtenir le versement d'une
+    pension d'invalidité afin de compenser la perte de revenus.
+
+
+    Le capital décès est une indemnité qui garantit le versement d'un capital aux ayants droit d'un travailleur décédé, sous certaines conditions. Son montant est forfaitaire.
+  résumé.en: '[automatic] Guarantees the payment of a pension in the event of
+    disability and a lump sum to your loved ones in the event of death.'
+  résumé.fr:
+    Garantit le versement d'une pension en cas d'invalidité et un capital
+    à vos proche en cas de décès.
+  titre.en: '[automatic] invaditity and death'
+  titre.fr: invaditité et décès
 protection sociale . retraite:
   description.en: >
-    All employees in France contribute throughout their working lives to benefit
-    from a pension plan as soon as they are old enough to stop working their
-    activity.
+    [automatic] All workers in France contribute throughout their working life
+    to benefit from a pension scheme when they reach retirement age.
 
 
-    The pension system is currently based on the principle of the "distribution". This means that asset contributions finance retirement pensions.
+    The pension system is currently based on the "pay-as-you-go" principle. This means that contributions from working people finance the pensions of retirees.
 
 
     ## Retirement in France in a few figures
-      - **2094 € / month**: Average standard of living for people over 65 (compared to the rest of the population, it is the highest in the OECD 🥇)
-      - **25 years**: the average number of years spent in retirement (the highest in the OECD)
-      - **75%**: the replacement rate as a percentage of net salary after full annuities
+      - ** 2094 € / month**: Average standard of living of the over 65s (compared to the rest of the population, it is the highest in the OECD 🥇)
+      - **25 years**: the average number of years spent in retirement (the highest in the OECD 🥇)
+      - 75%**: the replacement rate as a percentage of full net pay
 
-    Pensions are the highest of social security contributions. It can be considered a deferred salary, since your contributions will provide you with income when you retire.
+    The pension is the highest of the social security contributions. It can be considered as deferred salary, since your contributions will ensure you a future income.
+
+
+    Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   description.fr: >
-    Tous les salariés en France cotisent tout au long de leur vie
+    Tous les travailleurs en France cotisent tout au long de leur vie
     professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils ont
     l’âge de cesser leur activité.
 
