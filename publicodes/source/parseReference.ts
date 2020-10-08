@@ -9,6 +9,32 @@ import { disambiguateRuleReference } from './ruleUtils'
 import { EvaluatedNode, ParsedRule } from './types'
 import { areUnitConvertible, serializeUnit } from './units'
 
+/**
+ * Statically filter out replacements from `replaceBy`.
+ * Note: whitelist and blacklist filtering are applicable to the replacement
+ * itself or any parent namespace.
+ */
+export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
+	replacedBy
+		.sort(
+			(replacement1, replacement2) =>
+				+!!replacement2.whiteListedNames - +!!replacement1.whiteListedNames
+		)
+		.filter(
+			({ whiteListedNames }) =>
+				!whiteListedNames ||
+				whiteListedNames.some(name => contextRuleName.startsWith(name))
+		)
+		.filter(
+			({ blackListedNames }) =>
+				!blackListedNames ||
+				blackListedNames.every(name => !contextRuleName.startsWith(name))
+		)
+		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
+
+/**
+ * Filter-out and apply all possible replacements at runtime.
+ */
 const getApplicableReplacements = (
 	filter,
 	contextRuleName,
@@ -21,23 +47,10 @@ const getApplicableReplacements = (
 	if (contextRuleName.startsWith('[evaluation]')) {
 		return [[], []]
 	}
-	const applicableReplacements = rule.replacedBy
-		.sort(
-			(replacement1, replacement2) =>
-				+!!replacement2.whiteListedNames - +!!replacement1.whiteListedNames
-		)
-		// Remove remplacement not in whitelist
-		.filter(
-			({ whiteListedNames }) =>
-				!whiteListedNames ||
-				whiteListedNames.some(name => contextRuleName.startsWith(name))
-		)
-		.filter(
-			({ blackListedNames }) =>
-				!blackListedNames ||
-				blackListedNames.every(name => !contextRuleName.startsWith(name))
-		)
-		.filter(({ referenceNode }) => contextRuleName !== referenceNode.dottedName)
+	const applicableReplacements = getApplicableReplacedBy(
+		contextRuleName,
+		rule.replacedBy
+	)
 		// Remove remplacement defined in a not applicable node
 		.filter(({ referenceNode }) => {
 			const referenceRule = rules[referenceNode.dottedName]
