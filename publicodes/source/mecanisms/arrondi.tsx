@@ -12,7 +12,7 @@ type MecanismRoundProps = {
 	explanation: ArrondiExplanation
 }
 
-type ArrondiExplanation = {
+export type ArrondiExplanation = {
 	value: EvaluatedNode<string, number>
 	decimals: EvaluatedNode<string, number>
 }
