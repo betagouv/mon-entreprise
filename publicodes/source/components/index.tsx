@@ -52,9 +52,9 @@ export function getDocumentationSiteMap({ engine, documentationPath }) {
 	const parsedRules = engine.getParsedRules()
 	return Object.fromEntries(
 		Object.keys(parsedRules)
-			.filter(dottedName =>
-				ruleWithDedicatedDocumentationPage(parsedRules[dottedName])
-			)
+			// .filter(dottedName =>
+			// 	ruleWithDedicatedDocumentationPage(parsedRules[dottedName])
+			// )
 			.map(dottedName => [
 				documentationPath + '/' + encodeRuleName(dottedName),
 				dottedName

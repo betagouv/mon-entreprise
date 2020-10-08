@@ -5,6 +5,7 @@ import Engine from '..'
 import { makeJsx } from '../evaluation'
 import {
 	encodeRuleName,
+	ruleParents,
 	ruleWithDedicatedDocumentationPage
 } from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
@@ -31,12 +32,20 @@ export function RuleLink<Name extends string>({
 	const rule = engine.getParsedRules()[dottedName]
 	const newPath = documentationPath + '/' + encodeRuleName(dottedName)
 
-	if (!ruleWithDedicatedDocumentationPage(rule)) {
-		// There is a problem with this line of code : we loose the information
-		// about the applicability of the formula.
-		// Besides, sometimes nodes don't have formula (which makes the doc page crash)
-		return makeJsx(engine.evaluate(rule.dottedName).formule)
-	}
+	// There is a problem with this line of code : we loose the information
+	// about the applicability of the formula. Besides, when we are not in the context of the
+	// rules which defines the reference, we want to print a link to the parent rule and not
+	// the value directly.
+
+	// Besides, sometimes nodes don't have formula (which makes the doc page crash)
+
+	// Furthermore, nothing prevent from using a type notification as a reference
+
+	// For all these reason, I'm advocating for a change of perspective inside this notion of ruleWithDedicatedDocumentationPage
+
+	// if (!ruleWithDedicatedDocumentationPage(rule)) {
+	// 	return makeJsx(engine.evaluate(rule.dottedName).formule)
+	// }
 
 	return (
 		<Link to={newPath} {...props}>

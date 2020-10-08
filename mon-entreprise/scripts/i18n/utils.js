@@ -31,7 +31,7 @@ function getRulesMissingTranslations() {
 	let resolved = Object.entries(rules)
 		.map(([dottedName, rule]) => [
 			dottedName,
-			!rule || (!rule.titre && utils.ruleWithDedicatedDocumentationPage(rule))
+			!rule || !rule.titre // && utils.ruleWithDedicatedDocumentationPage(rule))
 				? { ...rule, titre: dottedName.split(' . ').slice(-1)[0] }
 				: rule
 		])

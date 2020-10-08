@@ -582,6 +582,9 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
       - CARCDSF . sage-femme . PCV . participation CPAM
       - CARMF . retraite CNAVPL . participation CPAM
     arrondi: oui
+  références: 
+    amelie.fr: https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical
+    rapport sécurtié sociale 2009: https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2009/RAPPORT/CCSS-RAPPORT-JUIN_2009-FICHE-LA_PRISE_EN_CHARGE_DES_COTISATIONS_DES_PRATICIENS_ET_AUXILIAIRES_MEDICAUX.pdf
 
       
 dirigeant . indépendant . PL . PAMC . IJSS:

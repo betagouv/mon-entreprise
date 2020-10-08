@@ -89,7 +89,7 @@ function PLExplanation() {
 							<div className="ui__  card box">
 								<a
 									target="_blank"
-									href="https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me.html"
+									href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
 								>
 									<LogoImg src={assuranceMaladieSrc} title="Logo CPAM" />
 								</a>

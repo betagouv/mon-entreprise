@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
@@ -13,6 +13,7 @@ import {
 	Unit
 } from '../../types'
 import { capitalise0 } from '../../utils'
+import { EngineContext } from '../contexts'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
@@ -231,6 +232,7 @@ export function Leaf({
 	name,
 	explanation: { title },
 	nodeValue,
+
 	unit
 }: EvaluatedRule) {
 	const ruleTitle = title || capitalise0(name)
@@ -242,6 +244,7 @@ export function Leaf({
 						{acronyme ? <abbr title={ruleTitle}>{acronyme}</abbr> : ruleTitle}
 					</span>
 				</RuleLinkWithContext>
+
 				{nodeValue != null && unit && (
 					<NodeValuePointer data={nodeValue} unit={unit} />
 				)}
