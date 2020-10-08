@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -106,13 +107,15 @@ export default function Simulateurs() {
 	)
 }
 
-function SimulateurCard({
+export function SimulateurCard({
 	small = false,
 	shortName,
 	meta,
 	path,
+	iframe,
 	icône
 }: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
+	const isIframe = useContext(IsEmbeddedContext)
 	return (
 		<Link
 			className={classnames('ui__ interactive card box light-border', {
@@ -121,7 +124,7 @@ function SimulateurCard({
 			key={path}
 			to={{
 				state: { fromSimulateurs: true },
-				pathname: path
+				pathname: (isIframe && iframe) || path
 			}}
 		>
 			<div className={classnames('ui__ box-icon', { big: !small })}>

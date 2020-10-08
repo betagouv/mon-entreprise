@@ -23,7 +23,7 @@ export default function Simulateurs() {
 	const simulatorRoutes = useMemo(
 		() =>
 			Object.values(simulatorsData)
-				.filter(({ path }) => path.startsWith(sitePaths.simulateurs.index))
+				.filter(({ path }) => path?.startsWith(sitePaths.simulateurs.index))
 				.map(s => (
 					<Route
 						key={s.path}

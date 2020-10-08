@@ -27,6 +27,7 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import PAMCHome from './PAMCHome'
 import IndépendantSimulation, {
 	IndépendantPLSimulation
 } from './IndépendantSimulation'
@@ -49,7 +50,8 @@ const simulateurs = [
 	'médecin',
 	'chirurgien-dentiste',
 	'sage-femme',
-	'auxiliaire-médical'
+	'auxiliaire-médical',
+	'pamc'
 ] as const
 
 export type SimulatorData = Record<
@@ -64,7 +66,7 @@ export type SimulatorData = Record<
 		}
 		icône: string
 		shortName: string
-		path: string
+		path?: string
 		iframe?: string
 		title?: string
 		config?: SimulationConfig
@@ -694,6 +696,24 @@ export function getSimulatorsData({
 				'Simulateur de revenus pour profession libérale'
 			),
 			component: IndépendantPLSimulation
+		},
+		pamc: {
+			private: true,
+			iframe: 'pamc',
+			config: professionLibéraleConfig,
+			icône: '🏥',
+			meta: {
+				title: t(
+					'pages.simulateurs.pamc.meta.title',
+					'Simulateurs régime PAMC'
+				),
+				description: t(
+					'pages.simulateurs.pamc.meta.description',
+					'Calcul du revenu net pour les profession libérale du régime PAMC (médecins, chirurgien-dentiste, sage-femme et auxiliaire médical)'
+				)
+			},
+			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
+			component: PAMCHome
 		}
 	}
 }
