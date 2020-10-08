@@ -589,7 +589,7 @@ dirigeant . indépendant . PL . PAMC . IJSS:
   rend non applicable: indépendant . IJSS
   titre: indemnités journalières de sécurité sociale
   description: >-
-    Les indemnités journalières de Sécurité sociale (IJSS) sont versée dans le cas de congé maternité/paternité/adoption/
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le cas de congé maternité/paternité/adoption.
 
     Les indemnités complémentaires aux indemnités journalières de la Sécurité
     sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
@@ -672,7 +672,7 @@ dirigeant . indépendant . PL . CARMF:
     La CARMF est la caisse de retraite autonome des médecins de France.
   applicable si: métier = 'santé . médecin'
   références:
-    Site CARMF: https://www.carmf.fr
+    Site CARMF: http://www.carmf.fr
   note: |
     L’affiliation est obligatoire pour les médecins titulaires du diplôme de
     docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité

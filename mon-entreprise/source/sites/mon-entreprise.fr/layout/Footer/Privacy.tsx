@@ -15,7 +15,7 @@ export default function Privacy({ label }: { label?: string }) {
 	return (
 		<>
 			<button onClick={handleOpen} className="ui__ link-button">
-				{label ?? <Trans>Vie privée</Trans>}
+				{label ?? <Trans>Gestion des données personnelles</Trans>}
 			</button>
 			{opened && (
 				<Overlay onClose={handleClose} style={{ textAlign: 'left' }}>
@@ -31,7 +31,7 @@ function PrivacyContent() {
 	return (
 		<>
 			<Trans i18nKey="privacyContent">
-				<h1>Vie privée</h1>
+				<h1>Données personnelles</h1>
 				<p>
 					Nous recueillons des statistiques anonymes sur l'utilisation du site,
 					que nous utilisons dans le seul but d'améliorer le service,
@@ -48,11 +48,11 @@ function PrivacyContent() {
 				</p>
 			</Trans>
 			<iframe
-				style={{
-					border: 0,
-					height: '200px',
-					width: '100%'
-				}}
+				className="ui__ card light-bg"
+				css={`
+					border: 0;
+					padding: 1rem;
+				`}
 				src={`https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=${language}`}
 			/>
 		</>
