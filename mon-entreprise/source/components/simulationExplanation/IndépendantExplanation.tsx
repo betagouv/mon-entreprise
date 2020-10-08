@@ -9,7 +9,7 @@ import urssafSrc from 'Images/urssaf.svg'
 import * as Animate from 'Components/ui/animate'
 import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'Rules/'
+import { DottedName } from 'Rules'
 import styled from 'styled-components'
 export default function IndépendantExplanation() {
 	const engine = useContext(EngineContext)
@@ -103,10 +103,10 @@ function CaisseRetraite() {
 	return (
 		<>
 			{['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF'].map(caisse => {
-				const dottedName: DottedName = `dirigeant . indépendant . PL . ${caisse}`
+				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = engine.evaluate(dottedName)
 				return (
-					<Condition expression={dottedName}>
+					<Condition expression={dottedName} key={caisse}>
 						<div className="ui__  card box">
 							<a
 								target="_blank"

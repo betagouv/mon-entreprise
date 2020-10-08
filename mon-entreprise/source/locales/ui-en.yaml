@@ -1095,6 +1095,12 @@ pages:
     médecin:
       shortname: Doctor
       title: Income simulator for private practitioners
+    pamc:
+      meta:
+        description: Calculation of net income for CMAP professionals (physicians,
+          dentists, midwives and paramedics)
+        title: PAMC diet simulators
+      shortname: PAMC
     profession-libérale:
       meta:
         description: Net Income Calculation for Self-Employed Persons in Liberal Income

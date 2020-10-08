@@ -263,33 +263,33 @@ Notifications affichées : entreprise . catégorie d'activité . libérale règl
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `
-"[0,40086,0,0,4,0]
+"[0,37617,0,0,4,0]
 Notifications affichées : entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
 "[0,2728,0,0,3,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
 "[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
 "[0,14775,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[0,14698,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . réduction de la cotisation forfaitaire, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
+"[0,14699,0,0,4,0]
+Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, entreprise . catégorie d'activité . libérale règlementée . notification CIPAV . texte"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
