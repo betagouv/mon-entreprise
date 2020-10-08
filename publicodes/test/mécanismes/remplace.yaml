@@ -181,3 +181,53 @@ remplacement non applicable car branche desactivée:
   formule: z
   exemples:
     - valeur attendue: 1
+
+# Remplacement non effectué dans la formule du remplacement
+espace . valeur:
+  formule: 20
+espace . remplacement:
+  remplace: valeur
+  formule: valeur + 10
+test remplacement non effectué dans la formule du remplacement:
+  formule: espace . valeur
+  exemples:
+    - valeur attendue: 30
+
+
+frais de repas:
+  formule: 5 €/repas
+
+convention hôtels cafés restaurants:
+  formule: oui
+
+convention hôtels cafés restaurants . frais de repas:
+  remplace: frais de repas
+  formule: 6 €/repas
+
+frais de repas non remplacé:
+  formule: frais de repas
+  exemples:
+    - valeur attendue: 5
+
+# Note: this would produce an infinite loop
+# frais de repas remplacé:
+#   formule: convention hôtels cafés restaurants . frais de repas
+#   exemples:
+#     - nom: par défaut
+#       valeur attendue: 5
+
+
+frais de repas2:
+  formule: 5 €/repas
+
+convention hôtels cafés restaurants2:
+  formule: oui
+
+convention hôtels cafés restaurants2 . remplaçeur:
+  remplace: frais de repas2
+  formule: 6 €/repas
+
+frais de repas2 remplacé:
+  formule: frais de repas2
+  exemples:
+    - valeur attendue: 6
