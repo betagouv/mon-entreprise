@@ -4657,6 +4657,19 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
     La proportion ne peut pas être supérieure à 100%
   titre.en: '[automatic] notification'
   titre.fr: notification
+dirigeant . indépendant . PL . PAMC . remplaçant:
+  description.en: >
+    [automatic] Practitioners and medical auxiliaries exercising a substitute
+    activity are not liable for the contribution to the regional unions of
+    health professionals (CURPS).
+  description.fr: >
+    Les practicien et auxiliaire médical exerçant une activité de remplacement
+    ne sont pas redevable de la contribution aux unions régionales des
+    professionnels de santé (CURPS)
+  question.en: '[automatic] Do you work exclusively as a replacement?'
+  question.fr: Exercez-vous votre activité exclusivement en tant que remplaçant ?
+  titre.en: '[automatic] replacing'
+  titre.fr: remplaçant
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   description.en: >
     [automatic] The revenues covered by the agreement are those corresponding to
@@ -5867,7 +5880,7 @@ entreprise . chiffre d'affaires:
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
   résumé.en: '[automatic] Total gross revenues (excluding tax)'
-  résumé.fr: Le montant total des recettes brutes (hors taxe)
+  résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
 entreprise . chiffre d'affaires de société:

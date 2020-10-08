@@ -53,7 +53,7 @@ entreprise . durée d'activité . en début d'année:
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
-  résumé: Le montant total des recettes brutes (hors taxe)
+  résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
 

@@ -385,6 +385,12 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
   description: |
     La proportion ne peut pas être supérieure à 100%
 
+dirigeant . indépendant . PL . PAMC . remplaçant:
+  question: Exercez-vous votre activité exclusivement en tant que remplaçant ?
+  description: |
+    Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevable de la contribution aux unions régionales des professionnels de santé (CURPS)
+  par défaut: non
+
 dirigeant . indépendant . PL . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
   remplace: cotisations et contributions . contributions spéciales
@@ -403,7 +409,10 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   acronyme: CURPS
   applicable si: revenu professionnel > 0
-  non applicable si: métier . secteur médecin = 'non conventionné'
+  non applicable si: 
+    une de ces conditions: 
+      - métier . secteur médecin = 'non conventionné'
+      - remplaçant
   formule:
     produit:
       assiette: assiette des cotisations
