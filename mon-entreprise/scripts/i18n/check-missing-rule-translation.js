@@ -4,7 +4,7 @@ const missingTranslations = getRulesMissingTranslations()[0]
 
 if (missingTranslations.length) {
 	throw new Error(
-		`Il manque les traductions suivantes dans 'externalized.yaml' : \n${missingTranslations
+		`Les traductions suivantes sont à corriger dans 'rules-en.yaml' : \n${missingTranslations
 			.map(([dottedName, attr]) => `\t- ${dottedName} [${attr}]\n`)
 			.join(
 				''
