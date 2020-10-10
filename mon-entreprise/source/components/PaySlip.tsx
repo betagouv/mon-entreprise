@@ -114,14 +114,18 @@ export default function PaySlip() {
 				})}
 				{/* Réductions */}
 				<div>
-					<Trans>Réductions</Trans>
+					<RuleLink
+						dottedName={
+							'contrat salarié . cotisations . réductions de cotisations'
+						}
+					/>
 				</div>
 				<Value
 					expression="- contrat salarié . cotisations . patronales . réductions de cotisations"
 					displayedUnit="€"
 				/>
 				<Value
-					expression="- contrat salarié . cotisations . salariales . réduction heures supplémentaires"
+					expression="- contrat salarié . cotisations . salariales . réductions de cotisations"
 					displayedUnit="€"
 				/>
 				{/* Total cotisation */}

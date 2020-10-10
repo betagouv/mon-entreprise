@@ -1804,13 +1804,16 @@ contrat salarié . cotisations . patronales . réductions de cotisations:
     réduction de cotisations patronales sont  mutuellement exclusif.
 
     Le formule ci dessous selectionne donc automatiquement  le plus avantageux pour l'employeur.
-  titre.en: contribution reductions
-  titre.fr: réductions de cotisations
+  titre.en: "[automatic] employer's reductions"
+  titre.fr: réductions patronales
 ? contrat salarié . cotisations . patronales . réductions de cotisations . déduction heures supplémentaires
 : note.en: '[automatic] Deduction does not apply to overtime work.'
   note.fr: La déduction ne s’applique pas aux heures complémentaires
   titre.en: flat-rate deduction for overtime
   titre.fr: déduction forfaitaire pour heures supplémentaires
+contrat salarié . cotisations . réductions de cotisations:
+  titre.en: '[automatic] Contribution Reductions'
+  titre.fr: Réductions de cotisations
 contrat salarié . cotisations . salariales:
   titre.en: Employee contributions
   titre.fr: cotisations salariales
@@ -1828,6 +1831,9 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
     charge du salarié
   titre.en: reduced contribution rates
   titre.fr: taux des cotisations réduites
+contrat salarié . cotisations . salariales . réductions de cotisations:
+  titre.en: '[automatic] pay cuts'
+  titre.fr: réductions salariales
 contrat salarié . déduction forfaitaire spécifique:
   description.en: '[automatic] For a specific list of professions, the employer
     may make a specific flat-rate deduction for professional expenses on the

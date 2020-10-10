@@ -1522,6 +1522,13 @@ contrat salarié . SMIC:
   références:
     Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
 
+contrat salarié . cotisations . réductions de cotisations:
+  titre: Réductions de cotisations
+  formule:
+    somme:
+      - patronales . réductions de cotisations
+      - salariales . réductions de cotisations
+
 contrat salarié . cotisations . salariales:
   titre: cotisations salariales
 
@@ -1537,7 +1544,7 @@ contrat salarié . cotisations . salariales:
       - APEC .salarié
       - complémentaire santé .salarié
       - conventionnelles
-      - (- réduction heures supplémentaires)
+      - (- réductions de cotisations)
 
 contrat salarié . cotisations . patronales:
   titre: cotisations patronales
@@ -1712,7 +1719,12 @@ contrat salarié . rémunération . total:
       - cotisations . patronales
       - activité partielle . indemnités
 
+contrat salarié . cotisations . salariales . réductions de cotisations:
+  titre: réductions salariales
+  formule: réduction heures supplémentaires
+
 contrat salarié . cotisations . patronales . réductions de cotisations:
+  titre: réductions patronales
   description: >-
     À l'exception de la déduction heure supplémentaire, les 
     dispositifs de réduction de cotisations patronales sont 
