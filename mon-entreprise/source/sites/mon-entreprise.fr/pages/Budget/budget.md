@@ -43,20 +43,22 @@ simulateur et une expérimentation sur la paie.
 
 ## Budget provisionnel
 
-En 2020, le budget de **250 000 € HT** est reconduit. Il est pris en charge
-à 100% par l’[ACOSS](https://www.acoss.fr).
+En 2020, le budget de **250 000 € HT** est reconduit. Il est pris en charge à
+100% par l’[ACOSS](https://www.acoss.fr). En plus de cette contribution
+financière, l’ACOSS fournit des ressources métier expertes provenant du réseau
+des URSSAF.
 
-De plus, une enveloppe de **41 667 € HT** est allouée pour expérimenter la
-transformation de notre moteur de simulations en moteur de paie complète.
+Une enveloppe de **41 667 € HT** est allouée pour expérimenter la transformation
+de notre moteur de simulations en moteur de paie complète. La solution proposée
+ne sera finalement pas retenue pour la refonte des offres de service de
+l'URSSAF. Voir le [compte-rendu de
+l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 
 |                             |                  |
 | --------------------------- | ---------------: |
 | Budget mon-entreprise       |     250 000 € HT |
 | Budget expérimentation paie |      41 667 € HT |
 | **Total**                   | **291 667 € HT** |
-
-En plus de cette contribution financière, l’ACOSS fournit des ressources métier
-expertes provenant du réseau des URSSAF.
 
 ---
 
