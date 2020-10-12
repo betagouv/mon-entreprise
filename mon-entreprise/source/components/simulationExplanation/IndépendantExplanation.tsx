@@ -60,6 +60,7 @@ export default function IndépendantExplanation() {
 }
 
 function PLExplanation() {
+	const unit = useSelector(targetUnitSelector)
 	return (
 		<section>
 			<Trans i18nKey="simulateurs.explanation.pamc">
@@ -81,7 +82,11 @@ function PLExplanation() {
 								allocations familiales, dépendance)
 							</p>
 							<p className="ui__ lead">
-								<Value expression="dirigeant . indépendant . PL . cotisations Urssaf" />
+								<Value
+									unit={unit}
+									displayedUnit="€"
+									expression="dirigeant . indépendant . PL . cotisations Urssaf"
+								/>
 							</p>
 						</div>
 						<CaisseRetraite />
@@ -105,7 +110,11 @@ function PLExplanation() {
 								</p>
 								<p className="ui__ lead">
 									<Emoji emoji="🎁" />{' '}
-									<Value expression="dirigeant . indépendant . PL . PAMC . participation CPAM" />
+									<Value
+										unit={unit}
+										displayedUnit="€"
+										expression="dirigeant . indépendant . PL . PAMC . participation CPAM"
+									/>
 								</p>
 							</div>
 						</Condition>
@@ -125,6 +134,8 @@ function PLExplanation() {
 
 function CaisseRetraite() {
 	const engine = useContext(EngineContext)
+	const unit = useSelector(targetUnitSelector)
+
 	return (
 		<>
 			{['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF'].map(caisse => {
@@ -153,7 +164,11 @@ function CaisseRetraite() {
 							</p>
 
 							<p className="ui__ lead">
-								<Value expression="dirigeant . indépendant . PL . cotisations caisse de retraite" />
+								<Value
+									unit={unit}
+									displayedUnit="€"
+									expression="dirigeant . indépendant . PL . cotisations caisse de retraite"
+								/>
 							</p>
 						</div>
 					</Condition>
