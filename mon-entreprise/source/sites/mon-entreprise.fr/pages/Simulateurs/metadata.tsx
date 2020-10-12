@@ -27,6 +27,7 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import PAMCHome from './PAMCHome'
 import IndépendantSimulation, {
 	IndépendantPLSimulation
 } from './IndépendantSimulation'
@@ -49,7 +50,8 @@ const simulateurs = [
 	'médecin',
 	'chirurgien-dentiste',
 	'sage-femme',
-	'auxiliaire-médical'
+	'auxiliaire-médical',
+	'pamc'
 ] as const
 
 export type SimulatorData = Record<
@@ -64,7 +66,8 @@ export type SimulatorData = Record<
 		}
 		icône: string
 		shortName: string
-		path: string
+		path?: string
+		tooltip?: string
 		iframe?: string
 		title?: string
 		config?: SimulationConfig
@@ -613,7 +616,6 @@ export function getSimulatorsData({
 		},
 		médecin: {
 			config: médecinConfig,
-			private: true,
 			icône: '⚕️',
 			iframe: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
@@ -625,7 +627,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'chirurgien-dentiste': {
-			private: true,
 			config: dentisteConfig,
 			icône: '🦷',
 			iframe: 'chirurgien-dentiste',
@@ -641,7 +642,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'sage-femme': {
-			private: true,
 			config: sageFemmeConfig,
 			icône: '👶',
 			iframe: 'sage-femme',
@@ -654,15 +654,15 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'auxiliaire-médical': {
-			private: true,
 			config: auxiliaireConfig,
+			tooltip: t(
+				'pages.simulateurs.auxiliaire.tooltip',
+				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
+			),
 			icône: '🩹',
 			iframe: 'auxiliaire-médical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
-			shortName: t(
-				'pages.simulateurs.auxiliaire.shortname',
-				'Axiliaire médical'
-			),
+			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire'),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
@@ -670,7 +670,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'profession-libérale': {
-			private: true,
 			config: professionLibéraleConfig,
 			icône: '💻',
 			meta: {
@@ -694,6 +693,24 @@ export function getSimulatorsData({
 				'Simulateur de revenus pour profession libérale'
 			),
 			component: IndépendantPLSimulation
+		},
+		pamc: {
+			private: true,
+			iframe: 'pamc',
+			config: professionLibéraleConfig,
+			icône: '🏥',
+			meta: {
+				title: t(
+					'pages.simulateurs.pamc.meta.title',
+					'Simulateurs régime PAMC'
+				),
+				description: t(
+					'pages.simulateurs.pamc.meta.description',
+					'Calcul du revenu net pour les professions libérales du régime PAMC (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
+				)
+			},
+			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
+			component: PAMCHome
 		}
 	}
 }

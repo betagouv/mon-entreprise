@@ -8,6 +8,8 @@ import classnames from 'classnames'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import InfoBulle from 'Components/ui/InfoBulle'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -53,25 +55,21 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators.sasu} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
-					{process.env.HEAD !== 'master' && (
-						<SimulateurCard {...simulators['profession-libérale']} />
-					)}
+					<SimulateurCard {...simulators['profession-libérale']} />
 				</div>
-				{process.env.HEAD !== 'master' && (
-					<>
-						<h3>
-							<small>
-								<Trans>Professionnels de santé</Trans> {emoji('🏥')}
-							</small>
-						</h3>
-						<div className="ui__ small box-container">
-							<SimulateurCard small {...simulators['auxiliaire-médical']} />
-							<SimulateurCard small {...simulators['chirurgien-dentiste']} />
-							<SimulateurCard small {...simulators.médecin} />
-							<SimulateurCard small {...simulators['sage-femme']} />
-						</div>
-					</>
-				)}
+				<>
+					<h3>
+						<small>
+							<Trans>Professionnels de santé</Trans> {emoji('🏥')}
+						</small>
+					</h3>
+					<div className="ui__ small box-container">
+						<SimulateurCard small {...simulators['auxiliaire-médical']} />
+						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
+						<SimulateurCard small {...simulators.médecin} />
+						<SimulateurCard small {...simulators['sage-femme']} />
+					</div>
+				</>
 				<h2>
 					<Trans>Autres outils</Trans>
 				</h2>
@@ -106,13 +104,21 @@ export default function Simulateurs() {
 	)
 }
 
-function SimulateurCard({
+export function SimulateurCard({
 	small = false,
 	shortName,
 	meta,
 	path,
+	tooltip,
+	iframe,
 	icône
 }: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
+	const isIframe = useContext(IsEmbeddedContext)
+	const name = (
+		<span>
+			{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+		</span>
+	)
 	return (
 		<Link
 			className={classnames('ui__ interactive card box light-border', {
@@ -121,13 +127,13 @@ function SimulateurCard({
 			key={path}
 			to={{
 				state: { fromSimulateurs: true },
-				pathname: path
+				pathname: (isIframe && iframe) || path
 			}}
 		>
 			<div className={classnames('ui__ box-icon', { big: !small })}>
 				{emoji(icône)}
 			</div>
-			{small ? shortName : <h3>{shortName}</h3>}
+			<>{small ? name : <h3>{name}</h3>}</>
 			{!small && meta?.description && (
 				<p className="ui__ notice" css="flex: 1">
 					{meta.description}

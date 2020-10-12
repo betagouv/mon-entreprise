@@ -30,6 +30,7 @@ Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
 "Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
+Commune ou code postal: Municipality or postal code
 Comparaison statuts: Status comparison
 Continuer: Continue
 Coronavirus: Coronavirus
@@ -66,6 +67,7 @@ Exonérations: Exemptions
 Explorez notre documentation: Explore our documentation
 Faire une simulation: Launch a simulation
 Fiche de paie: Payslip
+Gestion des données personnelles: Management of personal data
 Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
 Gérant minoritaire: Managing director
@@ -979,6 +981,8 @@ pages:
     auxiliaire:
       shortname: Medical Axiliary
       title: Income simulator for a private medical assistant
+      tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
+        orthoptists
     chirurgien-dentiste:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
@@ -1094,6 +1098,12 @@ pages:
     médecin:
       shortname: Doctor
       title: Income simulator for private practitioners
+    pamc:
+      meta:
+        description: Calculation of net income for CMAP professionals (physicians,
+          dentists, midwives and paramedics)
+        title: PAMC diet simulators
+      shortname: PAMC
     profession-libérale:
       meta:
         description: Net Income Calculation for Self-Employed Persons in Liberal Income
@@ -1293,6 +1303,16 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 simulateurs:
+  explanation:
+    CNAPL: It recovers contributions related to your retirement and disability/death
+      plan.
+    pamc: <0><0>Your partner institutions</0><1><0><0><0></0></0><1>Contributions
+      collected by URSSAF, which are used to finance social security (health
+      insurance, family allowances, dependency
+      care).</1><2><0></0></2></0><1></1><2><0><0><0></0></0><1>As a contracted
+      health professional, you benefit from having part of your contributions
+      covered by the Assurance Maladie.</1><2><0></0>
+      <2></2></2></0></2></1></0>
   inversionFail: >-
     The amount entered results in an impossible result. This is due to a
     threshold effect in the calculation of contributions.
@@ -1302,6 +1322,8 @@ simulateurs:
   précision:
     défaut: "Refine the simulation by answering the questions:"
   warning:
+    année-courante: The amount of the contributions is calculated for an income over
+      the year 2020.
     artiste-auteur:
       "1": This estimate is provided for information purposes. It is based on the
         applicable regulatory elements and the elements that you have entered,

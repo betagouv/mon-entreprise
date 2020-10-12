@@ -293,16 +293,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
                 plafond: 2 ans
               - montant: 90%
                 plafond: 3 ans
-      - sinon:
-          grille:
-            assiette: entreprise . durée d'activité
-            tranches:
-              - montant: 50%
-                plafond: 1 an
-              - montant: 75%
-                plafond: 2 ans
-              - montant: 90%
-                plafond: 3 ans
+      - sinon: 50%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
@@ -311,7 +302,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
-dirigeant . auto-entrepreneur . notification valeur annuelle:
+dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   applicable si: entreprise . ACRE
   type: notification
   description: |
@@ -459,13 +450,16 @@ dirigeant . indépendant . avertissement base forfaitaire:
     n’étant pas connus, les cotisations et contributions des deux premières
     années sont calculées sur une base forfaitaire.
 
+
     Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
     la première et de la deuxième année d’activité.
+
 
     Il y a un ajustement au cours de la deuxième année en fonction des
     revenus réels déclarés pour l'année précédente.
 
-    Ce simulateur calcule les cotisations au régime de croisière (après
+
+    Ce simulateur calcule les cotisations au **régime de croisière** (après
     régularisation). Il vous permet donc de connaître le montant à
     provisionner pour la régularisation.
 
@@ -816,7 +810,7 @@ dirigeant . indépendant . contrats madelin . contrôle montant charges:
   applicable si: entreprise . charges < montant
   description: >-
     Le montant de l'ensemble des cotisations à vos contrats Madelin
-    doit être inclus dans vos charges de fonctionnement, or ce vous
+    doit être inclus dans vos charges de fonctionnement, or vous
     avez indiqué un montant de cotisations supérieur aux charges.
 
 dirigeant . indépendant . contrats madelin . part déductible fiscalement:

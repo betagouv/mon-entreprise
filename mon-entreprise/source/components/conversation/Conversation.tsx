@@ -29,7 +29,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	const rules = useContext(EngineContext).getParsedRules()
 	const currentQuestion = useNextQuestions()[0]
 	const situation = useSelector(situationSelector)
-	const currentQuestionIsAnswered = !!situation[currentQuestion]
+	const currentQuestionIsAnswered = situation[currentQuestion] != null
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	useEffect(() => {
 		if (currentQuestion) {

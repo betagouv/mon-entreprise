@@ -130,7 +130,7 @@ export default function Stats() {
 
 				{stats.simulators[choicesimulators].visites.map(
 					({ label, nb_visits }) => {
-						const details = simulators.find(({ path }) => path.includes(label))
+						const details = simulators.find(({ path }) => path?.includes(label))
 						if (!details) {
 							return null
 						}

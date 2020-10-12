@@ -96,7 +96,7 @@ function extractInlinedNames(rules: Record<string, Record<string, any>>) {
 
 			rules[extractedReferenceName] = {
 				formule: value,
-				// TODO: The `virtualRule` parameter should be used to avoid creating a
+				// The `virtualRule` parameter is used to avoid creating a
 				// dedicated documentation page.
 				virtualRule: true
 			}

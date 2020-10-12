@@ -57,11 +57,6 @@ export default function Overlay({
 					<div
 						aria-modal="true"
 						className={'ui__ card  ' + className ?? ''}
-						css={`
-							padding-bottom: 3rem;
-							display: flex;
-							flex-direction: column;
-						`}
 						{...otherProps}
 					>
 						{children}
@@ -112,6 +107,12 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 		padding: 0 0.5rem;
 		right: 0;
 	}
+	.ui__.card[aria-modal='true'] {
+		padding-bottom: 4rem;
+		display: flex;
+		flex-direction: column;
+	}
+
 	@media (min-width: 600px) {
 		.overlayCloseButton {
 			top: 0;
@@ -128,5 +129,8 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 			max-width: 40em;
 			min-height: 6em;
 		}
+	.ui__.card[aria-modal='true'] {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
 	}
 `

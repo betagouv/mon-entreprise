@@ -26,8 +26,7 @@ const iframe = document.createElement('iframe')
 const iframeAttributes = {
 	id: 'simulateurEmbauche',
 	src,
-	style:
-		'border: none; width: 100%; display: block; margin: 10px auto; min-height: 700px',
+	style: 'border: none; width: 100%; display: block; height: 500px',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true
@@ -56,10 +55,15 @@ const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
 	moduleToSitePath[moduleName] ?? ''
 )
 links.innerHTML = `
-	<div style="text-align: center; margin-bottom: 2rem">
-		<a href="${simulateurLink}" target="_blank">
+	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
+	Ce simulateur est également disponible sur le site  
+	<a href="${simulateurLink}" target="_blank">
+		mon-entreprise.fr
+	</a><br/>
+	
+	<a href="${simulateurLink}" target="_blank">
 			<img
-				style="height: 2.5rem; margin-right: 1rem"
+				style="height: 25px; margin: 10px"
 				src="${process.env.FR_SITE.replace(
 					'${path}',
 					'/' + (lang === 'fr' ? logoFrSvg : logoEnSvg)
@@ -69,7 +73,7 @@ links.innerHTML = `
 		</a>
 		<a href="https://www.urssaf.fr" target="_blank">
 			<img
-				style="height: 2.5rem; margin-right: 1rem"
+				style="height: 25px; margin: 10px"
 				src="${urssafSvg}"
 				alt="un service fourni par l'Urssaf"
 			/>

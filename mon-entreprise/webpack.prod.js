@@ -134,7 +134,8 @@ module.exports = {
 					'/créer',
 					'/gérer',
 					'/iframes/simulateur-embauche',
-					'/iframes/simulateur-chomage-partiel'
+					'/iframes/simulateur-chomage-partiel',
+					'/iframes/pamc'
 				],
 				indexPath: path.resolve('dist', 'mon-entreprise.html')
 			})

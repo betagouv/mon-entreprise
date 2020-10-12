@@ -220,6 +220,12 @@
   status = 200
 
 [[redirects]]
+  from = "/iframes/pamc"
+  to = "/prerender/mon-entreprise/iframes/pamc/index.html"
+  status = 200
+
+
+[[redirects]]
   from = "/*"
   to = "/mon-entreprise.html"
   status = 200

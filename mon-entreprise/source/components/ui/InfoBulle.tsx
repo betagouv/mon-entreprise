@@ -7,7 +7,7 @@ export default function InfoBulle({ children }: { children: React.ReactNode }) {
 			<span className="info-bulle__interrogation-mark" tabIndex={0}>
 				?
 			</span>
-			<span className="info-bulle__text">{children}</span>
+			<span className="info-bulle__text ui__ notice">{children}</span>
 		</span>
 	)
 }

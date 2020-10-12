@@ -49,68 +49,67 @@ const Footer = () => {
 				<PageFeedback
 					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
 				/>
-				<div className="ui__ container">
-					{i18n.language === 'en' && (
-						<p className="ui__ notice" css="text-align: center">
-							This website is provided by the{' '}
-							<a href="https://www.urssaf.fr">Urssaf</a>, the French social
-							security contributions collector.
-						</p>
-					)}
-					<p className="ui__ notice" style={{ textAlign: 'center' }}>
-						<LegalNotice />
-						{'  •  '}
-						<Privacy />
-						{i18n.language === 'fr' && (
-							<>
-								{'  •  '}
-								<Link to={sitePaths.nouveautés}>Nouveautés</Link>
-								{'  •  '}
-								<Link to={sitePaths.stats}>Stats</Link>
-								{'  •  '}
-								<Link to={sitePaths.budget}>Budget</Link>
-							</>
-						)}
-						{'  •  '}
-						<Link to={sitePaths.integration.index}>
-							<Trans>Intégrer nos simulateurs</Trans>
-						</Link>
 
-						{!!hrefLink.length && '  •  '}
-						{hrefLink.map(({ hrefLang, href }) => (
-							<a
-								href={href}
-								key={hrefLang}
-								style={{ textDecoration: 'underline' }}
-							>
-								{hrefLang === 'fr' ? (
-									<> Passer en français {emoji('🇫🇷')}</>
-								) : hrefLang === 'en' ? (
-									<> Switch to English {emoji('🇬🇧')}</>
-								) : (
-									hrefLang
-								)}
-							</a>
-						))}
+				{i18n.language === 'en' && (
+					<p className="ui__ notice" css="text-align: center">
+						This website is provided by the{' '}
+						<a href="https://www.urssaf.fr">Urssaf</a>, the French social
+						security contributions collector.
 					</p>
+				)}
+				<p className="ui__ notice" style={{ textAlign: 'center' }}>
+					<LegalNotice />
+					{'  •  '}
+					<Privacy />
+					{i18n.language === 'fr' && (
+						<>
+							{'  •  '}
+							<Link to={sitePaths.nouveautés}>Nouveautés</Link>
+							{'  •  '}
+							<Link to={sitePaths.stats}>Stats</Link>
+							{'  •  '}
+							<Link to={sitePaths.budget}>Budget</Link>
+						</>
+					)}
+					{'  •  '}
+					<Link to={sitePaths.integration.index}>
+						<Trans>Intégrer nos simulateurs</Trans>
+					</Link>
 
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<a href="https://www.facebook.com/monentreprisefr/">
-							<SocialIcon media="facebook" />
+					{!!hrefLink.length && '  •  '}
+					{hrefLink.map(({ hrefLang, href }) => (
+						<a
+							href={href}
+							key={hrefLang}
+							style={{ textDecoration: 'underline' }}
+						>
+							{hrefLang === 'fr' ? (
+								<> Passer en français {emoji('🇫🇷')}</>
+							) : hrefLang === 'en' ? (
+								<> Switch to English {emoji('🇬🇧')}</>
+							) : (
+								hrefLang
+							)}
 						</a>
-						<a href="https://twitter.com/monentreprisefr">
-							<SocialIcon media="twitter" />
-						</a>
-						<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
-							<SocialIcon media="linkedin" />
-						</a>
-						<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-							<SocialIcon media="email" />
-						</a>
-						<a href="https://github.com/betagouv/mon-entreprise/">
-							<SocialIcon media="github" />
-						</a>
-					</div>
+					))}
+				</p>
+
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<a href="https://www.facebook.com/monentreprisefr/">
+						<SocialIcon media="facebook" />
+					</a>
+					<a href="https://twitter.com/monentreprisefr">
+						<SocialIcon media="twitter" />
+					</a>
+					<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
+						<SocialIcon media="linkedin" />
+					</a>
+					<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
+						<SocialIcon media="email" />
+					</a>
+					<a href="https://github.com/betagouv/mon-entreprise/">
+						<SocialIcon media="github" />
+					</a>
 				</div>
 			</footer>
 		</div>
