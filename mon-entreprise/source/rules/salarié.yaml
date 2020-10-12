@@ -1866,6 +1866,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
       - apprentissage
       - ancienneté . date d'embauche >= 01/07/2020
       - ancienneté . date d'embauche <= 28/02/2021
+      - temps de travail . temps effectif > 0 heures/mois
   formule:
     variations:
       - si: salarié majeur
@@ -1903,7 +1904,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
   formule:
     produit:
       assiette: 4000 €/an
-      facteur: temps de travail . quotité de travail
+      facteur: temps de travail . quotité de travail effective
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
 
