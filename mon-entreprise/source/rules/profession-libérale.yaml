@@ -386,7 +386,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     La proportion ne peut pas être supérieure à 100%
 
 dirigeant . indépendant . PL . PAMC . remplaçant:
-  question: Exercez-vous votre activité exclusivement en tant que remplaçant ?
+  question: Au 1er janvier 2020, exerciez-vous votre activité exclusivement en tant que remplaçant ?
   description: |
     Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
   par défaut: non
@@ -408,7 +408,10 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     invités à se rapprocher de leur Urssaf pour que leur dossier cotisant soit
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   acronyme: CURPS
-  applicable si: revenu professionnel > 0
+  applicable si: 
+    toutes ces conditions:
+      - entreprise . date de création < 01/2020 
+      - revenu professionnel > 0
   non applicable si: 
     une de ces conditions: 
       - métier . secteur médecin = 'non conventionné'

@@ -4,7 +4,7 @@ entreprise:
 
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
-  par défaut: 02/01/2020
+  par défaut: 01/01/2019
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.  
@@ -133,11 +133,13 @@ entreprise . ACRE:
     exonération partielle de charges sociales, dite exonération de début
     d'activité pendant 12 mois. 
 
-    Elle est automatique pour les sociétés et les entreprises individuelles
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles**
     (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les
     trois dernières années).
 
-    Pour les auto-entrepreneurs en revanche, elle doit être demandée et est réservée aux
+
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux
     bénéficiaires suivants: 
 
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
@@ -149,7 +151,7 @@ entreprise . ACRE:
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
 
 
-    *Historique*:
+    > *Historique*:
 
     - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est
     de nouveau soumise à condition.
@@ -163,10 +165,22 @@ entreprise . ACRE:
       - toutes ces conditions:
           - dirigeant . auto-entrepreneur
           - entreprise . durée d'activité < 3 ans
-          - entreprise . date de création < 01/2020
+          - entreprise . date de création < 04/2020
       - entreprise . durée d'activité . en début d'année < 1 an
-  par défaut: non
+  par défaut: ACRE par défaut
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
+
+entreprise . ACRE par défaut: 
+  formule:
+    variations:
+      - si: 
+          toutes ces conditions:
+            - dirigeant . auto-entrepreneur
+            # Pour l'année 2020, l'acre était automatiquement accordée aux auto-entrepreneur
+            - entreprise . date de création >= 01/2020
+            - entreprise . date de création < 01/2019
+        alors: non
+      - sinon: oui
 
 entreprise . franchise de TVA:
   description: |

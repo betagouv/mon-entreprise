@@ -293,16 +293,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
                 plafond: 2 ans
               - montant: 90%
                 plafond: 3 ans
-      - sinon:
-          grille:
-            assiette: entreprise . durée d'activité
-            tranches:
-              - montant: 50%
-                plafond: 1 an
-              - montant: 75%
-                plafond: 2 ans
-              - montant: 90%
-                plafond: 3 ans
+      - sinon: 50%
   références:
     Fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/je-beneficie-dexonerations/accre.html
     FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
