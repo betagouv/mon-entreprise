@@ -9,6 +9,7 @@ import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { SimulatorData } from './metadata'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
+import InfoBulle from 'Components/ui/InfoBulle'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -112,10 +113,16 @@ export function SimulateurCard({
 	shortName,
 	meta,
 	path,
+	tooltip,
 	iframe,
 	icône
 }: SimulatorData[keyof SimulatorData] & { small?: boolean }) {
 	const isIframe = useContext(IsEmbeddedContext)
+	const name = (
+		<span>
+			{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+		</span>
+	)
 	return (
 		<Link
 			className={classnames('ui__ interactive card box light-border', {
@@ -130,7 +137,7 @@ export function SimulateurCard({
 			<div className={classnames('ui__ box-icon', { big: !small })}>
 				{emoji(icône)}
 			</div>
-			{small ? shortName : <h3>{shortName}</h3>}
+			<>{small ? name : <h3>{name}</h3>}</>
 			{!small && meta?.description && (
 				<p className="ui__ notice" css="flex: 1">
 					{meta.description}

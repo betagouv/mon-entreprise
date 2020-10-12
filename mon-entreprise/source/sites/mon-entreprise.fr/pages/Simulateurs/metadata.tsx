@@ -67,6 +67,7 @@ export type SimulatorData = Record<
 		icône: string
 		shortName: string
 		path?: string
+		tooltip?: string
 		iframe?: string
 		title?: string
 		config?: SimulationConfig
@@ -658,13 +659,14 @@ export function getSimulatorsData({
 		'auxiliaire-médical': {
 			private: true,
 			config: auxiliaireConfig,
+			tooltip: t(
+				'pages.simulateurs.auxiliaire.tooltip',
+				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
+			),
 			icône: '🩹',
 			iframe: 'auxiliaire-médical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
-			shortName: t(
-				'pages.simulateurs.auxiliaire.shortname',
-				'Auxiliaire médical'
-			),
+			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire'),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
