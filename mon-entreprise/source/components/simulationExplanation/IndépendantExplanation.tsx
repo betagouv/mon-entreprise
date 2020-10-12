@@ -179,7 +179,7 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 		'dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie',
 		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2'
 	],
-	'protection sociale . invaditité et décès': [
+	'protection sociale . invadilité et décès': [
 		'dirigeant . indépendant . cotisations et contributions . invalidité et décès'
 	],
 	'protection sociale . famille': [

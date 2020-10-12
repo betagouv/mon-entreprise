@@ -4525,7 +4525,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     health and maternity insurance contribution paid by the CPAM. 
 
 
-    This rate is pre-filled on your professional income tax return and
+    This rate is pre-filled on your business tax return. It
 
     is derived from your Individual Activity Report data and from
 
@@ -4534,7 +4534,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 
     The lower the rate, the greater the CPAM participation, and therefore the greater the CPAM participation and therefore the greater the CPAM participation.
 
-    the share to be borne by the practitioner is small.
+    the share to be borne by the practitioner is low.
 
 
     ## Rate calculation
@@ -4549,7 +4549,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     cotisation d’assurance maladie-maternité prise en charge par la CPAM. 
 
 
-    Ce taux est pré-rempli sur votre déclaration de revenus professionnels et
+    Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
 
     est issu des données de votre Relevé individuel d’activité et de
 
@@ -6570,7 +6570,7 @@ protection sociale . formation:
   résumé.fr: Finance la possibilité de suivre des formations professionnelles.
   titre.en: training
   titre.fr: formation
-protection sociale . invaditité et décès:
+protection sociale . invadilité et décès:
   description.en: >
     [automatic] You may be recognised as disabled if your capacity for work and
     earning is reduced by at least 2/3 as a result of an accident or illness of
@@ -6593,7 +6593,7 @@ protection sociale . invaditité et décès:
     Garantit le versement d'une pension en cas d'invalidité et un capital
     à vos proches en cas de décès.
   titre.en: '[automatic] invaditity and death'
-  titre.fr: invaditité et décès
+  titre.fr: invadilité et décès
 protection sociale . retraite:
   description.en: >
     [automatic] All workers in France contribute throughout their working life
