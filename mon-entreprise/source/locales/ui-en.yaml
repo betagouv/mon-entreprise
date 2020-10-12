@@ -981,6 +981,8 @@ pages:
     auxiliaire:
       shortname: Medical Axiliary
       title: Income simulator for a private medical assistant
+      tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
+        orthoptists
     chirurgien-dentiste:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon

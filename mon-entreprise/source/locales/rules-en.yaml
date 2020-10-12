@@ -4034,13 +4034,13 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
 
     for the supplementary pension if you apply for it. More information
 
-    more](/documentation/documentation/lead/independent/PL/CARCDSF/additional withdrawal/ flat rate contribution/reduction)
+    more](/documentation/documentation/lead/independent/PL/CARCDSF/additional withdrawal/ flat-rate contribution/rate-reduction)
   description.fr: >
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
 
     pour la retraite complémentaire si vous en faites la demande. [En savoir
 
-    plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/réduction)
+    plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   titre.en: '[automatic] applicable reduction'
   titre.fr: réduction applicable
 ? dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction
@@ -4674,8 +4674,11 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     Les practicien et auxiliaire médical exerçant une activité de remplacement
     ne sont pas redevables de la contribution aux unions régionales des
     professionnels de santé (CURPS)
-  question.en: '[automatic] Do you work exclusively as a replacement?'
-  question.fr: Exercez-vous votre activité exclusivement en tant que remplaçant ?
+  question.en: '[automatic] On 1 January 2020, were you working exclusively as a
+    replacement?'
+  question.fr:
+    Au 1er janvier 2020, exerciez-vous votre activité exclusivement en
+    tant que remplaçant ?
   titre.en: '[automatic] replacing'
   titre.fr: remplaçant
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
@@ -5574,11 +5577,13 @@ entreprise . ACRE:
     consists of a partial exemption from social security contributions, known as
     the exemption for the start of activity for 12 months. 
 
-    It is automatic for companies and sole proprietorships (under certain conditions, such as not having benefited from it in the last three years).
 
-    For auto-entrepreneurs, on the other hand, it must be applied for and is reserved for the following beneficiaries: 
+    It is **automatic** for **companies and sole proprietorships** (under certain conditions, such as not having benefited from it in the last three years).
 
-    - Jobseekers (compensated or not compensated but having at least 6 months of registration with Pôle Emploi in the last 18 months).
+
+    For **auto-entrepreneurs** on the other hand, it must be requested and is reserved for the following beneficiaries: 
+
+    - Jobseekers (compensated or uncompensated but with at least 6 months of registration with Pôle Emploi in the last 18 months).
 
     - Recipients of social assistance (RSA, ASS, ATA).
 
@@ -5587,7 +5592,7 @@ entreprise . ACRE:
     - People creating a micro-enterprise in a priority district of the city (QPPV)
 
 
-    *Historical*:
+    &gt; * *Historical*
 
     - For self-enterprises created from 1 January 2020, the exemption is again subject to conditions.
 
@@ -5599,9 +5604,11 @@ entreprise . ACRE:
     exonération partielle de charges sociales, dite exonération de début
     d'activité pendant 12 mois. 
 
-    Elle est automatique pour les sociétés et les entreprises individuelles (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
-    Pour les auto-entrepreneurs en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants: 
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+
+
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants: 
 
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
 
@@ -5612,7 +5619,7 @@ entreprise . ACRE:
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
 
 
-    *Historique*:
+    > *Historique*:
 
     - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est de nouveau soumise à condition.
 
@@ -5629,6 +5636,9 @@ entreprise . ACRE:
   question.fr: Votre entreprise bénéficie-t'elle de l'ACRE ?
   titre.en: ACRE
   titre.fr: ACRE
+entreprise . ACRE par défaut:
+  titre.en: '[automatic] default ACRE'
+  titre.fr: ACRE par défaut
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -6110,12 +6120,11 @@ entreprise . établissement bancaire:
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
-  description.en:
-    This set of formulas is an ultra-simplified model of income tax,
-    which only takes into account the 10% allowance, the scale and the discount.
-  description.fr: Cet ensemble de formules est un modèle ultra-simplifié de
-    l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le
-    barème et la décôte.
+  description.en: '[automatic] This set of formulas is a simplified model of
+    income tax, which is limited to a single income for the tax household.'
+  description.fr:
+    Cet ensemble de formules est un modèle simplifié de l'impôt sur
+    le revenu, qui est limité à un seul revenu pour le foyer fiscal.
   titre.en: income tax
   titre.fr: impôts sur le revenu
 impôt . foyer fiscal:
@@ -6289,12 +6298,14 @@ impôt . méthode de calcul:
   titre.en: calculation method
   titre.fr: méthode de calcul
 impôt . méthode de calcul . barème standard:
-  description.en: The "official" tax calculation, the one on which the tax
-    authorities base their calculation of your tax rate. For the moment, only
-    takes into account the 10% discount, the scale and the discount.
+  description.en: '[automatic] The "official" tax calculation, the one the tax
+    authorities use to calculate your tax rate. Our implementation is currently
+    limited to a single income for the tax household and does not handle all
+    exemptions.'
   description.fr: Le calcul "officiel" de l'impôt, celui sur lequel
-    l'administration fiscal se base pour calculer votre taux d'imposition. Pour
-    l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
+    l'administration fiscal se base pour calculer votre taux d'imposition. Notre
+    implémentation est pour l'instant limité à un seul revenu pour le foyer
+    fiscal et ne gère pas toutes les exonérations.
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . prélèvement à la source:
