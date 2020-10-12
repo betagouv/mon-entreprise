@@ -6,7 +6,11 @@ export default function IframeFooter() {
 		<>
 			<div
 				className="ui__ container notice"
-				style={{ textAlign: 'center', paddingTop: '3rem' }}
+				style={{
+					textAlign: 'center',
+					paddingTop: '3rem',
+					paddingBottom: '1rem'
+				}}
 			>
 				<Privacy />
 			</div>

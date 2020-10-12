@@ -36,7 +36,7 @@ export default function Iframes() {
 							/>
 						))}
 				</Switch>
-				{inIframe() && <IframeFooter />}
+				<IframeFooter />
 			</div>
 		</IsEmbeddedContext.Provider>
 	)

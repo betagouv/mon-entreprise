@@ -119,7 +119,6 @@ const Router = () => {
 	)
 	return (
 		<SituationProvider situation={situation}>
-			{!inIframe() && <Header />}
 			<Switch>
 				<Route exact path="/" component={Landing} />
 				<Route path="/iframes" component={Iframes} />
