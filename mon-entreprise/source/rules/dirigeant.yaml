@@ -302,7 +302,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . plafond ACRE:
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
-dirigeant . auto-entrepreneur . notification valeur annuelle:
+dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   applicable si: entreprise . ACRE
   type: notification
   description: |
@@ -450,13 +450,16 @@ dirigeant . indépendant . avertissement base forfaitaire:
     n’étant pas connus, les cotisations et contributions des deux premières
     années sont calculées sur une base forfaitaire.
 
+
     Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de
     la première et de la deuxième année d’activité.
+
 
     Il y a un ajustement au cours de la deuxième année en fonction des
     revenus réels déclarés pour l'année précédente.
 
-    Ce simulateur calcule les cotisations au régime de croisière (après
+
+    Ce simulateur calcule les cotisations au **régime de croisière** (après
     régularisation). Il vous permet donc de connaître le montant à
     provisionner pour la régularisation.
 

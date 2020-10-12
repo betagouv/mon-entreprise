@@ -3839,7 +3839,7 @@ dirigeant . auto-entrepreneur . net de cotisations:
   résumé.fr: Avant impôt
   titre.en: Net contribution income
   titre.fr: Revenu net de cotisations
-dirigeant . auto-entrepreneur . notification valeur annuelle:
+dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   description.en: >
     [automatic] The ACRE rate used is the one corresponding to the current
     month. The
@@ -3851,8 +3851,8 @@ dirigeant . auto-entrepreneur . notification valeur annuelle:
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
     simulateur ne prends pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
-  titre.en: '[automatic] notification annual value'
-  titre.fr: notification valeur annuelle
+  titre.en: '[automatic] notification calculation ACRE annual calculation'
+  titre.fr: notification calcul ACRE annuel
 dirigeant . auto-entrepreneur . plafond:
   description.en: >
     The status of microentrepreneur applies as long as the annual turnover
@@ -4990,21 +4990,27 @@ dirigeant . indépendant . avertissement base forfaitaire:
     known, the contributions and fees for the first two years are calculated on
     a flat-rate basis.
 
-    This base is 19% of the annual Social Security ceiling for the first and second year of activity.
 
-    There is an adjustment in the second year based on the actual income declared for the previous year.
+    This base amounts to 19% of the annual Social Security ceiling for the first and second year of activity.
 
-    This simulator calculates the cruise contributions (after adjustment). It therefore allows you to know the amount to be accrued for the regularization.
+
+    There is an adjustment in the second year based on the actual income reported for the previous year.
+
+
+    This simulator calculates the contributions to the **cruise speed** (after regularization). It thus enables you to know the amount to be provisioned for the regularization.
   description.fr: >-
     Lorsque vous commencez votre activité, vos revenus professionnels n’étant
     pas connus, les cotisations et contributions des deux premières années sont
     calculées sur une base forfaitaire.
 
+
     Cette base s’élève à 19 % du plafond annuel de la Sécurité sociale au titre de la première et de la deuxième année d’activité.
+
 
     Il y a un ajustement au cours de la deuxième année en fonction des revenus réels déclarés pour l'année précédente.
 
-    Ce simulateur calcule les cotisations au régime de croisière (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
+
+    Ce simulateur calcule les cotisations au **régime de croisière** (après régularisation). Il vous permet donc de connaître le montant à provisionner pour la régularisation.
   titre.en: '[automatic] flat-rate warning'
   titre.fr: avertissement base forfaitaire
 dirigeant . indépendant . conjoint collaborateur:

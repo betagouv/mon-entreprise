@@ -18,7 +18,7 @@
 	/*For the .hide element */
 	position: relative;
 }
-#notificationsBlock .notificationText p {
+#notificationsBlock .notificationText p:last-child {
 	margin: 0;
 }
 

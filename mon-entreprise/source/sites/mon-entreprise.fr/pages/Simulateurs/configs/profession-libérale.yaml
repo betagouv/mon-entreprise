@@ -11,6 +11,8 @@ questions:
     - entreprise . charges
   liste:
     - entreprise . catégorie d'activité
+    - dirigeant . indépendant . PL . métier
+    - entreprise . date de création 
     - dirigeant . indépendant
     - entreprise
     - établissement

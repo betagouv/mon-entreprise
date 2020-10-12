@@ -85,28 +85,22 @@ exports[`calculate simulations-artiste-auteur: salarié 3`] = `"[12410]"`;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 1`] = `
 "[20686,57,1667,0,20000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `
 "[33228,269,2500,0,30000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
 "[45267,439,3333,0,40000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
-exports[`calculate simulations-auto-entrepreneur: aides 1`] = `
-"[5171,14,417,0,5000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: aides 1`] = `"[5742,62,417,0,5000]"`;
 
-exports[`calculate simulations-auto-entrepreneur: aides 2`] = `
-"[51714,143,4167,0,50000]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
-`;
+exports[`calculate simulations-auto-entrepreneur: aides 2`] = `"[57415,618,4167,0,50000]"`;
 
 exports[`calculate simulations-auto-entrepreneur: impôt sur le revenu 1`] = `"[32092,591,2083,706,24294]"`;
 
@@ -138,7 +132,7 @@ Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73025,23025,50000,51980,8213,41787,0,73025]"`;
 
-exports[`calculate simulations-indépendant: activité 1`] = `"[29119,9119,20000,20788,603,19397,0,29119]"`;
+exports[`calculate simulations-indépendant: activité 1`] = `"[26804,6804,20000,20725,601,19399,0,26804]"`;
 
 exports[`calculate simulations-indépendant: activité 2`] = `"[29101,9101,20000,20787,603,19397,0,29101]"`;
 
@@ -291,17 +285,17 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): é
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
 "[0,0,806,2046,2,0]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 2`] = `
 "[0,0,1611,4093,3,8]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 3`] = `
 "[0,0,2337,6139,4,12]
-Notifications affichées : dirigeant . auto-entrepreneur . notification valeur annuelle"
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 1`] = `"[0,0,2070,8186,4,16]"`;
@@ -382,7 +376,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats
 Notifications affichées : dirigeant . indépendant . contrats madelin . contrôle montant charges"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,13779,0,10089,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 1`] = `"[0,14646,0,0,4,0]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): activités 2`] = `"[0,14646,0,0,4,0]"`;
 
@@ -484,9 +478,9 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 
 exports[`calculate simulations-salarié: assimilé salarié 1`] = `"[7015,0,5000,3943,3286]"`;
 
-exports[`calculate simulations-salarié: assimilé salarié 2`] = `"[1583,0,1500,1163,1163]"`;
+exports[`calculate simulations-salarié: assimilé salarié 2`] = `"[2128,0,1500,1163,1163]"`;
 
-exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[3685,0,3000,2348,2161]"`;
+exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[4228,0,3000,2348,2161]"`;
 
 exports[`calculate simulations-salarié: atmp 1`] = `"[2534,0,2000,1561,1527]"`;
 

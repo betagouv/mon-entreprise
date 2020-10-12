@@ -4,7 +4,7 @@ entreprise:
 
 entreprise . date de création:
   question: Quelle est votre date de début d'activité ?
-  par défaut: 01/01/2019
+  par défaut: 01/01/2017
   description: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.  
@@ -176,9 +176,10 @@ entreprise . ACRE par défaut:
       - si: 
           toutes ces conditions:
             - dirigeant . auto-entrepreneur
-            # Pour l'année 2020, l'acre était automatiquement accordée aux auto-entrepreneur
-            - entreprise . date de création >= 01/2020
-            - entreprise . date de création < 01/2019
+            - une de ces conditions:
+              # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
+              - entreprise . date de création < 01/01/2019
+              - entreprise . date de création > 31/12/2019
         alors: non
       - sinon: oui
 
