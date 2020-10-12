@@ -9,18 +9,23 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
-import { productionMode } from '../../../../utils'
 
 declare global {
 	interface Window {
 		STONLY_WID: string
+		StonlyWidget?: {
+			open: () => void
+			close: () => void
+			launcherShow: () => void
+			launcherHide: () => void
+		}
 	}
 }
 
 export default function ChômagePartiel() {
 	const inIframe = useContext(IsEmbeddedContext)
 	useEffect(() => {
-		if (inIframe || !productionMode) {
+		if (inIframe) {
 			return
 		}
 		const script = document.createElement('script')
@@ -28,10 +33,12 @@ export default function ChômagePartiel() {
 		script.src = 'https://stonly.com/js/widget/stonly-widget.js'
 		script.async = true
 		document.body.appendChild(script)
+		window.StonlyWidget?.launcherShow()
 		return () => {
+			window.StonlyWidget?.launcherHide()
 			document.body.removeChild(script)
 		}
-	}, [])
+	}, [inIframe])
 	return (
 		<>
 			<Warning localStorageKey="covid19">
