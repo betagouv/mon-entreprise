@@ -144,7 +144,7 @@ describe('Simulateur salarié', () => {
 		cy.contains('Steenvoorde (59114)')
 	})
 
-	it.only('should permit selecting the smic before part-time contrat', function() {
+	it('should permit selecting the smic before part-time contrat', function() {
 		cy.get('input[name$="brut de base"').click()
 		cy.get('button')
 			.contains('SMIC')

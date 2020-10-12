@@ -16,7 +16,8 @@ module.exports = {
   },
   plugins: [
     "react",
-    "react-hooks"
+		"react-hooks",
+		"mocha"
   ],
   rules: {
     "quotes": [
@@ -38,7 +39,9 @@ module.exports = {
     "react/no-unescaped-entities": 0,
     "react/display-name": 1,
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+		"react-hooks/exhaustive-deps": "warn",
+		"mocha/no-skipped-tests": "warn",
+		"mocha/no-exclusive-tests": "error"
   },
   settings: {
     "react": {
@@ -90,7 +93,7 @@ module.exports = {
       ]
     },
     {
-      files: [ "**/*.test.js" ],
+			files: ["**/*.test.js"],
       env: {
         mocha: true
       }
