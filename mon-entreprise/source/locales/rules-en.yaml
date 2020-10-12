@@ -6126,11 +6126,12 @@ entreprise . établissement bancaire:
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
-  description.en: '[automatic] This set of formulas is a simplified model of
-    income tax, which is limited to a single income for the tax household.'
-  description.fr:
-    Cet ensemble de formules est un modèle simplifié de l'impôt sur
-    le revenu, qui est limité à un seul revenu pour le foyer fiscal.
+  description.en: '[automatic] This set of formulas is an ultra-simplified model
+    of income tax, which only takes into account the 10% rebate, the scale and
+    the discount.'
+  description.fr: Cet ensemble de formules est un modèle ultra-simplifié de
+    l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le
+    barème et la décôte.
   titre.en: income tax
   titre.fr: impôts sur le revenu
 impôt . foyer fiscal:
@@ -6305,13 +6306,11 @@ impôt . méthode de calcul:
   titre.fr: méthode de calcul
 impôt . méthode de calcul . barème standard:
   description.en: '[automatic] The "official" tax calculation, the one the tax
-    authorities use to calculate your tax rate. Our implementation is currently
-    limited to a single income for the tax household and does not handle all
-    exemptions.'
+    authorities use to calculate your tax rate. For the moment, only takes into
+    account the 10% allowance, the scale and the discount.'
   description.fr: Le calcul "officiel" de l'impôt, celui sur lequel
-    l'administration fiscal se base pour calculer votre taux d'imposition. Notre
-    implémentation est pour l'instant limité à un seul revenu pour le foyer
-    fiscal et ne gère pas toutes les exonérations.
+    l'administration fiscal se base pour calculer votre taux d'imposition. Pour
+    l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . prélèvement à la source:

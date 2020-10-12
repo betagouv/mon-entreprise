@@ -6,6 +6,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import Header from '../../layout/Header'
 import Footer from '../../layout/Footer/Footer'
 import illustrationSvg from './illustration.svg'
 import './Landing.css'
@@ -17,6 +18,7 @@ export default function Landing() {
 	)
 	return (
 		<>
+			<Header />
 			<div className="app-content ui__ container">
 				<section className="landing-title">
 					<img

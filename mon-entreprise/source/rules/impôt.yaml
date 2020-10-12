@@ -1,7 +1,7 @@
 impôt:
   icônes: 🏛️
   unité: €/an
-  description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu, qui est limité à un seul revenu pour le foyer fiscal.
+  description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
   titre: impôts sur le revenu
   formule:
     somme:
@@ -57,7 +57,7 @@ impôt . méthode de calcul . taux personnalisé:
 
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Notre implémentation est pour l'instant limité à un seul revenu pour le foyer fiscal et ne gère pas toutes les exonérations.
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
   formule: impôt . méthode de calcul = 'barème standard'
 
 impôt . méthode de calcul . prélèvement à la source:
