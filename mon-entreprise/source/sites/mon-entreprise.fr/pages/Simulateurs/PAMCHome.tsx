@@ -6,7 +6,7 @@ export default function SalariéSimulation() {
 	const simulators = useSimulatorsData()
 	return (
 		<>
-			<h2>Quel profession exercez-vous ?</h2>
+			<h2>Quelle profession exercez-vous ?</h2>
 			<div className="ui__ small box-container">
 				<SimulateurCard small {...simulators['auxiliaire-médical']} />
 				<SimulateurCard small {...simulators['chirurgien-dentiste']} />

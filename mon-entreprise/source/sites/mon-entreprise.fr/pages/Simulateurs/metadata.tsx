@@ -663,7 +663,7 @@ export function getSimulatorsData({
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 			shortName: t(
 				'pages.simulateurs.auxiliaire.shortname',
-				'Axiliaire médical'
+				'Auxiliaire médical'
 			),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
@@ -709,7 +709,7 @@ export function getSimulatorsData({
 				),
 				description: t(
 					'pages.simulateurs.pamc.meta.description',
-					'Calcul du revenu net pour les profession libérale du régime PAMC (médecins, chirurgien-dentiste, sage-femme et auxiliaire médical)'
+					'Calcul du revenu net pour les professions libérales du régime PAMC (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
 				)
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),

@@ -44,8 +44,8 @@ export default function SimulateurWarning({
 				{simulateur !== 'artiste-auteur' && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.urssaf">
-							Les calculs sont indicatifs et ne se substituent pas aux décomptes
-							réels des Urssaf, impots.gouv.fr, ou autres.
+							Les calculs sont indicatifs. Ils ne se substituent pas aux
+							décomptes réels de l’Urssaf, du fisc ou autres.
 						</Trans>
 					</li>
 				)}
@@ -60,8 +60,8 @@ export default function SimulateurWarning({
 				{simulateur == 'profession-libérale' && (
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<li>
-							Ce simulateur est à destination des professions libérale en BNC.
-							Il ne prends pas en compte les société d'exercice libérales ni le
+							Ce simulateur est à destination des professions libérales en BNC.
+							Il ne prend pas en compte les société d'exercice libérales ni le
 							régime micro-BNC.
 						</li>
 					</Trans>
@@ -97,7 +97,7 @@ export default function SimulateurWarning({
 					<li>
 						<Trans i18nKey="simulateurs.warning.année-courante">
 							Le montant des cotisations est calculé pour un revenu sur l'année
-							2020
+							2020.
 						</Trans>
 					</li>
 				)}

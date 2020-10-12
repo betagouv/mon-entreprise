@@ -113,7 +113,7 @@ function PLExplanation() {
 					<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
 						<p className="ui__ notice">
 							{' '}
-							Les montant indiqués ci-dessus sont calculés sans prendre en
+							Les montants indiqués ci-dessus sont calculés sans prendre en
 							compte l'exonération de début d'activité ACRE
 						</p>
 					</Condition>

@@ -816,7 +816,7 @@ dirigeant . indépendant . contrats madelin . contrôle montant charges:
   applicable si: entreprise . charges < montant
   description: >-
     Le montant de l'ensemble des cotisations à vos contrats Madelin
-    doit être inclus dans vos charges de fonctionnement, or ce vous
+    doit être inclus dans vos charges de fonctionnement, or vous
     avez indiqué un montant de cotisations supérieur aux charges.
 
 dirigeant . indépendant . contrats madelin . part déductible fiscalement:
