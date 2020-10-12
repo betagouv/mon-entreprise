@@ -603,15 +603,19 @@ dirigeant . indépendant . PL . PAMC . IJSS:
   description: >-
     Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le cas de congé maternité/paternité/adoption.
 
+
+    La CSG-CRDS est automatiquement précomptée par l'Assurance maladie lors du versement. Leur montant est donc retranché à l'assiette pour le calcul de la CSG-CRDS restante dûe.
+
+    
     Les indemnités complémentaires aux indemnités journalières de la Sécurité
     sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
     des revenus de remplacement.
      
     Note: Les prestations d’invalidité versées par les régimes
-    d’invalidité-décès ne sont pas concernées
+    d’invalidité-décès ne sont pas concernées.
 
   question: Quel est le montant des indemnités journalières de maternité ou paternité perçu au titre de votre activité libérale ?
-  par défaut: 0€/an
+  par défaut: 0 €/an
 
 dirigeant . indépendant . PL . CARPIMKO:
   description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
