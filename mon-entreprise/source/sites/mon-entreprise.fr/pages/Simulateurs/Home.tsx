@@ -55,25 +55,21 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators.indépendant} />
 					<SimulateurCard {...simulators.sasu} />
 					<SimulateurCard {...simulators['artiste-auteur']} />
-					{process.env.HEAD !== 'master' && (
-						<SimulateurCard {...simulators['profession-libérale']} />
-					)}
+					<SimulateurCard {...simulators['profession-libérale']} />
 				</div>
-				{process.env.HEAD !== 'master' && (
-					<>
-						<h3>
-							<small>
-								<Trans>Professionnels de santé</Trans> {emoji('🏥')}
-							</small>
-						</h3>
-						<div className="ui__ small box-container">
-							<SimulateurCard small {...simulators['auxiliaire-médical']} />
-							<SimulateurCard small {...simulators['chirurgien-dentiste']} />
-							<SimulateurCard small {...simulators.médecin} />
-							<SimulateurCard small {...simulators['sage-femme']} />
-						</div>
-					</>
-				)}
+				<>
+					<h3>
+						<small>
+							<Trans>Professionnels de santé</Trans> {emoji('🏥')}
+						</small>
+					</h3>
+					<div className="ui__ small box-container">
+						<SimulateurCard small {...simulators['auxiliaire-médical']} />
+						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
+						<SimulateurCard small {...simulators.médecin} />
+						<SimulateurCard small {...simulators['sage-femme']} />
+					</div>
+				</>
 				<h2>
 					<Trans>Autres outils</Trans>
 				</h2>

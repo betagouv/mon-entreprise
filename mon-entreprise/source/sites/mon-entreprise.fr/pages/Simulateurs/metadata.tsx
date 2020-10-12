@@ -616,7 +616,6 @@ export function getSimulatorsData({
 		},
 		médecin: {
 			config: médecinConfig,
-			private: true,
 			icône: '⚕️',
 			iframe: 'médecin',
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
@@ -628,7 +627,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'chirurgien-dentiste': {
-			private: true,
 			config: dentisteConfig,
 			icône: '🦷',
 			iframe: 'chirurgien-dentiste',
@@ -644,7 +642,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'sage-femme': {
-			private: true,
 			config: sageFemmeConfig,
 			icône: '👶',
 			iframe: 'sage-femme',
@@ -657,7 +654,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'auxiliaire-médical': {
-			private: true,
 			config: auxiliaireConfig,
 			tooltip: t(
 				'pages.simulateurs.auxiliaire.tooltip',
@@ -674,7 +670,6 @@ export function getSimulatorsData({
 			component: IndépendantPLSimulation
 		},
 		'profession-libérale': {
-			private: true,
 			config: professionLibéraleConfig,
 			icône: '💻',
 			meta: {
