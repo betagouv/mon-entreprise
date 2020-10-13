@@ -1065,8 +1065,17 @@ contrat salarié . cotisations . assiette:
         somme:
           - frais professionnels . part déductible
           - stage . gratification minimale
-          - prévoyance . part déductible
-          - retraite supplémentaire . part déductible
+          # TODO: La prévoyance et la retraite supplémentaire ne sont pour
+          # l'instant pas exposées sur les simulateurs. Je les désactive ici pour
+          # résoudre un problème de cycle avec la déduction forfaitaire
+          # spécifique.
+          #
+          # Il faudra soit supprimer complètement ces règles prévoyance /
+          # retraite supplémentaire (que j'avais ajoutées dans le cadre du POC
+          # Paie), soit les exposer dans un simulateur.
+          #
+          # - prévoyance . part déductible
+          # - retraite supplémentaire . part déductible
 
 contrat salarié . cotisations . assiette . salariale:
   titre: Assiette des cotisations sociales
