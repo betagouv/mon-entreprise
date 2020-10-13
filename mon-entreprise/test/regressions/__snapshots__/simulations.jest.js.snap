@@ -406,6 +406,46 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `"[0,69895,0,36431,4,56]"`;
 
+exports[`calculate simulations-salarié: CCN HCR 1`] = `
+"[4193,0,2500,2468,2351]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN batiment 1`] = `
+"[3966,0,2500,1987,1878]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN batiment 2`] = `
+"[3941,0,2500,1972,1864]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN batiment 3`] = `
+"[3996,0,2500,1979,1867]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN compta 1`] = `
+"[4133,0,2500,2478,2363]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN optique 1`] = `
+"[3591,0,2500,2068,1953]
+Notifications affichées : contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN spectacle vivant 1`] = `
+"[3834,0,2500,1938,1856]
+Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié: CCN sport 1`] = `
+"[541,0,500,374,374]
+Notifications affichées : contrat salarié . rémunération . contrôle smic"
+`;
+
 exports[`calculate simulations-salarié: JEI 1`] = `"[3440,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié: JEI 2`] = `
