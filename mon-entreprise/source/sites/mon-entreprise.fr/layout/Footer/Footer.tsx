@@ -6,25 +6,37 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SocialIcon from 'Components/ui/SocialIcon'
 import i18n, { AvailableLangs } from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import Privacy from './Privacy'
+import useSimulatorsData from 'sites/mon-entreprise.fr/pages/Simulateurs/metadata'
 
-const feedbackBlacklist = [
-	['index'],
-	['entreprise', 'statutJuridique', 'index'],
-	['simulateurs', 'indépendant'],
-	['simulateurs', 'auto-entrepreneur'],
-	['simulateurs', 'sasu'],
-	['simulateurs', 'salarié'],
-	['coronavirus', 'chômagePartiel']
-].map(lensPath)
-
+const useShowFeedback = () => {
+	const currentPath = useLocation().pathname
+	const sitePath = useContext(SitePathsContext)
+	const simulators = useSimulatorsData()
+	if (
+		[
+			simulators['aide-déclaration-indépendant'],
+			simulators['comparaison-statuts'],
+			simulators['demande-mobilité']
+		]
+			.map(s => s.path)
+			.includes(currentPath)
+	) {
+		return true
+	}
+	return ![
+		sitePath.index,
+		...Object.values(simulators).map(s => s.path)
+	].includes(currentPath)
+}
 const Footer = () => {
 	const sitePaths = useContext(SitePathsContext)
+	const showFeedback = useShowFeedback()
 	const hrefLink =
 		hrefLangLink[i18n.language as AvailableLangs][
 			decodeURIComponent(
@@ -46,10 +58,7 @@ const Footer = () => {
 				))}
 			</Helmet>
 			<footer className="footer">
-				<PageFeedback
-					blacklist={feedbackBlacklist.map(lens => view(lens, sitePaths))}
-				/>
-
+				{showFeedback && <PageFeedback />}
 				{i18n.language === 'en' && (
 					<p className="ui__ notice" css="text-align: center">
 						This website is provided by the{' '}
