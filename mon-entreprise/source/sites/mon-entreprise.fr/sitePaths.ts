@@ -58,7 +58,7 @@ const sitePathsFr = {
 		'profession-libérale': {
 			index: '/profession-liberale',
 			médecin: '/medecin',
-			auxiliaire: '/auxiliaire-médical',
+			auxiliaire: '/auxiliaire-medical',
 			'chirurgien-dentiste': '/chirurgien-dentiste',
 			'sage-femme': '/sage-femme'
 		},

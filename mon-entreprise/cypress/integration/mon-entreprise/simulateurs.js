@@ -13,7 +13,7 @@ describe('Simulateurs', function() {
 		'profession-liberale',
 		'profession-liberale/medecin',
 		'profession-liberale/sage-femme',
-		'profession-liberale/auxiliaire-médical',
+		'profession-liberale/auxiliaire-medical',
 		'profession-liberale/chirurgien-dentiste'
 	].forEach(simulateur =>
 		describe(simulateur, () => {

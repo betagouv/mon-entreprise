@@ -24,7 +24,6 @@ questions:
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
-    - entreprise . hôtel café restaurant
   non prioritaires:
     - entreprise . établissement bancaire
     - entreprise . effectif
@@ -36,4 +35,3 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'assimilé salarié'"
-  contrat salarié . ATMP . taux réduit: oui

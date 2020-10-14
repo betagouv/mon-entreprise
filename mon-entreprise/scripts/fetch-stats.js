@@ -128,7 +128,7 @@ async function fetchSimulators(dt) {
 					'/demande-mobilité',
 					'/profession-liberale',
 					'/profession-liberale/medecin',
-					'/profession-liberale/auxiliaire-médical',
+					'/profession-liberale/auxiliaire-medical',
 					'/profession-liberale/sage-femme',
 					'/profession-liberale/chirugien-dentiste',
 					'/économie-collaborative'
@@ -169,7 +169,7 @@ async function fetchSimulators(dt) {
 				'/demande-mobilite',
 				'/profession-liberale',
 				'/chirugien-dentiste',
-				'/auxiliaire-médical',
+				'/auxiliaire-medical',
 				'/sage-femme'
 			].some(path => x.label.startsWith(path))
 		)

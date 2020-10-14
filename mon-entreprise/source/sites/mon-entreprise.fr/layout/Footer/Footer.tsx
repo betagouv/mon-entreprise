@@ -1,18 +1,17 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
+import SocialIcon from 'Components/ui/SocialIcon'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { lensPath, view } from 'ramda'
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
 import { Trans } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
-import SocialIcon from 'Components/ui/SocialIcon'
+import useSimulatorsData from '../../pages/Simulateurs/metadata'
 import i18n, { AvailableLangs } from '../../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import Privacy from './Privacy'
-import useSimulatorsData from 'sites/mon-entreprise.fr/pages/Simulateurs/metadata'
 
 const useShowFeedback = () => {
 	const currentPath = useLocation().pathname
