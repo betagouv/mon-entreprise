@@ -28,13 +28,13 @@ describe('Simulateurs', function() {
 					cy.get(chargeInputSelector).type(1000)
 				}
 				cy.get(inputSelector).each((testedInput, i) => {
-					cy.wrap(testedInput).type('{selectall}60003')
+					cy.wrap(testedInput).type('{selectall}60100')
 					cy.wait(1500)
 					cy.contains('Cotisations')
 					cy.get(inputSelector).each(($input, j) => {
 						const val = $input.val().replace(/[\s,.]/g, '')
 						if (i != j) {
-							expect(val).not.to.be.eq('60003')
+							expect(val).not.to.be.eq('60100')
 						}
 						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})
