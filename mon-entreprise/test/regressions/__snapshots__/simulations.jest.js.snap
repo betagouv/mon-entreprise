@@ -475,6 +475,8 @@ exports[`calculate simulations-salarié: activité partielle 9`] = `"[1247,0,200
 
 exports[`calculate simulations-salarié: activité partielle 10`] = `"[927,0,6000,4182,3498]"`;
 
+exports[`calculate simulations-salarié: activité partielle 11`] = `"[2694,0,9000,6237,4945]"`;
+
 exports[`calculate simulations-salarié: aides 1`] = `"[2302,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 2`] = `
