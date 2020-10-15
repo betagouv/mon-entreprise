@@ -7,7 +7,6 @@ export default function LinkToForm() {
 			document.referrer ||
 			document.location.origin
 	).hostname.replace(/^www\.|^m\./, '')
-	console.log(hostname)
 	return (
 		<div
 			style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}

@@ -5,7 +5,6 @@ import { Trans } from 'react-i18next'
 import { Mecanism } from './common'
 
 export default function Recalcul({ nodeValue, explanation, unit }) {
-	console.log(nodeValue, explanation)
 	return (
 		<Mecanism name="recalcul" value={nodeValue} unit={unit}>
 			<>

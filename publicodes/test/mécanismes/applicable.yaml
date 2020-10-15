@@ -15,3 +15,16 @@ prévoyance obligatoire cadre:
       situation:
         statut cadre: non
       valeur attendue: false
+
+
+variable:
+  par défaut: oui
+applicable comme mécanisme chainé:
+  formule:
+    applicable si: variable
+    valeur: 5
+  exemples:
+    - valeur attendue: 5
+    - situation:
+        variable: non
+      valeur attendue: false

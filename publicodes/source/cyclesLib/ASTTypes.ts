@@ -167,23 +167,75 @@ export function isRecalculMech<Names extends string>(
 	)
 }
 
-export type EncadrementMech = AbstractMechanism & {
-	name: 'encadrement'
+export type PlafondMech = AbstractMechanism & {
+	name: 'plafond'
 	explanation: {
 		valeur: ASTNode
 		plafond: ASTNode
+	}
+}
+export function isPlafondMech(node: ASTNode): node is PlafondMech {
+	const encadrementMech = node as PlafondMech
+	return (
+		isAbstractMechanism(encadrementMech) &&
+		encadrementMech.name == 'plafond' &&
+		typeof encadrementMech.explanation === 'object' &&
+		encadrementMech.explanation.valeur !== undefined &&
+		encadrementMech.explanation.plafond !== undefined
+	)
+}
+
+export type PlancherMech = AbstractMechanism & {
+	name: 'plancher'
+	explanation: {
+		valeur: ASTNode
 		plancher: ASTNode
 	}
 }
-export function isEncadrementMech(node: ASTNode): node is EncadrementMech {
-	const encadrementMech = node as EncadrementMech
+export function isPlancherMech(node: ASTNode): node is PlancherMech {
+	const encadrementMech = node as PlancherMech
 	return (
 		isAbstractMechanism(encadrementMech) &&
-		encadrementMech.name == 'encadrement' &&
+		encadrementMech.name == 'plancher' &&
 		typeof encadrementMech.explanation === 'object' &&
 		encadrementMech.explanation.valeur !== undefined &&
-		encadrementMech.explanation.plafond !== undefined &&
 		encadrementMech.explanation.plancher !== undefined
+	)
+}
+
+export type ApplicableMech = AbstractMechanism & {
+	name: 'applicable si'
+	explanation: {
+		valeur: ASTNode
+		condition: ASTNode
+	}
+}
+export function isApplicableMech(node: ASTNode): node is ApplicableMech {
+	const mech = node as ApplicableMech
+	return (
+		isAbstractMechanism(mech) &&
+		mech.name == 'applicable si' &&
+		typeof mech.explanation === 'object' &&
+		mech.explanation.valeur !== undefined &&
+		mech.explanation.condition !== undefined
+	)
+}
+
+export type NonApplicableMech = AbstractMechanism & {
+	name: 'non applicable si'
+	explanation: {
+		valeur: ASTNode
+		condition: ASTNode
+	}
+}
+export function isNonApplicableMech(node: ASTNode): node is NonApplicableMech {
+	const mech = node as NonApplicableMech
+	return (
+		isAbstractMechanism(mech) &&
+		mech.name == 'non applicable si' &&
+		typeof mech.explanation === 'object' &&
+		mech.explanation.valeur !== undefined &&
+		mech.explanation.condition !== undefined
 	)
 }
 
@@ -325,8 +377,8 @@ export function isArrondiMech(node: ASTNode): node is ArrondiMech {
 		isAbstractMechanism(arrondiMech) &&
 		arrondiMech.name === 'arrondi' &&
 		typeof arrondiMech.explanation === 'object' &&
-		arrondiMech.explanation.decimals !== undefined &&
-		arrondiMech.explanation.value !== undefined
+		arrondiMech.explanation.arrondi !== undefined &&
+		arrondiMech.explanation.valeur !== undefined
 	)
 }
 
@@ -484,7 +536,10 @@ export function isDureeMech(node: ASTNode): node is DureeMech {
 
 export type AnyMechanism<Names extends string> =
 	| RecalculMech<Names>
-	| EncadrementMech
+	| PlancherMech
+	| PlafondMech
+	| ApplicableMech
+	| NonApplicableMech
 	| SommeMech
 	| ProduitMech
 	| VariationsMech
@@ -506,7 +561,10 @@ export function isAnyMechanism<Names extends string>(
 ): node is AnyMechanism<Names> {
 	return (
 		isRecalculMech<Names>(node) ||
-		isEncadrementMech(node) ||
+		isPlafondMech(node) ||
+		isPlancherMech(node) ||
+		isApplicableMech(node) ||
+		isNonApplicableMech(node) ||
 		isSommeMech(node) ||
 		isProduitMech(node) ||
 		isVariationsMech(node) ||

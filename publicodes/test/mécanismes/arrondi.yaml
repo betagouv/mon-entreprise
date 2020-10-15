@@ -2,13 +2,15 @@ cotisation retraite:
 
 demie part:
   formule:
-    arrondi: 50% * 100.2€
+    valeur: 0.5 * 100.2€
+    arrondi: oui 
   exemples:
     - valeur attendue: 50
 
 Arrondi:
   formule:
-    arrondi: cotisation retraite
+    valeur: cotisation retraite
+    arrondi: oui 
 
   exemples:
     - nom: arrondi en dessous
@@ -24,9 +26,8 @@ nombre de décimales:
 
 Arrondi avec precision:
   formule:
-    arrondi:
-      valeur: cotisation retraite
-      décimales: nombre de décimales
+    valeur: cotisation retraite
+    arrondi: nombre de décimales
   exemples:
     - nom: pas de décimales
       situation:

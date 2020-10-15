@@ -33,7 +33,7 @@ export const collectNodeMissing = node => node.missingVariables || {}
 export const bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
 export const mergeAllMissing = missings =>
-	reduce(mergeWith(add), {}, map(collectNodeMissing, missings))
+	missings.map(collectNodeMissing).reduce(mergeMissing, {})
 export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 

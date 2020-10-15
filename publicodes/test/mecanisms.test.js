@@ -12,6 +12,7 @@ import { coerceArray } from '../source/utils'
 import testSuites from './load-mecanism-tests'
 testSuites.forEach(([suiteName, suite]) => {
 	const engine = new Engine(suite)
+
 	describe(`Mécanisme ${suiteName}`, () => {
 		Object.entries(suite)
 			.filter(([, rule]) => rule?.exemples)

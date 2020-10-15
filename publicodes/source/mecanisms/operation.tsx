@@ -3,7 +3,7 @@ import React from 'react'
 import { Operation } from '../components/mecanisms/common'
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
-import { evaluateNode, makeJsx, mergeMissing } from '../evaluation'
+import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
 import { inferUnit, serializeUnit } from '../units'
@@ -15,10 +15,7 @@ export default (k, operatorFunction, symbol) => (recurse, v) => {
 			node.explanation
 		)
 		let [node1, node2] = explanation
-		const missingVariables = mergeMissing(
-			node1.missingVariables,
-			node2.missingVariables
-		)
+		const missingVariables = mergeAllMissing([node1, node2])
 
 		if (node1.nodeValue == null || node2.nodeValue == null) {
 			return { ...node, nodeValue: null, explanation, missingVariables }
