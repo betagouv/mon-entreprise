@@ -24,7 +24,7 @@ describe('Simulateurs', function() {
 
 			it('should display a result when entering a value in any of the currency input', () => {
 				cy.contains('€/an').click()
-				if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type(1000)
 				}
 				cy.get(inputSelector).each((testedInput, i) => {
@@ -47,7 +47,7 @@ describe('Simulateurs', function() {
 				cy.get(inputSelector)
 					.first()
 					.type('{selectall}12000')
-				if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type('{selectall}6000')
 				}
 				cy.wait(800)
@@ -56,7 +56,7 @@ describe('Simulateurs', function() {
 					.first()
 					.invoke('val')
 					.should('match', /1[\s]000/)
-				if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
 					cy.get(chargeInputSelector)
 						.first()
 						.invoke('val')
@@ -153,7 +153,8 @@ describe('Simulateur salarié', () => {
 	})
 
 	it('should permit selecting the smic before part-time contrat', function() {
-		cy.get('input[name$="brut de base"').click()
+		cy.visit('/simulateurs/salarié')
+		cy.get('input[name$="brut de base"]').click()
 		cy.get('button')
 			.contains('SMIC')
 			.click()
@@ -162,7 +163,7 @@ describe('Simulateur salarié', () => {
 		cy.get('input[value="oui"]')
 			.parent()
 			.click()
-		cy.get('input[name$="brut de base"').should($input => {
+		cy.get('input[name$="brut de base"]').should($input => {
 			expect(+$input.val().replace(/[\s,.]/g, ''))
 				.to.be.above(1300)
 				.and.to.be.below(1500)
