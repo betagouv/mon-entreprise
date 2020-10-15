@@ -4,16 +4,28 @@ import { Mecanism } from '../components/mecanisms/common'
 import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
 
 const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateOne = child =>
-		evaluateNode(cache, situation, parsedRules, child)
-	const explanation = map(evaluateOne, node.explanation)
-	const anyFalse = explanation.find(e => e.nodeValue === false) // court-circuit
-	const { nodeValue, missingVariables } = anyFalse ?? {
-		nodeValue: explanation.some(e => e.nodeValue === null) ? null : true,
+	const [nodeValue, explanation] = node.explanation.reduce(
+		([nodeValue, explanation], node) => {
+			if (nodeValue === false) {
+				return [nodeValue, [...explanation, node]]
+			}
+			const evaluatedNode = evaluateNode(cache, situation, parsedRules, node)
+			return [
+				nodeValue === false || nodeValue === null
+					? nodeValue
+					: evaluatedNode.nodeValue,
+				[...explanation, evaluatedNode]
+			]
+		},
+		[true, []]
+	)
+
+	return {
+		...node,
+		nodeValue,
+		explanation,
 		missingVariables: mergeAllMissing(explanation)
 	}
-
-	return { ...node, nodeValue, explanation, missingVariables }
 }
 
 export const mecanismAllOf = (recurse, v) => {

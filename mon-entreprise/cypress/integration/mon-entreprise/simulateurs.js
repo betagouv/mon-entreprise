@@ -5,98 +5,107 @@ describe('Simulateurs', function() {
 	if (!fr) {
 		return
 	}
-	;['indépendant', 'assimilé-salarié', 'auto-entrepreneur', 'salarié'].forEach(
-		simulateur =>
-			describe(simulateur, () => {
-				before(() => cy.visit(`/simulateurs/${simulateur}`))
-				it('should not crash', function() {
-					cy.get(inputSelector)
-				})
+	;[
+		'indépendant',
+		'dirigeant-sasu',
+		'auto-entrepreneur',
+		'salarié',
+		'profession-liberale',
+		'profession-liberale/medecin',
+		'profession-liberale/sage-femme',
+		'profession-liberale/auxiliaire-medical',
+		'profession-liberale/chirurgien-dentiste'
+	].forEach(simulateur =>
+		describe(simulateur, () => {
+			before(() => cy.visit(`/simulateurs/${simulateur}`))
+			it('should not crash', function() {
+				cy.get(inputSelector)
+			})
 
-				it('should display a result when entering a value in any of the currency input', () => {
-					cy.contains('€/an').click()
-					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
-						cy.get(chargeInputSelector).type(1000)
-					}
-					cy.get(inputSelector).each((testedInput, i) => {
-						cy.wrap(testedInput).type('{selectall}60000')
-						cy.wait(1500)
-						cy.contains('Cotisations')
-						cy.get(inputSelector).each(($input, j) => {
-							const val = $input.val().replace(/[\s,.]/g, '')
-							if (i != j) {
-								expect(val).not.to.be.eq('60000')
-							}
-							expect(val).to.match(/[1-9][\d]{3,6}$/)
-						})
+			it('should display a result when entering a value in any of the currency input', () => {
+				cy.contains('€/an').click()
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+					cy.get(chargeInputSelector).type(1000)
+				}
+				cy.get(inputSelector).each((testedInput, i) => {
+					cy.wrap(testedInput).type('{selectall}60100')
+					cy.wait(1500)
+					cy.contains('Cotisations')
+					cy.get(inputSelector).each(($input, j) => {
+						const val = $input.val().replace(/[\s,.]/g, '')
+						if (i != j) {
+							expect(val).not.to.be.eq('60100')
+						}
+						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})
 				})
+			})
 
-				it('should allow to change period', function() {
-					cy.contains('€/an').click()
-					cy.wait(200)
+			it('should allow to change period', function() {
+				cy.contains('€/an').click()
+				cy.wait(200)
+				cy.get(inputSelector)
+					.first()
+					.type('{selectall}12000')
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+					cy.get(chargeInputSelector).type('{selectall}6000')
+				}
+				cy.wait(800)
+				cy.contains('€/mois').click()
+				cy.get(inputSelector)
+					.first()
+					.invoke('val')
+					.should('match', /1[\s]000/)
+				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
+					cy.get(chargeInputSelector)
+						.first()
+						.invoke('val')
+						.should('be', '500')
+				}
+			})
+
+			it('should allow to navigate to a documentation page', function() {
+				cy.get(inputSelector)
+					.first()
+					.type('{selectall}2000')
+				cy.wait(700)
+				cy.contains('Cotisations').click()
+				cy.location().should(loc => {
+					expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
+				})
+			})
+
+			it('should allow to go back to the simulation', function() {
+				cy.contains('← ').click()
+				cy.get(inputSelector)
+					.first()
+					.invoke('val')
+					.should('be', '2 000')
+			})
+
+			if (simulateur === 'auto-entrepreneur') {
+				it('should allow to enter the date of creation', () => {
 					cy.get(inputSelector)
 						.first()
-						.type('{selectall}12000')
-					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
-						cy.get(chargeInputSelector).type('{selectall}6000')
-					}
-					cy.wait(800)
+						.type('{selectall}50000')
+					cy.contains('Passer').click()
+					cy.contains('Passer').click()
+					cy.contains('Début 2020').click()
+					cy.contains('ACRE')
+				})
+				it('should not have negative value', () => {
 					cy.contains('€/mois').click()
 					cy.get(inputSelector)
 						.first()
-						.invoke('val')
-						.should('match', /1[\s]000/)
-					if (['indépendant', 'assimilé-salarié'].includes(simulateur)) {
-						cy.get(chargeInputSelector)
-							.first()
-							.invoke('val')
-							.should('be', '500')
-					}
-				})
-
-				it('should allow to navigate to a documentation page', function() {
-					cy.get(inputSelector)
-						.first()
-						.type('{selectall}2000')
-					cy.wait(700)
-					cy.contains('Cotisations').click()
-					cy.location().should(loc => {
-						expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
+						.type('{selectall}5000')
+					cy.wait(800)
+					cy.get(inputSelector).each($input => {
+						const val = +$input.val().replace(/[\s,.]/g, '')
+						expect(val).not.to.be.below(4000)
 					})
 				})
-
-				it('should allow to go back to the simulation', function() {
-					cy.contains('← ').click()
-					cy.get(inputSelector)
-						.first()
-						.invoke('val')
-						.should('be', '2 000')
-				})
-
-				if (simulateur === 'auto-entrepreneur') {
-					it('should allow to enter the date of creation', () => {
-						cy.get(inputSelector)
-							.first()
-							.type('{selectall}50000')
-						cy.contains('Passer').click()
-						cy.contains('Passer').click()
-						cy.contains('Début 2020').click()
-						cy.contains('ACRE')
-					})
-					it('should not have negative value', () => {
-						cy.contains('€/mois').click()
-						cy.get(inputSelector)
-							.first()
-							.type('{selectall}5000')
-						cy.wait(800)
-						cy.get(inputSelector).each($input => {
-							const val = +$input.val().replace(/[\s,.]/g, '')
-							expect(val).not.to.be.below(4000)
-						})
-					})
-				}
-			})
+			}
+		})
 	)
 })
 
@@ -144,7 +153,8 @@ describe('Simulateur salarié', () => {
 	})
 
 	it('should permit selecting the smic before part-time contrat', function() {
-		cy.get('input[name$="brut de base"').click()
+		cy.visit('/simulateurs/salarié')
+		cy.get('input[name$="brut de base"]').click()
 		cy.get('button')
 			.contains('SMIC')
 			.click()
@@ -153,7 +163,7 @@ describe('Simulateur salarié', () => {
 		cy.get('input[value="oui"]')
 			.parent()
 			.click()
-		cy.get('input[name$="brut de base"').should($input => {
+		cy.get('input[name$="brut de base"]').should($input => {
 			expect(+$input.val().replace(/[\s,.]/g, ''))
 				.to.be.above(1300)
 				.and.to.be.below(1500)

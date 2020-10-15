@@ -294,7 +294,9 @@ contrat salarié . activité partielle . indemnités . complémentaire:
     l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
     rémunération effectivement perçue ne soit jamais inférieure à celle
     du SMIC net.
-  formule:
+  # La condition suivante assure que cette règle ne crée pas de boucle avec indemnités . conventionnelle . part soumise à cotisation
+  non applicable si: rémunération . brut de base > 3.15 * SMIC
+  formule: 
     allègement:
       assiette: rémunération mensuelle minimale
       abattement:
@@ -321,6 +323,24 @@ contrat salarié . activité partielle . indemnités . conventionnelle:
     Legifrance: https://www.legifrance.gouv.fr/affichIDCCArticle.do?idArticle=KALIARTI000028465400&cidTexte=KALITEXT000028465378&dateTexte=29990101&categorieLien=id
     Juritravail: https://www.juritravail.com/Actualite/Hygiene-securite-travail-employeur/Id/327284
 
+contrat salarié . activité partielle . indemnités . conventionnelle . part soumise à cotisation:
+  applicable si: 
+    toutes ces conditions:
+      - indemnités . conventionnelle > 0
+      - indemnités . conventionnelle + indemnités . base > 3.15 * SMIC
+  remplace: contrat salarié . cotisations . assiette
+  rend non applicable: réduction générale
+  #     règle: contrat salarié . cotisations . assiette
+  #     par: contrat salarié . cotisations . assiette + part soumise à cotisation
+  formule: 
+    somme:
+      - contrat salarié . cotisations . assiette
+      - valeur: activité partielle . indemnités - 3.15 * SMIC
+        plafond: activité partielle . indemnités . conventionnelle
+  références: 
+    urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/activite-partielle--nouveau-disp.html
+    Ordonnance du 22 avril 2020, article 5: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041814597/#JORFARTI000041814602
+      
 contrat salarié . activité partielle . retrait absence:
   titre: retrait activité partielle
   formule:

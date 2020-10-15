@@ -14,6 +14,7 @@ import InfoBulle from 'Components/ui/InfoBulle'
 export default function Simulateurs() {
 	const { t } = useTranslation()
 	const sitePaths = useContext(SitePathsContext)
+	const language = useTranslation().i18n.language
 	const simulators = useSimulatorsData()
 	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
 	return (
@@ -74,7 +75,9 @@ export default function Simulateurs() {
 					<Trans>Autres outils</Trans>
 				</h2>
 				<div className="ui__ box-container">
-					<SimulateurCard {...simulators['demande-mobilité']} />
+					{language === 'fr' && (
+						<SimulateurCard {...simulators['demande-mobilité']} />
+					)}
 					<SimulateurCard {...simulators['comparaison-statuts']} />
 					<SimulateurCard {...simulators['économie-collaborative']} />
 					<SimulateurCard {...simulators['aide-déclaration-indépendant']} />

@@ -126,6 +126,11 @@ async function fetchSimulators(dt) {
 					'/dirigeant-sasu',
 					'/aide-declaration-independants',
 					'/demande-mobilité',
+					'/profession-liberale',
+					'/profession-liberale/medecin',
+					'/profession-liberale/auxiliaire-medical',
+					'/profession-liberale/sage-femme',
+					'/profession-liberale/chirugien-dentiste',
 					'/économie-collaborative'
 				].includes(label)
 			)
@@ -161,7 +166,11 @@ async function fetchSimulators(dt) {
 				'/simulateur-assimilesalarie',
 				'/simulateur-artiste-auteur',
 				'/simulateur-independant',
-				'/demande-mobilite'
+				'/demande-mobilite',
+				'/profession-liberale',
+				'/chirugien-dentiste',
+				'/auxiliaire-medical',
+				'/sage-femme'
 			].some(path => x.label.startsWith(path))
 		)
 

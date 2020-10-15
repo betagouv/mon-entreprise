@@ -660,7 +660,7 @@ export function getSimulatorsData({
 				'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
 			),
 			icône: '🩹',
-			iframe: 'auxiliaire-médical',
+			iframe: 'auxiliaire-medical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire'),
 			title: t(

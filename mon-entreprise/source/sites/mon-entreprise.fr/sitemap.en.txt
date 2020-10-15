@@ -1,3 +1,4 @@
+https://mycompanyinfrance.fr
 https://mycompanyinfrance.fr/create
 https://mycompanyinfrance.fr/create/EI
 https://mycompanyinfrance.fr/create/EIRL
@@ -20,7 +21,6 @@ https://mycompanyinfrance.fr/manage
 https://mycompanyinfrance.fr/manage/hiring
 https://mycompanyinfrance.fr/manage/social-security
 https://mycompanyinfrance.fr/manage/declaration-aid-independent
-https://mycompanyinfrance.fr/manage/posting-demand
 https://mycompanyinfrance.fr/calculators
 https://mycompanyinfrance.fr/calculators/sasu-chairman
 https://mycompanyinfrance.fr/calculators/independant
@@ -29,11 +29,13 @@ https://mycompanyinfrance.fr/calculators/social-scheme-comparaison
 https://mycompanyinfrance.fr/calculators/salary
 https://mycompanyinfrance.fr/calculators/artist-author
 https://mycompanyinfrance.fr/calculators/partial-unemployement
+https://mycompanyinfrance.fr/calculators/liberal-profession
+https://mycompanyinfrance.fr/calculators/liberal-profession/doctor
+https://mycompanyinfrance.fr/calculators/liberal-profession/medical-auxiliary
+https://mycompanyinfrance.fr/calculators/liberal-profession/dental-surgeon
+https://mycompanyinfrance.fr/calculators/liberal-profession/midwife
 https://mycompanyinfrance.fr/calculators/sharing-economy
 https://mycompanyinfrance.fr/calculators/sharing-economy/your-situation
-https://mycompanyinfrance.fr/news
-https://mycompanyinfrance.fr/stats
-https://mycompanyinfrance.fr/budget
 https://mycompanyinfrance.fr/integration
 https://mycompanyinfrance.fr/integration/iframe
 https://mycompanyinfrance.fr/integration/library

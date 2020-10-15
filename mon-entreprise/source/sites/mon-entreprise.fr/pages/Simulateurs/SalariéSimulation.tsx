@@ -4,15 +4,17 @@ import Simulation from 'Components/Simulation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { default as React, useContext } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 export default function SalariéSimulation() {
 	const sitePaths = useContext(SitePathsContext)
+	const { language } = useTranslation().i18n
 	return (
 		<>
 			<Simulation
 				explanations={<SalaryExplanation />}
+				showLinkToForm={language === 'fr'}
 				customEndMessages={
 					<>
 						<Trans i18nKey="simulation-end.hiring.text">
