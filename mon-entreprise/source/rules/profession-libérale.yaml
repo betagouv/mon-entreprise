@@ -130,7 +130,6 @@ dirigeant . indépendant . PL . régime général:
       - CIPAV = non
       - entreprise . catégorie d'activité . libérale règlementée = non
 
-
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
@@ -181,13 +180,12 @@ dirigeant . indépendant . PL . régime général . maladie:
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
     maladie.
 
-
 dirigeant . indépendant . PL . cotisations Urssaf:
   description: |
     Les cotisations recouvrées par l'Urssaf, qui servent au financement
     de la sécurité sociale (assurance maladie, allocations familiales,
     dépendance).
-  formule: 
+  formule:
     somme:
       - cotisations et contributions . CSG et CRDS
       - cotisations et contributions . maladie
@@ -195,12 +193,11 @@ dirigeant . indépendant . PL . cotisations Urssaf:
       - cotisations et contributions . formation professionnelle
       - PAMC . CURPS
     arrondi: oui
-      
 
 dirigeant . indépendant . PL . cotisations caisse de retraite:
-  description: | 
+  description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
-  formule: 
+  formule:
     somme:
       - cotisations et contributions . retraite de base
       - cotisations et contributions . retraite complémentaire
@@ -210,7 +207,7 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
 
 dirigeant . indépendant . PL . CIPAV:
   description: |
-    La CIPAV est la caisse de retraite autonomes des professions libérales réglementée
+    La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
@@ -344,7 +341,7 @@ dirigeant . indépendant . PL . PAMC:
       - métier = 'santé . sage-femme'
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . auxiliaire médical'
-      
+
   rend non applicable:
     - cotisations et contributions . indemnités journalières maladie
     - conjoint collaborateur
@@ -352,8 +349,6 @@ dirigeant . indépendant . PL . PAMC:
     - dirigeant . indépendant . revenus étrangers
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
   formule: oui
-
-  
 
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
   question: |
@@ -381,7 +376,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
   type: notification
   sévérité: avertissement
-  applicable si:  proportion recette activité non conventionnée > 100%
+  applicable si: proportion recette activité non conventionnée > 100%
   description: |
     La proportion ne peut pas être supérieure à 100%
 
@@ -408,12 +403,12 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     invités à se rapprocher de leur Urssaf pour que leur dossier cotisant soit
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   acronyme: CURPS
-  applicable si: 
+  applicable si:
     toutes ces conditions:
-      - entreprise . date de création < 01/2020 
+      - entreprise . date de création < 01/2020
       - revenu professionnel > 0
-  non applicable si: 
-    une de ces conditions: 
+  non applicable si:
+    une de ces conditions:
       - métier . secteur médecin = 'non conventionné'
       - remplaçant
   formule:
@@ -448,7 +443,6 @@ dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
-
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   description: |
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
@@ -462,7 +456,7 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
   formule:
     produit:
       assiette: assiette des cotisations
-      facteur: 
+      facteur:
         valeur: 100% - proportion recette activité non conventionnée
         plancher: 0%
 
@@ -515,22 +509,22 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . secteur médecin = '1'
   titre: allocations familiales (après participation CPAM)
-  remplace: 
+  remplace:
     règle: cotisations et contributions . allocations familiales
     sauf dans: participation CPAM
   formule:
     allègement:
       assiette: cotisations et contributions . allocations familiales
-      abattement: participation CPAM 
-       
+      abattement: participation CPAM
+
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
 dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
   titre: Participation CPAM aux allocations familiales
-  formule: 
-    produit: 
+  formule:
+    produit:
       assiette: cotisations et contributions . allocations familiales
-      taux: 
+      taux:
         grille:
           assiette: assiette participation CPAM
           multiplicateur: plafond sécurité sociale temps plein
@@ -575,16 +569,16 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   par défaut: 1
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
-  applicable si: taux Urssaf >= 100 
+  applicable si: taux Urssaf >= 100
   type: notification
   sévérité: avertissement
   description: Le taux Urssaf doit être inférieur à 100
 
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   titre: Participation assurance maladie
-  description: 						 |
+  description: |
     Les professionnels de santé conventionnés bénéficient d'une prise en charge d'une partie de leur cotisations par l'Assurance Maladie.
-  formule: 
+  formule:
     somme:
       - PAMC . allocations familiales . participation CPAM
       - PAMC . maladie . participation CPAM
@@ -594,11 +588,10 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
       - CARCDSF . sage-femme . PCV . participation CPAM
       - CARMF . retraite CNAVPL . participation CPAM
     arrondi: oui
-  références: 
+  références:
     amelie.fr: https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical
     rapport sécurtié sociale 2009: https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2009/RAPPORT/CCSS-RAPPORT-JUIN_2009-FICHE-LA_PRISE_EN_CHARGE_DES_COTISATIONS_DES_PRATICIENS_ET_AUXILIAIRES_MEDICAUX.pdf
 
-      
 dirigeant . indépendant . PL . PAMC . IJSS:
   remplace: indépendant . IJSS . imposable
   rend non applicable: indépendant . IJSS
@@ -609,7 +602,7 @@ dirigeant . indépendant . PL . PAMC . IJSS:
 
     La CSG-CRDS est automatiquement précomptée par l'Assurance maladie lors du versement. Leur montant est donc retranché à l'assiette pour le calcul de la CSG-CRDS restante dûe.
 
-    
+
     Les indemnités complémentaires aux indemnités journalières de la Sécurité
     sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
     des revenus de remplacement.
@@ -707,20 +700,19 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   remplace: PL . retraite CNAVPL
-  formule: 
+  formule:
     allègement:
       assiette: PL . retraite CNAVPL
-      abattement: participation CPAM 
+      abattement: participation CPAM
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
-
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
   titre: participation CPAM à la retraite de base
-  formule: 
+  formule:
     produit:
       assiette: assiette des cotisations
-      taux:     
+      taux:
         grille:
           assiette: assiette des cotisations
           multiplicateur: plafond sécurité sociale temps plein
@@ -733,7 +725,6 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
     arrondi: oui
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
-
 
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
@@ -799,12 +790,10 @@ dirigeant . indépendant . PL . CARMF . ASV:
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre: Participation CPAM à l'avantage social vieillesse
   applicable si: métier . secteur médecin = '1'
-  formule: 
+  formule:
     produit:
       assiette: assiette
-      taux:  2 / 3
-
-
+      taux: 2 / 3
 
 dirigeant . indépendant . PL . CARCDSF:
   formule: oui
@@ -843,9 +832,9 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire:
   formule:
     produit:
-      assiette: 2960.40 €/an 
-      facteur: 
-        variations: 
+      assiette: 2960.40 €/an
+      facteur:
+        variations:
           - si: taux réduction
             alors: taux réduction
           - sinon: 100%
@@ -874,7 +863,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
-  formule:  assiette des cotisations / (85% * plafond sécurité sociale temps plein)
+  formule: assiette des cotisations / (85% * plafond sécurité sociale temps plein)
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -906,7 +895,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
       - forfaitaire
       - proportionnelle
     arrondi: oui
-    
+
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . forfaitaire:
   formule: 1440.60 €/an
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportionnelle:
@@ -919,12 +908,12 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . proportion
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   titre: Participation CPAM à la prestation complémentaire vieillesse
-  formule: 
+  formule:
     somme:
       - 2 * forfaitaire
       - proportionnelle
-  références: 
-    Guide CARCDSF (PDF, page 6) : http://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
+  références:
+    Guide CARCDSF (PDF, page 6): http://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification

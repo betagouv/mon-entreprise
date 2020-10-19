@@ -45,15 +45,15 @@ export default function SimulateurWarning({
 					<li>
 						<Trans i18nKey="simulateurs.warning.urssaf">
 							Les calculs sont indicatifs. Ils ne se substituent pas aux
-							décomptes réels de l’Urssaf, du fisc ou autres.
+							décomptes réels de l’Urssaf, du fisc ou autre.
 						</Trans>
 					</li>
 				)}
 				{simulateur == 'indépendant' && (
 					<Trans i18nKey="simulateurs.warning.indépendant">
 						<li>
-							Le simulateur ne prends pas en compte les régimes micro-BNC et
-							micro-BIC
+							Le simulateur ne prend pas en compte les régimes micro-BNC et
+							micro-BIC.
 						</li>
 					</Trans>
 				)}
@@ -61,7 +61,7 @@ export default function SimulateurWarning({
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<li>
 							Ce simulateur est à destination des professions libérales en BNC.
-							Il ne prend pas en compte les société d'exercice libérales ni le
+							Il ne prend pas en compte les sociétés d'exercice libérale ni le
 							régime micro-BNC.
 						</li>
 					</Trans>
@@ -69,8 +69,8 @@ export default function SimulateurWarning({
 				{simulateur === 'SASU' && (
 					<li>
 						<Trans i18nKey="simulateurs.warning.sasu">
-							L'impôt sur les société et la gestion des dividendes ne sont pas
-							encore implémentées.
+							L'impôt sur les sociétés et la gestion des dividendes ne sont pas
+							encore implémentés.
 						</Trans>
 					</li>
 				)}

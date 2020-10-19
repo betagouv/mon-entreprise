@@ -4301,11 +4301,11 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   titre.fr: retraite complémentaire (CARPIMKO)
 dirigeant . indépendant . PL . CIPAV:
   description.en: >
-    [automatic] CIPAV is the regulated independent professional pension fund for
-    the self-employed.
+    [automatic] CIPAV is the independent pension fund for the regulated
+    professions.
   description.fr: >
     La CIPAV est la caisse de retraite autonomes des professions libérales
-    réglementée
+    réglementées.
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
