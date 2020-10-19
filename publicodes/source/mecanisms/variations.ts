@@ -1,7 +1,12 @@
 import { or } from 'ramda'
 import Variations from '../components/mecanisms/Variations'
 import { typeWarning } from '../error'
-import { bonus, defaultNode, evaluateNode } from '../evaluation'
+import {
+	bonus,
+	defaultNode,
+	evaluateNode,
+	registerEvaluationFunction
+} from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import {
 	liftTemporal2,
@@ -22,10 +27,10 @@ export default function parse(recurse, v) {
 	// TODO - find an appropriate representation
 	return {
 		explanation,
-		evaluate,
 		jsx: Variations,
 		category: 'mecanism',
 		name: 'variations',
+		nodeKind: 'variations',
 		type: 'numeric',
 		unit: inferUnit(
 			'+',
@@ -38,10 +43,10 @@ export function devariate(recurse, k, v) {
 	const explanation = devariateExplanation(recurse, k, v)
 	return {
 		explanation,
-		evaluate,
 		jsx: Variations,
 		category: 'mecanism',
 		name: 'variations',
+		nodeKind: 'variations',
 		type: 'numeric',
 		unit: inferUnit(
 			'+',
@@ -182,3 +187,5 @@ function evaluate(
 		...(temporalValue.length > 1 && { temporalValue })
 	}
 }
+
+registerEvaluationFunction('variations', evaluate)

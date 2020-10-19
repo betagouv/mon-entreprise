@@ -1,7 +1,12 @@
 import { max, min } from 'ramda'
 import Allègement from '../components/mecanisms/Allègement'
 import { typeWarning } from '../error'
-import { defaultNode, evaluateObject, parseObject } from '../evaluation'
+import {
+	defaultNode,
+	evaluateObject,
+	parseObject,
+	registerEvaluationFunction
+} from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import { serializeUnit } from '../units'
 
@@ -61,12 +66,14 @@ export const mecanismReduction = (recurse, v) => {
 	const explanation = parseObject(recurse, objectShape, v)
 
 	return {
-		evaluate,
 		jsx: Allègement,
 		explanation,
 		category: 'mecanism',
 		name: 'allègement',
+		nodeKind: 'allègement',
 		type: 'numeric',
 		unit: explanation?.assiette?.unit
 	}
 }
+
+registerEvaluationFunction('allègement', evaluate)

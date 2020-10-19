@@ -1,4 +1,4 @@
-import { evaluateNode } from '../evaluation'
+import { evaluateNode, registerEvaluationFunction } from '../evaluation'
 import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
@@ -49,7 +49,7 @@ function evaluate(
 export default function parseVariableTemporelle(parse, v) {
 	const explanation = parse(v.explanation)
 	return {
-		evaluate,
+		nodeKind: 'variable temporelle',
 		explanation: {
 			period: {
 				start: v.period.start && parse(v.period.start),
@@ -60,3 +60,5 @@ export default function parseVariableTemporelle(parse, v) {
 		unit: explanation.unit
 	}
 }
+
+registerEvaluationFunction('variable temporelle', evaluate)

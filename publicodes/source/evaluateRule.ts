@@ -69,7 +69,26 @@ export const evaluateApplicability = (
 	}
 }
 
-export default (cache, situation, parsedRules, node) => {
+export const evaluateFormula = (cache, situation, parsedRules, node) => {
+	const explanation = evaluateNode(
+			cache,
+			situation,
+			parsedRules,
+			node.explanation
+		),
+		{ nodeValue, unit, missingVariables, temporalValue } = explanation
+
+	return {
+		...node,
+		nodeValue,
+		unit,
+		missingVariables,
+		explanation,
+		temporalValue
+	}
+}
+
+export const evaluateRule = (cache, situation, parsedRules, node) => {
 	cache._meta.contextRule.push(node.dottedName)
 	const applicabilityEvaluation = evaluateApplicability(
 		cache,
@@ -103,7 +122,6 @@ export default (cache, situation, parsedRules, node) => {
 		bonus(condMissing, !!Object.keys(condMissing).length),
 		evaluatedFormula.missingVariables
 	)
-	// console.log(node.dottedName, evaluatedFormula.unit)
 
 	const temporalValue = evaluatedFormula.temporalValue
 	cache._meta.contextRule.pop()
@@ -117,4 +135,33 @@ export default (cache, situation, parsedRules, node) => {
 		isApplicable,
 		missingVariables
 	}
+}
+
+export const evaluateDisabledBy = (cache, situation, parsedRules, node) => {
+	const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
+		evaluateNode(cache, situation, parsedRules, disablerNode)
+	)
+	const nodeValue = isDisabledBy.some(
+		x => x.nodeValue !== false && x.nodeValue !== null
+	)
+	const explanation = { ...node.explanation, isDisabledBy }
+	return {
+		...node,
+		explanation,
+		nodeValue,
+		missingVariables: mergeAllMissing(isDisabledBy)
+	}
+}
+
+export const evaluateCondition = (cache, situation, parsedRules, node) => {
+	const explanation = evaluateNode(
+		cache,
+		situation,
+		parsedRules,
+		node.explanation
+	)
+	const nodeValue = explanation.nodeValue
+	const missingVariables = explanation.missingVariables
+
+	return { ...node, nodeValue, explanation, missingVariables }
 }

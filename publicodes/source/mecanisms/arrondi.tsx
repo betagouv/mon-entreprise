@@ -1,6 +1,11 @@
 import React from 'react'
 import { InfixMecanism } from '../components/mecanisms/common'
-import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
+import {
+	evaluateNode,
+	makeJsx,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import { EvaluatedNode } from '../types'
 
 export type ArrondiExplanation = {
@@ -61,14 +66,16 @@ export default function Arrondi(recurse, v) {
 		arrondi: recurse(v.arrondi)
 	}
 	return {
-		evaluate,
 		jsx: MecanismArrondi,
 		explanation,
 		category: 'mecanism',
 		name: 'arrondi',
+		nodeKind: Arrondi.nom,
 		type: 'numeric',
 		unit: explanation.valeur.unit
 	}
 }
 
 Arrondi.nom = 'arrondi'
+
+registerEvaluationFunction(Arrondi.nom, evaluate)

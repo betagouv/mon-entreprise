@@ -1,7 +1,12 @@
-import { any, equals, is, map, pluck } from 'ramda'
+import { is, map } from 'ramda'
 import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
-import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
+import {
+	evaluateNode,
+	makeJsx,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 
 const evaluate = (cache, situation, parsedRules, node) => {
 	const [nodeValue, explanation] = node.explanation.reduce(
@@ -42,11 +47,13 @@ export const mecanismAllOf = (recurse, v) => {
 	)
 
 	return {
-		evaluate: evaluate,
 		jsx,
 		explanation,
 		category: 'mecanism',
 		name: 'toutes ces conditions',
+		nodeKind: 'toutes ces conditions',
 		type: 'boolean'
 	}
 }
+
+registerEvaluationFunction('toutes ces conditions', evaluate)

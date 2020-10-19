@@ -1,6 +1,11 @@
 import { lensPath, over } from 'ramda'
 import grille from '../components/mecanisms/Grille'
-import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
+import {
+	defaultNode,
+	evaluateNode,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -24,10 +29,10 @@ export default function parse(parse, v) {
 	}
 	return {
 		explanation,
-		evaluate,
 		jsx: grille,
 		category: 'mecanism',
 		name: 'grille',
+		nodeKind: 'grille',
 		type: 'numeric',
 		unit: explanation.tranches[0].montant.unit
 	}
@@ -109,3 +114,5 @@ const evaluate = (
 		unit: activeTranches[0].value[0]?.unit ?? node.unit
 	}
 }
+
+registerEvaluationFunction('grille', evaluate)

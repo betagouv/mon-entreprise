@@ -1,5 +1,9 @@
 import Recalcul from '../components/mecanisms/Recalcul'
-import { defaultNode, evaluateNode } from '../evaluation'
+import {
+	defaultNode,
+	evaluateNode,
+	registerEvaluationFunction
+} from '../evaluation'
 import { serializeUnit } from '../units'
 
 const evaluateRecalcul = (cache, situation, parsedRules, node) => {
@@ -64,6 +68,8 @@ export const mecanismRecalcul = dottedNameContext => (recurse, v) => {
 			amendedSituation
 		},
 		jsx: Recalcul,
-		evaluate: evaluateRecalcul
+		nodeKind: 'recalcul'
 	}
 }
+
+registerEvaluationFunction('recalcul', evaluateRecalcul)

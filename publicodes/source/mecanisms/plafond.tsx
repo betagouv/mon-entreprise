@@ -1,7 +1,12 @@
 import React from 'react'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
-import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
+import {
+	evaluateNode,
+	makeJsx,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 
 function MecanismPlafond({ explanation }) {
@@ -69,14 +74,16 @@ export default function Plafond(recurse, v) {
 		plafond: recurse(v.plafond)
 	}
 	return {
-		evaluate,
 		jsx: MecanismPlafond,
 		explanation,
 		category: 'mecanism',
 		name: 'plafond',
+		nodeKind: 'plafond',
 		type: 'numeric',
 		unit: explanation.valeur.unit
 	}
 }
 
 Plafond.nom = 'plafond'
+
+registerEvaluationFunction('plafond', evaluate)

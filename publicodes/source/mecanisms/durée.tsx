@@ -1,14 +1,15 @@
+import React from 'react'
+import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
 import {
 	defaultNode,
 	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
-	parseObject
+	parseObject,
+	registerEvaluationFunction
 } from '../evaluation'
-import { Mecanism } from '../components/mecanisms/common'
 import { parseUnit } from '../units'
-import React from 'react'
 
 function MecanismDurée({ nodeValue, explanation, unit }) {
 	return (
@@ -70,12 +71,14 @@ export default (recurse, v) => {
 	const explanation = parseObject(recurse, objectShape, v)
 
 	return {
-		evaluate,
 		jsx: MecanismDurée,
 		explanation,
 		category: 'mecanism',
 		name: 'Durée',
+		nodeKind: 'durée',
 		type: 'numeric',
 		unit: parseUnit('jours')
 	}
 }
+
+registerEvaluationFunction('durée', evaluate)
