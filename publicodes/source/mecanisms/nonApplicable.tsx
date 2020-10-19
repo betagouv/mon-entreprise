@@ -4,8 +4,8 @@ import {
 	bonus,
 	evaluateNode,
 	makeJsx,
-	mergeAllMissing,
-	mergeMissing
+	mergeMissing,
+	registerEvaluationFunction
 } from '../evaluation'
 
 function MecanismNonApplicable({ explanation }) {
@@ -54,13 +54,15 @@ export default function NonApplicable(recurse, v) {
 		condition: recurse(v['non applicable si'])
 	}
 	return {
-		evaluate,
 		jsx: MecanismNonApplicable,
 		explanation,
 		category: 'mecanism',
 		name: 'non applicable',
+		nodeKind: 'non applicable',
 		unit: explanation.valeur.unit
 	}
 }
 
 NonApplicable.nom = 'non applicable si'
+
+registerEvaluationFunction('non applicable', evaluate)

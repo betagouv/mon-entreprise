@@ -1,6 +1,11 @@
 import Barème from '../components/mecanisms/Barème'
 import { evaluationError } from '../error'
-import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
+import {
+	defaultNode,
+	evaluateNode,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -22,10 +27,10 @@ export default function parse(parse, v) {
 	}
 	return {
 		explanation,
-		evaluate,
 		jsx: Barème,
 		category: 'mecanism',
 		name: 'barème',
+		nodeKind: 'barème',
 		type: 'numeric',
 		unit: explanation.assiette.unit
 	}
@@ -126,3 +131,5 @@ const evaluate = (
 		unit: assiette.unit
 	}
 }
+
+registerEvaluationFunction('barème', evaluate)

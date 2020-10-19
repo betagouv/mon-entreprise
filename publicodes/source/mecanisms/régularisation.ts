@@ -1,7 +1,7 @@
 import { map } from 'ramda'
 import { convertToString, getYear } from '../date'
 import { evaluationError } from '../error'
-import { evaluateNode } from '../evaluation'
+import { evaluateNode, registerEvaluationFunction } from '../evaluation'
 import {
 	createTemporalEvaluation,
 	groupByYear,
@@ -46,13 +46,13 @@ export default function parse<Name extends string>(parse, v) {
 	}) as Array<{ dottedName: Name; value: Record<string, unknown> }>
 
 	return {
-		evaluate,
 		explanation: {
 			rule,
 			variables
 		},
 		category: 'mecanism',
 		name: 'taux progressif',
+		nodeKind: 'régularisation',
 		type: 'numeric',
 		unit: rule.unit
 	}
@@ -163,3 +163,5 @@ function evaluate(cache, situation, parsedRules, node) {
 		unit: evaluation.unit
 	}
 }
+
+registerEvaluationFunction('régularisation', evaluate)

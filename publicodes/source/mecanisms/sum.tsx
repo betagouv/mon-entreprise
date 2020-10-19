@@ -1,5 +1,5 @@
 import Somme from '../components/mecanisms/Somme'
-import { evaluateArray } from '../evaluation'
+import { evaluateArray, registerEvaluationFunction } from '../evaluation'
 import { inferUnit } from '../units'
 
 const evaluate = evaluateArray(
@@ -10,11 +10,11 @@ const evaluate = evaluateArray(
 export const mecanismSum = (recurse, v) => {
 	const explanation = v.map(recurse)
 	return {
-		evaluate,
 		jsx: Somme,
 		explanation,
 		category: 'mecanism',
 		name: 'somme',
+		nodeKind: 'somme',
 		type: 'numeric',
 		unit: inferUnit(
 			'+',
@@ -22,3 +22,5 @@ export const mecanismSum = (recurse, v) => {
 		)
 	}
 }
+
+registerEvaluationFunction('somme', evaluate)

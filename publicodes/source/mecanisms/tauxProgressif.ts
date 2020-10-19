@@ -1,5 +1,10 @@
-import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
 import tauxProgressif from '../components/mecanisms/TauxProgressif'
+import {
+	defaultNode,
+	evaluateNode,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import { parseUnit } from '../units'
 import {
@@ -14,11 +19,11 @@ export default function parse(parse, v) {
 		tranches: parseTranches(parse, v.tranches)
 	}
 	return {
-		evaluate,
 		jsx: tauxProgressif,
 		explanation,
 		category: 'mecanism',
 		name: 'taux progressif',
+		nodeKind: 'taux progressif',
 		type: 'numeric',
 		unit: parseUnit('%')
 	}
@@ -121,3 +126,5 @@ const evaluate = (
 		nodeValue
 	}
 }
+
+registerEvaluationFunction('taux progressif', evaluate)

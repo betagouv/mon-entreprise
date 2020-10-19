@@ -1,6 +1,12 @@
 import React from 'react'
 import { InfixMecanism } from '../components/mecanisms/common'
-import { bonus, evaluateNode, makeJsx, mergeMissing } from '../evaluation'
+import {
+	bonus,
+	evaluateNode,
+	makeJsx,
+	mergeMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 
 function MecanismApplicable({ explanation }) {
 	return (
@@ -46,13 +52,16 @@ export default function Applicable(recurse, v) {
 		condition: recurse(v['applicable si'])
 	}
 	return {
-		evaluate,
+		// evaluate,
 		jsx: MecanismApplicable,
 		explanation,
 		category: 'mecanism',
-		name: Applicable.name,
+		name: Applicable.nom,
+		nodeKind: Applicable.nom,
 		unit: explanation.valeur.unit
 	}
 }
 
 Applicable.nom = 'applicable si'
+
+registerEvaluationFunction(Applicable.nom, evaluate)

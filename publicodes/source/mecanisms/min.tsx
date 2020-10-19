@@ -1,11 +1,14 @@
 import { min } from 'ramda'
 import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
-import { evaluateArray, makeJsx } from '../evaluation'
+import {
+	evaluateArray,
+	makeJsx,
+	registerEvaluationFunction
+} from '../evaluation'
 
 export const mecanismMin = (recurse, v) => {
 	const explanation = v.map(recurse)
-	const evaluate = evaluateArray(min, Infinity)
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le minimum de" value={nodeValue} unit={unit}>
 			<ul>
@@ -19,12 +22,16 @@ export const mecanismMin = (recurse, v) => {
 		</Mecanism>
 	)
 	return {
-		evaluate,
 		jsx,
 		explanation,
 		type: 'numeric',
 		category: 'mecanism',
 		name: 'le minimum de',
+		nodeKind: 'minimum',
 		unit: explanation[0].unit
 	}
 }
+
+const evaluate = evaluateArray(min, Infinity)
+
+registerEvaluationFunction('minimum', evaluate)

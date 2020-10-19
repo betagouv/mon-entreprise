@@ -1,7 +1,12 @@
 import React from 'react'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
-import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
+import {
+	evaluateNode,
+	makeJsx,
+	mergeAllMissing,
+	registerEvaluationFunction
+} from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 
 function MecanismPlancher({ explanation }) {
@@ -73,9 +78,12 @@ export default function Plancher(recurse, v) {
 		explanation,
 		category: 'mecanism',
 		name: 'plancher',
+		nodeKind: 'plancher',
 		type: 'numeric',
 		unit: explanation.valeur.unit
 	}
 }
 
 Plancher.nom = 'plancher'
+
+registerEvaluationFunction('plancher', evaluate)

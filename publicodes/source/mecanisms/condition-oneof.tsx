@@ -1,7 +1,12 @@
-import { any, equals, is, map, max, mergeWith, pluck, reduce } from 'ramda'
+import { is, map, max, mergeWith, reduce } from 'ramda'
 import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
-import { collectNodeMissing, evaluateNode, makeJsx } from '../evaluation'
+import {
+	collectNodeMissing,
+	evaluateNode,
+	makeJsx,
+	registerEvaluationFunction
+} from '../evaluation'
 
 const evaluate = (cache, situation, parsedRules, node) => {
 	const evaluateOne = child =>
@@ -40,11 +45,13 @@ export const mecanismOneOf = (recurse, v) => {
 	)
 
 	return {
-		evaluate,
 		jsx,
 		explanation,
 		category: 'mecanism',
 		name: 'une de ces conditions',
+		nodeKind: 'une de ces conditions',
 		type: 'boolean'
 	}
 }
+
+registerEvaluationFunction('une de ces conditions', evaluate)

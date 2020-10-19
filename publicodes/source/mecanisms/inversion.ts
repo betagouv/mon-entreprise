@@ -1,7 +1,7 @@
-import { evaluateNode } from '../evaluation'
+import InversionNumérique from '../components/mecanisms/InversionNumérique'
+import { evaluateNode, registerEvaluationFunction } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import uniroot from '../uniroot'
-import InversionNumérique from '../components/mecanisms/InversionNumérique'
 import { parseUnit } from '../units'
 
 export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
@@ -94,7 +94,6 @@ export const mecanismInversion = dottedName => (recurse, v) => {
 		)
 	}
 	return {
-		evaluate: evaluateInversion,
 		unit: v.unité && parseUnit(v.unité),
 		explanation: {
 			ruleToInverse: dottedName,
@@ -104,6 +103,9 @@ export const mecanismInversion = dottedName => (recurse, v) => {
 		jsx: InversionNumérique,
 		category: 'mecanism',
 		name: 'inversion numérique',
+		nodeKind: 'inversion numérique',
 		type: 'numeric'
 	}
 }
+
+registerEvaluationFunction('inversion numérique', evaluateInversion)

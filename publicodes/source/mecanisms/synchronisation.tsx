@@ -1,7 +1,7 @@
 import { path } from 'ramda'
 import React from 'react'
-import { evaluateNode } from '../evaluation'
 import { RuleLinkWithContext } from '../components/RuleLink'
+import { evaluateNode, registerEvaluationFunction } from '../evaluation'
 
 const evaluate = (cache, situation, parsedRules, node) => {
 	const APIExplanation = evaluateNode(
@@ -36,7 +36,6 @@ const evaluate = (cache, situation, parsedRules, node) => {
 export const mecanismSynchronisation = (recurse, v) => {
 	return {
 		explanation: { ...v, API: recurse(v.API) },
-		evaluate,
 		jsx: function Synchronisation({ explanation }) {
 			return (
 				<p>
@@ -46,6 +45,9 @@ export const mecanismSynchronisation = (recurse, v) => {
 			)
 		},
 		category: 'mecanism',
-		name: 'synchronisation'
+		name: 'synchronisation',
+		nodeKind: 'synchronisation'
 	}
 }
+
+registerEvaluationFunction('synchronisation', evaluate)

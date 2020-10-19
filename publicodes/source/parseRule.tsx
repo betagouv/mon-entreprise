@@ -1,11 +1,10 @@
-import { evolve, map } from 'ramda'
+import { evolve } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { Mecanism } from './components/mecanisms/common'
 import { RuleLinkWithContext } from './components/RuleLink'
 import { compilationError, warning } from './error'
-import evaluate from './evaluateRule'
-import { evaluateNode, makeJsx, mergeAllMissing } from './evaluation'
+import { makeJsx } from './evaluation'
 import { parse } from './parse'
 import {
 	disambiguateRuleReference,
@@ -101,12 +100,11 @@ export default function<Names extends string>(
 					) : null
 
 				return {
-					evaluate: (cache, situation, parsedRules) =>
-						node.evaluate(cache, situation, parsedRules, node),
 					jsx,
 					category: 'ruleProp',
 					rulePropType: 'cond',
 					name: 'parentDependencies',
+					nodeKind: 'parentDependencies',
 					type: 'numeric',
 					explanation: node
 				}
@@ -130,7 +128,7 @@ export default function<Names extends string>(
 				// "synchronisation" mecanism. This should be refactored to not use the
 				// attribute "defaultValue"
 				typeof value === 'object'
-				? { ...value, evaluate: () => value }
+				? { ...value, nodeKind: 'defaultNode' }
 				: value,
 		formule: value => {
 			const child = parse(rules, rule, parsedRules)(value)
@@ -138,7 +136,7 @@ export default function<Names extends string>(
 			const jsx = ({ explanation }) => makeJsx(explanation)
 
 			return {
-				evaluate: evaluateFormula,
+				nodeKind: 'formula',
 				jsx,
 				category: 'ruleProp',
 				rulePropType: 'formula',
@@ -154,7 +152,7 @@ export default function<Names extends string>(
 		// principe que 'non applicable si' et 'formule' sont particuliers, alors
 		// qu'ils pourraient être rangé avec les autres mécanismes
 		...parsedRule,
-		evaluate,
+		nodeKind: 'rule',
 		parsed: true,
 		unit:
 			parsedRule.unit ??
@@ -164,7 +162,7 @@ export default function<Names extends string>(
 		replacedBy: []
 	}
 	parsedRules[dottedName]['rendu non applicable'] = {
-		evaluate: evaluateDisabledBy,
+		nodeKind: 'disabledBy',
 		jsx: ({ explanation: { isDisabledBy } }) => {
 			return (
 				isDisabledBy.length > 0 && (
@@ -215,54 +213,6 @@ export default function<Names extends string>(
 	return parsedRules[dottedName]
 }
 
-const evaluateFormula = (cache, situation, parsedRules, node) => {
-	const explanation = evaluateNode(
-			cache,
-			situation,
-			parsedRules,
-			node.explanation
-		),
-		{ nodeValue, unit, missingVariables, temporalValue } = explanation
-
-	return {
-		...node,
-		nodeValue,
-		unit,
-		missingVariables,
-		explanation,
-		temporalValue
-	}
-}
-
-const evaluateDisabledBy = (cache, situation, parsedRules, node) => {
-	const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
-		evaluateNode(cache, situation, parsedRules, disablerNode)
-	)
-	const nodeValue = isDisabledBy.some(
-		x => x.nodeValue !== false && x.nodeValue !== null
-	)
-	const explanation = { ...node.explanation, isDisabledBy }
-	return {
-		...node,
-		explanation,
-		nodeValue,
-		missingVariables: mergeAllMissing(isDisabledBy)
-	}
-}
-
-const evaluateEvolveCond = (cache, situation, parsedRules, node) => {
-	const explanation = evaluateNode(
-			cache,
-			situation,
-			parsedRules,
-			node.explanation
-		),
-		nodeValue = explanation.nodeValue,
-		missingVariables = explanation.missingVariables
-
-	return { ...node, nodeValue, explanation, missingVariables }
-}
-
 const evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 	const child = parse(rules, rule, parsedRules)(value)
 
@@ -277,8 +227,8 @@ const evolveCond = (dottedName, rule, rules, parsedRules) => value => {
 	)
 
 	return {
-		evaluate: evaluateEvolveCond,
 		jsx,
+		nodeKind: 'condition',
 		category: 'ruleProp',
 		rulePropType: 'cond',
 		dottedName,

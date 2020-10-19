@@ -1,40 +1,25 @@
-// This should be the new way to implement mecanisms
-// In a specific file
-// TODO import them automatically
 import { Grammar, Parser } from 'nearley'
-import {
-	add,
-	difference,
-	divide,
-	equals,
-	fromPairs,
-	gt,
-	gte,
-	lt,
-	lte,
-	multiply,
-	omit,
-	subtract
-} from 'ramda'
+import { omit } from 'ramda'
 import React from 'react'
 import { EngineError, syntaxError } from './error'
 import { formatValue } from './format'
 import grammar from './grammar.ne'
+import applicable from './mecanisms/applicable'
 import arrondi from './mecanisms/arrondi'
 import barème from './mecanisms/barème'
+import { decompose } from './mecanisms/composantes'
 import { mecanismAllOf } from './mecanisms/condition-allof'
 import { mecanismOneOf } from './mecanisms/condition-oneof'
 import durée from './mecanisms/durée'
-import plafond from './mecanisms/plafond'
-import plancher from './mecanisms/plancher'
-import applicable from './mecanisms/applicable'
-import nonApplicable from './mecanisms/nonApplicable'
 import grille from './mecanisms/grille'
 import { mecanismInversion } from './mecanisms/inversion'
 import { mecanismMax } from './mecanisms/max'
 import { mecanismMin } from './mecanisms/min'
+import nonApplicable from './mecanisms/nonApplicable'
 import { mecanismOnePossibility } from './mecanisms/one-possibility'
-import operation from './mecanisms/operation'
+import operations from './mecanisms/operation'
+import plafond from './mecanisms/plafond'
+import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
 import { mecanismReduction } from './mecanisms/reduction'
@@ -42,7 +27,6 @@ import régularisation from './mecanisms/régularisation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
-import { decompose } from './mecanisms/utils'
 import variableTemporelle from './mecanisms/variableTemporelle'
 import variations, { devariate } from './mecanisms/variations'
 import { parseReferenceTransforms } from './parseReference'
@@ -204,28 +188,8 @@ function unfoldChainedMecanisms(rawNode) {
 	)
 }
 
-const knownOperations = {
-	'*': [multiply, '×'],
-	'/': [divide, '∕'],
-	'+': [add],
-	'-': [subtract, '−'],
-	'<': [lt],
-	'<=': [lte, '≤'],
-	'>': [gt],
-	'>=': [gte, '≥'],
-	'=': [equals],
-	'!=': [(a, b) => !equals(a, b), '≠']
-}
-
-const operationDispatch = fromPairs(
-	Object.entries(knownOperations).map(([k, [f, symbol]]) => [
-		k,
-		operation(k, f, symbol)
-	])
-)
-
 const statelessParseFunction = {
-	...operationDispatch,
+	...operations,
 	...chainableMecanisms.reduce((acc, fn) => ({ [fn.nom]: fn, ...acc }), {}),
 	'une de ces conditions': mecanismOneOf,
 	'toutes ces conditions': mecanismAllOf,
@@ -248,6 +212,7 @@ const statelessParseFunction = {
 		type: v.type,
 		constant: true,
 		nodeValue: v.nodeValue,
+		nodeKind: 'constant',
 		unit: v.unit,
 		// eslint-disable-next-line
 		jsx: (node: EvaluatedRule) => (
