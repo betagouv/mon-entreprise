@@ -32,8 +32,8 @@ type RefProps = {
 }
 
 function Ref({ name, link }: RefProps) {
-	const refKey = findRefKey(link),
-		domain = cleanDomain(link)
+	const refKey = findRefKey(link)
+	const domain = cleanDomain(link)
 	return (
 		<li
 			style={{

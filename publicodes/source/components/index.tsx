@@ -11,6 +11,8 @@ import { BasepathContext, EngineContext } from './contexts'
 import RulePage from './rule/Rule'
 
 export { RuleLink } from './RuleLink'
+import References from './rule/References'
+export { References }
 
 type DocumentationProps<Names extends string> = {
 	documentationPath: string
