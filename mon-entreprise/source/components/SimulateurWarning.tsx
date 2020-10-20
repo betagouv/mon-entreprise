@@ -61,7 +61,7 @@ export default function SimulateurWarning({
 					<Trans i18nKey="simulateurs.warning.profession-libérale">
 						<li>
 							Ce simulateur est à destination des professions libérales en BNC.
-							Il ne prend pas en compte les sociétés d'exercice libérale ni le
+							Il ne prend pas en compte les sociétés d'exercice libéral ni le
 							régime micro-BNC.
 						</li>
 					</Trans>

@@ -30,6 +30,7 @@
 .ui__.close-button {
 	cursor: pointer;
 	font-size: 1.3em;
+	margin-left: 1rem;
 }
 
 .ui__.close-button:hover {
