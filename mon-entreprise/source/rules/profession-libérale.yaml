@@ -13,6 +13,7 @@ dirigeant . indépendant . PL . métier:
       choix obligatoire: oui
       possibilités:
         - santé
+        - avocat
         - rattaché CIPAV
 
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
@@ -89,6 +90,11 @@ dirigeant . indépendant . PL . métier . secteur médecin . 1:
 dirigeant . indépendant . PL . métier . secteur médecin . 2:
   titre: Secteur 2
 dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:
+
+dirigeant . indépendant . PL . métier . avocat:
+  description: |
+    Les avocats cotisent auprès d'un organisme autonome pour la retraite et la
+    prévoyance.
 
 dirigeant . indépendant . PL . option régime général:
   applicable si:
@@ -304,7 +310,10 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
   titre: classe C
 
 dirigeant . indépendant . PL . retraite CNAVPL:
-  non applicable si: régime général
+  non applicable si:
+    une de ces conditions:
+      - régime général
+      - PL . CNBF
 
   titre: retraite de base (CNAVPL)
   description: |
@@ -1031,3 +1040,76 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
     faites la demande. [En savoir
     plus](http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+
+dirigeant . indépendant . PL . CNBF:
+  formule: oui
+  applicable si: métier = 'avocat'
+  description: |
+    La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
+    sociale des avocats.
+  références:
+    Site CNBF: https://www.cnbf.fr
+
+dirigeant . indépendant . PL . CNBF . retraite de base:
+  remplace: cotisations et contributions . retraite de base
+  formule:
+    somme:
+      - cotisation forfaitaire
+      - cotisation proportionnelle
+
+dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire:
+  formule:
+    variations:
+      - si: entreprise . durée d'activité < 1 an
+        alors: 290 €/an
+      - si: entreprise . durée d'activité < 2 ans
+        alors: 581 €/an
+      - si: entreprise . durée d'activité < 3 ans
+        alors: 912 €/an
+      - si: entreprise . durée d'activité < 5 ans
+        alors: 1242 €/an
+      - sinon: 1586 €/an
+
+dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle:
+  formule:
+    produit:
+      taux: 3.1%
+      assiette:
+        variations:
+          - si: entreprise . durée d'activité < 2 ans
+            alors: 19% * plafond sécurité sociale temps plein [€/an]
+          - sinon:
+              valeur: assiette des cotisations
+              plafond: 291718 €/an
+
+dirigeant . indépendant . PL . CNBF . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  titre: retraite complémentaire (CNBF)
+  formule:
+    barème:
+      assiette: assiette des cotisations
+      multiplicateur: multiplicateur
+      tranches:
+        - taux: 4%
+          plafond: 1
+        - taux: 8%
+          plafond: 2
+        - taux: 9.2%
+          plafond: 3
+        - taux: 10.4%
+          plafond: 4
+        - taux: 11.6%
+          plafond: 5
+    arrondi: oui
+
+dirigeant . indépendant . PL . CNBF . retraite complémentaire . multiplicateur:
+  formule: 41674 €/an
+
+dirigeant . indépendant . PL . CNBF . RID:
+  titre: invalidité et décès (CNBF avocat)
+  remplace: cotisations et contributions . invalidité et décès
+  formule:
+    variations:
+      - si: entreprise . durée d'activité < 5 ans
+        alors: 55 €/an
+      - sinon: 137 €/an

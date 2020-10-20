@@ -140,7 +140,7 @@ function CaisseRetraite() {
 
 	return (
 		<>
-			{['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF'].map(caisse => {
+			{['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF', 'CNBF'].map(caisse => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = engine.evaluate(dottedName)
 				return (
