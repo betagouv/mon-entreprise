@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
+import { References } from 'publicodes'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -105,7 +106,7 @@ export default function Question({
 				)}
 				{choices.children &&
 					choices.children.map(
-						({ title, dottedName, description, children, icons }) =>
+						({ title, dottedName, description, children, icons, références }) =>
 							children ? (
 								<li key={dottedName} className="variant">
 									<div>{title}</div>
@@ -123,6 +124,7 @@ export default function Question({
 											icons,
 											onSubmit: handleSubmit,
 											description,
+											références,
 											onChange: handleChange
 										}}
 									/>
@@ -159,6 +161,14 @@ export const RadioLabel = props => (
 			<Explicable>
 				<h2>{props.label}</h2>
 				<Markdown source={props.description} />
+				{props.références && (
+					<>
+						<h3>
+							<Trans>En savoir plus</Trans>
+						</h3>
+						<References refs={props.références} />
+					</>
+				)}
 			</Explicable>
 		)}
 	</>
