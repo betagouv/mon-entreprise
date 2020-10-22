@@ -35,6 +35,7 @@ export type Rule = {
 	suggestions?: Record<string, string | number | Record<string, unknown>>
 	références?: { [source: string]: string }
 	API?: string
+	'identifiant court'?: string
 }
 
 type Remplace =
@@ -59,6 +60,7 @@ export type RuleNode = {
 		valeur: ASTNode
 	}
 	suggestions: Record<string, ASTNode>
+	'identifiant court'?: string
 }
 
 export default function parseRule(

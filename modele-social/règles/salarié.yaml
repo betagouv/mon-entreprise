@@ -1184,6 +1184,7 @@ contrat salarié . cotisations . assiette minimale:
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
+  identifiant court: salarie-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)
   type: salaire
   question: Quel est votre salaire brut ?
@@ -1738,6 +1739,7 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
+  identifiant court: salarie-net
   unité: €/mois
   type: salaire
   question: Quel est votre salaire net ?
@@ -1762,6 +1764,7 @@ contrat salarié . rémunération . net:
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
+  identifiant court: salarie-netapresimpot
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
@@ -1781,6 +1784,7 @@ contrat salarié . rémunération . net après impôt:
 
 contrat salarié . prix du travail:
   titre: Coût total
+  identifiant court: salarie-coutembauche
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   description: |
@@ -1798,6 +1802,7 @@ contrat salarié . prix du travail:
 
 contrat salarié . rémunération . total:
   titre: Total chargé
+  identifiant court: salarie-total
   question: Quelle est la rémunération chargée ?
   résumé: Dépensé par l'entreprise
   type: salaire

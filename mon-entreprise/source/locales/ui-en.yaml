@@ -1313,6 +1313,14 @@ selectionRégime:
     titre: Before starting...
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
+shareSimulation:
+  banner: "You can share your simulation: <2 onClick={onClick}>Share
+    link</2>"
+  modal:
+    button: Copy link
+    helpText: The link is already selected, you can just hit "copy".
+    title: Your sharing link
+  navigatorShare: My company simulation
 simulateurs:
   explanation:
     CNAPL: It recovers contributions related to your retirement and disability/death

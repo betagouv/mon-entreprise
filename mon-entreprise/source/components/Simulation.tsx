@@ -14,6 +14,8 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import LinkToForm from './Feedback/LinkToForm'
+import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
+import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -31,6 +33,8 @@ export default function Simulation({
 	showPeriodSwitch,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const getShareSearchParams = useSearchParamsSimulationSharing()
+
 	return (
 		<>
 			<TargetSelection showPeriodSwitch={showPeriodSwitch} />
@@ -38,6 +42,7 @@ export default function Simulation({
 			{firstStepCompleted && (
 				<Animate.fromTop>
 					{results}
+					<ShareSimulationBanner getShareSearchParams={getShareSearchParams} />
 					<Questions customEndMessages={customEndMessages} />
 					<br />
 					{showLinkToForm && <LinkToForm />}

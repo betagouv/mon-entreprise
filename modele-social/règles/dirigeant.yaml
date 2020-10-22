@@ -127,6 +127,7 @@ dirigeant . auto-entrepreneur . plafond:
 
 dirigeant . auto-entrepreneur . net de cotisations:
   titre: Revenu net de cotisations
+  identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
   description: Il s'agit du revenu net de cotisations et de charges, avant le paiement de l'impôt sur le revenu.
@@ -384,6 +385,7 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
 
 dirigeant . auto-entrepreneur . net après impôt:
   titre: revenu net après impôt
+  identifiant court: auto-entrepreneur-netapresimpot
   résumé: Avant déduction des dépenses liées à l'activité
   unité: €/an
   question: Quel est le revenu net après impôt souhaité ?
@@ -414,6 +416,7 @@ dirigeant . rémunération totale:
   question: Quel montant pensez-vous dégager pour votre rémunération ?
   résumé: Dépensé par l'entreprise
   unité: €/an
+  identifiant court: dirigeant-total
   description: C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
@@ -544,6 +547,7 @@ dirigeant . indépendant . cotisations et contributions . aide indépendant covi
     Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
 
 dirigeant . indépendant . revenu net de cotisations:
+  identifiant court: independant-net
   synonymes:
     - résultat comptable
   formule:

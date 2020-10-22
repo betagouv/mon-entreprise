@@ -60,7 +60,7 @@ export type SimulationConfig = {
 	'unité par défaut': string
 }
 
-type Situation = Partial<Record<DottedName, any>>
+export type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
 	config: SimulationConfig
 	url: string
