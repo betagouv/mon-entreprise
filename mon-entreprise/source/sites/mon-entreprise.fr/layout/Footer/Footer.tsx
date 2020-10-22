@@ -1,5 +1,6 @@
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import LegalNotice from 'Components/LegalNotice'
+import NewsletterRegister from 'Components/NewsletterRegister'
 import SocialIcon from 'Components/ui/SocialIcon'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import React, { useContext } from 'react'
@@ -33,7 +34,7 @@ const useShowFeedback = () => {
 		...Object.values(simulators).map(s => s.path)
 	].includes(currentPath)
 }
-const Footer = () => {
+export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
 	const hrefLink =
@@ -58,6 +59,10 @@ const Footer = () => {
 			</Helmet>
 			<footer className="footer">
 				{showFeedback && <PageFeedback />}
+				<div className="ui__ container">
+					<NewsletterRegister />
+					<hr className="footer__separator" />
+				</div>
 				{i18n.language === 'en' && (
 					<p className="ui__ notice" css="text-align: center">
 						This website is provided by the{' '}
@@ -123,4 +128,3 @@ const Footer = () => {
 		</div>
 	)
 }
-export default Footer
