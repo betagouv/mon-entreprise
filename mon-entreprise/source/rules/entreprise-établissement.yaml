@@ -56,8 +56,10 @@ entreprise . chiffre d'affaires:
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
+  identifiant court: entreprise-ca
 
 entreprise . chiffre d'affaires minimum:
+  identifiant court: entreprise-ca-min
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   question: Quel est votre chiffre d'affaires minimum envisagé ?
   unité: €/an
@@ -104,6 +106,7 @@ entreprise . charges:
     - charges d'exploitation
     - charges de fonctionnement
   titre: charges de fonctionnement
+  identifiant court: entreprise-charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
@@ -170,16 +173,16 @@ entreprise . ACRE:
   par défaut: ACRE par défaut
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
 
-entreprise . ACRE par défaut: 
+entreprise . ACRE par défaut:
   formule:
     variations:
-      - si: 
+      - si:
           toutes ces conditions:
             - dirigeant . auto-entrepreneur
             - une de ces conditions:
-              # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
-              - entreprise . date de création < 01/01/2019
-              - entreprise . date de création > 31/12/2019
+                # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
+                - entreprise . date de création < 01/01/2019
+                - entreprise . date de création > 31/12/2019
         alors: non
       - sinon: oui
 
@@ -294,8 +297,7 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
-  description:
-    Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
+  description: Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
     Entre 1200 €/an et 2400 €/an une décote s'applique.
   formule:
@@ -406,7 +408,7 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée: 
+entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée:
   formule:
     une possibilité:
       choix obligatoire: oui
