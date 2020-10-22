@@ -48,7 +48,10 @@ function getSearchParamsFromSituation<T extends string>(
 			const parsedValue = engine.evaluate(value, { unit: targetUnit }).nodeValue
 			if (parsedValue) {
 				if (typeof parsedValue === 'number') {
-					searchParams.set(paramName, '' + Math.round(parsedValue))
+					searchParams.set(
+						paramName,
+						'' + Math.round((parsedValue + Number.EPSILON) * 100) / 100
+					)
 				} else if (parsedValue === true) {
 					searchParams.set(paramName, '')
 				} else {
