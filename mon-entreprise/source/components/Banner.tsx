@@ -16,7 +16,7 @@ export default function Banner({
 	children,
 	hidden: hiddenProp = false,
 	hideAfterFirstStep = true,
-	icon
+	icon,
 }: BannerProps) {
 	const hiddenState = useSelector(firstStepCompletedSelector)
 

@@ -4,6 +4,7 @@ import { DottedName } from 'modele-social'
 // Note: it is currently not possible to define SavedSimulation as the return
 // type of the currentSimulationSelector function because the type would then
 // circulary reference itself.
+// TODO: recursive type references should work now: https://github.com/microsoft/TypeScript/pull/33050
 export type SavedSimulation = {
 	situation: Simulation['situation']
 	activeTargetInput: RootState['activeTargetInput']
