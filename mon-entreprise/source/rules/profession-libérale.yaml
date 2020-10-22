@@ -1049,6 +1049,7 @@ dirigeant . indépendant . PL . CNBF:
     sociale des avocats.
   références:
     Site CNBF: https://www.cnbf.fr
+    Barème 2020: https://www.cnbf.fr/wp-content/uploads/2020/08/CNBF-bareme-des-cotisations-et-prestations-2020.pdf
 
 dirigeant . indépendant . PL . CNBF . retraite de base:
   remplace: cotisations et contributions . retraite de base
@@ -1101,6 +1102,10 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         - taux: 11.6%
           plafond: 5
     arrondi: oui
+  note: |
+    Il existe plusieurs classes de cotisations, qui permettent de cotiser
+    d'avantage pour acquérir d'avantages de points. Seule la première classe est
+    implémentée pour l'instant.
 
 dirigeant . indépendant . PL . CNBF . retraite complémentaire . multiplicateur:
   formule: 41674 €/an
