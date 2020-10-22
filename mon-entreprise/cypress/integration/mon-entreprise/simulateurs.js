@@ -44,13 +44,21 @@ describe('Simulateurs', function() {
 			it('should allow to change period', function() {
 				cy.contains('€/an').click()
 				cy.wait(200)
+				cy.location()
+					.its('search')
+					.should('include', 'periode=an')
 				cy.get(inputSelector)
 					.first()
 					.type('{selectall}12000')
 				if (['indépendant', 'dirigeant-sasu'].includes(simulateur)) {
 					cy.get(chargeInputSelector).type('{selectall}6000')
 				}
-				cy.wait(800)
+				cy.wait(1200)
+				if (simulateur === 'salarié') {
+					cy.location()
+						.its('search')
+						.should('include', 'salarie-coutembauche=12000')
+				}
 				cy.contains('€/mois').click()
 				cy.get(inputSelector)
 					.first()
@@ -107,6 +115,20 @@ describe('Simulateurs', function() {
 			}
 		})
 	)
+})
+
+describe('Simulateur partagé', () => {
+	if (!fr) {
+		return
+	}
+	before(() => cy.visit('/simulateurs/salarié?salarie-net=50000&periode=an'))
+	it('should set input value from URL and vice versa', function() {
+		cy.wait(800)
+		cy.get(inputSelector)
+			.first()
+			.invoke('val')
+			.should('be', 50000)
+	})
 })
 
 describe('Simulateur salarié', () => {
