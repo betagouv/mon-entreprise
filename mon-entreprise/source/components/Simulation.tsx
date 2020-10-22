@@ -14,7 +14,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
 import LinkToForm from './Feedback/LinkToForm'
-import { useSimulatorSearchParams } from 'Components/utils/useSimulatorSearchParams'
+import useSyncSituationInUrl from 'Components/utils/useSyncSituationInUrl'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -32,7 +32,7 @@ export default function Simulation({
 	showPeriodSwitch
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
-	useSimulatorSearchParams()
+	useSyncSituationInUrl()
 
 	return (
 		<>
