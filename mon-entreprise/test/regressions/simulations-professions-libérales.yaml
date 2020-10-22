@@ -56,6 +56,10 @@ auxiliaire médical:
     dirigeant . rémunération totale: 300000 €/an
     dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 100%
 
+avocat:
+  - dirigeant . indépendant . PL . métier: "'avocat'"
+    dirigeant . rémunération totale: 50000 €/an
+
 CIPAV:
   - dirigeant . indépendant . revenu net de cotisations: 500 €/an
   - dirigeant . indépendant . revenu net de cotisations: 1000 €/an

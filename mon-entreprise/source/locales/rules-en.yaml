@@ -4447,6 +4447,46 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
 ? dirigeant . indépendant . PL . CIPAV . retraite complémentaire . réduction COVID . montant
 : titre.en: '[automatic] VIDOC reduction'
   titre.fr: réduction COVID
+dirigeant . indépendant . PL . CNBF:
+  description.en: >
+    [automatic] The Caisse Nationale des Barreaux Français (CNBF) is the
+    security body of the French Bar Association.
+
+    lawyers' social life.
+  description.fr: |
+    La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
+    sociale des avocats.
+  titre.en: '[automatic] NBCF'
+  titre.fr: CNBF
+dirigeant . indépendant . PL . CNBF . RID:
+  titre.en: '[automatic] disability and death (NCW lawyer)'
+  titre.fr: invalidité et décès (CNBF avocat)
+dirigeant . indépendant . PL . CNBF . retraite complémentaire:
+  note.en: >
+    [automatic] There are several classes of contributions, which allow you to
+    contribute to
+
+    more to gain more points. Only the first class is
+
+    implemented for the moment.
+  note.fr: |
+    Il existe plusieurs classes de cotisations, qui permettent de cotiser
+    d'avantage pour acquérir d'avantages de points. Seule la première classe est
+    implémentée pour l'instant.
+  titre.en: '[automatic] supplementary pension (CNBF)'
+  titre.fr: retraite complémentaire (CNBF)
+dirigeant . indépendant . PL . CNBF . retraite complémentaire . multiplicateur:
+  titre.en: '[automatic] multiplier'
+  titre.fr: multiplicateur
+dirigeant . indépendant . PL . CNBF . retraite de base:
+  titre.en: '[automatic] basic retirement'
+  titre.fr: retraite de base
+dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire:
+  titre.en: '[automatic] flat-rate contribution'
+  titre.fr: cotisation forfaitaire
+? dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle
+: titre.en: '[automatic] proportional contribution'
+  titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . PAMC:
   titre.en: '[automatic] PAMC'
   titre.fr: PAMC
@@ -4807,6 +4847,17 @@ dirigeant . indépendant . PL . métier:
   question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] profession'
   titre.fr: métier
+dirigeant . indépendant . PL . métier . avocat:
+  description.en: >
+    [automatic] Lawyers contribute to an independent organization for pension
+    and retirement.
+
+    foresight.
+  description.fr: |
+    Les avocats cotisent auprès d'un organisme autonome pour la retraite et la
+    prévoyance.
+  titre.en: '[automatic] lawyer'
+  titre.fr: avocat
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
     [automatic] You work in a regulated profession attached to the CIPAV. The

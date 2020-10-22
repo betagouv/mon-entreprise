@@ -51,6 +51,7 @@ const simulateurs = [
 	'chirurgien-dentiste',
 	'sage-femme',
 	'auxiliaire-médical',
+	'avocat',
 	'pamc'
 ] as const
 
@@ -662,10 +663,22 @@ export function getSimulatorsData({
 			icône: '🩹',
 			iframe: 'auxiliaire-medical',
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
-			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire'),
+			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Auxiliaire méd.'),
 			title: t(
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
+			),
+			component: IndépendantPLSimulation
+		},
+		avocat: {
+			config: avocatConfig,
+			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
+			iframe: 'avocat',
+			path: sitePaths.simulateurs['profession-libérale'].avocat,
+			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Avocat'),
+			title: t(
+				'pages.simulateurs.auxiliaire.title',
+				'Simulateur de revenus pour avocat en libéral'
 			),
 			component: IndépendantPLSimulation
 		},
@@ -760,5 +773,14 @@ const sageFemmeConfig: SimulationConfig = {
 		...professionLibéraleConfig.situation,
 		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
 		'dirigeant . indépendant . PL . métier': "'santé . sage-femme'"
+	}
+}
+
+const avocatConfig: SimulationConfig = {
+	...professionLibéraleConfig,
+	situation: {
+		...professionLibéraleConfig.situation,
+		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
+		'dirigeant . indépendant . PL . métier': "'avocat'"
 	}
 }

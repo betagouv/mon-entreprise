@@ -198,6 +198,8 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] =
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238216,0,0,4,0]"`;
 
+exports[`calculate simulations-professions-libérales: avocat 1`] = `"[0,38590,0,0,4,0]"`;
+
 exports[`calculate simulations-professions-libérales: médecin 1`] = `"[0,35727,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 2`] = `"[0,29771,0,0,4,0]"`;

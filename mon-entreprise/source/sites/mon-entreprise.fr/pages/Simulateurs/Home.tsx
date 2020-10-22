@@ -61,7 +61,7 @@ export default function Simulateurs() {
 				<>
 					<h3>
 						<small>
-							<Trans>Professionnels de santé</Trans> {emoji('🏥')}
+							<Trans>Par profession</Trans>
 						</small>
 					</h3>
 					<div className="ui__ small box-container">
@@ -69,6 +69,7 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
 						<SimulateurCard small {...simulators.médecin} />
 						<SimulateurCard small {...simulators['sage-femme']} />
+						<SimulateurCard small {...simulators['avocat']} />
 					</div>
 				</>
 				<h2>
