@@ -23,13 +23,13 @@ export default function NewsletterRegister() {
 	return (
 		<>
 			<h2>
-				<Trans i18nKey="newsletter.register.titre">Restez informé</Trans>
+				<Trans i18nKey="newsletter.register.titre">Restez au courant</Trans>
 			</h2>
 			<div className="footer__newsletterContainer">
 				<p>
 					<Trans i18nKey="newsletter.register.description">
 						Inscrivez-vous à notre newsletter pour être informés des nouveautés
-						accéder aux nouvelles fonctionnalités en avant-première.
+						et accéder aux nouvelles fonctionnalités en avant-première.
 					</Trans>
 				</p>
 
