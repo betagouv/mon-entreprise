@@ -66,6 +66,12 @@ dirigeant . assimilé salarié . réduction ACRE . taux:
           taux: 100%
         - plafond: 100%
           taux: 0%
+dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
+  applicable si: entreprise . ACRE
+  type: notification
+  description: |
+    Le taux ACRE utilisé est une moyenne annuelle. Le
+    simulateur ne prends pas encore en compte le calcul de l'ACRE mois par mois.
 
 dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié

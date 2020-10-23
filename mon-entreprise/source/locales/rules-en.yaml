@@ -3606,6 +3606,16 @@ dirigeant . assimilé salarié:
 dirigeant . assimilé salarié . réduction ACRE:
   titre.en: '[automatic] ACRE reduction'
   titre.fr: réduction ACRE
+dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
+  description.en: >
+    [automatic] The ACRE rate used is an annual average. The
+
+    simulator does not yet take into account the calculation of the ACRE month by month.
+  description.fr: |
+    Le taux ACRE utilisé est une moyenne annuelle. Le
+    simulateur ne prends pas encore en compte le calcul de l'ACRE mois par mois.
+  titre.en: '[automatic] notification annual rate'
+  titre.fr: notification taux annuel
 dirigeant . assimilé salarié . réduction ACRE . taux:
   titre.en: '[automatic] ACRE rate'
   titre.fr: taux ACRE
