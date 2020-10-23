@@ -1,6 +1,6 @@
 import { evaluateNode } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
-import uniroot from '../uniroot'
+import uniroot, { modifiedNewtonRaphson, newtonRaphson } from '../uniroot'
 import InversionNumérique from '../components/mecanisms/InversionNumérique'
 import { parseUnit } from '../units'
 
@@ -51,7 +51,7 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 		randomAttempt.nodeValue === null
 			? null
 			: // cette fonction détermine l'inverse d'une fonction sans faire trop d'itérations
-			  uniroot(
+			  newtonRaphson(
 					x => {
 						const candidateNode = evaluateWithValue(x)
 						return (
@@ -61,11 +61,24 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 								.nodeValue as number)
 						)
 					},
-					node.explanation.negativeValuesAllowed ? -1000000 : 0,
-					100000000,
-					0.1,
-					10
+					2000,
+					{ verbose: true }
 			  )
+	// uniroot(
+	// 	x => {
+	// 		const candidateNode = evaluateWithValue(x)
+	// 		return (
+	// 			candidateNode.nodeValue -
+	// 			// TODO: convertNodeToUnit migth return null or false
+	// 			(convertNodeToUnit(candidateNode.unit, inversedWith)
+	// 				.nodeValue as number)
+	// 		)
+	// 	},
+	// 	node.explanation.negativeValuesAllowed ? -1000000 : 0,
+	// 	100000000,
+	// 	0.1,
+	// 	10
+	// )
 	if (nodeValue === undefined) {
 		oldCache._meta.inversionFail = true
 	} else {
