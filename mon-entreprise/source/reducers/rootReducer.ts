@@ -91,13 +91,13 @@ function simulation(
 	existingCompany: Company
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
+		if (state && state.config === action.config) {
+			return state
+		}
 		const companySituation = action.useCompanyDetails
 			? getCompanySituation(existingCompany)
 			: {}
 		const { config, url } = action
-		if (state && state.config === config) {
-			return state
-		}
 		return {
 			config,
 			url,
