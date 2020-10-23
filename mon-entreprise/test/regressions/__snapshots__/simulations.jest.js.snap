@@ -28,13 +28,13 @@ exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 2`] = 
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 3`] = `"[50000,3175,14664,138,17977,32023]"`;
 
-exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,0,0,118,0,0]"`;
+exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 4`] = `"[50000,3176,17732,118,21026,28974]"`;
 
 exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = `"[50000,3175,16186,138,19499,30501]"`;
 
 exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,101,8950,41050]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,0,101,0,0]"`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,101,14711,35289]"`;
 
 exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,101,13261,36739]"`;
 
