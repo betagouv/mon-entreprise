@@ -1,3 +1,11 @@
+// We use a JavaScript implementation of the Brent method to find the root (the
+// "zero") of a monotone function. There are other methods like the
+// Newton-Raphson method, but they take the derivative of the function as an
+// input, wich in our case is costly to calculate. The Brent method doesn't
+// need to calculate the derivative.
+// An interesting description of the algorithm can be found here:
+// https://blogs.mathworks.com/cleve/2015/10/26/zeroin-part-2-brents-version/
+
 /**
  * Copied from https://gist.github.com/borgar/3317728
  *
@@ -10,11 +18,12 @@
  * Copyright (c) 2012 Borgar Thorsteinsson <borgar@borgar.net>
  * MIT License, http://www.opensource.org/licenses/mit-license.php
  *
- * @param {function} func function for which the root is sought.
- * @param {number} lowerLimit the lower point of the interval to be searched.
- * @param {number} upperLimit the upper point of the interval to be searched.
- * @param {number} errorTol the desired accuracy (convergence tolerance).
- * @param {number} maxIter the maximum number of iterations.
+ * @param func function for which the root is sought.
+ * @param lowerLimit the lower point of the interval to be searched.
+ * @param upperLimit the upper point of the interval to be searched.
+ * @param errorTol the desired accuracy (convergence tolerance).
+ * @param maxIter the maximum number of iterations.
+ * @param acceptableErrorTol return a result even if errorTol isn't reached after maxIter.
  * @returns an estimate for the root within accuracy.
  *
  */
@@ -22,8 +31,9 @@ export default function uniroot(
 	func: (x: number) => number,
 	lowerLimit: number,
 	upperLimit: number,
-	errorTol: number,
-	maxIter: number
+	errorTol = 0,
+	maxIter = 100,
+	acceptableErrorTol = 0
 ) {
 	let a = lowerLimit,
 		b = upperLimit,
@@ -36,9 +46,6 @@ export default function uniroot(
 		prevStep: number, // Distance from the last but one to the last approximation
 		p: number, // Interpolation step is calculated in the form p/q; division is delayed until the last moment
 		q: number
-
-	errorTol = errorTol || 0
-	maxIter = maxIter || 1000
 
 	while (maxIter-- > 0) {
 		prevStep = b - a
@@ -101,5 +108,8 @@ export default function uniroot(
 		if ((fb > 0 && fc > 0) || (fb < 0 && fc < 0)) {
 			;(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b
 		}
+	}
+	if (Math.abs(fb) < acceptableErrorTol) {
+		return b
 	}
 }

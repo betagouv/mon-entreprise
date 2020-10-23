@@ -64,7 +64,8 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 					node.explanation.negativeValuesAllowed ? -1000000 : 0,
 					100000000,
 					0.1,
-					10
+					10,
+					1
 			  )
 	if (nodeValue === undefined) {
 		oldCache._meta.inversionFail = true
