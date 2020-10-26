@@ -4277,11 +4277,25 @@ dirigeant . indépendant . PL . CARMF:
   titre.en: '[automatic] CARMF'
   titre.fr: CARMF
 dirigeant . indépendant . PL . CARMF . ASV:
-  titre.en: '[automatic] Advantage social vieillesse (CARMF)'
-  titre.fr: Avantage social vieillesse (CARMF)
+  description.en: >-
+    [automatic] The supplementary old-age allowance (ASV) scheme applies to
+    contracted doctors.
+
+    It operates in points and comprises a flat-rate portion and an adjustment portion calculated on the conventional income of N-2.
+
+    Two-thirds of the contribution of doctors in sector 1 is financed by the health insurance funds.
+  description.fr: >-
+    Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
+    pour les médecins conventionnés.
+
+    Il fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
+
+    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les Caisses maladie.
+  titre.en: '[automatic] Supplementary old-age allowances (CARMF)'
+  titre.fr: Allocations supplémentaires de vieillesse (CARMF)
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
-  titre.en: '[automatic] CPAM contribution to the old-age benefit'
-  titre.fr: Participation CPAM à l'avantage social vieillesse
+  titre.en: '[automatic] CPAM participation in supplementary old-age benefits'
+  titre.fr: Participation CPAM aux allocations supplémentaires de vieillesse
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the
@@ -4317,6 +4331,18 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
   titre.en: '[automatic] CPAM participation in basic retirement'
   titre.fr: participation CPAM à la retraite de base
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
+  description.en: >-
+    [automatic] The CARMF manages the supplementary pension plan. 
+
+    The amount of contributions is determined on the basis of net income from self-employment in the penultimate year.
+
+    Contributions for the first two years of affiliation are not due, unless you were over 40 when you started your self-employed activity. In that case, the contribution is proportional to the net self-employment income of 2018, with no further adjustment, with a maximum contribution of €14 110 .
+  description.fr: >-
+    La CARMF gère le régime de retraite complémentaire. 
+
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
+
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
   titre.en: '[automatic] supplementary pension (CARMF)'
   titre.fr: retraite complémentaire (CARMF)
 dirigeant . indépendant . PL . CARPIMKO:

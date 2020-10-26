@@ -3093,10 +3093,10 @@ contrat salarié . taxe d'apprentissage:
     branche: formation
     dû par: employeur
   description: La taxe d'apprentissage permet de financer par les entreprises les dépenses de l'apprentissage et des formations technologiques et professionnelles
-  non applicable si:
-    toutes ces conditions:
-      - entreprise . effectif < 11
-      - apprentissage
+  applicable si:
+    une de ces conditions:
+      - entreprise . effectif > 10
+      - apprentissage = non
   références:
     description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
     csa: http://www.opcalia.com/employeurs/financer-la-formation-et-lapprentissage/taxe-dapprentissage/contribution-supplementaire-a-lapprentissage-csa/
