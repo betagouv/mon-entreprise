@@ -176,66 +176,51 @@ exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139595
 
 exports[`calculate simulations-indépendant: échelle de revenus 8`] = `"[1239955,239955,1000000,1033666,444476,555524,0,1239955]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[0,500,0,0,3,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[2769,0,2269,500,0,500]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[0,1000,0,0,3,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 2`] = `"[3337,0,2337,1000,0,1000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[0,1500,0,0,3,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 3`] = `"[3905,0,2405,1500,0,1500]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[0,2000,0,0,3,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 4`] = `"[4473,0,2473,2000,0,2000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[0,5000,0,0,3,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 5`] = `"[7934,0,2934,5000,0,5000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[0,10000,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[14188,0,4188,10000,0,10000]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 7`] = `"[0,100000,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 7`] = `"[144691,0,44691,100000,24942,75058]"`;
 
-exports[`calculate simulations-professions-libérales: CIPAV 8`] = `"[0,1000000,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: CIPAV 8`] = `"[1236171,0,236171,1000000,444432,555568]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[0,22249,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7514,22486,955,21531]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[0,21923,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,7514,22486,955,21531]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238216,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,74365,225635,77147,148488]"`;
 
-exports[`calculate simulations-professions-libérales: avocat 1`] = `"[0,38590,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,13361,36639,4521,32118]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 1`] = `"[0,35727,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,13361,36639,4521,32118]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 2`] = `"[0,29771,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0,13361,36639,4521,32118]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,213519,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,74365,225635,77147,148488]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293799,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,91649,308351,121300,187051]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,85405,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 5`] = `"[120000,0,38884,81116,16874,64242]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[0,37617,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,13361,36639,4521,32118]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 2`] = `
-"[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 2`] = `"[20000,0,5354,14646,0,14646]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
-"[0,2729,0,0,3,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 3`] = `"[4000,0,2417,1583,0,1583]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 4`] = `
-"[0,14852,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 4`] = `"[20000,0,5354,14646,0,14646]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 5`] = `
-"[0,14775,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 5`] = `"[20000,0,5354,14646,0,14646]"`;
 
-exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[0,14698,0,0,4,0]
-Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
-`;
+exports[`calculate simulations-professions-libérales: sage-femme 6`] = `"[20000,0,5354,14646,0,14646]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
 "[605,0,0,7184,4,13]
