@@ -39,14 +39,14 @@ export default function SalariéSimulation() {
 			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
 			 * le simulateur dirigeant de SASU sur son site. */}
 			{!document.referrer?.includes('code.travail.gouv.fr') && (
-			<Banner icon={'👨‍✈️'}>
-				<Trans>
-					Vous êtes dirigeant d'une SAS(U) ?{' '}
-					<Link to={sitePaths.simulateurs.SASU}>
-						Accéder au simulateur de revenu dédié
-					</Link>
-				</Trans>
-			</Banner>
+				<Banner icon={'👨‍✈️'}>
+					<Trans>
+						Vous êtes dirigeant d'une SAS(U) ?{' '}
+						<Link to={sitePaths.simulateurs.SASU}>
+							Accéder au simulateur de revenu dédié
+						</Link>
+					</Trans>
+				</Banner>
 			)}
 		</>
 	)

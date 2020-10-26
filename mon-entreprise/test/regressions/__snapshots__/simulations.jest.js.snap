@@ -235,11 +235,20 @@ exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[605,0,0,7184,4,13]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
+"[605,0,0,7184,4,13]
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `"[1247,0,0,14544,4,26]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `
+"[1247,0,0,14544,4,26]
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `"[1889,0,0,21905,4,40]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
+"[1889,0,0,21905,4,40]
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 1`] = `"[1389,0,0,16178,4,29]"`;
 
