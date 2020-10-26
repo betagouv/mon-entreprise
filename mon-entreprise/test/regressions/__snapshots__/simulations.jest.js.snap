@@ -206,7 +206,7 @@ exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,21351
 
 exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293799,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,81098,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,85405,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[0,37617,0,0,4,0]"`;
 

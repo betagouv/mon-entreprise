@@ -95,6 +95,7 @@ const Tranche = ({ tranche, multiplicateur }) => {
 					<Trans>Au-delà du dernier plafond</Trans>
 				) : (
 					<>
+						<Trans>Inférieur à </Trans>
 						{makeJsx(tranche.plafond)}
 						{multiplicateur && !multiplicateur.isDefault && (
 							<>
