@@ -99,8 +99,8 @@ Nous n'avons rien trouvé: We didn't find any matching registered company.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 Pages associées: Related pages
-Par statut: By status
 Par profession: By job
+Par statut: By status
 Part du salaire net maintenue: Share of net salary maintained
 Part employeur: Employer share
 Part salariale: Employee share
@@ -1340,6 +1340,9 @@ simulateurs:
       due from the second year of the fiscal year. Its amount varies greatly
       depending on the company's turnover and domiciliation. <2>More
       information.</2>
+    cotisations-ordinales: For regulated professions, the simulator does not
+      calculate the amount of contributions to the order. They must be added
+      manually in the "operating expenses" box.
     indépendant: <0>The simulator does not take into account the micro-BNC and
       micro-BIC regimes.</0>
     plus: Read the details

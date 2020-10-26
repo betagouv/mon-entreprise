@@ -326,13 +326,13 @@ dirigeant . indépendant . PL . retraite CNAVPL:
 
   remplace: cotisations et contributions . retraite de base
   formule:
-    somme: 
+    somme:
       - produit:
           assiette: cotisations et contributions . retraite de base . assiette
           taux: 8.23%
           plafond: plafond sécurité sociale temps plein
         arrondi: oui
-      - produit: 
+      - produit:
           assiette: cotisations et contributions . retraite de base . assiette
           taux: 1.87%
           plafond: 5 * plafond sécurité sociale temps plein
@@ -799,7 +799,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
     Il fonctionne en points et comprend une part forfaitaire et une part
     d’ajustement calculée sur le revenu conventionnel de N-2.
-    
+
     Les deux tiers de la cotisation des médecins en secteur 1 sont financés
     par les Caisses maladie.
   non applicable si: métier . secteur médecin = 'non conventionné'
@@ -1060,28 +1060,25 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
 
 dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire:
   formule:
-    variations:
-      - si: entreprise . durée d'activité < 1 an
-        alors: 290 €/an
-      - si: entreprise . durée d'activité < 2 ans
-        alors: 581 €/an
-      - si: entreprise . durée d'activité < 3 ans
-        alors: 912 €/an
-      - si: entreprise . durée d'activité < 5 ans
-        alors: 1242 €/an
-      - sinon: 1586 €/an
+    grille:
+      assiette: entreprise . durée d'activité . en fin d'année
+      tranches:
+        - montant: 290 €/an
+          plafond: 1 an
+        - montant: 581 €/an
+          plafond: 2 ans
+        - montant: 912 €/an
+          plafond: 3 ans
+        - montant: 1242 €/an
+          plafond: 5 ans
+        - montant: 1586 €/an
 
 dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle:
   formule:
     produit:
       taux: 3.1%
-      assiette:
-        variations:
-          - si: entreprise . durée d'activité < 2 ans
-            alors: 19% * plafond sécurité sociale temps plein [€/an]
-          - sinon:
-              valeur: assiette des cotisations
-              plafond: 291718 €/an
+      assiette: assiette des cotisations
+      plafond: 291718 €/an
 
 dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
@@ -1089,7 +1086,7 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   formule:
     barème:
       assiette: assiette des cotisations
-      multiplicateur: multiplicateur
+      multiplicateur: 41674 €/an
       tranches:
         - taux: 4%
           plafond: 1
@@ -1107,14 +1104,11 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     d'avantage pour acquérir d'avantages de points. Seule la première classe est
     implémentée pour l'instant.
 
-dirigeant . indépendant . PL . CNBF . retraite complémentaire . multiplicateur:
-  formule: 41674 €/an
-
 dirigeant . indépendant . PL . CNBF . RID:
   titre: invalidité et décès (CNBF avocat)
   remplace: cotisations et contributions . invalidité et décès
   formule:
     variations:
-      - si: entreprise . durée d'activité < 5 ans
+      - si: entreprise . durée d'activité . en fin d'année < 5 ans
         alors: 55 €/an
       - sinon: 137 €/an
