@@ -132,7 +132,7 @@ Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73025,23025,50000,51980,8213,41787,0,73025]"`;
 
-exports[`calculate simulations-indépendant: activité 1`] = `"[26804,6804,20000,20725,601,19399,0,26804]"`;
+exports[`calculate simulations-indépendant: activité 1`] = `"[26805,6805,20000,20725,601,19399,0,26805]"`;
 
 exports[`calculate simulations-indépendant: activité 2`] = `"[29101,9101,20000,20787,603,19397,0,29101]"`;
 
@@ -196,15 +196,15 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] =
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[0,21923,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238215,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[0,238216,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 1`] = `"[0,35727,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 2`] = `"[0,29771,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,213518,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[0,213519,0,0,4,0]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293798,0,0,4,0]"`;
+exports[`calculate simulations-professions-libérales: médecin 4`] = `"[0,293799,0,0,4,0]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 5`] = `"[0,81098,0,0,4,0]"`;
 
@@ -216,7 +216,7 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 3`] = `
-"[0,2728,0,0,3,0]
+"[0,2729,0,0,3,0]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
@@ -231,7 +231,7 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
-"[0,14699,0,0,4,0]
+"[0,14698,0,0,4,0]
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 

@@ -317,16 +317,17 @@ dirigeant . indépendant . PL . retraite CNAVPL:
 
   remplace: cotisations et contributions . retraite de base
   formule:
-    produit:
-      assiette: cotisations et contributions . retraite de base . assiette
-      composantes:
-        - nom: tranche 1
+    somme: 
+      - produit:
+          assiette: cotisations et contributions . retraite de base . assiette
           taux: 8.23%
           plafond: plafond sécurité sociale temps plein
-        - nom: tranche 2
+        arrondi: oui
+      - produit: 
+          assiette: cotisations et contributions . retraite de base . assiette
           taux: 1.87%
           plafond: 5 * plafond sécurité sociale temps plein
-    arrondi: oui
+        arrondi: oui
   références:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
