@@ -4475,9 +4475,6 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     implémentée pour l'instant.
   titre.en: '[automatic] supplementary pension (CNBF)'
   titre.fr: retraite complémentaire (CNBF)
-dirigeant . indépendant . PL . CNBF . retraite complémentaire . multiplicateur:
-  titre.en: '[automatic] multiplier'
-  titre.fr: multiplicateur
 dirigeant . indépendant . PL . CNBF . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base

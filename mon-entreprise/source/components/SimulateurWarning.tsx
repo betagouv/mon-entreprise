@@ -101,6 +101,15 @@ export default function SimulateurWarning({
 						</Trans>
 					</li>
 				)}
+				{['profession-libérale'].includes(simulateur) && (
+					<li>
+						<Trans i18nKey="simulateurs.warning.cotisations-ordinales">
+							Pour les professions réglementées, le simulateur ne calcule pas le
+							montant des cotisations à l'ordre. Elles doivent être ajoutées
+							manuellement dans la case « charges de fonctionnement ».
+						</Trans>
+					</li>
+				)}
 			</ul>
 		</Warning>
 	)
