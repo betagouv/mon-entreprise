@@ -10,6 +10,7 @@ export default function SimulateurPage({
 	meta,
 	title,
 	config,
+	tooltip,
 	component: Component,
 	seoExplanations
 }: SimulatorData[keyof SimulatorData]) {
@@ -26,7 +27,20 @@ export default function SimulateurPage({
 	return (
 		<>
 			{meta && <Meta {...meta} />}
-			{title && !inIframe && <h1>{title}</h1>}
+			{title && !inIframe && (
+				<>
+					<h1>{title}</h1>
+					{tooltip && (
+						<h2
+							css={`
+								margin-top: 0;
+							`}
+						>
+							<small>{tooltip}</small>
+						</h2>
+					)}
+				</>
+			)}
 			<Component />
 			{seoExplanations && !inIframe && seoExplanations}
 		</>
