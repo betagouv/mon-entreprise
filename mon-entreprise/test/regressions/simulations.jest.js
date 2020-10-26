@@ -13,6 +13,7 @@ import autoentrepreneurConfig from '../../source/sites/mon-entreprise.fr/pages/S
 import independantConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/indépendant.yaml'
 import remunerationDirigeantConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import employeeConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/salarié.yaml'
+import professionLibéraleConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/profession-libérale.yaml'
 import aideDéclarationConfig from '../../source/sites/mon-entreprise.fr/pages/Gérer/AideDéclarationIndépendant/config.yaml'
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
@@ -143,12 +144,7 @@ it('calculate aide-déclaration-indépendant', () => {
 it('calculate simulations-professions-libérales', () => {
 	runSimulations(
 		professionsLibéralesSituations,
-		remunerationDirigeantConfig.objectifs,
-		{
-			...remunerationDirigeantConfig.situation,
-			dirigeant: "'indépendant'",
-			"entreprise . catégorie d'activité": "'libérale'",
-			"entreprise . catégorie d'activité . libérale règlementée": 'oui'
-		}
+		professionLibéraleConfig.objectifs,
+		professionLibéraleConfig.situation
 	)
 })
