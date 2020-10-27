@@ -3,7 +3,7 @@
 		"moduleResolution": "node",
 		"module": "esnext",
 		"target": "esnext",
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,

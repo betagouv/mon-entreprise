@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeJsx } from '../../evaluation'
 import { Mecanism } from './common'
 

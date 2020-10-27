@@ -59,10 +59,12 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			...(explanation && {
 				explanation
 			}),
-			...(explanation?.temporalValue && {
-				temporalValue: explanation.temporalValue
-			}),
-			...(explanation?.unit && { unit: explanation.unit }),
+			...(explanation?.temporalValue
+				? {
+						temporalValue: explanation.temporalValue
+				  }
+				: {}),
+			...(explanation?.unit ? { unit: explanation.unit } : {}),
 			missingVariables
 		}
 		return addReplacementMissingVariable(this.cache[cacheName])
