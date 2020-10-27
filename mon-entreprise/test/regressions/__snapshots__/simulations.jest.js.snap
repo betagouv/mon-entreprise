@@ -202,6 +202,10 @@ exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,1
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `"[50000,0,11770,38229,4711,33518]"`;
 
+exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,5042,14958,0,14958]"`;
+
+exports[`calculate simulations-professions-libérales: expert-comptable 2`] = `"[50000,0,14831,35169,3616,31553]"`;
+
 exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,14273,35727,3671,32056]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0,20229,29771,2334,27437]"`;

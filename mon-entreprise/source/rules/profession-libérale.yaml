@@ -14,6 +14,7 @@ dirigeant . indépendant . PL . métier:
       possibilités:
         - santé
         - avocat
+        - expert-comptable
         - rattaché CIPAV
 
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
@@ -95,6 +96,11 @@ dirigeant . indépendant . PL . métier . avocat:
   description: |
     Les avocats cotisent auprès d'un organisme autonome pour la retraite et la
     prévoyance.
+
+dirigeant . indépendant . PL . métier . expert-comptable:
+  description: |
+    Les experts comptables et les commissaires aux comptes cotisent auprès d'un
+    organisme autonome pour la retraite et la prévoyance.
 
 dirigeant . indépendant . PL . option régime général:
   applicable si:
@@ -1047,6 +1053,9 @@ dirigeant . indépendant . PL . CNBF:
   description: |
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.
+  rend non applicable:
+    # Applicable mais pas encore supporté
+    - conjoint collaborateur
   références:
     Site CNBF: https://www.cnbf.fr
     Barème 2020: https://www.cnbf.fr/wp-content/uploads/2020/08/CNBF-bareme-des-cotisations-et-prestations-2020.pdf
@@ -1112,3 +1121,59 @@ dirigeant . indépendant . PL . CNBF . RID:
       - si: entreprise . durée d'activité . en fin d'année < 5 ans
         alors: 55 €/an
       - sinon: 137 €/an
+
+dirigeant . indépendant . PL . CAVEC:
+  formule: oui
+  applicable si: métier = 'expert-comptable'
+  description: |
+    La CAVEC est l’organisme de sécurité sociale des experts-comptables et des
+    commissaires aux comptes.
+  rend non applicable:
+    # Applicable mais pas encore supporté
+    - conjoint collaborateur
+  références:
+    Site CAVEC: https://www.cavec.fr
+
+dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
+  titre: retraite complémentaire (CAVEC)
+  remplace: cotisations et contributions . retraite complémentaire
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      unité: €/an
+      tranches:
+        - montant: 648
+          plafond: 16190 €/an
+        - montant: 2430
+          plafond: 32350 €/an
+        - montant: 3834
+          plafond: 44790 €/an
+        - montant: 5994
+          plafond: 64560 €/an
+        - montant: 9558
+          plafond: 79040 €/an
+        - montant: 14580
+          plafond: 94850 €/an
+        - montant: 16200
+          plafond: 132780 €/an
+        - montant: 20250
+  références:
+    Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
+
+dirigeant . indépendant . PL . CAVEC . invalidité et décès:
+  titre: invalidité et décès (CAVEC)
+  remplace: cotisations et contributions . invalidité et décès
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      unité: €/an
+      tranches:
+        - montant: 288
+          plafond: 16190 €/an
+        - montant: 396
+          plafond: 44790 €/an
+        - montant: 612
+          plafond: 79040 €/an
+        - montant: 828
+  références:
+    Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62

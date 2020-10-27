@@ -52,6 +52,7 @@ const simulateurs = [
 	'sage-femme',
 	'auxiliaire-médical',
 	'avocat',
+	'expert-comptable',
 	'pamc'
 ] as const
 
@@ -675,10 +676,25 @@ export function getSimulatorsData({
 			icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
 			iframe: 'avocat',
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
-			shortName: t('pages.simulateurs.auxiliaire.shortname', 'Avocat'),
+			shortName: t('pages.simulateurs.avocat.shortname', 'Avocat'),
 			title: t(
-				'pages.simulateurs.auxiliaire.title',
+				'pages.simulateurs.avocat.title',
 				'Simulateur de revenus pour avocat en libéral'
+			),
+			component: IndépendantPLSimulation
+		},
+		'expert-comptable': {
+			config: expertComptableConfig,
+			icône: '🧮',
+			iframe: 'expert-comptable',
+			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
+			shortName: t(
+				'pages.simulateurs.expert-comptable.shortname',
+				'Expert-Comptable'
+			),
+			title: t(
+				'pages.simulateurs.expert-comptable.title',
+				'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
 			),
 			component: IndépendantPLSimulation
 		},
@@ -740,47 +756,18 @@ export default function useSimulatorsData(): SimulatorData {
 
 professionLibéraleConfig as SimulationConfig
 
-const auxiliaireConfig: SimulationConfig = {
+const configFromPLMetier = (metier: string): SimulationConfig => ({
 	...professionLibéraleConfig,
 	situation: {
 		...professionLibéraleConfig.situation,
 		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': "'santé . auxiliaire médical'"
+		'dirigeant . indépendant . PL . métier': `'${metier}'`
 	}
-}
+})
 
-const dentisteConfig: SimulationConfig = {
-	...professionLibéraleConfig,
-	situation: {
-		...professionLibéraleConfig.situation,
-		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': "'santé . chirurgien-dentiste'"
-	}
-}
-
-const médecinConfig: SimulationConfig = {
-	...professionLibéraleConfig,
-	situation: {
-		...professionLibéraleConfig.situation,
-		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': "'santé . médecin'"
-	}
-}
-
-const sageFemmeConfig: SimulationConfig = {
-	...professionLibéraleConfig,
-	situation: {
-		...professionLibéraleConfig.situation,
-		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': "'santé . sage-femme'"
-	}
-}
-
-const avocatConfig: SimulationConfig = {
-	...professionLibéraleConfig,
-	situation: {
-		...professionLibéraleConfig.situation,
-		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': "'avocat'"
-	}
-}
+const auxiliaireConfig = configFromPLMetier('santé . auxiliaire médical')
+const dentisteConfig = configFromPLMetier('santé . chirurgien-dentiste')
+const médecinConfig = configFromPLMetier('santé . médecin')
+const sageFemmeConfig = configFromPLMetier('santé . sage-femme')
+const avocatConfig = configFromPLMetier('avocat')
+const expertComptableConfig = configFromPLMetier('expert-comptable')

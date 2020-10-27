@@ -4370,6 +4370,23 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
 dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   titre.en: '[automatic] supplementary pension (CARPIMKO)'
   titre.fr: retraite complémentaire (CARPIMKO)
+dirigeant . indépendant . PL . CAVEC:
+  description.en: >
+    [automatic] The CAVEC is the social security body for accountants and public
+    accountants.
+
+    auditors.
+  description.fr: |
+    La CAVEC est l’organisme de sécurité sociale des experts-comptables et des
+    commissaires aux comptes.
+  titre.en: '[automatic] CAVEC'
+  titre.fr: CAVEC
+dirigeant . indépendant . PL . CAVEC . invalidité et décès:
+  titre.en: '[automatic] disability and death (CAVEC)'
+  titre.fr: invalidité et décès (CAVEC)
+dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension (CAVEC)'
+  titre.fr: retraite complémentaire (CAVEC)
 dirigeant . indépendant . PL . CIPAV:
   description.en: >
     [automatic] CIPAV is the independent pension fund for the regulated
@@ -4855,6 +4872,15 @@ dirigeant . indépendant . PL . métier . avocat:
     prévoyance.
   titre.en: '[automatic] lawyer'
   titre.fr: avocat
+dirigeant . indépendant . PL . métier . expert-comptable:
+  description.en: |
+    [automatic] Accountants and statutory auditors pay contributions to a
+    an autonomous body for retirement and pension provision.
+  description.fr: |
+    Les experts comptables et les commissaires aux comptes cotisent auprès d'un
+    organisme autonome pour la retraite et la prévoyance.
+  titre.en: '[automatic] chartered accountant'
+  titre.fr: expert-comptable
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
     [automatic] You work in a regulated profession attached to the CIPAV. The

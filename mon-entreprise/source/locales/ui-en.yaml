@@ -985,6 +985,9 @@ pages:
       title: Income simulator for a private medical assistant
       tooltip: Nurses, masseur-physiotherapists, chiropodists, speech therapists and
         orthoptists
+    avocat:
+      shortname: Lawyer
+      title: Income simulator for private lawyers
     chirurgien-dentiste:
       shortname: Dental surgeon
       title: Income simulator for a private dental surgeon
@@ -1090,6 +1093,9 @@ pages:
         this, simply enter the announced compensation in the total loaded box.
         The simulation can then be refined by answering the various
         questions.</4>"
+    expert-comptable:
+      shortname: Chartered Accountant
+      title: Income simulator for chartered accountant and auditor in private practice
     indépendant:
       meta:
         description: Calculation of net income after tax and contributions based on
