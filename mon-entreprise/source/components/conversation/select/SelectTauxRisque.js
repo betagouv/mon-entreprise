@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SelectTauxRisque.worker.js'
 const worker = new Worker()

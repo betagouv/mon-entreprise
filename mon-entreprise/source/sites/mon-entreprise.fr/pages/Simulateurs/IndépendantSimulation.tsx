@@ -1,7 +1,6 @@
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
 import IndépendantExplanation from 'Components/simulationExplanation/IndépendantExplanation'
-import React from 'react'
 export default function IndépendantSimulation() {
 	return (
 		<>

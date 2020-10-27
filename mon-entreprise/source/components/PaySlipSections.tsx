@@ -1,7 +1,5 @@
 import Value, { Condition, ValueProps } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
-import { EngineContext } from 'Components/utils/EngineContext'
-import React, { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { DottedName } from 'Rules'
 

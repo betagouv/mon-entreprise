@@ -1,4 +1,3 @@
-import React from 'react'
 import { keyframes } from 'styled-components'
 
 type SkeletonProps = {

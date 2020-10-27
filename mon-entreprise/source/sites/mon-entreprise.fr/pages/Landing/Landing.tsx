@@ -1,6 +1,6 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'

@@ -5,12 +5,12 @@ import Emoji from 'Components/utils/Emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import Engine from 'publicodes'
-import React, { Suspense, useCallback, useState } from 'react'
+import { lazy, createElement, Suspense, useCallback, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
 
-const LazyEndBlock = React.lazy(() => import('./EndBlock'))
+const LazyEndBlock = lazy(() => import('./EndBlock'))
 
 export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
@@ -128,7 +128,7 @@ function FormulairePublicodes({ engine }) {
 				<Animate.fromTop key={field.dottedName}>
 					{field.type === 'groupe' ? (
 						<>
-							{React.createElement(
+							{createElement(
 								`h${Math.min(field.dottedName.split(' . ').length + 1, 6)}`,
 								{},
 								field.title

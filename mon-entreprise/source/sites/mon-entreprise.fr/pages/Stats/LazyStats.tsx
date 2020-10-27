@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-const Stats = React.lazy(() => import('./Stats'))
+import { lazy, Suspense } from 'react'
+const Stats = lazy(() => import('./Stats'))
 
 export default function LazyStats() {
 	return (

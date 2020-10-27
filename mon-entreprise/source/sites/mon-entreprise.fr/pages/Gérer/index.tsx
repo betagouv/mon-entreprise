@@ -1,6 +1,6 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Switch } from 'react-router-dom'
 import { NavLink, useLocation } from 'react-router-dom'

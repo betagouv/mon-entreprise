@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { debounce as debounceFn } from '../utils'
 import './PercentageField.css'

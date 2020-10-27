@@ -16,8 +16,8 @@ module.exports = {
   },
   plugins: [
     "react",
-		"react-hooks",
-		"mocha"
+    "react-hooks",
+    "mocha"
   ],
   rules: {
     "quotes": [
@@ -39,9 +39,11 @@ module.exports = {
     "react/no-unescaped-entities": 0,
     "react/display-name": 1,
     "react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn",
-		"mocha/no-skipped-tests": "warn",
-		"mocha/no-exclusive-tests": "error"
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "mocha/no-skipped-tests": "warn",
+    "mocha/no-exclusive-tests": "error"
   },
   settings: {
     "react": {
@@ -71,21 +73,21 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": 0,
         '@typescript-eslint/prefer-string-starts-ends-with': 1,
         '@typescript-eslint/no-unnecessary-type-assertion': 1,  // has false positives (Object.values result) v 2.29.0
-				'@typescript-eslint/no-inferrable-types': 1,  // causes problems with unknown values v 2.29.0 typescript v 3.8.3
-				'@typescript-eslint/no-var-requires': 'off',
-				// TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
-				'@typescript-eslint/explicit-module-boundary-types': 'off',
-				'@typescript-eslint/no-floating-promises': 'off',
-				'@typescript-eslint/no-extra-semi': 'off',
-				'@typescript-eslint/no-unsafe-assignment': 'off',
-				'@typescript-eslint/no-unsafe-call': 'off',
-				'@typescript-eslint/no-unsafe-member-access': 'off',
-				'@typescript-eslint/no-unsafe-return': 'off',
-				'@typescript-eslint/restrict-plus-operands': 'off',
-				'@typescript-eslint/restrict-template-expressions': 'off',
-				'@typescript-eslint/naming-convention': 'off',
-				'@typescript-eslint/prefer-regexp-exec': 'off',
-				'@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-inferrable-types': 1,  // causes problems with unknown values v 2.29.0 typescript v 3.8.3
+        '@typescript-eslint/no-var-requires': 'off',
+        // TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/no-extra-semi': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/restrict-plus-operands': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        '@typescript-eslint/prefer-regexp-exec': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
       extends: [
         "plugin:@typescript-eslint/recommended",
@@ -93,7 +95,7 @@ module.exports = {
       ]
     },
     {
-			files: ["**/*.test.js"],
+      files: ["**/*.test.js"],
       env: {
         mocha: true
       }

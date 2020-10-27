@@ -1,7 +1,6 @@
 import { hot } from 'react-hot-loader/root'
 import 'core-js/stable'
 import 'react-hot-loader'
-import React from 'react'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import rules from 'Rules'

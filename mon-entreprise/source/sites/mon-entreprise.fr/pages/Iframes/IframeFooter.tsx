@@ -1,4 +1,3 @@
-import React from 'react'
 import Privacy from '../../layout/Footer/Privacy'
 
 export default function IframeFooter() {

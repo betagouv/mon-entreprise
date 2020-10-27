@@ -1,5 +1,4 @@
 import Warning from 'Components/ui/WarningBlock'
-import React from 'react'
 import { Trans } from 'react-i18next'
 import { SitePaths } from './utils/SitePathsContext'
 

@@ -1,5 +1,4 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 

@@ -72,7 +72,7 @@
 		"nearley": "^2.19.0",
 		"publicodes": "^1.0.0-beta.4",
 		"ramda": "^0.27.0",
-		"react": "^16.13.1",
+		"react": "^17.0.0",
 		"react-color": "^2.14.0",
 		"react-dom": "npm:@hot-loader/react-dom",
 		"react-easy-emoji": "^1.2.0",

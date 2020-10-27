@@ -9,7 +9,6 @@ import {
 	Link
 } from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/URSSAF.png'
-import React from 'react'
 import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'
 import robotoUrl from './Roboto-Regular.ttf'

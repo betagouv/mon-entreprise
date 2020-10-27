@@ -8,7 +8,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Components/conversation/RuleInput'
 import { ParsedRule } from 'publicodes'
-import React, { useCallback, useEffect, useState, useContext } from 'react'
+import { Fragment, useCallback, useEffect, useState, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
@@ -432,7 +432,7 @@ function Results() {
 			<>
 				<Animate.fromTop>
 					{results.map(r => (
-						<React.Fragment key={r.title}>
+						<Fragment key={r.title}>
 							<h4>
 								{r.title} <small>{r.summary}</small>
 							</h4>
@@ -449,7 +449,7 @@ function Results() {
 									)}
 								</RuleLink>
 							</p>
-						</React.Fragment>
+						</Fragment>
 					))}
 				</Animate.fromTop>
 			</>

@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
 import { is } from 'ramda'
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'

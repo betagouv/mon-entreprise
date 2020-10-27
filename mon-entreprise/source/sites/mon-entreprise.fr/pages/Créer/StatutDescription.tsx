@@ -1,4 +1,3 @@
-import React from 'react'
 import { Trans } from 'react-i18next'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 type Props = {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Envie de donner un coup de pouce ? Répondez à notre sondage sur le simulateur.
 export default function LinkToForm() {
 	const hostname = new URL(

@@ -1,5 +1,5 @@
 import { getInitialState, persistState } from 'Components/utils/persistState'
-import React, { createContext, useCallback, useReducer } from 'react'
+import { createContext, useCallback, useReducer } from 'react'
 
 const StoreContext = createContext()
 

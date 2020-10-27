@@ -1,6 +1,6 @@
 import { EngineContext } from 'Components/utils/EngineContext'
 import { max } from 'ramda'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'

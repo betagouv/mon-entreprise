@@ -1,5 +1,4 @@
 import image from 'Images/map-directions.png'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'

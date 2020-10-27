@@ -1,7 +1,6 @@
 // TODO : load translation only if en
 import 'Components/ui/index.css'
 import 'iframe-resizer'
-import React from 'react'
 import { hot } from 'react-hot-loader'
 import { Route, Switch } from 'react-router-dom'
 import Provider from '../../Provider'

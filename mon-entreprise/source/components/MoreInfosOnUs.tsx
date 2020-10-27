@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'

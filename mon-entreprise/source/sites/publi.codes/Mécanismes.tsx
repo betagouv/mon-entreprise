@@ -1,6 +1,6 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import React, { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
 import mecanisms from '../../../../publicodes/docs/mecanisms.yaml'
@@ -35,10 +35,10 @@ export default function Landing() {
 				))}
 			</ul>
 			{Object.entries(mecanisms).map(([name, data]) => (
-				<React.Fragment key={name}>
+				<Fragment key={name}>
 					<Explanation {...(data as any)} name={name} />
 					<Link to={pathname + '#top'}>Retour à la liste</Link>
-				</React.Fragment>
+				</Fragment>
 			))}
 		</div>
 	)
@@ -61,10 +61,10 @@ function Explanation({ name, description, exemples }: ExplanationProp) {
 			{exemples && (
 				<>
 					{Object.entries(exemples).map(([name, exemple]) => (
-						<React.Fragment key={name}>
+						<Fragment key={name}>
 							<h3>{name === 'base' ? 'Exemple' : capitalise0(name)}</h3>
 							<Markdown source={`\`\`\`yaml\n${exemple}\n\`\`\``} />
-						</React.Fragment>
+						</Fragment>
 					))}{' '}
 				</>
 			)}

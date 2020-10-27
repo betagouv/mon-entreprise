@@ -1,5 +1,5 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 export const icons = {
 	facebook: {

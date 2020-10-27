@@ -1,5 +1,5 @@
 import { usePersistingState } from 'Components/utils/persistState'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 

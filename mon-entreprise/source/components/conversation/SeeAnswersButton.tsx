@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Trans } from 'react-i18next'
 import Answers from './AnswerList'
 import './conversation.css'
