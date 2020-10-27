@@ -1,6 +1,6 @@
 import { RuleInputProps } from 'Components/conversation/RuleInput'
 import { Rule } from 'publicodes'
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
 

@@ -1,7 +1,7 @@
 import { resetCompanyStatusChoice } from 'Actions/companyStatusActions'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { toPairs } from 'ramda'
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'

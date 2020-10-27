@@ -13,7 +13,7 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { EvaluatedRule, formatValue } from 'publicodes'
 import { isNil } from 'ramda'
-import React, { useCallback, useContext } from 'react'
+import { Fragment, useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,7 +42,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 				nom?: string
 				objectifs: Array<DottedName>
 			}>).map(({ icône, objectifs: targets, nom }, index: number) => (
-				<React.Fragment key={nom || '0'}>
+				<Fragment key={nom || '0'}>
 					<div style={{ display: 'flex', alignItems: 'end' }}>
 						<div style={{ flex: 1 }}>
 							{nom && (
@@ -72,7 +72,7 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 							))}
 						</ul>
 					</section>
-				</React.Fragment>
+				</Fragment>
 			))}
 		</div>
 	)

@@ -1,5 +1,4 @@
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { inIframe } from '../../../../utils'
 import useSimulatorsData from '../Simulateurs/metadata'

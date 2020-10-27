@@ -1,5 +1,5 @@
 import { ThemeColorsContext } from 'Components/utils/colors'
-import React, { useCallback, useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import { debounce } from '../../utils'
 
 export default function TextInput({

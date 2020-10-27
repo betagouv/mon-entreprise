@@ -1,4 +1,3 @@
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 

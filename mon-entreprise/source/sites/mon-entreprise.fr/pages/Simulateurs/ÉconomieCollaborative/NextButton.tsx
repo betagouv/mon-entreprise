@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { activitéVue } from './actions'

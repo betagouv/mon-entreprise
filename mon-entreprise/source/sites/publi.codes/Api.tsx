@@ -1,4 +1,3 @@
-import React from 'react'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { Header } from './Header'
 import api from '../../../../publicodes/docs/api.md'

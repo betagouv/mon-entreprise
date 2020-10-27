@@ -1,6 +1,6 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { filter } from 'ramda'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'

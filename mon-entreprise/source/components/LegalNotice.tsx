@@ -1,5 +1,5 @@
 import Overlay from 'Components/Overlay'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Trans } from 'react-i18next'
 
 export const LegalNoticeContent = () => (

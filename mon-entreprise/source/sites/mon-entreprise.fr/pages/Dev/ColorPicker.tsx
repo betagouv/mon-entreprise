@@ -1,4 +1,3 @@
-import React from 'react'
 import { ChromePicker, ChromePickerProps } from 'react-color'
 
 type ColorPickerProps = {

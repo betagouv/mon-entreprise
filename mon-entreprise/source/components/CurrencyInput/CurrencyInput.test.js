@@ -1,6 +1,5 @@
 import { expect } from 'chai'
 import { mount, shallow } from 'enzyme'
-import React from 'react'
 import { match, spy, useFakeTimers } from 'sinon'
 import CurrencyInput from './CurrencyInput'
 

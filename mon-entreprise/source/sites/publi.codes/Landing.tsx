@@ -1,7 +1,7 @@
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import publicodeReadme from '../../../../publicodes/README.md'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Header } from './Header'
 import { NavLink } from 'react-router-dom'
 

@@ -1,7 +1,7 @@
 import { hideNotification } from 'Actions/actions'
 import animate from 'Components/ui/animate'
 import { useInversionFail, EngineContext } from 'Components/utils/EngineContext'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'

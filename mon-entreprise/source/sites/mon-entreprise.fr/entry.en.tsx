@@ -1,7 +1,6 @@
 import 'core-js/stable'
 import { hot } from 'react-hot-loader/root'
 import { translateRules } from 'publicodes'
-import React from 'react'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
 import rules from 'Rules'

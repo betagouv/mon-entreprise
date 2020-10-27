@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
 import { formatValue } from 'publicodes'
-import React from 'react'
 
 export default function FieldsPDF({ fields }) {
 	return fields.map(field => (

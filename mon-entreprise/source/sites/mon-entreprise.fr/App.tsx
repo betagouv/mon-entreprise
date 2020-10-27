@@ -8,7 +8,7 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
 import Engine from 'publicodes'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'

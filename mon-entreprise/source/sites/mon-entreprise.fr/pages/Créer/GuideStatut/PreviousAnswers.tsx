@@ -1,6 +1,6 @@
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { isNil } from 'ramda'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'

@@ -1,7 +1,7 @@
 import { explainVariable } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import { Markdown } from 'Components/utils/markdown'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import './Aide.css'

@@ -3,7 +3,7 @@ import Overlay from 'Components/Overlay'
 import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { TrackerContext } from 'Components/utils/withTracker'
-import React, { Suspense, useContext, useRef, useState } from 'react'
+import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
 import PDFDocument from './PDFDocument'
@@ -186,7 +186,7 @@ export default function EndBlock({ fields, isMissingValues }) {
 	)
 }
 
-const LazyBlobProvider = React.lazy<typeof BlobProvider>(
+const LazyBlobProvider = lazy<typeof BlobProvider>(
 	() =>
 		new Promise(resolve =>
 			setTimeout(() => resolve({ default: BlobProvider }), 300)

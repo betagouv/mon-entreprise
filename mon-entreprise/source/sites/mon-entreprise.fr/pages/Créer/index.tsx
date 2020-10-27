@@ -1,6 +1,6 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { LANDING_LEGAL_STATUS_LIST } from '../../sitePaths'

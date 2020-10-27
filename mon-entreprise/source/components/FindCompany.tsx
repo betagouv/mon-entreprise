@@ -1,6 +1,6 @@
 import { setEntreprise } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
-import React, { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Etablissement, searchDenominationOrSiren } from '../api/sirene'

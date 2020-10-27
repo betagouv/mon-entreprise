@@ -1,6 +1,6 @@
-import React, { Suspense, useMemo } from 'react'
+import { lazy, useState, useRef, useEffect, Suspense, useMemo } from 'react'
 import useSimulatorsData from '../Simulateurs/metadata'
-const LazyColorPicker = React.lazy(() => import('./ColorPicker'))
+const LazyColorPicker = lazy(() => import('./ColorPicker'))
 
 export default function IntegrationTest() {
 	const simulators = useSimulatorsData()
@@ -11,13 +11,11 @@ export default function IntegrationTest() {
 				.filter(Boolean),
 		[simulators]
 	)
-	const [currentModule, setCurrentModule] = React.useState(
-		integrableModuleNames[0]
-	)
-	const [color, setColor] = React.useState('#005aa1')
-	const [version, setVersion] = React.useState(0)
-	const domNode = React.useRef<HTMLDivElement>(null)
-	React.useEffect(() => {
+	const [currentModule, setCurrentModule] = useState(integrableModuleNames[0])
+	const [color, setColor] = useState('#005aa1')
+	const [version, setVersion] = useState(0)
+	const domNode = useRef<HTMLDivElement>(null)
+	useEffect(() => {
 		const script = document.createElement('script')
 		script.id = 'script-monentreprise'
 		script.src = window.location.origin + '/simulateur-iframe-integration.js'
