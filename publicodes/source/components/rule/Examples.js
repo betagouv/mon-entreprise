@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import React from 'react'
 import { Trans } from 'react-i18next'
 
 export default function Examples({ rule, setCurrentExample, currentExample }) {

@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'

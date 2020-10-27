@@ -1,5 +1,5 @@
 import { path } from 'ramda'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { makeJsx } from '../../evaluation'
 import { Mecanism, NodeValuePointer } from './common'
 import styled from 'styled-components'
