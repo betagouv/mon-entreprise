@@ -70,7 +70,7 @@ export default function useSyncSituationInUrl() {
 	])
 }
 
-function getSearchParamsFromSituation<T extends string>(
+export function getSearchParamsFromSituation<T extends string>(
 	situation: Record<string, string>,
 	targetUnit: string,
 	engine: Engine<T>
@@ -104,7 +104,7 @@ function getSearchParamsFromSituation<T extends string>(
 	return searchParams.toString()
 }
 
-function getSituationFromSearchParams<T extends string>(
+export function getSituationFromSearchParams<T extends string>(
 	searchParams: URLSearchParams,
 	config: Partial<SimulationConfig>,
 	engine: Engine<T>
