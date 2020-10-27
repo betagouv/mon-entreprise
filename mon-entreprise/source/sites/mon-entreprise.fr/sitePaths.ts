@@ -61,7 +61,8 @@ const sitePathsFr = {
 			auxiliaire: '/auxiliaire-medical',
 			'chirurgien-dentiste': '/chirurgien-dentiste',
 			'sage-femme': '/sage-femme',
-			avocat: '/avocat'
+			avocat: '/avocat',
+			'expert-comptable': '/expert-comptable'
 		},
 		'chômage-partiel': '/chômage-partiel',
 		économieCollaborative: {
@@ -120,7 +121,8 @@ const sitePathsEn = {
 			auxiliaire: '/medical-auxiliary',
 			'chirurgien-dentiste': '/dental-surgeon',
 			'sage-femme': '/midwife',
-			avocat: '/lawyer'
+			avocat: '/lawyer',
+			'expert-comptable': '/accountant'
 		},
 		économieCollaborative: {
 			index: '/sharing-economy',

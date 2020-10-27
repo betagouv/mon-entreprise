@@ -137,10 +137,11 @@ function PLExplanation() {
 function CaisseRetraite() {
 	const engine = useContext(EngineContext)
 	const unit = useSelector(targetUnitSelector)
+	const caisses = ['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF', 'CNBF', 'CAVEC']
 
 	return (
 		<>
-			{['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF', 'CNBF'].map(caisse => {
+			{caisses.map(caisse => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = engine.evaluate(dottedName)
 				return (

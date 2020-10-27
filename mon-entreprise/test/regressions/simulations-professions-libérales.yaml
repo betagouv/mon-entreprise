@@ -63,6 +63,12 @@ avocat:
     dirigeant . rémunération totale: 50000 €/an
     entreprise . durée d'activité . en fin d'année: 6 ans
 
+expert-comptable:
+  - dirigeant . indépendant . PL . métier: "'expert-comptable'"
+    dirigeant . rémunération totale: 20000 €/an
+  - dirigeant . indépendant . PL . métier: "'expert-comptable'"
+    dirigeant . rémunération totale: 50000 €/an
+
 CIPAV:
   - dirigeant . indépendant . revenu net de cotisations: 500 €/an
   - dirigeant . indépendant . revenu net de cotisations: 1000 €/an
