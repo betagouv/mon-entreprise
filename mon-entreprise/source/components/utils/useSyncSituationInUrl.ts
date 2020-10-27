@@ -51,7 +51,10 @@ export default function useSyncSituationInUrl() {
 						dispatch(updateSituation(dottedName as DottedName, value))
 					}
 				)
-				//dispatch(setActiveTarget())
+				const activeTarget = Object.keys(configFromURL.situation)[0]
+				if (activeTarget) {
+					dispatch(setActiveTarget(activeTarget as DottedName))
+				}
 				setConfigIsExtracted(true)
 			}
 		}
