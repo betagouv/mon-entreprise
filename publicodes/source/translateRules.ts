@@ -37,7 +37,8 @@ export const attributesToTranslate = [
 	'question',
 	'résumé',
 	'suggestions',
-	'note'
+	'note',
+	'identifiant court'
 ]
 
 const translateProp = (lang: string, translation: Translation) => (

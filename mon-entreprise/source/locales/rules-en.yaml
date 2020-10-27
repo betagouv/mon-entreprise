@@ -2549,6 +2549,8 @@ contrat salarié . prix du travail:
   résumé.fr: Dépensé par l'entreprise
   titre.en: labor cost
   titre.fr: Coût total
+  identifiant court.en: employee-laborcost
+  identifiant court.fr: salarie-coutembauche
 contrat salarié . profession spécifique:
   question.en: '[automatic] Does the employee work in one of the following professions?'
   question.fr: Le salarié exerce t-il l'une des professions suivantes ?
@@ -3015,6 +3017,8 @@ contrat salarié . rémunération . brut de base:
   suggestions.salaire médian.fr: salaire médian
   titre.en: Gross salary
   titre.fr: Salaire brut
+  identifiant court.en: employee-brut
+  identifiant court.fr: salarie-brut
 contrat salarié . rémunération . brut de base . équivalent temps plein:
   question.en: What is the full-time equivalent salary?
   question.fr: Quel est le salaire en équivalent temps plein ?
@@ -3072,6 +3076,8 @@ contrat salarié . rémunération . net:
   résumé.fr: Salaire net avant impôt
   titre.en: Net salary
   titre.fr: Salaire net
+  identifiant court.en: employee-net
+  identifiant court.fr: salarie-net
 contrat salarié . rémunération . net après impôt:
   description.en: >-
     Net salary after deduction of the **neutral** income tax (also called
@@ -3097,6 +3103,8 @@ contrat salarié . rémunération . net après impôt:
   résumé.fr: Versé sur le compte bancaire
   titre.en: Net salary after income tax
   titre.fr: Salaire net après impôt
+  identifiant court.en: employee-netaftertax
+  identifiant court.fr: salarie-netapresimpot
 contrat salarié . rémunération . net avec revenus de remplacement:
   titre.en: '[automatic] net with replacement income'
   titre.fr: net avec revenus de remplacement
@@ -3258,6 +3266,8 @@ contrat salarié . rémunération . total:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
   titre.fr: Total chargé
+  identifiant court.fr: salarie-total
+  identifiant court.en: employee-total
 contrat salarié . salarié majeur:
   question.en: Is the employee over 18 (age of majority)?
   question.fr: Le salarié est-il majeur ?
@@ -3957,6 +3967,8 @@ dirigeant . auto-entrepreneur . net après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   titre.en: net income after tax
   titre.fr: revenu net après impôt
+  identifiant court.en: auto-entrepreneur-netaftertax
+  identifiant court.fr: auto-entrepreneur-netapresimpot
 dirigeant . auto-entrepreneur . net de cotisations:
   description.en:
     This is the income net of contributions and expenses, before the
@@ -3969,6 +3981,8 @@ dirigeant . auto-entrepreneur . net de cotisations:
   résumé.fr: Avant impôt
   titre.en: Net contribution income
   titre.fr: Revenu net de cotisations
+  identifiant court.en: auto-entrepreneur-net
+  identifiant court.fr: auto-entrepreneur-net
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
   description.en: >
     [automatic] The ACRE rate used is the one corresponding to the current
@@ -5737,6 +5751,8 @@ dirigeant . indépendant . revenu net de cotisations:
   résumé.fr: Avant déduction de l'impôt sur le revenu
   titre.en: net contribution income
   titre.fr: revenu net de cotisations
+  identifiant court.en: independant-net
+  identifiant court.fr: independant-net
 dirigeant . indépendant . revenu professionnel:
   description.en: >
     This is the income net of deductible contributions of the self-employed
@@ -5817,6 +5833,8 @@ dirigeant . rémunération totale:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Director total income
   titre.fr: rémunération totale
+  identifiant court.en: director-total
+  identifiant court.fr: dirigeant-total
 entreprise:
   description.en: The contract binds a company and an employee
   description.fr: |
@@ -6124,6 +6142,8 @@ entreprise . charges:
   résumé.fr: Toutes les dépenses nécessaires à l'entreprise
   titre.en: expenses
   titre.fr: charges de fonctionnement
+  identifiant court.en: company-expenses
+  identifiant court.fr: entreprise-charges
 entreprise . charges dont rémunération dirigeant:
   titre.en: expenses of which executive compensation
   titre.fr: charges dont rémunération dirigeant
@@ -6134,6 +6154,8 @@ entreprise . chiffre d'affaires:
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
+  identifiant court.en: company-turnover
+  identifiant court.fr: entreprise-ca
 entreprise . chiffre d'affaires de société:
   titre.en: company turnover
   titre.fr: chiffre d'affaires de société
@@ -6147,6 +6169,8 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
+  identifiant court.en: company-turnover-min
+  identifiant court.fr: entreprise-ca-min
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
@@ -7138,6 +7162,8 @@ revenu net après impôt:
   résumé.fr: Disponible sur votre compte en banque
   titre.en: Net income after tax
   titre.fr: revenu net après impôt
+  identifiant court.en: netaftertax
+  identifiant court.fr: netapresimpot
 revenus net de cotisations:
   description.en: |
     l'impôt sur le revenu.
