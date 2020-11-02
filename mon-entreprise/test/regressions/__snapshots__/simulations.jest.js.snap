@@ -244,61 +244,61 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
-"[605,0,0,7184,4,13]
+"[606,0,0,7198,4,13]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `
-"[1247,0,0,14544,4,26]
+"[1249,0,0,14573,4,26]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
-"[1889,0,0,21905,4,40]
+"[1893,0,0,21948,4,40]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 1`] = `"[1389,0,0,16178,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 1`] = `"[1391,0,0,16201,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 2`] = `"[1389,0,0,16178,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 2`] = `"[1391,0,0,16201,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 3`] = `"[1389,0,0,16178,4,29]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 3`] = `"[1391,0,0,16201,4,29]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 4`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 4`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 5`] = `"[14469,0,0,154362,4,46]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 5`] = `"[14490,0,0,154584,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[915,0,0,0,4,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 1`] = `"[917,0,0,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[915,0,0,0,4,0]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 2`] = `"[917,0,0,0,4,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 3`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 4`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 4`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 5`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): activités 5`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 1`] = `"[441,0,0,5306,4,10]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 1`] = `"[442,0,0,5313,4,10]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 2`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): avec charges 2`] = `"[917,0,0,10757,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 1`] = `"[0,0,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,0,0,139,0,1]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,0,0,140,0,1]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 3`] = `"[62,0,0,323,0,2]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 4`] = `"[204,0,0,2588,2,5]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 4`] = `"[204,0,0,2591,2,5]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 5`] = `"[441,0,0,5306,4,10]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 5`] = `"[442,0,0,5313,4,10]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 6`] = `"[915,0,0,10742,4,19]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 6`] = `"[917,0,0,10757,4,20]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 7`] = `"[2338,0,0,27050,4,46]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 7`] = `"[2341,0,0,27089,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4751,0,0,52684,4,46]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4758,0,0,52757,4,46]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
 "[0,0,806,2046,2,0]
@@ -424,12 +424,12 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `"[0,69895,0,36431,4,56]"`;
 
 exports[`calculate simulations-salarié: CCN HCR 1`] = `
-"[4193,0,2500,2468,2351]
+"[4192,0,2500,2468,2351]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié: CCN batiment 1`] = `
-"[3966,0,2500,1987,1878]
+"[3965,0,2500,1987,1878]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -444,7 +444,7 @@ Notifications affichées : contrat salarié . convention collective . contrôle 
 `;
 
 exports[`calculate simulations-salarié: CCN compta 1`] = `
-"[4133,0,2500,2478,2363]
+"[4132,0,2500,2478,2363]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -466,7 +466,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 exports[`calculate simulations-salarié: JEI 1`] = `"[3440,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié: JEI 2`] = `
-"[26635,0,20000,15969,10503]
+"[26633,0,20000,15969,10503]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -497,7 +497,7 @@ exports[`calculate simulations-salarié: activité partielle 11`] = `"[2694,0,90
 exports[`calculate simulations-salarié: aides 1`] = `"[2302,0,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: aides 2`] = `
-"[12823,0,10000,8911,7620]
+"[12822,0,10000,8911,7620]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé, contrat salarié . régime des impatriés . information"
 `;
 
@@ -513,10 +513,10 @@ exports[`calculate simulations-salarié: aides embauche covid 1`] = `
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
-exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7085,0,5000,3948,3298]"`;
+exports[`calculate simulations-salarié: aides embauche covid 2`] = `"[7084,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: aides embauche covid 3`] = `
-"[1256,0,1500,1165,1165]
+"[1255,0,1500,1165,1165]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -537,7 +537,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 
 exports[`calculate simulations-salarié: assimilé salarié 1`] = `"[7015,0,5000,3943,3286]"`;
 
-exports[`calculate simulations-salarié: assimilé salarié 2`] = `"[2128,0,1500,1163,1163]"`;
+exports[`calculate simulations-salarié: assimilé salarié 2`] = `"[2127,0,1500,1163,1163]"`;
 
 exports[`calculate simulations-salarié: assimilé salarié 3`] = `"[4228,0,3000,2348,2161]"`;
 
@@ -547,7 +547,7 @@ exports[`calculate simulations-salarié: avantages 1`] = `"[2667,0,2000,1540,149
 
 exports[`calculate simulations-salarié: avantages 2`] = `"[2677,0,2000,1539,1489]"`;
 
-exports[`calculate simulations-salarié: avantages 3`] = `"[2587,0,2000,1549,1500]"`;
+exports[`calculate simulations-salarié: avantages 3`] = `"[2586,0,2000,1549,1500]"`;
 
 exports[`calculate simulations-salarié: cadre 1`] = `"[4122,0,3000,2348,2160]"`;
 
@@ -567,13 +567,13 @@ Notifications affichées : contrat salarié . CDD . information"
 `;
 
 exports[`calculate simulations-salarié: cdd 4`] = `
-"[3745,0,2400,1878,1799]
+"[3744,0,2400,1878,1799]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié: contrat pro 1`] = `"[904,0,1500,1165,1165]"`;
 
-exports[`calculate simulations-salarié: contrat pro 2`] = `"[1571,0,1500,1165,1165]"`;
+exports[`calculate simulations-salarié: contrat pro 2`] = `"[1570,0,1500,1165,1165]"`;
 
 exports[`calculate simulations-salarié: effectif 1`] = `"[2479,0,2000,1561,1527]"`;
 
@@ -585,7 +585,7 @@ exports[`calculate simulations-salarié: effectif 4`] = `"[2539,0,2000,1561,1527
 
 exports[`calculate simulations-salarié: frais pro - DFS 1`] = `"[2242,0,2000,1630,1630]"`;
 
-exports[`calculate simulations-salarié: frais pro - DFS 2`] = `"[2335,0,2000,1584,1549]"`;
+exports[`calculate simulations-salarié: frais pro - DFS 2`] = `"[2334,0,2000,1584,1549]"`;
 
 exports[`calculate simulations-salarié: frais pro - DFS 3`] = `"[2265,0,2000,1606,1558]"`;
 
@@ -616,7 +616,7 @@ exports[`calculate simulations-salarié: heures supplémentaires et complémenta
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 3`] = `"[2654,0,2000,1636,1601]"`;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 4`] = `
-"[2565,0,2000,1627,1592]
+"[2564,0,2000,1627,1592]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -626,7 +626,7 @@ Notifications affichées : contrat salarié . convention collective . contrôle 
 `;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 6`] = `
-"[3041,0,2000,1978,1943]
+"[3040,0,2000,1978,1943]
 Notifications affichées : contrat salarié . convention collective . contrôle décharge"
 `;
 
@@ -636,7 +636,7 @@ Notifications affichées : contrat salarié . temps de travail . contrôle heure
 `;
 
 exports[`calculate simulations-salarié: heures supplémentaires et complémentaires 8`] = `
-"[3286,2286,2000,1889,1856]
+"[3285,2286,2000,1889,1856]
 Notifications affichées : contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents"
 `;
 
@@ -650,11 +650,11 @@ exports[`calculate simulations-salarié: impôt sur le revenu - quotient familia
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,2120]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12890,0,9000,7156,6146]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12889,0,9000,7156,6146]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12890,0,9000,7156,6407]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12889,0,9000,7156,6407]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12890,0,9000,7156,6882]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12889,0,9000,7156,6882]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2187]"`;
 
@@ -663,7 +663,7 @@ exports[`calculate simulations-salarié: impôt sur le revenu - quotient familia
 exports[`calculate simulations-salarié: impôt sur le revenu 1`] = `"[4076,0,3000,2353,2168]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 2`] = `
-"[41834,0,30000,24227,14685]
+"[41831,0,30000,24227,14685]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -675,14 +675,14 @@ Notifications affichées : contrat salarié . CDD . information"
 exports[`calculate simulations-salarié: impôt sur le revenu 4`] = `"[3896,0,3000,2353,2252]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 5`] = `
-"[41834,0,30000,24227,14685]
+"[41831,0,30000,24227,14685]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 6`] = `"[4076,0,3000,2626,2481]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu 7`] = `
-"[41834,0,30000,26966,16383]
+"[41831,0,30000,26966,16383]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
@@ -692,7 +692,7 @@ exports[`calculate simulations-salarié: inversions 1`] = `"[2000,0,1746,1360,13
 
 exports[`calculate simulations-salarié: inversions 2`] = `"[3474,0,2554,2000,1889]"`;
 
-exports[`calculate simulations-salarié: inversions 3`] = `"[3675,0,2703,2117,2000]"`;
+exports[`calculate simulations-salarié: inversions 3`] = `"[3674,0,2703,2117,2000]"`;
 
 exports[`calculate simulations-salarié: lodeom 1`] = `
 "[1592,0,1521,1182,1182]
@@ -703,9 +703,9 @@ exports[`calculate simulations-salarié: lodeom 2`] = `"[2085,0,2000,1561,1527]"
 
 exports[`calculate simulations-salarié: lodeom 3`] = `"[3896,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: lodeom 4`] = `"[5674,0,4000,3146,2755]"`;
+exports[`calculate simulations-salarié: lodeom 4`] = `"[5673,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom 5`] = `"[7889,0,5500,4349,3634]"`;
+exports[`calculate simulations-salarié: lodeom 5`] = `"[7888,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: lodeom compétitivité renforcée 1`] = `
 "[1592,0,1521,1182,1182]
@@ -718,7 +718,7 @@ exports[`calculate simulations-salarié: lodeom compétitivité renforcée 3`] =
 
 exports[`calculate simulations-salarié: lodeom compétitivité renforcée 4`] = `"[5588,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom compétitivité renforcée 5`] = `"[7889,0,5500,4349,3634]"`;
+exports[`calculate simulations-salarié: lodeom compétitivité renforcée 5`] = `"[7888,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: lodeom innovation et croissance 1`] = `
 "[1592,0,1521,1182,1182]
@@ -731,7 +731,7 @@ exports[`calculate simulations-salarié: lodeom innovation et croissance 3`] = `
 
 exports[`calculate simulations-salarié: lodeom innovation et croissance 4`] = `"[4915,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: lodeom innovation et croissance 5`] = `"[7889,0,5500,4349,3634]"`;
+exports[`calculate simulations-salarié: lodeom innovation et croissance 5`] = `"[7888,0,5500,4349,3634]"`;
 
 exports[`calculate simulations-salarié: stage 1`] = `
 "[507,0,500,500,500]
@@ -744,7 +744,7 @@ Notifications affichées : contrat salarié . stage . avertissement"
 `;
 
 exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 1`] = `
-"[1606,0,1521,1195,1195]
+"[1605,0,1521,1195,1195]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -755,9 +755,9 @@ exports[`calculate simulations-salarié: taux spécifiques retraite complémenta
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
-exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 4`] = `"[3382,0,2500,1938,1830]"`;
+exports[`calculate simulations-salarié: taux spécifiques retraite complémentaire 4`] = `"[3381,0,2500,1938,1830]"`;
 
-exports[`calculate simulations-salarié: temps partiel 1`] = `"[2592,2188,2000,1561,1527]"`;
+exports[`calculate simulations-salarié: temps partiel 1`] = `"[2591,2188,2000,1561,1527]"`;
 
 exports[`calculate simulations-salarié: temps partiel 2`] = `"[2533,2500,1857,1448,1428]"`;
 
@@ -803,7 +803,7 @@ Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 7`] = `
-"[1571,0,1500,1165,1165]
+"[1570,0,1500,1165,1165]
 Notifications affichées : contrat salarié . rémunération . contrôle smic"
 `;
 
@@ -813,26 +813,26 @@ exports[`calculate simulations-salarié: échelle de salaires 9`] = `"[3401,0,25
 
 exports[`calculate simulations-salarié: échelle de salaires 10`] = `"[4076,0,3000,2353,2168]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 11`] = `"[5674,0,4000,3146,2755]"`;
+exports[`calculate simulations-salarié: échelle de salaires 11`] = `"[5673,0,4000,3146,2755]"`;
 
-exports[`calculate simulations-salarié: échelle de salaires 12`] = `"[7085,0,5000,3948,3298]"`;
+exports[`calculate simulations-salarié: échelle de salaires 12`] = `"[7084,0,5000,3948,3298]"`;
 
 exports[`calculate simulations-salarié: échelle de salaires 13`] = `
-"[14319,0,10000,7958,5975]
+"[14318,0,10000,7958,5975]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 14`] = `
-"[28345,0,20000,15969,10503]
+"[28343,0,20000,15969,10503]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 15`] = `
-"[128575,0,100000,87157,48426]
+"[128565,0,100000,87157,48426]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié: échelle de salaires 16`] = `
-"[1243819,0,1000000,896257,498390]
+"[1243719,0,1000000,896257,498390]
 Notifications affichées : contrat salarié . rémunération . contrôle salaire élevé"
 `;
