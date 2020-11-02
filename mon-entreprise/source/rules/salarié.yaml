@@ -682,8 +682,11 @@ contrat salarié . ATMP:
       taux [ref]:
         variations:
           - si: taux réduit
-            alors: 1%
+            alors: 0.8%
           - sinon: ATMP . taux collectif ATMP
+  références:
+    taux réduit 2020 (code 00.00B): https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
+
 
 contrat salarié . ATMP . taux minimum:
   description: >-
@@ -712,9 +715,9 @@ contrat salarié . ATMP . taux collectif ATMP:
     Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif. Pour les entreprises plus importantes,
     ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
     concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  par défaut: 2.22 %
+  par défaut: 2.21 %
   references:
-    taux moyen national: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=4702534627E4A8CF240B990E28C81AF4.tplgfr30s_3?idArticle=JORFARTI000033735834&cidTexte=JORFTEXT000033735824&dateTexte=29990101&categorieLien=id
+    Arrêté tarification AT/MP 2020: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000039684705
 
 contrat salarié . CDD . événement:
   titre: Événement de contrat
