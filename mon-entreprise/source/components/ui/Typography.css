@@ -23,6 +23,7 @@ html {
 		font-size: 1em;
 	}
 }
+
 body {
 	font-weight: 400;
 	color: #040e19;
@@ -120,7 +121,7 @@ a:not(:disabled):not(.button):not(.button-choice):hover {
 
 strong,
 b {
-	font-weight: 600;
+	font-weight: bold;
 }
 
 textarea {

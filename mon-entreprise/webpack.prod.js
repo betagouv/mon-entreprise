@@ -77,23 +77,6 @@ module.exports = {
 			clientsClaim: true,
 			skipWaiting: true,
 			swDest: 'sw.js',
-			runtimeCaching: [
-				{
-					urlPattern: new RegExp(
-						'https://fonts.(?:googleapis|gstatic).com/(.*)'
-					),
-					handler: 'cacheFirst',
-					options: {
-						cacheName: 'google-fonts',
-						expiration: {
-							maxEntries: 5
-						},
-						cacheableResponse: {
-							statuses: [0, 200]
-						}
-					}
-				}
-			],
 			navigateFallback: '/fallback',
 			navigateFallbackWhitelist: [/^\/[^_]+$/], // fallback for anything that doesn't start with
 			navigateFallbackBlacklist: [

@@ -131,6 +131,8 @@ async function fetchSimulators(dt) {
 					'/profession-liberale/auxiliaire-medical',
 					'/profession-liberale/sage-femme',
 					'/profession-liberale/chirugien-dentiste',
+					'/profession-liberale/avocat',
+					'/profession-liberale/expert-comptable',
 					'/économie-collaborative'
 				].includes(label)
 			)
@@ -170,7 +172,10 @@ async function fetchSimulators(dt) {
 				'/profession-liberale',
 				'/chirugien-dentiste',
 				'/auxiliaire-medical',
-				'/sage-femme'
+				'/sage-femme',
+				'/medecin',
+				'/avocat',
+				'/expert-comptable'
 			].some(path => x.label.startsWith(path))
 		)
 

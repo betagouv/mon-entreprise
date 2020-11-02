@@ -3,6 +3,7 @@
 @import './Card.css';
 @import './Toggle.css';
 @import './reset.css';
+@import './Fonts.css';
 
 :root {
 	--color: rgb(41, 117, 209);
