@@ -7,7 +7,7 @@ const evaluateRecalcul = (cache, situation, parsedRules, node) => {
 		return defaultNode(false)
 	}
 
-	const amendedSituation = Object.fromEntries(
+	const amendedSituation = 
 		node.explanation.amendedSituation
 			.map(([originRule, replacement]) => [
 				evaluateNode(cache, situation, parsedRules, originRule),
@@ -18,8 +18,8 @@ const evaluateRecalcul = (cache, situation, parsedRules, node) => {
 					originRule.nodeValue !== replacement.nodeValue ||
 					serializeUnit(originRule.unit) !== serializeUnit(replacement.unit)
 			)
-			.map(([originRule, replacement]) => [originRule.dottedName, replacement])
-	)
+			
+	
 	// Optimisation : no need for recalcul if situation is the same
 	const recalculCache = Object.keys(amendedSituation).length
 		? { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
@@ -27,7 +27,9 @@ const evaluateRecalcul = (cache, situation, parsedRules, node) => {
 
 	const evaluatedNode = evaluateNode(
 		recalculCache,
-		{ ...situation, ...amendedSituation },
+		{ ...situation,
+			...Object.fromEntries(amendedSituation.map(([originRule, replacement]) => [originRule.dottedName, replacement])) 
+		},
 		parsedRules,
 		node.explanation.recalcul
 	)
