@@ -235,13 +235,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   formule:
     variations:
       - si: entreprise . ACRE
-        alors:
-          barème:
-            assiette: base des cotisations
-            tranches:
-              - taux: taux de cotisation * taux ACRE
-                plafond: plafond ACRE
-              - taux: taux de cotisation
+        alors: 
+          produit:
+            assiette: base des cotisations [€/mois]
+            taux: taux ACRE * taux de cotisation
       - sinon:
           produit:
             assiette: base des cotisations [€/mois]
