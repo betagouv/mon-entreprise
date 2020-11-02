@@ -6,7 +6,7 @@ export default (tracker: Tracker) => {
 		next(action)
 		const newState = getState()
 		if (action.type == 'STEP_ACTION' && action.name == 'fold') {
-			tracker.push([
+			tracker.debouncedPush([
 				'trackEvent',
 				'Simulator::answer',
 				action.source,
@@ -26,7 +26,7 @@ export default (tracker: Tracker) => {
 		}
 
 		if (action.type === 'SET_ACTIVE_TARGET_INPUT') {
-			tracker.push([
+			tracker.debouncedPush([
 				'trackEvent',
 				'Simulator',
 				'target selected',
@@ -38,7 +38,7 @@ export default (tracker: Tracker) => {
 			action.type === 'UPDATE_SITUATION' ||
 			action.type === 'UPDATE_TARGET_UNIT'
 		) {
-			tracker.push([
+			tracker.debouncedPush([
 				'trackEvent',
 				'Simulator',
 				'update situation',
@@ -59,7 +59,12 @@ export default (tracker: Tracker) => {
 			])
 		}
 		if (action.type == 'STEP_ACTION' && action.name == 'unfold') {
-			tracker.push(['trackEvent', 'Simulator', 'change answer', action.step])
+			tracker.debouncedPush([
+				'trackEvent',
+				'Simulator',
+				'change answer',
+				action.step
+			])
 		}
 
 		if (action.type === 'RESET_SIMULATION') {
