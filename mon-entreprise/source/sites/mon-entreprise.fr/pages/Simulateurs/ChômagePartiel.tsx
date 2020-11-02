@@ -16,8 +16,11 @@ declare global {
 		StonlyWidget?: {
 			open: () => void
 			close: () => void
+			toggle: () => void
 			launcherShow: () => void
 			launcherHide: () => void
+			startURLWatcher: () => void
+			stopURLWatcher: () => void
 		}
 	}
 }
@@ -28,15 +31,18 @@ export default function ChômagePartiel() {
 		if (inIframe) {
 			return
 		}
-		const script = document.createElement('script')
-		window.STONLY_WID = '0128ae02-6780-11ea-ac13-0a4250848ba4'
-		script.src = 'https://stonly.com/js/widget/stonly-widget.js'
-		script.async = true
-		document.body.appendChild(script)
-		window.StonlyWidget?.launcherShow()
+		if (!window.StonlyWidget) {
+			const script = document.createElement('script')
+			window.STONLY_WID = '0128ae02-6780-11ea-ac13-0a4250848ba4'
+			script.src = 'https://stonly.com/js/widget/stonly-widget.js'
+			script.async = true
+			document.body.appendChild(script)
+		} else {
+			window.StonlyWidget?.launcherShow()
+		}
 		return () => {
+			window.StonlyWidget?.stopURLWatcher()
 			window.StonlyWidget?.launcherHide()
-			document.body.removeChild(script)
 		}
 	}, [inIframe])
 	return (
