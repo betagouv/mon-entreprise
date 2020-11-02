@@ -3707,19 +3707,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
     contribution à la formation professionnelle leur permettant de bénéficier du
     droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
     d’affaires positif au cours des 12 derniers mois).
-  note.en: >
-    [automatic] The rules specified on the autoentrepreneur.urssaf.fr website
-    and those of the
-
-    in the text of the law differ. We have chosen to implement those 
-
-    of the USSAF documentation while waiting for more information from them.
-  note.fr: >
-    Les règles précisées sur le site autoentrepreneur.urssaf.fr et celles
-
-    inscrites dans le texte de loi diffèrent. Nous avons choisi d'implémenter celles 
-
-    de la documentation urssaf en attendant plus d'informations de leur part.
+  note.en: |
+    [automatic] The rates implemented are those levied by URSSAF.
+  note.fr: |
+    Les taux implémentés sont ceux prélevés par l'Urssaf.
   titre.en: Contribution to vocational trainingyay
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
@@ -6161,14 +6152,14 @@ entreprise . effectif . seuil . moins de 50:
   titre.fr: moins de 50
 entreprise . franchise de TVA:
   description.en: |
-    [automatic] The VAT exemption is an exemption from VAT for businesses.
+    [automatic] The VAT exemption is a device that exempts businesses from the
     declaration and payment of VAT. It applies below a threshold of
     annual turnover depending on the activity.
 
-    The professional covered by this scheme invoices his services or his
+    The professional covered by this scheme shall invoice his services or his
     sales excluding tax, and cannot deduct VAT from its purchases.
   description.fr: |
-    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
     chiffre d'affaire annuel dépendant de l'activité.
 
