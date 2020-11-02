@@ -30,7 +30,7 @@ export function CheckItem({
 			setDisplayExplanations(false)
 		}
 		onChange?.(e)
-		tracker.push([
+		tracker.debouncedPush([
 			'trackEvent',
 			'CheckItem',
 			e.target.checked ? 'check' : 'uncheck',
@@ -39,7 +39,7 @@ export function CheckItem({
 	}
 
 	const handleClick = () => {
-		tracker.push(['trackEvent', 'CheckItem', 'click', name])
+		tracker.debouncedPush(['trackEvent', 'CheckItem', 'click', name])
 		setDisplayExplanations(!displayExplanations)
 	}
 
