@@ -1,23 +1,68 @@
 import { ScrollToElement } from 'Components/utils/Scroll'
 import { TrackerContext } from 'Components/utils/withTracker'
-import React, { useContext, useRef } from 'react'
-import { Trans } from 'react-i18next'
+import React, { useContext, useEffect, useRef } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router'
 
 type Props = { onEnd: () => void; onCancel: () => void }
-
+declare global {
+	const $: any
+}
 export default function FeedbackForm({ onEnd, onCancel }: Props) {
-	const formRef = useRef<HTMLFormElement>(null)
-	const tracker = useContext(TrackerContext)
+	// const tracker = useContext(TrackerContext)
+	const pathname = useLocation().pathname
+	const page = pathname.split('/').slice(-1)[0]
+	const isSimulateur = pathname.includes('simulateurs')
+	const lang = useTranslation().i18n.language
+	useEffect(() => {
+		const script = document.createElement('script')
+		script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
 
-	const handleFormSubmit = (e: React.FormEvent): void => {
-		tracker.push(['trackEvent', 'Feedback', 'written feedback submitted'])
-		e.preventDefault()
-		fetch('/', {
-			method: 'POST',
-			body: new FormData(formRef.current ?? undefined)
-		})
-		onEnd()
-	}
+		document.body.appendChild(script)
+		setTimeout(() => {
+			const script = document.createElement('script')
+			script.id = 'zammad_form_script'
+			script.async = true
+			script.onload = () => {
+				$('#feedback-form').ZammadForm({
+					messageTitle: `Remarque sur ${
+						isSimulateur ? 'le simulateur' : 'la page'
+					} ${page}`,
+					messageSubmit: 'Envoyer',
+					messageThankYou:
+						'Merci pour votre retour ! Vous pouvez aussi nous contacter directement à contact@mon-entreprise.beta.gouv.fr',
+					lang,
+					attributes: [
+						{
+							display: 'Message',
+							name: 'body',
+							tag: 'textarea',
+							placeholder: 'Your Message...',
+							defaultValue: '',
+							rows: 7
+						},
+						{
+							display: 'Nom',
+							name: 'name',
+							tag: 'input',
+							type: 'text',
+							defaultValue: '-'
+						},
+						{
+							display: 'Email (pour recevoir notre réponse)',
+							name: 'email',
+							tag: 'input',
+							type: 'email',
+							placeholder: 'Your Email'
+						}
+					]
+				})
+			}
+			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'
+			document.body.appendChild(script)
+		}, 100)
+		// tracker.push(['trackEvent', 'Feedback', 'written feedback submitted'])
+	}, [])
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
@@ -31,47 +76,15 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 					X
 				</button>
 			</div>
-			<form
-				name="feedback"
-				style={{ flex: 1 }}
-				method="post"
-				ref={formRef}
-				onSubmit={handleFormSubmit}
-			>
-				<input type="hidden" name="form-name" value="feedback" />
-				<label htmlFor="message">
-					<p>
-						<Trans i18nKey="feedback.bad.form.headline">
-							Votre retour nous est précieux afin d'améliorer ce site en
-							continu. Sur quoi devrions nous travailler afin de mieux répondre
-							à vos attentes ?
-						</Trans>
-					</p>
-				</label>
-				<textarea
-					name="message"
-					rows={5}
-					style={{ resize: 'none', width: '100%', padding: '0.6rem' }}
-				/>
-				<br />
-				<br />
-				<label htmlFor="email">
-					<p>
-						<Trans i18nKey="feedback.bad.form.email">
-							Votre email (si vous souhaitez une réponse de notre part)
-						</Trans>
-					</p>
-				</label>
-				<input type="email" name="email" />
-				<input hidden name="url" value={window.location.href} />
-				<input hidden name="pageTitle" value={document.title} />
-				<br />
-				<div style={{ margin: '1rem 0' }}>
-					<button className="ui__ button small" type="submit">
-						<Trans>Envoyer</Trans>
-					</button>
-				</div>
-			</form>
+
+			<p>
+				<Trans i18nKey="feedback.bad.form.headline">
+					Votre retour nous est précieux afin d'améliorer ce site en continu.
+					Sur quoi devrions nous travailler afin de mieux répondre à vos
+					attentes ?
+				</Trans>
+			</p>
+			<div id="feedback-form"></div>
 		</ScrollToElement>
 	)
 }

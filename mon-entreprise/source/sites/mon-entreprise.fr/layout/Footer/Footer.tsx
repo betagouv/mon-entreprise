@@ -117,9 +117,6 @@ export default function Footer() {
 					<a href="https://www.linkedin.com/company/mon-entreprise-fr/">
 						<SocialIcon media="linkedin" />
 					</a>
-					<a href="mailto:contact@mon-entreprise.beta.gouv.fr">
-						<SocialIcon media="email" />
-					</a>
 					<a href="https://github.com/betagouv/mon-entreprise/">
 						<SocialIcon media="github" />
 					</a>
