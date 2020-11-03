@@ -1141,20 +1141,42 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
 contrat salarié . aides employeur . emploi franc:
-  description.en: >-
-    [automatic] Deferred assistance paid by Pôle emploi for the hiring of a job
-    seeker registered with Pôle Emploi and residing in a priority neighbourhood
-    of the city (QPV).
+  description.en: >
+    [automatic] Deferred assistance paid by Pôle emploi for hiring a job seeker
 
-    - * hiring on a permanent contract*: €5,000/year for 3 years, i.e. a total of €15,000 - * hiring on a fixed-term contract of at least 6 months*: €2,500/year for 2 years, i.e. a maximum of €5,000
+    registered with Pôle Emploi and living in a priority district of the city
 
-    [🗺 Check address eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
-  description.fr: >-
-    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
-    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
     (QPV).
 
-    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€ - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+    - *Hiring on permanent contracts*: €5,000/year for 3 years, i.e. a total of €15,000
+
+    - * hiring on a fixed-term contract of at least 6 months*: 2,500€/year for 2 years, i.e. 5,000€ maximum
+
+
+    &gt; As part of the "France Relance" plan, the scheme is being upgraded to
+
+    hiring until January 31, 2021.
+
+
+    [🗺 Check address eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  description.fr: >
+    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
+
+    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+
+    (QPV).
+
+
+    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
+
+    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+
+    > Dans le cadre du plan "France Relance", le dispositif est revalorisé pour
+
+    une embauche jusqu'au 31 janvier 2021.
+
 
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   titre.en: '[automatic] open job'
@@ -1176,8 +1198,9 @@ contrat salarié . aides employeur . emploi franc . éligible:
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
 
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
-  question.en: '[automatic] Are you eligible for Emploi-franc assistance for this hiring?'
-  question.fr: Etes-vous éligible à l'aide emploi-franc pour cette embauche ?
+  question.en: '[automatic] Are you eligible for Employment-Franc assistance for
+    this hiring?'
+  question.fr: Êtes-vous éligible à l'aide emploi-franc pour cette embauche ?
   titre.en: '[automatic] eligible'
   titre.fr: éligible
 contrat salarié . allocations familiales:
