@@ -2017,7 +2017,7 @@ contrat salarié . aides employeur . emploi franc:
                   alors: 5000 €/an
                 - si: CDD
                   alors: 2500 €/an
-      facteur: temps de travail . quotité de travail
+      facteur: temps de travail . quotité de travail effective
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
 
