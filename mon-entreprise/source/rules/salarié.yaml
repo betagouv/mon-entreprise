@@ -353,7 +353,8 @@ contrat salarié . activité partielle . indemnisation entreprise:
   titre: Remboursement de l'indemnité d'activité partielle
   description: >-
     Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
-    l'indemnité de chômage partiel sera prise à 100% en charge par l'état.
+    l'indemnité de chômage partiel pour les commerces fermés sera prise à
+    100% en charge par l'état.
   formule:
     multiplication:
       assiette: retrait absence
@@ -381,7 +382,20 @@ contrat salarié . activité partielle . indemnisation entreprise . taux d'indem
 contrat salarié . activité partielle . secteur d'activité restreint:
   question: >-
     Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
-    réglementaires ? (ex. : tourisme, restauration, culture)
+    réglementaires ? (ex. : tourisme, restauration, culture, événementiel)
+  description: >-
+    Les entreprises accueillant du public qui connaissent une interruption partielle
+    ou totale de leur activité en raison de l'épidémie de Covid-19 percoivent un taux
+    d'allocation d'activité partielle majoré.
+
+    Il concerne notamment les secteurs de l'hôtellerie-restauration, du sport,
+    de la culture et de l’événementiel.
+    
+    Les autres entreprises bénéficient d'un taux d'indemnité de droit commun.
+  références: 
+    Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
+    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A14386
+
   par défaut: non
 
 # TODO : This should be merged with other convention collectives

@@ -185,7 +185,7 @@ entreprise . ACRE par défaut:
 
 entreprise . franchise de TVA:
   description: |
-    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
     chiffre d'affaire annuel dépendant de l'activité.
 

@@ -66,6 +66,19 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 			  ]
 			: []),
 		{
+			test: /\.(ttf|woff2?)$/,
+			use: [
+				{
+					loader: 'file-loader',
+					options: {
+						name: '[name].[ext]',
+						outputPath: 'fonts',
+						publicPath: '/fonts'
+					}
+				}
+			]
+		},
+		{
 			test: /\.yaml$/,
 			use: ['json-loader', 'yaml-loader']
 		},
@@ -82,7 +95,7 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 			use: ['raw-loader']
 		},
 		{
-			test: /\.(ttf|pdf)$/,
+			test: /\.pdf$/,
 			use: ['file-loader']
 		}
 	]

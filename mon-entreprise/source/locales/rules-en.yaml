@@ -979,11 +979,11 @@ contrat salarié . activité partielle . heures travaillées:
   titre.fr: contrôle temps de travail
 contrat salarié . activité partielle . indemnisation entreprise:
   description.en: '[automatic] In the context of the Coronavirus crisis, the
-    government has announced that the short-time working allowance will be 100%
-    paid by the state.'
+    government announced that the partial unemployment benefit for closed
+    businesses will be paid 100% by the state.'
   description.fr: Dans le cadre de la crise du Coronavirus, le gouvernement a
-    annoncé que l'indemnité de chômage partiel sera prise à 100% en charge par
-    l'état.
+    annoncé que l'indemnité de chômage partiel pour les commerces fermés sera
+    prise à 100% en charge par l'état.
   titre.en: '[automatic] Reimbursement of partial activity allowance'
   titre.fr: Remboursement de l'indemnité d'activité partielle
 ? contrat salarié . activité partielle . indemnisation entreprise . taux d'indemnisation
@@ -1053,11 +1053,28 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
   titre.en: '[automatic] minimum monthly pay'
   titre.fr: rémunération mensuelle minimale
 contrat salarié . activité partielle . secteur d'activité restreint:
+  description.en: >-
+    [automatic] Companies accommodating the public that experience a partial or
+    total interruption of their activity due to the Covid-19 epidemic receive an
+    increased partial activity allocation rate.
+
+    This concerns in particular the hotel and catering, sports, culture and events sectors.
+
+    The other companies benefit from an ordinary rate of compensation.
+  description.fr: >-
+    Les entreprises accueillant du public qui connaissent une interruption
+    partielle ou totale de leur activité en raison de l'épidémie de Covid-19
+    percoivent un taux d'allocation d'activité partielle majoré.
+
+    Il concerne notamment les secteurs de l'hôtellerie-restauration, du sport, de la culture et de l’événementiel.
+
+    Les autres entreprises bénéficient d'un taux d'indemnité de droit commun.
   question.en:
     "[automatic] Are there any regulatory restrictions on the company's
-    line of business? (e.g. tourism, catering, culture)"
+    line of business? (e.g. tourism, catering, culture, events)"
   question.fr: "Le secteur d'activité de l'entreprise fait-il l'objet de
-    restrictions réglementaires ? (ex. : tourisme, restauration, culture)"
+    restrictions réglementaires ? (ex. : tourisme, restauration, culture,
+    événementiel)"
   titre.en: '[automatic] narrow focus'
   titre.fr: secteur d'activité restreint
 contrat salarié . aides employeur:
@@ -3690,19 +3707,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
     contribution à la formation professionnelle leur permettant de bénéficier du
     droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
     d’affaires positif au cours des 12 derniers mois).
-  note.en: >
-    [automatic] The rules specified on the autoentrepreneur.urssaf.fr website
-    and those of the
-
-    in the text of the law differ. We have chosen to implement those 
-
-    of the USSAF documentation while waiting for more information from them.
-  note.fr: >
-    Les règles précisées sur le site autoentrepreneur.urssaf.fr et celles
-
-    inscrites dans le texte de loi diffèrent. Nous avons choisi d'implémenter celles 
-
-    de la documentation urssaf en attendant plus d'informations de leur part.
+  note.en: |
+    [automatic] The rates implemented are those levied by URSSAF.
+  note.fr: |
+    Les taux implémentés sont ceux prélevés par l'Urssaf.
   titre.en: Contribution to vocational trainingyay
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
@@ -6144,14 +6152,14 @@ entreprise . effectif . seuil . moins de 50:
   titre.fr: moins de 50
 entreprise . franchise de TVA:
   description.en: |
-    [automatic] The VAT exemption is an exemption from VAT for businesses.
+    [automatic] The VAT exemption is a device that exempts businesses from the
     declaration and payment of VAT. It applies below a threshold of
     annual turnover depending on the activity.
 
-    The professional covered by this scheme invoices his services or his
+    The professional covered by this scheme shall invoice his services or his
     sales excluding tax, and cannot deduct VAT from its purchases.
   description.fr: |
-    La franchise de TVA est un dispotif qui exonère les entreprises de la
+    La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
     chiffre d'affaire annuel dépendant de l'activité.
 

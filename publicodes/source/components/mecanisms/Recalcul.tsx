@@ -4,9 +4,10 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { Mecanism } from './common'
 
-export default function Recalcul({ nodeValue, explanation }) {
+export default function Recalcul({ nodeValue, explanation, unit }) {
+	console.log(nodeValue, explanation)
 	return (
-		<Mecanism name="recalcul" value={nodeValue} unit={explanation.unit}>
+		<Mecanism name="recalcul" value={nodeValue} unit={unit}>
 			<>
 				{explanation.recalcul && (
 					<Trans i18nKey="calcul-avec">
@@ -16,10 +17,10 @@ export default function Recalcul({ nodeValue, explanation }) {
 					</Trans>
 				)}
 				<ul>
-					{Object.keys(explanation.amendedSituation).map(dottedName => (
-						<li key={dottedName}>
-							<RuleLinkWithContext dottedName={dottedName} /> ={' '}
-							{makeJsx(explanation.amendedSituation[dottedName])}
+					{explanation.amendedSituation.map(([origin, replacement]) => (
+						<li key={origin.dottedName}>
+							<RuleLinkWithContext dottedName={origin.dottedName} /> ={' '}
+							{makeJsx(replacement)}
 						</li>
 					))}
 				</ul>

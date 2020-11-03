@@ -200,10 +200,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . contribution form
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
     shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
   note: |
-    Les règles précisées sur le site autoentrepreneur.urssaf.fr et celles
-    inscrites dans le texte de loi diffèrent. Nous avons choisi d'implémenter celles 
-    de la documentation urssaf en attendant plus d'informations de leur part.
-
+    Les taux implémentés sont ceux prélevés par l'Urssaf.
   formule:
     produit:
       assiette: base des cotisations
@@ -235,13 +232,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   formule:
     variations:
       - si: entreprise . ACRE
-        alors:
-          barème:
-            assiette: base des cotisations
-            tranches:
-              - taux: taux de cotisation * taux ACRE
-                plafond: plafond ACRE
-              - taux: taux de cotisation
+        alors: 
+          produit:
+            assiette: base des cotisations [€/mois]
+            taux: taux ACRE * taux de cotisation
       - sinon:
           produit:
             assiette: base des cotisations [€/mois]

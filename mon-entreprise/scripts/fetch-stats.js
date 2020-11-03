@@ -67,6 +67,24 @@ async function fetchSimulatorsMonth() {
 }
 
 async function fetchSimulators(dt) {
+	async function fetchSubTableData(data, label) {
+		const subTable = data.find(page => page.label === label)
+		if (!subTable) {
+			console.log('No subtable for ' + label + ' for the period ' + dt + '.')
+			return []
+		}
+		
+		const response = await fetch(
+			apiURL({
+				date: `${dt}`,
+				method: 'Actions.getPageUrls',
+				search_recursive: 1,
+				filter_limits: -1,
+				idSubtable: subTable.idsubdatatable
+			})
+		)
+		return await response.json()
+	}
 	try {
 		const response = await fetch(
 			apiURL({
@@ -83,38 +101,11 @@ async function fetchSimulators(dt) {
 		)
 
 		// Visits on simulators pages
-		const idSubTableSimulateurs = firstLevelData.find(
-			page => page.label === 'simulateurs'
-		).idsubdatatable
+		const dataSimulateurs = await fetchSubTableData(firstLevelData, 'simulateurs')
+		const dataGérer = await fetchSubTableData(firstLevelData, 'gérer')
+		const dataProfessionLiberale = await fetchSubTableData(dataSimulateurs, 'profession-liberale')
 
-		const responseSimulateurs = await fetch(
-			apiURL({
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				search_recursive: 1,
-				filter_limits: -1,
-				idSubtable: idSubTableSimulateurs
-			})
-		)
-
-		const dataSimulateurs = await responseSimulateurs.json()
-
-		// Visits on "manage" pages
-		const idSubTableManage = firstLevelData.find(page => page.label === 'gérer')
-			.idsubdatatable
-
-		const responseManage = await fetch(
-			apiURL({
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				search_recursive: 1,
-				filter_limits: -1,
-				idSubtable: idSubTableManage
-			})
-		)
-		const dataManage = await responseManage.json()
-
-		const resultSimulateurs = [...dataSimulateurs, ...dataManage]
+		const resultSimulateurs = [...dataSimulateurs, ...dataProfessionLiberale, ...dataGérer]
 			.filter(({ label }) =>
 				[
 					'/salaire-brut-net',
@@ -127,10 +118,12 @@ async function fetchSimulators(dt) {
 					'/aide-declaration-independants',
 					'/demande-mobilité',
 					'/profession-liberale',
-					'/profession-liberale/medecin',
-					'/profession-liberale/auxiliaire-medical',
-					'/profession-liberale/sage-femme',
-					'/profession-liberale/chirugien-dentiste',
+					'/medecin',
+					'/auxiliaire-medical',
+					'/sage-femme',
+					'/chirugien-dentiste',
+					'/avocat',
+					'/expert-comptable',
 					'/économie-collaborative'
 				].includes(label)
 			)
@@ -146,33 +139,25 @@ async function fetchSimulators(dt) {
 							.reduce((a, b) => Math.min(a, b.nb_visits), 1000)
 			)
 
-		// Add iframes
-		const idTableIframes = firstLevelData.find(page => page.label == 'iframes')
-			.idsubdatatable
-		const responseIframes = await fetch(
-			apiURL({
-				date: `${dt}`,
-				method: 'Actions.getPageUrls',
-				search_recursive: 1,
-				filter_limits: -1,
-				idSubtable: idTableIframes
-			})
-		)
-		const dataIframes = await responseIframes.json()
-		const resultIframes = dataIframes.filter(x =>
-			[
-				'/simulateur-embauche',
-				'/simulateur-autoentrepreneur',
-				'/simulateur-assimilesalarie',
-				'/simulateur-artiste-auteur',
-				'/simulateur-independant',
-				'/demande-mobilite',
-				'/profession-liberale',
-				'/chirugien-dentiste',
-				'/auxiliaire-medical',
-				'/sage-femme'
-			].some(path => x.label.startsWith(path))
-		)
+
+		const resultIframes = (await fetchSubTableData(firstLevelData, 'iframes'))
+			.filter(x =>
+				[
+					'/simulateur-embauche',
+					'/simulateur-autoentrepreneur',
+					'/simulateur-assimilesalarie',
+					'/simulateur-artiste-auteur',
+					'/simulateur-independant',
+					'/demande-mobilite',
+					'/profession-liberale',
+					'/medecin',
+					'/auxiliaire-medical',
+					'/sage-femme',
+					'/chirugien-dentiste',
+					'/avocat',
+					'/expert-comptable',
+				].some(path => x.label.startsWith(path))
+			)
 
 		const groupSimulateursIframesVisits = ({ label }) =>
 			label.startsWith('/coronavirus')
@@ -204,6 +189,8 @@ async function fetchSimulators(dt) {
 			.map(([label, nb_visits]) => ({ label, nb_visits }))
 			.sort((a, b) => b.nb_visits - a.nb_visits)
 	} catch (e) {
+		console.error(e)
+
 		console.log('fail to fetch Simulators Visits')
 		return null
 	}
