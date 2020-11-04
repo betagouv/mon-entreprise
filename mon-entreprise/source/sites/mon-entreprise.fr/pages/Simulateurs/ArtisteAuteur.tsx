@@ -105,12 +105,9 @@ function Warning({ dottedName }: WarningProps) {
 	return <li>{warning.description}</li>
 }
 
-const ResultBlock = styled.div`
-	margin-top: 30px;
+const ResultLine = styled.div`
 	padding: 10px;
-	background: #eee;
 	font-size: 1.25em;
-	background: #eee;
 	display: flexbox;
 	flex-direction: column;
 `
@@ -133,16 +130,24 @@ function CotisationsResult() {
 
 	return (
 		<Animate.appear>
-			<ResultBlock className="ui__ card">
-				<ResultLabel>
-					<Trans>Montant des cotisations</Trans>
-				</ResultLabel>
-				<Value
-					displayedUnit="€"
-					precision={0}
-					expression="artiste-auteur . cotisations"
-				/>
-			</ResultBlock>
+			<div
+				className="ui__ card"
+				css={`
+					margin-top: 2rem;
+				`}
+			>
+				<ResultLine>
+					<ResultLabel>
+						<Trans>Montant des cotisations</Trans>
+					</ResultLabel>
+					<Value
+						displayedUnit="€"
+						precision={0}
+						expression="artiste-auteur . cotisations . avec réductions"
+					/>
+				</ResultLine>
+				<AideCovid />
+			</div>
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />
 			</Condition>
@@ -187,5 +192,20 @@ function RepartitionCotisations() {
 				))}
 			</div>
 		</section>
+	)
+}
+
+function AideCovid() {
+	return (
+		<Condition expression="artiste-auteur . réduction de cotisations covid 2020">
+			<ResultLine>
+				<ResultLabel>Dont réduction de cotisation covid</ResultLabel>
+				<Value
+					displayedUnit="€"
+					precision={0}
+					expression="artiste-auteur . réduction de cotisations covid 2020"
+				/>
+			</ResultLine>
+		</Condition>
 	)
 }
