@@ -1,6 +1,6 @@
 import parseRule from './parseRule'
 import yaml from 'yaml'
-import { lensPath, set } from 'ramda'
+import { compose, dissoc, lensPath, over, set } from 'ramda'
 import { compilationError } from './error'
 import { parseReference } from './parseReference'
 import { ParsedRules, Rules } from './types'
@@ -63,7 +63,6 @@ export default function parseRules<Names extends string>(
 			...other
 		}))
 	})
-
 	return parsedRules as ParsedRules<Names>
 }
 
@@ -82,6 +81,7 @@ function extractInlinedNames(rules: Record<string, Record<string, any>>) {
 		context: Array<string | number> = []
 	) => ([key, value]: [string, Record<string, any>]) => {
 		const match = /\[ref( (.+))?\]$/.exec(key)
+
 		if (match) {
 			const argumentType = key.replace(match[0], '').trim()
 			const argumentName = match[2]?.trim() || argumentType
@@ -93,18 +93,17 @@ function extractInlinedNames(rules: Record<string, Record<string, any>>) {
 					`Le paramètre [ref] ${argumentName} entre en conflit avec la règle déjà existante ${extractedReferenceName}`
 				)
 			}
-
 			rules[extractedReferenceName] = {
 				formule: value,
 				// The `virtualRule` parameter is used to avoid creating a
 				// dedicated documentation page.
 				virtualRule: true
 			}
-			rules[dottedName] = set(
-				lensPath([...context, argumentType]),
-				extractedReferenceName,
-				rules[dottedName]
-			)
+
+			rules[dottedName] = compose(
+				over(lensPath(context), dissoc(key)) as any,
+				set(lensPath([...context, argumentType]), extractedReferenceName)
+			)(rules[dottedName]) as any
 			extractNamesInRule(extractedReferenceName)
 		} else if (Array.isArray(value)) {
 			value.forEach((content: Record<string, any>, i) =>

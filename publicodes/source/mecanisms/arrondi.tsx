@@ -1,37 +1,20 @@
-import { has } from 'ramda'
 import React from 'react'
-import { Trans } from 'react-i18next'
 import { InfixMecanism } from '../components/mecanisms/common'
-import { defaultNode, evaluateNode, mergeAllMissing } from '../evaluation'
-import { simplifyNodeUnit } from '../nodeUnits'
-import { mapTemporal, pureTemporal, temporalAverage } from '../temporal'
-import { EvaluatedNode, EvaluatedRule } from '../types'
-import { serializeUnit } from '../units'
-
-type MecanismRoundProps = {
-	explanation: ArrondiExplanation
-}
+import { evaluateNode, makeJsx, mergeAllMissing } from '../evaluation'
+import { EvaluatedNode } from '../types'
 
 export type ArrondiExplanation = {
-	value: EvaluatedNode<string, number>
-	decimals: EvaluatedNode<string, number>
+	valeur: EvaluatedNode<string, number>
+	arrondi: EvaluatedNode<string, number>
 }
 
-function MecanismRound({ explanation }: MecanismRoundProps) {
+function MecanismArrondi({ explanation }) {
 	return (
-		<InfixMecanism value={explanation.value}>
-			{explanation.decimals.nodeValue !== false &&
-				explanation.decimals.isDefault != false && (
-					<p>
-						<Trans
-							i18nKey="arrondi-to-decimals"
-							count={explanation.decimals.nodeValue ?? undefined}
-						>
-							<strong>Arrondi à : </strong>
-							{{ count: explanation.decimals.nodeValue }} décimales
-						</Trans>
-					</p>
-				)}
+		<InfixMecanism value={explanation.valeur}>
+			<p>
+				<strong>Arrondi : </strong>
+				{makeJsx(explanation.arrondi)}
+			</p>
 		</InfixMecanism>
 	)
 }
@@ -40,66 +23,52 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-function evaluate<Names extends string>(
-	cache,
-	situation,
-	parsedRules,
-	node: EvaluatedRule<Names, ArrondiExplanation>
-) {
+const evaluate = (cache, situation, parsedRules, node) => {
 	const evaluateAttribute = evaluateNode.bind(
 		null,
 		cache,
 		situation,
 		parsedRules
 	)
-	const value = simplifyNodeUnit(evaluateAttribute(node.explanation.value))
-	const decimals = evaluateAttribute(node.explanation.decimals)
+	const valeur = evaluateAttribute(node.explanation.valeur)
+	const nodeValue = valeur.nodeValue
+	let arrondi = node.explanation.arrondi
+	if (nodeValue !== false) {
+		arrondi = evaluateAttribute(arrondi)
+	}
 
-	const temporalValue = mapTemporal(
-		(val: number | false | null) =>
-			typeof val === 'number'
-				? roundWithPrecision(val, decimals.nodeValue)
-				: val,
-		value.temporalValue ?? pureTemporal(value.nodeValue)
-	)
-
-	const nodeValue = temporalAverage(temporalValue, value.unit)
 	return {
 		...node,
-		unit: value.unit,
-		nodeValue,
-		...(temporalValue.length > 1 && { temporalValue }),
-		missingVariables: mergeAllMissing([value, decimals]),
-		explanation: { value, decimals }
+		nodeValue:
+			typeof valeur.nodeValue !== 'number'
+				? valeur.nodeValue
+				: typeof arrondi.nodeValue === 'number'
+				? roundWithPrecision(valeur.nodeValue, arrondi.nodeValue)
+				: arrondi.nodeValue === true
+				? roundWithPrecision(valeur.nodeValue, 0)
+				: arrondi.nodeValue === null
+				? null
+				: valeur.nodeValue,
+		explanation: { valeur, arrondi },
+		missingVariables: mergeAllMissing([valeur, arrondi]),
+		unit: valeur.unit
 	}
 }
 
-export default (recurse, v) => {
+export default function Arrondi(recurse, v) {
 	const explanation = {
-		value: has('valeur', v) ? recurse(v['valeur']) : recurse(v),
-		decimals: has('décimales', v) ? recurse(v['décimales']) : defaultNode(0)
-	} as ArrondiExplanation
-
+		valeur: recurse(v.valeur),
+		arrondi: recurse(v.arrondi)
+	}
 	return {
-		explanation,
 		evaluate,
-		jsx: MecanismRound,
+		jsx: MecanismArrondi,
+		explanation,
 		category: 'mecanism',
 		name: 'arrondi',
 		type: 'numeric',
-		unit: explanation.value.unit
+		unit: explanation.valeur.unit
 	}
 }
 
-export function unchainRoundMecanism(recurse, rawNode) {
-	const { arrondi, ...valeur } = rawNode
-	const arrondiValue = recurse(arrondi)
-
-	if (serializeUnit(arrondiValue.unit) === 'décimales') {
-		return { arrondi: { valeur, décimales: arrondiValue.nodeValue } }
-	} else if (arrondiValue.nodeValue === true) {
-		return { arrondi: { valeur } }
-	} else {
-		return valeur
-	}
-}
+Arrondi.nom = 'arrondi'

@@ -36,7 +36,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-
 	const setDefault = () =>
 		dispatch(
 			validateStepWithValue(

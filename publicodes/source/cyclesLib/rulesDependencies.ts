@@ -56,13 +56,39 @@ export function ruleDepsOfNode<Names extends string>(
 		return ruleReference === ruleName ? [] : [ruleReference]
 	}
 
-	function ruleDepsOfEncadrementMech(
-		encadrementMech: ASTTypes.EncadrementMech
+	function ruleDepsOfPlafondMech(
+		encadrementMech: ASTTypes.PlafondMech
 	): RuleDependencies<Names> {
 		const result = [
 			encadrementMech.explanation.plafond,
-			encadrementMech.explanation.plancher,
 			encadrementMech.explanation.valeur
+		].flatMap(
+			R.partial<Names, ASTTypes.ASTNode, RuleDependencies<Names>>(
+				ruleDepsOfNode,
+				[ruleName]
+			)
+		)
+		return result
+	}
+
+	function ruleDepsOfPlancherMech(
+		mech: ASTTypes.PlancherMech
+	): RuleDependencies<Names> {
+		const result = [mech.explanation.plancher, mech.explanation.valeur].flatMap(
+			R.partial<Names, ASTTypes.ASTNode, RuleDependencies<Names>>(
+				ruleDepsOfNode,
+				[ruleName]
+			)
+		)
+		return result
+	}
+
+	function ruleDepsOfApplicableMech(
+		mech: ASTTypes.ApplicableMech | ASTTypes.NonApplicableMech
+	): RuleDependencies<Names> {
+		const result = [
+			mech.explanation.condition,
+			mech.explanation.valeur
 		].flatMap(
 			R.partial<Names, ASTTypes.ASTNode, RuleDependencies<Names>>(
 				ruleDepsOfNode,
@@ -168,8 +194,8 @@ export function ruleDepsOfNode<Names extends string>(
 		arrondiMech: ASTTypes.ArrondiMech
 	): RuleDependencies<Names> {
 		const result = [
-			arrondiMech.explanation.decimals,
-			arrondiMech.explanation.value
+			arrondiMech.explanation.arrondi,
+			arrondiMech.explanation.valeur
 		].flatMap(
 			R.partial<Names, ASTTypes.ASTNode, RuleDependencies<Names>>(
 				ruleDepsOfNode,
@@ -312,8 +338,14 @@ export function ruleDepsOfNode<Names extends string>(
 		result = ruleDepsOfPossibilities2(node)
 	} else if (ASTTypes.isRecalculMech<Names>(node)) {
 		result = ruleDepsOfRecalculMech(node)
-	} else if (ASTTypes.isEncadrementMech(node)) {
-		result = ruleDepsOfEncadrementMech(node)
+	} else if (ASTTypes.isApplicableMech(node)) {
+		result = ruleDepsOfApplicableMech(node)
+	} else if (ASTTypes.isNonApplicableMech(node)) {
+		result = ruleDepsOfApplicableMech(node)
+	} else if (ASTTypes.isPlafondMech(node)) {
+		result = ruleDepsOfPlafondMech(node)
+	} else if (ASTTypes.isPlancherMech(node)) {
+		result = ruleDepsOfPlancherMech(node)
 	} else if (ASTTypes.isSommeMech(node)) {
 		result = ruleDepsOfSommeMech(node)
 	} else if (ASTTypes.isProduitMech(node)) {

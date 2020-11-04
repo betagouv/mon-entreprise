@@ -15,11 +15,10 @@ SMIC net:
 
 Recalcule règle courante:
   formule:
-    encadrement:
-      valeur: 10% * salaire brut
-      plafond:
-        recalcul:
-          avec:
-            salaire brut: 100€
+    valeur: 10% * salaire brut
+    plafond:
+      recalcul:
+        avec:
+          salaire brut: 100€
   exemples:
     - valeur attendue: 10

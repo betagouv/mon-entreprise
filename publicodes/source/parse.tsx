@@ -13,18 +13,22 @@ import {
 	lt,
 	lte,
 	multiply,
+	omit,
 	subtract
 } from 'ramda'
 import React from 'react'
 import { EngineError, syntaxError } from './error'
 import { formatValue } from './format'
 import grammar from './grammar.ne'
-import mecanismRound, { unchainRoundMecanism } from './mecanisms/arrondi'
+import arrondi from './mecanisms/arrondi'
 import barème from './mecanisms/barème'
 import { mecanismAllOf } from './mecanisms/condition-allof'
 import { mecanismOneOf } from './mecanisms/condition-oneof'
 import durée from './mecanisms/durée'
-import encadrement from './mecanisms/encadrement'
+import plafond from './mecanisms/plafond'
+import plancher from './mecanisms/plancher'
+import applicable from './mecanisms/applicable'
+import nonApplicable from './mecanisms/nonApplicable'
 import grille from './mecanisms/grille'
 import { mecanismInversion } from './mecanisms/inversion'
 import { mecanismMax } from './mecanisms/max'
@@ -98,22 +102,19 @@ Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'tout
 		`
 		)
 	}
-	const keys = Object.keys(rawNode)
-	const unchainableMecanisms = difference(keys, chainableMecanisms)
-	if (keys.length > 1) {
-		if (unchainableMecanisms.length > 1) {
-			syntaxError(
-				rule.dottedName,
-				`
-Les mécanismes suivants se situent au même niveau : ${unchainableMecanisms
-					.map(x => `'${x}'`)
-					.join(', ')}
-Cela vient probablement d'une erreur dans l'indentation
-		`
-			)
-		}
 
-		return parseChainedMecanisms(rules, rule, parsedRules, rawNode)
+	rawNode = unfoldChainedMecanisms(rawNode)
+	const keys = Object.keys(rawNode)
+	if (keys.length > 1) {
+		syntaxError(
+			rule.dottedName,
+			`
+Les mécanismes suivants se situent au même niveau : ${keys
+				.map(x => `'${x}'`)
+				.join(', ')}
+Cela vient probablement d'une erreur dans l'indentation
+	`
+		)
 	}
 	const mecanismName = Object.keys(rawNode)[0]
 	const values = rawNode[mecanismName]
@@ -173,32 +174,34 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 	}
 }
 
-const chainableMecanisms = ['arrondi', 'plancher', 'plafond']
-
-function parseChainedMecanisms(rules, rule, parsedRules, rawNode) {
-	const keys = Object.keys(rawNode)
-	const recurse = parseMecanism(rules, rule, parsedRules)
-	if (keys.includes('arrondi')) {
-		return recurse(
-			unchainRoundMecanism(parse(rules, rule, parsedRules), rawNode)
-		)
-	} else if (keys.includes('plancher')) {
-		const { plancher, ...valeur } = rawNode
-		return recurse({
-			encadrement: {
-				valeur,
-				plancher
-			}
-		})
-	} else if (keys.includes('plafond')) {
-		const { plafond, ...valeur } = rawNode
-		return recurse({
-			encadrement: {
-				valeur,
-				plafond
-			}
-		})
+const chainableMecanisms = [
+	applicable,
+	nonApplicable,
+	plancher,
+	plafond,
+	arrondi
+]
+function unfoldChainedMecanisms(rawNode) {
+	if (Object.keys(rawNode).length === 1) {
+		return rawNode
 	}
+	return chainableMecanisms.reduceRight(
+		(node, parseFn) => {
+			if (!(parseFn.nom in rawNode)) {
+				return node
+			}
+			return {
+				[parseFn.nom]: {
+					[parseFn.nom]: rawNode[parseFn.nom],
+					valeur: node
+				}
+			}
+		},
+		omit(
+			chainableMecanisms.map(fn => fn.nom),
+			rawNode
+		)
+	)
 }
 
 const knownOperations = {
@@ -223,6 +226,7 @@ const operationDispatch = fromPairs(
 
 const statelessParseFunction = {
 	...operationDispatch,
+	...chainableMecanisms.reduce((acc, fn) => ({ [fn.nom]: fn, ...acc }), {}),
 	'une de ces conditions': mecanismOneOf,
 	'toutes ces conditions': mecanismAllOf,
 	somme: mecanismSum,
@@ -230,11 +234,9 @@ const statelessParseFunction = {
 	multiplication: mecanismProduct,
 	produit: mecanismProduct,
 	temporalValue: variableTemporelle,
-	arrondi: mecanismRound,
 	barème,
 	grille,
 	'taux progressif': tauxProgressif,
-	encadrement,
 	durée,
 	'le maximum de': mecanismMax,
 	'le minimum de': mecanismMin,

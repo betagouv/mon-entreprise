@@ -102,10 +102,12 @@ export function Mecanism({
 
 export const InfixMecanism = ({
 	value,
+	prefixed,
 	children
 }: {
 	value: EvaluatedNode
 	children: React.ReactNode
+	prefixed?: boolean
 }) => {
 	return (
 		<div
@@ -120,8 +122,9 @@ export const InfixMecanism = ({
 				}
 			`}
 		>
+			{prefixed && children}
 			<div className="value">{makeJsx(value)}</div>
-			{children}
+			{!prefixed && children}
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import Product from '../components/mecanisms/Product'
 import { typeWarning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
-import { convertNodeToUnit } from '../nodeUnits'
+import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
 import { areUnitConvertible, convertUnit, inferUnit } from '../units'
 
 export const mecanismProduct = (recurse, v) => {
@@ -45,13 +45,13 @@ export const mecanismProduct = (recurse, v) => {
 			nodeValue = convertUnit(unit, assiette.unit, nodeValue)
 			unit = assiette.unit
 		}
-		return {
+		return simplifyNodeUnit({
 			nodeValue,
 			unit,
 			explanation: {
 				plafondActif: assiette.nodeValue > plafond.nodeValue
 			}
-		}
+		})
 	}
 	const explanation = parseObject(recurse, objectShape, v),
 		evaluate = evaluateObject(objectShape, effect)
