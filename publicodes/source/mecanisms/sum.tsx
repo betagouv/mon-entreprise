@@ -3,7 +3,7 @@ import { evaluateArray, registerEvaluationFunction } from '../evaluation'
 import { inferUnit } from '../units'
 
 const evaluate = evaluateArray(
-	(x, y) => (x === false && y === false ? false : x + y),
+	(x: any, y: any) => (x === false && y === false ? false : x + y),
 	false
 )
 

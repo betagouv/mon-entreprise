@@ -12,11 +12,11 @@ import {
 	subtract
 } from 'ramda'
 import React from 'react'
+import { evaluationFunction } from '..'
 import { Operation } from '../components/mecanisms/common'
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
 import {
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	registerEvaluationFunction
@@ -50,11 +50,8 @@ const parse = (k, symbol) => (recurse, v) => {
 	}
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const explanation = map(
-		node => evaluateNode(cache, situation, parsedRules, node),
-		node.explanation
-	)
+const evaluate: evaluationFunction = function(node: any) {
+	const explanation = map(node => this.evaluateNode(node), node.explanation)
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 
@@ -70,7 +67,7 @@ const evaluate = (cache, situation, parsedRules, node) => {
 			}
 		} catch (e) {
 			typeWarning(
-				cache._meta.contextRule,
+				this.cache._meta.contextRule,
 				`Dans l'expression '${
 					node.operator
 				}', la partie gauche (unité: ${serializeUnit(

@@ -1,8 +1,8 @@
 import { lensPath, over } from 'ramda'
+import { evaluationFunction } from '..'
 import grille from '../components/mecanisms/Grille'
 import {
 	defaultNode,
-	evaluateNode,
 	mergeAllMissing,
 	registerEvaluationFunction
 } from '../evaluation'
@@ -52,15 +52,10 @@ const evaluateGrille = (tranches, evaluate) =>
 		}
 	})
 
-const evaluate = (
-	cache,
-	situation,
-	parsedRules,
-	node: ReturnType<typeof parse>
-) => {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-	const assiette = evaluate(node.explanation.assiette)
-	const multiplicateur = evaluate(node.explanation.multiplicateur)
+const evaluate: evaluationFunction = function(node: any) {
+	const evaluate = this.evaluateNode.bind(this)
+	const assiette = this.evaluateNode(node.explanation.assiette)
+	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
 			evaluatePlafondUntilActiveTranche(
@@ -70,7 +65,7 @@ const evaluate = (
 					assiette,
 					multiplicateur
 				},
-				cache
+				this.cache
 			),
 		liftTemporalNode(assiette),
 		liftTemporalNode(multiplicateur)

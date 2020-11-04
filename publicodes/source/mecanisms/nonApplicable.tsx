@@ -1,8 +1,8 @@
 import React from 'react'
+import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import {
 	bonus,
-	evaluateNode,
 	makeJsx,
 	mergeMissing,
 	registerEvaluationFunction
@@ -19,17 +19,11 @@ function MecanismNonApplicable({ explanation }) {
 	)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const condition = evaluateAttribute(node.explanation.condition)
+const evaluate: evaluationFunction = function(node) {
+	const condition = this.evaluateNode(node.explanation.condition)
 	let valeur = node.explanation.valeur
 	if (condition.nodeValue !== true) {
-		valeur = evaluateAttribute(valeur)
+		valeur = this.evaluateNode(valeur)
 	}
 	return {
 		...node,

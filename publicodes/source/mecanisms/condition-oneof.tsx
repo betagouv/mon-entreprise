@@ -1,17 +1,15 @@
 import { is, map, max, mergeWith, reduce } from 'ramda'
 import React from 'react'
+import { evaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
 import {
 	collectNodeMissing,
-	evaluateNode,
 	makeJsx,
 	registerEvaluationFunction
 } from '../evaluation'
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateOne = child =>
-		evaluateNode(cache, situation, parsedRules, child)
-	const explanation = map(evaluateOne, node.explanation)
+const evaluate: evaluationFunction = function(node) {
+	const explanation = node.explanation.map(child => this.evaluateNode(child))
 
 	const anyTrue = explanation.find(e => e.nodeValue === true)
 	const anyNull = explanation.find(e => e.nodeValue === null)

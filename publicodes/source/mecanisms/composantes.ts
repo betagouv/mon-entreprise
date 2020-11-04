@@ -1,28 +1,25 @@
 import { add, dissoc, filter, objOf } from 'ramda'
+import { evaluationFunction } from '..'
+import Composantes from '../components/mecanisms/Composantes'
 import { evaluateArray, registerEvaluationFunction } from '../evaluation'
 import { inferUnit } from '../units'
-import Composantes from '../components/mecanisms/Composantes'
 
-export const evaluateComposantes = (cache, situation, parsedRules, node) => {
+export const evaluateComposantes: evaluationFunction = function(node) {
 	const evaluationFilter = c =>
-		!situation['_meta.filter'] ||
+		!this.cache._meta.filter ||
 		!c.composante ||
 		((!c.composante['dû par'] ||
-			!['employeur', 'salarié'].includes(situation['_meta.filter']) ||
-			c.composante['dû par'] == situation['_meta.filter']) &&
+			!['employeur', 'salarié'].includes(this.cache._meta.filter as any) ||
+			c.composante['dû par'] == this.cache._meta.filter) &&
 			(!c.composante['impôt sur le revenu'] ||
-				!['déductible', 'non déductible'].includes(situation['_meta.filter']) ||
-				c.composante['impôt sur le revenu'] == situation['_meta.filter']))
-
-	return evaluateArray(add, 0)(
-		cache,
-		dissoc('_meta.filter', situation),
-		parsedRules,
-		{
-			...node,
-			explanation: filter(evaluationFilter, node.explanation)
-		}
-	)
+				!['déductible', 'non déductible'].includes(
+					this.cache._meta.filter as any
+				) ||
+				c.composante['impôt sur le revenu'] == this.cache._meta.filter))
+	return evaluateArray(add as any, 0).call(this, {
+		...node,
+		explanation: filter(evaluationFilter, node.explanation)
+	})
 }
 
 export const decompose = (recurse, k, v) => {

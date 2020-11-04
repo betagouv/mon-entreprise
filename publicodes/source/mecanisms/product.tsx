@@ -1,3 +1,4 @@
+import { evaluationFunction } from '..'
 import Product from '../components/mecanisms/Product'
 import { typeWarning } from '../error'
 import {
@@ -35,13 +36,18 @@ export const mecanismProduct = (recurse, v) => {
 	}
 }
 
-const effect = ({ assiette, taux, facteur, plafond }, cache) => {
+const productEffect: evaluationFunction = function({
+	assiette,
+	taux,
+	facteur,
+	plafond
+}: any) {
 	if (assiette.unit) {
 		try {
 			plafond = convertNodeToUnit(assiette.unit, plafond)
 		} catch (e) {
 			typeWarning(
-				cache._meta.contextRule,
+				this.cache._meta.contextRule,
 				"Impossible de convertir l'unité du plafond du produit dans celle de l'assiette",
 				e
 			)
@@ -78,6 +84,6 @@ const effect = ({ assiette, taux, facteur, plafond }, cache) => {
 	})
 }
 
-const evaluate = evaluateObject(objectShape, effect)
+const evaluate = evaluateObject(productEffect)
 
 registerEvaluationFunction('produit', evaluate)

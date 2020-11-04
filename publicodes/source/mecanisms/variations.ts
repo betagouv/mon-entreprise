@@ -1,12 +1,8 @@
 import { or } from 'ramda'
+import { evaluationFunction } from '..'
 import Variations from '../components/mecanisms/Variations'
 import { typeWarning } from '../error'
-import {
-	bonus,
-	defaultNode,
-	evaluateNode,
-	registerEvaluationFunction
-} from '../evaluation'
+import { bonus, defaultNode, registerEvaluationFunction } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import {
 	liftTemporal2,
@@ -82,14 +78,7 @@ const devariateExplanation = (
 	return explanation
 }
 
-function evaluate(
-	cache,
-	situation,
-	parsedRules,
-	node: ReturnType<typeof parse>
-) {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-
+const evaluate: evaluationFunction = function(node: any) {
 	const [temporalValue, explanation, unit] = node.explanation.reduce(
 		(
 			[evaluation, explanations, unit, previousConditions],
@@ -108,7 +97,7 @@ function evaluate(
 					previousConditions
 				]
 			}
-			const evaluatedCondition = evaluate(condition)
+			const evaluatedCondition = this.evaluateNode(condition)
 			const currentCondition = liftTemporal2(
 				(previousCond, currentCond) =>
 					previousCond === null ? previousCond : !previousCond && currentCond,
@@ -132,13 +121,13 @@ function evaluate(
 					previousConditions
 				]
 			}
-			let evaluatedConsequence = evaluate(consequence)
+			let evaluatedConsequence = this.evaluateNode(consequence)
 
 			try {
 				evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
 			} catch (e) {
 				typeWarning(
-					cache._meta.contexRule,
+					this.cache._meta.contextRule,
 					`L'unité de la branche n° ${i +
 						1} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
 					e

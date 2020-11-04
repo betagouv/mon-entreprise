@@ -1,15 +1,11 @@
 import { path } from 'ramda'
 import React from 'react'
+import { evaluationFunction } from '..'
 import { RuleLinkWithContext } from '../components/RuleLink'
-import { evaluateNode, registerEvaluationFunction } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluation'
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const APIExplanation = evaluateNode(
-		cache,
-		situation,
-		parsedRules,
-		node.explanation.API
-	)
+const evaluate: evaluationFunction = function(node: any) {
+	const APIExplanation = this.evaluateNode(node.explanation.API)
 	const valuePath = node.explanation.chemin.split(' . ')
 	const nodeValue =
 		APIExplanation.nodeValue == null

@@ -1,7 +1,8 @@
 import { map } from 'ramda'
+import { evaluationFunction } from '..'
 import { convertToString, getYear } from '../date'
 import { evaluationError } from '../error'
-import { evaluateNode, registerEvaluationFunction } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluation'
 import {
 	createTemporalEvaluation,
 	groupByYear,
@@ -84,19 +85,19 @@ function getMonthlyCumulatedValuesOverYear(
 	return cumulatedPeriods
 }
 
-function evaluate(cache, situation, parsedRules, node) {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-
-	function recalculWith(newSituation, node) {
-		return evaluateNode(
-			{ _meta: cache._meta },
-			{ ...situation, ...newSituation },
-			parsedRules,
-			node
-		)
+const evaluate: evaluationFunction = function(node) {
+	const recalculWith = (newSituation, node) => {
+		const originalCache = this.cache
+		const originalSituation = this.parsedSituation
+		this.cache = { _meta: originalCache._meta }
+		this.parsedSituation = { ...originalSituation, ...newSituation }
+		const res = this.evaluateNode(node)
+		this.cache = originalCache
+		this.parsedSituation = originalSituation
+		return res
 	}
 
-	function regulariseYear(temporalEvaluation: Temporal<Evaluation<number>>) {
+	const regulariseYear = (temporalEvaluation: Temporal<Evaluation<number>>) => {
 		if (temporalEvaluation.filter(({ value }) => value !== false).length <= 1) {
 			return temporalEvaluation
 		}
@@ -107,10 +108,10 @@ function evaluate(cache, situation, parsedRules, node) {
 			value: Record<string, unknown>
 		}>).reduce<Record<string, Temporal<Evaluation<number>>>>(
 			(acc, { dottedName, value }) => {
-				const evaluation = evaluate(value)
+				const evaluation = this.evaluateNode(value)
 				if (!evaluation.unit.denominators.some(unit => unit === 'mois')) {
 					evaluationError(
-						cache._meta.contextRule,
+						this.cache._meta.contextRule,
 						`Dans le mécanisme régularisation, la valeur cumulée '${dottedName}' n'est pas une variable numérique définie sur le mois`
 					)
 				}
@@ -147,7 +148,7 @@ function evaluate(cache, situation, parsedRules, node) {
 		return temporalRégularisée as Temporal<Evaluation<number>>
 	}
 
-	const evaluation = evaluate(node.explanation.rule)
+	const evaluation = this.evaluateNode(node.explanation.rule)
 	const temporalValue = evaluation.temporalValue
 	const evaluationWithRegularisation = groupByYear(
 		temporalValue as Temporal<Evaluation<number>>

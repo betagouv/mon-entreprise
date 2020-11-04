@@ -4,8 +4,5 @@
 	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
-	"eslint.enable": true,
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": true
-	}
+	"eslint.enable": true
 }

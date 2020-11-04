@@ -1,8 +1,8 @@
 import React from 'react'
+import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
 import {
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	registerEvaluationFunction
@@ -26,25 +26,19 @@ function MecanismPlafond({ explanation }) {
 	)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const valeur = evaluateAttribute(node.explanation.valeur)
+const evaluate: evaluationFunction = function(node) {
+	const valeur = this.evaluateNode(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue
 	let plafond = node.explanation.plafond
 	if (nodeValue !== false) {
-		plafond = evaluateAttribute(plafond)
+		plafond = this.evaluateNode(plafond)
 		if (valeur.unit) {
 			try {
 				plafond = convertNodeToUnit(valeur.unit, plafond)
 			} catch (e) {
 				typeWarning(
-					cache._meta.contextRule,
+					this.cache._meta.contextRule,
 					"L'unité du plafond n'est pas compatible avec celle de la valeur à encadrer",
 					e
 				)

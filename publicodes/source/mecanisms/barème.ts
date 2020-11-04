@@ -1,8 +1,8 @@
+import { evaluationFunction } from '..'
 import Barème from '../components/mecanisms/Barème'
 import { evaluationError } from '../error'
 import {
 	defaultNode,
-	evaluateNode,
 	mergeAllMissing,
 	registerEvaluationFunction
 } from '../evaluation'
@@ -76,31 +76,27 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 		}
 	})
 }
-const evaluate = (
-	cache,
-	situation,
-	parsedRules,
-	node: ReturnType<typeof parse>
-) => {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-	const assiette = evaluate(node.explanation.assiette)
-	const multiplicateur = evaluate(node.explanation.multiplicateur)
+const evaluate: evaluationFunction = function(node) {
+	const evaluateNode = this.evaluateNode.bind(this)
+	const assiette = this.evaluateNode(node.explanation.assiette)
+	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
 			evaluatePlafondUntilActiveTranche(
-				evaluate,
+				evaluateNode,
 				{
 					parsedTranches: node.explanation.tranches,
 					assiette,
 					multiplicateur
 				},
-				cache
+				this.cache
 			),
 		liftTemporalNode(assiette),
 		liftTemporalNode(multiplicateur)
 	)
 	const temporalTranches = liftTemporal2(
-		(tranches, assiette) => evaluateBarème(tranches, assiette, evaluate, cache),
+		(tranches, assiette) =>
+			evaluateBarème(tranches, assiette, evaluateNode, this.cache),
 		temporalTranchesPlafond,
 		liftTemporalNode(assiette)
 	)

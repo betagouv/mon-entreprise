@@ -1,9 +1,9 @@
 import React from 'react'
+import { evaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
 import {
 	defaultNode,
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	parseObject,
@@ -34,15 +34,9 @@ const objectShape = {
 	"jusqu'à": defaultNode(todayString)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const from = evaluateAttribute(node.explanation.depuis)
-	const to = evaluateAttribute(node.explanation["jusqu'à"])
+const evaluate: evaluationFunction = function(node) {
+	const from = this.evaluateNode(node.explanation.depuis)
+	const to = this.evaluateNode(node.explanation["jusqu'à"])
 	let nodeValue
 	if ([from, to].some(({ nodeValue }) => nodeValue === null)) {
 		nodeValue = null

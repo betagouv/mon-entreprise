@@ -1,7 +1,7 @@
 import React from 'react'
+import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import {
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	registerEvaluationFunction
@@ -28,18 +28,12 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const valeur = evaluateAttribute(node.explanation.valeur)
+const evaluate: evaluationFunction = function(node) {
+	const valeur = this.evaluateNode(node.explanation.valeur)
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
 	if (nodeValue !== false) {
-		arrondi = evaluateAttribute(arrondi)
+		arrondi = this.evaluateNode(arrondi)
 	}
 
 	return {
