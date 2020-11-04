@@ -45,7 +45,9 @@ export function RuleLink<Name extends string>({
 		return (
 			<Link to={newPath} {...props}>
 				{children || rule.title}{' '}
-				{displayIcon && rule.icons && <span>{emoji(rule.icons)} </span>}
+				{displayIcon && rule.rawNode.icônes && (
+					<span>{emoji(rule.rawNode.icônes)} </span>
+				)}
 			</Link>
 		)
 	} else {

@@ -1,34 +1,40 @@
-import {
-	add,
-	divide,
-	equals,
-	fromPairs,
-	gt,
-	gte,
-	lt,
-	lte,
-	map,
-	multiply,
-	subtract
-} from 'ramda'
+import { equals, fromPairs, map } from 'ramda'
 import React from 'react'
 import { evaluationFunction } from '..'
 import { Operation } from '../components/mecanisms/common'
+import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
-import {
-	makeJsx,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { makeJsx, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
+import parse from '../parse'
 import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
+import { EvaluationDecoration } from '../AST/types'
 import { inferUnit, serializeUnit } from '../units'
 
-const parse = (k, symbol) => (recurse, v) => {
-	const explanation = v.explanation.map(recurse)
-	const [node1, node2] = explanation
-	const unit = inferUnit(k, [node1.unit, node2.unit])
+const knownOperations = {
+	'*': [(a, b) => a * b, '×'],
+	'/': [(a, b) => a / b, '∕'],
+	'+': [(a, b) => a + b],
+	'-': [(a, b) => a - b, '−'],
+	'<': [(a, b) => a < b],
+	'<=': [(a, b) => a <= b, '≤'],
+	'>': [(a, b) => a > b],
+	'>=': [(a, b) => a >= b, '≥'],
+	'=': [(a, b) => equals(a, b)],
+	'!=': [(a, b) => !equals(a, b), '≠']
+} as const
+export type OperationNode = {
+	nodeKind: 'operation'
+	explanation: [ASTNode, ASTNode]
+	operationKind: keyof typeof knownOperations
+	operator: string
+	jsx: any
+}
+
+const parseOperation = (k, symbol) => (v, context) => {
+	const explanation = v.explanation.map(node => parse(node, context))
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Operation value={nodeValue} unit={unit}>
@@ -45,13 +51,15 @@ const parse = (k, symbol) => (recurse, v) => {
 		nodeKind: 'operation',
 		operationKind: k,
 		operator: symbol || k,
-		explanation,
-		unit
-	}
+		explanation
+	} as OperationNode
 }
 
-const evaluate: evaluationFunction = function(node: any) {
-	const explanation = map(node => this.evaluateNode(node), node.explanation)
+const evaluate: evaluationFunction<'operation'> = function(node) {
+	const explanation = node.explanation.map(node => this.evaluateNode(node)) as [
+		ASTNode & EvaluationDecoration,
+		ASTNode & EvaluationDecoration
+	]
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 
@@ -60,7 +68,7 @@ const evaluate: evaluationFunction = function(node: any) {
 	}
 	if (!['∕', '×'].includes(node.operator)) {
 		try {
-			if (node1.unit) {
+			if (node1.unit && 'unit' in node2) {
 				node2 = convertNodeToUnit(node1.unit, node2)
 			} else if (node2.unit) {
 				node1 = convertNodeToUnit(node2.unit, node1)
@@ -82,7 +90,12 @@ const evaluate: evaluationFunction = function(node: any) {
 	const baseNode = {
 		...node,
 		explanation,
-		unit: inferUnit(node.operationKind, [node1.unit, node2.unit]),
+		...((node.operationKind === '*' ||
+			node.operationKind === '/' ||
+			node.operationKind === '-' ||
+			node.operationKind === '+') && {
+			unit: inferUnit(node.operationKind, [node1.unit, node2.unit])
+		}),
 		missingVariables
 	}
 
@@ -109,8 +122,8 @@ const evaluate: evaluationFunction = function(node: any) {
 			}
 			return operatorFunction(a, b)
 		},
-		node1.temporalValue ?? pureTemporal(node1.nodeValue),
-		node2.temporalValue ?? pureTemporal(node2.nodeValue)
+		node1.temporalValue ?? (pureTemporal(node1.nodeValue) as any),
+		node2.temporalValue ?? (pureTemporal(node2.nodeValue) as any)
 	)
 	const nodeValue = temporalAverage(temporalValue, baseNode.unit)
 
@@ -123,23 +136,10 @@ const evaluate: evaluationFunction = function(node: any) {
 
 registerEvaluationFunction('operation', evaluate)
 
-const knownOperations = {
-	'*': [multiply, '×'],
-	'/': [divide, '∕'],
-	'+': [add],
-	'-': [subtract, '−'],
-	'<': [lt],
-	'<=': [lte, '≤'],
-	'>': [gt],
-	'>=': [gte, '≥'],
-	'=': [equals],
-	'!=': [(a, b) => !equals(a, b), '≠']
-}
-
 const operationDispatch = fromPairs(
 	Object.entries(knownOperations).map(([k, [f, symbol]]) => [
 		k,
-		parse(k, symbol)
+		parseOperation(k, symbol)
 	])
 )
 

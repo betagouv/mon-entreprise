@@ -406,48 +406,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée: 
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - Administrateur judiciaire
-        - Agent général d'assurance
-        - Architecte
-        - Architecte d'intérieur
-        - Avocat
-        - Avocat au conseil d'Etat et à la Cour de Cassation
-        - Avoué auprès des cours d'appel
-        - Chiropracteur
-        - Chirurgien-dentiste
-        - Commissaire aux comptes
-        - Commissaire-priseur
-        - Conseil en investissements financiers
-        - Conseil en propriété industrielle
-        - Diététicien
-        - Ergothérapeute
-        - Expert agricole, foncier et expert forestier
-        - Expert devant les tribunaux
-        - Expert-comptable
-        - Géomètre-expert
-        - Greffier auprès des tribunaux de commerce
-        - Huissier de justice
-        - Infirmier libéral
-        - Directeur de laboratoire d'analyses médicales
-        - Mandataire judiciaire
-        - Mandataire judiciaire à la protecion des majeurs
-        - Masseur-kinésithérapeute
-        - Médecin
-        - Notaire
-        - Orthophoniste
-        - Orthoptiste
-        - Ostéopathe
-        - Pédicure-podologue
-        - Psychologue
-        - Psychomotricien
-        - Psychothérapeute
-        - Sage-femme
-        - Vétérinaire
 
 entreprise . catégorie d'activité . débit de tabac:
   applicable si: catégorie d'activité = 'commerciale ou industrielle'
@@ -499,16 +457,17 @@ entreprise . auto entreprise impossible:
   question: Dans quelle commune l'établissement est-il implanté ?
   API: commune
   par défaut:
-    code: 29019
-    nom: Non renseignée
-    departement:
-      nom: Non renseigné
-    taux du versement transport: 0.018
+    objet:
+      code: 29019
+      nom: Non renseignée
+      departement:
+        nom: Non renseigné
+      taux du versement transport: 0.018
 
 établissement . localisation . code commune:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: code
 
 établissement . localisation . commune:
@@ -517,19 +476,19 @@ entreprise . auto entreprise impossible:
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: nom
 
 établissement . taux du versement transport:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: taux du versement transport
 
 établissement . localisation . département:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: departement . nom
 
 établissement . localisation . outre-mer:

@@ -166,7 +166,7 @@ variations sans unité:
   exemples:
     - valeur attendue: 7
       unité attendue: '%'
-
+      
 taux réduit:
 variations dans un produit:
   formule:

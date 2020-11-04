@@ -1,5 +1,5 @@
 import { memoizeWith } from 'ramda'
-import { Evaluation, Unit } from './types'
+import { Evaluation, Unit } from './AST/types'
 import { serializeUnit } from './units'
 import { capitalise0 } from './utils'
 

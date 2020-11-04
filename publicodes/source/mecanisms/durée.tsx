@@ -1,15 +1,24 @@
 import React from 'react'
 import { evaluationFunction } from '..'
+import { ASTNode } from '../AST/types'
 import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
 import {
 	defaultNode,
 	makeJsx,
 	mergeAllMissing,
-	parseObject,
-	registerEvaluationFunction
+	parseObject
 } from '../evaluation'
-import { parseUnit } from '../units'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+
+export type DuréeNode = {
+	explanation: {
+		depuis: ASTNode
+		"jusqu'à": ASTNode
+	}
+	jsx: any
+	nodeKind: 'durée'
+}
 
 function MecanismDurée({ nodeValue, explanation, unit }) {
 	return (
@@ -28,20 +37,20 @@ function MecanismDurée({ nodeValue, explanation, unit }) {
 	)
 }
 const todayString = convertToString(new Date())
-
 const objectShape = {
 	depuis: defaultNode(todayString),
 	"jusqu'à": defaultNode(todayString)
 }
-
-const evaluate: evaluationFunction = function(node) {
+const evaluate: evaluationFunction<'durée'> = function(node) {
 	const from = this.evaluateNode(node.explanation.depuis)
 	const to = this.evaluateNode(node.explanation["jusqu'à"])
 	let nodeValue
 	if ([from, to].some(({ nodeValue }) => nodeValue === null)) {
 		nodeValue = null
 	} else {
-		const [fromDate, toDate] = [from.nodeValue, to.nodeValue].map(convertToDate)
+		const [fromDate, toDate] = [from.nodeValue, to.nodeValue].map(
+			convertToDate as any
+		)
 		nodeValue = Math.max(
 			0,
 			Math.round(
@@ -61,18 +70,13 @@ const evaluate: evaluationFunction = function(node) {
 	}
 }
 
-export default (recurse, v) => {
-	const explanation = parseObject(recurse, objectShape, v)
-
+export default (v, context) => {
+	const explanation = parseObject(objectShape, v, context)
 	return {
 		jsx: MecanismDurée,
 		explanation,
-		category: 'mecanism',
-		name: 'Durée',
-		nodeKind: 'durée',
-		type: 'numeric',
-		unit: parseUnit('jours')
-	}
+		nodeKind: 'durée'
+	} as DuréeNode
 }
 
 registerEvaluationFunction('durée', evaluate)

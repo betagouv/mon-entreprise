@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
@@ -6,18 +6,20 @@ import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
 import { simplifyNodeUnit } from '../../nodeUnits'
 import {
-	EvaluatedNode,
+	ASTNode,
+	ConstantNode,
 	Evaluation,
-	EvaluatedRule,
+	EvaluationDecoration,
 	Types,
 	Unit
-} from '../../types'
+} from '../../AST/types'
 import { capitalise0 } from '../../utils'
-import { EngineContext } from '../contexts'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
 import MecanismExplanation from './Explanation'
+import { ReferenceNode } from '../../reference'
+import { RuleNode } from '../../rule'
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
 	unit: Unit
@@ -105,7 +107,7 @@ export const InfixMecanism = ({
 	prefixed,
 	children
 }: {
-	value: EvaluatedNode
+	value: ASTNode & EvaluationDecoration
 	children: React.ReactNode
 	prefixed?: boolean
 }) => {
@@ -229,22 +231,22 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 `
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Leaf({
-	dottedName,
-	acronyme,
-	name,
-	explanation: { title },
-	nodeValue,
+export function Leaf(
+	node: ReferenceNode &
+		EvaluationDecoration & { explanation: RuleNode; dottedName: string }
+) {
+	const { dottedName, name, nodeValue, explanation: rule, unit } = node
 
-	unit
-}: EvaluatedRule) {
-	const ruleTitle = title || capitalise0(name)
 	return (
 		<span className="variable filtered leaf">
 			<span className="nodeHead">
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
-						{acronyme ? <abbr title={ruleTitle}>{acronyme}</abbr> : ruleTitle}
+						{rule.rawRule.acronyme ? (
+							<abbr title={rule.title}>{rule.rawRule.acronyme}</abbr>
+						) : (
+							rule.title
+						)}
 					</span>
 				</RuleLinkWithContext>
 

@@ -44,7 +44,7 @@ const rules: Rules = {
 	...professionLibérale,
 	...entrepriseEtablissement,
 	...protectionSociale,
-	...salarié,
+	... salarié,
 	...CCBatiment,
 	...CCHotels,
 	...CCOptique,

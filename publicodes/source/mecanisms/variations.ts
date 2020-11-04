@@ -1,85 +1,80 @@
 import { or } from 'ramda'
 import { evaluationFunction } from '..'
 import Variations from '../components/mecanisms/Variations'
+import { ASTNode, Unit } from '../AST/types'
 import { typeWarning } from '../error'
-import { bonus, defaultNode, registerEvaluationFunction } from '../evaluation'
-import { convertNodeToUnit } from '../nodeUnits'
+import { bonus, defaultNode } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
+import parse from '../parse'
 import {
 	liftTemporal2,
 	pureTemporal,
 	sometime,
+	Temporal,
 	temporalAverage
 } from '../temporal'
-import { inferUnit } from '../units'
 import { mergeAllMissing } from './../evaluation'
 
-export default function parse(recurse, v) {
+export type VariationNode = {
+	explanation: Array<{
+		condition: ASTNode
+		consequence: ASTNode
+	}>
+	nodeKind: 'variations'
+	jsx: any
+}
+
+export const devariate = (k, v, context): ASTNode => {
+	if (k === 'valeur') {
+		return parse(v, context)
+	}
+	const { variations, ...factoredKeys } = v
+	const explanation = parse(
+		{
+			variations: variations.map(({ alors, sinon, si }) => {
+				const { attributs, ...otherKeys } = alors ?? sinon
+				return {
+					[alors !== undefined ? 'alors' : 'sinon']: {
+						...attributs,
+						[k]: {
+							...factoredKeys,
+							...otherKeys
+						}
+					},
+					...(si !== undefined && { si })
+				}
+			})
+		},
+		context
+	)
+	return explanation
+}
+
+export default function parseVariations(v, context) {
 	const explanation = v.map(({ si, alors, sinon }) =>
 		sinon !== undefined
-			? { consequence: recurse(sinon), condition: defaultNode(true) }
-			: { consequence: recurse(alors), condition: recurse(si) }
+			? { consequence: parse(sinon, context), condition: defaultNode(true) }
+			: { consequence: parse(alors, context), condition: parse(si, context) }
 	)
 
 	// TODO - find an appropriate representation
 	return {
 		explanation,
 		jsx: Variations,
-		category: 'mecanism',
-		name: 'variations',
-		nodeKind: 'variations',
-		type: 'numeric',
-		unit: inferUnit(
-			'+',
-			explanation.map(r => r.consequence.unit)
-		)
+		nodeKind: 'variations'
 	}
 }
 
-export function devariate(recurse, k, v) {
-	const explanation = devariateExplanation(recurse, k, v)
-	return {
-		explanation,
-		jsx: Variations,
-		category: 'mecanism',
-		name: 'variations',
-		nodeKind: 'variations',
-		type: 'numeric',
-		unit: inferUnit(
-			'+',
-			explanation.map(r => r.consequence.unit)
-		)
-	}
-}
-
-type Variation =
-	| {
-			si: any
-			alors: Record<string, unknown>
-	  }
-	| {
-			sinon: Record<string, unknown>
-	  }
-const devariateExplanation = (
-	recurse,
-	mecanismKey,
-	v: { variations: Array<Variation> }
-) => {
-	const { variations, ...fixedProps } = v
-	const explanation = variations.map(variation => ({
-		condition: 'sinon' in variation ? defaultNode(true) : recurse(variation.si),
-		consequence: recurse({
-			[mecanismKey]: {
-				...fixedProps,
-				...('sinon' in variation ? variation.sinon : variation.alors)
-			}
-		})
-	}))
-
-	return explanation
-}
-
-const evaluate: evaluationFunction = function(node: any) {
-	const [temporalValue, explanation, unit] = node.explanation.reduce(
+const evaluate: evaluationFunction<'variations'> = function(node) {
+	const [temporalValue, explanation, unit] = node.explanation.reduce<
+		[
+			Temporal<any>,
+			VariationNode['explanation'],
+			Unit | undefined,
+			Temporal<any>
+		]
+	>(
 		(
 			[evaluation, explanations, unit, previousConditions],
 			{ condition, consequence },
@@ -122,16 +117,17 @@ const evaluate: evaluationFunction = function(node: any) {
 				]
 			}
 			let evaluatedConsequence = this.evaluateNode(consequence)
-
-			try {
-				evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
-			} catch (e) {
-				typeWarning(
-					this.cache._meta.contextRule,
-					`L'unité de la branche n° ${i +
-						1} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
-					e
-				)
+			if (unit) {
+				try {
+					evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
+				} catch (e) {
+					typeWarning(
+						this.cache._meta.contextRule,
+						`L'unité de la branche n° ${i +
+							1} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
+						e
+					)
+				}
 			}
 			const currentValue = liftTemporal2(
 				(cond, value) => cond && value,
@@ -153,12 +149,12 @@ const evaluate: evaluationFunction = function(node: any) {
 				liftTemporal2(or, previousConditions, currentCondition)
 			]
 		},
-		[pureTemporal(false), [], node.unit, pureTemporal(false)]
+		[pureTemporal(false), [], undefined, pureTemporal(false)]
 	)
 
 	const nodeValue = temporalAverage(temporalValue, unit)
 	const missingVariables = mergeAllMissing(
-		explanation.reduce(
+		explanation.reduce<ASTNode[]>(
 			(values, { condition, consequence }) => [
 				...values,
 				condition,
@@ -167,14 +163,15 @@ const evaluate: evaluationFunction = function(node: any) {
 			[]
 		)
 	)
-	return {
+
+	return simplifyNodeUnit({
 		...node,
 		nodeValue,
-		unit,
+		...(unit !== undefined && { unit }),
 		explanation,
 		missingVariables,
 		...(temporalValue.length > 1 && { temporalValue })
-	}
+	})
 }
 
 registerEvaluationFunction('variations', evaluate)

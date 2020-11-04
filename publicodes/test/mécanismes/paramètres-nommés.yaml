@@ -3,30 +3,32 @@ cotisation:
     multiplication:
       assiette [ref]: 1000 €
       taux [ref taux employeur]: 4%
+
+test:
+
+paramètre nommés:
+  formule: test
   exemples:
-    - valeur attendue: 40
-
+    - situation: 
+        test: cotisation . assiette
+      valeur attendue: 1000
     - situation:
-        cotisation . assiette: 2000
-      valeur attendue: 80
-
-    - situation:
-        cotisation . assiette: 3000
-        cotisation . taux employeur: 3
-      valeur attendue: 90
-
-paramètre nommés imbriqués:
+        test: cotisation . taux employeur
+      valeur attendue: 4
+    
+cotisation 2:
   formule:
     multiplication:
       assiette [ref]:
         valeur: 1000€
         plafond [ref]: 100€
       taux: 5%
+
+paramètre nommés imbriqués:
+  formule: cotisation 2 . assiette . plafond
   exemples:
-    - valeur attendue: 5
-    - situation:
-        paramètre nommés imbriqués . assiette . plafond: 200
-      valeur attendue: 10
+    - valeur attendue: 100
+   
 
 paramètre nommé utilisé dans la règle:
   formule:

@@ -118,16 +118,17 @@ prime faible salaire:
   formule: 300€
 ```
 
+<<<<<<< HEAD
 On peut forcer la conversion des unités via la propriété `unité`, ou la notation
 suffixée `[...]`.
+=======
+On peut forcer la conversion des unités via la propriété `unité`
+>>>>>>> 30d2971e (:WIP: Délimitation des pistes de refacto (on y va à la masse de destruction))
 
 ```yaml
 salaire:
-  unité: €/mois
-  formule: 3200
-
-salaire annuel:
-  formule: salaire [k€/an]
+  formule: 3200 €/mois
+  unité: €/an
 ```
 
 **Types de base disponibles pour la conversion :**

@@ -1,14 +1,18 @@
 import { min } from 'ramda'
 import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
-import {
-	evaluateArray,
-	makeJsx,
-	registerEvaluationFunction
-} from '../evaluation'
+import { ASTNode } from '../AST/types'
+import { evaluateArray, makeJsx } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 
-export const mecanismMin = (recurse, v) => {
-	const explanation = v.map(recurse)
+export type MinNode = {
+	explanation: Array<ASTNode>
+	nodeKind: 'minimum'
+	jsx: any
+}
+export const mecanismMin = (v, context) => {
+	const explanation = v.map(node => parse(node, context))
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le minimum de" value={nodeValue} unit={unit}>
 			<ul>
@@ -24,14 +28,10 @@ export const mecanismMin = (recurse, v) => {
 	return {
 		jsx,
 		explanation,
-		type: 'numeric',
-		category: 'mecanism',
-		name: 'le minimum de',
-		nodeKind: 'minimum',
-		unit: explanation[0].unit
-	}
+		nodeKind: 'minimum'
+	} as MinNode
 }
 
-const evaluate = evaluateArray(min, Infinity)
+const evaluate = evaluateArray<'minimum'>(min, Infinity)
 
 registerEvaluationFunction('minimum', evaluate)

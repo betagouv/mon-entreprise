@@ -18,13 +18,6 @@ export let unaryOperation = operationType => ([operator, , A]) => ({
 	}
 })
 
-export let filteredVariable = ([{ variable }, , { value: filter }]) => ({
-	filter: { filter, explanation: variable }
-})
-
-export let variableWithConversion = ([{ variable }, , unit]) => ({
-	unitConversion: { explanation: variable, unit: parseUnit(unit.value) }
-})
 
 export let temporalNumericValue = (variable, word, date) => ({
 	temporalValue: {
@@ -45,15 +38,14 @@ export let variable = ([firstFragment, nextFragment], _, reject) => {
 
 export let number = ([{ value }]) => ({
 	constant: {
+		type: 'number',
 		nodeValue: parseFloat(value)
 	}
 })
 
-export let numberWithUnit = ([number, , unit]) => ({
-	constant: {
-		nodeValue: parseFloat(number.value),
-		unit: parseUnit(unit.value)
-	}
+export let numberWithUnit = (value) => ({
+	...number(value),
+	unité: value[2].value
 })
 
 export let date = ([{ value }]) => {

@@ -6,9 +6,9 @@ impôt:
   formule:
     somme:
       - produit:
-          assiette: revenu imposable [€/an]
+          assiette: revenu imposable
           taux: taux d'imposition
-      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant [€/an]
+      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
     arrondi: oui
 
 impôt . taux d'imposition:

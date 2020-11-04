@@ -14,7 +14,7 @@ questions:
     - contrat salarié . profession spécifique
     - établissement . localisation
 
-unités par défaut: [€/mois]
+unité par défaut: €/mois
 situation:
   dirigeant: non
   contrat salarié . activité partielle: oui

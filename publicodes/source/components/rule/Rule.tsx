@@ -16,6 +16,7 @@ export default function Rule({ dottedName, engine, language }) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
 	const rule = engine.evaluate(dottedName)
+	// TODO affichage inline vs page
 
 	const isSetInStituation = engine.parsedSituation[dottedName] !== undefined
 	const { description, question } = rule
@@ -107,12 +108,12 @@ export default function Rule({ dottedName, engine, language }) {
 	)
 }
 
-function AssociatedRules<Name extends string>({
+function AssociatedRules({
 	dottedName,
 	engine
 }: {
-	dottedName: Name
-	engine: Engine<Name>
+	dottedName: string
+	engine: Engine
 }) {
 	const namespaceRules = Object.keys(engine.getParsedRules())
 		.filter(
