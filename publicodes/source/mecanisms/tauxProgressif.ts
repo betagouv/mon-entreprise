@@ -1,35 +1,42 @@
 import { evaluationFunction } from '..'
 import tauxProgressif from '../components/mecanisms/TauxProgressif'
-import {
-	defaultNode,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { defaultNode, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
+
 import { convertNodeToUnit } from '../nodeUnits'
 import { parseUnit } from '../units'
 import {
 	evaluatePlafondUntilActiveTranche,
-	parseTranches
+	parseTranches,
+	TrancheNodes
 } from './trancheUtils'
-
-export default function parse(parse, v) {
-	const explanation = {
-		assiette: parse(v.assiette),
-		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),
-		tranches: parseTranches(parse, v.tranches)
+import { ASTNode } from '../AST/types'
+export type TauxProgressifNode = {
+	explanation: {
+		tranches: TrancheNodes
+		multiplicateur: ASTNode
+		assiette: ASTNode
 	}
+	jsx
+	nodeKind: 'taux progressif'
+}
+export default function parseTauxProgressif(v, context): TauxProgressifNode {
+	const explanation = {
+		assiette: parse(v.assiette, context),
+		multiplicateur: v.multiplicateur
+			? parse(v.multiplicateur, context)
+			: defaultNode(1),
+		tranches: parseTranches(v.tranches, context)
+	} as TauxProgressifNode['explanation']
 	return {
 		jsx: tauxProgressif,
 		explanation,
-		category: 'mecanism',
-		name: 'taux progressif',
-		nodeKind: 'taux progressif',
-		type: 'numeric',
-		unit: parseUnit('%')
+		nodeKind: 'taux progressif'
 	}
 }
 
-const evaluate: evaluationFunction = function(node: any) {
+const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -70,7 +77,10 @@ const evaluate: evaluationFunction = function(node: any) {
 		}
 	}
 
-	if (tranches.every(({ isActive }) => isActive !== true)) {
+	if (
+		tranches.every(({ isActive }) => isActive !== true) ||
+		typeof assiette.nodeValue !== 'number'
+	) {
 		return {
 			...evaluatedNode,
 			nodeValue: null,
@@ -105,7 +115,7 @@ const evaluate: evaluationFunction = function(node: any) {
 		return {
 			...evaluatedNode,
 			nodeValue: null,
-			activeTranche: activeTranche.missingVariables
+			missingVariables: activeTranche.missingVariables
 		}
 	}
 
@@ -118,7 +128,8 @@ const evaluate: evaluationFunction = function(node: any) {
 	activeTranche.nodeValue = nodeValue
 	return {
 		...evaluatedNode,
-		nodeValue
+		nodeValue,
+		missingVariables: {}
 	}
 }
 

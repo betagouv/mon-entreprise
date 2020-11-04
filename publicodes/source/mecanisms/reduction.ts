@@ -1,14 +1,22 @@
 import { max, min } from 'ramda'
 import Allègement from '../components/mecanisms/Allègement'
 import { typeWarning } from '../error'
-import {
-	defaultNode,
-	evaluateObject,
-	parseObject,
-	registerEvaluationFunction
-} from '../evaluation'
+import { defaultNode, evaluateObject, parseObject } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import { serializeUnit } from '../units'
+import parse from '../parse'
+import { ASTNode } from '../AST/types'
+
+export type ReductionNode = {
+	explanation: {
+		assiette: ASTNode
+		abattement: ASTNode
+		plafond: ASTNode
+	}
+	jsx: any
+	nodeKind: 'allègement'
+}
 
 const objectShape = {
 	assiette: false,
@@ -16,11 +24,11 @@ const objectShape = {
 	plafond: defaultNode(Infinity)
 }
 
-const evaluate = evaluateObject(function({
+const evaluate = evaluateObject<'allègement'>(function({
 	assiette,
 	abattement,
 	plafond
-}: any) {
+}) {
 	const assietteValue = assiette.nodeValue
 	if (assietteValue == null) return { nodeValue: null }
 	if (assiette.unit) {
@@ -52,7 +60,7 @@ const evaluate = evaluateObject(function({
 		: assietteValue
 	return {
 		nodeValue,
-		unit: assiette.unit,
+		...('unit' in assiette && { unit: assiette.unit }),
 		explanation: {
 			plafond,
 			abattement
@@ -60,18 +68,14 @@ const evaluate = evaluateObject(function({
 	}
 })
 
-export const mecanismReduction = (recurse, v) => {
-	const explanation = parseObject(recurse, objectShape, v)
+export const mecanismReduction = (v, context) => {
+	const explanation = parseObject(objectShape, v, context)
 
 	return {
 		jsx: Allègement,
 		explanation,
-		category: 'mecanism',
-		name: 'allègement',
-		nodeKind: 'allègement',
-		type: 'numeric',
-		unit: explanation?.assiette?.unit
-	}
+		nodeKind: 'allègement'
+	} as ReductionNode
 }
 
 registerEvaluationFunction('allègement', evaluate)

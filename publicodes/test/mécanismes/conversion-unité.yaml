@@ -5,7 +5,8 @@ douches par mois:
   unité: douche/mois
 
 Conversion de reference:
-  formule: douches par mois [douche/an]
+  formule: douches par mois
+  unité: douche/an
   exemples:
     - situation:
         douches par mois: 30
@@ -18,11 +19,6 @@ Conversion de reference 2:
     - situation:
         douches par mois: 30
       valeur attendue: 360
-    - nom: unités par défaut prioritaire devant unité de variable
-      situation:
-        douches par mois: 30
-      unité par défaut: douche/mois
-      valeur attendue: 30
 
 Conversion de variable:
   formule: 1.5 kCo2/douche * douches par mois
@@ -31,12 +27,7 @@ Conversion de variable:
         douches par mois: 30
       valeur attendue: 45
       unité attendue: kCo2/mois
-    - nom: Unité cible de simulation
-      situation:
-        douches par mois: 20
-      unité par défaut: kCo2/an
-      unité attendue: kCo2/an
-      valeur attendue: 360
+   
 
 Conversion de variable et expressions:
   unité: kCo2/an
@@ -98,11 +89,11 @@ Conversion de mécanisme 2:
         - taux: 3%
           plafond: 7500 €/mois
         - taux: 1%
+  unité: €/mois
   exemples:
     - situation:
         assiette annuelle: 36000
       valeur attendue: 131.25
-      unité par défaut: €/mois
 
 Conversion dans une expression:
   unité: €/an
@@ -117,6 +108,7 @@ Conversion dans une comparaison:
 
 mutuelle:
   formule: 30 €/mois
+
 retraite:
   formule:
     produit:
@@ -129,10 +121,10 @@ Conversion dans une somme compliquée:
     somme:
       - mutuelle
       - retraite
+  unité: €/mois
   exemples:
     - situation:
         assiette annuelle: 20000
-      unité par défaut: €/mois
       valeur attendue: 130
 
 maladie:
@@ -141,10 +133,10 @@ maladie:
       assiette: assiette annuelle
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           taux: 15%
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: 5%
           plafond: 1000 €/mois
 
@@ -152,7 +144,7 @@ Conversion avec composantes:
   unité: €/mois
   formule:
     somme:
-      - maladie .salarié
+      - maladie . salarié
       - retraite
       - mutuelle
   exemples:
@@ -165,8 +157,8 @@ Conversion dans un allègement:
     allègement:
       assiette: 1000€/an
       abattement: 10€/mois
+  unité: €/an
   exemples:
-    unité par défaut: €/an
     valeur attendue: 880
 
 Conversion dans avec un abattement en %:
@@ -195,8 +187,8 @@ Conversion avec plusieurs échelons:
     somme:
       - prévoyance cadre
       - 35€/mois
+  unité: €/an
   exemples:
-    unité par défaut: €/an
     situation:
       assiette mensuelle: 1100
     valeur attendue: 600
@@ -209,5 +201,5 @@ Conversion de situation:
   exemples:
     unité par défaut: €/an
     situation:
-      retraite: 4000
+      retraite: 4000 €/an
     valeur attendue: 4360

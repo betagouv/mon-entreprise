@@ -1,7 +1,6 @@
 import { any, identity, path } from 'ramda'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { EvaluatedRule } from '../../types'
 import { makeJsx } from '../../evaluation'
 
 const Conditions = ({
@@ -9,7 +8,7 @@ const Conditions = ({
 	parentDependencies,
 	'applicable si': applicable,
 	'non applicable si': notApplicable
-}: EvaluatedRule) => {
+}: any) => {
 	const listElements = [
 		...parentDependencies.map(
 			parentDependency =>
@@ -21,7 +20,7 @@ const Conditions = ({
 				)
 		),
 		...disabledBy?.explanation?.isDisabledBy?.map(
-			(dependency: EvaluatedRule, i: number) =>
+			(dependency: any, i: number) =>
 				dependency?.nodeValue === true && (
 					<ShowIfDisabled dependency={dependency} key={`dependency ${i}`} />
 				)
@@ -47,7 +46,7 @@ const Conditions = ({
 	) : null
 }
 
-function ShowIfDisabled({ dependency }: { dependency: EvaluatedRule }) {
+function ShowIfDisabled({ dependency }: { dependency: any }) {
 	return (
 		<li>
 			<span style={{ background: 'var(--lighterColor)', fontWeight: 'bold' }}>
@@ -58,7 +57,7 @@ function ShowIfDisabled({ dependency }: { dependency: EvaluatedRule }) {
 	)
 }
 
-export default function Algorithm({ rule }: { rule: EvaluatedRule }) {
+export default function Algorithm({ rule }: { rule: any }) {
 	const formula =
 			rule.formule ||
 			(rule.category === 'variable' && rule.explanation.formule),

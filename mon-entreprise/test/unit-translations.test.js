@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { parseRules } from 'publicodes'
+import { parsePublicodes } from 'publicodes'
 import { uniq } from 'ramda'
 import rawRules from '../source/rules'
 import unitsTranslations from '../../publicodes/source/locales/units.yaml'
 
 it('use unit that exists in publicode', () => {
-	const rules = parseRules(rawRules)
+	const rules = parsePublicodes(rawRules)
 	const units = uniq(
 		Object.keys(rules).reduce(
 			(prev, name) => [

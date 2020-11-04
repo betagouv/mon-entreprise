@@ -4,20 +4,17 @@ import yaml from 'yaml'
 import Engine, { formatValue } from '../../index'
 import PublicodesBlock from '../PublicodesBlock'
 
-type Props<Rules extends string> = { dottedName: Rules; engine: Engine<Rules> }
-export default function RuleSource<Rules extends string>({
-	engine,
-	dottedName
-}: Props<Rules>) {
+type Props = { dottedName: string; engine: Engine }
+export default function RuleSource({ engine, dottedName }: Props) {
 	const [showSource, setShowSource] = useState(false)
 	const { rawRule, dependencies } = engine.getParsedRules()[dottedName]
 	// When we import a rule in the Publicode Studio, we need to provide a
 	// simplified definition of its dependencies to avoid undefined references.
 	// We use the current situation value as their simplified definition.
 	const dependenciesValues = Object.fromEntries(
-		[...dependencies.values()].map(dottedNameDependency => [
+		dependencies.map(dottedNameDependency => [
 			dottedNameDependency,
-			formatValueForStudio(engine.evaluate(dottedNameDependency))
+			formatValueForStudio(engine.evaluate(dottedNameDependency as string))
 		])
 	)
 

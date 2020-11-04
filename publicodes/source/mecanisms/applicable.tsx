@@ -1,27 +1,35 @@
 import React from 'react'
 import { evaluationFunction } from '..'
+import parse from '../parse'
 import { InfixMecanism } from '../components/mecanisms/common'
-import {
-	bonus,
-	makeJsx,
-	mergeMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { bonus, makeJsx, mergeMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import { ASTNode } from '../AST/types'
+
+export type ApplicableSiNode = {
+	explanation: {
+		condition: ASTNode
+		valeur: ASTNode
+	}
+	jsx: any
+	nodeKind: 'applicable si'
+}
 
 function MecanismApplicable({ explanation }) {
 	return (
 		<InfixMecanism prefixed value={explanation.valeur}>
 			<p>
 				<strong>Applicable si : </strong>
-				{makeJsx(explanation.applicable)}
+				{makeJsx(explanation.condition)}
 			</p>
 		</InfixMecanism>
 	)
 }
 
-const evaluate: evaluationFunction = function(node) {
-	const condition = this.evaluateNode(node.explanation.condition)
-	let valeur = node.explanation.valeur
+const evaluate: evaluationFunction<'applicable si'> = function(node) {
+	const explanation = { ...node.explanation }
+	const condition = this.evaluateNode(explanation.condition)
+	let valeur = explanation.valeur
 	if (condition.nodeValue !== false) {
 		valeur = this.evaluateNode(valeur)
 	}
@@ -30,32 +38,29 @@ const evaluate: evaluationFunction = function(node) {
 		nodeValue:
 			condition.nodeValue == null || condition.nodeValue === false
 				? condition.nodeValue
-				: valeur.nodeValue,
+				: 'nodeValue' in valeur
+				? valeur.nodeValue
+				: null,
 		explanation: { valeur, condition },
 		missingVariables: mergeMissing(
-			valeur.missingVariables,
+			'missingVariables' in valeur ? valeur.missingVariables : {},
 			bonus(condition.missingVariables)
 		),
-		unit: valeur.unit
+		...('unit' in valeur && { unit: valeur.unit })
 	}
 }
+parseApplicable.nom = 'applicable si' as const
 
-export default function Applicable(recurse, v) {
+export default function parseApplicable(v, context) {
 	const explanation = {
-		valeur: recurse(v.valeur),
-		condition: recurse(v['applicable si'])
+		valeur: parse(v.valeur, context),
+		condition: parse(v[parseApplicable.nom], context)
 	}
 	return {
-		// evaluate,
 		jsx: MecanismApplicable,
 		explanation,
-		category: 'mecanism',
-		name: Applicable.nom,
-		nodeKind: Applicable.nom,
-		unit: explanation.valeur.unit
+		nodeKind: parseApplicable.nom
 	}
 }
 
-Applicable.nom = 'applicable si'
-
-registerEvaluationFunction(Applicable.nom, evaluate)
+registerEvaluationFunction(parseApplicable.nom, evaluate)

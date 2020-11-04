@@ -38,13 +38,13 @@ contrat salarié . convention collective . BTP . catégorie du salarié . cadre:
 contrat salarié . convention collective . BTP . retraite complémentaire:
   non applicable si: catégorie du salarié = 'etam'
   remplace:
-    - règle: retraite complémentaire . taux employeur tranche 1
+    - règle: retraite complémentaire . employeur . taux tranche 1
       par: 4.72%
-    - règle: retraite complémentaire . taux employeur tranche 2
+    - règle: retraite complémentaire . employeur . taux tranche 2
       par: 12.95%
-    - règle: retraite complémentaire . taux salarié tranche 1
+    - règle: retraite complémentaire . salarié . taux tranche 1
       par: 3.15%
-    - règle: retraite complémentaire . taux salarié tranche 2
+    - règle: retraite complémentaire . salarié . taux tranche 2
       par: 8.64%
 
 contrat salarié . convention collective . BTP . retraite complémentaire . etam:
@@ -52,13 +52,13 @@ contrat salarié . convention collective . BTP . retraite complémentaire . etam
   description: >-
     Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
   remplace:
-    - règle: retraite complémentaire . taux employeur tranche 1
+    - règle: retraite complémentaire . employeur . taux tranche 1
       par: 4.47%
-    - règle: retraite complémentaire . taux employeur tranche 2
+    - règle: retraite complémentaire . employeur . taux tranche 2
       par: 12.70%
-    - règle: retraite complémentaire . taux salarié tranche 1
+    - règle: retraite complémentaire . salarié . taux tranche 1
       par: 3.40%
-    - règle: retraite complémentaire . taux salarié tranche 2
+    - règle: retraite complémentaire . salarié . taux tranche 2
       par: 8.89%
 
 contrat salarié . convention collective . BTP . prévoyance complémentaire:

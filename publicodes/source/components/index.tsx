@@ -14,17 +14,17 @@ export { RuleLink } from './RuleLink'
 import References from './rule/References'
 export { References }
 
-type DocumentationProps<Names extends string> = {
+type DocumentationProps = {
 	documentationPath: string
-	engine: Engine<Names>
+	engine: Engine
 	language: 'fr' | 'en'
 }
 
-export function Documentation<Names extends string>({
+export function Documentation({
 	documentationPath,
 	engine,
 	language = 'fr'
-}: DocumentationProps<Names>) {
+}: DocumentationProps) {
 	useEffect(() => {
 		if (language !== i18n.language) {
 			i18n.changeLanguage(language)

@@ -1,26 +1,27 @@
+import { ASTNode } from '../AST/types'
 import Somme from '../components/mecanisms/Somme'
-import { evaluateArray, registerEvaluationFunction } from '../evaluation'
-import { inferUnit } from '../units'
+import { evaluateArray } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 
-const evaluate = evaluateArray(
+const evaluate = evaluateArray<'somme'>(
 	(x: any, y: any) => (x === false && y === false ? false : x + y),
 	false
 )
 
-export const mecanismSum = (recurse, v) => {
-	const explanation = v.map(recurse)
+export type SommeNode = {
+	explanation: Array<ASTNode>
+	nodeKind: 'somme'
+	jsx: any
+}
+
+export const mecanismSum = (v, context) => {
+	const explanation = v.map(node => parse(node, context))
 	return {
 		jsx: Somme,
 		explanation,
-		category: 'mecanism',
-		name: 'somme',
-		nodeKind: 'somme',
-		type: 'numeric',
-		unit: inferUnit(
-			'+',
-			explanation.map(r => r.unit)
-		)
-	}
+		nodeKind: 'somme'
+	} as SommeNode
 }
 
 registerEvaluationFunction('somme', evaluate)

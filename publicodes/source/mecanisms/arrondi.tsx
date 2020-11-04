@@ -1,16 +1,18 @@
 import React from 'react'
 import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
-import {
-	makeJsx,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
-import { EvaluatedNode } from '../types'
+import { makeJsx, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
+import { ASTNode } from '../AST/types'
 
-export type ArrondiExplanation = {
-	valeur: EvaluatedNode<string, number>
-	arrondi: EvaluatedNode<string, number>
+export type ArrondiNode = {
+	explanation: {
+		arrondi: ASTNode
+		valeur: ASTNode
+	}
+	jsx: any
+	nodeKind: 'arrondi'
 }
 
 function MecanismArrondi({ explanation }) {
@@ -28,7 +30,7 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-const evaluate: evaluationFunction = function(node) {
+const evaluate: evaluationFunction<'arrondi'> = function(node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
@@ -39,7 +41,7 @@ const evaluate: evaluationFunction = function(node) {
 	return {
 		...node,
 		nodeValue:
-			typeof valeur.nodeValue !== 'number'
+			typeof valeur.nodeValue !== 'number' || !('nodeValue' in arrondi)
 				? valeur.nodeValue
 				: typeof arrondi.nodeValue === 'number'
 				? roundWithPrecision(valeur.nodeValue, arrondi.nodeValue)
@@ -54,22 +56,18 @@ const evaluate: evaluationFunction = function(node) {
 	}
 }
 
-export default function Arrondi(recurse, v) {
+export default function Arrondi(v, context) {
 	const explanation = {
-		valeur: recurse(v.valeur),
-		arrondi: recurse(v.arrondi)
+		valeur: parse(v.valeur, context),
+		arrondi: parse(v.arrondi, context)
 	}
 	return {
 		jsx: MecanismArrondi,
 		explanation,
-		category: 'mecanism',
-		name: 'arrondi',
-		nodeKind: Arrondi.nom,
-		type: 'numeric',
-		unit: explanation.valeur.unit
+		nodeKind: Arrondi.nom
 	}
 }
 
-Arrondi.nom = 'arrondi'
+Arrondi.nom = 'arrondi' as const
 
 registerEvaluationFunction(Arrondi.nom, evaluate)

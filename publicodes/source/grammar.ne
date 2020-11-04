@@ -7,9 +7,8 @@
 
 @{%
 const {
-  string, filteredVariable, date, variable, variableWithConversion,
-  temporalNumericValue, binaryOperation, unaryOperation, boolean, number,
-  numberWithUnit
+  string, date, variable, temporalNumericValue, binaryOperation, 
+  unaryOperation, boolean, number, numberWithUnit
 } = require('./grammarFunctions')
 
 const moo = require("moo");
@@ -67,8 +66,6 @@ TemporalNumericValue ->
 
 NumericTerminal ->
 	 	Variable {% id %}
-  | VariableWithUnitConversion {% id %}
-  | FilteredVariable {% id %}
   | number {% id %}
 
 Negation ->
@@ -99,14 +96,6 @@ UnitDenominator ->
 UnitNumerator -> %words ("." %words):? {% flattenJoin %}
 
 Unit -> UnitNumerator:? UnitDenominator:* {% flattenJoin %}
-UnitConversion -> "[" Unit "]" {% ([,unit]) => unit %}
-VariableWithUnitConversion ->
-    Variable %space UnitConversion {% variableWithConversion %}
-  # | FilteredVariable %space UnitConversion {% variableWithConversion %}  TODO
-
-Filter -> "." %words {% ([,filter]) => filter %}
-FilteredVariable -> Variable %space Filter {% filteredVariable %}
-
 
 AdditionSubstraction ->
     AdditionSubstraction %space %additionSubstraction %space MultiplicationDivision  {%  binaryOperation('calculation') %}

@@ -30,15 +30,15 @@ describe('inversions', () => {
               taux: 77%
 
         brut:
-          unité: €
           formule:
             inversion numérique:
+              unité: €
               avec:
                 - net
       `
 		const result = new Engine(rules)
-			.setSituation({ net: 2000 })
-			.evaluate('brut')
+			.setSituation({ net: '2000 €' })
+      .evaluate('brut')
 
 		expect(result.nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
 	})
@@ -51,15 +51,14 @@ describe('inversions', () => {
               assiette: brut
               taux: 77%
 
-        brut:
-          unité: €
+        brut:          
           formule:
             inversion numérique:
+              unité: €
               avec:
                 - net
       `
-		const result = new Engine(rules).setSituation({ net: 0 }).evaluate('brut')
-
+		const result = new Engine(rules).setSituation({ net: '0 €' }).evaluate('brut')
 		expect(result.nodeValue).to.be.closeTo(0, 0.0001)
 	})
 
@@ -77,9 +76,9 @@ describe('inversions', () => {
                     taux: 70%
 
         brut:
-          unité: €
           formule:
             inversion numérique:
+              unité: €
               avec:
                 - net
         cadre:
@@ -107,9 +106,9 @@ describe('inversions', () => {
                     taux: 70%
 
         brut:
-          unité: €
           formule:
             inversion numérique:
+              unité: €
               avec:
                 - net
         cadre:
@@ -134,7 +133,7 @@ describe('inversions', () => {
                     taux: 70%
       `
 		const result = new Engine(rules)
-			.setSituation({ net: 2000 })
+			.setSituation({ net: '2000 €' })
 			.evaluate('brut')
 		expect(result.nodeValue).to.be.null
 		expect(Object.keys(result.missingVariables)).to.include('cadre')
@@ -146,13 +145,11 @@ describe('inversions', () => {
           formule:
             produit:
               assiette: assiette
-              variations:
-                - si: cadre
-                  alors:
-                    taux: 80%
-                - si: cadre != oui
-                  alors:
-                    taux: 70%
+              taux: 
+                variations:
+                  - si: cadre
+                    alors: 80%
+                  - sinon: 70%
 
         total:
           formule:
@@ -161,9 +158,9 @@ describe('inversions', () => {
               taux: 150%
 
         brut:
-          unité: €
           formule:
             inversion numérique:
+              unité: €
               avec:
                 - net
                 - total
@@ -175,7 +172,7 @@ describe('inversions', () => {
 
       `
 		const result = new Engine(rules)
-			.setSituation({ net: 2000, cadre: 'oui' })
+			.setSituation({ net: '2000 €', cadre: 'oui' })
 			.evaluate('total')
 		expect(result.nodeValue).to.be.closeTo(3750, 1)
 		expect(Object.keys(result.missingVariables)).to.be.empty
@@ -195,25 +192,25 @@ describe('inversions', () => {
             assiette: 67 + brut
             composantes:
               - attributs:
-                  dû par: employeur
+                  nom: employeur
                 taux: 100%
               - attributs:
-                  dû par: salarié
+                  nom: salarié
                 taux: 50%
 
       total:
-        formule: cotisation .employeur + cotisation .salarié
+        formule: cotisation . employeur + cotisation . salarié
 
       brut:
-        unité: €
         formule:
           inversion numérique:
+            unité: €
             avec:
               - net
               - total
     `
 		const result = new Engine(rules)
-			.setSituation({ net: 2000 })
+			.setSituation({ net: '2000 €' })
 			.evaluate('total')
 		expect(result.nodeValue).to.be.closeTo(3750, 1)
 		expect(Object.keys(result.missingVariables)).to.be.empty

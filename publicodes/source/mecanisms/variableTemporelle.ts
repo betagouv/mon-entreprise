@@ -1,5 +1,7 @@
 import { evaluationFunction } from '..'
-import { registerEvaluationFunction } from '../evaluation'
+import { ASTNode } from '../AST/types'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
@@ -7,7 +9,22 @@ import {
 	temporalAverage
 } from '../temporal'
 
-const evaluate: evaluationFunction = function(node: any) {
+export type VariableTemporelleNode = {
+	explanation: {
+		period: {
+			start: ASTNode | undefined
+			end: ASTNode | undefined
+		}
+		value: ASTNode
+	}
+	jsx: any
+
+	nodeKind: 'variable temporelle'
+}
+
+const evaluate: evaluationFunction<'variable temporelle'> = function(
+	node: any
+) {
 	const start =
 		node.explanation.period.start &&
 		this.evaluateNode(node.explanation.period.start)
@@ -31,22 +48,25 @@ const evaluate: evaluationFunction = function(node: any) {
 			period: { start, end },
 			value
 		},
-		unit: value.unit
+		...('unit' in value && { unit: value.unit })
 	}
 }
 
-export default function parseVariableTemporelle(parse, v) {
-	const explanation = parse(v.explanation)
+export default function parseVariableTemporelle(
+	v,
+	context
+): VariableTemporelleNode {
+	const explanation = parse(v.explanation, context)
 	return {
 		nodeKind: 'variable temporelle',
+		jsx: null,
 		explanation: {
 			period: {
-				start: v.period.start && parse(v.period.start),
-				end: v.period.end && parse(v.period.end)
+				start: v.period.start && parse(v.period.start, context),
+				end: v.period.end && parse(v.period.end, context)
 			},
 			value: explanation
-		},
-		unit: explanation.unit
+		}
 	}
 }
 

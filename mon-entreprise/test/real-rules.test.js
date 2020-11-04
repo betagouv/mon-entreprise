@@ -1,11 +1,11 @@
 import { AssertionError } from 'chai'
-import Engine, { parseRules } from 'publicodes'
+import Engine, { parsePublicodes } from 'publicodes'
 import { disambiguateRuleReference } from '../../publicodes/source/ruleUtils'
 import rules from 'Rules'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
-let parsedRules = parseRules(rules)
+let parsedRules = parsePublicodes(rules)
 const engine = new Engine(parsedRules)
 let runExamples = (examples, rule) =>
 	examples.map(ex => {
@@ -13,14 +13,14 @@ let runExamples = (examples, rule) =>
 		const situation = Object.entries(ex.situation).reduce(
 			(acc, [name, value]) => ({
 				...acc,
-				[disambiguateRuleReference(parsedRules, rule.dottedName, name)]: value
+				[disambiguateRuleReference(engine.parsedRules, rule.dottedName, name)]: value
 			}),
 			{}
 		)
 		const evaluation = engine
 			.setSituation(situation)
 			.evaluate(rule.dottedName, {
-				unit: ex['unités par défaut']?.[0] ?? rule['unité par défaut']
+				unit: rule['unité par défaut']
 			})
 		const ok =
 			evaluation.nodeValue === expected

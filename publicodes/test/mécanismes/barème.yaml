@@ -47,14 +47,13 @@ Barème à composantes:
             - taux: 9%
               plafond: 2
             - taux: 29%
-  unité attendue: €/mois
-
   exemples:
     - nom:
       situation:
         assiette: 12000
         base: 5000
       valeur attendue: 1580
+      unité attendue: €/mois
 
 ma condition:
 
@@ -69,6 +68,7 @@ taux variable:
 
 deuxième barème:
   titre: Barème à taux variable
+  unité: €/mois
   formule:
     barème:
       assiette: assiette
@@ -77,6 +77,7 @@ deuxième barème:
         - taux: taux variable
           plafond: 1
         - taux: 90%
+
   unité attendue: '€/mois'
 
   exemples:

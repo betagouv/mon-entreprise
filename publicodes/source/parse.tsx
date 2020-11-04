@@ -1,6 +1,7 @@
 import { Grammar, Parser } from 'nearley'
-import { omit } from 'ramda'
+import { isEmpty } from 'ramda'
 import React from 'react'
+import { ASTNode, ConstantNode } from './AST/types'
 import { EngineError, syntaxError } from './error'
 import { formatValue } from './format'
 import grammar from './grammar.ne'
@@ -18,23 +19,27 @@ import { mecanismMin } from './mecanisms/min'
 import nonApplicable from './mecanisms/nonApplicable'
 import { mecanismOnePossibility } from './mecanisms/one-possibility'
 import operations from './mecanisms/operation'
+import parDéfaut from './mecanisms/parDéfaut'
 import plafond from './mecanisms/plafond'
 import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
 import { mecanismReduction } from './mecanisms/reduction'
+import situation from './mecanisms/situation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
+import unité from './mecanisms/unité'
 import variableTemporelle from './mecanisms/variableTemporelle'
 import variations, { devariate } from './mecanisms/variations'
-import { parseReference, parseReferenceTransforms } from './parseReference'
-import { EvaluatedRule } from './types'
+import { Context } from './parsePublicodes'
+import parseReference from './reference'
+import parseRule from './rule'
 
-export const parse = (rules, rule, parsedRules) => rawNode => {
+export default function parse(rawNode, context: Context): ASTNode {
 	if (rawNode == null) {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`
 Une des valeurs de la formule est vide.
 Vérifiez que tous les champs à droite des deux points sont remplis`
@@ -42,39 +47,43 @@ Vérifiez que tous les champs à droite des deux points sont remplis`
 	}
 	if (typeof rawNode === 'boolean') {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`
 Les valeurs booléennes true / false ne sont acceptées.
 Utilisez leur contrepartie française : 'oui' / 'non'`
 		)
 	}
 	const node =
-		typeof rawNode === 'object' ? rawNode : parseExpression(rule, '' + rawNode)
+		typeof rawNode === 'object' ? rawNode : parseExpression(rawNode, context)
+	if ('nom' in node) {
+		return parseRule(node, context)
+	}
 
-	return parseMecanism(rules, rule, parsedRules)(node)
+	return parseChainedMecanisms(node, context)
 }
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
 
-const parseExpression = (rule, rawNode) => {
+function parseExpression(rawNode, context: Context): Object | undefined {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */
 	try {
-		const [parseResult] = new Parser(compiledGrammar).feed(rawNode).results
+		const [parseResult] = new Parser(compiledGrammar).feed(rawNode + '').results
 		return parseResult
 	} catch (e) {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`\`${rawNode}\` n'est pas une expression valide`,
 			e
 		)
 	}
 }
-const parseMecanism = (rules, rule, parsedRules) => rawNode => {
+
+function parseMecanism(rawNode, context: Context) {
 	if (Array.isArray(rawNode)) {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`
 Il manque le nom du mécanisme pour le tableau : [${rawNode
 				.map(x => `'${x}'`)
@@ -84,11 +93,10 @@ Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'tout
 		)
 	}
 
-	rawNode = unfoldChainedMecanisms(rawNode)
 	const keys = Object.keys(rawNode)
 	if (keys.length > 1) {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`
 Les mécanismes suivants se situent au même niveau : ${keys
 				.map(x => `'${x}'`)
@@ -97,95 +105,77 @@ Cela vient probablement d'une erreur dans l'indentation
 	`
 		)
 	}
-	const mecanismName = Object.keys(rawNode)[0]
-	const values = rawNode[mecanismName]
-
-	// TODO: All parse functions should be "stateless" (ie be simple functions
-	// with the same list of parameters and not curried fantasy):
-	const parseFunctions = {
-		...statelessParseFunction,
-		filter: () =>
-			parseReferenceTransforms(
-				rules,
-				rule,
-				parsedRules
-			)({
-				filter: values.filter,
-				variable: values.explanation
-			}),
-		variable: () => parseReference(rules, rule, parsedRules, '')(values),
-		unitConversion: () =>
-			parseReferenceTransforms(
-				rules,
-				rule,
-				parsedRules
-			)({
-				variable: values.explanation,
-				unit: values.unit
-			})
+	if (isEmpty(rawNode)) {
+		return { nodeKind: 'constant', nodeValue: null }
 	}
 
+	const mecanismName = Object.keys(rawNode)[0]
+	const values = rawNode[mecanismName]
 	const parseFn = parseFunctions[mecanismName]
 
 	if (!parseFn) {
 		syntaxError(
-			rule.dottedName,
+			context.dottedName,
 			`
 Le mécanisme ${mecanismName} est inconnu.
 Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 		)
 	}
 	try {
-		const recurse = parse(rules, rule, parsedRules)
 		// Mécanisme de composantes. Voir mécanismes.md/composantes
 		if (values?.composantes) {
-			return decompose(recurse, mecanismName, values)
+			return decompose(mecanismName, values, context)
 		}
-		if (values?.variations) {
-			return devariate(recurse, mecanismName, values)
+		if (values?.variations && Object.values(values).length > 1) {
+			return devariate(mecanismName, values, context)
 		}
-		return parseFn(recurse, values, rule.dottedName)
+		return parseFn(values, context)
 	} catch (e) {
 		if (e instanceof EngineError) {
 			throw e
 		}
-		syntaxError(rule.dottedName, e.message)
+		syntaxError(
+			context.dottedName,
+			`➡️ Dans le mécanisme ${mecanismName}
+${e.message}`
+		)
 	}
 }
 
 const chainableMecanisms = [
 	applicable,
 	nonApplicable,
+	parDéfaut,
+	situation,
 	plancher,
 	plafond,
+	unité,
 	arrondi
 ]
-function unfoldChainedMecanisms(rawNode) {
-	if (Object.keys(rawNode).length === 1) {
-		return rawNode
+function parseChainedMecanisms(rawNode, context: Context): ASTNode {
+	const parseFn = chainableMecanisms.find(fn => fn.nom in rawNode)
+	if (!parseFn) {
+		return parseMecanism(rawNode, context)
 	}
-	return chainableMecanisms.reduceRight(
-		(node, parseFn) => {
-			if (!(parseFn.nom in rawNode)) {
-				return node
-			}
-			return {
-				[parseFn.nom]: {
-					[parseFn.nom]: rawNode[parseFn.nom],
-					valeur: node
-				}
+	const { [parseFn.nom]: param, ...valeur } = rawNode
+	return parseMecanism(
+		{
+			[parseFn.nom]: {
+				valeur,
+				[parseFn.nom]: param
 			}
 		},
-		omit(
-			chainableMecanisms.map(fn => fn.nom),
-			rawNode
-		)
+		context
 	)
 }
 
-const statelessParseFunction = {
+const parseFunctions = {
 	...operations,
 	...chainableMecanisms.reduce((acc, fn) => ({ [fn.nom]: fn, ...acc }), {}),
+	'une possibilité': mecanismOnePossibility,
+	'inversion numérique': mecanismInversion,
+	recalcul: mecanismRecalcul,
+	variable: parseReference,
 	'une de ces conditions': mecanismOneOf,
 	'toutes ces conditions': mecanismAllOf,
 	somme: mecanismSum,
@@ -201,18 +191,18 @@ const statelessParseFunction = {
 	allègement: mecanismReduction,
 	variations,
 	synchronisation: mecanismSynchronisation,
-	'une possibilité': mecanismOnePossibility,
-	'inversion numérique': mecanismInversion,
-	recalcul: mecanismRecalcul,
-	valeur: (recurse, v) => recurse(v),
-	constant: (_, v) => ({
+	valeur: parse,
+	objet: v => ({
+		type: 'objet',
+		nodeValue: v,
+		nodeKind: 'constant'
+	}),
+	constant: v => ({
 		type: v.type,
-		constant: true,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
-		unit: v.unit,
 		// eslint-disable-next-line
-		jsx: (node: EvaluatedRule) => (
+		jsx: (node: ConstantNode) => (
 			<span className={v.type}>
 				{formatValue(node, {
 					// We want to display constants with full precision,
@@ -223,3 +213,5 @@ const statelessParseFunction = {
 		)
 	})
 }
+
+export const mecanismKeys = Object.keys(parseFunctions)

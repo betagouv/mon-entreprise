@@ -12,7 +12,7 @@ import {
 	without
 } from 'ramda'
 import i18n from './i18n'
-import { Evaluation, Unit } from './types'
+import { Evaluation, Unit } from './AST/types'
 
 export const parseUnit = (string: string, lng = 'fr'): Unit => {
 	const [a, ...b] = string.split('/'),
@@ -80,23 +80,26 @@ export const inferUnit = (
 	operator: SupportedOperators,
 	rawUnits: Array<Unit | undefined>
 ): Unit | undefined => {
-	const units = rawUnits.map(u => u || noUnit)
-	if (operator === '*')
-		return simplify({
-			numerators: unnest(units.map(u => u.numerators)),
-			denominators: unnest(units.map(u => u.denominators))
-		})
 	if (operator === '/') {
-		if (units.length !== 2)
+		if (rawUnits.length !== 2)
 			throw new Error('Infer units of a division with units.length !== 2)')
 		return inferUnit('*', [
-			units[0],
+			rawUnits[0] || noUnit,
 			{
-				numerators: units[1].denominators,
-				denominators: units[1].numerators
+				numerators: (rawUnits[1] || noUnit).denominators,
+				denominators: (rawUnits[1] || noUnit).numerators
 			}
 		])
 	}
+	const units = rawUnits.filter(Boolean)
+	if (units.length <= 1) {
+		return units[0]
+	}
+	if (operator === '*')
+		return simplify({
+			numerators: unnest(units.map(u => u?.numerators ?? [])),
+			denominators: unnest(units.map(u => u?.denominators ?? []))
+		})
 
 	if (operator === '-' || operator === '+') {
 		return rawUnits.find(u => u)
@@ -196,6 +199,9 @@ export function convertUnit(
 		)
 	}
 	if (!value) {
+		return value
+	}
+	if (from === undefined) {
 		return value
 	}
 	const [fromSimplified, factorTo] = simplifyUnitWithValue(from || noUnit)

@@ -70,3 +70,18 @@ export function warning(
 `
 	)
 }
+
+export class InternalError extends EngineError {
+	constructor(payload) {
+		super(
+			`
+Erreur interne du moteur. 
+
+Cette erreur est le signe d'un bug dans publicodes. Pour nous aider à le résoudre, vous pouvez copier ce texte dans un nouveau ticket : https://github.com/betagouv/mon-entreprise/issues/new.
+
+payload:
+\t${JSON.stringify(payload, null, 2)}
+`
+		)
+	}
+}
