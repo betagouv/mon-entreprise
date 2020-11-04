@@ -1,20 +1,18 @@
+import { evaluationFunction } from '..'
 import Recalcul from '../components/mecanisms/Recalcul'
-import {
-	defaultNode,
-	evaluateNode,
-	registerEvaluationFunction
-} from '../evaluation'
+import { defaultNode, registerEvaluationFunction } from '../evaluation'
+import { EvaluatedNode } from '../types'
 import { serializeUnit } from '../units'
 
-const evaluateRecalcul = (cache, situation, parsedRules, node) => {
-	if (cache._meta.inRecalcul) {
-		return defaultNode(false)
+const evaluateRecalcul: evaluationFunction = function(node) {
+	if (this.cache._meta.inRecalcul) {
+		return (defaultNode(false) as any) as EvaluatedNode
 	}
 
 	const amendedSituation = node.explanation.amendedSituation
 		.map(([originRule, replacement]) => [
-			evaluateNode(cache, situation, parsedRules, originRule),
-			evaluateNode(cache, situation, parsedRules, replacement)
+			this.evaluateNode(originRule),
+			this.evaluateNode(replacement)
 		])
 		.filter(
 			([originRule, replacement]) =>
@@ -22,25 +20,25 @@ const evaluateRecalcul = (cache, situation, parsedRules, node) => {
 				serializeUnit(originRule.unit) !== serializeUnit(replacement.unit)
 		)
 
+	const originalCache = this.cache
+	const originalSituation = this.parsedSituation
 	// Optimisation : no need for recalcul if situation is the same
-	const recalculCache = Object.keys(amendedSituation).length
-		? { _meta: { ...cache._meta, inRecalcul: true } } // Create an empty cache
-		: cache
+	this.cache = Object.keys(amendedSituation).length
+		? { _meta: { ...this.cache._meta, inRecalcul: true } } // Create an empty cache
+		: this.cache
+	this.parsedSituation = {
+		...this.parsedSituation,
+		...Object.fromEntries(
+			amendedSituation.map(([originRule, replacement]) => [
+				originRule.dottedName,
+				replacement
+			])
+		)
+	}
 
-	const evaluatedNode = evaluateNode(
-		recalculCache,
-		{
-			...situation,
-			...Object.fromEntries(
-				amendedSituation.map(([originRule, replacement]) => [
-					originRule.dottedName,
-					replacement
-				])
-			)
-		},
-		parsedRules,
-		node.explanation.recalcul
-	)
+	const evaluatedNode = this.evaluateNode(node.explanation.recalcul)
+	this.cache = originalCache
+	this.parsedSituation = originalSituation
 	return {
 		...node,
 		nodeValue: evaluatedNode.nodeValue,

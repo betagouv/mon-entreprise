@@ -1,5 +1,6 @@
 import { add, evolve, fromPairs, keys, map, mergeWith, reduce } from 'ramda'
 import React from 'react'
+import Engine, { evaluationFunction } from '.'
 import { typeWarning } from './error'
 import {
 	evaluateReference,
@@ -37,15 +38,6 @@ export const mergeAllMissing = missings =>
 export const mergeMissing = (left, right) =>
 	mergeWith(add, left || {}, right || {})
 
-export const evaluateNode = (cache, situation, parsedRules, node) => {
-	if (!node.nodeKind) {
-		throw Error('A node to evaluate must have a "nodeKind" attribute')
-	} else if (!evaluationFunctions[node.nodeKind]) {
-		throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
-	}
-	return evaluationFunctions[node.nodeKind](cache, situation, parsedRules, node)
-}
-
 function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 	const firstNodeWithUnit = nodes.find(node => !!node.unit)
 	if (!firstNodeWithUnit) {
@@ -67,49 +59,49 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 	})
 }
 
-export const evaluateArray = (reducer, start) => (
-	cache,
-	situation,
-	parsedRules,
-	node
-) => {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-	const evaluatedNodes = convertNodesToSameUnit(
-		node.explanation.map(evaluate),
-		cache._meta.contextRule,
-		node.name
-	)
-
-	const temporalValues = concatTemporals(
-		evaluatedNodes.map(
-			({ temporalValue, nodeValue }) => temporalValue ?? pureTemporal(nodeValue)
+export const evaluateArray: (
+	reducer: Parameters<typeof reduce>[0],
+	start: Parameters<typeof reduce>[1]
+) => evaluationFunction = (reducer, start) =>
+	function(node: any) {
+		const evaluate = this.evaluateNode.bind(this)
+		const evaluatedNodes = convertNodesToSameUnit(
+			node.explanation.map(evaluate),
+			this.cache._meta.contextRule,
+			node.name
 		)
-	)
-	const temporalValue = mapTemporal(values => {
-		if (values.some(value => value === null)) {
-			return null
-		}
-		return reduce(reducer, start, values)
-	}, temporalValues)
 
-	const baseEvaluation = {
-		...node,
-		missingVariables: mergeAllMissing(evaluatedNodes),
-		explanation: evaluatedNodes,
-		...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit })
-	}
-	if (temporalValue.length === 1) {
+		const temporalValues = concatTemporals(
+			evaluatedNodes.map(
+				({ temporalValue, nodeValue }) =>
+					temporalValue ?? pureTemporal(nodeValue)
+			)
+		)
+		const temporalValue = mapTemporal(values => {
+			if (values.some(value => value === null)) {
+				return null
+			}
+			return reduce(reducer, start, values)
+		}, temporalValues)
+
+		const baseEvaluation = {
+			...node,
+			missingVariables: mergeAllMissing(evaluatedNodes),
+			explanation: evaluatedNodes,
+			...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit })
+		}
+		if (temporalValue.length === 1) {
+			return {
+				...baseEvaluation,
+				nodeValue: temporalValue[0].value
+			}
+		}
 		return {
 			...baseEvaluation,
-			nodeValue: temporalValue[0].value
+			temporalValue,
+			nodeValue: temporalAverage(temporalValue as any)
 		}
 	}
-	return {
-		...baseEvaluation,
-		temporalValue,
-		nodeValue: temporalAverage(temporalValue)
-	}
-}
 
 export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
 	nodeValue,
@@ -121,9 +113,10 @@ export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
 	nodeKind: 'defaultNode'
 })
 
-const evaluateDefaultNode = (cache, situation, parsedRules, node) => node
-const evaluateExplanationNode = (cache, situation, parsedRules, node) =>
-	evaluateNode(cache, situation, parsedRules, node.explanation)
+const evaluateDefaultNode: evaluationFunction = node => node
+const evaluateExplanationNode: evaluationFunction = function(node) {
+	return this.evaluateNode(node.explanation)
+}
 
 export const parseObject = (recurse, objectShape, value) => {
 	const recurseOne = key => defaultValue => {
@@ -139,71 +132,69 @@ export const parseObject = (recurse, objectShape, value) => {
 	return evolve(transforms as any, objectShape)
 }
 
-export const evaluateObject = (objectShape, effect) => (
-	cache,
-	situation,
-	parsedRules,
-	node
-) => {
-	const evaluate = evaluateNode.bind(null, cache, situation, parsedRules)
-	const evaluations = map(evaluate, node.explanation)
-	const temporalExplanations = mapTemporal(
-		Object.fromEntries,
-		concatTemporals(
-			Object.entries(evaluations).map(([key, node]) =>
-				zipTemporals(pureTemporal(key), liftTemporalNode(node))
+export const evaluateObject: (
+	effet: (this: Engine<string>, explanations: any) => any
+) => evaluationFunction = effect =>
+	function(node: any) {
+		const evaluate = this.evaluateNode.bind(this)
+		const evaluations = map(evaluate, node.explanation)
+		const temporalExplanations = mapTemporal(
+			Object.fromEntries,
+			concatTemporals(
+				Object.entries(evaluations).map(([key, node]) =>
+					zipTemporals(pureTemporal(key), liftTemporalNode(node))
+				)
 			)
 		)
-	)
-	const temporalExplanation = mapTemporal(explanations => {
-		const evaluation = effect(explanations, cache, situation, parsedRules)
-		return {
-			...evaluation,
-			explanation: {
-				...explanations,
-				...evaluation.explanation
+		const temporalExplanation = mapTemporal(explanations => {
+			const evaluation = effect.call(this, explanations)
+			return {
+				...evaluation,
+				explanation: {
+					...explanations,
+					...evaluation.explanation
+				}
+			}
+		}, temporalExplanations)
+
+		const sameUnitTemporalExplanation: Temporal<EvaluatedNode<
+			string,
+			number
+		>> = convertNodesToSameUnit(
+			temporalExplanation.map(x => x.value),
+			this.cache._meta.contextRule,
+			node.name
+		).map((node, i) => ({
+			...temporalExplanation[i],
+			value: simplifyNodeUnit(node)
+		}))
+
+		const temporalValue = mapTemporal(
+			({ nodeValue }) => nodeValue,
+			sameUnitTemporalExplanation
+		)
+		const nodeValue = temporalAverage(temporalValue)
+		const baseEvaluation = {
+			...node,
+			nodeValue,
+			unit: sameUnitTemporalExplanation[0].value.unit,
+			explanation: evaluations,
+			missingVariables: mergeAllMissing(Object.values(evaluations))
+		}
+		if (sameUnitTemporalExplanation.length === 1) {
+			return {
+				...baseEvaluation,
+				explanation: sameUnitTemporalExplanation[0].value.explanation
 			}
 		}
-	}, temporalExplanations)
-
-	const sameUnitTemporalExplanation: Temporal<EvaluatedNode<
-		string,
-		number
-	>> = convertNodesToSameUnit(
-		temporalExplanation.map(x => x.value),
-		cache._meta.contextRule,
-		node.name
-	).map((node, i) => ({
-		...temporalExplanation[i],
-		value: simplifyNodeUnit(node)
-	}))
-
-	const temporalValue = mapTemporal(
-		({ nodeValue }) => nodeValue,
-		sameUnitTemporalExplanation
-	)
-	const nodeValue = temporalAverage(temporalValue)
-	const baseEvaluation = {
-		...node,
-		nodeValue,
-		unit: sameUnitTemporalExplanation[0].value.unit,
-		explanation: evaluations,
-		missingVariables: mergeAllMissing(Object.values(evaluations))
-	}
-	if (sameUnitTemporalExplanation.length === 1) {
 		return {
 			...baseEvaluation,
-			explanation: sameUnitTemporalExplanation[0].value.explanation
+			temporalValue,
+			temporalExplanation
 		}
 	}
-	return {
-		...baseEvaluation,
-		temporalValue,
-		temporalExplanation
-	}
-}
 
-const evaluationFunctions = {
+export const evaluationFunctions = {
 	rule: evaluateRule,
 	formula: evaluateFormula,
 	disabledBy: evaluateDisabledBy,
@@ -215,7 +206,10 @@ const evaluationFunctions = {
 	defaultNode: evaluateDefaultNode
 }
 
-export function registerEvaluationFunction(nodeKind, evaluationFunction) {
+export function registerEvaluationFunction(
+	nodeKind: string,
+	evaluationFunction: any // TODO: type evaluationFunction
+) {
 	if (evaluationFunctions[nodeKind]) {
 		throw Error(
 			`Multiple evaluation functions registered for the nodeKind \x1b[4m${nodeKind}`

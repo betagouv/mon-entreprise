@@ -1,8 +1,8 @@
 import React from 'react'
+import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
 import {
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	registerEvaluationFunction
@@ -26,24 +26,18 @@ function MecanismPlancher({ explanation }) {
 	)
 }
 
-const evaluate = (cache, situation, parsedRules, node) => {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-	const valeur = evaluateAttribute(node.explanation.valeur)
+const evaluate: evaluationFunction = function(node) {
+	const valeur = this.evaluateNode(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher
 	if (nodeValue !== false) {
-		plancher = evaluateAttribute(plancher)
+		plancher = this.evaluateNode(plancher)
 		if (valeur.unit) {
 			try {
 				plancher = convertNodeToUnit(valeur.unit, plancher)
 			} catch (e) {
 				typeWarning(
-					cache._meta.contextRule,
+					this.cache._meta.contextRule,
 					"L'unité du plancher n'est pas compatible avec celle de la valeur à encadrer",
 					e
 				)

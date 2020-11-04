@@ -1,25 +1,23 @@
-import { EvaluatedNode, ParsedRule } from '.'
+import Engine, { EvaluatedNode, evaluationFunction } from '.'
 import { typeWarning } from './error'
 import { evaluateApplicability } from './evaluateRule'
-import { mergeMissing, evaluateNode } from './evaluation'
+import { mergeMissing } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
-import { serializeUnit, areUnitConvertible } from './units'
+import { ParsedRule } from './types'
+import { areUnitConvertible, serializeUnit } from './units'
 
-export const evaluateReference = (cache, situation, rules, node) => {
-	const rule = rules[node.dottedName]
+export const evaluateReference: evaluationFunction = function(node) {
+	const rule = this.parsedRules[node.dottedName]
 	// When a rule exists in different version (created using the `replace` mecanism), we add
 	// a redirection in the evaluation of references to use a potential active replacement
 	const [
 		applicableReplacements,
 		replacementMissingVariableList
-	] = getApplicableReplacements(
+	] = getApplicableReplacements.call(
+		this,
 		node.explanation?.contextRuleName ?? '',
-		cache,
-		situation,
-		rules,
 		rule
 	)
-
 	if (applicableReplacements.length) {
 		if (applicableReplacements.length > 1) {
 			// eslint-disable-next-line no-console
@@ -32,7 +30,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	- Restreindre sa portée en ajoutant une liste blanche (via le mot clé "dans") ou une liste noire (via le mot clé "sauf dans")
 `)
 		}
-		return applicableReplacements[0]
+		return this.evaluateNode(applicableReplacements[0])
 	}
 	const addReplacementMissingVariable = node => ({
 		...node,
@@ -46,7 +44,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	// En effet, l'évaluation dans le cas d'une variable qui a une formule, est coûteuse !
 	const cacheName =
 		dottedName + (node.explanation.filter ? ' .' + node.explanation.filter : '')
-	const cached = cache[cacheName]
+	const cached = this.cache[cacheName]
 
 	if (cached) return addReplacementMissingVariable(cached)
 
@@ -55,7 +53,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 		missingVariables: EvaluatedNode['missingVariables'],
 		explanation?: Record<string, unknown>
 	) => {
-		cache[cacheName] = {
+		this.cache[cacheName] = {
 			...node,
 			nodeValue,
 			...(explanation && {
@@ -67,14 +65,10 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			...(explanation?.unit && { unit: explanation.unit }),
 			missingVariables
 		}
-		return addReplacementMissingVariable(cache[cacheName])
+		return addReplacementMissingVariable(this.cache[cacheName])
 	}
-	const applicabilityEvaluation = evaluateApplicability(
-		cache,
-		situation,
-		rules,
-		rule
-	)
+	const applicabilityEvaluation = evaluateApplicability.call(this, rule as any)
+
 	if (!applicabilityEvaluation.nodeValue) {
 		return cacheNode(
 			applicabilityEvaluation.nodeValue,
@@ -82,12 +76,12 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 			applicabilityEvaluation
 		)
 	}
-	if (situation[dottedName]) {
+	if (this.parsedSituation[dottedName]) {
 		// Conditional evaluation is required because some mecanisms like
 		// "synchronisation" store raw JS objects in the situation.
-		const situationValue = situation[dottedName]?.evaluate
-			? evaluateNode(cache, situation, rules, situation[dottedName])
-			: situation[dottedName]
+		const situationValue = this.parsedSituation[dottedName]?.nodeKind
+			? this.evaluateNode(this.parsedSituation[dottedName])
+			: this.parsedSituation[dottedName]
 		const unit =
 			!situationValue.unit || serializeUnit(situationValue.unit) === ''
 				? rule.unit
@@ -106,7 +100,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	}
 
 	if (rule.defaultValue != null) {
-		const evaluation = evaluateNode(cache, situation, rules, rule.defaultValue)
+		const evaluation = this.evaluateNode(rule.defaultValue)
 		return cacheNode(evaluation.nodeValue ?? evaluation, {
 			...evaluation.missingVariables,
 			[dottedName]: 1
@@ -114,7 +108,7 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 	}
 
 	if (rule.formule != null) {
-		const evaluation = evaluateNode(cache, situation, rules, rule)
+		const evaluation = this.evaluateNode(rule)
 		return cacheNode(
 			evaluation.nodeValue,
 			evaluation.missingVariables,
@@ -130,23 +124,15 @@ Par défaut, seul le premier s'applique. Si vous voulez un autre comportement, v
 // See the unité-temporelle.yaml test suite for details
 // - filters on the variable to select one part of the variable's 'composantes'
 
-export const evaluateReferenceTransforms = (
-	cache,
-	situation,
-	parsedRules,
-	node
-) => {
+export const evaluateReferenceTransforms: evaluationFunction = function(node) {
 	// Filter transformation
-	const filteringSituation = {
-		...situation,
-		'_meta.filter': node.explanation.filter
+	if (node.explanation.filter) {
+		this.cache._meta.filter = node.explanation.filter
 	}
-	const filteredNode = evaluateNode(
-		cache,
-		node.explanation.filter ? filteringSituation : situation,
-		parsedRules,
-		node.explanation.originalNode
-	)
+	const filteredNode = this.evaluateNode(node.explanation.originalNode)
+	if (node.explanation.filter) {
+		delete this.cache._meta.filter
+	}
 	const { explanation, nodeValue } = filteredNode
 	if (!explanation || nodeValue === null) {
 		return filteredNode
@@ -157,7 +143,7 @@ export const evaluateReferenceTransforms = (
 			return convertNodeToUnit(unit, filteredNode)
 		} catch (e) {
 			typeWarning(
-				cache._meta.contextRule,
+				this.cache._meta.contextRule,
 				`Impossible de convertir la reference '${filteredNode.name}'`,
 				e
 			)
@@ -193,13 +179,11 @@ export const getApplicableReplacedBy = (contextRuleName, replacedBy) =>
 /**
  * Filter-out and apply all possible replacements at runtime.
  */
-const getApplicableReplacements = (
-	contextRuleName,
-	cache,
-	situation,
-	rules,
+const getApplicableReplacements = function(
+	this: Engine<string>,
+	contextRuleName: string,
 	rule: ParsedRule
-) => {
+) {
 	let missingVariableList: Array<EvaluatedNode['missingVariables']> = []
 	if (contextRuleName.startsWith('[evaluation]')) {
 		return [[], []]
@@ -210,42 +194,37 @@ const getApplicableReplacements = (
 	)
 		// Remove remplacement defined in a not applicable node
 		.filter(({ referenceNode }) => {
-			const referenceRule = rules[referenceNode.dottedName]
+			const referenceRule = this.parsedRules[referenceNode.dottedName]
 			const {
 				nodeValue: isApplicable,
 				missingVariables
-			} = evaluateApplicability(cache, situation, rules, referenceRule)
+			} = evaluateApplicability.call(this, referenceRule as any)
 			missingVariableList.push(missingVariables)
 			return isApplicable
 		})
 		// Remove remplacement defined in a node whose situation value is false
 		.filter(({ referenceNode }) => {
-			const referenceRule = rules[referenceNode.dottedName]
-			const situationValue = situation[referenceRule.dottedName]
+			const referenceRule = this.parsedRules[referenceNode.dottedName]
+			const situationValue = this.parsedSituation[referenceRule.dottedName]
 			if (referenceNode.question && situationValue == null) {
 				missingVariableList.push({ [referenceNode.dottedName]: 1 })
 			}
-			return situationValue?.nodeValue !== false
+			return (situationValue as any)?.nodeValue !== false
 		})
 		// Remove remplacement defined in a boolean node whose evaluated value is false
 		.filter(({ referenceNode }) => {
-			const referenceRule = rules[referenceNode.dottedName]
+			const referenceRule = this.parsedRules[referenceNode.dottedName]
 			if (referenceRule.formule?.explanation?.operationType !== 'comparison') {
 				return true
 			}
-			const { nodeValue: isApplicable, missingVariables } = evaluateNode(
-				cache,
-				situation,
-				rules,
+			const { nodeValue: isApplicable, missingVariables } = this.evaluateNode(
 				referenceRule
 			)
 			missingVariableList.push(missingVariables)
 			return isApplicable
 		})
 		.map(({ referenceNode, replacementNode }) =>
-			replacementNode != null
-				? evaluateNode(cache, situation, rules, replacementNode)
-				: evaluateReference(cache, situation, rules, referenceNode)
+			replacementNode != null ? replacementNode : referenceNode
 		)
 		.map(replacementNode => {
 			const replacedRuleUnit = rule.unit

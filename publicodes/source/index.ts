@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { map } from 'ramda'
 import { evaluationError, warning } from './error'
-import { evaluateNode } from './evaluation'
+import { evaluationFunctions } from './evaluation'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import { parse } from './parse'
 import parseRules from './parseRules'
+import * as utils from './ruleUtils'
 import { EvaluatedNode, EvaluatedRule, ParsedRules, Rules } from './types'
 import { parseUnit } from './units'
-import * as utils from './ruleUtils'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] }
@@ -16,10 +16,14 @@ const emptyCache = () => ({
 type Cache = {
 	_meta: {
 		contextRule: Array<string>
-		inversionFail?: {
-			given: string
-			estimated: string
-		}
+		inversionFail?:
+			| {
+					given: string
+					estimated: string
+			  }
+			| true
+		inRecalcul?: boolean
+		filter?: string
 	}
 }
 
@@ -30,21 +34,26 @@ export type EvaluationOptions = Partial<{
 }>
 
 export * from './components'
+export { default as cyclesLib } from './cyclesLib/index'
 export { formatValue, serializeValue } from './format'
 export { default as translateRules } from './translateRules'
-export { default as cyclesLib } from './cyclesLib/index'
 export * from './types'
 export { parseRules }
 export { utils }
+export type evaluationFunction = (
+	this: Engine<string>,
+	node: EvaluatedNode
+) => EvaluatedNode
 
 export default class Engine<Names extends string> {
 	parsedRules: ParsedRules<Names>
 	parsedSituation: ParsedSituation<Names> = {}
-	private cache: Cache
+	cache: Cache
 	private warnings: Array<string> = []
 
 	constructor(rules: string | Rules<Names> | ParsedRules<Names>) {
 		this.cache = emptyCache()
+		this.resetCache()
 		this.parsedRules =
 			typeof rules === 'string' || !(Object.values(rules)[0] as any)?.dottedName
 				? parseRules(rules)
@@ -67,10 +76,7 @@ export default class Engine<Names extends string> {
 			originalWarn(warning)
 		}
 		const result = simplifyNodeUnit(
-			evaluateNode(
-				this.cache,
-				this.parsedSituation,
-				this.parsedRules,
+			this.evaluateNode(
 				parse(
 					this.parsedRules,
 					{ dottedName: context },
@@ -155,5 +161,15 @@ export default class Engine<Names extends string> {
 
 	getParsedRules(): ParsedRules<Names> {
 		return this.parsedRules
+	}
+
+	evaluateNode(node) {
+		if (!node.nodeKind) {
+			throw Error('The provided node must have a "nodeKind" attribute')
+		} else if (!evaluationFunctions[node.nodeKind]) {
+			throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
+		}
+
+		return evaluationFunctions[node.nodeKind].call(this, node)
 	}
 }

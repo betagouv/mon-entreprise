@@ -8,10 +8,7 @@ export const mecanismOnePossibility = dottedName => (recurse, v) => ({
 	nodeKind: 'une possibilité'
 })
 
-registerEvaluationFunction(
-	'une possibilité',
-	(cache, situation, parsedRules, node) => ({
-		...node,
-		missingVariables: { [node.context]: 1 }
-	})
-)
+registerEvaluationFunction('une possibilité', node => ({
+	...node,
+	missingVariables: { [node.context]: 1 }
+}))

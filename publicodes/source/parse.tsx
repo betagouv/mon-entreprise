@@ -45,16 +45,14 @@ Vérifiez que tous les champs à droite des deux points sont remplis`
 		syntaxError(
 			rule.dottedName,
 			`
-Les valeure booléenes true / false ne sont acceptée.
+Les valeurs booléennes true / false ne sont acceptées.
 Utilisez leur contrepartie française : 'oui' / 'non'`
 		)
 	}
 	const node =
 		typeof rawNode === 'object' ? rawNode : parseExpression(rule, '' + rawNode)
 
-	const parsedNode = parseMecanism(rules, rule, parsedRules)(node)
-	parsedNode.evaluate = parsedNode.evaluate ?? ((_, __, ___, node) => node)
-	return parsedNode
+	return parseMecanism(rules, rule, parsedRules)(node)
 }
 
 const compiledGrammar = Grammar.fromCompiled(grammar)

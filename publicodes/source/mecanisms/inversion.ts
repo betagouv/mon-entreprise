@@ -1,13 +1,14 @@
+import { evaluationFunction } from '..'
 import InversionNumérique from '../components/mecanisms/InversionNumérique'
-import { evaluateNode, registerEvaluationFunction } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluation'
 import { convertNodeToUnit } from '../nodeUnits'
 import uniroot from '../uniroot'
 import { parseUnit } from '../units'
 
-export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
+export const evaluateInversion: evaluationFunction = function(node) {
 	// TODO : take applicability into account here
 	let inversedWith = node.explanation.inversionCandidates.find(
-		n => situation[n.dottedName] != undefined
+		n => this.parsedSituation[n.dottedName] != undefined
 	)
 	if (!inversedWith) {
 		return {
@@ -21,28 +22,24 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 			nodeValue: null
 		}
 	}
-	inversedWith = evaluateNode(oldCache, situation, parsedRules, inversedWith)
-	let inversionCache
-	function resetInversionCache() {
-		inversionCache = {
-			_meta: { ...oldCache._meta }
+	inversedWith = this.evaluateNode(inversedWith)
+	const originalCache = { ...this.cache }
+	const originalSituation = { ...this.parsedSituation }
+	const evaluateWithValue = (n: number) => {
+		this.cache = {
+			_meta: { ...originalCache._meta }
 		}
-		return inversionCache
+		this.parsedSituation = {
+			...originalSituation,
+			[inversedWith.dottedName]: undefined,
+			[node.explanation.ruleToInverse]: {
+				nodeValue: n,
+				unit: this.parsedRules[node.explanation.ruleToInverse].unit
+			}
+		}
+		return this.evaluateNode(inversedWith)
 	}
-	const evaluateWithValue = (n: number) =>
-		evaluateNode(
-			resetInversionCache(),
-			{
-				...situation,
-				[inversedWith.dottedName]: undefined,
-				[node.explanation.ruleToInverse]: {
-					nodeValue: n,
-					unit: parsedRules[node.explanation.ruleToInverse].unit
-				}
-			},
-			parsedRules,
-			inversedWith
-		)
+
 	// si fx renvoie null pour une valeur numérique standard, disons 2000, on peut
 	// considérer que l'inversion est impossible du fait de variables manquantes
 	// TODO fx peut être null pour certains x, et valide pour d'autres : on peut implémenter ici le court-circuit
@@ -68,13 +65,15 @@ export const evaluateInversion = (oldCache, situation, parsedRules, node) => {
 					1
 			  )
 	if (nodeValue === undefined) {
-		oldCache._meta.inversionFail = true
+		originalCache._meta.inversionFail = true
 	} else {
 		// For performance reason, we transfer the inversion cache
-		Object.entries(inversionCache).forEach(([k, value]) => {
-			oldCache[k] = value
+		Object.entries(this.cache).forEach(([k, value]) => {
+			originalCache[k] = value
 		})
 	}
+	this.cache = originalCache
+	this.parsedSituation = originalSituation
 	return {
 		...node,
 		nodeValue: nodeValue ?? null,
@@ -103,9 +102,9 @@ export const mecanismInversion = dottedName => (recurse, v) => {
 		jsx: InversionNumérique,
 		category: 'mecanism',
 		name: 'inversion numérique',
-		nodeKind: 'inversion numérique',
+		nodeKind: 'inversion',
 		type: 'numeric'
 	}
 }
 
-registerEvaluationFunction('inversion numérique', evaluateInversion)
+registerEvaluationFunction('inversion', evaluateInversion)

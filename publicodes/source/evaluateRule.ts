@@ -1,25 +1,15 @@
 import { map, pick, pipe } from 'ramda'
+import { evaluationFunction } from '.'
 import { typeWarning } from './error'
-import {
-	bonus,
-	evaluateNode,
-	mergeMissing,
-	mergeAllMissing
-} from './evaluation'
+import { bonus, mergeAllMissing, mergeMissing } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
-import { EvaluatedNode, ParsedRule } from './types'
 
-export const evaluateApplicability = (
-	cache,
-	situation,
-	parsedRules,
-	node: ParsedRule
-): EvaluatedNode => {
+export const evaluateApplicability: evaluationFunction = function(node: any) {
 	const evaluatedAttributes = pipe(
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
 				x: any
 			) => any,
-			map(value => evaluateNode(cache, situation, parsedRules, value))
+			map(value => this.evaluateNode(value))
 		)(node) as any,
 		{
 			'non applicable si': notApplicable,
@@ -27,7 +17,7 @@ export const evaluateApplicability = (
 			'rendu non applicable': disabled
 		} = evaluatedAttributes,
 		parentDependencies = node.parentDependencies.map(parent =>
-			evaluateNode(cache, situation, parsedRules, parent)
+			this.evaluateNode(parent)
 		)
 
 	const anyDisabledParent = parentDependencies.find(
@@ -69,14 +59,9 @@ export const evaluateApplicability = (
 	}
 }
 
-export const evaluateFormula = (cache, situation, parsedRules, node) => {
-	const explanation = evaluateNode(
-			cache,
-			situation,
-			parsedRules,
-			node.explanation
-		),
-		{ nodeValue, unit, missingVariables, temporalValue } = explanation
+export const evaluateFormula: evaluationFunction = function(node) {
+	const explanation = this.evaluateNode(node.explanation)
+	const { nodeValue, unit, missingVariables, temporalValue } = explanation
 
 	return {
 		...node,
@@ -88,14 +73,9 @@ export const evaluateFormula = (cache, situation, parsedRules, node) => {
 	}
 }
 
-export const evaluateRule = (cache, situation, parsedRules, node) => {
-	cache._meta.contextRule.push(node.dottedName)
-	const applicabilityEvaluation = evaluateApplicability(
-		cache,
-		situation,
-		parsedRules,
-		node
-	)
+export const evaluateRule: evaluationFunction = function(node: any) {
+	this.cache._meta.contextRule.push(node.dottedName)
+	const applicabilityEvaluation = evaluateApplicability.call(this, node)
 	const {
 		missingVariables: condMissing,
 		nodeValue: isApplicable
@@ -104,7 +84,7 @@ export const evaluateRule = (cache, situation, parsedRules, node) => {
 	// evaluate the formula lazily, only if the applicability is known and true
 	let evaluatedFormula =
 		isApplicable && node.formule
-			? evaluateNode(cache, situation, parsedRules, node.formule)
+			? this.evaluateNode(node.formule)
 			: node.formule
 
 	if (node.unit) {
@@ -124,7 +104,7 @@ export const evaluateRule = (cache, situation, parsedRules, node) => {
 	)
 
 	const temporalValue = evaluatedFormula.temporalValue
-	cache._meta.contextRule.pop()
+	this.cache._meta.contextRule.pop()
 	return {
 		...node,
 		...applicabilityEvaluation,
@@ -137,9 +117,9 @@ export const evaluateRule = (cache, situation, parsedRules, node) => {
 	}
 }
 
-export const evaluateDisabledBy = (cache, situation, parsedRules, node) => {
+export const evaluateDisabledBy: evaluationFunction = function(node) {
 	const isDisabledBy = node.explanation.isDisabledBy.map(disablerNode =>
-		evaluateNode(cache, situation, parsedRules, disablerNode)
+		this.evaluateNode(disablerNode)
 	)
 	const nodeValue = isDisabledBy.some(
 		x => x.nodeValue !== false && x.nodeValue !== null
@@ -153,13 +133,8 @@ export const evaluateDisabledBy = (cache, situation, parsedRules, node) => {
 	}
 }
 
-export const evaluateCondition = (cache, situation, parsedRules, node) => {
-	const explanation = evaluateNode(
-		cache,
-		situation,
-		parsedRules,
-		node.explanation
-	)
+export const evaluateCondition: evaluationFunction = function(node) {
+	const explanation = this.evaluateNode(node.explanation)
 	const nodeValue = explanation.nodeValue
 	const missingVariables = explanation.missingVariables
 

@@ -1,4 +1,5 @@
-import { evaluateNode, registerEvaluationFunction } from '../evaluation'
+import { evaluationFunction } from '..'
+import { registerEvaluationFunction } from '../evaluation'
 import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
@@ -6,26 +7,14 @@ import {
 	temporalAverage
 } from '../temporal'
 
-function evaluate(
-	cache: any,
-	situation: any,
-	parsedRules: any,
-	node: ReturnType<typeof parseVariableTemporelle>
-) {
-	const evaluateAttribute = evaluateNode.bind(
-		null,
-		cache,
-		situation,
-		parsedRules
-	)
-
+const evaluate: evaluationFunction = function(node: any) {
 	const start =
 		node.explanation.period.start &&
-		evaluateAttribute(node.explanation.period.start)
+		this.evaluateNode(node.explanation.period.start)
 	const end =
 		node.explanation.period.end &&
-		evaluateAttribute(node.explanation.period.end)
-	const value = evaluateAttribute(node.explanation.value)
+		this.evaluateNode(node.explanation.period.end)
+	const value = this.evaluateNode(node.explanation.value)
 	const period = {
 		start: start?.nodeValue || null,
 		end: end?.nodeValue || null

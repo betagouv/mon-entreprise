@@ -1,20 +1,20 @@
 import { is, map } from 'ramda'
 import React from 'react'
+import { evaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
 import {
-	evaluateNode,
 	makeJsx,
 	mergeAllMissing,
 	registerEvaluationFunction
 } from '../evaluation'
 
-const evaluate = (cache, situation, parsedRules, node) => {
+const evaluate: evaluationFunction = function(node) {
 	const [nodeValue, explanation] = node.explanation.reduce(
 		([nodeValue, explanation], node) => {
 			if (nodeValue === false) {
 				return [nodeValue, [...explanation, node]]
 			}
-			const evaluatedNode = evaluateNode(cache, situation, parsedRules, node)
+			const evaluatedNode = this.evaluateNode(node)
 			return [
 				nodeValue === false || nodeValue === null
 					? nodeValue
