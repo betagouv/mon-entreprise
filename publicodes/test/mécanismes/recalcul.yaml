@@ -14,6 +14,7 @@ SMIC net:
     - valeur attendue: 500
 
 Recalcule règle courante:
+  unité: €
   formule:
     valeur: 10% * salaire brut
     plafond:

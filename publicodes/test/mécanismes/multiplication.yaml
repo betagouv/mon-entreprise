@@ -53,7 +53,6 @@ mon facteur:
   unité: patates
 
 Multiplication à facteur:
-  unité attendue: patates
   formule:
     produit:
       assiette: 100
@@ -63,6 +62,7 @@ Multiplication à facteur:
     - nom:
       situation:
         mon facteur: 3
+      unité attendue: patates
       valeur attendue: 300
 
 Multiplication complète:

@@ -2,12 +2,13 @@ import React from 'react'
 import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
-import {
-	makeJsx,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import parse from '../parse'
+
+import { makeJsx, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
+import { ASTNode } from '../AST/types'
+import { EvaluationDecoration } from '../AST/types'
 
 function MecanismPlafond({ explanation }) {
 	return (
@@ -25,8 +26,15 @@ function MecanismPlafond({ explanation }) {
 		</InfixMecanism>
 	)
 }
-
-const evaluate: evaluationFunction = function(node) {
+export type PlafondNode = {
+	explanation: {
+		plafond: ASTNode
+		valeur: ASTNode
+	}
+	jsx: any
+	nodeKind: 'plafond'
+}
+const evaluate: evaluationFunction<'plafond'> = function(node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue
@@ -35,7 +43,10 @@ const evaluate: evaluationFunction = function(node) {
 		plafond = this.evaluateNode(plafond)
 		if (valeur.unit) {
 			try {
-				plafond = convertNodeToUnit(valeur.unit, plafond)
+				plafond = convertNodeToUnit(
+					valeur.unit,
+					plafond as ASTNode & EvaluationDecoration
+				)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,
@@ -45,39 +56,37 @@ const evaluate: evaluationFunction = function(node) {
 			}
 		}
 	}
+	plafond
 	if (
 		typeof nodeValue === 'number' &&
+		'nodeValue' in plafond &&
 		typeof plafond.nodeValue === 'number' &&
 		nodeValue > plafond.nodeValue
 	) {
 		nodeValue = plafond.nodeValue
-		plafond.isActive = true
+		;(plafond as any).isActive = true
 	}
 	return {
 		...node,
 		nodeValue,
-		unit: valeur.unit,
+		...('unit' in valeur && { unit: valeur.unit }),
 		explanation: { valeur, plafond },
 		missingVariables: mergeAllMissing([valeur, plafond])
 	}
 }
 
-export default function Plafond(recurse, v) {
+export default function parsePlafond(v, context) {
 	const explanation = {
-		valeur: recurse(v.valeur),
-		plafond: recurse(v.plafond)
+		valeur: parse(v.valeur, context),
+		plafond: parse(v.plafond, context)
 	}
 	return {
 		jsx: MecanismPlafond,
 		explanation,
-		category: 'mecanism',
-		name: 'plafond',
-		nodeKind: 'plafond',
-		type: 'numeric',
-		unit: explanation.valeur.unit
-	}
+		nodeKind: 'plafond'
+	} as PlafondNode
 }
 
-Plafond.nom = 'plafond'
+parsePlafond.nom = 'plafond'
 
 registerEvaluationFunction('plafond', evaluate)

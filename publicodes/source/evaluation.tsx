@@ -1,18 +1,25 @@
-import { add, evolve, fromPairs, keys, map, mergeWith, reduce } from 'ramda'
+import {
+	add,
+	evolve,
+	fromPairs,
+	keys,
+	map,
+	mapObjIndexed,
+	mergeWith,
+	reduce
+} from 'ramda'
 import React from 'react'
 import Engine, { evaluationFunction } from '.'
+import {
+	ASTNode,
+	ConstantNode,
+	Evaluation,
+	EvaluationDecoration,
+	NodeKind
+} from './AST/types'
 import { typeWarning } from './error'
-import {
-	evaluateReference,
-	evaluateReferenceTransforms
-} from './evaluateReference'
-import {
-	evaluateCondition,
-	evaluateDisabledBy,
-	evaluateFormula,
-	evaluateRule
-} from './evaluateRule'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
+import parse from './parse'
 import {
 	concatTemporals,
 	liftTemporalNode,
@@ -22,14 +29,13 @@ import {
 	temporalAverage,
 	zipTemporals
 } from './temporal'
-import { EvaluatedNode } from './types'
 
-export const makeJsx = (node: EvaluatedNode): JSX.Element => {
+export const makeJsx = (node: ASTNode): JSX.Element => {
 	const Component = node.jsx
 	return <Component {...node} />
 }
 
-export const collectNodeMissing = node => node.missingVariables || {}
+export const collectNodeMissing = node => node?.missingVariables || {}
 
 export const bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
@@ -59,10 +65,10 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 	})
 }
 
-export const evaluateArray: (
+export const evaluateArray: <NodeName extends NodeKind>(
 	reducer: Parameters<typeof reduce>[0],
 	start: Parameters<typeof reduce>[1]
-) => evaluationFunction = (reducer, start) =>
+) => evaluationFunction<NodeName> = (reducer, start) =>
 	function(node: any) {
 		const evaluate = this.evaluateNode.bind(this)
 		const evaluatedNodes = convertNodesToSameUnit(
@@ -96,6 +102,7 @@ export const evaluateArray: (
 				nodeValue: temporalValue[0].value
 			}
 		}
+
 		return {
 			...baseEvaluation,
 			temporalValue,
@@ -103,28 +110,25 @@ export const evaluateArray: (
 		}
 	}
 
-export const defaultNode = (nodeValue: EvaluatedNode['nodeValue']) => ({
-	nodeValue,
-	// eslint-disable-next-line
-	jsx: ({ nodeValue }: EvaluatedNode) => (
-		<span className="value">{nodeValue}</span>
-	),
-	isDefault: true,
-	nodeKind: 'defaultNode'
-})
+export const defaultNode = (nodeValue: Evaluation) =>
+	({
+		nodeValue,
+		type: typeof nodeValue,
+		// eslint-disable-next-line
+		jsx: ({ nodeValue }: ASTNode & EvaluationDecoration) => (
+			<span className="value">{nodeValue}</span>
+		),
+		isDefault: true,
+		nodeKind: 'constant'
+	} as ConstantNode)
 
-const evaluateDefaultNode: evaluationFunction = node => node
-const evaluateExplanationNode: evaluationFunction = function(node) {
-	return this.evaluateNode(node.explanation)
-}
-
-export const parseObject = (recurse, objectShape, value) => {
+export const parseObject = (objectShape, value, context) => {
 	const recurseOne = key => defaultValue => {
 		if (value[key] == null && !defaultValue)
 			throw new Error(
 				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
 			)
-		return value[key] != null ? recurse(value[key]) : defaultValue
+		return value[key] != null ? parse(value[key], context) : defaultValue
 	}
 	const transforms = fromPairs(
 		map(k => [k, recurseOne(k)], keys(objectShape)) as any
@@ -132,22 +136,25 @@ export const parseObject = (recurse, objectShape, value) => {
 	return evolve(transforms as any, objectShape)
 }
 
-export const evaluateObject: (
-	effet: (this: Engine<string>, explanations: any) => any
-) => evaluationFunction = effect =>
-	function(node: any) {
+export function evaluateObject<NodeName extends NodeKind>(
+	effet: (this: Engine, explanations: any) => any
+) {
+	return function(node) {
 		const evaluate = this.evaluateNode.bind(this)
-		const evaluations = map(evaluate, node.explanation)
+		const evaluations = mapObjIndexed(
+			evaluate as any,
+			(node as any).explanation
+		)
 		const temporalExplanations = mapTemporal(
 			Object.fromEntries,
 			concatTemporals(
 				Object.entries(evaluations).map(([key, node]) =>
-					zipTemporals(pureTemporal(key), liftTemporalNode(node))
+					zipTemporals(pureTemporal(key), liftTemporalNode(node as ASTNode))
 				)
 			)
 		)
 		const temporalExplanation = mapTemporal(explanations => {
-			const evaluation = effect.call(this, explanations)
+			const evaluation = effet.call(this, explanations)
 			return {
 				...evaluation,
 				explanation: {
@@ -157,13 +164,11 @@ export const evaluateObject: (
 			}
 		}, temporalExplanations)
 
-		const sameUnitTemporalExplanation: Temporal<EvaluatedNode<
-			string,
-			number
-		>> = convertNodesToSameUnit(
+		const sameUnitTemporalExplanation: Temporal<ASTNode &
+			EvaluationDecoration & { nodeValue: number }> = convertNodesToSameUnit(
 			temporalExplanation.map(x => x.value),
 			this.cache._meta.contextRule,
-			node.name
+			node.nodeKind
 		).map((node, i) => ({
 			...temporalExplanation[i],
 			value: simplifyNodeUnit(node)
@@ -184,7 +189,7 @@ export const evaluateObject: (
 		if (sameUnitTemporalExplanation.length === 1) {
 			return {
 				...baseEvaluation,
-				explanation: sameUnitTemporalExplanation[0].value.explanation
+				explanation: (sameUnitTemporalExplanation[0] as any).value
 			}
 		}
 		return {
@@ -192,28 +197,5 @@ export const evaluateObject: (
 			temporalValue,
 			temporalExplanation
 		}
-	}
-
-export const evaluationFunctions = {
-	rule: evaluateRule,
-	formula: evaluateFormula,
-	disabledBy: evaluateDisabledBy,
-	condition: evaluateCondition,
-	reference: evaluateReference,
-	referenceWithTransforms: evaluateReferenceTransforms,
-	parentDependencies: evaluateExplanationNode,
-	constant: evaluateDefaultNode,
-	defaultNode: evaluateDefaultNode
-}
-
-export function registerEvaluationFunction(
-	nodeKind: string,
-	evaluationFunction: evaluationFunction
-) {
-	if (evaluationFunctions[nodeKind]) {
-		throw Error(
-			`Multiple evaluation functions registered for the nodeKind \x1b[4m${nodeKind}`
-		)
-	}
-	evaluationFunctions[nodeKind] = evaluationFunction
+	} as evaluationFunction<NodeName>
 }

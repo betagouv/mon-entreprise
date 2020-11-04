@@ -1,13 +1,18 @@
 import React from 'react'
 import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
-import {
-	bonus,
-	makeJsx,
-	mergeMissing,
-	registerEvaluationFunction
-} from '../evaluation'
-
+import { ASTNode } from '../AST/types'
+import { bonus, makeJsx, mergeMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
+export type NonApplicableSiNode = {
+	explanation: {
+		condition: ASTNode
+		valeur: ASTNode
+	}
+	jsx: any
+	nodeKind: 'non applicable si'
+}
 function MecanismNonApplicable({ explanation }) {
 	return (
 		<InfixMecanism prefixed value={explanation.valeur}>
@@ -19,7 +24,7 @@ function MecanismNonApplicable({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction = function(node) {
+const evaluate: evaluationFunction<'non applicable si'> = function(node) {
 	const condition = this.evaluateNode(node.explanation.condition)
 	let valeur = node.explanation.valeur
 	if (condition.nodeValue !== true) {
@@ -28,35 +33,34 @@ const evaluate: evaluationFunction = function(node) {
 	return {
 		...node,
 		nodeValue:
-			condition.nodeValue == null
-				? condition.nodeValue
+			condition.nodeValue === null
+				? null
 				: condition.nodeValue === true
 				? false
-				: valeur.nodeValue,
+				: 'nodeValue' in valeur
+				? valeur.nodeValue
+				: null,
 		explanation: { valeur, condition },
 		missingVariables: mergeMissing(
-			valeur.missingVariables,
+			'missingVariables' in valeur ? valeur.missingVariables : {},
 			bonus(condition.missingVariables)
 		),
-		unit: valeur.unit
+		...('unit' in valeur && { unit: valeur.unit })
 	}
 }
 
-export default function NonApplicable(recurse, v) {
+export default function parseNonApplicable(v, context) {
 	const explanation = {
-		valeur: recurse(v.valeur),
-		condition: recurse(v['non applicable si'])
+		valeur: parse(v.valeur, context),
+		condition: parse(v[parseNonApplicable.nom], context)
 	}
 	return {
 		jsx: MecanismNonApplicable,
 		explanation,
-		category: 'mecanism',
-		name: 'non applicable',
-		nodeKind: 'non applicable',
-		unit: explanation.valeur.unit
-	}
+		nodeKind: parseNonApplicable.nom
+	} as NonApplicableSiNode
 }
 
-NonApplicable.nom = 'non applicable si'
+parseNonApplicable.nom = 'non applicable si' as const
 
-registerEvaluationFunction('non applicable', evaluate)
+registerEvaluationFunction(parseNonApplicable.nom, evaluate)

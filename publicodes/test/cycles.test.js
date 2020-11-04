@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import dedent from 'dedent-js'
-import { cyclesInDependenciesGraph } from '../source/cyclesLib/graph'
+import { cyclesInDependenciesGraph } from '../source/AST/graph'
 
 describe('Cyclic dependencies detectron 3000 ™', () => {
 	it('should detect the trivial formule cycle', () => {
@@ -25,5 +25,32 @@ describe('Cyclic dependencies detectron 3000 ™', () => {
 		`
 		const cycles = cyclesInDependenciesGraph(rules)
 		expect(cycles).to.deep.equal([['d', 'c', 'b', 'a']])
+	})
+
+
+	it('should not detect formule cycles due to parent dependancy', () => {
+		const rules = dedent`
+			a:
+				formule: b + 1
+			a . b:
+				formule: 3
+		`
+		const cycles = cyclesInDependenciesGraph(rules)
+		expect(cycles).to.deep.equal([])
+	})
+
+
+	it('should not detect cycles due to replacement', () => {
+		const rules = dedent`
+			a:
+				formule: b + 1
+			a . b:
+				formule: 3
+			a . c: 
+				remplace: b
+				formule: a
+		`
+		const cycles = cyclesInDependenciesGraph(rules)
+		expect(cycles).to.deep.equal([["a . c", "a"]])
 	})
 })

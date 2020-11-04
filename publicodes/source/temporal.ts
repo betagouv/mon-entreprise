@@ -6,7 +6,13 @@ import {
 	getRelativeDate,
 	getYear
 } from './date'
-import { EvaluatedNode, Unit, Evaluation, Types } from './types'
+import {
+	Unit,
+	Evaluation,
+	Types,
+	ASTNode,
+	EvaluationDecoration
+} from './AST/types'
 
 export type Period<T> = {
 	start: T | null
@@ -63,8 +69,8 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 	throw new Error('Non implémenté')
 }
 
-export type TemporalNode<Names extends string> = Temporal<
-	EvaluatedNode<Names, number>
+export type TemporalNode = Temporal<
+	ASTNode & EvaluationDecoration & { nodeValue: number }
 >
 export type Temporal<T> = Array<Period<string> & { value: T }>
 
@@ -143,11 +149,9 @@ export function concatTemporals<T, U>(
 	)
 }
 
-export function liftTemporalNode<
-	T extends Types,
-	Names extends string,
-	N extends EvaluatedNode<Names, T>
->(node: N): Temporal<Pick<N, Exclude<keyof N, 'temporalValue'>>> {
+export function liftTemporalNode<N extends ASTNode>(
+	node: N
+): Temporal<Pick<N, Exclude<keyof N, 'temporalValue'>>> {
 	if (!('temporalValue' in node)) {
 		return pureTemporal(node)
 	}

@@ -1,9 +1,26 @@
+import parse from '../parse'
 import { evaluationFunction } from '..'
+import { ASTNode, ConstantNode, Unit } from '../AST/types'
 import InversionNumérique from '../components/mecanisms/InversionNumérique'
-import { mergeMissing, registerEvaluationFunction } from '../evaluation'
+import { mergeMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
+import { Context } from '../parsePublicodes'
+import { ReferenceNode } from '../reference'
 import uniroot from '../uniroot'
 import { parseUnit } from '../units'
+import { InternalError } from '../error'
+import { UnitéNode } from './unité'
+
+export type InversionNode = {
+	explanation: {
+		ruleToInverse: string
+		inversionCandidates: Array<ReferenceNode>
+		unit?: Unit
+	}
+	jsx: any
+	nodeKind: 'inversion'
+}
 
 // The user of the inversion mechanism has to define a list of "inversion
 // candidates". At runtime, the evaluation function of the mechanism will look
@@ -14,46 +31,54 @@ import { parseUnit } from '../units'
 // equal to its situation value, mathematically we search for the zero of the
 // function x → f(x) - goal. The iteration logic between each test is
 // implemented in the `uniroot` file.
-export const evaluateInversion: evaluationFunction = function(node) {
-	let inversionGoal = node.explanation.inversionCandidates.find(
-		candidate => this.parsedSituation[candidate.dottedName] != undefined
+export const evaluateInversion: evaluationFunction<'inversion'> = function(
+	node
+) {
+	const inversionGoal = node.explanation.inversionCandidates.find(
+		candidate =>
+			this.parsedSituation[candidate.dottedName as string] != undefined
 	)
-	if (!inversionGoal) {
+	if (inversionGoal === undefined) {
 		return {
 			...node,
 			missingVariables: {
 				...Object.fromEntries(
-					node.explanation.inversionCandidates.map(n => [n.dottedName, 1])
+					node.explanation.inversionCandidates.map(name => [name, 1])
 				),
 				[node.explanation.ruleToInverse]: 1
 			},
 			nodeValue: null
 		}
 	}
-	inversionGoal = this.evaluateNode(inversionGoal)
-	const unit = this.parsedRules[node.explanation.ruleToInverse].unit
+	const evaluatedInversionGoal = this.evaluateNode(inversionGoal)
+	const unit = 'unit' in node ? node.unit : evaluatedInversionGoal.unit
 
 	const originalCache = { ...this.cache }
 	const originalSituation = { ...this.parsedSituation }
-
 	let inversionNumberOfIterations = 0
+	delete this.parsedSituation[inversionGoal.dottedName as string]
 	const evaluateWithValue = (n: number) => {
 		inversionNumberOfIterations++
 		this.cache = {
 			_meta: { ...originalCache._meta }
 		}
-		this.parsedSituation = {
-			...originalSituation,
-			[inversionGoal.dottedName]: undefined,
-			[node.explanation.ruleToInverse]: {
+		this.parsedSituation[node.explanation.ruleToInverse] = {
+			unit: unit,
+			jsx: null,
+			nodeKind: 'unité',
+			explanation: {
+				nodeKind: 'constant',
 				nodeValue: n,
-				unit
-			}
-		}
+				jsx: null,
+				type: 'number'
+			} as ConstantNode
+		} as UnitéNode
+
 		return convertNodeToUnit(unit, this.evaluateNode(inversionGoal))
 	}
 
-	const goal = convertNodeToUnit(unit, inversionGoal).nodeValue as number
+	const goal = convertNodeToUnit(unit, evaluatedInversionGoal)
+		.nodeValue as number
 	let nodeValue: number | null | undefined = null
 
 	// We do some blind attempts here to avoid using the default minimum and
@@ -110,11 +135,6 @@ export const evaluateInversion: evaluationFunction = function(node) {
 	if (nodeValue === undefined) {
 		nodeValue = null
 		originalCache._meta.inversionFail = true
-	} else {
-		// For performance reason, we transfer the inversion cache
-		Object.entries(this.cache).forEach(([k, value]) => {
-			originalCache[k] = value
-		})
 	}
 
 	// // Uncomment to display the two attempts and their result
@@ -123,9 +143,9 @@ export const evaluateInversion: evaluationFunction = function(node) {
 
 	this.cache = originalCache
 	this.parsedSituation = originalSituation
-
 	return {
 		...node,
+		unit,
 		nodeValue,
 		explanation: {
 			...node.explanation,
@@ -136,24 +156,21 @@ export const evaluateInversion: evaluationFunction = function(node) {
 	}
 }
 
-export const mecanismInversion = (recurse, v, dottedName) => {
+export const mecanismInversion = (v, context: Context) => {
 	if (!v.avec) {
 		throw new Error(
 			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"
 		)
 	}
 	return {
-		unit: v.unité && parseUnit(v.unité),
 		explanation: {
-			ruleToInverse: dottedName,
-			inversionCandidates: v.avec.map(recurse)
+			ruleToInverse: context.dottedName,
+			inversionCandidates: v.avec.map(node => parse(node, context))
 		},
+		...('unité' in v && { unit: parseUnit(v.unité) }),
 		jsx: InversionNumérique,
-		category: 'mecanism',
-		name: 'inversion numérique',
-		nodeKind: 'inversion',
-		type: 'numeric'
-	}
+		nodeKind: 'inversion'
+	} as InversionNode
 }
 
 registerEvaluationFunction('inversion', evaluateInversion)

@@ -2,23 +2,30 @@ import { is, map } from 'ramda'
 import React from 'react'
 import { evaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
-import {
-	makeJsx,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { ASTNode } from '../AST/types'
+import { makeJsx, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 
-const evaluate: evaluationFunction = function(node) {
-	const [nodeValue, explanation] = node.explanation.reduce(
+export type TouteCesConditionsNode = {
+	explanation: Array<ASTNode>
+	nodeKind: 'toutes ces conditions'
+	jsx: any
+}
+
+const evaluate: evaluationFunction<'toutes ces conditions'> = function(node) {
+	const [nodeValue, explanation] = node.explanation.reduce<
+		[boolean | null, Array<ASTNode>]
+	>(
 		([nodeValue, explanation], node) => {
 			if (nodeValue === false) {
 				return [nodeValue, [...explanation, node]]
 			}
 			const evaluatedNode = this.evaluateNode(node)
 			return [
-				nodeValue === false || nodeValue === null
-					? nodeValue
-					: evaluatedNode.nodeValue,
+				nodeValue === null || evaluatedNode.nodeValue === null
+					? null
+					: !!evaluatedNode.nodeValue,
 				[...explanation, evaluatedNode]
 			]
 		},
@@ -33,9 +40,9 @@ const evaluate: evaluationFunction = function(node) {
 	}
 }
 
-export const mecanismAllOf = (recurse, v) => {
+export const mecanismAllOf = (v, context) => {
 	if (!is(Array, v)) throw new Error('should be array')
-	const explanation = map(recurse, v)
+	const explanation = v.map(node => parse(node, context))
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="toutes ces conditions" value={nodeValue} unit={unit}>
 			<ul>
@@ -49,10 +56,7 @@ export const mecanismAllOf = (recurse, v) => {
 	return {
 		jsx,
 		explanation,
-		category: 'mecanism',
-		name: 'toutes ces conditions',
-		nodeKind: 'toutes ces conditions',
-		type: 'boolean'
+		nodeKind: 'toutes ces conditions'
 	}
 }
 

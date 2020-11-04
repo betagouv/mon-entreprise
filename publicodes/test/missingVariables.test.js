@@ -4,7 +4,8 @@ import Engine from '../source/index'
 describe('Missing variables', function() {
 	it('should identify missing variables', function() {
 		const rawRules = {
-			sum: {},
+			ko: 'oui',
+			sum: 'oui',
 			'sum . startHere': {
 				formule: 2,
 				'non applicable si': 'sum . evt . ko'
@@ -20,13 +21,13 @@ describe('Missing variables', function() {
 			new Engine(rawRules).evaluate('sum . startHere').missingVariables
 		)
 
-		expect(result).to.include('sum . evt . ko')
+		expect(result).to.include('sum . evt')
 	})
 
 	it('should identify missing variables mentioned in expressions', function() {
 		const rawRules = {
-			sum: {},
-			'sum . evt': {},
+			sum: 'oui',
+			'sum . evt': 'oui',
 			'sum . startHere': {
 				formule: 2,
 				'non applicable si': 'evt . nyet > evt . nope'
@@ -44,7 +45,7 @@ describe('Missing variables', function() {
 
 	it('should ignore missing variables in the formula if not applicable', function() {
 		const rawRules = {
-			sum: {},
+			sum: 'oui',
 			'sum . startHere': {
 				formule: 'trois',
 				'non applicable si': '3 > 2'
@@ -60,7 +61,7 @@ describe('Missing variables', function() {
 
 	it('should not report missing variables when "one of these" short-circuits', function() {
 		const rawRules = {
-			sum: {},
+			sum: 'oui',
 			'sum . startHere': {
 				formule: 'trois',
 				'non applicable si': {
@@ -78,7 +79,8 @@ describe('Missing variables', function() {
 
 	it('should report "une possibilité" as a missing variable even though it has a formula', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
+			ko: 'oui',
 			'top . startHere': { formule: 'trois' },
 			'top . trois': {
 				formule: { 'une possibilité': ['ko'] }
@@ -93,11 +95,12 @@ describe('Missing variables', function() {
 
 	it('should not report missing variables when "une possibilité" is inapplicable', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
+			ko: 'oui',
 			'top . startHere': { formule: 'trois' },
 			'top . trois': {
 				formule: { 'une possibilité': ['ko'] },
-				'non applicable si': 1
+				'non applicable si': 'oui'
 			}
 		}
 		const result = Object.keys(
@@ -110,7 +113,8 @@ describe('Missing variables', function() {
 
 	it('should not report missing variables when "une possibilité" was answered', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
+			ko: 'oui',
 			'top . startHere': { formule: 'trois' },
 			'top . trois': {
 				formule: { 'une possibilité': ['ko'] }
@@ -128,29 +132,31 @@ describe('Missing variables', function() {
 	// TODO : réparer ce test
 	it.skip('should report missing variables in variations', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
 			'top . startHere': {
 				formule: { somme: ['variations'] }
 			},
 			'top . variations': {
 				formule: {
-					barème: {
-						assiette: 2008,
-						variations: [
-							{
-								si: 'dix',
-								alors: {
-									multiplicateur: 'deux',
-									tranches: [
-										{ plafond: 1, taux: 0.1 },
-										{ plafond: 2, taux: 'trois' },
-										{ taux: 10 }
-									]
+					variations: [
+						{
+							si: 'dix',
+							alors: {
+								barème: {
+									assiette: 2008,
+								multiplicateur: 'deux',
+								tranches: [
+									{ plafond: 1, taux: 0.1 },
+									{ plafond: 2, taux: 'trois' },
+									{ taux: 10 }
+								]
 								}
-							},
+							}},
 							{
 								si: '3 > 4',
 								alors: {
+									barème: {
+										assiette: 2008,
 									multiplicateur: 'quatre',
 									tranches: [
 										{ plafond: 1, taux: 0.1 },
@@ -158,11 +164,11 @@ describe('Missing variables', function() {
 										{ 'au-dessus de': 2, taux: 10 }
 									]
 								}
-							}
+							}}
 						]
 					}
 				}
-			},
+			,
 			'top . dix': {},
 			'top . deux': {},
 			'top . trois': {},
@@ -182,11 +188,11 @@ describe('Missing variables', function() {
 describe('nextSteps', function() {
 	it('should generate questions for simple situations', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
 			'top . sum': { formule: 'deux' },
 			'top . deux': {
+				'non applicable si':'top . sum . evt',
 				formule: 2,
-				'non applicable si': 'top . sum . evt'
 			},
 			'top . sum . evt': {
 				titre: 'Truc',
@@ -203,7 +209,7 @@ describe('nextSteps', function() {
 	})
 	it('should generate questions', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
 			'top . sum': { formule: 'deux' },
 			'top . deux': {
 				formule: 'sum . evt'
@@ -223,7 +229,7 @@ describe('nextSteps', function() {
 
 	it('should generate questions with more intricate situation', function() {
 		const rawRules = {
-			top: {},
+			top: 'oui',
 			'top . sum': { formule: { somme: [2, 'deux'] } },
 			'top . deux': {
 				formule: 2,

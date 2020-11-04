@@ -78,7 +78,7 @@ impôt sur le revenu à payer:
 referenced in situation:
   formule: 200
 overwrited in situation:
-  formule:  100
+  formule: 100
 result:
   formule: overwrited in situation + 22
 `

@@ -1,51 +1,28 @@
-import { add, dissoc, filter, objOf } from 'ramda'
-import { evaluationFunction } from '..'
+import { dissoc, omit, pick } from 'ramda'
 import Composantes from '../components/mecanisms/Composantes'
-import { evaluateArray, registerEvaluationFunction } from '../evaluation'
-import { inferUnit } from '../units'
+import { ASTNode } from '../AST/types'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 
-export const evaluateComposantes: evaluationFunction = function(node) {
-	const evaluationFilter = c =>
-		!this.cache._meta.filter ||
-		!c.composante ||
-		((!c.composante['dû par'] ||
-			!['employeur', 'salarié'].includes(this.cache._meta.filter as any) ||
-			c.composante['dû par'] == this.cache._meta.filter) &&
-			(!c.composante['impôt sur le revenu'] ||
-				!['déductible', 'non déductible'].includes(
-					this.cache._meta.filter as any
-				) ||
-				c.composante['impôt sur le revenu'] == this.cache._meta.filter))
-	return evaluateArray(add as any, 0).call(this, {
-		...node,
-		explanation: filter(evaluationFilter, node.explanation)
-	})
-}
-
-export const decompose = (recurse, k, v) => {
-	const subProps = dissoc<Record<string, unknown>>('composantes', v)
-	const explanation = v.composantes.map(c => ({
-		...recurse(
-			objOf(k, {
-				...subProps,
-				...dissoc<Record<string, unknown>>('attributs', c)
+export const decompose = (k, v, context): ASTNode => {
+	const { composantes, ...factoredKeys } = v
+	const explanation = parse(
+		{
+			somme: composantes.map(composante => {
+				const { attributs, ...otherKeys } = composante
+				return {
+					...attributs,
+					[k]: {
+						...factoredKeys,
+						...otherKeys
+					}
+				}
 			})
-		),
-		composante: c.nom ? { nom: c.nom } : c.attributs
-	}))
-
+		},
+		context
+	)
 	return {
-		explanation,
-		jsx: Composantes,
-		nodeKind: 'composantes',
-		category: 'mecanism',
-		name: 'composantes',
-		type: 'numeric',
-		unit: inferUnit(
-			'+',
-			explanation.map(e => e.unit)
-		)
+		...explanation,
+		jsx: Composantes
 	}
 }
-
-registerEvaluationFunction('composantes', evaluateComposantes)

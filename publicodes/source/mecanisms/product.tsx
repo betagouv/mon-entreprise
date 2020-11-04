@@ -1,14 +1,22 @@
 import { evaluationFunction } from '..'
 import Product from '../components/mecanisms/Product'
+import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
-import {
-	defaultNode,
-	evaluateObject,
-	parseObject,
-	registerEvaluationFunction
-} from '../evaluation'
+import { defaultNode, evaluateObject, parseObject } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
 import { areUnitConvertible, convertUnit, inferUnit } from '../units'
+
+export type ProductNode = {
+	explanation: {
+		assiette: ASTNode
+		facteur: ASTNode
+		plafond: ASTNode
+		taux: ASTNode
+	}
+	jsx: any
+	nodeKind: 'produit'
+}
 
 const objectShape = {
 	assiette: false,
@@ -17,23 +25,14 @@ const objectShape = {
 	plafond: defaultNode(Infinity)
 }
 
-export const mecanismProduct = (recurse, v) => {
-	const explanation = parseObject(recurse, objectShape, v)
+export const mecanismProduct = (v, context) => {
+	const explanation = parseObject(objectShape, v, context)
 
 	return {
 		jsx: Product,
 		explanation,
-		category: 'mecanism',
-		name: 'produit',
-		nodeKind: 'produit',
-		type: 'numeric',
-		unit: inferUnit(
-			'*',
-			[explanation.assiette, explanation.taux, explanation.facteur].map(
-				el => el.unit
-			)
-		)
-	}
+		nodeKind: 'produit'
+	} as ProductNode
 }
 
 const productEffect: evaluationFunction = function({
@@ -78,12 +77,13 @@ const productEffect: evaluationFunction = function({
 	return simplifyNodeUnit({
 		nodeValue,
 		unit,
+
 		explanation: {
 			plafondActif: assiette.nodeValue > plafond.nodeValue
 		}
 	})
 }
 
-const evaluate = evaluateObject(productEffect)
+const evaluate = evaluateObject<'produit'>(productEffect)
 
 registerEvaluationFunction('produit', evaluate)

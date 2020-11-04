@@ -1,13 +1,13 @@
 import React from 'react'
 import { evaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
+import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
-import {
-	makeJsx,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { makeJsx, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
+import parse from '../parse'
+import { EvaluationDecoration } from '../AST/types'
 
 function MecanismPlancher({ explanation }) {
 	return (
@@ -25,8 +25,15 @@ function MecanismPlancher({ explanation }) {
 		</InfixMecanism>
 	)
 }
-
-const evaluate: evaluationFunction = function(node) {
+export type PlancherNode = {
+	explanation: {
+		plancher: ASTNode
+		valeur: ASTNode
+	}
+	jsx: any
+	nodeKind: 'plancher'
+}
+const evaluate: evaluationFunction<'plancher'> = function(node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher
@@ -34,7 +41,10 @@ const evaluate: evaluationFunction = function(node) {
 		plancher = this.evaluateNode(plancher)
 		if (valeur.unit) {
 			try {
-				plancher = convertNodeToUnit(valeur.unit, plancher)
+				plancher = convertNodeToUnit(
+					valeur.unit,
+					plancher as ASTNode & EvaluationDecoration
+				)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,
@@ -46,36 +56,32 @@ const evaluate: evaluationFunction = function(node) {
 	}
 	if (
 		typeof nodeValue === 'number' &&
+		'nodeValue' in plancher &&
 		typeof plancher.nodeValue === 'number' &&
 		nodeValue < plancher.nodeValue
 	) {
 		nodeValue = plancher.nodeValue
-		plancher.isActive = true
+		;(plancher as any).isActive = true
 	}
 	return {
 		...node,
 		nodeValue,
+		...('unit' in valeur && { unit: valeur.unit }),
 		explanation: { valeur, plancher },
-		missingVariables: mergeAllMissing([valeur, plancher]),
-		unit: valeur.unit
+		missingVariables: mergeAllMissing([valeur, plancher])
 	}
 }
 
-export default function Plancher(recurse, v) {
+export default function Plancher(v, context) {
 	const explanation = {
-		valeur: recurse(v.valeur),
-		plancher: recurse(v.plancher)
+		valeur: parse(v.valeur, context),
+		plancher: parse(v.plancher, context)
 	}
 	return {
-		evaluate,
 		jsx: MecanismPlancher,
 		explanation,
-		category: 'mecanism',
-		name: 'plancher',
-		nodeKind: 'plancher',
-		type: 'numeric',
-		unit: explanation.valeur.unit
-	}
+		nodeKind: 'plancher'
+	} as PlancherNode
 }
 
 Plancher.nom = 'plancher'

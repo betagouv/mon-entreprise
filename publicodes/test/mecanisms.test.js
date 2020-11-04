@@ -42,6 +42,7 @@ testSuites.forEach(([suiteName, suite]) => {
 									.evaluate(name, {
 										unit: defaultUnit
 									})
+
 								if (typeof valeur === 'number') {
 									expect(result.nodeValue).to.be.closeTo(valeur, 0.001)
 								} else if (valeur !== undefined) {

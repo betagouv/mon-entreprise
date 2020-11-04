@@ -1,5 +1,6 @@
 import { last, pipe, range, take } from 'ramda'
-import { Rule, Rules } from './types'
+import { syntaxError } from './error'
+import { RuleNode } from './rule'
 
 const splitName = (str: string) => str.split(' . ')
 const joinName = strs => strs.join(' . ')
@@ -24,11 +25,11 @@ export function ruleParents<Names extends string>(
 		.reverse()
 }
 
-export function disambiguateRuleReference<Names extends string>(
-	rules: Rules<Names>,
-	contextName: Names,
+export function disambiguateRuleReference<R extends Record<string, RuleNode>>(
+	rules: R,
+	contextName: string = '',
 	partialName: string
-) {
+): keyof R {
 	const possibleDottedName = [
 		contextName,
 		...ruleParents(contextName),
@@ -36,35 +37,14 @@ export function disambiguateRuleReference<Names extends string>(
 	].map(x => (x ? x + ' . ' + partialName : partialName))
 	const dottedName = possibleDottedName.find(name => name in rules)
 	if (!dottedName) {
-		throw new Error(`La référence '${partialName}' est introuvable.
-	Vérifiez que l'orthographe et l'espace de nom sont corrects`)
+		syntaxError(
+			contextName,
+			`La référence '${partialName}' est introuvable.
+	Vérifiez que l'orthographe et l'espace de nom sont corrects`
+		)
+		throw new Error()
 	}
 	return dottedName
-}
-
-export function findParentDependencies<Names extends string>(
-	rules: Rules<Names>,
-	name: Names
-): Array<Names> {
-	// A parent dependency means that one of a rule's parents is not just a namespace holder, it is a boolean question. E.g. is it a fixed-term contract, yes / no
-	// When it is resolved to false, then the whole branch under it is disactivated (non applicable)
-	// It lets those children omit obvious and repetitive parent applicability tests
-	return ruleParents(name)
-		.map(parent => [parent, rules[parent]] as [Names, Rule])
-		.filter(([_, rule]) => !!rule)
-		.filter(
-			([_, { question, unité, formule, type }]) =>
-				//Find the first "calculable" parent
-				(question && !unité && !formule) ||
-				type === 'groupe' ||
-				(question && formule?.['une possibilité'] !== undefined) ||
-				(typeof formule === 'string' && formule.includes(' = ')) ||
-				formule === 'oui' ||
-				formule === 'non' ||
-				formule?.['une de ces conditions'] ||
-				formule?.['toutes ces conditions']
-		)
-		.map(([name, _]) => name)
 }
 
 export function ruleWithDedicatedDocumentationPage(rule) {

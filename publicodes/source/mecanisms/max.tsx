@@ -1,13 +1,18 @@
 import React from 'react'
 import { Mecanism } from '../components/mecanisms/common'
-import {
-	evaluateArray,
-	makeJsx,
-	registerEvaluationFunction
-} from '../evaluation'
+import { ASTNode } from '../AST/types'
+import { evaluateArray, makeJsx } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 
-export const mecanismMax = (recurse, v) => {
-	const explanation = v.map(recurse)
+export type MaxNode = {
+	explanation: Array<ASTNode>
+	nodeKind: 'maximum'
+	jsx: any
+}
+
+export const mecanismMax = (v, context) => {
+	const explanation = v.map(node => parse(node, context))
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le maximum de" value={nodeValue} unit={unit}>
@@ -25,12 +30,8 @@ export const mecanismMax = (recurse, v) => {
 	return {
 		jsx,
 		explanation,
-		type: 'numeric',
-		category: 'mecanism',
-		name: 'le maximum de',
-		nodeKind: 'maximum',
-		unit: explanation[0].unit
-	}
+		nodeKind: 'maximum'
+	} as MaxNode
 }
 
 const max = (a, b) => {
@@ -45,6 +46,5 @@ const max = (a, b) => {
 	}
 	return Math.max(a, b)
 }
-const evaluate = evaluateArray(max, false)
-
+const evaluate = evaluateArray<'maximum'>(max, false)
 registerEvaluationFunction('maximum', evaluate)

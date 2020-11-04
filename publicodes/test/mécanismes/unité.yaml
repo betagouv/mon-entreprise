@@ -1,0 +1,27 @@
+cotisation retraite:
+
+valeur sans unité:
+  formule:
+    valeur: 100
+    unité: € 
+  exemples:
+    - unité attendue: €
+
+
+conversion d'unité:
+  formule:
+    valeur: 12 mois
+    unité: an
+  exemples:
+    - unité attendue: an
+      valeur attendue: 1
+
+unité chainée:
+  formule:
+    produit: 
+      assiette: 10 €/mois
+      taux: 50%
+    unité: €/an
+  exemples:
+    - unité attendue: €/an
+      valeur attendue: 60

@@ -82,6 +82,7 @@ dirigeant . auto-entrepreneur:
 
 dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
+  unité: €/mois
 
 dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   type: notification
@@ -234,11 +235,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       - si: entreprise . ACRE
         alors: 
           produit:
-            assiette: base des cotisations [€/mois]
+            assiette: base des cotisations
             taux: taux ACRE * taux de cotisation
       - sinon:
           produit:
-            assiette: base des cotisations [€/mois]
+            assiette: base des cotisations
             taux [ref taux de cotisation]:
               variations:
                 - si: vente ou hébergement
@@ -550,7 +551,7 @@ dirigeant . indépendant . revenu net de cotisations:
     somme:
       - valeur: revenu professionnel
         arrondi: oui
-      - (- cotisations et contributions . CSG et CRDS .non déductible)
+      - (- cotisations et contributions . CSG et CRDS . non déductible)
       - (- contrats madelin . part non-déductible fiscalement)
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -1068,22 +1069,23 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
       assiette: assiette
       composantes:
         - attributs:
-            impôt sur le revenu: non déductible
-          taux: 2.9%
+            nom: non déductible
+          arrondi: oui
+          composantes:
+            - taux: 2.9%
+            - attributs:
+                nom: revenus de remplacement
+              assiette: dirigeant . indépendant . IJSS . total
+              taux: 2.9%
         - attributs:
-            impôt sur le revenu: déductible
-          taux: 6.8%
-        - attributs:
-            nom: revenus de remplacement
-            impôt sur le revenu: non déductible
-          assiette: dirigeant . indépendant . IJSS . total
-          taux: 2.9%
-        - attributs:
-            nom: revenus de remplacement
-            impôt sur le revenu: déductible
-          assiette: dirigeant . indépendant . IJSS . total
-          taux: 3.8%
-    arrondi: oui
+            nom: déductible
+          arrondi: oui
+          composantes: 
+            - taux: 6.8%
+            - attributs:
+                nom: revenus de remplacement
+              assiette: dirigeant . indépendant . IJSS . total
+              taux: 3.8%
 
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
@@ -1123,7 +1125,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   formule:
     produit:
-      assiette: plafond sécurité sociale temps plein [€/an]
+      assiette: plafond sécurité sociale temps plein 
       taux:
         variations:
           - si: entreprise . catégorie d'activité = 'artisanale'
@@ -1194,7 +1196,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre: taux exonération ZFU
   formule:
     taux progressif:
-      assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
+      assiette: établissement . ZFU . durée d'implantation en fin d'année
       retourne seulement le taux: oui
       variations:
         - si: entreprise . effectif < 5

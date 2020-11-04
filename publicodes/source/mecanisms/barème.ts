@@ -1,11 +1,10 @@
 import { evaluationFunction } from '..'
 import Barème from '../components/mecanisms/Barème'
 import { evaluationError } from '../error'
-import {
-	defaultNode,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import parse from '../parse'
+
+import { defaultNode, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -15,24 +14,33 @@ import {
 import { convertUnit, parseUnit } from '../units'
 import {
 	evaluatePlafondUntilActiveTranche,
-	parseTranches
+	parseTranches,
+	TrancheNodes
 } from './trancheUtils'
+import { ASTNode } from '../AST/types'
 
 // Barème en taux marginaux.
-export default function parse(parse, v) {
+export type BarèmeNode = {
+	explanation: {
+		tranches: TrancheNodes
+		multiplicateur: ASTNode
+		assiette: ASTNode
+	}
+	jsx
+	nodeKind: 'barème'
+}
+export default function parseBarème(v, context): BarèmeNode {
 	const explanation = {
-		assiette: parse(v.assiette),
-		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),
-		tranches: parseTranches(parse, v.tranches)
+		assiette: parse(v.assiette, context),
+		multiplicateur: v.multiplicateur
+			? parse(v.multiplicateur, context)
+			: defaultNode(1),
+		tranches: parseTranches(v.tranches, context)
 	}
 	return {
 		explanation,
 		jsx: Barème,
-		category: 'mecanism',
-		name: 'barème',
-		nodeKind: 'barème',
-		type: 'numeric',
-		unit: explanation.assiette.unit
+		nodeKind: 'barème'
 	}
 }
 
@@ -67,7 +75,7 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 		return {
 			...tranche,
 			taux,
-			unit: assiette.unit,
+			...('unit' in assiette && { unit: assiette.unit }),
 			nodeValue:
 				(Math.min(assiette.nodeValue, tranche.plafondValue) -
 					tranche.plancherValue) *
@@ -76,7 +84,7 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 		}
 	})
 }
-const evaluate: evaluationFunction = function(node) {
+const evaluate: evaluationFunction<'barème'> = function(node) {
 	const evaluateNode = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -91,14 +99,14 @@ const evaluate: evaluationFunction = function(node) {
 				},
 				this.cache
 			),
-		liftTemporalNode(assiette),
-		liftTemporalNode(multiplicateur)
+		liftTemporalNode(assiette as any),
+		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = liftTemporal2(
 		(tranches, assiette) =>
 			evaluateBarème(tranches, assiette, evaluateNode, this.cache),
 		temporalTranchesPlafond,
-		liftTemporalNode(assiette)
+		liftTemporalNode(assiette as any)
 	)
 	const temporalValue = mapTemporal(
 		tranches =>
@@ -125,7 +133,7 @@ const evaluate: evaluationFunction = function(node) {
 				: { tranches: temporalTranches[0].value })
 		},
 		unit: assiette.unit
-	}
+	} as any
 }
 
 registerEvaluationFunction('barème', evaluate)
