@@ -131,3 +131,28 @@ artiste-auteur . cotisations . formation professionnelle:
     produit:
       assiette: assiette
       taux: 0.35%
+
+artiste-auteur . cotisations . avec réductions:
+  formule:
+    somme:
+      - cotisations
+      - (- réduction de cotisations covid 2020)
+
+artiste-auteur . réduction de cotisations covid 2020:
+  applicable si: 
+    toutes ces conditions:
+      - période . fin d'année = 31/12/2020
+      - cotisations . assiette >= 3000 €/an
+  formule:
+    # TODO: c'est inférieur ou égal ici
+    grille:
+      assiette: cotisations . assiette
+      tranches:
+        - montant: 500 €/an
+          plafond: 800 heures/an * SMIC horaire
+        - montant: 1000 €/an
+          plafond: 2000 heures/an * SMIC horaire
+        - montant: 2000 €/an
+    plafond: cotisations
+  références:
+    Infographie Urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/5761-Infographie-Aide-AA-WEB.pdf
