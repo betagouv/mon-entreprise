@@ -24,6 +24,7 @@
   to="/calcultors/:splat"
   status = 301
 
+
 # FR | salarié -> salaire-brut-net
 [[redirects]]
   from="/simulateurs/salari%C3%A9"
@@ -40,6 +41,12 @@
 [[redirects]]
   from="/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
   to="/simulateurs/auto-entrepreneur"
+  status = 301
+
+# FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
+[[redirects]]
+  from="/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+  to="/simulateurs/salaire-brut-net"
   status = 301
 
 # SEO redirect
