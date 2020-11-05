@@ -806,6 +806,7 @@ montant à atteindre: minimum value
 multiplicateur: multiplier
 newsletter:
   register:
+    confirmation: Your registration is confirmed!
     description: >
       Subscribe to our monthly newsletter to receive <2>official advice on
       starting a business</2> and access new features in advance.
