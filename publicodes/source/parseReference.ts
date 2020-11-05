@@ -44,13 +44,12 @@ export const parseReferenceTransforms = (rules, rule, parsedRules) => ({
 	filter,
 	unit
 }: parseReferenceTransformsParameters) => {
-	const referenceName = variable.fragments.join(' . ')
 	const originalNode = parseReference(
 		rules,
 		rule,
 		parsedRules,
 		filter
-	)(referenceName)
+	)(variable)
 
 	return {
 		...originalNode,

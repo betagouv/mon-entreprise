@@ -208,7 +208,7 @@ export const evaluationFunctions = {
 
 export function registerEvaluationFunction(
 	nodeKind: string,
-	evaluationFunction: any // TODO: type evaluationFunction
+	evaluationFunction: evaluationFunction
 ) {
 	if (evaluationFunctions[nodeKind]) {
 		throw Error(

@@ -39,9 +39,7 @@ export let variable = ([firstFragment, nextFragment], _, reject) => {
 		return reject
 	}
 	return {
-		variable: {
-			fragments
-		}
+		variable: fragments.join(' . ')
 	}
 }
 
