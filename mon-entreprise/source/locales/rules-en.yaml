@@ -6305,12 +6305,8 @@ entreprise . établissement bancaire:
   titre.en: banking institution
   titre.fr: établissement bancaire
 impôt:
-  description.en: '[automatic] This set of formulas is an ultra-simplified model
-    of income tax, which only takes into account the 10% rebate, the scale and
-    the discount.'
-  description.fr: Cet ensemble de formules est un modèle ultra-simplifié de
-    l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le
-    barème et la décôte.
+  description.en: '[automatic] This set of formulas is a simplified income tax model.'
+  description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre.en: income tax
   titre.fr: impôts sur le revenu
 impôt . foyer fiscal:
@@ -6430,14 +6426,8 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la
     déclaration de ses *frais réels*, qui viendront remplacer ce forfait par
     défaut.
-  note.en:
-    '[automatic] The allowance also has a minimum fixed at 437€ per person
-    (see reference below), but this only impacts couples, and our income tax
-    implementation is currently limited to singles.'
-  note.fr: L'abattement a aussi un minimum fixé à 437€ par personne (voir la
-    référence ci-dessous), mais cela n'impacte que les couples, or notre
-    implémentation de l'impôt sur le revenu est pour l'instant limitée aux
-    célibataires.
+  note.en: '[automatic] The allowance also has a minimum fixed at 437€ per person.'
+  note.fr: L'abattement a aussi un minimum fixé à 437€ par personne
   titre.en: '[automatic] earned income slaughtered'
   titre.fr: revenu d'activité abattu
 impôt . foyer fiscal . situation de famille:
@@ -6485,11 +6475,9 @@ impôt . méthode de calcul:
   titre.fr: méthode de calcul
 impôt . méthode de calcul . barème standard:
   description.en: '[automatic] The "official" tax calculation, the one the tax
-    authorities use to calculate your tax rate. For the moment, only takes into
-    account the 10% allowance, the scale and the discount.'
+    authorities use to calculate your tax rate.'
   description.fr: Le calcul "officiel" de l'impôt, celui sur lequel
-    l'administration fiscal se base pour calculer votre taux d'imposition. Pour
-    l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
+    l'administration fiscal se base pour calculer votre taux d'imposition.
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . prélèvement à la source:

@@ -1,7 +1,7 @@
 impôt:
   icônes: 🏛️
   unité: €/an
-  description: Cet ensemble de formules est un modèle ultra-simplifié de l'impôt sur le revenu, qui ne prend en compte que l'abattement 10%, le barème et la décôte.
+  description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre: impôts sur le revenu
   formule:
     somme:
@@ -57,7 +57,7 @@ impôt . méthode de calcul . taux personnalisé:
 
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition. Pour l'instant, ne prend en compte que l'abattement 10%, le barème et la décote.
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscal se base pour calculer votre taux d'imposition.
   formule: impôt . méthode de calcul = 'barème standard'
 
 impôt . méthode de calcul . prélèvement à la source:
@@ -360,7 +360,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
     Quotient familial d'une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
 
 impôt . foyer fiscal . taux effectif:
-  formule: impôt à payer / impôt . revenu imposable
+  formule: impôt à payer / revenu imposable
 
 impôt . foyer fiscal . revenu imposable:
   formule:
@@ -379,7 +379,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           - dirigeant . indépendant . résultat fiscal
       abattement: 10%
       plafond: 12502 €/an
-  note: L'abattement a aussi un minimum fixé à 437€ par personne (voir la référence ci-dessous), mais cela n'impacte que les couples, or notre implémentation de l'impôt sur le revenu est pour l'instant limitée aux célibataires.
+  note: L'abattement a aussi un minimum fixé à 437€ par personne
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 

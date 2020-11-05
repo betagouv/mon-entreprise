@@ -642,23 +642,23 @@ exports[`calculate simulations-salarié: heures supplémentaires et complémenta
 Notifications affichées : contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents"
 `;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4076,0,3000,2353,2332]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 1`] = `"[4076,0,3000,2353,2330]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 2`] = `"[4076,0,3000,2353,2353]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 3`] = `"[4076,0,3000,2353,2353]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 4`] = `"[4076,0,3000,2353,1587]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 4`] = `"[4076,0,3000,2353,1906]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,2120]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,2217]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12889,0,9000,7156,6146]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12889,0,9000,7156,6034]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12889,0,9000,7156,6407]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12889,0,9000,7156,6324]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12889,0,9000,7156,6882]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12889,0,9000,7156,6851]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2187]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2169]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 10`] = `"[4076,0,3000,2353,2353]"`;
 
