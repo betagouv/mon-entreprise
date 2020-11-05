@@ -27,3 +27,13 @@ paramètre nommés imbriqués:
     - situation:
         paramètre nommés imbriqués . assiette . plafond: 200
       valeur attendue: 10
+
+paramètre nommé utilisé dans la règle:
+  formule:
+    allègement:
+      assiette [ref] : 500€
+      abattement: 
+        valeur: assiette * 10%
+        plancher: 100€
+  exemples:
+    - valeur attendue: 400

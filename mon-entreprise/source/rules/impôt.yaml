@@ -373,13 +373,14 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
     allègement:
-      assiette:
+      assiette [ref]:
         somme:
           - contrat salarié . rémunération . net imposable
           - dirigeant . indépendant . résultat fiscal
-      abattement: 10%
-      plafond: 12502 €/an
-  note: L'abattement a aussi un minimum fixé à 437€ par personne
+      abattement: 
+        valeur: 0.1 * assiette
+        plafond: 12502 €/an
+        plancher: 437 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
