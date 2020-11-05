@@ -86,7 +86,7 @@ export const evaluateInversion: evaluationFunction = function(node) {
 	}
 }
 
-export const mecanismInversion = dottedName => (recurse, v) => {
+export const mecanismInversion = (recurse, v, dottedName) => {
 	if (!v.avec) {
 		throw new Error(
 			"Une formule d'inversion doit préciser _avec_ quoi on peut inverser la variable"

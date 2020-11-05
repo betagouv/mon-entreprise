@@ -29,7 +29,7 @@ import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
 import variableTemporelle from './mecanisms/variableTemporelle'
 import variations, { devariate } from './mecanisms/variations'
-import { parseReferenceTransforms } from './parseReference'
+import { parseReference, parseReferenceTransforms } from './parseReference'
 import { EvaluatedRule } from './types'
 
 export const parse = (rules, rule, parsedRules) => rawNode => {
@@ -101,11 +101,10 @@ Cela vient probablement d'une erreur dans l'indentation
 	const mecanismName = Object.keys(rawNode)[0]
 	const values = rawNode[mecanismName]
 
+	// TODO: All parse functions should be "stateless" (ie be simple functions
+	// with the same list of parameters and not curried fantasy):
 	const parseFunctions = {
 		...statelessParseFunction,
-		'une possibilité': mecanismOnePossibility(rule.dottedName),
-		'inversion numérique': mecanismInversion(rule.dottedName),
-		recalcul: mecanismRecalcul(rule.dottedName),
 		filter: () =>
 			parseReferenceTransforms(
 				rules,
@@ -115,8 +114,7 @@ Cela vient probablement d'une erreur dans l'indentation
 				filter: values.filter,
 				variable: values.explanation
 			}),
-		variable: () =>
-			parseReferenceTransforms(rules, rule, parsedRules)({ variable: values }),
+		variable: () => parseReference(rules, rule, parsedRules, '')(values),
 		unitConversion: () =>
 			parseReferenceTransforms(
 				rules,
@@ -147,7 +145,7 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 		if (values?.variations) {
 			return devariate(recurse, mecanismName, values)
 		}
-		return parseFn(recurse, values)
+		return parseFn(recurse, values, rule.dottedName)
 	} catch (e) {
 		if (e instanceof EngineError) {
 			throw e
@@ -205,6 +203,9 @@ const statelessParseFunction = {
 	allègement: mecanismReduction,
 	variations,
 	synchronisation: mecanismSynchronisation,
+	'une possibilité': mecanismOnePossibility,
+	'inversion numérique': mecanismInversion,
+	recalcul: mecanismRecalcul,
 	valeur: (recurse, v) => recurse(v),
 	constant: (_, v) => ({
 		type: v.type,

@@ -53,7 +53,7 @@ const evaluateRecalcul: evaluationFunction = function(node) {
 	}
 }
 
-export const mecanismRecalcul = dottedNameContext => (recurse, v) => {
+export const mecanismRecalcul = (recurse, v, dottedNameContext) => {
 	const amendedSituation = Object.keys(v.avec).map(dottedName => [
 		recurse(dottedName),
 		recurse(v.avec[dottedName])
