@@ -6426,8 +6426,6 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la
     déclaration de ses *frais réels*, qui viendront remplacer ce forfait par
     défaut.
-  note.en: '[automatic] The allowance also has a minimum fixed at 437€ per person.'
-  note.fr: L'abattement a aussi un minimum fixé à 437€ par personne
   titre.en: '[automatic] earned income slaughtered'
   titre.fr: revenu d'activité abattu
 impôt . foyer fiscal . situation de famille:
