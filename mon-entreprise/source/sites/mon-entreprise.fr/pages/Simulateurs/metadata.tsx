@@ -473,7 +473,7 @@ export function getSimulatorsData({
 						les salaires proches du SMIC. Ce complément intervient lorsque le
 						cumul de la rémunération et de l'indemnité de base est en dessous
 						d'un SMIC net. Ces indemnités sont prises en charge par l'employeur,
-						qui sera ensuite remboursé en parti ou en totalité par l'Etat.
+						qui sera ensuite remboursé en parti ou en totalité par l'État.
 					</p>
 					<p>
 						👉{' '}
@@ -481,15 +481,16 @@ export function getSimulatorsData({
 							Voir le détail du calcul de l'indemnité
 						</RuleLink>
 					</p>
-					<h2> Comment calculer la part remboursée par l'État ?</h2>
+					<h2>Comment calculer la part remboursée par l'État ?</h2>
 					<p>
-						L'Etat prend en charge une partie de l'indemnité partielle pour les
-						salaires allant jusqu'à **4,5 SMIC**, avec un minimum à 8,03€ par
-						heures chômée. Concrètement, cela abouti à une prise en charge à
-						<strong>100%</strong> pour les salaires proches du SMIC. Celle-ci
-						diminue progressivement jusqu'à se stabiliser à **93%** pour les
-						salaires compris <strong>entre 2000 € et 7000 €</strong> (salaire
-						correspondant à la limite de 4.5 SMIC).
+						L'État prend en charge une partie de l'indemnité partielle pour les
+						salaires allant jusqu'à <strong>4,5 SMIC</strong>, avec un minimum à
+						8,03€ par heures chômée. Concrètement, cela abouti à une prise en
+						charge à<strong>100%</strong> pour les salaires proches du SMIC.
+						Celle-ci diminue progressivement jusqu'à se stabiliser à{' '}
+						<strong>93%</strong> pour les salaires compris{' '}
+						<strong>entre 2000 € et 7000 €</strong> (salaire correspondant à la
+						limite de 4,5 SMIC).
 					</p>
 					<p>
 						👉{' '}
@@ -497,7 +498,7 @@ export function getSimulatorsData({
 							Voir le détail du calcul du remboursement de l'indemnité
 						</RuleLink>
 					</p>
-					<h2> Comment déclarer une activité partielle ?</h2>
+					<h2>Comment déclarer une activité partielle ?</h2>
 					<p>
 						Face à la crise du coronavirus, les modalités de passage en activité
 						partielle ont été allégées. L'employeur est autorisé a placer ses
