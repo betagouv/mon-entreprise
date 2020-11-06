@@ -108,9 +108,6 @@ export default function Footer() {
 				</p>
 
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<a href="https://www.facebook.com/monentreprisefr/">
-						<SocialIcon media="facebook" />
-					</a>
 					<a href="https://twitter.com/monentreprisefr">
 						<SocialIcon media="twitter" />
 					</a>
