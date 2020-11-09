@@ -1,5 +1,12 @@
 import Engine, { EvaluatedRule, EvaluationOptions } from 'publicodes'
-import React, { createContext, useContext } from 'react'
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useMemo,
+	useState
+} from 'react'
+import { setConfig } from 'react-hot-loader'
 import { DottedName } from 'Rules'
 
 export const EngineContext = createContext<Engine<DottedName>>(null as any)
@@ -12,14 +19,25 @@ type SituationProviderProps = {
 		Record<DottedName, string | number | Record<string, unknown>>
 	>
 }
+const SituationContext = createContext()
+
 export function SituationProvider({
 	children,
-	situation
+	situation: situationProp
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
-	engine.setSituation(situation)
+	const [situation, setSituation] = useState(situationProp)
+	const deferedSituation = React.unstable_useDeferredValue(situationProp, {
+		timeoutMS: 2000
+	})
+	useEffect(() => {
+		engine.setSituation(deferedSituation)
+		setSituation(deferedSituation)
+	}, [deferedSituation])
 	return (
-		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
+		<SituationContext.Provider value={situation}>
+			<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
+		</SituationContext.Provider>
 	)
 }
 
@@ -36,10 +54,11 @@ export function useEvaluation(
 	options?: EvaluationOptions
 ): Array<EvaluatedRule<DottedName>> | EvaluatedRule<DottedName> {
 	const engine = useContext(EngineContext)
+	const situation = useContext(SituationContext)
 	if (Array.isArray(rule)) {
 		return rule.map(name => engine.evaluate(name, options))
 	}
-	return engine.evaluate(rule, options)
+	return useMemo(() => engine.evaluate(rule, options), [situation])
 }
 
 export function useInversionFail() {

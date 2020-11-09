@@ -225,7 +225,7 @@ function TargetInputOrValue({
 							color: colors.textColor,
 							borderColor: colors.textColor
 						}}
-						debounce={1000}
+						// debounce={1000}
 						name={target.dottedName}
 						value={value}
 						className={

@@ -15,6 +15,7 @@ export default function SalaryExplanation() {
 	const showDistributionFirst = !useSelector(answeredQuestionsSelector).length
 	const distributionRef = useRef<HTMLDivElement>(null)
 
+	return null
 	if (useInversionFail()) {
 		return null
 	}
