@@ -62,6 +62,7 @@ describe('Simulateurs', function() {
 						.invoke('val')
 						.should('be', '500')
 				}
+				cy.contains('€/an').click()
 			})
 
 			it('should allow to navigate to a documentation page', function() {

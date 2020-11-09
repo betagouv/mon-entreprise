@@ -124,7 +124,7 @@ export default function RuleInput<Name extends string = DottedName>({
 				<CurrencyInput
 					{...commonProps}
 					language={language}
-					debounce={1000}
+					debounce={750}
 					value={value as string}
 					name={dottedName}
 					className="targetInput"
