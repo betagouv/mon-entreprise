@@ -5,6 +5,10 @@ import { bonus, mergeAllMissing, mergeMissing } from './evaluation'
 import { convertNodeToUnit } from './nodeUnits'
 
 export const evaluateApplicability: evaluationFunction = function(node: any) {
+	const cacheKey = `${node.dottedName} [applicability]`
+	if (node.dottedName && this.cache[cacheKey]) {
+		return this.cache[cacheKey]
+	}
 	const evaluatedAttributes = pipe(
 			pick(['non applicable si', 'applicable si', 'rendu non applicable']) as (
 				x: any
@@ -49,7 +53,7 @@ export const evaluateApplicability: evaluationFunction = function(node: any) {
 				)
 		  }
 
-	return {
+	const res = {
 		...node,
 		nodeValue,
 		isApplicable: nodeValue,
@@ -57,6 +61,12 @@ export const evaluateApplicability: evaluationFunction = function(node: any) {
 		parentDependencies,
 		...evaluatedAttributes
 	}
+
+	if (node.dottedName) {
+		this.cache[cacheKey] = res
+	}
+
+	return res
 }
 
 export const evaluateFormula: evaluationFunction = function(node) {
