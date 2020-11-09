@@ -136,12 +136,15 @@ function simulation(
 			const { fieldName: dottedName, value } = action
 			return {
 				...state,
-				situation: {
-					...(targets.includes(dottedName)
-						? omit(targets, situation)
-						: situation),
-					[dottedName]: value
-				}
+				situation:
+					value === undefined
+						? omit([dottedName], situation)
+						: {
+								...(targets.includes(dottedName)
+									? omit(targets, situation)
+									: situation),
+								[dottedName]: value
+						  }
 			}
 		}
 		case 'STEP_ACTION': {
