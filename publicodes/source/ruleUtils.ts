@@ -3,7 +3,7 @@ import { Rule, Rules } from './types'
 
 const splitName = (str: string) => str.split(' . ')
 const joinName = strs => strs.join(' . ')
-export const nameLeaf = pipe(splitName, last)
+export const nameLeaf = pipe<string, string[], string>(splitName, last)
 export const encodeRuleName = name =>
 	name
 		?.replace(/\s\.\s/g, '/')

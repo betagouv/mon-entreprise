@@ -2,6 +2,8 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 
 export default function PublicodesBlock({ source }: { source: string }) {
+	const baseURL =
+		location.hostname === 'localhost' ? '/publicodes' : 'https://publi.codes'
 	return (
 		<div
 			css={`
@@ -12,7 +14,7 @@ export default function PublicodesBlock({ source }: { source: string }) {
 				<code>{source}</code>
 			</pre>
 			<a
-				href={`https://publi.codes/studio?code=${encodeURIComponent(source)}`}
+				href={`${baseURL}/studio?code=${encodeURIComponent(source)}`}
 				target="_blank"
 				css={`
 					position: absolute;
