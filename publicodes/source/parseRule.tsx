@@ -78,6 +78,7 @@ export default function<Names extends string>(
 		summary: rawRule['résumé'],
 		unit,
 		parentDependencies,
+		dependencies: new Set(),
 		defaultValue: rawRule['par défaut']
 	}
 
