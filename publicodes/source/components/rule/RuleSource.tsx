@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import yaml from 'yaml'
-import Engine from '../../index'
+import Engine, { formatValue } from '../../index'
 import PublicodesBlock from '../PublicodesBlock'
 
 type Props<Rules extends string> = { dottedName: Rules; engine: Engine<Rules> }
@@ -10,7 +10,25 @@ export default function RuleSource<Rules extends string>({
 	dottedName
 }: Props<Rules>) {
 	const [showSource, setShowSource] = useState(false)
-	const source = engine.getParsedRules()[dottedName].rawRule
+	const { rawRule, dependencies } = engine.getParsedRules()[dottedName]
+	// When we import a rule in the Publicode Studio, we need to provide a
+	// simplified definition of its dependencies to avoid undefined references.
+	// We use the current situation value as their simplified definition.
+	const dependenciesValues = Object.fromEntries(
+		[...dependencies.values()].map(dottedNameDependency => [
+			dottedNameDependency,
+			formatValueForStudio(engine.evaluate(dottedNameDependency))
+		])
+	)
+
+	const source = yaml
+		.stringify({
+			...dependenciesValues,
+			[dottedName]: rawRule
+		})
+		// For clarity add a break line before the main rule
+		.replace(`${dottedName}:`, `\n${dottedName}:`)
+
 	return showSource ? (
 		<section>
 			<h3>Source publicode</h3>
@@ -20,7 +38,7 @@ export default function RuleSource<Rules extends string>({
 				l'Acoss pour encoder les algorithmes d'intérêt public.{' '}
 				<a href="https://publi.codes">En savoir plus.</a>
 			</p>
-			<PublicodesBlock source={yaml.stringify({ [dottedName]: source })} />
+			<PublicodesBlock source={source} />
 
 			<p
 				css={`
@@ -49,4 +67,21 @@ export default function RuleSource<Rules extends string>({
 			</button>
 		</p>
 	)
+}
+
+// TODO: This formating function should be in the core code. We need to think
+// about the different options of the formatting options and our use cases
+// (putting a value in the URL #1169, importing a value in the Studio, showing a value
+// on screen)
+function formatValueForStudio(node: Parameters<typeof formatValue>[0]) {
+	const base = formatValue(node)
+		.replace(/\s/g, '')
+		.replace(',', '.')
+	if (base.match(/^[0-9]/) || base === 'Oui' || base === 'Non') {
+		return base.toLowerCase()
+	} else if (base === '-') {
+		return 'non'
+	} else {
+		return `'${base}'`
+	}
 }
