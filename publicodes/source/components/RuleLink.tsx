@@ -2,12 +2,7 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Engine from '..'
-import { makeJsx } from '../evaluation'
-import {
-	encodeRuleName,
-	ruleParents,
-	ruleWithDedicatedDocumentationPage
-} from '../ruleUtils'
+import { encodeRuleName, nameLeaf } from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
 
 type RuleLinkProps<Name extends string> = Omit<
@@ -46,13 +41,16 @@ export function RuleLink<Name extends string>({
 	// if (!ruleWithDedicatedDocumentationPage(rule)) {
 	// 	return makeJsx(engine.evaluate(rule.dottedName).formule)
 	// }
-
-	return (
-		<Link to={newPath} {...props}>
-			{children || rule.title}{' '}
-			{displayIcon && rule.icons && <span>{emoji(rule.icons)} </span>}
-		</Link>
-	)
+	if (rule) {
+		return (
+			<Link to={newPath} {...props}>
+				{children || rule.title}{' '}
+				{displayIcon && rule.icons && <span>{emoji(rule.icons)} </span>}
+			</Link>
+		)
+	} else {
+		return <>{nameLeaf(dottedName)}</>
+	}
 }
 
 export function RuleLinkWithContext(
