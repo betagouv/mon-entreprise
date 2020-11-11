@@ -5032,10 +5032,10 @@ dirigeant . indépendant . PL . métier . secteur médecin:
   question.fr: Sur quel secteur êtes-vous conventionné ?
   titre.en: '[automatic] medical sector'
   titre.fr: secteur médecin
-dirigeant . indépendant . PL . métier . secteur médecin . 1:
+dirigeant . indépendant . PL . métier . secteur médecin . S1:
   titre.en: '[automatic] Sector 1'
   titre.fr: Secteur 1
-dirigeant . indépendant . PL . métier . secteur médecin . 2:
+dirigeant . indépendant . PL . métier . secteur médecin . S2:
   titre.en: '[automatic] Sector 2'
   titre.fr: Secteur 2
 dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:

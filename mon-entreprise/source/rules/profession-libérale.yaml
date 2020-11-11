@@ -77,18 +77,18 @@ dirigeant . indépendant . PL . métier . secteur médecin:
   description: |
     Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
     fonction du régime de tarification choisie par le praticien.
-  par défaut: "'1'"
+  par défaut: "'S1'"
   formule:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - '1'
-        - '2'
+        - 'S1'
+        - 'S2'
         - 'non conventionné'
 
-dirigeant . indépendant . PL . métier . secteur médecin . 1:
+dirigeant . indépendant . PL . métier . secteur médecin . S1:
   titre: Secteur 1
-dirigeant . indépendant . PL . métier . secteur médecin . 2:
+dirigeant . indépendant . PL . métier . secteur médecin . S2:
   titre: Secteur 2
 dirigeant . indépendant . PL . métier . secteur médecin . non conventionné:
 
@@ -455,7 +455,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
       - (- participation CPAM)
 
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
-  non applicable si: métier . secteur médecin = '1'
+  non applicable si: métier . secteur médecin = 'S1'
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
@@ -507,7 +507,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
 
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
-  non applicable si: métier . secteur médecin = '2'
+  non applicable si: métier . secteur médecin = 'S2'
   titre: Participation CPAM à la maladie
   formule:
     produit:
@@ -523,7 +523,7 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
     arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
-  applicable si: métier . secteur médecin = '1'
+  applicable si: métier . secteur médecin = 'S1'
   titre: allocations familiales (après participation CPAM)
   remplace:
     règle: cotisations et contributions . allocations familiales
@@ -712,7 +712,7 @@ dirigeant . indépendant . PL . CARMF:
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   titre: retraite de base CNAVPL (après participation CPAM)
-  applicable si: métier . secteur médecin = '1'
+  applicable si: métier . secteur médecin = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   remplace: PL . retraite CNAVPL
@@ -825,7 +825,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre: Participation CPAM aux allocations supplémentaires de vieillesse
-  applicable si: métier . secteur médecin = '1'
+  applicable si: métier . secteur médecin = 'S1'
   formule:
     produit:
       assiette: assiette
