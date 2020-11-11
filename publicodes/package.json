@@ -43,7 +43,7 @@
 		"prepublishOnly": "yarn test && yarn run build",
 		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run rimraf dist && yarn run build",
-		"build": "tsc && yarn run webpack --config webpack.config.js",
+		"build": "yarn run webpack --config webpack.config.js",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
 	},
