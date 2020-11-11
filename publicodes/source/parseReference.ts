@@ -18,8 +18,23 @@ export const parseReference = (
 
 	const parsedRule =
 		parsedRules[dottedName] ||
-		// the 'inversion numérique' formula should not exist. The instructions to the evaluation should be enough to infer that an inversion is necessary (assuming it is possible, the client decides this)
+		// TODO: The 'inversion numérique' formula should not exist. The instructions to
+		// the evaluation should be enough to infer that an inversion is necessary
+		// (assuming it is possible, the client decides this) #767
 		(!inInversionFormula && parseRule(rules, dottedName, parsedRules))
+
+	const contextRuleName = rule.dottedName
+	if (
+		// TODO: At this point in the code, the parsedRule value should never be the
+		// string "being parsed", this is a ordering problem.
+		parsedRule !== 'being parsed' &&
+		parsedRule !== false &&
+		rule.dottedName &&
+		!contextRuleName.startsWith('[evaluation]')
+	) {
+		rule.dependencies?.add(dottedName)
+	}
+
 	const unit = parsedRule.unit
 	return {
 		nodeKind: 'reference',
@@ -28,7 +43,7 @@ export const parseReference = (
 		category: 'reference',
 		partialReference,
 		dottedName,
-		explanation: { ...parsedRule, filter, contextRuleName: rule.dottedName },
+		explanation: { ...parsedRule, filter, contextRuleName },
 		unit
 	}
 }

@@ -40,6 +40,7 @@ export type ParsedRule<Name extends string = string> = Rule & {
 	formule?: any
 	explanation?: any
 	isDisabledBy: Array<any>
+	dependencies: Set<Name>
 	replacedBy: Array<{
 		whiteListedNames: Array<Name>
 		blackListedNames: Array<Name>
