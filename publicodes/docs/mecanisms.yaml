@@ -438,21 +438,41 @@ taux progressif:
                 plafond: 75%
               - taux: 0%
                 plafond: 100%
+
 composantes:
   description: >-
     Beaucoup de cotisations sont composées de deux parties qui partagent la
-    méthode de calcul mais diffèrent par des paramètres différents.
+    méthode de calcul mais diffèrents selons certains paramètres. Pour ne pas
+    définir deux variables quasi-redondantes, on utilise ce mécanisme.
 
-    Pour ne pas définir deux variables presque redondantes, on utilise le
-    mécanisme de composante. Il se comportera comme une somme dans les calculs,
-    mais son affichage sur les pages /règle sera adapté.
+    Dans les calculs, `composantes` se comporte **exactement comme une somme**.
+    La documentation, elle, sera adaptée pour montrer chaque composantes.
 
-    Il est même possible, pour les mécanismes `barème` et `produit` de garder en
+    Chaque composante peut contenir un champs `nom` (de type texte) ou un champs
+    `attributs` (de type objet avec des champs libres) qui remonteront dans la
+    documentation pour aider à l'explicabilité.  
+
+    Il est possible, pour les mécanismes `barème` et `produit` de garder en
     commun un paramètre comme l'assiette, puis de déclarer des composantes pour
     le taux.
 
     > L'exemple le plus courant de composantes, c'est la distinction part
     employeur, part salarié (ex. retraite AGIRC).
+
+  exemples:
+    base: >-
+      contrat salarié . CSG et CRDS . CSG . base:
+        titre: CSG
+        formule:
+          multiplication:
+            assiette: assiette de base
+            composantes:
+              - attributs:
+                  impôt sur le revenu: déductible
+                taux: taux déductible
+              - attributs:
+                  impôt sur le revenu: non déductible
+                taux: taux non déductible
 
 allègement:
   description: >-
