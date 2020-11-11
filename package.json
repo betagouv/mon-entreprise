@@ -121,7 +121,7 @@
 		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start"
 	},
 	"workspaces": [
-		"mon-entreprise",
-		"publicodes"
+		"publicodes",
+		"mon-entreprise"
 	]
 }
