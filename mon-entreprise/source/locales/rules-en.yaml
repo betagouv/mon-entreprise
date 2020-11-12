@@ -3388,14 +3388,16 @@ contrat salarié . taxe sur les salaires:
     La taxe sur les salaires en France est un impôt progressif créé
     en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils
     distribuent.
-  note.en: '[automatic] This implementation of the payroll tax is specific to
-    non-profit associations and is therefore largely simplified. Many other
-    organisations are concerned, depending on the VAT they pay. Associations are
-    automatically subject to it.'
-  note.fr: Cette implémentation de la taxe sur les salaires est spécifique aux
-    associations à but non lucratif, elle est donc largement simplifiée. Plein
-    d'autres organisations sont concernées, en fonction de la TVA qu'elles
-    paient. Les associations y sont assujetties automatiquement.
+  note.en: >
+    [automatic] Here we assume that all employees in the company are paid the
+    same salary.
+
+    This implementation of the payroll tax is specific to non-profit associations and is therefore greatly simplified. Many other organisations are concerned, depending on the VAT they pay. The associations are automatically liable for it.
+  note.fr: >
+    Nous supposons ici que tous les salariés de l'entreprise ont la même
+    rémunération
+
+    Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
   titre.en: tax on salaries
   titre.fr: taxe sur les salaires
 contrat salarié . taxe sur les salaires . assiette:
@@ -3405,6 +3407,10 @@ contrat salarié . taxe sur les salaires . assiette de base:
   titre.en: basis
   titre.fr: assiette de base
 contrat salarié . taxe sur les salaires . barème:
+  note.en: |
+    [automatic] We do not implement overseas specific rates.
+  note.fr: |
+    Nous n'implémentons pas les taux spécifiques pour l'outre-mer
   titre.en: scale
   titre.fr: barème
 contrat salarié . temps de travail:

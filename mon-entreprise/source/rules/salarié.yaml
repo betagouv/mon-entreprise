@@ -1633,7 +1633,6 @@ contrat salarié . cotisations . patronales:
       - formation professionnelle
       - versement transport
       - taxe d'apprentissage
-      - taxe sur les salaires
       - CDD . taxe forfaitaire sur les CDD d'usage
       - CDD . CPF
       - forfait social
@@ -1767,6 +1766,7 @@ contrat salarié . prix du travail:
     somme:
       - rémunération . total
       - (- aides employeur)
+      - taxe sur les salaires
       - médecine du travail
   unité: €/mois
 
@@ -3229,8 +3229,6 @@ contrat salarié . taxe sur les salaires . assiette:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/international-particulier/le-regime-des-impatries
 
 contrat salarié . taxe sur les salaires . barème:
-  références:
-    barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
   unité: €/an
 
   formule:
@@ -3238,16 +3236,20 @@ contrat salarié . taxe sur les salaires . barème:
       assiette: assiette
       tranches:
         - taux: 4.25%
-          plafond: 7799 €/an
+          plafond: 8004 €/an
         - taux: 8.5%
-          plafond: 15572 €/an
+          plafond: 15981 €/an
         - taux: 13.6%
   exemples:
     - nom: salaire médian
       situation:
         contrat salarié . taxe sur les salaires: oui
         assiette: 2300
-      valeur attendue: 2627.97
+      valeur attendue: 2598.40
+  note: |
+    Nous n'implémentons pas les taux spécifiques pour l'outre-mer
+  références:
+    barème: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
 
 contrat salarié . profession spécifique:
   question: Le salarié exerce t-il l'une des professions suivantes ?
@@ -3359,7 +3361,9 @@ contrat salarié . taxe sur les salaires:
       - entreprise . établissement bancaire
   formule: entreprise . taxe sur les salaires * 1 employé / entreprise . effectif
 
-  note: Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
+  note: | 
+    Nous supposons ici que tous les salariés de l'entreprise ont la même rémunération
+    Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.
   exemples:
     - nom: non applicable par défaut
       situation:
@@ -3377,7 +3381,7 @@ contrat salarié . taxe sur les salaires:
         rémunération . brut de base: 2300
         entreprise . effectif: 10
         complémentaire santé . forfait: 0
-      valeur attendue: 43.63
+      valeur attendue: 41.17
 
   références:
     fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
