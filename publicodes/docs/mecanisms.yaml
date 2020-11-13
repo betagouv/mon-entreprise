@@ -472,7 +472,7 @@ taux progressif:
 composantes:
   description: >-
     Beaucoup de cotisations sont composées de deux parties qui partagent la
-    méthode de calcul mais diffèrents selons certains paramètres. Pour ne pas
+    méthode de calcul mais diffèrent selons certains paramètres. Pour ne pas
     définir deux variables quasi-redondantes, on utilise ce mécanisme.
 
 
