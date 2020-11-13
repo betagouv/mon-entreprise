@@ -545,18 +545,15 @@ synchronisation:
 
 inversion numérique:
   description: >-
-    Dans certains cas comme la CSG, les règles officielles ne permettent pas de
-    déduire une formule simple. Il n'est pas aisément (ou parfois pas du tout)
-    possible de construire une équation de calcul d'une variable telle que la
-    part déductible de la CSG à partir des valeurs renseignées par
-    l'utilisateur.
-
-
-    D'une manière générale, il est souhaitable de rédiger les règles de calcul
+    Il est souhaitable de rédiger les règles de calcul
     en publicodes de la même façon qu'elles sont décrites dans la loi ou les
     interprétations administratives ou juridiques existantes. En conséquence,
     certaines variables n'auront donc pas de méthode de calcul clairement
     explicitée, il s'agira donc de la déduire des autres valeurs renseignées.
+
+
+    De façon simplifiée, il s'agira donc, à partir d'une règle existante
+    explicitant `y = ƒ(x)` de calculer `x` à partir de `y`.
 
 
     L'inversion numérique permet d'estimer la valeur de la variable en question
