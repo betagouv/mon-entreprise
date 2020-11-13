@@ -23,7 +23,6 @@ import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
 import { mecanismReduction } from './mecanisms/reduction'
-import régularisation from './mecanisms/régularisation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
 import tauxProgressif from './mecanisms/tauxProgressif'
@@ -190,7 +189,6 @@ const statelessParseFunction = {
 	'une de ces conditions': mecanismOneOf,
 	'toutes ces conditions': mecanismAllOf,
 	somme: mecanismSum,
-	régularisation,
 	multiplication: mecanismProduct,
 	produit: mecanismProduct,
 	temporalValue: variableTemporelle,
