@@ -60,6 +60,11 @@ l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 | Budget expérimentation paie |      41 667 € HT |
 | **Total**                   | **291 667 € HT** |
 
+Au quatrième trimestre mon-entreprise rejoint le programme [programme
+Gamma](https://blog.beta.gouv.fr/dinsic/2020/08/20/acceleration-des-startups-d-etat-d-un-retour-d-experience-a-l-experimentation-d-un-programme-d-accompagnement-cible-1/)
+qui accompagne l'accélération des services publics crées par beta.gouv. Ce
+programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
+
 ---
 
 ### Description des catégories
