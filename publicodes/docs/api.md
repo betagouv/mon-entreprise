@@ -56,8 +56,8 @@ méthode `evaluate`.
 console.log(engine.evaluate('dépenses primeur'))
 ```
 
-La valeur du nœud est disponible dans l'attribut `nodeValue`, son
-unité est disponible dans l'attribut `unit`. Mais pour un formattage sans
+La valeur du nœud est disponible dans la propriété `nodeValue`, son
+unité est disponible dans la propriété `unit`. Mais pour un formattage sans
 effort, on préfèrera utiliser la fonction `formatValue`
 
 ```js
@@ -110,7 +110,7 @@ engine.evaluate('dépenses primeurs / 7 jours', { unit: '€/mois' })
 
 Publicode calcule automatiquement les dépendances de chaque règle. Si une la
 valeur d'une dépendance est manquante et ne permet pas de faire le calcul elle
-apparaîtra dans l'attribut `missingVariables`
+apparaîtra dans la propriété `missingVariables`
 
 ```js
 const engine = new Engine(`

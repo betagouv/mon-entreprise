@@ -569,7 +569,7 @@ inversion numérique:
 
 
     L'inversion numérique permet d'estimer la valeur de la variable en question
-    au plus près à partir d'un des _objectifs_, listés avec l'attribut `avec`.
+    au plus près à partir d'un des _objectifs_, listés dans la propriété `avec`.
     Il faut alors renseigner une valeur cible pour ces objectifs.
 
 
