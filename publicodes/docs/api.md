@@ -49,6 +49,8 @@ dépenses primeur:
 const engine = new Engine(rules)
 ```
 
+(Attention, sous node vous devrez faire `const Engine = require('publicodes').default`)
+
 La variable `engine` permet en ensuite de calculer la valeur d'une règle avec la
 méthode `evaluate`.
 
@@ -62,8 +64,9 @@ effort, on préfèrera utiliser la fonction `formatValue`
 
 ```js
 import Engine, { formatValue } from 'publicodes'
+// ...
 const dépenses = engine.evaluate('dépenses primeur')
-console.log(`j'ai dépensé ${formatValue(dépenses)} chez le primeur`)
+console.log(`J'ai dépensé ${formatValue(dépenses)} chez le primeur.`)
 ```
 
 La méthode `setSituation` permet de forcer la valeur d'une liste de règles. Elle
@@ -81,7 +84,7 @@ La valeur de `dépenses primeur` se base maintenant sur un avocat à 3€ :
 ```js
 // On ré-évalue la règle dans la nouvelle situation
 console.log(
-	`Nouveau prix ! ${formatValue(engine.evaluate('dépenses primeur'))}`
+	`Nouveau prix ! Dépenses mises à jour: ${formatValue(engine.evaluate('dépenses primeur'))}.`
 )
 ```
 
@@ -91,7 +94,10 @@ La fonction `evaluate` permet d'évaluer des expressions publicode complètes
 
 ```js
 // On va au marché une fois par semaine, amortissons la dépense sur 7 jours
-engine.evaluate('dépenses primeur / 7 jours')
+const depensesParJour = engine.evaluate('dépenses primeur / 7 jours')
+console.log(
+    `J'ai dépensé ${formatValue(depensesParJour)}.`
+)
 ```
 
 ### Conversion d'unité
@@ -101,7 +107,10 @@ indiquer l'unité désirée comme paramètre à la méthode `evaluate` :
 
 ```js
 // on va au marché une fois par semaine en moyenne, combien dépense-t-on par mois ?
-engine.evaluate('dépenses primeurs / 7 jours', { unit: '€/mois' })
+const depensesParMois = engine.evaluate('dépenses primeur / 7 jours', { unit: '€/mois' })
+console.log(
+    `J'ai dépensé ${formatValue(depensesParMois)}.`
+)
 ```
 
 [➡ en savoir plus sur les unités](https://publi.codes/#unités)
@@ -113,13 +122,13 @@ valeur d'une dépendance est manquante et ne permet pas de faire le calcul elle
 apparaîtra dans la propriété `missingVariables`
 
 ```js
-const engine = new Engine(`
+const missingYEngine = new Engine(`
 x: y + 5
 
 y:
 `)
 
-console.log(engine.evaluate('x').missingVariables)
+console.log(missingYEngine.evaluate('x').missingVariables)
 ```
 
 Cette information est utile pour intégrer publicode à votre application.
