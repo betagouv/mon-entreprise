@@ -66,8 +66,8 @@ const dépenses = engine.evaluate('dépenses primeur')
 console.log(`j'ai dépensé ${formatValue(dépenses)} chez le primeur`)
 ```
 
-La méthode `setSituation` permet de forcer la valeur d'une liste de règle. Elle est 
-utile pour préciser les paramètres spécifiques à une simulation.
+La méthode `setSituation` permet de forcer la valeur d'une liste de règles. Elle
+est utile pour préciser les paramètres spécifiques à une simulation.
 
 ```js
 // Ici on change le prix des avocats
@@ -139,7 +139,7 @@ portion non active de l'évaluation (par exemple dans un bloc condition non
 actif, ou la tranche d'un barème non actif) elle sera filtrée et n'apparaîtra
 pas dans les `missingVariables`.
 
-### Documentation intéractive
+### Documentation interactive
 
 Publicodes génère également pour vous une documentation interactive, très
 facilement intégrable dans une app react. Pour cela, il vous suffit d'importer
@@ -211,8 +211,8 @@ C'est le point d'entrée principal pour adapter les calculs de règles général
 une situation particulière. La situation est gardée en mémoire, et chaque appel
 à `setSituation` remplace la situation précédente. Le moteur
 contient donc un _état interne_. Cela permet d'obtenir de meilleure performance,
-avec une gestion plus fine du cache de calcul. En revanche, cela peut-être une
-source de bug si l'état interne est modifié lors d'effet de bord non prévus.
+avec une gestion plus fine du cache de calcul. En revanche, il faut prêter une
+grande attention à la bonne gestion de cet état interne.
 
 **Arguments**
 
@@ -225,14 +225,14 @@ source de bug si l'état interne est modifié lors d'effet de bord non prévus.
 **Retourne**
 
 L'objet engine (`this`) sur lequel la fonction a été appelée, afin de pouvoir
-utiliser une écriture chaînée (`engine.setSituation(situation).evaluate()`)
+utiliser une écriture chaînée (`engine.setSituation(situation).evaluate()`).
 
 #### _method_ engine.evaluate(expression, \[options])
 
 Évalue l'expression dans le contexte du moteur (règle et situation).
 
 Pour des raisons de performance, les résultats intermédiaires sont enregistrés
-dans un cache. Par conséquent, les prochains appels seront plus rapides.
+dans un cache. Par conséquent, les appels suivants seront plus rapides.
 
 **Arguments**
 
@@ -240,9 +240,11 @@ dans un cache. Par conséquent, les prochains appels seront plus rapides.
   référence vers une règle, une expression arithmétique, tout ce que la
   grammaire publicode permet.
 - `options`: un objet de configuration pour l'évaluation
-
-  - `unit`: spécifie l'unité dans laquelle le résultat doit être retourné.
-    Si la valeur retournée par le calcul est un nombre, ce dernier sera converti dans l'unité demandée. Ainsi `evaluate('prix', {unit: '€'})` équivaut à `evaluate('prix [€]')`. Une erreur est levée si l'unité n'est pas compatible avec la formule.
+    - `unit`: spécifie l'unité dans laquelle le résultat doit être retourné. Si la
+    valeur retournée par le calcul est un nombre, ce dernier sera converti dans
+    l'unité demandée. Ainsi `evaluate('prix', {unit: '€'})` équivaut à
+    `evaluate('prix [€]')`. Une erreur est levée si l'unité n'est pas compatible
+    avec la formule.
 
 **Retourne**
 Un objet javascript de type `EvaluatedNode` contenant la valeur calculée.
@@ -267,10 +269,13 @@ Formate la valeur evaluée.
 - `evaluatedNode` : l'objet retourné lors de l'appel à la fonction
   d'évaluation du moteur `evaluate(expression)`
 - `options` : configuration pour le formatage
-
-  - `language`: le langage utilisé pour le formatage (par défaut `fr`)
-  - `precision`: le nombre de chiffre après la virgule pour le formatage des nombres (par défaut `2`)
-  - `displayedUnit`: l'unité à afficher pour le formatage des nombres. Outrepasse l'unité définie dans le calcul (on peut donc forcer l'unité affichée à une autre que celle retournée par le calcul, même si elle ne sont pas compatibles)
+    - `language`: le langage utilisé pour le formatage (par défaut `fr`)
+    - `precision`: le nombre de chiffre après la virgule pour le formatage des
+    nombres (par défaut `2`)
+    - `displayedUnit`: l'unité à afficher pour le formatage des nombres.
+    Outrepasse l'unité définie dans le calcul (on peut donc forcer l'unité
+    affichée à une autre que celle retournée par le calcul, même si elle ne sont
+    pas compatibles)
 
 **Retourne**
 
@@ -288,8 +293,8 @@ intermédiaires qui permettent d'aboutir au résultat affiché.
 
 #### <Documentation />
 
-Composant react permettant d'afficher une documentation explorable d'une base de règles
-publicodes. Se base sur react-router pour créer une arborescence de pages
+Composant react permettant d'afficher une documentation explorable d'une base de
+règles publicodes. Se base sur react-router pour créer une arborescence de pages
 correspondant aux espaces de noms existants dans les règles.
 
 Voir le [bac à sable](https://publi.codes/studio) pour voir le composant en
@@ -299,10 +304,10 @@ action (il est affiché sur l'écran de droite).
 
 - `engine`: l'objet moteur dont on veut afficher les calculs.
 - `documentationPath` : (`string`) le chemin de base sur lequel la documentation sera
-  montée. Par exemple, si c'est `/documentation` l'url de la règle 'rémunération
-  . primes' sera `/documentation/rémunération/primes`
+  montée. Par exemple, si c'est `/documentation` l'url de la règle `rémunération
+  . primes` sera `/documentation/rémunération/primes`
 - `language`: le language dans lequel afficher la documentation (pour l'instant,
-  seul `fr` et `en` sont supportés)
+  seuls `fr` et `en` sont supportés).
 
 #### <RuleLink />
 
@@ -316,4 +321,5 @@ Par défaut, le texte affiché est le nom de la règle.
   montée. Doit correspondre à celui précisé pour le composant `<Documentation />`
 - `dottedName`: le nom de la règle à afficher
 - `displayIcon`: affiche l'icône de la règle dans le lien (par défaut à `false`)
-- `children`: N'importe quel noeud react. Par défaut, c'est le nom de la règle qui est utilisé.
+- `children`: un noeud react quelconque. Par défaut, c'est le nom de la règle
+  qui est utilisé.
