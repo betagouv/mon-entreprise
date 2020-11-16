@@ -1188,7 +1188,7 @@ contrat salarié . rémunération . brut de base:
 contrat salarié . rémunération . contrôle smic:
   type: notification
   sévérité: avertissement
-  applicable si: assiette de vérification du SMIC < (SMIC contractuel - 1 €/mois)
+  applicable si: assiette de vérification du SMIC < SMIC contractuel
   description: Le salaire saisi est inférieur au SMIC.
 
 contrat salarié . rémunération . contrôle salaire élevé:
