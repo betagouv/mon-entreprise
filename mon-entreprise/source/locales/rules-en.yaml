@@ -2815,16 +2815,27 @@ contrat salarié . rémunération . assiette de vérification du SMIC:
   titre.fr: assiette de vérification du SMIC
 contrat salarié . rémunération . avantages en nature:
   description.en: >
-    Benefits in kind consist of the provision by the employer to its employees
-    of goods or services. The provision may be free of charge or with employee
-    participation below their actual value
+    [automatic] Benefits in kind consist of the provision by the undertaking to
+    its employees of a good or service. The provision may be free of charge or
+    in return for a contribution from the beneficiary which is less than their
+    real value.
+
+
+
+    The benefit in kind must appear on the pay slip. It will be indicated at the gross salary level to be subject to contributions. After determining the net taxable salary, it will be deducted from the net salary to be paid.
   description.fr: >
-    Les avantages en nature sont constitués par la fourniture par l’employeur à
-    ses salariés d’un bien ou service. La mise à disposition peut être gratuite
-    ou moyennant une participation du salarié inférieure à leur valeur réelle
-  question.en: Does the employee receive benefits in kind (housing, vehicle,
-    telephone, discounts, etc.)?
-  question.fr: Le salarié reçoit-il des avantages en nature (repas, véhicule,
+    Les avantages en nature sont constitués par la fourniture par l’entreprise à
+    ses travailleurs d’un bien ou service. La mise à disposition peut être
+    gratuite ou moyennant une participation du bénéficiant inférieure à leur
+    valeur réelle.
+
+
+
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
+  question.en: '[automatic] Does the company provide benefits in kind (meals,
+    vehicle, telephone, discounts, accommodation...)?'
+  question.fr:
+    L'entreprise fournit-elle des avantages en nature (repas, véhicule,
     téléphone, réductions, logement...) ?
   titre.en: Benefits in kind
   titre.fr: Avantages en nature
@@ -2862,9 +2873,9 @@ contrat salarié . rémunération . avantages en nature . nourriture:
     Les titres-restaurant ne sont pas considérés comme un avantage en nature
     mais comme un remboursement de frais.
   question.en: |
-    Does the employer provide free meals?
+    [automatic] Does the company provide free meals?
   question.fr: |
-    L'employeur fournit-il gratuitement les repas ?
+    L'entreprise fournit-elle gratuitement des repas ?
   titre.en: food
   titre.fr: nourriture
 contrat salarié . rémunération . avantages en nature . nourriture . montant:
@@ -2872,9 +2883,9 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.fr: nourriture
 ? contrat salarié . rémunération . avantages en nature . nourriture . repas par mois
 : question.en: |
-    How many meals per month are paid for by the employer?
+    [automatic] How many meals per month are paid for by the company?
   question.fr: |
-    Combien de repas par mois sont payés par l'employeur ?
+    Combien de repas par mois sont payés par l'entreprise ?
   suggestions.1 par jour.en: '[automatic] 1 per day'
   suggestions.1 par jour.fr: 1 par jour
   suggestions.2 par jour.en: '[automatic] 2 per day'
@@ -2883,24 +2894,33 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
   titre.fr: repas par mois
 contrat salarié . rémunération . avantages en nature . ntic:
   description.en: >
-    The private use of the NICT tools made available as part of the permanent
-    professional activity constitutes an advantage in kind.
+    [automatic] The private use of NICT tools made available in the context of
+    the professional activity on a permanent basis constitutes a benefit in
+    kind.
 
-    This benefit is included in the basis for calculating Security contributions and unemployment insurance.
 
-    The reality of private use can result either from a written document (contract work, company agreement, internal regulations, correspondence from the management of the company allowing the employee to make private use of the tools), or the existence of detailed invoices to establish a for private use.
+
+    This benefit is included in the basis for calculating Social Security and unemployment insurance contributions.
+
+
+
+    The reality of private use may result either from a written document (employment contract, company agreement, internal rules, letter from the company management authorising the employee to make private use of the tools), or from the existence of detailed invoices making it possible to establish private use.
   description.fr: >
     L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité
     professionnelle à titre permanent est constitutif d’un avantage en nature.
 
+
+
     Cet avantage est inclus dans la base de calcul des cotisations de Sécurité sociale et d’assurance chômage.
+
+
 
     La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
   question.en: >
-    Does the employer provide free tools from NICTs (computer, telephone,
+    [automatic] Does the company provide a free NICT tool (computer, telephone,
     tablet, etc.)?
   question.fr: >
-    L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur,
+    L'entreprise fournit-elle gratuitement un outil issus des NTIC (ordinateur,
     téléphone, tablette, etc.) ?
   titre.en: nict
   titre.fr: ntic
@@ -3325,18 +3345,35 @@ contrat salarié . statut JEI . exonération de cotisations:
   titre.en: JEI Exemption
   titre.fr: Exonération JEI
 contrat salarié . statut cadre:
-  description.en: >-
-    A "cadre" is an employee or officer of an enterprise belonging to the upper
-    category of employees. This is a status recognized by collective agreements,
-    which determines membership of a specific pension fund, AGIRC, and some
-    specific terms of the employment contract.
+  description.en: >
+    [automatic] A corporate executive is an employee or officer of a company
+
+    belonging to the higher employee group. This is a
+
+    recognized by collective agreements, which determines membership in an
+
+    specific pension fund, the AGIRC, and some specific terms of the
+
+    employment contract.
 
 
-    Initially recognising the technical skills and managerial role of the employee, the status was gradually extended to an increasing number of positions, and eventually covered a wide population, mixing managers, experts and executives.
+
+    Initially recognizing the technical skills and role
+
+    the employee's management, the status has gradually been extended to include an
+
+    of positions, and eventually covered a growing number of positions, and eventually covered a
+
+    large population, mixing managers, experts and executives.
 
 
-    It is an ill-defined concept, meaning different concepts depending on the point of view considered - whether in terms of status, social representation, role in the company or culture.
-  description.fr: >-
+
+    This is an ill-defined concept that refers to different concepts according to
+
+    the point of view envisaged - whether in terms of status, status of the
+
+    social representation, role in the company or culture.
+  description.fr: |
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
     reconnu par les conventions collectives, qui détermine l'appartenance à une
@@ -3344,10 +3381,15 @@ contrat salarié . statut cadre:
     contrat de travail.
 
 
-    Reconnaissant initialement les compétences techniques et le rôle d'encadrement du salarié, le statut s'est progressivement élargi à un ensemble de postes de plus en plus nombreux, et a fini par recouvrir une large population, mêlant managers, experts et dirigeants.
+    Reconnaissant initialement les compétences techniques et le rôle
+    d'encadrement du salarié, le statut s'est progressivement élargi à un
+    ensemble de postes de plus en plus nombreux, et a fini par recouvrir une
+    large population, mêlant managers, experts et dirigeants.
 
 
-    Il s'agit d'une notion mal définie désignant des concepts différents selon le point de vue envisagé — que ce soit en termes de statut, de représentation sociale, de rôle dans l'entreprise ou de culture.
+    Il s'agit d'une notion mal définie désignant des concepts différents selon
+    le point de vue envisagé — que ce soit en termes de statut, de
+    représentation sociale, de rôle dans l'entreprise ou de culture.
   question.en: Does the employee have "cadre" status?
   question.fr: Le salarié a-t-il le statut cadre ?
   titre.en: cadre status

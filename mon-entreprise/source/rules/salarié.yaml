@@ -1416,10 +1416,12 @@ contrat salarié . avantages sociaux:
 contrat salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
   titre: Avantages en nature
-  description: >
-    Les avantages en nature sont constitués par la fourniture par l’employeur à ses salariés d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du salarié inférieure à leur valeur réelle
+  description: |
+    Les avantages en nature sont constitués par la fourniture par l’entreprise à ses travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du bénéficiant inférieure à leur valeur réelle.
 
-  question: Le salarié reçoit-il des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
+
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
+  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
   par défaut: non
 
 contrat salarié . rémunération . avantages en nature . montant:
@@ -1435,14 +1437,16 @@ contrat salarié . rémunération . avantages en nature . montant:
 
 contrat salarié . rémunération . avantages en nature . ntic:
   icônes: 💻📱
-  description: >
+  description: |
     L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité professionnelle à titre permanent est constitutif d’un avantage en nature.
+
 
     Cet avantage est inclus dans la base de calcul des cotisations de Sécurité sociale et d’assurance chômage.
 
+
     La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
   question: >
-    L'employeur fournit-il gratuitement un outils issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
+    L'entreprise fournit-elle gratuitement un outil issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
   par défaut: oui
 
 contrat salarié . rémunération . avantages en nature . autres:
@@ -1500,7 +1504,7 @@ contrat salarié . rémunération . avantages en nature . ntic . abonnements:
 contrat salarié . rémunération . avantages en nature . nourriture:
   icônes: 🍝
   question: >
-    L'employeur fournit-il gratuitement les repas ?
+    L'entreprise fournit-elle gratuitement des repas ?
   par défaut: non
   description: >
     Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
@@ -1517,7 +1521,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . montant:
 
 contrat salarié . rémunération . avantages en nature . nourriture . repas par mois:
   question: >
-    Combien de repas par mois sont payés par l'employeur ?
+    Combien de repas par mois sont payés par l'entreprise ?
   par défaut: 21 repas/mois
   suggestions:
     1 par jour: 21 repas/mois
@@ -1525,7 +1529,7 @@ contrat salarié . rémunération . avantages en nature . nourriture . repas par
 
 contrat salarié . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
-  description: >-
+  description: |
     Un cadre d'entreprise est un employé ou dirigeant d'une entreprise
     appartenant à la catégorie supérieure des salariés. Il s'agit d'un statut
     reconnu par les conventions collectives, qui détermine l'appartenance à une
