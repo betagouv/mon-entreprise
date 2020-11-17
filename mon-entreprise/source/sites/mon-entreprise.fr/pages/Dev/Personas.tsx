@@ -129,6 +129,12 @@ export default function Personas() {
 					<strong>Type de plateforme</strong> : mobile vs desktop
 				</li>
 			</ul>
+
+			<h3>Économie collaborative</h3>
+
+			<a href="https://github.com/betagouv/syso/files/3085598/Nouveau.document.2019-04-16.17.16.05.pdf">
+				Les personas détaillées
+			</a>
 		</>
 	)
 }
