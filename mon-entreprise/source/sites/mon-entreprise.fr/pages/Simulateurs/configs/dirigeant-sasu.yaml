@@ -17,10 +17,10 @@ questions:
   à l'affiche:
     ACRE: entreprise . ACRE
     Commune: établissement . localisation
+    Avantages en nature: contrat salarié . rémunération . avantages en nature
     Impôt sur le revenu: impôt . méthode de calcul
-    Indemnité vélo: contrat salarié . indemnité kilométrique vélo . active
+    
   liste noire:
-    - contrat salarié . rémunération . avantages en nature
     - entreprise . charges
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative

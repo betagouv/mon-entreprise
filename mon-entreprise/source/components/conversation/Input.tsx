@@ -17,7 +17,7 @@ export default function Input({
 	autoFocus,
 	unit
 }) {
-	const debouncedOnChange = useCallback(debounce(750, onChange), [])
+	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const { language } = useTranslation().i18n
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
 
