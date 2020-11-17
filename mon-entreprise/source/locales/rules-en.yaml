@@ -6807,7 +6807,7 @@ protection sociale . formation:
   résumé.fr: Finance la possibilité de suivre des formations professionnelles.
   titre.en: training
   titre.fr: formation
-protection sociale . invadilité et décès:
+protection sociale . invalidité et décès:
   description.en: >
     [automatic] You may be recognised as disabled if your capacity for work and
     earning is reduced by at least 2/3 as a result of an accident or illness of
@@ -6829,8 +6829,8 @@ protection sociale . invadilité et décès:
   résumé.fr:
     Garantit le versement d'une pension en cas d'invalidité et un capital
     à vos proches en cas de décès.
-  titre.en: '[automatic] invaditity and death'
-  titre.fr: invadilité et décès
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 protection sociale . retraite:
   description.en: >
     [automatic] All workers in France contribute throughout their working life
