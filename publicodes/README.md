@@ -145,13 +145,13 @@ mise en regard des calculs eux-mêmes.
 Plusieurs propriétés sont reprises dans ces pages d'explications :
 
 - le **titre**, qui s'affiche en haut de la page. Par défaut on utilise le nom
-	de la règle, mais la propriété `titre` permet de choisir un titre plus
-	approprié ;
+  de la règle, mais la propriété `titre` permet de choisir un titre plus
+  approprié ;
 - la **description** qui peut être rédigée en Markdown et est généralement
-	affichée comme paragraphe d'introduction sur la page. On utilise le caractère
-	`>` pour indiquer au parseur Yaml que la description utilise du Markdown ;
+  affichée comme paragraphe d'introduction sur la page. On utilise le caractère
+  `>` pour indiquer au parseur Yaml que la description utilise du Markdown ;
 - les **références** externes (documentation utile) affichées en
-	bas de page et qui sont constituées d'une liste de liens avec une description.
+  bas de page et qui sont constituées d'une liste de liens avec une description.
 
 ```yaml
 ticket resto:
@@ -194,7 +194,7 @@ différent, sans que cela entre en conflit:
 ```yaml
 # Ceci n'entre pas dans le calcul de `prime de vacances` définie plus haut
 autre prime . taux:
-	formule: 19%
+  formule: 19%
 ```
 
 On dit que la formule de la règle `prime de vacances` fait référence à la
@@ -205,7 +205,7 @@ nom complet de cette règle:
 
 ```yaml
 prime de vacances v2:
-	formule: autre prime . taux * 1000 €
+  formule: autre prime . taux * 1000 €
 ```
 
 Dans le cas d'espaces de noms imbriqués (à plus qu'un étage), le nom inscrit
@@ -214,10 +214,10 @@ espaces de nom jusqu'à la racine.
 
 ```yaml
 contrat salarié . rémunération . primes . prime de vacances:
-	formule: taux générique * 1000 €
+  formule: taux générique * 1000 €
 
 contrat salarié . rémunération . taux générique:
-	formule: 10%
+  formule: 10%
 ```
 
 Ici `contrat salarié . rémunération . primes . prime de vacances` va faire
@@ -430,8 +430,8 @@ prime:
     multiplication:
       assiette: 1000€
       taux:
-				définition: taux bonus
-				formule: 5%
+        définition: taux bonus
+        formule: 5%
 
 super-prime:
   remplace: prime . taux bonus

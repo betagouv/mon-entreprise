@@ -75,7 +75,7 @@ est utile pour préciser les paramètres spécifiques à une simulation.
 ```js
 // Ici on change le prix des avocats
 engine.setSituation({
-	'prix . avocat': '3€/avocat'
+  'prix . avocat': '3€/avocat'
 })
 ```
 
@@ -84,7 +84,7 @@ La valeur de `dépenses primeur` se base maintenant sur un avocat à 3€ :
 ```js
 // On ré-évalue la règle dans la nouvelle situation
 console.log(
-	`Nouveau prix ! Dépenses mises à jour: ${formatValue(engine.evaluate('dépenses primeur'))}.`
+  `Nouveau prix ! Dépenses mises à jour: ${formatValue(engine.evaluate('dépenses primeur'))}.`
 )
 ```
 
@@ -158,12 +158,12 @@ le composant dédié, et passer l'`engine` à afficher dans les props.
 import { Documentation } from 'publicodes'
 
 function MonApp() {
-	return (
-		<ReactRouter>
-			<Documentation engine={engine} documentationPath={'/documentation'} />
-			{/* Composants de l'app */}
-		</ReactRouter>
-	)
+  return (
+    <ReactRouter>
+      <Documentation engine={engine} documentationPath={'/documentation'} />
+      {/* Composants de l'app */}
+    </ReactRouter>
+  )
 }
 ```
 
@@ -174,16 +174,16 @@ Vous pourrez ensuite faire un lien vers la documentation avec le composant
 import { RuleLink } from 'publicodes'
 
 function MesDépenses() {
-	return (
-		<p>
-			Accéder aux{' '}
-			<RuleLink
-				dottedName={'dépenses primeur'}
-				engine={engine}
-				documentationPath={'/documentation'}
-			/>
-		</p>
-	)
+  return (
+    <p>
+      Accéder aux{' '}
+      <RuleLink
+        dottedName={'dépenses primeur'}
+        engine={engine}
+        documentationPath={'/documentation'}
+      />
+    </p>
+  )
 }
 ```
 
