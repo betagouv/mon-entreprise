@@ -150,7 +150,7 @@ Plusieurs propriétés sont reprises dans ces pages d'explications :
 - la **description** qui peut être rédigée en Markdown et est généralement
 	affichée comme paragraphe d'introduction sur la page. On utilise le caractère
 	`>` pour indiquer au parseur Yaml que la description utilise du Markdown ;
-- les **références** externes (documentation utile) généralement affichées en
+- les **références** externes (documentation utile) affichées en
 	bas de page et qui sont constituées d'une liste de liens avec une description.
 
 ```yaml
