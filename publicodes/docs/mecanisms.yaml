@@ -1,8 +1,9 @@
 une de ces conditions:
   description: >-
-    C'est un `ou` logique.
-    Contient une liste de conditions.
-    Renvoie `oui` si l'une des conditions est applicable.
+    Renvoie `oui` si l'une des règles listées est _applicable_.
+
+
+    Equivaut à un `ou` logique.
   retourne: Booléen
   exemples:
     base: >-
@@ -20,9 +21,10 @@ une de ces conditions:
 
 toutes ces conditions:
   description: >-
-    C'est un `et` logique.
-    Contient une liste de conditions.
-    Renvoie `oui` si toutes les conditions sont applicables.
+    Renvoie `oui` si toutes toutes les règles listées sont _applicables_.
+
+
+    Equivaut à un `et` logique.
   argument:
     - '*'
     - ...
@@ -42,11 +44,12 @@ toutes ces conditions:
 
 produit:
   description: >-
-    C'est une multiplication un peu améliorée, très utile pour exprimer les
-    cotisations.
+    C'est une multiplication adaptée pour exprimer au mieux les cotisations.
+    
 
-    Sa propriété `assiette` est multipliée par un pourcentage, `taux`, ou par un
+    Sa propriété `assiette` est multipliée par un pourcentage `taux`, ou par un
     `facteur` quand ce nom est plus approprié.
+
 
     La multiplication peut être plafonnée : ce plafond sépare l'assiette en
     deux, et la partie au-dessus du plafond est tout simplement ignorée. Dans ce
@@ -83,15 +86,19 @@ produit:
 variations:
   description: >-
     Contient une liste de conditions (`si`) et leurs conséquences associées
-    (`alors`).
+    (`alors`), ainsi qu'un cas par défaut (`sinon`).
+
 
     Pour la première condition vraie dans la liste, on retient la valeur qui lui
     est associée.
 
-    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement
-    `non applicable`
 
-    Ce mécanisme peut aussi être utilisé au sein d'un mécanisme compatible, tel qu'un produit ou un barème.
+    Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement
+    `non applicable`.
+
+
+    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme
+    compatible, tel que `produit` ou `barème`.
   arguments:
     - si: condition à vérifier
       alors: consequence évaluée si la condition est vrai
@@ -129,10 +136,13 @@ variations:
 
 somme:
   description: >-
-    C'est tout simplement la somme de chaque terme de la liste. Si un des terme
-    n'est pas applicable, il vaut zéro.
+    Somme de chaque terme de la liste.
 
-    On peut aussi retrancher des valeurs avec l'opérateur unaire `-`
+
+    Si un des terme n'est pas applicable, il vaut zéro.
+
+
+    On peut retrancher des valeurs grâce à l'opérateur unaire `-`
   arguments:
     - '*'
     - ...
@@ -165,6 +175,7 @@ le maximum de:
     Renvoie la valeur numérique de la liste de propositions fournie qui est la
     plus grande.
 
+
     Pour ajouter un plancher à une valeur, préférer l'utilisation du
     mécanisme `encadrement`.
   exemples:
@@ -179,6 +190,7 @@ le minimum de:
   description: >-
     Renvoie la valeur numérique de la liste de propositions fournie qui est la
     plus petite.
+
 
     Pour plafonner une valeur, préférer l'utilisation du mécanisme `encadrement`.
   exemples:
@@ -343,17 +355,17 @@ recalcul:
               brut: 1500 €
 
 barème:
-  description: C'est un barème en taux marginaux, mécanisme de calcul connu son utilisation
-    dans le calcul de l'impôt sur le revenu.
+  description: C'est un barème en taux marginaux, mécanisme de calcul connu de
+    par son utilisation dans le calcul de l'impôt sur le revenu.
 
     L'assiette est décomposée en plusieurs tranches, qui sont multipliées par un
-    taux spécifique.
+    taux spécifique et enfin additionnées pour donner le résultat.
 
     Les tranches sont souvent exprimées sous forme de facteurs d'une variable
-    que l'on appelle `multiplicateur`, par exemple `1 x le plafond de la
-    sécurité sociale`.
+    que l'on appelle `multiplicateur`, par exemple une fois le plafond de la
+    sécurité sociale.
   exemples:
-    base: >-
+    sans multiplicateur: >-
       revenu imposable:
         formule: 54126 €
 
@@ -372,10 +384,24 @@ barème:
                 plafond: 153783 €
               - taux: 45%
 
+    avec multiplicateur: >-
+      retraite de base:
+        formule:
+          barème:
+            assiette: assiette retraite
+            multiplicateur: plafond sécurité sociale temps plein
+            tranches:
+              - taux: 17.75%
+                plafond: 1
+              - taux: 0.6%
+          arrondi: oui
+
+
 grille:
   description: >-
-    C'est un barème sous la forme d'une grille de correspondance. C'est le
-    mécanisme de calcul de l'impôt neutre, aussi appelé impôt non personnalisé.
+    C'est un barème sous la forme d'une grille de correspondance simple. C'est
+    le mécanisme de calcul de l'impôt neutre, aussi appelé impôt non
+    personnalisé.
 
     Il est composé de tranches qui se suivent. Il suffit de trouver l'assiette
     qui correspond à la tranche, et de selectionner le montant associé à
@@ -411,15 +437,19 @@ taux progressif:
     Ce mécanisme permet de calculer un taux progressif. On spécifie pour chaque
     tranche le plafond et le taux associé. Le taux effectif renvoyé est calculé
     en lissant la différence de taux entre la borne inférieure et supérieure de
-    l'assiette
+    l'assiette.
 
-    > Par exemple, si nous nous avons les tranches suivantes :
+
+    Par exemple, si nous nous avons les tranches suivantes :
+
 
     - taux: 50% / plafond: 0
+
     - taux: 100% / plafond: 1000
 
-    > Pour une assiette de 500, le taux retourné sera 75%, car il correspond au
-    > taux situé à la moitié de la tranche correspondante.
+
+    Pour une assiette de 500, le taux retourné sera 75%, car il correspond au
+    taux situé à la moitié de la tranche correspondante.
   exemples:
     base: >-
       chiffre d'affaires: 
@@ -438,26 +468,58 @@ taux progressif:
                 plafond: 75%
               - taux: 0%
                 plafond: 100%
+
 composantes:
   description: >-
     Beaucoup de cotisations sont composées de deux parties qui partagent la
-    méthode de calcul mais diffèrent par des paramètres différents.
+    méthode de calcul mais diffèrent selons certains paramètres. Pour ne pas
+    définir deux variables quasi-redondantes, on utilise ce mécanisme.
 
-    Pour ne pas définir deux variables presque redondantes, on utilise le
-    mécanisme de composante. Il se comportera comme une somme dans les calculs,
-    mais son affichage sur les pages /règle sera adapté.
 
-    Il est même possible, pour les mécanismes `barème` et `produit` de garder en
+    Dans les calculs, `composantes` se comporte **exactement comme une somme**.
+    La documentation, elle, sera adaptée pour montrer chaque composantes.
+
+
+    Chaque composante peut contenir un champs `nom` (de type texte) ou un champs
+    `attributs` (de type objet avec des champs libres) qui remonteront dans la
+    documentation pour aider à l'explicabilité.  
+
+
+    Il est possible, pour les mécanismes `barème` et `produit` de garder en
     commun un paramètre comme l'assiette, puis de déclarer des composantes pour
     le taux.
 
-    > L'exemple le plus courant de composantes, c'est la distinction part
-    employeur, part salarié (ex. retraite AGIRC).
+
+    > L'exemple le plus courant de composantes est la distinction part
+    employeur / part salarié (ex. retraite AGIRC).
+
+  exemples:
+    base: >-
+      CSG . base:
+        formule:
+          multiplication:
+            assiette: assiette de base
+            composantes:
+              - attributs:
+                  impôt sur le revenu: déductible
+                taux: taux déductible
+              - attributs:
+                  impôt sur le revenu: non déductible
+                taux: taux non déductible
 
 allègement:
   description: >-
     Permet de réduire le montant d'une variable.
+
     Très utilisé dans le contexte des impôts.
+  exemples:
+    base: >-
+      impôt . revenu abattu:
+        formule:
+          allègement:
+            assiette: base des cotisations
+            abattement: abattement
+
 
 encadrement:
   description: Permet d'ajouter un plafond et/ou un plancher à une valeur.
@@ -485,30 +547,41 @@ durée:
             jusqu'à: 31/12/2020
 
 synchronisation:
-  description: Pour éviter trop de saisies à l'utilisateur, certaines informations sont
-    récupérées à partir de ce que l'on appelle des API. Ce sont des services
-    auxquels ont fait appel pour obtenir des informations sur un sujet précis.
-    Par exemple, l'État français fournit gratuitement l'API commune, qui permet à
-    partir du nom d'une ville, d'obtenir son code postal, son département, la
-    population etc.
+  description: Permet de récupérer certaines informations, tels que les les
+    codes postaux des villes, à partir d'APIs externes, telles que l'[API
+    commune](https://geo.api.gouv.fr/decoupage-administratif/communes).
 
-    Ce mécanismes `synchronisation` permet de faire le lien entre les règles de
-    notre système et les réponses de ces API.
+
+    Attention, ce mécanisme est encore en cours de développement, et sa syntaxe
+    n'est pas stable. Se référer aux exemples existants.
 
 inversion numérique:
   description: >-
-    La formule de calcul de cette variable n'est pas connue, souvent elle n'a
-    même pas de sens. Mais le mécanisme `inversion` indique qu'elle peut être
-    _estimée_ à partir de l'un des _objectifs_ listés sous l'attribut `avec`. Il
-    faut alors renseigner une valeur cible pour cet objectif.
+    Il est souhaitable de rédiger les règles de calcul
+    en publicodes de la même façon qu'elles sont décrites dans la loi ou les
+    interprétations administratives ou juridiques existantes. En conséquence,
+    certaines variables n'auront donc pas de méthode de calcul clairement
+    explicitée, il s'agira donc de la déduire des autres valeurs renseignées.
 
-    Voilà comment ça marche : on va donner à la variable une valeur au hasard,
-    calculer _l'objectif_, puis grâce à des calculs savants améliorer notre
-    choix jusqu'à ce que l'écart entre le calcul et la valeur cible devienne
-    satisfaisant.
 
-    Concrètement, si l'on demande au moteur (même indirectement) la valeur d'une
-    variable qui a pour formule une inversion, il va vérifier qu'une des
-    possibilités d'inversion a bien une valeur calculée ou saisie, et procéder à
-    l'inversion décrite plus haut à partir de celle-ci. Sinon, ces possibilités
-    d'inversions seront listées comme manquantes.
+    De façon simplifiée, il s'agira donc, à partir d'une règle existante
+    explicitant `y = ƒ(x)` de calculer `x` à partir de `y`.
+
+
+    L'inversion numérique permet d'estimer la valeur de la variable en question
+    au plus près à partir d'un des _objectifs_, listés dans la propriété `avec`.
+    Il faut alors renseigner une valeur cible pour ces objectifs.
+
+
+    L'algorithme utilisé est la [méthode de
+    Brent](https://fr.wikipedia.org/wiki/M%C3%A9thode_de_Brent). L'idée générale
+    est de prendre une valeur au hasard pour la variable en question, et
+    d'améliorer mathématiquement le choix jusqu'à ce que les valeurs cibles
+    soient toutes suffisamment proches des objectifs
+
+
+    Si on demande au moteur la valeur d'une variable qui a pour formule une
+    inversion, il va vérifier qu'une des variables `avec` a bien une valeur
+    (calculée ou saisie), et procéder à l'inversion décrite plus haut à partir
+    de celle-ci. Sinon, ces possibilités d'inversions seront listées comme
+    manquantes.

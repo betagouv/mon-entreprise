@@ -20,19 +20,23 @@ progressivement le résultat affiché, et d'exposer une documentation du calcul 
 - **[futur.eco](https://futur.eco/)** utilise publicodes pour calculer les bilans
   carbone d'un grand nombre d'activités, plats, transports ou biens.
 
-## Principe de base
+## Syntaxe
+
+### Principe de base
 
 La syntaxe de Publicode est basée sur le langage
-[Yaml](https://en.wikipedia.org/wiki/YAML). Un fichier Publicode contient une
-liste de règles identifiées par leur nom et possédant une formule de calcul :
+[Yaml](https://en.wikipedia.org/wiki/YAML).
+
+Un fichier Publicode contient une liste de _règles_ identifiées par leur _nom_ et
+possédant une _formule de calcul_ :
 
 ```yaml
 prix d'un repas:
   formule: 10 €
 ```
 
-Une formule de calcul peut référencer d'autres variables. Dans l'exemple suivant
-la règle `prix total` aura pour valeur 50 (= 5 \* 10)
+Une formule de calcul peut faire _référence_ à d'autres règles.
+Dans l'exemple suivant la règle `prix total` aura pour valeur 50 (= 5 \* 10)
 
 ```yaml
 prix d'un repas:
@@ -42,10 +46,11 @@ prix total:
   formule: 5 * prix d'un repas
 ```
 
-Il s'agit d'un langage déclaratif : comme dans une formule d'un tableur le `prix total` sera recalculé automatiquement si le prix d'un repas change. L'ordre de
+Il s'agit d'un langage déclaratif : comme dans une formule d'un tableur le `prix
+total` sera recalculé automatiquement si le prix d'un repas change. L'ordre de
 définition des règles n'a pas d'importance.
 
-## Unités
+### Unités
 
 Pour fiabiliser les calculs et faciliter leur compréhension, on peut préciser
 l'unité des valeurs littérales :
@@ -112,7 +117,8 @@ prime faible salaire:
   formule: 300€
 ```
 
-On peut forcer la conversion des unités via la propriété `unité`, ou la notation suffixé `[...]`
+On peut forcer la conversion des unités via la propriété `unité`, ou la notation
+suffixée `[...]`.
 
 ```yaml
 salaire:
@@ -123,24 +129,29 @@ salaire annuel:
   formule: salaire [k€/an]
 ```
 
-**Conversions disponibles :**
+**Types de base disponibles pour la conversion :**
 
 - `jour` / `mois` / `an`
 - `€` / `k€`
 
-## Titre, description et références
+### Pages d'explications
 
-Plusieurs propriétés permettent de documenter les règles et sont utilisées dans
-les pages d'explications générées automatiquement :
+L'explication des règles est un des objectifs fondamentaux de Publicodes.
 
-- le **titre**, qui s'affiche en haut de la page de documentation. Par défaut on
-  utilise le nom de la règle, mais l'attribut `titre` permet de choisir un titre
-  plus approprié ;
+Chaque règle se voit générer automatiquement une page explicatives
+correspondante dans le front-end, contenant une information facilement digeste
+mise en regard des calculs eux-mêmes.
+
+Plusieurs propriétés sont reprises dans ces pages d'explications :
+
+- le **titre**, qui s'affiche en haut de la page. Par défaut on utilise le nom
+	de la règle, mais la propriété `titre` permet de choisir un titre plus
+	approprié ;
 - la **description** qui peut être rédigée en Markdown et est généralement
-  affichée comme paragraphe d'introduction sur la page. On utilise le caractère `>`
-  pour indiquer au parseur Yaml que la description utilise du Markdown ;
-- les **références** généralement affichées en bas de page et qui sont
-  constituées d'une liste de liens avec une description.
+	affichée comme paragraphe d'introduction sur la page. On utilise le caractère
+	`>` pour indiquer au parseur Yaml que la description utilise du Markdown ;
+- les **références** externes (documentation utile) affichées en
+	bas de page et qui sont constituées d'une liste de liens avec une description.
 
 ```yaml
 ticket resto:
@@ -156,24 +167,64 @@ ticket resto:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 ```
 
-## Espaces de noms
+Voir aussi la rubrique sur les mécanismes.
+
+### Espaces de noms
 
 Les espaces de noms sont utiles pour organiser un grand nombre de règles. On
-utilise le `.` pour définir la hiérarchie des noms.
+utilise le `.` pour exprimer la hiérarchie des noms.
 
 ```yaml
 prime de vacances:
-  formule: taux * 1000€
+  formule: taux * 1000 €
 
 prime de vacances . taux:
   formule: 6%
 ```
 
-Ici la variable `taux` est dans l'espace de nom `prime de vacances` et c'est
-elle qui est référencée dans la formule de calcul. On peut avoir une autre
-variable `taux` dans un autre espace de nom.
+Ici `prime de vacances` est à la fois une règle et un espace de noms. La variable
+`taux` est définie dans cet espace de noms et c'est elle qui est référencée dans
+la formule de calcul de la règle `prime de vacances`.
 
-## Mécanismes
+La règle `prime de vacances` est elle-même définie dans l'espace de nom racine.
+
+On pourrait avoir une autre variable `taux` dans un espace de nom
+différent, sans que cela entre en conflit:
+
+```yaml
+# Ceci n'entre pas dans le calcul de `prime de vacances` définie plus haut
+autre prime . taux:
+	formule: 19%
+```
+
+On dit que la formule de la règle `prime de vacances` fait référence à la
+règle `prime de vacances . taux` via le nom raccourci `taux`.
+
+Pour faire référence à une règle hors de son espace de nom, on peut écrire le
+nom complet de cette règle:
+
+```yaml
+prime de vacances v2:
+	formule: autre prime . taux * 1000 €
+```
+
+Dans le cas d'espaces de noms imbriqués (à plus qu'un étage), le nom inscrit
+dans une règle donnée est recherché de plus en plus haut dans la hiérarchie des
+espaces de nom jusqu'à la racine.
+
+```yaml
+contrat salarié . rémunération . primes . prime de vacances:
+	formule: taux générique * 1000 €
+
+contrat salarié . rémunération . taux générique:
+	formule: 10%
+```
+
+Ici `contrat salarié . rémunération . primes . prime de vacances` va faire
+référence à `contrat salarié . rémunération . taux générique` trouvé deux
+espaces de noms plus haut, et va donc valoir `100 €`.
+
+### Mécanismes
 
 Les règles de calcul élémentaires sont extraites dans des "mécanismes" qui
 permettent de partager la logique de calcul et de générer une page d'explication
@@ -221,7 +272,7 @@ prime:
 
 > **[Aller à la liste des mécanismes existants](./mécanismes)**
 
-## Applicabilité
+### Applicabilité
 
 On peut définir des conditions d'applicabilité des règles :
 
@@ -241,11 +292,20 @@ prime de vacances:
 ```
 
 Ici si l'ancienneté est inférieure à un an la prime de vacances ne sera pas
-applicable. Les variables non applicables sont ignorées au niveau des mécanismes
-(par exemple le mécanisme `somme` comptera une prime non applicable comme valant
-zéro).
+_applicable_. Les variables _non applicables_ sont ignorées au niveau des
+mécanismes (par exemple le mécanisme `somme` comptera une prime non applicable
+comme valant zéro, voir la page spécifique aux mécanismes).
 
-## Remplacement
+La syntaxe suivante est également valable:
+
+```yaml
+dirigeant . assimilé salarié:
+  formule: dirigeant = 'assimilé salarié'
+  rend non applicable:
+    - contrat salarié . convention collective
+```
+
+### Remplacement
 
 Certaines règles ne s'appliquent parfois que dans quelques situations
 particulières et modifier la définition des règles générales pour prendre en
@@ -294,7 +354,7 @@ somme avec remplacements:
   formule: a + b
 ```
 
-## Références de paramètres
+### Références de paramètres
 
 Si le mécanisme de remplacement permet de faire des substitutions de règles
 complètes, il est parfois utile de ne modifier qu'un seul paramètre d'une règle
@@ -327,7 +387,7 @@ a aussi introduit une indirection dans la définition de la prime en remplaçant
 une ligne explicite `taux: 5%` par une référence vers une règle tierce
 `taux: taux`, qui est loin d'être aussi claire.
 
-Pour ce cas d'usage il est possible d'utiliser une **référence de paramètre**.
+Pour ce cas d'usage il est possible d'utiliser une _référence de paramètre_.
 On garde la définition de la prime inchangée et on annote l'argument auquel on
 veut accéder depuis l'extérieur avec le mot clé `[ref]` :
 
@@ -361,6 +421,22 @@ super-prime:
 Lors d'une relecture future de la règle `prime` le mot clé `[ref]` indique
 explicitement que du code extérieur dépend du paramètre `taux`, ce a quoi il
 faut être vigilant en cas de ré-écriture.
+
+La syntaxe suivante est équivalente :
+
+```yaml
+prime:
+  formule:
+    multiplication:
+      assiette: 1000€
+      taux:
+				définition: taux bonus
+				formule: 5%
+
+super-prime:
+  remplace: prime . taux bonus
+  formule: 10%
+```
 
 ## Évaluation
 
