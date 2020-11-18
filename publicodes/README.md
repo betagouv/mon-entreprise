@@ -19,6 +19,7 @@ progressivement le résultat affiché, et d'exposer une documentation du calcul 
   le montant du chômage partiel.
 - **[futur.eco](https://futur.eco/)** utilise publicodes pour calculer les bilans
   carbone d'un grand nombre d'activités, plats, transports ou biens.
+- **[Nos Gestes Climat](https://ecolab.ademe.fr/apps/climat)** utilise publicodes pour proposer un calculateur d'empreinte climat personnel de référence complètement ouvert
 
 ## Syntaxe
 
