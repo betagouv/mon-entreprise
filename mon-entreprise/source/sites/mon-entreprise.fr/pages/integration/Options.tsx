@@ -34,13 +34,12 @@ export default function Options() {
 			<section className="ui__ full-width dark-bg center-flex">
 				<Link
 					className="ui__ interactive card box inverted-colors"
-					css="flex: 1"
 					to={sitePaths.integration.iframe}
 				>
 					<div className="ui__ big box-icon">{emoji('📱')}</div>
 					<Trans i18nKey="pages.développeurs.home.choice.iframe">
 						<h3>Intégrer un simulateur</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							Intégrer l'un de nos simulateurs en un clic dans votre site Web,
 							via un script clé en main.
 						</p>
@@ -51,13 +50,12 @@ export default function Options() {
 				</Link>
 				<Link
 					className="ui__ interactive card box inverted-colors"
-					css="flex: 1"
 					to={sitePaths.integration.library}
 				>
 					<div className="ui__ big box-icon">{emoji('🧰')}</div>
 					<Trans i18nKey="pages.développeurs.choice.library">
 						<h3>Libraire de calcul</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							L'intégralité du moteur de calcul socio-fiscal développé par
 							l'Urssaf, mis à disposition librement sous forme de bibliothèque
 							NPM.
@@ -69,7 +67,6 @@ export default function Options() {
 				</Link>
 				<a
 					className="ui__ interactive card box inverted-colors"
-					css="flex: 1"
 					target="_blank"
 					href="https://github.com/betagouv/mon-entreprise"
 				>
@@ -89,7 +86,7 @@ export default function Options() {
 					</div>
 					<Trans i18nKey="pages.développeurs.choice.github">
 						<h3>Contribuer sur GitHub</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							Tous nos outils sont ouverts et développés publiquement sur
 							GitHub.
 						</p>
@@ -100,14 +97,13 @@ export default function Options() {
 				</a>
 				<a
 					className="ui__ interactive card box inverted-colors"
-					css="flex: 1"
 					target="_blank"
 					href="https://publi.codes"
 				>
 					<div className="ui__ big box-icon">{emoji('📚')}</div>
 					<Trans i18nKey="pages.développeurs.choice.publicode">
 						<h3>Publicodes</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
 							encoder des algorithmes “explicables”.
 						</p>

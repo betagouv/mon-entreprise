@@ -140,9 +140,7 @@ export function SimulateurCard({
 			</div>
 			<>{small ? name : <h3>{name}</h3>}</>
 			{!small && meta?.description && (
-				<p className="ui__ notice" css="flex: 1">
-					{meta.description}
-				</p>
+				<p className="ui__ notice">{meta.description}</p>
 			)}
 		</Link>
 	)

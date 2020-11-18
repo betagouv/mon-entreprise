@@ -192,9 +192,7 @@ const ActivitéContent = ({
 			</InfoBulle>
 		</h4>
 
-		<p css="flex: 1" className="ui__ notice">
-			{plateformes.join(', ')}
-		</p>
+		<p className="ui__ notice">{plateformes.join(', ')}</p>
 		{label && <div className="ui__ label"> {label}</div>}
 		<div className="ui__ box-icon">{emoji(icônes)}</div>
 	</>
