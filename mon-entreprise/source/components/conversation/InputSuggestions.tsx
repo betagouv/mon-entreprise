@@ -26,6 +26,7 @@ export default function InputSuggestions({
 			css={`
 				display: flex;
 				align-items: baseline;
+				justify-content: flex-end;
 				margin-bottom: 0.4rem;
 			`}
 		>

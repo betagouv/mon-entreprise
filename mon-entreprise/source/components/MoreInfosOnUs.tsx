@@ -24,12 +24,12 @@ export default function MoreInfosOnUs() {
 			<h3 style={{ textAlign: 'center', width: '100%' }}>
 				Plus d'infos sur mon-entreprise.fr
 			</h3>
-			<div className="ui__ full-width box-container">
+			<div className="ui__ full-width center-flex">
 				{!pathname.startsWith(sitePaths.nouveautés) && (
 					<Link className="ui__ interactive card box" to={sitePaths.nouveautés}>
 						<div className="ui__ big box-icon">{emoji('✨')}</div>
 						<h3>Les nouveautés</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							Qu'avons-nous mis en production ces derniers mois ?
 						</p>
 						<div className="ui__ small simple button">Découvrir</div>
@@ -39,9 +39,7 @@ export default function MoreInfosOnUs() {
 					<Link className="ui__ interactive card box" to={sitePaths.stats}>
 						<div className="ui__ big box-icon">{emoji('📊')}</div>
 						<h3>Les statistiques</h3>
-						<p className="ui__ notice" css="flex: 1">
-							Quel est notre impact ?
-						</p>
+						<p className="ui__ notice">Quel est notre impact ?</p>
 						<div className="ui__ small simple button">Découvrir</div>
 					</Link>
 				)}
@@ -49,7 +47,7 @@ export default function MoreInfosOnUs() {
 					<Link className="ui__ interactive card box" to={sitePaths.budget}>
 						<div className="ui__ big box-icon">{emoji('💶')}</div>
 						<h3>Le budget</h3>
-						<p className="ui__ notice" css="flex: 1">
+						<p className="ui__ notice">
 							Quelles sont nos ressources et comment sont-elles employées ?
 						</p>
 						<div className="ui__ small simple button">Découvrir</div>
@@ -76,7 +74,7 @@ export default function MoreInfosOnUs() {
 						</svg>
 					</div>
 					<h3>Le code source</h3>
-					<p className="ui__ notice" css="flex: 1">
+					<p className="ui__ notice">
 						Nos travaux sont ouverts et libres de droit, ça se passe sur GitHub
 					</p>
 					<div className="ui__ small simple button">Découvrir</div>

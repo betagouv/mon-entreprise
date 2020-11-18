@@ -74,12 +74,7 @@ function PLExplanation() {
 							<a target="_blank" href="https://www.urssaf.fr/portail/home.html">
 								<LogoImg src={urssafSrc} title="logo Urssaf" />
 							</a>
-							<p
-								className="ui__ notice"
-								css={`
-									flex: 1;
-								`}
-							>
+							<p className="ui__ notice">
 								Les cotisations recouvrées par l'Urssaf, qui servent au
 								financement de la sécurité sociale (assurance maladie,
 								allocations familiales, dépendance)
@@ -101,12 +96,7 @@ function PLExplanation() {
 								>
 									<LogoImg src={assuranceMaladieSrc} title="Logo CPAM" />
 								</a>
-								<p
-									className="ui__ notice"
-									css={`
-										flex: 1;
-									`}
-								>
+								<p className="ui__ notice">
 									En tant que professionnel de santé conventionné, vous
 									bénéficiez d'une prise en charge d'une partie de vos
 									cotisations par l'Assurance Maladie.
@@ -156,12 +146,7 @@ function CaisseRetraite() {
 							>
 								<LogoImg src={logosSrc[caisse]} title={`logo ${caisse}`} />
 							</a>
-							<p
-								className="ui__ notice"
-								css={`
-									flex: 1;
-								`}
-							>
+							<p className="ui__ notice">
 								{description}{' '}
 								<Trans i18nKey="simulateurs.explanation.CNAPL">
 									Elle recouvre les cotisations liées à votre retraite et au

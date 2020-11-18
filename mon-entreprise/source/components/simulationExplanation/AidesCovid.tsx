@@ -10,14 +10,9 @@ export default function AidesCovid({ rule }: AidesCovidProps) {
 	return (
 		<div className="ui__ box-container">
 			<Condition expression={rule}>
-				<div className="ui__ card box">
+				<div className="ui__ card box lighter-bg">
 					<h4>Réduction de cotisations</h4>
-					<p
-						className="ui__ notice"
-						css={`
-							flex: 1;
-						`}
-					>
+					<p className="ui__ notice">
 						Vous pouvez bénéficier de réductions de cotisations exceptionnelles.
 					</p>
 					<p className="ui__ lead">
@@ -27,17 +22,12 @@ export default function AidesCovid({ rule }: AidesCovidProps) {
 			</Condition>
 			<div className="ui__ card box">
 				<h4>Aides gouvernementales</h4>
-				<p
-					className="ui__ notice"
-					css={`
-						flex: 1;
-					`}
-				>
+				<p className="ui__ notice">
 					Le ministère de l'Économie propose un portail recensant les mesures de
 					soutien aux entreprises.
 				</p>
 				<a
-					className="ui__ small button"
+					className="ui__ small simple button"
 					href="https://www.economie.gouv.fr/covid19-soutien-entreprises/les-mesures"
 					target="_blank"
 				>
@@ -46,12 +36,7 @@ export default function AidesCovid({ rule }: AidesCovidProps) {
 			</div>
 			<div className="ui__ card box">
 				<h4>Écoute et soutien</h4>
-				<p
-					className="ui__ notice"
-					css={`
-						flex: 1;
-					`}
-				>
+				<p className="ui__ notice">
 					Une{' '}
 					<a
 						href="https://www.economie.gouv.fr/mise-en-place-cellule-ecoute-soutien-psychologique-chefs-entreprise"

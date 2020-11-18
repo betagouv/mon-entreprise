@@ -173,3 +173,7 @@
 		justify-content: center;
 	}
 }
+
+.ui__.card .ui__.notice {
+	flex: 1;
+}

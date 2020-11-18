@@ -54,7 +54,7 @@ export default function Landing() {
 						<div className="ui__ big box-icon">{emoji('💡')}</div>
 						<Trans i18nKey="landing.choice.create">
 							<h3>Créer une entreprise</h3>
-							<p className="ui__ notice" css="flex: 1">
+							<p className="ui__ notice">
 								Un accompagnement au choix du statut juridique et la liste
 								complète des démarches de création
 							</p>
@@ -74,7 +74,7 @@ export default function Landing() {
 						<div className="ui__ big box-icon">{emoji('💶')}</div>
 						<Trans i18nKey="landing.choice.manage">
 							<h3>Gérer mon activité</h3>
-							<p className="ui__ notice" css="flex: 1">
+							<p className="ui__ notice">
 								Des outils personnalisés pour anticiper le montant des
 								cotisations sociales à payer et mieux gérer votre trésorerie.
 							</p>
@@ -90,7 +90,7 @@ export default function Landing() {
 						<div className="ui__ big box-icon">{emoji('🧮')}</div>
 						<Trans i18nKey="landing.choice.simulators">
 							<h3>Accéder aux simulateurs</h3>
-							<p className="ui__ notice" css="flex: 1">
+							<p className="ui__ notice">
 								La liste exhaustive de tous les simulateurs disponibles sur le
 								site.
 							</p>
