@@ -102,7 +102,6 @@ li {
 }
 a {
 	border: none;
-	display: inline-block;
 	font-size: inherit;
 	padding: none;
 	text-decoration: underline;

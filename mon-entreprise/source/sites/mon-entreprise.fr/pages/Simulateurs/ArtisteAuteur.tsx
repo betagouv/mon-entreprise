@@ -3,6 +3,7 @@ import RuleInput from 'Components/conversation/RuleInput'
 import { DistributionBranch } from 'Components/Distribution'
 import Value, { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
+import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
@@ -139,6 +140,9 @@ function CotisationsResult() {
 				<ResultLine>
 					<ResultLabel>
 						<Trans>Montant des cotisations</Trans>
+						<p className="ui__ notice">
+							Incluant les réductions de cotisations liées au Covid-19
+						</p>
 					</ResultLabel>
 					<Value
 						displayedUnit="€"
@@ -146,8 +150,15 @@ function CotisationsResult() {
 						expression="artiste-auteur . cotisations . avec réductions"
 					/>
 				</ResultLine>
-				<AideCovid />
 			</div>
+			<h2
+				css={`
+					margin-top: 4rem;
+				`}
+			>
+				<Trans>Aides Covid-19</Trans>
+			</h2>
+			<AidesCovid rule="artiste-auteur . réduction de cotisations covid 2020" />
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />
 			</Condition>
@@ -192,20 +203,5 @@ function RepartitionCotisations() {
 				))}
 			</div>
 		</section>
-	)
-}
-
-function AideCovid() {
-	return (
-		<Condition expression="artiste-auteur . réduction de cotisations covid 2020">
-			<ResultLine>
-				<ResultLabel>Dont réduction de cotisation covid</ResultLabel>
-				<Value
-					displayedUnit="€"
-					precision={0}
-					expression="artiste-auteur . réduction de cotisations covid 2020"
-				/>
-			</ResultLine>
-		</Condition>
 	)
 }

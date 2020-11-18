@@ -509,6 +509,15 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
         - taux: 0%
           plafond: 100%
 
+dirigeant . indépendant . cotisations et contributions . aides covid 2020:
+  description: |
+    Le gouvernement et les organismes de sécurité sociale ont mis en place des
+    dispositifs de réduction de cotisation pour les indépendants impactés par la
+    crise du Coronavirus.
+  formule:
+    somme:
+      - PL . CIPAV . retraite complémentaire . réduction COVID . montant
+
 dirigeant . indépendant . revenu net de cotisations:
   synonymes:
     - résultat comptable

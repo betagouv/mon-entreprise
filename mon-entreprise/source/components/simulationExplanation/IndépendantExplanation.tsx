@@ -17,6 +17,7 @@ import styled from 'styled-components'
 import BarChartBranch from 'Components/BarChart'
 import 'Components/Distribution.css'
 import RuleLink from 'Components/RuleLink'
+import AidesCovid from './AidesCovid'
 // import Distribution from 'Components/Distribution'
 
 export default function IndépendantExplanation() {
@@ -130,6 +131,8 @@ function PLExplanation() {
 					</Condition>
 				</Animate.fromBottom>
 			</Trans>
+			<h2>Aides Covid-19</h2>
+			<AidesCovid rule="dirigeant . indépendant . cotisations et contributions . aides covid 2020" />
 		</section>
 	)
 }
