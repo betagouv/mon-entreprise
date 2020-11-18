@@ -1,14 +1,12 @@
 import Value, { Condition } from 'Components/EngineValue'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { DottedName } from 'Rules'
 
 type AidesCovidProps = {
-	rule?: DottedName
+	rule: DottedName
 }
 
-export default function AidesCovid({rule}: AidesCovidProps) {
-	rule ??= "dirigeant . indépendant . cotisations et contributions . aides covid 2020"
+export default function AidesCovid({ rule }: AidesCovidProps) {
 	return (
 		<div className="ui__ box-container">
 			<Condition expression={rule}>
@@ -23,10 +21,7 @@ export default function AidesCovid({rule}: AidesCovidProps) {
 						Vous pouvez bénéficier de réductions de cotisations exceptionnelles.
 					</p>
 					<p className="ui__ lead">
-						<Value
-							displayedUnit="€"
-							expression={rule}
-						/>
+						<Value displayedUnit="€" expression={rule} />
 					</p>
 				</div>
 			</Condition>
@@ -57,8 +52,15 @@ export default function AidesCovid({rule}: AidesCovidProps) {
 						flex: 1;
 					`}
 				>
-					Une <a>cellule de première écoute et de soutien psychologique</a> a
-					été mise en place pour les chefs d'entreprise fragilisés par la crise.
+					Une{' '}
+					<a
+						href="https://www.economie.gouv.fr/mise-en-place-cellule-ecoute-soutien-psychologique-chefs-entreprise"
+						target="_blank"
+					>
+						cellule de première écoute et de soutien psychologique
+					</a>{' '}
+					a été mise en place pour les chefs d'entreprise fragilisés par la
+					crise.
 				</p>
 				<a className="ui__ small simple button" href="tel:+33805655050">
 					{emoji('📞')} 08 05 65 50 50
