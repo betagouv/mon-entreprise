@@ -1,4 +1,4 @@
-import { DottedName } from 'Rules'
+import { DottedName } from 'systeme-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import Tracker from 'Tracker'
 

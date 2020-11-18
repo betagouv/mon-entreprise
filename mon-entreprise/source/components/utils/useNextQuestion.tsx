@@ -25,7 +25,7 @@ import {
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
-import { DottedName } from 'Rules'
+import { DottedName } from 'systeme-social'
 import {
 	answeredQuestionsSelector,
 	configSelector,

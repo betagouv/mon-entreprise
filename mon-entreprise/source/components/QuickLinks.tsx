@@ -3,7 +3,7 @@ import { contains, filter, pipe, reject, toPairs } from 'ramda'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { DottedName } from 'Rules'
+import { DottedName } from 'systeme-social'
 
 import { useNextQuestions } from './utils/useNextQuestion'
 import {

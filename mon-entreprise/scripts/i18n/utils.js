@@ -4,10 +4,9 @@ var fs = require('fs')
 var path = require('path')
 let R = require('ramda')
 var querystring = require('querystring')
-let { readRules } = require('../rules')
-// let { utils } = require('publicodes')
-
+let rules = require('systeme-social')
 let { parse } = require('yaml')
+
 let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
 let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
 
@@ -21,8 +20,6 @@ let attributesToTranslate = [
 ]
 
 function getRulesMissingTranslations() {
-	let rules = readRules()
-
 	let currentExternalization = parse(
 		fs.readFileSync(rulesTranslationPath, 'utf-8')
 	)

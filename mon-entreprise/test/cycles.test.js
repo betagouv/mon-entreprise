@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { cyclesLib } from 'publicodes'
-import rules from '../source/rules'
+import rules from 'systeme-social'
 
 describe('DottedNames graph', () => {
 	it("shouldn't have cycles", () => {

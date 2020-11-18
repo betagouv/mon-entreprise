@@ -1,4 +1,4 @@
-import { DottedName } from '../rules/index'
+import { DottedName } from 'systeme-social'
 import { createSelector } from 'reselect'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 

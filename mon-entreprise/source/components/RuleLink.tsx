@@ -1,7 +1,7 @@
 import { RuleLink as EngineRuleLink } from 'publicodes'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { DottedName } from 'Rules'
+import { DottedName } from 'systeme-social'
 import { EngineContext } from './utils/EngineContext'
 import { SitePathsContext } from './utils/SitePathsContext'
 
