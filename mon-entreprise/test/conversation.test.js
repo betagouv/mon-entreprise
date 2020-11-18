@@ -4,7 +4,7 @@ import {
 	getNextQuestions,
 	getNextSteps,
 } from '../source/components/utils/useNextQuestion'
-import rules from '../source/rules'
+import rules from 'systeme-social'
 
 describe('conversation', function () {
 	it('should start with the first missing variable', function () {

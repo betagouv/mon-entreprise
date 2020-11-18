@@ -14,7 +14,6 @@ const EXAMPLE_CODE = `
 # Pour en savoir plus sur le langage, consultez le tutoriel :
 # => https://publi.codes
 
-prix:
 prix . carottes: 2€/kg
 prix . champignons: 5€/kg
 prix . avocat: 2€/avocat

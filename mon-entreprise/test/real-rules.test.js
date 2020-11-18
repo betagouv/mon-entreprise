@@ -1,7 +1,7 @@
 import { AssertionError } from 'chai'
 import Engine, { parsePublicodes } from 'publicodes'
 import { disambiguateRuleReference } from '../../publicodes/source/ruleUtils'
-import rules from 'Rules'
+import rules from 'systeme-social'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
@@ -46,7 +46,7 @@ describe('Tests des règles de notre base de règles', () =>
 					if (!example.ok) {
 						throw new AssertionError(`
 						Valeur attendue : ${example['valeur attendue']}
-						Valeur obtenue : ${example.rule.nodeValue} 
+						Valeur obtenue : ${example.rule.nodeValue}
 						${
 							example.rule.nodeValue === null
 								? 'Variables manquantes : ' +

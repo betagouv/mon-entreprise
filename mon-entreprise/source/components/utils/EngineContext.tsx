@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
-import { DottedName } from 'Rules'
+import { DottedName } from 'systeme-social'
 
 export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider

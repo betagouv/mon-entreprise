@@ -1,0 +1,31 @@
+{
+	"name": "systeme-social",
+	"version": "1.0.0",
+	"description": "Les règles publicodes du système social français",
+	"main": "./dist/index.js",
+	"types": "./index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "systeme-social"
+	},
+	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
+	"homepage": "https://mon-entreprise.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",
+	"license": "MIT",
+	"files": [
+		"dist/index.js"
+	],
+	"devDependencies": {
+		"yaml": "^1.10.0",
+		"publicodes": "^1.0.0-beta.4"
+	},
+	"dependencies": {},
+	"peerDependencies": {
+		"publicodes": "^1.0.0-beta.4"
+	},
+	"scripts": {
+		"build": "node build.js",
+		"prepare": "yarn run build",
+		"test": "echo 1"
+	}
+}

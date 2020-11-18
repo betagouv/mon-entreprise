@@ -8,8 +8,6 @@
 			"Components/*": ["components/*"],
 			"Images/*": ["images/*"],
 			"Reducers/*": ["reducers/*"],
-			"Rules/*": ["rules/*"],
-			"Rules": ["rules"],
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
 		},

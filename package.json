@@ -109,19 +109,20 @@
 		"lint:eslintrc": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
 		"lint:eslint": "export NODE_OPTIONS='--max-old-space-size=4096'; eslint . --ext .js,.jsx,.ts,.tsx",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
-		"lint:prettier": "yarn workspaces run prettier --check \"{source,test,cypress}/**/*.{js,jsx,ts,tsx}\"",
+		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix && yarn lint:prettier:fix",
 		"prepare": "if [ -z \"$NETLIFY\" ]; then yarn workspaces run prepare; fi",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
-		"test:type": "yarn workspaces run tsc",
+		"test:type": "yarn workspace publicodes run tsc && yarn workspace mon-entreprise run tsc",
 		"test:regressions": "jest",
 		"clean": "yarn workspaces run clean",
 		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start"
 	},
 	"workspaces": [
 		"publicodes",
+		"systeme-social",
 		"mon-entreprise"
 	]
 }
