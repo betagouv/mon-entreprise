@@ -18,9 +18,9 @@ const prerenderConfig = () => ({
 	staticDir: path.resolve('dist'),
 	renderer: new Renderer({
 		renderAfterTime: 5000,
-		skipThirdPartyRequests: true
+		skipThirdPartyRequests: true,
 	}),
-	postProcess: context => {
+	postProcess: (context) => {
 		const $ = cheerio.load(context.html)
 		// force https on twitter emoji cdn
 		$('img[src^="http://twemoji.maxcdn.com"]').each((i, el) => {
@@ -43,13 +43,13 @@ const prerenderConfig = () => ({
 
 		context.html = $.html()
 		return context
-	}
+	},
 })
 
 module.exports = {
 	...common,
 	module: {
-		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)]
+		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)],
 	},
 	output: {
 		...common.output,
@@ -57,7 +57,7 @@ module.exports = {
 			return chunk.name === 'simulateur-iframe-integration'
 				? '[name].js'
 				: '[name].[contenthash].bundle.js'
-		}
+		},
 	},
 	mode: 'production',
 	devtool: 'source-map',
@@ -65,9 +65,9 @@ module.exports = {
 		minimize: true,
 		minimizer: [
 			new TerserPlugin({
-				parallel: 2
-			})
-		]
+				parallel: 2,
+			}),
+		],
 	},
 	plugins: [
 		...common.plugins,
@@ -87,21 +87,21 @@ module.exports = {
 				/.*\.worker\.js/,
 				/^\/robots\.txt$/,
 				/^\/sitemap\.infrance\.fr\.txt$/,
-				/^\/sitemap\.infrance\.en\.txt$/
-			]
+				/^\/sitemap\.infrance\.en\.txt$/,
+			],
 		}),
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// both options are optional
 			filename: '[name].[hash].css',
-			chunkFilename: '[id].[hash].css'
+			chunkFilename: '[id].[hash].css',
 		}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
 				...prerenderConfig(),
 				outputDir: path.resolve('dist', 'prerender', 'infrance'),
 				routes: ['/', '/calculators/salary', '/iframes/simulateur-embauche'],
-				indexPath: path.resolve('dist', 'infrance.html')
+				indexPath: path.resolve('dist', 'infrance.html'),
 			}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
@@ -119,9 +119,9 @@ module.exports = {
 					'/gérer',
 					'/iframes/simulateur-embauche',
 					'/iframes/simulateur-chomage-partiel',
-					'/iframes/pamc'
+					'/iframes/pamc',
 				],
-				indexPath: path.resolve('dist', 'mon-entreprise.html')
-			})
-	].filter(Boolean)
+				indexPath: path.resolve('dist', 'mon-entreprise.html'),
+			}),
+	].filter(Boolean),
 }

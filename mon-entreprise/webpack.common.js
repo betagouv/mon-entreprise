@@ -13,60 +13,59 @@ module.exports.default = {
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),
-			Rules: path.resolve('source/rules/'),
-			Images: path.resolve('source/images/')
+			Images: path.resolve('source/images/'),
 		},
-		extensions: ['.js', '.ts', '.tsx']
+		extensions: ['.js', '.ts', '.tsx'],
 	},
 	entry: {
 		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.tsx',
 		infrance: './source/sites/mon-entreprise.fr/entry.en.tsx',
 		'simulateur-iframe-integration':
 			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
-		publicodes: './source/sites/publi.codes/entry.tsx'
+		publicodes: './source/sites/publi.codes/entry.tsx',
 	},
 	output: {
-		globalObject: 'self'
+		globalObject: 'self',
 	},
 	plugins: [
 		new MonacoWebpackPlugin(),
 		new EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
-			FR_SITE: '/mon-entreprise${path}'
+			FR_SITE: '/mon-entreprise${path}',
 		}),
 		new EnvironmentPlugin({
 			GITHUB_REF: '',
 			GITHUB_HEAD_REF: '',
-			GITHUB_SHA: ''
+			GITHUB_SHA: '',
 		}),
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			{
 				from: './source/sites/mon-entreprise.fr/robots.txt',
-				to: 'robots.infrance.txt'
+				to: 'robots.infrance.txt',
 			},
 			{
 				from: './source/sites/mon-entreprise.fr/sitemap.fr.txt',
-				to: 'sitemap.infrance.fr.txt'
+				to: 'sitemap.infrance.fr.txt',
 			},
 			{
 				from: './source/sites/mon-entreprise.fr/sitemap.en.txt',
-				to: 'sitemap.infrance.en.txt'
+				to: 'sitemap.infrance.en.txt',
 			},
 			{
 				from: './source/images',
-				to: 'images'
+				to: 'images',
 			},
 			{
 				from: './source/data',
-				to: 'data'
+				to: 'data',
 			},
 			{
 				from: './source/sites/mon-entreprise.fr/favicon',
-				to: 'favicon'
-			}
-		])
-	]
+				to: 'favicon',
+			},
+		]),
+	],
 }
 
 module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
@@ -82,7 +81,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 			'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
 		filename: 'infrance.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-mycompany-share.png',
-		logo: 'images/logo-mycompany.svg'
+		logo: 'images/logo-mycompany.svg',
 	}),
 	new HTMLPlugin({
 		template: 'index.html',
@@ -95,7 +94,7 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 			'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
 		filename: 'mon-entreprise.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
-		logo: 'images/logo.svg'
+		logo: 'images/logo.svg',
 	}),
 	new HTMLPlugin({
 		template: 'index.html',
@@ -107,6 +106,6 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 			'Un langage de calcul ouvert, lisible en français, contributif pour encoder et publier les sujets de société.',
 		filename: 'publicodes.html',
 		shareImage: 'https://mon-entreprise.fr/images/publicodes.png',
-		logo: 'images/publicodes.png'
-	})
+		logo: 'images/publicodes.png',
+	}),
 ]
