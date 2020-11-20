@@ -158,7 +158,7 @@ function CotisationsResult() {
 			>
 				<Trans>Aides Covid-19</Trans>
 			</h2>
-			<AidesCovid rule="artiste-auteur . réduction de cotisations covid 2020" />
+			<AidesCovid aidesRule="artiste-auteur . réduction de cotisations covid 2020" />
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />
 			</Condition>

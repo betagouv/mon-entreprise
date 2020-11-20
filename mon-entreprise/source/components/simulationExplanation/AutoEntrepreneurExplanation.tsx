@@ -5,6 +5,7 @@ import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
+import AidesCovid from './AidesCovid'
 
 export default function AutoEntrepreneurExplanation() {
 	const engine = useContext(EngineContext)
@@ -42,6 +43,9 @@ export default function AutoEntrepreneurExplanation() {
 					}
 				]}
 			/>
+			<br />
+			<h2>Aides Covid-19</h2>
+			<AidesCovid />
 		</section>
 	)
 }
