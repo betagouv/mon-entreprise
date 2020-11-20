@@ -13,7 +13,8 @@ export default function AidesCovid({ rule }: AidesCovidProps) {
 				<div className="ui__ card box lighter-bg">
 					<h4>Réduction de cotisations</h4>
 					<p className="ui__ notice">
-						Vous pouvez bénéficier de réductions de cotisations exceptionnelles.
+						Vous pouvez bénéficier d'une réduction de vos cotisations
+						définitives sur l'année 2020.
 					</p>
 					<p className="ui__ lead">
 						<Value displayedUnit="€" expression={rule} />
