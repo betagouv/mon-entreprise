@@ -3,22 +3,40 @@ import emoji from 'react-easy-emoji'
 import { DottedName } from 'Rules'
 
 type AidesCovidProps = {
-	rule: DottedName
+	aidesRule?: DottedName
 }
 
-export default function AidesCovid({ rule }: AidesCovidProps) {
+export default function AidesCovid({ aidesRule }: AidesCovidProps) {
 	return (
 		<div className="ui__ box-container">
-			<Condition expression={rule}>
+			{aidesRule && (
+				<Condition expression={aidesRule}>
+					<div className="ui__ card box lighter-bg">
+						<h4>Réduction de cotisations</h4>
+						<p className="ui__ notice">
+							Vous pouvez bénéficier d'une réduction de vos cotisations
+							définitives sur l'année 2020.
+						</p>
+						<p className="ui__ lead">
+							<Value displayedUnit="€" expression={aidesRule} />
+						</p>
+					</div>
+				</Condition>
+			)}
+			<Condition expression={'dirigeant . auto-entrepreneur'}>
 				<div className="ui__ card box lighter-bg">
-					<h4>Réduction de cotisations</h4>
+					<h4>Déduction de chiffre d'affaire</h4>
 					<p className="ui__ notice">
-						Vous pouvez bénéficier d'une réduction de vos cotisations
-						définitives sur l'année 2020.
+						Les conditions et modalités de la réduction "covid" sont présentées
+						sur le site de l'URSSAF.
 					</p>
-					<p className="ui__ lead">
-						<Value displayedUnit="€" expression={rule} />
-					</p>
+					<a
+						className="ui__ small simple button"
+						href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/loi-de-finance-rectificative---r.html"
+						target="_blank"
+					>
+						{emoji('▶')} En savoir plus
+					</a>
 				</div>
 			</Condition>
 			<div className="ui__ card box">
