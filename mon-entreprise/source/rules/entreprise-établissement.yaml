@@ -562,6 +562,24 @@ entreprise . auto entreprise impossible:
 établissement . secteur d'activité covid:
   question: |
     Dispositif de réduction "covid" : votre activité principale relève-t'elle d'un des secteurs suivants ?
+  description: |
+    Les conditions d'éligibilité aux aides "covid" dépendent du secteur
+    d'activité de l'établissement. 
+    
+    Les hôtels, restaurants, bars, etc. sont dans
+    la catégorie dite "S1" et ont le droit aux aides sans autre conditions.
+
+    Les secteurs dont l'activité dépendent de celles du "secteur 1" peuvent
+    aussi bénéficier des aides à condition d'avoir eu une baisse de chiffre
+    d'affaire significative pendant le confinement.
+
+    Enfin les secteurs dits "S2" sont ceux impliquant l'accueil du public, et
+    sont éligibles aux aides à condition d'avoir subit une fermeture
+    administrative.
+
+    Les modalités sont précisées sur le site de l'URSSAF.
+  références:
+    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
   par défaut: non
   formule:
     une possibilité:

@@ -96,10 +96,10 @@ describe('Simulateurs', function() {
 				})
 				it('should not have negative value', () => {
 					cy.contains('€/mois').click()
+					cy.wait(100)
 					cy.get(inputSelector)
 						.first()
-						.clear()
-						.type('5000')
+						.type('{selectall}5000')
 					cy.wait(800)
 					cy.get(inputSelector).each($input => {
 						const val = +$input.val().replace(/[\s,.]/g, '')

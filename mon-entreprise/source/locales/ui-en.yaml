@@ -8,6 +8,7 @@ Accueil: Home
 Afficher la description publicode: Display publicode description
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
+Aides Covid-19: Covid-19 Aids
 Alors: Then
 Année d'activité: Years of activity
 Artiste-auteur: Artist-author
@@ -1315,6 +1316,18 @@ simulateurs:
   explanation:
     CNAPL: It recovers contributions related to your retirement and disability/death
       plan.
+    aides covid:
+      deduction: <0>Deduction of turnover</0><1>The terms and conditions of the
+        "covid" discount are presented on the URSSAF
+        website.</1><2><0>{emoji('▶')}</0> More information</2>
+      portail: <0>Government assistance</0><1>The Ministry of the Economy offers a
+        portal listing business support measures.</1><2><0>{emoji('▶')}</0>
+        Support measures</2>
+      reduction: <0>Contribution reduction</0><1>You can benefit from a reduction in
+        your final contributions for the year 2020.</1><2><0></0></2>
+      soutien: <0>Listening and support</0><1>An <2>initial listening and
+        psychological support unit</2> has been set up for company directors
+        weakened by the crisis.</1><2><0>{emoji('📞')}</0> 08 05 65 50 50</2>
     pamc: <0><0>Your partner institutions</0><1><0><0><0></0></0><1>Contributions
       collected by URSSAF, which are used to finance social security (health
       insurance, family allowances, dependency

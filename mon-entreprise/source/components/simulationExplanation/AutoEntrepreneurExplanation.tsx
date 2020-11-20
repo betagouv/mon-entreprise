@@ -16,6 +16,8 @@ export default function AutoEntrepreneurExplanation() {
 
 	return (
 		<section>
+			<AidesCovid />
+			<br />
 			<h2>
 				<Trans>Répartition du chiffre d'affaires</Trans>
 			</h2>
@@ -43,9 +45,6 @@ export default function AutoEntrepreneurExplanation() {
 					}
 				]}
 			/>
-			<br />
-			<h2>Aides Covid-19</h2>
-			<AidesCovid />
 		</section>
 	)
 }
