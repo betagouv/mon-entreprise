@@ -3,11 +3,11 @@ const { EnvironmentPlugin } = require('webpack')
 
 module.exports = {
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js']
+		extensions: ['.ts', '.tsx', '.js'],
 	},
 	output: {
 		devtoolFallbackModuleFilenameTemplate: '[absolute-resource-path]?[hash]',
-		devtoolModuleFilenameTemplate: '[absolute-resource-path]'
+		devtoolModuleFilenameTemplate: '[absolute-resource-path]',
 	},
 	mode: 'development',
 	module: {
@@ -15,13 +15,13 @@ module.exports = {
 			...commonLoaders(),
 			{
 				test: /\.css$/,
-				use: ['css-loader', 'postcss-loader']
-			}
-		]
+				use: ['css-loader', 'postcss-loader'],
+			},
+		],
 	},
 	plugins: [
 		new EnvironmentPlugin({
-			NODE_ENV: 'test'
-		})
-	]
+			NODE_ENV: 'test',
+		}),
+	],
 }

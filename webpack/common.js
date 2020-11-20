@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-module.exports.styleLoader = styleLoader => ({
+module.exports.styleLoader = (styleLoader) => ({
 	test: /\.css$/,
 	use: [
 		{ loader: styleLoader },
@@ -8,13 +8,13 @@ module.exports.styleLoader = styleLoader => ({
 			loader: 'css-loader',
 			options: {
 				sourceMap: true,
-				importLoaders: 1
-			}
+				importLoaders: 1,
+			},
 		},
 		{
-			loader: 'postcss-loader'
-		}
-	]
+			loader: 'postcss-loader',
+		},
+	],
 })
 
 module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
@@ -29,25 +29,25 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 					{
 						targets: !legacy
 							? {
-									esmodules: true
+									esmodules: true,
 							  }
 							: {
 									esmodules: false,
-									browsers: ['ie 11']
+									browsers: ['ie 11'],
 							  },
 						useBuiltIns: 'entry',
-						corejs: '3'
-					}
-				]
-			]
-		}
+						corejs: '3',
+					},
+				],
+			],
+		},
 	}
 
 	return [
 		{
 			test: /\.(js|ts|tsx)$/,
 			use: babelLoader,
-			exclude: /node_modules|dist/
+			exclude: /node_modules|dist/,
 		},
 		...(file
 			? [
@@ -58,11 +58,11 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 								loader: 'url-loader',
 								options: {
 									limit: 8192,
-									name: 'images/[name].[ext]'
-								}
-							}
-						]
-					}
+									name: 'images/[name].[ext]',
+								},
+							},
+						],
+					},
 			  ]
 			: []),
 		{
@@ -73,30 +73,30 @@ module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
 					options: {
 						name: '[name].[ext]',
 						outputPath: 'fonts',
-						publicPath: '/fonts'
-					}
-				}
-			]
+						publicPath: '/fonts',
+					},
+				},
+			],
 		},
 		{
 			test: /\.yaml$/,
-			use: ['json-loader', 'yaml-loader']
+			use: ['json-loader', 'yaml-loader'],
 		},
 		{
 			test: /\.toml$/,
-			use: ['toml-loader']
+			use: ['toml-loader'],
 		},
 		{
 			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader']
+			use: [babelLoader, 'nearley-loader'],
 		},
 		{
 			test: /\.md$/,
-			use: ['raw-loader']
+			use: ['raw-loader'],
 		},
 		{
 			test: /\.pdf$/,
-			use: ['file-loader']
-		}
+			use: ['file-loader'],
+		},
 	]
 }

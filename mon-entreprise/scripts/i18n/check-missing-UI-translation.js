@@ -3,7 +3,7 @@ const missingTranslationKeys = Object.keys(getUiMissingTranslations())
 if (missingTranslationKeys.length) {
 	throw new Error(`Il manque des traductions UI pour les clés suivantes : ${[
 		'',
-		...missingTranslationKeys
+		...missingTranslationKeys,
 	].join('\n\t- ')}
 Utilisez la commande suivante pour traduire automatiquement les clés manquantes :
 

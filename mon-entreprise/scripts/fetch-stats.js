@@ -12,7 +12,7 @@ const querystring = require('querystring')
 const { createDataDir, writeInDataDir } = require('./utils.js')
 const R = require('ramda')
 
-const apiURL = params => {
+const apiURL = (params) => {
 	const query = querystring.stringify({
 		period: 'month',
 		date: 'last1',
@@ -23,7 +23,7 @@ const apiURL = params => {
 		language: 'fr',
 		apiAction: 'get',
 		token_auth: process.env.MATOMO_TOKEN,
-		...params
+		...params,
 	})
 	return `https://stats.data.gouv.fr/index.php?${query}`
 }
@@ -36,7 +36,7 @@ async function main() {
 		dailyVisits: await fetchDailyVisits(),
 		statusChosen: await fetchStatusChosen(),
 		feedback: await fetchFeedback(),
-		channelType: await fetchChannelType()
+		channelType: await fetchChannelType(),
 	}
 	writeInDataDir('stats.json', stats)
 }
@@ -53,7 +53,7 @@ function xMonthAgo(x = 0) {
 }
 
 async function fetchSimulatorsMonth() {
-	const getDataFromXMonthAgo = async x => {
+	const getDataFromXMonthAgo = async (x) => {
 		const date = xMonthAgo(x)
 		return { date, visites: await fetchSimulators(`${date}-01`) }
 	}
@@ -62,25 +62,25 @@ async function fetchSimulatorsMonth() {
 		oneMonthAgo: await getDataFromXMonthAgo(1),
 		twoMonthAgo: await getDataFromXMonthAgo(2),
 		threeMonthAgo: await getDataFromXMonthAgo(3),
-		fourMonthAgo: await getDataFromXMonthAgo(4)
+		fourMonthAgo: await getDataFromXMonthAgo(4),
 	}
 }
 
 async function fetchSimulators(dt) {
 	async function fetchSubTableData(data, label) {
-		const subTable = data.find(page => page.label === label)
+		const subTable = data.find((page) => page.label === label)
 		if (!subTable) {
 			console.log('No subtable for ' + label + ' for the period ' + dt + '.')
 			return []
 		}
-		
+
 		const response = await fetch(
 			apiURL({
 				date: `${dt}`,
 				method: 'Actions.getPageUrls',
 				search_recursive: 1,
 				filter_limits: -1,
-				idSubtable: subTable.idsubdatatable
+				idSubtable: subTable.idsubdatatable,
 			})
 		)
 		return await response.json()
@@ -91,21 +91,31 @@ async function fetchSimulators(dt) {
 				period: 'month',
 				date: `${dt}`,
 				method: 'Actions.getPageUrls',
-				filter_limits: -1
+				filter_limits: -1,
 			})
 		)
 		const firstLevelData = await response.json()
 
 		const coronavirusPage = firstLevelData.find(
-			page => page.label === '/coronavirus'
+			(page) => page.label === '/coronavirus'
 		)
 
 		// Visits on simulators pages
-		const dataSimulateurs = await fetchSubTableData(firstLevelData, 'simulateurs')
+		const dataSimulateurs = await fetchSubTableData(
+			firstLevelData,
+			'simulateurs'
+		)
 		const dataGérer = await fetchSubTableData(firstLevelData, 'gérer')
-		const dataProfessionLiberale = await fetchSubTableData(dataSimulateurs, 'profession-liberale')
+		const dataProfessionLiberale = await fetchSubTableData(
+			dataSimulateurs,
+			'profession-liberale'
+		)
 
-		const resultSimulateurs = [...dataSimulateurs, ...dataProfessionLiberale, ...dataGérer]
+		const resultSimulateurs = [
+			...dataSimulateurs,
+			...dataProfessionLiberale,
+			...dataGérer,
+		]
 			.filter(({ label }) =>
 				[
 					'/salaire-brut-net',
@@ -124,40 +134,40 @@ async function fetchSimulators(dt) {
 					'/chirugien-dentiste',
 					'/avocat',
 					'/expert-comptable',
-					'/économie-collaborative'
+					'/économie-collaborative',
 				].includes(label)
 			)
 
 			/// Two '/salarié' pages are reported on Matomo, one of which has very few
 			/// visitors. We delete it manually.
 			.filter(
-				x =>
+				(x) =>
 					x.label != '/salarié' ||
 					x.nb_visits !=
 						dataSimulateurs
-							.filter(x => x.label == '/salarié')
+							.filter((x) => x.label == '/salarié')
 							.reduce((a, b) => Math.min(a, b.nb_visits), 1000)
 			)
 
-
-		const resultIframes = (await fetchSubTableData(firstLevelData, 'iframes'))
-			.filter(x =>
-				[
-					'/simulateur-embauche',
-					'/simulateur-autoentrepreneur',
-					'/simulateur-assimilesalarie',
-					'/simulateur-artiste-auteur',
-					'/simulateur-independant',
-					'/demande-mobilite',
-					'/profession-liberale',
-					'/medecin',
-					'/auxiliaire-medical',
-					'/sage-femme',
-					'/chirugien-dentiste',
-					'/avocat',
-					'/expert-comptable',
-				].some(path => x.label.startsWith(path))
-			)
+		const resultIframes = (
+			await fetchSubTableData(firstLevelData, 'iframes')
+		).filter((x) =>
+			[
+				'/simulateur-embauche',
+				'/simulateur-autoentrepreneur',
+				'/simulateur-assimilesalarie',
+				'/simulateur-artiste-auteur',
+				'/simulateur-independant',
+				'/demande-mobilite',
+				'/profession-liberale',
+				'/medecin',
+				'/auxiliaire-medical',
+				'/sage-femme',
+				'/chirugien-dentiste',
+				'/avocat',
+				'/expert-comptable',
+			].some((path) => x.label.startsWith(path))
+		)
 
 		const groupSimulateursIframesVisits = ({ label }) =>
 			label.startsWith('/coronavirus')
@@ -210,7 +220,7 @@ const visitsIn2019 = {
 	'2019-09': 178474,
 	'2019-10': 198260,
 	'2019-11': 174515,
-	'2019-12': 116305
+	'2019-12': 116305,
 }
 
 async function fetchMonthlyVisits() {
@@ -219,7 +229,7 @@ async function fetchMonthlyVisits() {
 			apiURL({
 				period: 'month',
 				date: 'previous12',
-				method: 'VisitsSummary.getUniqueVisitors'
+				method: 'VisitsSummary.getUniqueVisitors',
 			})
 		)
 		const data = await response.json()
@@ -239,13 +249,13 @@ async function fetchDailyVisits() {
 			apiURL({
 				period: 'day',
 				date: 'previous30',
-				method: 'VisitsSummary.getUniqueVisitors'
+				method: 'VisitsSummary.getUniqueVisitors',
 			})
 		)
 		const data = await response.json()
 		return Object.entries(data).map(([date, visiteurs]) => ({
 			date,
-			visiteurs
+			visiteurs,
 		}))
 	} catch (e) {
 		console.log('fail to fetch Daily Visits')
@@ -259,7 +269,7 @@ async function fetchStatusChosen() {
 			apiURL({
 				method: 'Events.getAction',
 				label: 'status chosen',
-				date: 'previous1'
+				date: 'previous1',
 			})
 		)
 		const data = await response.json()
@@ -267,13 +277,13 @@ async function fetchStatusChosen() {
 			apiURL({
 				method: 'Events.getNameFromActionId',
 				idSubtable: Object.values(data)[0][0].idsubdatatable,
-				date: 'previous1'
+				date: 'previous1',
 			})
 		)
 		const data2 = await response2.json()
 		const result = Object.values(data2)[0].map(({ label, nb_visits }) => ({
 			label,
-			nb_visits
+			nb_visits,
 		}))
 		return result
 	} catch (e) {
@@ -288,14 +298,14 @@ async function fetchFeedback() {
 			apiURL({
 				method: 'Events.getCategory',
 				label: 'Feedback &gt; @rate%20page%20usefulness',
-				date: 'previous5'
+				date: 'previous5',
 			})
 		)
 		const APIsimulator = await fetch(
 			apiURL({
 				method: 'Events.getCategory',
 				label: 'Feedback &gt; @rate%20simulator',
-				date: 'previous5'
+				date: 'previous5',
 			})
 		)
 		const feedbackcontent = await APIcontent.json()
@@ -315,7 +325,7 @@ async function fetchFeedback() {
 		}
 		return {
 			content: Math.round(content * 10),
-			simulator: Math.round(simulator * 10)
+			simulator: Math.round(simulator * 10),
 		}
 	} catch (e) {
 		console.log('fail to fetch feedbacks')
@@ -329,23 +339,23 @@ async function fetchChannelType() {
 			apiURL({
 				period: 'month',
 				date: 'last6',
-				method: 'Referrers.getReferrerType'
+				method: 'Referrers.getReferrerType',
 			})
 		)
 
 		const data = await response.json()
 
 		const result = R.map(
-			date =>
+			(date) =>
 				date
-					.filter(x =>
+					.filter((x) =>
 						['Sites web', 'Moteurs de recherche', 'Entrées directes'].includes(
 							x.label
 						)
 					)
 					.map(({ label, nb_visits }) => ({
 						label,
-						nb_visits
+						nb_visits,
 					})),
 			data
 		)
@@ -355,7 +365,7 @@ async function fetchChannelType() {
 			oneMonthAgo: { date: dates[1], visites: result[dates[1]] },
 			twoMonthAgo: { date: dates[2], visites: result[dates[2]] },
 			threeMonthAgo: { date: dates[3], visites: result[dates[3]] },
-			fourMonthAgo: { date: dates[4], visites: result[dates[4]] }
+			fourMonthAgo: { date: dates[4], visites: result[dates[4]] },
 		}
 	} catch (e) {
 		console.log('fail to fetch channel type')

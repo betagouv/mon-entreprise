@@ -5,7 +5,7 @@ var prettier = require('prettier')
 const {
 	getRulesMissingTranslations,
 	rulesTranslationPath,
-	fetchTranslation
+	fetchTranslation,
 } = require('./utils')
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
@@ -26,12 +26,12 @@ fs.writeFileSync(
 		})
 	)
 
-	prettier.resolveConfig(rulesTranslationPath).then(options => {
+	prettier.resolveConfig(rulesTranslationPath).then((options) => {
 		const formattedYaml = prettier.format(
 			stringify(resolved, { sortMapEntries: true }),
 			{
 				...options,
-				parser: 'yaml'
+				parser: 'yaml',
 			}
 		)
 		fs.writeFileSync(rulesTranslationPath, formattedYaml)

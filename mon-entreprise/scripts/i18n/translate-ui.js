@@ -5,7 +5,7 @@ var fs = require('fs')
 const {
 	getUiMissingTranslations,
 	UiTranslationPath,
-	fetchTranslation
+	fetchTranslation,
 } = require('./utils')
 
 const missingTranslations = getUiMissingTranslations()
