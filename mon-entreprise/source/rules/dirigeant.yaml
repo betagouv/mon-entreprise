@@ -516,7 +516,19 @@ dirigeant . indépendant . cotisations et contributions . aides covid 2020:
     crise du Coronavirus.
   formule:
     somme:
+      - aide indépendant covid 2020
       - PL . CIPAV . retraite complémentaire . réduction COVID . montant
+
+dirigeant . indépendant . cotisations et contributions . aide indépendant covid 2020:
+  formule:
+    variations:
+      - si: 
+          une de ces conditions:
+            - établissement . secteur d'activité covid = 'S1'
+            - établissement . secteur d'activité covid = 'S1-bis'
+        alors: (- 2400 €/an)
+      - si: établissement . secteur d'activité covid = 'S2'
+        alors: (- 1800 €/an)
 
 dirigeant . indépendant . revenu net de cotisations:
   synonymes:
@@ -751,12 +763,15 @@ dirigeant . indépendant . cotisations et contributions:
     C'est le montant total dû par l'indépendant au titre des cotisations et
     contributions obligatoires.
 
+    Ce montant inclut la réduction de cotisation "covid" en 2020.
+
   formule:
     somme:
       - cotisations
       - CSG et CRDS
       - contributions spéciales
       - formation professionnelle
+      - aide indépendant covid 2020
   note: |
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
