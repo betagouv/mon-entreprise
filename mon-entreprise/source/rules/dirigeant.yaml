@@ -529,6 +529,8 @@ dirigeant . indépendant . cotisations et contributions . aide indépendant covi
         alors: (- 2400 €/an)
       - si: établissement . secteur d'activité covid = 'S2'
         alors: (- 1800 €/an)
+  références:
+    Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
 
 dirigeant . indépendant . revenu net de cotisations:
   synonymes:

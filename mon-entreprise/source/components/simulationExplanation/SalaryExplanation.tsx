@@ -7,7 +7,6 @@ import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
 import * as Animate from 'Components/ui/animate'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 

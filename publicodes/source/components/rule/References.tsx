@@ -1,11 +1,11 @@
 import { toPairs } from 'ramda'
-import React from 'react'
 import { capitalise0 } from '../../utils'
 import styled from 'styled-components'
 
 const references = {
 	'service-public.fr': require('url-loader!./références/marianne.png').default,
 	'urssaf.fr': require('url-loader!./références/URSSAF.png').default,
+	'secu-independants.fr': require('url-loader!./références/URSSAF.png').default,
 	'gouv.fr': require('url-loader!./références/marianne.png').default,
 	'agirc-arrco.fr': require('url-loader!./références/agirc-arrco.png').default,
 	'pole-emploi.fr': require('url-loader!./références/pole-emploi.png').default,

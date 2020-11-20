@@ -151,13 +151,7 @@ function CotisationsResult() {
 					/>
 				</ResultLine>
 			</div>
-			<h2
-				css={`
-					margin-top: 4rem;
-				`}
-			>
-				<Trans>Aides Covid-19</Trans>
-			</h2>
+			<br />
 			<AidesCovid aidesRule="artiste-auteur . réduction de cotisations covid 2020" />
 			<Condition expression="artiste-auteur . cotisations">
 				<RepartitionCotisations />

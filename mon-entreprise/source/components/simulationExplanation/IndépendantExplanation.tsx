@@ -30,7 +30,6 @@ export default function IndépendantExplanation() {
 			<Condition expression="entreprise . catégorie d'activité . libérale règlementée">
 				<PLExplanation />
 			</Condition>
-			<h2>Aides Covid-19</h2>
 			<AidesCovid aidesRule="dirigeant . indépendant . cotisations et contributions . aides covid 2020" />
 			<Condition expression="revenu net après impôt > 0 €/an">
 				<section>
