@@ -1,5 +1,5 @@
 import convert from 'color-convert'
-import React, { createContext, useEffect, useRef } from 'react'
+import React, { createContext, useContext, useEffect, useRef } from 'react'
 
 /*
 	Hex to RGB conversion:
@@ -55,9 +55,9 @@ const deriveAnalogousPalettes = (hex: string) => {
 	]
 }
 
-const generateTheme = (themeColor?: string) => {
+export const generateTheme = (themeColor: string) => {
 	const // Use the default theme color if the host page hasn't made a choice
-		color = themeColor || '#2975D1',
+		color = themeColor,
 		lightColor = lightenColor(color, 10),
 		darkColor = lightenColor(color, -20),
 		lighterColor = lightenColor(color, 45),
@@ -90,9 +90,13 @@ const generateTheme = (themeColor?: string) => {
 	}
 }
 
+const defaultColor = '#2975D1'
+
 export type ThemeColors = ReturnType<typeof generateTheme>
 
-export const ThemeColorsContext = createContext<ThemeColors>(generateTheme())
+export const ThemeColorsContext = createContext<ThemeColors>(
+	generateTheme(defaultColor)
+)
 
 type ProviderProps = {
 	color?: string
@@ -100,7 +104,7 @@ type ProviderProps = {
 }
 
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
-	const colors = generateTheme(color)
+	const colors = generateTheme(color ?? useContext(ThemeColorsContext).color)
 	const divRef = useRef<HTMLDivElement>(null)
 	useEffect(() => {
 		Object.entries(colors).forEach(([key, value]) => {

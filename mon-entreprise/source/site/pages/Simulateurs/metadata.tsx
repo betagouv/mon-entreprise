@@ -32,6 +32,7 @@ import IndépendantSimulation, {
 	IndépendantPLSimulation,
 } from './IndépendantSimulation'
 import SalariéSimulation from './SalariéSimulation'
+import ISSimulation from './ISSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
 
@@ -54,6 +55,7 @@ const simulateurs = [
 	'avocat',
 	'expert-comptable',
 	'pamc',
+	'is',
 ] as const
 
 export type SimulatorData = Record<
@@ -65,6 +67,7 @@ export type SimulatorData = Record<
 			ogTitle?: string
 			ogDescription?: string
 			ogImage?: string
+			color?: string
 		}
 		icône: string
 		shortName: string
@@ -741,6 +744,58 @@ export function getSimulatorsData({
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
 			component: PAMCHome,
+		},
+		is: {
+			icône: '🗓',
+			path: sitePaths.simulateurs.is,
+			iframe: 'impot-societe',
+			meta: {
+				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
+				description: t(
+					'pages.simulateurs.pamc.meta.description',
+					'Calculez votre impôt sur les sociétés'
+				),
+				color: '#E71D66',
+			},
+			shortName: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
+			title: t(
+				'pages.simulateurs.is.meta.title',
+				"Simulateur d'impôt sur les sociétés"
+			),
+			component: ISSimulation,
+			seoExplanations: (
+				<Trans i18nKey="pages.simulateurs.is.seo">
+					<h2>Comment est calculé l’impôt sur les sociétés ?</h2>
+					<p>
+						L’impôt sur les sociétés s’applique aux bénéfices réalisés par les
+						sociétés de capitaux (SA, SAS, SASU, SARL, etc.) et sur option
+						facultative pour certaines autres sociétés (EIRL, EURL, SNC, etc.).
+					</p>
+					<p>
+						Il est calculé sur la base des bénéfices réalisés en France au cours
+						de l’exercice comptable. La durée d’un exercice est normalement d’un
+						an mais il peut être plus court ou plus long (notamment en début
+						d’activité ou à la dissolution de l’entreprise). Dans ce cas le
+						barème de l’impôt est pro-ratisé en fonction de la durée de
+						l’exercice, ce qui est pris en compte dans le simulateur en
+						modifiant les dates de début et de fin de l’exercice.
+					</p>
+					<h2>Taux réduit et régimes spécifiques</h2>
+					<p>
+						Les PME réalisant moins de 7,63 millions d’euros de chiffre
+						d’affaire et dont le capital est détenu à 75% par des personnes
+						physiques bénéficient d’un taux réduit d’impôt sur les sociétés. Ce
+						taux est pris en compte sur le simulateur et il n’est pour l’instant
+						pas possible de simuler l’inéligibilité aux taux réduits.
+					</p>
+					<p>
+						Enfin il existe des régimes d’impositions spécifiques avec des taux
+						dédiés pour certains types de plus-values (cession de titres,
+						cession de brevets). Ces régimes ne sont pas intégrés dans le
+						simulateur.
+					</p>
+				</Trans>
+			),
 		},
 	}
 }

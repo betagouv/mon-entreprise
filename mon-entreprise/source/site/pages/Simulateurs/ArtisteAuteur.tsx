@@ -1,106 +1,41 @@
-import { setSimulationConfig, updateSituation } from 'Actions/actions'
-import RuleInput from 'Components/conversation/RuleInput'
+import { setSimulationConfig } from 'Actions/actions'
 import { DistributionBranch } from 'Components/Distribution'
 import Value, { Condition } from 'Components/EngineValue'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import AidesCovid from 'Components/simulationExplanation/AidesCovid'
+import { SimulationGoal, SimulationGoals } from 'Components/SimulationGoals'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import { UNSAFE_isNotApplicable } from 'publicodes'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
 
-const InitialRenderContext = createContext(false)
-function useInitialRender() {
-	const [initialRender, setInitialRender] = useState(true)
-	useEffect(() => {
-		setInitialRender(false)
-	}, [])
-	return initialRender
-}
-
 export default function ArtisteAuteur() {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(setSimulationConfig(config))
 	}, [])
-	const initialRender = useInitialRender()
 
 	return (
 		<>
 			<SimulateurWarning simulateur="artiste-auteur" />
-			<section className="ui__ light card">
-				<div id="targetSelection">
-					<ul className="targets">
-						<InitialRenderContext.Provider value={initialRender}>
-							<SimpleField dottedName="artiste-auteur . revenus . traitements et salaires" />
-							<SimpleField dottedName="artiste-auteur . revenus . BNC . recettes" />
-							<SimpleField dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
-							<Warning dottedName="artiste-auteur . revenus . BNC . contrôle micro-bnc" />
-							<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
-								<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
-							</Condition>
-							<SimpleField dottedName="artiste-auteur . cotisations . option surcotisation" />
-						</InitialRenderContext.Provider>
-					</ul>
-				</div>
-			</section>
+			<SimulationGoals className="light">
+				<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
+				<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
+				<SimulationGoal dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
+				<Warning dottedName="artiste-auteur . revenus . BNC . contrôle micro-bnc" />
+				<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
+					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
+				</Condition>
+				<SimulationGoal dottedName="artiste-auteur . cotisations . option surcotisation" />
+			</SimulationGoals>
 			<CotisationsResult />
 		</>
-	)
-}
-
-type SimpleFieldProps = {
-	dottedName: DottedName
-}
-
-function SimpleField({ dottedName }: SimpleFieldProps) {
-	const dispatch = useDispatch()
-	const engine = useEngine()
-	const situation = useSelector(situationSelector)
-	const isNotApplicable = UNSAFE_isNotApplicable(engine, dottedName)
-	const evaluation = engine.evaluate(dottedName)
-	const rule = engine.getRule(dottedName)
-	const initialRender = useContext(InitialRenderContext)
-	if (
-		isNotApplicable === true ||
-		(!(dottedName in situation) &&
-			evaluation.nodeValue === false &&
-			!(dottedName in evaluation.missingVariables))
-	) {
-		return null
-	}
-
-	return (
-		<li>
-			<Animate.appear unless={initialRender}>
-				<div className="main">
-					<div className="header">
-						<label htmlFor={dottedName}>
-							<span className="optionTitle">
-								{rule.rawNode.question || rule.title}
-							</span>
-							<p className="ui__ notice">{rule.rawNode.résumé}</p>
-						</label>
-					</div>
-					<div className="targetInputOrValue">
-						<RuleInput
-							className="targetInput"
-							isTarget
-							dottedName={dottedName}
-							onChange={(x) => dispatch(updateSituation(dottedName, x))}
-							useSwitch
-						/>
-					</div>
-				</div>
-			</Animate.appear>
-		</li>
 	)
 }
 

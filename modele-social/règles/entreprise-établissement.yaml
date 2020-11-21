@@ -112,25 +112,146 @@ entreprise . imposition . IS . notification IS non intégré:
     le calcul de l'impôt sur le revenu.
 
 entreprise . bénéfice:
+  titre: Bénéfice de l'exercice
+  résumé: Imposable à l'impôt sur les sociétés
   formule: chiffre d'affaires - charges dont rémunération dirigeant
 
 entreprise . résultat net:
   résumé: Ce qu'il reste après impôt sur les sociétés
   formule: bénéfice - impôt sur les sociétés
 
+entreprise . exercice:
+
+entreprise . exercice . début:
+  type: date
+  par défaut: 01/01/2020
+
+entreprise . exercice . fin:
+  type: date
+  par défaut: 31/12/2020
+
+entreprise . exercice . durée:
+  titre: durée de l'exercice
+  formule:
+    durée:
+      depuis: début
+      jusqu'à: fin
+
+entreprise . exercice . date trop ancienne:
+  type: notification
+  sévérité: avertissement
+  formule: début < 01/01/2018
+  description: La date saisie est trop ancienne. Le simulateur n'intègre pas les barèmes avant 2018.
+
+entreprise . exercice . date trop éloignée:
+  type: notification
+  sévérité: avertissement
+  formule: fin > 31/12/2022
+  description: La date saisie est trop éloignée. Le simulateur n'intègre pas les barèmes au delà de 2022.
+
+entreprise . exercice . début après la fin:
+  type: notification
+  sévérité: avertissement
+  formule: début >= fin
+  description: La fin de l'exercice doit être postérieure à son début.
+
+entreprise . exercice . durée maximale:
+  type: notification
+  sévérité: avertissement
+  formule: durée >= 24 mois
+  description: La durée maximale d'un exercice comptable est de 24 mois.
+
 entreprise . impôt sur les sociétés:
   unité: €/an
   formule:
     barème:
       assiette: bénéfice
-      tranches:
-        - taux: 15%
-          plafond: 38120 €/an
-        - taux: 28%
-          plafond: 500000 €/an
-        - taux: 33.3%
+      multiplicateur: prorata temporis
+      variations:
+        - si: exercice . début >= 01/01/2022
+          alors:
+            tranches:
+              - taux: 15%
+                plafond: plafond taux réduit 1
+              - taux: 25%
+        - si: exercice . début >= 01/01/2021
+          alors:
+            tranches:
+              - taux: 15%
+                plafond: plafond taux réduit 1
+              - taux: 26.5%
+        - si: exercice . début >= 01/01/2020
+          alors:
+            tranches:
+              - taux: 15%
+                plafond: plafond taux réduit 1
+              - taux: 28%
+        - si: exercice . début >= 01/01/2019
+          alors:
+            tranches:
+              - taux: 15%
+                plafond: plafond taux réduit 1
+              - taux: 28%
+                plafond: plafond taux réduit 2
+              - taux: 31%
+        - si: exercice . début >= 01/01/2018
+          alors:
+            tranches:
+              - taux: 15%
+                plafond: plafond taux réduit 1
+              - taux: 28%
+                plafond: plafond taux réduit 2
+              - taux: 33.3333%
+    arrondi: oui
   références:
-    fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+
+entreprise . impôt sur les sociétés . plafond taux réduit 1:
+  applicable si: éligible taux réduit
+  valeur: 38120 €/an
+
+entreprise . impôt sur les sociétés . plafond taux réduit 2:
+  applicable si: éligible taux réduit
+  valeur: 500000 €/an
+
+entreprise . impôt sur les sociétés . éligible taux réduit:
+  formule:
+    toutes ces conditions:
+      - chiffre d'affaires <= 7630 k€/an * prorata temporis
+      - nom: capital détenu au moins à 75 pourcents par des personnes physiques
+        valeur: oui
+
+entreprise . impôt sur les sociétés . prorata temporis:
+  description: |
+    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+  unité: '%'
+  formule: exercice . durée / 1 an
+  # TODO: c'est un peu plus subtil que cela : « En cas d’exercice ouvert ou
+  # arrêté en cours de mois calendaire, le nombre de jours résiduels concourt à
+  # la détermination du rapport pour un montant égal au rapport existant entre
+  # ce nombre et 30. »
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
+    
+entreprise . impôt sur les sociétés . contribution sociale:
+  description: |
+    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
+    sur les sociétés. Son montant n'est pas déductible des résultats.
+
+    L’assiette bénéficie d’un abattement important, et seules les entreprises
+    réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par
+    cette contribution. 
+  formule:
+    produit:
+      taux: 3.3%
+      assiette: 
+        allègement:
+          assiette: impôt sur les sociétés
+          abattement: 763000 €/an * prorata temporis
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
 entreprise . charges dont rémunération dirigeant:
   formule: charges + dirigeant . rémunération totale

@@ -11,7 +11,7 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
-import { getUnitKey } from './units'
+import { formatUnit, getUnitKey } from './units'
 
 const emptyCache = () => ({
 	_meta: { ruleStack: [] },
@@ -60,6 +60,7 @@ export type Logger = {
 type Options = {
 	logger: Logger
 	getUnitKey?: getUnitKey
+	formatUnit?: formatUnit
 }
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,

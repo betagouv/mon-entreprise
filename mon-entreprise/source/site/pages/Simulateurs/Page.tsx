@@ -1,4 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
+import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
 import { default as React, useContext, useEffect } from 'react'
@@ -41,8 +42,11 @@ export default function SimulateurPage({
 					)}
 				</>
 			)}
-			<Component />
-			{seoExplanations && !inIframe && seoExplanations}
+
+			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
+				<Component />
+				{seoExplanations && !inIframe && seoExplanations}
+			</ThemeColorsProvider>
 		</>
 	)
 }
