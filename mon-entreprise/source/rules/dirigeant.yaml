@@ -580,7 +580,6 @@ dirigeant . indépendant . revenu professionnel:
         - revenu net après impôt
         - entreprise . chiffre d'affaires
         - entreprise . chiffre d'affaires minimum
-      valeurs négatives possibles: oui
     arrondi: oui
 
 dirigeant . indépendant . assiette des cotisations:
