@@ -34,7 +34,7 @@ exports[`calculate aide-déclaration-indépendant: conjoint collaborateur 5`] = 
 
 exports[`calculate aide-déclaration-indépendant: débit de tabac 1`] = `"[50000,3177,5672,101,8950,41050]"`;
 
-exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14610,101,14711,35289]"`;
+exports[`calculate aide-déclaration-indépendant: international 1`] = `"[50000,0,14612,101,14713,35287]"`;
 
 exports[`calculate aide-déclaration-indépendant: international 2`] = `"[50000,1267,11893,101,13261,36739]"`;
 
@@ -160,7 +160,7 @@ exports[`calculate simulations-indépendant: inversions 6`] = `"[19000,5928,1307
 
 exports[`calculate simulations-indépendant: inversions 7`] = `"[18000,5625,12375,12861,0,12375,2000,20000]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1858,1358,500,548,0,500,0,1858]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 1`] = `"[1859,1359,500,548,0,500,0,1859]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 2`] = `"[2467,1467,1000,1064,0,1000,0,2467]"`;
 
@@ -170,7 +170,7 @@ exports[`calculate simulations-indépendant: échelle de revenus 4`] = `"[3682,1
 
 exports[`calculate simulations-indépendant: échelle de revenus 5`] = `"[7428,2428,5000,5199,0,5000,0,7428]"`;
 
-exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14595,4595,10000,10393,0,10000,0,14595]"`;
+exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14596,4596,10000,10394,0,10000,0,14596]"`;
 
 exports[`calculate simulations-indépendant: échelle de revenus 7`] = `"[139595,39595,100000,103788,24909,75091,0,139595]"`;
 
@@ -196,11 +196,11 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] =
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] = `"[30000,0,8077,21923,932,20991]"`;
 
-exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61784,238217,81297,156920]"`;
+exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61784,238216,81297,156919]"`;
 
-exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,11410,38590,4753,33837]"`;
+exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,11410,38589,4753,33836]"`;
 
-exports[`calculate simulations-professions-libérales: avocat 2`] = `"[50000,0,11770,38229,4711,33518]"`;
+exports[`calculate simulations-professions-libérales: avocat 2`] = `"[50000,0,11770,38230,4711,33519]"`;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,5042,14958,0,14958]"`;
 
@@ -210,7 +210,7 @@ exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0
 
 exports[`calculate simulations-professions-libérales: médecin 2`] = `"[50000,0,20229,29771,2334,27437]"`;
 
-exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,86481,213520,73147,140373]"`;
+exports[`calculate simulations-professions-libérales: médecin 3`] = `"[300000,0,86481,213519,73147,140372]"`;
 
 exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,0,106201,293799,115768,178031]"`;
 
@@ -254,7 +254,7 @@ Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . no
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
-"[1893,0,0,21948,4,40]
+"[1893,0,0,21947,4,40]
 Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
 `;
 
@@ -286,9 +286,9 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): av
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 1`] = `"[0,0,0,0,0,0]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,0,0,140,0,1]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 2`] = `"[14,0,0,139,0,1]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 3`] = `"[62,0,0,323,0,2]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 3`] = `"[62,0,0,324,0,2]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 4`] = `"[204,0,0,2591,2,5]"`;
 
@@ -298,7 +298,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): é
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 7`] = `"[2341,0,0,27089,4,46]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4758,0,0,52757,4,46]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4758,0,0,52758,4,46]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
 "[0,0,806,2046,2,0]
@@ -603,7 +603,7 @@ exports[`calculate simulations-salarié: frais pro - IKV 1`] = `"[4367,0,3200,25
 
 exports[`calculate simulations-salarié: frais pro - IKV 2`] = `"[4346,0,3200,2511,2314]"`;
 
-exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2764,0,2152,1681,1630]"`;
+exports[`calculate simulations-salarié: frais pro - IKV 3`] = `"[2764,0,2151,1681,1630]"`;
 
 exports[`calculate simulations-salarié: frais pro - titres restaurant 1`] = `"[2519,0,2000,1521,1487]"`;
 

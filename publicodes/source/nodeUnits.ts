@@ -12,7 +12,7 @@ export function simplifyNodeUnit(node) {
 }
 
 export function convertNodeToUnit<Names extends string>(
-	to: Unit,
+	to: Unit | undefined,
 	node: EvaluatedNode<Names, number>
 ) {
 	const temporalValue =

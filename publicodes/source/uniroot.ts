@@ -45,7 +45,8 @@ export default function uniroot(
 		newStep: number, // Step at this iteration
 		prevStep: number, // Distance from the last but one to the last approximation
 		p: number, // Interpolation step is calculated in the form p/q; division is delayed until the last moment
-		q: number
+		q: number,
+		fallback: number | undefined = undefined
 
 	while (maxIter-- > 0) {
 		prevStep = b - a
@@ -108,8 +109,10 @@ export default function uniroot(
 		if ((fb > 0 && fc > 0) || (fb < 0 && fc < 0)) {
 			;(c = a), (fc = fa) // Adjust c for it to have a sign opposite to that of b
 		}
+
+		if (Math.abs(fb) < acceptableErrorTol) {
+			fallback = b
+		}
 	}
-	if (Math.abs(fb) < acceptableErrorTol) {
-		return b
-	}
+	return fallback
 }
