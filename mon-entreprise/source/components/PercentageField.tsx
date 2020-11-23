@@ -2,9 +2,16 @@ import { formatValue } from 'publicodes'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { debounce as debounceFn } from '../utils'
+import { InputCommonProps } from './conversation/RuleInput'
 import './PercentageField.css'
 
-export default function PercentageField({ onChange, value, debounce = 0 }) {
+type PercentageFieldProps = InputCommonProps & { debounce: number }
+
+export default function PercentageField({
+	onChange,
+	value,
+	debounce = 0
+}: PercentageFieldProps) {
 	const [localValue, setLocalValue] = useState(value)
 	const debouncedOnChange = useCallback(
 		debounce ? debounceFn(debounce, onChange) : onChange,

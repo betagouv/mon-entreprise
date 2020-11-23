@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
+import { InputCommonProps } from './RuleInput'
 
 export default function ParagrapheInput({
 	onChange,
-	dottedName,
 	value,
 	id,
 	defaultValue,
 	autoFocus
-}) {
+}: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (

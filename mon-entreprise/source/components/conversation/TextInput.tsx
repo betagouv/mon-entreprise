@@ -1,15 +1,14 @@
-import { ThemeColorsContext } from 'Components/utils/colors'
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 import { debounce } from '../../utils'
+import { InputCommonProps } from './RuleInput'
 
 export default function TextInput({
 	onChange,
-	dottedName,
 	value,
 	id,
 	defaultValue,
 	autoFocus
-}) {
+}: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (

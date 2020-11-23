@@ -6,7 +6,7 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
-import PDFDocument from './PDFDocument'
+import PDFDocument, { PDFDocumentProps } from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()
 type SignaturePadInstance = {
@@ -14,7 +14,12 @@ type SignaturePadInstance = {
 	toDataURL: () => string
 }
 
-export default function EndBlock({ fields, isMissingValues }) {
+type EndBlockProps = {
+	fields: PDFDocumentProps['fields']
+	isMissingValues: boolean
+}
+
+export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
 	const [showDownloadLink, toggleDownloadLink] = useState(false)
@@ -196,7 +201,7 @@ const LazyBlobProvider = lazy<typeof BlobProvider>(
 // From https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
 function isOnTouchDevice() {
 	const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ')
-	const mq = function(query) {
+	const mq = function(query: string) {
 		return window.matchMedia(query).matches
 	}
 	if (

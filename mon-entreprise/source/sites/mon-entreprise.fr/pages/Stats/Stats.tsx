@@ -19,7 +19,6 @@ import {
 	XAxis,
 	YAxis
 } from 'recharts'
-import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent'
 import styled from 'styled-components'
 import statsJson from '../../../../data/stats.json'
 import { capitalise0 } from '../../../../utils'
@@ -385,17 +384,11 @@ const CustomTooltip = ({
 		return null
 	}
 	return (
-		<DefaultTooltipContent
-			payload={[
-				{
-					value: formatDate(payload[0].payload.date, periodicity)
-				},
-				{
-					value: formatValue(payload[0].payload.visiteurs),
-					unit: ' visiteurs'
-				}
-			]}
-		/>
+		<p className="ui__ card">
+			<strong>{formatValue(payload[0].payload.visiteurs)} visites</strong>
+			<br />
+			{formatDate(payload[0].payload.date, periodicity)}
+		</p>
 	)
 }
 

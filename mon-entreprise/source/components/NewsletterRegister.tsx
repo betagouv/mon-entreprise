@@ -14,7 +14,7 @@ const formInfos = {
 }
 
 export default function NewsletterRegister() {
-	const [userIsRegistered, setUserIsRegistered] = usePersistingState(
+	const [userIsRegistered, setUserIsRegistered] = usePersistingState<boolean>(
 		'app::newsletter::registered',
 		false
 	)

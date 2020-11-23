@@ -1,8 +1,9 @@
+import { DottedName } from 'Rules'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import Tracker from 'Tracker'
 
 export default (tracker: Tracker) => {
-	return ({ getState }) => next => action => {
+	return ({ getState }: any) => (next: any) => (action: any) => {
 		next(action)
 		const newState = getState()
 		if (action.type == 'STEP_ACTION' && action.name == 'fold') {
@@ -11,7 +12,7 @@ export default (tracker: Tracker) => {
 				'Simulator::answer',
 				action.source,
 				action.step,
-				situationSelector(newState)[action.step]
+				situationSelector(newState)[action.step as DottedName]
 			])
 
 			// TODO : add tracking in UI instead ?

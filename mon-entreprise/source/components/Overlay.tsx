@@ -1,5 +1,6 @@
 import * as animate from 'Components/ui/animate'
 import FocusTrap from 'focus-trap-react'
+import { PageInfo } from 'iframe-resizer'
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -16,7 +17,7 @@ const useIFrameOffset = () => {
 			setOffset(0)
 			return
 		}
-		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }) => {
+		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }: PageInfo) => {
 			setOffset(scrollTop - offsetTop)
 			window.parentIFrame.getPageInfo(false)
 		})
@@ -127,8 +128,9 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 			max-width: 40em;
 			min-height: 6em;
 		}
-	.ui__.card[aria-modal='true'] {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
+		.ui__.card[aria-modal='true'] {
+			padding-bottom: 2rem;
+			margin-bottom: 2rem;
+		}
 	}
 `

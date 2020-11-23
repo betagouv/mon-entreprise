@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 
-export const persistState = (key: string) => ([state, changeState]) => {
-	useEffect(() => {
-		safeLocalStorage.setItem(key, JSON.stringify(state))
-		return
-	}, [state])
-	return [state, changeState]
-}
-
 export const getInitialState = (key: string) => {
 	const value = safeLocalStorage.getItem(key)
 	if (!value) {
@@ -22,9 +14,17 @@ export const getInitialState = (key: string) => {
 	}
 }
 
-export const usePersistingState = (key: string, defaultState?: any) => {
+export const useSafeLocaleStorage = (key: string, state: any) => {
+	useEffect(() => {
+		if (key) {
+			safeLocalStorage.setItem(key, JSON.stringify(state))
+		}
+	}, [state])
+}
+
+export const usePersistingState = <S>(key: string, defaultState?: any) => {
 	const initialState = getInitialState(key)
-	return persistState(key)(
-		useState(initialState != null ? initialState : defaultState)
-	)
+	const state = initialState != null ? initialState : defaultState
+	useSafeLocaleStorage(key, state)
+	return useState<S>(state)
 }

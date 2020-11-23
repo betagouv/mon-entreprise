@@ -1,11 +1,11 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
-import { is } from 'ramda'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
-import { References } from 'publicodes'
+import { References, ParsedRule, Rule } from 'publicodes'
+import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -23,13 +23,23 @@ import { References } from 'publicodes'
 
 */
 
+export type Choice = ParsedRule & {
+	canGiveUp?: boolean
+	children: Array<Choice>
+}
+
+type QuestionProps = InputCommonProps & {
+	onSubmit: (source: string) => void
+	choices: Choice | typeof binaryQuestion
+}
+
 export default function Question({
 	choices,
 	onSubmit,
 	dottedName: questionDottedName,
 	onChange,
 	value: currentValue
-}) {
+}: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(currentValue)
 	const handleChange = useCallback(
 		value => {
@@ -53,7 +63,7 @@ export default function Question({
 		}
 	}, [currentSelection])
 
-	const renderBinaryQuestion = () => {
+	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
 		return choices.map(({ value, label }) => (
 			<span
 				key={value}
@@ -82,10 +92,10 @@ export default function Question({
 			</span>
 		))
 	}
-	const renderChildren = choices => {
+	const renderChildren = (choices: Choice) => {
 		// seront stockées ainsi dans le state :
 		// [parent object path]: dotted fieldName relative to parent
-		const relativeDottedName = radioDottedName =>
+		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
 		return (
 			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
@@ -110,7 +120,7 @@ export default function Question({
 							children ? (
 								<li key={dottedName} className="variant">
 									<div>{title}</div>
-									{renderChildren({ children })}
+									{renderChildren({ children } as Choice)}
 								</li>
 							) : (
 								<li key={dottedName} className="variantLeaf">
@@ -135,8 +145,8 @@ export default function Question({
 		)
 	}
 
-	const choiceElements = is(Array)(choices)
-		? renderBinaryQuestion()
+	const choiceElements = Array.isArray(choices)
+		? renderBinaryQuestion(choices)
 		: renderChildren(choices)
 
 	return (
@@ -154,7 +164,13 @@ export default function Question({
 	)
 }
 
-export const RadioLabel = props => (
+type RadioLabelProps = RadioLabelContentProps & {
+	description?: string
+	label?: string
+	références?: Rule['références']
+}
+
+export const RadioLabel = (props: RadioLabelProps) => (
 	<>
 		<RadioLabelContent {...props} />
 		{props.description && (
@@ -174,6 +190,16 @@ export const RadioLabel = props => (
 	</>
 )
 
+type RadioLabelContentProps = {
+	value: string
+	label: string
+	name: string
+	currentSelection?: string
+	icons?: string
+	onChange: RuleInputProps['onChange']
+	onSubmit: (src: string, value: string) => void
+}
+
 function RadioLabelContent({
 	value,
 	label,
@@ -182,7 +208,7 @@ function RadioLabelContent({
 	icons,
 	onChange,
 	onSubmit
-}) {
+}: RadioLabelContentProps) {
 	const labelStyle = value === '_' ? ({ fontWeight: 'bold' } as const) : {}
 	const selected = value === currentSelection
 

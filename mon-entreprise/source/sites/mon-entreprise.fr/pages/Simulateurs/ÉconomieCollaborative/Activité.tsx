@@ -16,11 +16,16 @@ import { estExonéréeSelector } from './selectors'
 import { StoreContext } from './StoreContext'
 import { formatValue } from 'publicodes'
 
+export type Activity = {
+	titre: string
+	explication: string
+}
+
 export default function Activité({
 	match: {
 		params: { title }
 	}
-}) {
+}: any) {
 	const { language } = useTranslation().i18n
 	const sitePaths = useContext(SitePathsContext)
 	const { state, dispatch } = useContext(StoreContext)
@@ -43,7 +48,7 @@ export default function Activité({
 				<section className="ui__ full-width light-bg">
 					<ActivitéSelection
 						currentActivité={title}
-						activités={activité.activités.map(({ titre }) => titre)}
+						activités={activité.activités.map(({ titre }: Activity) => titre)}
 					/>
 				</section>
 			</Animate.fromBottom>

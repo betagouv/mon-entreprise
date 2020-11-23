@@ -3,6 +3,22 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { debounce } from '../../../utils'
 import styled, { css } from 'styled-components'
+import { InputCommonProps } from '../RuleInput'
+
+export type ApiCommuneJson = {
+	_score: number
+	code: string
+	codesPostaux: Array<string>
+	departement: {
+		code: string
+		nom: string
+	}
+	nom: string
+	region: {
+		code: string
+		nom: string
+	}
+}
 
 type Commune = {
 	code: string
@@ -10,7 +26,7 @@ type Commune = {
 	nom: string
 }
 
-async function tauxVersementTransport(codeCommune) {
+async function tauxVersementTransport(codeCommune: Commune['code']) {
 	const response = await fetch(
 		'https://versement-transport.netlify.app/.netlify/functions/taux-par-code-commune?codeCommune=' +
 			codeCommune
@@ -35,7 +51,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 	if (!response.ok) {
 		return null
 	}
-	const json = await response.json()
+	const json: Array<ApiCommuneJson> = await response.json()
 	return json
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
@@ -46,7 +62,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, value, id }) {
+export default function Select({ onChange, value, id }: InputCommonProps) {
 	const [name, setName] = useState(formatCommune(value))
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null

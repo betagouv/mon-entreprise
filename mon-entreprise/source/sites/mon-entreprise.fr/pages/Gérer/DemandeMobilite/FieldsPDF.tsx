@@ -1,33 +1,41 @@
 import { StyleSheet, Text, View } from '@react-pdf/renderer'
-import { formatValue } from 'publicodes'
+import { formatValue, EvaluatedRule } from 'publicodes'
 
-export default function FieldsPDF({ fields }) {
-	return fields.map(field => (
-		<View style={styles.field} key={field.dottedName} wrap={false}>
-			{field.type === 'groupe' ? (
-				<>
-					<Text style={styles.subtitle}>
-						{field.title}{' '}
-						{field.note && (
-							<Text style={styles.fieldNumber}>({field.note})</Text>
-						)}
-					</Text>
-				</>
-			) : (
-				<>
-					<Text style={styles.name}>
-						{field.question ?? field.title}{' '}
-						{field.note && (
-							<Text style={styles.fieldNumber}>({field.note})</Text>
-						)}
-					</Text>
-					{field.nodeValue != null && (
-						<Text style={styles.value}>{formatValue(field)}</Text>
+export type FieldsPDFProps = {
+	fields: Array<EvaluatedRule<string>>
+}
+
+export default function FieldsPDF({ fields }: FieldsPDFProps) {
+	return (
+		<>
+			{fields.map(field => (
+				<View style={styles.field} key={field.dottedName} wrap={false}>
+					{field.type === 'groupe' ? (
+						<>
+							<Text style={styles.subtitle}>
+								{field.title}{' '}
+								{field.note && (
+									<Text style={styles.fieldNumber}>({field.note})</Text>
+								)}
+							</Text>
+						</>
+					) : (
+						<>
+							<Text style={styles.name}>
+								{field.question ?? field.title}{' '}
+								{field.note && (
+									<Text style={styles.fieldNumber}>({field.note})</Text>
+								)}
+							</Text>
+							{field.nodeValue != null && (
+								<Text style={styles.value}>{formatValue(field)}</Text>
+							)}
+						</>
 					)}
-				</>
-			)}
-		</View>
-	))
+				</View>
+			))}
+		</>
+	)
 }
 
 export const styles = StyleSheet.create({

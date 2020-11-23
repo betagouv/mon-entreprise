@@ -71,7 +71,7 @@ export type Simulation = {
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 }
-function getCompanySituation(company: Company): Situation {
+function getCompanySituation(company: Company | null): Situation {
 	return {
 		...(company?.localisation && {
 			'établissement . localisation': company.localisation
@@ -172,7 +172,7 @@ function simulation(
 	}
 	return state
 }
-const existingCompanyReducer = (state, action: Action) => {
+const existingCompanyReducer = (state: RootState, action: Action) => {
 	if (action.type.startsWith('EXISTING_COMPANY::') && state.simulation) {
 		return {
 			...state,
@@ -187,7 +187,7 @@ const existingCompanyReducer = (state, action: Action) => {
 	}
 	return state
 }
-const mainReducer = (state, action: Action) =>
+const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer

@@ -40,7 +40,7 @@ export function LinkRenderer({
 		if (
 			href &&
 			href.startsWith(`https://${domain}`) &&
-			internalURLs[domain] === siteName
+			internalURLs[domain as keyof typeof internalURLs] === siteName
 		) {
 			return (
 				<Link to={href.replace(`https://${domain}`, '')} {...otherProps}>

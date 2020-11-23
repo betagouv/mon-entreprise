@@ -92,8 +92,8 @@ const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
 }
 
 const VERSION = hash(JSON.stringify(formulaire))
-function FormulairePublicodes({ engine }) {
-	const [situation, setSituation] = usePersistingState(
+function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
+	const [situation, setSituation] = usePersistingState<Record<string, string>>(
 		`formulaire-détachement:${VERSION}`,
 		{}
 	)
