@@ -11,6 +11,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { debounce } from '../../../../../utils'
 import { toggleActivité } from './actions'
+import { Activity } from './Activité'
 import { activités, getTranslatedActivité } from './activitésData'
 import NextButton from './NextButton'
 import {
@@ -56,7 +57,9 @@ export default function ActivitésSelection() {
 							Quels types d'activités avez-vous exercé ?
 						</Trans>
 					</h2>
-					<ActivitéSelection activités={activités.map(({ titre }) => titre)} />
+					<ActivitéSelection
+						activités={activités.map(({ titre }: Activity) => titre)}
+					/>
 					<p className="ui__ container notice" css="text-align: center">
 						<Trans i18nKey="économieCollaborative.accueil.réassurance">
 							PS : cet outil est là uniquement pour vous informer, aucune donnée
@@ -183,7 +186,7 @@ const ActivitéContent = ({
 	plateformes,
 	icônes,
 	label
-}) => (
+}: any) => (
 	<>
 		<h4 className="title">
 			{titre}{' '}

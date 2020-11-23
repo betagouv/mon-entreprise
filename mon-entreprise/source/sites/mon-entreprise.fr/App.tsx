@@ -29,7 +29,6 @@ import {
 	retrievePersistedSimulation
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
-import { inIframe } from '../../utils'
 import './App.css'
 import Footer from './layout/Footer/Footer'
 import Header from './layout/Header'
@@ -72,7 +71,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const middlewares = [
-	createSentryMiddleware(Sentry),
+	createSentryMiddleware(Sentry as any),
 	trackSimulatorActions(tracker)
 ]
 

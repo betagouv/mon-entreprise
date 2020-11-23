@@ -95,13 +95,15 @@ const QUESTION_LIST: Array<Question> = keys(
 	mergeAll(flatten(Object.values(LEGAL_STATUS_DETAILS)))
 )
 
-const isCompatibleStatusWith = answers => (statusRequirements): boolean => {
+const isCompatibleStatusWith = (answers: any) => (
+	statusRequirements: LegalStatusRequirements
+): boolean => {
 	const stringify = map(x => (!isNil(x) ? JSON.stringify(x) : x))
 	const answerCompatibility = Object.values(
 		mergeWith(
 			(answer, statusValue) =>
 				isNil(answer) || isNil(statusValue) || answer === statusValue,
-			stringify(statusRequirements),
+			stringify(statusRequirements as any),
 			stringify(answers)
 		)
 	)
@@ -109,13 +111,13 @@ const isCompatibleStatusWith = answers => (statusRequirements): boolean => {
 	return isCompatibleStatus
 }
 const possibleStatus = (
-	answers: LegalStatusRequirements
+	answers: Array<LegalStatusRequirements> | LegalStatusRequirements
 ): Record<LegalStatus, boolean> =>
 	map(
 		statusRequirements =>
 			Array.isArray(statusRequirements)
-				? any(isCompatibleStatusWith(answers), statusRequirements)
-				: isCompatibleStatusWith(answers)(
+				? any(isCompatibleStatusWith(answers as any), statusRequirements)
+				: isCompatibleStatusWith(answers as any)(
 						statusRequirements as LegalStatusRequirements
 				  ),
 		LEGAL_STATUS_DETAILS
@@ -133,7 +135,7 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 	>
 	const possibleStatusList = flatten(
 		Object.values(LEGAL_STATUS_DETAILS)
-	).filter(isCompatibleStatusWith(legalStatusRequirements))
+	).filter(isCompatibleStatusWith(legalStatusRequirements) as any)
 
 	const unansweredQuestions = difference(QUESTION_LIST, questionAnswered)
 	const shannonEntropyByQuestion = unansweredQuestions.map((question): [
@@ -141,7 +143,7 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 		number
 	] => {
 		const answerPopulation = Object.values(possibleStatusList).map(
-			status => status[question]
+			(status: any) => status[question]
 		)
 		const frequencyOfAnswers = Object.values(
 			countBy(

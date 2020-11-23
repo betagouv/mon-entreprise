@@ -8,7 +8,7 @@ import {
 	getSousActivités
 } from './activitésData'
 
-const activitéReducer = reducerActivité =>
+const activitéReducer = (reducerActivité: any) =>
 	combineReducers({
 		effectuée: (state = false, { type, activité }: Action): boolean =>
 			type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && reducerActivité === activité
@@ -44,21 +44,24 @@ const activitéReducer = reducerActivité =>
 				action.type === 'CHANGE_CRITÈRE_EXONÉRATION' &&
 				reducerActivité === action.activité
 			) {
-				state[action.index] = action.estRespecté
+				state[action.index as any] = action.estRespecté
 				return [...state]
 			}
 			return state
 		}
 	})
 
-// type ActivityTitle = string
-// type State = Record<ActivityTitle, ReturnType<ReturnType<typeof activitéReducer>>>
+type ActivityTitle = string
+type State = Record<
+	ActivityTitle,
+	ReturnType<ReturnType<typeof activitéReducer>>
+>
 
 const reducer = reduceReducers(
-	((state, { type, activité }: Action) => {
+	((state: State, { type, activité }: Action) => {
 		if (type === 'TOGGLE_ACTIVITÉ_EFFECTUÉE' && state[activité].effectuée) {
 			return getSousActivités(activité).reduce(
-				(newState, sousActivité) => ({
+				(newState: State, sousActivité: any) => ({
 					...newState,
 					[sousActivité]: {
 						...state[sousActivité],

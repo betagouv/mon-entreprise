@@ -1,5 +1,5 @@
 import Input from 'Components/conversation/Input'
-import Question from 'Components/conversation/Question'
+import Question, { Choice } from 'Components/conversation/Question'
 import SelectCommune from 'Components/conversation/select/SelectCommune'
 import SelectAtmp from 'Components/conversation/select/SelectTauxRisque'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
@@ -15,7 +15,7 @@ import TextInput from './TextInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
 import ParagrapheInput from './ParagrapheInput'
 
-type Value = string | number | Record<string, unknown> | boolean | null
+type Value = any
 export type RuleInputProps<Name extends string = DottedName> = {
 	rules: ParsedRules<Name>
 	dottedName: Name
@@ -24,10 +24,28 @@ export type RuleInputProps<Name extends string = DottedName> = {
 	isTarget?: boolean
 	autoFocus?: boolean
 	id?: string
-	value?: Value
+	value: Value
 	className?: string
 	onSubmit?: (source: string) => void
 }
+
+export type InputCommonProps = Pick<
+	RuleInputProps<string>,
+	'dottedName' | 'value' | 'onChange' | 'autoFocus' | 'className'
+> &
+	Pick<
+		ParsedRule<string>,
+		'title' | 'question' | 'defaultValue' | 'suggestions'
+	> & {
+		key: string
+		id: string
+		required: boolean
+	}
+
+export const binaryQuestion = [
+	{ value: 'oui', label: 'Oui' },
+	{ value: 'non', label: 'Non' }
+] as const
 
 // This function takes the unknown rule and finds which React component should
 // be displayed to get a user input through successive if statements
@@ -49,7 +67,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	const unit = rule.unit
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-	const commonProps = {
+	const commonProps: InputCommonProps = {
 		key: dottedName,
 		dottedName,
 		value,
@@ -153,7 +171,7 @@ const getVariant = (rule: ParsedRule) =>
 export const buildVariantTree = <Name extends string>(
 	allRules: ParsedRules<Name>,
 	path: Name
-) => {
+): Choice => {
 	const rec = (path: Name) => {
 		const node = allRules[path]
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
@@ -168,7 +186,7 @@ export const buildVariantTree = <Name extends string>(
 						children: variants.map((v: string) => rec(`${path} . ${v}` as Name))
 				  }
 				: null
-		)
+		) as Choice
 	}
 	return rec(path)
 }

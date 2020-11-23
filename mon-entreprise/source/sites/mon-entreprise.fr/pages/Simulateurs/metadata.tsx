@@ -80,7 +80,7 @@ export type SimulatorData = Record<
 >
 
 export function getSimulatorsData({
-	t = (_, text) => text,
+	t = (_: unknown, text: string) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
 	language = 'fr'
 }): SimulatorData {

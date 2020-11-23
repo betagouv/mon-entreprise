@@ -13,7 +13,8 @@
 			"Selectors/*": ["selectors/*"],
 			"Types/*": ["types/*"]
 		},
-		"noEmit": true
+		"noEmit": true,
+		"strict": true
 	},
 	"include": ["types", "source"]
 }

@@ -11,9 +11,11 @@ import Home from './Home'
 export default function Simulateurs() {
 	const sitePaths = useContext(SitePathsContext)
 	const { state, pathname } = useLocation()
-	const [lastState, setLastState] = usePersistingState(
-		'navigation::simulateurs::locationState::v2'
-	)
+	const [lastState, setLastState] = usePersistingState<{
+		fromGérer?: boolean
+		fromCréer?: boolean
+		fromSimulateurs?: boolean
+	}>('navigation::simulateurs::locationState::v2')
 	useEffect(() => {
 		if (state) {
 			setLastState(state)

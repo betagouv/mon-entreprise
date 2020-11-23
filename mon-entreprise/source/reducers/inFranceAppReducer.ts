@@ -1,5 +1,7 @@
 import { Action as CreationChecklistAction } from 'Actions/companyCreationChecklistActions'
+import { ActionExistingCompany } from 'Actions/existingCompanyActions'
 import { Action as HiringChecklist } from 'Actions/hiringChecklistAction'
+import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
@@ -8,7 +10,11 @@ import {
 	LegalStatusRequirements
 } from 'Types/companyTypes'
 
-type Action = CompanyStatusAction | CreationChecklistAction | HiringChecklist
+type Action =
+	| CompanyStatusAction
+	| CreationChecklistAction
+	| HiringChecklist
+	| ActionExistingCompany
 
 function companyLegalStatus(
 	state: LegalStatusRequirements = {},
@@ -120,10 +126,6 @@ const infereLegalStatusFromCategorieJuridique = (
 	return 'NON_IMPLÉMENTÉ'
 }
 
-type GeoDetails = {
-	nom: string
-	code: string
-}
 export type Company = {
 	siren: string
 	catégorieJuridique?: string
@@ -131,23 +133,23 @@ export type Company = {
 	dateDeCréation?: string
 	isAutoEntrepreneur?: boolean
 	isDirigeantMajoritaire?: boolean
-	localisation?: GeoDetails & {
-		departement: GeoDetails
-		region: GeoDetails
-	}
+	localisation?: ApiCommuneJson
 }
 
-function existingCompany(state: Company | null = null, action): Company | null {
+function existingCompany(
+	state: Company | null = null,
+	action: Action
+): Company | null {
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
 	}
-	if (action.type.endsWith('RESET')) {
+	if (action.type === 'EXISTING_COMPANY::RESET') {
 		return null
 	}
-	if (action.type.endsWith('SET_SIREN')) {
+	if (action.type === 'EXISTING_COMPANY::SET_SIREN') {
 		return { siren: action.siren }
 	}
-	if (state && action.type.endsWith('SET_DETAILS')) {
+	if (state && action.type === 'EXISTING_COMPANY::SET_DETAILS') {
 		const statutJuridique = infereLegalStatusFromCategorieJuridique(
 			action.catégorieJuridique
 		)
@@ -158,13 +160,16 @@ function existingCompany(state: Company | null = null, action): Company | null {
 			dateDeCréation: action.dateDeCréation
 		}
 	}
-	if (state && action.type.endsWith('SPECIFY_AUTO_ENTREPRENEUR')) {
+	if (state && action.type === 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR') {
 		return { ...state, isAutoEntrepreneur: action.isAutoEntrepreneur }
 	}
-	if (state && action.type.endsWith('SPECIFY_DIRIGEANT_MAJORITAIRE')) {
+	if (
+		state &&
+		action.type === 'EXISTING_COMPANY::SPECIFY_DIRIGEANT_MAJORITAIRE'
+	) {
 		return { ...state, isDirigeantMajoritaire: action.isDirigeantMajoritaire }
 	}
-	if (state && action.type.endsWith('ADD_COMMUNE_DETAILS')) {
+	if (state && action.type === 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS') {
 		return { ...state, localisation: action.details }
 	}
 	return state

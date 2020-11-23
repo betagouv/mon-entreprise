@@ -62,7 +62,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const rule = useEvaluation(dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	const parsedRules = useContext(EngineContext).getParsedRules()
-	const value = useSelector(situationSelector)[dottedName] ?? rule['par défaut']
+	const value = useSelector(situationSelector)[dottedName] ?? rule.defaultValue
 	if (rule.isApplicable === false || rule.isApplicable === null) {
 		return null
 	}

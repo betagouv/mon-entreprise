@@ -1,3 +1,5 @@
+import { InputCommonProps } from '../RuleInput'
+
 const STATES = [
 	'Allemagne',
 	'Autriche',
@@ -32,7 +34,11 @@ const STATES = [
 	'Suisse'
 ] as const
 
-export default function SelectEuropeCountry({ value, onChange, id }) {
+export default function SelectEuropeCountry({
+	value,
+	onChange,
+	id
+}: InputCommonProps) {
 	return (
 		<div>
 			<select

@@ -1,4 +1,4 @@
-import {
+import ReactPDF, {
 	Document,
 	Font,
 	Image,
@@ -9,11 +9,21 @@ import {
 	Link
 } from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/URSSAF.png'
-import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
+import FieldsPDF, { FieldsPDFProps, styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'
 import robotoUrl from './Roboto-Regular.ttf'
 
-export default function PDFDocument({ fields, signatureURL, place }) {
+export type PDFDocumentProps = {
+	fields: FieldsPDFProps['fields']
+	signatureURL?: ReactPDF.SourceObject | false
+	place?: string
+}
+
+export default function PDFDocument({
+	fields,
+	signatureURL,
+	place
+}: PDFDocumentProps) {
 	return (
 		<Document>
 			<Page style={styles.body} wrap>

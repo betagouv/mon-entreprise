@@ -39,8 +39,8 @@ type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
 	missingVariables: Array<MissingVariables>
 ): Array<DottedName> {
-	const byCount = ([, [count]]) => count
-	const byScore = ([, [, score]]) => score
+	const byCount = ([, [count]]: [unknown, [number]]) => count
+	const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
 
 	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
 		mergeWith(add),

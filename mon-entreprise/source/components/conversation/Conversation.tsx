@@ -3,7 +3,7 @@ import {
 	updateSituation,
 	validateStepWithValue
 } from 'Actions/actions'
-import RuleInput from 'Components/conversation/RuleInput'
+import RuleInput, { RuleInputProps } from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
 import * as Animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
@@ -38,9 +38,12 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 	}, [dispatch, currentQuestion])
 	const setDefault = () =>
 		dispatch(
+			// TODO: Skiping a question shouldn't be equivalent to answering the
+			// default value (for instance the question shouldn't appear in the
+			// answered questions).
 			validateStepWithValue(
 				currentQuestion,
-				rules[currentQuestion]['par défaut']
+				rules[currentQuestion].defaultValue
 			)
 		)
 	const goToPrevious = () =>
@@ -55,7 +58,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 		})
 	}
 
-	const onChange = value => {
+	const onChange: RuleInputProps['onChange'] = value => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 

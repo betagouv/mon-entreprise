@@ -129,7 +129,14 @@ function PLExplanation() {
 function CaisseRetraite() {
 	const engine = useContext(EngineContext)
 	const unit = useSelector(targetUnitSelector)
-	const caisses = ['CARCDSF', 'CARPIMKO', 'CIPAV', 'CARMF', 'CNBF', 'CAVEC']
+	const caisses = [
+		'CARCDSF',
+		'CARPIMKO',
+		'CIPAV',
+		'CARMF',
+		'CNBF',
+		'CAVEC'
+	] as const
 
 	return (
 		<>

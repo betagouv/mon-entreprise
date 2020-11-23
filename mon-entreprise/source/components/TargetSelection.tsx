@@ -11,6 +11,7 @@ import {
 	useInversionFail
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
+import { EvaluatedNode } from 'publicodes'
 import { EvaluatedRule, formatValue } from 'publicodes'
 import { isNil } from 'ramda'
 import { Fragment, useCallback, useContext } from 'react'
@@ -300,7 +301,9 @@ function AidesGlimpse() {
 	// faisons un lien direct vers cette aide, plutôt qu'un lien vers la liste qui
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
 	const aidesDetail = aides?.formule.explanation.explanation
-	const aidesNotNul = aidesDetail?.filter(node => node.nodeValue !== false)
+	const aidesNotNul = aidesDetail?.filter(
+		(node: EvaluatedNode) => node.nodeValue !== false
+	)
 	const aideLink = aidesNotNul?.length === 1 ? aidesNotNul[0] : aides
 
 	if (!aides?.nodeValue) return null

@@ -1,22 +1,22 @@
-import { formatValue } from 'publicodes'
+import { formatValue, Unit } from 'publicodes'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { currencyFormat, debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
+import { InputCommonProps } from './RuleInput'
 
 // TODO: fusionner Input.js et CurrencyInput.js
 export default function Input({
 	suggestions,
 	onChange,
 	onSubmit,
-	dottedName,
 	id,
 	value,
 	defaultValue,
 	autoFocus,
 	unit
-}) {
+}: InputCommonProps & { unit?: Unit; onSubmit: (source: string) => void }) {
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const { language } = useTranslation().i18n
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
