@@ -1,7 +1,7 @@
 import React from 'react'
 import { evaluationFunction } from '..'
 import parse from '../parse'
-import { InfixMecanism } from '../components/mecanisms/common'
+import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { ASTNode } from '../AST/types'
@@ -18,10 +18,10 @@ export type ApplicableSiNode = {
 function MecanismApplicable({ explanation }) {
 	return (
 		<InfixMecanism prefixed value={explanation.valeur}>
-			<p>
-				<strong>Applicable si : </strong>
+			<Mecanism name="applicable si" value={explanation.condition.nodeValue}>
 				{makeJsx(explanation.condition)}
-			</p>
+			</Mecanism>
+			<br />
 		</InfixMecanism>
 	)
 }

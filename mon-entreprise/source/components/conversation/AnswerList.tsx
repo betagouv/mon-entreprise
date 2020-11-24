@@ -1,8 +1,9 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import { useEvaluation } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { formatValue } from 'publicodes'
+import { evaluateRule, formatValue } from 'publicodes'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -68,13 +69,14 @@ function StepsTable({
 	onClose: () => void
 }) {
 	const dispatch = useDispatch()
-	const evaluatedRules = useEvaluation(rules)
+	const engine = useEngine()
+	const evaluatedRules = rules.map(rule => evaluateRule(engine, rule))
 	const language = useTranslation().i18n.language
 	return (
 		<table>
 			<tbody>
 				{evaluatedRules
-					.filter(rule => rule.isApplicable !== false)
+					.filter(rule => rule.nodeValue !== false)
 					.map(rule => (
 						<tr
 							key={rule.dottedName}

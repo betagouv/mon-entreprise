@@ -2,10 +2,18 @@ import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import * as Animate from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
+import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
-import Engine from 'publicodes'
-import { lazy, createElement, Suspense, useCallback, useState } from 'react'
+import Engine, { evaluateRule } from 'publicodes'
+import {
+	lazy,
+	createElement,
+	Suspense,
+	useCallback,
+	useState,
+	useContext
+} from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
@@ -15,7 +23,7 @@ const LazyEndBlock = lazy(() => import('./EndBlock'))
 export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
-		<>
+		<EngineProvider value={engine}>
 			<h1>Demande de mobilité en Europe pour travailleur indépendant</h1>
 			<h2>
 				<small>
@@ -74,25 +82,29 @@ export default function FormulaireMobilitéIndépendant() {
 				</strong>{' '}
 				de 9h00 à 12h00 et de 13h00 à 16h00.
 			</p>
-			<FormulairePublicodes engine={engine} />
-		</>
+			<FormulairePublicodes />
+		</EngineProvider>
 	)
 }
 
 const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
 	const fields = fieldNames
-		.map(name => engine.evaluate(name))
+		.map(name => evaluateRule(engine, name))
 		.filter(
 			node =>
-				node.isApplicable !== false &&
-				node.isApplicable !== null &&
+				// TODO
+				// node.isApplicable !== false &&
+				// node.isApplicable !== null &&
+				node.nodeValue !== false &&
+				node.nodeValue !== null &&
 				(node.question || node.type || node.API)
 		)
 	return fields
 }
 
 const VERSION = hash(JSON.stringify(formulaire))
-function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
+function FormulairePublicodes() {
+	const engine = useContext(EngineContext)
 	const [situation, setSituation] = usePersistingState<Record<string, string>>(
 		`formulaire-détachement:${VERSION}`,
 		{}
@@ -159,7 +171,6 @@ function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
 							<RuleInput
 								id={field.dottedName}
 								dottedName={field.dottedName}
-								rules={engine.getParsedRules()}
 								value={situation[field.dottedName]}
 								onChange={value => onChange(field.dottedName, value)}
 							/>

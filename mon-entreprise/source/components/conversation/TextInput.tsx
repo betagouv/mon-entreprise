@@ -6,7 +6,7 @@ export default function TextInput({
 	onChange,
 	value,
 	id,
-	defaultValue,
+	missing,
 	autoFocus
 }: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
@@ -18,11 +18,11 @@ export default function TextInput({
 				className="ui__"
 				type="text"
 				id={id}
-				placeholder={defaultValue?.nodeValue ?? defaultValue}
+				placeholder={missing && value}
 				onChange={({ target }) => {
 					debouncedOnChange(`'${target.value}'`)
 				}}
-				defaultValue={value}
+				defaultValue={!missing && value}
 				autoComplete="off"
 			/>
 		</div>

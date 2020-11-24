@@ -6,7 +6,7 @@ export default function ParagrapheInput({
 	onChange,
 	value,
 	id,
-	defaultValue,
+	missing,
 	autoFocus
 }: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
@@ -19,14 +19,11 @@ export default function ParagrapheInput({
 				rows={6}
 				style={{ resize: 'none' }}
 				id={id}
-				placeholder={(defaultValue?.nodeValue ?? defaultValue)?.replace(
-					'\\n',
-					'\n'
-				)}
+				placeholder={missing && value?.replace('\\n', '\n')}
 				onChange={({ target }) => {
 					debouncedOnChange(`'${target.value.replace(/\n/g, '\\n')}'`)
 				}}
-				defaultValue={value?.replace('\\n', '\n')}
+				defaultValue={!missing && value?.replace('\\n', '\n')}
 				autoComplete="off"
 			/>
 		</div>

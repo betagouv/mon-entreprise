@@ -24,7 +24,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
-import { EngineContext, useEvaluation } from './utils/EngineContext'
+import { EngineContext, useEngine } from './utils/EngineContext'
+import { DottedName } from 'Rules'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -39,9 +40,11 @@ export default function SchemeComparaison({
 	useEffect(() => {
 		dispatch(setSimulationConfig(dirigeantComparaison))
 	}, [])
-	const plafondAutoEntrepreneurDépassé = useEvaluation(
-		'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
-	).isApplicable
+	const engine = useEngine()
+	const plafondAutoEntrepreneurDépassé =
+		engine.evaluate(
+			'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
+		).nodeValue === true
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
@@ -51,13 +54,13 @@ export default function SchemeComparaison({
 		setConversationStarted
 	])
 
-	const parsedRules = useContext(EngineContext).getParsedRules()
+	const parsedRules = engine.getParsedRules()
 	const situation = useSelector(situationSelector)
 	const displayResult =
 		useSelector(situationSelector)['entreprise . charges'] != undefined
 	const assimiléEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
 				dirigeant: "'assimilé salarié'"
 			}),
@@ -65,7 +68,7 @@ export default function SchemeComparaison({
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
 				dirigeant: "'auto-entrepreneur'"
 			}),
@@ -73,7 +76,7 @@ export default function SchemeComparaison({
 	)
 	const indépendantEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
 				dirigeant: "'indépendant'"
 			}),

@@ -6,7 +6,8 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
-import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { evaluateRule } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -59,13 +60,13 @@ type SimpleFieldProps = {
 
 function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const rule = useEvaluation(dottedName)
+	const rule = evaluateRule(useContext(EngineContext), dottedName)
 	const initialRender = useContext(InitialRenderContext)
-	const parsedRules = useContext(EngineContext).getParsedRules()
-	const value = useSelector(situationSelector)[dottedName]
-	if (rule.isApplicable === false || rule.isApplicable === null) {
-		return null
-	}
+	const value = rule.nodeValue
+	// TODO
+	// if (rule.isApplicable === false || rule.isApplicable === null) {
+	// 	return null
+	// }
 
 	return (
 		<li>
@@ -73,7 +74,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
-							<span className="optionTitle">{rule.question || rule.titre}</span>
+							<span className="optionTitle">{rule.question || rule.title}</span>
 							<p className="ui__ notice">{rule.résumé}</p>
 						</label>
 					</div>
@@ -82,9 +83,8 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 							className="targetInput"
 							isTarget
 							dottedName={dottedName}
-							rules={parsedRules}
 							value={value}
-							onChange={x => dispatch(updateSituation(dottedName, x))}
+							onChange={(x) => dispatch(updateSituation(dottedName, x))}
 							useSwitch
 						/>
 					</div>
@@ -99,7 +99,7 @@ type WarningProps = {
 }
 
 function Warning({ dottedName }: WarningProps) {
-	const warning = useEvaluation(dottedName)
+	const warning = evaluateRule(useContext(EngineContext), dottedName)
 	if (!warning.nodeValue) {
 		return null
 	}
@@ -160,32 +160,32 @@ function CotisationsResult() {
 const branches = [
 	{
 		dottedName: 'artiste-auteur . cotisations . vieillesse',
-		icon: '👵'
+		icon: '👵',
 	},
 	{
 		dottedName: 'artiste-auteur . cotisations . CSG-CRDS',
-		icon: '🏛'
+		icon: '🏛',
 	},
 	{
 		dottedName: 'artiste-auteur . cotisations . formation professionnelle',
-		icon: '👷‍♂️'
-	}
+		icon: '👷‍♂️',
+	},
 ] as const
 
 function RepartitionCotisations() {
 	const engine = useContext(EngineContext)
-	const cotisations = branches.map(branch => ({
+	const cotisations = branches.map((branch) => ({
 		...branch,
-		value: engine.evaluate(branch.dottedName).nodeValue as number
+		value: engine.evaluate(branch.dottedName).nodeValue as number,
 	}))
-	const maximum = Math.max(...cotisations.map(x => x.value))
+	const maximum = Math.max(...cotisations.map((x) => x.value))
 	return (
 		<section>
 			<h2>
 				<Trans>À quoi servent mes cotisations ?</Trans>
 			</h2>
 			<div className="distribution-chart__container">
-				{cotisations.map(cotisation => (
+				{cotisations.map((cotisation) => (
 					<DistributionBranch
 						key={cotisation.dottedName}
 						maximum={maximum}

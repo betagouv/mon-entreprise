@@ -1,6 +1,6 @@
 import React from 'react'
 import { evaluationFunction } from '..'
-import { InfixMecanism } from '../components/mecanisms/common'
+import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -16,10 +16,13 @@ export type NonApplicableSiNode = {
 function MecanismNonApplicable({ explanation }) {
 	return (
 		<InfixMecanism prefixed value={explanation.valeur}>
-			<p>
-				<strong>Non applicable si : </strong>
-				{makeJsx(explanation.applicable)}
-			</p>
+			<Mecanism
+				name="non applicable si"
+				value={explanation.condition.nodeValue}
+			>
+				{makeJsx(explanation.condition)}
+			</Mecanism>
+			<br />
 		</InfixMecanism>
 	)
 }

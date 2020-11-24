@@ -1,12 +1,16 @@
+import BarChartBranch from 'Components/BarChart'
+import 'Components/Distribution.css'
 import Value, { Condition } from 'Components/EngineValue'
+import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import * as Animate from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
 import * as logosSrc from 'Images/logos-cnavpl'
 import urssafSrc from 'Images/urssaf.svg'
+import { evaluateRule } from 'publicodes'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -14,14 +18,10 @@ import { useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import BarChartBranch from 'Components/BarChart'
-import 'Components/Distribution.css'
-import RuleLink from 'Components/RuleLink'
 import AidesCovid from './AidesCovid'
-// import Distribution from 'Components/Distribution'
 
 export default function IndépendantExplanation() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -37,13 +37,14 @@ export default function IndépendantExplanation() {
 					<StackedBarChart
 						data={[
 							{
-								...engine.evaluate('revenu net après impôt'),
+								...evaluateRule(engine, 'revenu net après impôt'),
 								title: t('Revenu disponible'),
 								color: palettes[0][0]
 							},
-							{ ...engine.evaluate('impôt'), color: palettes[1][0] },
+							{ ...evaluateRule(engine, 'impôt'), color: palettes[1][0] },
 							{
-								...engine.evaluate(
+								...evaluateRule(
+									engine,
 									'dirigeant . indépendant . cotisations et contributions'
 								),
 								title: t('Cotisations'),
@@ -127,7 +128,7 @@ function PLExplanation() {
 }
 
 function CaisseRetraite() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const unit = useSelector(targetUnitSelector)
 	const caisses = [
 		'CARCDSF',
@@ -142,7 +143,7 @@ function CaisseRetraite() {
 		<>
 			{caisses.map(caisse => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = engine.evaluate(dottedName)
+				const { description, références } = evaluateRule(engine, dottedName)
 				return (
 					<Condition expression={dottedName} key={caisse}>
 						<div className="ui__  card box">
@@ -215,7 +216,7 @@ function Distribution() {
 	).map(([section, cotisations]) => [
 		section,
 		(cotisations as string[])
-			.map(c => engine.evaluate(c, { unit: targetUnit }))
+			.map(c => engine.evaluate({ valeur: c, unité: targetUnit }))
 			.reduce(
 				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
 				0
@@ -262,8 +263,8 @@ function DistributionBranch({
 			value={value}
 			maximum={maximum}
 			title={<RuleLink dottedName={dottedName} />}
-			icon={icon ?? branche.icons}
-			description={branche.summary}
+			icon={icon ?? branche.rawNode.icônes}
+			description={branche.rawNode.résumé}
 			unit="€"
 		/>
 	)

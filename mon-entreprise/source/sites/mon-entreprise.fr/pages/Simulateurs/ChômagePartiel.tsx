@@ -3,8 +3,8 @@ import Simulation from 'Components/Simulation'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { useEvaluation } from 'Components/utils/EngineContext'
-import { EvaluatedRule, formatValue } from 'publicodes'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -72,10 +72,18 @@ function ExplanationSection() {
 		t
 	} = useTranslation()
 
-	const net = useEvaluation('contrat salarié . rémunération . net')
-	const netHabituel = useEvaluation('chômage partiel . revenu net habituel')
-	const totalEntreprise = useEvaluation('contrat salarié . prix du travail')
-	const totalEntrepriseHabituel = useEvaluation(
+	const engine = useEngine()
+	const net = evaluateRule(engine, 'contrat salarié . rémunération . net')
+	const netHabituel = evaluateRule(
+		engine,
+		'chômage partiel . revenu net habituel'
+	)
+	const totalEntreprise = evaluateRule(
+		engine,
+		'contrat salarié . prix du travail'
+	)
+	const totalEntrepriseHabituel = evaluateRule(
+		engine,
 		'chômage partiel . coût employeur habituel'
 	)
 	if (
@@ -248,7 +256,7 @@ function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 	)
 }
 
-function RowLabel(target: EvaluatedRule) {
+function RowLabel(target: EvaluatedRule<DottedName>) {
 	return (
 		<>
 			{' '}
@@ -259,7 +267,7 @@ function RowLabel(target: EvaluatedRule) {
 			>
 				{target.title}
 			</div>
-			<p className="ui__ notice">{target.summary}</p>
+			<p className="ui__ notice">{target.résumé}</p>
 		</>
 	)
 }

@@ -1,4 +1,5 @@
 entreprise:
+  valeur: oui
   description: |
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
@@ -23,13 +24,13 @@ entreprise . date de création:
 entreprise . date de création . contrôle date future:
   type: notification
   sévérité: avertissement
-  applicable si: date de création > 01/2021
+  formule: date de création > 01/2021
   description: Nous ne pouvons voir aussi loin dans le futur
 
 entreprise . date de création . contrôle date passée:
   type: notification
   sévérité: avertissement
-  applicable si: date de création < 01/1900
+  formule: date de création < 01/1900
   description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
 entreprise . durée d'activité:
@@ -228,7 +229,7 @@ entreprise . effectif:
         alors: 49 employés
       - si: entreprise . effectif . seuil = 'moins de 250'
         alors: 249 employés
-      - si: entreprise . effectif . seuil = '251 et plus'
+      - si: entreprise . effectif . seuil = 'plus de 250'
         alors: 251 employés
 
 entreprise . effectif . seuil:
@@ -249,7 +250,7 @@ entreprise . effectif . seuil:
         - moins de 20
         - moins de 50
         - moins de 250
-        - 251 et plus
+        - plus de 250
   par défaut: "'moins de 5'"
 
 entreprise . effectif . seuil . moins de 5:
@@ -257,7 +258,8 @@ entreprise . effectif . seuil . moins de 11:
 entreprise . effectif . seuil . moins de 20:
 entreprise . effectif . seuil . moins de 50:
 entreprise . effectif . seuil . moins de 250:
-entreprise . effectif . seuil . 251 et plus:
+entreprise . effectif . seuil . plus de 250:
+  titre: 251 et plus
 
 entreprise . ratio alternants:
   question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
@@ -445,7 +447,8 @@ entreprise . auto entreprise impossible:
       - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
-établissement:
+établissement: 
+  formule: oui
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
 

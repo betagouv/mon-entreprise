@@ -99,12 +99,14 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 			// await
 			// serialize to not mix our data schema and the API response's
 			onChange({
-				...commune,
-				...(taux != null
-					? {
-							'taux du versement transport': taux
-					  }
-					: {})
+				objet: {
+					...commune,
+					...(taux != null
+						? {
+								'taux du versement transport': taux
+						  }
+						: {})
+				}
 			})
 		},
 		[setSearchResults, setName]

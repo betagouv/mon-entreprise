@@ -19,8 +19,8 @@ export default function Aide() {
 	if (!explained) return null
 
 	const rule = rules[explained],
-		text = rule.description,
-		refs = rule.références
+		text = rule.rawNode.description,
+		refs = rule.rawNode.références
 
 	return (
 		<Overlay onClose={stopExplaining}>

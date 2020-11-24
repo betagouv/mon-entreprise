@@ -22,7 +22,7 @@ import {
 	toPairs,
 	zipWith
 } from 'ramda'
-import { useMemo } from 'react'
+import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
@@ -33,7 +33,7 @@ import {
 	objectifsSelector,
 	situationSelector
 } from 'Selectors/simulationSelectors'
-import { useEvaluation } from './EngineContext'
+import { EngineContext } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
@@ -123,8 +123,9 @@ export const useNextQuestions = function(): Array<DottedName> {
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions ?? {}
 	const situation = useSelector(situationSelector)
-	const missingVariables = useEvaluation(objectifs).map(
-		node => node.missingVariables ?? {}
+	const engine = useContext(EngineContext)
+	const missingVariables = objectifs.map(
+		node => engine.evaluate(node).missingVariables ?? {}
 	)
 	const nextQuestions = useMemo(() => {
 		return getNextQuestions(

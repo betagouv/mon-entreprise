@@ -1,12 +1,15 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import Engine from '../..'
+import Engine, { EvaluatedNode } from '../..'
+import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
+import { ReferenceNode } from '../../reference'
+import { RuleNode } from '../../rule'
 import { ruleWithDedicatedDocumentationPage } from '../../ruleUtils'
 import { serializeUnit } from '../../units'
+import { simplifyNodeUnit } from '../../nodeUnits'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
-import Algorithm from './Algorithm'
 import RuleHeader from './Header'
 import References from './References'
 import RuleSource from './RuleSource'
@@ -15,12 +18,13 @@ export default function Rule({ dottedName, engine, language }) {
 	if (!engine.getParsedRules()[dottedName]) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluate(dottedName)
+	const rule = engine.evaluateNode(
+		engine.getParsedRules()[dottedName]
+	) as EvaluatedNode & RuleNode
 	// TODO affichage inline vs page
 
-	const isSetInStituation = engine.parsedSituation[dottedName] !== undefined
-	const { description, question } = rule
-
+	const { description, question } = rule.rawNode
+	const { parent, valeur } = rule.explanation
 	return (
 		<div id="documentationRuleRoot">
 			<RuleHeader dottedName={dottedName} />
@@ -28,7 +32,7 @@ export default function Rule({ dottedName, engine, language }) {
 				<Markdown source={description || question} />
 			</section>
 
-			{(rule.nodeValue || rule.defaultValue || rule.unit) && (
+			{(rule.nodeValue || rule.unit) && (
 				<>
 					<p
 						className="ui__ lead card light-bg"
@@ -37,64 +41,57 @@ export default function Rule({ dottedName, engine, language }) {
 							padding: '1rem'
 						}}
 					>
-						{((rule.defaultValue?.nodeValue == null &&
-							rule.nodeValue != null) ||
-							(rule.defaultValue?.nodeValue != null && isSetInStituation)) && (
-							<>
-								{formatValue(rule, { language })}
-								<br />
-							</>
-						)}
-						{rule.defaultValue?.nodeValue != null && (
-							<>
-								<small>
-									Valeur par défaut :{' '}
-									{formatValue(rule.defaultValue, {
-										language
-									})}
-								</small>
-								<br />
-							</>
-						)}
-						{rule.nodeValue == null && !rule.defaultValue?.unit && rule.unit && (
-							<>
-								<small>Unité : {serializeUnit(rule.unit)}</small>
-							</>
+						{formatValue(simplifyNodeUnit(rule), { language })}
+						<br />
+
+						{rule.nodeValue == null && rule.unit && (
+							<small>Unité : {serializeUnit(rule.unit)}</small>
 						)}
 					</p>
 				</>
 			)}
 
-			<Algorithm rule={rule} />
-			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
-			{rule['rend non applicable'] && (
+			{parent && 'nodeValue' in parent && parent.nodeValue === false && (
 				<>
-					<h2>
-						<Trans>Rend non applicable les règles suivantes</Trans> :{' '}
-					</h2>
+					<h3>Parent non applicable</h3>
+					<p>
+						Cette règle est non applicable car{' '}
+						<RuleLinkWithContext
+							dottedName={(parent as ReferenceNode).dottedName as string}
+						/>{' '}
+						est non applicable.
+					</p>
+				</>
+			)}
+
+			<h2>Comment cette donnée est-elle calculée ?</h2>
+			{makeJsx(valeur)}
+
+			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
+			{!!rule.replacements.length && (
+				<>
+					<h3>Effets </h3>
 					<ul>
-						{rule['rend non applicable'].map(ruleName => (
-							<li key={ruleName}>
-								<RuleLinkWithContext dottedName={ruleName} />
-							</li>
+						{rule.replacements.map(replacement => (
+							<li>{makeJsx(replacement)}</li>
 						))}
 					</ul>
 				</>
 			)}
-			{rule.note && (
+			{rule.rawNode.note && (
 				<>
 					<h3>Note</h3>
 					<div className="ui__ notice">
-						<Markdown source={rule.note} />
+						<Markdown source={rule.rawNode.note} />
 					</div>
 				</>
 			)}
-			{rule.références && (
+			{rule.rawNode.références && (
 				<>
 					<h2>
 						<Trans>Références</Trans>
 					</h2>
-					<References refs={rule.références} />
+					<References refs={rule.rawNode.références} />
 				</>
 			)}
 			{/* <Examples

@@ -1,7 +1,7 @@
 import { goBackToSimulation } from 'Actions/actions'
 import SearchButton from 'Components/SearchButton'
 import * as Animate from 'Components/ui/animate'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { Documentation, getDocumentationSiteMap } from 'publicodes'
@@ -16,7 +16,7 @@ export default function RulePage() {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const documentationPath = useContext(SitePathsContext).documentation.index
 	const { pathname } = useLocation()
 	const documentationSitePaths = useMemo(

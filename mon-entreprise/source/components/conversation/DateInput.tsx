@@ -1,5 +1,5 @@
 import { RuleInputProps } from 'Components/conversation/RuleInput'
-import { Rule } from 'publicodes'
+import { EvaluatedRule } from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
@@ -9,7 +9,7 @@ type DateInputProps = {
 	id: RuleInputProps['id']
 	onSubmit: RuleInputProps['onSubmit']
 	value: RuleInputProps['value']
-	suggestions: Rule['suggestions']
+	suggestions: EvaluatedRule['suggestions']
 }
 
 export default function DateInput({

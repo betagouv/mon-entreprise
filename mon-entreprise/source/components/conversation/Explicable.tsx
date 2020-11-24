@@ -18,7 +18,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	if (dottedName == null) return null
 	const rule = rules[dottedName]
 
-	if (rule.description == null) return null
+	if (rule.rawNode.description == null) return null
 
 	//TODO montrer les variables de type 'une possibilité'
 

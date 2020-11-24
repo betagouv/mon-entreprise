@@ -1,9 +1,11 @@
 import { ASTNode, Unit } from '../AST/types'
+import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
 import { makeJsx } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
+import { formatValue } from '../format'
 import parse from '../parse'
-import { convertUnit, parseUnit } from '../units'
+import { convertUnit, parseUnit, serializeUnit } from '../units'
 
 export type UnitéNode = {
 	unit: Unit
@@ -11,8 +13,22 @@ export type UnitéNode = {
 	jsx: any
 	nodeKind: 'unité'
 }
-function MecanismUnité({ explanation, nodeValue, unit }) {
-	return makeJsx({ ...explanation, nodeValue, unit })
+function MecanismUnité(node) {
+	return node.explanation.nodeKind === 'constant' ||
+		node.explanation.nodeKind === 'reference' ? (
+		<>
+			{makeJsx(node.explanation)}&nbsp;{serializeUnit(node.unit)}
+		</>
+	) : (
+		<>
+			<InfixMecanism value={node.explanation}>
+				<p>
+					<strong>Unité : </strong>
+					{serializeUnit(node.unit)}
+				</p>
+			</InfixMecanism>
+		</>
+	)
 }
 
 export default function parseUnité(v, context): UnitéNode {

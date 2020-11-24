@@ -1,7 +1,9 @@
-import { formatValue, Unit } from 'publicodes'
-import { useCallback, useState } from 'react'
+import { formatValue } from 'publicodes'
+import { Unit } from 'publicodes/dist/types/AST/types'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
+import { serialize } from 'storage/serializeSimulation'
 import { currencyFormat, debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
 import { InputCommonProps } from './RuleInput'
@@ -13,14 +15,19 @@ export default function Input({
 	onSubmit,
 	id,
 	value,
-	defaultValue,
-	autoFocus,
-	unit
-}: InputCommonProps & { unit?: Unit; onSubmit: (source: string) => void }) {
+	missing,
+	unit,
+	autoFocus
+}: InputCommonProps & {
+	onSubmit: (source: string) => void
+	unit: Unit | undefined
+}) {
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const { language } = useTranslation().i18n
+	const unité = formatValue({ nodeValue: value ?? 0, unit }, { language })
+		.replace(/[\d,.]/g, '')
+		.trim()
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
-
 	// const [currentValue, setCurrentValue] = useState(value)
 	return (
 		<div className="step input">
@@ -31,13 +38,12 @@ export default function Input({
 						onChange(value)
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
-					unit={unit}
 				/>
 				<NumberFormat
 					autoFocus={autoFocus}
 					className="suffixed ui__"
 					id={id}
-					placeholder={defaultValue?.nodeValue ?? defaultValue}
+					placeholder={missing && value}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
@@ -45,18 +51,13 @@ export default function Input({
 					// re-render with a new "value" prop from the outside.
 					onValueChange={({ floatValue }) => {
 						if (floatValue !== value) {
-							debouncedOnChange(floatValue)
+							debouncedOnChange({ valeur: floatValue, unité })
 						}
 					}}
-					value={value}
+					value={!missing && value}
 					autoComplete="off"
 				/>
-				<span className="suffix">
-					{formatValue({ nodeValue: value ?? 0, unit }, { language }).replace(
-						/[\d,.]*/g,
-						''
-					)}
-				</span>
+				<span className="suffix">&nbsp;{unité}</span>
 			</div>
 		</div>
 	)

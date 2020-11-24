@@ -97,13 +97,16 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
 	updateAST(node => {
 		if (node.nodeKind === 'reference') {
+			const dottedName = disambiguateRuleReference(
+				parsedRules,
+				node.contextDottedName,
+				node.name
+			)
 			return {
 				...node,
-				dottedName: disambiguateRuleReference(
-					parsedRules,
-					node.contextDottedName,
-					node.name
-				)
+				dottedName,
+				title: parsedRules[dottedName].title,
+				acronym: parsedRules[dottedName].rawNode.acronyme
 			}
 		}
 	})

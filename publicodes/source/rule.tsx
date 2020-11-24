@@ -1,11 +1,10 @@
-import { filter, map, mapObjIndexed, pick } from 'ramda'
-import { ASTNode, EvaluationDecoration } from './AST/types'
-import RuleComponent from './components/rule/Rule'
-import { bonus, mergeMissing } from './evaluation'
+import { filter, mapObjIndexed, pick } from 'ramda'
+import { ASTNode, EvaluatedNode } from './AST/types'
+import { bonus, makeJsx, mergeMissing } from './evaluation'
 import { registerEvaluationFunction } from "./evaluationFunctions"
-import parseNonApplicable from './mecanisms/nonApplicable'
 import parse, { mecanismKeys } from './parse'
 import { Context } from './parsePublicodes'
+import { ReferenceNode } from './reference'
 import { parseRendNonApplicable, parseReplacements, ReplacementNode } from './replacement'
 import { nameLeaf, ruleParents } from './ruleUtils'
 import { capitalise0 } from './utils'
@@ -21,13 +20,18 @@ export type Rule = {
 	résumé?: string
 	'icônes'?: string
 	titre?: string
+	cotisation?: {
+		branche: string
+	}
 	type?: string
 	note?: string
 	remplace?: RendNonApplicable | Array<RendNonApplicable>
 	'rend non applicable'?: Remplace | Array<string>
 	suggestions?: Record<string, string | number | object>
 	références?: { [source: string]: string }
+	API?: string
 }
+
 type Remplace = {
 	règle: string
 	par?: Object | string | number
@@ -41,6 +45,7 @@ export type RuleNode = {
 	title: string
 	nodeKind: "rule"
 	jsx: any
+	virtualRule: boolean,
 	rawNode: Rule,
 	replacements: Array<ReplacementNode>
 	explanation: {
@@ -48,13 +53,12 @@ export type RuleNode = {
 		valeur: ASTNode
 	}
 	suggestions: Record<string, ASTNode>
-	dependencies: Array<string>
 }
 
 export default function parseRule(
 	rawRule: Rule,
 	context: Context
-): RuleNode {
+): ReferenceNode {
 	const dottedName = [context.dottedName, rawRule.nom]
 			.filter(Boolean)
 			.join(' . ')
@@ -70,7 +74,10 @@ export default function parseRule(
 	}
 	
 	const ruleContext = { ...context, dottedName }
-	const name = nameLeaf(dottedName)
+	let name = nameLeaf(dottedName)
+	if (context.dottedName) {
+		name = `${nameLeaf(context.dottedName)} (${name})`
+	}
 	const [parent] = ruleParents(dottedName)
 	const explanation = {
 		valeur: parse(ruleValue, ruleContext),
@@ -85,13 +92,18 @@ export default function parseRule(
 		title: capitalise0(rawRule['titre'] || name),
 		suggestions: mapObjIndexed(node => parse(node, ruleContext), rawRule.suggestions ?? {}),
 		nodeKind: "rule",
-		jsx: RuleComponent,
+		jsx: node => <>
+			<code className="ui__ light-bg">{capitalise0(node.rawNode.nom)}</code>&nbsp;
+			{makeJsx(node.explanation.valeur)}
+		</>,
 		explanation,
 		rawNode: rawRule,
-		dependencies: [] as Array<string> // TODO
+		virtualRule: !!context.dottedName
 	}) as RuleNode
 
-	return context.parsedRules[dottedName]
+	// We return the parsedReference
+	return parse(rawRule.nom, context) as ReferenceNode
+	
 }
 	
 
@@ -100,19 +112,19 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		return this.cache[node.dottedName]
 	}
 	const explanation = { ...node.explanation }
-	
+	this.cache._meta.contextRule.push(node.dottedName)
 	this.cache._meta.parentEvaluationStack ??= []
 	
-	let parent: ASTNode & EvaluationDecoration | null = null
+	let parent: EvaluatedNode | null = null
 	if (explanation.parent && !this.cache._meta.parentEvaluationStack.includes(node.dottedName)) {
 		this.cache._meta.parentEvaluationStack.push(node.dottedName)
-		parent = this.evaluateNode(explanation.parent) as ASTNode & EvaluationDecoration
+		parent = this.evaluateNode(explanation.parent) as EvaluatedNode
 		explanation.parent = parent 
 		this.cache._meta.parentEvaluationStack.pop()
 	}
-	let valeur: ASTNode & EvaluationDecoration | null = null
+	let valeur: EvaluatedNode | null = null
 	if (!parent || parent.nodeValue !== false) {
-		valeur = this.evaluateNode(explanation.valeur) as ASTNode & EvaluationDecoration
+		valeur = this.evaluateNode(explanation.valeur) as EvaluatedNode
 		explanation.valeur = valeur
 	}
 	const evaluation = {
@@ -122,7 +134,7 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		missingVariables: mergeMissing(valeur?.missingVariables, bonus(parent?.missingVariables)),
 		...(valeur && 'unit' in valeur && { unit: valeur.unit }),
 	}
-
+	this.cache._meta.contextRule.pop()
 	this.cache[node.dottedName] = evaluation;
 	return evaluation;
 })

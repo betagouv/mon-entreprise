@@ -4,42 +4,44 @@ import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
-import { EngineContext } from './utils/EngineContext'
+import { EngineContext, useEngine } from './utils/EngineContext'
 
-export type ValueProps = {
+export type ValueProps<Names extends string> = {
 	expression: string
 	unit?: string
+	engine?: Engine<Names>
 	displayedUnit?: string
 	precision?: number
-	engine?: Engine<DottedName>
 	linkToRule?: boolean
 } & React.HTMLProps<HTMLSpanElement>
 
-export default function Value({
+export default function Value<Names extends string>({
 	expression,
 	unit,
+	engine,
 	displayedUnit,
 	precision,
-	engine,
 	linkToRule = true,
 	...props
-}: ValueProps) {
+}: ValueProps<Names>) {
 	const { language } = useTranslation().i18n
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
-	const evaluation = (engine ?? useContext(EngineContext)).evaluate(
-		expression,
-		{ unit }
-	)
+	const e = engine ?? useEngine()
+	const isRule = expression in e.getParsedRules()
+	const evaluation = e.evaluate({
+		valeur: expression,
+		...(unit && { unité: unit })
+	})
 	const value = formatValue(evaluation, {
 		displayedUnit,
 		language,
 		precision
 	})
-	if ('dottedName' in evaluation && linkToRule) {
+	if (isRule && linkToRule) {
 		return (
-			<RuleLink dottedName={evaluation.dottedName}>
+			<RuleLink dottedName={expression as DottedName}>
 				<span {...props}>{value}</span>
 			</RuleLink>
 		)
