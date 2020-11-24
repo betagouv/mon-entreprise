@@ -1,4 +1,4 @@
-import { EvaluationDecoration } from './AST/types'
+import { EvaluatedNode } from './AST/types'
 import { Leaf } from './components/mecanisms/common'
 import { InternalError } from './error'
 import { registerEvaluationFunction } from './evaluationFunctions'
@@ -8,7 +8,7 @@ import { RuleNode } from './rule'
 export type ReferenceNode = {
 	nodeKind: 'reference'
 	name: string
-	explanation?: RuleNode & EvaluationDecoration
+	explanation?: RuleNode & EvaluatedNode
 	contextDottedName: string
 	dottedName?: string
 	jsx: any

@@ -6,7 +6,7 @@ import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 import { ReferenceNode } from '../reference'
 import { disambiguateRuleReference } from '../ruleUtils'
-import { EvaluationDecoration } from '../AST/types'
+import { EvaluatedNode } from '../AST/types'
 import { serializeUnit } from '../units'
 
 export type RecalculNode = {
@@ -20,7 +20,7 @@ export type RecalculNode = {
 
 const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
 	if (this.cache._meta.inRecalcul) {
-		return (defaultNode(false) as any) as RecalculNode & EvaluationDecoration
+		return (defaultNode(false) as any) as RecalculNode & EvaluatedNode
 	}
 
 	const amendedSituation = node.explanation.amendedSituation
@@ -32,9 +32,7 @@ const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
 			([originRule, replacement]) =>
 				originRule.nodeValue !== replacement.nodeValue ||
 				serializeUnit(originRule.unit) !== serializeUnit(replacement.unit)
-		) as Array<
-		[ReferenceNode & EvaluationDecoration, ASTNode & EvaluationDecoration]
-	>
+		) as Array<[ReferenceNode & EvaluatedNode, EvaluatedNode]>
 
 	const originalCache = { ...this.cache }
 	const originalSituation = { ...this.parsedSituation }

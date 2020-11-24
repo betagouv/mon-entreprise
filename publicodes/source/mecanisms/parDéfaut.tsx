@@ -5,7 +5,7 @@ import { ASTNode } from '../AST/types'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
-import { EvaluationDecoration } from '../AST/types'
+import { EvaluatedNode } from '../AST/types'
 
 export type ParDéfautNode = {
 	explanation: {
@@ -17,7 +17,10 @@ export type ParDéfautNode = {
 }
 function ParDéfautComponent({ explanation }) {
 	return (
-		<InfixMecanism prefixed value={explanation.valeur}>
+		<InfixMecanism
+			value={explanation.valeur}
+			dimValue={explanation.valeur.nodeValue === null}
+		>
 			<p>
 				<strong>Par défaut : </strong>
 				{makeJsx(explanation.parDéfaut)}
@@ -40,7 +43,7 @@ const evaluate: evaluationFunction<'par défaut'> = function(node) {
 		nodeValue: valeur.nodeValue,
 		explanation,
 		missingVariables: mergeMissing(
-			(explanation.valeur as EvaluationDecoration).missingVariables,
+			(explanation.valeur as EvaluatedNode).missingVariables,
 			'missingVariables' in explanation.parDéfaut
 				? bonus(explanation.parDéfaut.missingVariables)
 				: {}

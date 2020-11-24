@@ -67,7 +67,7 @@ dirigeant . assimilé salarié . réduction ACRE . taux:
         - plafond: 100%
           taux: 0%
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
-  applicable si: entreprise . ACRE
+  formule: oui
   type: notification
   description: |
     Le taux ACRE utilisé est une moyenne annuelle. Le
@@ -87,12 +87,12 @@ dirigeant . auto-entrepreneur . base des cotisations:
 dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   type: notification
   sévérité: avertissement
-  applicable si: base des cotisations > plafond
+  formule: base des cotisations > plafond
   description: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
 
 dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
   type: notification
-  applicable si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
+  formule: entreprise . chiffre d'affaires > entreprise . franchise de TVA
   description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 dirigeant . auto-entrepreneur . plafond:
@@ -304,15 +304,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . pla
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
-  applicable si: entreprise . ACRE
+  formule: entreprise . ACRE
   type: notification
   description: |
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
     simulateur ne prends pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
 
-dirigeant . auto-entrepreneur . impôt:
-
+dirigeant . auto-entrepreneur . impôt: oui
 dirigeant . auto-entrepreneur . impôt . abattement:
   formule:
     produit:
@@ -345,7 +344,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seuil:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - impôt . foyer fiscal . revenu fiscal de référence > 27086 €/an
       - versement libératoire
@@ -442,7 +441,7 @@ dirigeant . indépendant:
 
 dirigeant . indépendant . avertissement base forfaitaire:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - entreprise . durée d'activité . en fin d'année < 2 ans
       - entreprise . date de création != 02/01/2020
@@ -833,17 +832,18 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
 
 dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
-
+  question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
+  par défaut: non
 dirigeant . indépendant . contrats madelin . montant:
   titre: Somme des cotisations à contrats Madelin
   formule:
     somme:
-      - mutuelle . montant
-      - retraite . montant
+      - mutuelle
+      - retraite
 
 dirigeant . indépendant . contrats madelin . contrôle montant charges:
   type: notification
-  applicable si: entreprise . charges < montant
+  formule: entreprise . charges < montant
   description: >-
     Le montant de l'ensemble des cotisations à vos contrats Madelin
     doit être inclus dans vos charges de fonctionnement, or vous
@@ -853,9 +853,9 @@ dirigeant . indépendant . contrats madelin . part déductible fiscalement:
   titre: Part de la cotisation à contrat Madelin qui est déductible fiscalement
   formule:
     somme:
-      - valeur: mutuelle . montant
+      - valeur: mutuelle
         plafond: mutuelle . plafond
-      - valeur: retraite . montant
+      - valeur: retraite
         plafond: retraite . plafond
 
 dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
@@ -863,9 +863,6 @@ dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
   formule: montant - part déductible fiscalement
 
 dirigeant . indépendant . contrats madelin . mutuelle:
-  titre: Contrat Madelin mutuelle
-
-dirigeant . indépendant . contrats madelin . mutuelle . montant:
   titre: Souscription à un contrat de mutuelle Madelin
   question: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
   description: |
@@ -876,7 +873,7 @@ dirigeant . indépendant . contrats madelin . mutuelle . montant:
     Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Bofip (contrats d'assurance de groupe): https://bofip.impots.gouv.fr/bofip/4639-PGP.html
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
-  par défaut: 0 €/an
+  par défaut: 50 €/mois
 
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   unité: €/an
@@ -897,9 +894,6 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
 
 dirigeant . indépendant . contrats madelin . retraite:
-  titre: Contrat Madelin retraite
-
-dirigeant . indépendant . contrats madelin . retraite . montant:
   titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez à votre contrat Madelin retraite ?
   description: |

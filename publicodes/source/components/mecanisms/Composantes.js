@@ -17,7 +17,6 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 			value={nodeValue}
 			unit={unit}
 		>
-			<StyledComponent>
 				<div
 					css={`
 						font-weight: bold;
@@ -32,7 +31,7 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 				</div>
 				<ol>
 					{explanation.map((c, i) => [
-						<li className="composante" key={JSON.stringify(c.composante)}>
+						<li  key={JSON.stringify(c.composante)}>
 							<ul
 								className="composanteAttributes"
 								style={{
@@ -68,22 +67,6 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 						</li>
 					])}
 				</ol>
-			</StyledComponent>
 		</Mecanism>
 	)
 }
-
-const StyledComponent = styled.div`
-	> ol {
-		list-style: none;
-		counter-reset: li;
-		padding-left: 1em;
-	}
-	> ol > li > ul > li {
-		list-style-type: none;
-	}
-
-	.composanteAttributes {
-		display: inline-block;
-	}
-`

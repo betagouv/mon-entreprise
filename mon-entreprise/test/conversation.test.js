@@ -10,6 +10,7 @@ describe('conversation', function() {
 	it('should start with the first missing variable', function() {
 		const missingVariables = new Engine({
 			// TODO - this won't work without the indirection, figure out why
+			'top': 'oui',
 			'top . startHere': { formule: { somme: ['a', 'b'] } },
 			'top . a': { formule: 'aa' },
 			'top . b': { formule: 'bb' },

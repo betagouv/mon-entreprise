@@ -1,13 +1,13 @@
 import { assoc, mapObjIndexed } from 'ramda'
-import { RuleNode } from './rule'
+import { Rule } from './rule'
 
 type Translation = Record<string, string>
 type translateAttribute = (
 	prop: string,
-	rule: RuleNode,
+	rule: Rule,
 	translation: Translation,
 	lang: string
-) => RuleNode
+) => Rule
 
 /* Traduction */
 const translateSuggestion: translateAttribute = (
@@ -41,7 +41,7 @@ export const attributesToTranslate = [
 ]
 
 const translateProp = (lang: string, translation: Translation) => (
-	rule: RuleNode,
+	rule: Rule,
 	prop: string
 ) => {
 	if (prop === 'suggestions' && rule?.suggestions) {
@@ -56,8 +56,8 @@ function translateRule<Names extends string>(
 	lang: string,
 	translations: { [Name in Names]: Translation },
 	name: Names,
-	rule: RuleNode
-): RuleNode {
+	rule: Rule
+): Rule {
 	const ruleTrans = translations[name]
 	if (!ruleTrans) {
 		return rule
@@ -71,11 +71,10 @@ function translateRule<Names extends string>(
 export default function translateRules(
 	lang: string,
 	translations: Record<string, Translation>,
-	rules: Record<string, RuleNode>
-): Record<string, RuleNode> {
+	rules: Record<string, Rule>
+): Record<string, Rule> {
 	const translatedRules = mapObjIndexed(
-		(rule: RuleNode, name: string) =>
-			translateRule(lang, translations, name, rule),
+		(rule: Rule, name: string) => translateRule(lang, translations, name, rule),
 		rules
 	)
 

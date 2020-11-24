@@ -20,9 +20,10 @@ export type VariationNode = {
 	explanation: Array<{
 		condition: ASTNode
 		consequence: ASTNode
+		satisfied?: boolean
 	}>
 	nodeKind: 'variations'
-	jsx: any
+	jsx: Function
 }
 
 export const devariate = (k, v, context): ASTNode => {
@@ -51,14 +52,13 @@ export const devariate = (k, v, context): ASTNode => {
 	return explanation
 }
 
-export default function parseVariations(v, context) {
+export default function parseVariations(v, context): VariationNode {
 	const explanation = v.map(({ si, alors, sinon }) =>
 		sinon !== undefined
 			? { consequence: parse(sinon, context), condition: defaultNode(true) }
 			: { consequence: parse(alors, context), condition: parse(si, context) }
 	)
 
-	// TODO - find an appropriate representation
 	return {
 		explanation,
 		jsx: Variations,
@@ -163,15 +163,14 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 			[]
 		)
 	)
-
-	return simplifyNodeUnit({
+	return {
 		...node,
 		nodeValue,
 		...(unit !== undefined && { unit }),
 		explanation,
 		missingVariables,
 		...(temporalValue.length > 1 && { temporalValue })
-	})
+	}
 }
 
 registerEvaluationFunction('variations', evaluate)

@@ -8,7 +8,7 @@ import { makeJsx, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import { ASTNode } from '../AST/types'
-import { EvaluationDecoration } from '../AST/types'
+import { EvaluatedNode } from '../AST/types'
 
 function MecanismPlafond({ explanation }) {
 	return (
@@ -43,10 +43,7 @@ const evaluate: evaluationFunction<'plafond'> = function(node) {
 		plafond = this.evaluateNode(plafond)
 		if (valeur.unit) {
 			try {
-				plafond = convertNodeToUnit(
-					valeur.unit,
-					plafond as ASTNode & EvaluationDecoration
-				)
+				plafond = convertNodeToUnit(valeur.unit, plafond as EvaluatedNode)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,

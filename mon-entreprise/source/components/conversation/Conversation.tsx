@@ -36,14 +36,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
+	console.log(currentQuestion)
 	const setDefault = () =>
 		dispatch(
 			// TODO: Skiping a question shouldn't be equivalent to answering the
 			// default value (for instance the question shouldn't appear in the
 			// answered questions).
 			validateStepWithValue(
-				currentQuestion,
-				rules[currentQuestion].defaultValue
+				currentQuestion, //TODO
+				undefined
 			)
 		)
 	const goToPrevious = () =>
@@ -77,7 +78,7 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				<Animate.fadeIn>
 					<div className="step">
 						<h3>
-							{rules[currentQuestion].question}{' '}
+							{rules[currentQuestion].rawNode.question}{' '}
 							<ExplicableRule dottedName={currentQuestion} />
 						</h3>
 
@@ -87,7 +88,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 								value={situation[currentQuestion]}
 								onChange={onChange}
 								onSubmit={submit}
-								rules={rules}
 							/>
 						</fieldset>
 					</div>

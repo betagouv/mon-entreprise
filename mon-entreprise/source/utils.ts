@@ -1,4 +1,5 @@
-import { formatValue } from 'publicodes'
+import Engine, { ASTNode, EvaluatedNode, formatValue } from 'publicodes'
+import { DottedName } from './rules'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string

@@ -3,11 +3,11 @@ import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import 'Components/TargetSelection.css'
 import Warning from 'Components/ui/WarningBlock'
-import { useEvaluation, EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import RuleInput from 'Components/conversation/RuleInput'
-import { ParsedRule } from 'publicodes'
+import { EvaluatedRule, evaluateRule } from 'publicodes'
 import { Fragment, useCallback, useEffect, useState, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -111,7 +111,6 @@ export default function AideDéclarationIndépendant() {
 			</Trans>
 			<BigInput>
 				<RuleInput
-					rules={rules}
 					dottedName="dirigeant . rémunération totale"
 					onChange={setCurrentIncome}
 					value={currentIncome}
@@ -320,7 +319,10 @@ function SubSection({
 		...(Object.keys(situation) as Array<DottedName>),
 		...nextSteps
 	].filter(nextStep => {
-		const { dottedName, question } = parsedRules[nextStep]
+		const {
+			dottedName,
+			rawNode: { question }
+		} = parsedRules[nextStep]
 		return !!question && dottedName.startsWith(sectionDottedName)
 	})
 
@@ -336,13 +338,13 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: ParsedRule['summary']
-	question?: ParsedRule['question']
+	summary?: EvaluatedRule['résumé']
+	question?: EvaluatedRule['question']
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const evaluatedRule = useEvaluation(dottedName)
-	const rules = useContext(EngineContext).getParsedRules()
+	const engine = useContext(EngineContext)
+	const evaluatedRule = evaluateRule(engine, dottedName)
 	const value = useSelector(situationSelector)[dottedName]
 	const [currentValue, setCurrentValue] = useState(value)
 
@@ -365,8 +367,11 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 		setCurrentValue(value)
 	}, [value])
 	if (
-		evaluatedRule.isApplicable === false ||
-		evaluatedRule.isApplicable === null
+		// TODO
+		// evaluatedRule.isApplicable === false ||
+		// evaluatedRule.isApplicable === null
+		evaluatedRule.nodeValue === false ||
+		evaluatedRule.nodeValue === null
 	) {
 		return null
 	}
@@ -388,10 +393,9 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 							{question ?? evaluatedRule.question}
 							<ExplicableRule dottedName={dottedName} />
 						</p>
-						<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
+						<p className="ui__ notice">{summary ?? evaluatedRule.résumé}</p>
 					</div>
 					<RuleInput
-						rules={rules}
 						dottedName={dottedName}
 						onChange={update}
 						value={currentValue}
@@ -403,9 +407,9 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 }
 
 function Results() {
-	const results = useEvaluation(
-		simulationConfig.objectifs as Array<DottedName>,
-		{ unit: '€/an' }
+	const engine = useEngine()
+	const results = (simulationConfig.objectifs as DottedName[]).map(objectif =>
+		evaluateRule(engine, objectif, { unité: '€/an' })
 	)
 	const onGoingComputation = !results.filter(node => node.nodeValue != null)
 		.length
@@ -434,7 +438,7 @@ function Results() {
 					{results.map(r => (
 						<Fragment key={r.title}>
 							<h4>
-								{r.title} <small>{r.summary}</small>
+								{r.title} <small>{r.résumé}</small>
 							</h4>
 							{r.description && <p className="ui__ notice">{r.description}</p>}
 							<p className="ui__ lead" css="margin-bottom: 1rem;">

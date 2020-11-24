@@ -10,6 +10,7 @@ import styled from 'styled-components'
 export default function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
 	const { i18n } = useTranslation()
+
 	return (
 		<StyledComponent>
 			<Mecanism

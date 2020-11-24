@@ -66,7 +66,7 @@ export const SalaireNetSection = () => {
 type LineProps = {
 	rule: DottedName
 	negative?: boolean
-} & Omit<ValueProps, 'expression'>
+} & Omit<ValueProps<DottedName>, 'expression'>
 
 export function Line({
 	rule,

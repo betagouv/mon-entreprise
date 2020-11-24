@@ -40,14 +40,13 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			const res = targets.map(target => engine.evaluate(target).nodeValue)
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
-				.filter(rule => rule['type'] === 'notification')
-				.filter(
-					notification =>
-						![null, false].includes(
-							engine.evaluate(notification.dottedName).isApplicable
-						)
-				)
-				.map(notification => notification.dottedName)
+			.filter(
+				(rule) =>
+					rule.rawNode['type'] === 'notification'
+			)
+			.map(node => engine.evaluateNode(node))
+			.filter(node => !!node.nodeValue)
+			.map(node => node.dottedName)
 
 			const snapshotedDisplayedNotifications = evaluatedNotifications.length
 				? `\nNotifications affichées : ${evaluatedNotifications.join(', ')}`
@@ -61,7 +60,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 		})
 	)
 
-it('calculate simulations-salarié', () => {
+it.only('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { StyledConfig } from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
 import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
@@ -9,7 +9,7 @@ import {
 	ASTNode,
 	ConstantNode,
 	Evaluation,
-	EvaluationDecoration,
+	EvaluatedNode,
 	Types,
 	Unit
 } from '../../AST/types'
@@ -20,9 +20,11 @@ import mecanismColors from './colors'
 import MecanismExplanation from './Explanation'
 import { ReferenceNode } from '../../reference'
 import { RuleNode } from '../../rule'
+import { EngineContext } from '../contexts'
+import { InternalError } from '../../error'
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
-	unit: Unit
+	unit: Unit | undefined
 }
 
 export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
@@ -49,7 +51,7 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 type NodeProps = {
 	name: string
 	value: Evaluation<Types>
-	unit: Unit
+	unit?: Unit
 	children: React.ReactNode
 	displayName?: boolean
 }
@@ -105,11 +107,13 @@ export function Mecanism({
 export const InfixMecanism = ({
 	value,
 	prefixed,
-	children
+	children,
+	dimValue
 }: {
-	value: ASTNode & EvaluationDecoration
+	value: EvaluatedNode
 	children: React.ReactNode
 	prefixed?: boolean
+	dimValue?: boolean
 }) => {
 	return (
 		<div
@@ -125,7 +129,9 @@ export const InfixMecanism = ({
 			`}
 		>
 			{prefixed && children}
-			<div className="value">{makeJsx(value)}</div>
+			<div className="value" css={dimValue ? `opacity: 0.5` : ''}>
+				{makeJsx(value)}
+			</div>
 			{!prefixed && children}
 		</div>
 	)
@@ -232,18 +238,30 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export function Leaf(
-	node: ReferenceNode &
-		EvaluationDecoration & { explanation: RuleNode; dottedName: string }
+	node: ReferenceNode & {
+		dottedName: string
+	} & EvaluatedNode
 ) {
-	const { dottedName, name, nodeValue, explanation: rule, unit } = node
-
+	const engine = useContext(EngineContext)
+	const { dottedName, nodeValue, unit } = node
+	const rule = engine?.getParsedRules()[node.dottedName]
+	if (!rule) {
+		throw new InternalError(node)
+	}
+	const inlineRule =
+		node.dottedName === node.contextDottedName + ' . ' + node.name &&
+		!node.name.includes(' . ') &&
+		rule.virtualRule
+	if (inlineRule) {
+		return makeJsx(rule)
+	}
 	return (
 		<span className="variable filtered leaf">
 			<span className="nodeHead">
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
-						{rule.rawRule.acronyme ? (
-							<abbr title={rule.title}>{rule.rawRule.acronyme}</abbr>
+						{rule.rawNode.acronyme ? (
+							<abbr title={rule.title}>{rule.rawNode.acronyme}</abbr>
 						) : (
 							rule.title
 						)}

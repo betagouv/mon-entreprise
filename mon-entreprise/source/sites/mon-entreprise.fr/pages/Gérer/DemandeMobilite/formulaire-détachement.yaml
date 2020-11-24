@@ -231,14 +231,14 @@ activité transfrontalière simultanée . activité non salariée . nombre:
 activité transfrontalière simultanée . activité non salariée . nombre max:
   type: notification
   sévérité: avertissement
-  applicable si: nombre > 2
+  formule: nombre > 2
   description: >
     Ce formulaire ne permet pas de déclarer une activité dans plus de 3 pays
 
 activité transfrontalière simultanée . activité non salariée . nombre min:
   type: notification
   sévérité: avertissement
-  applicable si: nombre < 1
+  formule: nombre < 1
   description: >
     Vous devez déclarer un pays au moins
 

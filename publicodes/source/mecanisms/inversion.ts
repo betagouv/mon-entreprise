@@ -64,12 +64,12 @@ export const evaluateInversion: evaluationFunction<'inversion'> = function(
 		}
 		this.parsedSituation[node.explanation.ruleToInverse] = {
 			unit: unit,
-			jsx: null,
+			jsx: () => n,
 			nodeKind: 'unité',
 			explanation: {
 				nodeKind: 'constant',
 				nodeValue: n,
-				jsx: null,
+				jsx: () => n,
 				type: 'number'
 			} as ConstantNode
 		} as UnitéNode

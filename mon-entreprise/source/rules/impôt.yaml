@@ -378,7 +378,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           - contrat salarié . rémunération . net imposable
           - dirigeant . indépendant . résultat fiscal
       abattement: 
-        valeur: 0.1 * assiette
+        valeur: 10% * assiette
         plafond: 12502 €/an
         plancher: 437 €/an
   références:

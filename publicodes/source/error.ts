@@ -48,13 +48,14 @@ export function typeWarning(
 	message: string,
 	originalError?: Error
 ) {
-	console.warn(
-		`\n[ Erreur de type ]
-➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-✖️  ${message}
-    ${originalError ? originalError.message : ''}
-`
-	)
+	// DESACTIVE EN ATTENDANT L'INFÉRENCE DE TYPE
+	// 	console.warn(
+	// 		`\n[ Erreur de type ]
+	// ➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+	// ✖️  ${message}
+	//     ${originalError ? originalError.message : ''}
+	// `
+	// 	)
 }
 
 export function warning(
@@ -62,13 +63,13 @@ export function warning(
 	message: string,
 	solution?: string
 ) {
-	console.warn(
-		`\n[ Avertissement ]
-➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-⚠️  ${message}
-💡  ${solution ? solution : ''}
-`
-	)
+	// 	console.warn(
+	// 		`\n[ Avertissement ]
+	// ➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+	// ⚠️  ${message}
+	// 💡  ${solution ? solution : ''}
+	// `
+	// 	)
 }
 
 export class InternalError extends EngineError {

@@ -4,7 +4,7 @@ import { DottedName } from 'Rules'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
-import { EngineContext } from './utils/EngineContext'
+import { EngineContext, useEngine } from './utils/EngineContext'
 import { utils } from 'publicodes'
 
 const worker = new Worker()
@@ -62,7 +62,7 @@ function highlightMatches(str: string, matches: Matches) {
 export default function SearchBar({
 	showListByDefault = false
 }: SearchBarProps) {
-	const rules = useContext(EngineContext).getParsedRules()
+	const rules = useEngine().getParsedRules()
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
 		Array<{
@@ -78,8 +78,8 @@ export default function SearchBar({
 				.filter(utils.ruleWithDedicatedDocumentationPage)
 				.map(rule => ({
 					title:
-						rule.title ??
-						rule.name + (rule.acronyme ? ` (${rule.acronyme})` : ''),
+						rule.title +
+						(rule.rawNode.acronyme ? ` (${rule.rawNode.acronyme})` : ''),
 					dottedName: rule.dottedName,
 					espace: rule.dottedName.split(' . ').reverse()
 				})),

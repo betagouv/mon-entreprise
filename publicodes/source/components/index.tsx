@@ -30,6 +30,7 @@ export function Documentation({
 			i18n.changeLanguage(language)
 		}
 	}, [language])
+
 	return (
 		<EngineContext.Provider value={engine}>
 			<BasepathContext.Provider value={documentationPath}>

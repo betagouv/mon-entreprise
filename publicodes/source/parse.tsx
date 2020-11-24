@@ -59,7 +59,10 @@ Utilisez leur contrepartie française : 'oui' / 'non'`
 		return parseRule(node, context)
 	}
 
-	return parseChainedMecanisms(node, context)
+	return {
+		...parseChainedMecanisms(node, context),
+		rawNode
+	}
 }
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
@@ -106,7 +109,7 @@ Cela vient probablement d'une erreur dans l'indentation
 		)
 	}
 	if (isEmpty(rawNode)) {
-		return { nodeKind: 'constant', nodeValue: null }
+		return { nodeKind: 'constant', nodeValue: null, jsx: () => null }
 	}
 
 	const mecanismName = Object.keys(rawNode)[0]
@@ -146,11 +149,11 @@ const chainableMecanisms = [
 	applicable,
 	nonApplicable,
 	parDéfaut,
-	situation,
+	arrondi,
+	unité,
 	plancher,
 	plafond,
-	unité,
-	arrondi
+	situation
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {
 	const parseFn = chainableMecanisms.find(fn => fn.nom in rawNode)
@@ -195,7 +198,12 @@ const parseFunctions = {
 	objet: v => ({
 		type: 'objet',
 		nodeValue: v,
-		nodeKind: 'constant'
+		nodeKind: 'constant',
+		jsx: () => (
+			<code>
+				<pre>{JSON.stringify(v, null, 2)}</pre>
+			</code>
+		)
 	}),
 	constant: v => ({
 		type: v.type,

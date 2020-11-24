@@ -1,10 +1,11 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
+import { ASTNode, References } from 'publicodes'
+import { Rule } from 'publicodes/dist/types/rule'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Explicable } from './Explicable'
-import { References, ParsedRule, Rule } from 'publicodes'
 import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
@@ -23,7 +24,7 @@ import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
 
 */
 
-export type Choice = ParsedRule & {
+export type Choice = ASTNode & { nodeKind: 'rule' } & {
 	canGiveUp?: boolean
 	children: Array<Choice>
 }
@@ -37,10 +38,13 @@ export default function Question({
 	choices,
 	onSubmit,
 	dottedName: questionDottedName,
+	missing,
 	onChange,
 	value: currentValue
 }: QuestionProps) {
-	const [currentSelection, setCurrentSelection] = useState(currentValue)
+	const [currentSelection, setCurrentSelection] = useState(
+		missing ? null : `'${currentValue}'`
+	)
 	const handleChange = useCallback(
 		value => {
 			setCurrentSelection(value)
@@ -55,7 +59,6 @@ export default function Question({
 		},
 		[onSubmit, onChange, setCurrentSelection]
 	)
-
 	useEffect(() => {
 		if (currentSelection != null) {
 			const timeoutId = setTimeout(() => onChange(currentSelection), 300)
@@ -116,7 +119,12 @@ export default function Question({
 				)}
 				{choices.children &&
 					choices.children.map(
-						({ title, dottedName, description, children, icons, références }) =>
+						({
+							title,
+							dottedName,
+							rawNode: { description, icônes, références },
+							children
+						}) =>
 							children ? (
 								<li key={dottedName} className="variant">
 									<div>{title}</div>
@@ -131,7 +139,7 @@ export default function Question({
 											dottedName,
 											currentSelection,
 											name: questionDottedName,
-											icons,
+											icônes,
 											onSubmit: handleSubmit,
 											description,
 											références,
@@ -194,8 +202,8 @@ type RadioLabelContentProps = {
 	value: string
 	label: string
 	name: string
-	currentSelection?: string
-	icons?: string
+	currentSelection?: null | string
+	icônes?: string
 	onChange: RuleInputProps['onChange']
 	onSubmit: (src: string, value: string) => void
 }
@@ -205,7 +213,7 @@ function RadioLabelContent({
 	label,
 	name,
 	currentSelection,
-	icons,
+	icônes,
 	onChange,
 	onSubmit
 }: RadioLabelContentProps) {
@@ -231,7 +239,7 @@ function RadioLabelContent({
 				checked={selected}
 			/>
 			<span>
-				{icons && <>{emoji(icons)}&nbsp;</>}
+				{icônes && <>{emoji(icônes)}&nbsp;</>}
 				<Trans>{label}</Trans>
 			</span>
 		</label>
