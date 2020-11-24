@@ -6,7 +6,7 @@ contrat salarié . convention collective . sport:
     L'entreprise dépend de la convention collective nationale des sportifs (CCNS)
     Les disciplines concernées sont tous les sports pour lesquels il existe une fédération française agréée par le ministère de la Jeunesse et des Sports.
 
-contrat salarié . convention collective . sport . cotisations:
+contrat salarié . convention collective . sport . cotisations: oui
 
 contrat salarié . convention collective . sport . cotisations . patronales:
   titre: cotisations conventionnelles
@@ -177,6 +177,7 @@ contrat salarié . convention collective . sport . exonération cotisation AT:
   remplace:
     règle: ATMP
     par: non
+  formule: oui
 
 contrat salarié . convention collective . sport . exonération cotisation AT . refus:
   titre: refus exonération AT

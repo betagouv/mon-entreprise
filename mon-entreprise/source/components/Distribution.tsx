@@ -1,4 +1,4 @@
-import { EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
@@ -14,11 +14,11 @@ export default function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (getCotisationsBySection(
-		useContext(EngineContext).getParsedRules()
+		useEngine().getParsedRules()
 	).map(([section, cotisations]) => [
 		section,
 		cotisations
-			.map(c => engine.evaluate(c, { unit: targetUnit }))
+			.map(c => engine.evaluate({ valeur: c, unité: targetUnit }))
 			.reduce(
 				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
 				0
@@ -65,8 +65,8 @@ export function DistributionBranch({
 			value={value}
 			maximum={maximum}
 			title={<RuleLink dottedName={dottedName} />}
-			icon={icon ?? branche.icons}
-			description={branche.summary}
+			icon={icon ?? branche.rawNode.icônes}
+			description={branche.rawNode.résumé}
 			unit="€"
 		/>
 	)

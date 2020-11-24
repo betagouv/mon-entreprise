@@ -15,7 +15,7 @@ import i18n from './i18n'
 import { Evaluation, Unit } from './AST/types'
 
 export const parseUnit = (string: string, lng = 'fr'): Unit => {
-	const [a, ...b] = string.split('/'),
+	const [a, ...b] = string.split('/').map(u => u.trim()),
 		result = {
 			numerators: a
 				.split('.')

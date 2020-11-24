@@ -14,10 +14,10 @@ import {
 	ASTNode,
 	ConstantNode,
 	Evaluation,
-	EvaluationDecoration,
+	EvaluatedNode,
 	NodeKind
 } from './AST/types'
-import { typeWarning } from './error'
+import { InternalError, typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import {
@@ -32,6 +32,9 @@ import {
 
 export const makeJsx = (node: ASTNode): JSX.Element => {
 	const Component = node.jsx
+	if (!Component) {
+		throw new InternalError(node)
+	}
 	return <Component {...node} />
 }
 
@@ -115,7 +118,7 @@ export const defaultNode = (nodeValue: Evaluation) =>
 		nodeValue,
 		type: typeof nodeValue,
 		// eslint-disable-next-line
-		jsx: ({ nodeValue }: ASTNode & EvaluationDecoration) => (
+		jsx: ({ nodeValue }: EvaluatedNode) => (
 			<span className="value">{nodeValue}</span>
 		),
 		isDefault: true,
@@ -165,7 +168,7 @@ export function evaluateObject<NodeName extends NodeKind>(
 		}, temporalExplanations)
 
 		const sameUnitTemporalExplanation: Temporal<ASTNode &
-			EvaluationDecoration & { nodeValue: number }> = convertNodesToSameUnit(
+			EvaluatedNode & { nodeValue: number }> = convertNodesToSameUnit(
 			temporalExplanation.map(x => x.value),
 			this.cache._meta.contextRule,
 			node.nodeKind
@@ -189,7 +192,7 @@ export function evaluateObject<NodeName extends NodeKind>(
 		if (sameUnitTemporalExplanation.length === 1) {
 			return {
 				...baseEvaluation,
-				explanation: (sameUnitTemporalExplanation[0] as any).value
+				explanation: (sameUnitTemporalExplanation[0] as any).value.explanation
 			}
 		}
 		return {

@@ -6,10 +6,8 @@ import parse from '../parse'
 import { convertUnit, inferUnit } from '../units'
 
 type TrancheNode = { taux: ASTNode } | { montant: ASTNode }
-export type TrancheNodes = [
-	...Array<TrancheNode & { plafond: ASTNode }>,
-	TrancheNode & { plafond?: ASTNode }
-]
+export type TrancheNodes = Array<TrancheNode & { plafond?: ASTNode }>
+
 export const parseTranches = (tranches, context): TrancheNodes => {
 	return tranches
 		.map((t, i) => {

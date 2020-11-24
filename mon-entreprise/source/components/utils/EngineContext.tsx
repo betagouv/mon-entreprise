@@ -1,10 +1,13 @@
-import Engine, { EvaluatedRule, EvaluationOptions } from 'publicodes'
+import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 import { DottedName } from 'Rules'
 
-export const EngineContext = createContext<Engine<DottedName>>(null as any)
-
+export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
+
+export function useEngine(): Engine<DottedName> {
+	return useContext(EngineContext) as Engine<DottedName>
+}
 
 type SituationProviderProps = {
 	children: React.ReactNode
@@ -22,26 +25,6 @@ export function SituationProvider({
 		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
 	)
 }
-
-export function useEvaluation(
-	rule: DottedName,
-	options?: EvaluationOptions
-): EvaluatedRule<DottedName>
-export function useEvaluation(
-	rule: DottedName[],
-	options?: EvaluationOptions
-): EvaluatedRule<DottedName>[]
-export function useEvaluation(
-	rule: Array<DottedName> | DottedName,
-	options?: EvaluationOptions
-): Array<EvaluatedRule<DottedName>> | EvaluatedRule<DottedName> {
-	const engine = useContext(EngineContext)
-	if (Array.isArray(rule)) {
-		return rule.map(name => engine.evaluate(name, options))
-	}
-	return engine.evaluate(rule, options)
-}
-
 export function useInversionFail() {
 	return useContext(EngineContext).inversionFail()
 }

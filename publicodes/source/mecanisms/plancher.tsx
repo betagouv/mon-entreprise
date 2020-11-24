@@ -7,7 +7,7 @@ import { makeJsx, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
-import { EvaluationDecoration } from '../AST/types'
+import { EvaluatedNode } from '../AST/types'
 
 function MecanismPlancher({ explanation }) {
 	return (
@@ -41,10 +41,7 @@ const evaluate: evaluationFunction<'plancher'> = function(node) {
 		plancher = this.evaluateNode(plancher)
 		if (valeur.unit) {
 			try {
-				plancher = convertNodeToUnit(
-					valeur.unit,
-					plancher as ASTNode & EvaluationDecoration
-				)
+				plancher = convertNodeToUnit(valeur.unit, plancher as EvaluatedNode)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,

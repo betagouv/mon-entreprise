@@ -1,4 +1,4 @@
-import { DottedName, Situation } from '../rules/index'
+import { DottedName } from '../rules/index'
 import { createSelector } from 'reselect'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 
@@ -16,7 +16,7 @@ export const objectifsSelector = createSelector([configSelector], config => {
 	return objectifs
 })
 
-const emptySituation: Situation = {}
+const emptySituation: Partial<Record<DottedName, string | number | Object>> = {}
 
 export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation

@@ -1,12 +1,21 @@
 import { isEmpty } from 'ramda'
-import { ASTNode, EvaluationDecoration } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
+import { InfixMecanism } from '../components/mecanisms/common'
 import { makeJsx, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 
-function MecanismSituation({ explanation, nodeValue, unit }) {
-	// TODO : vue différente selon si valeur depuis la situation ou calculée
-	return makeJsx({ ...explanation.valeur, nodeValue, unit })
+function MecanismSituation({ explanation }) {
+	return explanation.situationValeur ? (
+		<InfixMecanism prefixed value={explanation.valeur} dimValue>
+			<p>
+				<strong>Valeur renseignée dans la simulation : </strong>
+				{makeJsx(explanation.situationValeur)}
+			</p>
+		</InfixMecanism>
+	) : (
+		makeJsx(explanation.valeur)
+	)
 }
 
 export type SituationNode = {
@@ -36,7 +45,7 @@ parseSituation.nom = 'nom dans la situation' as const
 registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 	const explanation = { ...node.explanation }
 	const situationKey = explanation.situationKey
-	let valeur: ASTNode & EvaluationDecoration
+	let valeur: EvaluatedNode
 	if (situationKey in this.parsedSituation) {
 		valeur = this.evaluateNode(this.parsedSituation[situationKey])
 		explanation.situationValeur = valeur

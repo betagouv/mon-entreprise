@@ -59,7 +59,7 @@ export default function parseVariableTemporelle(
 	const explanation = parse(v.explanation, context)
 	return {
 		nodeKind: 'variable temporelle',
-		jsx: null,
+		jsx: () => 'variable temporelle',
 		explanation: {
 			period: {
 				start: v.period.start && parse(v.period.start, context),

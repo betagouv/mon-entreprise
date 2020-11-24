@@ -10,7 +10,7 @@ import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
 import { liftTemporal2, pureTemporal, temporalAverage } from '../temporal'
-import { EvaluationDecoration } from '../AST/types'
+import { EvaluatedNode } from '../AST/types'
 import { inferUnit, serializeUnit } from '../units'
 
 const knownOperations = {
@@ -57,8 +57,8 @@ const parseOperation = (k, symbol) => (v, context) => {
 
 const evaluate: evaluationFunction<'operation'> = function(node) {
 	const explanation = node.explanation.map(node => this.evaluateNode(node)) as [
-		ASTNode & EvaluationDecoration,
-		ASTNode & EvaluationDecoration
+		EvaluatedNode,
+		EvaluatedNode
 	]
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])

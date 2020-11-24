@@ -8,13 +8,14 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
 import Engine from 'publicodes'
+import { Rule } from 'publicodes/dist/types/rule'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import { Rules } from 'Rules'
+import { DottedName } from 'Rules'
 import {
 	configSituationSelector,
 	situationSelector
@@ -81,7 +82,7 @@ const middlewares = [
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rules: Rules
+	rules: Record<DottedName, Rule>
 }
 
 export default function Root({ basename, rules }: RootProps) {

@@ -1,6 +1,6 @@
 import { mapTemporal } from './temporal'
-import { convertUnit, simplifyUnit } from './units'
-import { ASTNode, EvaluationDecoration, Unit } from './AST/types'
+import { convertUnit, serializeUnit, simplifyUnit } from './units'
+import { ASTNode, EvaluatedNode, Unit } from './AST/types'
 
 export function simplifyNodeUnit(node) {
 	if (!node.unit) {
@@ -11,10 +11,10 @@ export function simplifyNodeUnit(node) {
 	return convertNodeToUnit(unit, node)
 }
 
-export function convertNodeToUnit(
+export function convertNodeToUnit<Node extends EvaluatedNode = EvaluatedNode>(
 	to: Unit | undefined,
-	node: ASTNode & EvaluationDecoration
-) {
+	node: Node
+): Node {
 	const temporalValue =
 		node.temporalValue && node.unit
 			? mapTemporal(

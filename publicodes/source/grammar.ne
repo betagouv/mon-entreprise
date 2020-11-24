@@ -18,7 +18,7 @@ const letter = '[a-zA-Z\u00C0-\u017F€$%]';
 const letterOrNumber = '[a-zA-Z\u00C0-\u017F0-9\'°]';
 const word = `${letter}(?:[-']?${letterOrNumber}+)*`;
 const wordOrNumber = `(?:${word}|${letterOrNumber}+)`
-const words = `${word}(?:[\\s]?${wordOrNumber}+)*`
+const words = `${word}(?:[,\\s]?${wordOrNumber}+)*`
 const periodWord = `\\| ${word}(?:[\\s]${word})*`
 
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\\.[0-9]+)?';

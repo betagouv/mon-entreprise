@@ -67,8 +67,11 @@ export type ASTNode = (
 	| VariationNode
 	| ConstantNode
 	| ReplacementNode
-) &
-	(EvaluationDecoration | {}) // TODO : separate type for evaluated AST Tree
+) & {
+	isDefault?: boolean
+	rawNode?: string | Object
+} & (EvaluationDecoration<Types> | {}) // TODO : separate type for evaluated AST Tree
+
 export type MecanismNode = Exclude<
 	ASTNode,
 	RuleNode | ConstantNode | ReferenceNode
@@ -90,14 +93,15 @@ export type Unit = {
 	denominators: Array<BaseUnit>
 }
 
-export type Types = number | boolean | string | Object
-
 // Idée : une évaluation est un n-uple : (value, unit, missingVariable, isApplicable)
 // Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
-export type Evaluation<T extends Types = Types> = T | false | null
-export type EvaluationDecoration<T extends Types = Types> = {
+type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
 	missingVariables: Partial<Record<string, number>>
 	unit?: Unit
 	temporalValue?: Temporal<Evaluation>
 }
+export type Types = number | boolean | string | Object
+export type Evaluation<T extends Types = Types> = T | false | null
+export type EvaluatedNode<T extends Types = Types> = ASTNode &
+	EvaluationDecoration<T>

@@ -71,7 +71,9 @@ export const validateStepWithValue = (
 	dottedName: DottedName,
 	value: unknown
 ): ThunkResult<void> => dispatch => {
-	dispatch(updateSituation(dottedName, value))
+	if (value !== undefined) {
+		dispatch(updateSituation(dottedName, value))
+	}
 	dispatch({
 		type: 'STEP_ACTION',
 		name: 'fold',

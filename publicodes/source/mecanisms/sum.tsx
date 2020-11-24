@@ -4,10 +4,7 @@ import { evaluateArray } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 
-const evaluate = evaluateArray<'somme'>(
-	(x: any, y: any) => (x === false && y === false ? false : x + y),
-	false
-)
+const evaluate = evaluateArray<'somme'>((x: any, y: any) => x + y, 0)
 
 export type SommeNode = {
 	explanation: Array<ASTNode>
