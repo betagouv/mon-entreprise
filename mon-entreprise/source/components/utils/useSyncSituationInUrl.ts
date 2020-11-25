@@ -59,14 +59,14 @@ export default function useSyncSituationInUrl() {
 			}
 		}
 	}, [
-		setSearchParams,
-		dispatch,
-		configIsExtracted,
 		config,
+		configIsExtracted,
+		situation,
+		targetUnit,
 		engine,
 		searchParams,
-		situation,
-		targetUnit
+		setSearchParams,
+		dispatch
 	])
 }
 
