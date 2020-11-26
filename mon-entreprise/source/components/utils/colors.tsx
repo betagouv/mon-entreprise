@@ -90,6 +90,22 @@ const generateTheme = (themeColor?: string) => {
 	}
 }
 
+const darkTheme = {
+	color: '#617fa3',
+	textColor: '#ffffff',
+	inverseTextColor: '#ffffff',
+	lighterTextColor: '#ffffff',
+	lighterInverseTextColor: '#ffffff',
+	textColorOnWhite: '#ffffff',
+	grayColor: '#ffffff',
+	darkColor: '#ffffff',
+	lightColor: '#ffffff',
+	lighterColor: '#272c39',
+	lightestColor: '#191a30',
+	darkestColor: '#ffffff',
+	palettes: deriveAnalogousPalettes('#2975D1')
+}
+
 export type ThemeColors = ReturnType<typeof generateTheme>
 
 export const ThemeColorsContext = createContext<ThemeColors>(generateTheme())
@@ -100,7 +116,8 @@ type ProviderProps = {
 }
 
 export function ThemeColorsProvider({ color, children }: ProviderProps) {
-	const colors = generateTheme(color)
+	const darkMode = window.matchMedia('(prefers-color-scheme: dark)')
+	const colors = darkMode ? darkTheme : generateTheme(color)
 	const divRef = useRef<HTMLDivElement>(null)
 	useEffect(() => {
 		Object.entries(colors).forEach(([key, value]) => {

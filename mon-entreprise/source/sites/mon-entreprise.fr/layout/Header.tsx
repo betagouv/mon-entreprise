@@ -3,6 +3,7 @@ import logoEnSvg from 'Images/logo-mycompany.svg'
 import logoSvg from 'Images/logo.svg'
 import marianneSvg from 'Images/marianne.svg'
 import urssafSvg from 'Images/urssaf.svg'
+import urssafWhite from 'Images/urssaf-white.png'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -54,7 +55,13 @@ export default function Header() {
 					}}
 					className="landing-header__institutional-logo"
 				>
-					<img alt="logo urssaf" style={{ height: '100%' }} src={urssafSvg} />
+					<picture alt="logo urssaf">
+						<source
+							srcSet={urssafSvg}
+							media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)"
+						/>
+						<source srcSet={urssafWhite} media="(prefers-color-scheme: dark)" />
+					</picture>
 				</a>
 			</div>
 			<NewsBanner />

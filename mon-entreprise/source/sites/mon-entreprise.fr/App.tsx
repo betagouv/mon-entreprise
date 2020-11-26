@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/browser'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
+import 'Components/ui/dark-mode.css'
 import {
 	EngineProvider,
 	SituationProvider

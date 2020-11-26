@@ -1,0 +1,16 @@
+/* TODO: no dark-mode in iframe */
+@media (prefers-color-scheme: dark) {
+	:root {
+		background: #152028;
+		--darkColor: white;
+	}
+
+	.ui__.card {
+		background: #0b1123;
+		border-color: #47657b;
+	}
+
+	img {
+		filter: brightness(0.8) contrast(1.2);
+	}
+}
