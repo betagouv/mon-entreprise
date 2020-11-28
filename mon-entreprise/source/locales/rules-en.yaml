@@ -241,12 +241,20 @@ artiste-auteur . cotisations . assiette:
     catégories.
   titre.en: base
   titre.fr: assiette
+artiste-auteur . cotisations . assiette 2019:
+  description.en: >
+    [automatic] We calculate the covid aid on the basis of a contribution base
+    2019
+
+    equal to the 2020 plate.
+  description.fr: |
+    Nous calculons l'aide covid sur la base d'une assiette des cotisations 2019
+    égale à l'assiette 2020.
+  titre.en: '[automatic] plate 2019'
+  titre.fr: assiette 2019
 artiste-auteur . cotisations . assiette surcotisation:
   titre.en: over-contribution base
   titre.fr: assiette surcotisation
-artiste-auteur . cotisations . avec réductions:
-  titre.en: '[automatic] with reductions'
-  titre.fr: avec réductions
 artiste-auteur . cotisations . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
@@ -309,6 +317,36 @@ artiste-auteur . revenus . traitements et salaires:
   titre.en: Income in wages and salaries
   titre.fr: Revenu en traitements et salaires
 artiste-auteur . réduction de cotisations covid 2020:
+  description.en: >
+    [automatic] In order to take into account the impact of the Covid-19 crisis
+    the government has
+
+    set up a system for the payment of social security contributions of the
+
+    artists-authors due by 2020 up to 2 000€.
+
+
+    This aid is calculated on the basis of the social security contribution base of
+
+    2019.
+
+
+    The support is automatic and you don't have to take any steps to
+
+    to be carried out. You will benefit from this aid after the annual declaration of
+
+    2020 revenues, i.e. in the second quarter of 2021.
+  description.fr: |
+    Afin de tenir compte de l'impact de la crise du Covid-19 le gouvernement a
+    mis en place une prise en charge des cotisations sociales des
+    artistes-auteurs dues pour 2020 pouvant aller jusqu'à 2 000€.
+
+    Cette aide est calculée à partir de l'assiette des cotisations sociales de
+    2019.
+
+    La prise en charge est automatique et vous n'avez pas de démarche a
+    effectuer. Vous bénéficierez de cette aide après la déclaration annuelle de
+    revenus 2020, soit au second trimestre 2021.
   titre.en: '[automatic] covid 2020 contribution reduction'
   titre.fr: réduction de cotisations covid 2020
 chômage partiel:
