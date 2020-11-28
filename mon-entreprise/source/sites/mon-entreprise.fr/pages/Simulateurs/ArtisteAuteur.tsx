@@ -62,7 +62,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const rule = useEvaluation(dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	const parsedRules = useContext(EngineContext).getParsedRules()
-	const value = useSelector(situationSelector)[dottedName] ?? rule.defaultValue
+	const value = useSelector(situationSelector)[dottedName]
 	if (rule.isApplicable === false || rule.isApplicable === null) {
 		return null
 	}
@@ -140,14 +140,11 @@ function CotisationsResult() {
 				<ResultLine>
 					<ResultLabel>
 						<Trans>Montant des cotisations</Trans>
-						<p className="ui__ notice">
-							Incluant les réductions de cotisations liées au Covid-19
-						</p>
 					</ResultLabel>
 					<Value
 						displayedUnit="€"
 						precision={0}
-						expression="artiste-auteur . cotisations . avec réductions"
+						expression="artiste-auteur . cotisations"
 					/>
 				</ResultLine>
 			</div>
