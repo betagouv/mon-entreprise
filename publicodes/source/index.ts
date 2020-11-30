@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { map } from 'ramda'
+import { compose, map, mapObjIndexed } from 'ramda'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import parsePublicodes, { disambiguateReference } from './parsePublicodes'
+import { getReplacements, inlineReplacements, ReplacementNode } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
 
@@ -52,6 +53,7 @@ export type ParsedRules<Name extends string> = Record<
 export default class Engine<Name extends string = string> {
 	parsedRules: ParsedRules<Name>
 	parsedSituation: Record<string, ASTNode> = {}
+	replacements: Record<string, Array<ReplacementNode>> = {}
 	cache: Cache
 	private warnings: Array<string> = []
 
@@ -73,7 +75,7 @@ export default class Engine<Name extends string = string> {
 		this.parsedRules = parsePublicodes(
 			rules as Record<string, Rule>
 		) as ParsedRules<Name>
-
+		this.replacements = getReplacements(this.parsedRules) 
 	}
 
 	private resetCache() {
@@ -84,16 +86,18 @@ export default class Engine<Name extends string = string> {
 		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
 	) {
 		this.resetCache()
-		this.parsedSituation = map(value => {
+		this.parsedSituation = mapObjIndexed((value, key) => {
 			if (value && typeof value === 'object' && 'nodeKind' in value) {
 				return value as ASTNode
 			}
-			return disambiguateReference(this.parsedRules)(
+			return compose(
+				inlineReplacements(this.replacements),
+				disambiguateReference(this.parsedRules)
+			)(
 				parse(value, {
-					dottedName: "situation'''",
+					dottedName: `situation [${key}]`,
 					parsedRules: {}
-				})
-			)
+				}))
 		}, situation)
 
 		return this
@@ -111,8 +115,10 @@ export default class Engine<Name extends string = string> {
 			originalWarn(warning)
 		}
 		const result = this.evaluateNode(
-			// TODO :  No replacement here. Is this what we want ?
-			disambiguateReference(this.parsedRules)(
+			compose(
+				inlineReplacements(this.replacements),
+				disambiguateReference(this.parsedRules)
+			)(
 				parse(expression, {
 					dottedName: "evaluation'''",
 					parsedRules: {}

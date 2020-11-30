@@ -91,6 +91,7 @@ export function getNextQuestions(
 		liste: whitelist = [],
 		'liste noire': blacklist = []
 	} = questionConfig
+
 	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
 	nextSteps = nextSteps.filter(
 		step =>

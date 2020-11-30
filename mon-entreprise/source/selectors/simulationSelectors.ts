@@ -16,7 +16,10 @@ export const objectifsSelector = createSelector([configSelector], config => {
 	return objectifs
 })
 
-const emptySituation: Partial<Record<DottedName, string | number | Object>> = {}
+const emptySituation: Partial<Record<
+	DottedName,
+	string | number | Record<string, unknown>
+>> = {}
 
 export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation

@@ -31,7 +31,7 @@ import { Temporal } from '../temporal'
 
 export type ConstantNode = {
 	type: 'boolean' | 'objet' | 'number' | 'string'
-	nodeValue: boolean | Object | number | string | null
+	nodeValue: Evaluation
 	jsx: any
 	nodeKind: 'constant'
 	isDefault: boolean
@@ -69,7 +69,7 @@ export type ASTNode = (
 	| ReplacementNode
 ) & {
 	isDefault?: boolean
-	rawNode?: string | Object
+	rawNode?: string | Record<string, unknown>
 } & (EvaluationDecoration<Types> | {}) // TODO : separate type for evaluated AST Tree
 
 export type MecanismNode = Exclude<
@@ -77,9 +77,6 @@ export type MecanismNode = Exclude<
 	RuleNode | ConstantNode | ReferenceNode
 >
 export type NodeKind = ASTNode['nodeKind']
-export type Value = ASTNode & {
-	nodeValue: number | string | boolean
-}
 
 export type TraverseFunction<Kind extends NodeKind> = (
 	fn: (n: ASTNode) => ASTNode,
@@ -97,11 +94,11 @@ export type Unit = {
 // Une temporalEvaluation est une liste d'evaluation sur chaque période. : [(Evaluation, Period)]
 type EvaluationDecoration<T extends Types> = {
 	nodeValue: Evaluation<T>
-	missingVariables: Partial<Record<string, number>>
+	missingVariables: Record<string, number>
 	unit?: Unit
 	temporalValue?: Temporal<Evaluation>
 }
-export type Types = number | boolean | string | Object
+export type Types = number | boolean | string | Record<string, unknown>
 export type Evaluation<T extends Types = Types> = T | false | null
 export type EvaluatedNode<T extends Types = Types> = ASTNode &
 	EvaluationDecoration<T>

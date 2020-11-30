@@ -1,11 +1,17 @@
-import { is, map, max, mergeWith, reduce } from 'ramda'
+import { is, isEmpty, map, max, mergeWith, reduce } from 'ramda'
 import React from 'react'
 import { evaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
-import { ASTNode } from '../AST/types'
-import { collectNodeMissing, makeJsx } from '../evaluation'
+import { ASTNode, EvaluatedNode, Evaluation } from '../AST/types'
+import {
+	collectNodeMissing,
+	makeJsx,
+	mergeAllMissing,
+	mergeMissing
+} from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
+import { InternalError } from '../error'
 
 export type UneDeCesConditionsNode = {
 	explanation: Array<ASTNode>
@@ -14,24 +20,48 @@ export type UneDeCesConditionsNode = {
 }
 
 const evaluate: evaluationFunction<'une de ces conditions'> = function(node) {
-	const explanation = node.explanation.map(child => this.evaluateNode(child))
-
-	const anyTrue = explanation.find(e => e.nodeValue === true)
-	const anyNull = explanation.find(e => e.nodeValue === null)
-	const { nodeValue, missingVariables } = anyTrue ??
-		anyNull ?? {
+	type Calculations = {
+		explanation: Array<ASTNode | EvaluatedNode>
+		nodeValue: Evaluation<boolean>
+		missingVariables: Record<string, number>
+	}
+	const calculations = node.explanation.reduce<Calculations>(
+		(acc, node) => {
+			if (acc.nodeValue === true) {
+				return {
+					...acc,
+					explanation: [...acc.explanation, node]
+				}
+			}
+			if (acc.nodeValue === null || acc.nodeValue === false) {
+				const evaluatedNode = this.evaluateNode(node)
+				return {
+					nodeValue: evaluatedNode.nodeValue
+						? true
+						: evaluatedNode.nodeValue === null
+						? null
+						: acc.nodeValue,
+					missingVariables: evaluatedNode.nodeValue
+						? {}
+						: mergeMissing(
+								acc.missingVariables,
+								evaluatedNode.missingVariables
+						  ),
+					explanation: [...acc.explanation, evaluatedNode]
+				}
+			}
+			throw new InternalError([node, acc])
+		},
+		{
 			nodeValue: false,
-			// Unlike most other array merges of missing variables this is a "flat" merge
-			// because "one of these conditions" tend to be several tests of the same variable
-			// (e.g. contract type is one of x, y, z)
-			missingVariables: reduce(
-				mergeWith(max),
-				{},
-				map(collectNodeMissing, explanation)
-			)
+			missingVariables: {},
+			explanation: []
 		}
-
-	return { ...node, nodeValue, explanation, missingVariables }
+	)
+	return {
+		...node,
+		...calculations
+	}
 }
 
 export const mecanismOneOf = (v, context) => {

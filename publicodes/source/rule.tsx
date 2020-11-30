@@ -1,7 +1,7 @@
 import { filter, mapObjIndexed, pick } from 'ramda'
 import { ASTNode, EvaluatedNode } from './AST/types'
 import { bonus, makeJsx, mergeMissing } from './evaluation'
-import { registerEvaluationFunction } from "./evaluationFunctions"
+import { registerEvaluationFunction } from './evaluationFunctions'
 import parse, { mecanismKeys } from './parse'
 import { Context } from './parsePublicodes'
 import { ReferenceNode } from './reference'
@@ -10,7 +10,7 @@ import { nameLeaf, ruleParents } from './ruleUtils'
 import { capitalise0 } from './utils'
 
 export type Rule = {
-	formule?: Object | string
+	formule?: Record<string, unknown> | string
 	question?: string
 	description?: string
 	unité?: string
@@ -27,14 +27,14 @@ export type Rule = {
 	note?: string
 	remplace?: RendNonApplicable | Array<RendNonApplicable>
 	'rend non applicable'?: Remplace | Array<string>
-	suggestions?: Record<string, string | number | object>
+	suggestions?: Record<string, string | number | Record<string, unknown>>
 	références?: { [source: string]: string }
 	API?: string
 }
 
 type Remplace = {
 	règle: string
-	par?: Object | string | number
+	par?: Record<string, unknown> | string | number
 	dans?: Array<string> | string
 	'sauf dans'?: Array<string> | string
 } | string
@@ -43,10 +43,10 @@ type RendNonApplicable = Exclude<Remplace, {par: any}>
 export type RuleNode = {
 	dottedName: string
 	title: string
-	nodeKind: "rule"
+	nodeKind: 'rule'
 	jsx: any
-	virtualRule: boolean,
-	rawNode: Rule,
+	virtualRule: boolean
+	rawNode: Rule
 	replacements: Array<ReplacementNode>
 	explanation: {
 		parent: ASTNode | false
@@ -86,12 +86,12 @@ export default function parseRule(
 	context.parsedRules[dottedName] = filter(Boolean, {
 		dottedName,
 		replacements: [
-			...parseRendNonApplicable(rawRule["rend non applicable"], ruleContext),
+			...parseRendNonApplicable(rawRule['rend non applicable'], ruleContext),
 			...parseReplacements(rawRule.remplace, ruleContext), 
 		],
 		title: capitalise0(rawRule['titre'] || name),
 		suggestions: mapObjIndexed(node => parse(node, ruleContext), rawRule.suggestions ?? {}),
-		nodeKind: "rule",
+		nodeKind: 'rule',
 		jsx: node => <>
 			<code className="ui__ light-bg">{capitalise0(node.rawNode.nom)}</code>&nbsp;
 			{makeJsx(node.explanation.valeur)}

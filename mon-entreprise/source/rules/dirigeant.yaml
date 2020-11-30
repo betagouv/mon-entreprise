@@ -689,36 +689,34 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
       - indemnités journalières maladie
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
-  formule:
-    le maximum de:
-      - cotisations . assiette
-      - 5.25% * plafond sécurité sociale temps plein
-      - 200 heures/an * SMIC horaire
-    arrondi: oui
+  le maximum de:
+    - cotisations . assiette
+    - 5.25% * plafond sécurité sociale temps plein
+    - 200 heures/an * SMIC horaire
+  unité: €/an
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
   unité: €/an
-  formule:
-    barème:
-      assiette: assiette retraite
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - taux: 17.75%
-          plafond: 1
-        - taux: 0.6%
-    arrondi: oui
+  barème:
+    assiette: assiette retraite
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - taux: 17.75%
+        plafond: 1
+      - taux: 0.6%
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   unité: €/an
-  formule:
-    barème:
-      assiette: retraite complémentaire . assiette
-      tranches:
-        - taux: 7%
-          plafond: cotisations et contributions . retraite complémentaire . plafond
-        - taux: 8%
-          plafond: 4 * plafond sécurité sociale temps plein
-    arrondi: oui
+  barème:
+    assiette: retraite complémentaire . assiette
+    tranches:
+      - taux: 7%
+        plafond: cotisations et contributions . retraite complémentaire . plafond
+      - taux: 8%
+        plafond: 4 * plafond sécurité sociale temps plein
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
@@ -738,20 +736,18 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       - 20% * plafond sécurité sociale temps plein
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
   unité: €/an
-  formule:
-    produit:
-      assiette: assiette
-      taux: 1.3%
-      plafond: plafond sécurité sociale temps plein
-    arrondi: oui
+  produit:
+    assiette: assiette
+    taux: 1.3%
+    plafond: plafond sécurité sociale temps plein
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
   unité: €/an
-  formule:
-    produit:
-      assiette: 40% * plafond sécurité sociale temps plein
-      taux: cotisations et contributions . indemnités journalières maladie . taux
-    arrondi: oui
+  produit:
+    assiette: 40% * plafond sécurité sociale temps plein
+    taux: cotisations et contributions . indemnités journalières maladie . taux
+  arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
   références:
@@ -1043,12 +1039,11 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales:
-  applicable si: situation personnelle . RSA
-  remplace:
+  formule: situation personnelle . RSA
+  rend non applicable:
     - invalidité et décès . assiette . plancher
     - maladie . assiette . plancher
     - retraite de base . assiette . plancher
-  formule: non
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -1059,7 +1054,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
       composantes:
         - attributs:
             nom: non déductible
-          arrondi: oui
+            arrondi: oui
           composantes:
             - taux: 2.9%
             - attributs:
@@ -1068,7 +1063,7 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
               taux: 2.9%
         - attributs:
             nom: déductible
-          arrondi: oui
+            arrondi: oui
           composantes: 
             - taux: 6.8%
             - attributs:
@@ -1112,17 +1107,17 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
           - dirigeant . indépendant . IJSS . imposable
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
-  formule:
-    produit:
-      assiette: plafond sécurité sociale temps plein 
-      taux:
-        variations:
-          - si: entreprise . catégorie d'activité = 'artisanale'
-            alors: 0.29%
-          - si: conjoint collaborateur
-            alors: 0.34%
-          - sinon: 0.25%
-    arrondi: oui
+  produit:
+    assiette: plafond sécurité sociale temps plein 
+    taux:
+      variations:
+        - si: entreprise . catégorie d'activité = 'artisanale'
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
+  unité: €/an
+  arrondi: oui
   note: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
 
   références:
@@ -1153,16 +1148,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
-  formule:
-    produit:
-      assiette: maladie
-      taux: taux
-      # TODO : Le plafond est proratisé en début / fin d'exonération
-      plafond:
-        recalcul:
-          avec:
-            dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
-    arrondi: oui
+  produit:
+    assiette: maladie
+    taux: taux
+    # TODO : Le plafond est proratisé en début / fin d'exonération
+    plafond:
+      recalcul:
+        avec:
+          dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
+  arrondi: oui
+  unité: €/an
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"

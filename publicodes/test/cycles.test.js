@@ -51,6 +51,6 @@ describe('Cyclic dependencies detectron 3000 ™', () => {
 				formule: a
 		`
 		const cycles = cyclesInDependenciesGraph(rules)
-		expect(cycles).to.deep.equal([["a", "a . c"]])
+		expect(cycles).to.deep.equal([['a', 'a . c']])
 	})
 })

@@ -67,7 +67,10 @@ Utilisez leur contrepartie française : 'oui' / 'non'`
 
 const compiledGrammar = Grammar.fromCompiled(grammar)
 
-function parseExpression(rawNode, context: Context): Object | undefined {
+function parseExpression(
+	rawNode,
+	context: Context
+): Record<string, unknown> | undefined {
 	/* Strings correspond to infix expressions.
 	 * Indeed, a subset of expressions like simple arithmetic operations `3 + (quantity * 2)` or like `salary [month]` are more explicit that their prefixed counterparts.
 	 * This function makes them prefixed operations. */

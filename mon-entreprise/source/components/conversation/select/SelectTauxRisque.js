@@ -133,7 +133,7 @@ export default function Select(props) {
 			.then(json => setOptions(json))
 			.catch(
 				error =>
-					console.log('Erreur dans la récupération des codes risques', error) // eslint-disable-line no-console
+					console.warn('Erreur dans la récupération des codes risques', error) // eslint-disable-line no-console
 			)
 	}, [])
 

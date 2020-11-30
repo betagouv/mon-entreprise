@@ -1,14 +1,17 @@
-import { RuleInputProps } from 'Components/conversation/RuleInput'
+import {
+	InputCommonProps,
+	RuleInputProps
+} from 'Components/conversation/RuleInput'
 import { EvaluatedRule } from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
 
 type DateInputProps = {
-	onChange: RuleInputProps['onChange']
-	id: RuleInputProps['id']
+	onChange: InputCommonProps['onChange']
+	id: InputCommonProps['id']
 	onSubmit: RuleInputProps['onSubmit']
-	value: RuleInputProps['value']
+	value: InputCommonProps['value']
 	suggestions: EvaluatedRule['suggestions']
 }
 
@@ -28,7 +31,7 @@ export default function DateInput({
 	const handleDateChange = useCallback(
 		evt => {
 			if (!evt.target.value) {
-				return onChange(null)
+				return
 			}
 			const [year, month, day] = evt.target.value.split('-')
 			if (+year < 1700) {

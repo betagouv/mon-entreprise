@@ -1,7 +1,6 @@
 /* Those are postprocessor functions for the Nearley grammar.ne.
 The advantage of putting them here is to get prettier's JS formatting, since Nealrey doesn't support it https://github.com/kach/nearley/issues/310 */
 import { normalizeDateString } from './date'
-import { parseUnit } from './units'
 import { parsePeriod } from './temporal'
 
 export let binaryOperation = operationType => ([A, , operator, , B]) => ({

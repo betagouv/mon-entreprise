@@ -38,10 +38,10 @@ const evaluate: evaluationFunction<'plancher'> = function(node) {
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher
 	if (nodeValue !== false) {
-		plancher = this.evaluateNode(plancher)
+		const evaluatedPlancher = this.evaluateNode(plancher)
 		if (valeur.unit) {
 			try {
-				plancher = convertNodeToUnit(valeur.unit, plancher as EvaluatedNode)
+				plancher = convertNodeToUnit(valeur.unit, evaluatedPlancher)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,

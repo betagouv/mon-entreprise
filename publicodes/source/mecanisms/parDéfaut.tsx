@@ -30,7 +30,10 @@ function ParDéfautComponent({ explanation }) {
 }
 
 const evaluate: evaluationFunction<'par défaut'> = function(node) {
-	const explanation = { ...node.explanation }
+	const explanation: {
+		parDéfaut: EvaluatedNode | ASTNode
+		valeur: EvaluatedNode | ASTNode
+	} = { ...node.explanation }
 	let valeur = this.evaluateNode(explanation.valeur)
 	explanation.valeur = valeur
 	if (valeur.nodeValue === null) {

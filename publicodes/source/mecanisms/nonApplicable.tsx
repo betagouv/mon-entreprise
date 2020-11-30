@@ -1,7 +1,7 @@
 import React from 'react'
 import { evaluationFunction } from '..'
 import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
-import { ASTNode } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -30,7 +30,7 @@ function MecanismNonApplicable({ explanation }) {
 const evaluate: evaluationFunction<'non applicable si'> = function(node) {
 	const condition = this.evaluateNode(node.explanation.condition)
 	let valeur = node.explanation.valeur
-	if (condition.nodeValue !== true) {
+	if (condition.nodeValue === false || condition.nodeValue === null) {
 		valeur = this.evaluateNode(valeur)
 	}
 	return {
@@ -38,10 +38,10 @@ const evaluate: evaluationFunction<'non applicable si'> = function(node) {
 		nodeValue:
 			condition.nodeValue === null
 				? null
-				: condition.nodeValue === true
+				: condition.nodeValue !== false
 				? false
 				: 'nodeValue' in valeur
-				? valeur.nodeValue
+				? (valeur as EvaluatedNode).nodeValue
 				: null,
 		explanation: { valeur, condition },
 		missingVariables: mergeMissing(
