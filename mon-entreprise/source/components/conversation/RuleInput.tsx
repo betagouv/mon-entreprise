@@ -177,7 +177,8 @@ export const buildVariantTree = <Name extends string>(
 		if (!node) throw new Error(`La règle ${path} est introuvable`)
 		const variant = getVariant(node)
 		const variants = variant && node.formule.explanation['possibilités']
-		const canGiveUp = variant && !node.formule.explanation['choix obligatoire']
+		const canGiveUp =
+			variant && node.formule.explanation['choix obligatoire'] !== 'oui'
 		return Object.assign(
 			node,
 			variant
