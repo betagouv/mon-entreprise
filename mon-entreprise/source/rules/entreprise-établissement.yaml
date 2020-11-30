@@ -562,6 +562,10 @@ entreprise . auto entreprise impossible:
 établissement . secteur d'activité covid:
   question: |
     Dispositif de réduction "covid" : votre activité principale relève-t'elle d'un des secteurs suivants ?
+  # Pas d'inigibilité explicite des PL réglementés à ce dispositif, mais il
+  # apparaît que les métiers concernés (médecins, avocats...) sont incompatibles
+  # avec les secteurs d'activités concernés par l'aide (hôtels, restaurants...)
+  non applicable si: entreprise . catégorie d'activité . libérale règlementée
   description: |
     Les conditions d'éligibilité aux aides "covid" dépendent du secteur
     d'activité de l'établissement. 
