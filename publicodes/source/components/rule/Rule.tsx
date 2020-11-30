@@ -73,7 +73,9 @@ export default function Rule({ dottedName, engine, language }) {
 					<h3>Effets </h3>
 					<ul>
 						{rule.replacements.map(replacement => (
-							<li>{makeJsx(replacement)}</li>
+							<li key={replacement.replacedReference.dottedName}>
+								{makeJsx(replacement)}
+							</li>
 						))}
 					</ul>
 				</>

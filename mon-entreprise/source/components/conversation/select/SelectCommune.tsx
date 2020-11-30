@@ -91,7 +91,7 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 			try {
 				taux = await tauxVersementTransport(commune.code)
 			} catch (error) {
-				console.log(
+				console.warn(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
 				)

@@ -38,14 +38,20 @@ export const makeJsx = (node: ASTNode): JSX.Element => {
 	return <Component {...node} />
 }
 
-export const collectNodeMissing = node => node?.missingVariables || {}
+export const collectNodeMissing = (
+	node: EvaluatedNode | ASTNode
+): Record<string, number> =>
+	'missingVariables' in node ? node.missingVariables : {}
 
 export const bonus = (missings, hasCondition = true) =>
 	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
-export const mergeAllMissing = missings =>
+export const mergeMissing = (
+	left: Record<string, number> | undefined,
+	right: Record<string, number> | undefined
+): Record<string, number> => mergeWith(add, left || {}, right || {})
+
+export const mergeAllMissing = (missings: Array<EvaluatedNode | ASTNode>) =>
 	missings.map(collectNodeMissing).reduce(mergeMissing, {})
-export const mergeMissing = (left, right) =>
-	mergeWith(add, left || {}, right || {})
 
 function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 	const firstNodeWithUnit = nodes.find(node => !!node.unit)
@@ -144,7 +150,7 @@ export function evaluateObject<NodeName extends NodeKind>(
 ) {
 	return function(node) {
 		const evaluate = this.evaluateNode.bind(this)
-		const evaluations = mapObjIndexed(
+		const evaluations: Record<string, EvaluatedNode> = mapObjIndexed(
 			evaluate as any,
 			(node as any).explanation
 		)

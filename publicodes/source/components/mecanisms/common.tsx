@@ -129,7 +129,7 @@ export const InfixMecanism = ({
 			`}
 		>
 			{prefixed && children}
-			<div className="value" css={dimValue ? `opacity: 0.5` : ''}>
+			<div className="value" css={dimValue ? 'opacity: 0.5' : ''}>
 				{makeJsx(value)}
 			</div>
 			{!prefixed && children}

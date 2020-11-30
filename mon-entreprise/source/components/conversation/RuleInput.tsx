@@ -13,6 +13,7 @@ import {
 	ParsedRules,
 	reduceAST,
 } from 'publicodes'
+import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -29,18 +30,18 @@ export type RuleInputProps<Name extends string = DottedName> = {
 	isTarget?: boolean
 	autoFocus?: boolean
 	id?: string
-	value: Value
 	className?: string
 	onSubmit?: (source: string) => void
 }
 
 export type InputCommonProps<Name extends string = string> = Pick<
 	RuleInputProps<Name>,
-	'dottedName' | 'value' | 'onChange' | 'autoFocus' | 'className'
+	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
 	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
 		key: string
 		id: string
+		value: any //TODO EvaluatedRule['nodeValue']
 		missing: boolean
 		required: boolean
 	}
@@ -161,13 +162,22 @@ export default function RuleInput<Name extends string = DottedName>({
 	}
 
 	if (rule.type === 'texte') {
-		return <TextInput {...commonProps} />
+		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
 	if (rule.type === 'paragraphe') {
-		return <ParagrapheInput {...commonProps} />
+		return (
+			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
+		)
 	}
 
-	return <Input {...commonProps} onSubmit={onSubmit} unit={rule.unit} />
+	return (
+		<Input
+			{...commonProps}
+			onSubmit={onSubmit}
+			unit={rule.unit}
+			value={value as Evaluation<number>}
+		/>
+	)
 }
 
 const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>

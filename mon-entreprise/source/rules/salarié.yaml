@@ -206,7 +206,6 @@ contrat salarié . activité partielle:
 
     La déclaration d'activité partielle est simplifiée et l'effet est
     rétroactif.
-
   par défaut: non
   rend non applicable:
     - temps de travail . heures supplémentaires
@@ -1061,8 +1060,7 @@ contrat salarié . professionnalisation:
     devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
     prolongée jusqu'à 36 mois.
   formule: contrat salarié = 'professionnalisation'
-  rend non applicable:
-    - rémunération . contrôle smic
+  rend non applicable: rémunération . contrôle smic
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
@@ -1091,6 +1089,7 @@ contrat salarié . stage:
     - contrat salarié . activité partielle
 
 contrat salarié . stage . avertissement:
+  formule: oui
   type: notification
   sévérité: avertissement
   description: >-
@@ -1101,7 +1100,7 @@ contrat salarié . stage . avertissement:
 contrat salarié . stage . contrôle gratification minimale:
   type: notification
   sévérité: avertissement
-  applicable si: rémunération . brut de base < stage . gratification minimale
+  formule: rémunération . brut de base < stage . gratification minimale
   description: >-
     La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
 
@@ -2863,7 +2862,6 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
     Le prélèvement de la CSG et de la CRDS ne peut pas avoir pour effet de
     réduire le montant de la rémunération d’activité et des allocations de
     chômage à un seuil inférieur au Smic brut.
-
   formule:
     somme:
       - revenus de remplacement . CSG déductible
@@ -2872,57 +2870,32 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
   titre: CSG déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette:
-  formule:
+  produit:
+    assiette: CSG et CRDS . assiette revenu remplacements
+    taux: 3.8%
+  plafond [ref]:
     somme:
       - rémunération . net de cotisations
       - rémunération . revenus de remplacement
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant:
-  titre: CSG déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: 3.8%
+      - (- SMIC temps plein)
+    plancher: 0€/mois
+  note: 
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant:
-  titre: CSG non déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: CSG . taux non déductible
+  produit:
+    assiette: CSG et CRDS . assiette revenu remplacements
+    taux: CSG . taux non déductible
+  plafond [ref]: 
+    valeur: CSG déductible . plafond - CSG déductible
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre: CRDS revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- CSG non déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
-  titre: CRDS
-  formule:
-    produit:
-      assiette: assiette revenu remplacements
-      taux: CRDS . taux
+  produit:
+    assiette: assiette revenu remplacements
+    taux: CRDS . taux
+  plafond: 
+    valeur: CSG non déductible . plafond - CSG non déductible
 
 contrat salarié . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
@@ -3359,6 +3332,7 @@ contrat salarié . régime des impatriés:
 
 contrat salarié . régime des impatriés . information:
   type: notification
+  formule: oui
   description: >-
     Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
     - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse

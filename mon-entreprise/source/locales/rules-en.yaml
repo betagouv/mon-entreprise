@@ -926,30 +926,12 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre.en: '[automatic] CRDS replacement income'
   titre.fr: CRDS revenus de remplacement
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
-  titre.en: '[automatic] DRES'
-  titre.fr: CRDS
-? contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette
-: titre.en: '[automatic] take-home pay'
-  titre.fr: rémunération nette
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
   titre.en: '[automatic] Deductible MSA replacement income'
   titre.fr: CSG déductible revenus de remplacement
-? contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant
-: titre.en: '[automatic] deductible MSA'
-  titre.fr: CSG déductible
-? contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette
-: titre.en: '[automatic] take-home pay'
-  titre.fr: rémunération nette
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre.en: '[automatic] Non-deductible CSG replacement income'
   titre.fr: CSG non déductible revenus de remplacement
-? contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant
-: titre.en: '[automatic] non-deductible MSA'
-  titre.fr: CSG non déductible
-? contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette
-: titre.en: '[automatic] take-home pay'
-  titre.fr: rémunération nette
 contrat salarié . FNAL:
   description.en:
     The National Housing Fund (Fnal) is a contribution to ensure the
@@ -1337,16 +1319,13 @@ contrat salarié . apprentissage . ancienneté . moins de deux ans:
   titre.en: less than two years
   titre.fr: moins de deux ans
 contrat salarié . apprentissage . ancienneté . moins de quatre ans:
-  titre.en: less than four years
-  titre.fr: moins de quatre ans
-? contrat salarié . apprentissage . ancienneté . moins de quatre ans . information
-: description.en: '[automatic] The maximum duration of the contract may be
+  description.en: '[automatic] The maximum duration of the contract may be
     extended to 4 years when the apprentice is recognised as a disabled worker.'
   description.fr:
     La durée maximale du contrat peut être portée à 4 ans lorsque la
     qualité de travailleur handicapé est reconnue à l'apprenti.
-  titre.en: '[automatic] information'
-  titre.fr: information
+  titre.en: less than four years
+  titre.fr: moins de quatre ans
 contrat salarié . apprentissage . ancienneté . moins de trois ans:
   titre.en: less than three years
   titre.fr: moins de trois ans
@@ -1514,8 +1493,8 @@ contrat salarié . contribution d'équilibre technique:
   titre.en: technical equilibrium contribution
   titre.fr: contribution d'équilibre technique
 contrat salarié . convention collective:
-  question.en: 'Which "convention collective" is applicable to the company ? [beta] '
-  question.fr: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question.en: '[automatic] Which collective agreement is applicable to the company?'
+  question.fr: Quelle convention collective est applicable à l'entreprise ?
   titre.en: convention collective
   titre.fr: convention collective
 contrat salarié . convention collective . BTP:
@@ -1532,22 +1511,36 @@ contrat salarié . convention collective . BTP:
 contrat salarié . convention collective . BTP . OPPBTP:
   titre.en: '[automatic] OPPBTP'
   titre.fr: OPPBTP
-contrat salarié . convention collective . BTP . catégorie du salarié:
+contrat salarié . convention collective . BTP . catégorie:
   question.en: '[automatic] To which category does the employee belong?'
   question.fr: À quelle catégorie la salarié appartient-t'il ?
-  titre.en: '[automatic] employee category'
-  titre.fr: catégorie du salarié
-contrat salarié . convention collective . BTP . catégorie du salarié . cadre:
+  titre.en: '[automatic] category'
+  titre.fr: catégorie
+contrat salarié . convention collective . BTP . catégorie . cadre:
   titre.en: '[automatic] Framework'
   titre.fr: Cadre
-contrat salarié . convention collective . BTP . catégorie du salarié . etam:
-  description.en: '[automatic] Employee, technician, master angent'
+? contrat salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire
+: titre.en: '[automatic] supplementary pension'
+  titre.fr: prévoyance complémentaire
+contrat salarié . convention collective . BTP . catégorie . etam:
+  description.en: '[automatic] Employee, technician, master angel'
   description.fr: Employé, technicien, angent de maîtrise
+  note.en: '[automatic] Conventional distribution fixed by Article 5 of the
+    Building and Public Works Agreement of 13 December 1990.'
+  note.fr:
+    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du
+    13 décembre 1990.
   titre.en: '[automatic] ETAM'
   titre.fr: ETAM
-contrat salarié . convention collective . BTP . catégorie du salarié . ouvrier:
+? contrat salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire
+: titre.en: '[automatic] supplementary pension'
+  titre.fr: prévoyance complémentaire
+contrat salarié . convention collective . BTP . catégorie . ouvrier:
   titre.en: '[automatic] Worker'
   titre.fr: Ouvrier
+? contrat salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire
+: titre.en: '[automatic] supplementary pension'
+  titre.fr: prévoyance complémentaire
 contrat salarié . convention collective . BTP . congés intempéries:
   titre.en: '[automatic] bad weather'
   titre.fr: congés intempéries
@@ -1589,30 +1582,6 @@ contrat salarié . convention collective . BTP . congés intempéries:
 contrat salarié . convention collective . BTP . cotisations conventionnelles:
   titre.en: '[automatic] conventional contributions'
   titre.fr: cotisations conventionnelles
-contrat salarié . convention collective . BTP . prévoyance complémentaire:
-  titre.en: '[automatic] complementary providence'
-  titre.fr: prévoyance complémentaire
-? contrat salarié . convention collective . BTP . prévoyance complémentaire . cadre
-: titre.en: '[automatic] framework'
-  titre.fr: cadre
-? contrat salarié . convention collective . BTP . prévoyance complémentaire . etam
-: titre.en: '[automatic] etam'
-  titre.fr: etam
-? contrat salarié . convention collective . BTP . prévoyance complémentaire . ouvrier
-: titre.en: '[automatic] worker'
-  titre.fr: ouvrier
-contrat salarié . convention collective . BTP . retraite complémentaire:
-  titre.en: '[automatic] retirement supplement'
-  titre.fr: retraite complémentaire
-contrat salarié . convention collective . BTP . retraite complémentaire . etam:
-  description.en:
-    '[automatic] Conventional distribution fixed by Article 5 of the
-    Building and Public Works Agreement of 13 December 1990.'
-  description.fr:
-    Répartition conventionnelle fixée par l’article 5 de l’Accord du
-    BTP du 13 décembre 1990.
-  titre.en: '[automatic] etam'
-  titre.fr: etam
 contrat salarié . convention collective . HCR:
   description.en: The company is a hotel, café, restaurant or similar.
   description.fr: L'entreprise est un hôtel, café, restaurant ou assimilé.
@@ -2226,6 +2195,11 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   suggestions.moyenne.fr: moyenne
   titre.en: '[automatic] unitary amount'
   titre.fr: montant unitaire
+contrat salarié . frais professionnels . titres-restaurant . nombre:
+  question.en: '[automatic] How many meal vouchers are distributed to the employee?'
+  question.fr: Combien de titres-restaurant sont distribués au salarié ?
+  titre.en: '[automatic] number'
+  titre.fr: nombre
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre.en: '[automatic] Restaurant vouchers (deductible)'
   titre.fr: Titres-restaurant (déductible)
@@ -2244,11 +2218,6 @@ contrat salarié . frais professionnels . titres-restaurant . part déductible:
   suggestions.60%.fr: 60%
   titre.en: '[automatic] employer contribution rate'
   titre.fr: taux participation employeur
-? contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois
-: question.en: '[automatic] How many meal vouchers are distributed to the employee?'
-  question.fr: Combien de titres-restaurant sont distribués au salarié ?
-  titre.en: '[automatic] meal vouchers per month'
-  titre.fr: titres-restaurant par mois
 contrat salarié . intermittents du spectacle:
   question.en: To which "intermittent" status is the employee attached?
   question.fr: A quel statut d'intermittent est rattaché l'employé ?
@@ -2711,9 +2680,6 @@ contrat salarié . professionnalisation:
 contrat salarié . prévoyance:
   titre.en: '[automatic] foresight'
   titre.fr: prévoyance
-contrat salarié . prévoyance . employeur:
-  titre.en: '[automatic] employer'
-  titre.fr: employeur
 contrat salarié . prévoyance . exonération fiscale:
   titre.en: '[automatic] tax-exempt pension'
   titre.fr: prévoyance exonérée d'impôt
@@ -2723,9 +2689,6 @@ contrat salarié . prévoyance . part déductible:
 contrat salarié . prévoyance . plafond exonération sociale employeur:
   titre.en: "[automatic] ceiling employer's social security exemption"
   titre.fr: plafond exonération sociale employeur
-contrat salarié . prévoyance . salarié:
-  titre.en: '[automatic] employee'
-  titre.fr: salarié
 contrat salarié . prévoyance obligatoire cadre:
   titre.en: mandatory life insurance for "cadres"
   titre.fr: Prévoyance obligatoire pour les cadres
@@ -2740,9 +2703,6 @@ contrat salarié . retraite complémentaire:
 contrat salarié . retraite supplémentaire:
   titre.en: '[automatic] additional pension'
   titre.fr: retraite supplémentaire
-contrat salarié . retraite supplémentaire . employeur:
-  titre.en: '[automatic] Employer Supplementary Retirement'
-  titre.fr: Retraite supplémentaire employeur
 contrat salarié . retraite supplémentaire . exonération fiscale:
   titre.en: '[automatic] tax-exempt supplementary pension'
   titre.fr: retraite supplémentaire exonérée d'impôt
@@ -2752,9 +2712,6 @@ contrat salarié . retraite supplémentaire . part déductible:
 ? contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur
 : titre.en: "[automatic] employer's social security ceiling"
   titre.fr: plafond d'exonération sociale employeur
-contrat salarié . retraite supplémentaire . salarié:
-  titre.en: '[automatic] employee'
-  titre.fr: salarié
 contrat salarié . réduction générale:
   description.en: >
     [automatic] Within the framework of the responsibility and solidarity pact,
@@ -3200,9 +3157,6 @@ contrat salarié . rémunération . net imposable . base:
 ? contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées
 : titre.en: tax-free overtime hours
   titre.fr: heures supplémentaires et complémentaires défiscalisées
-? contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées . plafond brut
-: titre.en: gross cap
-  titre.fr: plafond brut
 contrat salarié . rémunération . primes:
   description.en: |
     contrat de travail, de la convention collective, d'un usage d'entreprise, ou
@@ -5251,6 +5205,9 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
   titre.en: '[automatic] basic retirement (CNAVPL)'
   titre.fr: retraite de base (CNAVPL)
+dirigeant . indépendant . PL . retraite CNAVPL . remplace:
+  titre.en: '[automatic] basic retirement (CNAVPL)'
+  titre.fr: retraite de base (CNAVPL)
 dirigeant . indépendant . PL . régime général:
   description.en: |
     [automatic] Unregulated liberal professions affiliated to the general scheme
@@ -5447,6 +5404,11 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
 : titre.en: basic retirement
   titre.fr: retraite de base
 dirigeant . indépendant . contrats madelin:
+  question.en:
+    '[automatic] Have you subscribed to private complementary contracts
+    ("Madelins contracts")'
+  question.fr: Avez-vous souscrit à des contrats de complémentaire privée dits
+    ("contrats Madelins")
   titre.en: Madelin Contracts
   titre.fr: Contrats Madelin
 dirigeant . indépendant . contrats madelin . contrôle montant charges:
@@ -5464,20 +5426,20 @@ dirigeant . indépendant . contrats madelin . montant:
   titre.en: Sum of subscriptions to Madelin contracts
   titre.fr: Somme des cotisations à contrats Madelin
 dirigeant . indépendant . contrats madelin . mutuelle:
-  titre.en: Madelin healthcare contract
-  titre.fr: Contrat Madelin mutuelle
-dirigeant . indépendant . contrats madelin . mutuelle . montant:
-  description.en: |
-    If you subscribe to a Madelin-law healthcare contract, you can deduct
-    part of the subscriptions from taxable earnings that you declare for a
-    self-employed occupation.
+  description.en: >
+    [automatic] If you contribute under a mutual insurance contract such as the
+    Madelin law,
+
+    you can deduct part of these contributions from your profits; and
+
+    taxable persons that you declare for your self-employed activity.
   description.fr: |
     Si vous cotisez au titre d'un contrat de mutuelle de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
-  question.en: How much do you subscribe to a Madelin healthcare contract?
+  question.en: '[automatic] How much do you pay to a Madelin Mutual contract?'
   question.fr: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
-  titre.en: Subscription to a Madelin healthcare contract
+  titre.en: '[automatic] Subscription to a Madelin mutual insurance contract'
   titre.fr: Souscription à un contrat de mutuelle Madelin
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   titre.en: ceiling
@@ -5489,20 +5451,20 @@ dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
   titre.en: Part of the Madelin contract subscription which is not fiscally deductible
   titre.fr: Part de la cotisation à contrat Madelin qui n'est pas déductible fiscalement
 dirigeant . indépendant . contrats madelin . retraite:
-  titre.en: Madelin pension contract
-  titre.fr: Contrat Madelin retraite
-dirigeant . indépendant . contrats madelin . retraite . montant:
-  description.en: |
-    If you subscribe to a Madelin-law pension contract, you can deduct
-    part of the subscriptions to taxable earnings that you declare for your
-    self-employed activity.
+  description.en: >
+    [automatic] If you are contributing under a pension contract such as the
+    Madelin law,
+
+    you can deduct part of these contributions from your profits; and
+
+    taxable persons that you declare for your self-employed activity.
   description.fr: |
     Si vous cotisez au titre d'un contrat retraite de type loi Madelin,
     vous pouvez déduire une partie de ces cotisations des bénéfices
     imposables que vous déclarez pour votre activité non salariée.
-  question.en: How much do you subscribe to a Madelin pension contract?
+  question.en: '[automatic] How much do you pay into your Madelin retraite contract?'
   question.fr: Quel est le montant que vous versez à votre contrat Madelin retraite ?
-  titre.en: Subscription to a Madelin pension contract
+  titre.en: '[automatic] Madelin Retirement Subscription'
   titre.fr: Souscription à une retraite Madelin
 dirigeant . indépendant . contrats madelin . retraite . plafond:
   titre.en: ceiling
@@ -6105,9 +6067,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   question.fr: Est-ce une activité libérale règlementée ?
   titre.en: regulated liberal
   titre.fr: libérale règlementée
-? entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée
-: titre.en: type of regulated liberal activity
-  titre.fr: type d'activité libérale règlementée
 entreprise . catégorie d'activité . restauration ou hébergement:
   description.en: Your profits are classified in BIC - provision of housing or
     accommodation food.
@@ -6298,9 +6257,6 @@ entreprise . effectif . seuil:
   question.fr: Quel est l'effectif de l'entreprise ?
   titre.en: range
   titre.fr: seuil d'effectif
-entreprise . effectif . seuil . 251 et plus:
-  titre.en: 251 or more
-  titre.fr: 251 et plus
 entreprise . effectif . seuil . moins de 11:
   titre.en: less than 11
   titre.fr: moins de 11
@@ -6316,6 +6272,9 @@ entreprise . effectif . seuil . moins de 5:
 entreprise . effectif . seuil . moins de 50:
   titre.en: less than 50
   titre.fr: moins de 50
+entreprise . effectif . seuil . plus de 250:
+  titre.en: '[automatic] 251 and more'
+  titre.fr: 251 et plus
 entreprise . franchise de TVA:
   description.en: |
     [automatic] The VAT exemption is a device that exempts businesses from the

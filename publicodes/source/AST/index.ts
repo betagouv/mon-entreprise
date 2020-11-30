@@ -48,10 +48,10 @@ function gatherNodes(node: ASTNode): ASTNode[] {
 export function traverseParsedRules(
 	fn: (n: ASTNode) => ASTNode,
 	parsedRules: Record<string, RuleNode>
-): Record<string, ASTNode> {
+): Record<string, RuleNode> {
 	return Object.fromEntries(
 		Object.entries(parsedRules).map(([name, rule]) => [name, fn(rule)])
-	)
+	) as Record<string, RuleNode>
 }
 
 const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {

@@ -25,8 +25,7 @@ function buildRuleDependancies(rule: RuleNode): Array<string> {
 				case 'une possibilité':
 					return acc
 				case 'recalcul':
-					node.explanation.amendedSituation.forEach(s => fn(s[1]))
-					return
+					return node.explanation.amendedSituation.flatMap(s => fn(s[1]))
 				case 'reference':
 					return [...acc, node.dottedName as string]
 				case 'rule':
@@ -85,7 +84,7 @@ export function cyclicDependencies<Names extends string>(
 	return cycles.map(cycle => {
 		const c = cycle.reverse()
 
-		return c.reduce((acc, current) => {
+		return [...c, c[0]].reduce((acc, current) => {
 			const previous = acc.slice(-1)[0]
 			if (previous && !rulesDependenciesObject[previous].includes(current)) {
 				return acc

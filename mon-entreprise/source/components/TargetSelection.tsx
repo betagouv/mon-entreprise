@@ -100,7 +100,8 @@ const Target = ({ dottedName }: TargetProps) => {
 		[target.dottedName, dispatch]
 	)
 
-	const isSmallTarget = !!target.question !== !!target.formule
+	const isSmallTarget =
+		!target.question || !!target.question !== !!target.formule
 	if (
 		target.nodeValue === false ||
 		(isSmallTarget && !target.question && !target.nodeValue)

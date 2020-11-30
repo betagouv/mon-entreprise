@@ -6,7 +6,7 @@ import SimulateurWarning from 'Components/SimulateurWarning'
 import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { evaluateRule } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -60,9 +60,8 @@ type SimpleFieldProps = {
 
 function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const rule = evaluateRule(useContext(EngineContext), dottedName)
+	const rule = useEngine().getParsedRules()[dottedName]
 	const initialRender = useContext(InitialRenderContext)
-	const value = rule.nodeValue
 	// TODO
 	// if (rule.isApplicable === false || rule.isApplicable === null) {
 	// 	return null
@@ -74,8 +73,10 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
-							<span className="optionTitle">{rule.question || rule.title}</span>
-							<p className="ui__ notice">{rule.résumé}</p>
+							<span className="optionTitle">
+								{rule.rawNode.question || rule.title}
+							</span>
+							<p className="ui__ notice">{rule.rawNode.résumé}</p>
 						</label>
 					</div>
 					<div className="targetInputOrValue">
@@ -83,7 +84,6 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 							className="targetInput"
 							isTarget
 							dottedName={dottedName}
-							value={value}
 							onChange={(x) => dispatch(updateSituation(dottedName, x))}
 							useSwitch
 						/>

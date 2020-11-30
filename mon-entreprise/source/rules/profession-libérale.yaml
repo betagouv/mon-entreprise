@@ -145,6 +145,7 @@ dirigeant . indépendant . PL . régime général:
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   titre: taux spécifique profession libérale non reglementée
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
+  par défaut: non
   description: |
     Les professions libérales non règlementées qui ont débuté leur activité à
     compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
@@ -324,7 +325,7 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     une de ces conditions:
       - régime général
       - PL . CNBF
-
+  
   titre: retraite de base (CNAVPL)
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -334,7 +335,6 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     libérales est l'organisme qui fédère les différentes caisses 
     existantes (CIPAV, CARPIMKO, CARCDSF, CAVEC etc..)
 
-  remplace: cotisations et contributions . retraite de base
   formule:
     somme:
       - produit:
@@ -351,6 +351,13 @@ dirigeant . indépendant . PL . retraite CNAVPL:
     cnavpl.fr: https://www.cnavpl.fr/
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=56215
+
+#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore 
+dirigeant . indépendant . PL . retraite CNAVPL . remplace:
+  titre: retraite de base (CNAVPL)
+  non applicable si: CARMF . retraite CNAVPL 
+  remplace: cotisations et contributions . retraite de base
+  formule: retraite CNAVPL
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:
@@ -719,7 +726,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   applicable si: métier . secteur médecin = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
-  remplace: PL . retraite CNAVPL
+  remplace: cotisations et contributions . retraite de base
   formule:
     allègement:
       assiette: PL . retraite CNAVPL

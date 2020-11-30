@@ -1,7 +1,12 @@
 import yaml from 'yaml'
+import { ParsedRules } from '.'
 import { traverseParsedRules, updateAST } from './AST'
 import parse from './parse'
-import { inlineReplacements } from './replacement'
+import {
+	getReplacements,
+	inlineReplacements,
+	ReplacementNode
+} from './replacement'
 import { Rule, RuleNode } from './rule'
 import { disambiguateRuleReference } from './ruleUtils'
 
@@ -13,10 +18,10 @@ export type Context = {
 type RawRule = Omit<Rule, 'nom'> | string | undefined | number
 export type RawPublicodes = Record<string, RawRule> | string
 
-export default function parsePublicodes<Names extends string>(
+export default function parsePublicodes(
 	rawRules: RawPublicodes,
 	partialContext: Partial<Context> = {}
-) {
+): ParsedRules<string> {
 	// STEP 1: parse Yaml
 	let rules =
 		typeof rawRules === 'string'
@@ -41,7 +46,7 @@ export default function parsePublicodes<Names extends string>(
 		}
 		if (typeof rule !== 'object') {
 			rule = {
-				formule: rule
+				formule: '' + rule
 			}
 		}
 		parse({ nom: dottedName, ...rule }, context)
@@ -52,10 +57,14 @@ export default function parsePublicodes<Names extends string>(
 	parsedRules = traverseParsedRules(
 		disambiguateReference(parsedRules),
 		parsedRules
-	) as Record<string, RuleNode>
+	)
 
 	// STEP 5: Inline replacements
-	parsedRules = inlineReplacements(parsedRules)
+	const replacements = getReplacements(parsedRules)
+	parsedRules = traverseParsedRules(
+		inlineReplacements(replacements),
+		parsedRules
+	)
 
 	// TODO STEP 6: check for cycle
 
@@ -73,7 +82,7 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 	if (!object || typeof object !== 'object') {
 		return object
 	}
-	object as Record<string, any>
+	object
 	return Object.entries(object).reduce((obj, [key, value]) => {
 		const match = /\[ref( (.+))?\]$/.exec(key)
 

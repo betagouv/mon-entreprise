@@ -1,15 +1,12 @@
 import { groupBy } from 'ramda'
-import { AST } from 'yaml'
-import { traverseParsedRules, updateAST } from './AST'
+import { updateAST } from './AST'
 import { ASTNode } from './AST/types'
-import Variations from './components/mecanisms/Variations'
 import { InternalError, warning } from './error'
 import { defaultNode, makeJsx } from './evaluation'
 import { VariationNode } from './mecanisms/variations'
 import parse from './parse'
 import { Context } from './parsePublicodes'
-import { RuleNode } from './rule'
-import { Rule } from './rule'
+import { Rule, RuleNode } from './rule'
 import { coerceArray } from './utils'
 
 export type ReplacementNode = {
@@ -36,7 +33,7 @@ export function parseReplacements(
 		}
 
 		const replacedReference = parse(replacement.règle, context)
-		let replacementNode = parse(replacement.par ?? context.dottedName, context)
+		const replacementNode = parse(replacement.par ?? context.dottedName, context)
 
 		const [whiteListedNames, blackListedNames] = [
 			replacement.dans ?? [],
@@ -82,10 +79,10 @@ export function parseRendNonApplicable(
 	)
 }
 
-export function inlineReplacements(
+export function getReplacements(
 	parsedRules: Record<string, RuleNode>
-): Record<string, RuleNode> {
-	const replacements: Record<string, Array<ReplacementNode>> = groupBy(
+): Record<string, Array<ReplacementNode>> {
+	return groupBy(
 		(r: ReplacementNode) => {
 			if (!r.replacedReference.dottedName) {
 				throw new InternalError(r)
@@ -94,27 +91,38 @@ export function inlineReplacements(
 		},
 		Object.values(parsedRules).flatMap(rule => rule.replacements)
 	)
-	return traverseParsedRules(
-		updateAST(node => {
-			if (
-				node.nodeKind === 'replacement' ||
-				node.nodeKind === 'inversion' ||
-				node.nodeKind === 'une possibilité' ||
-				node.nodeKind === 'recalcul'
-			) {
-				// We don't want to replace references in replacements...
-				// Nor in ammended situation of recalcul and inversion (for now)
-				return false
-			}
-			if (node.nodeKind === 'reference') {
-				if (!node.dottedName) {
-					throw new InternalError(node)
+}
+
+export function inlineReplacements(
+	replacements: Record<string, Array<ReplacementNode>>
+): (n: ASTNode) => ASTNode {
+	return updateAST((n, fn) => {
+		if (
+			n.nodeKind === 'replacement' ||
+			n.nodeKind === 'inversion' ||
+			n.nodeKind === 'une possibilité'
+		) {
+			return false
+		}
+		if (n.nodeKind === 'recalcul') {
+			// We don't replace references in recalcul keys
+			return {
+				...n,
+				explanation: {
+					recalcul: fn(n.explanation.recalcul),
+					amendedSituation: n.explanation.amendedSituation.map(
+						([name, value]) => [name, fn(value)]
+					)
 				}
-				return replace(node, replacements[node.dottedName] ?? [])
 			}
-		}),
-		parsedRules
-	) as Record<string, RuleNode>
+		}
+		if (n.nodeKind === 'reference') {
+			if (!n.dottedName) {
+				throw new InternalError(n)
+			}
+			return replace(n, replacements[n.dottedName] ?? [])
+		}
+	})
 }
 
 function replace(
@@ -145,7 +153,7 @@ function replace(
 		.sort((r1, r2) => {
 			// Replacement with whitelist conditions have precedence over the others
 			const criterion1 =
-				(+!!r2.whiteListedNames.length as number) -
+				(+!!r2.whiteListedNames.length ) -
 				+!!r1.whiteListedNames.length
 			// Replacement with blacklist condition have precedence over the others
 			const criterion2 =

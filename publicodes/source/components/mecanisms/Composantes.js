@@ -1,6 +1,5 @@
 import { toPairs } from 'ramda'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 import { makeJsx } from '../../evaluation'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import colors from './colors'
