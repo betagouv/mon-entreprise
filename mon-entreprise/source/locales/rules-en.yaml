@@ -5529,7 +5529,17 @@ dirigeant . indépendant . cotisations et contributions . PCV:
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
 ? dirigeant . indépendant . cotisations et contributions . aide indépendant covid 2020
-: titre.en: '[automatic] independent aid covid 2020'
+: description.en: |
+    [automatic] The amount of the reduction depends on your industry.
+    It is capped at the final social security contributions for 2020,
+    excluding CFP (contribution to vocational training) and CURPS
+    (contribution to regional unions of health professionals).
+  description.fr: |
+    Le montant de la réduction dépend du secteur d'activité dont vous relevez.
+    Il est plafonné aux montant des cotisations sociales définitives de 2020,
+    hors CFP (contribution à la formation professionnelle) et CURPS
+    (contribution aux unions régionales des professionnels de santé).
+  titre.en: '[automatic] independent aid covid 2020'
   titre.fr: aide indépendant covid 2020
 dirigeant . indépendant . cotisations et contributions . aides covid 2020:
   description.en: |
