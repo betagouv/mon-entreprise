@@ -27,7 +27,7 @@ export function ruleParents<Names extends string>(
 
 export function disambiguateRuleReference<R extends Record<string, RuleNode>>(
 	rules: R,
-	contextName: string = '',
+	contextName = '',
 	partialName: string
 ): keyof R {
 	const possibleDottedName = [

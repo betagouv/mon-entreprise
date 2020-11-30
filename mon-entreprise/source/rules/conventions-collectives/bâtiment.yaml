@@ -8,8 +8,9 @@ contrat salarié . convention collective . BTP:
     (employés, techniciens et agents de maîtrise) et les cadres.
   rend non applicable: CDD . compensation pour congés non pris
 
-contrat salarié . convention collective . BTP . catégorie du salarié:
+contrat salarié . convention collective . BTP . catégorie:
   question: À quelle catégorie la salarié appartient-t'il ?
+  par défaut: "'ouvrier'"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -18,42 +19,30 @@ contrat salarié . convention collective . BTP . catégorie du salarié:
         - etam
         - cadre
 
-contrat salarié . convention collective . BTP . catégorie du salarié . ouvrier:
+contrat salarié . convention collective . BTP . catégorie . ouvrier:
   titre: Ouvrier
   icônes: 👨‍🔧
+  formule: catégorie = 'ouvrier'
 
-contrat salarié . convention collective . BTP . catégorie du salarié . etam:
+contrat salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire:
+  produit:
+    assiette: rémunération . brut de base
+    plafond: 3 * plafond sécurité sociale
+    composantes:
+      - attributs: 
+          nom: employeur
+          remplace: prévoyance . employeur
+        taux: 1.72%
+      - attributs: 
+          nom: salarié
+          remplace: prévoyance . salarié
+        taux: 0.87%
+
+contrat salarié . convention collective . BTP . catégorie . etam:
   titre: ETAM
   description: Employé, technicien, angent de maîtrise
   icônes: 👷‍♂️
-
-contrat salarié . convention collective . BTP . catégorie du salarié . cadre:
-  formule: catégorie du salarié = 'cadre'
-  titre: Cadre
-  icônes: 👩‍💼
-  remplace:
-    - règle: statut cadre
-      par: oui
-
-contrat salarié . convention collective . BTP . retraite complémentaire:
-  valeur: oui
-  non applicable si: catégorie du salarié = 'etam'
-  remplace:
-    - règle: retraite complémentaire . employeur . taux tranche 1
-      par: 4.72%
-    - règle: retraite complémentaire . employeur . taux tranche 2
-      par: 12.95%
-    - règle: retraite complémentaire . salarié . taux tranche 1
-      par: 3.15%
-    - règle: retraite complémentaire . salarié . taux tranche 2
-      par: 8.64%
-
-contrat salarié . convention collective . BTP . retraite complémentaire . etam:
-  valeur: oui
-
-  applicable si: catégorie du salarié = 'etam'
-  description: >-
-    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
+  formule: catégorie = 'etam'
   remplace:
     - règle: retraite complémentaire . employeur . taux tranche 1
       par: 4.47%
@@ -63,73 +52,58 @@ contrat salarié . convention collective . BTP . retraite complémentaire . etam
       par: 3.40%
     - règle: retraite complémentaire . salarié . taux tranche 2
       par: 8.89%
+  note: >-
+    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
 
-contrat salarié . convention collective . BTP . prévoyance complémentaire: oui
+contrat salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
+  produit:
+    assiette: rémunération . brut de base
+    plafond: 3 * plafond sécurité sociale
+    composantes:
+      - attributs: 
+          nom: employeur
+          remplace: prévoyance . employeur
+        taux: 1.25%
+      - attributs: 
+          nom: salarié
+          remplace: prévoyance . salarié
+        taux: 0.60%
 
-contrat salarié . convention collective . BTP . prévoyance complémentaire . ouvrier:
-  valeur: oui
-  applicable si: catégorie du salarié = 'ouvrier'
+contrat salarié . convention collective . BTP . catégorie . cadre:
+  formule: catégorie = 'cadre'
+  titre: Cadre
+  icônes: 👩‍💼
   remplace:
-    - règle: prévoyance . employeur
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 1.72%
-              plafond: 3 * plafond sécurité sociale
-    - règle: prévoyance . salarié
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 0.87%
-              plafond: 3 * plafond sécurité sociale
+    - règle: statut cadre
+      par: oui
 
-contrat salarié . convention collective . BTP . prévoyance complémentaire . etam:
-  valeur: oui
-  applicable si: catégorie du salarié = 'etam'
-  remplace:
-    - règle: prévoyance . employeur
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 1.25%
-              plafond: 3 * plafond sécurité sociale
-    - règle: prévoyance . salarié
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 0.60%
-              plafond: 3 * plafond sécurité sociale
 
-contrat salarié . convention collective . BTP . prévoyance complémentaire . cadre:
-  valeur: oui
-  applicable si: catégorie du salarié = 'cadre'
-  remplace:
-    - règle: prévoyance . employeur
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 1.50%
-              plafond: plafond sécurité sociale
-            - taux: 50% * 2.40%
-              plafond: 4 * plafond sécurité sociale
-            - taux: 50% * 3.60%
-              plafond: 8 * plafond sécurité sociale
-    - règle: prévoyance . salarié
-      par:
-        barème:
-          assiette: rémunération . brut de base
-          tranches:
-            - taux: 0%
-              plafond: plafond sécurité sociale
-            - taux: 50% * 2.40%
-              plafond: 4 * plafond sécurité sociale
-            - taux: 50% * 3.60%
-              plafond: 8 * plafond sécurité sociale
+contrat salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
+  barème:
+    assiette: rémunération . brut de base
+    multiplicateur: plafond sécurité sociale
+    composantes:
+      - attributs:
+          nom: employeur
+          remplace: prévoyance . employeur
+        tranches:
+          - taux: 1.50%
+            plafond: 1
+          - taux: 50% * 2.40%
+            plafond: 4
+          - taux: 50% * 3.60%
+            plafond: 8
+      - attributs:
+          nom: salarié
+          remplace: prévoyance . salarié
+        tranches:
+          - taux: 0%
+            plafond: 1
+          - taux: 50% * 2.40%
+            plafond: 4
+          - taux: 50% * 3.60%
+            plafond: 8
+
 
 contrat salarié . convention collective . BTP . cotisations conventionnelles:
   remplace: cotisations . patronales . conventionnelles

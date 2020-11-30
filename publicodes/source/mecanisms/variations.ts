@@ -1,7 +1,7 @@
 import { or } from 'ramda'
 import { evaluationFunction } from '..'
 import Variations from '../components/mecanisms/Variations'
-import { ASTNode, Unit } from '../AST/types'
+import { ASTNode, EvaluatedNode, Unit } from '../AST/types'
 import { typeWarning } from '../error'
 import { bonus, defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -23,7 +23,7 @@ export type VariationNode = {
 		satisfied?: boolean
 	}>
 	nodeKind: 'variations'
-	jsx: Function
+	jsx: (n: any) => unknown
 }
 
 export const devariate = (k, v, context): ASTNode => {
@@ -95,7 +95,10 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 			const evaluatedCondition = this.evaluateNode(condition)
 			const currentCondition = liftTemporal2(
 				(previousCond, currentCond) =>
-					previousCond === null ? previousCond : !previousCond && currentCond,
+					previousCond === null
+						? previousCond
+						: !previousCond &&
+						  (currentCond === null ? null : currentCond !== false),
 				previousConditions,
 				evaluatedCondition.temporalValue ??
 					pureTemporal(evaluatedCondition.nodeValue)

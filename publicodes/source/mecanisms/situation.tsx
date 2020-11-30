@@ -1,4 +1,5 @@
 import { isEmpty } from 'ramda'
+import { EvaluatedRule } from '..'
 import { ASTNode, EvaluatedNode } from '../AST/types'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { makeJsx, mergeAllMissing } from '../evaluation'
@@ -32,7 +33,6 @@ export default function parseSituation(v, context) {
 		situationKey: v[parseSituation.nom],
 		valeur: parse(v.valeur, context)
 	}
-
 	return {
 		jsx: MecanismSituation,
 		nodeKind: parseSituation.nom,
@@ -59,7 +59,9 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 		valeur.unit ??
 		('unit' in explanation.valeur ? explanation.valeur.unit : undefined)
 	const missingVariables = mergeAllMissing(
-		[explanation.situationValeur, explanation.valeur].filter(Boolean)
+		[explanation.situationValeur, explanation.valeur].filter(Boolean) as Array<
+			EvaluatedRule
+		>
 	)
 	return {
 		...node,

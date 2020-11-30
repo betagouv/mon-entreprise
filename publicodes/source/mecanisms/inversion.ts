@@ -38,15 +38,20 @@ export const evaluateInversion: evaluationFunction<'inversion'> = function(
 		candidate =>
 			this.parsedSituation[candidate.dottedName as string] != undefined
 	)
+
 	if (inversionGoal === undefined) {
+		const missingVariables = {
+			...Object.fromEntries(
+				node.explanation.inversionCandidates.map(candidate => [
+					candidate.dottedName,
+					1
+				])
+			),
+			[node.explanation.ruleToInverse]: 1
+		}
 		return {
 			...node,
-			missingVariables: {
-				...Object.fromEntries(
-					node.explanation.inversionCandidates.map(name => [name, 1])
-				),
-				[node.explanation.ruleToInverse]: 1
-			},
+			missingVariables,
 			nodeValue: null
 		}
 	}

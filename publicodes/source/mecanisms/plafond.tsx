@@ -40,10 +40,10 @@ const evaluate: evaluationFunction<'plafond'> = function(node) {
 	let nodeValue = valeur.nodeValue
 	let plafond = node.explanation.plafond
 	if (nodeValue !== false) {
-		plafond = this.evaluateNode(plafond)
+		const evaluatedPlafond = this.evaluateNode(plafond)
 		if (valeur.unit) {
 			try {
-				plafond = convertNodeToUnit(valeur.unit, plafond as EvaluatedNode)
+				plafond = convertNodeToUnit(valeur.unit, evaluatedPlafond)
 			} catch (e) {
 				typeWarning(
 					this.cache._meta.contextRule,
@@ -53,7 +53,7 @@ const evaluate: evaluationFunction<'plafond'> = function(node) {
 			}
 		}
 	}
-	plafond
+
 	if (
 		typeof nodeValue === 'number' &&
 		'nodeValue' in plafond &&

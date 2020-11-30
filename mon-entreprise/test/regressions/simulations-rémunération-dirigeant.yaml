@@ -10,9 +10,9 @@
 
 avec charges:
   - dirigeant . rémunération totale: 10000 €/an
-    entreprise . charges: 2000
+    entreprise . charges: 2000 €/an
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . charges: 15000
+    entreprise . charges: 15000 €/an
 
 ACRE:
   - dirigeant . rémunération totale: 10000 €/an
@@ -46,29 +46,29 @@ Contrats Madelin:
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
   - dirigeant . rémunération totale: 30000 €/an
-    entreprise . charges: 10000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 3800 # plafond: 10% PSS donc environ 4100
+    entreprise . charges: 10000 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 3800 €/an # plafond: 10% PSS donc environ 4100 
   # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - dirigeant . rémunération totale: 30000 €/an
-    entreprise . charges: 10000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 5000 # plafond: 10% PSS donc environ 4100
+    entreprise . charges: 10000 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 5000 €/an # plafond: 10% PSS donc environ 4100 
   # Cas mutuelle
   - dirigeant . rémunération totale: 30000 €/an
-    entreprise . charges: 10000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 1000
+    entreprise . charges: 10000 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 1000 €/an
   # Cas global madelin faible
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . charges: 1000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 200
-    dirigeant . indépendant . contrats madelin . retraite . montant: 300
+    entreprise . charges: 1000 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 200 €/an
+    dirigeant . indépendant . contrats madelin . retraite: 300 €/an
   # Cas global madelin grand (plafonds calculés différemment)
   - dirigeant . rémunération totale: 300000 €/an
-    entreprise . charges: 15000
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 1500
-    dirigeant . indépendant . contrats madelin . retraite . montant: 5000
+    entreprise . charges: 15000 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 1500 €/an
+    dirigeant . indépendant . contrats madelin . retraite: 5000 €/an
   # Cas charges plus faibles que total madelin
   - dirigeant . rémunération totale: 20000 €/an
-    entreprise . charges: 500
-    dirigeant . indépendant . contrats madelin . mutuelle . montant: 300
-    dirigeant . indépendant . contrats madelin . retraite . montant: 300
+    entreprise . charges: 500 €/an
+    dirigeant . indépendant . contrats madelin . mutuelle: 300 €/an
+    dirigeant . indépendant . contrats madelin . retraite: 300 €/an

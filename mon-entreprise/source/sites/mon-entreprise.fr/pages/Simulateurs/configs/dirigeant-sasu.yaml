@@ -35,3 +35,4 @@ questions:
 unité par défaut: €/an
 situation:
   dirigeant: "'assimilé salarié'"
+  contrat salarié . activité partielle: non #TODO : en attendant que la transitivité du remplacement soit implémentée

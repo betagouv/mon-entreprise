@@ -26,8 +26,8 @@ export const mecanismOnePossibility = (v, context: Context) => {
 		jsx: (node: PossibilityNode) => (
 			<Mecanism name="une possibilité parmis" value={null}>
 				<ul>
-					{node.explanation.map(node => (
-						<li>{makeJsx(node)}</li>
+					{node.explanation.map((node, i) => (
+						<li key={i}>{makeJsx(node)}</li>
 					))}
 				</ul>
 			</Mecanism>

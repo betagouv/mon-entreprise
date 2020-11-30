@@ -1,3 +1,4 @@
+import { Evaluation } from 'publicodes/dist/types/AST/types'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
 import { InputCommonProps } from './RuleInput'
@@ -8,7 +9,7 @@ export default function TextInput({
 	id,
 	missing,
 	autoFocus
-}: InputCommonProps) {
+}: InputCommonProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
@@ -18,11 +19,12 @@ export default function TextInput({
 				className="ui__"
 				type="text"
 				id={id}
-				placeholder={missing && value}
 				onChange={({ target }) => {
 					debouncedOnChange(`'${target.value}'`)
 				}}
-				defaultValue={!missing && value}
+				{...{
+					[missing ? 'placeholder' : 'defaultValue']: (value as string) || ''
+				}}
 				autoComplete="off"
 			/>
 		</div>

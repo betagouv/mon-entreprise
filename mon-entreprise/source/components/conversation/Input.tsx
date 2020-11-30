@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import { Unit } from 'publicodes/dist/types/AST/types'
+import { Evaluation, Unit } from 'publicodes/dist/types/AST/types'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
@@ -21,6 +21,7 @@ export default function Input({
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
 	unit: Unit | undefined
+	value: Evaluation<number>
 }) {
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const { language } = useTranslation().i18n
@@ -43,7 +44,6 @@ export default function Input({
 					autoFocus={autoFocus}
 					className="suffixed ui__"
 					id={id}
-					placeholder={missing && value}
 					thousandSeparator={thousandSeparator}
 					decimalSeparator={decimalSeparator}
 					allowEmptyFormatting={true}
@@ -54,8 +54,8 @@ export default function Input({
 							debouncedOnChange({ valeur: floatValue, unité })
 						}
 					}}
-					value={!missing && value}
 					autoComplete="off"
+					{...{ [missing ? 'placeholder' : 'value']: value || '' }}
 				/>
 				<span className="suffix">&nbsp;{unité}</span>
 			</div>

@@ -6,7 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Engine from 'publicodes'
+import Engine, { evaluateRule } from 'publicodes'
 import rules from '../../source/rules'
 import artisteAuteurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -44,7 +44,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 				(rule) =>
 					rule.rawNode['type'] === 'notification'
 			)
-			.map(node => engine.evaluateNode(node))
+			.map(node => evaluateRule(engine, node.dottedName))
 			.filter(node => !!node.nodeValue)
 			.map(node => node.dottedName)
 
@@ -60,7 +60,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 		})
 	)
 
-it.only('calculate simulations-salarié', () => {
+it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		employeeConfig.objectifs,

@@ -66,7 +66,7 @@ cdd:
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . CDD . durée contrat: 6 mois
-    contrat salarié . CDD . congés non pris: 3 jours
+    contrat salarié . CDD . congés non pris: 3 jours ouvrés
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2400 €/mois
     contrat salarié . CDD . durée contrat: 10 mois
@@ -394,13 +394,13 @@ taux spécifiques retraite complémentaire:
 CCN batiment:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'ouvrier'"
+    contrat salarié . convention collective . BTP . catégorie: "'ouvrier'"
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'etam'"
+    contrat salarié . convention collective . BTP . catégorie: "'etam'"
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'cadre'"
+    contrat salarié . convention collective . BTP . catégorie: "'cadre'"
 
 CCN compta:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
@@ -428,4 +428,4 @@ CCN spectacle vivant:
 
 CCN sport:
   - contrat salarié . rémunération . brut de base: 500 €/mois
-    contrat salarié . convention collective . sport . primes . nombre de manifestations: 2
+    contrat salarié . convention collective . sport . primes . nombre de manifestations: 2 manifestations

@@ -4,7 +4,7 @@ import parse from '../parse'
 import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
-import { ASTNode } from '../AST/types'
+import { ASTNode, EvaluatedNode } from '../AST/types'
 
 export type ApplicableSiNode = {
 	explanation: {
@@ -39,7 +39,7 @@ const evaluate: evaluationFunction<'applicable si'> = function(node) {
 			condition.nodeValue == null || condition.nodeValue === false
 				? condition.nodeValue
 				: 'nodeValue' in valeur
-				? valeur.nodeValue
+				? (valeur as EvaluatedNode).nodeValue
 				: null,
 		explanation: { valeur, condition },
 		missingVariables: mergeMissing(

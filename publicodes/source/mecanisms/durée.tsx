@@ -1,6 +1,6 @@
 import React from 'react'
 import { evaluationFunction } from '..'
-import { ASTNode } from '../AST/types'
+import { ASTNode, Unit } from '../AST/types'
 import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
 import {
@@ -10,6 +10,7 @@ import {
 	parseObject
 } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
+import { parseUnit } from '../units'
 
 export type DuréeNode = {
 	explanation: {
@@ -17,6 +18,7 @@ export type DuréeNode = {
 		"jusqu'à": ASTNode
 	}
 	jsx: any
+	unit: Unit
 	nodeKind: 'durée'
 }
 
@@ -75,6 +77,7 @@ export default (v, context) => {
 	return {
 		jsx: MecanismDurée,
 		explanation,
+		unit: parseUnit('jours'),
 		nodeKind: 'durée'
 	} as DuréeNode
 }
