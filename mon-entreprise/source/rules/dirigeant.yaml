@@ -520,15 +520,24 @@ dirigeant . indépendant . cotisations et contributions . aides covid 2020:
       - PL . CIPAV . retraite complémentaire . réduction COVID . montant
 
 dirigeant . indépendant . cotisations et contributions . aide indépendant covid 2020:
+  description: |
+    Le montant de la réduction dépend du secteur d'activité dont vous relevez.
+    Il est plafonné aux montant des cotisations sociales définitives de 2020,
+    hors CFP (contribution à la formation professionnelle) et CURPS
+    (contribution aux unions régionales des professionnels de santé).
   formule:
     variations:
       - si: 
           une de ces conditions:
             - établissement . secteur d'activité covid = 'S1'
             - établissement . secteur d'activité covid = 'S1-bis'
-        alors: (- 2400 €/an)
+        alors: 2400 €/an
       - si: établissement . secteur d'activité covid = 'S2'
-        alors: (- 1800 €/an)
+        alors: 1800 €/an
+    plafond:
+      somme:
+        - cotisations
+        - CSG et CRDS
   références:
     Sécu-indépendant: https://www.secu-independants.fr/cpsti/actualites/actualites-nationales/covid-dispositifs-de-reduction-des-cotisations/
 
@@ -772,7 +781,7 @@ dirigeant . indépendant . cotisations et contributions:
       - CSG et CRDS
       - contributions spéciales
       - formation professionnelle
-      - aide indépendant covid 2020
+      - (- aide indépendant covid 2020)
   note: |
     À la différence des cotisations, les contributions ne sont pas réintroduites
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
