@@ -26,6 +26,7 @@ jobs:
       - run: yarn install
       - run: yarn workspace mon-entreprise build
       - name: Deploy to Netlify
+        id: deploy-netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './mon-entreprise/dist'
@@ -33,8 +34,26 @@ jobs:
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-commit-comment: false
+          # Disabled because we create our own customized comment
+          enable-pull-request-comment: false
           alias: deploy-preview-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }} #e.g. 1
+          comment-author: 'github-actions[bot]'
+          body-includes: netlify
+      - name: Create comment
+        if: ${{ steps.find-comment.outputs.comment-id == 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🚀 La branche est déployée ! ${{ steps.deploy-netlify.outputs.deploy-url }}
+
+            _Voir aussi : [version anglaise](${{ steps.deploy-netlify.outputs.deploy-url }}?s=m) | [site publicodes](${{ steps.deploy-netlify.outputs.deploy-url }}?s=p)_
