@@ -1,6 +1,7 @@
 import { Simulation } from 'Reducers/rootReducer'
 import { Action } from 'Actions/actions'
 import { RootState } from './rootReducer'
+import { retrievePersistedSimulation } from '../storage/persistSimulation'
 
 export const createStateFromPreviousSimulation = (
 	state: RootState
@@ -19,6 +20,11 @@ export const createStateFromPreviousSimulation = (
 
 export default (state: RootState, action: Action): RootState => {
 	switch (action.type) {
+		case 'SET_SIMULATION':
+			return {
+				...state,
+				previousSimulation: retrievePersistedSimulation(action.url),
+			}
 		case 'LOAD_PREVIOUS_SIMULATION':
 			return {
 				...state,
