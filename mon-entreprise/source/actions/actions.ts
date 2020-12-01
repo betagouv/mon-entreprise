@@ -14,7 +14,6 @@ export type Action =
 			| typeof resetSimulation
 			| typeof setActiveTarget
 			| typeof setSimulationConfig
-			| typeof setSituationBranch
 			| typeof stepAction
 			| typeof updateSituation
 			| typeof updateSituation
@@ -43,12 +42,6 @@ export const stepAction = (step: DottedName, source?: string) =>
 		name: 'fold',
 		step,
 		source,
-	} as const)
-
-export const setSituationBranch = (id: number) =>
-	({
-		type: 'SET_SITUATION_BRANCH',
-		id,
 	} as const)
 
 export const setSimulationConfig = (
