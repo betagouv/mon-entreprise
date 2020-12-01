@@ -24,15 +24,6 @@ function explainedVariable(
 	}
 }
 
-function situationBranch(state: number | null = null, action: Action) {
-	switch (action.type) {
-		case 'SET_SITUATION_BRANCH':
-			return action.id
-		default:
-			return state
-	}
-}
-
 function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
@@ -175,7 +166,6 @@ const mainReducer = combineReducers({
 	explainedVariable,
 	simulation,
 	previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
-	situationBranch,
 	activeTargetInput,
 	inFranceApp: inFranceAppReducer,
 })
