@@ -57,34 +57,34 @@ type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
 
 export const resetSimulation = () =>
 	({
-		type: 'RESET_SIMULATION'
+		type: 'RESET_SIMULATION',
 	} as const)
 
 export const goToQuestion = (question: DottedName) =>
 	({
 		type: 'STEP_ACTION',
 		name: 'unfold',
-		step: question
+		step: question,
 	} as const)
 
 export const validateStepWithValue = (
 	dottedName: DottedName,
 	value: unknown
-): ThunkResult<void> => dispatch => {
+): ThunkResult<void> => (dispatch) => {
 	if (value !== undefined) {
 		dispatch(updateSituation(dottedName, value))
 	}
 	dispatch({
 		type: 'STEP_ACTION',
 		name: 'fold',
-		step: dottedName
+		step: dottedName,
 	})
 }
 
 export const setSituationBranch = (id: number) =>
 	({
 		type: 'SET_SITUATION_BRANCH',
-		id
+		id,
 	} as const)
 
 export const setSimulationConfig = (
@@ -99,19 +99,19 @@ export const setSimulationConfig = (
 		type: 'SET_SIMULATION',
 		url,
 		useCompanyDetails,
-		config
+		config,
 	})
 }
 
 export const setActiveTarget = (targetName: DottedName) =>
 	({
 		type: 'SET_ACTIVE_TARGET_INPUT',
-		name: targetName
+		name: targetName,
 	} as const)
 
-export const deletePreviousSimulation = (): ThunkResult<void> => dispatch => {
+export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
 	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION'
+		type: 'DELETE_PREVIOUS_SIMULATION',
 	})
 	deletePersistedSimulation()
 }
@@ -120,13 +120,13 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
 		type: 'UPDATE_SITUATION',
 		fieldName,
-		value
+		value,
 	} as const)
 
 export const updateUnit = (targetUnit: string) =>
 	({
 		type: 'UPDATE_TARGET_UNIT',
-		targetUnit
+		targetUnit,
 	} as const)
 
 export const goBackToSimulation = (): ThunkResult<void> => (
@@ -140,7 +140,7 @@ export const goBackToSimulation = (): ThunkResult<void> => (
 
 export function loadPreviousSimulation() {
 	return {
-		type: 'LOAD_PREVIOUS_SIMULATION'
+		type: 'LOAD_PREVIOUS_SIMULATION',
 	} as const
 }
 
@@ -151,5 +151,5 @@ export function hideNotification(id: string) {
 export const explainVariable = (variableName: DottedName | null = null) =>
 	({
 		type: 'EXPLAIN_VARIABLE',
-		variableName
+		variableName,
 	} as const)

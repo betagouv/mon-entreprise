@@ -12,7 +12,7 @@ export type MinNode = {
 	jsx: any
 }
 export const mecanismMin = (v, context) => {
-	const explanation = v.map(node => parse(node, context))
+	const explanation = v.map((node) => parse(node, context))
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le minimum de" value={nodeValue} unit={unit}>
 			<ul>
@@ -28,7 +28,7 @@ export const mecanismMin = (v, context) => {
 	return {
 		jsx,
 		explanation,
-		nodeKind: 'minimum'
+		nodeKind: 'minimum',
 	} as MinNode
 }
 

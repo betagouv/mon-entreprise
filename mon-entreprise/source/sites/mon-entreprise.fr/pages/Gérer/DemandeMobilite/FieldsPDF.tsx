@@ -8,7 +8,7 @@ export type FieldsPDFProps = {
 export default function FieldsPDF({ fields }: FieldsPDFProps) {
 	return (
 		<>
-			{fields.map(field => (
+			{fields.map((field) => (
 				<View style={styles.field} key={field.dottedName} wrap={false}>
 					{field.type === 'groupe' ? (
 						<>
@@ -28,7 +28,15 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 								)}
 							</Text>
 							{field.nodeValue != null && (
-								<Text style={styles.value}>{formatValue(field)}</Text>
+								<Text style={styles.value}>
+									{formatValue(field) +
+										(field.API === 'commune'
+											? ` (${
+													(field.nodeValue as Record<string, unknown>)
+														.codePostal as string
+											  })`
+											: '')}
+								</Text>
 							)}
 						</>
 					)}
@@ -40,25 +48,25 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 
 export const styles = StyleSheet.create({
 	fieldNumber: {
-		opacity: 0.7
+		opacity: 0.7,
 	},
 	subtitle: {
 		paddingTop: 10,
 		fontFamily: 'Montserrat',
-		fontSize: 16
+		fontSize: 16,
 	},
 	field: {
 		marginBottom: 12,
-		lineHeight: 1.2
+		lineHeight: 1.2,
 	},
 	name: {
 		fontSize: 11,
 		marginBottom: 4,
 		opacity: 0.7,
-		fontFamily: 'Roboto'
+		fontFamily: 'Roboto',
 	},
 	value: {
 		fontSize: 14,
-		fontFamily: 'Roboto'
-	}
+		fontFamily: 'Roboto',
+	},
 })

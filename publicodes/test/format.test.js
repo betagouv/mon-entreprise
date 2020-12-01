@@ -43,7 +43,7 @@ describe('Units handling', () => {
 		expect(
 			formatValue({
 				nodeValue: 7,
-				unit: parseUnit('jour/semaine')
+				unit: parseUnit('jour/semaine'),
 			})
 		).to.equal('7 jours / semaine')
 	})

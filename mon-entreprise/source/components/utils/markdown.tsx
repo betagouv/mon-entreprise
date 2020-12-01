@@ -8,7 +8,7 @@ import { SiteNameContext } from '../../Provider'
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',
 	'mycompanyinfrance.fr': 'infrance',
-	'publi.codes': 'publicodes'
+	'publi.codes': 'publicodes',
 } as const
 
 export function LinkRenderer({
@@ -68,7 +68,7 @@ type MarkdownProps = ReactMarkdownProps & {
 const LazySyntaxHighlighter = React.lazy(() => import('../SyntaxHighlighter'))
 const CodeBlock = ({
 	value,
-	language
+	language,
 }: {
 	value: string
 	language: string
@@ -106,14 +106,14 @@ export const Markdown = ({
 	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
-		transformLinkUri={src => src}
+		transformLinkUri={(src) => src}
 		source={source}
 		className={`markdown ${className}`}
 		renderers={{
 			link: LinkRenderer,
 			text: TextRenderer,
 			code: CodeBlock,
-			...renderers
+			...renderers,
 		}}
 		{...otherProps}
 	/>
@@ -126,7 +126,7 @@ export const MarkdownWithAnchorLinks = ({
 	<Markdown
 		renderers={{
 			heading: HeadingWithAnchorLink,
-			...renderers
+			...renderers,
 		}}
 		{...otherProps}
 	/>
@@ -155,7 +155,7 @@ function useScrollToHash() {
 
 export function HeadingWithAnchorLink({
 	level,
-	children
+	children,
 }: {
 	level: number
 	children: React.ReactNode

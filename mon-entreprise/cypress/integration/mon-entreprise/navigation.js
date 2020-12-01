@@ -1,4 +1,4 @@
-describe('Navigation', function() {
+describe('Navigation', function () {
 	const fr = Cypress.env('language') === 'fr'
 	it('should enable switching site language', () => {
 		cy.visit(fr ? '/créer/auto-entrepreneur' : '/create/auto-entrepreneur')

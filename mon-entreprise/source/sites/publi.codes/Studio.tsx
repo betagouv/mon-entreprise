@@ -40,7 +40,7 @@ export default function Studio() {
 	useEffect(() => {
 		history.replace({
 			pathname,
-			search: `?code=${encodeURIComponent(debouncedEditorValue)}`
+			search: `?code=${encodeURIComponent(debouncedEditorValue)}`,
 		})
 	}, [debouncedEditorValue, history])
 
@@ -54,9 +54,9 @@ export default function Studio() {
 				language="yaml"
 				height="90vh"
 				defaultValue={editorValue}
-				onChange={newValue => setEditorValue(newValue ?? '')}
+				onChange={(newValue) => setEditorValue(newValue ?? '')}
 				options={{
-					minimap: { enabled: false }
+					minimap: { enabled: false },
 				}}
 			/>
 			<section
@@ -99,10 +99,10 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 	const { search, pathname } = useLocation()
 	const history = useHistory()
 	const setCurrentTarget = useCallback(
-		target =>
+		(target) =>
 			history.replace({
 				pathname: ruleToPaths[target],
-				search
+				search,
 			}),
 		[ruleToPaths, history, search]
 	)
@@ -114,7 +114,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 
 	return (
 		<>
-			{engine.getWarnings().map(warning => (
+			{engine.getWarnings().map((warning) => (
 				<div
 					css={`
 						background: lightyellow;
@@ -136,7 +136,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 				<small>
 					Aller à{' '}
 					<select
-						onChange={e => {
+						onChange={(e) => {
 							setCurrentTarget(e.target.value)
 						}}
 						css={`
@@ -145,7 +145,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 							font-family: inherit;
 						`}
 					>
-						{targets.map(target => (
+						{targets.map((target) => (
 							<option
 								key={target}
 								value={target}
@@ -181,7 +181,7 @@ function nl2br(str: string) {
 		return str
 	}
 
-	return str.split(newlineRegex).map(function(line, index) {
+	return str.split(newlineRegex).map(function (line, index) {
 		if (line.match(newlineRegex)) {
 			return React.createElement('br', { key: index })
 		}

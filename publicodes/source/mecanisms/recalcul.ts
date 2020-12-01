@@ -18,7 +18,7 @@ export type RecalculNode = {
 	nodeKind: 'recalcul'
 }
 
-const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
+const evaluateRecalcul: evaluationFunction<'recalcul'> = function (node) {
 	if (this.cache._meta.inRecalcul) {
 		return (defaultNode(false) as any) as RecalculNode & EvaluatedNode
 	}
@@ -26,7 +26,7 @@ const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
 	const amendedSituation = node.explanation.amendedSituation
 		.map(([originRule, replacement]) => [
 			this.evaluateNode(originRule),
-			this.evaluateNode(replacement)
+			this.evaluateNode(replacement),
 		])
 		.filter(
 			([originRule, replacement]) =>
@@ -49,9 +49,9 @@ const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
 					reference.contextDottedName,
 					reference.name
 				),
-				replacement
+				replacement,
 			]) as any
-		)
+		),
 	}
 
 	const evaluatedNode = this.evaluateNode(node.explanation.recalcul)
@@ -62,30 +62,30 @@ const evaluateRecalcul: evaluationFunction<'recalcul'> = function(node) {
 		nodeValue: evaluatedNode.nodeValue,
 		explanation: {
 			recalcul: evaluatedNode,
-			amendedSituation
+			amendedSituation,
 		},
 		missingVariables: evaluatedNode.missingVariables,
 		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),
 		...(evaluatedNode.temporalValue && {
-			temporalValue: evaluatedNode.temporalValue
-		})
+			temporalValue: evaluatedNode.temporalValue,
+		}),
 	}
 }
 
 export const mecanismRecalcul = (v, context) => {
-	const amendedSituation = Object.keys(v.avec).map(dottedName => [
+	const amendedSituation = Object.keys(v.avec).map((dottedName) => [
 		parse(dottedName, context),
-		parse(v.avec[dottedName], context)
+		parse(v.avec[dottedName], context),
 	])
 	const defaultRuleToEvaluate = context.dottedName
 	const nodeToEvaluate = parse(v.règle ?? defaultRuleToEvaluate, context)
 	return {
 		explanation: {
 			recalcul: nodeToEvaluate,
-			amendedSituation
+			amendedSituation,
 		},
 		jsx: Recalcul,
-		nodeKind: 'recalcul'
+		nodeKind: 'recalcul',
 	} as RecalculNode
 }
 

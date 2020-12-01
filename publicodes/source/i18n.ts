@@ -8,9 +8,9 @@ i18next
 	.init({
 		resources: {
 			fr: { units: unitsTranslations.fr },
-			en: { units: unitsTranslations.en }
-		}
+			en: { units: unitsTranslations.en },
+		},
 	})
-	.catch(err => console?.error('Error from i18n load', err))
+	.catch((err) => console?.error('Error from i18n load', err))
 
 export default i18next

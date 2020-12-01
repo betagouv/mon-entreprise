@@ -15,7 +15,7 @@ export default SommeNode
 
 // We want to put non applicable rules a the bottom of list #1055
 function sortByApplicability(a, b) {
-	const isApplicable = x => x.nodeValue === false
+	const isApplicable = (x) => x.nodeValue === false
 	if (isApplicable(a) === isApplicable(b)) {
 		return 0
 	}
@@ -69,9 +69,9 @@ function Row({ v, i, unit }) {
 			? [
 					<div className="nested" key={v.name + '-nest'}>
 						<Table explanation={rowFormula.explanation} unit={v.unit || unit} />
-					</div>
+					</div>,
 			  ]
-			: [])
+			: []),
 	]
 }
 

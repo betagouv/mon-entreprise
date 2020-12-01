@@ -20,7 +20,7 @@ export function CheckItem({
 	name,
 	explanations,
 	onChange,
-	defaultChecked
+	defaultChecked,
 }: CheckItemProps) {
 	const tracker = useContext(TrackerContext)
 	const [displayExplanations, setDisplayExplanations] = useState(false)
@@ -34,7 +34,7 @@ export function CheckItem({
 			'trackEvent',
 			'CheckItem',
 			e.target.checked ? 'check' : 'uncheck',
-			name
+			name,
 		])
 	}
 
@@ -56,7 +56,7 @@ export function CheckItem({
 
 				<button
 					className={classnames('ui__ checklist-button', {
-						opened: displayExplanations
+						opened: displayExplanations,
 					})}
 					onClick={handleClick}
 				>
@@ -89,11 +89,11 @@ export function Checklist({
 	children,
 	onItemCheck,
 	onInitialization,
-	defaultChecked
+	defaultChecked,
 }: ChecklistProps) {
 	const checklist = React.Children.toArray(children)
 		.filter(Boolean)
-		.map(child => {
+		.map((child) => {
 			if (!React.isValidElement(child)) {
 				throw new Error('Invalid child passed to Checklist')
 			}
@@ -101,17 +101,17 @@ export function Checklist({
 				onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
 					onItemCheck?.(child.props.name, evt.target.checked),
 				defaultChecked:
-					child.props.defaultChecked || defaultChecked?.[child.props.name]
+					child.props.defaultChecked || defaultChecked?.[child.props.name],
 			})
 		})
 
 	useEffect(() => {
-		onInitialization?.(checklist.map(child => child.props.name))
+		onInitialization?.(checklist.map((child) => child.props.name))
 	}, [])
 
 	return (
 		<ul className="ui__ no-bullet checklist">
-			{checklist.map(checkItem => (
+			{checklist.map((checkItem) => (
 				<li key={checkItem.props.name}>{checkItem}</li>
 			))}
 		</ul>

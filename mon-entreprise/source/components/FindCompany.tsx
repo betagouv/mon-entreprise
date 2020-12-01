@@ -7,14 +7,15 @@ import { Etablissement, searchDenominationOrSiren } from '../api/sirene'
 import { debounce } from '../utils'
 
 export default function Search() {
-	const [searchResults, setSearchResults] = useState<Array<
-		Etablissement
-	> | null>()
+	const [
+		searchResults,
+		setSearchResults,
+	] = useState<Array<Etablissement> | null>()
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function(value) {
-			searchDenominationOrSiren(value).then(results => {
+		function (value) {
+			searchDenominationOrSiren(value).then((results) => {
 				setLoadingState(false)
 				setSearchResults(results)
 			})
@@ -22,7 +23,7 @@ export default function Search() {
 		[setSearchResults, setLoadingState]
 	)
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch
+		handleSearch,
 	])
 	const dispatch = useDispatch()
 	return (
@@ -58,7 +59,7 @@ export default function Search() {
 						border-color: var(--color);
 					}
 				`}
-				onChange={e => {
+				onChange={(e) => {
 					if (e.target.value.length < 2) {
 						setSearchResults(undefined)
 						return

@@ -20,7 +20,7 @@ export default function Iframes() {
 				<Switch>
 					{Object.values(simulators)
 						.filter(({ iframe }) => !!iframe)
-						.map(s => (
+						.map((s) => (
 							<Route
 								key={s.iframe}
 								path={`/iframes/${s.iframe}`}

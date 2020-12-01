@@ -22,7 +22,7 @@ const objectShape = {
 	assiette: false,
 	taux: defaultNode(1),
 	facteur: defaultNode(1),
-	plafond: defaultNode(Infinity)
+	plafond: defaultNode(Infinity),
 }
 
 export const mecanismProduct = (v, context) => {
@@ -31,15 +31,15 @@ export const mecanismProduct = (v, context) => {
 	return {
 		jsx: Product,
 		explanation,
-		nodeKind: 'produit'
+		nodeKind: 'produit',
 	} as ProductNode
 }
 
-const productEffect: evaluationFunction = function({
+const productEffect: evaluationFunction = function ({
 	assiette,
 	taux,
 	facteur,
-	plafond
+	plafond,
 }: any) {
 	if (assiette.unit) {
 		try {
@@ -54,11 +54,11 @@ const productEffect: evaluationFunction = function({
 	}
 	const mult = (base, rate, facteur, plafond) =>
 		Math.min(base, plafond === false ? Infinity : plafond) * rate * facteur
-	let nodeValue = [taux, assiette, facteur].some(n => n.nodeValue === false)
+	let nodeValue = [taux, assiette, facteur].some((n) => n.nodeValue === false)
 		? false
-		: [taux, assiette, facteur].some(n => n.nodeValue === 0)
+		: [taux, assiette, facteur].some((n) => n.nodeValue === 0)
 		? 0
-		: [taux, assiette, facteur].some(n => n.nodeValue === null)
+		: [taux, assiette, facteur].some((n) => n.nodeValue === null)
 		? null
 		: mult(
 				assiette.nodeValue,
@@ -68,7 +68,7 @@ const productEffect: evaluationFunction = function({
 		  )
 	let unit = inferUnit(
 		'*',
-		[assiette, taux, facteur].map(el => el.unit)
+		[assiette, taux, facteur].map((el) => el.unit)
 	)
 	if (areUnitConvertible(unit, assiette.unit)) {
 		nodeValue = convertUnit(unit, assiette.unit, nodeValue)
@@ -79,8 +79,8 @@ const productEffect: evaluationFunction = function({
 		unit,
 
 		explanation: {
-			plafondActif: assiette.nodeValue > plafond.nodeValue
-		}
+			plafondActif: assiette.nodeValue > plafond.nodeValue,
+		},
 	})
 }
 

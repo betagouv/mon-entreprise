@@ -11,7 +11,7 @@ import {
 	activitésEffectuéesSelector,
 	déclarationsSelector,
 	nextActivitéSelector,
-	régimeGénéralDisponibleSelector
+	régimeGénéralDisponibleSelector,
 } from './selectors'
 import { StoreContext } from './StoreContext'
 
@@ -41,7 +41,7 @@ export default function VotreSituation() {
 	const déclarations = déclarationsSelector(state)
 	const régimeGénéralDisponible = activitésEffectuéesSelector(
 		state
-	).some(activité => régimeGénéralDisponibleSelector(state, activité))
+	).some((activité) => régimeGénéralDisponibleSelector(state, activité))
 
 	return (
 		<Animate.fromBottom>
@@ -144,7 +144,7 @@ const ActivitéList = ({ activités }: { activités: string[] }) => {
 	const { state } = useContext(StoreContext)
 	return (
 		<div css="display: flex; flex-wrap: wrap; margin: 0 -1rem;">
-			{activités.map(title => (
+			{activités.map((title) => (
 				<ActivitéCard
 					key={title}
 					title={title}

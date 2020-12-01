@@ -38,7 +38,7 @@ export default function Rule({ dottedName, engine, language }) {
 						className="ui__ lead card light-bg"
 						style={{
 							display: 'inline-block',
-							padding: '1rem'
+							padding: '1rem',
 						}}
 					>
 						{formatValue(simplifyNodeUnit(rule), { language })}
@@ -72,7 +72,7 @@ export default function Rule({ dottedName, engine, language }) {
 				<>
 					<h3>Effets </h3>
 					<ul>
-						{rule.replacements.map(replacement => (
+						{rule.replacements.map((replacement) => (
 							<li key={replacement.replacedReference.dottedName}>
 								{makeJsx(replacement)}
 							</li>
@@ -109,19 +109,19 @@ export default function Rule({ dottedName, engine, language }) {
 
 function AssociatedRules({
 	dottedName,
-	engine
+	engine,
 }: {
 	dottedName: string
 	engine: Engine
 }) {
 	const namespaceRules = Object.keys(engine.getParsedRules())
 		.filter(
-			ruleDottedName =>
+			(ruleDottedName) =>
 				ruleDottedName.startsWith(dottedName) &&
 				ruleDottedName.split(' . ').length ===
 					dottedName.split(' . ').length + 1
 		)
-		.filter(rule => ruleWithDedicatedDocumentationPage(rule))
+		.filter((rule) => ruleWithDedicatedDocumentationPage(rule))
 	if (!namespaceRules.length) {
 		return null
 	}
@@ -131,7 +131,7 @@ function AssociatedRules({
 				<Trans>Pages associées</Trans>
 			</h2>
 			<ul>
-				{namespaceRules.map(dottedName => (
+				{namespaceRules.map((dottedName) => (
 					<li key={dottedName}>
 						<RuleLinkWithContext dottedName={dottedName} />
 					</li>

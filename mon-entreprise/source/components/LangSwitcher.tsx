@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 const languageCodeToEmoji = {
 	en: '🇬🇧',
-	fr: '🇫🇷'
+	fr: '🇫🇷',
 }
 
 export default function LangSwitcher({ className }: { className: string }) {

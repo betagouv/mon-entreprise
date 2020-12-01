@@ -59,7 +59,7 @@ async function searchFullText(
 		)
 		.map(({ l1_normalisee, siren }) => ({
 			denomination: l1_normalisee,
-			siren
+			siren,
 		}))
 	if (!etablissements.length) {
 		return null

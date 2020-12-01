@@ -12,7 +12,7 @@ export const numberFormatter = ({
 	style,
 	maximumFractionDigits = 2,
 	minimumFractionDigits = 0,
-	language
+	language,
 }: {
 	style?: string
 	maximumFractionDigits?: number
@@ -32,7 +32,7 @@ export const numberFormatter = ({
 		style,
 		currency: 'EUR',
 		maximumFractionDigits,
-		minimumFractionDigits: adaptedMinimumFractionDigits
+		minimumFractionDigits: adaptedMinimumFractionDigits,
 	}).format(value)
 }
 
@@ -63,7 +63,7 @@ function formatNumber({
 	minimumFractionDigits,
 	language,
 	unit,
-	value
+	value,
 }: formatValueOptions) {
 	if (typeof value !== 'number') {
 		return value
@@ -75,13 +75,13 @@ function formatNumber({
 				style: 'currency',
 				maximumFractionDigits,
 				minimumFractionDigits,
-				language
+				language,
 			})(value)
 		case '%':
 			return numberFormatter({
 				style: 'percent',
 				maximumFractionDigits,
-				language
+				language,
 			})(value / 100)
 		default:
 			return (
@@ -89,7 +89,7 @@ function formatNumber({
 					style: 'decimal',
 					minimumFractionDigits,
 					maximumFractionDigits,
-					language
+					language,
 				})(value) +
 				(typeof serializedUnit === 'string' ? `\u00A0${serializedUnit}` : '')
 			)
@@ -98,7 +98,7 @@ function formatNumber({
 
 const booleanTranslations = {
 	fr: { true: 'Oui', false: 'Non' },
-	en: { true: 'Yes', false: 'No' }
+	en: { true: 'Yes', false: 'No' },
 }
 
 type Options = {
@@ -113,18 +113,8 @@ type Commune = {
 	departement: { nom: string }
 }
 
-function formatCommune(commune: Commune) {
-	return `${commune.nom} (${commune.codePostal ?? commune.departement.nom})`
-}
 export function formatValue(
-	value:
-		| number
-		| { nodeValue: Evaluation; unit?: Unit }
-		| {
-				nodeValue: Commune
-				API: 'commune'
-		  }
-		| undefined,
+	value: number | { nodeValue: Evaluation; unit?: Unit } | undefined,
 
 	{ language = 'fr', displayedUnit, precision = 2 }: Options = {}
 ) {
@@ -149,8 +139,6 @@ export function formatValue(
 	}
 	return typeof nodeValue === 'string'
 		? capitalise0(nodeValue.replace('\\n', '\n'))
-		: typeof value === 'object' && 'API' in value && value.API === 'commune'
-		? formatCommune(nodeValue as Commune)
 		: typeof nodeValue === 'object'
 		? (nodeValue as any).nom
 		: typeof nodeValue === 'boolean'
@@ -161,7 +149,7 @@ export function formatValue(
 				maximumFractionDigits: precision,
 				language,
 				unit,
-				value: nodeValue
+				value: nodeValue,
 		  })
 		: null
 }

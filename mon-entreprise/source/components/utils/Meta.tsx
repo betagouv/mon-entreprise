@@ -14,7 +14,7 @@ export default function Meta({
 	description,
 	ogDescription,
 	ogTitle,
-	ogImage
+	ogImage,
 }: PropType) {
 	const { pathname } = useLocation()
 	return (

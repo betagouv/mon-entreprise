@@ -8,7 +8,7 @@ export default function IframeFooter() {
 				style={{
 					textAlign: 'center',
 					paddingTop: '3rem',
-					paddingBottom: '1rem'
+					paddingBottom: '1rem',
 				}}
 			>
 				<Privacy />

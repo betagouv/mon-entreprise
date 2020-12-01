@@ -1,4 +1,4 @@
-import Engine, { EvaluatedNode, formatValue } from 'publicodes'
+import Engine, { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -32,12 +32,12 @@ export default function Value<Names extends string>({
 	const isRule = expression in e.getParsedRules()
 	const evaluation = e.evaluate({
 		valeur: expression,
-		...(unit && { unité: unit })
+		...(unit && { unité: unit }),
 	})
 	const value = formatValue(evaluation, {
 		displayedUnit,
 		language,
-		precision
+		precision,
 	})
 	if (isRule && linkToRule) {
 		return (
@@ -55,7 +55,9 @@ type ConditionProps = {
 }
 export function Condition({ expression, children }: ConditionProps) {
 	const engine = useContext(EngineContext)
-	if (!coerceArray(expression).every(expr => engine.evaluate(expr).nodeValue)) {
+	if (
+		!coerceArray(expression).every((expr) => engine.evaluate(expr).nodeValue)
+	) {
 		return null
 	}
 	return <>{children}</>

@@ -14,7 +14,7 @@ type PercentageFieldProps = InputCommonProps & {
 export default function PercentageField({
 	onChange,
 	value,
-	debounce = 0
+	debounce = 0,
 }: PercentageFieldProps) {
 	const [localValue, setLocalValue] = useState(value)
 	const debouncedOnChange = useCallback(
@@ -27,7 +27,7 @@ export default function PercentageField({
 		<div>
 			<input
 				className="range"
-				onChange={e => {
+				onChange={(e) => {
 					const value = e.target.value
 					setLocalValue(value)
 					debouncedOnChange(value)
@@ -42,7 +42,7 @@ export default function PercentageField({
 			<span style={{ display: 'inline-block', width: '3em' }}>
 				{formatValue(localValue, {
 					language,
-					displayedUnit: '%'
+					displayedUnit: '%',
 				})}
 			</span>
 		</div>

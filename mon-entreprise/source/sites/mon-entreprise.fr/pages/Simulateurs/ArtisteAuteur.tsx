@@ -8,6 +8,7 @@ import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { evaluateRule } from 'publicodes'
+import { equals } from 'ramda'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -43,7 +44,9 @@ export default function ArtisteAuteur() {
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . recettes" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
 							<Warning dottedName="artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc" />
-							<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
+							<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
+								<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
+							</Condition>
 							<SimpleField dottedName="artiste-auteur . cotisations . option surcotisation" />
 						</InitialRenderContext.Provider>
 					</ul>
@@ -60,12 +63,17 @@ type SimpleFieldProps = {
 
 function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const rule = useEngine().getParsedRules()[dottedName]
+	const engine = useEngine()
+	const situation = useSelector(situationSelector)
+	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
 	const initialRender = useContext(InitialRenderContext)
-	// TODO
-	// if (rule.isApplicable === false || rule.isApplicable === null) {
-	// 	return null
-	// }
+	if (
+		!(dottedName in situation) &&
+		rule.nodeValue === false &&
+		!(dottedName in rule.missingVariables)
+	) {
+		return null
+	}
 
 	return (
 		<li>

@@ -53,7 +53,7 @@ export default function CurrencyInput({
 		event.persist()
 		event.target = {
 			...event.target,
-			value: nextValue.current
+			value: nextValue.current,
 		}
 		nextValue.current = ''
 		onChangeDebounced?.(event)
@@ -62,7 +62,7 @@ export default function CurrencyInput({
 	const {
 		isCurrencyPrefixed,
 		thousandSeparator,
-		decimalSeparator
+		decimalSeparator,
 	} = currencyFormat(language)
 	// Autogrow the input
 	const valueLength = currentValue.toString().length

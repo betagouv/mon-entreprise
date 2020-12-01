@@ -1,6 +1,6 @@
 import {
 	useSafeLocaleStorage,
-	getInitialState
+	getInitialState,
 } from 'Components/utils/persistState'
 import { Reducer } from 'react'
 import { createContext, useCallback, useReducer, ReactNode } from 'react'
@@ -19,7 +19,7 @@ type StoreProviderProps = {
 const StoreProvider = ({
 	children,
 	reducer,
-	localStorageKey
+	localStorageKey,
 }: StoreProviderProps) => {
 	const computeInitialState = useCallback(
 		() => reducer(getInitialState(localStorageKey), { type: '@@INIT_STATE' }),

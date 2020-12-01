@@ -9,19 +9,19 @@ import {
 	remove,
 	uniq,
 	unnest,
-	without
+	without,
 } from 'ramda'
 import i18n from './i18n'
 import { Evaluation, Unit } from './AST/types'
 
 export const parseUnit = (string: string, lng = 'fr'): Unit => {
-	const [a, ...b] = string.split('/').map(u => u.trim()),
+	const [a, ...b] = string.split('/').map((u) => u.trim()),
 		result = {
 			numerators: a
 				.split('.')
 				.filter(Boolean)
-				.map(unit => getUnitKey(unit, lng)),
-			denominators: b.map(unit => getUnitKey(unit, lng))
+				.map((unit) => getUnitKey(unit, lng)),
+			denominators: b.map((unit) => getUnitKey(unit, lng)),
 		}
 	return result
 }
@@ -38,7 +38,7 @@ function getUnitKey(unit: string, lng: string): string {
 const printUnits = (units: Array<string>, count: number, lng: string): string =>
 	units
 		.sort()
-		.map(unit => i18n.t(`units:${unit}`, { count, lng }))
+		.map((unit) => i18n.t(`units:${unit}`, { count, lng }))
 		.join('.')
 
 const plural = 2
@@ -87,8 +87,8 @@ export const inferUnit = (
 			rawUnits[0] || noUnit,
 			{
 				numerators: (rawUnits[1] || noUnit).denominators,
-				denominators: (rawUnits[1] || noUnit).numerators
-			}
+				denominators: (rawUnits[1] || noUnit).numerators,
+			},
 		])
 	}
 	const units = rawUnits.filter(Boolean)
@@ -97,12 +97,12 @@ export const inferUnit = (
 	}
 	if (operator === '*')
 		return simplify({
-			numerators: unnest(units.map(u => u?.numerators ?? [])),
-			denominators: unnest(units.map(u => u?.denominators ?? []))
+			numerators: unnest(units.map((u) => u?.numerators ?? [])),
+			denominators: unnest(units.map((u) => u?.denominators ?? [])),
 		})
 
 	if (operator === '-' || operator === '+') {
-		return rawUnits.find(u => u)
+		return rawUnits.find((u) => u)
 	}
 
 	return undefined
@@ -112,7 +112,7 @@ export const removeOnce = <T>(
 	element: T,
 	eqFn: (a: T, b: T) => boolean = equals
 ) => (list: Array<T>): Array<T> => {
-	const index = list.findIndex(e => eqFn(e, element))
+	const index = list.findIndex((e) => eqFn(e, element))
 	if (index > -1) return remove<T>(index, 1)(list)
 	else return list
 }
@@ -123,11 +123,11 @@ const simplify = (
 ): Unit =>
 	[...unit.numerators, ...unit.denominators].reduce(
 		({ numerators, denominators }, next) =>
-			numerators.find(u => eqFn(next, u)) &&
-			denominators.find(u => eqFn(next, u))
+			numerators.find((u) => eqFn(next, u)) &&
+			denominators.find((u) => eqFn(next, u))
 				? {
 						numerators: removeOnce(next, eqFn)(numerators),
-						denominators: removeOnce(next, eqFn)(denominators)
+						denominators: removeOnce(next, eqFn)(denominators),
 				  }
 				: { numerators, denominators },
 		unit
@@ -143,7 +143,7 @@ const convertTable: { readonly [index: string]: number } = {
 	'€/k€': 10 ** 3,
 	'g/kg': 10 ** 3,
 	'mg/g': 10 ** 3,
-	'mg/kg': 10 ** 6
+	'mg/kg': 10 ** 6,
 }
 function singleUnitConversionFactor(
 	from: string,
@@ -158,17 +158,17 @@ function unitsConversionFactor(from: string[], to: string[]): number {
 	let factor =
 		100 **
 		// Factor is mutliplied or divided 100 for each '%' in units
-		(to.filter(unit => unit === '%').length -
-			from.filter(unit => unit === '%').length)
+		(to.filter((unit) => unit === '%').length -
+			from.filter((unit) => unit === '%').length)
 	;[factor] = from.reduce(
 		([value, toUnits], fromUnit) => {
 			const index = toUnits.findIndex(
-				toUnit => !!singleUnitConversionFactor(fromUnit, toUnit)
+				(toUnit) => !!singleUnitConversionFactor(fromUnit, toUnit)
 			)
 			const factor = singleUnitConversionFactor(fromUnit, toUnits[index]) || 1
 			return [
 				value * factor,
-				[...toUnits.slice(0, index + 1), ...toUnits.slice(index + 1)]
+				[...toUnits.slice(0, index + 1), ...toUnits.slice(index + 1)],
 			]
 		},
 		[factor, to]
@@ -222,12 +222,14 @@ export function convertUnit(
 const convertibleUnitClasses = [
 	['mois', 'an', 'jour', 'trimestre'],
 	['€', 'k€'],
-	['g', 'kg', 'mg']
+	['g', 'kg', 'mg'],
 ]
 function areSameClass(a: string, b: string) {
 	return (
 		a === b ||
-		convertibleUnitClasses.some(units => units.includes(a) && units.includes(b))
+		convertibleUnitClasses.some(
+			(units) => units.includes(a) && units.includes(b)
+		)
 	)
 }
 
@@ -236,12 +238,12 @@ function round(value: number) {
 }
 export function simplifyUnit(unit: Unit): Unit {
 	const { numerators, denominators } = simplify(unit, areSameClass)
-	if (numerators.length && numerators.every(symb => symb === '%')) {
+	if (numerators.length && numerators.every((symb) => symb === '%')) {
 		return { numerators: ['%'], denominators }
 	}
 	return {
 		numerators: without(['%'], numerators),
-		denominators: without(['%'], denominators)
+		denominators: without(['%'], denominators),
 	}
 }
 function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
@@ -252,11 +254,11 @@ function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
 		simplify(
 			{
 				numerators: without(['%'], numerators),
-				denominators: without(['%'], denominators)
+				denominators: without(['%'], denominators),
 			},
 			areSameClass
 		),
-		value ? round(value * factor) : value
+		value ? round(value * factor) : value,
 	]
 }
 export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
@@ -264,7 +266,7 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		return true
 	}
 	const countByUnitClass = countBy((unit: string) => {
-		const classIndex = convertibleUnitClasses.findIndex(unitClass =>
+		const classIndex = convertibleUnitClasses.findIndex((unitClass) =>
 			unitClass.includes(unit)
 		)
 		return classIndex === -1 ? unit : '' + classIndex
@@ -274,7 +276,7 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		a.numerators,
 		a.denominators,
 		b.numerators,
-		b.denominators
+		b.denominators,
 	].map(countByUnitClass)
 	const unitClasses = pipe(
 		map(keys),
@@ -282,7 +284,7 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		uniq
 	)([numA, denomA, numB, denomB])
 	return unitClasses.every(
-		unitClass =>
+		(unitClass) =>
 			(numA[unitClass] || 0) - (denomA[unitClass] || 0) ===
 				(numB[unitClass] || 0) - (denomB[unitClass] || 0) || unitClass === '%'
 	)

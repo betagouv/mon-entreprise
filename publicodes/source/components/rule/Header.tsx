@@ -9,7 +9,7 @@ export default function RuleHeader({ dottedName }) {
 			<ul className="rule-header__breadcrumb">
 				{ruleParents(dottedName)
 					.reverse()
-					.map(parentDottedName => (
+					.map((parentDottedName) => (
 						<li key={parentDottedName}>
 							<RuleLinkWithContext dottedName={parentDottedName} displayIcon />
 							{' › '}

@@ -9,7 +9,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 				style={{
 					display: 'flex',
 					alignItems: 'baseline',
-					flexWrap: 'wrap'
+					flexWrap: 'wrap',
 				}}
 			>
 				<div style={{ textAlign: 'right' }}>
@@ -36,7 +36,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 							display: 'flex',
 							flexWrap: 'wrap',
 							alignItems: 'center',
-							justifyContent: 'center'
+							justifyContent: 'center',
 						}}
 					>
 						<div style={{ margin: '0 0.6rem' }}> × </div>
@@ -49,7 +49,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 							display: 'flex',
 							flexWrap: 'wrap',
 							alignItems: 'center',
-							justifyContent: 'center'
+							justifyContent: 'center',
 						}}
 					>
 						<div style={{ margin: '0 0.6rem' }}> × </div>

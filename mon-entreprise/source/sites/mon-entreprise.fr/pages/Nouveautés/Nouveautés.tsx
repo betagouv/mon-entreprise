@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import useSWR from 'swr'
 import { determinant, hideNewsBanner } from '../../layout/NewsBanner'
 
-const fetcher = (url: RequestInfo) => fetch(url).then(r => r.json())
+const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
 type ReleasesData = Array<{
@@ -58,7 +58,7 @@ export default function Nouveautés() {
 			</p>
 			<SmallScreenSelect
 				value={selectedRelease}
-				onChange={evt => {
+				onChange={(evt) => {
 					history.push(getPath(Number(evt.target.value)))
 				}}
 			>

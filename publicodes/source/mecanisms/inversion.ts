@@ -31,28 +31,28 @@ export type InversionNode = {
 // equal to its situation value, mathematically we search for the zero of the
 // function x → f(x) - goal. The iteration logic between each test is
 // implemented in the `uniroot` file.
-export const evaluateInversion: evaluationFunction<'inversion'> = function(
+export const evaluateInversion: evaluationFunction<'inversion'> = function (
 	node
 ) {
 	const inversionGoal = node.explanation.inversionCandidates.find(
-		candidate =>
+		(candidate) =>
 			this.parsedSituation[candidate.dottedName as string] != undefined
 	)
 
 	if (inversionGoal === undefined) {
 		const missingVariables = {
 			...Object.fromEntries(
-				node.explanation.inversionCandidates.map(candidate => [
+				node.explanation.inversionCandidates.map((candidate) => [
 					candidate.dottedName,
-					1
+					1,
 				])
 			),
-			[node.explanation.ruleToInverse]: 1
+			[node.explanation.ruleToInverse]: 1,
 		}
 		return {
 			...node,
 			missingVariables,
-			nodeValue: null
+			nodeValue: null,
 		}
 	}
 	const evaluatedInversionGoal = this.evaluateNode(inversionGoal)
@@ -65,7 +65,7 @@ export const evaluateInversion: evaluationFunction<'inversion'> = function(
 	const evaluateWithValue = (n: number) => {
 		inversionNumberOfIterations++
 		this.cache = {
-			_meta: { ...originalCache._meta }
+			_meta: { ...originalCache._meta },
 		}
 		this.parsedSituation[node.explanation.ruleToInverse] = {
 			unit: unit,
@@ -75,8 +75,8 @@ export const evaluateInversion: evaluationFunction<'inversion'> = function(
 				nodeKind: 'constant',
 				nodeValue: n,
 				jsx: () => n,
-				type: 'number'
-			} as ConstantNode
+				type: 'number',
+			} as ConstantNode,
 		} as UnitéNode
 
 		return convertNodeToUnit(unit, this.evaluateNode(inversionGoal))
@@ -155,9 +155,9 @@ export const evaluateInversion: evaluationFunction<'inversion'> = function(
 		explanation: {
 			...node.explanation,
 			inversionGoal,
-			inversionNumberOfIterations
+			inversionNumberOfIterations,
 		},
-		missingVariables
+		missingVariables,
 	}
 }
 
@@ -170,11 +170,11 @@ export const mecanismInversion = (v, context: Context) => {
 	return {
 		explanation: {
 			ruleToInverse: context.dottedName,
-			inversionCandidates: v.avec.map(node => parse(node, context))
+			inversionCandidates: v.avec.map((node) => parse(node, context)),
 		},
 		...('unité' in v && { unit: parseUnit(v.unité) }),
 		jsx: InversionNumérique,
-		nodeKind: 'inversion'
+		nodeKind: 'inversion',
 	} as InversionNode
 }
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function({
+export default function ({
 	root = null,
 	rootMargin,
 	threshold = 0,
-	unobserve = true
+	unobserve = true,
 }: IntersectionObserverInit & { unobserve?: boolean }): [
 	React.RefObject<HTMLDivElement>,
 	boolean
@@ -26,7 +26,7 @@ export default function({
 			{
 				root,
 				rootMargin,
-				threshold
+				threshold,
 			}
 		)
 		const node = ref.current

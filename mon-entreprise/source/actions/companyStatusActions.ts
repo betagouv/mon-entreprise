@@ -51,7 +51,7 @@ export const isSoleProprietorship = thenGoToNextQuestion(
 	(isSoleProprietorship?: boolean) =>
 		({
 			type: 'COMPANY_IS_SOLE_PROPRIETORSHIP',
-			isSoleProprietorship
+			isSoleProprietorship,
 		} as const)
 )
 
@@ -61,7 +61,7 @@ export const defineDirectorStatus = thenGoToNextQuestion(
 	(status: DirectorStatus) =>
 		({
 			type: 'DEFINE_DIRECTOR_STATUS',
-			status
+			status,
 		} as const)
 )
 
@@ -69,7 +69,7 @@ export const companyHasMultipleAssociates = thenGoToNextQuestion(
 	(multipleAssociates?: boolean) =>
 		({
 			type: 'COMPANY_HAS_MULTIPLE_ASSOCIATES',
-			multipleAssociates
+			multipleAssociates,
 		} as const)
 )
 
@@ -77,7 +77,7 @@ export const isAutoentrepreneur = thenGoToNextQuestion(
 	(autoEntrepreneur?: boolean) =>
 		({
 			type: 'COMPANY_IS_MICROENTERPRISE',
-			autoEntrepreneur
+			autoEntrepreneur,
 		} as const)
 )
 
@@ -85,7 +85,7 @@ export const directorIsInAMinority = thenGoToNextQuestion(
 	(minorityDirector?: boolean) =>
 		({
 			type: 'SPECIFY_DIRECTORS_SHARE',
-			minorityDirector
+			minorityDirector,
 		} as const)
 )
 
@@ -95,7 +95,7 @@ export const goToCompanyStatusChoice = (): ThunkResult => (
 	{ history, sitePaths }
 ) => {
 	dispatch({
-		type: 'RESET_COMPANY_STATUS_CHOICE'
+		type: 'RESET_COMPANY_STATUS_CHOICE',
 	} as const)
 	history.push(sitePaths.créer.index)
 }
@@ -107,12 +107,12 @@ export const resetCompanyStatusChoice = (from: string): ThunkResult => (
 	const answeredQuestion = Object.keys(
 		getState().inFranceApp.companyLegalStatus
 	)
-	const answersToReset = dropWhile(a => a !== from, answeredQuestion)
+	const answersToReset = dropWhile((a) => a !== from, answeredQuestion)
 	if (!answersToReset.length) {
 		return
 	}
 	dispatch({
 		type: 'RESET_COMPANY_STATUS_CHOICE',
-		answersToReset
+		answersToReset,
 	} as const)
 }

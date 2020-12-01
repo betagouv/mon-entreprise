@@ -29,11 +29,11 @@ if (
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
 			.register('/sw.js')
-			.then(registration => {
+			.then((registration) => {
 				// eslint-disable-next-line no-console
 				console.log('SW registered: ', registration)
 			})
-			.catch(registrationError => {
+			.catch((registrationError) => {
 				// eslint-disable-next-line no-console
 				console.log('SW registration failed: ', registrationError)
 			})
@@ -61,12 +61,12 @@ export default function Provider({
 	initialStore,
 	onStoreCreated,
 	children,
-	sitePaths = {} as SitePaths
+	sitePaths = {} as SitePaths,
 }: ProviderProps) {
 	const history = useMemo(
 		() =>
 			createBrowserHistory({
-				basename: process.env.NODE_ENV === 'production' ? '' : basename
+				basename: process.env.NODE_ENV === 'production' ? '' : basename,
 			}),
 		[]
 	)
@@ -82,7 +82,7 @@ export default function Provider({
 			// Allows us to painlessly do route transition in action creators
 			thunk.withExtraArgument({
 				history,
-				sitePaths
+				sitePaths,
 			}),
 			...(reduxMiddlewares ?? [])
 		)

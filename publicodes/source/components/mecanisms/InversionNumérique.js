@@ -33,7 +33,7 @@ export default function InversionNumérique({ nodeValue, explanation }) {
 						inversion en utilisant les formules des règles suivantes :
 					</p>
 					<ul id="inversionsPossibles">
-						{explanation.inversionCandidates.map(el => (
+						{explanation.inversionCandidates.map((el) => (
 							<li key={el.dottedName}>{makeJsx(el)}</li>
 						))}
 					</ul>

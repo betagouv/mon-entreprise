@@ -9,7 +9,7 @@ const forEachParent = (node: Node | null, fn: (node: Node) => void) => {
 }
 
 export function ScrollToTop({
-	behavior = 'auto'
+	behavior = 'auto',
 }: {
 	behavior?: ScrollBehavior
 }) {
@@ -20,11 +20,11 @@ export function ScrollToTop({
 			;(window as any).parentIFrame.scrollToOffset(0, 0)
 			return
 		}
-		forEachParent(ref.current, elem => ((elem as any).scrollTop = 0))
+		forEachParent(ref.current, (elem) => ((elem as any).scrollTop = 0))
 		try {
 			window.scroll({
 				top: 0,
-				behavior
+				behavior,
 			})
 		} catch (e) {
 			window.scroll(0, 0)
@@ -62,11 +62,11 @@ export function ScrollToElement({
 			ref.current?.scrollIntoView({
 				behavior,
 				block: 'nearest',
-				inline: 'nearest'
+				inline: 'nearest',
 			})
 		} catch (error) {
 			ref.current?.scrollIntoView({
-				behavior
+				behavior,
 			})
 		}
 	}
@@ -77,7 +77,7 @@ export function ScrollToElement({
 			{...otherProps}
 			style={{
 				...style,
-				...(!children ? { position: 'absolute' } : {})
+				...(!children ? { position: 'absolute' } : {}),
 			}}
 			ref={ref}
 		>
@@ -88,5 +88,5 @@ export function ScrollToElement({
 
 export default {
 	toElement: ScrollToElement,
-	toTop: ScrollToTop
+	toTop: ScrollToTop,
 }

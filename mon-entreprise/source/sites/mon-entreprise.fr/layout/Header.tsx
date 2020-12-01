@@ -17,7 +17,7 @@ export default function Header() {
 				className="ui__ container"
 				style={{
 					display: 'flex',
-					alignItems: 'center'
+					alignItems: 'center',
 				}}
 			>
 				<Link style={{ height: '4rem' }} to={sitePaths.index}>
@@ -25,7 +25,7 @@ export default function Header() {
 						alt="logo mon-entreprise.fr"
 						style={{
 							padding: '0.5rem 0',
-							height: '100%'
+							height: '100%',
 						}}
 						src={language === 'fr' ? logoSvg : logoEnSvg}
 					/>
@@ -36,7 +36,7 @@ export default function Header() {
 					target="_blank"
 					style={{
 						height: '4rem',
-						padding: '1rem'
+						padding: '1rem',
 					}}
 				>
 					<img
@@ -50,7 +50,7 @@ export default function Header() {
 					target="_blank"
 					style={{
 						height: '4rem',
-						padding: '1rem'
+						padding: '1rem',
 					}}
 					className="landing-header__institutional-logo"
 				>

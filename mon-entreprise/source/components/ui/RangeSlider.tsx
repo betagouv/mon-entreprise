@@ -16,7 +16,7 @@ export default function RangeSlider({ value, onChange }: RangeSliderProps) {
 			min="0"
 			max="100"
 			defaultValue={value}
-			onChange={evt => debouncedOnChange(evt.target.value)}
+			onChange={(evt) => debouncedOnChange(evt.target.value)}
 		/>
 	)
 }

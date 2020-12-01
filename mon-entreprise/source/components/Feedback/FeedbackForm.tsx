@@ -39,23 +39,23 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 							tag: 'textarea',
 							placeholder: 'Your Message...',
 							defaultValue: '',
-							rows: 7
+							rows: 7,
 						},
 						{
 							display: 'Nom',
 							name: 'name',
 							tag: 'input',
 							type: 'text',
-							defaultValue: '-'
+							defaultValue: '-',
 						},
 						{
 							display: 'Email (pour recevoir notre réponse)',
 							name: 'email',
 							tag: 'input',
 							type: 'email',
-							placeholder: 'Your Email'
-						}
-					]
+							placeholder: 'Your Email',
+						},
+					],
 				})
 			}
 			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'

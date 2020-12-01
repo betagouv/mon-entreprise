@@ -69,7 +69,7 @@ export default function ChômagePartiel() {
 function ExplanationSection() {
 	const {
 		i18n: { language },
-		t
+		t,
 	} = useTranslation()
 
 	const engine = useEngine()
@@ -128,8 +128,8 @@ function ExplanationSection() {
 											</strong>{' '}
 											du revenu net
 										</span>
-									)
-								}
+									),
+								},
 							],
 							[
 								totalEntreprise,
@@ -146,15 +146,15 @@ function ExplanationSection() {
 														100,
 													{
 														displayedUnit: '%',
-														precision: 0
+														precision: 0,
 													}
 												)}
 											</strong>{' '}
 											du coût habituel
 										</span>
-									)
-								}
-							]
+									),
+								},
+							],
 						]}
 					/>
 				</div>
@@ -174,7 +174,7 @@ type Line = Array<
 >
 
 function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
-	const columns = head.filter(x => x !== '')
+	const columns = head.filter((x) => x !== '')
 	const [currentColumnIndex, setCurrentColumnIndex] = useState(
 		columns.length - 1
 	)
@@ -186,7 +186,9 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 					<th></th>
 					<th>
 						<select
-							onChange={evt => setCurrentColumnIndex(Number(evt.target.value))}
+							onChange={(evt) =>
+								setCurrentColumnIndex(Number(evt.target.value))
+							}
 						>
 							{columns.map((name, i) => (
 								<option value={i} selected={i === currentColumnIndex} key={i}>
@@ -250,7 +252,7 @@ function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 			{formatValue(rule, {
 				language,
 				displayedUnit: '€',
-				precision: 0
+				precision: 0,
 			})}
 		</RuleLink>
 	)
