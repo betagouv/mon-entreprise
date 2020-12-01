@@ -22,13 +22,10 @@ import {
 } from 'Selectors/simulationSelectors'
 import Provider, { ProviderProps } from './Provider'
 import {
-	persistEverything,
-	retrievePersistedState,
-} from './storage/persistEverything'
-import {
-	persistSimulation,
-	retrievePersistedSimulation,
-} from './storage/persistSimulation'
+	setupInFranceAppPersistence,
+	retrievePersistedInFranceApp,
+} from './storage/persistInFranceApp'
+import { setupSimulationPersistence } from './storage/persistSimulation'
 import Tracker, { devTracker } from './Tracker'
 import './App.css'
 import Footer from 'Components/layout/Footer/Footer'
@@ -99,12 +96,11 @@ export default function Root({ basename, rules }: RootProps) {
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}
 			onStoreCreated={(store) => {
-				persistEverything({ except: ['simulation'] })(store)
-				persistSimulation(store)
+				setupInFranceAppPersistence(store)
+				setupSimulationPersistence(store)
 			}}
 			initialStore={{
-				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation(),
+				inFranceApp: retrievePersistedInFranceApp(),
 			}}
 		>
 			<EngineProvider value={engine}>

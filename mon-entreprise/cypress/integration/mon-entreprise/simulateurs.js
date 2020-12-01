@@ -140,18 +140,21 @@ describe('Simulateur salarié', () => {
 	}
 	before(() => cy.visit('/simulateurs/salarié'))
 
-	it('should save the current simulation', function () {
-		cy.get(inputSelector).first().type('{selectall}2137')
+	it('should persist the current simulation (persistSimulation)', function () {
+		cy.get(inputSelector).first().type('{selectall}42')
+		cy.contains('Passer').click()
+		cy.contains('Passer').click()
+		cy.contains('Passer').click()
+		cy.wait(1600)
+		cy.visit('/simulateurs/auto-entrepreneur')
+		cy.get(inputSelector).first().type('{selectall}007')
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.contains('Passer').click()
 		cy.wait(1600)
 		cy.visit('/simulateurs/salarié')
 		cy.contains('Retrouver ma simulation').click()
-		cy.get(inputSelector)
-			.first()
-			.invoke('val')
-			.should('match', /2[\s]137/)
+		cy.get(inputSelector).first().invoke('val').should('match', /42/)
 	})
 
 	it('should not crash when selecting localisation', function () {

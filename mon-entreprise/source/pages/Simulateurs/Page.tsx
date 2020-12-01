@@ -2,6 +2,7 @@ import { ThemeColorsProvider } from 'Components/utils/colors'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
 import useSimulationConfig from 'Components/utils/useSimulationConfig'
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { default as React, useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SimulatorData } from './metadata'
@@ -38,6 +39,7 @@ export default function SimulateurPage({
 
 			<ThemeColorsProvider color={inIframe ? undefined : meta?.color}>
 				<Component />
+				{config && <PreviousSimulationBanner />}
 				{seoExplanations && !inIframe && seoExplanations}
 			</ThemeColorsProvider>
 		</>
