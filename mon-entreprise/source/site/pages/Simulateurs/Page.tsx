@@ -1,6 +1,7 @@
 import { setSimulationConfig } from 'Actions/actions'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import Meta from 'Components/utils/Meta'
+import PreviousSimulationBanner from 'Components/PreviousSimulationBanner'
 import { default as React, useContext, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -22,7 +23,7 @@ export default function SimulateurPage({
 			return
 		}
 		dispatch(setSimulationConfig(config, fromGérer))
-	}, [config])
+	}, [config, dispatch, fromGérer])
 
 	return (
 		<>
@@ -42,6 +43,7 @@ export default function SimulateurPage({
 				</>
 			)}
 			<Component />
+			{config && <PreviousSimulationBanner />}
 			{seoExplanations && !inIframe && seoExplanations}
 		</>
 	)

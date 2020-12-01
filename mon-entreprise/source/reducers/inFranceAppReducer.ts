@@ -175,10 +175,13 @@ function existingCompany(
 	return state
 }
 
-export default combineReducers({
+const inFranceAppReducer = combineReducers({
 	companyLegalStatus,
 	companyStatusChoice,
 	companyCreationChecklist,
 	existingCompany,
 	hiringChecklist,
 })
+export default inFranceAppReducer
+
+export type InFranceAppState = ReturnType<typeof inFranceAppReducer>

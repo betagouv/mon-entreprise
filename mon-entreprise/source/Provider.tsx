@@ -7,6 +7,7 @@ import React, { createContext, useEffect, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
+import { PreloadedState } from 'redux'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
@@ -49,7 +50,7 @@ export type ProviderProps = {
 	children: React.ReactNode
 	tracker?: Tracker
 	sitePaths?: SitePaths
-	initialStore?: RootState
+	initialStore?: PreloadedState<RootState>
 	onStoreCreated?: (store: Store) => void
 	reduxMiddlewares?: Array<Middleware>
 }

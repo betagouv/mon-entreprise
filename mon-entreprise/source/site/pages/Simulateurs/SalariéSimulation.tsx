@@ -34,7 +34,6 @@ export default function SalariéSimulation() {
 				}
 			/>
 			<br />
-			<PreviousSimulationBanner />
 
 			{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
 			 * le simulateur dirigeant de SASU sur son site. */}
