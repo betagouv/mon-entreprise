@@ -5,10 +5,10 @@ declare namespace NodeJS {
 		NODE_ENV: 'development' | 'production' | 'test'
 		ANALYZE_BUNDLE: '0' | '1'
 
-		// Github actions env variables
-		// https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables
-		GITHUB_REF: string
-		GITHUB_SHA: string
+		// Netlify variables
+		// https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables
+		HEAD: string
+		COMMIT_REF: string
 
 		// .env variables
 		GITHUB_API_SECRET: string

@@ -34,11 +34,7 @@ module.exports.default = {
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}'
 		}),
-		new EnvironmentPlugin({
-			GITHUB_REF: '',
-			GITHUB_HEAD_REF: '',
-			GITHUB_SHA: ''
-		}),
+		new EnvironmentPlugin({ HEAD: '', COMMIT_REF: '' }),
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			{
