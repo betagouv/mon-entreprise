@@ -8,7 +8,7 @@ import { DottedName } from 'Rules'
 import { useNextQuestions } from './utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
-	currentQuestionSelector
+	currentQuestionSelector,
 } from 'Selectors/simulationSelectors'
 
 export default function QuickLinks() {

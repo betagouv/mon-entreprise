@@ -8,7 +8,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import {
 	EngineContext,
 	useEngine,
-	useInversionFail
+	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import {
@@ -17,7 +17,7 @@ import {
 	EvaluatedRule,
 	evaluateRule,
 	formatValue,
-	reduceAST
+	reduceAST,
 } from 'publicodes'
 import { isNil } from 'ramda'
 import { Fragment, useCallback, useContext } from 'react'
@@ -66,12 +66,12 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 								60deg,
 								${colors.darkColor} 0%,
 								${colors.color} 100%
-								)`
+								)`,
 						}}
 					>
 						<ul className="targets">
 							{' '}
-							{targets.map(target => (
+							{targets.map((target) => (
 								<Target key={target} dottedName={target} />
 							))}
 						</ul>
@@ -90,11 +90,11 @@ const Target = ({ dottedName }: TargetProps) => {
 	const engine = useEngine()
 	const target = evaluateRule(engine, dottedName, {
 		unité: useSelector(targetUnitSelector),
-		arrondi: 'oui'
+		arrondi: 'oui',
 	})
 	const dispatch = useDispatch()
 	const onSuggestionClick = useCallback(
-		value => {
+		(value) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[target.dottedName, dispatch]
@@ -120,7 +120,7 @@ const Target = ({ dottedName }: TargetProps) => {
 						<Header
 							{...{
 								target,
-								isActiveInput
+								isActiveInput,
 							}}
 						/>
 						{isSmallTarget && (
@@ -128,7 +128,7 @@ const Target = ({ dottedName }: TargetProps) => {
 								style={{
 									flex: 1,
 									borderBottom: '1px dashed #ffffff91',
-									marginLeft: '1rem'
+									marginLeft: '1rem',
 								}}
 							/>
 						)}
@@ -137,7 +137,7 @@ const Target = ({ dottedName }: TargetProps) => {
 							{...{
 								target,
 								isActiveInput,
-								isSmallTarget
+								isSmallTarget,
 							}}
 						/>
 					</div>
@@ -189,7 +189,7 @@ type TargetInputOrValueProps = {
 function TargetInputOrValue({
 	target,
 	isActiveInput,
-	isSmallTarget
+	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
@@ -200,16 +200,16 @@ function TargetInputOrValue({
 		(engine.evaluate({
 			valeur: target.dottedName,
 			unité: targetUnit,
-			arrondi: 'oui'
+			arrondi: 'oui',
 		}).nodeValue as number) ?? undefined
 	const blurValue = useInversionFail() && !isActiveInput
 
 	const onChange = useCallback(
-		evt =>
+		(evt) =>
 			dispatch(
 				updateSituation(target.dottedName, {
 					valeur: evt.target.value,
-					unité: targetUnit
+					unité: targetUnit,
 				})
 			),
 		[targetUnit, target, dispatch]
@@ -225,7 +225,7 @@ function TargetInputOrValue({
 					<CurrencyInput
 						style={{
 							color: colors.textColor,
-							borderColor: colors.textColor
+							borderColor: colors.textColor,
 						}}
 						debounce={750}
 						name={target.dottedName}
@@ -275,7 +275,7 @@ function TitreRestaurant() {
 		'contrat salarié . frais professionnels . titres-restaurant . montant',
 		{
 			unité: targetUnit,
-			arrondi: 'oui'
+			arrondi: 'oui',
 		}
 	)
 
@@ -301,7 +301,7 @@ function AidesGlimpse() {
 	const engine = useEngine()
 	const aides = evaluateRule(engine, dottedName, {
 		unité: targetUnit,
-		arrondi: 'oui'
+		arrondi: 'oui',
 	})
 
 	if (!aides?.nodeValue) return null
@@ -330,7 +330,7 @@ function AidesGlimpse() {
 	return (
 		<Animate.fromTop>
 			<div className="aidesGlimpse">
-				<RuleLink dottedName={aideLink as DottedName}>
+				<RuleLink dottedName={aideLink}>
 					<Trans>en incluant</Trans>{' '}
 					<strong>
 						<span>{formatValue(aides, { displayedUnit: '€', language })}</span>

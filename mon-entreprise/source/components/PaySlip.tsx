@@ -6,7 +6,7 @@ import {
 	EvaluatedNode,
 	formatValue,
 	ParsedRules,
-	reduceAST
+	reduceAST,
 } from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -22,7 +22,7 @@ export const SECTION_ORDER = [
 	'protection sociale . assurance chômage',
 	'protection sociale . formation',
 	'protection sociale . transport',
-	'protection sociale . autres'
+	'protection sociale . autres',
 ] as const
 
 type Section = typeof SECTION_ORDER[number]
@@ -59,19 +59,19 @@ export function getCotisationsBySection(
 
 	const cotisations = ([
 		...findCotisations('contrat salarié . cotisations . patronales'),
-		...findCotisations('contrat salarié . cotisations . salariales')
+		...findCotisations('contrat salarié . cotisations . salariales'),
 	] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>)
-		.map(cotisation => cotisation.dottedName)
+		.map((cotisation) => cotisation.dottedName)
 		.filter(Boolean)
 		.map(
-			dottedName =>
+			(dottedName) =>
 				dottedName.replace(/ . (salarié|employeur)$/, '') as DottedName
 		)
 		.reduce((acc, cotisation: DottedName) => {
 			const sectionName = getSection(parsedRules[cotisation])
 			return {
 				...acc,
-				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation)
+				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation),
 			}
 		}, {} as Record<Section, Set<DottedName>>)
 	return Object.entries(cotisations)
@@ -131,7 +131,7 @@ export default function PaySlip() {
 							<h5 className="payslip__cotisationTitle">
 								<RuleLink dottedName={section.dottedName} />
 							</h5>
-							{cotisations.map(cotisation => (
+							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
 							))}
 						</Fragment>
@@ -179,7 +179,10 @@ export default function PaySlip() {
 	)
 }
 
-function findReferenceInNode(dottedName: DottedName, node: EvaluatedNode) {
+function findReferenceInNode(
+	dottedName: DottedName,
+	node: EvaluatedNode
+): EvaluatedNode | null {
 	return reduceAST<(EvaluatedNode & { nodeKind: 'reference' }) | null>(
 		(acc, node) => {
 			if (

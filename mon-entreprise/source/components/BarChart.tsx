@@ -29,7 +29,7 @@ function ChartItemBar({ style, numberToPlot, unit }: ChartItemBarProps) {
 				{formatValue(numberToPlot, {
 					displayedUnit: unit,
 					precision: 0,
-					language
+					language,
 				})}
 			</div>
 		</div>
@@ -59,10 +59,10 @@ export default function BarChartBranch({
 	icon,
 	maximum,
 	description,
-	unit
+	unit,
 }: BarChartBranchProps) {
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
-		threshold: 0.5
+		threshold: 0.5,
 	})
 	const { color } = useContext(ThemeColorsContext)
 	const numberToPlot = brancheInViewport ? value : 0
@@ -70,8 +70,8 @@ export default function BarChartBranch({
 		config: ANIMATION_SPRING,
 		to: {
 			flex: numberToPlot / maximum,
-			opacity: numberToPlot ? 1 : 0
-		}
+			opacity: numberToPlot ? 1 : 0,
+		},
 	}) as { flex: number; opacity: number } // TODO: problème avec les types de react-spring ?
 
 	return (
@@ -90,7 +90,7 @@ export default function BarChartBranch({
 				<ChartItemBar
 					style={{
 						backgroundColor: color,
-						flex: styles.flex
+						flex: styles.flex,
 					}}
 					numberToPlot={numberToPlot}
 					unit={unit}

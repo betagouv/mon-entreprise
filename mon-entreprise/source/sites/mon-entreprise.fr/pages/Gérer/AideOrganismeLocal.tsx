@@ -20,7 +20,7 @@ const aideMidiPyrenéesAutoEntrepreneur = (state: RootState) => {
 export default function AideOrganismeLocal() {
 	const aideLocale = useSelector(aideMidiPyrenéesAutoEntrepreneur)
 	const {
-		i18n: { language }
+		i18n: { language },
 	} = useTranslation()
 	if (language !== 'fr' || !aideLocale) {
 		return null

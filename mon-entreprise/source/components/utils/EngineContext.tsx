@@ -17,7 +17,7 @@ type SituationProviderProps = {
 }
 export function SituationProvider({
 	children,
-	situation
+	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
 	engine.setSituation(situation)

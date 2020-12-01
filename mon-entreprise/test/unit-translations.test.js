@@ -11,7 +11,7 @@ it('use unit that exists in publicode', () => {
 			(prev, name) => [
 				...prev,
 				...(rules[name].unit?.numerators ?? []),
-				...(rules[name].unit?.denumerators ?? [])
+				...(rules[name].unit?.denumerators ?? []),
 			],
 			[]
 		)
@@ -20,7 +20,7 @@ it('use unit that exists in publicode', () => {
 	const blackList = ['€', '%']
 	const translatedKeys = Object.keys(unitsTranslations.en)
 	const missingTranslations = units.filter(
-		unit => ![...translatedKeys, ...blackList].includes(unit)
+		(unit) => ![...translatedKeys, ...blackList].includes(unit)
 	)
 	expect(missingTranslations).to.be.empty
 })

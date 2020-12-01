@@ -31,13 +31,13 @@ const STATES = [
 	'Slovaquie',
 	'Slovénie',
 	'Suède',
-	'Suisse'
+	'Suisse',
 ] as const
 
 export default function SelectEuropeCountry({
 	value,
 	onChange,
-	id
+	id,
 }: InputCommonProps) {
 	return (
 		<div>
@@ -46,10 +46,10 @@ export default function SelectEuropeCountry({
 				id={id}
 				className="ui__"
 				defaultValue={value?.slice(1, -1)}
-				onChange={e => onChange(`'${e.target.value}'`)}
+				onChange={(e) => onChange(`'${e.target.value}'`)}
 			>
 				<option disabled selected hidden></option>
-				{STATES.map(state => (
+				{STATES.map((state) => (
 					<option key={state} value={state}>
 						{state}
 					</option>

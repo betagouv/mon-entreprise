@@ -1,7 +1,7 @@
 import {
 	goToQuestion,
 	updateSituation,
-	validateStepWithValue
+	validateStepWithValue,
 } from 'Actions/actions'
 import RuleInput, { RuleInputProps } from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
@@ -14,7 +14,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	answeredQuestionsSelector,
-	situationSelector
+	situationSelector,
 } from 'Selectors/simulationSelectors'
 import Aide from './Aide'
 import './conversation.css'
@@ -55,11 +55,11 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			type: 'STEP_ACTION',
 			name: 'fold',
 			step: currentQuestion,
-			source
+			source,
 		})
 	}
 
-	const onChange: RuleInputProps['onChange'] = value => {
+	const onChange: RuleInputProps['onChange'] = (value) => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 

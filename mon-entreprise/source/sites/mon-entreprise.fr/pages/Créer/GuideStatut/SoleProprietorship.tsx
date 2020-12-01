@@ -12,7 +12,7 @@ export default function SoleProprietorship() {
 				<title>
 					{t([
 						'responsabilité.page.titre',
-						'Choisir entre société ou entreprise individuelle'
+						'Choisir entre société ou entreprise individuelle',
 					])}
 				</title>
 				<meta

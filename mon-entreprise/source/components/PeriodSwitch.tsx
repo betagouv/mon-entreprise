@@ -12,7 +12,7 @@ export default function PeriodSwitch() {
 	return (
 		<span id="PeriodSwitch">
 			<span className="base ui__ small radio toggle">
-				{units.map(unit => (
+				{units.map((unit) => (
 					<label key={unit}>
 						<input
 							name="defaultUnit"

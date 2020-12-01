@@ -31,7 +31,7 @@ export default function AutoEntrepreneurExplanation() {
 							{ unité: targetUnit }
 						),
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
-						color: palettes[0][0]
+						color: palettes[0][0],
 					},
 
 					...(impôt.nodeValue
@@ -44,8 +44,8 @@ export default function AutoEntrepreneurExplanation() {
 							{ unité: targetUnit }
 						),
 						title: t('Cotisations'),
-						color: palettes[1][1]
-					}
+						color: palettes[1][1],
+					},
 				]}
 			/>
 		</section>

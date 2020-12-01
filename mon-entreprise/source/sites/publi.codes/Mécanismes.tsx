@@ -28,7 +28,7 @@ export default function Landing() {
 			<Header />
 			<h1 id="top">Mécanismes existants</h1>
 			<ul>
-				{Object.keys(mecanisms).map(name => (
+				{Object.keys(mecanisms).map((name) => (
 					<li key={name}>
 						<Link to={pathname + '#' + name}>{name}</Link>
 					</li>

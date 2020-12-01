@@ -8,10 +8,9 @@ export default function TextInput({
 	value,
 	id,
 	missing,
-	autoFocus
+	autoFocus,
 }: InputCommonProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
-
 	return (
 		<div className="step input">
 			<input
@@ -23,7 +22,7 @@ export default function TextInput({
 					debouncedOnChange(`'${target.value}'`)
 				}}
 				{...{
-					[missing ? 'placeholder' : 'defaultValue']: (value as string) || ''
+					[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 				}}
 				autoComplete="off"
 			/>

@@ -26,7 +26,7 @@ export default function Simulateurs() {
 		() =>
 			Object.values(simulatorsData)
 				.filter(({ path }) => path?.startsWith(sitePaths.simulateurs.index))
-				.map(s => (
+				.map((s) => (
 					<Route
 						key={s.path}
 						path={s.path}

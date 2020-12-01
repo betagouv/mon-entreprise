@@ -8,7 +8,7 @@ export default function SiteMap() {
 		<>
 			<h1>Sitemap</h1>
 			<pre>
-				{generateSiteMap(sitePaths).map(path => (
+				{generateSiteMap(sitePaths).map((path) => (
 					<span key={path}>
 						{path}
 						<br />

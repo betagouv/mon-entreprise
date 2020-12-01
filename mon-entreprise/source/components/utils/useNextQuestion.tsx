@@ -20,7 +20,7 @@ import {
 	sortWith,
 	takeWhile,
 	toPairs,
-	zipWith
+	zipWith,
 } from 'ramda'
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -31,7 +31,7 @@ import {
 	configSelector,
 	currentQuestionSelector,
 	objectifsSelector,
-	situationSelector
+	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { EngineContext } from './EngineContext'
 
@@ -54,7 +54,7 @@ export function getNextSteps(
 				// Give higher score to top level questions
 				([name, score]) => [
 					name,
-					score + Math.max(0, 4 - name.split('.').length)
+					score + Math.max(0, 4 - name.split('.').length),
 				]
 			)
 		)
@@ -89,14 +89,14 @@ export function getNextQuestions(
 	const {
 		'non prioritaires': notPriority = [],
 		liste: whitelist = [],
-		'liste noire': blacklist = []
+		'liste noire': blacklist = [],
 	} = questionConfig
 
 	let nextSteps = difference(getNextSteps(missingVariables), answeredQuestions)
 	nextSteps = nextSteps.filter(
-		step =>
-			(!whitelist.length || whitelist.some(name => step.startsWith(name))) &&
-			(!blacklist.length || !blacklist.some(name => step.startsWith(name)))
+		(step) =>
+			(!whitelist.length || whitelist.some((name) => step.startsWith(name))) &&
+			(!blacklist.length || !blacklist.some((name) => step.startsWith(name)))
 	)
 
 	const lastStep = last(answeredQuestions)
@@ -109,16 +109,17 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
-	return sortBy(question => {
-		const indexList = whitelist.findIndex(name => question.startsWith(name)) + 1
+	return sortBy((question) => {
+		const indexList =
+			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
-			notPriority.findIndex(name => question.startsWith(name)) + 1
+			notPriority.findIndex((name) => question.startsWith(name)) + 1
 		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
 		return indexList + indexNotPriority + differenceCoeff
 	}, nextSteps)
 }
 
-export const useNextQuestions = function(): Array<DottedName> {
+export const useNextQuestions = function (): Array<DottedName> {
 	const objectifs = useSelector(objectifsSelector)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
@@ -126,7 +127,7 @@ export const useNextQuestions = function(): Array<DottedName> {
 	const situation = useSelector(situationSelector)
 	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
-		node => engine.evaluate(node).missingVariables ?? {}
+		(node) => engine.evaluate(node).missingVariables ?? {}
 	)
 	const nextQuestions = useMemo(() => {
 		return getNextQuestions(

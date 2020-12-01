@@ -10,7 +10,7 @@ import * as animate from 'Components/ui/animate'
 const formInfos = {
 	method: 'post',
 	action:
-		'https://b713d5c4.sibforms.com/serve/MUIEAEJui5ynU5AtcKQfxhATKzruDK8yC3YO4M56ltHV6LXHnZPESWHRjwK6Dtp3GgPqu49TljpGSa4Iy-BbaqLArDYDt5mEYtvOkrPD2b5siSNsthqi9kDz8wbljxKSDRbOQztsjyp3InDR1EUrTZJvyAk9YEkXtANb5upeHfN2VTF2m6lRiyOMF9B5VfD6jWGyxJaSNR8gsVQo?isAjax=1'
+		'https://b713d5c4.sibforms.com/serve/MUIEAEJui5ynU5AtcKQfxhATKzruDK8yC3YO4M56ltHV6LXHnZPESWHRjwK6Dtp3GgPqu49TljpGSa4Iy-BbaqLArDYDt5mEYtvOkrPD2b5siSNsthqi9kDz8wbljxKSDRbOQztsjyp3InDR1EUrTZJvyAk9YEkXtANb5upeHfN2VTF2m6lRiyOMF9B5VfD6jWGyxJaSNR8gsVQo?isAjax=1',
 }
 
 export default function NewsletterRegister() {
@@ -30,7 +30,7 @@ export default function NewsletterRegister() {
 		}
 		fetch(formInfos.action, {
 			method: formInfos.method,
-			body: new FormData(formElement.current)
+			body: new FormData(formElement.current),
 		}).then(() => {
 			tracker.push(['trackEvent', 'Newsletter', 'registered'])
 			setUserIsRegistered(true)

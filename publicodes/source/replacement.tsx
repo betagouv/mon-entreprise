@@ -27,20 +27,23 @@ export function parseReplacements(
 	if (!replacements) {
 		return []
 	}
-	return coerceArray(replacements).map(replacement => {
+	return coerceArray(replacements).map((replacement) => {
 		if (typeof replacement === 'string') {
 			replacement = { règle: replacement }
 		}
 
 		const replacedReference = parse(replacement.règle, context)
-		const replacementNode = parse(replacement.par ?? context.dottedName, context)
+		const replacementNode = parse(
+			replacement.par ?? context.dottedName,
+			context
+		)
 
 		const [whiteListedNames, blackListedNames] = [
 			replacement.dans ?? [],
-			replacement['sauf dans'] ?? []
+			replacement['sauf dans'] ?? [],
 		]
-			.map(dottedName => coerceArray(dottedName))
-			.map(refs => refs.map(ref => parse(ref, context)))
+			.map((dottedName) => coerceArray(dottedName))
+			.map((refs) => refs.map((ref) => parse(ref, context)))
 
 		return {
 			nodeKind: 'replacement',
@@ -61,7 +64,7 @@ export function parseReplacements(
 				</span>
 			),
 			whiteListedNames,
-			blackListedNames
+			blackListedNames,
 		} as ReplacementNode
 	})
 }
@@ -71,10 +74,10 @@ export function parseRendNonApplicable(
 	context: Context
 ): Array<ReplacementNode> {
 	return parseReplacements(rules, context).map(
-		replacement =>
+		(replacement) =>
 			({
 				...replacement,
-				replacementNode: defaultNode(false)
+				replacementNode: defaultNode(false),
 			} as ReplacementNode)
 	)
 }
@@ -89,7 +92,7 @@ export function getReplacements(
 			}
 			return r.replacedReference.dottedName
 		},
-		Object.values(parsedRules).flatMap(rule => rule.replacements)
+		Object.values(parsedRules).flatMap((rule) => rule.replacements)
 	)
 }
 
@@ -112,8 +115,8 @@ export function inlineReplacements(
 					recalcul: fn(n.explanation.recalcul),
 					amendedSituation: n.explanation.amendedSituation.map(
 						([name, value]) => [name, fn(value)]
-					)
-				}
+					),
+				},
 			}
 		}
 		if (n.nodeKind === 'reference') {
@@ -139,7 +142,7 @@ function replace(
 		.filter(
 			({ whiteListedNames }) =>
 				!whiteListedNames.length ||
-				whiteListedNames.some(name =>
+				whiteListedNames.some((name) =>
 					node.contextDottedName.startsWith(name.dottedName as string)
 				)
 		)
@@ -147,14 +150,14 @@ function replace(
 			({ blackListedNames }) =>
 				!blackListedNames.length ||
 				blackListedNames.every(
-					name => !node.contextDottedName.startsWith(name.dottedName as string)
+					(name) =>
+						!node.contextDottedName.startsWith(name.dottedName as string)
 				)
 		)
 		.sort((r1, r2) => {
 			// Replacement with whitelist conditions have precedence over the others
 			const criterion1 =
-				(+!!r2.whiteListedNames.length ) -
-				+!!r1.whiteListedNames.length
+				+!!r2.whiteListedNames.length - +!!r1.whiteListedNames.length
 			// Replacement with blacklist condition have precedence over the others
 			const criterion2 =
 				+!!r2.blackListedNames.length - +!!r1.blackListedNames.length
@@ -170,7 +173,7 @@ function replace(
 Il existe plusieurs remplacements pour la référence '${node.dottedName}'.
 Lors de l'execution, ils seront résolus dans l'odre suivant :
 ${applicableReplacements.map(
-	replacement =>
+	(replacement) =>
 		`\n\t- Celui définit dans la règle '${replacement.definitionRule.dottedName}'`
 )}
 `
@@ -182,20 +185,20 @@ ${applicableReplacements.map(
 		rawNode: node.rawNode,
 		jsx: Replacement,
 		explanation: [
-			...applicableReplacements.map(replacement => ({
+			...applicableReplacements.map((replacement) => ({
 				condition: replacement.definitionRule,
-				consequence: replacement.replacementNode
+				consequence: replacement.replacementNode,
 			})),
 			{
 				condition: defaultNode(true),
-				consequence: node
-			}
-		]
+				consequence: node,
+			},
+		],
 	}
 }
 
 function Replacement(node: VariationNode) {
-	const applicableReplacement = node.explanation.find(ex => ex.satisfied)
+	const applicableReplacement = node.explanation.find((ex) => ex.satisfied)
 		?.consequence
 	const replacedNode = node.explanation.slice(-1)[0].consequence
 	return makeJsx(applicableReplacement || replacedNode)

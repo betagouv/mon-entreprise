@@ -36,10 +36,10 @@ export default function AideDéclarationIndépendant() {
 
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
 		threshold: 0.5,
-		unobserve: false
+		unobserve: false,
 	})
 	const setCurrentIncome = useCallback(
-		currentIncome => {
+		(currentIncome) => {
 			dispatch(
 				updateSituation('dirigeant . rémunération totale', currentIncome)
 			)
@@ -308,7 +308,7 @@ function ExplicationsResultatFiscal() {
 
 function SubSection({
 	dottedName: sectionDottedName,
-	hideTitle = false
+	hideTitle = false,
 }: SubSectionProp) {
 	const parsedRules = useContext(EngineContext).getParsedRules()
 	const ruleTitle = parsedRules[sectionDottedName]?.title
@@ -317,11 +317,11 @@ function SubSection({
 	const title = hideTitle ? null : ruleTitle
 	const subQuestions = [
 		...(Object.keys(situation) as Array<DottedName>),
-		...nextSteps
-	].filter(nextStep => {
+		...nextSteps,
+	].filter((nextStep) => {
 		const {
 			dottedName,
-			rawNode: { question }
+			rawNode: { question },
 		} = parsedRules[nextStep]
 		return !!question && dottedName.startsWith(sectionDottedName)
 	})
@@ -329,7 +329,7 @@ function SubSection({
 	return (
 		<>
 			{!!subQuestions.length && title && <h3>{title}</h3>}
-			{subQuestions.map(dottedName => (
+			{subQuestions.map((dottedName) => (
 				<SimpleField key={dottedName} dottedName={dottedName} />
 			))}
 		</>
@@ -345,16 +345,15 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const evaluatedRule = evaluateRule(engine, dottedName)
-	const value = useSelector(situationSelector)[dottedName]
 	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
-		value => {
+		(value) => {
 			dispatch(updateSituation(dottedName, value))
 			dispatch({
 				type: 'STEP_ACTION',
 				name: 'fold',
-				step: dottedName
+				step: dottedName,
 			})
 		},
 		[dispatch, dottedName]
@@ -396,7 +395,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 
 function Results() {
 	const engine = useEngine()
-	const results = (simulationConfig.objectifs as DottedName[]).map(objectif =>
+	const results = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
 		evaluateRule(engine, objectif, { unité: '€/an' })
 	)
 	return (
@@ -412,7 +411,7 @@ function Results() {
 			</h1>
 			<>
 				<Animate.fromTop>
-					{results.map(r => (
+					{results.map((r) => (
 						<Fragment key={r.dottedName}>
 							<h4>
 								{r.title} <small>{r.résumé}</small>
@@ -422,7 +421,7 @@ function Results() {
 								<RuleLink dottedName={r.dottedName}>
 									{formatValue(r, {
 										displayedUnit: '€',
-										precision: 0
+										precision: 0,
 									})}
 								</RuleLink>
 							</p>

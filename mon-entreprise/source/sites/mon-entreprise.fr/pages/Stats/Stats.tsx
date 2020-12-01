@@ -17,7 +17,7 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
-	YAxis
+	YAxis,
 } from 'recharts'
 import styled from 'styled-components'
 import statsJson from '../../../../data/stats.json'
@@ -32,7 +32,7 @@ const monthPeriods = [
 	'oneMonthAgo',
 	'twoMonthAgo',
 	'threeMonthAgo',
-	'fourMonthAgo'
+	'fourMonthAgo',
 ] as const
 type MonthPeriod = typeof monthPeriods[number]
 
@@ -96,7 +96,7 @@ export default function Stats() {
 					<span>
 						{emoji('🗓')}{' '}
 						<select
-							onChange={event => {
+							onChange={(event) => {
 								setChoice(event.target.value as Periodicity)
 							}}
 							value={choice}
@@ -120,7 +120,7 @@ export default function Stats() {
 				<SectionTitle>
 					<h2>Nombre d'utilisation des simulateurs</h2>
 					<PeriodSelector
-						onChange={event => {
+						onChange={(event) => {
 							setChoicesimulators(event.target.value as MonthPeriod)
 						}}
 						value={choicesimulators}
@@ -144,7 +144,7 @@ export default function Stats() {
 											className="distribution-chart__link_icone"
 											to={{
 												state: { fromSimulateurs: true },
-												pathname: details.path
+												pathname: details.path,
 											}}
 											title="Accéder au simulateur"
 											css="font-size:0.75em"
@@ -168,7 +168,7 @@ export default function Stats() {
 				<SectionTitle>
 					<h2>Origine du trafic</h2>
 					<PeriodSelector
-						onChange={event => {
+						onChange={(event) => {
 							setChoicesimulators(event.target.value as MonthPeriod)
 						}}
 						value={choicesimulators}
@@ -181,7 +181,7 @@ export default function Stats() {
 							value: data.nb_visits,
 							key: data.label,
 							legend: capitalise0(data.label),
-							color: palettes[i][0]
+							color: palettes[i][0],
 						}))
 						.reverse()}
 				/>
@@ -191,13 +191,13 @@ export default function Stats() {
 				<Indicators>
 					<Indicator
 						main={formatValue(stats.feedback.simulator, {
-							displayedUnit: '%'
+							displayedUnit: '%',
 						})}
 						subTitle="Taux de satisfaction sur les simulateurs"
 					/>
 					<Indicator
 						main={formatValue(stats.feedback.content, {
-							displayedUnit: '%'
+							displayedUnit: '%',
 						})}
 						subTitle="Taux de satisfaction sur le contenu"
 					/>
@@ -209,7 +209,7 @@ export default function Stats() {
 			</section>
 			<section>
 				<h2>Statut choisi le mois dernier</h2>
-				{stats.statusChosen.map(x => (
+				{stats.statusChosen.map((x) => (
 					<BarChartBranch
 						key={x.label}
 						value={x.nb_visits}
@@ -236,21 +236,21 @@ const weekEndDays = groupWith(
 	},
 	stats.dailyVisits
 		.map(({ date }) => new Date(date))
-		.filter(date => date.getDay() === 0 || date.getDay() === 6)
-		.map(date => date.toISOString().substring(0, 10))
+		.filter((date) => date.getDay() === 0 || date.getDay() === 6)
+		.map((date) => date.toISOString().substring(0, 10))
 )
 
 function PeriodSelector(props: React.ComponentProps<'select'>) {
 	const formatDate = (date: string) =>
 		new Date(date).toLocaleString('default', {
 			month: 'long',
-			year: 'numeric'
+			year: 'numeric',
 		})
 	return (
 		<span>
 			{emoji('🗓')}{' '}
 			<select {...props}>
-				{monthPeriods.map(monthPeriod => (
+				{monthPeriods.map((monthPeriod) => (
 					<option key={monthPeriod} value={monthPeriod}>
 						{formatDate(stats.simulators[monthPeriod].date)}
 					</option>
@@ -308,17 +308,17 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 					top: 5,
 					right: 30,
 					left: 20,
-					bottom: 5
+					bottom: 5,
 				}}
 			>
 				<CartesianGrid />
 				<XAxis
 					dataKey="date"
-					tickFormatter={tickItem => formatDate(tickItem, periodicity)}
+					tickFormatter={(tickItem) => formatDate(tickItem, periodicity)}
 				/>
 				<YAxis
 					dataKey="visiteurs"
-					tickFormatter={tickItem => formatValue(tickItem)}
+					tickFormatter={(tickItem) => formatValue(tickItem)}
 				/>
 				{periodicity === 'daily' ? (
 					<Legend
@@ -327,15 +327,15 @@ function LineChartVisits({ periodicity }: LineChartVisitsProps) {
 								value: 'Week-End',
 								type: 'rect',
 								color: '#e5e5e5',
-								id: 'weedkend'
-							}
+								id: 'weedkend',
+							},
 						]}
 					/>
 				) : null}
 				<Tooltip content={<CustomTooltip periodicity={periodicity} />} />
 				{weekEndDays
-					.filter(days => days.length === 2)
-					.map(days => (
+					.filter((days) => days.length === 2)
+					.map((days) => (
 						<ReferenceArea
 							key={days[0]}
 							x1={days[0]}
@@ -359,12 +359,12 @@ function formatDate(date: string | Date, periodicity?: Periodicity) {
 	if (periodicity === 'monthly') {
 		return new Date(date).toLocaleString('default', {
 			month: 'short',
-			year: '2-digit'
+			year: '2-digit',
 		})
 	} else {
 		return new Date(date).toLocaleString('default', {
 			day: '2-digit',
-			month: '2-digit'
+			month: '2-digit',
 		})
 	}
 }
@@ -378,7 +378,7 @@ type CustomTooltipProps = {
 const CustomTooltip = ({
 	active,
 	periodicity,
-	payload
+	payload,
 }: CustomTooltipProps) => {
 	if (!active) {
 		return null

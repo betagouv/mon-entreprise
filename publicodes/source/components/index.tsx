@@ -5,7 +5,7 @@ import i18n from '../i18n'
 import {
 	decodeRuleName,
 	encodeRuleName,
-	ruleWithDedicatedDocumentationPage
+	ruleWithDedicatedDocumentationPage,
 } from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
 import RulePage from './rule/Rule'
@@ -23,7 +23,7 @@ type DocumentationProps = {
 export function Documentation({
 	documentationPath,
 	engine,
-	language = 'fr'
+	language = 'fr',
 }: DocumentationProps) {
 	useEffect(() => {
 		if (language !== i18n.language) {
@@ -58,9 +58,9 @@ export function getDocumentationSiteMap({ engine, documentationPath }) {
 			// .filter(dottedName =>
 			// 	ruleWithDedicatedDocumentationPage(parsedRules[dottedName])
 			// )
-			.map(dottedName => [
+			.map((dottedName) => [
 				documentationPath + '/' + encodeRuleName(dottedName),
-				dottedName
+				dottedName,
 			])
 	)
 }

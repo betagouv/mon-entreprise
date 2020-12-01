@@ -74,14 +74,14 @@ export type Simulation = {
 function getCompanySituation(company: Company | null): Situation {
 	return {
 		...(company?.localisation && {
-			'établissement . localisation': company.localisation
+			'établissement . localisation': { objet: company.localisation },
 		}),
 		...(company?.dateDeCréation && {
 			'entreprise . date de création': company.dateDeCréation.replace(
 				/(.*)-(.*)-(.*)/,
 				'$3/$2/$1'
-			)
-		})
+			),
+		}),
 	}
 }
 
@@ -106,7 +106,7 @@ function simulation(
 			initialSituation: companySituation,
 			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: Object.keys(companySituation) as Array<DottedName>,
-			unfoldedStep: null
+			unfoldedStep: null,
 		}
 	}
 	if (state === null) {
@@ -117,7 +117,7 @@ function simulation(
 		case 'HIDE_NOTIFICATION':
 			return {
 				...state,
-				hiddenNotifications: [...state.hiddenNotifications, action.id]
+				hiddenNotifications: [...state.hiddenNotifications, action.id],
 			}
 		case 'RESET_SIMULATION':
 			return {
@@ -125,7 +125,7 @@ function simulation(
 				hiddenNotifications: [],
 				situation: state.initialSituation,
 				foldedSteps: [],
-				unfoldedStep: null
+				unfoldedStep: null,
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = without(
@@ -143,8 +143,8 @@ function simulation(
 								...(targets.includes(dottedName)
 									? omit(targets, situation)
 									: situation),
-								[dottedName]: value
-						  }
+								[dottedName]: value,
+						  },
 			}
 		}
 		case 'STEP_ACTION': {
@@ -153,13 +153,13 @@ function simulation(
 				return {
 					...state,
 					foldedSteps: [...state.foldedSteps, step],
-					unfoldedStep: null
+					unfoldedStep: null,
 				}
 			if (name === 'unfold') {
 				return {
 					...state,
 					foldedSteps: without([step], state.foldedSteps),
-					unfoldedStep: step
+					unfoldedStep: step,
 				}
 			}
 			return state
@@ -167,7 +167,7 @@ function simulation(
 		case 'UPDATE_TARGET_UNIT':
 			return {
 				...state,
-				targetUnit: action.targetUnit
+				targetUnit: action.targetUnit,
 			}
 	}
 	return state
@@ -180,9 +180,9 @@ const existingCompanyReducer = (state: RootState, action: Action) => {
 				...state.simulation,
 				situation: {
 					...state.simulation.situation,
-					...getCompanySituation(state.inFranceApp.existingCompany)
-				}
-			}
+					...getCompanySituation(state.inFranceApp.existingCompany),
+				},
+			},
 		}
 	}
 	return state
@@ -196,7 +196,7 @@ const mainReducer = (state: any, action: Action) =>
 		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
 		situationBranch,
 		activeTargetInput,
-		inFranceApp: inFranceAppReducer
+		inFranceApp: inFranceAppReducer,
 	})(state, action)
 
 export default reduceReducers<RootState>(

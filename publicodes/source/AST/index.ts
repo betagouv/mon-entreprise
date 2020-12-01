@@ -38,7 +38,7 @@ export function reduceAST<T>(
 
 function gatherNodes(node: ASTNode): ASTNode[] {
 	const nodes: ASTNode[] = []
-	traverseASTNode(node => {
+	traverseASTNode((node) => {
 		nodes.push(node)
 		return node
 	}, node)
@@ -118,8 +118,8 @@ const traverseRuleNode: TraverseFunction<'rule'> = (fn, node) => ({
 	suggestions: mapObjIndexed(fn, node.suggestions),
 	explanation: {
 		parent: node.explanation.parent && fn(node.explanation.parent),
-		valeur: fn(node.explanation.valeur)
-	}
+		valeur: fn(node.explanation.valeur),
+	},
 })
 
 const traverseReplacementNode: TraverseFunction<'replacement'> = (fn, node) =>
@@ -129,7 +129,7 @@ const traverseReplacementNode: TraverseFunction<'replacement'> = (fn, node) =>
 		replacedReference: fn(node.replacedReference),
 		replacementNode: fn(node.replacementNode),
 		whiteListedNames: node.whiteListedNames.map(fn),
-		blackListedNames: node.blackListedNames.map(fn)
+		blackListedNames: node.blackListedNames.map(fn),
 	} as ReplacementNode)
 
 const traverseLeafNode: TraverseFunction<'reference' | 'constant'> = (
@@ -142,16 +142,16 @@ const traverseApplicableNode: TraverseFunction<
 	...node,
 	explanation: {
 		condition: fn(node.explanation.condition),
-		valeur: fn(node.explanation.valeur)
-	}
+		valeur: fn(node.explanation.valeur),
+	},
 })
 
 function traverseTranche(fn: (n: ASTNode) => ASTNode, tranches: TrancheNodes) {
-	return tranches.map(tranche => ({
+	return tranches.map((tranche) => ({
 		...tranche,
 		...(tranche.plafond && { plafond: fn(tranche.plafond) }),
 		...('montant' in tranche && { montant: fn(tranche.montant) }),
-		...('taux' in tranche && { taux: fn(tranche.taux) })
+		...('taux' in tranche && { taux: fn(tranche.taux) }),
 	}))
 }
 const traverseNodeWithTranches: TraverseFunction<
@@ -161,8 +161,8 @@ const traverseNodeWithTranches: TraverseFunction<
 	explanation: {
 		assiette: fn(node.explanation.assiette),
 		multiplicateur: fn(node.explanation.multiplicateur),
-		tranches: traverseTranche(fn, node.explanation.tranches)
-	}
+		tranches: traverseTranche(fn, node.explanation.tranches),
+	},
 })
 
 const traverseArrayNode: TraverseFunction<
@@ -174,59 +174,59 @@ const traverseArrayNode: TraverseFunction<
 	| 'une possibilité'
 > = (fn, node) => ({
 	...node,
-	explanation: node.explanation.map(fn)
+	explanation: node.explanation.map(fn),
 })
 
 const traverseOperationNode: TraverseFunction<'operation'> = (fn, node) => ({
 	...node,
-	explanation: [fn(node.explanation[0]), fn(node.explanation[1])]
+	explanation: [fn(node.explanation[0]), fn(node.explanation[1])],
 })
 const traverseDuréeNode: TraverseFunction<'durée'> = (fn, node) => ({
 	...node,
 	explanation: {
 		depuis: fn(node.explanation.depuis),
-		"jusqu'à": fn(node.explanation["jusqu'à"])
-	}
+		"jusqu'à": fn(node.explanation["jusqu'à"]),
+	},
 })
 
 const traverseInversionNode: TraverseFunction<'inversion'> = (fn, node) => ({
 	...node,
 	explanation: {
 		...node.explanation,
-		inversionCandidates: node.explanation.inversionCandidates.map(fn) as any // TODO
-	}
+		inversionCandidates: node.explanation.inversionCandidates.map(fn) as any, // TODO
+	},
 })
 
 const traverseParDéfautNode: TraverseFunction<'par défaut'> = (fn, node) => ({
 	...node,
 	explanation: {
 		valeur: fn(node.explanation.valeur),
-		parDéfaut: fn(node.explanation.parDéfaut)
-	}
+		parDéfaut: fn(node.explanation.parDéfaut),
+	},
 })
 
 const traverseArrondiNode: TraverseFunction<'arrondi'> = (fn, node) => ({
 	...node,
 	explanation: {
 		valeur: fn(node.explanation.valeur),
-		arrondi: fn(node.explanation.arrondi)
-	}
+		arrondi: fn(node.explanation.arrondi),
+	},
 })
 
 const traversePlancherNode: TraverseFunction<'plancher'> = (fn, node) => ({
 	...node,
 	explanation: {
 		valeur: fn(node.explanation.valeur),
-		plancher: fn(node.explanation.plancher)
-	}
+		plancher: fn(node.explanation.plancher),
+	},
 })
 
 const traversePlafondNode: TraverseFunction<'plafond'> = (fn, node) => ({
 	...node,
 	explanation: {
 		valeur: fn(node.explanation.valeur),
-		plafond: fn(node.explanation.plafond)
-	}
+		plafond: fn(node.explanation.plafond),
+	},
 })
 
 const traverseProductNode: TraverseFunction<'produit'> = (fn, node) => ({
@@ -235,8 +235,8 @@ const traverseProductNode: TraverseFunction<'produit'> = (fn, node) => ({
 		assiette: fn(node.explanation.assiette),
 		taux: fn(node.explanation.taux),
 		facteur: fn(node.explanation.facteur),
-		plafond: fn(node.explanation.plafond)
-	}
+		plafond: fn(node.explanation.plafond),
+	},
 })
 
 const traverseRecalculNode: TraverseFunction<'recalcul'> = (fn, node) => ({
@@ -244,10 +244,10 @@ const traverseRecalculNode: TraverseFunction<'recalcul'> = (fn, node) => ({
 	explanation: {
 		amendedSituation: node.explanation.amendedSituation.map(([name, value]) => [
 			fn(name),
-			fn(value)
+			fn(value),
 		]) as any, //TODO
-		recalcul: fn(node.explanation.recalcul)
-	}
+		recalcul: fn(node.explanation.recalcul),
+	},
 })
 
 const traverseReductionNode: TraverseFunction<'allègement'> = (fn, node) => ({
@@ -255,8 +255,8 @@ const traverseReductionNode: TraverseFunction<'allègement'> = (fn, node) => ({
 	explanation: {
 		assiette: fn(node.explanation.assiette),
 		abattement: fn(node.explanation.abattement),
-		plafond: fn(node.explanation.plafond)
-	}
+		plafond: fn(node.explanation.plafond),
+	},
 })
 
 const traverseSituationNode: TraverseFunction<'nom dans la situation'> = (
@@ -267,10 +267,10 @@ const traverseSituationNode: TraverseFunction<'nom dans la situation'> = (
 	explanation: {
 		...node.explanation,
 		...(node.explanation.situationValeur && {
-			situationValeur: fn(node.explanation.situationValeur)
+			situationValeur: fn(node.explanation.situationValeur),
 		}),
-		valeur: fn(node.explanation.valeur)
-	}
+		valeur: fn(node.explanation.valeur),
+	},
 })
 
 const traverseSynchronisationNode: TraverseFunction<'synchronisation'> = (
@@ -280,21 +280,21 @@ const traverseSynchronisationNode: TraverseFunction<'synchronisation'> = (
 	...node,
 	explanation: {
 		...node.explanation,
-		data: fn(node.explanation.data)
-	}
+		data: fn(node.explanation.data),
+	},
 })
 
 const traverseUnitéNode: TraverseFunction<'unité'> = (fn, node) => ({
 	...node,
-	explanation: fn(node.explanation)
+	explanation: fn(node.explanation),
 })
 
 const traverseVariationNode: TraverseFunction<'variations'> = (fn, node) => ({
 	...node,
 	explanation: node.explanation.map(({ condition, consequence }) => ({
 		condition: fn(condition),
-		consequence: fn(consequence)
-	}))
+		consequence: fn(consequence),
+	})),
 })
 
 const traverseVariableTemporelle: TraverseFunction<'variable temporelle'> = (
@@ -305,8 +305,8 @@ const traverseVariableTemporelle: TraverseFunction<'variable temporelle'> = (
 	explanation: {
 		period: {
 			end: node.explanation.period.end && fn(node.explanation.period.end),
-			start: node.explanation.period.start && fn(node.explanation.period.start)
+			start: node.explanation.period.start && fn(node.explanation.period.start),
 		},
-		value: fn(node.explanation.value)
-	}
+		value: fn(node.explanation.value),
+	},
 })

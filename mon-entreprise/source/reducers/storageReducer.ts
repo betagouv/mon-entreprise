@@ -7,12 +7,12 @@ export default (state: RootState, action: Action): RootState => {
 		case 'LOAD_PREVIOUS_SIMULATION':
 			return {
 				...state,
-				...createStateFromSavedSimulation(state)
+				...createStateFromSavedSimulation(state),
 			}
 		case 'DELETE_PREVIOUS_SIMULATION':
 			return {
 				...state,
-				previousSimulation: null
+				previousSimulation: null,
 			}
 		default:
 			return state

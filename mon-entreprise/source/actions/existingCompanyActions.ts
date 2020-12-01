@@ -1,10 +1,10 @@
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { fetchCompanyDetails } from '../api/sirene'
 
-const fetchCommuneDetails = function(codeCommune: string) {
+const fetchCommuneDetails = function (codeCommune: string) {
 	return fetch(
 		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=departement,region`
-	).then(response => {
+	).then((response) => {
 		return response.json()
 	})
 }
@@ -32,27 +32,27 @@ export const setEntreprise = (siren: string) => async (
 ) => {
 	dispatch({
 		type: 'EXISTING_COMPANY::SET_SIREN',
-		siren
+		siren,
 	} as ActionExistingCompany)
 	const companyDetails = await fetchCompanyDetails(siren)
 	dispatch({
 		type: 'EXISTING_COMPANY::SET_DETAILS',
 		catégorieJuridique: companyDetails.categorie_juridique,
-		dateDeCréation: companyDetails.date_creation
+		dateDeCréation: companyDetails.date_creation,
 	})
 	const communeDetails: ApiCommuneJson = await fetchCommuneDetails(
 		companyDetails.etablissement_siege.code_commune
 	)
 	dispatch({
 		type: 'EXISTING_COMPANY::ADD_COMMUNE_DETAILS',
-		details: communeDetails
+		details: communeDetails,
 	} as ActionExistingCompany)
 }
 
 export const specifyIfAutoEntrepreneur = (isAutoEntrepreneur: boolean) =>
 	({
 		type: 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR',
-		isAutoEntrepreneur
+		isAutoEntrepreneur,
 	} as const)
 
 export const specifyIfDirigeantMajoritaire = (
@@ -60,10 +60,10 @@ export const specifyIfDirigeantMajoritaire = (
 ) =>
 	({
 		type: 'EXISTING_COMPANY::SPECIFY_DIRIGEANT_MAJORITAIRE',
-		isDirigeantMajoritaire
+		isDirigeantMajoritaire,
 	} as const)
 
 export const resetEntreprise = () =>
 	({
-		type: 'EXISTING_COMPANY::RESET'
+		type: 'EXISTING_COMPANY::RESET',
 	} as const)

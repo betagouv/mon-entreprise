@@ -40,13 +40,13 @@ export default function Question({
 	dottedName: questionDottedName,
 	missing,
 	onChange,
-	value: currentValue
+	value: currentValue,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(
 		missing ? null : `'${currentValue}'`
 	)
 	const handleChange = useCallback(
-		value => {
+		(value) => {
 			setCurrentSelection(value)
 		},
 		[setCurrentSelection]
@@ -89,7 +89,7 @@ export default function Question({
 						currentSelection,
 						onSubmit: handleSubmit,
 						name: questionDottedName,
-						onChange: handleChange
+						onChange: handleChange,
 					}}
 				/>
 			</span>
@@ -112,7 +112,7 @@ export default function Question({
 								name: questionDottedName,
 								onSubmit: handleSubmit,
 								dottedName: null,
-								onChange: handleChange
+								onChange: handleChange,
 							}}
 						/>
 					</li>
@@ -123,7 +123,7 @@ export default function Question({
 							title,
 							dottedName,
 							rawNode: { description, icônes, références },
-							children
+							children,
 						}) =>
 							children ? (
 								<li key={dottedName} className="variant">
@@ -143,7 +143,7 @@ export default function Question({
 											onSubmit: handleSubmit,
 											description,
 											références,
-											onChange: handleChange
+											onChange: handleChange,
 										}}
 									/>
 								</li>
@@ -215,7 +215,7 @@ function RadioLabelContent({
 	currentSelection,
 	icônes,
 	onChange,
-	onSubmit
+	onSubmit,
 }: RadioLabelContentProps) {
 	const labelStyle = value === '_' ? ({ fontWeight: 'bold' } as const) : {}
 	const selected = value === currentSelection
@@ -228,14 +228,14 @@ function RadioLabelContent({
 			}}
 			style={labelStyle}
 			className={classnames('userAnswerButton ui__ button', {
-				selected
+				selected,
 			})}
 		>
 			<input
 				type="radio"
 				name={name}
 				value={value}
-				onChange={evt => onChange(evt.target.value)}
+				onChange={(evt) => onChange(evt.target.value)}
 				checked={selected}
 			/>
 			<span>

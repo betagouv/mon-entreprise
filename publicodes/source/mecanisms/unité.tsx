@@ -39,7 +39,7 @@ export default function parseUnité(v, context): UnitéNode {
 		jsx: MecanismUnité,
 		explanation,
 		unit,
-		nodeKind: parseUnité.nom
+		nodeKind: parseUnité.nom,
 	}
 }
 
@@ -59,7 +59,7 @@ registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
 		} catch (e) {
 			typeWarning(
 				this.cache._meta.contextRule,
-				'Erreur lors de la conversion d\'unité explicite',
+				"Erreur lors de la conversion d'unité explicite",
 				e
 			)
 		}
@@ -69,6 +69,6 @@ registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
 		...node,
 		nodeValue,
 		explanation: valeur,
-		missingVariables: valeur.missingVariables
+		missingVariables: valeur.missingVariables,
 	}
 })

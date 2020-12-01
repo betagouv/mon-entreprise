@@ -7,13 +7,13 @@ import {
 	liftTemporal2,
 	liftTemporalNode,
 	mapTemporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
 
 import {
 	evaluatePlafondUntilActiveTranche,
 	parseTranches,
-	TrancheNodes
+	TrancheNodes,
 } from './trancheUtils'
 import parse from '../parse'
 import { ASTNode } from '../AST/types'
@@ -34,16 +34,16 @@ export default function parseGrille(v, context): GrilleNode {
 		multiplicateur: v.multiplicateur
 			? parse(v.multiplicateur, context)
 			: defaultNode(1),
-		tranches: parseTranches(v.tranches, context)
+		tranches: parseTranches(v.tranches, context),
 	}
 	return {
 		explanation,
 		jsx: grille,
-		nodeKind: 'grille'
+		nodeKind: 'grille',
 	}
 }
 const evaluateGrille = (tranches, evaluate) =>
-	tranches.map(tranche => {
+	tranches.map((tranche) => {
 		if (tranche.isActive === false) {
 			return tranche
 		}
@@ -53,11 +53,11 @@ const evaluateGrille = (tranches, evaluate) =>
 			montant,
 			nodeValue: montant.nodeValue,
 			unit: montant.unit,
-			missingVariables: mergeAllMissing([montant, tranche])
+			missingVariables: mergeAllMissing([montant, tranche]),
 		}
 	})
 
-const evaluate: evaluationFunction<'grille'> = function(node) {
+const evaluate: evaluationFunction<'grille'> = function (node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -68,7 +68,7 @@ const evaluate: evaluationFunction<'grille'> = function(node) {
 				{
 					parsedTranches: node.explanation.tranches,
 					assiette,
-					multiplicateur
+					multiplicateur,
 				},
 				this.cache
 			),
@@ -76,12 +76,12 @@ const evaluate: evaluationFunction<'grille'> = function(node) {
 		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = mapTemporal(
-		tranches => evaluateGrille(tranches, evaluate),
+		(tranches) => evaluateGrille(tranches, evaluate),
 		temporalTranchesPlafond
 	)
 
-	const activeTranches = mapTemporal(tranches => {
-		const activeTranche = tranches.find(tranche => tranche.isActive)
+	const activeTranches = mapTemporal((tranches) => {
+		const activeTranche = tranches.find((tranche) => tranche.isActive)
 		if (activeTranche) {
 			return [activeTranche]
 		}
@@ -89,10 +89,11 @@ const evaluate: evaluationFunction<'grille'> = function(node) {
 		if (lastTranche.isAfterActive === false) {
 			return [{ nodeValue: false }]
 		}
-		return tranches.filter(tranche => tranche.isActive === null)
+		return tranches.filter((tranche) => tranche.isActive === null)
 	}, temporalTranches)
 	const temporalValue = mapTemporal(
-		tranches => (tranches[0].isActive === null ? null : tranches[0].nodeValue),
+		(tranches) =>
+			tranches[0].isActive === null ? null : tranches[0].nodeValue,
 		activeTranches
 	)
 
@@ -101,7 +102,7 @@ const evaluate: evaluationFunction<'grille'> = function(node) {
 		nodeValue: temporalAverage(temporalValue),
 		...(temporalValue.length > 1
 			? {
-					temporalValue
+					temporalValue,
 			  }
 			: { missingVariables: mergeAllMissing(activeTranches[0].value) }),
 		explanation: {
@@ -110,9 +111,9 @@ const evaluate: evaluationFunction<'grille'> = function(node) {
 			multiplicateur,
 			...(temporalTranches.length > 1
 				? { temporalTranches }
-				: { tranches: temporalTranches[0].value })
+				: { tranches: temporalTranches[0].value }),
 		},
-		unit: activeTranches[0].value[0]?.unit ?? undefined
+		unit: activeTranches[0].value[0]?.unit ?? undefined,
 	} as any
 }
 

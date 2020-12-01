@@ -8,12 +8,12 @@ type CheckHiringItemAction = ReturnType<typeof checkHiringItem>
 export const initializeHiringChecklist = (checklistItems: Array<string>) =>
 	({
 		type: 'INITIALIZE_HIRING_CHECKLIST',
-		checklistItems
+		checklistItems,
 	} as const)
 
 export const checkHiringItem = (name: string, checked: boolean) =>
 	({
 		type: 'CHECK_HIRING_ITEM',
 		name,
-		checked
+		checked,
 	} as const)

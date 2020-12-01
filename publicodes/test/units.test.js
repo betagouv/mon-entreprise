@@ -4,7 +4,7 @@ import {
 	convertUnit,
 	inferUnit,
 	parseUnit,
-	removeOnce
+	removeOnce,
 } from '../source/units'
 
 describe('Units', () => {
@@ -15,27 +15,27 @@ describe('Units', () => {
 	it('should parse string units into object', () => {
 		expect(parseUnit('m')).to.deep.equal({
 			numerators: ['m'],
-			denominators: []
+			denominators: [],
 		})
 		expect(parseUnit('/an')).to.deep.equal({
 			numerators: [],
-			denominators: ['an']
+			denominators: ['an'],
 		})
 		expect(parseUnit('m/s')).to.deep.equal({
 			numerators: ['m'],
-			denominators: ['s']
+			denominators: ['s'],
 		})
 		expect(parseUnit('kg.m/s')).to.deep.equal({
 			numerators: ['kg', 'm'],
-			denominators: ['s']
+			denominators: ['s'],
 		})
 		expect(parseUnit('kg.m/s')).to.deep.equal({
 			numerators: ['kg', 'm'],
-			denominators: ['s']
+			denominators: ['s'],
 		})
 		expect(parseUnit('€/personne/mois')).to.deep.equal({
 			numerators: ['€'],
-			denominators: ['personne', 'mois']
+			denominators: ['personne', 'mois'],
 		})
 	})
 	it('should work with simple use case *', () => {
@@ -45,7 +45,7 @@ describe('Units', () => {
 
 		expect(unit).to.deep.equal({
 			numerators: ['m'],
-			denominators: []
+			denominators: [],
 		})
 	})
 	it('should work with simple use case / ', () => {
@@ -55,7 +55,7 @@ describe('Units', () => {
 
 		expect(unit).to.deep.equal({
 			numerators: [],
-			denominators: ['s']
+			denominators: ['s'],
 		})
 	})
 	it('should work with advanced use case /', () => {
@@ -65,7 +65,7 @@ describe('Units', () => {
 
 		expect(unit).to.deep.equal({
 			numerators: ['b', 'a', 'z', 'z'],
-			denominators: ['e', 'f']
+			denominators: ['e', 'f'],
 		})
 	})
 })

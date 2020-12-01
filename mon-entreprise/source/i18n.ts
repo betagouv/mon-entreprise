@@ -7,9 +7,9 @@ i18next
 	.use(initReactI18next)
 	.init({
 		react: {
-			useSuspense: false
-		}
+			useSuspense: false,
+		},
 	})
-	.catch(err => console?.error('Error from i18n load', err))
+	.catch((err) => console?.error('Error from i18n load', err))
 
 export default i18next

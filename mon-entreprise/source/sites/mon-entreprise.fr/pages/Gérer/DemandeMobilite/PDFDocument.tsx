@@ -6,7 +6,7 @@ import ReactPDF, {
 	StyleSheet,
 	Text,
 	View,
-	Link
+	Link,
 } from '@react-pdf/renderer'
 import urssafPng from 'Images/destinataires/URSSAF.png'
 import FieldsPDF, { FieldsPDFProps, styles as fieldStyles } from './FieldsPDF'
@@ -22,7 +22,7 @@ export type PDFDocumentProps = {
 export default function PDFDocument({
 	fields,
 	signatureURL,
-	place
+	place,
 }: PDFDocumentProps) {
 	return (
 		<Document>
@@ -86,15 +86,15 @@ export default function PDFDocument({
 		</Document>
 	)
 }
-Font.registerHyphenationCallback(word => [word])
+Font.registerHyphenationCallback((word) => [word])
 Font.register({
 	family: 'Roboto',
-	src: robotoUrl
+	src: robotoUrl,
 })
 
 Font.register({
 	family: 'Montserrat',
-	src: montserratUrl
+	src: montserratUrl,
 })
 
 const styles = StyleSheet.create({
@@ -103,33 +103,33 @@ const styles = StyleSheet.create({
 		color: '#18457B',
 		lineHeight: 1.5,
 		paddingBottom: 65,
-		paddingHorizontal: 35
+		paddingHorizontal: 35,
 	},
 	header: {
 		display: 'flex',
 		justifyContent: 'flex-end',
-		marginBottom: 20
+		marginBottom: 20,
 	},
 	logo: {
 		objectFit: 'scale-down',
-		width: 100
+		width: 100,
 	},
 	title: {
 		fontSize: 20,
 		marginBottom: 20,
-		fontFamily: 'Montserrat'
+		fontFamily: 'Montserrat',
 	},
 	texte: {
 		fontFamily: 'Roboto',
 		marginBottom: 12,
-		fontSize: 14
+		fontSize: 14,
 	},
 	signature: {
 		objectFit: 'scale-down',
-		maxWidth: 300
+		maxWidth: 300,
 	},
 	signatureBox: {
-		height: 100
+		height: 100,
 	},
 	footer: {
 		position: 'absolute',
@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
 		marginHorizontal: 35,
 		paddingVertical: 5,
 		opacity: 0.7,
-		fontSize: 6
-	}
+		fontSize: 6,
+	},
 })

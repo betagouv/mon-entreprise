@@ -7,7 +7,7 @@ import { Activity } from './Activité'
 
 export default function ExceptionsExonération({
 	exceptionsExonération,
-	activité
+	activité,
 }: any) {
 	const { state, dispatch } = useContext(StoreContext)
 	if (!exceptionsExonération) return null

@@ -55,8 +55,8 @@ export function getDifferenceInMonths(from: string, to: string): number {
 	// We want to compute the difference in actual month between the two dates
 	// For date that start during a month, a pro-rata will be done depending on
 	// the duration of the month in days
-	const [dayFrom, monthFrom, yearFrom] = from.split('/').map(x => +x)
-	const [dayTo, monthTo, yearTo] = to.split('/').map(x => +x)
+	const [dayFrom, monthFrom, yearFrom] = from.split('/').map((x) => +x)
+	const [dayTo, monthTo, yearTo] = to.split('/').map((x) => +x)
 	const numberOfFullMonth = monthTo - monthFrom + 12 * (yearTo - yearFrom)
 	const numDayMonthFrom = new Date(yearFrom, monthFrom, 0).getDate()
 	const numDayMonthTo = new Date(yearTo, monthTo, 0).getDate()

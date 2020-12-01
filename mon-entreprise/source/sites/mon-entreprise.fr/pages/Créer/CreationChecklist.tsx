@@ -1,6 +1,6 @@
 import {
 	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist
+	initializeCompanyCreationChecklist,
 } from 'Actions/companyCreationChecklistActions'
 import { goToCompanyStatusChoice } from 'Actions/companyStatusActions'
 import Scroll from 'Components/utils/Scroll'
@@ -40,14 +40,14 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		? t(
 				[
 					'entreprise.page.autoEntrepreneur.titre',
-					'Devenir {{autoEntrepreneur}}'
+					'Devenir {{autoEntrepreneur}}',
 				],
 				{
-					autoEntrepreneur: statut
+					autoEntrepreneur: statut,
 				}
 		  )
 		: t(['entreprise.page.entreprise.titre', 'Créer une {{status}}'], {
-				status: statut
+				status: statut,
 		  })
 	return (
 		<Animate.fromBottom>
@@ -60,14 +60,14 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							? t(
 									[
 										'entreprise.page.autoEntrepreneur.description',
-										'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.'
+										'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.',
 									],
 									{ autoEntrepreneur: t(statut) }
 							  )
 							: t(
 									[
 										'entreprise.page.description',
-										"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française."
+										"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française.",
 									],
 									{ statut: t(statut) }
 							  )
@@ -104,7 +104,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			</p>
 			<Checklist
 				key={statut}
-				onInitialization={items =>
+				onInitialization={(items) =>
 					dispatch(initializeCompanyCreationChecklist(statut, items))
 				}
 				onItemCheck={(name, isChecked) =>
@@ -205,7 +205,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									capital.{' '}
 									<span
 										style={{
-											display: multipleAssociates ? 'visible' : 'none'
+											display: multipleAssociates ? 'visible' : 'none',
 										}}
 									>
 										Dans le cas d'une création d'entreprise avec plusieurs
@@ -458,7 +458,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						className="ui__ interactive card small box lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs['auto-entrepreneur'],
-							state: { fromCréer: true }
+							state: { fromCréer: true },
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur">
@@ -475,7 +475,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						className="ui__ interactive card small box lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs.indépendant,
-							state: { fromCréer: true }
+							state: { fromCréer: true },
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.indépendant">
@@ -492,7 +492,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						className="ui__ interactive card small box lighter-bg"
 						to={{
 							pathname: sitePaths.simulateurs.SASU,
-							state: { fromCréer: true }
+							state: { fromCréer: true },
 						}}
 					>
 						<Trans i18nKey="entreprise.ressources.simu.assimilé">
@@ -547,7 +547,7 @@ type StatutsExampleProps = {
 const StatutsExample = ({ statut }: StatutsExampleProps) => {
 	const links = {
 		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
-		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0'
+		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0',
 	}
 
 	if (!(statut in links)) return null
