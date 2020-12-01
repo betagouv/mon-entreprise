@@ -38,7 +38,7 @@ describe('inversions', () => {
       `
 		const result = new Engine(rules)
 			.setSituation({ net: '2000 €' })
-      .evaluate('brut')
+			.evaluate('brut')
 
 		expect(result.nodeValue).to.be.closeTo(2000 / (77 / 100), 0.0001 * 2000)
 	})
@@ -58,7 +58,9 @@ describe('inversions', () => {
               avec:
                 - net
       `
-		const result = new Engine(rules).setSituation({ net: '0 €' }).evaluate('brut')
+		const result = new Engine(rules)
+			.setSituation({ net: '0 €' })
+			.evaluate('brut')
 		expect(result.nodeValue).to.be.closeTo(0, 0.0001)
 	})
 

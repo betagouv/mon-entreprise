@@ -46,7 +46,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 			<Checkbox
 				name="certified"
 				id="certified"
-				onChange={e => setCertified(e.target.checked)}
+				onChange={(e) => setCertified(e.target.checked)}
 				checked={isCertified}
 				label="Je certifie l’exactitude des informations communiquées ci-dessus."
 			/>
@@ -62,7 +62,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					type="text"
 					className="ui__"
 					value={place}
-					onChange={e => setPlace(e.target.value)}
+					onChange={(e) => setPlace(e.target.value)}
 				/>
 			</label>
 			{IS_TOUCH_DEVICE && (
@@ -171,7 +171,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 													tracker.push([
 														'trackEvent',
 														'Demande mobilité',
-														'Formulaire téléchargé'
+														'Formulaire téléchargé',
 													])
 												}
 												className="ui__ cta plain button"
@@ -193,7 +193,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 
 const LazyBlobProvider = lazy<typeof BlobProvider>(
 	() =>
-		new Promise(resolve =>
+		new Promise((resolve) =>
 			setTimeout(() => resolve({ default: BlobProvider }), 300)
 		)
 )
@@ -201,7 +201,7 @@ const LazyBlobProvider = lazy<typeof BlobProvider>(
 // From https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
 function isOnTouchDevice() {
 	const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ')
-	const mq = function(query: string) {
+	const mq = function (query: string) {
 		return window.matchMedia(query).matches
 	}
 	if (

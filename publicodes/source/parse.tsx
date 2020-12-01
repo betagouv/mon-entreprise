@@ -61,7 +61,7 @@ Utilisez leur contrepartie française : 'oui' / 'non'`
 
 	return {
 		...parseChainedMecanisms(node, context),
-		rawNode
+		rawNode,
 	}
 }
 
@@ -92,7 +92,7 @@ function parseMecanism(rawNode, context: Context) {
 			context.dottedName,
 			`
 Il manque le nom du mécanisme pour le tableau : [${rawNode
-				.map(x => `'${x}'`)
+				.map((x) => `'${x}'`)
 				.join(', ')}]
 Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'toutes ces conditions', 'une de ces conditions'.
 		`
@@ -105,7 +105,7 @@ Les mécanisme possibles sont : 'somme', 'le maximum de', 'le minimum de', 'tout
 			context.dottedName,
 			`
 Les mécanismes suivants se situent au même niveau : ${keys
-				.map(x => `'${x}'`)
+				.map((x) => `'${x}'`)
 				.join(', ')}
 Cela vient probablement d'une erreur dans l'indentation
 	`
@@ -156,10 +156,10 @@ const chainableMecanisms = [
 	unité,
 	plancher,
 	plafond,
-	situation
+	situation,
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {
-	const parseFn = chainableMecanisms.find(fn => fn.nom in rawNode)
+	const parseFn = chainableMecanisms.find((fn) => fn.nom in rawNode)
 	if (!parseFn) {
 		return parseMecanism(rawNode, context)
 	}
@@ -168,8 +168,8 @@ function parseChainedMecanisms(rawNode, context: Context): ASTNode {
 		{
 			[parseFn.nom]: {
 				valeur,
-				[parseFn.nom]: param
-			}
+				[parseFn.nom]: param,
+			},
 		},
 		context
 	)
@@ -198,7 +198,7 @@ const parseFunctions = {
 	variations,
 	synchronisation: mecanismSynchronisation,
 	valeur: parse,
-	objet: v => ({
+	objet: (v) => ({
 		type: 'objet',
 		nodeValue: v,
 		nodeKind: 'constant',
@@ -206,9 +206,9 @@ const parseFunctions = {
 			<code>
 				<pre>{JSON.stringify(v, null, 2)}</pre>
 			</code>
-		)
+		),
 	}),
-	constant: v => ({
+	constant: (v) => ({
 		type: v.type,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
@@ -218,11 +218,11 @@ const parseFunctions = {
 				{formatValue(node, {
 					// We want to display constants with full precision,
 					// espacilly for percentages like APEC 0,036 %
-					precision: 5
+					precision: 5,
 				})}
 			</span>
-		)
-	})
+		),
+	}),
 }
 
 export const mecanismKeys = Object.keys(parseFunctions)

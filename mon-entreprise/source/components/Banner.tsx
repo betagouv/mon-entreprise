@@ -14,7 +14,7 @@ type BannerProps = {
 export default function Banner({
 	children,
 	hidden: hiddenProp = false,
-	icon
+	icon,
 }: BannerProps) {
 	const hiddenState = useSelector(firstStepCompletedSelector)
 	const hidden = hiddenProp || hiddenState

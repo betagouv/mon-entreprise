@@ -18,12 +18,12 @@ export const initializeCompanyCreationChecklist = (
 	({
 		type: 'INITIALIZE_COMPANY_CREATION_CHECKLIST',
 		checklistItems,
-		statusName
+		statusName,
 	} as const)
 
 export const checkCompanyCreationItem = (name: string, checked: boolean) =>
 	({
 		type: 'CHECK_COMPANY_CREATION_ITEM',
 		name,
-		checked
+		checked,
 	} as const)

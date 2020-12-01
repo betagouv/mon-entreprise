@@ -12,7 +12,7 @@ export default function SimulateurPage({
 	config,
 	tooltip,
 	component: Component,
-	seoExplanations
+	seoExplanations,
 }: SimulatorData[keyof SimulatorData]) {
 	const inIframe = useContext(IsEmbeddedContext)
 	const dispatch = useDispatch()

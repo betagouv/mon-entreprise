@@ -5,7 +5,7 @@ import { ThemeColorsContext } from 'Components/utils/colors'
 import {
 	EngineContext,
 	useEngine,
-	useInversionFail
+	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
@@ -40,7 +40,7 @@ export default function SalaryExplanation() {
 							onClick={() =>
 								distributionRef.current?.scrollIntoView({
 									behavior: 'smooth',
-									block: 'start'
+									block: 'start',
 								})
 							}
 						>
@@ -85,8 +85,8 @@ function RevenueRepatitionSection() {
 	const data = ([
 		'contrat salarié . rémunération . net après impôt',
 		'impôt',
-		'contrat salarié . cotisations'
-	] as DottedName[]).map(r => evaluateRule(engine, r, { unité: '€/mois' }))
+		'contrat salarié . cotisations',
+	] as DottedName[]).map((r) => evaluateRule(engine, r, { unité: '€/mois' }))
 
 	return (
 		<section>
@@ -98,17 +98,17 @@ function RevenueRepatitionSection() {
 					{
 						...data[0],
 						title: t('Revenu disponible'),
-						color: palettes[0][0]
+						color: palettes[0][0],
 					},
 					{
 						...data[1],
 						title: t('impôt'),
-						color: palettes[1][0]
+						color: palettes[1][0],
 					},
 					{
 						...data[2],
-						color: palettes[1][1]
-					}
+						color: palettes[1][1],
+					},
 				]}
 			/>
 		</section>

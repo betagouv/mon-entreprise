@@ -25,7 +25,7 @@ testSuites.forEach(([suiteName, suite]) => {
 							situation,
 							'unité par défaut': defaultUnit,
 							'valeur attendue': valeur,
-							'variables manquantes': expectedMissing
+							'variables manquantes': expectedMissing,
 						},
 						i
 					) => {
@@ -40,7 +40,7 @@ testSuites.forEach(([suiteName, suite]) => {
 								const result = engine
 									.setSituation(situation ?? {})
 									.evaluate(name, {
-										unit: defaultUnit
+										unit: defaultUnit,
 									})
 
 								if (typeof valeur === 'number') {

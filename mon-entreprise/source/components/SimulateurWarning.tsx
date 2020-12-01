@@ -7,7 +7,7 @@ type SimulateurWarningProps = {
 }
 
 export default function SimulateurWarning({
-	simulateur
+	simulateur,
 }: SimulateurWarningProps) {
 	return (
 		<Warning

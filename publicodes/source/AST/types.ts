@@ -70,7 +70,14 @@ export type ASTNode = (
 ) & {
 	isDefault?: boolean
 	rawNode?: string | Record<string, unknown>
-} & (EvaluationDecoration<Types> | {}) // TODO : separate type for evaluated AST Tree
+} & (
+		| EvaluationDecoration<Types>
+		// We remove the ESLINT warning as it does not concern intersection type and is actually useful here
+		// https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
+		// eslint-disable-next-line @typescript-eslint/ban-types
+		| {}
+	)
+// TODO : separate type for evaluated AST Tree
 
 export type MecanismNode = Exclude<
 	ASTNode,

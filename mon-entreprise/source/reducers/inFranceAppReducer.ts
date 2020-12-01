@@ -7,7 +7,7 @@ import { combineReducers } from 'redux'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import {
 	Action as CompanyStatusAction,
-	LegalStatusRequirements
+	LegalStatusRequirements,
 } from 'Types/companyTypes'
 
 type Action =
@@ -46,7 +46,7 @@ function hiringChecklist(
 		case 'CHECK_HIRING_ITEM':
 			return {
 				...state,
-				[action.name]: action.checked
+				[action.name]: action.checked,
 			}
 		case 'INITIALIZE_HIRING_CHECKLIST':
 			return Object.keys(state).length
@@ -68,7 +68,7 @@ function companyCreationChecklist(
 		case 'CHECK_COMPANY_CREATION_ITEM':
 			return {
 				...state,
-				[action.name]: action.checked
+				[action.name]: action.checked,
 			}
 		case 'INITIALIZE_COMPANY_CREATION_CHECKLIST':
 			return Object.keys(state).length
@@ -157,7 +157,7 @@ function existingCompany(
 			...state,
 			siren: state.siren,
 			statutJuridique,
-			dateDeCréation: action.dateDeCréation
+			dateDeCréation: action.dateDeCréation,
 		}
 	}
 	if (state && action.type === 'EXISTING_COMPANY::SPECIFY_AUTO_ENTREPRENEUR') {
@@ -180,5 +180,5 @@ export default combineReducers({
 	companyStatusChoice,
 	companyCreationChecklist,
 	existingCompany,
-	hiringChecklist
+	hiringChecklist,
 })

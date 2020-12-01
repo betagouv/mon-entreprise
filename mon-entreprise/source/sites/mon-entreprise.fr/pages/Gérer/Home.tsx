@@ -1,7 +1,7 @@
 import {
 	resetEntreprise,
 	specifyIfAutoEntrepreneur,
-	specifyIfDirigeantMajoritaire
+	specifyIfDirigeantMajoritaire,
 } from 'Actions/existingCompanyActions'
 import CompanyDetails from 'Components/CompanyDetails'
 import FindCompany from 'Components/FindCompany'
@@ -88,7 +88,7 @@ export default function SocialSecurity() {
 									<Link
 										className="ui__ interactive card box light-border"
 										to={{
-											pathname: sitePaths.gérer.déclarationIndépendant
+											pathname: sitePaths.gérer.déclarationIndépendant,
 										}}
 									>
 										<div className="ui__ big box-icon">{emoji('✍')}</div>
@@ -112,8 +112,8 @@ export default function SocialSecurity() {
 									to={{
 										pathname: sitePaths.simulateurs[dirigeant],
 										state: {
-											fromGérer: true
-										}
+											fromGérer: true,
+										},
 									}}
 								>
 									<div className="ui__ big box-icon">{emoji('💶')}</div>
@@ -134,7 +134,7 @@ export default function SocialSecurity() {
 									<Link
 										className="ui__ interactive card box light-border"
 										to={{
-											pathname: sitePaths.simulateurs['chômage-partiel']
+											pathname: sitePaths.simulateurs['chômage-partiel'],
 										}}
 									>
 										<div className="ui__ big box-icon">{emoji('🕟')}</div>
@@ -155,8 +155,8 @@ export default function SocialSecurity() {
 										to={{
 											pathname: sitePaths.simulateurs.salarié,
 											state: {
-												fromGérer: true
-											}
+												fromGérer: true,
+											},
 										}}
 									>
 										<div className="ui__ big box-icon">{emoji('🤝')}</div>

@@ -9,7 +9,7 @@ import { parseUnit } from '../units'
 import {
 	evaluatePlafondUntilActiveTranche,
 	parseTranches,
-	TrancheNodes
+	TrancheNodes,
 } from './trancheUtils'
 import { ASTNode } from '../AST/types'
 export type TauxProgressifNode = {
@@ -27,16 +27,16 @@ export default function parseTauxProgressif(v, context): TauxProgressifNode {
 		multiplicateur: v.multiplicateur
 			? parse(v.multiplicateur, context)
 			: defaultNode(1),
-		tranches: parseTranches(v.tranches, context)
+		tranches: parseTranches(v.tranches, context),
 	} as TauxProgressifNode['explanation']
 	return {
 		jsx: tauxProgressif,
 		explanation,
-		nodeKind: 'taux progressif'
+		nodeKind: 'taux progressif',
 	}
 }
 
-const evaluate: evaluationFunction<'taux progressif'> = function(node) {
+const evaluate: evaluationFunction<'taux progressif'> = function (node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -45,7 +45,7 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 		{
 			parsedTranches: node.explanation.tranches,
 			assiette,
-			multiplicateur
+			multiplicateur,
 		},
 		this.cache
 	)
@@ -55,9 +55,9 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 		explanation: {
 			tranches,
 			assiette,
-			multiplicateur
+			multiplicateur,
 		},
-		unit: parseUnit('%')
+		unit: parseUnit('%'),
 	}
 
 	const lastTranche = tranches[tranches.length - 1]
@@ -73,7 +73,7 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 		return {
 			...evaluatedNode,
 			nodeValue,
-			missingVariables
+			missingVariables,
 		}
 	}
 
@@ -84,7 +84,7 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 		return {
 			...evaluatedNode,
 			nodeValue: null,
-			missingVariables: mergeAllMissing(tranches)
+			missingVariables: mergeAllMissing(tranches),
 		}
 	}
 
@@ -109,13 +109,13 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 		? previousTranche.taux
 		: activeTranche.taux
 	const calculationValues = [previousTaux, activeTranche.taux, activeTranche]
-	if (calculationValues.some(n => n.nodeValue === null)) {
+	if (calculationValues.some((n) => n.nodeValue === null)) {
 		activeTranche.nodeValue = null
 		activeTranche.missingVariables = mergeAllMissing(calculationValues)
 		return {
 			...evaluatedNode,
 			nodeValue: null,
-			missingVariables: activeTranche.missingVariables
+			missingVariables: activeTranche.missingVariables,
 		}
 	}
 
@@ -129,7 +129,7 @@ const evaluate: evaluationFunction<'taux progressif'> = function(node) {
 	return {
 		...evaluatedNode,
 		nodeValue,
-		missingVariables: {}
+		missingVariables: {},
 	}
 }
 

@@ -41,7 +41,7 @@ const rules = {
 	...CCSport,
 	...CCCompta,
 	...situationPersonnelle,
-	...chômagePartiel
+	...chômagePartiel,
 }
 
 export default rules

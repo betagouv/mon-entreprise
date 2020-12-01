@@ -13,7 +13,7 @@ export type TouteCesConditionsNode = {
 	jsx: any
 }
 
-const evaluate: evaluationFunction<'toutes ces conditions'> = function(node) {
+const evaluate: evaluationFunction<'toutes ces conditions'> = function (node) {
 	const [nodeValue, explanation] = node.explanation.reduce<
 		[boolean | null, Array<ASTNode>]
 	>(
@@ -26,7 +26,7 @@ const evaluate: evaluationFunction<'toutes ces conditions'> = function(node) {
 				nodeValue === null || evaluatedNode.nodeValue === null
 					? null
 					: !!evaluatedNode.nodeValue,
-				[...explanation, evaluatedNode]
+				[...explanation, evaluatedNode],
 			]
 		},
 		[true, []]
@@ -36,13 +36,13 @@ const evaluate: evaluationFunction<'toutes ces conditions'> = function(node) {
 		...node,
 		nodeValue,
 		explanation,
-		missingVariables: mergeAllMissing(explanation)
+		missingVariables: mergeAllMissing(explanation),
 	}
 }
 
 export const mecanismAllOf = (v, context) => {
 	if (!is(Array, v)) throw new Error('should be array')
-	const explanation = v.map(node => parse(node, context))
+	const explanation = v.map((node) => parse(node, context))
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="toutes ces conditions" value={nodeValue} unit={unit}>
 			<ul>
@@ -56,7 +56,7 @@ export const mecanismAllOf = (v, context) => {
 	return {
 		jsx,
 		explanation,
-		nodeKind: 'toutes ces conditions'
+		nodeKind: 'toutes ces conditions',
 	}
 }
 

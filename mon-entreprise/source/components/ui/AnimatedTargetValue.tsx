@@ -17,7 +17,7 @@ const formatDifference = (difference: number, language: string) => {
 
 export default function AnimatedTargetValue({
 	value,
-	children
+	children,
 }: AnimatedTargetValueProps) {
 	const previousValue = useRef<number>()
 	const { language } = useTranslation().i18n
@@ -50,7 +50,7 @@ export default function AnimatedTargetValue({
 					<Evaporate
 						style={{
 							color: difference > 0 ? 'chartreuse' : 'red',
-							pointerEvents: 'none'
+							pointerEvents: 'none',
 						}}
 					>
 						{formatDifference(difference, language)}
@@ -64,7 +64,7 @@ export default function AnimatedTargetValue({
 
 const Evaporate = React.memo(function Evaporate({
 	children,
-	style
+	style,
 }: {
 	children: string
 	style: React.CSSProperties

@@ -11,7 +11,7 @@ type MecanismProp = {
 export default function MecanismExplanation({
 	name,
 	description,
-	exemples
+	exemples,
 }: MecanismProp) {
 	return (
 		<>

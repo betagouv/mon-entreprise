@@ -18,7 +18,7 @@ export function convertNodeToUnit<Node extends EvaluatedNode = EvaluatedNode>(
 	const temporalValue =
 		node.temporalValue && node.unit
 			? mapTemporal(
-					value => convertUnit(node.unit, to, value as number),
+					(value) => convertUnit(node.unit, to, value as number),
 					node.temporalValue
 			  )
 			: node.temporalValue
@@ -29,6 +29,6 @@ export function convertNodeToUnit<Node extends EvaluatedNode = EvaluatedNode>(
 				? convertUnit(node.unit, to, node.nodeValue)
 				: node.nodeValue,
 		...(temporalValue && { temporalValue }),
-		unit: to
+		unit: to,
 	}
 }

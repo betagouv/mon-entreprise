@@ -16,7 +16,7 @@ import { activités, getTranslatedActivité } from './activitésData'
 import NextButton from './NextButton'
 import {
 	activitésEffectuéesSelector,
-	activitésRéponduesSelector
+	activitésRéponduesSelector,
 } from './selectors'
 import { StoreContext } from './StoreContext'
 
@@ -80,7 +80,7 @@ type ActivitéSelectionProps = {
 
 export const ActivitéSelection = ({
 	activités,
-	currentActivité
+	currentActivité,
 }: ActivitéSelectionProps) => {
 	const { state } = useContext(StoreContext)
 	const activitéRépondue = activitésRéponduesSelector(state)
@@ -92,7 +92,7 @@ export const ActivitéSelection = ({
 	return (
 		<>
 			<div css="display: flex; flex-wrap: wrap; justify-content: center">
-				{activités.map(title => {
+				{activités.map((title) => {
 					const selected = state[title].effectuée
 					const answered = activitéRépondue.includes(title)
 					return (
@@ -129,7 +129,7 @@ export const ActivitéCard = ({
 	interactive,
 	answered,
 	label,
-	className
+	className,
 }: ActivitéCardProps) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { dispatch } = useContext(StoreContext)
@@ -147,15 +147,15 @@ export const ActivitéCard = ({
 		{
 			className: classnames('ui__ card box', className, {
 				selected,
-				interactive
+				interactive,
 			}),
 			style: {
 				flex: 1,
-				minWidth: '15rem'
+				minWidth: '15rem',
 			},
 			key: title,
 			...(interactive && { tabIndex: -1 }),
-			onMouseDown: toggle
+			onMouseDown: toggle,
 		},
 		<div css="display: flex; flex-direction: column; height: 100%; width: 100%; align-items: center">
 			{selected !== undefined && (
@@ -169,7 +169,7 @@ export const ActivitéCard = ({
 			/>
 			{answered && (
 				<Link
-					onClick={e => e.stopPropagation()}
+					onClick={(e) => e.stopPropagation()}
 					className="ui__ small simple button"
 					to={sitePaths.simulateurs.économieCollaborative.index + '/' + title}
 				>
@@ -185,7 +185,7 @@ const ActivitéContent = ({
 	explication,
 	plateformes,
 	icônes,
-	label
+	label,
 }: any) => (
 	<>
 		<h4 className="title">

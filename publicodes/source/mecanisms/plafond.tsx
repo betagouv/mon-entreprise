@@ -34,7 +34,7 @@ export type PlafondNode = {
 	jsx: any
 	nodeKind: 'plafond'
 }
-const evaluate: evaluationFunction<'plafond'> = function(node) {
+const evaluate: evaluationFunction<'plafond'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue
@@ -68,19 +68,19 @@ const evaluate: evaluationFunction<'plafond'> = function(node) {
 		nodeValue,
 		...('unit' in valeur && { unit: valeur.unit }),
 		explanation: { valeur, plafond },
-		missingVariables: mergeAllMissing([valeur, plafond])
+		missingVariables: mergeAllMissing([valeur, plafond]),
 	}
 }
 
 export default function parsePlafond(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		plafond: parse(v.plafond, context)
+		plafond: parse(v.plafond, context),
 	}
 	return {
 		jsx: MecanismPlafond,
 		explanation,
-		nodeKind: 'plafond'
+		nodeKind: 'plafond',
 	} as PlafondNode
 }
 

@@ -22,16 +22,16 @@ const useShowFeedback = () => {
 		[
 			simulators['aide-déclaration-indépendant'],
 			simulators['comparaison-statuts'],
-			simulators['demande-mobilité']
+			simulators['demande-mobilité'],
 		]
-			.map(s => s.path)
+			.map((s) => s.path)
 			.includes(currentPath)
 	) {
 		return true
 	}
 	return ![
 		sitePath.index,
-		...Object.values(simulators).map(s => s.path)
+		...Object.values(simulators).map((s) => s.path),
 	].includes(currentPath)
 }
 export default function Footer() {

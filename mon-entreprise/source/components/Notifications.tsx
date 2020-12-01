@@ -3,7 +3,7 @@ import animate from 'Components/ui/animate'
 import {
 	useInversionFail,
 	EngineContext,
-	useEngine
+	useEngine,
 } from 'Components/utils/EngineContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -30,8 +30,8 @@ export function getNotifications(engine: Engine) {
 			(rule: ASTNode & { nodeKind: 'rule' }) =>
 				rule.rawNode['type'] === 'notification'
 		)
-		.map(node => evaluateRule(engine, node.dottedName))
-		.filter(node => !!node.nodeValue)
+		.map((node) => evaluateRule(engine, node.dottedName))
+		.filter((node) => !!node.nodeValue)
 }
 export default function Notifications() {
 	const { t } = useTranslation()
@@ -52,8 +52,8 @@ export default function Notifications() {
 						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
 					),
 					type: 'notification',
-					sévérité: 'avertissement'
-				}
+					sévérité: 'avertissement',
+				},
 		  ]
 		: ((getNotifications(engine) as any) as Array<Notification>)
 	if (!messages?.length) return null

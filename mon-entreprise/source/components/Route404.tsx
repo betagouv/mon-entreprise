@@ -9,7 +9,7 @@ export default () => (
 			color: '#333350',
 			margin: '15% auto',
 			width: '15em',
-			textAlign: 'center'
+			textAlign: 'center',
 		}}
 	>
 		<p>

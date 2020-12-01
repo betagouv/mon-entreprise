@@ -10,6 +10,7 @@ import {
 	ASTNode,
 	EvaluatedRule,
 	evaluateRule,
+	formatValue,
 	ParsedRules,
 	reduceAST,
 } from 'publicodes'
@@ -17,6 +18,7 @@ import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
+import { serialize } from 'storage/serializeSimulation'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -67,6 +69,7 @@ export default function RuleInput<Name extends string = DottedName>({
 }: RuleInputProps<Name>) {
 	const engine = useContext(EngineContext)
 	const rule = evaluateRule(engine, dottedName)
+
 	const language = useTranslation().i18n.language
 	const value = rule.nodeValue
 	const commonProps: InputCommonProps<Name> = {
@@ -120,7 +123,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	) {
 		return useSwitch ? (
 			<ToggleSwitch
-				defaultChecked={value === 'oui'}
+				defaultChecked={value === true}
 				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
 					onChange(evt.target.checked ? 'oui' : 'non')
 				}
@@ -137,12 +140,13 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 	}
 
-	commonProps.value =
-		typeof commonProps.value === 'string'
-			? engine.evaluate(commonProps.value as DottedName).nodeValue
-			: commonProps.value
-
 	if (rule.unit?.numerators.includes('€') && isTarget) {
+		const unité = formatValue(
+			{ nodeValue: value ?? 0, unit: rule.unit },
+			{ language }
+		)
+			.replace(/[\d,.]/g, '')
+			.trim()
 		return (
 			<>
 				<CurrencyInput
@@ -152,7 +156,7 @@ export default function RuleInput<Name extends string = DottedName>({
 					value={value as string}
 					name={dottedName}
 					className="targetInput"
-					onChange={(evt) => onChange(evt.target.value)}
+					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
 				/>
 			</>
 		)
@@ -160,7 +164,6 @@ export default function RuleInput<Name extends string = DottedName>({
 	if (rule.unit?.numerators.includes('%') && isTarget) {
 		return <PercentageField {...commonProps} debounce={600} />
 	}
-
 	if (rule.type === 'texte') {
 		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}

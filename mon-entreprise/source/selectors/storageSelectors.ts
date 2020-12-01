@@ -16,7 +16,7 @@ export const currentSimulationSelector = (
 	return {
 		situation: state.simulation?.situation ?? {},
 		activeTargetInput: state.activeTargetInput,
-		foldedSteps: state.simulation?.foldedSteps
+		foldedSteps: state.simulation?.foldedSteps,
 	}
 }
 
@@ -29,8 +29,8 @@ export const createStateFromSavedSimulation = (
 				simulation: {
 					...state.simulation,
 					situation: state.previousSimulation.situation || {},
-					foldedSteps: state.previousSimulation.foldedSteps
+					foldedSteps: state.previousSimulation.foldedSteps,
 				} as Simulation,
-				previousSimulation: null
+				previousSimulation: null,
 		  }
 		: {}

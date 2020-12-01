@@ -12,7 +12,7 @@ export type MaxNode = {
 }
 
 export const mecanismMax = (v, context) => {
-	const explanation = v.map(node => parse(node, context))
+	const explanation = v.map((node) => parse(node, context))
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="le maximum de" value={nodeValue} unit={unit}>
@@ -30,7 +30,7 @@ export const mecanismMax = (v, context) => {
 	return {
 		jsx,
 		explanation,
-		nodeKind: 'maximum'
+		nodeKind: 'maximum',
 	} as MaxNode
 }
 

@@ -26,7 +26,7 @@ function MecanismApplicable({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction<'applicable si'> = function(node) {
+const evaluate: evaluationFunction<'applicable si'> = function (node) {
 	const explanation = { ...node.explanation }
 	const condition = this.evaluateNode(explanation.condition)
 	let valeur = explanation.valeur
@@ -46,7 +46,7 @@ const evaluate: evaluationFunction<'applicable si'> = function(node) {
 			'missingVariables' in valeur ? valeur.missingVariables : {},
 			bonus(condition.missingVariables)
 		),
-		...('unit' in valeur && { unit: valeur.unit })
+		...('unit' in valeur && { unit: valeur.unit }),
 	}
 }
 parseApplicable.nom = 'applicable si' as const
@@ -54,12 +54,12 @@ parseApplicable.nom = 'applicable si' as const
 export default function parseApplicable(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		condition: parse(v[parseApplicable.nom], context)
+		condition: parse(v[parseApplicable.nom], context),
 	}
 	return {
 		jsx: MecanismApplicable,
 		explanation,
-		nodeKind: parseApplicable.nom
+		nodeKind: parseApplicable.nom,
 	}
 }
 

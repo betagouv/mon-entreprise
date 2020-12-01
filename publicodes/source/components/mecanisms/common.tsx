@@ -11,7 +11,7 @@ import {
 	Evaluation,
 	EvaluatedNode,
 	Types,
-	Unit
+	Unit,
 } from '../../AST/types'
 import { capitalise0 } from '../../utils'
 import Overlay from '../Overlay'
@@ -38,11 +38,11 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 			textDecoration: 'none !important',
 			boxShadow: '0px 1px 2px 1px #d9d9d9, 0 0 0 1px #d9d9d9',
 			lineHeight: '1.6em',
-			borderRadius: '0.2rem'
+			borderRadius: '0.2rem',
 		}}
 	>
 		{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
-			language: 'fr'
+			language: 'fr',
 		})}
 	</small>
 )
@@ -75,7 +75,7 @@ export function Mecanism({
 	value,
 	children,
 	unit,
-	displayName = true
+	displayName = true,
 }: NodeProps) {
 	return (
 		<StyledMecanism name={name}>
@@ -92,7 +92,7 @@ export function Mecanism({
 						style={{
 							textAlign: 'right',
 							marginTop: '0.4rem',
-							fontWeight: 'bold'
+							fontWeight: 'bold',
 						}}
 					>
 						<small> =&nbsp;</small>
@@ -108,7 +108,7 @@ export const InfixMecanism = ({
 	value,
 	prefixed,
 	children,
-	dimValue
+	dimValue,
 }: {
 	value: EvaluatedNode
 	children: React.ReactNode
@@ -147,7 +147,7 @@ export const InlineMecanismName = ({ name }: { name: string }) => {
 const MecanismName = ({
 	name,
 	inline = false,
-	children
+	children,
 }: {
 	name: string
 	inline?: boolean
@@ -214,13 +214,13 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 	padding: 0.4rem 0.6rem;
 	color: white;
 	transition: hover 0.2s;
-	${props =>
-			props.inline
-				? `
+	${(props) =>
+		props.inline
+			? `
 		display: inline-block;
 		border-radius: 0.3rem;
 		`
-				: `
+			: `
 		margin-bottom: 0.8rem;
 		display: block;
 
@@ -231,7 +231,7 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 			text-transform: capitalize;
 		}
 	`}
-		:hover {
+	:hover {
 		opacity: 0.8;
 	}
 `

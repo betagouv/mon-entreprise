@@ -27,7 +27,7 @@ function MecanismNonApplicable({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction<'non applicable si'> = function(node) {
+const evaluate: evaluationFunction<'non applicable si'> = function (node) {
 	const condition = this.evaluateNode(node.explanation.condition)
 	let valeur = node.explanation.valeur
 	if (condition.nodeValue === false || condition.nodeValue === null) {
@@ -48,19 +48,19 @@ const evaluate: evaluationFunction<'non applicable si'> = function(node) {
 			'missingVariables' in valeur ? valeur.missingVariables : {},
 			bonus(condition.missingVariables)
 		),
-		...('unit' in valeur && { unit: valeur.unit })
+		...('unit' in valeur && { unit: valeur.unit }),
 	}
 }
 
 export default function parseNonApplicable(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		condition: parse(v[parseNonApplicable.nom], context)
+		condition: parse(v[parseNonApplicable.nom], context),
 	}
 	return {
 		jsx: MecanismNonApplicable,
 		explanation,
-		nodeKind: parseNonApplicable.nom
+		nodeKind: parseNonApplicable.nom,
 	} as NonApplicableSiNode
 }
 

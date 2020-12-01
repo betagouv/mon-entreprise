@@ -65,7 +65,7 @@ export default function MoreInfosOnUs() {
 							style={{
 								width: '3rem',
 								height: '3rem',
-								margin: 0
+								margin: 0,
 							}}
 						>
 							<g>

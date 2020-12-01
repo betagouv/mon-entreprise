@@ -1,6 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Formulaire demande mobilité', function() {
+describe('Formulaire demande mobilité', function () {
 	if (!fr) {
 		return
 	}
@@ -49,11 +49,7 @@ describe('Formulaire demande mobilité', function() {
 			.wait(1500)
 		cy.contains('29240').click()
 		cy.contains('Organisme Urssaf').click()
-		cy.focused()
-			.type('Bretagne')
-			.tab()
-			.tab()
-			.type('Boulangerie')
+		cy.focused().type('Bretagne').tab().tab().type('Boulangerie')
 	})
 	it('should allow to complete "votre demande" section', () => {
 		cy.contains('Oui').click()
@@ -66,9 +62,7 @@ describe('Formulaire demande mobilité', function() {
 		cy.get("input[name='demande . date de fin connue'][value='oui']")
 			.next()
 			.click()
-		cy.get('label[for="détachement . pays"]')
-			.wait(1500)
-			.click()
+		cy.get('label[for="détachement . pays"]').wait(1500).click()
 		cy.focused()
 			.select('Irlande')
 			.tab()
@@ -78,9 +72,7 @@ describe('Formulaire demande mobilité', function() {
 			.tab()
 			.tab()
 			.type('Fabrications de gateaux bretons')
-		cy.get("input[name='détachement . base fixe'][value='non']")
-			.next()
-			.click()
+		cy.get("input[name='détachement . base fixe'][value='non']").next().click()
 		cy.get(
 			"input[name='commentaires additionnels . commentaires'][value='non']"
 		)

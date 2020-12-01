@@ -16,12 +16,12 @@ const [
 	intro,
 	ressources2019,
 	ressources2020,
-	ressourcesDescription
+	ressourcesDescription,
 ] = prose.split(/\r?\n-{3,}\r?\n/)
 
 const ressources = {
 	2019: ressources2019,
-	2020: ressources2020
+	2020: ressources2020,
 }
 
 export default function Budget() {
@@ -30,7 +30,7 @@ export default function Budget() {
 	const [selectedYear, setSelectedYear] = useState<typeof years[number]>('2020')
 	const categories = uniq(
 		quarters
-			.map(q => Object.keys(budget[2020][q] ?? {}))
+			.map((q) => Object.keys(budget[2020][q] ?? {}))
 			.reduce((acc, curr) => [...acc, ...curr], [])
 	)
 
@@ -44,11 +44,11 @@ export default function Budget() {
 				{emoji('📅')} Année{' '}
 				<select
 					value={selectedYear}
-					onChange={event =>
+					onChange={(event) =>
 						setSelectedYear(event.target.value as typeof years[number])
 					}
 				>
-					{years.map(year => (
+					{years.map((year) => (
 						<option key={year}>{year}</option>
 					))}
 				</select>
@@ -61,24 +61,24 @@ export default function Budget() {
 						<thead>
 							<tr>
 								<td>2020</td>
-								{quarters.map(q => (
+								{quarters.map((q) => (
 									<td key={q}>{q}</td>
 								))}
 								<td>Total</td>
 							</tr>
 						</thead>
 						<tbody>
-							{categories.map(label => (
+							{categories.map((label) => (
 								<tr key={label}>
 									<td>{label}</td>
-									{quarters.map(q => {
+									{quarters.map((q) => {
 										const value = budget[2020]?.[q]?.[label]
 										return (
 											<td key={q}>
 												{value
 													? formatValue(value, {
 															displayedUnit: '€',
-															language
+															language,
 													  })
 													: '-'}
 											</td>
@@ -86,10 +86,10 @@ export default function Budget() {
 									})}
 									<td>
 										{formatValue(
-											sum(quarters.map(q => budget[2020]?.[q]?.[label] ?? 0)),
+											sum(quarters.map((q) => budget[2020]?.[q]?.[label] ?? 0)),
 											{
 												displayedUnit: '€',
-												language
+												language,
 											}
 										)}
 									</td>
@@ -99,14 +99,14 @@ export default function Budget() {
 						<tfoot>
 							<tr>
 								<td>Total</td>
-								{quarters.map(q => {
+								{quarters.map((q) => {
 									const value = sum(Object.values(budget[2020]?.[q] ?? {}))
 									return (
 										<td key={q}>
 											{value
 												? formatValue(value, {
 														displayedUnit: '€',
-														language
+														language,
 												  })
 												: '-'}
 										</td>
@@ -115,13 +115,13 @@ export default function Budget() {
 								<td>
 									{formatValue(
 										sum(
-											quarters.map(q =>
+											quarters.map((q) =>
 												sum(Object.values(budget[2020]?.[q] ?? {}))
 											)
 										),
 										{
 											displayedUnit: '€',
-											language
+											language,
 										}
 									)}
 								</td>

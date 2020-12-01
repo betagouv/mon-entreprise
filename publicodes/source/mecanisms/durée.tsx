@@ -7,7 +7,7 @@ import {
 	defaultNode,
 	makeJsx,
 	mergeAllMissing,
-	parseObject
+	parseObject,
 } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { parseUnit } from '../units'
@@ -41,9 +41,9 @@ function MecanismDurée({ nodeValue, explanation, unit }) {
 const todayString = convertToString(new Date())
 const objectShape = {
 	depuis: defaultNode(todayString),
-	"jusqu'à": defaultNode(todayString)
+	"jusqu'à": defaultNode(todayString),
 }
-const evaluate: evaluationFunction<'durée'> = function(node) {
+const evaluate: evaluationFunction<'durée'> = function (node) {
 	const from = this.evaluateNode(node.explanation.depuis)
 	const to = this.evaluateNode(node.explanation["jusqu'à"])
 	let nodeValue
@@ -67,8 +67,8 @@ const evaluate: evaluationFunction<'durée'> = function(node) {
 		nodeValue,
 		explanation: {
 			depuis: from,
-			"jusqu'à": to
-		}
+			"jusqu'à": to,
+		},
 	}
 }
 
@@ -78,7 +78,7 @@ export default (v, context) => {
 		jsx: MecanismDurée,
 		explanation,
 		unit: parseUnit('jours'),
-		nodeKind: 'durée'
+		nodeKind: 'durée',
 	} as DuréeNode
 }
 

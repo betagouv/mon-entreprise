@@ -1,7 +1,7 @@
 import { setSimulationConfig } from 'Actions/actions'
 import {
 	defineDirectorStatus,
-	isAutoentrepreneur
+	isAutoentrepreneur,
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
@@ -16,7 +16,7 @@ import {
 	useContext,
 	useMemo,
 	useState,
-	useEffect
+	useEffect,
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -34,7 +34,7 @@ type SchemeComparaisonProps = {
 
 export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
-	hideAssimiléSalarié = false
+	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
 	const dispatch = useDispatch()
 	useEffect(() => {
@@ -51,7 +51,7 @@ export default function SchemeComparaison({
 		!!Object.keys(useSelector(situationSelector)).length
 	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
-		setConversationStarted
+		setConversationStarted,
 	])
 
 	const parsedRules = engine.getParsedRules()
@@ -62,7 +62,7 @@ export default function SchemeComparaison({
 		() =>
 			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'assimilé salarié'"
+				dirigeant: "'assimilé salarié'",
 			}),
 		[situation]
 	)
@@ -70,7 +70,7 @@ export default function SchemeComparaison({
 		() =>
 			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'auto-entrepreneur'"
+				dirigeant: "'auto-entrepreneur'",
 			}),
 		[situation]
 	)
@@ -78,7 +78,7 @@ export default function SchemeComparaison({
 		() =>
 			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'indépendant'"
+				dirigeant: "'indépendant'",
 			}),
 		[situation]
 	)
@@ -87,7 +87,7 @@ export default function SchemeComparaison({
 			<div
 				className={classnames('comparaison-grid', {
 					hideAutoEntrepreneur,
-					hideAssimiléSalarié
+					hideAssimiléSalarié,
 				})}
 			>
 				<h2 className="AS">

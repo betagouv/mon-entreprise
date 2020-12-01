@@ -23,7 +23,7 @@ const knownOperations = {
 	'>': [(a, b) => a > b],
 	'>=': [(a, b) => a >= b, '≥'],
 	'=': [(a, b) => equals(a, b)],
-	'!=': [(a, b) => !equals(a, b), '≠']
+	'!=': [(a, b) => !equals(a, b), '≠'],
 } as const
 export type OperationNode = {
 	nodeKind: 'operation'
@@ -34,7 +34,7 @@ export type OperationNode = {
 }
 
 const parseOperation = (k, symbol) => (v, context) => {
-	const explanation = v.explanation.map(node => parse(node, context))
+	const explanation = v.explanation.map((node) => parse(node, context))
 
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Operation value={nodeValue} unit={unit}>
@@ -51,15 +51,14 @@ const parseOperation = (k, symbol) => (v, context) => {
 		nodeKind: 'operation',
 		operationKind: k,
 		operator: symbol || k,
-		explanation
+		explanation,
 	} as OperationNode
 }
 
-const evaluate: evaluationFunction<'operation'> = function(node) {
-	const explanation = node.explanation.map(node => this.evaluateNode(node)) as [
-		EvaluatedNode,
-		EvaluatedNode
-	]
+const evaluate: evaluationFunction<'operation'> = function (node) {
+	const explanation = node.explanation.map((node) =>
+		this.evaluateNode(node)
+	) as [EvaluatedNode, EvaluatedNode]
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 
@@ -94,9 +93,9 @@ const evaluate: evaluationFunction<'operation'> = function(node) {
 			node.operationKind === '/' ||
 			node.operationKind === '-' ||
 			node.operationKind === '+') && {
-			unit: inferUnit(node.operationKind, [node1.unit, node2.unit])
+			unit: inferUnit(node.operationKind, [node1.unit, node2.unit]),
 		}),
-		missingVariables
+		missingVariables,
 	}
 
 	const operatorFunction = knownOperations[node.operationKind][0]
@@ -116,7 +115,7 @@ const evaluate: evaluationFunction<'operation'> = function(node) {
 				a !== false &&
 				b !== false &&
 				['≠', '=', '<', '>', '≤', '≥'].includes(node.operator) &&
-				[a, b].every(value => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
+				[a, b].every((value) => value.match?.(/[\d]{2}\/[\d]{2}\/[\d]{4}/))
 			) {
 				return operatorFunction(convertToDate(a), convertToDate(b))
 			}
@@ -130,7 +129,7 @@ const evaluate: evaluationFunction<'operation'> = function(node) {
 	return {
 		...baseNode,
 		nodeValue,
-		...(temporalValue.length > 1 && { temporalValue })
+		...(temporalValue.length > 1 && { temporalValue }),
 	}
 }
 
@@ -139,7 +138,7 @@ registerEvaluationFunction('operation', evaluate)
 const operationDispatch = fromPairs(
 	Object.entries(knownOperations).map(([k, [f, symbol]]) => [
 		k,
-		parseOperation(k, symbol)
+		parseOperation(k, symbol),
 	])
 )
 

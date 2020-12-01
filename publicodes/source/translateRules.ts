@@ -24,7 +24,7 @@ const translateSuggestion: translateAttribute = (
 				[translation[`${prop}.${name}.${lang}`]?.replace(
 					/^\[automatic\] /,
 					''
-				)]: value
+				)]: value,
 			}),
 			{}
 		),
@@ -37,7 +37,7 @@ export const attributesToTranslate = [
 	'question',
 	'résumé',
 	'suggestions',
-	'note'
+	'note',
 ]
 
 const translateProp = (lang: string, translation: Translation) => (

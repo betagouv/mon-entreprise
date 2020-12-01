@@ -21,7 +21,7 @@ export default function CompanyDetails({ siren, denomination }: Etablissement) {
 			new Intl.DateTimeFormat(i18n.language, {
 				month: 'short',
 				day: 'numeric',
-				year: 'numeric'
+				year: 'numeric',
 			}),
 		[i18n.language]
 	)

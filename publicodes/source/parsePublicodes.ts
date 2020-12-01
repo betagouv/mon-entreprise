@@ -5,7 +5,7 @@ import parse from './parse'
 import {
 	getReplacements,
 	inlineReplacements,
-	ReplacementNode
+	ReplacementNode,
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import { disambiguateRuleReference } from './ruleUtils'
@@ -37,7 +37,7 @@ export default function parsePublicodes(
 	// STEP 3: Rules parsing
 	const context: Context = {
 		dottedName: partialContext.dottedName ?? '',
-		parsedRules: partialContext.parsedRules ?? {}
+		parsedRules: partialContext.parsedRules ?? {},
 	}
 
 	Object.entries(rules).forEach(([dottedName, rule]) => {
@@ -46,7 +46,7 @@ export default function parsePublicodes(
 		}
 		if (typeof rule !== 'object') {
 			rule = {
-				formule: '' + rule
+				formule: '' + rule,
 			}
 		}
 		parse({ nom: dottedName, ...rule }, context)
@@ -97,14 +97,14 @@ function transpileRef(object: Record<string, any> | string | Array<any>) {
 			...obj,
 			[argumentType]: {
 				nom: argumentName,
-				valeur: transpileRef(value)
-			}
+				valeur: transpileRef(value),
+			},
 		}
 	}, {})
 }
 
 export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
-	updateAST(node => {
+	updateAST((node) => {
 		if (node.nodeKind === 'reference') {
 			const dottedName = disambiguateRuleReference(
 				parsedRules,
@@ -115,7 +115,7 @@ export const disambiguateReference = (parsedRules: Record<string, RuleNode>) =>
 				...node,
 				dottedName,
 				title: parsedRules[dottedName].title,
-				acronym: parsedRules[dottedName].rawNode.acronyme
+				acronym: parsedRules[dottedName].rawNode.acronyme,
 			}
 		}
 	})

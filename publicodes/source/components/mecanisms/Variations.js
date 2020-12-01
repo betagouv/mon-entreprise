@@ -41,7 +41,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 									opacity:
 										expandedVariation === i || satisfied || nodeValue == null
 											? 1
-											: 0.8
+											: 0.8,
 								}}
 							>
 								{!satisfied && nodeValue != null && (
@@ -74,7 +74,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													display: 'flex',
 													flexWrap: 'wrap',
 													alignItems: 'baseline',
-													marginBottom: '0.4rem'
+													marginBottom: '0.4rem',
 												}}
 											>
 												<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
@@ -85,12 +85,12 @@ export default function Variations({ nodeValue, explanation, unit }) {
 												display: 'flex',
 												width: 'fit-content',
 												flexWrap: 'wrap',
-												alignItems: 'baseline'
+												alignItems: 'baseline',
 											}}
 										>
 											<span
 												className={classnames('consequenceType', {
-													satisfied
+													satisfied,
 												})}
 											>
 												{!condition.isDefault ? (
@@ -102,7 +102,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 											</span>
 											<span
 												className={classnames('consequenceContent', {
-													satisfied
+													satisfied,
 												})}
 											>
 												{consequence && makeJsx(consequence)}
