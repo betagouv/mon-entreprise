@@ -36,7 +36,7 @@ const Switch = styled.label`
 		right: 0;
 		bottom: 0;
 		background-color: #ccc;
-		transition: 0.4s;
+		transition: 0.1s;
 	}
 
 	.slider:before {
@@ -47,7 +47,7 @@ const Switch = styled.label`
 		left: 4px;
 		bottom: 4px;
 		background-color: white;
-		transition: 0.4s;
+		transition: 0.1s;
 	}
 
 	input:checked + .slider {

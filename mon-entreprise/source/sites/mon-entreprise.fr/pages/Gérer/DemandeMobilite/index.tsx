@@ -6,13 +6,14 @@ import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
 import Engine, { evaluateRule } from 'publicodes'
+import { equals } from 'ramda'
 import {
 	lazy,
 	createElement,
 	Suspense,
 	useCallback,
 	useState,
-	useContext
+	useContext,
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
@@ -87,17 +88,20 @@ export default function FormulaireMobilitéIndépendant() {
 	)
 }
 
-const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
+const useFields = (
+	engine: Engine<string>,
+	fieldNames: Array<string>,
+	situation: Record<string, unknown>
+) => {
 	const fields = fieldNames
-		.map(name => evaluateRule(engine, name))
+		.map((name) => evaluateRule(engine, name))
 		.filter(
-			node =>
-				// TODO
-				// node.isApplicable !== false &&
-				// node.isApplicable !== null &&
-				node.nodeValue !== false &&
-				node.nodeValue !== null &&
-				(node.question || node.type || node.API)
+			(node) =>
+				// TODO change this when not applicable value can be differenciated from false value
+				(equals(node.missingVariables, { [node.dottedName]: 1 }) ||
+					node.dottedName in situation ||
+					(node.nodeValue !== false && node.nodeValue !== null)) &&
+				(node.question || ((node.type || node.API) && node.nodeValue !== false))
 		)
 	return fields
 }
@@ -111,9 +115,9 @@ function FormulairePublicodes() {
 	)
 	const onChange = useCallback(
 		(dottedName, value) => {
-			setSituation(situation => ({
+			setSituation((situation) => ({
 				...situation,
-				[dottedName]: value
+				[dottedName]: value,
 			}))
 		},
 		[setSituation]
@@ -127,7 +131,7 @@ function FormulairePublicodes() {
 	}, [clearFieldsKey, setSituation])
 
 	engine.setSituation(situation)
-	const fields = useFields(engine, Object.keys(formulaire))
+	const fields = useFields(engine, Object.keys(formulaire), situation)
 	const missingValues = fields.filter(
 		({ dottedName, type }) =>
 			type !== 'groupe' &&
@@ -136,7 +140,7 @@ function FormulairePublicodes() {
 	const isMissingValues = !!missingValues.length
 	return (
 		<Animate.fromTop key={clearFieldsKey}>
-			{fields.map(field => (
+			{fields.map((field) => (
 				<Animate.fromTop key={field.dottedName}>
 					{field.type === 'groupe' ? (
 						<>
@@ -171,7 +175,7 @@ function FormulairePublicodes() {
 							<RuleInput
 								id={field.dottedName}
 								dottedName={field.dottedName}
-								onChange={value => onChange(field.dottedName, value)}
+								onChange={(value) => onChange(field.dottedName, value)}
 							/>
 						</>
 					)}

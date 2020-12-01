@@ -33,7 +33,7 @@ export type PlancherNode = {
 	jsx: any
 	nodeKind: 'plancher'
 }
-const evaluate: evaluationFunction<'plancher'> = function(node) {
+const evaluate: evaluationFunction<'plancher'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher
@@ -65,19 +65,19 @@ const evaluate: evaluationFunction<'plancher'> = function(node) {
 		nodeValue,
 		...('unit' in valeur && { unit: valeur.unit }),
 		explanation: { valeur, plancher },
-		missingVariables: mergeAllMissing([valeur, plancher])
+		missingVariables: mergeAllMissing([valeur, plancher]),
 	}
 }
 
 export default function Plancher(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		plancher: parse(v.plancher, context)
+		plancher: parse(v.plancher, context),
 	}
 	return {
 		jsx: MecanismPlancher,
 		explanation,
-		nodeKind: 'plancher'
+		nodeKind: 'plancher',
 	} as PlancherNode
 }
 

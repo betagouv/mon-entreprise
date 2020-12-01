@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme'
 import { match, spy, useFakeTimers } from 'sinon'
 import CurrencyInput from './CurrencyInput'
 
-let getInput = component => mount(component).find('input')
+let getInput = (component) => mount(component).find('input')
 describe('CurrencyInput', () => {
 	it('should render an input', () => {
 		expect(getInput(<CurrencyInput />)).to.have.length(1)
@@ -76,19 +76,9 @@ describe('CurrencyInput', () => {
 
 	it('should change the position of the currency symbol depending on the language', () => {
 		const inputFr = shallow(<CurrencyInput language="fr" />)
-		expect(
-			inputFr
-				.children()
-				.last()
-				.text()
-		).to.includes('€')
+		expect(inputFr.children().last().text()).to.includes('€')
 		const inputEn = shallow(<CurrencyInput language="en" />)
-		expect(
-			inputEn
-				.children()
-				.first()
-				.text()
-		).to.includes('€')
+		expect(inputEn.children().first().text()).to.includes('€')
 	})
 
 	it('should debounce onChange call', () => {
@@ -155,22 +145,22 @@ describe('CurrencyInput', () => {
 		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: '-', focus: () => {} }
+				target: { value: '-', focus: () => {} },
 			})
 		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: ',', focus: () => {} }
+				target: { value: ',', focus: () => {} },
 			})
 		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: ',5', focus: () => {} }
+				target: { value: ',5', focus: () => {} },
 			})
 		mount(<CurrencyInput language="fr" onChange={onChange} />)
 			.find('input')
 			.simulate('change', {
-				target: { value: '8,', focus: () => {} }
+				target: { value: '8,', focus: () => {} },
 			})
 		expect(onChange).not.to.have.been.called
 	})

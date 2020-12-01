@@ -14,11 +14,11 @@ const references = {
 	'senat.fr': require('url-loader!./références/senat.png').default,
 	'ameli.fr': require('url-loader!./références/ameli.png').default,
 	'bpifrance-creation': require('url-loader!./références/bpi-création.png')
-		.default
+		.default,
 }
 
 const findRefKey = (link: string) =>
-	Object.keys(references).find(r => link.includes(r))
+	Object.keys(references).find((r) => link.includes(r))
 
 const cleanDomain = (link: string) =>
 	(link.includes('://') ? link.split('/')[2] : link.split('/')[0]).replace(
@@ -38,7 +38,7 @@ function Ref({ name, link }: RefProps) {
 		<li
 			style={{
 				display: 'flex',
-				alignItems: 'center'
+				alignItems: 'center',
 			}}
 			key={name}
 		>
@@ -49,7 +49,7 @@ function Ref({ name, link }: RefProps) {
 				href={link}
 				target="_blank"
 				style={{
-					marginRight: '1rem'
+					marginRight: '1rem',
 				}}
 			>
 				{capitalise0(name)}

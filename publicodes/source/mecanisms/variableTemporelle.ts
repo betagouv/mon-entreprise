@@ -6,7 +6,7 @@ import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
 	Temporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
 
 export type VariableTemporelleNode = {
@@ -22,7 +22,7 @@ export type VariableTemporelleNode = {
 	nodeKind: 'variable temporelle'
 }
 
-const evaluate: evaluationFunction<'variable temporelle'> = function(
+const evaluate: evaluationFunction<'variable temporelle'> = function (
 	node: any
 ) {
 	const start =
@@ -34,7 +34,7 @@ const evaluate: evaluationFunction<'variable temporelle'> = function(
 	const value = this.evaluateNode(node.explanation.value)
 	const period = {
 		start: start?.nodeValue || null,
-		end: end?.nodeValue || null
+		end: end?.nodeValue || null,
 	}
 	const temporalValue = value.temporalValue
 		? narrowTemporalValue(period, value.temporalValue)
@@ -46,9 +46,9 @@ const evaluate: evaluationFunction<'variable temporelle'> = function(
 		temporalValue,
 		explanation: {
 			period: { start, end },
-			value
+			value,
 		},
-		...('unit' in value && { unit: value.unit })
+		...('unit' in value && { unit: value.unit }),
 	}
 }
 
@@ -63,10 +63,10 @@ export default function parseVariableTemporelle(
 		explanation: {
 			period: {
 				start: v.period.start && parse(v.period.start, context),
-				end: v.period.end && parse(v.period.end, context)
+				end: v.period.end && parse(v.period.end, context),
 			},
-			value: explanation
-		}
+			value: explanation,
+		},
 	}
 }
 

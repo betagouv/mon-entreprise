@@ -31,12 +31,12 @@ export type SituationNode = {
 export default function parseSituation(v, context) {
 	const explanation = {
 		situationKey: v[parseSituation.nom],
-		valeur: parse(v.valeur, context)
+		valeur: parse(v.valeur, context),
 	}
 	return {
 		jsx: MecanismSituation,
 		nodeKind: parseSituation.nom,
-		explanation
+		explanation,
 	} as SituationNode
 }
 
@@ -59,9 +59,9 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 		valeur.unit ??
 		('unit' in explanation.valeur ? explanation.valeur.unit : undefined)
 	const missingVariables = mergeAllMissing(
-		[explanation.situationValeur, explanation.valeur].filter(Boolean) as Array<
-			EvaluatedRule
-		>
+		[explanation.situationValeur, explanation.valeur].filter(
+			Boolean
+		) as Array<EvaluatedRule>
 	)
 	return {
 		...node,
@@ -71,6 +71,6 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 				? { [situationKey]: 1 }
 				: missingVariables,
 		...(unit !== undefined && { unit }),
-		explanation
+		explanation,
 	}
 })

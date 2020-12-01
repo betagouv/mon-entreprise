@@ -8,7 +8,7 @@ export default function ParagrapheInput({
 	value,
 	id,
 	missing,
-	autoFocus
+	autoFocus,
 }: InputCommonProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
@@ -26,7 +26,7 @@ export default function ParagrapheInput({
 				{...{
 					[missing ? 'placeholder' : 'defaultValue']: (
 						(value as string) || ''
-					).replace('\\n', '\n')
+					).replace('\\n', '\n'),
 				}}
 				autoComplete="off"
 			/>

@@ -12,7 +12,7 @@ export default (tracker: Tracker) => {
 				'Simulator::answer',
 				action.source,
 				action.step,
-				situationSelector(newState)[action.step as DottedName]
+				situationSelector(newState)[action.step as DottedName],
 			])
 
 			// TODO : add tracking in UI instead ?
@@ -31,7 +31,7 @@ export default (tracker: Tracker) => {
 				'trackEvent',
 				'Simulator',
 				'target selected',
-				newState.activeTargetInput
+				newState.activeTargetInput,
 			])
 		}
 
@@ -45,7 +45,7 @@ export default (tracker: Tracker) => {
 				'update situation',
 				...(action.type === 'UPDATE_TARGET_UNIT'
 					? ['unité', action.targetUnit]
-					: [action.fieldName, action.value])
+					: [action.fieldName, action.value]),
 			])
 		}
 		if (action.type === 'START_CONVERSATION') {
@@ -55,8 +55,8 @@ export default (tracker: Tracker) => {
 				'conversation started',
 				JSON.stringify({
 					target: newState.activeTargetInput,
-					question: action.question
-				})
+					question: action.question,
+				}),
 			])
 		}
 		if (action.type == 'STEP_ACTION' && action.name == 'unfold') {
@@ -64,7 +64,7 @@ export default (tracker: Tracker) => {
 				'trackEvent',
 				'Simulator',
 				'change answer',
-				action.step
+				action.step,
 			])
 		}
 
@@ -76,7 +76,7 @@ export default (tracker: Tracker) => {
 				'trackEvent',
 				'Creation',
 				'status chosen',
-				action.statusName
+				action.statusName,
 			])
 		}
 	}

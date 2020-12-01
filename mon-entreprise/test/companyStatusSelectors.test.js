@@ -1,20 +1,20 @@
 import { expect } from 'chai'
 import { nextQuestionSelector } from 'Selectors/companyStatusSelectors'
-const state = companyLegalStatus => ({
+const state = (companyLegalStatus) => ({
 	inFranceApp: {
 		companyLegalStatus,
 		existingCompany: null,
-		companyStatusChoice: null
-	}
+		companyStatusChoice: null,
+	},
 })
-describe('company status selectors', function() {
-	describe('nextQuestionSelector', function() {
+describe('company status selectors', function () {
+	describe('nextQuestionSelector', function () {
 		it('should return null there is only one status possible', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
 					soleProprietorship: true,
 					directorStatus: 'SELF_EMPLOYED',
-					multipleAssociates: true
+					multipleAssociates: true,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -30,7 +30,7 @@ describe('company status selectors', function() {
 					directorStatus: null,
 					autoEntrepreneur: null,
 					multipleAssociates: null,
-					minorityDirector: null
+					minorityDirector: null,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -39,7 +39,7 @@ describe('company status selectors', function() {
 			let nextQuestion = nextQuestionSelector(
 				state({
 					directorStatus: null,
-					multipleAssociates: null
+					multipleAssociates: null,
 				})
 			)
 			expect(['directorStatus', 'multipleAssociates']).not.to.contain(
@@ -49,7 +49,7 @@ describe('company status selectors', function() {
 			nextQuestion = nextQuestionSelector(
 				state({
 					directorStatus: 'SALARIED',
-					soleProprietorship: false
+					soleProprietorship: false,
 				})
 			)
 			expect(['directorStatus', 'soleProprietorship']).not.to.contain(
@@ -59,7 +59,7 @@ describe('company status selectors', function() {
 			nextQuestion = nextQuestionSelector(
 				state({
 					multipleAssociates: true,
-					soleProprietorship: false
+					soleProprietorship: false,
 				})
 			)
 			expect(['multipleAssociates', 'soleProprietorship']).not.to.contain(
@@ -70,7 +70,7 @@ describe('company status selectors', function() {
 			const nextQuestion = nextQuestionSelector(
 				state({
 					multipleAssociates: true,
-					minorityDirector: true
+					minorityDirector: true,
 				})
 			)
 			expect(nextQuestion).to.be.equal(null)
@@ -79,7 +79,7 @@ describe('company status selectors', function() {
 			const nextQuestion = nextQuestionSelector(
 				state({
 					soleProprietorship: false,
-					directorStatus: 'SALARIED'
+					directorStatus: 'SALARIED',
 				})
 			)
 			expect(nextQuestion).not.to.be.equal(null)
@@ -92,7 +92,7 @@ describe('company status selectors', function() {
 		it('should allow to skip question', () => {
 			const nextQuestion = nextQuestionSelector(
 				state({
-					multipleAssociates: null
+					multipleAssociates: null,
 				})
 			)
 			expect(nextQuestion).not.to.be.equal(null)

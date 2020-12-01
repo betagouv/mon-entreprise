@@ -10,7 +10,7 @@ export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'SASU',
 	'auto-entrepreneur',
 	'auto-entrepreneur-EIRL',
-	'SA'
+	'SA',
 ]
 
 type LocalizedPath = string
@@ -27,7 +27,7 @@ const sitePathsFr = {
 	créer: {
 		index: '/créer',
 		...(Object.fromEntries(
-			LANDING_LEGAL_STATUS_LIST.map(statut => [statut, `/${statut}`])
+			LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, `/${statut}`])
 		) as { [statut in LegalStatus]: string }),
 		après: '/après-la-création',
 		guideStatut: {
@@ -37,15 +37,15 @@ const sitePathsFr = {
 			directorStatus: '/dirigeant',
 			autoEntrepreneur: '/auto-entrepreneur-ou-entreprise-individuelle',
 			multipleAssociates: '/nombre-associés',
-			minorityDirector: '/gérant-majoritaire-ou-minoritaire'
-		}
+			minorityDirector: '/gérant-majoritaire-ou-minoritaire',
+		},
 	},
 	gérer: {
 		index: '/gérer',
 		embaucher: '/embaucher',
 		sécuritéSociale: '/sécurité-sociale',
 		déclarationIndépendant: '/aide-declaration-independants',
-		formulaireMobilité: '/demande-mobilité'
+		formulaireMobilité: '/demande-mobilité',
 	},
 	simulateurs: {
 		index: '/simulateurs',
@@ -62,13 +62,13 @@ const sitePathsFr = {
 			'chirurgien-dentiste': '/chirurgien-dentiste',
 			'sage-femme': '/sage-femme',
 			avocat: '/avocat',
-			'expert-comptable': '/expert-comptable'
+			'expert-comptable': '/expert-comptable',
 		},
 		'chômage-partiel': '/chômage-partiel',
 		économieCollaborative: {
 			index: '/économie-collaborative',
-			votreSituation: '/votre-situation'
-		}
+			votreSituation: '/votre-situation',
+		},
 	},
 	nouveautés: '/nouveautés',
 	stats: '/stats',
@@ -76,11 +76,11 @@ const sitePathsFr = {
 	integration: {
 		index: '/intégration',
 		iframe: '/iframe',
-		library: '/bibliothèque-de-calcul'
+		library: '/bibliothèque-de-calcul',
 	},
 	documentation: {
-		index: '/documentation'
-	}
+		index: '/documentation',
+	},
 } as const
 
 const sitePathsEn = {
@@ -96,15 +96,15 @@ const sitePathsEn = {
 			directorStatus: '/director',
 			autoEntrepreneur: '/auto-entrepreneur',
 			multipleAssociates: '/multiple-associates',
-			minorityDirector: '/chairman-or-managing-director'
-		}
+			minorityDirector: '/chairman-or-managing-director',
+		},
 	},
 	gérer: {
 		index: '/manage',
 		embaucher: '/hiring',
 		sécuritéSociale: '/social-security',
 		déclarationIndépendant: '/declaration-aid-independent',
-		formulaireMobilité: '/posting-demand'
+		formulaireMobilité: '/posting-demand',
 	},
 	simulateurs: {
 		index: '/calculators',
@@ -122,19 +122,19 @@ const sitePathsEn = {
 			'chirurgien-dentiste': '/dental-surgeon',
 			'sage-femme': '/midwife',
 			avocat: '/lawyer',
-			'expert-comptable': '/accountant'
+			'expert-comptable': '/accountant',
 		},
 		économieCollaborative: {
 			index: '/sharing-economy',
-			votreSituation: '/your-situation'
-		}
+			votreSituation: '/your-situation',
+		},
 	},
 	nouveautés: '/news',
 	integration: {
 		...sitePathsFr.integration,
 		index: '/integration',
-		library: '/library'
-	}
+		library: '/library',
+	},
 } as const
 
 function constructSitePaths<T extends SitePathObject<T>>(
@@ -149,7 +149,7 @@ function constructSitePaths<T extends SitePathObject<T>>(
 				: typeof value === 'function'
 				? (...args: Array<unknown>) => root + index + String(value(...args))
 				: constructSitePaths(root + index, value as any)
-		)(sitePaths as any)
+		)(sitePaths as any),
 	} as any
 }
 
@@ -178,20 +178,20 @@ export const generateSiteMap = (sitePaths: SitePathsType): SiteMap =>
 		sitePaths
 	)
 
-const enSiteMap = generateSiteMap(constructLocalizedSitePath('en')).map(path =>
-	(process.env.EN_SITE || '').replace('${path}', path)
-)
-const frSiteMap = generateSiteMap(constructLocalizedSitePath('fr')).map(path =>
-	(process.env.FR_SITE || '').replace('${path}', path)
-)
+const enSiteMap = generateSiteMap(
+	constructLocalizedSitePath('en')
+).map((path) => (process.env.EN_SITE || '').replace('${path}', path))
+const frSiteMap = generateSiteMap(
+	constructLocalizedSitePath('fr')
+).map((path) => (process.env.FR_SITE || '').replace('${path}', path))
 
 export const hrefLangLink = {
 	en: zipObj(
 		enSiteMap,
-		frSiteMap.map(href => [{ href, hrefLang: 'fr' }])
+		frSiteMap.map((href) => [{ href, hrefLang: 'fr' }])
 	),
 	fr: zipObj(
 		frSiteMap,
-		enSiteMap.map(href => [{ href, hrefLang: 'en' }])
-	)
+		enSiteMap.map((href) => [{ href, hrefLang: 'en' }])
+	),
 }

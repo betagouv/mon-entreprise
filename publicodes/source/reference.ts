@@ -22,7 +22,7 @@ export default function parseReference(
 		nodeKind: 'reference',
 		jsx: Leaf,
 		name: v,
-		contextDottedName: context.dottedName
+		contextDottedName: context.dottedName,
 	}
 }
 
@@ -36,6 +36,6 @@ registerEvaluationFunction('reference', function evaluateReference(node) {
 		explanation,
 		missingVariables: explanation.missingVariables,
 		nodeValue: explanation.nodeValue,
-		...('unit' in explanation && { unit: explanation.unit })
+		...('unit' in explanation && { unit: explanation.unit }),
 	}
 })

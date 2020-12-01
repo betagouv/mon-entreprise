@@ -10,7 +10,7 @@ type ProgressProps = {
 export default function Progress({
 	progress,
 	style,
-	className
+	className,
 }: ProgressProps) {
 	return (
 		<div className={'progress__container ' + className} style={style}>

@@ -6,7 +6,7 @@ import {
 	map,
 	mapObjIndexed,
 	mergeWith,
-	reduce
+	reduce,
 } from 'ramda'
 import React from 'react'
 import Engine, { evaluationFunction } from '.'
@@ -15,7 +15,7 @@ import {
 	ConstantNode,
 	Evaluation,
 	EvaluatedNode,
-	NodeKind
+	NodeKind,
 } from './AST/types'
 import { InternalError, typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
@@ -27,7 +27,7 @@ import {
 	pureTemporal,
 	Temporal,
 	temporalAverage,
-	zipTemporals
+	zipTemporals,
 } from './temporal'
 
 export const makeJsx = (node: ASTNode): JSX.Element => {
@@ -44,7 +44,7 @@ export const collectNodeMissing = (
 	'missingVariables' in node ? node.missingVariables : {}
 
 export const bonus = (missings, hasCondition = true) =>
-	hasCondition ? map(x => x + 0.0001, missings || {}) : missings
+	hasCondition ? map((x) => x + 0.0001, missings || {}) : missings
 export const mergeMissing = (
 	left: Record<string, number> | undefined,
 	right: Record<string, number> | undefined
@@ -54,19 +54,19 @@ export const mergeAllMissing = (missings: Array<EvaluatedNode | ASTNode>) =>
 	missings.map(collectNodeMissing).reduce(mergeMissing, {})
 
 function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
-	const firstNodeWithUnit = nodes.find(node => !!node.unit)
+	const firstNodeWithUnit = nodes.find((node) => !!node.unit)
 	if (!firstNodeWithUnit) {
 		return nodes
 	}
-	return nodes.map(node => {
+	return nodes.map((node) => {
 		try {
 			return convertNodeToUnit(firstNodeWithUnit.unit, node)
 		} catch (e) {
 			typeWarning(
 				contextRule,
-				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${node?.name ||
-					node?.rawNode}\n\t\t${firstNodeWithUnit?.name ||
-					firstNodeWithUnit?.rawNode}'`,
+				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${
+					node?.name || node?.rawNode
+				}\n\t\t${firstNodeWithUnit?.name || firstNodeWithUnit?.rawNode}'`,
 				e
 			)
 			return node
@@ -78,7 +78,7 @@ export const evaluateArray: <NodeName extends NodeKind>(
 	reducer: Parameters<typeof reduce>[0],
 	start: Parameters<typeof reduce>[1]
 ) => evaluationFunction<NodeName> = (reducer, start) =>
-	function(node: any) {
+	function (node: any) {
 		const evaluate = this.evaluateNode.bind(this)
 		const evaluatedNodes = convertNodesToSameUnit(
 			node.explanation.map(evaluate),
@@ -92,8 +92,8 @@ export const evaluateArray: <NodeName extends NodeKind>(
 					temporalValue ?? pureTemporal(nodeValue)
 			)
 		)
-		const temporalValue = mapTemporal(values => {
-			if (values.some(value => value === null)) {
+		const temporalValue = mapTemporal((values) => {
+			if (values.some((value) => value === null)) {
 				return null
 			}
 			return reduce(reducer, start, values)
@@ -103,19 +103,19 @@ export const evaluateArray: <NodeName extends NodeKind>(
 			...node,
 			missingVariables: mergeAllMissing(evaluatedNodes),
 			explanation: evaluatedNodes,
-			...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit })
+			...(evaluatedNodes[0] && { unit: evaluatedNodes[0].unit }),
 		}
 		if (temporalValue.length === 1) {
 			return {
 				...baseEvaluation,
-				nodeValue: temporalValue[0].value
+				nodeValue: temporalValue[0].value,
 			}
 		}
 
 		return {
 			...baseEvaluation,
 			temporalValue,
-			nodeValue: temporalAverage(temporalValue as any)
+			nodeValue: temporalAverage(temporalValue as any),
 		}
 	}
 
@@ -128,11 +128,11 @@ export const defaultNode = (nodeValue: Evaluation) =>
 			<span className="value">{nodeValue}</span>
 		),
 		isDefault: true,
-		nodeKind: 'constant'
+		nodeKind: 'constant',
 	} as ConstantNode)
 
 export const parseObject = (objectShape, value, context) => {
-	const recurseOne = key => defaultValue => {
+	const recurseOne = (key) => (defaultValue) => {
 		if (value[key] == null && !defaultValue)
 			throw new Error(
 				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
@@ -140,7 +140,7 @@ export const parseObject = (objectShape, value, context) => {
 		return value[key] != null ? parse(value[key], context) : defaultValue
 	}
 	const transforms = fromPairs(
-		map(k => [k, recurseOne(k)], keys(objectShape)) as any
+		map((k) => [k, recurseOne(k)], keys(objectShape)) as any
 	)
 	return evolve(transforms as any, objectShape)
 }
@@ -148,7 +148,7 @@ export const parseObject = (objectShape, value, context) => {
 export function evaluateObject<NodeName extends NodeKind>(
 	effet: (this: Engine, explanations: any) => any
 ) {
-	return function(node) {
+	return function (node) {
 		const evaluate = this.evaluateNode.bind(this)
 		const evaluations: Record<string, EvaluatedNode> = mapObjIndexed(
 			evaluate as any,
@@ -162,25 +162,26 @@ export function evaluateObject<NodeName extends NodeKind>(
 				)
 			)
 		)
-		const temporalExplanation = mapTemporal(explanations => {
+		const temporalExplanation = mapTemporal((explanations) => {
 			const evaluation = effet.call(this, explanations)
 			return {
 				...evaluation,
 				explanation: {
 					...explanations,
-					...evaluation.explanation
-				}
+					...evaluation.explanation,
+				},
 			}
 		}, temporalExplanations)
 
-		const sameUnitTemporalExplanation: Temporal<ASTNode &
-			EvaluatedNode & { nodeValue: number }> = convertNodesToSameUnit(
-			temporalExplanation.map(x => x.value),
+		const sameUnitTemporalExplanation: Temporal<
+			ASTNode & EvaluatedNode & { nodeValue: number }
+		> = convertNodesToSameUnit(
+			temporalExplanation.map((x) => x.value),
 			this.cache._meta.contextRule,
 			node.nodeKind
 		).map((node, i) => ({
 			...temporalExplanation[i],
-			value: simplifyNodeUnit(node)
+			value: simplifyNodeUnit(node),
 		}))
 
 		const temporalValue = mapTemporal(
@@ -193,18 +194,18 @@ export function evaluateObject<NodeName extends NodeKind>(
 			nodeValue,
 			unit: sameUnitTemporalExplanation[0].value.unit,
 			explanation: evaluations,
-			missingVariables: mergeAllMissing(Object.values(evaluations))
+			missingVariables: mergeAllMissing(Object.values(evaluations)),
 		}
 		if (sameUnitTemporalExplanation.length === 1) {
 			return {
 				...baseEvaluation,
-				explanation: (sameUnitTemporalExplanation[0] as any).value.explanation
+				explanation: (sameUnitTemporalExplanation[0] as any).value.explanation,
 			}
 		}
 		return {
 			...baseEvaluation,
 			temporalValue,
-			temporalExplanation
+			temporalExplanation,
 		}
 	} as evaluationFunction<NodeName>
 }

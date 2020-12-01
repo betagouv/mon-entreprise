@@ -30,7 +30,7 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-const evaluate: evaluationFunction<'arrondi'> = function(node) {
+const evaluate: evaluationFunction<'arrondi'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
@@ -52,19 +52,19 @@ const evaluate: evaluationFunction<'arrondi'> = function(node) {
 				: valeur.nodeValue,
 		explanation: { valeur, arrondi },
 		missingVariables: mergeAllMissing([valeur, arrondi]),
-		unit: valeur.unit
+		unit: valeur.unit,
 	}
 }
 
 export default function Arrondi(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		arrondi: parse(v.arrondi, context)
+		arrondi: parse(v.arrondi, context),
 	}
 	return {
 		jsx: MecanismArrondi,
 		explanation,
-		nodeKind: Arrondi.nom
+		nodeKind: Arrondi.nom,
 	}
 }
 

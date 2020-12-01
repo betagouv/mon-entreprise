@@ -23,8 +23,8 @@ export type Activity = {
 
 export default function Activité({
 	match: {
-		params: { title }
-	}
+		params: { title },
+	},
 }: any) {
 	const { language } = useTranslation().i18n
 	const sitePaths = useContext(SitePathsContext)
@@ -119,7 +119,7 @@ export default function Activité({
 											{formatValue(activité['seuil déclaration'], {
 												precision: 0,
 												language,
-												displayedUnit: '€'
+												displayedUnit: '€',
 											})}
 										</label>
 									</li>
@@ -136,7 +136,7 @@ export default function Activité({
 									{formatValue(activité['seuil pro'], {
 										precision: 0,
 										language,
-										displayedUnit: '€'
+										displayedUnit: '€',
 									})}
 								</label>
 							</li>
@@ -155,7 +155,7 @@ export default function Activité({
 										{formatValue(activité['seuil pro'], {
 											precision: 0,
 											language,
-											displayedUnit: '€'
+											displayedUnit: '€',
 										})}
 									</label>
 								</li>
@@ -177,7 +177,7 @@ export default function Activité({
 										{
 											precision: 0,
 											language,
-											displayedUnit: '€'
+											displayedUnit: '€',
 										}
 									)}
 								</label>

@@ -10,12 +10,12 @@ const history = require('connect-history-api-fallback')
 const { watchDottedNames } = require('../scripts/dottednames')
 watchDottedNames()
 
-const rewrite = basename => ({
+const rewrite = (basename) => ({
 	from: new RegExp(`^/${basename}/(.*)$|^/${basename}$`),
-	to: `/${basename}.html`
+	to: `/${basename}.html`,
 })
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.send(`<ul><li><a href="/mon-entreprise">mon-entreprise [fr]</a></li>
 	<li><a href="/infrance">infrance [en]</a></li>
 	<li><a href="/mon-entreprise/dev/integration-test">intégration du simulateur sur site tiers [iframe fr]</a></li><li><a href="/publicodes">publicodes</a></li></ul>`)
@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 
 app.use(
 	history({
-		rewrites: ['infrance', 'mon-entreprise', 'publicodes'].map(rewrite)
+		rewrites: ['infrance', 'mon-entreprise', 'publicodes'].map(rewrite),
 	})
 )
 
@@ -32,13 +32,13 @@ app.use(
 app.use(
 	webpackDevMiddleware(compiler, {
 		publicPath: config.output.publicPath,
-		hot: true
+		hot: true,
 	})
 )
 
 app.use(require('webpack-hot-middleware')(compiler))
 
-app.listen(8080, function() {
+app.listen(8080, function () {
 	// eslint-disable-next-line no-console
 	console.log('Mon-entreprise listening on port 8080!\n')
 })

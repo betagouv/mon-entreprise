@@ -12,7 +12,7 @@ function buildRulesDependencies(
 ): RulesDependencies {
 	return Object.entries(parsedRules).map(([name, node]) => [
 		name,
-		R.uniq(buildRuleDependancies(node))
+		R.uniq(buildRuleDependancies(node)),
 	])
 }
 
@@ -25,7 +25,7 @@ function buildRuleDependancies(rule: RuleNode): Array<string> {
 				case 'une possibilité':
 					return acc
 				case 'recalcul':
-					return node.explanation.amendedSituation.flatMap(s => fn(s[1]))
+					return node.explanation.amendedSituation.flatMap((s) => fn(s[1]))
 				case 'reference':
 					return [...acc, node.dottedName as string]
 				case 'rule':
@@ -47,7 +47,7 @@ function buildRuleDependancies(rule: RuleNode): Array<string> {
 function buildDependenciesGraph(rulesDeps: RulesDependencies): graphlib.Graph {
 	const g = new (graphlib as any).Graph()
 	rulesDeps.forEach(([ruleDottedName, dependencies]) => {
-		dependencies.forEach(depDottedName => {
+		dependencies.forEach((depDottedName) => {
 			g.setEdge(ruleDottedName, depDottedName)
 		})
 	})
@@ -62,7 +62,7 @@ export function cyclesInDependenciesGraph(rawRules: RawRules): GraphCycles {
 	const dependenciesGraph = buildDependenciesGraph(rulesDependencies)
 	const cycles = (graphlib as any).alg.findCycles(dependenciesGraph)
 
-	return cycles.map(c => c.reverse())
+	return cycles.map((c) => c.reverse())
 }
 
 /**
@@ -81,7 +81,7 @@ export function cyclicDependencies<Names extends string>(
 	const cycles = (graphlib as any).alg.findCycles(dependenciesGraph)
 	const rulesDependenciesObject = R.fromPairs(rulesDependencies)
 
-	return cycles.map(cycle => {
+	return cycles.map((cycle) => {
 		const c = cycle.reverse()
 
 		return [...c, c[0]].reduce((acc, current) => {

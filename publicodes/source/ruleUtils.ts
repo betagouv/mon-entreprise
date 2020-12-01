@@ -3,14 +3,14 @@ import { syntaxError } from './error'
 import { RuleNode } from './rule'
 
 const splitName = (str: string) => str.split(' . ')
-const joinName = strs => strs.join(' . ')
+const joinName = (strs) => strs.join(' . ')
 export const nameLeaf = pipe<string, string[], string>(splitName, last)
-export const encodeRuleName = name =>
+export const encodeRuleName = (name) =>
 	name
 		?.replace(/\s\.\s/g, '/')
 		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
 		.replace(/\s/g, '-')
-export const decodeRuleName = name =>
+export const decodeRuleName = (name) =>
 	name
 		.replace(/\//g, ' . ')
 		.replace(/-/g, ' ')
@@ -20,7 +20,7 @@ export function ruleParents<Names extends string>(
 ): Array<Names> {
 	const fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
 	return range(1, fragments.length)
-		.map(nbEl => take(nbEl, fragments))
+		.map((nbEl) => take(nbEl, fragments))
 		.map(joinName) //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD
 		.reverse()
 }
@@ -33,9 +33,9 @@ export function disambiguateRuleReference<R extends Record<string, RuleNode>>(
 	const possibleDottedName = [
 		contextName,
 		...ruleParents(contextName),
-		''
-	].map(x => (x ? x + ' . ' + partialName : partialName))
-	const dottedName = possibleDottedName.find(name => name in rules)
+		'',
+	].map((x) => (x ? x + ' . ' + partialName : partialName))
+	const dottedName = possibleDottedName.find((name) => name in rules)
 	if (!dottedName) {
 		syntaxError(
 			contextName,

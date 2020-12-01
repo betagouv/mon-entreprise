@@ -2,8 +2,8 @@ import { expect } from 'chai'
 import Engine from '../source/index'
 import co2 from './rules/co2.yaml'
 
-describe('library', function() {
-	it('should let the user define its own rule', function() {
+describe('library', function () {
+	it('should let the user define its own rule', function () {
 		let rules = `
 yo:
   formule: 200
@@ -18,7 +18,7 @@ yi:
 		expect(engine.evaluate('yi').nodeValue).to.equal(202)
 	})
 
-	it('should let the user define a simplified revenue tax system', function() {
+	it('should let the user define a simplified revenue tax system', function () {
 		let rules = `
 revenu imposable:
   question: Quel est votre revenu imposable ?
@@ -56,24 +56,24 @@ impôt sur le revenu à payer:
 
 		let engine = new Engine(rules)
 		engine.setSituation({
-			'revenu imposable': '48000'
+			'revenu imposable': '48000',
 		})
 		let value = engine.evaluate('impôt sur le revenu à payer')
 		expect(value.nodeValue).to.equal(7253.26)
 	})
 
-	it('should let the user define a rule base on a completely different subject', function() {
+	it('should let the user define a rule base on a completely different subject', function () {
 		let engine = new Engine(co2)
 		engine.setSituation({
 			'nombre de douches': 30,
 			'chauffage . type': "'gaz'",
-			'durée de la douche': 10
+			'durée de la douche': 10,
 		})
 		let value = engine.evaluate('douche . impact')
 		expect(value.nodeValue).to.be.within(20, 21)
 	})
 
-	it('should let the user reference rules in the situation', function() {
+	it('should let the user reference rules in the situation', function () {
 		let rules = `
 referenced in situation:
   formule: 200
@@ -84,7 +84,7 @@ result:
 `
 		let engine = new Engine(rules)
 		engine.setSituation({
-			'overwrited in situation': 'referenced in situation'
+			'overwrited in situation': 'referenced in situation',
 		})
 		expect(engine.evaluate('result').nodeValue).to.equal(222)
 	})

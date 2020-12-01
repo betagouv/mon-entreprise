@@ -29,7 +29,7 @@ export default class Tracker {
 	previousPath: string | undefined
 
 	constructor(
-		pushFunction: PushType = args => {
+		pushFunction: PushType = (args) => {
 			// There is an issue with the way Safari handle cookies in iframe, cf.
 			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
 			// do better but for now we don't track action of iOs Safari user in
@@ -45,7 +45,7 @@ export default class Tracker {
 	}
 
 	connectToHistory(history: History) {
-		this.unlistenFromHistory = history.listen(loc => {
+		this.unlistenFromHistory = history.listen((loc) => {
 			this.track(loc)
 		})
 

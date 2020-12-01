@@ -5,12 +5,16 @@ import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import parsePublicodes, { disambiguateReference } from './parsePublicodes'
-import { getReplacements, inlineReplacements, ReplacementNode } from './replacement'
+import {
+	getReplacements,
+	inlineReplacements,
+	ReplacementNode,
+} from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
 
 const emptyCache = () => ({
-	_meta: { contextRule: [] }
+	_meta: { contextRule: [] },
 })
 
 type Cache = {
@@ -38,6 +42,7 @@ export * from './components'
 export { formatValue } from './format'
 export { default as translateRules } from './translateRules'
 export { ASTNode, EvaluatedNode }
+export { Unit, Evaluation } from './AST/types'
 export { parsePublicodes }
 export { utils }
 export { Rule }
@@ -75,7 +80,7 @@ export default class Engine<Name extends string = string> {
 		this.parsedRules = parsePublicodes(
 			rules as Record<string, Rule>
 		) as ParsedRules<Name>
-		this.replacements = getReplacements(this.parsedRules) 
+		this.replacements = getReplacements(this.parsedRules)
 	}
 
 	private resetCache() {
@@ -96,10 +101,10 @@ export default class Engine<Name extends string = string> {
 			)(
 				parse(value, {
 					dottedName: `situation [${key}]`,
-					parsedRules: {}
-				}))
+					parsedRules: {},
+				})
+			)
 		}, situation)
-
 		return this
 	}
 
@@ -121,7 +126,7 @@ export default class Engine<Name extends string = string> {
 			)(
 				parse(expression, {
 					dottedName: "evaluation'''",
-					parsedRules: {}
+					parsedRules: {},
 				})
 			)
 		)
@@ -161,11 +166,13 @@ export function evaluateRule<DottedName extends string = string>(
 	const evaluation = simplifyNodeUnit(
 		engine.evaluate({ valeur: dottedName, ...modifiers })
 	)
-	const rule = engine.getParsedRules()[dottedName] as RuleNode & { dottedName: DottedName }
+	const rule = engine.getParsedRules()[dottedName] as RuleNode & {
+		dottedName: DottedName
+	}
 	return {
 		...rule.rawNode,
 		...rule,
-		...evaluation
+		...evaluation,
 	} as EvaluatedRule<DottedName>
 }
 

@@ -1,6 +1,6 @@
 import {
 	checkHiringItem,
-	initializeHiringChecklist
+	initializeHiringChecklist,
 } from 'Actions/hiringChecklistAction'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
@@ -220,10 +220,10 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 
 export default connect(
 	(state: RootState) => ({
-		hiringChecklist: state.inFranceApp.hiringChecklist
+		hiringChecklist: state.inFranceApp.hiringChecklist,
 	}),
 	{
 		onChecklistInitialization: initializeHiringChecklist,
-		onItemCheck: checkHiringItem
+		onItemCheck: checkHiringItem,
 	}
 )(Embaucher)

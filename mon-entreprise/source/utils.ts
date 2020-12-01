@@ -18,7 +18,7 @@ export const debounce = <F extends (...args: any[]) => void>(
 	}
 }
 
-export const fetcher = (url: RequestInfo) => fetch(url).then(r => r.json())
+export const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 
 export function inIframe(): boolean {
 	try {
@@ -40,7 +40,7 @@ export const productionMode =
 export function softCatch<ArgType, ReturnType>(
 	fn: (arg: ArgType) => ReturnType
 ): (arg: ArgType) => ReturnType | null {
-	return function(...args) {
+	return function (...args) {
 		try {
 			return fn(...args)
 		} catch (e) {
@@ -77,7 +77,7 @@ export const currencyFormat = (language: string) => ({
 		/^€/
 	),
 	thousandSeparator: formatValue(1000, { language }).charAt(1),
-	decimalSeparator: formatValue(0.1, { language }).charAt(1)
+	decimalSeparator: formatValue(0.1, { language }).charAt(1),
 })
 
 export function hash(str: string): number {

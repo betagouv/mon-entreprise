@@ -11,7 +11,7 @@ export default function Examples({ rule, setCurrentExample, currentExample }) {
 				<Trans i18nKey="examples">Exemples</Trans>{' '}
 			</h2>
 			<ul>
-				{examples.map(ex => (
+				{examples.map((ex) => (
 					<Example
 						key={ex.nom}
 						{...{ ex, rule, currentExample, setCurrentExample }}
@@ -35,7 +35,7 @@ let Example = ({
 	ex: { nom, situation },
 	rule,
 	currentExample,
-	setCurrentExample
+	setCurrentExample,
 }) => {
 	let selected = currentExample && currentExample.name == nom
 	return (
@@ -47,7 +47,7 @@ let Example = ({
 						: setCurrentExample(nom, situation, rule.dottedName)
 				}
 				className={classNames('ui__ button small', {
-					selected
+					selected,
 				})}
 			>
 				{nom}

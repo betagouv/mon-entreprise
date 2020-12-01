@@ -1,17 +1,13 @@
 import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
-import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { evaluateRule, formatValue } from 'publicodes'
-import { useContext } from 'react'
+import { EvaluatedNode, formatValue } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import {
-	answeredQuestionsSelector,
-	situationSelector
-} from 'Selectors/simulationSelectors'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
 
 type AnswerListProps = {
@@ -20,10 +16,16 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose }: AnswerListProps) {
 	const dispatch = useDispatch()
-	const answeredQuestions = Object.keys(
+	const engine = useEngine()
+	const answeredQuestions = (Object.keys(
 		useSelector(situationSelector)
-	) as Array<DottedName>
-	const nextSteps = useNextQuestions()
+	) as Array<DottedName>).map((dottedName) =>
+		engine.evaluateNode(engine.getParsedRules()[dottedName])
+	)
+
+	const nextSteps = useNextQuestions().map((dottedName) =>
+		engine.evaluateNode(engine.getParsedRules()[dottedName])
+	)
 
 	return (
 		<Overlay onClose={onClose} className="answer-list">
@@ -63,62 +65,58 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 
 function StepsTable({
 	rules,
-	onClose
+	onClose,
 }: {
-	rules: Array<DottedName>
+	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
 	onClose: () => void
 }) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
-	const evaluatedRules = rules.map(rule => evaluateRule(engine, rule))
 	const language = useTranslation().i18n.language
 	return (
 		<table>
 			<tbody>
-				{evaluatedRules
-					.filter(rule => rule.nodeValue !== false)
-					.map(rule => (
-						<tr
-							key={rule.dottedName}
-							css={`
-								background: var(--lightestColor);
-							`}
-						>
-							<td>
-								<button
-									className="ui__ link-button"
-									onClick={() => {
-										dispatch(goToQuestion(rule.dottedName))
-										onClose()
-									}}
-								>
-									{rule.title}
-								</button>
-							</td>
-							<td>
-								<span
-									css={`
+				{rules.map((rule) => (
+					<tr
+						key={rule.dottedName}
+						css={`
+							background: var(--lightestColor);
+						`}
+					>
+						<td>
+							<button
+								className="ui__ link-button"
+								onClick={() => {
+									dispatch(goToQuestion(rule.dottedName))
+									onClose()
+								}}
+							>
+								{rule.title}
+							</button>
+						</td>
+						<td>
+							<span
+								css={`
+									display: inline-block;
+									padding: 0.2rem;
+									color: inherit;
+									font-size: inherit;
+									width: 100%;
+									text-align: start;
+									font-weight: 600;
+									> span {
+										border-bottom-color: var(--textColorOnWhite);
+										padding: 0.05em 0em;
 										display: inline-block;
-										padding: 0.2rem;
-										color: inherit;
-										font-size: inherit;
-										width: 100%;
-										text-align: start;
-										font-weight: 600;
-										> span {
-											border-bottom-color: var(--textColorOnWhite);
-											padding: 0.05em 0em;
-											display: inline-block;
-										}
-									`}
-								>
-									<span className="answerContent">
-										{formatValue(rule, { language })}
-									</span>
-								</span>{' '}
-							</td>
-						</tr>
-					))}
+									}
+								`}
+							>
+								<span className="answerContent">
+									{formatValue(rule, { language })}
+								</span>
+							</span>{' '}
+						</td>
+					</tr>
+				))}
 			</tbody>
 		</table>
 	)

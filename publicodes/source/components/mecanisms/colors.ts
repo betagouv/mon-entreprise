@@ -10,6 +10,6 @@ const colors = {
 	variations: '#FF9800',
 	'taux progressif': '#795548',
 	barème: '#9B296F',
-	grille: '#AD1457'
+	grille: '#AD1457',
 }
-export default name => colors[name] || 'palevioletred'
+export default (name) => colors[name] || 'palevioletred'

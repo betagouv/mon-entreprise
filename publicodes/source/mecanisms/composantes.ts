@@ -8,21 +8,21 @@ export const decompose = (k, v, context): ASTNode => {
 	const { composantes, ...factoredKeys } = v
 	const explanation = parse(
 		{
-			somme: composantes.map(composante => {
+			somme: composantes.map((composante) => {
 				const { attributs, ...otherKeys } = composante
 				return {
 					...attributs,
 					[k]: {
 						...factoredKeys,
-						...otherKeys
-					}
+						...otherKeys,
+					},
 				}
-			})
+			}),
 		},
 		context
 	)
 	return {
 		...explanation,
-		jsx: Composantes
+		jsx: Composantes,
 	}
 }

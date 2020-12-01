@@ -1,9 +1,7 @@
-import { formatValue } from 'publicodes'
-import { Evaluation, Unit } from 'publicodes/dist/types/AST/types'
+import { formatValue, Evaluation, Unit } from 'publicodes'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
-import { serialize } from 'storage/serializeSimulation'
 import { currencyFormat, debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
 import { InputCommonProps } from './RuleInput'
@@ -17,7 +15,7 @@ export default function Input({
 	value,
 	missing,
 	unit,
-	autoFocus
+	autoFocus,
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
 	unit: Unit | undefined
@@ -35,7 +33,7 @@ export default function Input({
 			<div>
 				<InputSuggestions
 					suggestions={suggestions}
-					onFirstClick={value => {
+					onFirstClick={(value) => {
 						onChange(value)
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
@@ -51,11 +49,13 @@ export default function Input({
 					// re-render with a new "value" prop from the outside.
 					onValueChange={({ floatValue }) => {
 						if (floatValue !== value) {
-							debouncedOnChange({ valeur: floatValue, unité })
+							debouncedOnChange(
+								floatValue != undefined ? { valeur: floatValue, unité } : {}
+							)
 						}
 					}}
 					autoComplete="off"
-					{...{ [missing ? 'placeholder' : 'value']: value || '' }}
+					{...{ [missing ? 'placeholder' : 'value']: value ?? '' }}
 				/>
 				<span className="suffix">&nbsp;{unité}</span>
 			</div>

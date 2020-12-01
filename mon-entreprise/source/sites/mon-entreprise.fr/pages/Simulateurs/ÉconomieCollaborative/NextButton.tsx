@@ -20,9 +20,9 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 		<p css="text-align: center">
 			<Link
 				className={classnames('ui__ cta plain button', {
-					disabled
+					disabled,
 				})}
-				onClick={e => {
+				onClick={(e) => {
 					if (disabled) {
 						e.preventDefault()
 					} else {

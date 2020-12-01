@@ -7,7 +7,7 @@ import {
 	collectNodeMissing,
 	makeJsx,
 	mergeAllMissing,
-	mergeMissing
+	mergeMissing,
 } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -19,7 +19,7 @@ export type UneDeCesConditionsNode = {
 	jsx: any
 }
 
-const evaluate: evaluationFunction<'une de ces conditions'> = function(node) {
+const evaluate: evaluationFunction<'une de ces conditions'> = function (node) {
 	type Calculations = {
 		explanation: Array<ASTNode | EvaluatedNode>
 		nodeValue: Evaluation<boolean>
@@ -30,7 +30,7 @@ const evaluate: evaluationFunction<'une de ces conditions'> = function(node) {
 			if (acc.nodeValue === true) {
 				return {
 					...acc,
-					explanation: [...acc.explanation, node]
+					explanation: [...acc.explanation, node],
 				}
 			}
 			if (acc.nodeValue === null || acc.nodeValue === false) {
@@ -47,7 +47,7 @@ const evaluate: evaluationFunction<'une de ces conditions'> = function(node) {
 								acc.missingVariables,
 								evaluatedNode.missingVariables
 						  ),
-					explanation: [...acc.explanation, evaluatedNode]
+					explanation: [...acc.explanation, evaluatedNode],
 				}
 			}
 			throw new InternalError([node, acc])
@@ -55,18 +55,18 @@ const evaluate: evaluationFunction<'une de ces conditions'> = function(node) {
 		{
 			nodeValue: false,
 			missingVariables: {},
-			explanation: []
+			explanation: [],
 		}
 	)
 	return {
 		...node,
-		...calculations
+		...calculations,
 	}
 }
 
 export const mecanismOneOf = (v, context) => {
 	if (!is(Array, v)) throw new Error('should be array')
-	const explanation = v.map(node => parse(node, context))
+	const explanation = v.map((node) => parse(node, context))
 	const jsx = ({ nodeValue, explanation, unit }) => (
 		<Mecanism name="une de ces conditions" value={nodeValue} unit={unit}>
 			<ul>
@@ -80,7 +80,7 @@ export const mecanismOneOf = (v, context) => {
 	return {
 		jsx,
 		explanation,
-		nodeKind: 'une de ces conditions'
+		nodeKind: 'une de ces conditions',
 	}
 }
 

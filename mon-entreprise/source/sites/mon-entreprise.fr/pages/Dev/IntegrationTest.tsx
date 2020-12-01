@@ -7,7 +7,7 @@ export default function IntegrationTest() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.map(s => s.iframe)
+				.map((s) => s.iframe)
 				.filter(Boolean),
 		[simulators]
 	)
@@ -30,8 +30,8 @@ export default function IntegrationTest() {
 	return (
 		<>
 			<h2>Quel module ?</h2>
-			<select onChange={event => setCurrentModule(event.target.value)}>
-				{integrableModuleNames.map(name => (
+			<select onChange={(event) => setCurrentModule(event.target.value)}>
+				{integrableModuleNames.map((name) => (
 					<option key={name}>{name}</option>
 				))}
 			</select>

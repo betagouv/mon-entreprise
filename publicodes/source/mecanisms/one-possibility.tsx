@@ -16,12 +16,12 @@ export type PossibilityNode = {
 export const mecanismOnePossibility = (v, context: Context) => {
 	if (Array.isArray(v)) {
 		v = {
-			possibilités: v
+			possibilités: v,
 		}
 	}
 	return {
 		...v,
-		explanation: v.possibilités.map(p => parse(p, context)),
+		explanation: v.possibilités.map((p) => parse(p, context)),
 		nodeKind: 'une possibilité',
 		jsx: (node: PossibilityNode) => (
 			<Mecanism name="une possibilité parmis" value={null}>
@@ -32,11 +32,11 @@ export const mecanismOnePossibility = (v, context: Context) => {
 				</ul>
 			</Mecanism>
 		),
-		context: context.dottedName
+		context: context.dottedName,
 	} as PossibilityNode
 }
-registerEvaluationFunction<'une possibilité'>('une possibilité', node => ({
+registerEvaluationFunction<'une possibilité'>('une possibilité', (node) => ({
 	...node,
 	nodeValue: null,
-	missingVariables: { [node.context]: 1 }
+	missingVariables: { [node.context]: 1 },
 }))

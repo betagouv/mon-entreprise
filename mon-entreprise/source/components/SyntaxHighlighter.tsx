@@ -10,7 +10,7 @@ PrismLight.registerLanguage('yaml', yaml)
 
 export default function SyntaxHighlighter({
 	source,
-	language
+	language,
 }: {
 	source: string
 	language: string

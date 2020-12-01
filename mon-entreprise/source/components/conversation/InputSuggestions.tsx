@@ -11,8 +11,8 @@ type InputSuggestionsProps = {
 
 export default function InputSuggestions({
 	suggestions = {},
-	onSecondClick = x => x,
-	onFirstClick
+	onSecondClick = (x) => x,
+	onFirstClick,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t, i18n } = useTranslation()

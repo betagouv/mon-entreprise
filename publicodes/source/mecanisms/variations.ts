@@ -12,7 +12,7 @@ import {
 	pureTemporal,
 	sometime,
 	Temporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
 import { mergeAllMissing } from './../evaluation'
 
@@ -40,12 +40,12 @@ export const devariate = (k, v, context): ASTNode => {
 						...attributs,
 						[k]: {
 							...factoredKeys,
-							...otherKeys
-						}
+							...otherKeys,
+						},
 					},
-					...(si !== undefined && { si })
+					...(si !== undefined && { si }),
 				}
-			})
+			}),
 		},
 		context
 	)
@@ -62,11 +62,11 @@ export default function parseVariations(v, context): VariationNode {
 	return {
 		explanation,
 		jsx: Variations,
-		nodeKind: 'variations'
+		nodeKind: 'variations',
 	}
 }
 
-const evaluate: evaluationFunction<'variations'> = function(node) {
+const evaluate: evaluationFunction<'variations'> = function (node) {
 	const [temporalValue, explanation, unit] = node.explanation.reduce<
 		[
 			Temporal<any>,
@@ -81,7 +81,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 			i: number
 		) => {
 			const previousConditionsAlwaysTrue = !sometime(
-				value => value !== true,
+				(value) => value !== true,
 				previousConditions
 			)
 			if (previousConditionsAlwaysTrue) {
@@ -89,7 +89,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 					evaluation,
 					[...explanations, { condition, consequence }],
 					unit,
-					previousConditions
+					previousConditions,
 				]
 			}
 			const evaluatedCondition = this.evaluateNode(condition)
@@ -108,7 +108,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 				true
 			)
 			const currentConditionAlwaysFalse = !sometime(
-				x => x !== false,
+				(x) => x !== false,
 				currentCondition
 			)
 			if (currentConditionAlwaysFalse) {
@@ -116,7 +116,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 					evaluation,
 					[...explanations, { condition: evaluatedCondition, consequence }],
 					unit,
-					previousConditions
+					previousConditions,
 				]
 			}
 			let evaluatedConsequence = this.evaluateNode(consequence)
@@ -126,8 +126,9 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 				} catch (e) {
 					typeWarning(
 						this.cache._meta.contextRule,
-						`L'unité de la branche n° ${i +
-							1} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
+						`L'unité de la branche n° ${
+							i + 1
+						} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,
 						e
 					)
 				}
@@ -145,11 +146,11 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 					{
 						condition: evaluatedCondition,
 						satisfied: !!evaluatedCondition.nodeValue,
-						consequence: evaluatedConsequence
-					}
+						consequence: evaluatedConsequence,
+					},
 				],
 				unit || evaluatedConsequence.unit,
-				liftTemporal2(or, previousConditions, currentCondition)
+				liftTemporal2(or, previousConditions, currentCondition),
 			]
 		},
 		[pureTemporal(false), [], undefined, pureTemporal(false)]
@@ -161,7 +162,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 			(values, { condition, consequence }) => [
 				...values,
 				condition,
-				consequence
+				consequence,
 			],
 			[]
 		)
@@ -172,7 +173,7 @@ const evaluate: evaluationFunction<'variations'> = function(node) {
 		...(unit !== undefined && { unit }),
 		explanation,
 		missingVariables,
-		...(temporalValue.length > 1 && { temporalValue })
+		...(temporalValue.length > 1 && { temporalValue }),
 	}
 }
 

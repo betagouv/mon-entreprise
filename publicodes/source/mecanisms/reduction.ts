@@ -21,13 +21,13 @@ export type ReductionNode = {
 const objectShape = {
 	assiette: false,
 	abattement: defaultNode(0),
-	plafond: defaultNode(Infinity)
+	plafond: defaultNode(Infinity),
 }
 
-const evaluate = evaluateObject<'allègement'>(function({
+const evaluate = evaluateObject<'allègement'>(function ({
 	assiette,
 	abattement,
-	plafond
+	plafond,
 }) {
 	const assietteValue = assiette.nodeValue
 	if (assietteValue == null) return { nodeValue: null }
@@ -63,8 +63,8 @@ const evaluate = evaluateObject<'allègement'>(function({
 		...('unit' in assiette && { unit: assiette.unit }),
 		explanation: {
 			plafond,
-			abattement
-		}
+			abattement,
+		},
 	}
 })
 
@@ -74,7 +74,7 @@ export const mecanismReduction = (v, context) => {
 	return {
 		jsx: Allègement,
 		explanation,
-		nodeKind: 'allègement'
+		nodeKind: 'allègement',
 	} as ReductionNode
 }
 

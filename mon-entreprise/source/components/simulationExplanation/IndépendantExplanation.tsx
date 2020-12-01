@@ -39,7 +39,7 @@ export default function IndépendantExplanation() {
 							{
 								...evaluateRule(engine, 'revenu net après impôt'),
 								title: t('Revenu disponible'),
-								color: palettes[0][0]
+								color: palettes[0][0],
 							},
 							{ ...evaluateRule(engine, 'impôt'), color: palettes[1][0] },
 							{
@@ -48,8 +48,8 @@ export default function IndépendantExplanation() {
 									'dirigeant . indépendant . cotisations et contributions'
 								),
 								title: t('Cotisations'),
-								color: palettes[1][1]
-							}
+								color: palettes[1][1],
+							},
 						]}
 					/>
 				</section>
@@ -136,12 +136,12 @@ function CaisseRetraite() {
 		'CIPAV',
 		'CARMF',
 		'CNBF',
-		'CAVEC'
+		'CAVEC',
 	] as const
 
 	return (
 		<>
-			{caisses.map(caisse => {
+			{caisses.map((caisse) => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
 				const { description, références } = evaluateRule(engine, dottedName)
 				return (
@@ -185,27 +185,27 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . retraite': [
 		'dirigeant . indépendant . cotisations et contributions . retraite de base',
 		'dirigeant . indépendant . cotisations et contributions . retraite complémentaire',
-		'dirigeant . indépendant . cotisations et contributions . PCV'
+		'dirigeant . indépendant . cotisations et contributions . PCV',
 	],
 	'protection sociale . santé': [
 		'dirigeant . indépendant . cotisations et contributions . maladie',
 		'dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2',
 	],
 	'protection sociale . invalidité et décès': [
-		'dirigeant . indépendant . cotisations et contributions . invalidité et décès'
+		'dirigeant . indépendant . cotisations et contributions . invalidité et décès',
 	],
 	'protection sociale . famille': [
 		'dirigeant . indépendant . cotisations et contributions . allocations familiales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 0.95 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 0.95 / 9.2',
 	],
 	'protection sociale . autres': [
 		'dirigeant . indépendant . cotisations et contributions . contributions spéciales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 2.3 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 2.3 / 9.2',
 	],
 	'protection sociale . formation': [
-		'dirigeant . indépendant . cotisations et contributions . formation professionnelle'
-	]
+		'dirigeant . indépendant . cotisations et contributions . formation professionnelle',
+	],
 }
 
 function Distribution() {
@@ -216,11 +216,11 @@ function Distribution() {
 	).map(([section, cotisations]) => [
 		section,
 		(cotisations as string[])
-			.map(c => engine.evaluate({ valeur: c, unité: targetUnit }))
+			.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
 			.reduce(
 				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
 				0
-			)
+			),
 	]) as Array<[DottedName, number]>)
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
@@ -253,7 +253,7 @@ function DistributionBranch({
 	dottedName,
 	value,
 	icon,
-	maximum
+	maximum,
 }: DistributionBranchProps) {
 	const rules = useContext(EngineContext).getParsedRules()
 	const branche = rules[dottedName]
