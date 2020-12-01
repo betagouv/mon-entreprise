@@ -16,7 +16,6 @@ export type Action =
 	| UpdateSituationAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
-	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
 	| CompanyStatusAction
@@ -49,7 +48,6 @@ type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
 type UpdateSituationAction = ReturnType<typeof updateSituation>
 type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
-type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideNotificationAction = ReturnType<typeof hideNotification>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
@@ -80,12 +78,6 @@ export const validateStepWithValue = (
 		step: dottedName,
 	})
 }
-
-export const setSituationBranch = (id: number) =>
-	({
-		type: 'SET_SITUATION_BRANCH',
-		id,
-	} as const)
 
 export const setSimulationConfig = (
 	config: SimulationConfig,
