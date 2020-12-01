@@ -6,10 +6,6 @@ env:
   GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
   INSEE_SIRENE_API_SECRET: ${{ secrets.INSEE_SIRENE_API_TOKEN }}
   MATOMO_TOKEN: ${{ secrets.MATOMO_TOKEN }}
-  # Env names imported from the Netlify CI
-  # https://docs.netlify.com/configure-builds/environment-variables/#build-metadata
-  HEAD: ${GITHUB_REF#refs/heads/}
-  COMMIT_REF: ${GITHUB_SHA}
 jobs:
   build:
     runs-on: ubuntu-18.04
