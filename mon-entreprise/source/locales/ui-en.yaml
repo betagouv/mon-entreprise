@@ -840,50 +840,51 @@ pages:
     bibliothèque: "<0>Integrate our calculation library</0><1>If you think that your
       site or service would benefit from displaying salary calculations, for
       example switching from gross salary to net salary, good news: all the
-      contribution and tax calculations behind my-company.fr are free and <2>can
-      be integrated in the form of an <2>NPM library</2></2>.</1><2>Put simply,
-      your team's developers are able to integrate the calculation into your
-      interface in 5 minutes{emoji('⌚')}, without having to deal with the
-      complexity of payroll and the regular updating of calculation
-      rules.</2><3>This library is a common digital library developed by the
-      State and ACOSS. It is based on a new programming language,
-      <2>publicodes</2>.</3><4>How to use it?</4><5>The following examples show
-      you how to use the library on a very simple ReactJs site.</5><6>1) Make a
-      very simple calculation: from gross to net</6><7><0></0></7><8>2) Browse
-      online documentation</8><9>As you can see from the previous example, the
-      recipe for a calculation is simple: input variables (gross wage), one or
-      more output variables (net wage).</9><10>All these variables are listed
-      and explained in our <2>online documentation</2>.</10><11>Use the search
-      engine to find the right variable, then click on \"View source code\" to
-      get all the documentation: default value, possible values when it's an
-      enumeration of choice, unit when it's a number, description, associated
-      user question, etc.</11><12>Let's run a calculation closer to a payslip:
-      Here is a description of the input situation with links to the
-      corresponding pages of the documentation :</12><13> An <3>executive</3>
-      earning <7>€3,400 gross</7>, who benefits from the<10> bicycle mileage
-      allowance</10> and works in a company with <14>12
-      employees</14>.</13><14>The calculation for this more complete example is
-      as follows:</14><15><0></0></15><16>{emoji('ℹ️ ')} Note that in the
-      previous example we have to specify the transport payment rate
-      ourselves.</16><17>Whereas in the <2>employee</2> simulator, it is
-      sufficient to fill in the municipality and the corresponding rate is
-      automatically determined. It's intentional: to keep the library (and the
-      site) light, we use two online APIs. The<4> Geo API - communes</4> to
-      switch from the commune name to the common code. Then the<7> transport
-      payout API</7>, developed and maintained by us, which is not documented
-      but its use is very simple and understandable <10>in this React component
-      that calls it</10>, a component that also uses the common
-      API.</17><18>Making economic charts{emoji(' 📈')}</18><19>It is also
-      possible to use the library for economic or political analysis
-      calculations. Here, the price of labour and the net wage is plotted
-      against the gross wage.</19><20>We can see the progressiveness of the
-      total wage, which is in percent lower for a minimum wage than for a high
-      income. In other words, high-wage earners pay part of the social security
-      contributions of low-wage earners.</20><21>{emoji('⚠️ ')}Beware, this
-      example does a lot of calculations in one go, which can block your browser
-      for a few seconds. To overcome this problem, you would have to call the
-      library in a Web Worker, but this is not possible for the <3>moment</3> in
-      these demos.</21><22><0></0></22>"
+      contribution and tax calculations behind my-company.fr are free and easily
+      reusable thanks to the <2>NPM publicodes library</2>.</1><2>How to use
+      this library?</2><3>All our calculation rules are written in `publicodes`,
+      a declarative language developed by beta.gouv.fr and Urssaf to encode
+      algorithms of public interest. <2>Learn more about publicodes</2></3><4>To
+      perform your own calculations, you need to install the publicodes
+      interpreter, download the rules used on my-company, call the evaluation
+      function.</4><5>Installation</5><6><0>npm install --save publicodes
+      social-system</0></6><7><0></0> The following dependencies are also needed
+      for now, but will be made optional in a future version of the publicodes
+      package.</7><8><0>npm install --save react react-router-dom
+      react-router-hash-link</0></8><9>For more details on the installation,
+      please refer to the <2>dedicated documentation</2>.</9><10>Start the
+      calculation</10><11>All you have to do is set up the engine with the rules
+      in the `social-system' package, and call the `evaluate' function on the
+      rule you want the value of. Here is an example for the gross / net
+      calculation</11><12><0></0></12><13>Setting up the calculation</13><14>As
+      you will have seen in the previous example, the recipe for a calculation
+      is simple: input variables (gross salary), one or more output variables
+      (net salary).</14><15>However, the calculation can be parameterized with
+      all the possibilities allowed in the legislation.</15><16>All these
+      variables are listed and explained in the <2>online documentation</2>.
+      This documentation is auto-generated from the publicodes rule files, so it
+      is constantly updated.</16><17>Let's run a calculation closer to a
+      payslip: here is a description of the input situation annotated with links
+      to the corresponding pages of the documentation :</17><18><0> An
+      <3>executive</3> earning <7>3,400€ gross</7>, who benefits from
+      <11>restaurant vouchers</11> and works in a company with <15>22
+      employees</15>.</0></18><19>Here is the calculation for this more complete
+      example:</19><20><0></0></20><21><0></0>Note that in the previous example
+      we have to specify the transport payment rate ourselves.</21><22>Whereas
+      in the <2>employee</2> simulator, you only have to fill in the
+      municipality and the corresponding rate is automatically determined. This
+      is intentional: to keep the library (and the site) light, we use two
+      online APIs. The<4>Geo - communes API</4> to switch from the commune name
+      to the commune code. Then the<7>Transport Pay API</7>, developed and
+      maintained by us, which is not documented but its use is very simple and
+      understandable <10>in this React component that calls it</10>, a component
+      that also uses the common API.</22><23>Making economic graphics{emoji('
+      📈')}</23><24>It is also possible to use the library for economic or
+      political analysis calculations. Here, labour prices and net wages are
+      plotted against gross wages.</24><25>One can see the progressiveness of
+      the total wage, which is in percent lower for a minimum wage than for a
+      high income. In other words, high earners pay part of the social security
+      contributions of low earners.</25><26><0></0></26>"
   développeurs:
     choice:
       github: <0>Contribute to GitHub</0><1>All our tools are open and publicly
