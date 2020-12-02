@@ -118,7 +118,8 @@
 		"test:type": "yarn workspace publicodes run tsc && yarn workspace mon-entreprise run tsc",
 		"test:regressions": "jest",
 		"clean": "yarn workspaces run clean",
-		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start"
+		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start",
+		"syso:up": "yarn workspace systeme-social run up"
 	},
 	"workspaces": [
 		"publicodes",
