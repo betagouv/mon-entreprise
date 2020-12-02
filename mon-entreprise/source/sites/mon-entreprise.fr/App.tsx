@@ -50,16 +50,20 @@ import redirects from './redirects'
 import { constructLocalizedSitePath } from './sitePaths'
 
 if (process.env.NODE_ENV === 'production') {
+	let branch: string | undefined = process.env.GITHUB_REF?.split('/')?.slice(
+		-1
+	)?.[0]
+	if (branch === 'merge') {
+		branch = process.env.GITHUB_HEAD_REF
+	}
 	const release =
-		process.env.HEAD &&
-		process.env.COMMIT_REF &&
-		process.env.HEAD + '-' + process.env.COMMIT_REF?.substring(0, 7)
+		branch && `${branch}-` + process.env.GITHUB_SHA?.substring(0, 7)
 	const dsn = 'https://9051375f856646d694943532caf2b45f@sentry.data.gouv.fr/18'
 	Sentry.init({ dsn, release })
 
-	if (process.env.HEAD && process.env.HEAD !== 'master') {
+	if (branch && branch !== 'master') {
 		console.log(
-			`ℹ Vous êtes sur la branche : %c${process.env.HEAD}`,
+			`ℹ Vous êtes sur la branche : %c${branch}`,
 			'font-weight: bold; text-decoration: underline;'
 		)
 	}

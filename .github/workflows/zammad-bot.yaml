@@ -1,4 +1,5 @@
 # This bot post a comment when issues with a given label are closed.
+name: Message du robot Zammad
 on:
   issues:
     types: [closed]
