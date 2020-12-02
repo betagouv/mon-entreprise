@@ -6,6 +6,8 @@ env:
   GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
   INSEE_SIRENE_API_SECRET: ${{ secrets.INSEE_SIRENE_API_TOKEN }}
   MATOMO_TOKEN: ${{ secrets.MATOMO_TOKEN }}
+  EN_SITE: "${path}?s=m"
+  FR_SITE: "${path}"
 jobs:
   build:
     runs-on: ubuntu-18.04
