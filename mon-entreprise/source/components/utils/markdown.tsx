@@ -132,16 +132,24 @@ export const MarkdownWithAnchorLinks = ({
 	/>
 )
 
-function HeadingWithAnchorLink({
+const flatMapChildren = (children: React.ReactNode): Array<string> => {
+	return React.Children.toArray(children).flatMap(child =>
+		typeof child !== 'object' || !('props' in child)
+			? child
+			: child.props?.value ?? flatMapChildren(child.props?.children)
+	)
+}
+
+export function HeadingWithAnchorLink({
 	level,
 	children
 }: {
 	level: number
 	children: React.ReactNode
 }) {
+	console.log(React.Children.toArray(children))
 	const { pathname } = useLocation()
-	const headingId = React.Children.toArray(children)
-		.map((child: any) => child.props?.value)
+	const headingId = flatMapChildren(children)
 		.join(' ')
 		.toLowerCase()
 		.replace(emojiesRegex, '')
@@ -165,7 +173,6 @@ function HeadingWithAnchorLink({
 			level={level}
 			css={`
 				position: relative;
-
 				.anchor-link {
 					display: none;
 					position: absolute;
@@ -177,7 +184,6 @@ function HeadingWithAnchorLink({
 					text-decoration: none;
 					font-size: 0.8em;
 				}
-
 				&:hover .anchor-link {
 					display: block;
 				}
