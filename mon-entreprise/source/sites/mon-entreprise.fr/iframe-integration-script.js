@@ -50,18 +50,30 @@ const moduleToSitePath = {
 	'simulateur-independant': '/simulateurs/indépendant',
 	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu'
 }
-const simulateurLink = (fr ? process.env.FR_SITE : process.env.EN_SITE).replace(
+const simulateurLink = process.env.FR_SITE.replace(
 	'${path}',
 	moduleToSitePath[moduleName] ?? ''
 )
+const url = new URL(simulateurLink, window.location.origin)
+const params = new URLSearchParams(url.search)
+params.append('utm_source', 'iframe')
+params.append('utm_medium', 'iframe')
+params.append('utm_campaign', 'newtext')
+url.search = params.toString()
+const simulateurURL = url.toString()
+url.pathname = '/simulateurs'
+const simulateursURL = url.toString()
+url.pathname = '/'
+const monEntrepriseUrl = url.toString()
 links.innerHTML = `
 	<div style="text-align: center; margin-bottom: 2rem; font-size: 80%">
-	Ce simulateur est également disponible sur le site  
-	<a href="${simulateurLink}" target="_blank">
+	Ce simulateur a été créé par  
+	<a href="${simulateurURL}">
 		mon-entreprise.fr
 	</a><br/>
+	Découvrez l'ensemble des simulateurs disponibles <a href="${simulateursURL}">ici</a><br/>
 	
-	<a href="${simulateurLink}" target="_blank">
+	<a href="${monEntrepriseUrl}">
 			<img
 				style="height: 25px; margin: 10px"
 				src="${process.env.FR_SITE.replace(
@@ -71,7 +83,7 @@ links.innerHTML = `
 				alt="mon-entreprise.fr : l'assistant officiel du créateur d'entreprise"
 			/>
 		</a>
-		<a href="https://www.urssaf.fr" target="_blank">
+		<a href="https://www.urssaf.fr">
 			<img
 				style="height: 25px; margin: 10px"
 				src="${urssafSvg}"
