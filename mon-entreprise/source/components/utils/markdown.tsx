@@ -147,7 +147,6 @@ export function HeadingWithAnchorLink({
 	level: number
 	children: React.ReactNode
 }) {
-	console.log(React.Children.toArray(children))
 	const { pathname } = useLocation()
 	const headingId = flatMapChildren(children)
 		.join(' ')
