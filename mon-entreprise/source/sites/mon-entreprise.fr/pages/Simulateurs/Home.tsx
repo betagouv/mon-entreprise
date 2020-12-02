@@ -10,6 +10,7 @@ import useSimulatorsData, { SimulatorData } from './metadata'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import InfoBulle from 'Components/ui/InfoBulle'
+import { HeadingWithAnchorLink } from 'Components/utils/markdown'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -40,17 +41,17 @@ export default function Simulateurs() {
 				/>
 			</section>
 			<section>
-				<h2>
+				<HeadingWithAnchorLink level={2}>
 					<Trans>Salariés et employeurs</Trans>
-				</h2>
+				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators.salarié} />
 					<SimulateurCard {...simulators['chômage-partiel']} />
 				</div>
 
-				<h2>
+				<HeadingWithAnchorLink level={2}>
 					<Trans>Par statut</Trans>
-				</h2>
+				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					<SimulateurCard {...simulators['auto-entrepreneur']} />
 					<SimulateurCard {...simulators.indépendant} />
@@ -59,11 +60,11 @@ export default function Simulateurs() {
 					<SimulateurCard {...simulators['profession-libérale']} />
 				</div>
 				<>
-					<h3>
+					<HeadingWithAnchorLink level={3}>
 						<small>
 							<Trans>Par profession</Trans>
 						</small>
-					</h3>
+					</HeadingWithAnchorLink>
 					<div className="ui__ small box-container">
 						<SimulateurCard small {...simulators['auxiliaire-médical']} />
 						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
@@ -73,9 +74,9 @@ export default function Simulateurs() {
 						<SimulateurCard small {...simulators['expert-comptable']} />
 					</div>
 				</>
-				<h2>
+				<HeadingWithAnchorLink level={2}>
 					<Trans>Autres outils</Trans>
-				</h2>
+				</HeadingWithAnchorLink>
 				<div className="ui__ box-container">
 					{language === 'fr' && (
 						<SimulateurCard {...simulators['demande-mobilité']} />
