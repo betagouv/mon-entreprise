@@ -1,4 +1,5 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
+import Emoji from 'Components/utils/Emoji'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
@@ -21,21 +22,28 @@ export default function Library() {
 				</p>
 				<h2>Comment utiliser cette librairie ?</h2>
 				<p>
-					Toutes nos règles de calculs sont écrite en `publicodes`, un language
+					Toutes nos règles de calculs sont écrites en `publicodes`, un language
 					déclaratif développé par beta.gouv.fr et l'Urssaf pour encoder des
 					algorithme d'intérêt public.{' '}
 					<a href="https://publi.codes">En savoir plus sur publicodes</a>
 				</p>
 				<p>
-					Pour effectuer vos propre calcul, il suffit donc d'installer
-					l'interpreteur publicode, de télécharger les règles de mon-entreprise,
-					et d'appeler la fonction d'évaluation.
+					Pour effectuer vos propre calculs, vous devons donc installer
+					l'interpréteur publicodes, télécharger les règles utilisées sur
+					mon-entreprise, appeler la fonction d'évaluation.
 				</p>
-				<h3>1) Installer publicodes</h3>
+				<h3>Installation</h3>
+				<pre>
+					<code>npm install --save publicodes systeme-social</code>
+				</pre>
+				<p>
+					<Emoji emoji="🚧" /> Les dépendances suivantes sont aussi nécessaires
+					pour le moment, mais seront rendues facultatives dans une prochaine
+					version du paquet publicodes.
+				</p>
 				<pre>
 					<code>
-						npm install --save publicodes react react-router-dom
-						react-router-hash-link
+						npm install --save react react-router-dom react-router-hash-link
 					</code>
 				</pre>
 				<em>
@@ -44,49 +52,12 @@ export default function Library() {
 						documentation dédiée
 					</a>
 				</em>
-				<h3>2) Télécharger les règles mon-entreprise</h3>
+				<h3>Lancer le calcul</h3>
 				<p>
-					Les règles de calculs de mon-entreprise ne sont pas (encore)
-					disponible sous forme de paquet npm. Il faudra donc les télécharger
-					manuellement.
-				</p>
-				<a href="https://github.com/betagouv/mon-entreprise/tree/master/mon-entreprise/source/rules">
-					Voir les fichiers de règles publicodes de mon-entreprise
-				</a>
-				<p>
-					Pour le faire rapidement, vous pouvez copier coller la commande
-					suivante :
-				</p>
-				<blockquote>
-					<code>
-						wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/base.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/dirigeant.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/salarié.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/protection-sociale.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/entreprise-établissement.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/impôt.yaml
-						& wget
-						https://raw.githubusercontent.com/betagouv/mon-entreprise/master/mon-entreprise/source/rules/situation-personnelle.yaml
-					</code>
-				</blockquote>
-				<p>
-					<strong>Attention</strong> : bien que les règles soient décomposées en
-					fichier séparé, les dépendances ne sont pas encore bien gérées avec
-					publicode. Il vous faudra donc veiller à bien télécharger et importer
-					les fichiers "socles" pour être sûr de ne pas avoir de dépendances non
-					satisfaite.
-				</p>
-				<h3>3) Lancer le calcul</h3>
-				<p>
-					Il ne vous reste plus qu'à paramètrer le moteur avec les règles
-					téléchargées et à appeler la fonction `evaluate` sur la règle que dont
-					vous souhaitez la valeur. Voici un exemple pour le calcul brut / net
+					Il ne vous reste plus qu'à paramétrer le moteur avec les règles du
+					paquet `systeme-social` et à appeler la fonction `evaluate` sur la
+					règle que dont vous souhaitez la valeur. Voici un exemple pour le
+					calcul brut / net
 				</p>
 				<div
 					className="ui__ full-width"
@@ -116,7 +87,7 @@ export default function Library() {
 						documentation en ligne
 					</a>
 					. Cette documentation est auto-générée depuis les fichiers de règles
-					publicode, elle est donc constament à jour.
+					publicodes, elle est donc constamment à jour.
 				</p>
 				<p>
 					Lançons un calcul plus proche d'une fiche de paie : voici une
@@ -159,7 +130,7 @@ export default function Library() {
 					></iframe>
 				</div>
 				<p>
-					{emoji('ℹ️ ')}
+					<Emoji emoji="ℹ️ " />
 					Notez que dans l'exemple précédent nous devons spécifier nous-même le
 					taux de versement transport.
 				</p>
