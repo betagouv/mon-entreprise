@@ -1,6 +1,6 @@
 {
 	"name": "systeme-social",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "Les règles publicodes du système social français",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",
@@ -16,8 +16,8 @@
 		"dist/index.js"
 	],
 	"devDependencies": {
-		"yaml": "^1.10.0",
-		"publicodes": "^1.0.0-beta.4"
+		"publicodes": "^1.0.0-beta.4",
+		"yaml": "^1.10.0"
 	},
 	"dependencies": {},
 	"peerDependencies": {
@@ -26,6 +26,7 @@
 	"scripts": {
 		"build": "node build.js",
 		"prepare": "yarn run build",
+		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
 		"test": "echo 1"
 	}
 }
