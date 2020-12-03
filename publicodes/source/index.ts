@@ -8,7 +8,7 @@ import parsePublicodes, { disambiguateReference } from './parsePublicodes'
 import {
 	getReplacements,
 	inlineReplacements,
-	ReplacementNode
+	ReplacementNode,
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'

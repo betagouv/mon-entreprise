@@ -133,7 +133,7 @@ export const MarkdownWithAnchorLinks = ({
 )
 
 const flatMapChildren = (children: React.ReactNode): Array<string> => {
-	return React.Children.toArray(children).flatMap(child =>
+	return React.Children.toArray(children).flatMap((child) =>
 		typeof child !== 'object' || !('props' in child)
 			? child
 			: child.props?.value ?? flatMapChildren(child.props?.children)
