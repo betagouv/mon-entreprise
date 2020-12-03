@@ -5,36 +5,74 @@ import { ReplacementNode } from '../replacement'
 import { RuleNode } from '../rule'
 import { ASTNode, NodeKind, TraverseFunction } from './types'
 
-export function updateAST(
-	fn: (n: ASTNode, fn: (n: ASTNode) => ASTNode) => ASTNode | undefined | false
-): (n: ASTNode) => ASTNode {
-	function traverseFn(node: ASTNode) {
-		const updatedNode = fn(node, traverseFn)
-		if (updatedNode === false) {
-			return node
-		}
-		if (updatedNode === undefined) {
-			return traverseASTNode(traverseFn, node)
-		}
-		return updatedNode
-	}
-	return traverseFn
-}
 
-export function reduceAST<T>(
-	fn: (acc: T, n: ASTNode, fn: (n: ASTNode) => T) => T | undefined,
-	start: T,
-	node: ASTNode
-): T {
-	function traverseFn(acc: T, node: ASTNode): T {
-		const result = fn(acc, node, traverseFn.bind(null, start))
-		if (result === undefined) {
-			return gatherNodes(node).reduce(traverseFn, acc)
+type TransformASTFunction = (n: ASTNode) => ASTNode
+/**
+	This function creates a transormation of the AST from on a simpler 
+	callback function `fn`
+	
+	`fn` will be called with the nodes of the ASTTree during the exploration
+
+	The outcome of the callback function has an influence on the exploration of the AST :
+	- `false`, the node is not updated and the exploration does not continue further down this branch
+	- `undefined`, the node is not updated but the exploration continues and its children will be transformed
+	- `ASTNode`, the node is transformed to the new value and the exploration does not continue further down the branch
+	
+	`updateFn` : It is possible to specifically use the updated version of a child
+	by using the function passed as second argument. The returned value will be the 
+	transformed version of the node.
+	*/
+	export function updateAST(
+		fn: (
+			node: ASTNode,
+			updateFn: TransformASTFunction
+		) => ASTNode | undefined | false
+	): TransformASTFunction {
+		function traverseFn(node: ASTNode) {
+			const updatedNode = fn(node, traverseFn)
+			if (updatedNode === false) {
+				return node
+			}
+			if (updatedNode === undefined) {
+				return traverseASTNode(traverseFn, node)
+			}
+			return updatedNode
 		}
-		return result
+		return traverseFn
 	}
-	return traverseFn(start, node)
-}
+	
+	/**
+		This function allows to construct a specific value while exploring the AST with 
+		a simple reducing function as argument. 
+		
+		`fn` will be called with the currently reduced value `acc` and the current node of the AST
+	
+	
+		The outcome of the callback function has an influence on the exploration of the AST :
+		- `undefined`, the exploration continues further down and all the child are reduced 
+			successively to a single value
+		- `T`, the reduced value 
+		
+		`reduceFn` : It is possible to specifically use the reduced value of a child
+		by using the function passed as second argument. The returned value will be the reduced version 
+		of the node
+		*/
+	
+	export function reduceAST<T>(
+		fn: (acc: T, n: ASTNode, reduceFn: (n: ASTNode) => T) => T | undefined,
+		start: T,
+		node: ASTNode
+	): T {
+		function traverseFn(acc: T, node: ASTNode): T {
+			const result = fn(acc, node, traverseFn.bind(null, start))
+			if (result === undefined) {
+				return gatherNodes(node).reduce(traverseFn, acc)
+			}
+			return result
+		}
+		return traverseFn(start, node)
+	}
+
 
 function gatherNodes(node: ASTNode): ASTNode[] {
 	const nodes: ASTNode[] = []
