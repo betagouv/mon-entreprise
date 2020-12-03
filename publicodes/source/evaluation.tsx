@@ -9,7 +9,7 @@ import {
 	reduce,
 } from 'ramda'
 import React from 'react'
-import Engine, { evaluationFunction } from '.'
+import Engine, { EvaluationFunction } from '.'
 import {
 	ASTNode,
 	ConstantNode,
@@ -77,7 +77,7 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 export const evaluateArray: <NodeName extends NodeKind>(
 	reducer: Parameters<typeof reduce>[0],
 	start: Parameters<typeof reduce>[1]
-) => evaluationFunction<NodeName> = (reducer, start) =>
+) => EvaluationFunction<NodeName> = (reducer, start) =>
 	function (node: any) {
 		const evaluate = this.evaluateNode.bind(this)
 		const evaluatedNodes = convertNodesToSameUnit(
@@ -207,5 +207,5 @@ export function evaluateObject<NodeName extends NodeKind>(
 			temporalValue,
 			temporalExplanation,
 		}
-	} as evaluationFunction<NodeName>
+	} as EvaluationFunction<NodeName>
 }

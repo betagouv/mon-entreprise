@@ -21,7 +21,7 @@ type TransformASTFunction = (n: ASTNode) => ASTNode
 	by using the function passed as second argument. The returned value will be the 
 	transformed version of the node.
 	*/
-export function updateAST(
+export function transformAST(
 	fn: (
 		node: ASTNode,
 		updateFn: TransformASTFunction

@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import parse from '../parse'
 import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
@@ -26,7 +26,7 @@ function MecanismApplicable({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction<'applicable si'> = function (node) {
+const evaluate: EvaluationFunction<'applicable si'> = function (node) {
 	const explanation = { ...node.explanation }
 	const condition = this.evaluateNode(explanation.condition)
 	let valeur = explanation.valeur

@@ -1,5 +1,5 @@
 import { groupBy } from 'ramda'
-import { updateAST } from './AST'
+import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
 import { defaultNode, makeJsx } from './evaluation'
@@ -99,7 +99,7 @@ export function getReplacements(
 export function inlineReplacements(
 	replacements: Record<string, Array<ReplacementNode>>
 ): (n: ASTNode) => ASTNode {
-	return updateAST((n, fn) => {
+	return transformAST((n, fn) => {
 		if (
 			n.nodeKind === 'replacement' ||
 			n.nodeKind === 'inversion' ||

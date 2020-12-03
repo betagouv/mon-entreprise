@@ -1,4 +1,4 @@
-import { evaluationFunction } from '.'
+import { EvaluationFunction } from '.'
 import { ASTNode } from './AST/types'
 
 export let evaluationFunctions = {
@@ -7,7 +7,7 @@ export let evaluationFunctions = {
 
 export function registerEvaluationFunction<
 	NodeName extends ASTNode['nodeKind']
->(nodeKind: NodeName, evaluationFunction: evaluationFunction<NodeName>) {
+>(nodeKind: NodeName, evaluationFunction: EvaluationFunction<NodeName>) {
 	evaluationFunctions ??= {}
 	if (evaluationFunctions[nodeKind]) {
 		throw Error(

@@ -1,6 +1,6 @@
 import { equals, fromPairs, map } from 'ramda'
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { Operation } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
@@ -55,7 +55,7 @@ const parseOperation = (k, symbol) => (v, context) => {
 	} as OperationNode
 }
 
-const evaluate: evaluationFunction<'operation'> = function (node) {
+const evaluate: EvaluationFunction<'operation'> = function (node) {
 	const explanation = node.explanation.map((node) =>
 		this.evaluateNode(node)
 	) as [EvaluatedNode, EvaluatedNode]

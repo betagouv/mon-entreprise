@@ -47,7 +47,7 @@ export { parsePublicodes }
 export { utils }
 export { Rule }
 
-export type evaluationFunction<Kind extends NodeKind = NodeKind> = (
+export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind } & EvaluatedNode

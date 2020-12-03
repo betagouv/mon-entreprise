@@ -1,4 +1,4 @@
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -22,7 +22,7 @@ export type VariableTemporelleNode = {
 	nodeKind: 'variable temporelle'
 }
 
-const evaluate: evaluationFunction<'variable temporelle'> = function (
+const evaluate: EvaluationFunction<'variable temporelle'> = function (
 	node: any
 ) {
 	const start =
