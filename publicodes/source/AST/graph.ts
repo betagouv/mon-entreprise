@@ -72,7 +72,7 @@ export function cyclesInDependenciesGraph(rawRules: RawRules): GraphCycles {
  * Tarjan method, which is **not necessarily the smallest cycle**. However, the
  * smallest cycle would be the most legibe one…
  */
-export function cyclicDependencies<Names extends string>(
+export function cyclicDependencies(
 	rawRules: RawRules
 ): GraphCyclesWithDependencies {
 	const parsedRules = parsePublicodes(rawRules)

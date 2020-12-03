@@ -1,4 +1,4 @@
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import tauxProgressif from '../components/mecanisms/TauxProgressif'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -36,7 +36,7 @@ export default function parseTauxProgressif(v, context): TauxProgressifNode {
 	}
 }
 
-const evaluate: evaluationFunction<'taux progressif'> = function (node) {
+const evaluate: EvaluationFunction<'taux progressif'> = function (node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)

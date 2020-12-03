@@ -1,4 +1,4 @@
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import Product from '../components/mecanisms/Product'
 import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
@@ -35,7 +35,7 @@ export const mecanismProduct = (v, context) => {
 	} as ProductNode
 }
 
-const productEffect: evaluationFunction = function ({
+const productEffect: EvaluationFunction = function ({
 	assiette,
 	taux,
 	facteur,

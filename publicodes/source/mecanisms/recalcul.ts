@@ -1,4 +1,4 @@
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import Recalcul from '../components/mecanisms/Recalcul'
 import { defaultNode } from '../evaluation'
@@ -18,7 +18,7 @@ export type RecalculNode = {
 	nodeKind: 'recalcul'
 }
 
-const evaluateRecalcul: evaluationFunction<'recalcul'> = function (node) {
+const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 	if (this.cache._meta.inRecalcul) {
 		return (defaultNode(false) as any) as RecalculNode & EvaluatedNode
 	}

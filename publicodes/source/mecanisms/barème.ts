@@ -1,4 +1,4 @@
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import Barème from '../components/mecanisms/Barème'
 import { evaluationError } from '../error'
 import parse from '../parse'
@@ -84,7 +84,7 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 		}
 	})
 }
-const evaluate: evaluationFunction<'barème'> = function (node) {
+const evaluate: EvaluationFunction<'barème'> = function (node) {
 	const evaluateNode = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)

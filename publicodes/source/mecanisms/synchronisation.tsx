@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { RuleLinkWithContext } from '../components/RuleLink'
 import { ASTNode } from '../AST/types'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -15,7 +15,7 @@ export type SynchronisationNode = {
 	nodeKind: 'synchronisation'
 }
 
-const evaluate: evaluationFunction<'synchronisation'> = function (node: any) {
+const evaluate: EvaluationFunction<'synchronisation'> = function (node: any) {
 	const data = this.evaluateNode(node.explanation.data)
 	const valuePath = node.explanation.chemin.split(' . ')
 	const nodeValue =

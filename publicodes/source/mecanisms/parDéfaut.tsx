@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
@@ -29,7 +29,7 @@ function ParDéfautComponent({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction<'par défaut'> = function (node) {
+const evaluate: EvaluationFunction<'par défaut'> = function (node) {
 	const explanation: {
 		parDéfaut: EvaluatedNode | ASTNode
 		valeur: EvaluatedNode | ASTNode

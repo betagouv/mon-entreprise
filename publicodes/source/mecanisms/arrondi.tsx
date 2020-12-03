@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { makeJsx, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -30,7 +30,7 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 	return +n.toFixed(fractionDigits)
 }
 
-const evaluate: evaluationFunction<'arrondi'> = function (node) {
+const evaluate: EvaluationFunction<'arrondi'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
@@ -56,7 +56,7 @@ const evaluate: evaluationFunction<'arrondi'> = function (node) {
 	}
 }
 
-export default function Arrondi(v, context) {
+export default function parseArrondi(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
 		arrondi: parse(v.arrondi, context),
@@ -64,10 +64,10 @@ export default function Arrondi(v, context) {
 	return {
 		jsx: MecanismArrondi,
 		explanation,
-		nodeKind: Arrondi.nom,
+		nodeKind: parseArrondi.nom,
 	}
 }
 
-Arrondi.nom = 'arrondi' as const
+parseArrondi.nom = 'arrondi' as const
 
-registerEvaluationFunction(Arrondi.nom, evaluate)
+registerEvaluationFunction(parseArrondi.nom, evaluate)

@@ -1,5 +1,5 @@
 import { lensPath, over } from 'ramda'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import grille from '../components/mecanisms/Grille'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -57,7 +57,7 @@ const evaluateGrille = (tranches, evaluate) =>
 		}
 	})
 
-const evaluate: evaluationFunction<'grille'> = function (node) {
+const evaluate: EvaluationFunction<'grille'> = function (node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
