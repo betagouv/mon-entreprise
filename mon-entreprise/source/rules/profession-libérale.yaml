@@ -168,8 +168,12 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
           plafond: 4
     arrondi: oui
 
-dirigeant . indépendant . PL . régime général . maladie:
-  titre: maladie (taux PLNR)
+dirigeant . indépendant . PL . maladie:
+  titre: maladie (taux PLR)
+  non applicable si: 
+    une de ces conditions: 
+      - régime général
+      - PAMC
   remplace: cotisations et contributions . maladie
   formule:
     produit:
@@ -188,7 +192,7 @@ dirigeant . indépendant . PL . régime général . maladie:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
     guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Guide-Professions-liberales.pdf
   note: |
-    Les professions libérales ne cotisent pour la part correspondante aux
+    Les professions libérales réglementée ne cotisent pour la part correspondante aux
     indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
     maladie.
 

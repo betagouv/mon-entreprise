@@ -942,6 +942,9 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
       taux [ref]: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
     arrondi: oui
+  références:
+    Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
 
 dirigeant . indépendant . cotisations et contributions . maladie:
   formule:
@@ -955,7 +958,7 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     arrondi: oui
   références:
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
-    Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+
   note: |
     On retrouve dans le décret ci-dessous la phrase suivante :
 
@@ -975,7 +978,10 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
     valeur: taux RSA part variable + 1.35%
     plafond: 6.35%
   note: |
-    Pour les indépendants au RSA, seule la réduction simple définie dans le décret de calcul de la cotisation maladie est prise en compte. La réduction renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas, car il n'y a pas d'assiette minimale.
+    Pour les indépendants au RSA, seule la réduction simple définie dans
+    le décret de calcul de la cotisation maladie est prise en compte.
+    La réduction renforcée en-dessous de 40% du plafond de la sécurité 
+    sociale ne l'est pas, car il n'y a pas d'assiette minimale.
 
 dirigeant . indépendant . cotisations et contributions . maladie . taux RSA part variable:
   unité: '%'
@@ -993,16 +999,13 @@ dirigeant . indépendant . cotisations et contributions . maladie . taux:
         - plafond: 0%
           taux: 0%
         - plafond: 40%
-          taux: 3.168%
+          taux: 3.16%
         - plafond: 110%
           taux: 6.35%
-  note: |
-    Cette cotisation est à la base très simple : la cotisation maladie est de 7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà. Cependant :
-    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
-    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
-
   références:
+    Taux de cotisations: https://www.secu-independants.fr/cotisations/calcul-cotisations/taux-de-cotisations/
     décret formule de calcul: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036342439&categorieLien=id
+    
 
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   formule:

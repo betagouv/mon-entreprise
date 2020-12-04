@@ -4976,6 +4976,23 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
     profession libérale effectuée.
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
+dirigeant . indépendant . PL . maladie:
+  note.en: >
+    [automatic] The regulated professions do not contribute the corresponding
+    share to the
+
+    per diems and are therefore not entitled to these allowances in the event of
+
+    illness.
+  note.fr: >
+    Les professions libérales réglementée ne cotisent pour la part
+    correspondante aux
+
+    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
+
+    maladie.
+  titre.en: '[automatic] illness (PLR rate)'
+  titre.fr: maladie (taux PLR)
 dirigeant . indépendant . PL . métier:
   question.en: '[automatic] To which category does your profession belong?'
   question.fr: A quelle catégorie appartient votre profession ?
@@ -5208,22 +5225,6 @@ dirigeant . indépendant . PL . régime général:
     d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
   titre.en: '[automatic] overall regime'
   titre.fr: régime général
-dirigeant . indépendant . PL . régime général . maladie:
-  note.en: >
-    [automatic] The liberal professions do not contribute the corresponding
-    share to the
-
-    per diems and are therefore not entitled to these allowances in the event of
-
-    illness.
-  note.fr: >
-    Les professions libérales ne cotisent pour la part correspondante aux
-
-    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
-
-    maladie.
-  titre.en: '[automatic] disease (PLNR rate)'
-  titre.fr: maladie (taux PLNR)
 ? dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire
 : description.en: |
     [automatic] The unregulated professions that started their activity at
@@ -5715,35 +5716,19 @@ dirigeant . indépendant . cotisations et contributions . maladie:
   titre.en: '[automatic] disease'
   titre.fr: maladie
 dirigeant . indépendant . cotisations et contributions . maladie . taux:
-  note.en: >
-    [automatic] This contribution is basically very simple: the health
-    contribution is 7.2% up to 5 times the social security ceiling, then 6.5%
-    beyond that. However:
-
-    - for its recovery, this contribution is separated into 2: sickness and sickness 2, the latter at the rate of 0.85%. Thus the amount of 7.2% quoted in the decree is reduced to 6.35% in our calculations.
-
-    - Contribution reductions have been introduced: a simple exemption below 110% of the social security ceiling, then a reinforced exemption below 40%. The above scale takes these reductions into account.
-  note.fr: >
-    Cette cotisation est à la base très simple : la cotisation maladie est de
-    7.2% jusqu'à 5 fois le plafond de la sécurité sociale, puis 6.5% au-delà.
-    Cependant :
-
-    - pour son recouvrement, cette cotisation est séparée en 2 : maladie et maladie 2, cette deuxième au taux de 0.85%. Ainsi le montant de 7.2% cité dans le décret est rabaissé à 6.35% dans nos calculs.
-
-    - des réductions de cotisation ont été introduites : une exonération simple en-dessous de 110% du plafond de la sécurité sociale, puis une exonération renforcée en-dessous de 40%. Le barème ci-dessus prend en compte ces réductions.
   titre.en: '[automatic] rate'
   titre.fr: taux
 dirigeant . indépendant . cotisations et contributions . maladie . taux RSA:
-  note.en: >
-    [automatic] For self-employed persons with the RSA, only the simple
-    reduction defined in the decree for calculating the health contribution is
-    taken into account. The reinforced reduction below 40% of the social
-    security ceiling is not, as there is no minimum base.
-  note.fr: >
-    Pour les indépendants au RSA, seule la réduction simple définie dans le
-    décret de calcul de la cotisation maladie est prise en compte. La réduction
-    renforcée en-dessous de 40% du plafond de la sécurité sociale ne l'est pas,
-    car il n'y a pas d'assiette minimale.
+  note.en: |
+    [automatic] For RSA freelancers, only the simple reduction defined in
+    the decree for calculating the health contribution is taken into account.
+    The reinforced reduction below 40% of the security ceiling 
+    social is not, because there is no minimum base.
+  note.fr: |
+    Pour les indépendants au RSA, seule la réduction simple définie dans
+    le décret de calcul de la cotisation maladie est prise en compte.
+    La réduction renforcée en-dessous de 40% du plafond de la sécurité 
+    sociale ne l'est pas, car il n'y a pas d'assiette minimale.
   titre.en: '[automatic] RSA rate'
   titre.fr: taux RSA
 ? dirigeant . indépendant . cotisations et contributions . maladie . taux RSA part variable
