@@ -12,11 +12,12 @@ const StatutDescription = ({ statut }: Props) =>
 		</Trans>
 	) : statut === 'EIRL' ? (
 		<Trans i18nKey="formeJuridique.EIRL">
-			Permet de protéger son patrimoine personnel en attribuant un capital
-			spécifique à son activité professionnelle. La société et l'individu
-			constituent la même personne. Ne convient pas si l'associé unique est une
-			personne morale (entreprise) ou si vous pensez accueillir d'autres
-			associés au cours de votre développement (choisissez EURL dans ce cas).
+			Permet d'attribuer un capital spécifique à son activité professionnelle,
+			et de choisir le régime d'imposition sur les société (IS) plutôt que
+			revenu (IR) La société et l'individu constituent la même personne. Ne
+			convient pas si l'associé unique est une personne morale (entreprise) ou
+			si vous pensez accueillir d'autres associés au cours de votre
+			développement (choisissez EURL dans ce cas).
 		</Trans>
 	) : statut === 'EURL' ? (
 		<Trans i18nKey="formeJuridique.EURL">
