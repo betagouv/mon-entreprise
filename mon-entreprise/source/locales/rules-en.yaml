@@ -1285,8 +1285,8 @@ contrat salarié . aides employeur . emploi franc . éligible:
   question.en: '[automatic] Are you eligible for Employment-Franc assistance for
     this hiring?'
   question.fr: Êtes-vous éligible à l'aide emploi-franc pour cette embauche ?
-  titre.en: '[automatic] eligible'
-  titre.fr: éligible
+  titre.en: '[automatic] eligibility for open employment assistance'
+  titre.fr: éligibilité à l'aide emploi franc
 contrat salarié . allocations familiales:
   titre.en: Family allowances
   titre.fr: allocations familiales

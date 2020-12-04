@@ -1,6 +1,6 @@
 import {
 	ThemeColorsContext,
-	ThemeColorsProvider,
+	ThemeColorsProvider
 } from 'Components/utils/colors'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import urssafLogo from 'Images/urssaf.svg'
@@ -24,8 +24,8 @@ function IntegrationCustomizer() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.filter((s) => s.iframe && !s.private)
-				.map((s) => s.iframe),
+				.filter(s => s.iframe && !s.private)
+				.map(s => s.iframe),
 		[simulators]
 	)
 	const defaultModuleFromUrl =
@@ -86,10 +86,10 @@ function IntegrationCustomizer() {
 							{emoji('🚩')}
 						</h3>
 						<select
-							onChange={(event) => setCurrentModule(event.target.value)}
+							onChange={event => setCurrentModule(event.target.value)}
 							value={currentModule}
 						>
-							{integrableModuleNames.map((name) => (
+							{integrableModuleNames.map(name => (
 								<option key={name}>{name}</option>
 							))}
 						</select>
@@ -241,7 +241,7 @@ type IntegrationCodeProps = {
 
 function IntegrationCode({
 	module = 'simulateur-embauche',
-	color,
+	color
 }: IntegrationCodeProps) {
 	const codeRef = useRef<HTMLDivElement>(null)
 	const [secondClick, setSecondClick] = useState(false)
