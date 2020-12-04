@@ -63,7 +63,7 @@ export default function parseVariations(v, context): VariationNode {
 	}
 }
 
-const evaluate: EvaluationFunction<'variations'> = function (node) {
+const evaluate: evaluationFunction<'variations'> = function (node) {
 	const [temporalValue, explanation, unit] = node.explanation.reduce<
 		[
 			Temporal<any>,
@@ -164,6 +164,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 			[]
 		)
 	)
+
 	return {
 		...node,
 		nodeValue,

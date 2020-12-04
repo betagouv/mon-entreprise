@@ -16,7 +16,21 @@ export type ReplacementRule = {
 	whiteListedNames: Array<ASTNode & { nodeKind: 'reference' }>
 	rawNode: any
 	blackListedNames: Array<ASTNode & { nodeKind: 'reference' }>
+	remplacementRuleId: number
 }
+
+// Replacements depend on the context and their evaluation implies using
+// "variations" node everywhere there is a reference to the original rule.
+// However for performance reason we want to mutualize identical "variations"
+// nodes instead of duplicating them, to avoid wasteful computations.
+//
+// The implementation works by first attributing an identifier for each
+// replacementRule. We then use this identifier to create a cache key that
+// represent the combinaison of applicables replacements for a given reference.
+// For example if replacements 12, 13 et 643 are applicable we use the key
+// `12-13-643` as the cache identifier in the `inlineReplacements` function.
+let remplacementRuleId = 0
+const cache = {}
 
 export function parseReplacements(
 	replacements: Rule['remplace'],
@@ -51,6 +65,7 @@ export function parseReplacements(
 			replacementNode,
 			whiteListedNames,
 			blackListedNames,
+			remplacementRuleId: remplacementRuleId++,
 		} as ReplacementRule
 	})
 }
@@ -166,7 +181,11 @@ ${applicableReplacements.map(
 		)
 	}
 
-	return {
+	const applicableReplacementsCacheKey = applicableReplacements
+		.map((n) => n.remplacementRuleId)
+		.join('-')
+
+	cache[applicableReplacementsCacheKey] ??= {
 		nodeKind: 'variations',
 		visualisationKind: 'replacement',
 		rawNode: node.rawNode,
@@ -181,4 +200,5 @@ ${applicableReplacements.map(
 			},
 		],
 	}
+	return cache[applicableReplacementsCacheKey]
 }
