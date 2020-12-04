@@ -936,7 +936,9 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
     versé.
   formule:
     produit:
-      assiette: maladie . assiette
+      assiette: 
+        valeur: assiette des cotisations
+        plancher [ref]: 40% * plafond sécurité sociale temps plein
       taux [ref]: 0.85%
       plafond: 5 * plafond sécurité sociale temps plein
     arrondi: oui
@@ -944,9 +946,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
 dirigeant . indépendant . cotisations et contributions . maladie:
   formule:
     barème:
-      assiette [ref]:
-        valeur: assiette des cotisations
-        plancher [ref]: 40% * plafond sécurité sociale temps plein
+      assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale temps plein
       tranches:
         - taux: taux variable
@@ -1051,7 +1051,7 @@ dirigeant . indépendant . cotisations et contributions . exonération de cotisa
   applicable si: situation personnelle . RSA
   remplace:
     - invalidité et décès . assiette . plancher
-    - maladie . assiette . plancher
+    - indemnités journalières maladie . plancher
     - retraite de base . assiette . plancher
   formule: non
   références:
@@ -1231,7 +1231,7 @@ dirigeant . indépendant . cotisations et contributions . maladie domiciliation 
   remplace: maladie
   formule:
     produit:
-      assiette: maladie . assiette
+      assiette: assiette des cotisations
       taux: 14.5%
   arrondi: oui
 
