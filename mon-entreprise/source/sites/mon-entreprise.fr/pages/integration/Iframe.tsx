@@ -166,8 +166,8 @@ export default function Integration() {
 				<Trans i18nKey="pages.développeurs.iframe">
 					<h1>Intégrez le module Web</h1>
 					<p>
-						Nous simulateurs sont intégrables de manière transparante en
-						ajoutant une simple ligne de code à votre page Web.
+						Nos simulateurs sont intégrables de manière transparente en ajoutant
+						une simple ligne de code à votre page Web.
 					</p>
 					<p>
 						Vous pouvez choisir le simulateur à intégrer et{' '}
@@ -175,7 +175,7 @@ export default function Integration() {
 						le fondre dans le thème visuel de votre page.
 					</p>
 					<p>
-						L'attribut <i>data-lang="en"</i> vous permet quand à lui de choisir
+						L'attribut <i>data-lang="en"</i> vous permet quant à lui de choisir
 						l'anglais comme langue du simulateur.
 					</p>
 				</Trans>
@@ -205,9 +205,9 @@ export default function Integration() {
 						</a>
 					</article>
 					<article>
-						<a href="http://travail-emploi.gouv.fr/emploi/accompagnement-des-tpe-pme/tpe-pme/article/le-simulateur-du-cout-d-embauche">
+						<a href="https://code.travail.gouv.fr/outils/simulateur-embauche">
 							<img src={minTraLogo} alt="Ministère du travail" />
-							<h2>Ministère du travail</h2>
+							<h2>Code du travail numérique</h2>
 						</a>
 					</article>
 					<article>

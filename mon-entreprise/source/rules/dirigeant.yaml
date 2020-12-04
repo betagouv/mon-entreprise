@@ -477,6 +477,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       taux: taux
       facteur: prorata sur l'année
     arrondi: oui
+  références:
+    Fiche secu-independant.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . PSS proratisé:
   formule:

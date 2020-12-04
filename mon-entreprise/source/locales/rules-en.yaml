@@ -398,25 +398,57 @@ contrat salarié . ATMP:
   titre.en: Contribution for work accidents and occupational diseases
   titre.fr: Cotisation Accidents du Travail et Maladies Professionnelles
 contrat salarié . ATMP . taux collectif ATMP:
-  description.en: Companies with fewer than 20 employees are subject to this
-    collective rate. For larger companies, this rate is modulated (up to 150
-    employees), and then individualized (beyond 250). The company's rate can be
-    consulted online on [net-entreprise]
-    (http://www.net-entreprises.fr/html/account-accident-travail.htm).
+  description.en: >
+    [automatic] Companies with fewer than 20 employees are subject to this
+    collective rate. For larger companies,
+
+    this rate is modulated (up to 150 employees) or even individualized (beyond that).
   description.fr: >
     Les entreprises de moins de 20 salariés sont assujetties à ce taux
     collectif. Pour les entreprises plus importantes,
 
-    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà). L'entreprise peut consulter le taux qui la
-
-    concerne en ligne sur [net-entreprise](http://www.net-entreprises.fr/html/compte-accident-travail.htm).
-  question.en:
-    What rate of workplace accidents and occupational diseases applies
-    to the company?
-  question.fr: Quel taux Accidents du Travail et Maladies Professionnelles
-    s'applique à l'entreprise ?
+    ce taux est modulé (jusqu'à 150 salariés) voire individualisé (au-delà).
+  question.en: '[automatic] What area of activity does your company depend on?'
+  question.fr: De quel domaine d'activité dépend votre entreprise ?
   titre.en: ATMP collective rate
   titre.fr: Taux collectif ATMP
+contrat salarié . ATMP . taux connu:
+  description.en: >
+    [automatic] The rate of the occupational accident and illness contribution
+    varies according to the company's activity, to reflect the level of risk to
+    which their employees are exposed.
+
+
+    Companies with fewer than 20 employees are subject to this collective rate common to their entire branch.
+
+
+    From 150 employees upwards, the rate is individualized according to the company's actual records of occupational accidents and illnesses.
+
+
+    Between the two, the rate is modulated.
+
+
+    This rate has no impact on the net because it is a contribution payable by the employer.
+  description.fr: >
+    Le taux de la cotisation Accident du Travail et Maladie Professionnel varie
+    selon l'activité de l'entreprise, pour refleter le niveau de risque auxquels
+    sont exposé leur salariés.
+
+
+    Les entreprises de moins de 20 salariés sont assujetties à ce taux collectif commun à toute leur branche.
+
+
+    A partir de 150 employé, le taux est individualisé en fonction des relevés réels des accidents et maladies professionnels de l'entreprise.
+
+
+    Entre les deux, le taux est modulé.
+
+
+    Ce taux n'a pas d'influence sur le net car il s'agit d'une cotisation à la charge de l'employeur.
+  question.en: '[automatic] Do you know the AT/MP rate applicable to your company?'
+  question.fr: Connaissez-vous le taux AT/MP applicable à votre entreprise ?
+  titre.en: '[automatic] known rate'
+  titre.fr: taux connu
 contrat salarié . ATMP . taux minimum:
   description.en: '[automatic] The existing minimum rate for the ATMP
     contribution. Used in particular for the calculation of the general
@@ -425,6 +457,17 @@ contrat salarié . ATMP . taux minimum:
     notamment pour le calcul de la réduction générale de cotisations
   titre.en: '[automatic] minimum level'
   titre.fr: taux minimum
+contrat salarié . ATMP . taux personnalisé:
+  description.en: >
+    [automatic] Companies with more than 20 employees have an individualized
+    rate. The company can consult the rate that the
+  description.fr: >
+    Les entreprises de plus de 20 salariés ont un taux individualisé.
+    L'entreprise peut consulter le taux qui la
+  question.en: "[automatic] What is the company's AT/MP rate?"
+  question.fr: Quel est le taux AT/MP de l'entreprise ?
+  titre.en: '[automatic] personalized rate'
+  titre.fr: taux personnalisé
 contrat salarié . ATMP . taux réduit:
   description.en: >
     This rate corresponds to:
@@ -1242,8 +1285,8 @@ contrat salarié . aides employeur . emploi franc . éligible:
   question.en: '[automatic] Are you eligible for Employment-Franc assistance for
     this hiring?'
   question.fr: Êtes-vous éligible à l'aide emploi-franc pour cette embauche ?
-  titre.en: '[automatic] eligible'
-  titre.fr: éligible
+  titre.en: '[automatic] eligibility for open employment assistance'
+  titre.fr: éligibilité à l'aide emploi franc
 contrat salarié . allocations familiales:
   titre.en: Family allowances
   titre.fr: allocations familiales
