@@ -1,5 +1,5 @@
 import { or } from 'ramda'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import Variations from '../components/mecanisms/Variations'
 import { ASTNode, EvaluatedNode, Unit } from '../AST/types'
 import { typeWarning } from '../error'
@@ -66,7 +66,7 @@ export default function parseVariations(v, context): VariationNode {
 	}
 }
 
-const evaluate: evaluationFunction<'variations'> = function (node) {
+const evaluate: EvaluationFunction<'variations'> = function (node) {
 	const [temporalValue, explanation, unit] = node.explanation.reduce<
 		[
 			Temporal<any>,

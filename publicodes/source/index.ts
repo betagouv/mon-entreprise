@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { compose, map, mapObjIndexed } from 'ramda'
+import { compose, mapObjIndexed } from 'ramda'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
@@ -36,18 +36,18 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
+export { reduceAST, transformAST } from './AST'
 export * as cyclesLib from './AST/graph'
-export { reduceAST, updateAST } from './AST'
+export { Evaluation, Unit } from './AST/types'
 export * from './components'
 export { formatValue } from './format'
 export { default as translateRules } from './translateRules'
 export { ASTNode, EvaluatedNode }
-export { Unit, Evaluation } from './AST/types'
 export { parsePublicodes }
 export { utils }
 export { Rule }
 
-export type evaluationFunction<Kind extends NodeKind = NodeKind> = (
+export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
 ) => ASTNode & { nodeKind: Kind } & EvaluatedNode

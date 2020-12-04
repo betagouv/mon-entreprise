@@ -1,6 +1,6 @@
 import { is, map } from 'ramda'
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { Mecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { makeJsx, mergeAllMissing } from '../evaluation'
@@ -13,7 +13,7 @@ export type TouteCesConditionsNode = {
 	jsx: any
 }
 
-const evaluate: evaluationFunction<'toutes ces conditions'> = function (node) {
+const evaluate: EvaluationFunction<'toutes ces conditions'> = function (node) {
 	const [nodeValue, explanation] = node.explanation.reduce<
 		[boolean | null, Array<ASTNode>]
 	>(

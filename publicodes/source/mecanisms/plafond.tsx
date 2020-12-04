@@ -1,14 +1,12 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
+import { ASTNode } from '../AST/types'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
-import parse from '../parse'
-
 import { makeJsx, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
-import { ASTNode } from '../AST/types'
-import { EvaluatedNode } from '../AST/types'
+import parse from '../parse'
 
 function MecanismPlafond({ explanation }) {
 	return (
@@ -34,7 +32,7 @@ export type PlafondNode = {
 	jsx: any
 	nodeKind: 'plafond'
 }
-const evaluate: evaluationFunction<'plafond'> = function (node) {
+const evaluate: EvaluationFunction<'plafond'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue

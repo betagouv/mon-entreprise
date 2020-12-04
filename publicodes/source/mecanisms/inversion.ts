@@ -1,5 +1,5 @@
 import parse from '../parse'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { ASTNode, ConstantNode, Unit } from '../AST/types'
 import InversionNumérique from '../components/mecanisms/InversionNumérique'
 import { mergeMissing } from '../evaluation'
@@ -31,7 +31,7 @@ export type InversionNode = {
 // equal to its situation value, mathematically we search for the zero of the
 // function x → f(x) - goal. The iteration logic between each test is
 // implemented in the `uniroot` file.
-export const evaluateInversion: evaluationFunction<'inversion'> = function (
+export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 	node
 ) {
 	const inversionGoal = node.explanation.inversionCandidates.find(

@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
 import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
@@ -43,7 +43,7 @@ const objectShape = {
 	depuis: defaultNode(todayString),
 	"jusqu'à": defaultNode(todayString),
 }
-const evaluate: evaluationFunction<'durée'> = function (node) {
+const evaluate: EvaluationFunction<'durée'> = function (node) {
 	const from = this.evaluateNode(node.explanation.depuis)
 	const to = this.evaluateNode(node.explanation["jusqu'à"])
 	let nodeValue

@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { InfixMecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
@@ -33,7 +33,7 @@ export type PlancherNode = {
 	jsx: any
 	nodeKind: 'plancher'
 }
-const evaluate: evaluationFunction<'plancher'> = function (node) {
+const evaluate: EvaluationFunction<'plancher'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher

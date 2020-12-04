@@ -1,5 +1,5 @@
 import React from 'react'
-import { evaluationFunction } from '..'
+import { EvaluationFunction } from '..'
 import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { ASTNode, EvaluatedNode } from '../AST/types'
 import { bonus, makeJsx, mergeMissing } from '../evaluation'
@@ -27,7 +27,7 @@ function MecanismNonApplicable({ explanation }) {
 	)
 }
 
-const evaluate: evaluationFunction<'non applicable si'> = function (node) {
+const evaluate: EvaluationFunction<'non applicable si'> = function (node) {
 	const condition = this.evaluateNode(node.explanation.condition)
 	let valeur = node.explanation.valeur
 	if (condition.nodeValue === false || condition.nodeValue === null) {
