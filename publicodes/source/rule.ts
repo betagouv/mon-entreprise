@@ -114,18 +114,13 @@ registerEvaluationFunction('rule', function evaluate(node) {
 		return this.cache[node.dottedName]
 	}
 	const explanation = { ...node.explanation }
-	this.cache._meta.contextRule.push(node.dottedName)
-	this.cache._meta.parentEvaluationStack ??= []
 
+	const verifyParentApplicability = !this.cache._meta.contextRule.includes(node.dottedName)
+	this.cache._meta.contextRule.push(node.dottedName)
 	let parent: EvaluatedNode | null = null
-	if (
-		explanation.parent &&
-		!this.cache._meta.parentEvaluationStack.includes(node.dottedName)
-	) {
-		this.cache._meta.parentEvaluationStack.push(node.dottedName)
+	if (explanation.parent && verifyParentApplicability) {
 		parent = this.evaluateNode(explanation.parent) as EvaluatedNode
 		explanation.parent = parent
-		this.cache._meta.parentEvaluationStack.pop()
 	}
 	let valeur: EvaluatedNode | null = null
 	if (!parent || parent.nodeValue !== false) {
