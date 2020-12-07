@@ -1,3 +1,31 @@
+applicable si:
+  chainable: oui
+  description: >-
+    Renvoit `non` si la condition est égale à `non`. Renvoit la valeur sinon.
+
+    Permet de désactiver une règle ou une valeur. 
+    
+  retourne: Valeur | non
+  exemples:
+    ancienneté: 4 mois
+    prime de vacances:
+      applicable si: ancienneté > 1 an
+      valeur: 200€
+
+non applicable si:
+  chainable: oui
+  description: >-
+    Renvoit `non` si la condition n'est pas égale à `non`
+
+    Permet de désactiver une règle ou une valeur. 
+    
+  retourne: Valeur | non
+  exemples:
+    ancienneté: 4 mois
+    prime de vacances:
+      applicable si: ancienneté > 1 an
+      valeur: 200€
+
 une de ces conditions:
   description: >-
     Renvoie `oui` si l'une des règles listées est _applicable_.
@@ -94,11 +122,11 @@ variations:
 
 
     Si aucune condition n'est vraie, alors ce mécanisme renvoie implicitement
-    `non applicable`.
+    `non`.
 
 
-    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme
-    compatible, tel que `produit` ou `barème`.
+    Ce mécanisme peut aussi être utilisé au sein d'un autre mécanisme avec des attributs, 
+    tel que `produit` ou `barème`.
   arguments:
     - si: condition à vérifier
       alors: consequence évaluée si la condition est vrai
@@ -202,15 +230,18 @@ le minimum de:
             - 100
 
 arrondi:
+  chainable: oui
   description: >-
     Arrondi à l'entier le plus proche, ou à une précision donnée.
   exemples:
     base: >-
       arrondi:
-        formule:
-          arrondi:
-            valeur: 12.45
-            décimales: 1
+        arrondi: oui
+        valeur: 12.45
+    nombre de décimales: >-
+      arrondi:
+        arrondi: 2 décimales
+        valeur: 2/3
 
 recalcul:
   description: >-
@@ -357,37 +388,61 @@ composantes:
     méthode de calcul mais diffèrent selons certains paramètres. Pour ne pas
     définir deux variables quasi-redondantes, on utilise ce mécanisme.
 
+    Cela permet d'avoir une écriture factorisée, plus facile à lire. 
 
     Dans les calculs, `composantes` se comporte **exactement comme une somme**.
     La documentation, elle, sera adaptée pour montrer chaque composantes.
 
+    Il est possible par exemple pour le mécanisme `produit` de garder en
+    commun l'assiette, et de déclarer des composantes pour le taux.
 
-    Chaque composante peut contenir un champs `nom` (de type texte) ou un champs
-    `attributs` (de type objet avec des champs libres) qui remonteront dans la
-    documentation pour aider à l'explicabilité.  
+    Chaque composante peut également contenir un champs `attributs` de type objet
+    contenant les mécanismes chainés à appliquer à la composante en question
 
-
-    Il est possible, pour les mécanismes `barème` et `produit` de garder en
-    commun un paramètre comme l'assiette, puis de déclarer des composantes pour
-    le taux.
-
-
-    > L'exemple le plus courant de composantes est la distinction part
-    employeur / part salarié (ex. retraite AGIRC).
-
+    Lorsque l'on utilise l'attribut `nom`, cela abouti à la définition de règles 
+    imbriquées pour chacun des terme de la somme.
+     
   exemples:
     base: >-
-      CSG . base:
-        formule:
-          multiplication:
+      composante:
+        produit:
+          assiette: assiette de base
+          composantes:
+            - taux: 2%
+            - taux: 4%
+              plafond: plafond sécurité sociale
+    
+    Cotisations:
+      base: >-
+        cotisation 1:
+          produit:
             assiette: assiette de base
             composantes:
               - attributs:
-                  impôt sur le revenu: déductible
-                taux: taux déductible
+                  nom: employeur
+                taux: 5%
               - attributs:
-                  impôt sur le revenu: non déductible
-                taux: taux non déductible
+                  nom: salarié
+                taux: 1%
+
+        cotisations salariales :
+          somme: 
+            - cotisation 1 . salarié
+            # ...
+    TVA:
+      base: >-
+        prix:
+          produit:
+            assiette: 50€
+            composantes:
+              - attributs:
+                  nom: HT
+              - attributs:
+                  nom: TVA
+                taux: 20%
+
+        vérification:
+          prix = prix . HT + prix . TVA 
 
 allègement:
   description: >-
@@ -403,17 +458,24 @@ allègement:
             abattement: abattement
 
 
-encadrement:
-  description: Permet d'ajouter un plafond et/ou un plancher à une valeur.
+plancher:
+  chainable: oui
+  description: Permet d'ajouter un plancher à une valeur.
   exemples:
     base: >-
-      assiette plafonnée:
-        formule:
-          encadrement:
-            plancher: 0 €
-            valeur: 2000 €
-            plafond: 1500 €
-
+      revenus: -500€
+      assiette des cotisations:
+        valeur: revenus
+        plancher: 0 €
+plafond:
+  chainable: oui
+  description: Permet de plafonner une valeur.
+  exemples:
+    base: >-
+      salaire: 1300€/mois
+      déduction fiscale:
+        valeur: salaire * 10%
+        plafond: 5000 €/an
 durée:
   description: Permet d'obtenir le nombre de jours entre deux dates
   exemples:
@@ -428,8 +490,40 @@ durée:
             depuis: date d'embauche
             jusqu'à: 31/12/2020
 
+unité:
+  chainable: oui
+  description: |
+    Permet de convertir explicitement une unité.
+
+    Affiche un avertissement si la conversion n'est pas possible à cause d'unités incompatibles.
+  
+  exemples:
+    base: >-
+      salaire: 
+        valeur: 35 k€/an
+        unité: €/mois
+      
+
+par défaut:
+  chainable: oui
+  description: |
+    Permet de donner une valeur par défaut pour le calcul, sans influer sur les variables manquantes retournés.
+
+    Utile dans le cas d'une situation incomplète où l'on veut quand même retourner une première estimation.
+  
+  exemples:
+    base: >-
+      prix TTC: 
+        assiette: prix HT * (100% + TVA)
+      TVA: 
+        par défaut: 20%
+
+      
+
+
 synchronisation:
-  description: Permet de récupérer certaines informations, tels que les les
+  description: >- 
+    Permet de récupérer certaines informations, tels que les les
     codes postaux des villes, à partir d'APIs externes, telles que l'[API
     commune](https://geo.api.gouv.fr/decoupage-administratif/communes).
 
