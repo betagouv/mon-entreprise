@@ -7,7 +7,7 @@ import { Navigation } from './Header'
 export default function Landing() {
 	return (
 		<div>
-			<Navigation items={items} />
+			<Navigation items={items} sub />
 			<ScrollToTop />
 			<main>
 				<MarkdownWithAnchorLinks source={content} />
