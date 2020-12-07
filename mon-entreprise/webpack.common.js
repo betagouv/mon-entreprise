@@ -107,6 +107,6 @@ module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 			'Un langage de calcul ouvert, lisible en français, contributif pour encoder et publier les sujets de société.',
 		filename: 'publicodes.html',
 		shareImage: 'https://mon-entreprise.fr/images/logo-share.png',
-		logo: 'https://mon-entreprise.fr/images/illustration.svg'
+		logo: 'images/publicodes.png'
 	})
 ]
