@@ -76,6 +76,7 @@ module.exports = {
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
+			cacheId: process.env.HEAD,
 			swDest: 'sw.js',
 			navigateFallback: '/fallback',
 			navigateFallbackWhitelist: [/^\/[^_]+$/], // fallback for anything that doesn't start with
