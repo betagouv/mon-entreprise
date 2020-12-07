@@ -18,6 +18,7 @@ const activeStyle = {
 } as React.CSSProperties
 
 const items = [
+	['', '🏠'],
 	['langage', 'Le langage'],
 	['communauté', 'Communauté'],
 	['studio', 'Bac à sable'],
@@ -34,7 +35,7 @@ export const Navigation = ({ items }) => {
 		>
 			{items.map(([to, label], index) => (
 				<>
-					{index > 0 && ' • '}
+					{index > 0 && <span css="margin: 0 .5rem">•</span>}
 					<NavLink activeStyle={activeStyle} to={'/' + to}>
 						{label}
 					</NavLink>
