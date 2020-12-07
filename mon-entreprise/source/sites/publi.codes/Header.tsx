@@ -1,42 +1,48 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-const activeStyle = {
-	fontWeight: 'bold',
-	textDecoration: 'underline',
-} as React.CSSProperties
+
 export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
 			<h1>
 				<Logo />
-				{sectionName && (
-					<span css="margin-left: 20px; font-weight: lighter; color: var(--lighterInverseTextColor);">
-						{sectionName}
-					</span>
-				)}
 			</h1>
 		</Link>
-		{!noSubtitle && (
-			<p css="max-width: 28rem; margin: 0 auto; font-size: 120%">
-				Le langage pour les algorithmes d'intérêt public.
-			</p>
-		)}
-		<br />
-		<nav css="display">
-			<NavLink activeStyle={activeStyle} to="/studio">
-				Bac à sable
-			</NavLink>
-			{' • '}
-			<NavLink activeStyle={activeStyle} to="/mécanismes">
-				Liste des mécanismes
-			</NavLink>
-			{' • '}
-			<NavLink activeStyle={activeStyle} to="/api">
-				API
-			</NavLink>
-		</nav>
+
+		<Navigation items={items} />
 	</header>
 )
+const activeStyle = {
+	fontWeight: 'bold',
+	textDecoration: 'underline',
+} as React.CSSProperties
+
+const items = [
+	['langage', 'Le langage'],
+	['communauté', 'Communauté'],
+	['studio', 'Bac à sable'],
+]
+export const Navigation = ({ items }) => {
+	return (
+		<nav
+			css={`
+				text-align: center;
+				a {
+					text-decoration: none;
+				}
+			`}
+		>
+			{items.map(([to, label], index) => (
+				<>
+					{index > 0 && ' • '}
+					<NavLink activeStyle={activeStyle} to={'/' + to}>
+						{label}
+					</NavLink>
+				</>
+			))}
+		</nav>
+	)
+}
 
 const Logo = () => (
 	<>

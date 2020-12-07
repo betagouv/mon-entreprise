@@ -11,9 +11,6 @@ export default function LazyStudio() {
 				flex-direction: column;
 			`}
 		>
-			<div className="ui__ container">
-				<Header noSubtitle sectionName="Studio" />
-			</div>
 			<Suspense
 				fallback={
 					<p
