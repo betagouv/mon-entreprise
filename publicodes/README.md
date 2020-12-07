@@ -21,13 +21,13 @@ progressivement le résultat affiché, et d'exposer une documentation du calcul 
     carbone d'un grand nombre d'activités, plats, transports ou biens.
 -   **[Nos Gestes Climat](https://ecolab.ademe.fr/apps/climat)** utilise publicodes pour proposer un calculateur d'empreinte climat personnel de référence complètement ouvert
 
-# Principe de base
+# Principes de base
 
 La syntaxe de Publicode est basée sur le langage
 [Yaml](https://en.wikipedia.org/wiki/YAML).
 
 Un fichier Publicode contient une liste de _règles_ identifiées par leur _nom_ et
-possédant une _valeure_ :
+possédant une _valeur_ :
 
 ```yaml
 prix d'un repas: 10 €
@@ -232,8 +232,6 @@ assimilé salarié:
     rend non applicable: convention collective
 ```
 
-> Pour en savoir plus sur l'applicabilité, se référer à la [documentation](/mécanisme#applicable si)
-
 ## Espaces de noms
 
 Les espaces de noms sont utiles pour organiser un grand nombre de règles. On
@@ -291,7 +289,7 @@ espaces de noms plus haut, et va donc valoir `100 €`.
 
 ### Désactivation de branche
 
-Les enfants d'un espace de nom ont une dépendance implicite à leur parent. Si ce dernier est non applicable ou égal à `non` alors ses enfants deviennent non applicables.
+Les enfants d'un espace de nom ont une dépendance implicite à leur parent. Si ce dernier est égal à `non` alors leur valeur est également `non`.
 
 ```yaml
 CDD: non
@@ -300,7 +298,7 @@ CDD . indemnité de précarité: 10% * 1500€/mois * 6 mois
 indemnités:
     somme:
         - 100 €
-        - CDD . indemnité de précarité # non applicable
+        - CDD . indemnité de précarité # non
 ```
 
 ## Remplacement
