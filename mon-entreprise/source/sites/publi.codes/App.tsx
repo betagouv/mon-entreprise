@@ -2,7 +2,7 @@
 import 'Components/ui/index.css'
 import 'iframe-resizer'
 import { hot } from 'react-hot-loader'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import Provider from '../../Provider'
 import redirects from '../mon-entreprise.fr/redirects'
 import Api from './Api'
@@ -38,6 +38,9 @@ const RouterSwitch = () => {
 			>
 				<Switch>
 					<Route exact path="/" component={Landing} />
+					<Route exact path="/accueil">
+						<Redirect to="/" />
+					</Route>
 					<Route path="/studio" component={LazyStudio} />
 					<Route exact path="/langage" component={Langage} />
 					<Route exact path="/communauté" component={Communauté} />
