@@ -1,6 +1,6 @@
 import { filter, mapObjIndexed, pick } from 'ramda'
 import { ASTNode, EvaluatedNode } from './AST/types'
-import { bonus, makeJsx, mergeMissing } from './evaluation'
+import { bonus, mergeMissing } from './evaluation'
 import { registerEvaluationFunction } from './evaluationFunctions'
 import parse, { mecanismKeys } from './parse'
 import { Context } from './parsePublicodes'
@@ -50,7 +50,6 @@ export type RuleNode = {
 	dottedName: string
 	title: string
 	nodeKind: 'rule'
-	jsx: any
 	virtualRule: boolean
 	rawNode: Rule
 	replacements: Array<ReplacementNode>
@@ -101,13 +100,6 @@ export default function parseRule(
 			rawRule.suggestions ?? {}
 		),
 		nodeKind: 'rule',
-		jsx: (node) => (
-			<>
-				<code className="ui__ light-bg">{capitalise0(node.rawNode.nom)}</code>
-				&nbsp;
-				{makeJsx(node.explanation.valeur)}
-			</>
-		),
 		explanation,
 		rawNode: rawRule,
 		virtualRule: !!context.dottedName,

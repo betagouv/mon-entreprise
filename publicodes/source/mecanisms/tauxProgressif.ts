@@ -1,5 +1,4 @@
 import { EvaluationFunction } from '..'
-import tauxProgressif from '../components/mecanisms/TauxProgressif'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -18,7 +17,6 @@ export type TauxProgressifNode = {
 		multiplicateur: ASTNode
 		assiette: ASTNode
 	}
-	jsx
 	nodeKind: 'taux progressif'
 }
 export default function parseTauxProgressif(v, context): TauxProgressifNode {
@@ -30,7 +28,6 @@ export default function parseTauxProgressif(v, context): TauxProgressifNode {
 		tranches: parseTranches(v.tranches, context),
 	} as TauxProgressifNode['explanation']
 	return {
-		jsx: tauxProgressif,
 		explanation,
 		nodeKind: 'taux progressif',
 	}

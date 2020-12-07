@@ -1,8 +1,6 @@
 import { EvaluationFunction } from '..'
-import Barème from '../components/mecanisms/Barème'
 import { evaluationError } from '../error'
 import parse from '../parse'
-
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import {
@@ -26,7 +24,6 @@ export type BarèmeNode = {
 		multiplicateur: ASTNode
 		assiette: ASTNode
 	}
-	jsx
 	nodeKind: 'barème'
 }
 export default function parseBarème(v, context): BarèmeNode {
@@ -39,7 +36,6 @@ export default function parseBarème(v, context): BarèmeNode {
 	}
 	return {
 		explanation,
-		jsx: Barème,
 		nodeKind: 'barème',
 	}
 }

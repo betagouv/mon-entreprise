@@ -17,8 +17,6 @@ export type VariableTemporelleNode = {
 		}
 		value: ASTNode
 	}
-	jsx: any
-
 	nodeKind: 'variable temporelle'
 }
 
@@ -59,7 +57,6 @@ export default function parseVariableTemporelle(
 	const explanation = parse(v.explanation, context)
 	return {
 		nodeKind: 'variable temporelle',
-		jsx: () => 'variable temporelle',
 		explanation: {
 			period: {
 				start: v.period.start && parse(v.period.start, context),

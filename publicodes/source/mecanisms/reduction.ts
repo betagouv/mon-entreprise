@@ -1,11 +1,9 @@
 import { max, min } from 'ramda'
-import Allègement from '../components/mecanisms/Allègement'
 import { typeWarning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import { serializeUnit } from '../units'
-import parse from '../parse'
 import { ASTNode } from '../AST/types'
 
 export type ReductionNode = {
@@ -14,7 +12,6 @@ export type ReductionNode = {
 		abattement: ASTNode
 		plafond: ASTNode
 	}
-	jsx: any
 	nodeKind: 'allègement'
 }
 
@@ -72,7 +69,6 @@ export const mecanismReduction = (v, context) => {
 	const explanation = parseObject(objectShape, v, context)
 
 	return {
-		jsx: Allègement,
 		explanation,
 		nodeKind: 'allègement',
 	} as ReductionNode

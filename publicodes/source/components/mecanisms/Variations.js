@@ -3,7 +3,7 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { InlineMecanismName, Mecanism } from './common'
 import styled from 'styled-components'
 
@@ -77,7 +77,8 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													marginBottom: '0.4rem',
 												}}
 											>
-												<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
+												<Trans>Si :</Trans>&nbsp;
+												<Explanation node={condition} />
 											</div>
 										)}
 										<div
@@ -105,7 +106,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													satisfied,
 												})}
 											>
-												{consequence && makeJsx(consequence)}
+												{consequence && <Explanation node={consequence} />}
 											</span>
 										</div>
 									</div>

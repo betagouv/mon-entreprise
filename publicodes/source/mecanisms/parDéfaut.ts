@@ -1,8 +1,6 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
-import { InfixMecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
-import { bonus, makeJsx, mergeMissing } from '../evaluation'
+import { bonus, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 import { EvaluatedNode } from '../AST/types'
@@ -12,24 +10,10 @@ export type ParDéfautNode = {
 		valeur: ASTNode
 		parDéfaut: ASTNode
 	}
-	jsx: any
 	nodeKind: 'par défaut'
 }
-function ParDéfautComponent({ explanation }) {
-	return (
-		<InfixMecanism
-			value={explanation.valeur}
-			dimValue={explanation.valeur.nodeValue === null}
-		>
-			<p>
-				<strong>Par défaut : </strong>
-				{makeJsx(explanation.parDéfaut)}
-			</p>
-		</InfixMecanism>
-	)
-}
 
-const evaluate: EvaluationFunction<'par défaut'> = function(node) {
+const evaluate: EvaluationFunction<'par défaut'> = function (node) {
 	const explanation: {
 		parDéfaut: EvaluatedNode | ASTNode
 		valeur: EvaluatedNode | ASTNode
@@ -51,19 +35,18 @@ const evaluate: EvaluationFunction<'par défaut'> = function(node) {
 				? explanation.parDéfaut.missingVariables
 				: {}
 		),
-		...('unit' in valeur && { unit: valeur.unit })
+		...('unit' in valeur && { unit: valeur.unit }),
 	}
 }
 
 export default function parseParDéfaut(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		parDéfaut: parse(v['par défaut'], context)
+		parDéfaut: parse(v['par défaut'], context),
 	}
 	return {
-		jsx: ParDéfautComponent,
 		explanation,
-		nodeKind: parseParDéfaut.nom
+		nodeKind: parseParDéfaut.nom,
 	} as ParDéfautNode
 }
 

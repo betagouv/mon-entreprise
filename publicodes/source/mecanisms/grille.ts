@@ -1,6 +1,4 @@
-import { lensPath, over } from 'ramda'
 import { EvaluationFunction } from '..'
-import grille from '../components/mecanisms/Grille'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import {
@@ -24,7 +22,6 @@ export type GrilleNode = {
 		multiplicateur: ASTNode
 		tranches: TrancheNodes
 	}
-	jsx: any
 	nodeKind: 'grille'
 }
 
@@ -38,7 +35,6 @@ export default function parseGrille(v, context): GrilleNode {
 	}
 	return {
 		explanation,
-		jsx: grille,
 		nodeKind: 'grille',
 	}
 }

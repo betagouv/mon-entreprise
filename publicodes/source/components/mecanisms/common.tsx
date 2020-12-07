@@ -1,27 +1,45 @@
 import React, { useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
-import styled, { StyledConfig } from 'styled-components'
+import styled from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
-import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
 import { simplifyNodeUnit } from '../../nodeUnits'
-import {
-	ASTNode,
-	ConstantNode,
-	Evaluation,
-	EvaluatedNode,
-	Types,
-	Unit,
-} from '../../AST/types'
-import { capitalise0 } from '../../utils'
+import { Evaluation, EvaluatedNode, Types, Unit } from '../../AST/types'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
-import MecanismExplanation from './Explanation'
+import Explanation from '../Explanation'
 import { ReferenceNode } from '../../reference'
-import { RuleNode } from '../../rule'
 import { EngineContext } from '../contexts'
 import { InternalError } from '../../error'
+import { capitalise0 } from '../../utils'
+import { Markdown } from '../Markdown'
+
+export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
+	if (nodeValue === null) {
+		return null
+	} else if (type === 'objet') {
+		return (
+			<code>
+				<pre>{JSON.stringify(nodeValue, null, 2)}</pre>
+			</code>
+		)
+	} else if (fullPrecision) {
+		return (
+			<span className={type}>
+				{formatValue(
+					{ nodeValue, unit },
+					{
+						precision: 5,
+					}
+				)}
+			</span>
+		)
+	} else {
+		return <span className="value">{nodeValue}</span>
+	}
+}
+
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
 	unit: Unit | undefined
@@ -54,20 +72,6 @@ type NodeProps = {
 	unit?: Unit
 	children: React.ReactNode
 	displayName?: boolean
-}
-
-export function Operation({ value, children, unit }: Omit<NodeProps, 'name'>) {
-	return (
-		<StyledOperation className="operation">
-			{children}
-			{value != null && (
-				<span className="result">
-					<small> =&nbsp;</small>
-					<NodeValuePointer data={value} unit={unit} />
-				</span>
-			)}
-		</StyledOperation>
-	)
 }
 
 export function Mecanism({
@@ -130,7 +134,7 @@ export const InfixMecanism = ({
 		>
 			{prefixed && children}
 			<div className="value" css={dimValue ? 'opacity: 0.5' : ''}>
-				{makeJsx(value)}
+				<Explanation node={value} />
 			</div>
 			{!prefixed && children}
 		</div>
@@ -166,31 +170,45 @@ const MecanismName = ({
 			</StyledMecanismName>
 			{showExplanation && (
 				<Overlay onClose={() => setShowExplanation(false)}>
-					<MecanismExplanation name={name} {...mecanismsDoc[name]} />
+					<RuleExplanation name={name} {...mecanismsDoc[name]} />
 				</Overlay>
 			)}
 		</>
 	)
 }
 
-const StyledOperation = styled.span`
-	::before {
-		content: '(';
-	}
-	> .operation ::before,
-	> .operation ::after {
-		content: '';
-	}
-	::after {
-		content: ')';
-	}
-	.result {
-		margin-left: 0.2rem;
-	}
-	.operation .result {
-		display: none;
-	}
-`
+type RuleExplanationProps = {
+	exemples: { base: string }
+	description: string
+	name: string
+}
+
+export default function RuleExplanation({
+	name,
+	description,
+	exemples,
+}: RuleExplanationProps) {
+	return (
+		<>
+			{!!name && (
+				<h2 id={name}>
+					<pre>{name}</pre>
+				</h2>
+			)}
+			<Markdown source={description} />
+			{exemples && (
+				<>
+					{Object.entries(exemples).map(([name, exemple]) => (
+						<React.Fragment key={name}>
+							<h3>{name === 'base' ? 'Exemple' : capitalise0(name)}</h3>
+							<Markdown source={`\`\`\`yaml\n${exemple}\n\`\`\``} />
+						</React.Fragment>
+					))}{' '}
+				</>
+			)}
+		</>
+	)
+}
 
 const StyledMecanism = styled.div<{ name: string }>`
 	border: 1px solid;
@@ -253,7 +271,7 @@ export function Leaf(
 		!node.name.includes(' . ') &&
 		rule.virtualRule
 	if (inlineRule) {
-		return makeJsx(rule)
+		return <Explanation node={rule} />
 	}
 	return (
 		<span className="variable filtered leaf">

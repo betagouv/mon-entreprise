@@ -1,14 +1,7 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
-import { Mecanism } from '../components/mecanisms/common'
 import { convertToDate, convertToString } from '../date'
-import {
-	defaultNode,
-	makeJsx,
-	mergeAllMissing,
-	parseObject,
-} from '../evaluation'
+import { defaultNode, mergeAllMissing, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { parseUnit } from '../units'
 
@@ -17,27 +10,10 @@ export type DuréeNode = {
 		depuis: ASTNode
 		"jusqu'à": ASTNode
 	}
-	jsx: any
 	unit: Unit
 	nodeKind: 'durée'
 }
 
-function MecanismDurée({ nodeValue, explanation, unit }) {
-	return (
-		<Mecanism name="durée" value={nodeValue} unit={unit}>
-			<>
-				<p>
-					<strong className="key">Depuis : </strong>
-					<span className="value">{makeJsx(explanation.depuis)}</span>
-				</p>
-				<p>
-					<strong className="key">Jusqu'à : </strong>
-					<span className="value">{makeJsx(explanation["jusqu'à"])}</span>
-				</p>
-			</>
-		</Mecanism>
-	)
-}
 const todayString = convertToString(new Date())
 const objectShape = {
 	depuis: defaultNode(todayString),
@@ -75,7 +51,6 @@ const evaluate: EvaluationFunction<'durée'> = function (node) {
 export default (v, context) => {
 	const explanation = parseObject(objectShape, v, context)
 	return {
-		jsx: MecanismDurée,
 		explanation,
 		unit: parseUnit('jours'),
 		nodeKind: 'durée',

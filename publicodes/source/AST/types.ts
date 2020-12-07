@@ -32,9 +32,8 @@ import { Temporal } from '../temporal'
 export type ConstantNode = {
 	type: 'boolean' | 'objet' | 'number' | 'string'
 	nodeValue: Evaluation
-	jsx: any
 	nodeKind: 'constant'
-	isDefault: boolean
+	isDefault?: boolean
 }
 export type ASTNode = (
 	| RuleNode

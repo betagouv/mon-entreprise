@@ -1,8 +1,6 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
 import parse from '../parse'
-import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
-import { bonus, makeJsx, mergeMissing } from '../evaluation'
+import { bonus, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { ASTNode, EvaluatedNode } from '../AST/types'
 
@@ -11,19 +9,7 @@ export type ApplicableSiNode = {
 		condition: ASTNode
 		valeur: ASTNode
 	}
-	jsx: any
 	nodeKind: 'applicable si'
-}
-
-function MecanismApplicable({ explanation }) {
-	return (
-		<InfixMecanism prefixed value={explanation.valeur}>
-			<Mecanism name="applicable si" value={explanation.condition.nodeValue}>
-				{makeJsx(explanation.condition)}
-			</Mecanism>
-			<br />
-		</InfixMecanism>
-	)
 }
 
 const evaluate: EvaluationFunction<'applicable si'> = function (node) {
@@ -57,7 +43,6 @@ export default function parseApplicable(v, context) {
 		condition: parse(v[parseApplicable.nom], context),
 	}
 	return {
-		jsx: MecanismApplicable,
 		explanation,
 		nodeKind: parseApplicable.nom,
 	}

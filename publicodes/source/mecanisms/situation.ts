@@ -1,22 +1,8 @@
 import { isEmpty } from 'ramda'
 import { ASTNode, EvaluatedNode } from '../AST/types'
-import { InfixMecanism } from '../components/mecanisms/common'
-import { makeJsx, mergeAllMissing } from '../evaluation'
+import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
-
-function MecanismSituation({ explanation }) {
-	return explanation.situationValeur ? (
-		<InfixMecanism prefixed value={explanation.valeur} dimValue>
-			<p>
-				<strong>Valeur renseignée dans la simulation : </strong>
-				{makeJsx(explanation.situationValeur)}
-			</p>
-		</InfixMecanism>
-	) : (
-		makeJsx(explanation.valeur)
-	)
-}
 
 export type SituationNode = {
 	explanation: {
@@ -24,7 +10,6 @@ export type SituationNode = {
 		valeur: ASTNode
 		situationValeur?: ASTNode
 	}
-	jsx: any
 	nodeKind: 'nom dans la situation'
 }
 export default function parseSituation(v, context) {
@@ -33,7 +18,6 @@ export default function parseSituation(v, context) {
 		valeur: parse(v.valeur, context),
 	}
 	return {
-		jsx: MecanismSituation,
 		nodeKind: parseSituation.nom,
 		explanation,
 	} as SituationNode

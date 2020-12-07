@@ -1,7 +1,6 @@
 import { RuleLinkWithContext } from '../RuleLink'
-import { makeJsx } from '../../evaluation'
-import React from 'react'
 import { Trans } from 'react-i18next'
+import Explanation from '../Explanation'
 import { Mecanism } from './common'
 
 export default function Recalcul({ nodeValue, explanation, unit }) {
@@ -19,7 +18,7 @@ export default function Recalcul({ nodeValue, explanation, unit }) {
 					{explanation.amendedSituation.map(([origin, replacement]) => (
 						<li key={origin.dottedName}>
 							<RuleLinkWithContext dottedName={origin.dottedName} /> ={' '}
-							{makeJsx(replacement)}
+							<Explanation node={replacement} />
 						</li>
 					))}
 				</ul>

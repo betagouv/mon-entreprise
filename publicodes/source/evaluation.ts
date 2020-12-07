@@ -8,7 +8,6 @@ import {
 	mergeWith,
 	reduce,
 } from 'ramda'
-import React from 'react'
 import Engine, { EvaluationFunction } from '.'
 import {
 	ASTNode,
@@ -17,7 +16,7 @@ import {
 	EvaluatedNode,
 	NodeKind,
 } from './AST/types'
-import { InternalError, typeWarning } from './error'
+import { typeWarning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import {
@@ -29,14 +28,6 @@ import {
 	temporalAverage,
 	zipTemporals,
 } from './temporal'
-
-export const makeJsx = (node: ASTNode): JSX.Element => {
-	const Component = node.jsx
-	if (!Component) {
-		throw new InternalError(node)
-	}
-	return <Component {...node} />
-}
 
 export const collectNodeMissing = (
 	node: EvaluatedNode | ASTNode
@@ -123,10 +114,6 @@ export const defaultNode = (nodeValue: Evaluation) =>
 	({
 		nodeValue,
 		type: typeof nodeValue,
-		// eslint-disable-next-line
-		jsx: ({ nodeValue }: EvaluatedNode) => (
-			<span className="value">{nodeValue}</span>
-		),
 		isDefault: true,
 		nodeKind: 'constant',
 	} as ConstantNode)

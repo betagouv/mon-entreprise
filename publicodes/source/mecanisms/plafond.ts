@@ -1,37 +1,19 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
-import { InfixMecanism } from '../components/mecanisms/common'
 import { typeWarning } from '../error'
-import { makeJsx, mergeAllMissing } from '../evaluation'
+import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
 
-function MecanismPlafond({ explanation }) {
-	return (
-		<InfixMecanism value={explanation.valeur}>
-			<p
-				style={
-					explanation.plafond.isActive
-						? { background: 'var(--lighterColor)', fontWeight: 'bold' }
-						: {}
-				}
-			>
-				<strong>Plafonné à : </strong>
-				{makeJsx(explanation.plafond)}
-			</p>
-		</InfixMecanism>
-	)
-}
 export type PlafondNode = {
 	explanation: {
 		plafond: ASTNode
 		valeur: ASTNode
 	}
-	jsx: any
 	nodeKind: 'plafond'
 }
+
 const evaluate: EvaluationFunction<'plafond'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 
@@ -76,7 +58,6 @@ export default function parsePlafond(v, context) {
 		plafond: parse(v.plafond, context),
 	}
 	return {
-		jsx: MecanismPlafond,
 		explanation,
 		nodeKind: 'plafond',
 	} as PlafondNode

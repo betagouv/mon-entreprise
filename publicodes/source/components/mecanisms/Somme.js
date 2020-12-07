@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 import { useState } from 'react'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { Mecanism, NodeValuePointer } from './common'
 import styled from 'styled-components'
 
@@ -52,7 +52,7 @@ function Row({ v, i, unit }) {
 			onClick={() => setFolded(!folded)}
 		>
 			<div className="element">
-				{makeJsx(v)}
+				<Explanation node={v} />
 				{isSomme && (
 					<button className="unfoldIndication ui__ notice small static simple button">
 						{folded ? 'déplier' : 'replier'}

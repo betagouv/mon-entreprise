@@ -2,7 +2,8 @@ import { groupBy } from 'ramda'
 import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
-import { defaultNode, makeJsx } from './evaluation'
+import { defaultNode } from './evaluation'
+import Explanation from './components/Explanation'
 import { VariationNode } from './mecanisms/variations'
 import parse from './parse'
 import { Context } from './parsePublicodes'
@@ -15,7 +16,6 @@ export type ReplacementNode = {
 	replacedReference: ASTNode & { nodeKind: 'reference' }
 	replacementNode: ASTNode
 	whiteListedNames: Array<ASTNode & { nodeKind: 'reference' }>
-	jsx: any
 	rawNode: any
 	blackListedNames: Array<ASTNode & { nodeKind: 'reference' }>
 }
@@ -51,18 +51,6 @@ export function parseReplacements(
 			definitionRule: parse(context.dottedName, context),
 			replacedReference,
 			replacementNode,
-			jsx: (node: ReplacementNode) => (
-				<span>
-					Remplace {makeJsx(node.replacedReference)}{' '}
-					{node.rawNode.par && <>par {makeJsx(node.replacementNode)}</>}
-					{node.rawNode.dans && (
-						<>dans {node.whiteListedNames.map(makeJsx).join(', ')}</>
-					)}
-					{node.rawNode['sauf dans'] && (
-						<>sauf dans {node.blackListedNames.map(makeJsx).join(', ')}</>
-					)}
-				</span>
-			),
 			whiteListedNames,
 			blackListedNames,
 		} as ReplacementNode
@@ -194,12 +182,12 @@ ${applicableReplacements.map(
 				consequence: node,
 			},
 		],
-	}
+	} as any
 }
 
 function Replacement(node: VariationNode) {
 	const applicableReplacement = node.explanation.find((ex) => ex.satisfied)
 		?.consequence
 	const replacedNode = node.explanation.slice(-1)[0].consequence
-	return makeJsx(applicableReplacement || replacedNode)
+	return <Explanation node={applicableReplacement || replacedNode} />
 }

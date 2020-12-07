@@ -1,11 +1,9 @@
-import { equals, fromPairs, map } from 'ramda'
-import React from 'react'
+import { equals, fromPairs } from 'ramda'
 import { EvaluationFunction } from '..'
-import { Operation } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
 import { typeWarning } from '../error'
-import { makeJsx, mergeAllMissing } from '../evaluation'
+import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
@@ -25,29 +23,19 @@ const knownOperations = {
 	'=': [(a, b) => equals(a, b)],
 	'!=': [(a, b) => !equals(a, b), '≠'],
 } as const
+
 export type OperationNode = {
 	nodeKind: 'operation'
 	explanation: [ASTNode, ASTNode]
 	operationKind: keyof typeof knownOperations
 	operator: string
-	jsx: any
 }
 
 const parseOperation = (k, symbol) => (v, context) => {
 	const explanation = v.explanation.map((node) => parse(node, context))
 
-	const jsx = ({ nodeValue, explanation, unit }) => (
-		<Operation value={nodeValue} unit={unit}>
-			{(explanation[0].nodeValue !== 0 ||
-				symbol !== '−' ||
-				!v.explanation[0].constant) && <>{makeJsx(explanation[0])}</>}{' '}
-			{symbol || k} {makeJsx(explanation[1])}
-		</Operation>
-	)
-
 	return {
 		...v,
-		jsx,
 		nodeKind: 'operation',
 		operationKind: k,
 		operator: symbol || k,

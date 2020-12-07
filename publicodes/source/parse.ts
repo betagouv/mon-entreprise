@@ -112,7 +112,7 @@ Cela vient probablement d'une erreur dans l'indentation
 		)
 	}
 	if (isEmpty(rawNode)) {
-		return { nodeKind: 'constant', nodeValue: null, jsx: () => null }
+		return { nodeKind: 'constant', nodeValue: null }
 	}
 
 	const mecanismName = Object.keys(rawNode)[0]
@@ -202,26 +202,11 @@ const parseFunctions = {
 		type: 'objet',
 		nodeValue: v,
 		nodeKind: 'constant',
-		jsx: () => (
-			<code>
-				<pre>{JSON.stringify(v, null, 2)}</pre>
-			</code>
-		),
 	}),
 	constant: (v) => ({
 		type: v.type,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
-		// eslint-disable-next-line
-		jsx: (node: ConstantNode) => (
-			<span className={v.type}>
-				{formatValue(node, {
-					// We want to display constants with full precision,
-					// espacilly for percentages like APEC 0,036 %
-					precision: 5,
-				})}
-			</span>
-		),
 	}),
 }
 

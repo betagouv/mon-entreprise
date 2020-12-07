@@ -39,7 +39,7 @@ export function RuleLink<Name extends string>({
 	// For all these reason, I'm advocating for a change of perspective inside this notion of ruleWithDedicatedDocumentationPage
 
 	// if (!ruleWithDedicatedDocumentationPage(rule)) {
-	// 	return makeJsx(engine.evaluate(rule.dottedName).formule)
+	// 	return <Explanation node={engine.evaluate(rule.dottedName).formule} />
 	// }
 	if (rule) {
 		return (

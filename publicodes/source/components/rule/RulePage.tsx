@@ -1,7 +1,7 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
 import Engine, { EvaluatedNode } from '../..'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { formatValue } from '../../format'
 import { ReferenceNode } from '../../reference'
 import { RuleNode } from '../../rule'
@@ -65,7 +65,7 @@ export default function Rule({ dottedName, engine, language }) {
 			)}
 
 			<h2>Comment cette donnée est-elle calculée ?</h2>
-			{makeJsx(valeur)}
+			<Explanation node={valeur} />
 
 			<RuleSource key={dottedName} dottedName={dottedName} engine={engine} />
 			{!!rule.replacements.length && (
@@ -74,7 +74,7 @@ export default function Rule({ dottedName, engine, language }) {
 					<ul>
 						{rule.replacements.map((replacement) => (
 							<li key={replacement.replacedReference.dottedName}>
-								{makeJsx(replacement)}
+								<Explanation node={replacement} />
 							</li>
 						))}
 					</ul>
