@@ -37,17 +37,12 @@ une de ces conditions:
   retourne: Booléen
   exemples:
     base: >-
-      âge:
-        formule: 17 ans
-
-      mineur émancipé:
-        formule: oui
-
+      âge: 17 ans
+      mineur émancipé: oui
       peut voter:
-        formule:
-          une de ces conditions:
-            - âge >= 18 ans
-            - mineur émancipé
+        une de ces conditions:
+          - âge >= 18 ans
+          - mineur émancipé
 
 toutes ces conditions:
   description: >-
@@ -60,17 +55,12 @@ toutes ces conditions:
     - ...
   exemples:
     base: >-
-      âge:
-        formule: 17 ans
-
-      citoyenneté française:
-        formule: oui
-
+      âge: 17 ans
+      citoyenneté française: oui
       peut voter:
-        formule:
-          toutes ces conditions:
-            - citoyenneté française
-            - âge >= 18 ans
+        toutes ces conditions:
+          - citoyenneté française
+          - âge >= 18 ans
 
 produit:
   description: >-
@@ -94,24 +84,18 @@ produit:
   exemples:
     base: >-
       cotisation:
-        formule:
-          produit:
-            assiette: 2000 €/mois
-            taux: 5%
+        produit:
+          assiette: 2000 €/mois
+          taux: 5%
 
     assiette plafonnée: >-
-      plafond sécurité sociale:
-        formule: 3000 €/mois
-
-      assiette cotisation:
-        formule: 15000 €/mois
-
+      plafond sécurité sociale: 3000 €/mois
+      assiette cotisation: 15000 €/mois
       chômage:
-        formule:
-          produit:
-            assiette: assiette cotisation
-            plafond: 400% * plafond sécurité sociale
-            taux: 4%
+        produit:
+          assiette: assiette cotisation
+          plafond: 400% * plafond sécurité sociale
+          taux: 4%
 
 variations:
   description: >-
@@ -136,33 +120,28 @@ variations:
     - sinon: consequence évaluée si aucune des conditions précédente n'était applicable
   exemples:
     base: >-
-      taux réduit:
-        formule: oui
+      taux réduit: oui
 
       taux allocation familiales:
-        formule:
-          variations:
-            - si: taux réduit
-              alors: 3.45%
-            - sinon: 5.25%
+        variations:
+          - si: taux réduit
+            alors: 3.45%
+          - sinon: 5.25%
 
     dans un produit: >-
-      assiette cotisation:
-        formule: 2300 €/mois
+      assiette cotisation: 2300 €/mois
 
-      taux réduit:
-        formule: oui
+      taux réduit: oui
 
       allocation familiales:
-        formule:
-          produit:
-            assiette: assiette cotisation
-            variations:
-              - si: taux réduit
-                alors:
-                  taux: 3.45%
-              - sinon:
-                  taux: 5.25%
+        produit:
+          assiette: assiette cotisation
+          variations:
+            - si: taux réduit
+              alors:
+                taux: 3.45%
+            - sinon:
+                taux: 5.25%
 
 somme:
   description: >-
@@ -180,25 +159,21 @@ somme:
   exemples:
     base: >-
       exemple:
-        formule:
-          somme:
-            - 15.89 €
-            - 12% * 14 €
-            - (-20 €)
+        somme:
+          - 15.89 €
+          - 12% * 14 €
+          - (-20 €)
     terme non applicable: >-
-      a:
-        formule: 50 €
-
+      a: 50 €
       b:
         applicable si: non
-        formule: 20 €
+        valeur: 20 €
 
       somme:
-        formule:
-          somme:
-            - a
-            - b
-            - 40 €
+        somme:
+          - a
+          - b
+          - 40 €
 
 le maximum de:
   description: >-
@@ -211,10 +186,9 @@ le maximum de:
   exemples:
     base: >-
       max: 
-        formule:
-          le maximum de:
-            - 50
-            - 100
+        le maximum de:
+          - 50
+          - 100
 
 le minimum de:
   description: >-
@@ -226,10 +200,9 @@ le minimum de:
   exemples:
     base: >-
       min: 
-        formule:
-          le minimum de:
-            - 50
-            - 100
+        le minimum de:
+          - 50
+          - 100
 
 arrondi:
   chainable: oui
@@ -253,21 +226,18 @@ recalcul:
 
   exemples:
     base: >-
-      brut: 
-        formule: 2000€
+      brut: 2000€
 
-      cotisations: 
-        formule:
-          produit:
-            assiette: brut
-            taux: 20%
+      cotisations:
+        produit:
+          assiette: brut
+          taux: 20%
 
       cotisations pour un SMIC:
-        formule:
-          recalcul:
-            règle: cotisations
-            avec:
-              brut: 1500 €
+        recalcul:
+          règle: cotisations
+          avec:
+            brut: 1500 €
 
 barème:
   description: C'est un barème en taux marginaux, mécanisme de calcul connu de
@@ -281,35 +251,31 @@ barème:
     sécurité sociale.
   exemples:
     sans multiplicateur: >-
-      revenu imposable:
-        formule: 54126 €
-
+      revenu imposable: 54126 €
       impôt sur le revenu:
-        formule:
-          barème:
-            assiette: revenu imposable
-            tranches:
-              - taux: 0%
-                plafond: 9807 €
-              - taux: 14%
-                plafond: 27086 €
-              - taux: 30%
-                plafond: 72617 €
-              - taux: 41%
-                plafond: 153783 €
-              - taux: 45%
+        barème:
+          assiette: revenu imposable
+          tranches:
+            - taux: 0%
+              plafond: 9807 €
+            - taux: 14%
+              plafond: 27086 €
+            - taux: 30%
+              plafond: 72617 €
+            - taux: 41%
+              plafond: 153783 €
+            - taux: 45%
 
     avec multiplicateur: >-
       retraite de base:
-        formule:
-          barème:
-            assiette: assiette retraite
-            multiplicateur: plafond sécurité sociale temps plein
-            tranches:
-              - taux: 17.75%
-                plafond: 1
-              - taux: 0.6%
-          arrondi: oui
+        barème:
+          assiette: assiette retraite
+          multiplicateur: plafond sécurité sociale temps plein
+          tranches:
+            - taux: 17.75%
+              plafond: 1
+            - taux: 0.6%
+        arrondi: oui
 
 
 grille:
@@ -323,29 +289,23 @@ grille:
     l'assiette.
   exemples:
     grille avec multiplicateur et unité: >-
-      SMIC horaire: 
-        formule: 10 €/heure
-
-      revenu moyen: 
-        formule:
-          250 €/mois
-
+      SMIC horaire: 10 €/heure
+      revenu moyen: 1200€/an
       trimestres validés:
-        formule:
-          grille:
-            unité: trimestres validés/an
-            assiette: revenu moyen
-            multiplicateur: SMIC horaire
-            tranches:
-              - montant: 0
-                plafond: 150 heures/an
-              - montant: 1
-                plafond: 300 heures/an
-              - montant: 2
-                plafond: 450 heures/an
-              - montant: 3
-                plafond: 600 heures/an
-              - montant: 4
+        grille:
+          unité: trimestres validés/an
+          assiette: revenu moyen
+          multiplicateur: SMIC horaire
+          tranches:
+            - montant: 0
+              plafond: 150 heures/an
+            - montant: 1
+              plafond: 300 heures/an
+            - montant: 2
+              plafond: 450 heures/an
+            - montant: 3
+              plafond: 600 heures/an
+            - montant: 4
 
 taux progressif:
   description: >-
@@ -367,22 +327,17 @@ taux progressif:
     taux situé à la moitié de la tranche correspondante.
   exemples:
     base: >-
-      chiffre d'affaires: 
-        formule: 30000 €/an
-
-      plafond: 
-        formule: 3000 €/mois
-
+      chiffre d'affaires: 30000 €/an
+      plafond: 3000 €/mois
       taux réduction de cotisation:
-        formule:
-          taux progressif:
-            assiette: chiffre d'affaires
-            multiplicateur: plafond
-            tranches:
-              - taux: 100%
-                plafond: 75%
-              - taux: 0%
-                plafond: 100%
+        taux progressif:
+          assiette: chiffre d'affaires
+          multiplicateur: plafond
+          tranches:
+            - taux: 100%
+              plafond: 75%
+            - taux: 0%
+              plafond: 100%
 
 composantes:
   description: >-
@@ -452,10 +407,9 @@ allègement:
   exemples:
     base: >-
       impôt . revenu abattu:
-        formule:
-          allègement:
-            assiette: base des cotisations
-            abattement: abattement
+        allègement:
+          assiette: base des cotisations
+          abattement: abattement
 
 
 plancher:
@@ -480,15 +434,12 @@ durée:
   description: Permet d'obtenir le nombre de jours entre deux dates
   exemples:
     base: >-
-      date d'embauche: 
-        formule: 14/04/2008
-
+      date d'embauche: 14/04/2008
       ancienneté en fin d'année:
         unité: an
-        formule:
-          durée:
-            depuis: date d'embauche
-            jusqu'à: 31/12/2020
+        durée:
+          depuis: date d'embauche
+          jusqu'à: 31/12/2020
 
 unité:
   chainable: oui
