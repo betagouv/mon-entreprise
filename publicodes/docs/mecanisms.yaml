@@ -7,10 +7,11 @@ applicable si:
     
   retourne: Valeur | non
   exemples:
-    ancienneté: 4 mois
-    prime de vacances:
-      applicable si: ancienneté > 1 an
-      valeur: 200€
+    base: >-
+      ancienneté: 4 mois
+      prime de vacances:
+        applicable si: ancienneté >= 1 an
+        valeur: 200€
 
 non applicable si:
   chainable: oui
@@ -21,10 +22,11 @@ non applicable si:
     
   retourne: Valeur | non
   exemples:
-    ancienneté: 4 mois
-    prime de vacances:
-      applicable si: ancienneté > 1 an
-      valeur: 200€
+    base: >-
+      ancienneté: 4 mois
+      prime de vacances:
+        non applicable si: ancienneté < 1 an
+        valeur: 200€
 
 une de ces conditions:
   description: >-
@@ -412,8 +414,7 @@ composantes:
             - taux: 4%
               plafond: plafond sécurité sociale
     
-    Cotisations:
-      base: >-
+    Cotisations: >-
         cotisation 1:
           produit:
             assiette: assiette de base
@@ -429,8 +430,7 @@ composantes:
           somme: 
             - cotisation 1 . salarié
             # ...
-    TVA:
-      base: >-
+    TVA: >-
         prix:
           produit:
             assiette: 50€

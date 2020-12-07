@@ -1,4 +1,4 @@
-import { Markdown } from 'Components/utils/markdown'
+import { HeadingWithAnchorLink, Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { Fragment, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -6,6 +6,9 @@ import { HashLink as Link } from 'react-router-hash-link'
 import mecanisms from '../../../../publicodes/docs/mecanisms.yaml'
 import { capitalise0 } from '../../utils'
 import { Header } from './Header'
+const sortedMecanisms = Object.entries(mecanisms).sort(([a], [b]) =>
+	a.localeCompare(b)
+)
 
 export default function Landing() {
 	const { pathname } = useLocation()
@@ -28,13 +31,13 @@ export default function Landing() {
 			<Header />
 			<h1 id="top">Mécanismes existants</h1>
 			<ul>
-				{Object.keys(mecanisms).map((name) => (
+				{sortedMecanisms.map(([name]) => (
 					<li key={name}>
-						<Link to={pathname + '#' + name}>{name}</Link>
+						<Link to={pathname + '#' + name.replace(/ /g, '-')}>{name}</Link>
 					</li>
 				))}
 			</ul>
-			{Object.entries(mecanisms).map(([name, data]) => (
+			{sortedMecanisms.map(([name, data]) => (
 				<Fragment key={name}>
 					<Explanation {...(data as any)} name={name} />
 					<Link to={pathname + '#top'}>Retour à la liste</Link>
@@ -53,9 +56,9 @@ function Explanation({ name, description, exemples }: ExplanationProp) {
 	return (
 		<>
 			{!!name && (
-				<h2 id={name}>
+				<HeadingWithAnchorLink level={2}>
 					<pre>{name}</pre>
-				</h2>
+				</HeadingWithAnchorLink>
 			)}
 			<Markdown source={description} />
 			{exemples && (
