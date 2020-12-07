@@ -15,6 +15,9 @@ export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 const activeStyle = {
 	fontWeight: 'bold',
 	textDecoration: 'underline',
+	background: 'var(--color)',
+	color: 'var(--textColor)',
+	padding: '.1rem .3rem',
 } as React.CSSProperties
 
 const items = [
@@ -23,7 +26,7 @@ const items = [
 	['communauté', 'Communauté'],
 	['studio', 'Bac à sable'],
 ]
-export const Navigation = ({ items }) => {
+export const Navigation = ({ items, sub = false }) => {
 	return (
 		<nav
 			css={`
@@ -31,6 +34,11 @@ export const Navigation = ({ items }) => {
 				a {
 					text-decoration: none;
 				}
+				${sub &&
+				`
+
+
+				`}
 			`}
 		>
 			{items.map(([to, label], index) => (
