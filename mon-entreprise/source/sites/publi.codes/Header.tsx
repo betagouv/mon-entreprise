@@ -44,7 +44,10 @@ export const Navigation = ({ items, sub = false }) => {
 			{items.map(([to, label], index) => (
 				<>
 					{index > 0 && <span css="margin: 0 .5rem">•</span>}
-					<NavLink activeStyle={activeStyle} to={'/' + to}>
+					<NavLink
+						activeStyle={activeStyle}
+						to={'/' + (sub ? sub + '/' : '') + to}
+					>
 						{label}
 					</NavLink>
 				</>

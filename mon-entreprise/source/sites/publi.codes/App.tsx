@@ -42,7 +42,7 @@ const RouterSwitch = () => {
 						<Redirect to="/" />
 					</Route>
 					<Route path="/studio" component={LazyStudio} />
-					<Route exact path="/langage" component={Langage} />
+					<Route path="/langage" component={Langage} />
 					<Route exact path="/communauté" component={Communauté} />
 					<Route component={App} />
 				</Switch>
