@@ -5,7 +5,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
-import Engine, { evaluateRule } from 'publicodes'
+import Engine, { evaluateRule, EvaluatedRule } from 'publicodes'
 import { equals } from 'ramda'
 import {
 	lazy,
@@ -92,7 +92,7 @@ const useFields = (
 	engine: Engine<string>,
 	fieldNames: Array<string>,
 	situation: Record<string, unknown>
-) => {
+): Array<EvaluatedRule> => {
 	const fields = fieldNames
 		.map((name) => evaluateRule(engine, name))
 		.filter(
@@ -151,6 +151,14 @@ function FormulairePublicodes() {
 							)}
 							{field.description && <Markdown source={field.description} />}
 						</>
+					) : field.type === 'notification' && field.nodeValue === true ? (
+						<small
+							css={`
+								color: #ff2d96;
+							`}
+						>
+							{field.description}
+						</small>
 					) : (
 						<>
 							<label htmlFor={field.dottedName}>
