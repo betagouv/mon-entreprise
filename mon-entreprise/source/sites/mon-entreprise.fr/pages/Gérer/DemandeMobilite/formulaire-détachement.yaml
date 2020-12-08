@@ -24,20 +24,48 @@ coordonnées assuré . numéro de sécurité sociale:
 coordonnées assuré . date de naissance:
   type: date
   note: 1.5
-coordonnées assuré . commune de naissance:
-  API: commune
+
+coordonnées assuré . commune de naissance: 
+  type: groupe
+  formule: oui
   note: 1.7
+coordonnées assuré . commune de naissance . étranger:
+  question: Votre commune de naissance est-elle située à l'étranger ?
+coordonnées assuré . commune de naissance . commune:
+  non applicable si: étranger
+  API: commune
+coordonnées assuré . commune de naissance . étranger . commune:
+  type: texte
+coordonnées assuré . commune de naissance . étranger . code postal:
+  type: texte
+coordonnées assuré . commune de naissance . étranger . pays:
+  type: texte
 
 coordonnées assuré . domicile personnel:
   type: groupe
   formule: oui
   note: 1.8
+
+coordonnées assuré . domicile personnel . commune . étranger:
+  question: Votre domicile personnel est-il situé à l'étranger ?
 coordonnées assuré . domicile personnel . adresse:
   type: texte
   note: 1.9.1
-coordonnées assuré . domicile personnel . commune:
-  API: commune
+coordonnées assuré . domicile personnel . commune: 
+  formule: oui
   note: 1.9.2 / 1.9.3
+coordonnées assuré . domicile personnel . commune . commune:
+  non applicable si: étranger
+  API: commune
+coordonnées assuré . domicile personnel . commune . étranger . commune:
+  type: texte
+coordonnées assuré . domicile personnel . commune . étranger . code postal:
+  type: texte
+coordonnées assuré . domicile personnel . commune . étranger . pays:
+  type: texte
+
+
+
 coordonnées assuré . contact:
   type: groupe
   formule: oui
@@ -61,7 +89,8 @@ activité france . adresse:
   type: texte
 activité france . commune:
   API: commune
-  note:: 4.4.3 / 4.4.4
+  note: 4.4.3 / 4.4.4
+  
 activité france . organisme urssaf:
   type: texte
   titre: Organisme Urssaf
