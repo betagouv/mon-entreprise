@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
 
 	if (branch && branch !== 'master') {
 		console.log(
-			`ℹ Vous êtes sur la branche : %c${branch}`,
+			`ℹ > Vous êtes sur la branche : %c${branch}`,
 			'font-weight: bold; text-decoration: underline;'
 		)
 	}
