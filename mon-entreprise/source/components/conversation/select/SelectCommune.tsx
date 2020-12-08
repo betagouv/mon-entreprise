@@ -56,7 +56,7 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
 				.sort()
-				.map(codePostal => ({ ...commune, codePostal }))
+				.map((codePostal) => ({ ...commune, codePostal }))
 				.filter(({ codePostal }) => codePostal.startsWith(number))
 		)
 		.slice(0, 10)
@@ -66,7 +66,7 @@ export default function Select({
 	onChange,
 	value,
 	id,
-	missing
+	missing,
 }: InputCommonProps) {
 	const [name, setName] = useState(missing ? '' : formatCommune(value))
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
@@ -76,8 +76,8 @@ export default function Select({
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function(value) {
-			searchCommunes(value).then(results => {
+		function (value) {
+			searchCommunes(value).then((results) => {
 				setLoadingState(false)
 				setSearchResults(results)
 			})
@@ -85,7 +85,7 @@ export default function Select({
 		[setSearchResults, setLoadingState]
 	)
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch
+		handleSearch,
 	])
 
 	const handleSubmit = useCallback(
@@ -108,10 +108,10 @@ export default function Select({
 					...commune,
 					...(taux != null
 						? {
-								'taux du versement transport': taux
+								'taux du versement transport': taux,
 						  }
-						: {})
-				}
+						: {}),
+				},
 			})
 		},
 		[setSearchResults, setName]
@@ -214,7 +214,7 @@ export default function Select({
 								<Option
 									onMouseDown={
 										// Prevent input blur and focus elem selection
-										e => e.preventDefault()
+										(e) => e.preventDefault()
 									}
 									onClick={() => handleSubmit(result)}
 									role="option"
@@ -252,7 +252,7 @@ const Option = styled.li<{ focused: boolean }>`
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${props =>
+	${(props) =>
 		props.focused &&
 		css`
 			background-color: var(--lighterColor) !important;

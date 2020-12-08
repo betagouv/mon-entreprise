@@ -13,7 +13,7 @@ import {
 	Suspense,
 	useCallback,
 	useState,
-	useContext
+	useContext,
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
@@ -94,9 +94,9 @@ const useFields = (
 	situation: Record<string, unknown>
 ): Array<EvaluatedRule> => {
 	const fields = fieldNames
-		.map(name => evaluateRule(engine, name))
+		.map((name) => evaluateRule(engine, name))
 		.filter(
-			node =>
+			(node) =>
 				// TODO change this when not applicable value can be differenciated from false value
 				(equals(node.missingVariables, { [node.dottedName]: 1 }) ||
 					node.dottedName in situation ||
@@ -115,9 +115,9 @@ function FormulairePublicodes() {
 	)
 	const onChange = useCallback(
 		(dottedName, value) => {
-			setSituation(situation => ({
+			setSituation((situation) => ({
 				...situation,
-				[dottedName]: value
+				[dottedName]: value,
 			}))
 		},
 		[setSituation]
@@ -140,7 +140,7 @@ function FormulairePublicodes() {
 	const isMissingValues = !!missingValues.length
 	return (
 		<Animate.fromTop key={clearFieldsKey}>
-			{fields.map(field => (
+			{fields.map((field) => (
 				<Animate.fromTop key={field.dottedName}>
 					{field.type === 'groupe' ? (
 						<>
@@ -183,7 +183,7 @@ function FormulairePublicodes() {
 							<RuleInput
 								id={field.dottedName}
 								dottedName={field.dottedName}
-								onChange={value => onChange(field.dottedName, value)}
+								onChange={(value) => onChange(field.dottedName, value)}
 							/>
 						</>
 					)}
