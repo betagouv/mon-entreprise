@@ -2,20 +2,18 @@ import { groupBy } from 'ramda'
 import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
-import { defaultNode, makeJsx } from './evaluation'
-import { VariationNode } from './mecanisms/variations'
+import { defaultNode } from './evaluation'
 import parse from './parse'
 import { Context } from './parsePublicodes'
 import { Rule, RuleNode } from './rule'
 import { coerceArray } from './utils'
 
-export type ReplacementNode = {
-	nodeKind: 'replacement'
+export type ReplacementRule = {
+	nodeKind: 'replacementRule'
 	definitionRule: ASTNode & { nodeKind: 'reference' }
 	replacedReference: ASTNode & { nodeKind: 'reference' }
 	replacementNode: ASTNode
 	whiteListedNames: Array<ASTNode & { nodeKind: 'reference' }>
-	jsx: any
 	rawNode: any
 	blackListedNames: Array<ASTNode & { nodeKind: 'reference' }>
 }
@@ -23,7 +21,7 @@ export type ReplacementNode = {
 export function parseReplacements(
 	replacements: Rule['remplace'],
 	context: Context
-): Array<ReplacementNode> {
+): Array<ReplacementRule> {
 	if (!replacements) {
 		return []
 	}
@@ -46,47 +44,35 @@ export function parseReplacements(
 			.map((refs) => refs.map((ref) => parse(ref, context)))
 
 		return {
-			nodeKind: 'replacement',
+			nodeKind: 'replacementRule',
 			rawNode: replacement,
 			definitionRule: parse(context.dottedName, context),
 			replacedReference,
 			replacementNode,
-			jsx: (node: ReplacementNode) => (
-				<span>
-					Remplace {makeJsx(node.replacedReference)}{' '}
-					{node.rawNode.par && <>par {makeJsx(node.replacementNode)}</>}
-					{node.rawNode.dans && (
-						<>dans {node.whiteListedNames.map(makeJsx).join(', ')}</>
-					)}
-					{node.rawNode['sauf dans'] && (
-						<>sauf dans {node.blackListedNames.map(makeJsx).join(', ')}</>
-					)}
-				</span>
-			),
 			whiteListedNames,
 			blackListedNames,
-		} as ReplacementNode
+		} as ReplacementRule
 	})
 }
 
 export function parseRendNonApplicable(
 	rules: Rule['rend non applicable'],
 	context: Context
-): Array<ReplacementNode> {
+): Array<ReplacementRule> {
 	return parseReplacements(rules, context).map(
 		(replacement) =>
 			({
 				...replacement,
 				replacementNode: defaultNode(false),
-			} as ReplacementNode)
+			} as ReplacementRule)
 	)
 }
 
 export function getReplacements(
 	parsedRules: Record<string, RuleNode>
-): Record<string, Array<ReplacementNode>> {
+): Record<string, Array<ReplacementRule>> {
 	return groupBy(
-		(r: ReplacementNode) => {
+		(r: ReplacementRule) => {
 			if (!r.replacedReference.dottedName) {
 				throw new InternalError(r)
 			}
@@ -97,11 +83,11 @@ export function getReplacements(
 }
 
 export function inlineReplacements(
-	replacements: Record<string, Array<ReplacementNode>>
+	replacements: Record<string, Array<ReplacementRule>>
 ): (n: ASTNode) => ASTNode {
 	return transformAST((n, fn) => {
 		if (
-			n.nodeKind === 'replacement' ||
+			n.nodeKind === 'replacementRule' ||
 			n.nodeKind === 'inversion' ||
 			n.nodeKind === 'une possibilité'
 		) {
@@ -130,7 +116,7 @@ export function inlineReplacements(
 
 function replace(
 	node: ASTNode & { nodeKind: 'reference' }, //& { dottedName: string },
-	replacements: Array<ReplacementNode>
+	replacements: Array<ReplacementRule>
 ): ASTNode {
 	// TODO : handle transitivité
 
@@ -182,8 +168,8 @@ ${applicableReplacements.map(
 
 	return {
 		nodeKind: 'variations',
+		visualisationKind: 'replacement',
 		rawNode: node.rawNode,
-		jsx: Replacement,
 		explanation: [
 			...applicableReplacements.map((replacement) => ({
 				condition: replacement.definitionRule,
@@ -195,11 +181,4 @@ ${applicableReplacements.map(
 			},
 		],
 	}
-}
-
-function Replacement(node: VariationNode) {
-	const applicableReplacement = node.explanation.find((ex) => ex.satisfied)
-		?.consequence
-	const replacedNode = node.explanation.slice(-1)[0].consequence
-	return makeJsx(applicableReplacement || replacedNode)
 }

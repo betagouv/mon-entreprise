@@ -1,30 +1,15 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
-import { InfixMecanism, Mecanism } from '../components/mecanisms/common'
 import { ASTNode, EvaluatedNode } from '../AST/types'
-import { bonus, makeJsx, mergeMissing } from '../evaluation'
+import { bonus, mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
+
 export type NonApplicableSiNode = {
 	explanation: {
 		condition: ASTNode
 		valeur: ASTNode
 	}
-	jsx: any
 	nodeKind: 'non applicable si'
-}
-function MecanismNonApplicable({ explanation }) {
-	return (
-		<InfixMecanism prefixed value={explanation.valeur}>
-			<Mecanism
-				name="non applicable si"
-				value={explanation.condition.nodeValue}
-			>
-				{makeJsx(explanation.condition)}
-			</Mecanism>
-			<br />
-		</InfixMecanism>
-	)
 }
 
 const evaluate: EvaluationFunction<'non applicable si'> = function (node) {
@@ -58,7 +43,6 @@ export default function parseNonApplicable(v, context) {
 		condition: parse(v[parseNonApplicable.nom], context),
 	}
 	return {
-		jsx: MecanismNonApplicable,
 		explanation,
 		nodeKind: parseNonApplicable.nom,
 	} as NonApplicableSiNode

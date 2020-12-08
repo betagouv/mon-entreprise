@@ -1,7 +1,5 @@
 import { path } from 'ramda'
-import React from 'react'
 import { EvaluationFunction } from '..'
-import { RuleLinkWithContext } from '../components/RuleLink'
 import { ASTNode } from '../AST/types'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -11,7 +9,6 @@ export type SynchronisationNode = {
 		chemin: string
 		data: ASTNode
 	}
-	jsx: any
 	nodeKind: 'synchronisation'
 }
 
@@ -40,14 +37,6 @@ export const mecanismSynchronisation = (v, context) => {
 	return {
 		// TODO : expect API exists ?
 		explanation: { ...v, data: parse(v.data, context) },
-		jsx: function Synchronisation({ explanation }) {
-			return (
-				<p>
-					Obtenu à partir de la saisie{' '}
-					<RuleLinkWithContext dottedName={explanation.data.dottedName} />
-				</p>
-			)
-		},
 		nodeKind: 'synchronisation',
 	} as SynchronisationNode
 }

@@ -26,15 +26,14 @@ import { TauxProgressifNode } from '../mecanisms/tauxProgressif'
 import { UnitéNode } from '../mecanisms/unité'
 import { VariableTemporelleNode } from '../mecanisms/variableTemporelle'
 import { VariationNode } from '../mecanisms/variations'
-import { ReplacementNode } from '../replacement'
+import { ReplacementRule } from '../replacement'
 import { Temporal } from '../temporal'
 
 export type ConstantNode = {
 	type: 'boolean' | 'objet' | 'number' | 'string'
 	nodeValue: Evaluation
-	jsx: any
 	nodeKind: 'constant'
-	isDefault: boolean
+	isDefault?: boolean
 }
 export type ASTNode = (
 	| RuleNode
@@ -66,9 +65,10 @@ export type ASTNode = (
 	| VariableTemporelleNode
 	| VariationNode
 	| ConstantNode
-	| ReplacementNode
+	| ReplacementRule
 ) & {
 	isDefault?: boolean
+	visualisationKind?: string
 	rawNode?: string | Record<string, unknown>
 } & (
 		| EvaluationDecoration<Types>

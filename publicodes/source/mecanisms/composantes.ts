@@ -1,7 +1,4 @@
-import { dissoc, omit, pick } from 'ramda'
-import Composantes from '../components/mecanisms/Composantes'
 import { ASTNode } from '../AST/types'
-import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 
 export const decompose = (k, v, context): ASTNode => {
@@ -23,6 +20,6 @@ export const decompose = (k, v, context): ASTNode => {
 	)
 	return {
 		...explanation,
-		jsx: Composantes,
+		visualisationKind: 'composantes',
 	}
 }

@@ -1,5 +1,4 @@
 import { EvaluationFunction } from '..'
-import Product from '../components/mecanisms/Product'
 import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
@@ -14,7 +13,6 @@ export type ProductNode = {
 		plafond: ASTNode
 		taux: ASTNode
 	}
-	jsx: any
 	nodeKind: 'produit'
 }
 
@@ -29,7 +27,6 @@ export const mecanismProduct = (v, context) => {
 	const explanation = parseObject(objectShape, v, context)
 
 	return {
-		jsx: Product,
 		explanation,
 		nodeKind: 'produit',
 	} as ProductNode

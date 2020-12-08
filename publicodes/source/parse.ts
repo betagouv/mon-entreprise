@@ -1,9 +1,7 @@
 import { Grammar, Parser } from 'nearley'
 import { isEmpty } from 'ramda'
-import React from 'react'
-import { ASTNode, ConstantNode } from './AST/types'
+import { ASTNode } from './AST/types'
 import { EngineError, syntaxError } from './error'
-import { formatValue } from './format'
 import grammar from './grammar.ne'
 import applicable from './mecanisms/applicable'
 import arrondi from './mecanisms/arrondi'
@@ -112,7 +110,7 @@ Cela vient probablement d'une erreur dans l'indentation
 		)
 	}
 	if (isEmpty(rawNode)) {
-		return { nodeKind: 'constant', nodeValue: null, jsx: () => null }
+		return { nodeKind: 'constant', nodeValue: null }
 	}
 
 	const mecanismName = Object.keys(rawNode)[0]
@@ -202,26 +200,15 @@ const parseFunctions = {
 		type: 'objet',
 		nodeValue: v,
 		nodeKind: 'constant',
-		jsx: () => (
-			<code>
-				<pre>{JSON.stringify(v, null, 2)}</pre>
-			</code>
-		),
 	}),
 	constant: (v) => ({
 		type: v.type,
+		// In the documentation we want to display constants defined in the source
+		// with their full precision. This is especially useful for percentages like
+		// APEC 0,036 %.
+		fullPrecision: true,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
-		// eslint-disable-next-line
-		jsx: (node: ConstantNode) => (
-			<span className={v.type}>
-				{formatValue(node, {
-					// We want to display constants with full precision,
-					// espacilly for percentages like APEC 0,036 %
-					precision: 5,
-				})}
-			</span>
-		),
 	}),
 }
 

@@ -1,11 +1,10 @@
 import { or } from 'ramda'
 import { EvaluationFunction } from '..'
-import Variations from '../components/mecanisms/Variations'
-import { ASTNode, EvaluatedNode, Unit } from '../AST/types'
+import { ASTNode, Unit } from '../AST/types'
 import { typeWarning } from '../error'
 import { bonus, defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
-import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
+import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
 import {
 	liftTemporal2,
@@ -23,7 +22,6 @@ export type VariationNode = {
 		satisfied?: boolean
 	}>
 	nodeKind: 'variations'
-	jsx: (n: any) => unknown
 }
 
 export const devariate = (k, v, context): ASTNode => {
@@ -61,7 +59,6 @@ export default function parseVariations(v, context): VariationNode {
 
 	return {
 		explanation,
-		jsx: Variations,
 		nodeKind: 'variations',
 	}
 }

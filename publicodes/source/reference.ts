@@ -1,5 +1,4 @@
 import { EvaluatedNode } from './AST/types'
-import { Leaf } from './components/mecanisms/common'
 import { InternalError } from './error'
 import { registerEvaluationFunction } from './evaluationFunctions'
 import { Context } from './parsePublicodes'
@@ -11,7 +10,6 @@ export type ReferenceNode = {
 	explanation?: RuleNode & EvaluatedNode
 	contextDottedName: string
 	dottedName?: string
-	jsx: any
 }
 
 export default function parseReference(
@@ -20,7 +18,6 @@ export default function parseReference(
 ): ReferenceNode {
 	return {
 		nodeKind: 'reference',
-		jsx: Leaf,
 		name: v,
 		contextDottedName: context.dottedName,
 	}

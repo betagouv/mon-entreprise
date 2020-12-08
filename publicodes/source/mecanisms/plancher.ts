@@ -1,38 +1,19 @@
-import React from 'react'
 import { EvaluationFunction } from '..'
-import { InfixMecanism } from '../components/mecanisms/common'
 import { ASTNode } from '../AST/types'
 import { typeWarning } from '../error'
-import { makeJsx, mergeAllMissing } from '../evaluation'
+import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import parse from '../parse'
-import { EvaluatedNode } from '../AST/types'
 
-function MecanismPlancher({ explanation }) {
-	return (
-		<InfixMecanism value={explanation.valeur}>
-			<p
-				style={
-					explanation.plancher.isActive
-						? { background: 'var(--lighterColor)', fontWeight: 'bold' }
-						: {}
-				}
-			>
-				<strong>Minimum : </strong>
-				{makeJsx(explanation.plancher)}
-			</p>
-		</InfixMecanism>
-	)
-}
 export type PlancherNode = {
 	explanation: {
 		plancher: ASTNode
 		valeur: ASTNode
 	}
-	jsx: any
 	nodeKind: 'plancher'
 }
+
 const evaluate: EvaluationFunction<'plancher'> = function (node) {
 	const valeur = this.evaluateNode(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
@@ -75,7 +56,6 @@ export default function Plancher(v, context) {
 		plancher: parse(v.plancher, context),
 	}
 	return {
-		jsx: MecanismPlancher,
 		explanation,
 		nodeKind: 'plancher',
 	} as PlancherNode

@@ -1,8 +1,8 @@
 import { toPairs } from 'ramda'
 import { Trans, useTranslation } from 'react-i18next'
-import { makeJsx } from '../../evaluation'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
 import colors from './colors'
+import Explanation from '../Explanation'
 import { InlineMecanismName, Mecanism } from './common'
 
 export default function Composantes({ nodeValue, explanation, unit }) {
@@ -10,7 +10,6 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 	return (
 		<Mecanism
 			name="composantes"
-			inline
 			displayName={false}
 			value={nodeValue}
 			unit={unit}
@@ -46,12 +45,14 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 										<Trans>{k}</Trans>:{' '}
 									</span>
 									<span>
-										<Trans>{v}</Trans>
+										<Trans>{v as any}</Trans>
 									</span>
 								</li>
 							))}
 						</ul>
-						<div className="content">{makeJsx(c)}</div>
+						<div className="content">
+							<Explanation node={c} />
+						</div>
 						<div
 							style={{
 								textAlign: 'center',

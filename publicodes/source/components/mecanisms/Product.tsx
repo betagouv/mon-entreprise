@@ -1,7 +1,8 @@
 import { Trans } from 'react-i18next'
 import { EvaluatedNode } from '../../AST/types'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { Mecanism } from './common'
+
 export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 	return (
 		<Mecanism name="produit" value={node.nodeValue} unit={node.unit}>
@@ -13,7 +14,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 				}}
 			>
 				<div style={{ textAlign: 'right' }}>
-					{makeJsx(node.explanation.assiette)}
+					<Explanation node={node.explanation.assiette} />
 					{!node.explanation.plafond.isDefault && (
 						<small
 							css={`
@@ -26,7 +27,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 							<span>
 								<Trans>Plafonnée à :</Trans>&nbsp;
 							</span>
-							{makeJsx(node.explanation.plafond)}
+							<Explanation node={node.explanation.plafond} />
 						</small>
 					)}
 				</div>
@@ -40,7 +41,9 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 						}}
 					>
 						<div style={{ margin: '0 0.6rem' }}> × </div>
-						<div>{makeJsx(node.explanation.facteur)}</div>
+						<div>
+							<Explanation node={node.explanation.facteur} />
+						</div>
 					</div>
 				)}
 				{!node.explanation.taux.isDefault && (
@@ -53,7 +56,7 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 						}}
 					>
 						<div style={{ margin: '0 0.6rem' }}> × </div>
-						{makeJsx(node.explanation.taux)}
+						<Explanation node={node.explanation.taux} />
 					</div>
 				)}
 			</div>

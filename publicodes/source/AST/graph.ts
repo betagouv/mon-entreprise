@@ -20,7 +20,7 @@ function buildRuleDependancies(rule: RuleNode): Array<string> {
 	return reduceAST<string[]>(
 		(acc, node, fn) => {
 			switch (node.nodeKind) {
-				case 'replacement':
+				case 'replacementRule':
 				case 'inversion':
 				case 'une possibilité':
 					return acc

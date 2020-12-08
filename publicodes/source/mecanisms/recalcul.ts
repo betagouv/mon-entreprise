@@ -1,6 +1,5 @@
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
-import Recalcul from '../components/mecanisms/Recalcul'
 import { defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
@@ -14,7 +13,6 @@ export type RecalculNode = {
 		recalcul: ASTNode
 		amendedSituation: Array<[ReferenceNode, ASTNode]>
 	}
-	jsx: any
 	nodeKind: 'recalcul'
 }
 
@@ -84,7 +82,6 @@ export const mecanismRecalcul = (v, context) => {
 			recalcul: nodeToEvaluate,
 			amendedSituation,
 		},
-		jsx: Recalcul,
 		nodeKind: 'recalcul',
 	} as RecalculNode
 }

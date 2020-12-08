@@ -1,7 +1,6 @@
 import parse from '../parse'
 import { EvaluationFunction } from '..'
-import { ASTNode, ConstantNode, Unit } from '../AST/types'
-import InversionNumérique from '../components/mecanisms/InversionNumérique'
+import { ConstantNode, Unit } from '../AST/types'
 import { mergeMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -9,7 +8,6 @@ import { Context } from '../parsePublicodes'
 import { ReferenceNode } from '../reference'
 import uniroot from '../uniroot'
 import { parseUnit } from '../units'
-import { InternalError } from '../error'
 import { UnitéNode } from './unité'
 
 export type InversionNode = {
@@ -18,7 +16,6 @@ export type InversionNode = {
 		inversionCandidates: Array<ReferenceNode>
 		unit?: Unit
 	}
-	jsx: any
 	nodeKind: 'inversion'
 }
 
@@ -69,12 +66,10 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 		}
 		this.parsedSituation[node.explanation.ruleToInverse] = {
 			unit: unit,
-			jsx: () => n,
 			nodeKind: 'unité',
 			explanation: {
 				nodeKind: 'constant',
 				nodeValue: n,
-				jsx: () => n,
 				type: 'number',
 			} as ConstantNode,
 		} as UnitéNode
@@ -173,7 +168,6 @@ export const mecanismInversion = (v, context: Context) => {
 			inversionCandidates: v.avec.map((node) => parse(node, context)),
 		},
 		...('unité' in v && { unit: parseUnit(v.unité) }),
-		jsx: InversionNumérique,
 		nodeKind: 'inversion',
 	} as InversionNode
 }
