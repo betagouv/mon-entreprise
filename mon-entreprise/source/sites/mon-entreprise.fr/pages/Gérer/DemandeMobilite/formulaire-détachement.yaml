@@ -133,6 +133,13 @@ détachement . date de fin:
   note: 2.2
   type: date
 
+détachement . vérification date:
+  titre: Date de détachement non valide
+  formule: date de début > date de fin
+  type: notification
+  description: La date de fin de détachement ne peut être antérieure à la date de début
+  sévérité: avertissement
+
 détachement . nature de l'activité:
   question: Quel sera la nature de votre activité pendant la période de détachement ?
   type: texte
@@ -195,6 +202,12 @@ activité transfrontalière simultanée . activité salariée . période . date 
 activité transfrontalière simultanée . activité salariée . période . date de fin:
   applicable si: date de fin connue
   type: date
+activité transfrontalière simultanée . activité salariée . période . vérification:
+  titre: Date d'activité salariée non valides
+  formule: date de début du contrat > date de fin
+  type: notification
+  description: La date de fin du contrat ne peut être antérieure à la date de début
+  sévérité: avertissement
 
 activité transfrontalière simultanée . activité salariée . employeur:
   note: 5.1
