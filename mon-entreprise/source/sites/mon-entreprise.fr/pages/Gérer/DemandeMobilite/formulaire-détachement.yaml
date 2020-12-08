@@ -119,6 +119,12 @@ détachement . pays:
   note: 4.4.2
   API: pays européen
 
+détachement . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
+
+
 détachement . date de début:
   type: date
   note: 2.2
@@ -167,9 +173,16 @@ activité transfrontalière simultanée . activité salariée:
   titre: Activité salariée à l'étranger
   type: groupe
   formule: oui
+
 activité transfrontalière simultanée . activité salariée . pays:
   API: pays européen
   note: 5.1
+
+activité transfrontalière simultanée . activité salariée . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
+
 activité transfrontalière simultanée . activité salariée . profession:
   type: texte
 activité transfrontalière simultanée . activité salariée . période:
@@ -247,6 +260,11 @@ activité transfrontalière simultanée . activité non salariée . n°1:
   formule: oui
 activité transfrontalière simultanée . activité non salariée . n°1 . pays:
   API: pays européen
+activité transfrontalière simultanée . activité non salariée . n°1 . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
+
 activité transfrontalière simultanée . activité non salariée . n°1 . nom de l'entreprise:
   type: texte
 activité transfrontalière simultanée . activité non salariée . n°1 . adresse:
@@ -265,6 +283,10 @@ activité transfrontalière simultanée . activité non salariée . n°2:
   formule: oui
 activité transfrontalière simultanée . activité non salariée . n°2 . pays:
   API: pays européen
+activité transfrontalière simultanée . activité non salariée . n°2 . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
 activité transfrontalière simultanée . activité non salariée . n°2 . nom de l'entreprise:
   type: texte
 activité transfrontalière simultanée . activité non salariée . n°2 . adresse:
@@ -283,6 +305,10 @@ activité transfrontalière simultanée . activité non salariée . n°3:
   formule: oui
 activité transfrontalière simultanée . activité non salariée . n°3 . pays:
   API: pays européen
+activité transfrontalière simultanée . activité non salariée . n°3 . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
 activité transfrontalière simultanée . activité non salariée . n°3 . nom de l'entreprise:
   type: texte
 activité transfrontalière simultanée . activité non salariée . n°3 . adresse:
@@ -331,6 +357,10 @@ activité transfrontalière simultanée . activité non salariée . pays centre 
 activité transfrontalière simultanée . activité non salariée . pays centre d'intérêt . pays:
   API: pays européen
   titre: Pays "centre d'intêret"
+activité transfrontalière simultanée . activité non salariée . pays centre d'intérêt . pays . autre:
+  applicable si: pays = 'Autre'
+  titre: Nom du pays
+  type: texte
 
 commentaires additionnels:
   type: groupe
