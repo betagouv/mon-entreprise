@@ -230,6 +230,8 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
       avec:
         rémunération . brut de base: SMIC contractuel
         activité partielle: non
+        temps de travail . heures supplémentaires: non
+        temps de travail . heures complémentaires: non
 
 contrat salarié . activité partielle . heures chômées:
   unité: heures/mois
