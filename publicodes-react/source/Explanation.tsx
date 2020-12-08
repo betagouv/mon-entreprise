@@ -3,7 +3,7 @@ import Allègement from './mecanisms/Allègement'
 import ApplicableSi from './mecanisms/Applicable'
 import Arrondi from './mecanisms/Arrondi'
 import Barème from './mecanisms/Barème'
-import Composantes from '../components/mecanisms/Composantes'
+import Composantes from './mecanisms/Composantes'
 import Durée from './mecanisms/Durée'
 import Grille from './mecanisms/Grille'
 import InversionNumérique from './mecanisms/InversionNumérique'
@@ -22,7 +22,7 @@ import Rule from './mecanisms/Rule'
 import Situation from './mecanisms/Situation'
 import Somme from './mecanisms/Somme'
 import Synchronisation from './mecanisms/Synchronisation'
-import TauxProgressif from '../components/mecanisms/TauxProgressif'
+import TauxProgressif from './mecanisms/TauxProgressif'
 import ToutesCesConditions from './mecanisms/ToutesCesConditions'
 import UneDeCesConditions from './mecanisms/UneDeCesConditions'
 import UnePossibilité from './mecanisms/UnePossibilité'
@@ -30,7 +30,6 @@ import Unité from './mecanisms/Unité'
 import Variations from './mecanisms/Variations'
 import { useContext } from 'react'
 import { EngineContext } from './contexts'
-import { InternalError } from '../error'
 
 const UIComponents = {
 	constant: ConstantNode,
@@ -71,7 +70,7 @@ export default function Explanation({ node }) {
 	const visualisationKind = node.visualisationKind || node.nodeKind
 	const engine = useContext(EngineContext)
 	if (!engine) {
-		throw new InternalError(node)
+		throw new Error('We need an engine instance in the React context')
 	}
 
 	// On ne veut pas (pour l'instant) déclencher une évaluation juste pour

@@ -1,4 +1,4 @@
-import { capitalise0 } from '../../format'
+import { capitalise0 } from 'publicodes'
 import Explanation from '../Explanation'
 
 export default function RuleMecanism({ rawNode, explanation }) {

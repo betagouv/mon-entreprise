@@ -16,9 +16,9 @@ testSuites.forEach(([suiteName, suite]) => {
 		Object.entries(suite)
 			.filter(([, rule]) => rule?.exemples)
 			.forEach(([name, test]) => {
-				const { exemples, 'unité attendue': unit } = test(
-					Array.isArray(exemples) ? exemples : [exemples]
-				).forEach(
+				const { exemples, 'unité attendue': unit } = test
+				const exemplesArray = Array.isArray(exemples) ? exemples : [exemples]
+				exemplesArray.forEach(
 					(
 						{
 							nom: testName,

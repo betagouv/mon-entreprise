@@ -1,4 +1,3 @@
-import React from 'react'
 import { Trans } from 'react-i18next'
 import { BarèmeAttributes, TrancheTable, StyledComponent } from './Barème'
 import { Mecanism, NodeValuePointer } from './common'

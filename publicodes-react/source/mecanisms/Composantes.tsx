@@ -1,13 +1,10 @@
-import { toPairs } from 'ramda'
 import { Trans, useTranslation } from 'react-i18next'
-import writtenNumbers from '../../locales/writtenNumbers.yaml'
-import colors from './colors'
+import writtenNumbers from '../writtenNumbers'
 import Explanation from '../Explanation'
 import { InlineMecanismName, Mecanism } from './common'
 
 export default function Composantes({ nodeValue, explanation, unit }) {
 	const { i18n } = useTranslation()
-	console.log(explanation)
 	return (
 		<Mecanism
 			name="composantes"

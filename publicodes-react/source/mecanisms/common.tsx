@@ -1,17 +1,24 @@
 import React, { createContext, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
-import mecanismsDoc from '../../../docs/mecanisms.yaml'
-import { formatValue, capitalise0 } from '../../format'
-import { simplifyNodeUnit } from '../../nodeUnits'
-import { Evaluation, EvaluatedNode, Types, Unit } from '../../AST/types'
+import {
+	mecanismsDoc,
+	formatValue,
+	capitalise0,
+	simplifyNodeUnit,
+} from 'publicodes'
+import {
+	Evaluation,
+	EvaluatedNode,
+	Types,
+	Unit,
+} from 'publicodes/source/AST/types'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
 import Explanation from '../Explanation'
-import { ReferenceNode } from '../../reference'
+import { ReferenceNode } from 'publicodes/source/reference'
 import { EngineContext } from '../contexts'
-import { InternalError } from '../../error'
 import { Markdown } from '../Markdown'
 
 export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
@@ -264,7 +271,7 @@ export function Leaf(
 	const { dottedName, nodeValue, unit } = node
 	const rule = engine?.getParsedRules()[node.dottedName]
 	if (!rule) {
-		throw new InternalError(node)
+		throw new Error(`Unknown node`)
 	}
 
 	const [folded, setFolded] = useState(true)

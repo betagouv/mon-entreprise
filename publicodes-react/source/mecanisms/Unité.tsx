@@ -1,7 +1,6 @@
 import Explanation from '../Explanation'
 import { InfixMecanism } from './common'
-import { serializeUnit } from '../../units'
-import { formatValue } from '../../format'
+import { formatValue, serializeUnit } from 'publicodes'
 
 export default function MecanismUnité({ explanation, unit }) {
 	if (explanation.nodeKind === 'constant') {

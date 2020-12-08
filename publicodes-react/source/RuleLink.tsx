@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
-import Engine from '..'
-import { InternalError } from '../error'
-import { encodeRuleName, nameLeaf } from '../ruleUtils'
+import Engine, { utils } from 'publicodes'
 import { BasepathContext, EngineContext } from './contexts'
+
+const { encodeRuleName } = utils
 
 type RuleLinkProps<Name extends string> = Omit<
 	React.ComponentProps<Link>,
@@ -43,9 +43,7 @@ export function RuleLink<Name extends string>({
 	// 	return <Explanation node={engine.evaluate(rule.dottedName).formule} />
 	// }
 	if (!rule) {
-		throw new InternalError({
-			dottedName,
-		})
+		throw new Error(`Unknown rule: ${dottedName}`)
 	}
 	return (
 		<Link to={newPath} {...props}>

@@ -1,20 +1,20 @@
 import { toPairs } from 'ramda'
-import { capitalise0 } from '../../format'
+import { capitalise0 } from 'publicodes'
 import styled from 'styled-components'
 
 const references = {
-	'service-public.fr': require('url-loader!./références/marianne.png').default,
-	'urssaf.fr': require('url-loader!./références/URSSAF.png').default,
-	'secu-independants.fr': require('url-loader!./références/URSSAF.png').default,
-	'gouv.fr': require('url-loader!./références/marianne.png').default,
-	'agirc-arrco.fr': require('url-loader!./références/agirc-arrco.png').default,
-	'pole-emploi.fr': require('url-loader!./références/pole-emploi.png').default,
-	'ladocumentationfrançaise.fr': require('url-loader!./références/ladocumentationfrançaise.png')
-		.default,
-	'senat.fr': require('url-loader!./références/senat.png').default,
-	'ameli.fr': require('url-loader!./références/ameli.png').default,
-	'bpifrance-creation': require('url-loader!./références/bpi-création.png')
-		.default,
+	// 'service-public.fr': require('url-loader!./références/marianne.png').default,
+	// 'urssaf.fr': require('url-loader!./références/URSSAF.png').default,
+	// 'secu-independants.fr': require('url-loader!./références/URSSAF.png').default,
+	// 'gouv.fr': require('url-loader!./références/marianne.png').default,
+	// 'agirc-arrco.fr': require('url-loader!./références/agirc-arrco.png').default,
+	// 'pole-emploi.fr': require('url-loader!./références/pole-emploi.png').default,
+	// 'ladocumentationfrançaise.fr': require('url-loader!./références/ladocumentationfrançaise.png')
+	// 	.default,
+	// 'senat.fr': require('url-loader!./références/senat.png').default,
+	// 'ameli.fr': require('url-loader!./références/ameli.png').default,
+	// 'bpifrance-creation': require('url-loader!./références/bpi-création.png')
+	// 	.default,
 }
 
 const findRefKey = (link: string) =>

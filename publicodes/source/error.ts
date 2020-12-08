@@ -1,12 +1,14 @@
+const coerceArray = (x) => (Array.isArray(x) ? x : [x])
+
 export class EngineError extends Error {}
 export function syntaxError(
-	rule: string,
+	rules: string[] | string,
 	message: string,
 	originalError?: Error
 ) {
 	throw new EngineError(
 		`\n[ Erreur syntaxique ]
-➡️  Dans la règle \`${rule}\`
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ✖️  ${message}
     ${originalError ? originalError.message : ''}
 `
@@ -14,13 +16,13 @@ export function syntaxError(
 }
 
 export function compilationError(
-	rule: string,
+	rules: string[] | string,
 	message: string,
 	originalError?: Error
 ) {
 	throw new Error(
 		`\n[ Erreur de compilation ]
-➡️ Dans la règle \`${rule}\`
+➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ✖️ ${message}
   ${originalError?.message}
 `
@@ -28,13 +30,13 @@ export function compilationError(
 }
 
 export function evaluationError(
-	rule: string,
+	rules: string[] | string,
 	message: string,
 	originalError?: Error
 ) {
 	throw new EngineError(
 		`\n[ Erreur d'évaluation ]
-➡️  Dans la règle \`${rule}\`
+➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 ✖️  ${message}
     ${originalError ? originalError.message : ''}
 `
@@ -42,14 +44,14 @@ export function evaluationError(
 }
 
 export function typeWarning(
-	rule: string,
+	rules: string[] | string,
 	message: string,
 	originalError?: Error
 ) {
 	// DESACTIVE EN ATTENDANT L'INFÉRENCE DE TYPE
 	// 	console.warn(
 	// 		`\n[ Erreur de type ]
-	// ➡️  Dans la règle \`${rule}\`
+	// ➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 	// ✖️  ${message}
 	//     ${originalError ? originalError.message : ''}
 	// `

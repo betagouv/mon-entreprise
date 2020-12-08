@@ -1,4 +1,4 @@
-import { ReplacementRule } from '../../replacement'
+import { ReplacementRule } from 'publicodes/source/replacement'
 import Explanation from '../Explanation'
 
 export default function ReplacementMecanism(node: ReplacementRule) {

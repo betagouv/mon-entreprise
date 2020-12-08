@@ -28,22 +28,11 @@
 		"@dagrejs/graphlib": "^2.1.4"
 	},
 	"dependencies": {
-		"classnames": "^2.2.6",
-		"focus-trap-react": "^3.1.2",
 		"i18next": "^19.4.4",
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
 		"ramda": "^0.27.0",
-		"react-easy-emoji": "^1.4.0",
-		"react-i18next": "^11.4.0",
-		"react-markdown": "^4.3.1",
-		"styled-components": "^5.1.0",
 		"yaml": "^1.9.2"
-	},
-	"peerDependencies": {
-		"react": "^16.13.1",
-		"react-router-dom": "^5.1.1",
-		"react-router-hash-link": "^1.2.2"
 	},
 	"scripts": {
 		"prepublishOnly": "yarn test && yarn run build",

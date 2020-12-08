@@ -9439,7 +9439,7 @@ nearley-loader@^2.0.0:
   resolved "https://registry.yarnpkg.com/nearley-loader/-/nearley-loader-2.0.0.tgz#8d75fd2ab3ca9f6153ae099b2bf18f8d5605d203"
   integrity sha512-kkUlMrkLWMoQPlOVmv7a8aHFEiTOShPb1H+CkvJrDMYpMCqnQUpfJgViGFlh0wufMQlGcawPzebcng6KnDJEdg==
 
-nearley@^2.19.0, nearley@^2.19.2, nearley@^2.7.10:
+nearley@^2.19.2, nearley@^2.7.10:
   version "2.19.6"
   resolved "https://registry.yarnpkg.com/nearley/-/nearley-2.19.6.tgz#22663fd7326eb708b4c18bfdd7e4ce204b7239b0"
   integrity sha512-OV3Lx+o5iIGWVY38zs+7aiSnBqaHTFAOQiz83VHJje/wOOaSgzE3H0S/xfISxJhFSoPcX611OEDV9sCT8F283g==
