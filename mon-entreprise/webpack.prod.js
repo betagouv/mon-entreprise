@@ -82,6 +82,7 @@ module.exports = {
 			navigateFallbackDenylist: [
 				/^\/_.*$/,
 				/.*\.map$/,
+				/.*\.(js|css)$/,
 				/.*\?s=.*$/,
 				/.*\.worker\.js/,
 				/^\/robots\.txt$/,
