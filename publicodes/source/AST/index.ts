@@ -1,24 +1,24 @@
 import { mapObjIndexed } from 'ramda'
 import { InternalError } from '../error'
 import { TrancheNodes } from '../mecanisms/trancheUtils'
-import { ReplacementNode } from '../replacement'
+import { ReplacementRule } from '../replacement'
 import { RuleNode } from '../rule'
 import { ASTNode, NodeKind, TraverseFunction } from './types'
 
 type TransformASTFunction = (n: ASTNode) => ASTNode
 /**
-	This function creates a transormation of the AST from on a simpler 
+	This function creates a transormation of the AST from on a simpler
 	callback function `fn`
-	
+
 	`fn` will be called with the nodes of the ASTTree during the exploration
 
 	The outcome of the callback function has an influence on the exploration of the AST :
 	- `false`, the node is not updated and the exploration does not continue further down this branch
 	- `undefined`, the node is not updated but the exploration continues and its children will be transformed
 	- `ASTNode`, the node is transformed to the new value and the exploration does not continue further down the branch
-	
+
 	`updateFn` : It is possible to specifically use the updated version of a child
-	by using the function passed as second argument. The returned value will be the 
+	by using the function passed as second argument. The returned value will be the
 	transformed version of the node.
 	*/
 export function transformAST(
@@ -41,19 +41,19 @@ export function transformAST(
 }
 
 /**
-		This function allows to construct a specific value while exploring the AST with 
-		a simple reducing function as argument. 
-		
+		This function allows to construct a specific value while exploring the AST with
+		a simple reducing function as argument.
+
 		`fn` will be called with the currently reduced value `acc` and the current node of the AST
-	
-	
+
+
 		The outcome of the callback function has an influence on the exploration of the AST :
-		- `undefined`, the exploration continues further down and all the child are reduced 
+		- `undefined`, the exploration continues further down and all the child are reduced
 			successively to a single value
-		- `T`, the reduced value 
-		
+		- `T`, the reduced value
+
 		`reduceFn` : It is possible to specifically use the reduced value of a child
-		by using the function passed as second argument. The returned value will be the reduced version 
+		by using the function passed as second argument. The returned value will be the reduced version
 		of the node
 		*/
 
@@ -141,7 +141,7 @@ const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 			return traverseVariationNode(fn, node)
 		case 'variable temporelle':
 			return traverseVariableTemporelle(fn, node)
-		case 'replacement':
+		case 'replacementRule':
 			return traverseReplacementNode(fn, node)
 		default:
 			throw new InternalError(node)
@@ -150,7 +150,7 @@ const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 
 const traverseRuleNode: TraverseFunction<'rule'> = (fn, node) => ({
 	...node,
-	replacements: node.replacements.map(fn) as Array<ReplacementNode>,
+	replacements: node.replacements.map(fn) as Array<ReplacementRule>,
 	suggestions: mapObjIndexed(fn, node.suggestions),
 	explanation: {
 		parent: node.explanation.parent && fn(node.explanation.parent),
@@ -158,7 +158,10 @@ const traverseRuleNode: TraverseFunction<'rule'> = (fn, node) => ({
 	},
 })
 
-const traverseReplacementNode: TraverseFunction<'replacement'> = (fn, node) =>
+const traverseReplacementNode: TraverseFunction<'replacementRule'> = (
+	fn,
+	node
+) =>
 	({
 		...node,
 		definitionRule: fn(node.definitionRule),
@@ -166,7 +169,7 @@ const traverseReplacementNode: TraverseFunction<'replacement'> = (fn, node) =>
 		replacementNode: fn(node.replacementNode),
 		whiteListedNames: node.whiteListedNames.map(fn),
 		blackListedNames: node.blackListedNames.map(fn),
-	} as ReplacementNode)
+	} as ReplacementRule)
 
 const traverseLeafNode: TraverseFunction<'reference' | 'constant'> = (
 	_,

@@ -15,7 +15,7 @@ import Plafond from './mecanisms/Plafond'
 import Plancher from './mecanisms/Plancher'
 import Product from './mecanisms/Product'
 import Recalcul from './mecanisms/Recalcul'
-import Replacement from './mecanisms/Replacement'
+import ReplacementRule from './mecanisms/ReplacementRule'
 import Rule from './mecanisms/Rule'
 import Situation from './mecanisms/Situation'
 import Somme from './mecanisms/Somme'
@@ -50,7 +50,7 @@ const UIComponents = {
 	somme: Somme,
 	synchronisation: Synchronisation,
 	recalcul: Recalcul,
-	replacement: Replacement,
+	replacementRule: ReplacementRule,
 	'taux progressif': TauxProgressif,
 	'toutes ces conditions': ToutesCesConditions,
 	'une de ces conditions': UneDeCesConditions,

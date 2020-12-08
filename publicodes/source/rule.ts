@@ -8,7 +8,7 @@ import { ReferenceNode } from './reference'
 import {
 	parseRendNonApplicable,
 	parseReplacements,
-	ReplacementNode,
+	ReplacementRule,
 } from './replacement'
 import { nameLeaf, ruleParents } from './ruleUtils'
 import { capitalise0 } from './utils'
@@ -52,7 +52,7 @@ export type RuleNode = {
 	nodeKind: 'rule'
 	virtualRule: boolean
 	rawNode: Rule
-	replacements: Array<ReplacementNode>
+	replacements: Array<ReplacementRule>
 	explanation: {
 		parent: ASTNode | false
 		valeur: ASTNode

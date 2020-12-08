@@ -10,8 +10,8 @@ import { Context } from './parsePublicodes'
 import { Rule, RuleNode } from './rule'
 import { coerceArray } from './utils'
 
-export type ReplacementNode = {
-	nodeKind: 'replacement'
+export type ReplacementRule = {
+	nodeKind: 'replacementRule'
 	definitionRule: ASTNode & { nodeKind: 'reference' }
 	replacedReference: ASTNode & { nodeKind: 'reference' }
 	replacementNode: ASTNode
@@ -23,7 +23,7 @@ export type ReplacementNode = {
 export function parseReplacements(
 	replacements: Rule['remplace'],
 	context: Context
-): Array<ReplacementNode> {
+): Array<ReplacementRule> {
 	if (!replacements) {
 		return []
 	}
@@ -46,35 +46,35 @@ export function parseReplacements(
 			.map((refs) => refs.map((ref) => parse(ref, context)))
 
 		return {
-			nodeKind: 'replacement',
+			nodeKind: 'replacementRule',
 			rawNode: replacement,
 			definitionRule: parse(context.dottedName, context),
 			replacedReference,
 			replacementNode,
 			whiteListedNames,
 			blackListedNames,
-		} as ReplacementNode
+		} as ReplacementRule
 	})
 }
 
 export function parseRendNonApplicable(
 	rules: Rule['rend non applicable'],
 	context: Context
-): Array<ReplacementNode> {
+): Array<ReplacementRule> {
 	return parseReplacements(rules, context).map(
 		(replacement) =>
 			({
 				...replacement,
 				replacementNode: defaultNode(false),
-			} as ReplacementNode)
+			} as ReplacementRule)
 	)
 }
 
 export function getReplacements(
 	parsedRules: Record<string, RuleNode>
-): Record<string, Array<ReplacementNode>> {
+): Record<string, Array<ReplacementRule>> {
 	return groupBy(
-		(r: ReplacementNode) => {
+		(r: ReplacementRule) => {
 			if (!r.replacedReference.dottedName) {
 				throw new InternalError(r)
 			}
@@ -85,11 +85,11 @@ export function getReplacements(
 }
 
 export function inlineReplacements(
-	replacements: Record<string, Array<ReplacementNode>>
+	replacements: Record<string, Array<ReplacementRule>>
 ): (n: ASTNode) => ASTNode {
 	return transformAST((n, fn) => {
 		if (
-			n.nodeKind === 'replacement' ||
+			n.nodeKind === 'replacementRule' ||
 			n.nodeKind === 'inversion' ||
 			n.nodeKind === 'une possibilité'
 		) {
@@ -118,7 +118,7 @@ export function inlineReplacements(
 
 function replace(
 	node: ASTNode & { nodeKind: 'reference' }, //& { dottedName: string },
-	replacements: Array<ReplacementNode>
+	replacements: Array<ReplacementRule>
 ): ASTNode {
 	// TODO : handle transitivité
 

@@ -8,7 +8,7 @@ import parsePublicodes, { disambiguateReference } from './parsePublicodes'
 import {
 	getReplacements,
 	inlineReplacements,
-	ReplacementNode,
+	ReplacementRule,
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
@@ -58,7 +58,7 @@ export type ParsedRules<Name extends string> = Record<
 export default class Engine<Name extends string = string> {
 	parsedRules: ParsedRules<Name>
 	parsedSituation: Record<string, ASTNode> = {}
-	replacements: Record<string, Array<ReplacementNode>> = {}
+	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache
 	private warnings: Array<string> = []
 

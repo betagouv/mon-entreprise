@@ -1,7 +1,7 @@
-import { ReplacementNode } from '../../replacement'
+import { ReplacementRule } from '../../replacement'
 import Explanation from '../Explanation'
 
-export default function ReplacementMecanism(node: ReplacementNode) {
+export default function ReplacementMecanism(node: ReplacementRule) {
 	return (
 		<span>
 			Remplace <Explanation node={node.replacedReference} />{' '}
