@@ -1,9 +1,9 @@
-import { dissoc, scan, uniq } from 'ramda'
+import { dissoc, scan } from 'ramda'
 import emoji from 'react-easy-emoji'
-import yaml, { parse } from 'yaml'
-import { reduceAST } from '../../AST'
-import { ASTNode } from '../../AST/types'
-import Engine, { EvaluatedNode, formatValue } from '../../index'
+import yaml from 'yaml'
+import Engine, { formatValue, reduceAST, utils } from 'publicodes'
+const { encodeRuleName } = utils
+
 const getParents = (dottedName) =>
 	scan(
 		(acc, part) => [acc, part].filter(Boolean).join(' . '),
@@ -61,8 +61,8 @@ export default function RuleSource({ engine, dottedName }: Props) {
 	const source =
 		`
 # Ci-dessous la règle d'origine, écrite en publicodes.
- 
-# Publicodes est un langage déclaratif développé par l'Urssaf 
+
+# Publicodes est un langage déclaratif développé par l'Urssaf
 # en partenariat avec beta.gouv.fr pour encoder les algorithmes d'intérêt public.
 
 # Vous pouvez modifier les valeurs directement dans l'éditeur pour voir les calculs
@@ -98,11 +98,6 @@ export default function RuleSource({ engine, dottedName }: Props) {
 		</div>
 	)
 }
-const encodeRuleName = (name) =>
-	name
-		?.replace(/\s\.\s/g, '/')
-		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-		.replace(/\s/g, '-')
 // TODO: This formating function should be in the core code. We need to think
 // about the different options of the formatting options and our use cases
 // (putting a value in the URL #1169, importing a value in the Studio, showing a value

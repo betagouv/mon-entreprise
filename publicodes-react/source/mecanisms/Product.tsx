@@ -1,5 +1,5 @@
 import { Trans } from 'react-i18next'
-import { EvaluatedNode } from '../../AST/types'
+import { EvaluatedNode } from 'publicodes/source/AST/types'
 import Explanation from '../Explanation'
 import { Mecanism } from './common'
 

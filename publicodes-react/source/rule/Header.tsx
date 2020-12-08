@@ -1,5 +1,5 @@
 import React from 'react'
-import { ruleParents } from '../../ruleUtils'
+import { utils } from 'publicodes'
 import { RuleLinkWithContext } from '../RuleLink'
 import styled from 'styled-components'
 
@@ -7,7 +7,8 @@ export default function RuleHeader({ dottedName }) {
 	return (
 		<StyledHeader className="ui__ plain card rule-header">
 			<ul className="rule-header__breadcrumb">
-				{ruleParents(dottedName)
+				{utils
+					.ruleParents(dottedName)
 					.reverse()
 					.map((parentDottedName) => (
 						<li key={parentDottedName}>

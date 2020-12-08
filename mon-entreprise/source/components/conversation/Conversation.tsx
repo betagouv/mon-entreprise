@@ -36,7 +36,6 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
-	console.log(currentQuestion)
 	const setDefault = () =>
 		dispatch(
 			// TODO: Skiping a question shouldn't be equivalent to answering the

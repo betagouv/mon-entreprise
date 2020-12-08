@@ -12,7 +12,8 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
-import { reduceAST, transformAST } from './AST'
+import { reduceAST } from './AST'
+import mecanismsDoc from '../docs/mecanisms.yaml'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] },
@@ -42,11 +43,13 @@ export type EvaluationOptions = Partial<{
 export { reduceAST, transformAST } from './AST/index'
 export * as cyclesLib from './AST/graph'
 export { Evaluation, Unit } from './AST/types'
-export * from './components'
-export { formatValue } from './format'
+export { formatValue, capitalise0 } from './format'
+export { serializeUnit } from './units'
+export { simplifyNodeUnit } from './nodeUnits'
 export { default as translateRules } from './translateRules'
 export { ASTNode, EvaluatedNode }
 export { parsePublicodes }
+export { mecanismsDoc }
 export { utils }
 export { Rule }
 

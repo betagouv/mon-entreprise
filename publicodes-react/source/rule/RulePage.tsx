@@ -1,13 +1,13 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import Engine, { EvaluatedNode } from '../..'
+import Engine, {
+	formatValue,
+	utils,
+	serializeUnit,
+	simplifyNodeUnit,
+} from 'publicodes'
 import Explanation from '../Explanation'
-import { formatValue } from '../../format'
-import { ReferenceNode } from '../../reference'
-import { RuleNode } from '../../rule'
-import { ruleWithDedicatedDocumentationPage } from '../../ruleUtils'
-import { serializeUnit } from '../../units'
-import { simplifyNodeUnit } from '../../nodeUnits'
+import {} from 'publicodes'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
 import RuleHeader from './Header'
@@ -18,9 +18,7 @@ export default function Rule({ dottedName, engine, language }) {
 	if (!engine.getParsedRules()[dottedName]) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluateNode(
-		engine.getParsedRules()[dottedName]
-	) as EvaluatedNode & RuleNode
+	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
 	// TODO affichage inline vs page
 
 	const { description, question } = rule.rawNode
@@ -118,7 +116,7 @@ function AssociatedRules({
 				ruleDottedName.split(' . ').length ===
 					dottedName.split(' . ').length + 1
 		)
-		.filter((rule) => ruleWithDedicatedDocumentationPage(rule))
+		.filter((rule) => utils.ruleWithDedicatedDocumentationPage(rule))
 	if (!namespaceRules.length) {
 		return null
 	}

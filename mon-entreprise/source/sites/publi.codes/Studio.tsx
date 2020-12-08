@@ -1,5 +1,5 @@
-// import { ControlledEditor } from '@monaco-editor/react'
-import Engine, { Documentation, getDocumentationSiteMap } from 'publicodes'
+import Engine from 'publicodes'
+import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
 import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'

@@ -1,4 +1,4 @@
-import { VariationNode } from '../../mecanisms/variations'
+import { VariationNode } from 'publicodes/source/mecanisms/variations'
 import Explanation from '../Explanation'
 
 export default function Replacement(node: VariationNode) {

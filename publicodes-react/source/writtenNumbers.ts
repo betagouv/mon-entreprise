@@ -1,0 +1,28 @@
+export default {
+	en: [
+		'zero',
+		'one',
+		'two',
+		'three',
+		'four',
+		'five',
+		'six',
+		'seven',
+		'eight',
+		'nine',
+		'ten',
+	],
+	fr: [
+		'zéro',
+		'un',
+		'deux',
+		'trois',
+		'quatre',
+		'cinq',
+		'six',
+		'sept',
+		'huit',
+		'neuf',
+		'dix',
+	],
+}

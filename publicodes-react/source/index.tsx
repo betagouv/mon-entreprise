@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
-import Engine from '..'
-import i18n from '../i18n'
-import { decodeRuleName, encodeRuleName } from '../ruleUtils'
+import Engine, { utils } from 'publicodes'
+import i18n from 'i18next'
 import { BasepathContext, EngineContext } from './contexts'
 import RulePage from './rule/RulePage'
+const { decodeRuleName, encodeRuleName } = utils
 
 export { RuleLink } from './RuleLink'
 export { default as Explanation } from './Explanation'
