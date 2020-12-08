@@ -24,8 +24,6 @@ describe('DottedNames graph', () => {
 				.join('\n\t- ')}\n\n`
 		)
 			.to.be.an('array')
-			.of.length(1)
-		// We have one cycle that we are aware of, but that doesn't occur at runtime
-		// see contrat salarié . activité partielle . indemnités . complémentaire
+			.of.length(0)
 	})
 })

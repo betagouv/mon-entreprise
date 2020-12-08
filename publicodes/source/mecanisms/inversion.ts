@@ -64,6 +64,7 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 		this.cache = {
 			_meta: { ...originalCache._meta },
 		}
+		this.situationVersion++
 		this.parsedSituation[node.explanation.ruleToInverse] = {
 			unit: unit,
 			nodeKind: 'unité',
@@ -140,7 +141,7 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 	// // Uncomment to display the two attempts and their result
 	// console.table([{ x: x1, y: y1 }, { x: x2, y: y2 }])
 	// console.log('iteration:', inversionNumberOfIterations)
-
+	this.situationVersion++
 	this.cache = originalCache
 	this.parsedSituation = originalSituation
 	return {
