@@ -29,7 +29,7 @@ function ParDéfautComponent({ explanation }) {
 	)
 }
 
-const evaluate: EvaluationFunction<'par défaut'> = function (node) {
+const evaluate: EvaluationFunction<'par défaut'> = function(node) {
 	const explanation: {
 		parDéfaut: EvaluatedNode | ASTNode
 		valeur: EvaluatedNode | ASTNode
@@ -46,24 +46,24 @@ const evaluate: EvaluationFunction<'par défaut'> = function (node) {
 		nodeValue: valeur.nodeValue,
 		explanation,
 		missingVariables: mergeMissing(
-			(explanation.valeur as EvaluatedNode).missingVariables,
+			bonus((explanation.valeur as EvaluatedNode).missingVariables),
 			'missingVariables' in explanation.parDéfaut
-				? bonus(explanation.parDéfaut.missingVariables)
+				? explanation.parDéfaut.missingVariables
 				: {}
 		),
-		...('unit' in valeur && { unit: valeur.unit }),
+		...('unit' in valeur && { unit: valeur.unit })
 	}
 }
 
 export default function parseParDéfaut(v, context) {
 	const explanation = {
 		valeur: parse(v.valeur, context),
-		parDéfaut: parse(v['par défaut'], context),
+		parDéfaut: parse(v['par défaut'], context)
 	}
 	return {
 		jsx: ParDéfautComponent,
 		explanation,
-		nodeKind: parseParDéfaut.nom,
+		nodeKind: parseParDéfaut.nom
 	} as ParDéfautNode
 }
 
