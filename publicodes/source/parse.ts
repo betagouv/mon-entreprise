@@ -1,9 +1,7 @@
 import { Grammar, Parser } from 'nearley'
 import { isEmpty } from 'ramda'
-import React from 'react'
-import { ASTNode, ConstantNode } from './AST/types'
+import { ASTNode } from './AST/types'
 import { EngineError, syntaxError } from './error'
-import { formatValue } from './format'
 import grammar from './grammar.ne'
 import applicable from './mecanisms/applicable'
 import arrondi from './mecanisms/arrondi'
@@ -205,6 +203,10 @@ const parseFunctions = {
 	}),
 	constant: (v) => ({
 		type: v.type,
+		// In the documentation we want to display constants defined in the source
+		// with their full precision. This is especially useful for percentages like
+		// APEC 0,036 %.
+		fullPrecision: true,
 		nodeValue: v.nodeValue,
 		nodeKind: 'constant',
 	}),
