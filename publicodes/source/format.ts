@@ -1,7 +1,6 @@
 import { memoizeWith } from 'ramda'
 import { Evaluation, Unit } from './AST/types'
 import { serializeUnit } from './units'
-import { capitalise0 } from './utils'
 
 const NumberFormat = memoizeWith(
 	(...args) => JSON.stringify(args),
@@ -96,6 +95,12 @@ function formatNumber({
 	}
 }
 
+export function capitalise0(name: undefined): undefined
+export function capitalise0(name: string): string
+export function capitalise0(name?: string) {
+	return name && name[0].toUpperCase() + name.slice(1)
+}
+
 const booleanTranslations = {
 	fr: { true: 'Oui', false: 'Non' },
 	en: { true: 'Yes', false: 'No' },
@@ -105,12 +110,6 @@ type Options = {
 	language?: string
 	displayedUnit?: string
 	precision?: number
-}
-
-type Commune = {
-	nom: string
-	codePostal?: string
-	departement: { nom: string }
 }
 
 export function formatValue(

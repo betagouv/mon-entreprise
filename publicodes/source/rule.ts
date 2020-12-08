@@ -11,7 +11,7 @@ import {
 	ReplacementRule,
 } from './replacement'
 import { nameLeaf, ruleParents } from './ruleUtils'
-import { capitalise0 } from './utils'
+import { capitalise0 } from './format'
 
 export type Rule = {
 	formule?: Record<string, unknown> | string
