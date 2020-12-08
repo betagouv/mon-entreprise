@@ -6,7 +6,6 @@ import { defaultNode } from './evaluation'
 import parse from './parse'
 import { Context } from './parsePublicodes'
 import { Rule, RuleNode } from './rule'
-import { coerceArray } from './utils'
 
 export type ReplacementRule = {
 	nodeKind: 'replacementRule'
@@ -39,35 +38,39 @@ export function parseReplacements(
 	if (!replacements) {
 		return []
 	}
-	return coerceArray(replacements).map((replacement) => {
-		if (typeof replacement === 'string') {
-			replacement = { règle: replacement }
+	return (Array.isArray(replacements) ? replacements : [replacements]).map(
+		(replacement) => {
+			if (typeof replacement === 'string') {
+				replacement = { règle: replacement }
+			}
+
+			const replacedReference = parse(replacement.règle, context)
+			const replacementNode = parse(
+				replacement.par ?? context.dottedName,
+				context
+			)
+
+			const [whiteListedNames, blackListedNames] = [
+				replacement.dans ?? [],
+				replacement['sauf dans'] ?? [],
+			]
+				.map((dottedName) =>
+					Array.isArray(dottedName) ? dottedName : [dottedName]
+				)
+				.map((refs) => refs.map((ref) => parse(ref, context)))
+
+			return {
+				nodeKind: 'replacementRule',
+				rawNode: replacement,
+				definitionRule: parse(context.dottedName, context),
+				replacedReference,
+				replacementNode,
+				whiteListedNames,
+				blackListedNames,
+				remplacementRuleId: remplacementRuleId++,
+			} as ReplacementRule
 		}
-
-		const replacedReference = parse(replacement.règle, context)
-		const replacementNode = parse(
-			replacement.par ?? context.dottedName,
-			context
-		)
-
-		const [whiteListedNames, blackListedNames] = [
-			replacement.dans ?? [],
-			replacement['sauf dans'] ?? [],
-		]
-			.map((dottedName) => coerceArray(dottedName))
-			.map((refs) => refs.map((ref) => parse(ref, context)))
-
-		return {
-			nodeKind: 'replacementRule',
-			rawNode: replacement,
-			definitionRule: parse(context.dottedName, context),
-			replacedReference,
-			replacementNode,
-			whiteListedNames,
-			blackListedNames,
-			remplacementRuleId: remplacementRuleId++,
-		} as ReplacementRule
-	})
+	)
 }
 
 export function parseRendNonApplicable(

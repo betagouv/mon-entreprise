@@ -8,7 +8,6 @@
 import { expect } from 'chai'
 import Engine from '../source/index'
 import { parseUnit } from '../source/units'
-import { coerceArray } from '../source/utils'
 import testSuites from './load-mecanism-tests'
 testSuites.forEach(([suiteName, suite]) => {
 	const engine = new Engine(suite)
@@ -17,8 +16,9 @@ testSuites.forEach(([suiteName, suite]) => {
 		Object.entries(suite)
 			.filter(([, rule]) => rule?.exemples)
 			.forEach(([name, test]) => {
-				const { exemples, 'unité attendue': unit } = test
-				coerceArray(exemples).forEach(
+				const { exemples, 'unité attendue': unit } = test(
+					Array.isArray(exemples) ? exemples : [exemples]
+				).forEach(
 					(
 						{
 							nom: testName,

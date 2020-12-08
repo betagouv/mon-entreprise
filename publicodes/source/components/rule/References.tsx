@@ -1,5 +1,5 @@
 import { toPairs } from 'ramda'
-import { capitalise0 } from '../../utils'
+import { capitalise0 } from '../../format'
 import styled from 'styled-components'
 
 const references = {

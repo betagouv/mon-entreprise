@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { parseUnit } from '../source/units'
-import { formatValue } from '../source/format'
+import { formatValue, capitalise0 } from '../source/format'
 
 describe('format engine values', () => {
 	it('format currencies', () => {
@@ -46,5 +46,11 @@ describe('Units handling', () => {
 				unit: parseUnit('jour/semaine'),
 			})
 		).to.equal('7 jours / semaine')
+	})
+})
+
+describe('capitalise0', function () {
+	it('should turn the first character into its capital', function () {
+		expect(capitalise0('salaire')).to.equal('Salaire')
 	})
 })
