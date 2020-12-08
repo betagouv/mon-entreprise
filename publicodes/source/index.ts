@@ -60,6 +60,10 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache
+
+	// A number that is incremented every time the situation changes, and is used
+	// for inline cache invalidation.
+	situationVersion = 0
 	private warnings: Array<string> = []
 
 	constructor(rules: string | Record<string, Rule> | ParsedRules<Name>) {
@@ -91,6 +95,7 @@ export default class Engine<Name extends string = string> {
 		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
 	) {
 		this.resetCache()
+		this.situationVersion++
 		this.parsedSituation = mapObjIndexed((value, key) => {
 			if (value && typeof value === 'object' && 'nodeKind' in value) {
 				return value as ASTNode
@@ -146,14 +151,21 @@ export default class Engine<Name extends string = string> {
 		return this.parsedRules
 	}
 
-	evaluateNode<N extends ASTNode = ASTNode>(node: N): N & EvaluatedNode {
+	evaluateNode<N extends ASTNode = ASTNode>(
+		node: N & { lastEvaluation?: number; res?: EvaluatedNode }
+	): N & EvaluatedNode {
 		if (!node.nodeKind) {
 			throw Error('The provided node must have a "nodeKind" attribute')
 		} else if (!evaluationFunctions[node.nodeKind]) {
 			throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
 		}
 
-		return evaluationFunctions[node.nodeKind].call(this, node)
+		if (!node.res || node.lastEvaluation !== this.situationVersion) {
+			node.res = evaluationFunctions[node.nodeKind].call(this, node)
+			node.lastEvaluation = this.situationVersion
+		}
+
+		return node.res!
 	}
 }
 

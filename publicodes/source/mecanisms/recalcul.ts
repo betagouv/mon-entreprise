@@ -35,9 +35,12 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 	const originalCache = { ...this.cache }
 	const originalSituation = { ...this.parsedSituation }
 	// Optimisation : no need for recalcul if situation is the same
-	this.cache = Object.keys(amendedSituation).length
-		? { _meta: { ...this.cache._meta, inRecalcul: true } } // Create an empty cache
-		: { ...this.cache }
+	const invalidateCache = Object.keys(amendedSituation).length > 0
+	if (invalidateCache) {
+		this.cache = { _meta: { ...this.cache._meta, inRecalcul: true } }
+		this.situationVersion++
+	}
+
 	this.parsedSituation = {
 		...this.parsedSituation,
 		...Object.fromEntries(
@@ -53,8 +56,11 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 	}
 
 	const evaluatedNode = this.evaluateNode(node.explanation.recalcul)
-	this.cache = originalCache
 	this.parsedSituation = originalSituation
+	if (invalidateCache) {
+		this.cache = originalCache
+		this.situationVersion++
+	}
 	return {
 		...node,
 		nodeValue: evaluatedNode.nodeValue,

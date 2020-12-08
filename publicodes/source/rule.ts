@@ -115,7 +115,9 @@ registerEvaluationFunction('rule', function evaluate(node) {
 	}
 	const explanation = { ...node.explanation }
 
-	const verifyParentApplicability = !this.cache._meta.contextRule.includes(node.dottedName)
+	const verifyParentApplicability = !this.cache._meta.contextRule.includes(
+		node.dottedName
+	)
 	this.cache._meta.contextRule.push(node.dottedName)
 	let parent: EvaluatedNode | null = null
 	if (explanation.parent && verifyParentApplicability) {
