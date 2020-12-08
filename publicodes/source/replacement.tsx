@@ -3,8 +3,6 @@ import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
 import { InternalError, warning } from './error'
 import { defaultNode } from './evaluation'
-import Explanation from './components/Explanation'
-import { VariationNode } from './mecanisms/variations'
 import parse from './parse'
 import { Context } from './parsePublicodes'
 import { Rule, RuleNode } from './rule'
@@ -170,8 +168,8 @@ ${applicableReplacements.map(
 
 	return {
 		nodeKind: 'variations',
+		visualisationKind: 'replacement',
 		rawNode: node.rawNode,
-		jsx: Replacement,
 		explanation: [
 			...applicableReplacements.map((replacement) => ({
 				condition: replacement.definitionRule,
@@ -182,12 +180,5 @@ ${applicableReplacements.map(
 				consequence: node,
 			},
 		],
-	} as any
-}
-
-function Replacement(node: VariationNode) {
-	const applicableReplacement = node.explanation.find((ex) => ex.satisfied)
-		?.consequence
-	const replacedNode = node.explanation.slice(-1)[0].consequence
-	return <Explanation node={applicableReplacement || replacedNode} />
+	}
 }

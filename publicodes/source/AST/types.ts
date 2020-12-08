@@ -68,6 +68,7 @@ export type ASTNode = (
 	| ReplacementRule
 ) & {
 	isDefault?: boolean
+	visualisationKind?: string
 	rawNode?: string | Record<string, unknown>
 } & (
 		| EvaluationDecoration<Types>

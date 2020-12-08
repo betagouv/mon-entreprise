@@ -1,4 +1,3 @@
-import Composantes from '../components/mecanisms/Composantes'
 import { ASTNode } from '../AST/types'
 import parse from '../parse'
 
@@ -21,6 +20,6 @@ export const decompose = (k, v, context): ASTNode => {
 	)
 	return {
 		...explanation,
-		jsx: Composantes,
-	} as any
+		visualisationKind: 'composantes',
+	}
 }

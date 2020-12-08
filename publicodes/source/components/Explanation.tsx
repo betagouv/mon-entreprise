@@ -3,6 +3,7 @@ import Allègement from './mecanisms/Allègement'
 import ApplicableSi from './mecanisms/Applicable'
 import Arrondi from './mecanisms/Arrondi'
 import Barème from './mecanisms/Barème'
+import Composantes from '../components/mecanisms/Composantes'
 import Durée from './mecanisms/Durée'
 import Grille from './mecanisms/Grille'
 import InversionNumérique from './mecanisms/InversionNumérique'
@@ -15,6 +16,7 @@ import Plafond from './mecanisms/Plafond'
 import Plancher from './mecanisms/Plancher'
 import Product from './mecanisms/Product'
 import Recalcul from './mecanisms/Recalcul'
+import Replacement from './mecanisms/Replacement'
 import ReplacementRule from './mecanisms/ReplacementRule'
 import Rule from './mecanisms/Rule'
 import Situation from './mecanisms/Situation'
@@ -33,6 +35,7 @@ const UIComponents = {
 	'applicable si': ApplicableSi,
 	arrondi: Arrondi,
 	barème: Barème,
+	composantes: Composantes,
 	durée: Durée,
 	grille: Grille,
 	inversion: InversionNumérique,
@@ -50,6 +53,7 @@ const UIComponents = {
 	somme: Somme,
 	synchronisation: Synchronisation,
 	recalcul: Recalcul,
+	replacement: Replacement,
 	replacementRule: ReplacementRule,
 	'taux progressif': TauxProgressif,
 	'toutes ces conditions': ToutesCesConditions,
@@ -61,10 +65,10 @@ const UIComponents = {
 } as const
 
 export default function Explanation({ node }) {
-	// Temporary switch, during the migration
-	const Component = node.jsx ?? UIComponents[node.nodeKind]
+	const visualisationKind = node.visualisationKind || node.nodeKind
+	const Component = UIComponents[visualisationKind]
 	if (!Component) {
-		throw new Error(`unknown mecanism ${node.nodeKind}`)
+		throw new Error(`Unknown visualisation: ${visualisationKind}`)
 	}
 	return <Component {...node} />
 }
