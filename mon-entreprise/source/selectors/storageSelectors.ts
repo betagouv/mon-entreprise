@@ -1,5 +1,5 @@
 import { RootState, Simulation } from 'Reducers/rootReducer'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 
 // Note: it is currently not possible to define SavedSimulation as the return
 // type of the currentSimulationSelector function because the type would then

@@ -119,11 +119,11 @@
 		"test:regressions": "jest",
 		"clean": "yarn workspaces run clean",
 		"start": "yarn workspace publicodes build --watch & yarn workspace mon-entreprise start",
-		"syso:up": "yarn workspace systeme-social run up"
+		"moso:up": "yarn workspace modele-social run up"
 	},
 	"workspaces": [
 		"publicodes",
-		"systeme-social",
+		"modele-social",
 		"mon-entreprise"
 	]
 }

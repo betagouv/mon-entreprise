@@ -2,11 +2,7 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import {
-	EngineContext,
-	useEngine,
-	useInversionFail,
-} from 'Components/utils/EngineContext'
+import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -14,7 +10,7 @@ import { useSelector } from 'react-redux'
 import * as Animate from 'Components/ui/animate'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { evaluateRule } from 'publicodes'
-import { DottedName } from 'Rules'
+import { DottedName } from 'modele-social'
 
 export default function SalaryExplanation() {
 	const showDistributionFirst = !useSelector(answeredQuestionsSelector).length

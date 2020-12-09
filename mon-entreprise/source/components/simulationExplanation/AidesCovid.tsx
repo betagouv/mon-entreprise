@@ -1,7 +1,7 @@
 import Value, { Condition } from 'Components/EngineValue'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 
 type AidesCovidProps = {
 	aidesRule?: DottedName

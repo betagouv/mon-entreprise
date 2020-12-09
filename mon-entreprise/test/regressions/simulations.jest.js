@@ -7,7 +7,7 @@
 
 /* eslint-disable no-undef */
 import Engine, { evaluateRule } from 'publicodes'
-import rules from 'systeme-social'
+import rules from 'modele-social'
 import artisteAuteurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/auto-entrepreneur.yaml'
 import independantConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/indépendant.yaml'
