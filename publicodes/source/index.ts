@@ -214,9 +214,6 @@ export function evaluateRule<DottedName extends string = string>(
 		false,
 		evaluation
 	)
-	if (dottedName === 'artiste-auteur . revenus . BNC . micro-bnc') {
-		console.log(dottedName, isNotApplicable)
-	}
 	return {
 		isNotApplicable,
 		...rule.rawNode,
@@ -232,6 +229,6 @@ export type EvaluatedRule<Name extends string = string> = EvaluatedNode &
 		}) &
 			(ASTNode & {
 				nodeKind: 'rule'
-			})['rawNode'] & { dottedName: Name; isApplicable: boolean | null },
+			})['rawNode'] & { dottedName: Name; isNotApplicable: boolean },
 		'nodeKind'
 	>

@@ -96,7 +96,7 @@ const useFields = (
 	const fields = fieldNames
 		.map((name) => evaluateRule(engine, name))
 		.filter(
-			(node) =>
+			(node: EvaluatedRule) =>
 				node.isNotApplicable !== true &&
 				// TODO change this when not applicable value can be differenciated from false value
 				(equals(node.missingVariables, { [node.dottedName]: 1 }) ||

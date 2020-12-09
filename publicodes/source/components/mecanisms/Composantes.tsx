@@ -7,6 +7,7 @@ import { InlineMecanismName, Mecanism } from './common'
 
 export default function Composantes({ nodeValue, explanation, unit }) {
 	const { i18n } = useTranslation()
+	console.log(explanation)
 	return (
 		<Mecanism
 			name="composantes"
