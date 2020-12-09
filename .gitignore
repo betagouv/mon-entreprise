@@ -1,5 +1,6 @@
 .tags*
 .tmp
+/tmp
 .DS_Store
 yarn-error.log
 package-lock.json

@@ -4,7 +4,7 @@ import { invertObj, last } from 'ramda'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import MonacoEditor from 'react-monaco-editor'
-import { useHistory, useLocation, Redirect } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import yaml from 'yaml'
 import { useDebounce } from 'Components/utils'
@@ -14,6 +14,7 @@ const EXAMPLE_CODE = `
 # Pour en savoir plus sur le langage, consultez le tutoriel :
 # => https://publi.codes
 
+prix:
 prix . carottes: 2€/kg
 prix . champignons: 5€/kg
 prix . avocat: 2€/avocat

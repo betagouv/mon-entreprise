@@ -1,7 +1,7 @@
 import Engine, { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 import { EngineContext, useEngine } from './utils/EngineContext'

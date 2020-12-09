@@ -3,7 +3,7 @@ import 'core-js/stable'
 import 'react-hot-loader'
 import { render } from 'react-dom'
 import 'regenerator-runtime/runtime'
-import rules from 'systeme-social'
+import rules from 'modele-social'
 import App from './App'
 import i18next from '../../i18n'
 

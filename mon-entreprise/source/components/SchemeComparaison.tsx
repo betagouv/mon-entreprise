@@ -10,22 +10,15 @@ import Value from 'Components/EngineValue'
 import dirigeantComparaison from '../sites/mon-entreprise.fr/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import Engine from 'publicodes'
 import revenusSVG from 'Images/revenus.svg'
-import {
-	default as React,
-	useCallback,
-	useContext,
-	useMemo,
-	useState,
-	useEffect,
-} from 'react'
+import { useCallback, useMemo, useState, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
-import { EngineContext, useEngine } from './utils/EngineContext'
-import { DottedName } from 'Rules'
+import { useEngine } from './utils/EngineContext'
+import { DottedName } from 'modele-social'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean

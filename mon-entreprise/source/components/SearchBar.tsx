@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'

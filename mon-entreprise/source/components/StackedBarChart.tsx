@@ -3,7 +3,7 @@ import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { EvaluatedNode, EvaluatedRule } from 'publicodes'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import styled from 'styled-components'
 
 const BarStack = styled.div`

@@ -6,7 +6,7 @@ import { EvaluatedNode, formatValue } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
 

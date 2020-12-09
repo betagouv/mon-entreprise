@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import {
 	configSituationSelector,
 	situationSelector,

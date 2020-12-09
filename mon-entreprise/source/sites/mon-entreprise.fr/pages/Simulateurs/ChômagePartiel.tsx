@@ -7,7 +7,7 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import styled from 'styled-components'
 
 declare global {

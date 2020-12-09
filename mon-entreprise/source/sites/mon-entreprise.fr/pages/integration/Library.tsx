@@ -34,7 +34,7 @@ export default function Library() {
 				</p>
 				<h3>Installation</h3>
 				<pre>
-					<code>npm install --save publicodes systeme-social</code>
+					<code>npm install --save publicodes modele-social</code>
 				</pre>
 				<p>
 					<Emoji emoji="🚧" /> Les dépendances suivantes sont aussi nécessaires
@@ -55,7 +55,7 @@ export default function Library() {
 				<h3>Lancer le calcul</h3>
 				<p>
 					Il ne vous reste plus qu'à paramétrer le moteur avec les règles du
-					paquet `systeme-social` et à appeler la fonction `evaluate` sur la
+					paquet `modele-social` et à appeler la fonction `evaluate` sur la
 					règle que dont vous souhaitez la valeur. Voici un exemple pour le
 					calcul brut / net
 				</p>

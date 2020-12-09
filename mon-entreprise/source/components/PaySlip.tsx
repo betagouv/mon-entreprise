@@ -10,7 +10,7 @@ import {
 } from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 

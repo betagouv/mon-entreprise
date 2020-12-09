@@ -7,7 +7,7 @@ const config = require('../webpack.dev.js')
 const compiler = webpack(config)
 const history = require('connect-history-api-fallback')
 
-const { watchDottedNames } = require('../../systeme-social/build')
+const { watchDottedNames } = require('../../modele-social/build')
 watchDottedNames()
 
 const rewrite = (basename) => ({

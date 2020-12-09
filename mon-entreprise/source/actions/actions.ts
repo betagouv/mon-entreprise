@@ -2,7 +2,7 @@ import { SitePaths } from 'Components/utils/SitePathsContext'
 import { History } from 'history'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'systeme-social'
+import { DottedName } from 'modele-social'
 import { deletePersistedSimulation } from '../storage/persistSimulation'
 import { CompanyStatusAction } from './companyStatusActions'
 
