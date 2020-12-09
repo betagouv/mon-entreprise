@@ -1455,7 +1455,6 @@ contrat salarié . rémunération . avantages en nature . montant:
   titre: Avantages en nature
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  unité par défa: €/mois
   formule:
     somme:
       - nourriture . montant
