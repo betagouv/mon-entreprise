@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
@@ -266,16 +266,43 @@ export function Leaf(
 	if (!rule) {
 		throw new InternalError(node)
 	}
-	const inlineRule =
+
+	const [folded, setFolded] = useState(true)
+	const foldButton = useContext(UnfoldIsEnabledContext) ? (
+		<button
+			onClick={() => setFolded(!folded)}
+			css={`
+				text-transform: none !important;
+				flex: 1 !important;
+				margin-left: 0.4rem !important;
+				text-align: left !important;
+			`}
+			className="ui__ notice small static simple button"
+		>
+			{folded ? 'déplier' : 'replier'}
+		</button>
+	) : null
+
+	if (
 		node.dottedName === node.contextDottedName + ' . ' + node.name &&
 		!node.name.includes(' . ') &&
 		rule.virtualRule
-	if (inlineRule) {
-		return <Explanation node={engine?.evaluateNode(rule)} />
+	) {
+		return <Explanation node={node.explanation ?? rule} />
 	}
 	return (
-		<span className="variable filtered leaf">
-			<span className="nodeHead">
+		<div
+			css={`
+				display: flex;
+				flex-direction: column;
+			`}
+		>
+			<span
+				css={`
+					display: flex;
+					align-items: baseline;
+				`}
+			>
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
 						{rule.rawNode.acronyme ? (
@@ -285,11 +312,25 @@ export function Leaf(
 						)}
 					</span>
 				</RuleLinkWithContext>
+				{foldButton}
 
-				{nodeValue != null && unit && (
+				{nodeValue !== null && unit && (
 					<NodeValuePointer data={nodeValue} unit={unit} />
 				)}
-			</span>
-		</span>
+			</span>{' '}
+			{!folded && (
+				<div
+					css={`
+						width: 100%;
+					`}
+				>
+					<UnfoldIsEnabledContext.Provider value={false}>
+						<Explanation node={engine?.evaluateNode(rule).explanation.valeur} />
+					</UnfoldIsEnabledContext.Provider>
+				</div>
+			)}
+		</div>
 	)
 }
+
+export const UnfoldIsEnabledContext = createContext<boolean>(false)
