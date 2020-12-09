@@ -5,7 +5,7 @@ import { Context } from '../parsePublicodes'
 
 export type PossibilityNode = {
 	explanation: Array<ASTNode>
-	'choix obligatoire'?: 'oui'
+	'choix obligatoire'?: 'oui' | 'non'
 	context: string
 	nodeKind: 'une possibilité'
 }

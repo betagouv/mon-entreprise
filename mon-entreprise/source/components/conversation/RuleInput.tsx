@@ -87,6 +87,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 	if (getVariant(engine.getParsedRules()[dottedName])) {
+		console.log(buildVariantTree(engine.getParsedRules(), dottedName))
 		return (
 			<Question
 				{...commonProps}
@@ -200,7 +201,9 @@ export const buildVariantTree = <Name extends string>(
 	const node = allRules[path]
 	if (!node) throw new Error(`La règle ${path} est introuvable`)
 	const variant = getVariant(node)
-	const canGiveUp = variant && !variant['choix obligatoire']
+	const canGiveUp =
+		variant &&
+		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
 	return Object.assign(
 		node,
 		variant
