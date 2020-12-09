@@ -271,7 +271,7 @@ export function Leaf(
 		!node.name.includes(' . ') &&
 		rule.virtualRule
 	if (inlineRule) {
-		return <Explanation node={rule} />
+		return <Explanation node={engine?.evaluateNode(rule)} />
 	}
 	return (
 		<span className="variable filtered leaf">

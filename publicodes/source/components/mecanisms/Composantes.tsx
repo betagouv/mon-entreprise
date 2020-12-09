@@ -28,31 +28,8 @@ export default function Composantes({ nodeValue, explanation, unit }) {
 			</div>
 			<ol>
 				{explanation.map((c, i) => [
-					<li key={JSON.stringify(c.composante)}>
-						<ul
-							className="composanteAttributes"
-							style={{
-								borderLeft: `4px solid ${colors('composantes')}`,
-							}}
-						>
-							{toPairs(c.composante).map(([k, v]) => (
-								<li key={k} className="composanteName">
-									<span
-										style={{
-											color: colors('composantes'),
-										}}
-									>
-										<Trans>{k}</Trans>:{' '}
-									</span>
-									<span>
-										<Trans>{v as any}</Trans>
-									</span>
-								</li>
-							))}
-						</ul>
-						<div className="content">
-							<Explanation node={c} />
-						</div>
+					<li key={i}>
+						<Explanation node={c} />
 						<div
 							style={{
 								textAlign: 'center',
