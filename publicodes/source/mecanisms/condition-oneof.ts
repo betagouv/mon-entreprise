@@ -50,10 +50,7 @@ const evaluate: EvaluationFunction<'une de ces conditions'> = function (node) {
 			explanation: [],
 		}
 	)
-	return {
-		...node,
-		...calculations,
-	}
+	return calculations
 }
 
 export const mecanismOneOf = (v, context) => {

@@ -94,7 +94,6 @@ const evaluate: EvaluationFunction<'grille'> = function (node) {
 	)
 
 	return {
-		...node,
 		nodeValue: temporalAverage(temporalValue),
 		...(temporalValue.length > 1
 			? {
@@ -110,7 +109,7 @@ const evaluate: EvaluationFunction<'grille'> = function (node) {
 				: { tranches: temporalTranches[0].value }),
 		},
 		unit: activeTranches[0].value[0]?.unit ?? undefined,
-	} as any
+	}
 }
 
 registerEvaluationFunction('grille', evaluate)

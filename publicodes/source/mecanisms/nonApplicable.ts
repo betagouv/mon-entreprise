@@ -19,7 +19,6 @@ const evaluate: EvaluationFunction<'non applicable si'> = function (node) {
 		valeur = this.evaluateNode(valeur)
 	}
 	return {
-		...node,
 		nodeValue:
 			condition.nodeValue === null
 				? null
@@ -33,7 +32,7 @@ const evaluate: EvaluationFunction<'non applicable si'> = function (node) {
 			'missingVariables' in valeur ? valeur.missingVariables : {},
 			bonus(condition.missingVariables)
 		),
-		...('unit' in valeur && { unit: valeur.unit }),
+		unit: valeur.unit,
 	}
 }
 

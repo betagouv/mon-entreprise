@@ -114,7 +114,6 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 		temporalTranches
 	)
 	return {
-		...node,
 		nodeValue: temporalAverage(temporalValue),
 		...(temporalValue.length > 1
 			? {
@@ -129,7 +128,7 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 				: { tranches: temporalTranches[0].value }),
 		},
 		unit: assiette.unit,
-	} as any
+	}
 }
 
 registerEvaluationFunction('barème', evaluate)

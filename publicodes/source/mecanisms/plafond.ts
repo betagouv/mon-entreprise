@@ -44,9 +44,8 @@ const evaluate: EvaluationFunction<'plafond'> = function (node) {
 		;(plafond as any).isActive = true
 	}
 	return {
-		...node,
 		nodeValue,
-		...('unit' in valeur && { unit: valeur.unit }),
+		unit: valeur.unit,
 		explanation: { valeur, plafond },
 		missingVariables: mergeAllMissing([valeur, plafond]),
 	}

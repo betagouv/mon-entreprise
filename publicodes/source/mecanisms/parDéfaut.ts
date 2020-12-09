@@ -26,7 +26,6 @@ const evaluate: EvaluationFunction<'par défaut'> = function (node) {
 	}
 
 	return {
-		...node,
 		nodeValue: valeur.nodeValue,
 		explanation,
 		missingVariables: mergeMissing(

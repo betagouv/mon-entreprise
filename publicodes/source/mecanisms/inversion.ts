@@ -145,7 +145,6 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 	this.cache = originalCache
 	this.parsedSituation = originalSituation
 	return {
-		...node,
 		unit,
 		nodeValue,
 		explanation: {

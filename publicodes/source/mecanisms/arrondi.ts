@@ -25,7 +25,6 @@ const evaluate: EvaluationFunction<'arrondi'> = function (node) {
 	}
 
 	return {
-		...node,
 		nodeValue:
 			typeof valeur.nodeValue !== 'number' || !('nodeValue' in arrondi)
 				? valeur.nodeValue

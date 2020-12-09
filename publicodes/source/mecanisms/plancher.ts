@@ -42,9 +42,8 @@ const evaluate: EvaluationFunction<'plancher'> = function (node) {
 		;(plancher as any).isActive = true
 	}
 	return {
-		...node,
 		nodeValue,
-		...('unit' in valeur && { unit: valeur.unit }),
+		unit: valeur.unit,
 		explanation: { valeur, plancher },
 		missingVariables: mergeAllMissing([valeur, plancher]),
 	}

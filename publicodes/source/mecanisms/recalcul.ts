@@ -62,14 +62,13 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		this.situationVersion++
 	}
 	return {
-		...node,
 		nodeValue: evaluatedNode.nodeValue,
 		explanation: {
 			recalcul: evaluatedNode,
 			amendedSituation,
 		},
 		missingVariables: evaluatedNode.missingVariables,
-		...('unit' in evaluatedNode && { unit: evaluatedNode.unit }),
+		unit: evaluatedNode.unit,
 		...(evaluatedNode.temporalValue && {
 			temporalValue: evaluatedNode.temporalValue,
 		}),

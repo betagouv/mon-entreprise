@@ -30,7 +30,6 @@ const evaluate: EvaluationFunction<'toutes ces conditions'> = function (node) {
 	)
 
 	return {
-		...node,
 		nodeValue,
 		explanation,
 		missingVariables: mergeAllMissing(explanation),
