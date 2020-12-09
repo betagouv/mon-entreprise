@@ -55,10 +55,7 @@ export default function Rule({ dottedName, engine, language }) {
 				<>
 					<h3>Parent non applicable</h3>
 					<p>
-						Cette règle est non applicable car{' '}
-						<RuleLinkWithContext
-							dottedName={(parent as ReferenceNode).dottedName as string}
-						/>{' '}
+						Cette règle est non applicable car <Explanation node={parent} />
 						est non applicable.
 					</p>
 				</>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Engine from '..'
+import { InternalError } from '../error'
 import { encodeRuleName, nameLeaf } from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
 
@@ -41,18 +42,19 @@ export function RuleLink<Name extends string>({
 	// if (!ruleWithDedicatedDocumentationPage(rule)) {
 	// 	return <Explanation node={engine.evaluate(rule.dottedName).formule} />
 	// }
-	if (rule) {
-		return (
-			<Link to={newPath} {...props}>
-				{children || rule.title}{' '}
-				{displayIcon && rule.rawNode.icônes && (
-					<span>{emoji(rule.rawNode.icônes)} </span>
-				)}
-			</Link>
-		)
-	} else {
-		return <>{nameLeaf(dottedName)}</>
+	if (!rule) {
+		throw new InternalError({
+			dottedName,
+		})
 	}
+	return (
+		<Link to={newPath} {...props}>
+			{children || rule.title}{' '}
+			{displayIcon && rule.rawNode.icônes && (
+				<span>{emoji(rule.rawNode.icônes)} </span>
+			)}
+		</Link>
+	)
 }
 
 export function RuleLinkWithContext(
