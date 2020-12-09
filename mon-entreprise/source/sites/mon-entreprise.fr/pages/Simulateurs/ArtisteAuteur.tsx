@@ -68,9 +68,10 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const rule = evaluateRule(engine, dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	if (
-		!(dottedName in situation) &&
-		rule.nodeValue === false &&
-		!(dottedName in rule.missingVariables)
+		rule.isNotApplicable === true ||
+		(!(dottedName in situation) &&
+			rule.nodeValue === false &&
+			!(dottedName in rule.missingVariables))
 	) {
 		return null
 	}
