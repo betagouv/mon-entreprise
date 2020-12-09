@@ -43,7 +43,7 @@ export default function ArtisteAuteur() {
 							<SimpleField dottedName="artiste-auteur . revenus . traitements et salaires" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . recettes" />
 							<SimpleField dottedName="artiste-auteur . revenus . BNC . micro-bnc" />
-							<Warning dottedName="artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc" />
+							<Warning dottedName="artiste-auteur . revenus . BNC . contrôle micro-bnc" />
 							<Condition expression="artiste-auteur . revenus . BNC . micro-bnc = non">
 								<SimpleField dottedName="artiste-auteur . revenus . BNC . frais réels" />
 							</Condition>
@@ -65,7 +65,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
+	const rule = evaluateRule(engine, dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	if (
 		!(dottedName in situation) &&
@@ -81,10 +81,8 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 				<div className="main">
 					<div className="header">
 						<label htmlFor={dottedName}>
-							<span className="optionTitle">
-								{rule.rawNode.question || rule.title}
-							</span>
-							<p className="ui__ notice">{rule.rawNode.résumé}</p>
+							<span className="optionTitle">{rule.question || rule.title}</span>
+							<p className="ui__ notice">{rule.résumé}</p>
 						</label>
 					</div>
 					<div className="targetInputOrValue">

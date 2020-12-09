@@ -12,6 +12,7 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
+import { reduceAST, transformAST } from './AST'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] },
@@ -36,7 +37,7 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { reduceAST, transformAST } from './AST'
+export { reduceAST, transformAST } from './AST/index'
 export * as cyclesLib from './AST/graph'
 export { Evaluation, Unit } from './AST/types'
 export * from './components'
@@ -181,7 +182,43 @@ export function evaluateRule<DottedName extends string = string>(
 	const rule = engine.getParsedRules()[dottedName] as RuleNode & {
 		dottedName: DottedName
 	}
+
+	// HACK while waiting for applicability to have its own type
+	const isNotApplicable = reduceAST<boolean>(
+		function (isNotApplicable, node, fn) {
+			if (isNotApplicable) return isNotApplicable
+			if (!('nodeValue' in node)) {
+				return isNotApplicable
+			}
+			if (node.nodeKind === 'variations') {
+				return node.explanation.some(
+					({ consequence }) =>
+						fn(consequence) ||
+						((consequence as any).nodeValue === false &&
+							(consequence as any).dottedName !== dottedName)
+				)
+			}
+			if (node.nodeKind === 'reference' && node.dottedName === dottedName) {
+				return fn(engine.evaluateNode(rule))
+			}
+			if (node.nodeKind === 'applicable si') {
+				return (node.explanation.condition as any).nodeValue === false
+			}
+			if (node.nodeKind === 'non applicable si') {
+				return (
+					(node.explanation.condition as any).nodeValue !== false &&
+					(node.explanation.condition as any).nodeValue !== null
+				)
+			}
+		},
+		false,
+		evaluation
+	)
+	if (dottedName === 'artiste-auteur . revenus . BNC . micro-bnc') {
+		console.log(dottedName, isNotApplicable)
+	}
 	return {
+		isNotApplicable,
 		...rule.rawNode,
 		...rule,
 		...evaluation,
@@ -195,6 +232,6 @@ export type EvaluatedRule<Name extends string = string> = EvaluatedNode &
 		}) &
 			(ASTNode & {
 				nodeKind: 'rule'
-			})['rawNode'] & { dottedName: Name },
+			})['rawNode'] & { dottedName: Name; isApplicable: boolean | null },
 		'nodeKind'
 	>
