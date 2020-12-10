@@ -94,13 +94,7 @@ salaire: 1500 €/mois
 prime faible salaire applicable: salaire < 20 k€/an
 ```
 
-On peut forcer la conversion des unités via le mécanisme [`unité`](/mécanismes#unité)
-
-```yaml
-salaire:
-    valeur: 3200 €/mois
-    unité: €/an
-```
+> NB : On peut forcer la conversion des unités via le [mécanisme `unité`](/mécanismes#unité)
 
 **Types de base disponibles pour la conversion :**
 
@@ -289,7 +283,9 @@ espaces de noms plus haut, et va donc valoir `100 €`.
 
 ### Désactivation de branche
 
-Les enfants d'un espace de nom ont une dépendance implicite à leur parent. Si ce dernier est égal à `non` alors leur valeur est également `non`.
+Il est possible de désactiver l'ensemble des règles définies dans un espace de nom.
+
+Toutes les règles possèdent une dépendance implicite à leur parent. Si ce dernier est égal à `non` alors leur valeur est également `non`.
 
 ```yaml
 CDD: non
@@ -397,7 +393,7 @@ super-prime:
 
 ## Évaluation
 
-Lors de l'évaluation, les variables dont les valeurs ne sont pas renseignées sont remontée afin que ces dernières puissent être complétées par l'utilisateur (dans le cas d'un simulateur par exemple).
+Lors de l'évaluation, les variables dont les valeurs ne sont pas renseignées sont remontées afin que ces dernières puissent être complétées par l'utilisateur (dans le cas d'un simulateur par exemple).
 
 Il est possible de donner une valeur par défaut. Les variables manquantes seront quand même remontée, et le moteur utilisera la valeur par défaut pour le calcul.
 
