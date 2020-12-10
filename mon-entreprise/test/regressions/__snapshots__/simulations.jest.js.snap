@@ -451,7 +451,7 @@ Notifications affichées : contrat salarié . convention collective . contrôle 
 `;
 
 exports[`calculate simulations-salarié: CCN spectacle vivant 1`] = `
-"[3834,0,2500,1938,1856]
+"[3923,0,2500,1938,1856]
 Notifications affichées : contrat salarié . CDD . information, contrat salarié . convention collective . contrôle décharge"
 `;
 
