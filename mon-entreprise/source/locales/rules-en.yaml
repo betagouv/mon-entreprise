@@ -857,9 +857,6 @@ contrat salarié . CSG et CRDS . CRDS:
   description.fr: Contribution pour le remboursement de la dette sociale
   titre.en: '[automatic] DRES'
   titre.fr: CRDS
-contrat salarié . CSG et CRDS . CRDS . taux:
-  titre.en: '[automatic] CRDS rate'
-  titre.fr: taux CRDS
 contrat salarié . CSG et CRDS . CSG:
   description.en: >-
     [automatic] The General Social Contribution (CSG) is a tax intended to
@@ -881,18 +878,6 @@ contrat salarié . CSG et CRDS . CSG:
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance également le fonds de solidarité vieillesse
   titre.en: '[automatic] CSG'
   titre.fr: CSG
-contrat salarié . CSG et CRDS . CSG . base:
-  titre.en: '[automatic] CSG'
-  titre.fr: CSG
-? contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées
-: titre.en: '[automatic] CSG tax-free overtime and overtime supplements'
-  titre.fr: CSG heures supplémentaires et complémentaires défiscalisées
-contrat salarié . CSG et CRDS . CSG . taux déductible:
-  titre.en: '[automatic] deductible rate'
-  titre.fr: taux déductible
-contrat salarié . CSG et CRDS . CSG . taux non déductible:
-  titre.en: '[automatic] non-deductible rate'
-  titre.fr: taux non déductible
 contrat salarié . CSG et CRDS . assiette abattue totale:
   titre.en: '[automatic] total slaughter plate'
   titre.fr: assiette abattue totale
@@ -2566,9 +2551,6 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     vieillesse.
   titre.en: '[automatic] proration waiver'
   titre.fr: renonciation proratisation
-? contrat salarié . plafond sécurité sociale . renonciation proratisation . plafond sécurité sociale
-: titre.en: '[automatic] social security ceiling'
-  titre.fr: plafond sécurité sociale
 contrat salarié . prime d'impatriation:
   description.en: The impatriation bonus is a part of the remuneration exempt from income tax.
   description.fr: La prime d'impatriation est une partie de la rémunération
@@ -3694,6 +3676,10 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
   question.en: What is the number of hours worked per week as part of part-time work?
   question.fr: Quel est le nombre d'heures travaillées par semaine dans le cadre
     du temps partiel ?
+  suggestions.4 jours / semaine.en: '[automatic] 4 days / week'
+  suggestions.4 jours / semaine.fr: 4 jours / semaine
+  suggestions.mi-temps.en: '[automatic] half-time'
+  suggestions.mi-temps.fr: mi-temps
   titre.en: hours per week
   titre.fr: heures par semaine
 contrat salarié . versement transport:
