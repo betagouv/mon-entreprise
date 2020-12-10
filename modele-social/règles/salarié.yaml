@@ -2739,8 +2739,7 @@ contrat salarié . CSG et CRDS . assiette de base:
 contrat salarié . CSG et CRDS . assiette abattue totale:
   formule:
     barème:
-      assiette:
-        cotisations . assiette
+      assiette: cotisations . assiette
         # - rémunération . revenus de remplacement
       multiplicateur: plafond sécurité sociale
       # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
@@ -2767,8 +2766,7 @@ contrat salarié . CSG et CRDS . non déductible:
   titre: CSG non déductible et CRDS
   formule:
     somme:
-      - CSG . base . non déductible
-      - CSG . heures supplémentaires et complémentaires défiscalisées
+      - CSG . non déductible
       - CRDS
       - revenus de remplacement . CSG non déductible
       - revenus de remplacement . CRDS
@@ -2792,10 +2790,24 @@ contrat salarié . CSG et CRDS . CSG:
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
     également le fonds de solidarité vieillesse
   formule:
-    somme:
-      - base
-      - heures supplémentaires et complémentaires défiscalisées
-
+        multiplication:
+          assiette: assiette de base
+          composantes:
+            - attributs:
+                nom: déductible
+              taux: 
+                nom: taux
+                valeur: 6.8%
+            - attributs:
+                nom: non déductible
+              composantes:
+                - taux: 
+                    nom: taux
+                    valeur: 2.4%
+                - attributs:
+                    nom: heures supplémentaires et complémentaires défiscalisées
+                  assiette: assiette heures supplémentaires et complémentaires défiscalisées
+                  taux: déductible . taux + non déductible . taux
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
     heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
@@ -2812,30 +2824,6 @@ contrat salarié . CSG et CRDS . CSG:
         complémentaire santé . forfait: 40
       valeur attendue: 137.425
 
-contrat salarié . CSG et CRDS . CSG . taux déductible:
-  formule: 6.8%
-contrat salarié . CSG et CRDS . CSG . taux non déductible:
-  formule: 2.4%
-
-contrat salarié . CSG et CRDS . CSG . base:
-  titre: CSG
-  formule:
-    multiplication:
-      assiette: assiette de base
-      composantes:
-        - attributs:
-            nom: déductible
-          taux: taux déductible
-        - attributs:
-            nom: non déductible
-          taux: taux non déductible
-
-contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:
-  titre: CSG heures supplémentaires et complémentaires défiscalisées
-  formule:
-    produit:
-      assiette: assiette heures supplémentaires et complémentaires défiscalisées
-      taux: taux déductible + taux non déductible
 
 contrat salarié . CSG et CRDS . CRDS:
   cotisation:
@@ -2848,11 +2836,9 @@ contrat salarié . CSG et CRDS . CRDS:
         somme:
           - assiette de base
           - assiette heures supplémentaires et complémentaires défiscalisées
-      taux: taux
-
-contrat salarié . CSG et CRDS . CRDS . taux:
-  titre: taux CRDS
-  formule: 0.5%
+      taux: 
+        nom: taux
+        valeur: 0.5%
 
 contrat salarié . CSG et CRDS . revenus de remplacement:
   titre: CSG et CRDS revenus de remplacement
@@ -2885,7 +2871,7 @@ contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
   produit:
     assiette: CSG et CRDS . assiette revenu remplacements
-    taux: CSG . taux non déductible
+    taux: CSG . non déductible . taux
   plafond [ref]: 
     valeur: CSG déductible . plafond - CSG déductible
 
