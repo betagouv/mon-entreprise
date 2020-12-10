@@ -217,6 +217,7 @@ const StyledMecanism = styled.div<{ name: string }>`
 	padding: 1rem;
 	position: relative;
 	flex: 1;
+	flex-direction: column;
 	border-color: ${({ name }) => mecanismColors(name)};
 
 	.key {
@@ -293,7 +294,7 @@ export function Leaf(
 	return (
 		<div
 			css={`
-				display: flex;
+				display: inline-flex;
 				flex-direction: column;
 			`}
 		>
