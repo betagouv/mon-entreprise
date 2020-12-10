@@ -305,13 +305,18 @@ chaine de charactère:
     - situation:
         chaine de charactère: "'je t'y vois'"
       valeur attendue: je t'y vois
-# TODO
-# expression sur plusieurs lignes:
-#   formule: >
-#     salaire de base
-#     + 2000
-#     = 3000
-#   exemples:
-#     - situation:
-#         salaire de base: 1000
-#     - valeur attendue: true
+
+
+a: oui
+b: 5
+a . b: b + 5
+a . c: b + 5
+désambiguation du nom de règle 1:
+  formule: a . b
+  exemples: 
+    - valeur attendue: 10
+
+désambiguation du nom de règle 2:
+  formule: a . c
+  exemples: 
+    - valeur attendue: 15

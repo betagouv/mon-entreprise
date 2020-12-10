@@ -30,11 +30,11 @@ export function disambiguateRuleReference<R extends Record<string, RuleNode>>(
 	contextName = '',
 	partialName: string
 ): keyof R {
-	const possibleDottedName = [
-		contextName,
-		...ruleParents(contextName),
-		'',
-	].map((x) => (x ? x + ' . ' + partialName : partialName))
+	const possibleDottedName = [contextName, ...ruleParents(contextName), '']
+		.map((x) => (x ? x + ' . ' + partialName : partialName))
+		// Rules can reference themselves, but it should be the last thing to check
+		.sort((a, b) => (a === contextName ? 1 : b === contextName ? -1 : 0))
+
 	const dottedName = possibleDottedName.find((name) => name in rules)
 	if (!dottedName) {
 		syntaxError(

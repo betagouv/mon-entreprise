@@ -1595,12 +1595,11 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     du plafond de la sécurité sociale (applicable pour les salariés à temps
     partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
   par défaut: non
-
-contrat salarié . plafond sécurité sociale . renonciation proratisation . plafond sécurité sociale:
   applicable si: temps de travail . quotité de travail < 100%
   remplace:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
+
 
 contrat salarié . SMIC contractuel:
   description: >
