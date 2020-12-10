@@ -192,8 +192,8 @@ export default function SocialSecurity() {
 									<Trans i18nKey="gérer.ressources.embaucher">
 										<p>Exporter son activité en Europe</p>
 										<p className="ui__ notice">
-											Le formulaire pour effectuer une demande de mobilité en
-											Europe (détachement ou pluriactivité)
+											Le formulaire pour effectuer une demande de mobilité
+											internationale (détachement ou pluriactivité)
 										</p>
 									</Trans>
 								</Link>
