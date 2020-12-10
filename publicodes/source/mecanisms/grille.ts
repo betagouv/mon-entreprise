@@ -1,44 +1,45 @@
-import { lensPath, over } from 'ramda'
-import { evaluationFunction } from '..'
-import grille from '../components/mecanisms/Grille'
-import {
-	defaultNode,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import { EvaluationFunction } from '..'
+import { defaultNode, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import {
 	liftTemporal2,
 	liftTemporalNode,
 	mapTemporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
-import { parseUnit } from '../units'
+
 import {
 	evaluatePlafondUntilActiveTranche,
-	parseTranches
+	parseTranches,
+	TrancheNodes,
 } from './trancheUtils'
+import parse from '../parse'
+import { ASTNode } from '../AST/types'
 
-export default function parse(parse, v) {
-	const defaultUnit = v['unité'] && parseUnit(v['unité'])
+export type GrilleNode = {
+	explanation: {
+		assiette: ASTNode
+		multiplicateur: ASTNode
+		tranches: TrancheNodes
+	}
+	nodeKind: 'grille'
+}
+
+export default function parseGrille(v, context): GrilleNode {
 	const explanation = {
-		assiette: parse(v.assiette),
-		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),
-		tranches: parseTranches(parse, v.tranches).map(
-			over(lensPath(['montant', 'unit']), unit => unit ?? defaultUnit)
-		)
+		assiette: parse(v.assiette, context),
+		multiplicateur: v.multiplicateur
+			? parse(v.multiplicateur, context)
+			: defaultNode(1),
+		tranches: parseTranches(v.tranches, context),
 	}
 	return {
 		explanation,
-		jsx: grille,
-		category: 'mecanism',
-		name: 'grille',
 		nodeKind: 'grille',
-		type: 'numeric',
-		unit: explanation.tranches[0].montant.unit
 	}
 }
 const evaluateGrille = (tranches, evaluate) =>
-	tranches.map(tranche => {
+	tranches.map((tranche) => {
 		if (tranche.isActive === false) {
 			return tranche
 		}
@@ -48,11 +49,11 @@ const evaluateGrille = (tranches, evaluate) =>
 			montant,
 			nodeValue: montant.nodeValue,
 			unit: montant.unit,
-			missingVariables: mergeAllMissing([montant, tranche])
+			missingVariables: mergeAllMissing([montant, tranche]),
 		}
 	})
 
-const evaluate: evaluationFunction = function(node: any) {
+const evaluate: EvaluationFunction<'grille'> = function (node) {
 	const evaluate = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -63,20 +64,20 @@ const evaluate: evaluationFunction = function(node: any) {
 				{
 					parsedTranches: node.explanation.tranches,
 					assiette,
-					multiplicateur
+					multiplicateur,
 				},
 				this.cache
 			),
-		liftTemporalNode(assiette),
-		liftTemporalNode(multiplicateur)
+		liftTemporalNode(assiette as any),
+		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = mapTemporal(
-		tranches => evaluateGrille(tranches, evaluate),
+		(tranches) => evaluateGrille(tranches, evaluate),
 		temporalTranchesPlafond
 	)
 
-	const activeTranches = mapTemporal(tranches => {
-		const activeTranche = tranches.find(tranche => tranche.isActive)
+	const activeTranches = mapTemporal((tranches) => {
+		const activeTranche = tranches.find((tranche) => tranche.isActive)
 		if (activeTranche) {
 			return [activeTranche]
 		}
@@ -84,10 +85,11 @@ const evaluate: evaluationFunction = function(node: any) {
 		if (lastTranche.isAfterActive === false) {
 			return [{ nodeValue: false }]
 		}
-		return tranches.filter(tranche => tranche.isActive === null)
+		return tranches.filter((tranche) => tranche.isActive === null)
 	}, temporalTranches)
 	const temporalValue = mapTemporal(
-		tranches => (tranches[0].isActive === null ? null : tranches[0].nodeValue),
+		(tranches) =>
+			tranches[0].isActive === null ? null : tranches[0].nodeValue,
 		activeTranches
 	)
 
@@ -96,18 +98,19 @@ const evaluate: evaluationFunction = function(node: any) {
 		nodeValue: temporalAverage(temporalValue),
 		...(temporalValue.length > 1
 			? {
-					temporalValue
+					temporalValue,
 			  }
 			: { missingVariables: mergeAllMissing(activeTranches[0].value) }),
 		explanation: {
+			...node.explanation,
 			assiette,
 			multiplicateur,
 			...(temporalTranches.length > 1
 				? { temporalTranches }
-				: { tranches: temporalTranches[0].value })
+				: { tranches: temporalTranches[0].value }),
 		},
-		unit: activeTranches[0].value[0]?.unit ?? node.unit
-	}
+		unit: activeTranches[0].value[0]?.unit ?? undefined,
+	} as any
 }
 
 registerEvaluationFunction('grille', evaluate)

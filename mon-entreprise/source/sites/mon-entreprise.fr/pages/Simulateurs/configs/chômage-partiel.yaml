@@ -4,8 +4,7 @@ objectifs:
 objectifs cachés:
   - contrat salarié . rémunération . net
   - contrat salarié . prix du travail
-  - chômage partiel . revenu net habituel
-  - chômage partiel . coût employeur habituel
+  
 
 questions:
   liste:
@@ -14,9 +13,9 @@ questions:
     - contrat salarié . profession spécifique
     - établissement . localisation
 
-unités par défaut: [€/mois]
+unité par défaut: €/mois
 situation:
   dirigeant: non
   contrat salarié . activité partielle: oui
   contrat salarié . médecine du travail: non
-  contrat salarié . complémentaire santé: 0
+  contrat salarié . complémentaire santé: non

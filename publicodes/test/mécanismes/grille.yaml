@@ -3,9 +3,9 @@ assiette:
 
 Grille:
   formule:
+    unité: €
     grille:
       assiette: assiette
-      unité: €
       tranches:
         - montant: 50
           plafond: 1000 €
@@ -36,9 +36,9 @@ plafond:
   unité: €
 Grille avec valeur manquante:
   formule:
+    unité: €
     grille:
       assiette: assiette
-      unité: €
       tranches:
         - montant: 100
           plafond: plafond

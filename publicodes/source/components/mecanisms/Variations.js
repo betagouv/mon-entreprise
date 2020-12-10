@@ -3,13 +3,14 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import writtenNumbers from '../../locales/writtenNumbers.yaml'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { InlineMecanismName, Mecanism } from './common'
 import styled from 'styled-components'
 
 export default function Variations({ nodeValue, explanation, unit }) {
 	let [expandedVariation, toggleVariation] = useState(null)
 	const { i18n } = useTranslation()
+
 	return (
 		<StyledComponent>
 			<Mecanism
@@ -40,7 +41,7 @@ export default function Variations({ nodeValue, explanation, unit }) {
 									opacity:
 										expandedVariation === i || satisfied || nodeValue == null
 											? 1
-											: 0.8
+											: 0.8,
 								}}
 							>
 								{!satisfied && nodeValue != null && (
@@ -73,10 +74,11 @@ export default function Variations({ nodeValue, explanation, unit }) {
 													display: 'flex',
 													flexWrap: 'wrap',
 													alignItems: 'baseline',
-													marginBottom: '0.4rem'
+													marginBottom: '0.4rem',
 												}}
 											>
-												<Trans>Si :</Trans>&nbsp;{makeJsx(condition)}
+												<Trans>Si :</Trans>&nbsp;
+												<Explanation node={condition} />
 											</div>
 										)}
 										<div
@@ -84,12 +86,12 @@ export default function Variations({ nodeValue, explanation, unit }) {
 												display: 'flex',
 												width: 'fit-content',
 												flexWrap: 'wrap',
-												alignItems: 'baseline'
+												alignItems: 'baseline',
 											}}
 										>
 											<span
 												className={classnames('consequenceType', {
-													satisfied
+													satisfied,
 												})}
 											>
 												{!condition.isDefault ? (
@@ -101,10 +103,10 @@ export default function Variations({ nodeValue, explanation, unit }) {
 											</span>
 											<span
 												className={classnames('consequenceContent', {
-													satisfied
+													satisfied,
 												})}
 											>
-												{consequence && makeJsx(consequence)}
+												{consequence && <Explanation node={consequence} />}
 											</span>
 										</div>
 									</div>

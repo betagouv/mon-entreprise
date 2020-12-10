@@ -5,7 +5,7 @@ import {
 	flatActivités,
 	getActivité,
 	getMinimumDéclaration,
-	getSousActivités
+	getSousActivités,
 } from './activitésData'
 
 const activitéReducer = (reducerActivité: any) =>
@@ -48,7 +48,7 @@ const activitéReducer = (reducerActivité: any) =>
 				return [...state]
 			}
 			return state
-		}
+		},
 	})
 
 type ActivityTitle = string
@@ -66,8 +66,8 @@ const reducer = reduceReducers(
 					[sousActivité]: {
 						...state[sousActivité],
 						effectuée: false,
-						vue: false
-					}
+						vue: false,
+					},
 				}),
 				state
 			)
@@ -78,7 +78,7 @@ const reducer = reduceReducers(
 		flatActivités.reduce(
 			(reducers, { titre }) => ({
 				[titre]: activitéReducer(titre),
-				...reducers
+				...reducers,
 			}),
 			{}
 		)

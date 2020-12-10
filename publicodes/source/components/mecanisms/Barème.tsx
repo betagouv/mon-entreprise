@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import { Trans } from 'react-i18next'
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import styled from 'styled-components'
 import { Mecanism, NodeValuePointer } from './common'
 import { parseUnit } from '../../units'
@@ -42,14 +42,18 @@ export const BarèmeAttributes = ({ explanation }) => {
 				<span className="key">
 					<Trans>Assiette</Trans> :{' '}
 				</span>
-				<span className="value">{makeJsx(explanation.assiette)}</span>
+				<span className="value">
+					<Explanation node={explanation.assiette} />
+				</span>
 			</li>
 			{multiplicateur && !multiplicateur.isDefault && (
 				<li key="multiplicateur">
 					<span className="key">
 						<Trans>Multiplicateur</Trans> :{' '}
 					</span>
-					<span className="value">{makeJsx(multiplicateur)}</span>
+					<span className="value">
+						<Explanation node={multiplicateur} />
+					</span>
 				</li>
 			)}
 		</>
@@ -96,21 +100,25 @@ const Tranche = ({ tranche, multiplicateur }) => {
 				) : (
 					<>
 						<Trans>Inférieur à </Trans>
-						{makeJsx(tranche.plafond)}
+						<Explanation node={tranche.plafond} />
 						{multiplicateur && !multiplicateur.isDefault && (
 							<>
 								{' × '}
-								{makeJsx(multiplicateur)}
+								<Explanation node={multiplicateur} />
 							</>
 						)}
 					</>
 				)}
 			</td>
-			{tranche.taux && <td key="taux">{makeJsx(tranche.taux)}</td>}
+			{tranche.taux && (
+				<td key="taux">
+					<Explanation node={tranche.taux} />
+				</td>
+			)}
 			{(tranche.nodeValue != null || tranche.montant) && (
 				<td key="value">
 					{tranche.montant ? (
-						makeJsx(tranche.montant)
+						<Explanation node={tranche.montant} />
 					) : (
 						<NodeValuePointer data={tranche.nodeValue} unit={tranche.unit} />
 					)}

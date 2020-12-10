@@ -1,26 +1,30 @@
 import { AssertionError } from 'chai'
-import Engine, { parseRules } from 'publicodes'
+import Engine, { parsePublicodes } from 'publicodes'
 import { disambiguateRuleReference } from '../../publicodes/source/ruleUtils'
 import rules from 'Rules'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,
 // comme dans sa formule
-let parsedRules = parseRules(rules)
+let parsedRules = parsePublicodes(rules)
 const engine = new Engine(parsedRules)
 let runExamples = (examples, rule) =>
-	examples.map(ex => {
+	examples.map((ex) => {
 		const expected = ex['valeur attendue']
 		const situation = Object.entries(ex.situation).reduce(
 			(acc, [name, value]) => ({
 				...acc,
-				[disambiguateRuleReference(parsedRules, rule.dottedName, name)]: value
+				[disambiguateRuleReference(
+					engine.parsedRules,
+					rule.dottedName,
+					name
+				)]: value,
 			}),
 			{}
 		)
 		const evaluation = engine
 			.setSituation(situation)
 			.evaluate(rule.dottedName, {
-				unit: ex['unités par défaut']?.[0] ?? rule['unité par défaut']
+				unit: rule['unité par défaut'],
 			})
 		const ok =
 			evaluation.nodeValue === expected
@@ -33,11 +37,11 @@ let runExamples = (examples, rule) =>
 	})
 
 describe('Tests des règles de notre base de règles', () =>
-	Object.values(parsedRules).map(rule => {
+	Object.values(parsedRules).map((rule) => {
 		if (!rule?.exemples) return null
 		describe(rule.dottedName, () => {
 			let examples = runExamples(rule.exemples, rule)
-			examples.map(example =>
+			examples.map((example) =>
 				it(example.nom + '', () => {
 					if (!example.ok) {
 						throw new AssertionError(`

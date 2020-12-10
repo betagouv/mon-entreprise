@@ -30,7 +30,7 @@ const feedbackAlreadyGiven = (feedback: [string, string]) => {
 
 export default function PageFeedback({
 	customMessage,
-	customEventName
+	customEventName,
 }: PageFeedbackProps) {
 	const location = useLocation()
 	const tracker = useContext(TrackerContext)
@@ -39,8 +39,8 @@ export default function PageFeedback({
 		showThanks: false,
 		feedbackAlreadyGiven: feedbackAlreadyGiven([
 			customEventName || 'rate page usefulness',
-			location.pathname
-		])
+			location.pathname,
+		]),
 	})
 
 	const handleFeedback = useCallback(({ useful }: { useful: boolean }) => {
@@ -48,19 +48,19 @@ export default function PageFeedback({
 			'trackEvent',
 			'Feedback',
 			useful ? 'positive rating' : 'negative rating',
-			location.pathname
+			location.pathname,
 		])
 		const feedback = [
 			customEventName || 'rate page usefulness',
 			location.pathname,
-			useful ? 10 : 0.1
+			useful ? 10 : 0.1,
 		] as [string, string, number]
 		tracker.push(['trackEvent', 'Feedback', ...feedback])
 		saveFeedbackOccurrenceInLocalStorage(feedback)
 		setState({
 			showThanks: useful,
 			feedbackAlreadyGiven: true,
-			showForm: !useful
+			showForm: !useful,
 		})
 	}, [])
 

@@ -7,12 +7,18 @@ import AnimatedTargetValue from 'Components/ui/AnimatedTargetValue'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import {
 	EngineContext,
-	useEvaluation,
-	useInversionFail
+	useEngine,
+	useInversionFail,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { EvaluatedNode } from 'publicodes'
-import { EvaluatedRule, formatValue } from 'publicodes'
+import {
+	ASTNode,
+	EvaluatedNode,
+	EvaluatedRule,
+	evaluateRule,
+	formatValue,
+	reduceAST,
+} from 'publicodes'
 import { isNil } from 'ramda'
 import { Fragment, useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -20,11 +26,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import { DottedName, ParsedRule } from 'Rules'
-import {
-	situationSelector,
-	targetUnitSelector
-} from 'Selectors/simulationSelectors'
+import { DottedName } from 'Rules'
+import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
 
@@ -63,12 +66,12 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 								60deg,
 								${colors.darkColor} 0%,
 								${colors.color} 100%
-								)`
+								)`,
 						}}
 					>
 						<ul className="targets">
 							{' '}
-							{targets.map(target => (
+							{targets.map((target) => (
 								<Target key={target} dottedName={target} />
 							))}
 						</ul>
@@ -84,18 +87,21 @@ type TargetProps = {
 }
 const Target = ({ dottedName }: TargetProps) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
-	const target = useEvaluation(dottedName, {
-		unit: useSelector(targetUnitSelector)
+	const engine = useEngine()
+	const target = evaluateRule(engine, dottedName, {
+		unité: useSelector(targetUnitSelector),
+		arrondi: 'oui',
 	})
 	const dispatch = useDispatch()
 	const onSuggestionClick = useCallback(
-		value => {
-			dispatch(updateSituation(target.dottedName, value))
+		(value) => {
+			dispatch(updateSituation(dottedName, value))
 		},
 		[target.dottedName, dispatch]
 	)
 
-	const isSmallTarget = !!target.question !== !!target.formule
+	const isSmallTarget =
+		!target.question || !!target.question !== !!target.formule
 	if (
 		target.nodeValue === false ||
 		(isSmallTarget && !target.question && !target.nodeValue)
@@ -103,7 +109,6 @@ const Target = ({ dottedName }: TargetProps) => {
 		return null
 	}
 	const isActiveInput = activeInput === target.dottedName
-
 	return (
 		<li
 			key={target.dottedName}
@@ -115,7 +120,7 @@ const Target = ({ dottedName }: TargetProps) => {
 						<Header
 							{...{
 								target,
-								isActiveInput
+								isActiveInput,
 							}}
 						/>
 						{isSmallTarget && (
@@ -123,7 +128,7 @@ const Target = ({ dottedName }: TargetProps) => {
 								style={{
 									flex: 1,
 									borderBottom: '1px dashed #ffffff91',
-									marginLeft: '1rem'
+									marginLeft: '1rem',
 								}}
 							/>
 						)}
@@ -132,7 +137,7 @@ const Target = ({ dottedName }: TargetProps) => {
 							{...{
 								target,
 								isActiveInput,
-								isSmallTarget
+								isSmallTarget,
 							}}
 						/>
 					</div>
@@ -142,7 +147,6 @@ const Target = ({ dottedName }: TargetProps) => {
 								<InputSuggestions
 									suggestions={target.suggestions}
 									onFirstClick={onSuggestionClick}
-									unit={target.unit}
 								/>
 							</div>
 						</Animate.fromTop>
@@ -153,7 +157,7 @@ const Target = ({ dottedName }: TargetProps) => {
 	)
 }
 
-const Header = ({ target }: { target: ParsedRule }) => {
+const Header = ({ target }: { target: EvaluatedRule<DottedName> }) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	const { pathname } = useLocation()
@@ -166,11 +170,11 @@ const Header = ({ target }: { target: ParsedRule }) => {
 			<span className="texts">
 				<span className="optionTitle">
 					<RuleLink dottedName={target.dottedName}>
-						{target.title || target.name}
+						{target.title}
 						{hackyShowPeriod && ' ' + t('mensuel')}
 					</RuleLink>
 				</span>
-				<p className="ui__ notice">{target.summary}</p>
+				<p className="ui__ notice">{target.résumé}</p>
 			</span>
 		</span>
 	)
@@ -185,31 +189,28 @@ type TargetInputOrValueProps = {
 function TargetInputOrValue({
 	target,
 	isActiveInput,
-	isSmallTarget
+	isSmallTarget,
 }: TargetInputOrValueProps) {
 	const { language } = useTranslation().i18n
 	const colors = useContext(ThemeColorsContext)
 	const dispatch = useDispatch()
-	const situationValue = useSelector(situationSelector)[target.dottedName]
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const value =
-		typeof situationValue === 'string'
-			? Math.round(
-					engine.evaluate(situationValue, { unit: targetUnit })
-						.nodeValue as number
-			  )
-			: situationValue != null
-			? situationValue
-			: target?.nodeValue != null
-			? Math.round(+target.nodeValue)
-			: undefined
+		(engine.evaluate({
+			valeur: target.dottedName,
+			unité: targetUnit,
+			arrondi: 'oui',
+		}).nodeValue as number) ?? undefined
 	const blurValue = useInversionFail() && !isActiveInput
 
 	const onChange = useCallback(
-		evt =>
+		(evt) =>
 			dispatch(
-				updateSituation(target.dottedName, +evt.target.value + ' ' + targetUnit)
+				updateSituation(target.dottedName, {
+					valeur: evt.target.value,
+					unité: targetUnit,
+				})
 			),
 		[targetUnit, target, dispatch]
 	)
@@ -224,7 +225,7 @@ function TargetInputOrValue({
 					<CurrencyInput
 						style={{
 							color: colors.textColor,
-							borderColor: colors.textColor
+							borderColor: colors.textColor,
 						}}
 						debounce={750}
 						name={target.dottedName}
@@ -267,11 +268,17 @@ function TargetInputOrValue({
 }
 function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const titresRestaurant = useEvaluation(
-		'contrat salarié . frais professionnels . titres-restaurant . montant',
-		{ unit: targetUnit }
-	)
 	const { language } = useTranslation().i18n
+
+	const titresRestaurant = evaluateRule(
+		useEngine(),
+		'contrat salarié . frais professionnels . titres-restaurant . montant',
+		{
+			unité: targetUnit,
+			arrondi: 'oui',
+		}
+	)
+
 	if (!titresRestaurant?.nodeValue) return null
 	return (
 		<Animate.fromTop>
@@ -279,10 +286,7 @@ function TitreRestaurant() {
 				<RuleLink dottedName={titresRestaurant.dottedName}>
 					+{' '}
 					<strong>
-						{formatValue(titresRestaurant, {
-							displayedUnit: '€',
-							language
-						})}
+						{formatValue(titresRestaurant, { displayedUnit: '€', language })}
 					</strong>{' '}
 					<Trans>en titres-restaurant</Trans> {emoji(' 🍽')}
 				</RuleLink>
@@ -292,35 +296,46 @@ function TitreRestaurant() {
 }
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const aides = useEvaluation('contrat salarié . aides employeur', {
-		unit: targetUnit
-	})
 	const { language } = useTranslation().i18n
+	const dottedName = 'contrat salarié . aides employeur'
+	const engine = useEngine()
+	const aides = evaluateRule(engine, dottedName, {
+		unité: targetUnit,
+		arrondi: 'oui',
+	})
+
+	if (!aides?.nodeValue) return null
 
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous
 	// faisons un lien direct vers cette aide, plutôt qu'un lien vers la liste qui
 	// est une somme des aides qui sont toutes nulle sauf l'aide active.
-	const aidesDetail = aides?.formule.explanation.explanation
-	const aidesNotNul = aidesDetail?.filter(
-		(node: EvaluatedNode) => node.nodeValue !== false
+	const aideLink = reduceAST(
+		(acc, node) => {
+			if (node.nodeKind === 'somme') {
+				const aidesNotNul = (node.explanation as EvaluatedNode[]).filter(
+					({ nodeValue }) => nodeValue !== false
+				)
+				console.log('aidesNotNul', aidesNotNul, node.explanation)
+				if (aidesNotNul.length === 1) {
+					return (aidesNotNul[0] as ASTNode & { nodeKind: 'reference' })
+						.dottedName as DottedName
+				} else {
+					return acc
+				}
+			}
+		},
+		aides.dottedName,
+		engine.evaluateNode(engine.getParsedRules()[dottedName])
 	)
-	const aideLink = aidesNotNul?.length === 1 ? aidesNotNul[0] : aides
-
-	if (!aides?.nodeValue) return null
 	return (
 		<Animate.fromTop>
 			<div className="aidesGlimpse">
-				<RuleLink dottedName={aideLink.dottedName}>
+				<RuleLink dottedName={aideLink}>
 					<Trans>en incluant</Trans>{' '}
 					<strong>
-						<span>
-							{formatValue(aides, {
-								displayedUnit: '€',
-								language
-							})}
-						</span>
+						<span>{formatValue(aides, { displayedUnit: '€', language })}</span>
 					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides?.icons ?? '')}
+					<Trans>d'aides</Trans> {emoji(aides.icônes ?? '')}
 				</RuleLink>
 			</div>
 		</Animate.fromTop>

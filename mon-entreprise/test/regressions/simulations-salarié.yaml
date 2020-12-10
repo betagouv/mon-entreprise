@@ -18,13 +18,13 @@
 
 effectif:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    entreprise . effectif: 10
+    entreprise . effectif: 10 employés
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    entreprise . effectif: 20
+    entreprise . effectif: 20 employés
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    entreprise . effectif: 50
+    entreprise . effectif: 50 employés
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    entreprise . effectif: 100
+    entreprise . effectif: 100 employés
 
 inversions:
   - contrat salarié . prix du travail: 2000 €/mois
@@ -65,21 +65,21 @@ cdd:
     contrat salarié . rémunération . brut de base: 2000 €/mois
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . CDD . durée contrat: 6
-    contrat salarié . CDD . congés non pris: 3
+    contrat salarié . CDD . durée contrat: 6 mois
+    contrat salarié . CDD . congés non pris: 3 jours ouvrés
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2400 €/mois
-    contrat salarié . CDD . durée contrat: 10
-    contrat salarié . temps de travail . heures supplémentaires: 5
+    contrat salarié . CDD . durée contrat: 10 mois
+    contrat salarié . temps de travail . heures supplémentaires: 5 heures/mois
     contrat salarié . frais professionnels . indemnité kilométrique vélo: oui
-    contrat salarié . rémunération . avantages en nature . montant: 200
+    contrat salarié . rémunération . avantages en nature . montant: 200 €/mois
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2400 €/mois
     contrat salarié . convention collective: "'BTP'"
 
 atmp:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . ATMP . taux collectif ATMP: 5
+    contrat salarié . ATMP . taux collectif ATMP: 5%
 
 assimilé salarié:
   - dirigeant: "'assimilé salarié'"
@@ -102,7 +102,7 @@ aides:
     contrat salarié . ancienneté . date d'embauche: 01/09/2020
   - contrat salarié: "'CDD'"
     contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . CDD . durée contrat: 6
+    contrat salarié . CDD . durée contrat: 6 mois
     contrat salarié . aides employeur . emploi franc . éligible: oui
     contrat salarié . ancienneté . date d'embauche: 01/09/2020
   # emploi franc+
@@ -131,20 +131,20 @@ temps partiel:
     contrat salarié . temps de travail . temps partiel: oui
   - contrat salarié . rémunération . brut de base . équivalent temps plein: 2500€/mois
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 26
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 26 heures/semaine
   - contrat salarié . rémunération . brut de base: 1000 €/mois
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 20
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 20 heures/semaine
 
 treizième mois:
   - contrat salarié . rémunération . brut de base: 2300 €/mois
     contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
   - contrat salarié . rémunération . brut de base: 2300 €/mois
-    contrat salarié . rémunération . primes . activité . base: 200
+    contrat salarié . rémunération . primes . activité . base: 200 €/mois
     contrat salarié . rémunération . primes . fin d'année . treizième mois: oui
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 26
-    contrat salarié . temps de travail . heures complémentaires: 5
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 26 heures/semaine
+    contrat salarié . temps de travail . heures complémentaires: 5 heures/mois
   - contrat salarié . rémunération . brut de base: 2300 €/mois
     contrat salarié . rémunération . primes . fin d'année . prime de fin d'année en mois: 2
 
@@ -171,7 +171,7 @@ impôt sur le revenu:
     établissement . localisation . département: "'Mayotte'"
   - contrat salarié . rémunération . brut de base: 3000 €/mois
     impôt . méthode de calcul: "'taux personnalisé'"
-    impôt . taux personnalisé: 10
+    impôt . taux personnalisé: 10%
 
 impôt sur le revenu - quotient familial:
   - impôt . méthode de calcul: "'barème standard'"
@@ -211,44 +211,44 @@ impôt sur le revenu - quotient familial:
 
 heures supplémentaires et complémentaires:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 5
+    contrat salarié . temps de travail . heures supplémentaires: 5 heures/mois
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . temps de travail . heures supplémentaires: 3 heures/mois
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 5
-    entreprise . effectif: 100
+    contrat salarié . temps de travail . heures supplémentaires: 5 heures/mois
+    entreprise . effectif: 100 employés
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 5
+    contrat salarié . temps de travail . heures supplémentaires: 5 heures/mois
     contrat salarié . convention collective: "'HCR'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . temps de travail . heures supplémentaires: 3 heures/mois
     contrat salarié . convention collective: "'HCR'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . temps de travail . heures supplémentaires: 3 heures/mois
     contrat salarié . convention collective: "'compta'"
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 24
-    contrat salarié . temps de travail . heures complémentaires: 20
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 24 heures/semaine
+    contrat salarié . temps de travail . heures complémentaires: 20 heures/mois
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 26
-    contrat salarié . temps de travail . heures complémentaires: 20
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 26 heures/semaine
+    contrat salarié . temps de travail . heures complémentaires: 20 heures/mois
 
 avantages:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . rémunération . avantages en nature: oui
-    contrat salarié . rémunération . avantages en nature . montant: 100
+    contrat salarié . rémunération . avantages en nature . montant: 100€/mois
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . rémunération . avantages en nature: oui
     contrat salarié . rémunération . avantages en nature . autres: oui
-    contrat salarié . rémunération . avantages en nature . autres . montant: 100
-    contrat salarié . rémunération . avantages en nature . ntic . coût appareils: 400
-    contrat salarié . rémunération . avantages en nature . ntic . abonnements: 20
+    contrat salarié . rémunération . avantages en nature . autres . montant: 100€/mois
+    contrat salarié . rémunération . avantages en nature . ntic . coût appareils: 400€
+    contrat salarié . rémunération . avantages en nature . ntic . abonnements: 20€/mois
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . rémunération . avantages en nature: oui
     contrat salarié . rémunération . avantages en nature . nourriture: oui
-    contrat salarié . rémunération . avantages en nature . nourriture . repas par mois: 10
+    contrat salarié . rémunération . avantages en nature . nourriture . repas par mois: 10 repas/mois
 
 JEI:
   - contrat salarié . rémunération . brut de base: 3000 €/mois
@@ -262,22 +262,22 @@ JEI:
 frais pro - titres restaurant:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . frais professionnels . titres-restaurant: oui
-    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 10
+    contrat salarié . frais professionnels . titres-restaurant . nombre: 10 titres-restaurant
   - contrat salarié . rémunération . brut de base: 3000 €/mois
     contrat salarié . frais professionnels . titres-restaurant: oui
-    contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois: 20
-    contrat salarié . frais professionnels . titres-restaurant . montant unitaire: 20
+    contrat salarié . frais professionnels . titres-restaurant . nombre: 20 titres-restaurant
+    contrat salarié . frais professionnels . titres-restaurant . montant unitaire: 20€/titre-restaurant
   - contrat salarié . rémunération . brut de base: 2000 €/mois
     contrat salarié . frais professionnels . titres-restaurant: oui
-    contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 55
+    contrat salarié . frais professionnels . titres-restaurant . taux participation employeur: 55%
 
 frais pro - IKV:
   - contrat salarié . rémunération . brut de base: 3200 €/mois
     contrat salarié . frais professionnels . indemnité kilométrique vélo: oui
   - contrat salarié . rémunération . brut de base: 3200 €/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 200
+    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 200 km/mois
   - contrat salarié . rémunération . net après impôt: 1630 €/mois
-    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 30
+    contrat salarié . frais professionnels . indemnité kilométrique vélo . distance mensuelle: 30 km/mois
 
 frais pro - DFS:
   - contrat salarié . rémunération . brut de base: 2000 €/mois
@@ -306,14 +306,14 @@ activité partielle:
     contrat salarié . activité partielle: oui
   - contrat salarié . rémunération . brut de base: 4000 €/mois
     contrat salarié . activité partielle: oui
-    contrat salarié . activité partielle . heures travaillées: 30.33331
+    contrat salarié . activité partielle . heures travaillées: 30.33331 heures/mois
   - contrat salarié . rémunération . brut de base: 4000 €/mois
     contrat salarié . activité partielle: oui
-    contrat salarié . activité partielle . heures travaillées: 75.833275
+    contrat salarié . activité partielle . heures travaillées: 75.833275 heures/mois
   - contrat salarié . rémunération . brut de base: 3000 €/mois
     contrat salarié . activité partielle: oui
     contrat salarié . temps de travail . temps partiel: oui
-    contrat salarié . temps de travail . temps partiel . heures par semaine: 28
+    contrat salarié . temps de travail . temps partiel . heures par semaine: 28 heures/semaine
   - contrat salarié . rémunération . brut de base: 4000 €/mois
     contrat salarié . activité partielle: oui
     contrat salarié . profession spécifique: "'journaliste'"
@@ -321,7 +321,7 @@ activité partielle:
     contrat salarié . activité partielle: oui
     contrat salarié . activité partielle . convention syntec: oui
   - contrat salarié . rémunération . brut de base: 2000 €/mois
-    contrat salarié . activité partielle . heures travaillées: 75.833275
+    contrat salarié . activité partielle . heures travaillées: 75.833275 heures/mois
     contrat salarié . activité partielle: oui
     contrat salarié . activité partielle . convention syntec: oui
   - contrat salarié . rémunération . brut de base: 6000 €/mois
@@ -379,41 +379,41 @@ lodeom innovation et croissance:
 
 taux spécifiques retraite complémentaire:
   - contrat salarié . rémunération . brut de base: 1521.22 €/mois
-    contrat salarié . retraite complémentaire . taux employeur tranche 1: 5.59
-    contrat salarié . retraite complémentaire . taux salarié tranche 1: 2.28
+    contrat salarié . retraite complémentaire . employeur . taux tranche 1: 5.59%
+    contrat salarié . retraite complémentaire . salarié . taux tranche 1: 2.28%
   - contrat salarié . rémunération . brut de base: 2500 €/mois
-    contrat salarié . retraite complémentaire . taux employeur tranche 1: 5.59
-    contrat salarié . retraite complémentaire . taux salarié tranche 1: 2.28
+    contrat salarié . retraite complémentaire . employeur . taux tranche 1: 5.59%
+    contrat salarié . retraite complémentaire . salarié . taux tranche 1: 2.28%
   - contrat salarié . rémunération . brut de base: 1521.22 €/mois
-    contrat salarié . retraite complémentaire . taux employeur tranche 1: 3.94
-    contrat salarié . retraite complémentaire . taux salarié tranche 1: 3.93
+    contrat salarié . retraite complémentaire . employeur . taux tranche 1: 3.94%
+    contrat salarié . retraite complémentaire . salarié . taux tranche 1: 3.93%
   - contrat salarié . rémunération . brut de base: 2500 €/mois
-    contrat salarié . retraite complémentaire . taux employeur tranche 1: 3.94
-    contrat salarié . retraite complémentaire . taux salarié tranche 1: 3.93
+    contrat salarié . retraite complémentaire . employeur . taux tranche 1: 3.94%
+    contrat salarié . retraite complémentaire . salarié . taux tranche 1: 3.93%
 
 CCN batiment:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'ouvrier'"
+    contrat salarié . convention collective . BTP . catégorie: "'ouvrier'"
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'etam'"
+    contrat salarié . convention collective . BTP . catégorie: "'etam'"
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'BTP'"
-    contrat salarié . convention collective . BTP . catégorie du salarié: "'cadre'"
+    contrat salarié . convention collective . BTP . catégorie: "'cadre'"
 
 CCN compta:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'compta'"
-    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . temps de travail . heures supplémentaires: 3 heures/mois
 
 CCN HCR:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
     contrat salarié . convention collective: "'HCR'"
-    contrat salarié . temps de travail . heures supplémentaires: 30
+    contrat salarié . temps de travail . heures supplémentaires: 3 heures/mois
     contrat salarié . rémunération . avantages en nature: oui
     contrat salarié . rémunération . avantages en nature . nourriture: oui
-    contrat salarié . rémunération . avantages en nature . nourriture . repas par mois: 10
+    contrat salarié . rémunération . avantages en nature . nourriture . repas par mois: 10 repas/mois
 
 CCN optique:
   - contrat salarié . rémunération . brut de base: 2500 €/mois
@@ -428,4 +428,4 @@ CCN spectacle vivant:
 
 CCN sport:
   - contrat salarié . rémunération . brut de base: 500 €/mois
-    contrat salarié . convention collective . sport . primes . nombre de manifestations: 2
+    contrat salarié . convention collective . sport . primes . nombre de manifestations: 2 manifestations

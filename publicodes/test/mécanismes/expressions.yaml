@@ -31,7 +31,7 @@ parenthèses:
 salaire de base:
   unité: $
 
-contrat:
+contrat: oui
 contrat . salaire de base:
 
 produit:
@@ -179,11 +179,12 @@ pourcentage:
 
 multiplication et pourcentage:
   formule: 38.1% * salaire de base
-  unité attendue: $
+  unité: $
   exemples:
     - situation:
         salaire de base: 1000
       valeur attendue: 381
+      unité attendue: $
 
 litéral avec unité:
   formule: 1 jour
@@ -205,8 +206,9 @@ inférence d'unité littéraux:
 catégorie d'activité:
   formule:
     une possibilité:
-      - commerciale
-      - artisanale
+      possibilités:
+        - commerciale
+        - artisanale
 
 catégorie d'activité . artisanale:
 catégorie d'activité . commerciale:
@@ -225,7 +227,8 @@ revenu:
   unité: €/mois
 
 unité de variable modifiée:
-  formule: revenu [k€/an]
+  formule: revenu
+  unité: k€/an
   exemples:
     - situation:
         revenu: 1000
@@ -233,6 +236,7 @@ unité de variable modifiée:
 
 opérations multiples:
   formule: 4 * plafond sécurité sociale * 10%
+  unité: $
   exemples:
     - situation:
         plafond sécurité sociale: 1000
@@ -265,6 +269,7 @@ négation d'expressions:
 
 variables négatives dans expression:
   formule: 10% * (- salaire de base)
+  unité: $
   exemples:
     - situation:
         salaire de base: 3000
@@ -272,6 +277,7 @@ variables négatives dans expression:
 
 expression dans situation:
   formule: 10% * salaire de base
+  unité: $
   exemples:
     - situation:
         salaire de base: 12 * 100
@@ -282,6 +288,7 @@ salaire:
   unité: €/mois
 expression dans situation 2:
   formule: 10% * salaire
+  unité: €/mois
   exemples:
     - situation:
         salaire: 48k€/an

@@ -5,7 +5,7 @@ const worker = new Worker()
 
 function SelectComponent({ onChange, onSubmit, options }) {
 	const [searchResults, setSearchResults] = useState()
-	let submitOnChange = option => {
+	let submitOnChange = (option) => {
 		option.text = +option['Taux net'].replace(',', '.')
 		onChange(option.text)
 		onSubmit()
@@ -13,7 +13,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 	const { t } = useTranslation()
 	useEffect(() => {
 		worker.postMessage({
-			options
+			options,
 		})
 
 		worker.onmessage = ({ data: results }) => setSearchResults(results)
@@ -38,7 +38,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 					}
 				`}
 				placeholder={t("Saisissez votre domaine d'activité")}
-				onChange={e => {
+				onChange={(e) => {
 					let input = e.target.value
 					if (input.length < 2) {
 						setSearchResults(undefined)
@@ -54,7 +54,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 			)}
 
 			{searchResults &&
-				searchResults.map(option => (
+				searchResults.map((option) => (
 					<div
 						key={JSON.stringify(option)}
 						css={`
@@ -122,7 +122,7 @@ export default function Select(props) {
 		fetch(
 			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2020.json'
 		)
-			.then(response => {
+			.then((response) => {
 				if (!response.ok) {
 					let error = new Error(response.statusText)
 					error.response = response
@@ -130,10 +130,10 @@ export default function Select(props) {
 				}
 				return response.json()
 			})
-			.then(json => setOptions(json))
+			.then((json) => setOptions(json))
 			.catch(
-				error =>
-					console.log('Erreur dans la récupération des codes risques', error) // eslint-disable-line no-console
+				(error) =>
+					console.warn('Erreur dans la récupération des codes risques', error) // eslint-disable-line no-console
 			)
 	}, [])
 

@@ -1,7 +1,6 @@
-restaurant . prix du repas:
-  formule: 10 €/repas
-restaurant . client gourmand:
-  formule: oui
+restaurant: oui
+restaurant . prix du repas: 10 €/repas
+restaurant . client gourmand: oui
 restaurant . client enfant:
   rend non applicable:
     - client gourmand
@@ -13,6 +12,7 @@ restaurant . prix du repas gourmand:
   formule: 15 €/repas
 
 restaurant . menu enfant:
+  formule: oui
   applicable si: client enfant
   remplace:
     règle: prix du repas
@@ -34,11 +34,12 @@ modifie une règle:
 
 cotisations . assiette:
   formule: 1000 €
+
 cotisations:
   formule:
     somme:
-      - retraite .salarié
-      - retraite .employeur
+      - retraite . salarié
+      - retraite . employeur
       - chômage
       - maladie
 
@@ -47,10 +48,10 @@ cotisations . retraite:
     produit:
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           taux: 8%
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: 2%
       assiette: assiette
 
@@ -66,64 +67,76 @@ cotisations . maladie:
       taux: 10%
       assiette: assiette
 
-remplacement sans boucle infinie si il n'y a pas de dépendances cycliques:
-  applicable si: exemple1
-  formule: cotisations
+exemple1:
+  par défaut: non
   remplace:
     règle: cotisations . assiette
     par: 100
-  exemples:
-    - situation:
-        exemple1: oui
-      valeur attendue: 30
 
-remplacement contextuel par inclusion:
-  formule: cotisations
+exemple2:
   remplace:
     règle: cotisations . assiette
     par: 500
     dans: cotisations . retraite
-  exemples:
-    - situation:
-        exemple2: oui
-      valeur attendue: 250
-    - nom: avec remplacement existant
-      situation:
-        exemple1: oui
-        exemple2: oui
-      valeur attendue: 70
-  applicable si: exemple2
+  par défaut: non
 
-remplacement contextuel par exclusion:
-  formule: cotisations
+exemple3:
+  par défaut: non
   remplace:
     règle: cotisations . assiette
     par: 100
     sauf dans:
       - cotisations . chômage
       - cotisations . maladie
+
+exemple4:
+  par défaut: non
+exemple4 . cotisations retraite:
+  remplace: cotisations . retraite
+  formule:
+    produit:
+      assiette: cotisations . assiette
+      composantes:
+        - attributs:
+            remplace: cotisations . retraite . employeur
+            nom: employeur
+          taux: 12%
+        - attributs:
+            remplace: cotisations . retraite . salarié
+            nom: salarié
+          taux: 8%
+
+exemple5:
+  par défaut: non
+  remplace:
+    - règle: cotisations . chômage
+      par: 10€
+    - règle: cotisations . maladie
+      par: 0
+    
+remplacements :
+  formule: cotisations
   exemples:
-    - situation:
+    - nom: sans boucle infinie si il n'y a pas de dépendances cycliques
+      situation:
+        exemple1: oui
+      valeur attendue: 30
+    - nom: contextuel par inclusion
+      situation:
+        exemple2: oui
+      valeur attendue: 250
+    - nom: avec plusieurs remplacements existant pour une même variables 
+      # ici, le remplacement de l'exemple 2 doit être effectué car plus précis que celui de l'exemple 1 
+      situation:
+        exemple1: oui
+        exemple2: oui
+      valeur attendue: 70
+    - nom: contextuel par exclusion
+      situation:
         exemple3: oui
       valeur attendue: 210
-  applicable si: exemple3
-
-remplacement d'une variable avec composante:
-  formule: cotisations
-  remplace:
-    règle: cotisations . retraite
-    par:
-      produit:
-        assiette: cotisations . assiette
-        composantes:
-          - attributs:
-              dû par: employeur
-            taux: 12%
-          - attributs:
-              dû par: salarié
-            taux: 8%
-  exemples:
-    - situation:
+    - nom: variable avec composante
+      situation:
         exemple4: oui
       valeur attendue: 400
     - nom: avec remplacement dans un remplacement
@@ -131,26 +144,12 @@ remplacement d'une variable avec composante:
         exemple4: oui
         exemple1: oui
       valeur attendue: 40
-  applicable si: exemple4
-
-remplacement de plusieurs variables d'un coup:
-  formule: cotisations
-  remplace:
-    - règle: cotisations . chômage
-      par: 10€
-    - règle: cotisations . maladie
-      par: 0
-  exemples:
-    - situation:
+    - nom: plusieurs variables d'un coup
+      situation:
         exemple5: oui
       valeur attendue: 110
-  applicable si: exemple5
 
-exemple1:
-exemple2:
-exemple3:
-exemple4:
-exemple5:
+
 
 A:
   formule: 1
@@ -161,11 +160,11 @@ B:
 C:
   remplace: B
   formule: 3
-
-remplacement associatif:
-  formule: A
-  exemples:
-    - valeur attendue: 3
+# TODO
+# remplacement associatif:
+#   formule: A
+#   exemples:
+#     - valeur attendue: 3
 
 x:
   formule: non
@@ -183,6 +182,7 @@ remplacement non applicable car branche desactivée:
     - valeur attendue: 1
 
 # Remplacement non effectué dans la formule du remplacement
+espace: oui
 espace . valeur:
   formule: 20
 espace . remplacement:

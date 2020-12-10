@@ -1,15 +1,18 @@
-import { RuleInputProps } from 'Components/conversation/RuleInput'
-import { Rule } from 'publicodes'
+import {
+	InputCommonProps,
+	RuleInputProps,
+} from 'Components/conversation/RuleInput'
+import { EvaluatedRule } from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import InputSuggestions from './InputSuggestions'
 
 type DateInputProps = {
-	onChange: RuleInputProps['onChange']
-	id: RuleInputProps['id']
+	onChange: InputCommonProps['onChange']
+	id: InputCommonProps['id']
 	onSubmit: RuleInputProps['onSubmit']
-	value: RuleInputProps['value']
-	suggestions: Rule['suggestions']
+	value: InputCommonProps['value']
+	suggestions: EvaluatedRule['suggestions']
 }
 
 export default function DateInput({
@@ -17,7 +20,7 @@ export default function DateInput({
 	onChange,
 	id,
 	onSubmit,
-	value
+	value,
 }: DateInputProps) {
 	const dateValue = useMemo(() => {
 		if (!value || typeof value !== 'string') return undefined
@@ -26,9 +29,9 @@ export default function DateInput({
 	}, [value])
 
 	const handleDateChange = useCallback(
-		evt => {
+		(evt) => {
 			if (!evt.target.value) {
-				return onChange(null)
+				return
 			}
 			const [year, month, day] = evt.target.value.split('-')
 			if (+year < 1700) {
@@ -37,7 +40,7 @@ export default function DateInput({
 			if (year.length > 4) {
 				return
 			}
-			if ([day, month, year].some(x => Number.isNaN(+x))) {
+			if ([day, month, year].some((x) => Number.isNaN(+x))) {
 				return
 			}
 			onChange(`${day}/${month}/${year}`)
@@ -50,7 +53,7 @@ export default function DateInput({
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={value => {
+						onFirstClick={(value) => {
 							onChange(value)
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
 	LegalStatus,
-	possibleStatusSelector
+	possibleStatusSelector,
 } from 'Selectors/companyStatusSelectors'
 import StatutDescription from '../StatutDescription'
 

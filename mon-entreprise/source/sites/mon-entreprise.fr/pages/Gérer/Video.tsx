@@ -9,7 +9,7 @@ export default function Video() {
 				position: 'relative',
 				width: '100%',
 				height: '0',
-				paddingBottom: '56.25%'
+				paddingBottom: '56.25%',
 			}}
 		>
 			<iframe
@@ -17,7 +17,7 @@ export default function Video() {
 					position: 'absolute',
 					left: 0,
 					width: '100%',
-					height: '100%'
+					height: '100%',
 				}}
 				src={`https://www.youtube-nocookie.com/embed/${
 					i18n.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'

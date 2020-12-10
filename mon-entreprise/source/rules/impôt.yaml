@@ -1,15 +1,14 @@
 impôt:
   icônes: 🏛️
-  unité: €/an
   description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre: impôts sur le revenu
-  formule:
-    somme:
-      - produit:
-          assiette: revenu imposable [€/an]
-          taux: taux d'imposition
-      - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant [€/an]
-    arrondi: oui
+  somme:
+    - produit:
+        assiette: revenu imposable
+        taux: taux d'imposition
+    - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
+  arrondi: oui
+  unité: €/an
 
 impôt . taux d'imposition:
   formule:
@@ -360,6 +359,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
     Quotient familial d'une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
 
 impôt . foyer fiscal . taux effectif:
+  unité: '%'
   formule: impôt à payer / revenu imposable
 
 impôt . foyer fiscal . revenu imposable:
@@ -378,7 +378,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           - contrat salarié . rémunération . net imposable
           - dirigeant . indépendant . résultat fiscal
       abattement: 
-        valeur: 0.1 * assiette
+        valeur: 10% * assiette
         plafond: 12502 €/an
         plancher: 437 €/an
   références:

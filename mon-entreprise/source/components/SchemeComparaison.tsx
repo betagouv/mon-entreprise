@@ -1,7 +1,7 @@
 import { setSimulationConfig } from 'Actions/actions'
 import {
 	defineDirectorStatus,
-	isAutoentrepreneur
+	isAutoentrepreneur,
 } from 'Actions/companyStatusActions'
 import classnames from 'classnames'
 import Conversation from 'Components/conversation/Conversation'
@@ -16,7 +16,7 @@ import {
 	useContext,
 	useMemo,
 	useState,
-	useEffect
+	useEffect,
 } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -24,7 +24,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
-import { EngineContext, useEvaluation } from './utils/EngineContext'
+import { EngineContext, useEngine } from './utils/EngineContext'
+import { DottedName } from 'Rules'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -33,49 +34,51 @@ type SchemeComparaisonProps = {
 
 export default function SchemeComparaison({
 	hideAutoEntrepreneur = false,
-	hideAssimiléSalarié = false
+	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(setSimulationConfig(dirigeantComparaison))
 	}, [])
-	const plafondAutoEntrepreneurDépassé = useEvaluation(
-		'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
-	).isApplicable
+	const engine = useEngine()
+	const plafondAutoEntrepreneurDépassé =
+		engine.evaluate(
+			'dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé'
+		).nodeValue === true
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
 		!!Object.keys(useSelector(situationSelector)).length
 	)
 	const startConversation = useCallback(() => setConversationStarted(true), [
-		setConversationStarted
+		setConversationStarted,
 	])
 
-	const parsedRules = useContext(EngineContext).getParsedRules()
+	const parsedRules = engine.getParsedRules()
 	const situation = useSelector(situationSelector)
 	const displayResult =
 		useSelector(situationSelector)['entreprise . charges'] != undefined
 	const assimiléEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'assimilé salarié'"
+				dirigeant: "'assimilé salarié'",
 			}),
 		[situation]
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'auto-entrepreneur'"
+				dirigeant: "'auto-entrepreneur'",
 			}),
 		[situation]
 	)
 	const indépendantEngine = useMemo(
 		() =>
-			new Engine(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules).setSituation({
 				...situation,
-				dirigeant: "'indépendant'"
+				dirigeant: "'indépendant'",
 			}),
 		[situation]
 	)
@@ -84,7 +87,7 @@ export default function SchemeComparaison({
 			<div
 				className={classnames('comparaison-grid', {
 					hideAutoEntrepreneur,
-					hideAssimiléSalarié
+					hideAssimiléSalarié,
 				})}
 			>
 				<h2 className="AS">

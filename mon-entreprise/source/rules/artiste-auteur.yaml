@@ -1,15 +1,16 @@
 artiste-auteur:
   description: Le régime des artistes-auteurs
   icônes: 👩‍🎨
+  formule: oui
 
-artiste-auteur . revenus:
-
+artiste-auteur . revenus: oui
 artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
   par défaut: 0 €/an
   résumé: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
 
 artiste-auteur . revenus . BNC:
+  unité: €/an
   formule:
     allègement:
       assiette: recettes
@@ -25,7 +26,7 @@ artiste-auteur . revenus . BNC . micro-bnc:
   titre: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 
-artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc:
+artiste-auteur . revenus . BNC . contrôle micro-bnc:
   description: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
   formule:
     toutes ces conditions:
@@ -33,6 +34,7 @@ artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc:
       - recettes > 72500 €/an
 
 artiste-auteur . revenus . BNC . recettes:
+  
   titre: Revenu en BNC
   par défaut: 0 €/an
   résumé: Le montant de vos recettes brutes hors TVA
@@ -68,32 +70,31 @@ artiste-auteur . cotisations . option surcotisation:
     toutes ces conditions:
       - assiette > 0
       - assiette < assiette surcotisation
+  remplace:
+    règle: assiette
+    dans: vieillesse
+    par: assiette surcotisation
   question: Souhaitez-vous surcotiser ?
   résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
   par défaut: non
   références:
     URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
-artiste-auteur . cotisations . assiette surcotisation:
-  formule: 900 heures/an * SMIC horaire
 
-artiste-auteur . cotisations . surcotisation:
-  applicable si: option surcotisation
-  remplace:
-    - règle: assiette
-      dans: vieillesse
-      par: assiette surcotisation
+artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
 
 artiste-auteur . cotisations . vieillesse:
   formule:
     produit:
       assiette: assiette
       composantes:
-        - nom: plafonnée
-          taux: contrat salarié . vieillesse . taux salarié plafonné - 0.75%
+        - attributs:
+            nom: plafonnée
+          taux: contrat salarié . vieillesse . salarié . plafonnée . taux - 0.75%
           plafond: contrat salarié . plafond sécurité sociale
-        - nom: déplafonnée
-          taux: contrat salarié . vieillesse . taux salarié déplafonné - 0.4%
+        - attributs:
+            nom: déplafonnée
+          taux: contrat salarié . vieillesse . salarié . déplafonnée . taux - 0.4%
 
 artiste-auteur . cotisations . CSG-CRDS:
   formule:

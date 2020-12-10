@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 const activeStyle = {
 	fontWeight: 'bold',
-	textDecoration: 'underline'
+	textDecoration: 'underline',
 } as React.CSSProperties
 export const Header = ({ noSubtitle = false, sectionName = '' }) => (
 	<header css="text-align: center; a {text-decoration: none}">

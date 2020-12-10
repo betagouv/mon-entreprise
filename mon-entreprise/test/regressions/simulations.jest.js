@@ -6,7 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Engine from 'publicodes'
+import Engine, { evaluateRule } from 'publicodes'
 import rules from '../../source/rules'
 import artisteAuteurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/sites/mon-entreprise.fr/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -23,12 +23,12 @@ import remunerationDirigeantSituations from './simulations-rémunération-dirige
 import employeeSituations from './simulations-salarié.yaml'
 import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 
-const roundResult = arr => arr.map(x => Math.round(x))
+const roundResult = (arr) => arr.map((x) => Math.round(x))
 const engine = new Engine(rules)
 const runSimulations = (situations, targets, baseSituation = {}) =>
 	Object.entries(situations).map(([name, situations]) =>
-		situations.forEach(situation => {
-			Object.keys(situation).forEach(situationRuleName => {
+		situations.forEach((situation) => {
+			Object.keys(situation).forEach((situationRuleName) => {
 				// TODO: This check may be moved in the `engine.setSituation` method
 				if (!Object.keys(engine.getParsedRules()).includes(situationRuleName)) {
 					throw new Error(
@@ -37,17 +37,13 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 				}
 			})
 			engine.setSituation({ ...baseSituation, ...situation })
-			const res = targets.map(target => engine.evaluate(target).nodeValue)
+			const res = targets.map((target) => engine.evaluate(target).nodeValue)
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
-				.filter(rule => rule['type'] === 'notification')
-				.filter(
-					notification =>
-						![null, false].includes(
-							engine.evaluate(notification.dottedName).isApplicable
-						)
-				)
-				.map(notification => notification.dottedName)
+				.filter((rule) => rule.rawNode['type'] === 'notification')
+				.map((node) => evaluateRule(engine, node.dottedName))
+				.filter((node) => !!node.nodeValue)
+				.map((node) => node.dottedName)
 
 			const snapshotedDisplayedNotifications = evaluatedNotifications.length
 				? `\nNotifications affichées : ${evaluatedNotifications.join(', ')}`
@@ -91,7 +87,7 @@ it('calculate simulations-rémunération-dirigeant (assimilé salarié)', () => 
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'assimilé salarié'"
+			dirigeant: "'assimilé salarié'",
 		},
 		'assimilé salarié'
 	)
@@ -103,7 +99,7 @@ it('calculate simulations-rémunération-dirigeant (auto-entrepreneur)', () => {
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'auto-entrepreneur'"
+			dirigeant: "'auto-entrepreneur'",
 		},
 		'auto-entrepreneur'
 	)
@@ -115,7 +111,7 @@ it('calculate simulations-rémunération-dirigeant (indépendant)', () => {
 		remunerationDirigeantConfig.objectifs,
 		{
 			...remunerationDirigeantConfig.situation,
-			dirigeant: "'indépendant'"
+			dirigeant: "'indépendant'",
 		},
 		'indépendant'
 	)
@@ -136,7 +132,7 @@ it('calculate aide-déclaration-indépendant', () => {
 		{
 			"aide déclaration revenu indépendant 2019 . nature de l'activité":
 				"'commerciale ou industrielle'",
-			...aideDéclarationConfig.situation
+			...aideDéclarationConfig.situation,
 		}
 	)
 })
@@ -147,7 +143,7 @@ it('calculate simulations-professions-libérales', () => {
 		professionLibéraleConfig.objectifs,
 		{
 			...professionLibéraleConfig.situation,
-			"entreprise . catégorie d'activité . libérale règlementée": 'oui'
+			"entreprise . catégorie d'activité . libérale règlementée": 'oui',
 		}
 	)
 })

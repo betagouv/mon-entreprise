@@ -1,6 +1,6 @@
 import { mapTemporal } from './temporal'
-import { convertUnit, simplifyUnit } from './units'
-import { EvaluatedNode, Unit } from './types'
+import { convertUnit, serializeUnit, simplifyUnit } from './units'
+import { ASTNode, EvaluatedNode, Unit } from './AST/types'
 
 export function simplifyNodeUnit(node) {
 	if (!node.unit) {
@@ -11,23 +11,24 @@ export function simplifyNodeUnit(node) {
 	return convertNodeToUnit(unit, node)
 }
 
-export function convertNodeToUnit<Names extends string>(
+export function convertNodeToUnit<Node extends EvaluatedNode = EvaluatedNode>(
 	to: Unit | undefined,
-	node: EvaluatedNode<Names, number>
-) {
+	node: Node
+): Node {
 	const temporalValue =
 		node.temporalValue && node.unit
 			? mapTemporal(
-					value => convertUnit(node.unit, to, value),
+					(value) => convertUnit(node.unit, to, value as number),
 					node.temporalValue
 			  )
 			: node.temporalValue
 	return {
 		...node,
-		nodeValue: node.unit
-			? convertUnit(node.unit, to, node.nodeValue)
-			: node.nodeValue,
+		nodeValue:
+			node.unit && typeof node.nodeValue === 'number'
+				? convertUnit(node.unit, to, node.nodeValue)
+				: node.nodeValue,
 		...(temporalValue && { temporalValue }),
-		unit: to
+		unit: to,
 	}
 }

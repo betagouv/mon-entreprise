@@ -1,6 +1,6 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Formulaire demande mobilité', function() {
+describe('Formulaire demande mobilité', function () {
 	if (!fr) {
 		return
 	}
@@ -19,14 +19,24 @@ describe('Formulaire demande mobilité', function() {
 			.tab()
 			.type('Française')
 		cy.contains('sécurité sociale').click()
+		cy.focused().type('1 91 07 468 054 75').tab().type('1991-07-25')
+
+		cy.get(
+			"input[name='coordonnées assuré . commune de naissance . étranger'][value='non']"
+		)
+			.next()
+			.click()
+			.wait(500)
+
+		cy.focused().tab().type('Pouts').wait(1500).type('{enter}')
+
+		cy.get(
+			"input[name='coordonnées assuré . domicile personnel . commune . étranger'][value='non']"
+		)
+			.next()
+			.click()
+
 		cy.focused()
-			.type('1 91 07 468 054 75')
-			.tab()
-			.type('1991-07-25')
-			.tab()
-			.type('Pouts')
-			.wait(1500)
-			.type('{enter}')
 			.tab()
 			.type('3 rue de la Rhumerie')
 			.tab()
@@ -49,14 +59,10 @@ describe('Formulaire demande mobilité', function() {
 			.wait(1500)
 		cy.contains('29240').click()
 		cy.contains('Organisme Urssaf').click()
-		cy.focused()
-			.type('Bretagne')
-			.tab()
-			.tab()
-			.type('Boulangerie')
+		cy.focused().type('Bretagne').tab().tab().type('Boulangerie')
 	})
 	it('should allow to complete "votre demande" section', () => {
-		cy.contains('Oui').click()
+		cy.get("input[name='demande . pays unique'][value='oui']").next().click()
 		cy.get("input[name='demande . infrastructure sauvegardée'][value='oui']")
 			.next()
 			.click()
@@ -66,9 +72,7 @@ describe('Formulaire demande mobilité', function() {
 		cy.get("input[name='demande . date de fin connue'][value='oui']")
 			.next()
 			.click()
-		cy.get('label[for="détachement . pays"]')
-			.wait(1500)
-			.click()
+		cy.get('label[for="détachement . pays"]').wait(1500).click()
 		cy.focused()
 			.select('Irlande')
 			.tab()
@@ -78,9 +82,7 @@ describe('Formulaire demande mobilité', function() {
 			.tab()
 			.tab()
 			.type('Fabrications de gateaux bretons')
-		cy.get("input[name='détachement . base fixe'][value='non']")
-			.next()
-			.click()
+		cy.get("input[name='détachement . base fixe'][value='non']").next().click()
 		cy.get(
 			"input[name='commentaires additionnels . commentaires'][value='non']"
 		)

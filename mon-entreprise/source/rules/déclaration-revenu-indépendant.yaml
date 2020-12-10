@@ -59,10 +59,9 @@ aide déclaration revenu indépendant 2019 . ACRE:
   par défaut: non
 
 aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
-  remplace:
-    - règle: dirigeant . indépendant . PL . CIPAV
-      par: non
-    - entreprise . catégorie d'activité . libérale
+  rend non applicable: dirigeant . indépendant . PL . CIPAV
+  remplace: entreprise . catégorie d'activité . libérale
+  formule: nature de l'activité = 'libérale'
   titre: Libérale rattachée au régime général
   description: |
     Ce sont les professions "intellectuelles", qui ne sont rattachée à aucune
@@ -76,6 +75,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . libérale:
 
 aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale ou industrielle:
   remplace: entreprise . catégorie d'activité . commerciale ou industrielle
+  formule: nature de l'activité = 'commerciale ou industrielle'
   description: |
     ### Activité commerciale
     - Achats de biens pour leur revente en l'état (commerce en gros ou de détail)
@@ -86,6 +86,7 @@ aide déclaration revenu indépendant 2019 . nature de l'activité . commerciale
     Activité de production ou de transformation grâce à l'utilisation d'outils industriels, extraction, industries minières, manutention, magasinage et stockage
 
 aide déclaration revenu indépendant 2019 . nature de l'activité . artisanale:
+  formule: nature de l'activité = 'artisanale'
   remplace: entreprise . catégorie d'activité . artisanale
   description: |
     C'est une activité de service, de production, de transformation, ou de réparation exercée par un professionnel qualifié, et qui nécessite des compétences et un savoir-faire spécifiques.
@@ -106,6 +107,7 @@ aide déclaration revenu indépendant 2019 . SMIC 2019:
   formule: 10.03 €/heure
 
 aide déclaration revenu indépendant 2019 . période:
+  formule: oui
   remplace:
     - règle: période . début d'année
       par: 01/01/2019
@@ -121,7 +123,7 @@ aide déclaration revenu indépendant 2019 . revenu net fiscal:
 aide déclaration revenu indépendant 2019 . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
-  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS .déductible
+  formule: dirigeant . indépendant . cotisations et contributions . CSG et CRDS . déductible
 
 aide déclaration revenu indépendant 2019 . cotisations sociales déductible:
   titre: cotisations sociales obligatoires déductibles

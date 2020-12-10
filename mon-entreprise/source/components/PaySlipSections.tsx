@@ -35,7 +35,7 @@ export const SalaireNetSection = () => {
 			<Condition
 				expression={[
 					'contrat salarié . rémunération . avantages en nature',
-					'contrat salarié . frais professionnels . titres-restaurant'
+					'contrat salarié . frais professionnels . titres-restaurant',
 				]}
 			>
 				<Line rule="contrat salarié . rémunération . net de cotisations" />
@@ -66,7 +66,7 @@ export const SalaireNetSection = () => {
 type LineProps = {
 	rule: DottedName
 	negative?: boolean
-} & Omit<ValueProps, 'expression'>
+} & Omit<ValueProps<DottedName>, 'expression'>
 
 export function Line({
 	rule,

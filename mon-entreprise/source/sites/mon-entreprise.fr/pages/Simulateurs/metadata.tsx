@@ -29,7 +29,7 @@ import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import PAMCHome from './PAMCHome'
 import IndépendantSimulation, {
-	IndépendantPLSimulation
+	IndépendantPLSimulation,
 } from './IndépendantSimulation'
 import SalariéSimulation from './SalariéSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
@@ -53,7 +53,7 @@ const simulateurs = [
 	'auxiliaire-médical',
 	'avocat',
 	'expert-comptable',
-	'pamc'
+	'pamc',
 ] as const
 
 export type SimulatorData = Record<
@@ -82,7 +82,7 @@ export type SimulatorData = Record<
 export function getSimulatorsData({
 	t = (_: unknown, text: string) => text,
 	sitePaths = constructLocalizedSitePath('fr'),
-	language = 'fr'
+	language = 'fr',
 }): SimulatorData {
 	return {
 		salarié: {
@@ -112,7 +112,7 @@ export function getSimulatorsData({
 				title: t(
 					'pages.simulateurs.salarié.meta.titre',
 					'Salaire brut / net : le convertisseur Urssaf'
-				)
+				),
 			},
 			path: sitePaths.simulateurs.salarié,
 			shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
@@ -183,7 +183,7 @@ export function getSimulatorsData({
 						.
 					</p>
 				</Trans>
-			)
+			),
 		},
 		'auto-entrepreneur': {
 			config: autoEntrepreneurConfig,
@@ -206,7 +206,7 @@ export function getSimulatorsData({
 				title: t(
 					'pages.simulateurs.auto-entrepreneur.meta.titre',
 					'Auto-entrepreneurs : simulateur de revenus'
-				)
+				),
 			},
 			component: function AutoEntrepreneurSimulation() {
 				return (
@@ -295,7 +295,7 @@ export function getSimulatorsData({
 						<RessourceAutoEntrepreneur />
 					</div>
 				</Trans>
-			)
+			),
 		},
 		indépendant: {
 			config: indépendantConfig,
@@ -315,9 +315,9 @@ export function getSimulatorsData({
 				description: t(
 					'pages.simulateurs.indépendant.meta.description',
 					"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
-				)
+				),
 			},
-			component: IndépendantSimulation
+			component: IndépendantSimulation,
 		},
 		sasu: {
 			config: sasuConfig,
@@ -340,7 +340,7 @@ export function getSimulatorsData({
 				title: t(
 					'pages.simulateurs.sasu.meta.titre',
 					'Dirigeant de SASU : simulateur de revenus Urssaf'
-				)
+				),
 			},
 			path: sitePaths.simulateurs.SASU,
 			shortName: t('pages.simulateurs.sasu.shortname', 'Dirigeant de SASU'),
@@ -396,7 +396,7 @@ export function getSimulatorsData({
 						questions.
 					</p>
 				</Trans>
-			)
+			),
 		},
 		'artiste-auteur': {
 			icône: '👩‍🎨',
@@ -412,7 +412,7 @@ export function getSimulatorsData({
 				),
 				ogTitle: 'Artiste-auteur : estimez vos cotisations Urssaf',
 				ogDescription:
-					"Renseignez vos revenus (droits d'auteur et bnc) et découvrez immédiatement le montant des cotisations que vous aurez à payer sur l'année."
+					"Renseignez vos revenus (droits d'auteur et bnc) et découvrez immédiatement le montant des cotisations que vous aurez à payer sur l'année.",
 			},
 			path: sitePaths.simulateurs['artiste-auteur'],
 			title: t(
@@ -423,7 +423,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.artiste-auteur.shortname',
 				'Artiste-auteur'
 			),
-			component: ArtisteAuteur
+			component: ArtisteAuteur,
 		},
 		'chômage-partiel': {
 			component: ChômagePartielComponent,
@@ -448,7 +448,7 @@ export function getSimulatorsData({
 				title: t(
 					'pages.simulateurs.chômage-partiel.meta.titre',
 					"Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
-				)
+				),
 			},
 			shortName: t(
 				'pages.simulateurs.chômage-partiel.shortname',
@@ -529,7 +529,7 @@ export function getSimulatorsData({
 						.
 					</p>
 				</Trans>
-			)
+			),
 		},
 		'comparaison-statuts': {
 			component: SchemeComparaisonPage,
@@ -547,12 +547,12 @@ export function getSimulatorsData({
 				title: t(
 					'pages.simulateurs.comparaison.meta.title',
 					"Création d'entreprise : le comparatif des régimes sociaux"
-				)
+				),
 			},
 			shortName: t(
 				'pages.simulateurs.comparaison.shortname',
 				'Comparaison des statuts'
-			)
+			),
 		},
 		'économie-collaborative': {
 			component: ÉconomieCollaborative,
@@ -564,14 +564,14 @@ export function getSimulatorsData({
 				description: t(
 					'pages.économie-collaborative.meta.description',
 					'Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en règle dans vos déclarations'
-				)
+				),
 			},
 			icône: '🙋',
 			path: sitePaths.simulateurs.économieCollaborative.index,
 			shortName: t(
 				'pages.économie-collaborative.shortname',
 				'Guide économie collaborative'
-			)
+			),
 		},
 		'aide-déclaration-indépendant': {
 			component: AideDéclarationIndépendant,
@@ -584,7 +584,7 @@ export function getSimulatorsData({
 				title: t(
 					'pages.gérer.aide-déclaration-indépendant.meta.title',
 					'Déclaration de revenus indépendant : calcul du montant des cotisations'
-				)
+				),
 			},
 			path: sitePaths.gérer.déclarationIndépendant,
 			shortName: t(
@@ -594,7 +594,7 @@ export function getSimulatorsData({
 			title: t(
 				'pages.gérer.aide-déclaration-indépendant.title',
 				"Aide à la déclaration de revenus au titre de l'année 2019"
-			)
+			),
 		},
 		'demande-mobilité': {
 			component: FormulaireMobilitéIndépendant,
@@ -607,7 +607,7 @@ export function getSimulatorsData({
 				description: t(
 					'pages.gérer.demande-mobilité.meta.description',
 					"Formulaire interactif à compléter pour les indépendants souhaitant exercer leur activité dans d'autres pays d'Europe"
-				)
+				),
 			},
 			path: sitePaths.gérer.formulaireMobilité,
 			shortName: t(
@@ -615,7 +615,7 @@ export function getSimulatorsData({
 				'Demande de mobilité en Europe'
 			),
 			private: true,
-			iframe: 'demande-mobilite'
+			iframe: 'demande-mobilite',
 		},
 		médecin: {
 			config: médecinConfig,
@@ -627,7 +627,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.médecin.title',
 				'Simulateur de revenus pour médecin en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		'chirurgien-dentiste': {
 			config: dentisteConfig,
@@ -642,7 +642,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.chirurgien-dentiste.title',
 				'Simulateur de revenus pour chirurgien-dentiste en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		'sage-femme': {
 			config: sageFemmeConfig,
@@ -654,7 +654,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.sage-femme.title',
 				'Simulateur de revenus pour sage-femme en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		'auxiliaire-médical': {
 			config: auxiliaireConfig,
@@ -670,7 +670,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.auxiliaire.title',
 				'Simulateur de revenus pour auxiliaire médical en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		avocat: {
 			config: avocatConfig,
@@ -682,7 +682,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.avocat.title',
 				'Simulateur de revenus pour avocat en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		'expert-comptable': {
 			config: expertComptableConfig,
@@ -697,7 +697,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.expert-comptable.title',
 				'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		'profession-libérale': {
 			config: professionLibéraleConfig,
@@ -710,7 +710,7 @@ export function getSimulatorsData({
 				description: t(
 					'pages.simulateurs.profession-libérale.meta.description',
 					"Calcul du revenu net pour les indépendants en libéral à l'impôt sur le revenu (IR, BNC)"
-				)
+				),
 			},
 			iframe: 'profession-liberale',
 			path: sitePaths.simulateurs['profession-libérale'].index,
@@ -722,7 +722,7 @@ export function getSimulatorsData({
 				'pages.simulateurs.profession-libérale.title',
 				'Simulateur de revenus pour profession libérale'
 			),
-			component: IndépendantPLSimulation
+			component: IndépendantPLSimulation,
 		},
 		pamc: {
 			private: true,
@@ -737,11 +737,11 @@ export function getSimulatorsData({
 				description: t(
 					'pages.simulateurs.pamc.meta.description',
 					'Calcul du revenu net pour les professions libérales du régime PAMC (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
-				)
+				),
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
-			component: PAMCHome
-		}
+			component: PAMCHome,
+		},
 	}
 }
 
@@ -762,8 +762,8 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	situation: {
 		...professionLibéraleConfig.situation,
 		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
-		'dirigeant . indépendant . PL . métier': `'${metier}'`
-	}
+		'dirigeant . indépendant . PL . métier': `'${metier}'`,
+	},
 })
 
 const auxiliaireConfig = configFromPLMetier('santé . auxiliaire médical')

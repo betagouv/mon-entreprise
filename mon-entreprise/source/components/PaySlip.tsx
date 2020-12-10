@@ -1,7 +1,13 @@
 import Value from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
-import { EngineContext, useEvaluation } from 'Components/utils/EngineContext'
-import { formatValue, ParsedRule, ParsedRules } from 'publicodes'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import {
+	ASTNode,
+	EvaluatedNode,
+	formatValue,
+	ParsedRules,
+	reduceAST,
+} from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -16,14 +22,14 @@ export const SECTION_ORDER = [
 	'protection sociale . assurance chômage',
 	'protection sociale . formation',
 	'protection sociale . transport',
-	'protection sociale . autres'
+	'protection sociale . autres',
 ] as const
 
 type Section = typeof SECTION_ORDER[number]
 
-function getSection(rule: ParsedRule): Section {
+function getSection(rule: ASTNode & { nodeKind: 'rule' }): Section {
 	const section = ('protection sociale . ' +
-		rule.cotisation?.branche) as Section
+		rule.rawNode.cotisation?.branche) as Section
 	if (SECTION_ORDER.includes(section)) {
 		return section
 	}
@@ -31,24 +37,43 @@ function getSection(rule: ParsedRule): Section {
 }
 
 export function getCotisationsBySection(
-	parsedRules: ParsedRules
+	parsedRules: ParsedRules<DottedName>
 ): Array<[Section, DottedName[]]> {
-	const cotisations = [
-		...parsedRules['contrat salarié . cotisations . patronales'].formule
-			.explanation.explanation,
-		...parsedRules['contrat salarié . cotisations . salariales'].formule
-			.explanation.explanation
-	]
-		.map(cotisation => cotisation.dottedName)
+	function findCotisations(dottedName: DottedName) {
+		return reduceAST<Array<ASTNode & { nodeKind: 'reference' }>>(
+			(acc, node) => {
+				if (
+					node.nodeKind === 'reference' &&
+					node.dottedName !== 'contrat salarié . cotisations' &&
+					node.dottedName?.startsWith('contrat salarié . ') &&
+					node.dottedName !==
+						'contrat salarié . cotisations . patronales . réductions de cotisations'
+				) {
+					return [...acc, node]
+				}
+			},
+			[],
+			parsedRules[dottedName]
+		)
+	}
+
+	const cotisations = ([
+		...findCotisations('contrat salarié . cotisations . patronales'),
+		...findCotisations('contrat salarié . cotisations . salariales'),
+	] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>)
+		.map((cotisation) => cotisation.dottedName)
 		.filter(Boolean)
+		.map(
+			(dottedName) =>
+				dottedName.replace(/ . (salarié|employeur)$/, '') as DottedName
+		)
 		.reduce((acc, cotisation: DottedName) => {
 			const sectionName = getSection(parsedRules[cotisation])
 			return {
 				...acc,
-				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation)
+				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation),
 			}
-		}, {}) as Record<Section, Set<DottedName>>
-
+		}, {} as Record<Section, Set<DottedName>>)
 	return Object.entries(cotisations)
 		.map(([section, dottedNames]) => [section, [...dottedNames.values()]])
 		.sort(
@@ -59,7 +84,7 @@ export function getCotisationsBySection(
 }
 
 export default function PaySlip() {
-	const parsedRules = useContext(EngineContext).getParsedRules()
+	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (
@@ -106,7 +131,7 @@ export default function PaySlip() {
 							<h5 className="payslip__cotisationTitle">
 								<RuleLink dottedName={section.dottedName} />
 							</h5>
-							{cotisations.map(cotisation => (
+							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
 							))}
 						</Fragment>
@@ -122,10 +147,12 @@ export default function PaySlip() {
 				</div>
 				<Value
 					expression="- contrat salarié . cotisations . patronales . réductions de cotisations"
+					unit="€/mois"
 					displayedUnit="€"
 				/>
 				<Value
 					expression="- contrat salarié . cotisations . salariales . réductions de cotisations"
+					unit="€/mois"
 					displayedUnit="€"
 				/>
 				{/* Total cotisation */}
@@ -152,18 +179,37 @@ export default function PaySlip() {
 	)
 }
 
+function findReferenceInNode(
+	dottedName: DottedName,
+	node: EvaluatedNode
+): EvaluatedNode | null {
+	return reduceAST<(EvaluatedNode & { nodeKind: 'reference' }) | null>(
+		(acc, node) => {
+			if (
+				node.nodeKind === 'reference' &&
+				node.dottedName?.startsWith(dottedName)
+			) {
+				return node as EvaluatedNode & { nodeKind: 'reference' }
+			} else if (node.nodeKind === 'reference') {
+				return acc
+			}
+		},
+		null,
+		node
+	)
+}
 function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const language = useTranslation().i18n.language
-	const partSalariale = useEvaluation(
-		'contrat salarié . cotisations . salariales'
-	)?.formule.explanation.explanation.find(
-		(cotisation: ParsedRule) => cotisation.dottedName === dottedName
+	const engine = useContext(EngineContext)
+	const cotisationsSalariales = engine.evaluateNode(
+		engine.getParsedRules()['contrat salarié . cotisations . salariales']
 	)
-	const partPatronale = useEvaluation(
-		'contrat salarié . cotisations . patronales'
-	)?.formule.explanation.explanation.find(
-		(cotisation: ParsedRule) => cotisation.dottedName === dottedName
+	const cotisationsPatronales = engine.evaluateNode(
+		engine.getParsedRules()['contrat salarié . cotisations . patronales']
 	)
+	const partSalariale = findReferenceInNode(dottedName, cotisationsSalariales)
+	const partPatronale = findReferenceInNode(dottedName, cotisationsPatronales)
+
 	if (!partPatronale?.nodeValue && !partSalariale?.nodeValue) {
 		return null
 	}

@@ -311,7 +311,7 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
         alors: 0 €/jour
       - sinon:
           produit:
-            assiette: revenu moyen [€/jour]
+            assiette: revenu moyen
             taux: 50%
           plafond: 55.51 €/jour
   reférences:
@@ -320,10 +320,9 @@ protection sociale . santé . indemnités journalières . auto-entrepreneur:
 protection sociale . santé . indemnités journalières . indépendant:
   applicable si: dirigeant . indépendant
   unité: €/jour
-
   formule:
     produit:
-      assiette: revenu moyen [€/jour]
+      assiette: revenu moyen 
       taux: 50%
     plancher: 21 €/jour
     plafond: 55.51 €/jour
@@ -337,9 +336,9 @@ protection sociale . santé . indemnités journalières . salarié:
   applicable si: contrat salarié
   formule:
     produit:
-      assiette: revenu moyen [€/jour]
+      assiette: revenu moyen 
       taux: 50%
-      plafond: 1.8 * SMIC temps plein [€/jour]
+      plafond: 1.8 * SMIC temps plein
   reférences:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
 
@@ -409,12 +408,12 @@ protection sociale . accidents du travail et maladies professionnelles:
   applicable si: contrat salarié
   formule:
     produit:
-      assiette: revenu moyen [€/jour]
+      assiette: revenu moyen
       taux: 60%
     plafond:
       202.78 €/jour
       # TODO
-      # - 0.834% * plafond sécurité sociale temps plein [€/an]
+      # - 0.834% * plafond sécurité sociale temps plein
 
   références:
     ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp

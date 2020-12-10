@@ -1,13 +1,28 @@
-import { evaluationFunction } from '..'
-import { registerEvaluationFunction } from '../evaluation'
+import { EvaluationFunction } from '..'
+import { ASTNode } from '../AST/types'
+import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 import {
 	createTemporalEvaluation,
 	narrowTemporalValue,
 	Temporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
 
-const evaluate: evaluationFunction = function(node: any) {
+export type VariableTemporelleNode = {
+	explanation: {
+		period: {
+			start: ASTNode | undefined
+			end: ASTNode | undefined
+		}
+		value: ASTNode
+	}
+	nodeKind: 'variable temporelle'
+}
+
+const evaluate: EvaluationFunction<'variable temporelle'> = function (
+	node: any
+) {
 	const start =
 		node.explanation.period.start &&
 		this.evaluateNode(node.explanation.period.start)
@@ -17,7 +32,7 @@ const evaluate: evaluationFunction = function(node: any) {
 	const value = this.evaluateNode(node.explanation.value)
 	const period = {
 		start: start?.nodeValue || null,
-		end: end?.nodeValue || null
+		end: end?.nodeValue || null,
 	}
 	const temporalValue = value.temporalValue
 		? narrowTemporalValue(period, value.temporalValue)
@@ -29,24 +44,26 @@ const evaluate: evaluationFunction = function(node: any) {
 		temporalValue,
 		explanation: {
 			period: { start, end },
-			value
+			value,
 		},
-		unit: value.unit
+		...('unit' in value && { unit: value.unit }),
 	}
 }
 
-export default function parseVariableTemporelle(parse, v) {
-	const explanation = parse(v.explanation)
+export default function parseVariableTemporelle(
+	v,
+	context
+): VariableTemporelleNode {
+	const explanation = parse(v.explanation, context)
 	return {
 		nodeKind: 'variable temporelle',
 		explanation: {
 			period: {
-				start: v.period.start && parse(v.period.start),
-				end: v.period.end && parse(v.period.end)
+				start: v.period.start && parse(v.period.start, context),
+				end: v.period.end && parse(v.period.end, context),
 			},
-			value: explanation
+			value: explanation,
 		},
-		unit: explanation.unit
 	}
 }
 

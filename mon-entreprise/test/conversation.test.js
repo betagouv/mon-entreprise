@@ -2,28 +2,29 @@ import { expect } from 'chai'
 import Engine from 'publicodes'
 import {
 	getNextQuestions,
-	getNextSteps
+	getNextSteps,
 } from '../source/components/utils/useNextQuestion'
 import rules from '../source/rules'
 
-describe('conversation', function() {
-	it('should start with the first missing variable', function() {
+describe('conversation', function () {
+	it('should start with the first missing variable', function () {
 		const missingVariables = new Engine({
 			// TODO - this won't work without the indirection, figure out why
+			top: 'oui',
 			'top . startHere': { formule: { somme: ['a', 'b'] } },
 			'top . a': { formule: 'aa' },
 			'top . b': { formule: 'bb' },
 			'top . aa': { question: '?', titre: 'a', unité: '€' },
-			'top . bb': { question: '?', titre: 'b', unité: '€' }
+			'top . bb': { question: '?', titre: 'b', unité: '€' },
 		}).evaluate('top . startHere').missingVariables
 		expect(getNextQuestions([missingVariables])[0]).to.equal('top . aa')
 	})
-	it('should first ask for questions without defaults, then those with defaults', function() {
+	it('should first ask for questions without defaults, then those with defaults', function () {
 		const engine = new Engine({
 			net: { formule: 'brut - cotisation' },
 			brut: {
 				question: 'Quel est le salaire brut ?',
-				unité: '€/an'
+				unité: '€/an',
 			},
 			cotisation: {
 				formule: {
@@ -33,22 +34,22 @@ describe('conversation', function() {
 							{
 								si: 'cadre',
 								alors: {
-									taux: '77%'
-								}
+									taux: '77%',
+								},
 							},
 							{
 								sinon: {
-									taux: '80%'
-								}
-							}
-						]
-					}
-				}
+									taux: '80%',
+								},
+							},
+						],
+					},
+				},
 			},
 			cadre: {
 				question: 'Est-ce un cadre ?',
-				'par défaut': 'non'
-			}
+				'par défaut': 'non',
+			},
 		})
 
 		expect(
@@ -56,7 +57,7 @@ describe('conversation', function() {
 		).to.equal('brut')
 
 		engine.setSituation({
-			brut: 2300
+			brut: 2300,
 		})
 
 		expect(
@@ -64,13 +65,13 @@ describe('conversation', function() {
 		).to.equal('cadre')
 	})
 
-	it('should ask "motif CDD" if "CDD" applies', function() {
+	it('should ask "motif CDD" if "CDD" applies', function () {
 		const result = Object.keys(
 			new Engine(rules)
 				.setSituation({
 					'contrat salarié': 'oui',
 					'contrat salarié . CDD': 'oui',
-					'contrat salarié . rémunération . brut de base': '2300'
+					'contrat salarié . rémunération . brut de base': '2300',
 				})
 				.evaluate('contrat salarié . rémunération . net').missingVariables
 		)
@@ -79,20 +80,20 @@ describe('conversation', function() {
 	})
 })
 
-describe('getNextSteps', function() {
-	it('should give priority to questions that advance most targets', function() {
+describe('getNextSteps', function () {
+	it('should give priority to questions that advance most targets', function () {
 		let missingVariablesByTarget = [
 			{
 				effectif: 34.01,
-				cadre: 30
+				cadre: 30,
 			},
 			{
-				cadre: 10.1
+				cadre: 10.1,
 			},
 			{
 				effectif: 32.0,
-				cadre: 10
-			}
+				cadre: 10,
+			},
 		]
 
 		let result = getNextSteps(missingVariablesByTarget)
@@ -100,17 +101,17 @@ describe('getNextSteps', function() {
 		expect(result[0]).to.equal('cadre')
 	})
 
-	it('should give priority to questions by total weight when advancing the same target count', function() {
+	it('should give priority to questions by total weight when advancing the same target count', function () {
 		let missingVariablesByTarget = [
 			{
 				effectif: 24.01,
-				cadre: 30
+				cadre: 30,
 			},
 			{
 				effectif: 24.01,
-				cadre: 10.1
+				cadre: 10.1,
 			},
-			{}
+			{},
 		]
 
 		let result = getNextSteps(missingVariablesByTarget)

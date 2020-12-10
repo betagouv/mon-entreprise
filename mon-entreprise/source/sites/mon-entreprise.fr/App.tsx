@@ -3,30 +3,30 @@ import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
 import {
 	EngineProvider,
-	SituationProvider
+	SituationProvider,
 } from 'Components/utils/EngineContext'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import 'iframe-resizer'
-import Engine from 'publicodes'
+import Engine, { Rule } from 'publicodes'
 import { useContext, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import createSentryMiddleware from 'redux-sentry-middleware'
-import { Rules } from 'Rules'
+import { DottedName } from 'Rules'
 import {
 	configSituationSelector,
-	situationSelector
+	situationSelector,
 } from 'Selectors/simulationSelectors'
 import Provider, { ProviderProps } from '../../Provider'
 import {
 	persistEverything,
-	retrievePersistedState
+	retrievePersistedState,
 } from '../../storage/persistEverything'
 import {
 	persistSimulation,
-	retrievePersistedSimulation
+	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
 import './App.css'
@@ -76,12 +76,12 @@ if (process.env.NODE_ENV === 'production') {
 
 const middlewares = [
 	createSentryMiddleware(Sentry as any),
-	trackSimulatorActions(tracker)
+	trackSimulatorActions(tracker),
 ]
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rules: Rules
+	rules: Record<DottedName, Rule>
 }
 
 export default function Root({ basename, rules }: RootProps) {
@@ -94,13 +94,13 @@ export default function Root({ basename, rules }: RootProps) {
 			tracker={tracker}
 			sitePaths={paths}
 			reduxMiddlewares={middlewares}
-			onStoreCreated={store => {
+			onStoreCreated={(store) => {
 				persistEverything({ except: ['simulation'] })(store)
 				persistSimulation(store)
 			}}
 			initialStore={{
 				...retrievePersistedState(),
-				previousSimulation: retrievePersistedSimulation()
+				previousSimulation: retrievePersistedSimulation(),
 			}}
 		>
 			<EngineProvider value={engine}>
@@ -116,7 +116,7 @@ const Router = () => {
 	const situation = useMemo(
 		() => ({
 			...configSituation,
-			...userSituation
+			...userSituation,
 		}),
 		[configSituation, userSituation]
 	)

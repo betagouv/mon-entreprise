@@ -67,7 +67,7 @@ dirigeant . assimilé salarié . réduction ACRE . taux:
         - plafond: 100%
           taux: 0%
 dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
-  applicable si: entreprise . ACRE
+  formule: oui
   type: notification
   description: |
     Le taux ACRE utilisé est une moyenne annuelle. Le
@@ -82,16 +82,17 @@ dirigeant . auto-entrepreneur:
 
 dirigeant . auto-entrepreneur . base des cotisations:
   formule: entreprise . chiffre d'affaires
+  unité: €/mois
 
 dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   type: notification
   sévérité: avertissement
-  applicable si: base des cotisations > plafond
+  formule: base des cotisations > plafond
   description: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
 
 dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
   type: notification
-  applicable si: entreprise . chiffre d'affaires > entreprise . franchise de TVA
+  formule: entreprise . chiffre d'affaires > entreprise . franchise de TVA
   description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 dirigeant . auto-entrepreneur . plafond:
@@ -234,11 +235,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       - si: entreprise . ACRE
         alors: 
           produit:
-            assiette: base des cotisations [€/mois]
+            assiette: base des cotisations
             taux: taux ACRE * taux de cotisation
       - sinon:
           produit:
-            assiette: base des cotisations [€/mois]
+            assiette: base des cotisations
             taux [ref taux de cotisation]:
               variations:
                 - si: vente ou hébergement
@@ -303,15 +304,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . pla
   formule: plafond sécurité sociale temps plein / impôt . abattement . taux inversé
 
 dirigeant . auto-entrepreneur . notification calcul ACRE annuel:
-  applicable si: entreprise . ACRE
+  formule: entreprise . ACRE
   type: notification
   description: |
     Le taux ACRE utilisé est celui correspondant au mois courant. Le
     simulateur ne prends pas encore en compte le chevauchement de 2 période
     d'acre sur une meme année.
 
-dirigeant . auto-entrepreneur . impôt:
-
+dirigeant . auto-entrepreneur . impôt: oui
 dirigeant . auto-entrepreneur . impôt . abattement:
   formule:
     produit:
@@ -344,7 +344,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . contrôle seuil:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - impôt . foyer fiscal . revenu fiscal de référence > 27086 €/an
       - versement libératoire
@@ -441,7 +441,7 @@ dirigeant . indépendant:
 
 dirigeant . indépendant . avertissement base forfaitaire:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - entreprise . durée d'activité . en fin d'année < 2 ans
       - entreprise . date de création != 02/01/2020
@@ -550,7 +550,7 @@ dirigeant . indépendant . revenu net de cotisations:
     somme:
       - valeur: revenu professionnel
         arrondi: oui
-      - (- cotisations et contributions . CSG et CRDS .non déductible)
+      - (- cotisations et contributions . CSG et CRDS . non déductible)
       - (- contrats madelin . part non-déductible fiscalement)
   résumé: Avant déduction de l'impôt sur le revenu
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -691,36 +691,34 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
       - indemnités journalières maladie
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
-  formule:
-    le maximum de:
-      - cotisations . assiette
-      - 5.25% * plafond sécurité sociale temps plein
-      - 200 heures/an * SMIC horaire
-    arrondi: oui
+  le maximum de:
+    - cotisations . assiette
+    - 5.25% * plafond sécurité sociale temps plein
+    - 200 heures/an * SMIC horaire
+  unité: €/an
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
   unité: €/an
-  formule:
-    barème:
-      assiette: assiette retraite
-      multiplicateur: plafond sécurité sociale temps plein
-      tranches:
-        - taux: 17.75%
-          plafond: 1
-        - taux: 0.6%
-    arrondi: oui
+  barème:
+    assiette: assiette retraite
+    multiplicateur: plafond sécurité sociale temps plein
+    tranches:
+      - taux: 17.75%
+        plafond: 1
+      - taux: 0.6%
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   unité: €/an
-  formule:
-    barème:
-      assiette: retraite complémentaire . assiette
-      tranches:
-        - taux: 7%
-          plafond: cotisations et contributions . retraite complémentaire . plafond
-        - taux: 8%
-          plafond: 4 * plafond sécurité sociale temps plein
-    arrondi: oui
+  barème:
+    assiette: retraite complémentaire . assiette
+    tranches:
+      - taux: 7%
+        plafond: cotisations et contributions . retraite complémentaire . plafond
+      - taux: 8%
+        plafond: 4 * plafond sécurité sociale temps plein
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
   titre: assiette retraite complémentaire
@@ -740,20 +738,18 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et
       - 20% * plafond sécurité sociale temps plein
 dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
   unité: €/an
-  formule:
-    produit:
-      assiette: assiette
-      taux: 1.3%
-      plafond: plafond sécurité sociale temps plein
-    arrondi: oui
+  produit:
+    assiette: assiette
+    taux: 1.3%
+    plafond: plafond sécurité sociale temps plein
+  arrondi: oui
 
 dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
   unité: €/an
-  formule:
-    produit:
-      assiette: 40% * plafond sécurité sociale temps plein
-      taux: cotisations et contributions . indemnités journalières maladie . taux
-    arrondi: oui
+  produit:
+    assiette: 40% * plafond sécurité sociale temps plein
+    taux: cotisations et contributions . indemnités journalières maladie . taux
+  arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
   références:
@@ -832,17 +828,18 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
 
 dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
-
+  question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
+  par défaut: non
 dirigeant . indépendant . contrats madelin . montant:
   titre: Somme des cotisations à contrats Madelin
   formule:
     somme:
-      - mutuelle . montant
-      - retraite . montant
+      - mutuelle
+      - retraite
 
 dirigeant . indépendant . contrats madelin . contrôle montant charges:
   type: notification
-  applicable si: entreprise . charges < montant
+  formule: entreprise . charges < montant
   description: >-
     Le montant de l'ensemble des cotisations à vos contrats Madelin
     doit être inclus dans vos charges de fonctionnement, or vous
@@ -852,9 +849,9 @@ dirigeant . indépendant . contrats madelin . part déductible fiscalement:
   titre: Part de la cotisation à contrat Madelin qui est déductible fiscalement
   formule:
     somme:
-      - valeur: mutuelle . montant
+      - valeur: mutuelle
         plafond: mutuelle . plafond
-      - valeur: retraite . montant
+      - valeur: retraite
         plafond: retraite . plafond
 
 dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
@@ -862,9 +859,6 @@ dirigeant . indépendant . contrats madelin . part non-déductible fiscalement:
   formule: montant - part déductible fiscalement
 
 dirigeant . indépendant . contrats madelin . mutuelle:
-  titre: Contrat Madelin mutuelle
-
-dirigeant . indépendant . contrats madelin . mutuelle . montant:
   titre: Souscription à un contrat de mutuelle Madelin
   question: Quel est le montant que vous versez à un contrat de mutuelle Madelin ?
   description: |
@@ -875,7 +869,7 @@ dirigeant . indépendant . contrats madelin . mutuelle . montant:
     Fiche impôts: https://www.impots.gouv.fr/portail/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Bofip (contrats d'assurance de groupe): https://bofip.impots.gouv.fr/bofip/4639-PGP.html
     Article de loi: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042287&cidTexte=LEGITEXT000006069577&dateTexte=20140530&fastReqId=1900907951&nbResultRech=1
-  par défaut: 0 €/an
+  par défaut: 50 €/mois
 
 dirigeant . indépendant . contrats madelin . mutuelle . plafond:
   unité: €/an
@@ -896,9 +890,6 @@ dirigeant . indépendant . contrats madelin . mutuelle . plafond:
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
 
 dirigeant . indépendant . contrats madelin . retraite:
-  titre: Contrat Madelin retraite
-
-dirigeant . indépendant . contrats madelin . retraite . montant:
   titre: Souscription à une retraite Madelin
   question: Quel est le montant que vous versez à votre contrat Madelin retraite ?
   description: |
@@ -1053,12 +1044,11 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
 dirigeant . indépendant . cotisations et contributions . exonération de cotisations minimales:
-  applicable si: situation personnelle . RSA
-  remplace:
+  formule: situation personnelle . RSA
+  rend non applicable:
     - invalidité et décès . assiette . plancher
     - indemnités journalières maladie . plancher
     - retraite de base . assiette . plancher
-  formule: non
   références:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
 
@@ -1068,22 +1058,23 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS:
       assiette: assiette
       composantes:
         - attributs:
-            impôt sur le revenu: non déductible
-          taux: 2.9%
+            nom: non déductible
+            arrondi: oui
+          composantes:
+            - taux: 2.9%
+            - attributs:
+                nom: revenus de remplacement
+              assiette: dirigeant . indépendant . IJSS . total
+              taux: 2.9%
         - attributs:
-            impôt sur le revenu: déductible
-          taux: 6.8%
-        - attributs:
-            nom: revenus de remplacement
-            impôt sur le revenu: non déductible
-          assiette: dirigeant . indépendant . IJSS . total
-          taux: 2.9%
-        - attributs:
-            nom: revenus de remplacement
-            impôt sur le revenu: déductible
-          assiette: dirigeant . indépendant . IJSS . total
-          taux: 3.8%
-    arrondi: oui
+            nom: déductible
+            arrondi: oui
+          composantes: 
+            - taux: 6.8%
+            - attributs:
+                nom: revenus de remplacement
+              assiette: dirigeant . indépendant . IJSS . total
+              taux: 3.8%
 
   références:
     fiche URSSAF: https://www.urssaf.fr/portail/home/indépendant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
@@ -1121,17 +1112,17 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
           - dirigeant . indépendant . IJSS . imposable
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
-  formule:
-    produit:
-      assiette: plafond sécurité sociale temps plein [€/an]
-      taux:
-        variations:
-          - si: entreprise . catégorie d'activité = 'artisanale'
-            alors: 0.29%
-          - si: conjoint collaborateur
-            alors: 0.34%
-          - sinon: 0.25%
-    arrondi: oui
+  produit:
+    assiette: plafond sécurité sociale temps plein 
+    taux:
+      variations:
+        - si: entreprise . catégorie d'activité = 'artisanale'
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
+  unité: €/an
+  arrondi: oui
   note: Le taux n'est pas majoré pour les artisans avec conjoint collaborateur
 
   références:
@@ -1162,16 +1153,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
-  formule:
-    produit:
-      assiette: maladie
-      taux: taux
-      # TODO : Le plafond est proratisé en début / fin d'exonération
-      plafond:
-        recalcul:
-          avec:
-            dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
-    arrondi: oui
+  produit:
+    assiette: maladie
+    taux: taux
+    # TODO : Le plafond est proratisé en début / fin d'exonération
+    plafond:
+      recalcul:
+        avec:
+          dirigeant . indépendant . revenu professionnel: 3042 heures/an * SMIC horaire
+  arrondi: oui
+  unité: €/an
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d'exonération "âge"
@@ -1194,7 +1185,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre: taux exonération ZFU
   formule:
     taux progressif:
-      assiette: établissement . ZFU . durée d'implantation en fin d'année [an]
+      assiette: établissement . ZFU . durée d'implantation en fin d'année
       retourne seulement le taux: oui
       variations:
         - si: entreprise . effectif < 5

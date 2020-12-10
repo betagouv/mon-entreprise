@@ -1,12 +1,16 @@
+import BarChartBranch from 'Components/BarChart'
+import 'Components/Distribution.css'
 import Value, { Condition } from 'Components/EngineValue'
+import RuleLink from 'Components/RuleLink'
 import StackedBarChart from 'Components/StackedBarChart'
 import * as Animate from 'Components/ui/animate'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import Emoji from 'Components/utils/Emoji'
-import { EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
 import * as logosSrc from 'Images/logos-cnavpl'
 import urssafSrc from 'Images/urssaf.svg'
+import { evaluateRule } from 'publicodes'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -14,14 +18,10 @@ import { useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import BarChartBranch from 'Components/BarChart'
-import 'Components/Distribution.css'
-import RuleLink from 'Components/RuleLink'
 import AidesCovid from './AidesCovid'
-// import Distribution from 'Components/Distribution'
 
 export default function IndépendantExplanation() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 
@@ -37,18 +37,19 @@ export default function IndépendantExplanation() {
 					<StackedBarChart
 						data={[
 							{
-								...engine.evaluate('revenu net après impôt'),
+								...evaluateRule(engine, 'revenu net après impôt'),
 								title: t('Revenu disponible'),
-								color: palettes[0][0]
+								color: palettes[0][0],
 							},
-							{ ...engine.evaluate('impôt'), color: palettes[1][0] },
+							{ ...evaluateRule(engine, 'impôt'), color: palettes[1][0] },
 							{
-								...engine.evaluate(
+								...evaluateRule(
+									engine,
 									'dirigeant . indépendant . cotisations et contributions'
 								),
 								title: t('Cotisations'),
-								color: palettes[1][1]
-							}
+								color: palettes[1][1],
+							},
 						]}
 					/>
 				</section>
@@ -127,7 +128,7 @@ function PLExplanation() {
 }
 
 function CaisseRetraite() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const unit = useSelector(targetUnitSelector)
 	const caisses = [
 		'CARCDSF',
@@ -135,14 +136,14 @@ function CaisseRetraite() {
 		'CIPAV',
 		'CARMF',
 		'CNBF',
-		'CAVEC'
+		'CAVEC',
 	] as const
 
 	return (
 		<>
-			{caisses.map(caisse => {
+			{caisses.map((caisse) => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = engine.evaluate(dottedName)
+				const { description, références } = evaluateRule(engine, dottedName)
 				return (
 					<Condition expression={dottedName} key={caisse}>
 						<div className="ui__  card box">
@@ -184,27 +185,27 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . retraite': [
 		'dirigeant . indépendant . cotisations et contributions . retraite de base',
 		'dirigeant . indépendant . cotisations et contributions . retraite complémentaire',
-		'dirigeant . indépendant . cotisations et contributions . PCV'
+		'dirigeant . indépendant . cotisations et contributions . PCV',
 	],
 	'protection sociale . santé': [
 		'dirigeant . indépendant . cotisations et contributions . maladie',
 		'dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 5.95 / 9.2',
 	],
 	'protection sociale . invalidité et décès': [
-		'dirigeant . indépendant . cotisations et contributions . invalidité et décès'
+		'dirigeant . indépendant . cotisations et contributions . invalidité et décès',
 	],
 	'protection sociale . famille': [
 		'dirigeant . indépendant . cotisations et contributions . allocations familiales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 0.95 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 0.95 / 9.2',
 	],
 	'protection sociale . autres': [
 		'dirigeant . indépendant . cotisations et contributions . contributions spéciales',
-		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 2.3 / 9.2'
+		'dirigeant . indépendant . cotisations et contributions . CSG et CRDS * 2.3 / 9.2',
 	],
 	'protection sociale . formation': [
-		'dirigeant . indépendant . cotisations et contributions . formation professionnelle'
-	]
+		'dirigeant . indépendant . cotisations et contributions . formation professionnelle',
+	],
 }
 
 function Distribution() {
@@ -215,11 +216,11 @@ function Distribution() {
 	).map(([section, cotisations]) => [
 		section,
 		(cotisations as string[])
-			.map(c => engine.evaluate(c, { unit: targetUnit }))
+			.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
 			.reduce(
 				(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
 				0
-			)
+			),
 	]) as Array<[DottedName, number]>)
 		.filter(([, value]) => value > 0)
 		.sort(([, a], [, b]) => b - a)
@@ -252,7 +253,7 @@ function DistributionBranch({
 	dottedName,
 	value,
 	icon,
-	maximum
+	maximum,
 }: DistributionBranchProps) {
 	const rules = useContext(EngineContext).getParsedRules()
 	const branche = rules[dottedName]
@@ -262,8 +263,8 @@ function DistributionBranch({
 			value={value}
 			maximum={maximum}
 			title={<RuleLink dottedName={dottedName} />}
-			icon={icon ?? branche.icons}
-			description={branche.summary}
+			icon={icon ?? branche.rawNode.icônes}
+			description={branche.rawNode.résumé}
 			unit="€"
 		/>
 	)

@@ -10,7 +10,7 @@ import {
 	map,
 	mergeAll,
 	mergeWith,
-	sortBy
+	sortBy,
 } from 'ramda'
 import { RootState } from 'Reducers/rootReducer'
 import { LegalStatusRequirements, State } from '../types/companyTypes'
@@ -21,41 +21,41 @@ const LEGAL_STATUS_DETAILS = {
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		autoEntrepreneur: true
+		autoEntrepreneur: true,
 	},
 	EIRL: {
 		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		autoEntrepreneur: false,
-		minorityDirector: false
+		minorityDirector: false,
 	},
 	'auto-entrepreneur-EIRL': {
 		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		multipleAssociates: false,
 		minorityDirector: false,
-		autoEntrepreneur: true
+		autoEntrepreneur: true,
 	},
 	EI: {
 		soleProprietorship: true,
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		autoEntrepreneur: false
+		autoEntrepreneur: false,
 	},
 	SASU: {
 		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		autoEntrepreneur: false
+		autoEntrepreneur: false,
 	},
 	SAS: {
 		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		autoEntrepreneur: false
+		autoEntrepreneur: false,
 	},
 	SARL: [
 		{
@@ -63,29 +63,29 @@ const LEGAL_STATUS_DETAILS = {
 			directorStatus: 'SELF_EMPLOYED',
 			multipleAssociates: true,
 			minorityDirector: false,
-			autoEntrepreneur: false
+			autoEntrepreneur: false,
 		},
 		{
 			soleProprietorship: false,
 			directorStatus: 'SALARIED',
 			multipleAssociates: true,
 			minorityDirector: true,
-			autoEntrepreneur: false
-		}
+			autoEntrepreneur: false,
+		},
 	] as Array<LegalStatusRequirements>,
 	EURL: {
 		soleProprietorship: false,
 		directorStatus: 'SELF_EMPLOYED',
 		minorityDirector: false,
 		multipleAssociates: false,
-		autoEntrepreneur: false
+		autoEntrepreneur: false,
 	},
 	SA: {
 		soleProprietorship: false,
 		directorStatus: 'SALARIED',
 		multipleAssociates: true,
-		autoEntrepreneur: false
-	}
+		autoEntrepreneur: false,
+	},
 }
 
 export type LegalStatus = keyof typeof LEGAL_STATUS_DETAILS
@@ -98,7 +98,7 @@ const QUESTION_LIST: Array<Question> = keys(
 const isCompatibleStatusWith = (answers: any) => (
 	statusRequirements: LegalStatusRequirements
 ): boolean => {
-	const stringify = map(x => (!isNil(x) ? JSON.stringify(x) : x))
+	const stringify = map((x) => (!isNil(x) ? JSON.stringify(x) : x))
 	const answerCompatibility = Object.values(
 		mergeWith(
 			(answer, statusValue) =>
@@ -107,14 +107,14 @@ const isCompatibleStatusWith = (answers: any) => (
 			stringify(answers)
 		)
 	)
-	const isCompatibleStatus = answerCompatibility.every(x => x !== false)
+	const isCompatibleStatus = answerCompatibility.every((x) => x !== false)
 	return isCompatibleStatus
 }
 const possibleStatus = (
 	answers: Array<LegalStatusRequirements> | LegalStatusRequirements
 ): Record<LegalStatus, boolean> =>
 	map(
-		statusRequirements =>
+		(statusRequirements) =>
 			Array.isArray(statusRequirements)
 				? any(isCompatibleStatusWith(answers as any), statusRequirements)
 				: isCompatibleStatusWith(answers as any)(
@@ -130,9 +130,9 @@ export const possibleStatusSelector = (state: {
 
 export const nextQuestionSelector = (state: RootState): Question | null => {
 	const legalStatusRequirements = state.inFranceApp.companyLegalStatus
-	const questionAnswered = Object.keys(legalStatusRequirements) as Array<
-		Question
-	>
+	const questionAnswered = Object.keys(
+		legalStatusRequirements
+	) as Array<Question>
 	const possibleStatusList = flatten(
 		Object.values(LEGAL_STATUS_DETAILS)
 	).filter(isCompatibleStatusWith(legalStatusRequirements) as any)
@@ -147,12 +147,12 @@ export const nextQuestionSelector = (state: RootState): Question | null => {
 		)
 		const frequencyOfAnswers = Object.values(
 			countBy(
-				x => x,
-				answerPopulation.filter(x => x !== undefined)
+				(x) => x,
+				answerPopulation.filter((x) => x !== undefined)
 			)
-		).map(numOccurrence => numOccurrence / answerPopulation.length)
+		).map((numOccurrence) => numOccurrence / answerPopulation.length)
 		const shannonEntropy = -frequencyOfAnswers
-			.map(p => p * Math.log2(p))
+			.map((p) => p * Math.log2(p))
 			.reduce(add, 0)
 		return [question, shannonEntropy]
 	})

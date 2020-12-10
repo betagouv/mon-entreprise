@@ -71,7 +71,7 @@ export const Markdown = ({
 			link: LinkRenderer,
 			text: TextRenderer,
 			code: CodeBlock,
-			...renderers
+			...renderers,
 		}}
 		{...otherProps}
 	/>

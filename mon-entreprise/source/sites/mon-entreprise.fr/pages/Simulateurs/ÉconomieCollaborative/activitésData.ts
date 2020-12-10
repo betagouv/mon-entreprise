@@ -9,11 +9,11 @@ export const flatActivités = pipe(
 )(activités)
 
 export const getActivité = (a: string) =>
-	flatActivités.find(item => item.titre === a)
+	flatActivités.find((item) => item.titre === a)
 
 export const getTranslatedActivité = (title: string, language: string) => ({
 	...getActivité(title),
-	...(language !== 'fr' && activitésEn[title])
+	...(language !== 'fr' && activitésEn[title]),
 })
 
 export const getMinimumDéclaration = (a: string) => {

@@ -1,4 +1,4 @@
-import { makeJsx } from '../../evaluation'
+import Explanation from '../Explanation'
 import { Mecanism } from './common'
 
 export default function InversionNumérique({ nodeValue, explanation }) {
@@ -11,7 +11,7 @@ export default function InversionNumérique({ nodeValue, explanation }) {
 						variable qui possède une formule de calcul et dont la valeur a été
 						fixée dans la simulation :
 					</p>
-					{makeJsx(explanation.inversionGoal)}
+					<Explanation node={explanation.inversionGoal} />
 					<p>
 						Malheureusement, il a été impossible de retrouver une valeur pour
 						cette formule qui permette d'atterrir sur la valeur demandée.
@@ -24,7 +24,7 @@ export default function InversionNumérique({ nodeValue, explanation }) {
 						une formule de calcul et dont la valeur a été fixée dans la
 						simulation :
 					</p>
-					{makeJsx(explanation.inversionGoal)}
+					<Explanation node={explanation.inversionGoal} />
 				</>
 			) : (
 				<>
@@ -33,8 +33,10 @@ export default function InversionNumérique({ nodeValue, explanation }) {
 						inversion en utilisant les formules des règles suivantes :
 					</p>
 					<ul id="inversionsPossibles">
-						{explanation.inversionCandidates.map(el => (
-							<li key={el.dottedName}>{makeJsx(el)}</li>
+						{explanation.inversionCandidates.map((el) => (
+							<li key={el.dottedName}>
+								<Explanation node={el} />
+							</li>
 						))}
 					</ul>
 				</>

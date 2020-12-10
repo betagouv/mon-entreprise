@@ -1,23 +1,20 @@
-import { serializeValue } from 'publicodes'
+import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Unit } from 'publicodes'
 
 type InputSuggestionsProps = {
-	suggestions?: Record<string, number>
-	onFirstClick: (val: string) => void
-	onSecondClick?: (val: string) => void
-	unit?: Unit
+	suggestions?: Record<string, ASTNode>
+	onFirstClick: (val: ASTNode) => void
+	onSecondClick?: (val: ASTNode) => void
 }
 
 export default function InputSuggestions({
 	suggestions = {},
-	onSecondClick = x => x,
+	onSecondClick = (x) => x,
 	onFirstClick,
-	unit
 }: InputSuggestionsProps) {
-	const [suggestion, setSuggestion] = useState<string | number>()
+	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t, i18n } = useTranslation()
 
 	return (
@@ -30,18 +27,11 @@ export default function InputSuggestions({
 				margin-bottom: 0.4rem;
 			`}
 		>
-			{toPairs(suggestions).map(([text, value]: [string, number]) => {
-				const valueWithUnit: string = serializeValue(
-					{
-						nodeValue: value,
-						unit
-					},
-					{ language: i18n.language }
-				)
+			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<button
 						className="ui__ link-button"
-						key={value}
+						key={text}
 						css={`
 							margin: 0 0.4rem !important;
 							:first-child {
@@ -49,9 +39,9 @@ export default function InputSuggestions({
 							}
 						`}
 						onClick={() => {
-							onFirstClick(valueWithUnit)
-							if (suggestion !== value) setSuggestion(valueWithUnit)
-							else onSecondClick && onSecondClick(valueWithUnit)
+							onFirstClick(value)
+							if (suggestion !== value) setSuggestion(value)
+							else onSecondClick && onSecondClick(value)
 						}}
 						title={t('cliquez pour insérer cette suggestion')}
 					>

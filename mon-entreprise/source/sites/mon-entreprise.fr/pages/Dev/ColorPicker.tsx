@@ -9,7 +9,7 @@ export default function ColorPicker({ color, onChange }: ColorPickerProps) {
 	return (
 		<ChromePicker
 			color={color}
-			onChangeComplete={color => onChange(color.hex)}
+			onChangeComplete={(color) => onChange(color.hex)}
 		/>
 	)
 }

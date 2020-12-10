@@ -2,13 +2,19 @@ import Distribution from 'Components/Distribution'
 import PaySlip from 'Components/PaySlip'
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
-import { useEvaluation, useInversionFail } from 'Components/utils/EngineContext'
+import {
+	EngineContext,
+	useEngine,
+	useInversionFail,
+} from 'Components/utils/EngineContext'
 import { useContext, useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import * as Animate from 'Components/ui/animate'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import { evaluateRule } from 'publicodes'
+import { DottedName } from 'Rules'
 
 export default function SalaryExplanation() {
 	const showDistributionFirst = !useSelector(answeredQuestionsSelector).length
@@ -34,7 +40,7 @@ export default function SalaryExplanation() {
 							onClick={() =>
 								distributionRef.current?.scrollIntoView({
 									behavior: 'smooth',
-									block: 'start'
+									block: 'start',
 								})
 							}
 						>
@@ -75,14 +81,13 @@ export default function SalaryExplanation() {
 function RevenueRepatitionSection() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
-	const data = useEvaluation(
-		[
-			'contrat salarié . rémunération . net après impôt',
-			'impôt',
-			'contrat salarié . cotisations'
-		],
-		{ unit: '€/mois' }
-	)
+	const engine = useEngine()
+	const data = ([
+		'contrat salarié . rémunération . net après impôt',
+		'impôt',
+		'contrat salarié . cotisations',
+	] as DottedName[]).map((r) => evaluateRule(engine, r, { unité: '€/mois' }))
+
 	return (
 		<section>
 			<h2>
@@ -93,17 +98,17 @@ function RevenueRepatitionSection() {
 					{
 						...data[0],
 						title: t('Revenu disponible'),
-						color: palettes[0][0]
+						color: palettes[0][0],
 					},
 					{
 						...data[1],
 						title: t('impôt'),
-						color: palettes[1][0]
+						color: palettes[1][0],
 					},
 					{
 						...data[2],
-						color: palettes[1][1]
-					}
+						color: palettes[1][1],
+					},
 				]}
 			/>
 		</section>

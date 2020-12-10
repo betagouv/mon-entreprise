@@ -1,5 +1,5 @@
 import Conversation, {
-	ConversationProps
+	ConversationProps,
 } from 'Components/conversation/Conversation'
 import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
@@ -28,7 +28,7 @@ export default function Simulation({
 	results,
 	customEndMessages,
 	showLinkToForm,
-	showPeriodSwitch
+	showPeriodSwitch,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	return (
@@ -59,7 +59,7 @@ export default function Simulation({
 }
 
 function Questions({
-	customEndMessages
+	customEndMessages,
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']
 }) {
@@ -72,7 +72,7 @@ function Questions({
 					display: 'flex',
 					justifyContent: 'space-between',
 					marginTop: '1.2rem',
-					marginBottom: '0.6rem'
+					marginBottom: '0.6rem',
 				}}
 			>
 				{progress < 1 ? (

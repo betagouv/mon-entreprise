@@ -1,3 +1,4 @@
+import { Evaluation } from 'publicodes/dist/types/AST/types'
 import { useCallback } from 'react'
 import { debounce } from '../../utils'
 import { InputCommonProps } from './RuleInput'
@@ -6,9 +7,9 @@ export default function ParagrapheInput({
 	onChange,
 	value,
 	id,
-	defaultValue,
-	autoFocus
-}: InputCommonProps) {
+	missing,
+	autoFocus,
+}: InputCommonProps & { value: Evaluation<string> }) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
@@ -19,14 +20,14 @@ export default function ParagrapheInput({
 				rows={6}
 				style={{ resize: 'none' }}
 				id={id}
-				placeholder={(defaultValue?.nodeValue ?? defaultValue)?.replace(
-					'\\n',
-					'\n'
-				)}
 				onChange={({ target }) => {
 					debouncedOnChange(`'${target.value.replace(/\n/g, '\\n')}'`)
 				}}
-				defaultValue={value?.replace('\\n', '\n')}
+				{...{
+					[missing ? 'placeholder' : 'defaultValue']: (
+						(value as string) || ''
+					).replace('\\n', '\n'),
+				}}
 				autoComplete="off"
 			/>
 		</div>

@@ -1,32 +1,32 @@
 import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
+import RuleInput from 'Components/conversation/RuleInput'
+import { Condition } from 'Components/EngineValue'
+import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
+import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
-import { useEvaluation, EngineContext } from 'Components/utils/EngineContext'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import RuleInput from 'Components/conversation/RuleInput'
-import { ParsedRule } from 'publicodes'
-import { Fragment, useCallback, useEffect, useState, useContext } from 'react'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
+import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
+import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import Animate from 'Components/ui/animate'
 import { CompanySection } from '../Home'
 import simulationConfig from './config.yaml'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import emoji from 'react-easy-emoji'
-import RuleLink from 'Components/RuleLink'
-import { formatValue } from 'publicodes'
-import Skeleton from 'Components/ui/Skeleton'
 
 export default function AideDéclarationIndépendant() {
 	const dispatch = useDispatch()
-	const rules = useContext(EngineContext).getParsedRules()
+	const engine = useEngine()
+
 	const company = useSelector(
 		(state: RootState) => state.inFranceApp.existingCompany
 	)
@@ -36,19 +36,18 @@ export default function AideDéclarationIndépendant() {
 
 	const [resultsRef, resultsInViewPort] = useDisplayOnIntersecting({
 		threshold: 0.5,
-		unobserve: false
+		unobserve: false,
 	})
-	const dottedName = 'dirigeant . rémunération totale'
-	const value = useSelector(situationSelector)[dottedName]
-	const [currentIncome, setCurrentIncome] = useState(value)
-	const displayForm = currentIncome != null
-	useEffect(() => {
-		if (resultsInViewPort && displayForm) {
-			dispatch(updateSituation(dottedName, currentIncome))
-		} else {
-			dispatch(updateSituation(dottedName, null))
-		}
-	}, [dispatch, resultsInViewPort, displayForm, currentIncome])
+	const setCurrentIncome = useCallback(
+		(currentIncome) => {
+			dispatch(
+				updateSituation('dirigeant . rémunération totale', currentIncome)
+			)
+		},
+		[dispatch, updateSituation]
+	)
+	const displayForm =
+		evaluateRule(engine, 'dirigeant . rémunération totale').nodeValue !== null
 
 	return (
 		<div>
@@ -111,10 +110,8 @@ export default function AideDéclarationIndépendant() {
 			</Trans>
 			<BigInput>
 				<RuleInput
-					rules={rules}
 					dottedName="dirigeant . rémunération totale"
 					onChange={setCurrentIncome}
-					value={currentIncome}
 					autoFocus
 				/>
 			</BigInput>
@@ -139,9 +136,11 @@ export default function AideDéclarationIndépendant() {
 							<SimpleField dottedName="entreprise . date de création" />
 							<SubSection dottedName="aide déclaration revenu indépendant 2019 . nature de l'activité" />
 							{/* PLNR */}
-							<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
-							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+							<Condition expression="aide déclaration revenu indépendant 2019 . nature de l'activité">
+								<SimpleField dottedName="entreprise . catégorie d'activité . débit de tabac" />
+								<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
+								<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
+							</Condition>
 
 							<h2>
 								<Trans>Situation personnelle</Trans>
@@ -309,7 +308,7 @@ function ExplicationsResultatFiscal() {
 
 function SubSection({
 	dottedName: sectionDottedName,
-	hideTitle = false
+	hideTitle = false,
 }: SubSectionProp) {
 	const parsedRules = useContext(EngineContext).getParsedRules()
 	const ruleTitle = parsedRules[sectionDottedName]?.title
@@ -318,16 +317,19 @@ function SubSection({
 	const title = hideTitle ? null : ruleTitle
 	const subQuestions = [
 		...(Object.keys(situation) as Array<DottedName>),
-		...nextSteps
-	].filter(nextStep => {
-		const { dottedName, question } = parsedRules[nextStep]
+		...nextSteps,
+	].filter((nextStep) => {
+		const {
+			dottedName,
+			rawNode: { question },
+		} = parsedRules[nextStep]
 		return !!question && dottedName.startsWith(sectionDottedName)
 	})
 
 	return (
 		<>
 			{!!subQuestions.length && title && <h3>{title}</h3>}
-			{subQuestions.map(dottedName => (
+			{subQuestions.map((dottedName) => (
 				<SimpleField key={dottedName} dottedName={dottedName} />
 			))}
 		</>
@@ -336,37 +338,31 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: ParsedRule['summary']
-	question?: ParsedRule['question']
+	summary?: EvaluatedRule['résumé']
+	question?: EvaluatedRule['question']
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
-	const evaluatedRule = useEvaluation(dottedName)
-	const rules = useContext(EngineContext).getParsedRules()
-	const value = useSelector(situationSelector)[dottedName]
-	const [currentValue, setCurrentValue] = useState(value)
+	const engine = useContext(EngineContext)
+	const evaluatedRule = evaluateRule(engine, dottedName)
+	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
-		value => {
+		(value) => {
 			dispatch(updateSituation(dottedName, value))
 			dispatch({
 				type: 'STEP_ACTION',
 				name: 'fold',
-				step: dottedName
+				step: dottedName,
 			})
 		},
 		[dispatch, dottedName]
 	)
-	const update = (value: unknown) => {
-		dispatchValue(value)
-		setCurrentValue(value)
-	}
-	useEffect(() => {
-		setCurrentValue(value)
-	}, [value])
+
 	if (
-		evaluatedRule.isApplicable === false ||
-		evaluatedRule.isApplicable === null
+		!(dottedName in situation) &&
+		evaluatedRule.nodeValue === false &&
+		!(dottedName in evaluatedRule.missingVariables)
 	) {
 		return null
 	}
@@ -388,14 +384,9 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 							{question ?? evaluatedRule.question}
 							<ExplicableRule dottedName={dottedName} />
 						</p>
-						<p className="ui__ notice">{summary ?? evaluatedRule.summary}</p>
+						<p className="ui__ notice">{summary ?? evaluatedRule.résumé}</p>
 					</div>
-					<RuleInput
-						rules={rules}
-						dottedName={dottedName}
-						onChange={update}
-						value={currentValue}
-					/>
+					<RuleInput dottedName={dottedName} onChange={dispatchValue} />
 				</Question>
 			</Animate.fromTop>
 		</div>
@@ -403,12 +394,10 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 }
 
 function Results() {
-	const results = useEvaluation(
-		simulationConfig.objectifs as Array<DottedName>,
-		{ unit: '€/an' }
+	const engine = useEngine()
+	const results = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
+		evaluateRule(engine, objectif, { unité: '€/an' })
 	)
-	const onGoingComputation = !results.filter(node => node.nodeValue != null)
-		.length
 	return (
 		<div
 			className="ui__ card lighter-bg"
@@ -420,33 +409,20 @@ function Results() {
 				</Trans>
 				{emoji('📄')}
 			</h1>
-			{onGoingComputation && (
-				<h2>
-					<small>
-						<Trans i18nKey="aide-déclaration-indépendant.results.ongoing">
-							Calcul en cours...
-						</Trans>
-					</small>
-				</h2>
-			)}
 			<>
 				<Animate.fromTop>
-					{results.map(r => (
-						<Fragment key={r.title}>
+					{results.map((r) => (
+						<Fragment key={r.dottedName}>
 							<h4>
-								{r.title} <small>{r.summary}</small>
+								{r.title} <small>{r.résumé}</small>
 							</h4>
 							{r.description && <p className="ui__ notice">{r.description}</p>}
 							<p className="ui__ lead" css="margin-bottom: 1rem;">
 								<RuleLink dottedName={r.dottedName}>
-									{r.nodeValue != null ? (
-										formatValue(r, {
-											displayedUnit: '€',
-											precision: 0
-										})
-									) : (
-										<Skeleton width={80} />
-									)}
+									{formatValue(r, {
+										displayedUnit: '€',
+										precision: 0,
+									})}
 								</RuleLink>
 							</p>
 						</Fragment>

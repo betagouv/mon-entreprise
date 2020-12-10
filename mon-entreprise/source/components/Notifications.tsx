@@ -1,6 +1,10 @@
 import { hideNotification } from 'Actions/actions'
 import animate from 'Components/ui/animate'
-import { useInversionFail, EngineContext } from 'Components/utils/EngineContext'
+import {
+	useInversionFail,
+	EngineContext,
+	useEngine,
+} from 'Components/utils/EngineContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
@@ -9,7 +13,7 @@ import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
-import { EvaluatedRule } from 'publicodes'
+import Engine, { EvaluatedRule, ASTNode, evaluateRule } from 'publicodes'
 
 // To add a new notification to a simulator, you should create a publicode rule
 // with the "type: notification" attribute. The display can be customized with
@@ -20,17 +24,19 @@ type Notification = Pick<EvaluatedRule, 'dottedName' | 'description'> & {
 	sévérité: 'avertissement' | 'information'
 }
 
+export function getNotifications(engine: Engine) {
+	return Object.values(engine.getParsedRules())
+		.filter(
+			(rule: ASTNode & { nodeKind: 'rule' }) =>
+				rule.rawNode['type'] === 'notification'
+		)
+		.map((node) => evaluateRule(engine, node.dottedName))
+		.filter((node) => !!node.nodeValue)
+}
 export default function Notifications() {
 	const { t } = useTranslation()
-	const engine = useContext(EngineContext)
-	const notifications = Object.values(engine.getParsedRules())
-		.filter(rule => rule['type'] === 'notification')
-		.filter(
-			notification =>
-				![null, false].includes(
-					engine.evaluate(notification.dottedName).isApplicable
-				)
-		)
+	const engine = useEngine()
+
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
@@ -46,10 +52,10 @@ export default function Notifications() {
 						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
 					),
 					type: 'notification',
-					sévérité: 'avertissement'
-				}
+					sévérité: 'avertissement',
+				},
 		  ]
-		: ((notifications as any) as Array<Notification>)
+		: ((getNotifications(engine) as any) as Array<Notification>)
 	if (!messages?.length) return null
 
 	return (

@@ -3,8 +3,8 @@ import Simulation from 'Components/Simulation'
 import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
-import { useEvaluation } from 'Components/utils/EngineContext'
-import { EvaluatedRule, formatValue } from 'publicodes'
+import { EngineContext, useEngine } from 'Components/utils/EngineContext'
+import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
@@ -69,13 +69,21 @@ export default function ChômagePartiel() {
 function ExplanationSection() {
 	const {
 		i18n: { language },
-		t
+		t,
 	} = useTranslation()
 
-	const net = useEvaluation('contrat salarié . rémunération . net')
-	const netHabituel = useEvaluation('chômage partiel . revenu net habituel')
-	const totalEntreprise = useEvaluation('contrat salarié . prix du travail')
-	const totalEntrepriseHabituel = useEvaluation(
+	const engine = useEngine()
+	const net = evaluateRule(engine, 'contrat salarié . rémunération . net')
+	const netHabituel = evaluateRule(
+		engine,
+		'chômage partiel . revenu net habituel'
+	)
+	const totalEntreprise = evaluateRule(
+		engine,
+		'contrat salarié . prix du travail'
+	)
+	const totalEntrepriseHabituel = evaluateRule(
+		engine,
 		'chômage partiel . coût employeur habituel'
 	)
 	if (
@@ -120,8 +128,8 @@ function ExplanationSection() {
 											</strong>{' '}
 											du revenu net
 										</span>
-									)
-								}
+									),
+								},
 							],
 							[
 								totalEntreprise,
@@ -138,15 +146,15 @@ function ExplanationSection() {
 														100,
 													{
 														displayedUnit: '%',
-														precision: 0
+														precision: 0,
 													}
 												)}
 											</strong>{' '}
 											du coût habituel
 										</span>
-									)
-								}
-							]
+									),
+								},
+							],
 						]}
 					/>
 				</div>
@@ -166,7 +174,7 @@ type Line = Array<
 >
 
 function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
-	const columns = head.filter(x => x !== '')
+	const columns = head.filter((x) => x !== '')
 	const [currentColumnIndex, setCurrentColumnIndex] = useState(
 		columns.length - 1
 	)
@@ -178,7 +186,9 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 					<th></th>
 					<th>
 						<select
-							onChange={evt => setCurrentColumnIndex(Number(evt.target.value))}
+							onChange={(evt) =>
+								setCurrentColumnIndex(Number(evt.target.value))
+							}
 						>
 							{columns.map((name, i) => (
 								<option value={i} selected={i === currentColumnIndex} key={i}>
@@ -242,13 +252,13 @@ function ValueWithLink(rule: EvaluatedRule<DottedName>) {
 			{formatValue(rule, {
 				language,
 				displayedUnit: '€',
-				precision: 0
+				precision: 0,
 			})}
 		</RuleLink>
 	)
 }
 
-function RowLabel(target: EvaluatedRule) {
+function RowLabel(target: EvaluatedRule<DottedName>) {
 	return (
 		<>
 			{' '}
@@ -259,7 +269,7 @@ function RowLabel(target: EvaluatedRule) {
 			>
 				{target.title}
 			</div>
-			<p className="ui__ notice">{target.summary}</p>
+			<p className="ui__ notice">{target.résumé}</p>
 		</>
 	)
 }

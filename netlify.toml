@@ -261,3 +261,7 @@
   EN_SITE = "https://demo.mon-entreprise.fr${path}?s=m"
   FR_SITE = "https://demo.mon-entreprise.fr${path}"
 
+[context."next".environment]
+  EN_SITE = "https://next.mon-entreprise.fr${path}?s=m"
+  FR_SITE = "https://next.mon-entreprise.fr${path}"
+

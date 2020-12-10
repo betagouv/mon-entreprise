@@ -2,34 +2,32 @@ import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import Engine from '..'
 import i18n from '../i18n'
-import {
-	decodeRuleName,
-	encodeRuleName,
-	ruleWithDedicatedDocumentationPage
-} from '../ruleUtils'
+import { decodeRuleName, encodeRuleName } from '../ruleUtils'
 import { BasepathContext, EngineContext } from './contexts'
-import RulePage from './rule/Rule'
+import RulePage from './rule/RulePage'
 
 export { RuleLink } from './RuleLink'
+export { default as Explanation } from './Explanation'
 import References from './rule/References'
 export { References }
 
-type DocumentationProps<Names extends string> = {
+type DocumentationProps = {
 	documentationPath: string
-	engine: Engine<Names>
+	engine: Engine
 	language: 'fr' | 'en'
 }
 
-export function Documentation<Names extends string>({
+export function Documentation({
 	documentationPath,
 	engine,
-	language = 'fr'
-}: DocumentationProps<Names>) {
+	language = 'fr',
+}: DocumentationProps) {
 	useEffect(() => {
 		if (language !== i18n.language) {
 			i18n.changeLanguage(language)
 		}
 	}, [language])
+
 	return (
 		<EngineContext.Provider value={engine}>
 			<BasepathContext.Provider value={documentationPath}>
@@ -57,9 +55,9 @@ export function getDocumentationSiteMap({ engine, documentationPath }) {
 			// .filter(dottedName =>
 			// 	ruleWithDedicatedDocumentationPage(parsedRules[dottedName])
 			// )
-			.map(dottedName => [
+			.map((dottedName) => [
 				documentationPath + '/' + encodeRuleName(dottedName),
-				dottedName
+				dottedName,
 			])
 	)
 }

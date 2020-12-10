@@ -1,15 +1,12 @@
 const fr = Cypress.env('language') === 'fr'
 const testText = (selector, text) =>
-	cy.get(`[data-test-id=${selector}]`).should($span => {
-		const displayedText = $span
-			.text()
-			.trim()
-			.replace(/[\s]/g, ' ')
+	cy.get(`[data-test-id=${selector}]`).should(($span) => {
+		const displayedText = $span.text().trim().replace(/[\s]/g, ' ')
 		console.log(displayedText, text)
 		expect(displayedText).to.eq(text)
 	})
 
-describe('Page covid-19', function() {
+describe('Page covid-19', function () {
 	if (!fr) {
 		return
 	}

@@ -1,6 +1,6 @@
 import { hasConditions } from './activitésData'
 
-const filterActivités = (filter = () => true) => state =>
+const filterActivités = (filter = () => true) => (state) =>
 	Object.entries(state)
 		.filter(
 			([activitéTitle, activitéData]) =>
@@ -13,17 +13,17 @@ export const nextActivitéSelector = (state, currentActivité) =>
 		({ vue }, activitéTitle) => !vue && activitéTitle !== currentActivité
 	)(state)[0]
 
-const estExonérée = critèresExonération =>
+const estExonérée = (critèresExonération) =>
 	!!critèresExonération.length && critèresExonération.every(Boolean)
 
-export const estExonéréeSelector = activité => state =>
+export const estExonéréeSelector = (activité) => (state) =>
 	estExonérée(state[activité].critèresExonération)
 
 export const activitésEffectuéesSelector = filterActivités()
 export const activitésRéponduesSelector = filterActivités(
 	({ vue }, activité) => vue && hasConditions(activité)
 )
-export const déclarationsSelector = state => ({
+export const déclarationsSelector = (state) => ({
 	RÉGIME_GÉNÉRAL_DISPONIBLE: filterActivités(
 		({ seuilRevenus, critèresExonération }) =>
 			['RÉGIME_GÉNÉRAL_NON_DISPONIBLE', 'RÉGIME_GÉNÉRAL_DISPONIBLE'].includes(
@@ -37,7 +37,7 @@ export const déclarationsSelector = state => ({
 	IMPOSITION: filterActivités(
 		({ seuilRevenus, critèresExonération }) =>
 			seuilRevenus === 'IMPOSITION' && !estExonérée(critèresExonération)
-	)(state)
+	)(state),
 })
 
 export const régimeGénéralDisponibleSelector = (state, activité) =>

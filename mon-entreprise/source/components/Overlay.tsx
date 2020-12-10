@@ -49,7 +49,7 @@ export default function Overlay({
 					<FocusTrap
 						focusTrapOptions={{
 							onDeactivate: onClose,
-							clickOutsideDeactivates: !!onClose
+							clickOutsideDeactivates: !!onClose,
 						}}
 					>
 						<div

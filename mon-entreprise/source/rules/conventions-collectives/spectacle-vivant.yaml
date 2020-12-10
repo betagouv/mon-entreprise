@@ -56,9 +56,8 @@ contrat salarié . convention collective . SVP . prévoyance:
 contrat salarié . intermittents du spectacle:
   applicable si:
     toutes ces conditions:
-      - CDD . motif . classique . usage
-      - une de ces conditions:
-          - convention collective . SVP
+      - CDD . motif = 'classique . usage'
+      - convention collective . SVP
   question: A quel statut d'intermittent est rattaché l'employé ?
   par défaut: "'technicien'"
   formule:
@@ -74,7 +73,7 @@ contrat salarié . intermittents du spectacle . formation professionnelle:
     somme:
       - 50 €/mois
       - produit:
-          assiette: rémunération . brut [€/mois]
+          assiette: rémunération . brut
           taux: 2.10%
 
 contrat salarié . intermittents du spectacle . caisse des congés spectacle:
@@ -91,10 +90,11 @@ contrat salarié . intermittents du spectacle . retraite complémentaire technic
     une de ces conditions:
       - statut cadre
       - technicien
+  formule: oui
   remplace:
-    - règle: retraite complémentaire . taux employeur tranche 1
+    - règle: retraite complémentaire . employeur . taux tranche 1
       par: 3.94%
-    - règle: retraite complémentaire . taux salarié tranche 1
+    - règle: retraite complémentaire . salarié . taux tranche 1
       par: 3.93%
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
@@ -103,11 +103,11 @@ contrat salarié . intermittents du spectacle . technicien:
   formule: intermittents du spectacle = 'technicien'
 
 contrat salarié . intermittents du spectacle . technicien . non cadre:
-  applicable si: statut cadre = non
+  formule: statut cadre = non
   remplace:
-    - règle: retraite complémentaire . taux employeur tranche 2
+    - règle: retraite complémentaire . employeur . taux tranche 2
       par: 10.80%
-    - règle: retraite complémentaire . taux salarié tranche 2
+    - règle: retraite complémentaire . salarié . taux tranche 2
       par: 10.79%
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
@@ -140,7 +140,7 @@ contrat salarié . intermittents du spectacle . artiste:
     Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
 
 contrat salarié . intermittents du spectacle . artiste . non cadre:
-  applicable si: statut cadre = non
+  formule: statut cadre = non
   remplace:
     - règle: plafond sécurité sociale
       par: plafond sécurité sociale temps plein
@@ -148,13 +148,13 @@ contrat salarié . intermittents du spectacle . artiste . non cadre:
         - retraite complémentaire
         - contribution d'équilibre général
         - contribution d'équilibre technique
-    - règle: retraite complémentaire . taux employeur tranche 1
+    - règle: retraite complémentaire . employeur . taux tranche 1
       par: 4.45%
-    - règle: retraite complémentaire . taux employeur tranche 2
+    - règle: retraite complémentaire . employeur . taux tranche 2
       par: 10.80%
-    - règle: retraite complémentaire . taux salarié tranche 1
+    - règle: retraite complémentaire . salarié . taux tranche 1
       par: 4.44%
-    - règle: retraite complémentaire . taux salarié tranche 2
+    - règle: retraite complémentaire . salarié . taux tranche 2
       par: 10.79%
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
@@ -175,14 +175,14 @@ contrat salarié . intermittents du spectacle . artiste . réduction de taux:
       par: maladie . taux employeur * réduction de taux
     - règle: maladie . taux salarié
       par: maladie . taux salarié * réduction de taux
-    - règle: vieillesse . taux employeur plafonné
-      par: vieillesse . taux employeur plafonné * réduction de taux
-    - règle: vieillesse . taux employeur déplafonné
-      par: vieillesse . taux employeur déplafonné * réduction de taux
-    - règle: vieillesse . taux salarié plafonné
-      par: vieillesse . taux salarié plafonné * réduction de taux
-    - règle: vieillesse . taux salarié déplafonné
-      par: vieillesse . taux salarié déplafonné * réduction de taux
+    - règle: vieillesse . employeur . plafonnée . taux
+      par: vieillesse . employeur . plafonnée . taux * réduction de taux
+    - règle: vieillesse . employeur . déplafonnée . taux
+      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . plafonnée . taux
+      par: vieillesse . salarié . plafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . déplafonnée . taux
+      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
     - règle: allocations familiales . taux
       par: allocations familiales . taux * réduction de taux
     - règle: établissement . taux du versement transport

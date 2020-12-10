@@ -1,10 +1,14 @@
 import { evolve } from 'ramda'
+import { ASTNode, Evaluation } from '../AST/types'
 import { evaluationError, typeWarning } from '../error'
 import { mergeAllMissing } from '../evaluation'
-import { Evaluation } from '../types'
+import parse from '../parse'
 import { convertUnit, inferUnit } from '../units'
 
-export const parseTranches = (parse, tranches) => {
+type TrancheNode = { taux: ASTNode } | { montant: ASTNode }
+export type TrancheNodes = Array<TrancheNode & { plafond?: ASTNode }>
+
+export const parseTranches = (tranches, context): TrancheNodes => {
 	return tranches
 		.map((t, i) => {
 			if (!t.plafond && i > tranches.length) {
@@ -14,7 +18,13 @@ export const parseTranches = (parse, tranches) => {
 			}
 			return { ...t, plafond: t.plafond ?? Infinity }
 		})
-		.map(evolve({ taux: parse, montant: parse, plafond: parse }))
+		.map(
+			evolve({
+				taux: (node) => parse(node, context),
+				montant: (node) => parse(node, context),
+				plafond: (node) => parse(node, context),
+			})
+		)
 }
 
 export function evaluatePlafondUntilActiveTranche(
@@ -27,7 +37,7 @@ export function evaluatePlafondUntilActiveTranche(
 			if (activeTrancheFound) {
 				return [
 					[...tranches, { ...parsedTranche, isAfterActive: true }],
-					activeTrancheFound
+					activeTrancheFound,
 				]
 			}
 
@@ -59,8 +69,9 @@ export function evaluatePlafondUntilActiveTranche(
 			} catch (e) {
 				typeWarning(
 					cache._meta.contextRule,
-					`L'unité du plafond de la tranche n°${i +
-						1}  n'est pas compatible avec celle l'assiette`,
+					`L'unité du plafond de la tranche n°${
+						i + 1
+					}  n'est pas compatible avec celle l'assiette`,
 					e
 				)
 			}
@@ -71,7 +82,7 @@ export function evaluatePlafondUntilActiveTranche(
 					: plancherValue > assiette.nodeValue
 
 			const calculationValues = [plafond, assiette, multiplicateur, plancher]
-			if (calculationValues.some(node => node.nodeValue === null)) {
+			if (calculationValues.some((node) => node.nodeValue === null)) {
 				return [
 					[
 						...tranches,
@@ -83,10 +94,10 @@ export function evaluatePlafondUntilActiveTranche(
 							nodeValue: null,
 							isActive: null,
 							isAfterActive,
-							missingVariables: mergeAllMissing(calculationValues)
-						}
+							missingVariables: mergeAllMissing(calculationValues),
+						},
 					],
-					false
+					false,
 				]
 			}
 
@@ -97,8 +108,9 @@ export function evaluatePlafondUntilActiveTranche(
 			) {
 				evaluationError(
 					cache._meta.contextRule,
-					`Le plafond de la tranche n°${i +
-						1} a une valeur inférieure à celui de la tranche précédente`
+					`Le plafond de la tranche n°${
+						i + 1
+					} a une valeur inférieure à celui de la tranche précédente`
 				)
 			}
 
@@ -110,7 +122,7 @@ export function evaluatePlafondUntilActiveTranche(
 				isAfterActive,
 				isActive:
 					assiette.nodeValue >= plancherValue &&
-					assiette.nodeValue < (plafondValue as number)
+					assiette.nodeValue < (plafondValue as number),
 			}
 
 			return [[...tranches, tranche], tranche.isActive]

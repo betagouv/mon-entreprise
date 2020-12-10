@@ -1,6 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
-import { EvaluatedRule, Evaluation, Types } from 'publicodes'
+import { EvaluatedNode, EvaluatedRule } from 'publicodes'
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import { DottedName } from 'Rules'
@@ -63,10 +63,12 @@ function integerAndDecimalParts(value: number) {
 export function roundedPercentages(values: Array<number>) {
 	const sum = (a = 0, b: number) => a + b
 	const total = values.reduce(sum, 0)
-	const percentages = values.map(value =>
+	const percentages = values.map((value) =>
 		integerAndDecimalParts((value / total) * 100)
 	)
-	const totalRoundedPercentage = percentages.map(v => v.integer).reduce(sum, 0)
+	const totalRoundedPercentage = percentages
+		.map((v) => v.integer)
+		.reduce(sum, 0)
 	const indexesToIncrement = percentages
 		.map((percentage, index) => ({ ...percentage, index }))
 		.sort((a, b) => b.decimal - a.decimal)
@@ -82,7 +84,7 @@ export function roundedPercentages(values: Array<number>) {
 type StackedBarChartProps = {
 	data: Array<{
 		color?: string
-		value: Evaluation<Types>
+		value: EvaluatedNode['nodeValue']
 		legend: React.ReactNode
 		key: string
 	}>
@@ -90,14 +92,14 @@ type StackedBarChartProps = {
 
 export function StackedBarChart({ data }: StackedBarChartProps) {
 	const [intersectionRef, displayChart] = useDisplayOnIntersecting({
-		threshold: 0.5
+		threshold: 0.5,
 	})
 	const percentages = roundedPercentages(
-		data.map(d => (typeof d.value === 'number' && d.value) || 0)
+		data.map((d) => (typeof d.value === 'number' && d.value) || 0)
 	)
 	const dataWithPercentage = data.map((data, index) => ({
 		...data,
-		percentage: percentages[index]
+		percentage: percentages[index],
 	}))
 
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
@@ -112,7 +114,7 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 						<BarItem
 							style={{
 								width: `${percentage}%`,
-								backgroundColor: color || 'green'
+								backgroundColor: color || 'green',
 							}}
 							key={key}
 						/>
@@ -138,11 +140,11 @@ type StackedRulesChartProps = {
 export default function StackedRulesChart({ data }: StackedRulesChartProps) {
 	return (
 		<StackedBarChart
-			data={data.map(rule => ({
+			data={data.map((rule) => ({
 				...rule,
 				key: rule.dottedName,
 				value: rule.nodeValue,
-				legend: <RuleLink dottedName={rule.dottedName} />
+				legend: <RuleLink dottedName={rule.dottedName} />,
 			}))}
 		/>
 	)

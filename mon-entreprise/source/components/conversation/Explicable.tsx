@@ -18,14 +18,14 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	if (dottedName == null) return null
 	const rule = rules[dottedName]
 
-	if (rule.description == null) return null
+	if (rule.rawNode.description == null) return null
 
 	//TODO montrer les variables de type 'une possibilité'
 
 	return (
 		<button
 			className="ui__ link-button"
-			onClick={e => {
+			onClick={(e) => {
 				tracker.push(['trackEvent', 'help', dottedName])
 				dispatch(explainVariable(dottedName))
 				e.preventDefault()

@@ -1,11 +1,11 @@
 import Fuse from 'fuse.js'
 
 let fuse = null
-onmessage = function(event) {
+onmessage = function (event) {
 	if (event.data.options)
 		fuse = new Fuse(event.data.options, {
 			keys: ['Nature du risque', 'Catégorie'],
-			shouldSort: true
+			shouldSort: true,
 		})
 
 	if (event.data.input) {

@@ -29,7 +29,7 @@ const iframeAttributes = {
 	style: 'border: none; width: 100%; display: block; height: 500px',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
-	mozallowfullscreen: true
+	mozallowfullscreen: true,
 }
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
@@ -38,7 +38,7 @@ iframeResizer(
 	{
 		interval: 0,
 		scrolling: 'auto',
-		heightCalculationMethod: 'lowestElement'
+		heightCalculationMethod: 'lowestElement',
 	},
 	iframe
 )
@@ -48,7 +48,7 @@ const moduleToSitePath = {
 	'simulateur-embauche': '/simulateurs/salarié',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
-	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu'
+	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
 }
 const simulateurLink = process.env.FR_SITE.replace(
 	'${path}',

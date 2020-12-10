@@ -4,9 +4,9 @@ import {
 	getDifferenceInMonths,
 	getDifferenceInYears,
 	getRelativeDate,
-	getYear
+	getYear,
 } from './date'
-import { EvaluatedNode, Unit, Evaluation, Types } from './types'
+import { Unit, Evaluation, Types, ASTNode, EvaluatedNode } from './AST/types'
 
 export type Period<T> = {
 	start: T | null
@@ -20,7 +20,7 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 		'depuis la',
 		'à partir de',
 		'à partir du',
-		'du'
+		'du',
 	]
 	const endWords = [
 		"jusqu'à",
@@ -29,7 +29,7 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 		'avant',
 		'avant le',
 		'avant la',
-		'au'
+		'au',
 	]
 	const intervalWords = ['le', 'en']
 	if (!startWords.concat(endWords, intervalWords).includes(word)) {
@@ -42,7 +42,7 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 	if (word === 'le') {
 		return {
 			start: date,
-			end: date
+			end: date,
 		}
 	}
 	if (word === 'en') {
@@ -51,21 +51,19 @@ export function parsePeriod<Date>(word: string, date: Date): Period<Date> {
 	if (startWords.includes(word)) {
 		return {
 			start: date,
-			end: null
+			end: null,
 		}
 	}
 	if (endWords.includes(word)) {
 		return {
 			start: null,
-			end: date
+			end: date,
 		}
 	}
 	throw new Error('Non implémenté')
 }
 
-export type TemporalNode<Names extends string> = Temporal<
-	EvaluatedNode<Names, number>
->
+export type TemporalNode = Temporal<EvaluatedNode & { nodeValue: number }>
 export type Temporal<T> = Array<Period<string> & { value: T }>
 
 export function narrowTemporalValue<T extends Types>(
@@ -89,14 +87,14 @@ export function createTemporalEvaluation<T extends Types>(
 		temporalValue.unshift({
 			start: null,
 			end: getRelativeDate(period.start, -1),
-			value: false
+			value: false,
 		})
 	}
 	if (period.end != null) {
 		temporalValue.push({
 			start: getRelativeDate(period.end, 1),
 			end: null,
-			value: false
+			value: false,
 		})
 	}
 	return temporalValue
@@ -113,7 +111,7 @@ export function mapTemporal<T1, T2>(
 	return temporalValue.map(({ start, end, value }) => ({
 		start,
 		end,
-		value: fn(value)
+		value: fn(value),
 	}))
 }
 export function sometime<T1>(
@@ -143,11 +141,9 @@ export function concatTemporals<T, U>(
 	)
 }
 
-export function liftTemporalNode<
-	T extends Types,
-	Names extends string,
-	N extends EvaluatedNode<Names, T>
->(node: N): Temporal<Pick<N, Exclude<keyof N, 'temporalValue'>>> {
+export function liftTemporalNode<N extends ASTNode>(
+	node: N
+): Temporal<Pick<N, Exclude<keyof N, 'temporalValue'>>> {
 	if (!('temporalValue' in node)) {
 		return pureTemporal(node)
 	}
@@ -155,9 +151,9 @@ export function liftTemporalNode<
 		temporalValue: Temporal<Evaluation<number>>
 	}
 	return mapTemporal(
-		nodeValue => ({
+		(nodeValue) => ({
 			...baseNode,
-			nodeValue
+			nodeValue,
 		}),
 		temporalValue
 	)
@@ -180,7 +176,7 @@ export function zipTemporals<T1, T2>(
 	if (endDateComparison === 0) {
 		return zipTemporals(rest1, rest2, [
 			...acc,
-			{ ...value1, value: [value1.value, value2.value] }
+			{ ...value1, value: [value1.value, value2.value] },
 		])
 	}
 	// Value1 lasts longuer than value1
@@ -189,15 +185,15 @@ export function zipTemporals<T1, T2>(
 		return zipTemporals(
 			[
 				{ ...value1, start: getRelativeDate(value2.end as string, 1) },
-				...rest1
+				...rest1,
 			],
 			rest2,
 			[
 				...acc,
 				{
 					...value2,
-					value: [value1.value, value2.value]
-				}
+					value: [value1.value, value2.value],
+				},
 			]
 		)
 	}
@@ -209,14 +205,14 @@ export function zipTemporals<T1, T2>(
 			rest1,
 			[
 				{ ...value2, start: getRelativeDate(value1.end as string, 1) },
-				...rest2
+				...rest2,
 			],
 			[
 				...acc,
 				{
 					...value1,
-					value: [value1.value, value2.value]
-				}
+					value: [value1.value, value2.value],
+				},
 			]
 		)
 	}
@@ -245,7 +241,7 @@ function splitStartsAt<T>(
 		return [
 			...acc,
 			{ ...period, end: getRelativeDate(newStart as string, -1) },
-			{ ...period, start: newStart }
+			{ ...period, start: newStart },
 		]
 	}, [] as Temporal<T>)
 }
@@ -264,7 +260,7 @@ function splitEndsAt<T>(
 		return [
 			...acc,
 			{ ...period, end: newEnd },
-			{ ...period, start: getRelativeDate(newEnd as string, 1) }
+			{ ...period, start: getRelativeDate(newEnd as string, 1) },
 		]
 	}, [] as Temporal<T>)
 }

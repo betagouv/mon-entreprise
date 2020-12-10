@@ -1,43 +1,47 @@
-import { evaluationFunction } from '..'
-import Barème from '../components/mecanisms/Barème'
+import { EvaluationFunction } from '..'
 import { evaluationError } from '../error'
-import {
-	defaultNode,
-	mergeAllMissing,
-	registerEvaluationFunction
-} from '../evaluation'
+import parse from '../parse'
+import { defaultNode, mergeAllMissing } from '../evaluation'
+import { registerEvaluationFunction } from '../evaluationFunctions'
 import {
 	liftTemporal2,
 	liftTemporalNode,
 	mapTemporal,
-	temporalAverage
+	temporalAverage,
 } from '../temporal'
 import { convertUnit, parseUnit } from '../units'
 import {
 	evaluatePlafondUntilActiveTranche,
-	parseTranches
+	parseTranches,
+	TrancheNodes,
 } from './trancheUtils'
+import { ASTNode } from '../AST/types'
 
 // Barème en taux marginaux.
-export default function parse(parse, v) {
+export type BarèmeNode = {
+	explanation: {
+		tranches: TrancheNodes
+		multiplicateur: ASTNode
+		assiette: ASTNode
+	}
+	nodeKind: 'barème'
+}
+export default function parseBarème(v, context): BarèmeNode {
 	const explanation = {
-		assiette: parse(v.assiette),
-		multiplicateur: v.multiplicateur ? parse(v.multiplicateur) : defaultNode(1),
-		tranches: parseTranches(parse, v.tranches)
+		assiette: parse(v.assiette, context),
+		multiplicateur: v.multiplicateur
+			? parse(v.multiplicateur, context)
+			: defaultNode(1),
+		tranches: parseTranches(v.tranches, context),
 	}
 	return {
 		explanation,
-		jsx: Barème,
-		category: 'mecanism',
-		name: 'barème',
 		nodeKind: 'barème',
-		type: 'numeric',
-		unit: explanation.assiette.unit
 	}
 }
 
 function evaluateBarème(tranches, assiette, evaluate, cache) {
-	return tranches.map(tranche => {
+	return tranches.map((tranche) => {
 		if (tranche.isAfterActive) {
 			return { ...tranche, nodeValue: 0 }
 		}
@@ -54,29 +58,29 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 				assiette.nodeValue,
 				taux.nodeValue,
 				tranche.plafondValue,
-				tranche.plancherValue
-			].some(value => value === null)
+				tranche.plancherValue,
+			].some((value) => value === null)
 		) {
 			return {
 				...tranche,
 				taux,
 				nodeValue: null,
-				missingVariables: mergeAllMissing([taux, tranche])
+				missingVariables: mergeAllMissing([taux, tranche]),
 			}
 		}
 		return {
 			...tranche,
 			taux,
-			unit: assiette.unit,
+			...('unit' in assiette && { unit: assiette.unit }),
 			nodeValue:
 				(Math.min(assiette.nodeValue, tranche.plafondValue) -
 					tranche.plancherValue) *
 				convertUnit(taux.unit, parseUnit(''), taux.nodeValue as number),
-			missingVariables: mergeAllMissing([taux, tranche])
+			missingVariables: mergeAllMissing([taux, tranche]),
 		}
 	})
 }
-const evaluate: evaluationFunction = function(node) {
+const evaluate: EvaluationFunction<'barème'> = function (node) {
 	const evaluateNode = this.evaluateNode.bind(this)
 	const assiette = this.evaluateNode(node.explanation.assiette)
 	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
@@ -87,21 +91,21 @@ const evaluate: evaluationFunction = function(node) {
 				{
 					parsedTranches: node.explanation.tranches,
 					assiette,
-					multiplicateur
+					multiplicateur,
 				},
 				this.cache
 			),
-		liftTemporalNode(assiette),
-		liftTemporalNode(multiplicateur)
+		liftTemporalNode(assiette as any),
+		liftTemporalNode(multiplicateur as any)
 	)
 	const temporalTranches = liftTemporal2(
 		(tranches, assiette) =>
 			evaluateBarème(tranches, assiette, evaluateNode, this.cache),
 		temporalTranchesPlafond,
-		liftTemporalNode(assiette)
+		liftTemporalNode(assiette as any)
 	)
 	const temporalValue = mapTemporal(
-		tranches =>
+		(tranches) =>
 			tranches.reduce(
 				(value, { nodeValue }) =>
 					nodeValue == null ? null : value + nodeValue,
@@ -114,7 +118,7 @@ const evaluate: evaluationFunction = function(node) {
 		nodeValue: temporalAverage(temporalValue),
 		...(temporalValue.length > 1
 			? {
-					temporalValue
+					temporalValue,
 			  }
 			: { missingVariables: mergeAllMissing(temporalTranches[0].value) }),
 		explanation: {
@@ -122,10 +126,10 @@ const evaluate: evaluationFunction = function(node) {
 			multiplicateur,
 			...(temporalTranches.length > 1
 				? { temporalTranches }
-				: { tranches: temporalTranches[0].value })
+				: { tranches: temporalTranches[0].value }),
 		},
-		unit: assiette.unit
-	}
+		unit: assiette.unit,
+	} as any
 }
 
 registerEvaluationFunction('barème', evaluate)

@@ -17,7 +17,7 @@ export default function CreateMyCompany() {
 			<ScrollToTop key={location.pathname} />
 			<Switch>
 				<Route exact path={sitePaths.créer.index} component={Home} />
-				{LANDING_LEGAL_STATUS_LIST.map(statut => (
+				{LANDING_LEGAL_STATUS_LIST.map((statut) => (
 					<Route path={sitePaths.créer[statut]} key={statut}>
 						<CreationChecklist statut={statut} />
 					</Route>

@@ -56,14 +56,19 @@ async function searchCommunes(input: string): Promise<Array<Commune> | null> {
 		.flatMap(({ codesPostaux, ...commune }) =>
 			codesPostaux
 				.sort()
-				.map(codePostal => ({ ...commune, codePostal }))
+				.map((codePostal) => ({ ...commune, codePostal }))
 				.filter(({ codePostal }) => codePostal.startsWith(number))
 		)
 		.slice(0, 10)
 }
 
-export default function Select({ onChange, value, id }: InputCommonProps) {
-	const [name, setName] = useState(formatCommune(value))
+export default function Select({
+	onChange,
+	value,
+	id,
+	missing,
+}: InputCommonProps) {
+	const [name, setName] = useState(missing ? '' : formatCommune(value))
 	const [searchResults, setSearchResults] = useState<null | Array<Commune>>(
 		null
 	)
@@ -71,8 +76,8 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 	const [isLoading, setLoadingState] = useState(false)
 
 	const handleSearch = useCallback(
-		function(value) {
-			searchCommunes(value).then(results => {
+		function (value) {
+			searchCommunes(value).then((results) => {
 				setLoadingState(false)
 				setSearchResults(results)
 			})
@@ -80,7 +85,7 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 		[setSearchResults, setLoadingState]
 	)
 	const debouncedHandleSearch = useMemo(() => debounce(300, handleSearch), [
-		handleSearch
+		handleSearch,
 	])
 
 	const handleSubmit = useCallback(
@@ -91,7 +96,7 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 			try {
 				taux = await tauxVersementTransport(commune.code)
 			} catch (error) {
-				console.log(
+				console.warn(
 					'Erreur dans la récupération du taux de versement transport à partir du code commune',
 					error
 				)
@@ -99,12 +104,14 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 			// await
 			// serialize to not mix our data schema and the API response's
 			onChange({
-				...commune,
-				...(taux != null
-					? {
-							'taux du versement transport': taux
-					  }
-					: {})
+				objet: {
+					...commune,
+					...(taux != null
+						? {
+								'taux du versement transport': taux,
+						  }
+						: {}),
+				},
 			})
 		},
 		[setSearchResults, setName]
@@ -207,7 +214,7 @@ export default function Select({ onChange, value, id }: InputCommonProps) {
 								<Option
 									onMouseDown={
 										// Prevent input blur and focus elem selection
-										e => e.preventDefault()
+										(e) => e.preventDefault()
 									}
 									onClick={() => handleSubmit(result)}
 									role="option"
@@ -245,7 +252,7 @@ const Option = styled.li<{ focused: boolean }>`
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${props =>
+	${(props) =>
 		props.focused &&
 		css`
 			background-color: var(--lighterColor) !important;

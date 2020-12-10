@@ -1,4 +1,5 @@
 entreprise:
+  valeur: oui
   description: |
     Le contrat lie une entreprise, identifiée par un code SIREN, et un employé.
 
@@ -23,13 +24,13 @@ entreprise . date de création:
 entreprise . date de création . contrôle date future:
   type: notification
   sévérité: avertissement
-  applicable si: date de création > 01/2021
+  formule: date de création > 01/2021
   description: Nous ne pouvons voir aussi loin dans le futur
 
 entreprise . date de création . contrôle date passée:
   type: notification
   sévérité: avertissement
-  applicable si: date de création < 01/1900
+  formule: date de création < 01/1900
   description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
 
 entreprise . durée d'activité:
@@ -228,7 +229,7 @@ entreprise . effectif:
         alors: 49 employés
       - si: entreprise . effectif . seuil = 'moins de 250'
         alors: 249 employés
-      - si: entreprise . effectif . seuil = '251 et plus'
+      - si: entreprise . effectif . seuil = 'plus de 250'
         alors: 251 employés
 
 entreprise . effectif . seuil:
@@ -249,7 +250,7 @@ entreprise . effectif . seuil:
         - moins de 20
         - moins de 50
         - moins de 250
-        - 251 et plus
+        - plus de 250
   par défaut: "'moins de 5'"
 
 entreprise . effectif . seuil . moins de 5:
@@ -257,7 +258,8 @@ entreprise . effectif . seuil . moins de 11:
 entreprise . effectif . seuil . moins de 20:
 entreprise . effectif . seuil . moins de 50:
 entreprise . effectif . seuil . moins de 250:
-entreprise . effectif . seuil . 251 et plus:
+entreprise . effectif . seuil . plus de 250:
+  titre: 251 et plus
 
 entreprise . ratio alternants:
   question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
@@ -406,48 +408,6 @@ entreprise . catégorie d'activité . libérale règlementée:
   références:
     Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . catégorie d'activité . libérale règlementée . type d'activité libérale règlementée: 
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - Administrateur judiciaire
-        - Agent général d'assurance
-        - Architecte
-        - Architecte d'intérieur
-        - Avocat
-        - Avocat au conseil d'Etat et à la Cour de Cassation
-        - Avoué auprès des cours d'appel
-        - Chiropracteur
-        - Chirurgien-dentiste
-        - Commissaire aux comptes
-        - Commissaire-priseur
-        - Conseil en investissements financiers
-        - Conseil en propriété industrielle
-        - Diététicien
-        - Ergothérapeute
-        - Expert agricole, foncier et expert forestier
-        - Expert devant les tribunaux
-        - Expert-comptable
-        - Géomètre-expert
-        - Greffier auprès des tribunaux de commerce
-        - Huissier de justice
-        - Infirmier libéral
-        - Directeur de laboratoire d'analyses médicales
-        - Mandataire judiciaire
-        - Mandataire judiciaire à la protecion des majeurs
-        - Masseur-kinésithérapeute
-        - Médecin
-        - Notaire
-        - Orthophoniste
-        - Orthoptiste
-        - Ostéopathe
-        - Pédicure-podologue
-        - Psychologue
-        - Psychomotricien
-        - Psychothérapeute
-        - Sage-femme
-        - Vétérinaire
 
 entreprise . catégorie d'activité . débit de tabac:
   applicable si: catégorie d'activité = 'commerciale ou industrielle'
@@ -487,7 +447,8 @@ entreprise . auto entreprise impossible:
       - rattachée à la CIPAV != oui
   note: D'autres conditions d'exclusions existent, il faudra les compléter, mais la question de la catégorie d'activité doit avant être complétée.
 
-établissement:
+établissement: 
+  formule: oui
   description: |
     Le salarié travaille dans un établissement de l'entreprise, identifié par un code SIRET.
 
@@ -499,16 +460,17 @@ entreprise . auto entreprise impossible:
   question: Dans quelle commune l'établissement est-il implanté ?
   API: commune
   par défaut:
-    code: 29019
-    nom: Non renseignée
-    departement:
-      nom: Non renseigné
-    taux du versement transport: 0.018
+    objet:
+      code: 29019
+      nom: Non renseignée
+      departement:
+        nom: Non renseigné
+      taux du versement transport: 0.018
 
 établissement . localisation . code commune:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: code
 
 établissement . localisation . commune:
@@ -517,19 +479,19 @@ entreprise . auto entreprise impossible:
     calculées à l'échelle de l'établissement et sont fonction de règlementations locales.
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: nom
 
 établissement . taux du versement transport:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: taux du versement transport
 
 établissement . localisation . département:
   formule:
     synchronisation:
-      API: localisation
+      data: localisation
       chemin: departement . nom
 
 établissement . localisation . outre-mer:

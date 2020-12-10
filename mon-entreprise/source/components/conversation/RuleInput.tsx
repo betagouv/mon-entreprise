@@ -6,45 +6,51 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { ParsedRule, ParsedRules } from 'publicodes'
+import {
+	ASTNode,
+	EvaluatedRule,
+	evaluateRule,
+	formatValue,
+	ParsedRules,
+	reduceAST,
+} from 'publicodes'
+import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'Rules'
+import { serialize } from 'storage/serializeSimulation'
 import DateInput from './DateInput'
-import TextInput from './TextInput'
-import SelectEuropeCountry from './select/SelectEuropeCountry'
 import ParagrapheInput from './ParagrapheInput'
+import SelectEuropeCountry from './select/SelectEuropeCountry'
+import TextInput from './TextInput'
 
 type Value = any
 export type RuleInputProps<Name extends string = DottedName> = {
-	rules: ParsedRules<Name>
 	dottedName: Name
 	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
 	autoFocus?: boolean
 	id?: string
-	value: Value
 	className?: string
 	onSubmit?: (source: string) => void
 }
 
-export type InputCommonProps = Pick<
-	RuleInputProps<string>,
-	'dottedName' | 'value' | 'onChange' | 'autoFocus' | 'className'
+export type InputCommonProps<Name extends string = string> = Pick<
+	RuleInputProps<Name>,
+	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<
-		ParsedRule<string>,
-		'title' | 'question' | 'defaultValue' | 'suggestions'
-	> & {
+	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
 		key: string
 		id: string
+		value: any //TODO EvaluatedRule['nodeValue']
+		missing: boolean
 		required: boolean
 	}
 
 export const binaryQuestion = [
 	{ value: 'oui', label: 'Oui' },
-	{ value: 'non', label: 'Non' }
+	{ value: 'non', label: 'Non' },
 ] as const
 
 // This function takes the unknown rule and finds which React component should
@@ -52,41 +58,41 @@ export const binaryQuestion = [
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
 export default function RuleInput<Name extends string = DottedName>({
-	rules,
 	dottedName,
 	onChange,
-	value,
 	useSwitch = false,
 	id,
 	isTarget = false,
 	autoFocus = false,
 	className,
-	onSubmit = () => null
+	onSubmit = () => null,
 }: RuleInputProps<Name>) {
-	const rule = rules[dottedName]
-	const unit = rule.unit
-	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-	const commonProps: InputCommonProps = {
+	const rule = evaluateRule(engine, dottedName)
+
+	const language = useTranslation().i18n.language
+	const value = rule.nodeValue
+	const commonProps: InputCommonProps<Name> = {
 		key: dottedName,
 		dottedName,
 		value,
+		missing: !!rule.missingVariables[dottedName],
 		onChange,
 		autoFocus,
 		className,
 		title: rule.title,
 		id: id ?? dottedName,
 		question: rule.question,
-		defaultValue: rule.defaultValue,
 		suggestions: rule.suggestions,
-		required: true
+		required: true,
 	}
-	if (getVariant(rule)) {
+	if (getVariant(engine.getParsedRules()[dottedName])) {
+		console.log(buildVariantTree(engine.getParsedRules(), dottedName))
 		return (
 			<Question
 				{...commonProps}
 				onSubmit={onSubmit}
-				choices={buildVariantTree(rules, dottedName)}
+				choices={buildVariantTree(engine.getParsedRules(), dottedName)}
 			/>
 		)
 	}
@@ -111,10 +117,14 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 	}
 
-	if (unit == null && (rule.type === 'booléen' || rule.type == undefined)) {
+	if (
+		rule.unit == null &&
+		(rule.type === 'booléen' || rule.type == undefined) &&
+		typeof rule.nodeValue !== 'number'
+	) {
 		return useSwitch ? (
 			<ToggleSwitch
-				defaultChecked={value === 'oui' || rule.defaultValue === 'oui'}
+				defaultChecked={value === true}
 				onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
 					onChange(evt.target.checked ? 'oui' : 'non')
 				}
@@ -124,19 +134,20 @@ export default function RuleInput<Name extends string = DottedName>({
 				{...commonProps}
 				choices={[
 					{ value: 'oui', label: 'Oui' },
-					{ value: 'non', label: 'Non' }
+					{ value: 'non', label: 'Non' },
 				]}
 				onSubmit={onSubmit}
 			/>
 		)
 	}
 
-	commonProps.value =
-		typeof commonProps.value === 'string'
-			? engine.evaluate(commonProps.value as DottedName).nodeValue
-			: commonProps.value
-
-	if (unit?.numerators.includes('€') && isTarget) {
+	if (rule.unit?.numerators.includes('€') && isTarget) {
+		const unité = formatValue(
+			{ nodeValue: value ?? 0, unit: rule.unit },
+			{ language }
+		)
+			.replace(/[\d,.]/g, '')
+			.trim()
 		return (
 			<>
 				<CurrencyInput
@@ -146,48 +157,64 @@ export default function RuleInput<Name extends string = DottedName>({
 					value={value as string}
 					name={dottedName}
 					className="targetInput"
-					onChange={evt => onChange(evt.target.value)}
+					onChange={(evt) => onChange({ valeur: evt.target.value, unité })}
 				/>
 			</>
 		)
 	}
-	if (unit?.numerators.includes('%') && isTarget) {
+	if (rule.unit?.numerators.includes('%') && isTarget) {
 		return <PercentageField {...commonProps} debounce={600} />
 	}
-
 	if (rule.type === 'texte') {
-		return <TextInput {...commonProps} />
+		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
 	if (rule.type === 'paragraphe') {
-		return <ParagrapheInput {...commonProps} />
+		return (
+			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
+		)
 	}
 
-	return <Input {...commonProps} unit={unit} onSubmit={onSubmit} />
+	return (
+		<Input
+			{...commonProps}
+			onSubmit={onSubmit}
+			unit={rule.unit}
+			value={value as Evaluation<number>}
+		/>
+	)
 }
 
-const getVariant = (rule: ParsedRule) =>
-	rule?.formule?.explanation['possibilités']
-
+const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
+	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(
+		(_, node) => {
+			if (node.nodeKind === 'une possibilité') {
+				return node
+			}
+		},
+		false,
+		node
+	)
 export const buildVariantTree = <Name extends string>(
 	allRules: ParsedRules<Name>,
 	path: Name
 ): Choice => {
-	const rec = (path: Name) => {
-		const node = allRules[path]
-		if (!node) throw new Error(`La règle ${path} est introuvable`)
-		const variant = getVariant(node)
-		const variants = variant && node.formule.explanation['possibilités']
-		const canGiveUp =
-			variant && node.formule.explanation['choix obligatoire'] !== 'oui'
-		return Object.assign(
-			node,
-			variant
-				? {
-						canGiveUp,
-						children: variants.map((v: string) => rec(`${path} . ${v}` as Name))
-				  }
-				: null
-		) as Choice
-	}
-	return rec(path)
+	const node = allRules[path]
+	if (!node) throw new Error(`La règle ${path} est introuvable`)
+	const variant = getVariant(node)
+	const canGiveUp =
+		variant &&
+		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
+	return Object.assign(
+		node,
+		variant
+			? {
+					canGiveUp,
+					children: (variant.explanation as (ASTNode & {
+						nodeKind: 'reference'
+					})[]).map(({ dottedName }) =>
+						buildVariantTree(allRules, dottedName as Name)
+					),
+			  }
+			: null
+	) as Choice
 }

@@ -1,7 +1,7 @@
 import {
 	goToQuestion,
 	updateSituation,
-	validateStepWithValue
+	validateStepWithValue,
 } from 'Actions/actions'
 import RuleInput, { RuleInputProps } from 'Components/conversation/RuleInput'
 import QuickLinks from 'Components/QuickLinks'
@@ -14,7 +14,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	answeredQuestionsSelector,
-	situationSelector
+	situationSelector,
 } from 'Selectors/simulationSelectors'
 import Aide from './Aide'
 import './conversation.css'
@@ -36,14 +36,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])
+	console.log(currentQuestion)
 	const setDefault = () =>
 		dispatch(
 			// TODO: Skiping a question shouldn't be equivalent to answering the
 			// default value (for instance the question shouldn't appear in the
 			// answered questions).
 			validateStepWithValue(
-				currentQuestion,
-				rules[currentQuestion].defaultValue
+				currentQuestion, //TODO
+				undefined
 			)
 		)
 	const goToPrevious = () =>
@@ -54,11 +55,11 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 			type: 'STEP_ACTION',
 			name: 'fold',
 			step: currentQuestion,
-			source
+			source,
 		})
 	}
 
-	const onChange: RuleInputProps['onChange'] = value => {
+	const onChange: RuleInputProps['onChange'] = (value) => {
 		dispatch(updateSituation(currentQuestion, value))
 	}
 
@@ -77,17 +78,15 @@ export default function Conversation({ customEndMessages }: ConversationProps) {
 				<Animate.fadeIn>
 					<div className="step">
 						<h3>
-							{rules[currentQuestion].question}{' '}
+							{rules[currentQuestion].rawNode.question}{' '}
 							<ExplicableRule dottedName={currentQuestion} />
 						</h3>
 
 						<fieldset>
 							<RuleInput
 								dottedName={currentQuestion}
-								value={situation[currentQuestion]}
 								onChange={onChange}
 								onSubmit={submit}
-								rules={rules}
 							/>
 						</fieldset>
 					</div>

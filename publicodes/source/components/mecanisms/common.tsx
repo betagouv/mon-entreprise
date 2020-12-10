@@ -1,26 +1,48 @@
-import React, { useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import mecanismsDoc from '../../../docs/mecanisms.yaml'
-import { makeJsx } from '../../evaluation'
 import { formatValue } from '../../format'
 import { simplifyNodeUnit } from '../../nodeUnits'
-import {
-	EvaluatedNode,
-	Evaluation,
-	EvaluatedRule,
-	Types,
-	Unit
-} from '../../types'
-import { capitalise0 } from '../../utils'
-import { EngineContext } from '../contexts'
+import { Evaluation, EvaluatedNode, Types, Unit } from '../../AST/types'
 import Overlay from '../Overlay'
 import { RuleLinkWithContext } from '../RuleLink'
 import mecanismColors from './colors'
-import MecanismExplanation from './Explanation'
+import Explanation from '../Explanation'
+import { ReferenceNode } from '../../reference'
+import { EngineContext } from '../contexts'
+import { InternalError } from '../../error'
+import { capitalise0 } from '../../utils'
+import { Markdown } from '../Markdown'
+
+export function ConstantNode({ nodeValue, type, fullPrecision, unit }) {
+	if (nodeValue === null) {
+		return null
+	} else if (type === 'objet') {
+		return (
+			<code>
+				<pre>{JSON.stringify(nodeValue, null, 2)}</pre>
+			</code>
+		)
+	} else if (fullPrecision) {
+		return (
+			<span className={type}>
+				{formatValue(
+					{ nodeValue, unit },
+					{
+						precision: 5,
+					}
+				)}
+			</span>
+		)
+	} else {
+		return <span className="value">{nodeValue}</span>
+	}
+}
+
 type NodeValuePointerProps = {
 	data: Evaluation<Types>
-	unit: Unit
+	unit: Unit | undefined
 }
 
 export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
@@ -34,11 +56,11 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 			textDecoration: 'none !important',
 			boxShadow: '0px 1px 2px 1px #d9d9d9, 0 0 0 1px #d9d9d9',
 			lineHeight: '1.6em',
-			borderRadius: '0.2rem'
+			borderRadius: '0.2rem',
 		}}
 	>
 		{formatValue(simplifyNodeUnit({ nodeValue: data, unit }), {
-			language: 'fr'
+			language: 'fr',
 		})}
 	</small>
 )
@@ -47,23 +69,9 @@ export const NodeValuePointer = ({ data, unit }: NodeValuePointerProps) => (
 type NodeProps = {
 	name: string
 	value: Evaluation<Types>
-	unit: Unit
+	unit?: Unit
 	children: React.ReactNode
 	displayName?: boolean
-}
-
-export function Operation({ value, children, unit }: Omit<NodeProps, 'name'>) {
-	return (
-		<StyledOperation className="operation">
-			{children}
-			{value != null && (
-				<span className="result">
-					<small> =&nbsp;</small>
-					<NodeValuePointer data={value} unit={unit} />
-				</span>
-			)}
-		</StyledOperation>
-	)
 }
 
 export function Mecanism({
@@ -71,7 +79,7 @@ export function Mecanism({
 	value,
 	children,
 	unit,
-	displayName = true
+	displayName = true,
 }: NodeProps) {
 	return (
 		<StyledMecanism name={name}>
@@ -88,7 +96,7 @@ export function Mecanism({
 						style={{
 							textAlign: 'right',
 							marginTop: '0.4rem',
-							fontWeight: 'bold'
+							fontWeight: 'bold',
 						}}
 					>
 						<small> =&nbsp;</small>
@@ -103,11 +111,13 @@ export function Mecanism({
 export const InfixMecanism = ({
 	value,
 	prefixed,
-	children
+	children,
+	dimValue,
 }: {
 	value: EvaluatedNode
 	children: React.ReactNode
 	prefixed?: boolean
+	dimValue?: boolean
 }) => {
 	return (
 		<div
@@ -123,7 +133,9 @@ export const InfixMecanism = ({
 			`}
 		>
 			{prefixed && children}
-			<div className="value">{makeJsx(value)}</div>
+			<div className="value" css={dimValue ? 'opacity: 0.5' : ''}>
+				<Explanation node={value} />
+			</div>
 			{!prefixed && children}
 		</div>
 	)
@@ -139,7 +151,7 @@ export const InlineMecanismName = ({ name }: { name: string }) => {
 const MecanismName = ({
 	name,
 	inline = false,
-	children
+	children,
 }: {
 	name: string
 	inline?: boolean
@@ -158,31 +170,45 @@ const MecanismName = ({
 			</StyledMecanismName>
 			{showExplanation && (
 				<Overlay onClose={() => setShowExplanation(false)}>
-					<MecanismExplanation name={name} {...mecanismsDoc[name]} />
+					<RuleExplanation name={name} {...mecanismsDoc[name]} />
 				</Overlay>
 			)}
 		</>
 	)
 }
 
-const StyledOperation = styled.span`
-	::before {
-		content: '(';
-	}
-	> .operation ::before,
-	> .operation ::after {
-		content: '';
-	}
-	::after {
-		content: ')';
-	}
-	.result {
-		margin-left: 0.2rem;
-	}
-	.operation .result {
-		display: none;
-	}
-`
+type RuleExplanationProps = {
+	exemples: { base: string }
+	description: string
+	name: string
+}
+
+export default function RuleExplanation({
+	name,
+	description,
+	exemples,
+}: RuleExplanationProps) {
+	return (
+		<>
+			{!!name && (
+				<h2 id={name}>
+					<pre>{name}</pre>
+				</h2>
+			)}
+			<Markdown source={description} />
+			{exemples && (
+				<>
+					{Object.entries(exemples).map(([name, exemple]) => (
+						<React.Fragment key={name}>
+							<h3>{name === 'base' ? 'Exemple' : capitalise0(name)}</h3>
+							<Markdown source={`\`\`\`yaml\n${exemple}\n\`\`\``} />
+						</React.Fragment>
+					))}{' '}
+				</>
+			)}
+		</>
+	)
+}
 
 const StyledMecanism = styled.div<{ name: string }>`
 	border: 1px solid;
@@ -206,13 +232,13 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 	padding: 0.4rem 0.6rem;
 	color: white;
 	transition: hover 0.2s;
-	${props =>
-			props.inline
-				? `
+	${(props) =>
+		props.inline
+			? `
 		display: inline-block;
 		border-radius: 0.3rem;
 		`
-				: `
+			: `
 		margin-bottom: 0.8rem;
 		display: block;
 
@@ -223,35 +249,88 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 			text-transform: capitalize;
 		}
 	`}
-		:hover {
+	:hover {
 		opacity: 0.8;
 	}
 `
 
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
-export function Leaf({
-	dottedName,
-	acronyme,
-	name,
-	explanation: { title },
-	nodeValue,
+export function Leaf(
+	node: ReferenceNode & {
+		dottedName: string
+	} & EvaluatedNode
+) {
+	const engine = useContext(EngineContext)
+	const { dottedName, nodeValue, unit } = node
+	const rule = engine?.getParsedRules()[node.dottedName]
+	if (!rule) {
+		throw new InternalError(node)
+	}
 
-	unit
-}: EvaluatedRule) {
-	const ruleTitle = title || capitalise0(name)
+	const [folded, setFolded] = useState(true)
+	const foldButton = useContext(UnfoldIsEnabledContext) ? (
+		<button
+			onClick={() => setFolded(!folded)}
+			css={`
+				text-transform: none !important;
+				flex: 1 !important;
+				margin-left: 0.4rem !important;
+				text-align: left !important;
+			`}
+			className="ui__ notice small static simple button"
+		>
+			{folded ? 'déplier' : 'replier'}
+		</button>
+	) : null
+
+	if (
+		node.dottedName === node.contextDottedName + ' . ' + node.name &&
+		!node.name.includes(' . ') &&
+		rule.virtualRule
+	) {
+		return <Explanation node={node.explanation ?? rule} />
+	}
 	return (
-		<span className="variable filtered leaf">
-			<span className="nodeHead">
+		<div
+			css={`
+				display: flex;
+				flex-direction: column;
+			`}
+		>
+			<span
+				css={`
+					display: flex;
+					align-items: baseline;
+				`}
+			>
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
-						{acronyme ? <abbr title={ruleTitle}>{acronyme}</abbr> : ruleTitle}
+						{rule.rawNode.acronyme ? (
+							<abbr title={rule.title}>{rule.rawNode.acronyme}</abbr>
+						) : (
+							rule.title
+						)}
 					</span>
 				</RuleLinkWithContext>
+				{foldButton}
 
-				{nodeValue != null && unit && (
+				{nodeValue !== null && unit && (
 					<NodeValuePointer data={nodeValue} unit={unit} />
 				)}
-			</span>
-		</span>
+			</span>{' '}
+			{!folded && (
+				<div
+					css={`
+						width: 100%;
+					`}
+				>
+					<UnfoldIsEnabledContext.Provider value={false}>
+						<Explanation node={engine?.evaluateNode(rule).explanation.valeur} />
+					</UnfoldIsEnabledContext.Provider>
+				</div>
+			)}
+		</div>
 	)
 }
+
+export const UnfoldIsEnabledContext = createContext<boolean>(false)

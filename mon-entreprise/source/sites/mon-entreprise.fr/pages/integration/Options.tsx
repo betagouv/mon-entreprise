@@ -76,7 +76,7 @@ export default function Options() {
 							style={{
 								width: '3rem',
 								height: '3rem',
-								margin: 0
+								margin: 0,
 							}}
 						>
 							<g style={{ fill: '#f3f3f3' }}>

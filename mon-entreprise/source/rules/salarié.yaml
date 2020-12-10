@@ -64,7 +64,7 @@ contrat salarié . frais professionnels:
   formule:
     somme:
       - indemnité kilométrique vélo . montant
-      - titres-restaurant . montant .employeur
+      - titres-restaurant . montant . employeur
 
 contrat salarié . frais professionnels . part déductible:
   titre: Frais professionnels déductibles
@@ -101,27 +101,27 @@ contrat salarié . frais professionnels . titres-restaurant . montant:
   formule:
     produit:
       assiette: montant unitaire
-      facteur: titres-restaurant par mois
+      facteur: nombre
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           taux: taux participation employeur
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: 100% - taux participation employeur
 
 contrat salarié . frais professionnels . titres-restaurant . part déductible:
   titre: Titres-restaurant (déductible)
   formule:
-    valeur: montant .employeur
+    valeur: montant . employeur
     plafond:
       produit:
-        assiette: titres-restaurant par mois
+        assiette: nombre
         facteur: 5.55 €/titres-restaurant
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
-contrat salarié . frais professionnels . titres-restaurant . titres-restaurant par mois:
+contrat salarié . frais professionnels . titres-restaurant . nombre:
   question: Combien de titres-restaurant sont distribués au salarié ?
   par défaut: 19 titres-restaurant/mois
 
@@ -150,13 +150,13 @@ contrat salarié . frais professionnels . titres-restaurant . taux participation
 contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur min:
   type: notification
   sévérité: avertissement
-  applicable si: taux participation employeur < 50%
+  formule: taux participation employeur < 50%
   description: La part employeur du titre-restaurant doit être de 50% au minimum
 
 contrat salarié . frais professionnels . titres-restaurant . contrôle taux employeur max:
   type: notification
   sévérité: avertissement
-  applicable si: taux participation employeur > 60%
+  formule: taux participation employeur > 60%
   description: La part employeur du titre-restaurant doit être de 60% au maximum
 
 contrat salarié . frais professionnels . indemnité kilométrique vélo:
@@ -206,7 +206,6 @@ contrat salarié . activité partielle:
 
     La déclaration d'activité partielle est simplifiée et l'effet est
     rétroactif.
-
   par défaut: non
   rend non applicable:
     - temps de travail . heures supplémentaires
@@ -231,6 +230,8 @@ contrat salarié . activité partielle . rémunération mensuelle minimale:
       avec:
         rémunération . brut de base: SMIC contractuel
         activité partielle: non
+        temps de travail . heures supplémentaires: non
+        temps de travail . heures complémentaires: non
 
 contrat salarié . activité partielle . heures chômées:
   unité: heures/mois
@@ -253,7 +254,7 @@ contrat salarié . activité partielle . heures travaillées:
 contrat salarié . activité partielle . heures travaillées . contrôle temps de travail:
   type: notification
   sévérité: avertissement
-  applicable si: heures travaillées > temps de travail . temps contractuel
+  formule: heures travaillées > temps de travail . temps contractuel
   description: >-
     Dans le cadre de l'activité partielle, le temps de travail doit être inférieur
     à celui inscrit dans le contrat de travail.
@@ -471,7 +472,7 @@ contrat salarié . CDD . taxe forfaitaire sur les CDD d'usage:
 
     Certains secteurs d'activités définis dans le code du travail ne sont pas
     concernés par cette taxe.
-  applicable si: motif . classique . usage
+  applicable si: motif = 'classique . usage'
   # TODO: cette formule ne fonctionne pas pour des contrats dont la durée est
   # inférieure à un mois
   formule: 10 € / durée contrat
@@ -489,7 +490,7 @@ contrat salarié . CDD . CPF:
       - événement . poursuite du CDD en CDI
       - apprentissage
       - contrat jeune vacances
-      - motif . classique . saisonnier
+      - motif = 'classique . saisonnier'
       - motif . contrat aidé
   formule:
     produit:
@@ -641,8 +642,8 @@ contrat salarié . CDD . prime de fin de contrat:
       - événement . rupture pour faute grave ou force majeure
       - événement . rupture pendant période essai
 
-      - motif . classique . usage
-      - motif . classique . saisonnier
+      - motif = 'classique . usage'
+      - motif = 'classique . saisonnier'
       - motif . complément formation
       - motif . contrat aidé
 
@@ -972,7 +973,7 @@ contrat salarié . CDD . congés non pris:
 contrat salarié . CDD . contrôle congés non pris max:
   type: notification
   sévérité: avertissement
-  applicable si: congés non pris > congés dus en jours ouvrés
+  formule: congés non pris > congés dus en jours ouvrés
   description: Un salarié acquiert normalement 2.08 jours de congés ouvrés par mois.
 
 contrat salarié . CDD . contrat jeune vacances:
@@ -1043,12 +1044,11 @@ contrat salarié . apprentissage . ancienneté . moins de trois ans:
 
 contrat salarié . apprentissage . ancienneté . moins de quatre ans:
   formule: ancienneté = 'moins de quatre ans'
-
-contrat salarié . apprentissage . ancienneté . moins de quatre ans . information:
   type: notification
   description: >-
     La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
     travailleur handicapé est reconnue à l'apprenti.
+
 
 contrat salarié . professionnalisation:
   description: |
@@ -1062,8 +1062,7 @@ contrat salarié . professionnalisation:
     devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
     prolongée jusqu'à 36 mois.
   formule: contrat salarié = 'professionnalisation'
-  rend non applicable:
-    - rémunération . contrôle smic
+  rend non applicable: rémunération . contrôle smic
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
@@ -1092,6 +1091,7 @@ contrat salarié . stage:
     - contrat salarié . activité partielle
 
 contrat salarié . stage . avertissement:
+  formule: oui
   type: notification
   sévérité: avertissement
   description: >-
@@ -1102,7 +1102,7 @@ contrat salarié . stage . avertissement:
 contrat salarié . stage . contrôle gratification minimale:
   type: notification
   sévérité: avertissement
-  applicable si: rémunération . brut de base < stage . gratification minimale
+  formule: rémunération . brut de base < stage . gratification minimale
   description: >-
     La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
 
@@ -1130,6 +1130,7 @@ contrat salarié . CDD:
 
 contrat salarié . CDD . information:
   type: notification
+  formule: oui
   description: >-
     Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
     [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
@@ -1138,7 +1139,8 @@ contrat salarié . cotisations . assiette:
   titre: Assiette des cotisations sociales
   description: |
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
-  référence: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
+  références: 
+    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
     allègement:
       assiette: rémunération . brut
@@ -1213,12 +1215,12 @@ contrat salarié . rémunération . brut de base:
 contrat salarié . rémunération . contrôle smic:
   type: notification
   sévérité: avertissement
-  applicable si: assiette de vérification du SMIC < SMIC contractuel
+  formule: assiette de vérification du SMIC < SMIC contractuel
   description: Le salaire saisi est inférieur au SMIC.
 
 contrat salarié . rémunération . contrôle salaire élevé:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - brut de base >= 10000 €/mois
       - dirigeant = non
@@ -1436,7 +1438,7 @@ contrat salarié . avantages sociaux:
       - prévoyance . employeur
       - retraite supplémentaire . employeur
       - prévoyance obligatoire cadre
-      - complémentaire santé .employeur
+      - complémentaire santé . employeur
 
 contrat salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
@@ -1453,7 +1455,6 @@ contrat salarié . rémunération . avantages en nature . montant:
   titre: Avantages en nature
   description: >
     Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
-  unité par défa: €/mois
   formule:
     somme:
       - nourriture . montant
@@ -1628,15 +1629,15 @@ contrat salarié . cotisations . salariales:
 
   formule:
     somme:
-      - vieillesse .salarié
-      - maladie .salarié
-      - retraite complémentaire .salarié
-      - contribution d'équilibre général .salarié
-      - contribution d'équilibre technique .salarié
-      - chômage .salarié
+      - vieillesse . salarié
+      - maladie . salarié
+      - retraite complémentaire . salarié
+      - contribution d'équilibre général . salarié
+      - contribution d'équilibre technique . salarié
+      - chômage . salarié
       - CSG et CRDS
-      - APEC .salarié
-      - complémentaire santé .salarié
+      - APEC . salarié
+      - complémentaire santé . salarié
       - conventionnelles
       - (- réductions de cotisations)
 
@@ -1644,17 +1645,17 @@ contrat salarié . cotisations . patronales:
   titre: cotisations patronales
   formule:
     somme:
-      - maladie .employeur
+      - maladie . employeur
       - ATMP
       - prévoyance obligatoire cadre
-      - vieillesse .employeur
-      - retraite complémentaire .employeur
-      - complémentaire santé .employeur
-      - contribution d'équilibre général .employeur
-      - contribution d'équilibre technique .employeur
+      - vieillesse . employeur
+      - retraite complémentaire . employeur
+      - complémentaire santé . employeur
+      - contribution d'équilibre général . employeur
+      - contribution d'équilibre technique . employeur
       - allocations familiales
-      - chômage .employeur
-      - APEC .employeur
+      - chômage . employeur
+      - APEC . employeur
       - AGS
       - FNAL
       - participation effort de construction
@@ -1669,6 +1670,7 @@ contrat salarié . cotisations . patronales:
       - (- réductions de cotisations)
 
 contrat salarié . rémunération:
+  formule: oui
   description: La rémunération se distingue du salaire en incluant les avantages non monétaires versés en contrepartie du travail. Elle est donc plus large que les sommes d'argent versées au salarié.
 
 contrat salarié . rémunération . net de cotisations:
@@ -1714,17 +1716,13 @@ contrat salarié . rémunération . net imposable . base:
       - CSG et CRDS . non déductible
 
 contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées:
+  unité: €/mois
   formule:
     valeur:
       somme:
         - heures supplémentaires
         - heures complémentaires
-    plafond: plafond brut
-  références:
-    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
-
-contrat salarié . rémunération . net imposable . heures supplémentaires et complémentaires défiscalisées . plafond brut:
-  formule: 5358 €/an
+    plafond: 5358 €/an
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
@@ -1867,9 +1865,9 @@ contrat salarié . cotisations . salariales . réduction heures supplémentaires
       produit:
         assiette:
           somme:
-            - vieillesse .salarié
-            - retraite complémentaire .salarié
-            - contribution d'équilibre général .salarié
+            - vieillesse . salarié
+            - retraite complémentaire . salarié
+            - contribution d'équilibre général . salarié
         facteur: 1 / assiette
     plafond: 11.31%
   références:
@@ -1930,11 +1928,6 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
       - entreprise . effectif < 250
       - apprentissage
       - apprentissage . diplôme préparé . niveau bac ou moins
-
-      # HACK: "apprentissage . ancienneté" n'est pas détecté par le moteur dans les dépendances ("missingVariables") de cette aide.
-      # On l'ajoute ici uniquement pour faire remonter la question au bon niveau, mais ça ne devrait pas être nécessaire.
-      - apprentissage . ancienneté
-
   formule:
     variations:
       - si: apprentissage . ancienneté = 'moins d'un an'
@@ -2114,13 +2107,13 @@ contrat salarié . temps de travail . temps partiel . heures par semaine:
 contrat salarié . temps de travail . temps partiel . contrôle temps min:
   type: notification
   sévérité: avertissement
-  applicable si: heures par semaine < 24
+  formule: heures par semaine < 24 heures/semaine
   description: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
 
 contrat salarié . temps de travail . temps partiel . contrôle temps max:
   type: notification
   sévérité: avertissement
-  applicable si: heures par semaine >= base légale
+  formule: heures par semaine >= base légale
   description: Un temps partiel doit être en dessous de la durée de travail légale (35h)
 
 contrat salarié . temps de travail . quotité de travail:
@@ -2151,7 +2144,7 @@ contrat salarié . temps de travail . heures supplémentaires:
 
 contrat salarié . temps de travail . contrôle 44h max:
   type: notification
-  applicable si:
+  formule:
     toutes ces conditions:
       - heures supplémentaires > 9 heures/semaine * période . semaines par mois
       - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
@@ -2160,7 +2153,7 @@ contrat salarié . temps de travail . contrôle 44h max:
 contrat salarié . temps de travail . contrôle 48h max:
   type: notification
   sévérité: avertissement
-  applicable si: heures supplémentaires > 13 heures/semaine * période . semaines par mois
+  formule: heures supplémentaires > 13 heures/semaine * période . semaines par mois
   description: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
 
 contrat salarié . temps de travail . heures supplémentaires . majoration:
@@ -2194,14 +2187,14 @@ contrat salarié . temps de travail . heures complémentaires:
 
 contrat salarié . temps de travail . contrôle heures complémentaires 10 pourcents:
   type: notification
-  applicable si: heures complémentaires > heures complémentaires . seuil légal
+  formule: heures complémentaires > heures complémentaires . seuil légal
   description: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
 
 # TODO: Le système d'unité ne fait pas la conversion mois/semaines automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
 contrat salarié . temps de travail . contrôle heures complémentaires max:
   type: notification
   sévérité: avertissement
-  applicable si: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale * période . semaines par mois
+  formule: heures complémentaires + temps partiel . heures par semaine * période . semaines par mois >= base légale * période . semaines par mois
   description: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
 
 contrat salarié . temps de travail . heures complémentaires . majoration:
@@ -2288,8 +2281,8 @@ contrat salarié . statut JEI . exonération de cotisations:
   formule:
     somme:
       - allocations familiales
-      - maladie .employeur
-      - vieillesse .employeur
+      - maladie . employeur
+      - vieillesse . employeur
     plafond:
       recalcul:
         avec:
@@ -2346,9 +2339,9 @@ contrat salarié . réduction générale . T:
   formule:
     somme:
       - T sécurité sociale et chômage
-      - valeur: retraite complémentaire . taux employeur tranche 1
+      - valeur: retraite complémentaire . employeur . taux tranche 1
         plafond: 4.72%
-      - valeur: contribution d'équilibre général . taux employeur tranche 1
+      - valeur: contribution d'équilibre général . employeur . taux tranche 1
         plafond: 1.29%
 
 contrat salarié . réduction générale . T sécurité sociale et chômage:
@@ -2357,12 +2350,12 @@ contrat salarié . réduction générale . T sécurité sociale et chômage:
     somme:
       - maladie . taux employeur
       - allocations familiales . taux
-      - vieillesse . taux employeur déplafonné
-      - vieillesse . taux employeur plafonné
+      - vieillesse . employeur . déplafonnée . taux
+      - vieillesse . employeur . plafonnée . taux
       - maladie . taux solidarité autonomie
       - ATMP . taux minimum
       - FNAL . taux
-      - chômage . taux employeur
+      - chômage . employeur . taux
 
 contrat salarié . réduction générale . imputation sécurité sociale:
   formule:
@@ -2402,15 +2395,14 @@ contrat salarié . contribution d'équilibre général:
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           tranches:
-            - taux [ref taux employeur tranche 1]: 1.29%
+            - taux [ref taux tranche 1]: 1.29%
               plafond: 1
             - taux: 1.62%
               plafond: 8
-
         - attributs:
-            dû par: salarié
+            nom: salarié
           assiette: cotisations . assiette . salariale
           tranches:
             - taux: 0.86%
@@ -2434,10 +2426,10 @@ contrat salarié . contribution d'équilibre technique:
       plafond: 8 * plafond sécurité sociale
       composantes:
         - attributs:
-            dû par: employeur
-          taux [ref taux employeur]: 0.21%
+            nom: employeur
+          taux [ref]: 0.21%
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: 0.14%
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -2455,19 +2447,19 @@ contrat salarié . retraite complémentaire:
       multiplicateur: plafond sécurité sociale
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           tranches:
-            - taux [ref taux employeur tranche 1]: 4.72%
+            - taux [ref taux tranche 1]: 4.72%
               plafond: 1
-            - taux [ref taux employeur tranche 2]: 12.95%
+            - taux [ref taux tranche 2]: 12.95%
               plafond: 8
         - attributs:
-            dû par: salarié
+            nom: salarié
           assiette: cotisations . assiette . salariale
           tranches:
-            - taux [ref taux salarié tranche 1]: 3.15%
+            - taux [ref taux tranche 1]: 3.15%
               plafond: 1
-            - taux [ref taux salarié tranche 2]: 8.64%
+            - taux [ref taux tranche 2]: 8.64%
               plafond: 8
   références:
     calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
@@ -2476,15 +2468,11 @@ contrat salarié . retraite complémentaire:
 contrat salarié . retraite supplémentaire:
   formule:
     somme:
-      - employeur
-      - salarié
+      - nom: employeur
+        valeur: 0€/mois
+      - nom: salarié
+        valeur: 0€/mois
 
-contrat salarié . retraite supplémentaire . employeur:
-  titre: Retraite supplémentaire employeur
-  formule: 0€/mois
-
-contrat salarié . retraite supplémentaire . salarié:
-  formule: 0€/mois
 
 contrat salarié . retraite supplémentaire . part déductible:
   formule:
@@ -2565,10 +2553,10 @@ contrat salarié . APEC:
       plafond: 4 * plafond sécurité sociale
       composantes:
         - attributs:
-            dû par: employeur
+            nom: employeur
           taux: 0.036%
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: 0.024%
 
 contrat salarié . chômage:
@@ -2587,11 +2575,11 @@ contrat salarié . chômage:
       plafond: 4 * plafond sécurité sociale
       composantes:
         - attributs:
-            dû par: salarié
-          taux [ref taux salarié]: 0%
+            nom: salarié
+          taux [ref]: 0%
         - attributs:
-            dû par: employeur
-          taux [ref taux employeur]: 4.05%
+            nom: employeur
+          taux [ref]: 4.05%
   exemples:
     - nom: SMIC
       situation:
@@ -2619,10 +2607,10 @@ contrat salarié . complémentaire santé:
       composantes:
         # Répartition arbitraire, en sachant que l'employeur doit prendre en charge au minimum 50%
         - attributs:
-            dû par: employeur
+            nom: employeur
           taux: part employeur
         - attributs:
-            dû par: salarié
+            nom: salarié
           taux: part salarié
   exemples:
     - nom: forfait à 40€
@@ -2646,7 +2634,7 @@ contrat salarié . complémentaire santé . part employeur:
 contrat salarié . complémentaire santé . part employeur min:
   type: notification
   sévérité: avertissement
-  applicable si: part employeur < 50%
+  formule: part employeur < 50%
   description: La part employeur de la complémentaire santé doit être de 50% au minimum
 
 contrat salarié . complémentaire santé . part salarié:
@@ -2683,7 +2671,7 @@ contrat salarié . complémentaire santé . forfait:
 contrat salarié . complémentaire santé . contrôle min:
   type: notification
   sévérité: avertissement
-  applicable si: complémentaire santé . forfait < 15 €/mois
+  formule: complémentaire santé . forfait < 15 €/mois
   description: Vérifiez bien qu'une complémentaire santé si peu chère couvre le panier de soin minimal défini dans la loi.
 
 contrat salarié . régime alsace moselle:
@@ -2708,8 +2696,8 @@ contrat salarié . contribution au dialogue social:
     Anciennement 'contribution patronale au financement des organisations syndicales'
 
   références:
-    - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
-    - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
 
   formule:
     produit:
@@ -2780,7 +2768,7 @@ contrat salarié . CSG et CRDS . non déductible:
   titre: CSG non déductible et CRDS
   formule:
     somme:
-      - CSG . base .non déductible
+      - CSG . base . non déductible
       - CSG . heures supplémentaires et complémentaires défiscalisées
       - CRDS
       - revenus de remplacement . CSG non déductible
@@ -2837,10 +2825,10 @@ contrat salarié . CSG et CRDS . CSG . base:
       assiette: assiette de base
       composantes:
         - attributs:
-            impôt sur le revenu: déductible
+            nom: déductible
           taux: taux déductible
         - attributs:
-            impôt sur le revenu: non déductible
+            nom: non déductible
           taux: taux non déductible
 
 contrat salarié . CSG et CRDS . CSG . heures supplémentaires et complémentaires défiscalisées:
@@ -2875,7 +2863,6 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
     Le prélèvement de la CSG et de la CRDS ne peut pas avoir pour effet de
     réduire le montant de la rémunération d’activité et des allocations de
     chômage à un seuil inférieur au Smic brut.
-
   formule:
     somme:
       - revenus de remplacement . CSG déductible
@@ -2884,57 +2871,32 @@ contrat salarié . CSG et CRDS . revenus de remplacement:
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible:
   titre: CSG déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . rémunération nette:
-  formule:
+  produit:
+    assiette: CSG et CRDS . assiette revenu remplacements
+    taux: 3.8%
+  plafond [ref]:
     somme:
       - rémunération . net de cotisations
       - rémunération . revenus de remplacement
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG déductible . montant:
-  titre: CSG déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: 3.8%
+      - (- SMIC temps plein)
+    plancher: 0€/mois
+  note: 
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible:
   titre: CSG non déductible revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CSG non déductible . montant:
-  titre: CSG non déductible
-  formule:
-    produit:
-      assiette: CSG et CRDS . assiette revenu remplacements
-      taux: CSG . taux non déductible
+  produit:
+    assiette: CSG et CRDS . assiette revenu remplacements
+    taux: CSG . taux non déductible
+  plafond [ref]: 
+    valeur: CSG déductible . plafond - CSG déductible
 
 contrat salarié . CSG et CRDS . revenus de remplacement . CRDS:
   titre: CRDS revenus de remplacement
-  applicable si: rémunération nette >= SMIC temps plein
-  formule: montant
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . rémunération nette:
-  formule:
-    somme:
-      - rémunération . net de cotisations
-      - rémunération . revenus de remplacement
-      - (- CSG déductible . montant)
-      - (- CSG non déductible . montant)
-      - (- montant)
-contrat salarié . CSG et CRDS . revenus de remplacement . CRDS . montant:
-  titre: CRDS
-  formule:
-    produit:
-      assiette: assiette revenu remplacements
-      taux: CRDS . taux
+  produit:
+    assiette: assiette revenu remplacements
+    taux: CRDS . taux
+  plafond: 
+    valeur: CSG non déductible . plafond - CSG non déductible
 
 contrat salarié . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
@@ -2954,11 +2916,10 @@ contrat salarié . FNAL:
           - si: éligible taux réduit
             alors: 0.1%
           - sinon: 0.5%
-      variations:
-        - si: éligible taux réduit
-          alors:
-            plafond: plafond sécurité sociale
-        - sinon: rien
+      plafond: 
+        applicable si: éligible taux réduit
+        valeur: plafond sécurité sociale
+    
   exemples:
     - nom: SMIC
       situation:
@@ -3020,18 +2981,20 @@ contrat salarié . maladie:
       assiette: cotisations . assiette
       composantes:
         - attributs:
-            nom: maladie, maternité, invalidité, décès
-            dû par: employeur
-          taux: taux employeur
+            nom: employeur
+          composantes:
+            - attributs:
+                titre: maladie, maternité, invalidité, décès
+                nom: base
+              taux: taux employeur
+            - attributs:
+                nom: contribution solidarité autonomie
+              taux: taux solidarité autonomie
         - attributs:
-            nom: maladie, maternité, invalidité, décès
-            dû par: salarié
+            nom: salarié
+            titre: maladie, maternité, invalidité, décès salarié
           taux: taux salarié
-        - attributs:
-            nom: Contribution Solidarité Autonomie
-            dû par: employeur
-          taux: taux solidarité autonomie
-
+        
 contrat salarié . maladie . taux solidarité autonomie:
   acronyme: CSA
   formule: 0.3%
@@ -3097,15 +3060,11 @@ contrat salarié . participation effort de construction:
 contrat salarié . prévoyance:
   formule:
     somme:
-      - employeur
-      - salarié
+      - nom: employeur
+        formule: 0 €/mois
+      - nom: salarié
+        formule: 0 €/mois
 
-contrat salarié . prévoyance . employeur:
-  titré: Prévoyance employeur
-  formule: 0 €/mois
-
-contrat salarié . prévoyance . salarié:
-  formule: 0 €/mois
 
 contrat salarié . prévoyance . part déductible:
   formule:
@@ -3293,6 +3252,7 @@ contrat salarié . profession spécifique:
         - pilote de ligne ou personnel navigant
 
 contrat salarié . profession spécifique . journaliste:
+  formule: contrat salarié . profession spécifique = 'journaliste'
   icônes: ✒
   description: >-
     Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
@@ -3301,14 +3261,14 @@ contrat salarié . profession spécifique . journaliste:
 contrat salarié . profession spécifique . journaliste . réduction de taux:
   applicable si: profession spécifique = 'journaliste'
   remplace:
-    - règle: vieillesse . taux employeur plafonné
-      par: vieillesse . taux employeur plafonné * réduction de taux
-    - règle: vieillesse . taux employeur déplafonné
-      par: vieillesse . taux employeur déplafonné * réduction de taux
-    - règle: vieillesse . taux salarié plafonné
-      par: vieillesse . taux salarié plafonné * réduction de taux
-    - règle: vieillesse . taux salarié déplafonné
-      par: vieillesse . taux salarié déplafonné * réduction de taux
+    - règle: vieillesse . employeur . plafonnée . taux
+      par: vieillesse . employeur . plafonnée . taux * réduction de taux
+    - règle: vieillesse . employeur . déplafonnée . taux
+      par: vieillesse . employeur . déplafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . plafonnée . taux
+      par: vieillesse . salarié . plafonnée . taux * réduction de taux
+    - règle: vieillesse . salarié . déplafonnée . taux
+      par: vieillesse . salarié . déplafonnée . taux * réduction de taux
 
     - règle: allocations familiales . taux
       par: allocations familiales . taux * réduction de taux
@@ -3373,6 +3333,7 @@ contrat salarié . régime des impatriés:
 
 contrat salarié . régime des impatriés . information:
   type: notification
+  formule: oui
   description: >-
     Pour bénéficier de l'exonération de cotisations vieillesse, il faut remplir les conditions suivantes :
     - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
@@ -3442,21 +3403,25 @@ contrat salarié . vieillesse:
       assiette: cotisations . assiette
       composantes:
         - attributs:
-            dû par: salarié
+            nom: salarié
           assiette: cotisations . assiette . salariale
           composantes:
-            - nom: déplafonnée
-              taux [ref taux salarié déplafonné]: 0.4%
-            - nom: plafonnée
-              taux [ref taux salarié plafonné]: 6.90%
+            - attributs:
+                nom: déplafonnée
+              taux [ref]: 0.4%
+            - attributs:
+                nom: plafonnée
+              taux [ref]: 6.90%
               plafond: plafond sécurité sociale
         - attributs:
-            dû par: employeur
+            nom: employeur
           composantes:
-            - nom: déplafonnée
-              taux [ref taux employeur déplafonné]: 1.9%
-            - nom: plafonnée
-              taux [ref taux employeur plafonné]: 8.55%
+            - attributs:
+                nom: déplafonnée
+              taux [ref]: 1.9%
+            - attributs:
+                nom: plafonnée
+              taux [ref]: 8.55%
               plafond: plafond sécurité sociale
 
   exemples:
@@ -3498,6 +3463,7 @@ contrat salarié . maladie . taux domiciliation fiscale étranger:
   formule: 5.50%
 
 contrat salarié . lodeom:
+  valeur: oui
   description: |
     Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'outre-mer.
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
@@ -3533,15 +3499,15 @@ contrat salarié . lodeom . réduction outre-mer:
   formule:
     somme:
       - allocations familiales
-      - FNAL .employeur
-      - maladie .employeur
-      - vieillesse .employeur
+      - FNAL
+      - maladie . employeur
+      - vieillesse . employeur
       - produit:
           assiette: cotisations . assiette
           taux: ATMP . taux minimum
-      - retraite complémentaire .employeur
-      - contribution d'équilibre général .employeur
-      - chômage .employeur
+      - retraite complémentaire . employeur
+      - contribution d'équilibre général . employeur
+      - chômage . employeur
     plafond:
       variations:
         - si:
@@ -3719,7 +3685,7 @@ contrat salarié . cotisations . assiette forfaitaire . rémunération réelle:
 
 contrat salarié . convention collective:
   par défaut: "'droit commun'"
-  question: "Quelle convention collective est applicable à l'entreprise ? [beta] "
+  question: "Quelle convention collective est applicable à l'entreprise ?"
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -3735,10 +3701,7 @@ contrat salarié . convention collective:
 contrat salarié . convention collective . contrôle décharge:
   type: notification
   sévérité: avertissement
-  applicable si:
-    toutes ces conditions:
-      - convention collective != non
-      - convention collective != 'droit commun'
+  formule: convention collective != 'droit commun'
   description: >-
     Attention, l'implémentation des conventions collective est encore partielle
     et non vérifiée. Néanmoins, cela permet d'obtenir une première estimation,

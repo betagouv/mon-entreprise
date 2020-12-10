@@ -77,6 +77,7 @@ module.exports = {
 			clientsClaim: true,
 			skipWaiting: true,
 			cacheId: process.env.HEAD,
+			mode: process.env.HEAD === 'master' ? 'production' : 'developpement',
 			swDest: 'sw.js',
 			navigateFallback: '/fallback',
 			navigateFallbackDenylist: [

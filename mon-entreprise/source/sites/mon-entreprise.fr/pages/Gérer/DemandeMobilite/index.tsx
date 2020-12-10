@@ -2,10 +2,19 @@ import { Explicable } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
 import * as Animate from 'Components/ui/animate'
 import Emoji from 'Components/utils/Emoji'
+import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
-import Engine from 'publicodes'
-import { lazy, createElement, Suspense, useCallback, useState } from 'react'
+import Engine, { evaluateRule, EvaluatedRule } from 'publicodes'
+import { equals } from 'ramda'
+import {
+	lazy,
+	createElement,
+	Suspense,
+	useCallback,
+	useState,
+	useContext,
+} from 'react'
 import emoji from 'react-easy-emoji'
 import { hash } from '../../../../../utils'
 import formulaire from './formulaire-détachement.yaml'
@@ -15,7 +24,7 @@ const LazyEndBlock = lazy(() => import('./EndBlock'))
 export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
-		<>
+		<EngineProvider value={engine}>
 			<h1>Demande de mobilité en Europe pour travailleur indépendant</h1>
 			<h2>
 				<small>
@@ -74,34 +83,42 @@ export default function FormulaireMobilitéIndépendant() {
 				</strong>{' '}
 				de 9h00 à 12h00 et de 13h00 à 16h00.
 			</p>
-			<FormulairePublicodes engine={engine} />
-		</>
+			<FormulairePublicodes />
+		</EngineProvider>
 	)
 }
 
-const useFields = (engine: Engine<string>, fieldNames: Array<string>) => {
+const useFields = (
+	engine: Engine<string>,
+	fieldNames: Array<string>,
+	situation: Record<string, unknown>
+): Array<EvaluatedRule> => {
 	const fields = fieldNames
-		.map(name => engine.evaluate(name))
+		.map((name) => evaluateRule(engine, name))
 		.filter(
-			node =>
-				node.isApplicable !== false &&
-				node.isApplicable !== null &&
-				(node.question || node.type || node.API)
+			(node: EvaluatedRule) =>
+				node.isNotApplicable !== true &&
+				// TODO change this when not applicable value can be differenciated from false value
+				(equals(node.missingVariables, { [node.dottedName]: 1 }) ||
+					node.dottedName in situation ||
+					(node.nodeValue !== false && node.nodeValue !== null)) &&
+				(node.question || ((node.type || node.API) && node.nodeValue !== false))
 		)
 	return fields
 }
 
 const VERSION = hash(JSON.stringify(formulaire))
-function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
+function FormulairePublicodes() {
+	const engine = useContext(EngineContext)
 	const [situation, setSituation] = usePersistingState<Record<string, string>>(
 		`formulaire-détachement:${VERSION}`,
 		{}
 	)
 	const onChange = useCallback(
 		(dottedName, value) => {
-			setSituation(situation => ({
+			setSituation((situation) => ({
 				...situation,
-				[dottedName]: value
+				[dottedName]: value,
 			}))
 		},
 		[setSituation]
@@ -115,7 +132,7 @@ function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
 	}, [clearFieldsKey, setSituation])
 
 	engine.setSituation(situation)
-	const fields = useFields(engine, Object.keys(formulaire))
+	const fields = useFields(engine, Object.keys(formulaire), situation)
 	const missingValues = fields.filter(
 		({ dottedName, type }) =>
 			type !== 'groupe' &&
@@ -124,7 +141,7 @@ function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
 	const isMissingValues = !!missingValues.length
 	return (
 		<Animate.fromTop key={clearFieldsKey}>
-			{fields.map(field => (
+			{fields.map((field) => (
 				<Animate.fromTop key={field.dottedName}>
 					{field.type === 'groupe' ? (
 						<>
@@ -135,6 +152,14 @@ function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
 							)}
 							{field.description && <Markdown source={field.description} />}
 						</>
+					) : field.type === 'notification' && field.nodeValue === true ? (
+						<small
+							css={`
+								color: #ff2d96;
+							`}
+						>
+							{field.description}
+						</small>
 					) : (
 						<>
 							<label htmlFor={field.dottedName}>
@@ -159,9 +184,7 @@ function FormulairePublicodes({ engine }: { engine: Engine<string> }) {
 							<RuleInput
 								id={field.dottedName}
 								dottedName={field.dottedName}
-								rules={engine.getParsedRules()}
-								value={situation[field.dottedName]}
-								onChange={value => onChange(field.dottedName, value)}
+								onChange={(value) => onChange(field.dottedName, value)}
 							/>
 						</>
 					)}

@@ -83,7 +83,7 @@ export default function Créer() {
 					className="ui__ interactive card box lighter-bg"
 					to={{
 						pathname: sitePaths.simulateurs.comparaison,
-						state: { fromCréer: true }
+						state: { fromCréer: true },
 					}}
 				>
 					<Trans i18nKey="créer.ressources.comparaison">
