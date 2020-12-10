@@ -359,6 +359,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
     Quotient familial d'une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
 
 impôt . foyer fiscal . taux effectif:
+  unité: '%'
   formule: impôt à payer / revenu imposable
 
 impôt . foyer fiscal . revenu imposable:

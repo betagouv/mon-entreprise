@@ -26,7 +26,7 @@ artiste-auteur . revenus . BNC . micro-bnc:
   titre: Souhaitez-vous opter pour le régime micro-BNC ?
   résumé: Avec abattement forfaitaire fiscal de 34 % au titre des frais professionnels
 
-artiste-auteur . revenus . BNC . micro-bnc . contrôle micro-bnc:
+artiste-auteur . revenus . BNC . contrôle micro-bnc:
   description: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
   formule:
     toutes ces conditions:
@@ -70,21 +70,18 @@ artiste-auteur . cotisations . option surcotisation:
     toutes ces conditions:
       - assiette > 0
       - assiette < assiette surcotisation
+  remplace:
+    règle: assiette
+    dans: vieillesse
+    par: assiette surcotisation
   question: Souhaitez-vous surcotiser ?
   résumé: Vos revenus sont en dessous des seuils vous permettant de valider 4 trimestres de retraite. Vous pouvez choisir de surcotiser pour augmenter vos droits.
   par défaut: non
   références:
     URSSAF.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
 
-artiste-auteur . cotisations . assiette surcotisation:
-  formule: 900 heures/an * SMIC horaire
 
-artiste-auteur . cotisations . surcotisation:
-  applicable si: option surcotisation
-  remplace:
-    - règle: assiette
-      dans: vieillesse
-      par: assiette surcotisation
+artiste-auteur . cotisations . assiette surcotisation: 900 heures/an * SMIC horaire
 
 artiste-auteur . cotisations . vieillesse:
   formule:
