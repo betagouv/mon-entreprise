@@ -612,7 +612,7 @@ export function getSimulatorsData({
 			path: sitePaths.gérer.formulaireMobilité,
 			shortName: t(
 				'pages.gérer.demande-mobilité.shortname',
-				'Demande de mobilité en Europe'
+				'Demande de mobilité internationale'
 			),
 			private: true,
 			iframe: 'demande-mobilite',

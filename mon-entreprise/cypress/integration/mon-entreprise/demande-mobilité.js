@@ -6,7 +6,7 @@ describe('Formulaire demande mobilité', function () {
 	}
 	before(() => cy.visit('/gérer/demande-mobilité'))
 	it('should not crash', () => {
-		cy.contains('Demande de mobilité en Europe')
+		cy.contains('Demande de mobilité internationale')
 	})
 	it('should allow to complete "coordonnées" section', () => {
 		cy.contains('SIRET').click()

@@ -830,6 +830,7 @@ dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
   question: Avez-vous souscrit à des contrats de complémentaire privée dits ("contrats Madelins")
   par défaut: non
+  
 dirigeant . indépendant . contrats madelin . montant:
   titre: Somme des cotisations à contrats Madelin
   formule:
