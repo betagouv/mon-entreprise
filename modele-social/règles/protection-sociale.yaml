@@ -178,8 +178,8 @@ protection sociale . revenu moyen:
   unité: €/an
 
   formule:
+    plancher: 0 €/mois
     le maximum de:
-      - 0
       - dirigeant . indépendant . revenu professionnel
       - dirigeant . auto-entrepreneur . impôt . revenu abattu
       - contrat salarié . rémunération . brut
@@ -408,17 +408,20 @@ protection sociale . accidents du travail et maladies professionnelles:
   applicable si: contrat salarié
   formule:
     produit:
-      assiette: revenu moyen
-      taux: 60%
-    plafond:
-      202.78 €/jour
-      # TODO
-      # - 0.834% * plafond sécurité sociale temps plein
-
+      assiette: 
+        valeur: revenu moyen
+        plafond: 83.4% * plafond sécurité sociale temps plein
+      taux: 
+        nom: Pourcentage du salaire journalier de référence
+        valeur: 60%
+  note: |
+    Le taux est de 80% à partir du 29e jour d'arrêt.
   références:
     ameli.fr: https://www.ameli.fr/paris/entreprise/cotisations/mp-tarification-calculs-baremes/compte-mp
     service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
     service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
+    Calcul de l'indemnité: https://www.service-public.fr/particuliers/vosdroits/F32148
+    Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
 
 protection sociale . formation:
   icônes: 👩‍🎓

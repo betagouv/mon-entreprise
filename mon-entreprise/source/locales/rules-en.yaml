@@ -6723,6 +6723,10 @@ protection sociale . accidents du travail et maladies professionnelles:
 
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
+  note.en: |
+    [automatic] The rate is 80% from the 29th day of the stoppage.
+  note.fr: |
+    Le taux est de 80% à partir du 29e jour d'arrêt.
   résumé.en: Provides comprehensive coverage for occupational diseases or accidents.
   résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
   titre.en: Work accidents / occupational diseases
