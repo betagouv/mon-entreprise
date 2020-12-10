@@ -9,6 +9,7 @@ import { disambiguateRuleReference } from './ruleUtils'
 export type Context = {
 	dottedName: string
 	parsedRules: Record<string, RuleNode>
+	ruleTitle?: string
 }
 
 type RawRule = Omit<Rule, 'nom'> | string | undefined | number

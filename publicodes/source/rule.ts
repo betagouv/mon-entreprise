@@ -68,6 +68,12 @@ export default function parseRule(
 		.filter(Boolean)
 		.join(' . ')
 
+	const name = nameLeaf(dottedName)
+	const ruleTitle = capitalise0(
+		rawRule['titre'] ??
+			(context.ruleTitle ? `${context.ruleTitle} (${name})` : name)
+	)
+
 	if (context.parsedRules[dottedName]) {
 		throw new Error(`La référence '${dottedName}' a déjà été définie`)
 	}
@@ -78,11 +84,8 @@ export default function parseRule(
 		'nom dans la situation': dottedName,
 	}
 
-	const ruleContext = { ...context, dottedName }
-	let name = nameLeaf(dottedName)
-	if (context.dottedName) {
-		name = `${nameLeaf(context.dottedName)} (${name})`
-	}
+	const ruleContext = { ...context, dottedName, ruleTitle }
+
 	const [parent] = ruleParents(dottedName)
 	const explanation = {
 		valeur: parse(ruleValue, ruleContext),
@@ -94,7 +97,7 @@ export default function parseRule(
 			...parseRendNonApplicable(rawRule['rend non applicable'], ruleContext),
 			...parseReplacements(rawRule.remplace, ruleContext),
 		],
-		title: capitalise0(rawRule['titre'] || name),
+		title: ruleTitle,
 		suggestions: mapObjIndexed(
 			(node) => parse(node, ruleContext),
 			rawRule.suggestions ?? {}
