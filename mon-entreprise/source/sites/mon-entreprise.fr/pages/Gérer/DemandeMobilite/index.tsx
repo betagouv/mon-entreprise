@@ -25,7 +25,7 @@ export default function FormulaireMobilitéIndépendant() {
 	const engine = new Engine(formulaire)
 	return (
 		<EngineProvider value={engine}>
-			<h1>Demande de mobilité en Europe pour travailleur indépendant</h1>
+			<h1>Demande de mobilité internationale pour travailleur indépendant</h1>
 			<h2>
 				<small>
 					Travailleur indépendant exerçant son activité à l’étranger : Régime de
@@ -35,10 +35,11 @@ export default function FormulaireMobilitéIndépendant() {
 			<p>
 				Vous exercez une activité non salariée ou salariée dans un ou plusieurs
 				Etats (pays) membres de l’UE, de l’
-				<abbr title="Espace Économique Européen">EEE</abbr>* ou en Suisse. A ce
-				titre, vous devez <strong>compléter ce formulaire</strong> pour définir
-				votre régime de Sécurité sociale applicable durant cette période et
-				l’envoyer par email à{' '}
+				<abbr title="Espace Économique Européen">EEE</abbr>*, en Suisse ou dans
+				un pays lié à la France par convention bilatérale. A ce titre, vous
+				devez <strong>compléter ce formulaire</strong> pour définir votre régime
+				de Sécurité sociale applicable durant cette période et l’envoyer par
+				email à{' '}
 				<a href="mailto:relations.internationales@urssaf.fr">
 					relations.internationales@urssaf.fr
 				</a>
@@ -46,8 +47,8 @@ export default function FormulaireMobilitéIndépendant() {
 			</p>
 			<p>
 				Après étude de votre demande, si les conditions le permettent, vous
-				recevrez un certificat A1 attestant du maintien à la Sécurité sociale
-				française.
+				recevrez un certificat A1 (ou le formulaire spécifique) attestant du
+				maintien à la Sécurité sociale française.
 			</p>
 
 			<p>
@@ -79,7 +80,7 @@ export default function FormulaireMobilitéIndépendant() {
 				</a>{' '}
 				ou par téléphone au{' '}
 				<strong>
-					<a href="tel:+33320003400">+33 (0)3 2000 3400</a>
+					<a href="tel:+33806804213">+33(0) 806 804 213</a>
 				</strong>{' '}
 				de 9h00 à 12h00 et de 13h00 à 16h00.
 			</p>
