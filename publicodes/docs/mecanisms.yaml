@@ -1,7 +1,7 @@
 applicable si:
   chainable: oui
   description: >-
-    Renvoit `non` si la condition est égale à `non`. Renvoit la valeur sinon.
+    Renvoie `non` si la condition est égale à `non`. Renvoie la valeur sinon.
 
     Permet de désactiver une règle ou une valeur. 
     
