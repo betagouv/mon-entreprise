@@ -4,6 +4,10 @@
 	"description": "A declarative language for encoding public algorithm",
 	"main": "dist/index.js",
 	"types": "dist/types/index.d.ts",
+	"exports": {
+			"require": "./dist/index.js",
+			"import": "./esm/index.js"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
@@ -15,7 +19,8 @@
 	"files": [
 		"dist/index.js",
 		"dist/types",
-		"dist/images"
+		"dist/images",
+		"esm"
 	],
 	"private": false,
 	"devDependencies": {
