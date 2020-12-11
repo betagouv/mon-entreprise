@@ -20,6 +20,7 @@
 		"dist/index.js",
 		"dist/types",
 		"dist/images",
+		"dist/publicodes.min.js",
 		"esm"
 	],
 	"private": false,

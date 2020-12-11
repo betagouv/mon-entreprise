@@ -25,6 +25,7 @@
 	},
 	"scripts": {
 		"build": "node build.js",
+		"clean": "rimraf dist node_modules",
 		"prepare": "yarn run build",
 		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
 		"test": "echo 1"
