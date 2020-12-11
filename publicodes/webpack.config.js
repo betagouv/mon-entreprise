@@ -7,17 +7,15 @@ const common = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],
 	},
-	mode: 'development',
+	mode: process.env.NODE_ENV,
 	entry: path.resolve(__dirname, 'source', 'index.ts'),
 	module: {
 		rules: commonLoaders({ file: false }),
 	},
-	externals:
-		// Every non-relative module is external
-		/^[a-z\-0-9]+$/,
+	
 }
 
-module.exports =
+module.exports = [
 	// Config for UMD export (browser / node)
 	{
 		...common,
@@ -27,4 +25,16 @@ module.exports =
 			libraryTarget: 'umd',
 			globalObject: 'this',
 		},
+		externals:
+		// Every non-relative module is external
+			/^[a-z\-0-9]+$/,
+	},
+	process.env.NODE_ENV === 'production' && {
+		...common,
+		output: {
+			filename: 'publicodes.min.js',
+			library: 'publicodes',
+			libraryTarget: 'global',
+		},
 	}
+].filter(Boolean)
