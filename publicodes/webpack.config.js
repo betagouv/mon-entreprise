@@ -12,7 +12,6 @@ const common = {
 	module: {
 		rules: commonLoaders({ file: false }),
 	},
-	
 }
 
 module.exports = [
@@ -26,7 +25,7 @@ module.exports = [
 			globalObject: 'this',
 		},
 		externals:
-		// Every non-relative module is external
+			// Every non-relative module is external
 			/^[a-z\-0-9]+$/,
 	},
 	process.env.NODE_ENV === 'production' && {
@@ -36,5 +35,5 @@ module.exports = [
 			library: 'publicodes',
 			libraryTarget: 'global',
 		},
-	}
+	},
 ].filter(Boolean)
