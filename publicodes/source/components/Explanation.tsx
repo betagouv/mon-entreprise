@@ -28,6 +28,9 @@ import UneDeCesConditions from './mecanisms/UneDeCesConditions'
 import UnePossibilité from './mecanisms/UnePossibilité'
 import Unité from './mecanisms/Unité'
 import Variations from './mecanisms/Variations'
+import { useContext } from 'react'
+import { EngineContext } from './contexts'
+import { InternalError } from '../error'
 
 const UIComponents = {
 	constant: ConstantNode,
@@ -66,9 +69,19 @@ const UIComponents = {
 
 export default function Explanation({ node }) {
 	const visualisationKind = node.visualisationKind || node.nodeKind
+	const engine = useContext(EngineContext)
+	if (!engine) {
+		throw new InternalError(node)
+	}
+
+	// On ne veut pas (pour l'instant) déclencher une évaluation juste pour
+	// l'affichage.
+	// A voir si cela doit évoluer...
+	const displayedNode = node.evaluationId ? engine.evaluateNode(node) : node
+
 	const Component = UIComponents[visualisationKind]
 	if (!Component) {
 		throw new Error(`Unknown visualisation: ${visualisationKind}`)
 	}
-	return <Component {...node} />
+	return <Component {...displayedNode} />
 }
