@@ -63,13 +63,14 @@ export function warning(
 	message: string,
 	solution?: string
 ) {
-	console.warn(
-		`\n[ Avertissement ]
+	process.env.NODE_ENV !== 'production' &&
+		console.warn(
+			`\n[ Avertissement ]
 	➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
 	⚠️  ${message}
 	💡  ${solution ? solution : ''}
 	`
-	)
+		)
 }
 
 export class InternalError extends EngineError {
