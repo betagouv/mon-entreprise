@@ -6285,6 +6285,31 @@ entreprise . franchise de TVA:
     "minoré" n'a pas été dépassé en année `n - 2`)
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
+entreprise . imposition:
+  description.en: >
+    [automatic] The entrepreneur can choose one of the two systems for taxing
+    the profits of his activity:
+
+    - income tax, where profits are declared on the personal income tax return and taxed according to a progressive tax scale.
+
+    - corporate income tax, where profits are declared in the name of the company
+  description.fr: >
+    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition
+    des bénéfices de son activité :
+
+    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
+
+    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+  question.en: '[automatic] What tax regime is the company subject to?'
+  question.fr: À quel régime d'imposition l'entreprise est-elle soumise ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+entreprise . imposition . IR:
+  titre.en: '[automatic] To income tax'
+  titre.fr: À l'impôt sur le revenu
+entreprise . imposition . IS:
+  titre.en: '[automatic] To corporate tax'
+  titre.fr: À l'impôt sur les sociétés
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
