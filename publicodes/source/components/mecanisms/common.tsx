@@ -289,19 +289,7 @@ export function Leaf(
 		!node.name.includes(' . ') &&
 		rule.virtualRule
 	) {
-		return (
-			<Explanation
-				node={
-					// Cette logique est un peu hacky car on accède à cache, qui
-					// est une structure interne de Engine. Seulement, on ne veut
-					// pas (pour l'instant) déclencher une évaluation juste pour
-					// l'affichage.
-
-					// A voir si cela doit évoluer...
-					engine?.cache[dottedName] ?? rule
-				}
-			/>
-		)
+		return <Explanation node={rule} />
 	}
 	return (
 		<div

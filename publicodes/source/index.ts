@@ -16,6 +16,7 @@ import { reduceAST, transformAST } from './AST'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] },
+	nodes: new Map(),
 })
 
 type Cache = {
@@ -31,6 +32,7 @@ type Cache = {
 		inRecalcul?: boolean
 		filter?: string
 	}
+	nodes: Map<ASTNode, EvaluatedNode>
 }
 
 export type EvaluationOptions = Partial<{
@@ -60,16 +62,10 @@ export default class Engine<Name extends string = string> {
 	parsedRules: ParsedRules<Name>
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
-	cache: Cache
-
-	// A number that is incremented every time the situation changes, and is used
-	// for inline cache invalidation.
-	situationVersion = 0
+	cache: Cache = emptyCache()
 	private warnings: Array<string> = []
 
 	constructor(rules: string | Record<string, Rule> | ParsedRules<Name>) {
-		this.cache = emptyCache()
-		this.resetCache()
 		if (typeof rules === 'string') {
 			this.parsedRules = parsePublicodes(rules) as ParsedRules<Name>
 		}
@@ -88,7 +84,7 @@ export default class Engine<Name extends string = string> {
 		this.replacements = getReplacements(this.parsedRules)
 	}
 
-	private resetCache() {
+	resetCache() {
 		this.cache = emptyCache()
 	}
 
@@ -96,7 +92,6 @@ export default class Engine<Name extends string = string> {
 		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
 	) {
 		this.resetCache()
-		this.situationVersion++
 		this.parsedSituation = mapObjIndexed((value, key) => {
 			if (value && typeof value === 'object' && 'nodeKind' in value) {
 				return value as ASTNode
@@ -153,20 +148,19 @@ export default class Engine<Name extends string = string> {
 	}
 
 	evaluateNode<N extends ASTNode = ASTNode>(
-		node: N & { lastEvaluation?: number; res?: EvaluatedNode }
+		node: N & { evaluationId?: string }
 	): N & EvaluatedNode {
 		if (!node.nodeKind) {
 			throw Error('The provided node must have a "nodeKind" attribute')
 		} else if (!evaluationFunctions[node.nodeKind]) {
 			throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
 		}
-
-		if (!node.res || node.lastEvaluation !== this.situationVersion) {
-			node.res = evaluationFunctions[node.nodeKind].call(this, node)
-			node.lastEvaluation = this.situationVersion
+		let result = this.cache.nodes.get(node)
+		if (result === undefined) {
+			result = evaluationFunctions[node.nodeKind].call(this, node)
 		}
-
-		return node.res!
+		this.cache.nodes.set(node, result!)
+		return result as N & EvaluatedNode
 	}
 }
 

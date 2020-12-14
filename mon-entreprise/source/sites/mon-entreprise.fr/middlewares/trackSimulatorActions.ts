@@ -7,14 +7,13 @@ export default (tracker: Tracker) => {
 		next(action)
 		const newState = getState()
 		if (action.type == 'STEP_ACTION' && action.name == 'fold') {
-			tracker.debouncedPush([
-				'trackEvent',
-				'Simulator::answer',
-				action.source,
-				action.step,
-				situationSelector(newState)[action.step as DottedName],
-			])
-
+			// tracker.debouncedPush([
+			// 	'trackEvent',
+			// 	'Simulator::answer',
+			// 	action.source,
+			// 	action.step,
+			// 	situationSelector(newState)[action.step as DottedName],
+			// ])
 			// TODO : add tracking in UI instead ?
 			// if (!currentQuestionSelector(newState)) {
 			// 	tracker.push([
