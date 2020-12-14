@@ -28,3 +28,4 @@ unité par défaut: €/an
 situation:
   dirigeant: "'indépendant'"
   entreprise . catégorie d'activité: "'libérale'"
+  entreprise . imposition: "'IR'"

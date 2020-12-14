@@ -76,6 +76,28 @@ entreprise . rémunération du dirigeant:
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
   par défaut: 100%
 
+entreprise . imposition:
+  question: À quel régime d'imposition l'entreprise est-elle soumise ?
+  description: |
+    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition des bénéfices de son activité :
+    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
+    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - IR
+        - IS
+  par défaut: "'IR'"
+
+entreprise . imposition . IR:
+  valeur: imposition = 'IR'
+  titre: À l'impôt sur le revenu
+
+entreprise . imposition . IS:
+  valeur: imposition = 'IS'
+  titre: À l'impôt sur les sociétés
+
 entreprise . bénéfice:
   formule: chiffre d'affaires - charges dont rémunération dirigeant
 
