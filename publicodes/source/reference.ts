@@ -7,7 +7,6 @@ import { RuleNode } from './rule'
 export type ReferenceNode = {
 	nodeKind: 'reference'
 	name: string
-	explanation?: RuleNode & EvaluatedNode
 	contextDottedName: string
 	dottedName?: string
 }
@@ -30,7 +29,6 @@ registerEvaluationFunction('reference', function evaluateReference(node) {
 	const explanation = this.evaluateNode(this.parsedRules[node.dottedName])
 	return {
 		...node,
-		explanation,
 		missingVariables: explanation.missingVariables,
 		nodeValue: explanation.nodeValue,
 		...('unit' in explanation && { unit: explanation.unit }),
