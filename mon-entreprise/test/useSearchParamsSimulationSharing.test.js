@@ -6,8 +6,6 @@ import {
 	getSearchParamsFromSituation,
 	getSituationFromSearchParams,
 	getRulesParamNames,
-	serialize,
-	deserialize,
 	cleanSearchParams,
 } from '../source/components/utils/useSearchParamsSimulationSharing'
 
@@ -35,26 +33,27 @@ rule with:
 rule without:
 	formule: 0
 	`)
-	const dottedNameParamName = getRulesParamNames(
-		new Engine(someRules).getRules()
-	)
+	const engine = new Engine(someRules)
+	const dottedNameParamName = getRulesParamNames(engine.getRules())
 
 	describe('getSearchParamsFromSituation', () => {
 		it('builds search params with and without identifiant court', () => {
 			expect(
 				getSearchParamsFromSituation(
-					{ 'rule with': '2000 €/mois', 'rule without': '1000 €/mois' },
+					engine,
+					{ 'rule with': '2000€/mois', 'rule without': '1000€/mois' },
 					dottedNameParamName
 				).toString()
 			).to.equal(
 				new URLSearchParams(
-					'panta=2000 €/mois&rule without=1000 €/mois'
+					'panta=2000€/mois&rule without=1000€/mois'
 				).toString()
 			)
 		})
-		it('builds search params with object', () => {
+		it.skip('builds search params with object', () => {
 			expect(
 				getSearchParamsFromSituation(
+					engine,
 					{ 'rule without': { 1: 2, 3: { 4: '5' } } },
 					dottedNameParamName
 				).toString()
@@ -64,7 +63,7 @@ rule without:
 		})
 		it('handles empty situation with proper defaults', () => {
 			expect(
-				getSearchParamsFromSituation({}, dottedNameParamName).toString()
+				getSearchParamsFromSituation(engine, {}, dottedNameParamName).toString()
 			).to.equal('')
 		})
 	})
@@ -73,12 +72,12 @@ rule without:
 		it('reads search params with and without identifiant court', () => {
 			expect(
 				getSituationFromSearchParams(
-					new URLSearchParams('panta=2000 €/mois&rule without=1000 €/mois'),
+					new URLSearchParams('panta=2000€/mois&rule without=1000€/mois'),
 					dottedNameParamName
 				)
 			).to.deep.equal({
-				'rule with': '2000 €/mois',
-				'rule without': '1000 €/mois',
+				'rule with': '2000€/mois',
+				'rule without': '1000€/mois',
 			})
 		})
 		it('handles empty search params with proper defaults', () => {
@@ -88,15 +87,6 @@ rule without:
 					dottedNameParamName
 				)
 			).to.deep.equal({})
-		})
-	})
-
-	describe('serialization is somethingpotent', () => {
-		expect(deserialize(serialize(1))).to.equal(1)
-		expect(deserialize(serialize('1'))).to.equal('1')
-		expect(deserialize(serialize({ 1: 2, 3: '4' }))).to.deep.equal({
-			1: 2,
-			3: '4',
 		})
 	})
 })

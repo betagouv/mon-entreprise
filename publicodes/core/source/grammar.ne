@@ -8,7 +8,7 @@
 @{%
 const {
   string, date, variable, temporalNumericValue, binaryOperation, 
-  unaryOperation, boolean, number, numberWithUnit
+  unaryOperation, boolean, number, numberWithUnit, JSONObject
 } = require('./grammarFunctions')
 
 const moo = require("moo");
@@ -23,6 +23,7 @@ const periodWord = `\\| ${word}(?:[\\s]${word})*`
 
 const numberRegExp = '-?(?:[1-9][0-9]+|[0-9])(?:\\.[0-9]+)?';
 const lexer = moo.compile({
+
   '(': '(',
   ')': ')',
   '[': '[',
@@ -35,6 +36,7 @@ const lexer = moo.compile({
   words: new RegExp(words),
   number: new RegExp(numberRegExp),
   string: /'.*'/,
+  JSONObject: /{.*}/,
   additionSubstraction: /[\+-]/,
   multiplicationDivision: ['*','/'],
   dot: ' . ',
@@ -54,6 +56,7 @@ main ->
   | NumericValue {% id %}
   | Date {% id %}
   | NonNumericTerminal {% id %}
+  | JSONObject {% id %}
 
 NumericValue ->
     AdditionSubstraction {% id %}
@@ -116,3 +119,5 @@ number ->
   | %number (%space):? Unit {% numberWithUnit %}
 
 string -> %string {% string %}
+
+JSONObject -> %JSONObject {% JSONObject %}

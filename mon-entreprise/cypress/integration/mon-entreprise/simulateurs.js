@@ -106,8 +106,9 @@ describe('Simulateur salarié mode partagé', () => {
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
 		'contrat salarié': "'CDD'",
-		'salarie-brut': JSON.stringify({ valeur: '1539', unité: '€/mois' }),
+		'salarie-brut': '1539€/mois',
 	})
+
 	const urlWithState = `${simulatorUrl}?${searchParams.toString()}`
 	if (!fr) {
 		return

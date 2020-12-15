@@ -33,7 +33,7 @@ export const serializeUnit = (
 	rawUnit: Unit | undefined | string,
 	count: number = plural,
 	formatUnit: formatUnit = (x) => x
-) => {
+): string | undefined => {
 	if (rawUnit === null || typeof rawUnit !== 'object') {
 		return typeof rawUnit === 'string' ? formatUnit(rawUnit, count) : rawUnit
 	}

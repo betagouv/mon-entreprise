@@ -7,7 +7,7 @@ import {
 	configSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { ParsedRules } from 'publicodes'
+import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { DottedName } from 'modele-social'
 import { updateSituation, setActiveTarget } from 'Actions/actions'
 
@@ -70,7 +70,8 @@ export default function useSearchParamsSimulationSharing() {
 		urlSituationIsExtracted,
 	])
 
-	return () => getSearchParamsFromSituation(situation, dottedNameParamName)
+	return () =>
+		getSearchParamsFromSituation(engine, situation, dottedNameParamName)
 }
 
 const objectifsOfConfig = (config: Partial<SimulationConfig>) =>
@@ -105,42 +106,8 @@ export const getRulesParamNames = (
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])
 
-// Simple (de)serialization based on value type
-export const serialize = (
-	value: Record<string, unknown> | string | number
-): string => {
-	switch (typeof value) {
-		case 'object':
-			return `${JSON.stringify(value)}`
-		case 'string':
-			return value
-		case 'number':
-			return `_${value}`
-		default:
-			throw new Error('Unexpected type in situation')
-	}
-}
-export const deserialize = (
-	value: string
-): Record<string, unknown> | string | number | undefined => {
-	if (value.startsWith('_')) {
-		try {
-			return parseFloat(value.slice(1))
-		} catch {
-			return
-		}
-	}
-	if (value.startsWith('{')) {
-		try {
-			return JSON.parse(value)
-		} catch {
-			return
-		}
-	}
-	return value
-}
-
 export function getSearchParamsFromSituation(
+	engine: Engine,
 	situation: Situation,
 	dottedNameParamName: [DottedName, ParamName][]
 ): URLSearchParams {
@@ -149,11 +116,9 @@ export function getSearchParamsFromSituation(
 	;(Object.entries(situation) as [DottedName, any][]).forEach(
 		([dottedName, value]) => {
 			const paramName = dottedNameParamNameMapping[dottedName]
-			try {
-				searchParams.set(paramName, serialize(value))
-			} catch {
-				// noop
-			}
+			const serializedValue = serializeEvaluation(engine.evaluate(value))
+			if (typeof serializedValue !== 'undefined')
+				searchParams.set(paramName, serializedValue)
 		}
 	)
 	searchParams.sort()
@@ -176,7 +141,7 @@ export function getSituationFromSearchParams(
 
 	searchParams.forEach((value, paramName) => {
 		if (Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)) {
-			situation[paramNameDottedName[paramName]] = deserialize(value)
+			situation[paramNameDottedName[paramName]] = value
 		}
 	})
 
