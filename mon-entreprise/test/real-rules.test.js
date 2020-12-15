@@ -1,6 +1,6 @@
 import { AssertionError } from 'chai'
 import Engine, { parsePublicodes } from 'publicodes'
-import { disambiguateRuleReference } from '../../publicodes/source/ruleUtils'
+import { disambiguateRuleReference } from '../../publicodes/core/source/ruleUtils'
 import rules from 'modele-social'
 
 // les variables dans les tests peuvent être exprimées relativement à l'espace de nom de la règle,

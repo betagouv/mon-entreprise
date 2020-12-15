@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 const path = require('path')
-const { commonLoaders } = require('../webpack/common')
+const { commonLoaders } = require('../../webpack/common')
 
 const common = {
 	resolve: {

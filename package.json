@@ -122,8 +122,8 @@
 		"moso:up": "yarn workspace modele-social run up"
 	},
 	"workspaces": [
-		"publicodes",
-		"publicodes-react",
+		"publicodes/core",
+		"publicodes/react",
 		"modele-social",
 		"mon-entreprise"
 	]
