@@ -108,7 +108,7 @@ function AssociatedRules({
 	dottedName: string
 	engine: Engine
 }) {
-	const namespaceRules = Object.keys(engine.getRule())
+	const namespaceRules = Object.keys(engine.getRules())
 		.filter(
 			(ruleDottedName) =>
 				ruleDottedName.startsWith(dottedName) &&
