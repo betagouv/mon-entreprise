@@ -1,17 +1,16 @@
 // TODO : load translation only if en
 import 'Components/ui/index.css'
 import 'iframe-resizer'
+import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Provider from '../../Provider'
 import redirects from '../mon-entreprise.fr/redirects'
-import Api from './Api'
-import Landing from './Landing'
-import LazyStudio from './LazyStudio'
 import Communauté from './Communauté'
-import Langage from './Langage'
 import { Header } from './Header'
-import { useEffect } from 'react'
+import Landing from './Landing'
+import Langage from './Langage'
+import LazyStudio from './LazyStudio'
 
 function Router() {
 	return (
@@ -38,26 +37,12 @@ const RouterSwitch = () => {
 			>
 				<Switch>
 					<Route exact path="/" component={Landing} />
-					<Route exact path="/accueil">
-						<Redirect to="/" />
-					</Route>
 					<Route path="/studio" component={LazyStudio} />
 					<Route path="/langage" component={Langage} />
 					<Route exact path="/communauté" component={Communauté} />
-					<Route component={App} />
 				</Switch>
 			</div>
 		</>
-	)
-}
-
-const App = () => {
-	return (
-		<div className="app-content">
-			<div className="ui__ container" style={{ flexGrow: 1, flexShrink: 0 }}>
-				<Switch>{redirects}</Switch>
-			</div>
-		</div>
 	)
 }
 

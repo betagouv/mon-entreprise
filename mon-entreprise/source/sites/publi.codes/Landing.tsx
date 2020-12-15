@@ -6,16 +6,16 @@ export default function Landing() {
 	return (
 		<main>
 			<ScrollToTop />
-			<p
+			<h2
 				css={`
-					font-size: 200%;
-					max-width: 60%;
-					line-height: 2rem;
+					max-width: 70%;
+					font-size: 2rem;
+					line-height: 2.5rem;
 					margin-bottom: 2rem;
 				`}
 			>
 				Le langage pour les algorithmes d'intérêt public.
-			</p>
+			</h2>
 			<MarkdownWithAnchorLinks source={content} />
 		</main>
 	)

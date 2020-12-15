@@ -7,17 +7,13 @@ En plus de calculer des résultats à partir d'une situation saisie, publicodes 
 ### Aperçu
 
 ```yaml
-prix d'un repas:
-    formule: 10 €/repas
+prix d'un repas: 10 €/repas
 
-nombre de repas:
-    formule: 5 repas
+nombre de repas: 5 repas
 
-prix total:
-    formule: nombre de repas * prix d'un repas
+prix: nombre de repas * prix d'un repas
 
-prix net:
-    formule: prix total * (1 - TVA)
+prix . HT: prix * (1 - TVA)
 
-prix net . TVA: 20%
+prix . TVA: 20%
 ```
