@@ -25,7 +25,7 @@ type Notification = Pick<EvaluatedRule, 'dottedName' | 'description'> & {
 }
 
 export function getNotifications(engine: Engine) {
-	return Object.values(engine.getParsedRules())
+	return Object.values(engine.getRules())
 		.filter(
 			(rule: ASTNode & { nodeKind: 'rule' }) =>
 				rule.rawNode['type'] === 'notification'

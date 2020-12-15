@@ -14,7 +14,7 @@ export default function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (getCotisationsBySection(
-		useEngine().getParsedRules()
+		useEngine().getRules()
 	).map(([section, cotisations]) => [
 		section,
 		cotisations
@@ -57,8 +57,7 @@ export function DistributionBranch({
 	icon,
 	maximum,
 }: DistributionBranchProps) {
-	const rules = useContext(EngineContext).getParsedRules()
-	const branche = rules[dottedName]
+	const branche = useContext(EngineContext).getRule(dottedName)
 
 	return (
 		<BarChartBranch

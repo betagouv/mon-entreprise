@@ -84,7 +84,7 @@ export function getCotisationsBySection(
 }
 
 export default function PaySlip() {
-	const parsedRules = useEngine().getParsedRules()
+	const parsedRules = useEngine().getRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (
@@ -202,10 +202,10 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
 	const cotisationsSalariales = engine.evaluateNode(
-		engine.getParsedRules()['contrat salarié . cotisations . salariales']
+		engine.getRule('contrat salarié . cotisations . salariales')
 	)
 	const cotisationsPatronales = engine.evaluateNode(
-		engine.getParsedRules()['contrat salarié . cotisations . patronales']
+		engine.getRule('contrat salarié . cotisations . patronales')
 	)
 	const partSalariale = findReferenceInNode(dottedName, cotisationsSalariales)
 	const partPatronale = findReferenceInNode(dottedName, cotisationsPatronales)

@@ -6,7 +6,7 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
-import {
+import Engine, {
 	ASTNode,
 	EvaluatedRule,
 	evaluateRule,
@@ -85,12 +85,12 @@ export default function RuleInput<Name extends string = DottedName>({
 		suggestions: rule.suggestions,
 		required: true,
 	}
-	if (getVariant(engine.getParsedRules()[dottedName])) {
+	if (getVariant(engine.getRule(dottedName)) {
 		return (
 			<Question
 				{...commonProps}
 				onSubmit={onSubmit}
-				choices={buildVariantTree(engine.getParsedRules(), dottedName)}
+				choices={buildVariantTree(engine, dottedName)}
 			/>
 		)
 	}
@@ -192,11 +192,12 @@ const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
 		false,
 		node
 	)
+	
 export const buildVariantTree = <Name extends string>(
-	allRules: ParsedRules<Name>,
+	engine: Engine<Name>,
 	path: Name
 ): Choice => {
-	const node = allRules[path]
+	const node = engine.getRule(path)
 	if (!node) throw new Error(`La règle ${path} est introuvable`)
 	const variant = getVariant(node)
 	const canGiveUp =
@@ -210,7 +211,7 @@ export const buildVariantTree = <Name extends string>(
 					children: (variant.explanation as (ASTNode & {
 						nodeKind: 'reference'
 					})[]).map(({ dottedName }) =>
-						buildVariantTree(allRules, dottedName as Name)
+						buildVariantTree(engine, dottedName as Name)
 					),
 			  }
 			: null

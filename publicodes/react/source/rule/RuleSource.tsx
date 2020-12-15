@@ -13,7 +13,7 @@ const getParents = (dottedName) =>
 	).filter(Boolean)
 
 function getDependancies(engine: Engine, dottedName: string): Array<string> {
-	const parsedRules = engine.getParsedRules()
+	const parsedRules = engine.getRule()
 	const rule = engine.evaluateNode(parsedRules[dottedName])
 
 	return reduceAST<Array<string>>(
@@ -44,7 +44,7 @@ export default function RuleSource({ engine, dottedName }: Props) {
 		...getDependancies(engine, dottedName),
 		...getParents(dottedName),
 	]
-	const parsedRules = engine.getParsedRules()
+	const parsedRules = engine.getRule()
 	const rule = engine.evaluateNode(parsedRules[dottedName])
 
 	// When we import a rule in the Publicode Studio, we need to provide a

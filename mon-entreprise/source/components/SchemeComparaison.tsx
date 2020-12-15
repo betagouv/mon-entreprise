@@ -47,7 +47,7 @@ export default function SchemeComparaison({
 		setConversationStarted,
 	])
 
-	const parsedRules = engine.getParsedRules()
+	const parsedRules = engine.getRules()
 	const situation = useSelector(situationSelector)
 	const displayResult =
 		useSelector(situationSelector)['entreprise . charges'] != undefined

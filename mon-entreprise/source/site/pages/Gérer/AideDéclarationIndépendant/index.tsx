@@ -310,8 +310,8 @@ function SubSection({
 	dottedName: sectionDottedName,
 	hideTitle = false,
 }: SubSectionProp) {
-	const parsedRules = useContext(EngineContext).getParsedRules()
-	const ruleTitle = parsedRules[sectionDottedName]?.title
+	const engine = useContext(EngineContext)
+	const ruleTitle = engine.getRule(sectionDottedName)?.title
 	const nextSteps = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const title = hideTitle ? null : ruleTitle
@@ -322,7 +322,7 @@ function SubSection({
 		const {
 			dottedName,
 			rawNode: { question },
-		} = parsedRules[nextStep]
+		} = engine.getRule(nextStep)
 		return !!question && dottedName.startsWith(sectionDottedName)
 	})
 

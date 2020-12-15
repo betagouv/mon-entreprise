@@ -15,7 +15,7 @@ import References from './References'
 import RuleSource from './RuleSource'
 
 export default function Rule({ dottedName, engine, language }) {
-	if (!engine.getParsedRules()[dottedName]) {
+	if (!(dottedName in engine.getRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
 	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
@@ -109,7 +109,7 @@ function AssociatedRules({
 	dottedName: string
 	engine: Engine
 }) {
-	const namespaceRules = Object.keys(engine.getParsedRules())
+	const namespaceRules = Object.keys(engine.getRule())
 		.filter(
 			(ruleDottedName) =>
 				ruleDottedName.startsWith(dottedName) &&

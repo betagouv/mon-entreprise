@@ -15,7 +15,7 @@ export function LinkRenderer({
 	if (!engine) {
 		throw new Error('an engine should be provided in context')
 	}
-	const rules = engine.getParsedRules()
+	const rules = engine.getRule()
 
 	if (href && rules[href]) {
 		return (

@@ -276,7 +276,7 @@ export function Leaf(
 ) {
 	const engine = useContext(EngineContext)
 	const { dottedName, nodeValue, unit } = node
-	const rule = engine?.getParsedRules()[node.dottedName]
+	const rule = engine?.getRule(node.dottedName)
 	if (!rule) {
 		throw new Error(`Unknown node`)
 	}

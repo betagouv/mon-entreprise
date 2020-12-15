@@ -146,7 +146,14 @@ export default class Engine<Name extends string = string> {
 		return !!this.cache._meta.inversionFail
 	}
 
-	getParsedRules(): ParsedRules<Name> {
+	getRule(dottedName: Name): ParsedRules<Name>[Name] {
+		if (!(dottedName in this.parsedRules)) {
+			throw new Error(`La règle '${dottedName}' n'existe pas`)
+		}
+		return this.parsedRules[dottedName]
+	}
+
+	getRules(dottedName: Name): ParsedRules<Name> {
 		return this.parsedRules
 	}
 
@@ -176,7 +183,7 @@ export function evaluateRule<DottedName extends string = string>(
 	const evaluation = simplifyNodeUnit(
 		engine.evaluate({ valeur: dottedName, ...modifiers })
 	)
-	const rule = engine.getParsedRules()[dottedName] as RuleNode & {
+	const rule = engine.getRule(dottedName) as RuleNode & {
 		dottedName: DottedName
 	}
 

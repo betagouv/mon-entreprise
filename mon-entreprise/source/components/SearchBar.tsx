@@ -62,7 +62,7 @@ function highlightMatches(str: string, matches: Matches) {
 export default function SearchBar({
 	showListByDefault = false,
 }: SearchBarProps) {
-	const rules = useEngine().getParsedRules()
+	const rules = useEngine().getRules()
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
 		Array<{

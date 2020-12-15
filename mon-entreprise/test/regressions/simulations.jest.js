@@ -30,7 +30,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 		situations.forEach((situation) => {
 			Object.keys(situation).forEach((situationRuleName) => {
 				// TODO: This check may be moved in the `engine.setSituation` method
-				if (!Object.keys(engine.getParsedRules()).includes(situationRuleName)) {
+				if (!Object.keys(engine.getRules()).includes(situationRuleName)) {
 					throw new Error(
 						`La règle ${situationRuleName} n'existe pas dans la base de règles.`
 					)
@@ -39,7 +39,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 			engine.setSituation({ ...baseSituation, ...situation })
 			const res = targets.map((target) => engine.evaluate(target).nodeValue)
 
-			const evaluatedNotifications = Object.values(engine.getParsedRules())
+			const evaluatedNotifications = Object.values(engine.getRules())
 				.filter((rule) => rule.rawNode['type'] === 'notification')
 				.map((node) => evaluateRule(engine, node.dottedName))
 				.filter((node) => !!node.nodeValue)

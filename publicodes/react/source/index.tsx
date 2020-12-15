@@ -57,7 +57,7 @@ export function Documentation({
 }
 
 export function getDocumentationSiteMap({ engine, documentationPath }) {
-	const parsedRules = engine.getParsedRules()
+	const parsedRules = engine.getRules()
 	return Object.fromEntries(
 		Object.keys(parsedRules)
 			// .filter(dottedName =>
