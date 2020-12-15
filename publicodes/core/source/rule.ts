@@ -124,12 +124,12 @@ registerEvaluationFunction('rule', function evaluate(node) {
 	this.cache._meta.contextRule.push(node.dottedName)
 	let parent: EvaluatedNode | null = null
 	if (explanation.parent && verifyParentApplicability) {
-		parent = this.evaluateNode(explanation.parent) as EvaluatedNode
+		parent = this.evaluate(explanation.parent) as EvaluatedNode
 		explanation.parent = parent
 	}
 	let valeur: EvaluatedNode | null = null
 	if (!parent || parent.nodeValue !== false) {
-		valeur = this.evaluateNode(explanation.valeur) as EvaluatedNode
+		valeur = this.evaluate(explanation.valeur) as EvaluatedNode
 		explanation.valeur = valeur
 	}
 	const evaluation = {

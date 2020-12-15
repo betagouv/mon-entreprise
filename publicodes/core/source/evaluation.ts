@@ -70,7 +70,7 @@ export const evaluateArray: <NodeName extends NodeKind>(
 	start: Parameters<typeof reduce>[1]
 ) => EvaluationFunction<NodeName> = (reducer, start) =>
 	function (node: any) {
-		const evaluate = this.evaluateNode.bind(this)
+		const evaluate = this.evaluate.bind(this)
 		const evaluatedNodes = convertNodesToSameUnit(
 			node.explanation.map(evaluate),
 			this.cache._meta.contextRule,
@@ -136,7 +136,7 @@ export function evaluateObject<NodeName extends NodeKind>(
 	effet: (this: Engine, explanations: any) => any
 ) {
 	return function (node) {
-		const evaluate = this.evaluateNode.bind(this)
+		const evaluate = this.evaluate.bind(this)
 		const evaluations: Record<string, EvaluatedNode> = mapObjIndexed(
 			evaluate as any,
 			(node as any).explanation

@@ -30,10 +30,10 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 	const situationKey = explanation.situationKey
 	let valeur: EvaluatedNode
 	if (situationKey in this.parsedSituation) {
-		valeur = this.evaluateNode(this.parsedSituation[situationKey])
+		valeur = this.evaluate(this.parsedSituation[situationKey])
 		explanation.situationValeur = valeur
 	} else {
-		valeur = this.evaluateNode(explanation.valeur)
+		valeur = this.evaluate(explanation.valeur)
 		explanation.valeur = valeur
 		delete explanation.situationValeur
 	}

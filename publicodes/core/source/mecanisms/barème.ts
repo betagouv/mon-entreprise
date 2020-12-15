@@ -81,13 +81,13 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 	})
 }
 const evaluate: EvaluationFunction<'barème'> = function (node) {
-	const evaluateNode = this.evaluateNode.bind(this)
-	const assiette = this.evaluateNode(node.explanation.assiette)
-	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
+	const evaluate = this.evaluate.bind(this)
+	const assiette = this.evaluate(node.explanation.assiette)
+	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
 			evaluatePlafondUntilActiveTranche(
-				evaluateNode,
+				evaluate,
 				{
 					parsedTranches: node.explanation.tranches,
 					assiette,
@@ -100,7 +100,7 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 	)
 	const temporalTranches = liftTemporal2(
 		(tranches, assiette) =>
-			evaluateBarème(tranches, assiette, evaluateNode, this.cache),
+			evaluateBarème(tranches, assiette, evaluate, this.cache),
 		temporalTranchesPlafond,
 		liftTemporalNode(assiette as any)
 	)

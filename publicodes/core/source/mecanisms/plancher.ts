@@ -15,11 +15,11 @@ export type PlancherNode = {
 }
 
 const evaluate: EvaluationFunction<'plancher'> = function (node) {
-	const valeur = this.evaluateNode(node.explanation.valeur)
+	const valeur = this.evaluate(node.explanation.valeur)
 	let nodeValue = valeur.nodeValue
 	let plancher = node.explanation.plancher
 	if (nodeValue !== false) {
-		const evaluatedPlancher = this.evaluateNode(plancher)
+		const evaluatedPlancher = this.evaluate(plancher)
 		if (valeur.unit) {
 			try {
 				plancher = convertNodeToUnit(valeur.unit, evaluatedPlancher)

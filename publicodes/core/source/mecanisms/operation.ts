@@ -44,9 +44,10 @@ const parseOperation = (k, symbol) => (v, context) => {
 }
 
 const evaluate: EvaluationFunction<'operation'> = function (node) {
-	const explanation = node.explanation.map((node) =>
-		this.evaluateNode(node)
-	) as [EvaluatedNode, EvaluatedNode]
+	const explanation = node.explanation.map((node) => this.evaluate(node)) as [
+		EvaluatedNode,
+		EvaluatedNode
+	]
 	let [node1, node2] = explanation
 	const missingVariables = mergeAllMissing([node1, node2])
 

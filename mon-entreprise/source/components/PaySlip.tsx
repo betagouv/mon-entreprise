@@ -201,10 +201,10 @@ function findReferenceInNode(
 function Cotisation({ dottedName }: { dottedName: DottedName }) {
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
-	const cotisationsSalariales = engine.evaluateNode(
+	const cotisationsSalariales = engine.evaluate(
 		engine.getRule('contrat salarié . cotisations . salariales')
 	)
-	const cotisationsPatronales = engine.evaluateNode(
+	const cotisationsPatronales = engine.evaluate(
 		engine.getRule('contrat salarié . cotisations . patronales')
 	)
 	const partSalariale = findReferenceInNode(dottedName, cotisationsSalariales)

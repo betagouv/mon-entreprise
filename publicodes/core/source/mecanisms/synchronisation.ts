@@ -13,7 +13,7 @@ export type SynchronisationNode = {
 }
 
 const evaluate: EvaluationFunction<'synchronisation'> = function (node: any) {
-	const data = this.evaluateNode(node.explanation.data)
+	const data = this.evaluate(node.explanation.data)
 	const valuePath = node.explanation.chemin.split(' . ')
 	const nodeValue =
 		data.nodeValue == null ? null : path(valuePath, data.nodeValue)

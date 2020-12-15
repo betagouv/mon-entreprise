@@ -85,7 +85,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		suggestions: rule.suggestions,
 		required: true,
 	}
-	if (getVariant(engine.getRule(dottedName)) {
+	if (getVariant(engine.getRule(dottedName))) {
 		return (
 			<Question
 				{...commonProps}
@@ -192,7 +192,7 @@ const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
 		false,
 		node
 	)
-	
+
 export const buildVariantTree = <Name extends string>(
 	engine: Engine<Name>,
 	path: Name

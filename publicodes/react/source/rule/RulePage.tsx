@@ -7,7 +7,6 @@ import Engine, {
 	simplifyNodeUnit,
 } from 'publicodes'
 import Explanation from '../Explanation'
-import {} from 'publicodes'
 import { Markdown } from '../Markdown'
 import { RuleLinkWithContext } from '../RuleLink'
 import RuleHeader from './Header'
@@ -18,7 +17,7 @@ export default function Rule({ dottedName, engine, language }) {
 	if (!(dottedName in engine.getRules())) {
 		return <p>Cette règle est introuvable dans la base</p>
 	}
-	const rule = engine.evaluateNode(engine.getParsedRules()[dottedName])
+	const rule = engine.evaluate(engine.getRules(dottedName))
 	// TODO affichage inline vs page
 
 	const { description, question } = rule.rawNode

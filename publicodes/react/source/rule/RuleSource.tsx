@@ -14,7 +14,7 @@ const getParents = (dottedName) =>
 
 function getDependancies(engine: Engine, dottedName: string): Array<string> {
 	const parsedRules = engine.getRule()
-	const rule = engine.evaluateNode(parsedRules[dottedName])
+	const rule = engine.evaluate(parsedRules[dottedName])
 
 	return reduceAST<Array<string>>(
 		(acc, node, fn) => {
@@ -45,7 +45,7 @@ export default function RuleSource({ engine, dottedName }: Props) {
 		...getParents(dottedName),
 	]
 	const parsedRules = engine.getRule()
-	const rule = engine.evaluateNode(parsedRules[dottedName])
+	const rule = engine.evaluate(parsedRules[dottedName])
 
 	// When we import a rule in the Publicode Studio, we need to provide a
 	// simplified definition of its dependencies to avoid undefined references.
@@ -54,7 +54,7 @@ export default function RuleSource({ engine, dottedName }: Props) {
 		Object.fromEntries(
 			dependancies.map((dottedName) => [
 				dottedName,
-				formatValueForStudio(engine.evaluateNode(parsedRules[dottedName])),
+				formatValueForStudio(engine.evaluate(parsedRules[dottedName])),
 			])
 		)
 	)

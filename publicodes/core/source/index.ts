@@ -33,7 +33,7 @@ type Cache = {
 		inRecalcul?: boolean
 		filter?: string
 	}
-	nodes: Map<ASTNode, EvaluatedNode>
+	nodes: Map<PublicodesExpression | ASTNode, EvaluatedNode>
 }
 
 export type EvaluationOptions = Partial<{
@@ -53,6 +53,8 @@ export { mecanismsDoc }
 export { utils }
 export { Rule }
 
+type PublicodesExpression = string | Record<string, unknown> | number
+
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
@@ -66,7 +68,6 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
-	private warnings: Array<string> = []
 
 	constructor(rules: string | Record<string, Rule> | ParsedRules<Name>) {
 		if (typeof rules === 'string') {
@@ -92,7 +93,7 @@ export default class Engine<Name extends string = string> {
 	}
 
 	setSituation(
-		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
+		situation: Partial<Record<Name, PublicodesExpression | ASTNode>> = {}
 	) {
 		this.resetCache()
 		this.parsedSituation = mapObjIndexed((value, key) => {
@@ -112,36 +113,6 @@ export default class Engine<Name extends string = string> {
 		return this
 	}
 
-	evaluate(expression: string | Object): EvaluatedNode {
-		/*
-			TODO
-			EN ATTENDANT d'AVOIR une meilleure gestion d'erreur, on va mocker console.warn
-		*/
-		const originalWarn = console.warn
-
-		console.warn = (warning: string) => {
-			this.warnings.push(warning)
-			originalWarn(warning)
-		}
-		const result = this.evaluateNode(
-			compose(
-				inlineReplacements(this.replacements),
-				disambiguateReference(this.parsedRules)
-			)(
-				parse(expression, {
-					dottedName: "evaluation'''",
-					parsedRules: {},
-				})
-			)
-		)
-		console.warn = originalWarn
-		return result
-	}
-
-	getWarnings() {
-		return this.warnings
-	}
-
 	inversionFail(): boolean {
 		return !!this.cache._meta.inversionFail
 	}
@@ -153,24 +124,43 @@ export default class Engine<Name extends string = string> {
 		return this.parsedRules[dottedName]
 	}
 
-	getRules(dottedName: Name): ParsedRules<Name> {
+	getRules(): ParsedRules<Name> {
 		return this.parsedRules
 	}
 
-	evaluateNode<N extends ASTNode = ASTNode>(
-		node: N & { evaluationId?: string }
-	): N & EvaluatedNode {
-		if (!node.nodeKind) {
-			throw Error('The provided node must have a "nodeKind" attribute')
-		} else if (!evaluationFunctions[node.nodeKind]) {
-			throw Error(`Unknown "nodeKind": ${node.nodeKind}`)
+	evaluate<N extends ASTNode = ASTNode>(value: N): N & EvaluatedNode
+	evaluate(value: PublicodesExpression): EvaluatedNode
+	evaluate(value: PublicodesExpression | ASTNode): EvaluatedNode {
+		const cachedNode = this.cache.nodes.get(value)
+		if (cachedNode !== undefined) {
+			return cachedNode
 		}
-		let result = this.cache.nodes.get(node)
-		if (result === undefined) {
-			result = evaluationFunctions[node.nodeKind].call(this, node)
+
+		let parsedNode: ASTNode
+		if (!value || typeof value !== 'object' || !('nodeKind' in value)) {
+			parsedNode = compose(
+				inlineReplacements(this.replacements),
+				disambiguateReference(this.parsedRules)
+			)(
+				parse(value, {
+					dottedName: `evaluation`,
+					parsedRules: {},
+				})
+			)
+		} else {
+			parsedNode = value as ASTNode
 		}
-		this.cache.nodes.set(node, result!)
-		return result as N & EvaluatedNode
+
+		if (!evaluationFunctions[parsedNode.nodeKind]) {
+			throw Error(`Unknown "nodeKind": ${parsedNode.nodeKind}`)
+		}
+
+		const evaluatedNode = evaluationFunctions[parsedNode.nodeKind].call(
+			this,
+			parsedNode
+		)
+		this.cache.nodes.set(value, evaluatedNode)
+		return evaluatedNode
 	}
 }
 
@@ -203,7 +193,7 @@ export function evaluateRule<DottedName extends string = string>(
 				)
 			}
 			if (node.nodeKind === 'reference' && node.dottedName === dottedName) {
-				return fn(engine.evaluateNode(rule))
+				return fn(engine.evaluate(rule))
 			}
 			if (node.nodeKind === 'applicable si') {
 				return (node.explanation.condition as any).nodeValue === false

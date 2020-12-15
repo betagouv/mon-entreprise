@@ -18,10 +18,10 @@ const evaluate: EvaluationFunction<'par défaut'> = function (node) {
 		parDéfaut: EvaluatedNode | ASTNode
 		valeur: EvaluatedNode | ASTNode
 	} = { ...node.explanation }
-	let valeur = this.evaluateNode(explanation.valeur)
+	let valeur = this.evaluate(explanation.valeur)
 	explanation.valeur = valeur
 	if (valeur.nodeValue === null) {
-		valeur = this.evaluateNode(explanation.parDéfaut)
+		valeur = this.evaluate(explanation.parDéfaut)
 		explanation.parDéfaut = valeur
 	}
 

@@ -34,9 +34,9 @@ export default function parseTauxProgressif(v, context): TauxProgressifNode {
 }
 
 const evaluate: EvaluationFunction<'taux progressif'> = function (node) {
-	const evaluate = this.evaluateNode.bind(this)
-	const assiette = this.evaluateNode(node.explanation.assiette)
-	const multiplicateur = this.evaluateNode(node.explanation.multiplicateur)
+	const evaluate = this.evaluate.bind(this)
+	const assiette = this.evaluate(node.explanation.assiette)
+	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
 	const tranches = evaluatePlafondUntilActiveTranche(
 		evaluate,
 		{

@@ -17,11 +17,11 @@ function roundWithPrecision(n: number, fractionDigits: number) {
 }
 
 const evaluate: EvaluationFunction<'arrondi'> = function (node) {
-	const valeur = this.evaluateNode(node.explanation.valeur)
+	const valeur = this.evaluate(node.explanation.valeur)
 	const nodeValue = valeur.nodeValue
 	let arrondi = node.explanation.arrondi
 	if (nodeValue !== false) {
-		arrondi = this.evaluateNode(arrondi)
+		arrondi = this.evaluate(arrondi)
 	}
 
 	return {

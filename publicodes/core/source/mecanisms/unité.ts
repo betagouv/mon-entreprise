@@ -24,7 +24,7 @@ export default function parseUnité(v, context): UnitéNode {
 parseUnité.nom = 'unité' as const
 
 registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
-	const valeur = this.evaluateNode(node.explanation)
+	const valeur = this.evaluate(node.explanation)
 
 	let nodeValue = valeur.nodeValue
 	if (nodeValue !== false && 'unit' in node) {

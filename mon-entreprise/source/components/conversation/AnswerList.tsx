@@ -20,11 +20,11 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	const answeredQuestions = (Object.keys(
 		useSelector(situationSelector)
 	) as Array<DottedName>).map((dottedName) =>
-		engine.evaluateNode(engine.getRule(dottedName))
+		engine.evaluate(engine.getRule(dottedName))
 	)
 
 	const nextSteps = useNextQuestions().map((dottedName) =>
-		engine.evaluateNode(engine.getRule(dottedName))
+		engine.evaluate(engine.getRule(dottedName))
 	)
 
 	return (

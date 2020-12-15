@@ -325,7 +325,7 @@ function AidesGlimpse() {
 			}
 		},
 		aides.dottedName,
-		engine.evaluateNode(engine.getRules()[dottedName])
+		engine.evaluate(engine.getRules()[dottedName])
 	)
 	return (
 		<Animate.fromTop>

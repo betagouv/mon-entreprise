@@ -333,7 +333,7 @@ export function Leaf(
 					}}
 				>
 					<UnfoldIsEnabledContext.Provider value={false}>
-						<Explanation node={engine?.evaluateNode(rule).explanation.valeur} />
+						<Explanation node={engine?.evaluate(rule).explanation.valeur} />
 					</UnfoldIsEnabledContext.Provider>
 				</div>
 			)}

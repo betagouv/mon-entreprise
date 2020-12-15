@@ -52,7 +52,7 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 			nodeValue: null,
 		}
 	}
-	const evaluatedInversionGoal = this.evaluateNode(inversionGoal)
+	const evaluatedInversionGoal = this.evaluate(inversionGoal)
 	const unit = 'unit' in node ? node.unit : evaluatedInversionGoal.unit
 
 	const originalCache = this.cache
@@ -74,7 +74,7 @@ export const evaluateInversion: EvaluationFunction<'inversion'> = function (
 			} as ConstantNode,
 		} as UnitéNode
 
-		return convertNodeToUnit(unit, this.evaluateNode(inversionGoal))
+		return convertNodeToUnit(unit, this.evaluate(inversionGoal))
 	}
 
 	const goal = convertNodeToUnit(unit, evaluatedInversionGoal)

@@ -14,10 +14,10 @@ export type ApplicableSiNode = {
 
 const evaluate: EvaluationFunction<'applicable si'> = function (node) {
 	const explanation = { ...node.explanation }
-	const condition = this.evaluateNode(explanation.condition)
+	const condition = this.evaluate(explanation.condition)
 	let valeur = explanation.valeur
 	if (condition.nodeValue !== false) {
-		valeur = this.evaluateNode(valeur)
+		valeur = this.evaluate(valeur)
 	}
 	return {
 		...node,

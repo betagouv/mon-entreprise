@@ -89,7 +89,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					previousConditions,
 				]
 			}
-			const evaluatedCondition = this.evaluateNode(condition)
+			const evaluatedCondition = this.evaluate(condition)
 			const currentCondition = liftTemporal2(
 				(previousCond, currentCond) =>
 					previousCond === null
@@ -116,7 +116,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					previousConditions,
 				]
 			}
-			let evaluatedConsequence = this.evaluateNode(consequence)
+			let evaluatedConsequence = this.evaluate(consequence)
 			if (unit) {
 				try {
 					evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)

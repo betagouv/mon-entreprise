@@ -15,12 +15,12 @@ export type PlafondNode = {
 }
 
 const evaluate: EvaluationFunction<'plafond'> = function (node) {
-	const valeur = this.evaluateNode(node.explanation.valeur)
+	const valeur = this.evaluate(node.explanation.valeur)
 
 	let nodeValue = valeur.nodeValue
 	let plafond = node.explanation.plafond
 	if (nodeValue !== false) {
-		const evaluatedPlafond = this.evaluateNode(plafond)
+		const evaluatedPlafond = this.evaluate(plafond)
 		if (valeur.unit) {
 			try {
 				plafond = convertNodeToUnit(valeur.unit, evaluatedPlafond)

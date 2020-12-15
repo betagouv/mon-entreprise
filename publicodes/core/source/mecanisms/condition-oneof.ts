@@ -26,7 +26,7 @@ const evaluate: EvaluationFunction<'une de ces conditions'> = function (node) {
 				}
 			}
 			if (acc.nodeValue === null || acc.nodeValue === false) {
-				const evaluatedNode = this.evaluateNode(node)
+				const evaluatedNode = this.evaluate(node)
 				return {
 					nodeValue: evaluatedNode.nodeValue
 						? true

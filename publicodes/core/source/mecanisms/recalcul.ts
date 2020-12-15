@@ -23,8 +23,8 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 
 	const amendedSituation = node.explanation.amendedSituation
 		.map(([originRule, replacement]) => [
-			this.evaluateNode(originRule),
-			this.evaluateNode(replacement),
+			this.evaluate(originRule),
+			this.evaluate(replacement),
 		])
 		.filter(
 			([originRule, replacement]) =>
@@ -55,7 +55,7 @@ const evaluateRecalcul: EvaluationFunction<'recalcul'> = function (node) {
 		),
 	}
 
-	const evaluatedNode = this.evaluateNode(node.explanation.recalcul)
+	const evaluatedNode = this.evaluate(node.explanation.recalcul)
 	this.parsedSituation = originalSituation
 	if (invalidateCache) {
 		this.cache = originalCache
