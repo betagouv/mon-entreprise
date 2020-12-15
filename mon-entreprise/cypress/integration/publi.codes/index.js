@@ -3,6 +3,7 @@ describe('Navigation', function () {
 		cy.visit('/')
 	})
 	it('liste des mécanismes should not crash', function () {
+		cy.contains('Documentation').click()
 		cy.contains('Liste des mécanismes').click()
 		cy.contains('barème')
 	})

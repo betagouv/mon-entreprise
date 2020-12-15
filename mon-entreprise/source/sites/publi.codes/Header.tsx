@@ -1,14 +1,19 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-export const Header = ({ noSubtitle = false, sectionName = '' }) => (
+const items = [
+	['documentation', 'Documentation'] as const,
+	['communauté', 'Communauté'] as const,
+	['studio', 'Bac à sable'] as const,
+]
+
+export const Header = () => (
 	<header css="text-align: center; a {text-decoration: none}">
 		<Link to="/">
 			<h1>
 				<Logo />
 			</h1>
 		</Link>
-
 		<Navigation items={items} />
 	</header>
 )
@@ -20,12 +25,11 @@ const activeStyle = {
 	padding: '.1rem .3rem',
 } as React.CSSProperties
 
-const items = [
-	['documentation', 'Documentation'],
-	['communauté', 'Communauté'],
-	['studio', 'Bac à sable'],
-]
-export const Navigation = ({ items, sub = false }) => {
+type NavProps = {
+	items: Array<readonly [path: string, title: string]>
+	sub?: string
+}
+export const Navigation = ({ items, sub }: NavProps) => {
 	return (
 		<nav
 			css={`
