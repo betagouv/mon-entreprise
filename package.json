@@ -115,7 +115,7 @@
 		"prepare": "if [ -z \"$NETLIFY\" ]; then yarn workspaces run prepare; fi",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"test": "yarn workspaces run test",
-		"test:type": "yarn workspace publicodes run tsc && yarn workspace mon-entreprise run tsc",
+		"test:type": "yarn workspace publicodes run tsc && yarn workspace publicodes-react run tsc && yarn workspace mon-entreprise run tsc",
 		"test:regressions": "jest",
 		"clean": "yarn workspaces run clean",
 		"start": "yarn workspace publicodes build --watch & yarn workspace publicodes-react build --watch & yarn workspace mon-entreprise start",

@@ -48,11 +48,13 @@ export default function RulePage() {
 				language={i18n.language as 'fr' | 'en'}
 				engine={engine}
 				documentationPath={documentationPath}
+				referenceImages={referencesImages}
 			/>
 			{/* <button>Voir l</button> */}
 		</Animate.fromBottom>
 	)
 }
+
 function BackToSimulation() {
 	const dispatch = useDispatch()
 	const handleClick = useCallback(() => {
@@ -78,4 +80,18 @@ function DocumentationLanding() {
 			<SearchBar showListByDefault={true} />
 		</>
 	)
+}
+
+const referencesImages = {
+	'service-public.fr': 'images/références/marianne.png',
+	'urssaf.fr': 'images/références/URSSAF.png',
+	'secu-independants.fr': 'images/références/URSSAF.png',
+	'gouv.fr': 'images/références/marianne.png',
+	'agirc-arrco.fr': 'images/références/agirc-arrco.png',
+	'pole-emploi.fr': 'images/références/pole-emploi.png',
+	'ladocumentationfrançaise.fr':
+		'images/références/ladocumentationfrançaise.png',
+	'senat.fr': 'images/références/senat.png',
+	'ameli.fr': 'images/références/ameli.png',
+	'bpifrance-creation': 'images/références/bpi-création.png',
 }
