@@ -26,9 +26,9 @@ export default function Landing() {
 		document.body.appendChild(css)
 	})
 	return (
-		<div className="app-content ui__ container" css="margin: 2rem 0">
+		<>
 			<ScrollToTop />
-			<Header />
+
 			<h1 id="top">Mécanismes existants</h1>
 			<ul>
 				{sortedMecanisms.map(([name]) => (
@@ -43,7 +43,7 @@ export default function Landing() {
 					<Link to={pathname + '#top'}>Retour à la liste</Link>
 				</Fragment>
 			))}
-		</div>
+		</>
 	)
 }
 

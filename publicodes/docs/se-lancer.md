@@ -73,7 +73,7 @@ est utile pour préciser les paramètres spécifiques à une simulation.
 ```js
 // Ici on change le prix des avocats
 engine.setSituation({
-    'prix . avocat': '3€/avocat'
+    'prix . avocat': '3€/avocat',
 })
 ```
 
@@ -101,17 +101,18 @@ console.log(`J'ai dépensé ${formatValue(depensesParJour)}.`)
 ### Conversion d'unité
 
 Publicode permet de réaliser des conversions d'unités. Pour celà il faut
-indiquer l'unité désirée comme paramètre à la méthode `evaluate` :
+indiquer l'unité désirée via le mécanisme [`unité`](https://publi.codes/documentation/mécanismes#unité) :
 
 ```js
 // on va au marché une fois par semaine en moyenne, combien dépense-t-on par mois ?
-const depensesParMois = engine.evaluate('dépenses primeur / 7 jours', {
-    unit: '€/mois'
+const depensesParMois = engine.evaluate({
+    valeur: 'dépenses primeur / 7 jours',
+    unité: '€/mois',
 })
 console.log(`J'ai dépensé ${formatValue(depensesParMois)}.`)
 ```
 
-[➡ en savoir plus sur les unités](https://publi.codes/#unités)
+[➡ en savoir plus sur les unités](https://publi.codes/documentation/principes-de-base#unités)
 
 ### Variables manquantes
 

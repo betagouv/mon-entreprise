@@ -21,7 +21,7 @@ const activeStyle = {
 } as React.CSSProperties
 
 const items = [
-	['langage', 'Le langage'],
+	['documentation', 'Documentation'],
 	['communauté', 'Communauté'],
 	['studio', 'Bac à sable'],
 ]
