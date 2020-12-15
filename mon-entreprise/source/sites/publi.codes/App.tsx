@@ -3,13 +3,12 @@ import 'Components/ui/index.css'
 import 'iframe-resizer'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Provider from '../../Provider'
-import redirects from '../mon-entreprise.fr/redirects'
 import Communauté from './Communauté'
+import Documentation from './Documentation'
 import { Header } from './Header'
 import Landing from './Landing'
-import Langage from './Langage'
 import LazyStudio from './LazyStudio'
 
 function Router() {
@@ -38,7 +37,7 @@ const RouterSwitch = () => {
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route path="/studio" component={LazyStudio} />
-					<Route path="/langage" component={Langage} />
+					<Route path="/documentation" component={Documentation} />
 					<Route exact path="/communauté" component={Communauté} />
 				</Switch>
 			</div>
