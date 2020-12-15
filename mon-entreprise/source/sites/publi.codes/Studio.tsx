@@ -11,8 +11,8 @@ import { useDebounce } from 'Components/utils'
 
 const EXAMPLE_CODE = `
 # Bienvenue dans le bac à sable du langage publicode !
-# Pour en savoir plus sur le langage, consultez le tutoriel :
-# => https://publi.codes
+# Pour en savoir plus sur le langage :
+# => https://publi.codes/documentation/principes-de-base
 
 prix:
 prix . carottes: 2€/kg
@@ -114,7 +114,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 
 	return (
 		<>
-			{engine.getWarnings().map((warning) => (
+			{engine.getWarnings().map((warning: string) => (
 				<div
 					css={`
 						background: lightyellow;

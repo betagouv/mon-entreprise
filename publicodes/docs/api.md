@@ -97,7 +97,7 @@ intermédiaires qui permettent d'aboutir au résultat affiché.
 
 [Voir un exemple sur mon-entreprise.fr](https://mon-entreprise.fr/documentation/imp%C3%B4t/foyer-fiscal/imp%C3%B4t-sur-le-revenu/imp%C3%B4t-brut-par-part)
 
-## <Documentation />
+## `<Documentation />`
 
 Composant react permettant d'afficher une documentation explorable d'une base de
 règles publicodes. Se base sur react-router pour créer une arborescence de pages
@@ -114,7 +114,7 @@ action (il est affiché sur l'écran de droite).
 -   `language`: le language dans lequel afficher la documentation (pour l'instant,
     seuls `fr` et `en` sont supportés).
 
-## <RuleLink />
+## `<RuleLink />`
 
 Composant react permettant de faire un lien vers une page de la documentation.
 Par défaut, le texte affiché est le nom de la règle.
