@@ -49,7 +49,7 @@ export default function Studio() {
 	}, [window.location.href])
 
 	return (
-		<Layout>
+		<Layout className="ui__ full-width">
 			<MonacoEditor
 				language="yaml"
 				height="90vh"
