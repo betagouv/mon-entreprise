@@ -34,6 +34,10 @@ export let variable = ([firstFragment, nextFragment], _, reject) => {
 	}
 }
 
+export const JSONObject = ([{ value }]) => {
+	console.log(value)
+	// TODO
+}
 export let number = ([{ value }]) => ({
 	constant: {
 		type: 'number',

@@ -46,7 +46,7 @@ export const serializeUnit = (
 	rawUnit: Unit | undefined | string,
 	count: number = plural,
 	lng = 'fr'
-) => {
+): string | undefined => {
 	if (rawUnit === null || typeof rawUnit !== 'object') {
 		return typeof rawUnit === 'string'
 			? i18n.t(`units:${rawUnit}`, { count, lng })

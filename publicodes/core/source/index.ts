@@ -48,6 +48,8 @@ export { serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
 export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
+export { default as serializeEvaluation } from './serializeEvaluation'
+
 type PublicodesExpression = string | Record<string, unknown> | number
 
 export type Logger = {
