@@ -1,24 +1,8 @@
 import { toPairs } from 'ramda'
 import { capitalise0 } from 'publicodes'
 import styled from 'styled-components'
-
-const references = {
-	// 'service-public.fr': require('url-loader!./références/marianne.png').default,
-	// 'urssaf.fr': require('url-loader!./références/URSSAF.png').default,
-	// 'secu-independants.fr': require('url-loader!./références/URSSAF.png').default,
-	// 'gouv.fr': require('url-loader!./références/marianne.png').default,
-	// 'agirc-arrco.fr': require('url-loader!./références/agirc-arrco.png').default,
-	// 'pole-emploi.fr': require('url-loader!./références/pole-emploi.png').default,
-	// 'ladocumentationfrançaise.fr': require('url-loader!./références/ladocumentationfrançaise.png')
-	// 	.default,
-	// 'senat.fr': require('url-loader!./références/senat.png').default,
-	// 'ameli.fr': require('url-loader!./références/ameli.png').default,
-	// 'bpifrance-creation': require('url-loader!./références/bpi-création.png')
-	// 	.default,
-}
-
-const findRefKey = (link: string) =>
-	Object.keys(references).find((r) => link.includes(r))
+import { useContext } from 'react'
+import { ReferencesImagesContext } from '../contexts'
 
 const cleanDomain = (link: string) =>
 	(link.includes('://') ? link.split('/')[2] : link.split('/')[0]).replace(
@@ -31,8 +15,15 @@ type RefProps = {
 	link: string
 }
 
+// TODO: currently we only allow customizing the list of "references icons", but
+// this migth be limited for more advanced usages. For instance futur.eco uses a
+// different renderer for references:
+// https://futur.eco/documentation/transport/avion/impact We will probably want
+// to allow the user to provide its own components that can be inserted at
+// certains positions in the generated documentation ("hooks").
 function Ref({ name, link }: RefProps) {
-	const refKey = findRefKey(link)
+	const references = useContext(ReferencesImagesContext)
+	const refKey = Object.keys(references).find((r) => link.includes(r))
 	const domain = cleanDomain(link)
 	return (
 		<li
