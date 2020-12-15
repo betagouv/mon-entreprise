@@ -13,7 +13,7 @@ import {
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
 import { reduceAST } from './AST'
-import mecanismsDoc from '../docs/mecanisms.yaml'
+import mecanismsDoc from '../../docs/mecanisms.yaml'
 
 const emptyCache = () => ({
 	_meta: { contextRule: [] },

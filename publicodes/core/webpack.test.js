@@ -1,4 +1,4 @@
-const { commonLoaders } = require('../webpack/common')
+const { commonLoaders } = require('../../webpack/common')
 const { EnvironmentPlugin } = require('webpack')
 
 module.exports = {

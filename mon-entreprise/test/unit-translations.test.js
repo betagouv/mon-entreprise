@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { parsePublicodes } from 'publicodes'
 import { uniq } from 'ramda'
 import rawRules from 'modele-social'
-import unitsTranslations from '../../publicodes/source/locales/units.yaml'
+import unitsTranslations from '../../publicodes/core/source/locales/units.yaml'
 
 it('use unit that exists in publicode', () => {
 	const rules = parsePublicodes(rawRules)

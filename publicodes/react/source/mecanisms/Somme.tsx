@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { EvaluatedNode } from '../..'
+import { EvaluatedNode } from 'publicodes/source/AST/types'
 import Explanation from '../Explanation'
-import { Mecanism, NodeValuePointer, UnfoldIsEnabledContext } from './common'
+import { Mecanism, UnfoldIsEnabledContext } from './common'
 
 const SommeNode = ({ explanation, nodeValue, unit }) => (
 	<StyledSomme>

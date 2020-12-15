@@ -13,7 +13,7 @@ import {
 	Temporal,
 	temporalAverage,
 } from '../temporal'
-import { mergeAllMissing } from './../evaluation'
+import { mergeAllMissing } from '../evaluation'
 
 export type VariationNode = {
 	explanation: Array<{
