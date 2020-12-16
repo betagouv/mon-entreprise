@@ -8,15 +8,7 @@ Le paquet est disponble sur NPM :
 
 ```sh
 $ npm install publicodes
-# installation des peer dependancies
-$ npm install react react-router-dom react-router-hash-link
 ```
-
-> Note : publicodes requiert l'installation de ses peerDependancy pour
-> fonctionner. La raison est qu'en l'état actuel des choses, la
-> [documentation interactive (en react)](#composants-react) n'a pas été extraite du coeur du moteur
-> (calcul). Cela est **temporaire** et nous avons prévu d'y remedier dans une
-> prochaine version, en créant deux paquets séparés : publicodes et publicodes/react
 
 ## Utilisation
 
@@ -150,11 +142,17 @@ pas dans les `missingVariables`.
 ### Documentation interactive
 
 Publicodes génère également pour vous une documentation interactive, très
-facilement intégrable dans une app react. Pour cela, il vous suffit d'importer
+facilement intégrable dans une app React. Pour cela, il vous suffit d'importer
 le composant dédié, et passer l'`engine` à afficher dans les props.
 
+Il faut commencer par installer la librairie `publicodes-react` :
+
+```sh
+$ npm install publicodes-react
+```
+
 ```jsx
-import { Documentation } from 'publicodes'
+import { Documentation } from 'publicodes-react'
 
 function MonApp() {
     return (
@@ -188,7 +186,3 @@ function MesDépenses() {
     )
 }
 ```
-
-> Note : ces composants n'ont pas vocation à rester dans la bibliothèque coeur,
-> et seront prochainement disponible dans un paquet séparé, ce afin de ne pas
-> avoir `react` dans les dépendances de publicodes.
