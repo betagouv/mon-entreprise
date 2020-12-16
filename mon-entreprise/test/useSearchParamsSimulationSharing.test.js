@@ -44,12 +44,11 @@ rule without:
 			expect(
 				getSearchParamsFromSituation(
 					{ 'rule with': '2000 €/mois', 'rule without': '1000 €/mois' },
-					'€/mois',
 					dottedNameParamName
 				).toString()
 			).to.equal(
 				new URLSearchParams(
-					'_targetUnit=€/mois&panta=2000 €/mois&rule without=1000 €/mois'
+					'panta=2000 €/mois&rule without=1000 €/mois'
 				).toString()
 			)
 		})
@@ -57,18 +56,15 @@ rule without:
 			expect(
 				getSearchParamsFromSituation(
 					{ 'rule without': { 1: 2, 3: { 4: '5' } } },
-					'€/mois',
 					dottedNameParamName
 				).toString()
 			).to.equal(
-				new URLSearchParams(
-					'_targetUnit=€/mois&rule without={"1":2,"3":{"4":"5"}}'
-				).toString()
+				new URLSearchParams('rule without={"1":2,"3":{"4":"5"}}').toString()
 			)
 		})
 		it('handles empty situation with proper defaults', () => {
 			expect(
-				getSearchParamsFromSituation({}, '', dottedNameParamName).toString()
+				getSearchParamsFromSituation({}, dottedNameParamName).toString()
 			).to.equal('')
 		})
 	})
@@ -77,17 +73,12 @@ rule without:
 		it('reads search params with and without identifiant court', () => {
 			expect(
 				getSituationFromSearchParams(
-					new URLSearchParams(
-						'_targetUnit=€/an&panta=2000 €/mois&rule without=1000 €/mois'
-					),
+					new URLSearchParams('panta=2000 €/mois&rule without=1000 €/mois'),
 					dottedNameParamName
 				)
 			).to.deep.equal({
-				situation: {
-					'rule with': '2000 €/mois',
-					'rule without': '1000 €/mois',
-				},
-				targetUnit: '€/an',
+				'rule with': '2000 €/mois',
+				'rule without': '1000 €/mois',
 			})
 		})
 		it('handles empty search params with proper defaults', () => {
@@ -96,7 +87,7 @@ rule without:
 					new URLSearchParams(''),
 					dottedNameParamName
 				)
-			).to.deep.equal({ situation: {}, targetUnit: '' })
+			).to.deep.equal({})
 		})
 	})
 
@@ -129,21 +120,7 @@ rule without:
 	})
 	it('removes searchParams that are in situation', () => {
 		const searchParams = new URLSearchParams('panta=123&rule without=333')
-		const { situation: newSituation } = getSituationFromSearchParams(
-			searchParams,
-			dottedNameParamName
-		)
-		cleanSearchParams(
-			searchParams,
-			setSearchParams,
-			dottedNameParamName,
-			Object.keys(newSituation)
-		)
-		expect(setSearchParams.calledWith('')).to.be.true
-	})
-	it('removes targetUnit', () => {
-		const searchParams = new URLSearchParams('_targetUnit=1&rule without=123')
-		const { situation: newSituation } = getSituationFromSearchParams(
+		const newSituation = getSituationFromSearchParams(
 			searchParams,
 			dottedNameParamName
 		)
@@ -159,7 +136,7 @@ rule without:
 		const searchParams = new URLSearchParams(
 			'rule without=123&utm_campaign=marketing'
 		)
-		const { situation: newSituation } = getSituationFromSearchParams(
+		const newSituation = getSituationFromSearchParams(
 			searchParams,
 			dottedNameParamName
 		)

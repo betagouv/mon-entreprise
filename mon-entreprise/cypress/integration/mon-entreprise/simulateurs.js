@@ -105,7 +105,6 @@ describe('Simulateur salarié mode partagé', () => {
 		'input.currencyInput__input[name="contrat salarié . rémunération . brut de base"]'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
-		_targetUnit: '€/mois',
 		'contrat salarié': "'CDD'",
 		'salarie-brut': JSON.stringify({ valeur: '1539', unité: '€/mois' }),
 	})
