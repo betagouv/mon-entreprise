@@ -4,6 +4,11 @@
 	"description": "UI to explore publicodes computations",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"prepare": "yarn run build",
+		"test": "echo \"Error: no test specified\""
+	},
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"focus-trap-react": "^3.1.2",
@@ -21,11 +26,8 @@
 		"react-router-dom": "^5.1.1",
 		"react-router-hash-link": "^1.2.2"
 	},
-	"scripts": {
-		"build": "tsc",
-		"prepare": "yarn run build",
-		"test": "echo \"Error: no test specified\""
+	"devDependencies": {
+		"typescript": "^4.1.3"
 	},
-	"author": "",
 	"license": "MIT"
 }

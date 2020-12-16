@@ -1,0 +1,18 @@
+{
+	"name": "publicodes-site",
+	"version": "1.0.0",
+	"description": "Site web de publicodes",
+	"author": "",
+	"license": "MIT",
+	"scripts": {
+		"prepare": "echo 1",
+		"test": "echo 1"
+	},
+	"devDependencies": {
+		"core-js": "^3.8.1"
+	},
+	"dependencies": {
+		"color-convert": "^2.0.1",
+		"styled-components": "^5.2.1"
+	}
+}

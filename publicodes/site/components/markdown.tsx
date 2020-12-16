@@ -3,7 +3,7 @@ import emoji from 'react-easy-emoji'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
 import { useLocation } from 'react-router-dom'
 import { HashLink as Link } from 'react-router-hash-link'
-import { SiteNameContext } from '../../Provider'
+import { SiteNameContext } from './Provider'
 
 const internalURLs = {
 	'mon-entreprise.fr': 'mon-entreprise',
@@ -65,6 +65,7 @@ type MarkdownProps = ReactMarkdownProps & {
 	className?: string
 }
 
+const LazySyntaxHighlighter = React.lazy(() => import('./SyntaxHighlighter'))
 const CodeBlock = ({
 	value,
 	language,
@@ -73,13 +74,19 @@ const CodeBlock = ({
 	language: string
 }) => (
 	<div
-		css={`
-			position: relative;
-		`}
+		style={{
+			position: 'relative',
+		}}
 	>
-		<pre className="ui__ code">
-			<code>{value}</code>
-		</pre>
+		<Suspense
+			fallback={
+				<pre className="ui__ code">
+					<code>{value}</code>
+				</pre>
+			}
+		>
+			<LazySyntaxHighlighter language={language} source={value} />
+		</Suspense>
 		{language === 'yaml' && (
 			<a
 				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}

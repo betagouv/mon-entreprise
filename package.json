@@ -125,6 +125,7 @@
 	"workspaces": [
 		"publicodes/core",
 		"publicodes/react",
+		"publicodes/site",
 		"modele-social",
 		"mon-entreprise"
 	]
