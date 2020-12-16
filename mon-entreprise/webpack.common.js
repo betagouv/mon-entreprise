@@ -18,11 +18,11 @@ module.exports.default = {
 		extensions: ['.js', '.ts', '.tsx'],
 	},
 	entry: {
-		'mon-entreprise': './source/sites/mon-entreprise.fr/entry.fr.tsx',
-		infrance: './source/sites/mon-entreprise.fr/entry.en.tsx',
+		'mon-entreprise': './source/site/entry.fr.tsx',
+		infrance: './source/site/entry.en.tsx',
 		'simulateur-iframe-integration':
-			'./source/sites/mon-entreprise.fr/iframe-integration-script.js',
-		publicodes: './source/sites/publi.codes/entry.tsx',
+			'./source/site/iframe-integration-script.js',
+		publicodes: '../publicodes/site/entry.tsx',
 	},
 	output: {
 		globalObject: 'self',
@@ -41,15 +41,15 @@ module.exports.default = {
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			{
-				from: './source/sites/mon-entreprise.fr/robots.txt',
+				from: './source/site/robots.txt',
 				to: 'robots.infrance.txt',
 			},
 			{
-				from: './source/sites/mon-entreprise.fr/sitemap.fr.txt',
+				from: './source/site/sitemap.fr.txt',
 				to: 'sitemap.infrance.fr.txt',
 			},
 			{
-				from: './source/sites/mon-entreprise.fr/sitemap.en.txt',
+				from: './source/site/sitemap.en.txt',
 				to: 'sitemap.infrance.en.txt',
 			},
 			{
@@ -61,7 +61,7 @@ module.exports.default = {
 				to: 'data',
 			},
 			{
-				from: './source/sites/mon-entreprise.fr/favicon',
+				from: './source/site/favicon',
 				to: 'favicon',
 			},
 		]),
