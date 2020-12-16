@@ -1,29 +1,31 @@
 import emoji from 'react-easy-emoji'
+import styled from 'styled-components'
 
 export default function PublicodesBlock({ source }: { source: string }) {
 	const baseURL =
 		location.hostname === 'localhost' ? '/publicodes' : 'https://publi.codes'
 	return (
 		<div
-			css={`
-				position: relative;
-			`}
+			style={{
+				position: 'relative',
+			}}
 		>
 			<pre className="ui__ code">
 				<code>{source}</code>
 			</pre>
-			<a
+			<LaunchButton
 				href={`${baseURL}/studio?code=${encodeURIComponent(source)}`}
 				target="_blank"
-				css={`
-					position: absolute;
-					bottom: 5px;
-					right: 10px;
-					color: white !important;
-				`}
 			>
 				{emoji('⚡')} Lancer le calcul
-			</a>
+			</LaunchButton>
 		</div>
 	)
 }
+
+export const LaunchButton = styled.a`
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	color: white !important;
+`

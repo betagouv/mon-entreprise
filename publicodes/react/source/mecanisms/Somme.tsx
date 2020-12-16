@@ -22,20 +22,18 @@ function sortByApplicability(a: EvaluatedNode, b: EvaluatedNode): 1 | 0 | -1 {
 }
 
 const Table = ({ explanation }) => (
-	<div
-		css={`
-			display: flex;
-			max-width: 100%;
-			flex-direction: column;
-		`}
-	>
-		<div>
-			{explanation.sort(sortByApplicability).map((node: EvaluatedNode, i) => (
-				<Row key={i} node={node} />
-			))}
-		</div>
-	</div>
+	<StyledContainer>
+		{explanation.sort(sortByApplicability).map((node: EvaluatedNode, i) => (
+			<Row key={i} node={node} />
+		))}
+	</StyledContainer>
 )
+
+const StyledContainer = styled.div`
+	display: flex;
+	max-width: 100%;
+	flex-direction: column;
+`
 
 /* La colonne peut au clic afficher une nouvelle colonne qui sera une autre somme imbriquée */
 function Row({ node }: { node: EvaluatedNode }) {

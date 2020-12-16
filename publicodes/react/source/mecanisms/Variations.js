@@ -4,7 +4,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import writtenNumbers from '../writtenNumbers'
 import Explanation from '../Explanation'
-import { InlineMecanismName, Mecanism } from './common'
+import { InlineMecanismName, Mecanism, CapitalizeFirstLetter } from './common'
 import styled from 'styled-components'
 
 export default function Variations({ nodeValue, explanation, unit }) {
@@ -19,19 +19,11 @@ export default function Variations({ nodeValue, explanation, unit }) {
 				unit={unit}
 				value={nodeValue}
 			>
-				{' '}
 				<>
-					<div
-						css={`
-							font-weight: bold;
-							:first-letter {
-								text-transform: capitalize;
-							}
-						`}
-					>
+					<CapitalizeFirstLetter>
 						{writtenNumbers[i18n.language ?? 'fr'][explanation.length]}{' '}
 						<InlineMecanismName name="variations" /> possibles :
-					</div>
+					</CapitalizeFirstLetter>
 					<ol>
 						{explanation.map(({ condition, consequence, satisfied }, i) => (
 							<li
