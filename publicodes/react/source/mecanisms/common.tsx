@@ -126,26 +126,26 @@ export const InfixMecanism = ({
 	dimValue?: boolean
 }) => {
 	return (
-		<div
-			className="infix-mecanism"
-			css={`
-				.value > .infix-mecanism {
-					border: none;
-					padding: 0;
-				}
-				.value > :not(.infix-mecanism) {
-					margin-bottom: 1rem;
-				}
-			`}
-		>
+		<StyledInfixMecanism className="infix-mecanism">
 			{prefixed && children}
-			<div className="value" css={dimValue ? 'opacity: 0.5' : ''}>
+			<div className="value" style={dimValue ? { opacity: 0.5 } : {}}>
 				<Explanation node={value} />
 			</div>
 			{!prefixed && children}
-		</div>
+		</StyledInfixMecanism>
 	)
 }
+
+const StyledInfixMecanism = styled.div`
+	.value > .infix-mecanism {
+		border: none;
+		padding: 0;
+	}
+	.value > :not(.infix-mecanism) {
+		margin-bottom: 1rem;
+	}
+`
+
 export const InlineMecanismName = ({ name }: { name: string }) => {
 	return (
 		<MecanismName inline name={name}>
@@ -261,6 +261,13 @@ const StyledMecanismName = styled.button<{ name: string; inline?: boolean }>`
 	}
 `
 
+export const CapitalizeFirstLetter = styled.div`
+	font-weight: bold;
+	:first-letter {
+		text-transform: capitalize;
+	}
+`
+
 // Un élément du graphe de calcul qui a une valeur interprétée (à afficher)
 export function Leaf(
 	node: ReferenceNode & {
@@ -276,18 +283,12 @@ export function Leaf(
 
 	const [folded, setFolded] = useState(true)
 	const foldButton = useContext(UnfoldIsEnabledContext) ? (
-		<button
+		<UnfoldButton
 			onClick={() => setFolded(!folded)}
-			css={`
-				text-transform: none !important;
-				flex: 1 !important;
-				margin-left: 0.4rem !important;
-				text-align: left !important;
-			`}
 			className="ui__ notice small static simple button"
 		>
 			{folded ? 'déplier' : 'replier'}
-		</button>
+		</UnfoldButton>
 	) : null
 
 	if (
@@ -299,16 +300,16 @@ export function Leaf(
 	}
 	return (
 		<div
-			css={`
-				display: inline-flex;
-				flex-direction: column;
-			`}
+			style={{
+				display: 'inline-flex',
+				flexDirection: 'column',
+			}}
 		>
 			<span
-				css={`
-					display: flex;
-					align-items: baseline;
-				`}
+				style={{
+					display: 'flex',
+					alignItems: 'baseline',
+				}}
 			>
 				<RuleLinkWithContext dottedName={dottedName}>
 					<span className="name">
@@ -327,9 +328,9 @@ export function Leaf(
 			</span>{' '}
 			{!folded && (
 				<div
-					css={`
-						width: 100%;
-					`}
+					style={{
+						width: '100%',
+					}}
 				>
 					<UnfoldIsEnabledContext.Provider value={false}>
 						<Explanation node={engine?.evaluateNode(rule).explanation.valeur} />
@@ -341,3 +342,10 @@ export function Leaf(
 }
 
 export const UnfoldIsEnabledContext = createContext<boolean>(false)
+
+const UnfoldButton = styled.button`
+	text-transform: none !important;
+	flex: 1 !important;
+	margin-left: 0.4rem !important;
+	text-align: left !important;
+`

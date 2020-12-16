@@ -2,6 +2,7 @@ import { Trans } from 'react-i18next'
 import { EvaluatedNode } from 'publicodes/source/AST/types'
 import Explanation from '../Explanation'
 import { Mecanism } from './common'
+import styled from 'styled-components'
 
 export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 	return (
@@ -16,19 +17,12 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 				<div style={{ textAlign: 'right' }}>
 					<Explanation node={node.explanation.assiette} />
 					{!node.explanation.plafond.isDefault && (
-						<small
-							css={`
-								display: flex;
-								align-items: baseline;
-								justify-content: flex-end;
-								flex-wrap: wrap;
-							`}
-						>
+						<PlafondSmall>
 							<span>
 								<Trans>Plafonnée à :</Trans>&nbsp;
 							</span>
 							<Explanation node={node.explanation.plafond} />
-						</small>
+						</PlafondSmall>
 					)}
 				</div>
 				{!node.explanation.facteur.isDefault && (
@@ -63,3 +57,10 @@ export default function Product(node: EvaluatedNode & { nodeKind: 'produit' }) {
 		</Mecanism>
 	)
 }
+
+const PlafondSmall = styled.small`
+	display: flex;
+	align-items: baseline;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+`

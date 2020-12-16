@@ -1,25 +1,23 @@
 import { capitalise0 } from 'publicodes'
+import styled from 'styled-components'
 import Explanation from '../Explanation'
 
 export default function RuleMecanism({ rawNode, explanation }) {
 	return (
-		<div
-			css={`
-				display: flex;
-				flex-direction: column;
-			`}
-		>
-			<code
-				className="ui__ light-bg"
-				css={`
-					align-self: flex-start;
-					margin: 0;
-					margin-bottom: 0.2rem;
-				`}
-			>
-				{capitalise0(rawNode.nom)}
-			</code>
+		<Styled>
+			<code className="ui__ light-bg">{capitalise0(rawNode.nom)}</code>
 			<Explanation node={explanation.valeur} />
-		</div>
+		</Styled>
 	)
 }
+
+const Styled = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	code {
+		align-self: flex-start;
+		margin: 0;
+		margin-bottom: 0.2rem;
+	}
+`
