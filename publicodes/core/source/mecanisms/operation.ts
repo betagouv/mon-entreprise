@@ -2,7 +2,7 @@ import { equals, fromPairs } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -62,8 +62,8 @@ const evaluate: EvaluationFunction<'operation'> = function (node) {
 				node1 = convertNodeToUnit(node2.unit, node1)
 			}
 		} catch (e) {
-			typeWarning(
-				this.cache._meta.contextRule,
+			warning(
+				this.logger,
 				`Dans l'expression '${
 					node.operator
 				}', la partie gauche (unité: ${serializeUnit(

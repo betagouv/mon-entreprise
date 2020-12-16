@@ -1,76 +1,52 @@
+<<<<<<< HEAD:publicodes/core/source/error.ts
 const coerceArray = (x) => (Array.isArray(x) ? x : [x])
+=======
+import { Logger } from '.'
+import { Context } from './parsePublicodes'
+>>>>>>> 2c06fb45 (:fire: Ajoute la possibilité de définir un logger pour l'engine):publicodes/source/error.ts
 
 export class EngineError extends Error {}
 export function syntaxError(
-	rules: string[] | string,
+	dottedName: string,
 	message: string,
 	originalError?: Error
 ) {
 	throw new EngineError(
 		`\n[ Erreur syntaxique ]
-➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+➡️  Dans la règle "${dottedName}"
 ✖️  ${message}
     ${originalError ? originalError.message : ''}
 `
 	)
 }
-
-export function compilationError(
-	rules: string[] | string,
+export function warning(
+	logger: Logger,
+	rule: string,
 	message: string,
 	originalError?: Error
 ) {
-	throw new Error(
-		`\n[ Erreur de compilation ]
-➡️ Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-✖️ ${message}
-  ${originalError?.message}
+	logger.warn(
+		`\n[ Avertissement ]
+➡️  Dans la règle "${rule}"
+⚠️  ${message}
+${originalError ? `ℹ️  ${originalError.message}` : ''}
 `
 	)
 }
 
 export function evaluationError(
-	rules: string[] | string,
+	logger: Logger,
+	rule: string,
 	message: string,
 	originalError?: Error
 ) {
-	throw new EngineError(
+	logger.error(
 		`\n[ Erreur d'évaluation ]
-➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
+➡️  Dans la règle "${rule}"
 ✖️  ${message}
     ${originalError ? originalError.message : ''}
 `
 	)
-}
-
-export function typeWarning(
-	rules: string[] | string,
-	message: string,
-	originalError?: Error
-) {
-	// DESACTIVE EN ATTENDANT L'INFÉRENCE DE TYPE
-	// 	console.warn(
-	// 		`\n[ Erreur de type ]
-	// ➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-	// ✖️  ${message}
-	//     ${originalError ? originalError.message : ''}
-	// `
-	// 	)
-}
-
-export function warning(
-	rules: string[] | string,
-	message: string,
-	solution?: string
-) {
-	process.env.NODE_ENV !== 'production' &&
-		console.warn(
-			`\n[ Avertissement ]
-	➡️  Dans la règle \`${coerceArray(rules).slice(-1)[0]}\`
-	⚠️  ${message}
-	💡  ${solution ? solution : ''}
-	`
-		)
 }
 
 export class InternalError extends EngineError {

@@ -1,5 +1,5 @@
 import { max, min } from 'ramda'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -35,8 +35,9 @@ const evaluate = evaluateObject<'allègement'>(function ({
 				abattement = convertNodeToUnit(assiette.unit, abattement)
 			}
 		} catch (e) {
-			typeWarning(
-				this.cache._meta.contextRule,
+			warning(
+				this.logger,
+				this.cache._meta.ruleStack[0],
 				"Impossible de convertir les unités de l'allègement entre elles",
 				e
 			)

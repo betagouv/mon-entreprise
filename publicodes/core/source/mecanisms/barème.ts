@@ -1,8 +1,8 @@
 import { EvaluationFunction } from '..'
-import { evaluationError } from '../error'
-import parse from '../parse'
+import { ASTNode } from '../AST/types'
 import { defaultNode, mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
+import parse from '../parse'
 import {
 	liftTemporal2,
 	liftTemporalNode,
@@ -15,7 +15,6 @@ import {
 	parseTranches,
 	TrancheNodes,
 } from './trancheUtils'
-import { ASTNode } from '../AST/types'
 
 // Barème en taux marginaux.
 export type BarèmeNode = {
@@ -46,12 +45,6 @@ function evaluateBarème(tranches, assiette, evaluate, cache) {
 			return { ...tranche, nodeValue: 0 }
 		}
 		const taux = evaluate(tranche.taux)
-		if (taux.temporalValue) {
-			evaluationError(
-				cache._meta.contextRule,
-				"Le taux d'une tranche ne peut pas être une valeur temporelle"
-			)
-		}
 
 		if (
 			[
@@ -86,15 +79,11 @@ const evaluate: EvaluationFunction<'barème'> = function (node) {
 	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
-			evaluatePlafondUntilActiveTranche(
-				evaluate,
-				{
-					parsedTranches: node.explanation.tranches,
-					assiette,
-					multiplicateur,
-				},
-				this.cache
-			),
+			evaluatePlafondUntilActiveTranche.call(this, {
+				parsedTranches: node.explanation.tranches,
+				assiette,
+				multiplicateur,
+			}),
 		liftTemporalNode(assiette as any),
 		liftTemporalNode(multiplicateur as any)
 	)

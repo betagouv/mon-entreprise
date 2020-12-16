@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { compose, mapObjIndexed } from 'ramda'
+import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
@@ -12,17 +13,20 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
+<<<<<<< HEAD:publicodes/core/source/index.ts
 import { reduceAST } from './AST'
 import mecanismsDoc from '../../docs/mecanisms.yaml'
+=======
+>>>>>>> 2c06fb45 (:fire: Ajoute la possibilité de définir un logger pour l'engine):publicodes/source/index.ts
 
 const emptyCache = () => ({
-	_meta: { contextRule: [] },
+	_meta: { ruleStack: [] },
 	nodes: new Map(),
 })
 
 type Cache = {
 	_meta: {
-		contextRule: Array<string>
+		ruleStack: Array<string>
 		parentEvaluationStack?: Array<string>
 		inversionFail?:
 			| {
@@ -40,8 +44,8 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
-export { reduceAST, transformAST } from './AST/index'
 export * as cyclesLib from './AST/graph'
+export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { formatValue, capitalise0 } from './format'
 export { serializeUnit } from './units'
@@ -54,6 +58,12 @@ export { utils }
 export { Rule }
 
 type PublicodesExpression = string | Record<string, unknown> | number
+
+export type Logger = {
+	log(message: string): void
+	warn(message: string): void
+	error(message: string): void
+}
 
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
@@ -68,24 +78,36 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
+	logger: Logger = console
 
-	constructor(rules: string | Record<string, Rule> | ParsedRules<Name>) {
+	constructor(
+		rules: string | Record<string, Rule> | ParsedRules<Name>,
+		logger?: Logger
+	) {
+		if (logger) {
+			this.logger = logger
+		}
 		if (typeof rules === 'string') {
-			this.parsedRules = parsePublicodes(rules) as ParsedRules<Name>
+			rules = parsePublicodes(rules, {
+				logger: this.logger,
+			}) as ParsedRules<Name>
 		}
 		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
 		if (
-			typeof firstRuleObject === 'object' &&
-			firstRuleObject != null &&
-			'nodeKind' in firstRuleObject
+			typeof firstRuleObject !== 'object' ||
+			firstRuleObject == null ||
+			!('nodeKind' in firstRuleObject)
 		) {
-			this.parsedRules = rules as ParsedRules<Name>
-			return
+			rules = parsePublicodes(rules as Record<string, Rule>, {
+				logger: this.logger,
+			}) as ParsedRules<Name>
 		}
-		this.parsedRules = parsePublicodes(
-			rules as Record<string, Rule>
-		) as ParsedRules<Name>
+		this.parsedRules = rules as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
+	}
+
+	setLogger(logger: Logger) {
+		this.logger = logger
 	}
 
 	resetCache() {
@@ -101,12 +123,13 @@ export default class Engine<Name extends string = string> {
 				return value as ASTNode
 			}
 			return compose(
-				inlineReplacements(this.replacements),
+				inlineReplacements(this.replacements, this.logger),
 				disambiguateReference(this.parsedRules)
 			)(
 				parse(value, {
 					dottedName: `situation [${key}]`,
 					parsedRules: {},
+					logger: this.logger,
 				})
 			)
 		}, situation)
@@ -139,12 +162,13 @@ export default class Engine<Name extends string = string> {
 		let parsedNode: ASTNode
 		if (!value || typeof value !== 'object' || !('nodeKind' in value)) {
 			parsedNode = compose(
-				inlineReplacements(this.replacements),
+				inlineReplacements(this.replacements, this.logger),
 				disambiguateReference(this.parsedRules)
 			)(
 				parse(value, {
 					dottedName: `evaluation`,
 					parsedRules: {},
+					logger: this.logger,
 				})
 			)
 		} else {

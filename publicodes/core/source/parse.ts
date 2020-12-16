@@ -140,8 +140,10 @@ Vérifiez qu'il n'y ait pas d'erreur dans l'orthographe du nom.`
 		}
 		syntaxError(
 			context.dottedName,
-			`➡️ Dans le mécanisme ${mecanismName}
+			mecanismName
+				? `➡️ Dans le mécanisme ${mecanismName}
 ${e.message}`
+				: e.message
 		)
 	}
 }

@@ -37,15 +37,11 @@ const evaluate: EvaluationFunction<'taux progressif'> = function (node) {
 	const evaluate = this.evaluate.bind(this)
 	const assiette = this.evaluate(node.explanation.assiette)
 	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
-	const tranches = evaluatePlafondUntilActiveTranche(
-		evaluate,
-		{
-			parsedTranches: node.explanation.tranches,
-			assiette,
-			multiplicateur,
-		},
-		this.cache
-	)
+	const tranches = evaluatePlafondUntilActiveTranche.call(this, {
+		parsedTranches: node.explanation.tranches,
+		assiette,
+		multiplicateur,
+	})
 
 	const evaluatedNode = {
 		...node,

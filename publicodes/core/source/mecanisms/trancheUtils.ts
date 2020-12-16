@@ -1,6 +1,7 @@
 import { evolve } from 'ramda'
+import Engine from '..'
 import { ASTNode, Evaluation } from '../AST/types'
-import { evaluationError, typeWarning } from '../error'
+import { evaluationError, warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import parse from '../parse'
 import { convertUnit, inferUnit } from '../units'
@@ -28,9 +29,8 @@ export const parseTranches = (tranches, context): TrancheNodes => {
 }
 
 export function evaluatePlafondUntilActiveTranche(
-	evaluate,
-	{ multiplicateur, assiette, parsedTranches },
-	cache
+	this: Engine,
+	{ multiplicateur, assiette, parsedTranches }
 ) {
 	return parsedTranches.reduce(
 		([tranches, activeTrancheFound], parsedTranche, i: number) => {
@@ -41,13 +41,7 @@ export function evaluatePlafondUntilActiveTranche(
 				]
 			}
 
-			const plafond = evaluate(parsedTranche.plafond)
-			if (plafond.temporalValue) {
-				evaluationError(
-					cache._meta.contextRule,
-					'Les valeurs temporelles ne sont pas acceptées pour un plafond de tranche'
-				)
-			}
+			const plafond = this.evaluate(parsedTranche.plafond)
 			const plancher = tranches[i - 1]
 				? tranches[i - 1].plafond
 				: { nodeValue: 0 }
@@ -67,8 +61,9 @@ export function evaluatePlafondUntilActiveTranche(
 								plafondValue
 						  )
 			} catch (e) {
-				typeWarning(
-					cache._meta.contextRule,
+				warning(
+					this.logger,
+					this.cache._meta.ruleStack[0],
 					`L'unité du plafond de la tranche n°${
 						i + 1
 					}  n'est pas compatible avec celle l'assiette`,
@@ -107,7 +102,8 @@ export function evaluatePlafondUntilActiveTranche(
 				(plafondValue as number) <= plancherValue
 			) {
 				evaluationError(
-					cache._meta.contextRule,
+					this.logger,
+					this.cache._meta.ruleStack[0],
 					`Le plafond de la tranche n°${
 						i + 1
 					} a une valeur inférieure à celui de la tranche précédente`

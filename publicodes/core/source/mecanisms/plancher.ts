@@ -1,6 +1,6 @@
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -24,8 +24,9 @@ const evaluate: EvaluationFunction<'plancher'> = function (node) {
 			try {
 				plancher = convertNodeToUnit(valeur.unit, evaluatedPlancher)
 			} catch (e) {
-				typeWarning(
-					this.cache._meta.contextRule,
+				warning(
+					this.logger,
+					this.cache._meta.ruleStack[0],
 					"L'unité du plancher n'est pas compatible avec celle de la valeur à encadrer",
 					e
 				)

@@ -1,7 +1,7 @@
 import { or } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { bonus, defaultNode } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
@@ -121,8 +121,9 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 				try {
 					evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
 				} catch (e) {
-					typeWarning(
-						this.cache._meta.contextRule,
+					warning(
+						this.logger,
+						this.cache._meta.ruleStack[0],
 						`L'unité de la branche n° ${
 							i + 1
 						} du mécanisme 'variations' n'est pas compatible avec celle d'une branche précédente`,

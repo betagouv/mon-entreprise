@@ -79,16 +79,37 @@ type ResultsProps = {
 	onClickShare: React.MouseEventHandler
 }
 
+class Logger {
+	messages: string[] = []
+	warn(message: string) {
+		this.messages.push(message)
+	}
+	error(message: string) {
+		this.messages.push(message)
+	}
+	log(message: string) {
+		this.messages.push(message)
+	}
+	toJSX() {
+		return this.messages.map((m) => (
+			<div
+				css={`
+					background: lightyellow;
+					padding: 20px;
+					border-radius: 5px;
+				`}
+				key={m}
+			>
+				{nl2br(m)}
+			</div>
+		))
+	}
+}
+
 export const Results = ({ onClickShare, rules }: ResultsProps) => {
-	const targets = useMemo(() => {
-		try {
-			return Object.keys(yaml.parse(rules) ?? {})
-		} catch (e) {
-			console.error(e)
-			return []
-		}
-	}, [rules])
-	const engine = useMemo(() => new Engine(rules), [rules])
+	const logger = useMemo(() => new Logger(), [rules])
+	const engine = useMemo(() => new Engine(rules, logger), [rules, logger])
+	const targets = useMemo(() => Object.keys(engine.getRules()), [engine])
 	const documentationPath = '/studio'
 	const pathToRules = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
@@ -113,18 +134,7 @@ export const Results = ({ onClickShare, rules }: ResultsProps) => {
 
 	return (
 		<>
-			{engine.getWarnings().map((warning: string) => (
-				<div
-					css={`
-						background: lightyellow;
-						padding: 20px;
-						border-radius: 5px;
-					`}
-					key={warning}
-				>
-					{nl2br(warning)}
-				</div>
-			))}
+			{logger.toJSX()}
 			<div
 				css={`
 					display: flex;

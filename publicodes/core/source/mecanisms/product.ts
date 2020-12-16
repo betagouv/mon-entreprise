@@ -1,6 +1,6 @@
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit, simplifyNodeUnit } from '../nodeUnits'
@@ -42,8 +42,9 @@ const productEffect: EvaluationFunction = function ({
 		try {
 			plafond = convertNodeToUnit(assiette.unit, plafond)
 		} catch (e) {
-			typeWarning(
-				this.cache._meta.contextRule,
+			warning(
+				this.logger,
+				this.cache._meta.ruleStack[0],
 				"Impossible de convertir l'unité du plafond du produit dans celle de l'assiette",
 				e
 			)

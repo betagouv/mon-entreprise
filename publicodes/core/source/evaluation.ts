@@ -16,7 +16,7 @@ import {
 	EvaluatedNode,
 	NodeKind,
 } from './AST/types'
-import { typeWarning } from './error'
+import { warning } from './error'
 import { convertNodeToUnit, simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import {
@@ -44,7 +44,7 @@ export const mergeMissing = (
 export const mergeAllMissing = (missings: Array<EvaluatedNode | ASTNode>) =>
 	missings.map(collectNodeMissing).reduce(mergeMissing, {})
 
-function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
+function convertNodesToSameUnit(this: Engine, nodes, mecanismName) {
 	const firstNodeWithUnit = nodes.find((node) => !!node.unit)
 	if (!firstNodeWithUnit) {
 		return nodes
@@ -53,9 +53,10 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 		try {
 			return convertNodeToUnit(firstNodeWithUnit.unit, node)
 		} catch (e) {
-			typeWarning(
-				contextRule,
-				`Dans le mécanisme ${mecanismName}, les unités des éléments suivants sont incompatibles entre elles : \n\t\t${
+			warning(
+				this.logger,
+				this.cache._meta.ruleStack[0],
+				`Les unités des éléments suivants sont incompatibles entre elles : \n\t\t${
 					node?.name || node?.rawNode
 				}\n\t\t${firstNodeWithUnit?.name || firstNodeWithUnit?.rawNode}'`,
 				e
@@ -71,9 +72,9 @@ export const evaluateArray: <NodeName extends NodeKind>(
 ) => EvaluationFunction<NodeName> = (reducer, start) =>
 	function (node: any) {
 		const evaluate = this.evaluate.bind(this)
-		const evaluatedNodes = convertNodesToSameUnit(
+		const evaluatedNodes = convertNodesToSameUnit.call(
+			this,
 			node.explanation.map(evaluate),
-			this.cache._meta.contextRule,
 			node.name
 		)
 
@@ -162,14 +163,16 @@ export function evaluateObject<NodeName extends NodeKind>(
 
 		const sameUnitTemporalExplanation: Temporal<
 			ASTNode & EvaluatedNode & { nodeValue: number }
-		> = convertNodesToSameUnit(
-			temporalExplanation.map((x) => x.value),
-			this.cache._meta.contextRule,
-			node.nodeKind
-		).map((node, i) => ({
-			...temporalExplanation[i],
-			value: simplifyNodeUnit(node),
-		}))
+		> = convertNodesToSameUnit
+			.call(
+				this,
+				temporalExplanation.map((x) => x.value),
+				node.nodeKind
+			)
+			.map((node, i) => ({
+				...temporalExplanation[i],
+				value: simplifyNodeUnit(node),
+			}))
 
 		const temporalValue = mapTemporal(
 			({ nodeValue }) => nodeValue,

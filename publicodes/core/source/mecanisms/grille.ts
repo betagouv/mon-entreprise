@@ -59,15 +59,11 @@ const evaluate: EvaluationFunction<'grille'> = function (node) {
 	const multiplicateur = this.evaluate(node.explanation.multiplicateur)
 	const temporalTranchesPlafond = liftTemporal2(
 		(assiette, multiplicateur) =>
-			evaluatePlafondUntilActiveTranche(
-				evaluate,
-				{
-					parsedTranches: node.explanation.tranches,
-					assiette,
-					multiplicateur,
-				},
-				this.cache
-			),
+			evaluatePlafondUntilActiveTranche.call(this, {
+				parsedTranches: node.explanation.tranches,
+				assiette,
+				multiplicateur,
+			}),
 		liftTemporalNode(assiette as any),
 		liftTemporalNode(multiplicateur as any)
 	)

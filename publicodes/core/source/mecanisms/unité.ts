@@ -1,5 +1,5 @@
 import { ASTNode, Unit } from '../AST/types'
-import { typeWarning } from '../error'
+import { warning } from '../error'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import parse from '../parse'
 import { convertUnit, parseUnit } from '../units'
@@ -35,8 +35,9 @@ registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
 				valeur.nodeValue as number
 			)
 		} catch (e) {
-			typeWarning(
-				this.cache._meta.contextRule,
+			warning(
+				this.logger,
+				this.cache._meta.ruleStack[0],
 				"Erreur lors de la conversion d'unité explicite",
 				e
 			)
