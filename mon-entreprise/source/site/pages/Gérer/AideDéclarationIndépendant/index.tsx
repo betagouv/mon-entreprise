@@ -47,8 +47,7 @@ export default function AideDéclarationIndépendant() {
 		[dispatch, updateSituation]
 	)
 	const displayForm =
-		UNSAFE_evaluateRule(engine, 'dirigeant . rémunération totale').nodeValue !==
-		null
+		engine.evaluate('dirigeant . rémunération totale').nodeValue !== null
 
 	return (
 		<div>

@@ -189,25 +189,16 @@ export default class Engine<Name extends string = string> {
 }
 
 /**
- 	This function allows smother migration to the new Engine API
+ 	This function allows to mimic the old 'isApplicable' property on evaluatedRules
 
 	It will be deprecated when applicability will be encoded as a Literal type
-	Prefer the use of `engine.evaluate(engine.getRule(dottedName))`
 */
-export function UNSAFE_evaluateRule<DottedName extends string = string>(
+export function UNSAFE_isNotApplicable<DottedName extends string = string>(
 	engine: Engine<DottedName>,
-	dottedName: DottedName,
-	modifiers: Object = {}
-): EvaluatedRule<DottedName> {
-	const evaluation = simplifyNodeUnit(
-		engine.evaluate({ valeur: dottedName, ...modifiers })
-	)
-	const rule = engine.getRule(dottedName) as RuleNode & {
-		dottedName: DottedName
-	}
-
-	// HACK while waiting for applicability to have its own type
-	const isNotApplicable = reduceAST<boolean>(
+	dottedName: DottedName
+): boolean {
+	const rule = engine.getRule(dottedName)
+	return reduceAST<boolean>(
 		function (isNotApplicable, node, fn) {
 			if (isNotApplicable) return isNotApplicable
 			if (!('nodeValue' in node)) {
@@ -235,10 +226,30 @@ export function UNSAFE_evaluateRule<DottedName extends string = string>(
 			}
 		},
 		false,
-		evaluation
+		engine.evaluate(dottedName)
 	)
+}
+
+/**
+ 	This function allows smother migration to the new Engine API
+
+	It will be deprecated when applicability will be encoded as a Literal type
+	Prefer the use of `engine.evaluate(engine.getRule(dottedName))`
+*/
+export function UNSAFE_evaluateRule<DottedName extends string = string>(
+	engine: Engine<DottedName>,
+	dottedName: DottedName,
+	modifiers: Object = {}
+): EvaluatedRule<DottedName> {
+	const evaluation = simplifyNodeUnit(
+		engine.evaluate({ valeur: dottedName, ...modifiers })
+	)
+	const rule = engine.getRule(dottedName) as RuleNode & {
+		dottedName: DottedName
+	}
+
 	return {
-		isNotApplicable,
+		isNotApplicable: UNSAFE_isNotApplicable(engine, dottedName),
 		...rule.rawNode,
 		...rule,
 		...evaluation,
