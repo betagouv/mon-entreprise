@@ -77,14 +77,6 @@ export default function SalaryExplanation() {
 function RevenueRepatitionSection() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
-	const engine = useEngine()
-	const data = ([
-		'contrat salarié . rémunération . net après impôt',
-		'impôt',
-		'contrat salarié . cotisations',
-	] as DottedName[]).map((r) =>
-		UNSAFE_evaluateRule(engine, r, { unité: '€/mois' })
-	)
 
 	return (
 		<section>
@@ -94,17 +86,17 @@ function RevenueRepatitionSection() {
 			<StackedBarChart
 				data={[
 					{
-						...data[0],
+						dottedName: 'contrat salarié . rémunération . net après impôt',
 						title: t('Revenu disponible'),
 						color: palettes[0][0],
 					},
 					{
-						...data[1],
+						dottedName: 'impôt',
 						title: t('impôt'),
 						color: palettes[1][0],
 					},
 					{
-						...data[2],
+						dottedName: 'contrat salarié . cotisations',
 						color: palettes[1][1],
 					},
 				]}
