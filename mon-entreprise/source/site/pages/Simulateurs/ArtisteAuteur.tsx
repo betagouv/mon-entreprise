@@ -7,11 +7,11 @@ import AidesCovid from 'Components/simulationExplanation/AidesCovid'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { evaluateRule } from 'publicodes'
+import { DottedName } from 'modele-social'
+import { UNSAFE_evaluateRule } from 'publicodes'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import config from './configs/artiste-auteur.yaml'
@@ -64,7 +64,7 @@ function SimpleField({ dottedName }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const rule = evaluateRule(engine, dottedName)
+	const rule = UNSAFE_evaluateRule(engine, dottedName)
 	const initialRender = useContext(InitialRenderContext)
 	if (
 		rule.isNotApplicable === true ||
@@ -105,7 +105,7 @@ type WarningProps = {
 }
 
 function Warning({ dottedName }: WarningProps) {
-	const warning = evaluateRule(useContext(EngineContext), dottedName)
+	const warning = UNSAFE_evaluateRule(useContext(EngineContext), dottedName)
 	if (!warning.nodeValue) {
 		return null
 	}

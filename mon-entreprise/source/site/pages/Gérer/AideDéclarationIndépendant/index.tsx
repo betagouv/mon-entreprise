@@ -11,7 +11,7 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
+import { EvaluatedRule, UNSAFE_evaluateRule, formatValue } from 'publicodes'
 import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
@@ -47,7 +47,8 @@ export default function AideDéclarationIndépendant() {
 		[dispatch, updateSituation]
 	)
 	const displayForm =
-		evaluateRule(engine, 'dirigeant . rémunération totale').nodeValue !== null
+		UNSAFE_evaluateRule(engine, 'dirigeant . rémunération totale').nodeValue !==
+		null
 
 	return (
 		<div>
@@ -344,7 +345,7 @@ type SimpleFieldProps = {
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
-	const evaluatedRule = evaluateRule(engine, dottedName)
+	const evaluatedRule = UNSAFE_evaluateRule(engine, dottedName)
 	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
@@ -396,7 +397,7 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 function Results() {
 	const engine = useEngine()
 	const results = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
-		evaluateRule(engine, objectif, { unité: '€/an' })
+		UNSAFE_evaluateRule(engine, objectif, { unité: '€/an' })
 	)
 	return (
 		<div

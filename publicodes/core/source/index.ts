@@ -164,8 +164,13 @@ export default class Engine<Name extends string = string> {
 	}
 }
 
-// This function is an util for allowing smother migration to the new Engine API
-export function evaluateRule<DottedName extends string = string>(
+/**
+ 	This function allows smother migration to the new Engine API
+
+	It will be deprecated when applicability will be encoded as a Literal type
+	Prefer the use of `engine.evaluate(engine.getRule(dottedName))`
+*/
+export function UNSAFE_evaluateRule<DottedName extends string = string>(
 	engine: Engine<DottedName>,
 	dottedName: DottedName,
 	modifiers: Object = {}

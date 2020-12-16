@@ -4,7 +4,7 @@ import Animate from 'Components/ui/animate'
 import Warning from 'Components/ui/WarningBlock'
 import { IsEmbeddedContext } from 'Components/utils/embeddedContext'
 import { EngineContext, useEngine } from 'Components/utils/EngineContext'
-import { EvaluatedRule, evaluateRule, formatValue } from 'publicodes'
+import { EvaluatedRule, UNSAFE_evaluateRule, formatValue } from 'publicodes'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
@@ -73,16 +73,19 @@ function ExplanationSection() {
 	} = useTranslation()
 
 	const engine = useEngine()
-	const net = evaluateRule(engine, 'contrat salarié . rémunération . net')
-	const netHabituel = evaluateRule(
+	const net = UNSAFE_evaluateRule(
+		engine,
+		'contrat salarié . rémunération . net'
+	)
+	const netHabituel = UNSAFE_evaluateRule(
 		engine,
 		'chômage partiel . revenu net habituel'
 	)
-	const totalEntreprise = evaluateRule(
+	const totalEntreprise = UNSAFE_evaluateRule(
 		engine,
 		'contrat salarié . prix du travail'
 	)
-	const totalEntrepriseHabituel = evaluateRule(
+	const totalEntrepriseHabituel = UNSAFE_evaluateRule(
 		engine,
 		'chômage partiel . coût employeur habituel'
 	)

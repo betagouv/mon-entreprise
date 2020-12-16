@@ -10,7 +10,7 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import assuranceMaladieSrc from 'Images/assurance-maladie.svg'
 import * as logosSrc from 'Images/logos-cnavpl'
 import urssafSrc from 'Images/urssaf.svg'
-import { evaluateRule } from 'publicodes'
+import { UNSAFE_evaluateRule } from 'publicodes'
 import { max } from 'ramda'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -37,13 +37,16 @@ export default function IndépendantExplanation() {
 					<StackedBarChart
 						data={[
 							{
-								...evaluateRule(engine, 'revenu net après impôt'),
+								...UNSAFE_evaluateRule(engine, 'revenu net après impôt'),
 								title: t('Revenu disponible'),
 								color: palettes[0][0],
 							},
-							{ ...evaluateRule(engine, 'impôt'), color: palettes[1][0] },
 							{
-								...evaluateRule(
+								...UNSAFE_evaluateRule(engine, 'impôt'),
+								color: palettes[1][0],
+							},
+							{
+								...UNSAFE_evaluateRule(
 									engine,
 									'dirigeant . indépendant . cotisations et contributions'
 								),
@@ -143,7 +146,10 @@ function CaisseRetraite() {
 		<>
 			{caisses.map((caisse) => {
 				const dottedName = `dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = evaluateRule(engine, dottedName)
+				const { description, références } = UNSAFE_evaluateRule(
+					engine,
+					dottedName
+				)
 				return (
 					<Condition expression={dottedName} key={caisse}>
 						<div className="ui__  card box">

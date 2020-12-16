@@ -1,8 +1,7 @@
 import StackedBarChart from 'Components/StackedBarChart'
 import { ThemeColorsContext } from 'Components/utils/colors'
 import { useEngine } from 'Components/utils/EngineContext'
-import { evaluateRule } from 'publicodes'
-import { useContext } from 'react'
+import { default as React, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
@@ -13,7 +12,7 @@ export default function AutoEntrepreneurExplanation() {
 	const { t } = useTranslation()
 	const { palettes } = useContext(ThemeColorsContext)
 	const targetUnit = useSelector(targetUnitSelector)
-	const impôt = evaluateRule(engine, 'impôt', { unité: targetUnit })
+	const impôt = UNSAFE_evaluateRule(engine, 'impôt', { unité: targetUnit })
 
 	return (
 		<section>
@@ -25,7 +24,7 @@ export default function AutoEntrepreneurExplanation() {
 			<StackedBarChart
 				data={[
 					{
-						...evaluateRule(
+						...UNSAFE_evaluateRule(
 							engine,
 							'dirigeant . auto-entrepreneur . net après impôt',
 							{ unité: targetUnit }
@@ -38,7 +37,7 @@ export default function AutoEntrepreneurExplanation() {
 						? [{ ...impôt, title: t('impôt'), color: palettes[1][0] }]
 						: []),
 					{
-						...evaluateRule(
+						...UNSAFE_evaluateRule(
 							engine,
 							'dirigeant . auto-entrepreneur . cotisations et contributions',
 							{ unité: targetUnit }

@@ -5,7 +5,7 @@ import Emoji from 'Components/utils/Emoji'
 import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { usePersistingState } from 'Components/utils/persistState'
-import Engine, { evaluateRule, EvaluatedRule } from 'publicodes'
+import Engine, { UNSAFE_evaluateRule, EvaluatedRule } from 'publicodes'
 import { equals } from 'ramda'
 import {
 	lazy,
@@ -95,7 +95,7 @@ const useFields = (
 	situation: Record<string, unknown>
 ): Array<EvaluatedRule> => {
 	const fields = fieldNames
-		.map((name) => evaluateRule(engine, name))
+		.map((name) => UNSAFE_evaluateRule(engine, name))
 		.filter(
 			(node: EvaluatedRule) =>
 				node.isNotApplicable !== true &&

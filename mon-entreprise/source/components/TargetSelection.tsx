@@ -15,7 +15,7 @@ import {
 	ASTNode,
 	EvaluatedNode,
 	EvaluatedRule,
-	evaluateRule,
+	UNSAFE_evaluateRule,
 	formatValue,
 	reduceAST,
 } from 'publicodes'
@@ -88,7 +88,7 @@ type TargetProps = {
 const Target = ({ dottedName }: TargetProps) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
 	const engine = useEngine()
-	const target = evaluateRule(engine, dottedName, {
+	const target = UNSAFE_evaluateRule(engine, dottedName, {
 		unité: useSelector(targetUnitSelector),
 		arrondi: 'oui',
 	})
@@ -270,7 +270,7 @@ function TitreRestaurant() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const { language } = useTranslation().i18n
 
-	const titresRestaurant = evaluateRule(
+	const titresRestaurant = UNSAFE_evaluateRule(
 		useEngine(),
 		'contrat salarié . frais professionnels . titres-restaurant . montant',
 		{
@@ -299,7 +299,7 @@ function AidesGlimpse() {
 	const { language } = useTranslation().i18n
 	const dottedName = 'contrat salarié . aides employeur'
 	const engine = useEngine()
-	const aides = evaluateRule(engine, dottedName, {
+	const aides = UNSAFE_evaluateRule(engine, dottedName, {
 		unité: targetUnit,
 		arrondi: 'oui',
 	})

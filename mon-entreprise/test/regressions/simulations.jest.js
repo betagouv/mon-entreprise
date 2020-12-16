@@ -6,7 +6,7 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 /* eslint-disable no-undef */
-import Engine, { evaluateRule } from 'publicodes'
+import Engine, { UNSAFE_evaluateRule } from 'publicodes'
 import rules from 'modele-social'
 import artisteAuteurConfig from '../../source/site/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/site/pages/Simulateurs/configs/auto-entrepreneur.yaml'
@@ -41,7 +41,7 @@ const runSimulations = (situations, targets, baseSituation = {}) =>
 
 			const evaluatedNotifications = Object.values(engine.getRules())
 				.filter((rule) => rule.rawNode['type'] === 'notification')
-				.map((node) => evaluateRule(engine, node.dottedName))
+				.map((node) => UNSAFE_evaluateRule(engine, node.dottedName))
 				.filter((node) => !!node.nodeValue)
 				.map((node) => node.dottedName)
 

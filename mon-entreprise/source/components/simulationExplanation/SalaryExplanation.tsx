@@ -9,7 +9,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import * as Animate from 'Components/ui/animate'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
-import { evaluateRule } from 'publicodes'
+import { UNSAFE_evaluateRule } from 'publicodes'
 import { DottedName } from 'modele-social'
 
 export default function SalaryExplanation() {
@@ -82,7 +82,9 @@ function RevenueRepatitionSection() {
 		'contrat salarié . rémunération . net après impôt',
 		'impôt',
 		'contrat salarié . cotisations',
-	] as DottedName[]).map((r) => evaluateRule(engine, r, { unité: '€/mois' }))
+	] as DottedName[]).map((r) =>
+		UNSAFE_evaluateRule(engine, r, { unité: '€/mois' })
+	)
 
 	return (
 		<section>

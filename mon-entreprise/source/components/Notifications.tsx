@@ -13,7 +13,7 @@ import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
-import Engine, { EvaluatedRule, ASTNode, evaluateRule } from 'publicodes'
+import Engine, { EvaluatedRule, ASTNode, UNSAFE_evaluateRule } from 'publicodes'
 
 // To add a new notification to a simulator, you should create a publicode rule
 // with the "type: notification" attribute. The display can be customized with
@@ -30,7 +30,7 @@ export function getNotifications(engine: Engine) {
 			(rule: ASTNode & { nodeKind: 'rule' }) =>
 				rule.rawNode['type'] === 'notification'
 		)
-		.map((node) => evaluateRule(engine, node.dottedName))
+		.map((node) => UNSAFE_evaluateRule(engine, node.dottedName))
 		.filter((node) => !!node.nodeValue)
 }
 export default function Notifications() {
