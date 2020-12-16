@@ -9,4 +9,4 @@ export const transformAST = publicodes.transformAST
 export const formatValue = publicodes.formatValue
 export const utils = publicodes.utils
 export const translateRules = publicodes.translateRules
-export const UNSAFE_evaluateRule = publicodes.UNSAFE_evaluateRule
+export const UNSAFE_isNotApplicable = publicodes.UNSAFE_isNotApplicable

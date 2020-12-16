@@ -2,7 +2,7 @@ import { setSimulationConfig, updateSituation } from 'Actions/actions'
 import Aide from 'Components/conversation/Aide'
 import { Explicable, ExplicableRule } from 'Components/conversation/Explicable'
 import RuleInput from 'Components/conversation/RuleInput'
-import { Condition } from 'Components/EngineValue'
+import Value, { Condition } from 'Components/EngineValue'
 import RuleLink from 'Components/RuleLink'
 import 'Components/TargetSelection.css'
 import Animate from 'Components/ui/animate'
@@ -344,7 +344,8 @@ type SimpleFieldProps = {
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
-	const evaluatedRule = UNSAFE_evaluateRule(engine, dottedName)
+	const evaluation = engine.evaluate(dottedName)
+	const rule = engine.getRule(dottedName)
 	const situation = useSelector(situationSelector)
 
 	const dispatchValue = useCallback(
@@ -361,8 +362,8 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 
 	if (
 		!(dottedName in situation) &&
-		evaluatedRule.nodeValue === false &&
-		!(dottedName in evaluatedRule.missingVariables)
+		evaluation.nodeValue === false &&
+		!(dottedName in evaluation.missingVariables)
 	) {
 		return null
 	}
@@ -381,10 +382,10 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 						`}
 					>
 						<p>
-							{question ?? evaluatedRule.question}
+							{question ?? rule.rawNode.question}
 							<ExplicableRule dottedName={dottedName} />
 						</p>
-						<p className="ui__ notice">{summary ?? evaluatedRule.résumé}</p>
+						<p className="ui__ notice">{summary ?? rule.rawNode.résumé}</p>
 					</div>
 					<RuleInput dottedName={dottedName} onChange={dispatchValue} />
 				</Question>
@@ -395,8 +396,8 @@ function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 
 function Results() {
 	const engine = useEngine()
-	const results = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
-		UNSAFE_evaluateRule(engine, objectif, { unité: '€/an' })
+	const rules = (simulationConfig.objectifs as DottedName[]).map((objectif) =>
+		engine.getRule(objectif)
 	)
 	return (
 		<div
@@ -411,18 +412,22 @@ function Results() {
 			</h1>
 			<>
 				<Animate.fromTop>
-					{results.map((r) => (
+					{rules.map((r) => (
 						<Fragment key={r.dottedName}>
 							<h4>
-								{r.title} <small>{r.résumé}</small>
+								{r.title} <small>{r.rawNode.résumé}</small>
 							</h4>
-							{r.description && <p className="ui__ notice">{r.description}</p>}
+							{r.rawNode.description && (
+								<p className="ui__ notice">{r.rawNode.description}</p>
+							)}
 							<p className="ui__ lead" css="margin-bottom: 1rem;">
 								<RuleLink dottedName={r.dottedName}>
-									{formatValue(r, {
-										displayedUnit: '€',
-										precision: 0,
-									})}
+									<Value
+										expression={r.dottedName}
+										displayedUnit="€"
+										unit="€/an"
+										precision={0}
+									/>
 								</RuleLink>
 							</p>
 						</Fragment>

@@ -1,11 +1,7 @@
 import { hideNotification } from 'Actions/actions'
 import animate from 'Components/ui/animate'
-import {
-	useInversionFail,
-	EngineContext,
-	useEngine,
-} from 'Components/utils/EngineContext'
-import { useContext } from 'react'
+import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
+import Engine, { EvaluatedRule } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +9,6 @@ import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
 import { Markdown } from './utils/markdown'
 import { ScrollToElement } from './utils/Scroll'
-import Engine, { EvaluatedRule, ASTNode, UNSAFE_evaluateRule } from 'publicodes'
 
 // To add a new notification to a simulator, you should create a publicode rule
 // with the "type: notification" attribute. The display can be customized with
@@ -27,11 +22,11 @@ type Notification = Pick<EvaluatedRule, 'dottedName' | 'description'> & {
 export function getNotifications(engine: Engine) {
 	return Object.values(engine.getRules())
 		.filter(
-			(rule: ASTNode & { nodeKind: 'rule' }) =>
-				rule.rawNode['type'] === 'notification'
+			(rule) =>
+				rule.rawNode['type'] === 'notification' &&
+				!!engine.evaluate(rule.dottedName).nodeValue
 		)
-		.map((node) => UNSAFE_evaluateRule(engine, node.dottedName))
-		.filter((node) => !!node.nodeValue)
+		.map((node) => node.dottedName)
 }
 export default function Notifications() {
 	const { t } = useTranslation()
