@@ -30,6 +30,7 @@ import { DottedName } from 'modele-social'
 import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import CurrencyInput from './CurrencyInput/CurrencyInput'
 import './TargetSelection.css'
+import { Names } from 'modele-social/dist/names'
 
 export default function TargetSelection({ showPeriodSwitch = true }) {
 	const objectifs = useSelector(
@@ -297,14 +298,15 @@ function TitreRestaurant() {
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const { language } = useTranslation().i18n
-	const dottedName = 'contrat salarié . aides employeur'
+	const dottedName = 'contrat salarié . aides employeur' as Names
 	const engine = useEngine()
-	const aides = UNSAFE_evaluateRule(engine, dottedName, {
+	const evaluation = engine.evaluate({
+		valeur: dottedName,
 		unité: targetUnit,
 		arrondi: 'oui',
 	})
-
-	if (!aides?.nodeValue) return null
+	const aides = engine.getRule(dottedName)
+	if (!evaluation?.nodeValue) return null
 
 	// Dans le cas où il n'y a qu'une seule aide à l'embauche qui s'applique, nous
 	// faisons un lien direct vers cette aide, plutôt qu'un lien vers la liste qui
@@ -312,10 +314,9 @@ function AidesGlimpse() {
 	const aideLink = reduceAST(
 		(acc, node) => {
 			if (node.nodeKind === 'somme') {
-				const aidesNotNul = (node.explanation as EvaluatedNode[]).filter(
-					({ nodeValue }) => nodeValue !== false
-				)
-				console.log('aidesNotNul', aidesNotNul, node.explanation)
+				const aidesNotNul = node.explanation
+					.map((n) => engine.evaluate(n))
+					.filter(({ nodeValue }) => nodeValue !== false)
 				if (aidesNotNul.length === 1) {
 					return (aidesNotNul[0] as ASTNode & { nodeKind: 'reference' })
 						.dottedName as DottedName
@@ -324,8 +325,8 @@ function AidesGlimpse() {
 				}
 			}
 		},
-		aides.dottedName,
-		engine.evaluate(engine.getRules()[dottedName])
+		dottedName,
+		aides
 	)
 	return (
 		<Animate.fromTop>
@@ -333,9 +334,11 @@ function AidesGlimpse() {
 				<RuleLink dottedName={aideLink}>
 					<Trans>en incluant</Trans>{' '}
 					<strong>
-						<span>{formatValue(aides, { displayedUnit: '€', language })}</span>
+						<span>
+							{formatValue(evaluation, { displayedUnit: '€', language })}
+						</span>
 					</strong>{' '}
-					<Trans>d'aides</Trans> {emoji(aides.icônes ?? '')}
+					<Trans>d'aides</Trans> {emoji(aides.rawNode.icônes ?? '')}
 				</RuleLink>
 			</div>
 		</Animate.fromTop>
