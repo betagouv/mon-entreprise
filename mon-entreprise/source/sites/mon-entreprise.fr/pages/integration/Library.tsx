@@ -36,19 +36,9 @@ export default function Library() {
 				<pre>
 					<code>npm install --save publicodes modele-social</code>
 				</pre>
-				<p>
-					<Emoji emoji="🚧" /> Les dépendances suivantes sont aussi nécessaires
-					pour le moment, mais seront rendues facultatives dans une prochaine
-					version du paquet publicodes.
-				</p>
-				<pre>
-					<code>
-						npm install --save react react-router-dom react-router-hash-link
-					</code>
-				</pre>
 				<em>
 					Pour plus de détails sur l'installation, se référer à la{' '}
-					<a href="https://publi.codes/api#installation" target="_blank">
+					<a href="https://publi.codes/documentation/se-lancer" target="_blank">
 						documentation dédiée
 					</a>
 				</em>
