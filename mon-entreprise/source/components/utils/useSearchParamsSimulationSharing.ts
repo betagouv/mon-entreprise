@@ -6,11 +6,10 @@ import { useEngine } from 'Components/utils/EngineContext'
 import {
 	configSelector,
 	situationSelector,
-	targetUnitSelector,
 } from 'Selectors/simulationSelectors'
 import { ParsedRules } from 'publicodes'
 import { DottedName } from 'modele-social'
-import { updateSituation, updateUnit, setActiveTarget } from 'Actions/actions'
+import { updateSituation, setActiveTarget } from 'Actions/actions'
 
 type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
@@ -21,7 +20,6 @@ export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const config = useSelector(configSelector)
 	const situation = useSelector(situationSelector)
-	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useEngine()
 	const dispatch = useDispatch()
 
@@ -37,12 +35,11 @@ export default function useSearchParamsSimulationSharing() {
 		// On load:
 		if (!urlSituationIsExtracted) {
 			const objectifs = objectifsOfConfig(config)
-			const {
-				situation: newSituation,
-				targetUnit: newTargetUnit,
-			} = getSituationFromSearchParams(searchParams, dottedNameParamName)
+			const newSituation = getSituationFromSearchParams(
+				searchParams,
+				dottedNameParamName
+			)
 
-			if (newTargetUnit) dispatch(updateUnit(newTargetUnit))
 			Object.entries(newSituation).forEach(([dottedName, value]) => {
 				dispatch(updateSituation(dottedName as DottedName, value))
 			})
@@ -70,16 +67,10 @@ export default function useSearchParamsSimulationSharing() {
 		searchParams,
 		setSearchParams,
 		situation,
-		targetUnit,
 		urlSituationIsExtracted,
 	])
 
-	return () =>
-		getSearchParamsFromSituation(
-			situation,
-			targetUnit || (config['unité par défaut'] as string),
-			dottedNameParamName
-		)
+	return () => getSearchParamsFromSituation(situation, dottedNameParamName)
 }
 
 const objectifsOfConfig = (config: Partial<SimulationConfig>) =>
@@ -97,7 +88,6 @@ export const cleanSearchParams = (
 	dottedNames: DottedName[]
 ) => {
 	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
-	searchParams.delete(TARGET_UNIT_KEY)
 	dottedNames.forEach((dottedName) =>
 		searchParams.delete(dottedNameParamNameMapping[dottedName])
 	)
@@ -150,17 +140,8 @@ export const deserialize = (
 	return value
 }
 
-const TARGET_UNIT_KEY = '_targetUnit' as const
-
-// TODO On préfèrerait que le targetUnit soit remonté de manière plus lisible
-// dans l'URL, par ex sous forme de "an" au lieu de "€/an". Ceci dit le format
-// du targetUnit est dépendant de l'engine, duquel il faut être agnostique ici.
-// On pourra revoir cela plus tard quand l'engine exposera une API (notamment un
-// typage) plus clair.
-// XXX ajouter une issue pour ça
 export function getSearchParamsFromSituation(
 	situation: Situation,
-	targetUnit: string,
 	dottedNameParamName: [DottedName, ParamName][]
 ): URLSearchParams {
 	const searchParams = new URLSearchParams()
@@ -175,7 +156,6 @@ export function getSearchParamsFromSituation(
 			}
 		}
 	)
-	if (targetUnit) searchParams.set(TARGET_UNIT_KEY, targetUnit)
 	searchParams.sort()
 	return searchParams
 }
@@ -185,7 +165,6 @@ export function getSituationFromSearchParams(
 	dottedNameParamName: [DottedName, ParamName][]
 ) {
 	const situation = {} as Situation
-	let targetUnit = ''
 
 	const paramNameDottedName = dottedNameParamName.reduce(
 		(dottedNameBySearchParamName, [dottedName, paramName]) => ({
@@ -196,14 +175,10 @@ export function getSituationFromSearchParams(
 	)
 
 	searchParams.forEach((value, paramName) => {
-		if (paramName === TARGET_UNIT_KEY) {
-			targetUnit = value
-		} else if (
-			Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)
-		) {
+		if (Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)) {
 			situation[paramNameDottedName[paramName]] = deserialize(value)
 		}
 	})
 
-	return { situation, targetUnit }
+	return situation
 }
