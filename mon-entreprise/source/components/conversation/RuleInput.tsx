@@ -6,18 +6,16 @@ import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
+import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	EvaluatedRule,
-	UNSAFE_evaluateRule,
 	formatValue,
-	ParsedRules,
 	reduceAST,
 } from 'publicodes'
 import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectEuropeCountry from './select/SelectEuropeCountry'
@@ -67,21 +65,21 @@ export default function RuleInput<Name extends string = DottedName>({
 	onSubmit = () => null,
 }: RuleInputProps<Name>) {
 	const engine = useContext(EngineContext)
-	const rule = UNSAFE_evaluateRule(engine, dottedName)
-
+	const rule = engine.getRule(dottedName)
+	const evaluation = engine.evaluate(dottedName)
 	const language = useTranslation().i18n.language
-	const value = rule.nodeValue
+	const value = evaluation.nodeValue
 	const commonProps: InputCommonProps<Name> = {
 		key: dottedName,
 		dottedName,
 		value,
-		missing: !!rule.missingVariables[dottedName],
+		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
 		autoFocus,
 		className,
 		title: rule.title,
 		id: id ?? dottedName,
-		question: rule.question,
+		question: rule.rawNode.question,
 		suggestions: rule.suggestions,
 		required: true,
 	}
@@ -94,16 +92,17 @@ export default function RuleInput<Name extends string = DottedName>({
 			/>
 		)
 	}
-	if (rule.API && rule.API === 'commune')
+	if (rule.rawNode.API && rule.rawNode.API === 'commune')
 		return <SelectCommune {...commonProps} />
-	if (rule.API && rule.API === 'pays européen')
+	if (rule.rawNode.API && rule.rawNode.API === 'pays européen')
 		return <SelectEuropeCountry {...commonProps} />
-	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
+	if (rule.rawNode.API)
+		throw new Error("Les seules API implémentées sont 'commune'")
 
 	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
 		return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
 
-	if (rule.type === 'date') {
+	if (rule.rawNode.type === 'date') {
 		return (
 			<DateInput
 				{...commonProps}
@@ -116,9 +115,9 @@ export default function RuleInput<Name extends string = DottedName>({
 	}
 
 	if (
-		rule.unit == null &&
-		(rule.type === 'booléen' || rule.type == undefined) &&
-		typeof rule.nodeValue !== 'number'
+		evaluation.unit == null &&
+		(rule.rawNode.type === 'booléen' || rule.rawNode.type == undefined) &&
+		typeof evaluation.nodeValue !== 'number'
 	) {
 		return useSwitch ? (
 			<ToggleSwitch
@@ -139,9 +138,9 @@ export default function RuleInput<Name extends string = DottedName>({
 		)
 	}
 
-	if (rule.unit?.numerators.includes('€') && isTarget) {
+	if (evaluation.unit?.numerators.includes('€') && isTarget) {
 		const unité = formatValue(
-			{ nodeValue: value ?? 0, unit: rule.unit },
+			{ nodeValue: value ?? 0, unit: evaluation.unit },
 			{ language }
 		)
 			.replace(/[\d,.]/g, '')
@@ -160,13 +159,13 @@ export default function RuleInput<Name extends string = DottedName>({
 			</>
 		)
 	}
-	if (rule.unit?.numerators.includes('%') && isTarget) {
+	if (evaluation.unit?.numerators.includes('%') && isTarget) {
 		return <PercentageField {...commonProps} debounce={600} />
 	}
-	if (rule.type === 'texte') {
+	if (rule.rawNode.type === 'texte') {
 		return <TextInput {...commonProps} value={value as Evaluation<string>} />
 	}
-	if (rule.type === 'paragraphe') {
+	if (rule.rawNode.type === 'paragraphe') {
 		return (
 			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
 		)
@@ -176,7 +175,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		<Input
 			{...commonProps}
 			onSubmit={onSubmit}
-			unit={rule.unit}
+			unit={evaluation.unit}
 			value={value as Evaluation<number>}
 		/>
 	)
