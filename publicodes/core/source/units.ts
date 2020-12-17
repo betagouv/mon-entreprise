@@ -133,7 +133,7 @@ const simplify = (
 		unit
 	)
 
-const convertTable: { readonly [index: string]: number } = {
+const convertTable: ConvertTable = {
 	'mois/an': 12,
 	'jour/an': 365,
 	'jour/mois': 365 / 12,
@@ -219,16 +219,38 @@ export function convertUnit(
 	)
 }
 
-const convertibleUnitClasses = [
-	['mois', 'an', 'jour', 'trimestre'],
-	['€', 'k€'],
-	['g', 'kg', 'mg'],
-]
+const convertibleUnitClasses = unitClasses(convertTable)
+type unitClasses = Array<Set<string>>
+type ConvertTable = { readonly [index: string]: number }
+
+// Reduce the convertTable provided by the user into a list of compatibles
+// classes.
+function unitClasses(convertTable: ConvertTable) {
+	return Object.keys(convertTable).reduce(
+		(classes: unitClasses, ratio: string) => {
+			const [a, b] = ratio.split('/')
+			const ia = classes.findIndex((units) => units.has(a))
+			const ib = classes.findIndex((units) => units.has(b))
+			if (ia > -1 && ib > -1 && ia !== ib) {
+				throw Error(`Invalid ratio ${ratio}`)
+			} else if (ia === -1 && ib === -1) {
+				classes.push(new Set([a, b]))
+			} else if (ia > -1) {
+				classes[ia].add(b)
+			} else if (ib > -1) {
+				classes[ib].add(a)
+			}
+			return classes
+		},
+		[]
+	)
+}
+
 function areSameClass(a: string, b: string) {
 	return (
 		a === b ||
 		convertibleUnitClasses.some(
-			(units) => units.includes(a) && units.includes(b)
+			(unitsClass) => unitsClass.has(a) && unitsClass.has(b)
 		)
 	)
 }
@@ -267,7 +289,7 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 	}
 	const countByUnitClass = countBy((unit: string) => {
 		const classIndex = convertibleUnitClasses.findIndex((unitClass) =>
-			unitClass.includes(unit)
+			unitClass.has(unit)
 		)
 		return classIndex === -1 ? unit : '' + classIndex
 	})
