@@ -11,13 +11,13 @@ import { EngineContext, useEngine } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import useDisplayOnIntersecting from 'Components/utils/useDisplayOnIntersecting'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { EvaluatedRule, UNSAFE_evaluateRule, formatValue } from 'publicodes'
-import { Fragment, useCallback, useContext, useEffect, useState } from 'react'
+import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
+import { Fragment, useCallback, useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { CompanySection } from '../Home'
@@ -338,8 +338,8 @@ function SubSection({
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: EvaluatedRule['résumé']
-	question?: EvaluatedRule['question']
+	summary?: RuleNode['rawNode']['résumé']
+	question?: RuleNode['rawNode']['question']
 }
 function SimpleField({ dottedName, question, summary }: SimpleFieldProps) {
 	const dispatch = useDispatch()

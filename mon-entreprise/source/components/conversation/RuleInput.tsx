@@ -7,13 +7,9 @@ import PercentageField from 'Components/PercentageField'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	EvaluatedRule,
-	formatValue,
-	reduceAST,
-} from 'publicodes'
+import Engine, { ASTNode, formatValue, reduceAST } from 'publicodes'
 import { Evaluation } from 'publicodes/dist/types/AST/types'
+import { RuleNode } from 'publicodes/dist/types/rule'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
@@ -37,7 +33,8 @@ export type InputCommonProps<Name extends string = string> = Pick<
 	RuleInputProps<Name>,
 	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
+	Pick<RuleNode, 'title' | 'suggestions'> & {
+		question: RuleNode['rawNode']['question']
 		key: string
 		id: string
 		value: any //TODO EvaluatedRule['nodeValue']
@@ -181,7 +178,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	)
 }
 
-const getVariant = (node: ASTNode & { nodeKind: 'rule' }) =>
+const getVariant = (node: RuleNode) =>
 	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(
 		(_, node) => {
 			if (node.nodeKind === 'une possibilité') {

@@ -14,7 +14,13 @@ import {
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
-import { ASTNode, EvaluatedRule, formatValue, reduceAST } from 'publicodes'
+import {
+	ASTNode,
+	EvaluatedNode,
+	formatValue,
+	reduceAST,
+	RuleNode,
+} from 'publicodes'
 import { isNil } from 'ramda'
 import { Fragment, useCallback, useContext } from 'react'
 import emoji from 'react-easy-emoji'
@@ -80,6 +86,10 @@ export default function TargetSelection({ showPeriodSwitch = true }) {
 type TargetProps = {
 	dottedName: DottedName
 }
+type TargetType = EvaluatedNode &
+	RuleNode['rawNode'] &
+	RuleNode & { dottedName: DottedName }
+
 const Target = ({ dottedName }: TargetProps) => {
 	const activeInput = useSelector((state: RootState) => state.activeTargetInput)
 	const engine = useEngine()
@@ -89,7 +99,7 @@ const Target = ({ dottedName }: TargetProps) => {
 		unité: useSelector(targetUnitSelector),
 		arrondi: 'oui',
 	})
-	const target = { ...evaluation, ...rule.rawNode, ...rule }
+	const target: TargetType = { ...evaluation, ...rule.rawNode, ...rule }
 	const dispatch = useDispatch()
 	const onSuggestionClick = useCallback(
 		(value) => {
@@ -155,7 +165,7 @@ const Target = ({ dottedName }: TargetProps) => {
 	)
 }
 
-const Header = ({ target }: { target: EvaluatedRule<DottedName> }) => {
+const Header = ({ target }: { target: TargetType }) => {
 	const sitePaths = useContext(SitePathsContext)
 	const { t } = useTranslation()
 	const { pathname } = useLocation()
@@ -179,7 +189,7 @@ const Header = ({ target }: { target: EvaluatedRule<DottedName> }) => {
 }
 
 type TargetInputOrValueProps = {
-	target: EvaluatedRule<DottedName>
+	target: TargetType
 	isActiveInput: boolean
 	isSmallTarget: boolean
 }
@@ -290,7 +300,6 @@ function TitreRestaurant() {
 }
 function AidesGlimpse() {
 	const targetUnit = useSelector(targetUnitSelector)
-	const { language } = useTranslation().i18n
 	const dottedName = 'contrat salarié . aides employeur' as Names
 	const engine = useEngine()
 	const aides = engine.getRule(dottedName)

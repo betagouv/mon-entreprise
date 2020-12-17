@@ -3,7 +3,6 @@ import { compose, mapObjIndexed } from 'ramda'
 import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
-import { simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
 import parsePublicodes, { disambiguateReference } from './parsePublicodes'
 import {
@@ -13,11 +12,6 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
-<<<<<<< HEAD:publicodes/core/source/index.ts
-import { reduceAST } from './AST'
-import mecanismsDoc from '../../docs/mecanisms.yaml'
-=======
->>>>>>> 2c06fb45 (:fire: Ajoute la possibilité de définir un logger pour l'engine):publicodes/source/index.ts
 
 const emptyCache = () => ({
 	_meta: { ruleStack: [] },
@@ -47,16 +41,13 @@ export type EvaluationOptions = Partial<{
 export * as cyclesLib from './AST/graph'
 export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
-export { formatValue, capitalise0 } from './format'
-export { serializeUnit } from './units'
+export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
 export { default as translateRules } from './translateRules'
-export { ASTNode, EvaluatedNode }
-export { parsePublicodes }
-export { mecanismsDoc }
-export { utils }
-export { Rule }
-
+export { serializeUnit } from './units'
+export { parsePublicodes, utils }
+export { Rule, RuleNode, ASTNode, EvaluatedNode }
+export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
 type PublicodesExpression = string | Record<string, unknown> | number
 
 export type Logger = {
@@ -166,7 +157,7 @@ export default class Engine<Name extends string = string> {
 				disambiguateReference(this.parsedRules)
 			)(
 				parse(value, {
-					dottedName: `evaluation`,
+					dottedName: 'evaluation',
 					parsedRules: {},
 					logger: this.logger,
 				})
@@ -189,7 +180,7 @@ export default class Engine<Name extends string = string> {
 }
 
 /**
- 	This function allows to mimic the old 'isApplicable' property on evaluatedRules
+ 	This function allows to mimic the former 'isApplicable' property on evaluatedRules
 
 	It will be deprecated when applicability will be encoded as a Literal type
 */
@@ -216,7 +207,10 @@ export function UNSAFE_isNotApplicable<DottedName extends string = string>(
 				return fn(engine.evaluate(rule))
 			}
 			if (node.nodeKind === 'applicable si') {
-				return (node.explanation.condition as any).nodeValue === false
+				return (
+					(node.explanation.condition as any).nodeValue === false ||
+					fn(node.explanation.valeur)
+				)
 			}
 			if (node.nodeKind === 'non applicable si') {
 				return (
@@ -224,45 +218,14 @@ export function UNSAFE_isNotApplicable<DottedName extends string = string>(
 					(node.explanation.condition as any).nodeValue !== null
 				)
 			}
+			if (node.nodeKind === 'rule') {
+				return (
+					(node.explanation.parent as any).nodeValue === false ||
+					fn(node.explanation.valeur)
+				)
+			}
 		},
 		false,
 		engine.evaluate(dottedName)
 	)
 }
-
-/**
- 	This function allows smother migration to the new Engine API
-
-	It will be deprecated when applicability will be encoded as a Literal type
-	Prefer the use of `engine.evaluate(engine.getRule(dottedName))`
-*/
-export function UNSAFE_evaluateRule<DottedName extends string = string>(
-	engine: Engine<DottedName>,
-	dottedName: DottedName,
-	modifiers: Object = {}
-): EvaluatedRule<DottedName> {
-	const evaluation = simplifyNodeUnit(
-		engine.evaluate({ valeur: dottedName, ...modifiers })
-	)
-	const rule = engine.getRule(dottedName) as RuleNode & {
-		dottedName: DottedName
-	}
-
-	return {
-		isNotApplicable: UNSAFE_isNotApplicable(engine, dottedName),
-		...rule.rawNode,
-		...rule,
-		...evaluation,
-	} as EvaluatedRule<DottedName>
-}
-
-export type EvaluatedRule<Name extends string = string> = EvaluatedNode &
-	Omit<
-		(ASTNode & {
-			nodeKind: 'rule'
-		}) &
-			(ASTNode & {
-				nodeKind: 'rule'
-			})['rawNode'] & { dottedName: Name; isNotApplicable: boolean },
-		'nodeKind'
-	>

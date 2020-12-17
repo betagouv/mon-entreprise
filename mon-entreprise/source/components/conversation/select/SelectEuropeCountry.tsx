@@ -46,7 +46,7 @@ export default function SelectEuropeCountry({
 				name="country"
 				id={id}
 				className="ui__"
-				defaultValue={value?.slice(1, -1)}
+				defaultValue={value ? value.slice(1, -1) : undefined}
 				onChange={(e) => onChange(`'${e.target.value}'`)}
 			>
 				<option disabled selected hidden></option>

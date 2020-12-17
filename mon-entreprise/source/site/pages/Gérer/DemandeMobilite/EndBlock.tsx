@@ -2,11 +2,13 @@ import { BlobProvider } from '@react-pdf/renderer'
 import Overlay from 'Components/Overlay'
 import Checkbox from 'Components/ui/Checkbox'
 import { ThemeColorsContext } from 'Components/utils/colors'
+import { EngineContext, EngineProvider } from 'Components/utils/EngineContext'
 import { TrackerContext } from 'Components/utils/withTracker'
+import { RuleNode } from 'publicodes/dist/types/rule'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import SignaturePad from 'react-signature-pad-wrapper'
-import PDFDocument, { PDFDocumentProps } from './PDFDocument'
+import PDFDocument from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()
 type SignaturePadInstance = {
@@ -15,7 +17,7 @@ type SignaturePadInstance = {
 }
 
 type EndBlockProps = {
-	fields: PDFDocumentProps['fields']
+	fields: Array<RuleNode>
 	isMissingValues: boolean
 }
 
@@ -23,7 +25,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
 	const [showDownloadLink, toggleDownloadLink] = useState(false)
-
+	const engine = useContext(EngineContext)
 	const { darkColor } = useContext(ThemeColorsContext)
 	const signatureRef = useRef<SignaturePadInstance>()
 	const tracker = useContext(TrackerContext)
@@ -131,13 +133,15 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 					>
 						<LazyBlobProvider
 							document={
-								<PDFDocument
-									fields={fields}
-									signatureURL={
-										IS_TOUCH_DEVICE && signatureRef.current?.toDataURL()
-									}
-									place={place}
-								/>
+								<EngineProvider value={engine}>
+									<PDFDocument
+										fields={fields}
+										signatureURL={
+											IS_TOUCH_DEVICE && signatureRef.current?.toDataURL()
+										}
+										place={place}
+									/>
+								</EngineProvider>
 							}
 						>
 							{({ url, loading, error }) =>
@@ -175,7 +179,7 @@ export default function EndBlock({ fields, isMissingValues }: EndBlockProps) {
 													])
 												}
 												className="ui__ cta plain button"
-												download="demande-mobilité-europe.pdf"
+												download="demande-mobilité-internationale.pdf"
 											>
 												Télécharger le fichier
 											</a>

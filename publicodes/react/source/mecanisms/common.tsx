@@ -278,7 +278,7 @@ export function Leaf(
 	const { dottedName, nodeValue, unit } = node
 	const rule = engine?.getRule(node.dottedName)
 	if (!rule) {
-		throw new Error(`Unknown node`)
+		throw new Error('Unknown node')
 	}
 
 	const [folded, setFolded] = useState(true)

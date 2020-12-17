@@ -1,9 +1,4 @@
-<<<<<<< HEAD:publicodes/core/source/error.ts
-const coerceArray = (x) => (Array.isArray(x) ? x : [x])
-=======
 import { Logger } from '.'
-import { Context } from './parsePublicodes'
->>>>>>> 2c06fb45 (:fire: Ajoute la possibilité de définir un logger pour l'engine):publicodes/source/error.ts
 
 export class EngineError extends Error {}
 export function syntaxError(

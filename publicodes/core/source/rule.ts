@@ -24,6 +24,7 @@ export type Rule = {
 	résumé?: string
 	icônes?: string
 	titre?: string
+	sévérité?: string
 	cotisation?: {
 		branche: string
 	}

@@ -13,6 +13,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
 import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
+import { RuleNode } from 'publicodes/dist/types/rule'
 
 export const SECTION_ORDER = [
 	'protection sociale . santé',
@@ -27,7 +28,7 @@ export const SECTION_ORDER = [
 
 type Section = typeof SECTION_ORDER[number]
 
-function getSection(rule: ASTNode & { nodeKind: 'rule' }): Section {
+function getSection(rule: RuleNode): Section {
 	const section = ('protection sociale . ' +
 		rule.rawNode.cotisation?.branche) as Section
 	if (SECTION_ORDER.includes(section)) {

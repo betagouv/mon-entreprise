@@ -1,7 +1,7 @@
 import { hideNotification } from 'Actions/actions'
 import animate from 'Components/ui/animate'
 import { useEngine, useInversionFail } from 'Components/utils/EngineContext'
-import Engine, { EvaluatedRule } from 'publicodes'
+import Engine, { RuleNode } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,8 +14,9 @@ import { ScrollToElement } from './utils/Scroll'
 // with the "type: notification" attribute. The display can be customized with
 // the "sévérité" attribute. The notification will only be displayed if the
 // publicode rule is applicable.
-type Notification = Pick<EvaluatedRule, 'dottedName' | 'description'> & {
-	type: 'notification'
+type Notification = {
+	dottedName: RuleNode['dottedName']
+	description: RuleNode['rawNode']['description']
 	sévérité: 'avertissement' | 'information'
 }
 
@@ -26,12 +27,15 @@ export function getNotifications(engine: Engine) {
 				rule.rawNode['type'] === 'notification' &&
 				!!engine.evaluate(rule.dottedName).nodeValue
 		)
-		.map((node) => node.dottedName)
+		.map(({ dottedName, rawNode: { sévérité, description } }) => ({
+			dottedName,
+			sévérité,
+			description,
+		}))
 }
 export default function Notifications() {
 	const { t } = useTranslation()
 	const engine = useEngine()
-
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
@@ -46,11 +50,10 @@ export default function Notifications() {
 						'simulateurs.inversionFail',
 						'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
 					),
-					type: 'notification',
 					sévérité: 'avertissement',
 				},
 		  ]
-		: ((getNotifications(engine) as any) as Array<Notification>)
+		: (getNotifications(engine) as Array<Notification>)
 	if (!messages?.length) return null
 
 	return (

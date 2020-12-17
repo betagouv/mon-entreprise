@@ -6,7 +6,8 @@
 	"license": "MIT",
 	"scripts": {
 		"prepare": "echo 1",
-		"test": "echo 1"
+		"test": "echo 1",
+		"clean": "rimraf node_modules"
 	},
 	"devDependencies": {
 		"core-js": "^3.8.1"

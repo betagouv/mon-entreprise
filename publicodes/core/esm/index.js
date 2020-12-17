@@ -10,3 +10,4 @@ export const formatValue = publicodes.formatValue
 export const utils = publicodes.utils
 export const translateRules = publicodes.translateRules
 export const UNSAFE_isNotApplicable = publicodes.UNSAFE_isNotApplicable
+export const mecanismsDoc = publicodes.mecanismsDoc

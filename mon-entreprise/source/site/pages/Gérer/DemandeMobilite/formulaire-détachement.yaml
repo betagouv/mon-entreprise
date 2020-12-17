@@ -139,9 +139,9 @@ demande . détachement possible:
 
 détachement:
   note: 3.3
+  applicable si: demande . détachement possible
   titre: Demande de détachement
-  formule: demande . détachement possible
-  par défaut: non
+  formule: oui
   type: groupe
 
 détachement . pays:
@@ -195,10 +195,11 @@ détachement . activité . code postal:
   type: texte
 
 activité transfrontalière simultanée:
-  formule: demande . détachement possible = non
-  par défaut: non
+  non applicable si: demande . détachement possible
+  formule: oui
   titre: Demande d'activité transfrontalière simultanée
   type: groupe
+  
 activité transfrontalière simultanée . salarié hors France:
   question: >
     Travaillez-vous en tant que salarié dans un autre pays ?
