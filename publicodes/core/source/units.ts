@@ -11,46 +11,44 @@ import {
 	unnest,
 	without,
 } from 'ramda'
-import i18n from './i18n'
 import { Evaluation, Unit } from './AST/types'
 
-export const parseUnit = (string: string, lng = 'fr'): Unit => {
+export type getUnitKey = (writtenUnit: string) => string
+export type formatUnit = (unit: string, count: number) => string
+
+export const parseUnit = (
+	string: string,
+	getUnitKey: getUnitKey = (x) => x
+): Unit => {
 	const [a, ...b] = string.split('/').map((u) => u.trim()),
 		result = {
 			numerators: a
 				.split('.')
 				.filter(Boolean)
-				.map((unit) => getUnitKey(unit, lng)),
-			denominators: b.map((unit) => getUnitKey(unit, lng)),
+				.map((unit) => getUnitKey(unit)),
+			denominators: b.map((unit) => getUnitKey(unit)),
 		}
 	return result
 }
 
-const translations = (lng: string) =>
-	Object.entries(i18n.getResourceBundle(lng, 'units'))
-function getUnitKey(unit: string, lng: string): string {
-	const key = translations(lng)
-		.find(([, trans]) => trans === unit)?.[0]
-		.replace(/_plural$/, '')
-	return key || unit
-}
-
-const printUnits = (units: Array<string>, count: number, lng: string): string =>
+const printUnits = (
+	units: Array<string>,
+	count: number,
+	formatUnit: formatUnit = (x) => x
+): string =>
 	units
 		.sort()
-		.map((unit) => i18n.t(`units:${unit}`, { count, lng }))
+		.map((unit) => formatUnit(unit, count))
 		.join('.')
 
 const plural = 2
 export const serializeUnit = (
 	rawUnit: Unit | undefined | string,
 	count: number = plural,
-	lng = 'fr'
+	formatUnit: formatUnit = (x) => x
 ) => {
 	if (rawUnit === null || typeof rawUnit !== 'object') {
-		return typeof rawUnit === 'string'
-			? i18n.t(`units:${rawUnit}`, { count, lng })
-			: rawUnit
+		return typeof rawUnit === 'string' ? formatUnit(rawUnit, count) : rawUnit
 	}
 	const unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
@@ -61,13 +59,13 @@ export const serializeUnit = (
 		!n && !d
 			? ''
 			: n && !d
-			? printUnits(numerators, count, lng)
+			? printUnits(numerators, count, formatUnit)
 			: !n && d
-			? `/${printUnits(denominators, 1, lng)}`
-			: `${printUnits(numerators, plural, lng)} / ${printUnits(
+			? `/${printUnits(denominators, 1, formatUnit)}`
+			: `${printUnits(numerators, plural, formatUnit)} / ${printUnits(
 					denominators,
 					1,
-					lng
+					formatUnit
 			  )}`
 
 	return string

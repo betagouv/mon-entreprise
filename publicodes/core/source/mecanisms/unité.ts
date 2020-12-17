@@ -12,7 +12,7 @@ export type UnitéNode = {
 
 export default function parseUnité(v, context): UnitéNode {
 	const explanation = parse(v.valeur, context)
-	const unit = parseUnit(v.unité)
+	const unit = parseUnit(v.unité, context.options?.getUnitKey)
 
 	return {
 		explanation,

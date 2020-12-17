@@ -4,7 +4,10 @@ import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
 import parse from './parse'
-import parsePublicodes, { disambiguateReference } from './parsePublicodes'
+import parsePublicodes, {
+	Context,
+	disambiguateReference,
+} from './parsePublicodes'
 import {
 	getReplacements,
 	inlineReplacements,
@@ -66,11 +69,17 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
+	options: Context['options']
 	private warnings: Array<string> = []
 
-	constructor(rules: string | Record<string, Rule> | ParsedRules<Name>) {
+	constructor(
+		rules: string | Record<string, Rule> | ParsedRules<Name>,
+		options: Context['options'] = {}
+	) {
 		if (typeof rules === 'string') {
-			this.parsedRules = parsePublicodes(rules) as ParsedRules<Name>
+			this.parsedRules = parsePublicodes(rules, {
+				options,
+			}) as ParsedRules<Name>
 		}
 		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
 		if (
@@ -81,9 +90,10 @@ export default class Engine<Name extends string = string> {
 			this.parsedRules = rules as ParsedRules<Name>
 			return
 		}
-		this.parsedRules = parsePublicodes(
-			rules as Record<string, Rule>
-		) as ParsedRules<Name>
+		this.options = options
+		this.parsedRules = parsePublicodes(rules as Record<string, Rule>, {
+			options,
+		}) as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
 	}
 
@@ -106,6 +116,7 @@ export default class Engine<Name extends string = string> {
 				parse(value, {
 					dottedName: `situation [${key}]`,
 					parsedRules: {},
+					options: this.options,
 				})
 			)
 		}, situation)
@@ -131,6 +142,7 @@ export default class Engine<Name extends string = string> {
 				parse(expression, {
 					dottedName: "evaluation'''",
 					parsedRules: {},
+					options: this.options,
 				})
 			)
 		)
