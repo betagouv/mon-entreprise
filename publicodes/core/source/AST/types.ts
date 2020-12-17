@@ -92,6 +92,12 @@ export type TraverseFunction<Kind extends NodeKind> = (
 
 type BaseUnit = string
 
+// TODO: I believe it would be more effecient (for unit conversion and for
+// inference), and more general to represent units using a map of base unit to
+// their power number :
+//
+// type Unit = Map<BaseUnit, number>
+// N.m²/kg² <-> {N: 1, m: 2, kg: -2} (gravity constant)
 export type Unit = {
 	numerators: Array<BaseUnit>
 	denominators: Array<BaseUnit>

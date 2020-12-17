@@ -1,3 +1,4 @@
+import { partial } from 'ramda'
 import yaml from 'yaml'
 import { ParsedRules } from '.'
 import { transformAST, traverseParsedRules } from './AST'
@@ -5,11 +6,15 @@ import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
 import { disambiguateRuleReference } from './ruleUtils'
+import { getUnitKey } from './units'
 
 export type Context = {
 	dottedName: string
 	parsedRules: Record<string, RuleNode>
 	ruleTitle?: string
+	options?: {
+		getUnitKey?: getUnitKey
+	}
 }
 
 type RawRule = Omit<Rule, 'nom'> | string | undefined | number
@@ -35,6 +40,7 @@ export default function parsePublicodes(
 	const context: Context = {
 		dottedName: partialContext.dottedName ?? '',
 		parsedRules: partialContext.parsedRules ?? {},
+		options: partialContext.options ?? {},
 	}
 
 	Object.entries(rules).forEach(([dottedName, rule]) => {

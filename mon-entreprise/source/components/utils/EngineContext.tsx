@@ -1,9 +1,24 @@
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 import { DottedName } from 'modele-social'
+import i18n from '../../i18n'
 
 export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
+
+const unitsTranslations = Object.entries(i18n.getResourceBundle('fr', 'units'))
+
+export const engineOptions = {
+	getUnitKey(unit: string): string {
+		const key = unitsTranslations
+			.find(([, trans]) => trans === unit)?.[0]
+			.replace(/_plural$/, '')
+		return key || unit
+	},
+	formatUnit(unit: string, count: number): string {
+		return i18n?.t(`units:${unit}`, { count })
+	},
+}
 
 export function useEngine(): Engine<DottedName> {
 	return useContext(EngineContext) as Engine<DottedName>

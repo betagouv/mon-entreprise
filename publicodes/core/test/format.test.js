@@ -29,22 +29,22 @@ describe('format engine values', () => {
 })
 
 describe('Units handling', () => {
-	it('translate displayedUnit', () => {
-		expect(formatValue(1, { displayedUnit: 'jour', language: 'fr' })).to.equal(
+	it('format displayedUnit', () => {
+		const formatUnit = (unit, count) => unit + (count > 1 ? 's' : '')
+		expect(formatValue(1, { displayedUnit: 'jour', formatUnit })).to.equal(
 			'1 jour'
 		)
-		expect(formatValue(1, { displayedUnit: 'jour', language: 'en' })).to.equal(
-			'1 day'
+		expect(formatValue(2, { displayedUnit: 'jour', formatUnit })).to.equal(
+			'2 jours'
 		)
-	})
-
-	it('pluralize displayedUnit', () => {
-		expect(formatValue(2, { displayedUnit: 'jour' })).to.equal('2 jours')
 		expect(
-			formatValue({
-				nodeValue: 7,
-				unit: parseUnit('jour/semaine'),
-			})
+			formatValue(
+				{
+					nodeValue: 7,
+					unit: parseUnit('jour/semaine'),
+				},
+				{ formatUnit }
+			)
 		).to.equal('7 jours / semaine')
 	})
 })

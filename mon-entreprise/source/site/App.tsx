@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/browser'
 import Route404 from 'Components/Route404'
 import 'Components/ui/index.css'
 import {
+	engineOptions,
 	EngineProvider,
 	SituationProvider,
 } from 'Components/utils/EngineContext'
@@ -87,7 +88,10 @@ type RootProps = {
 export default function Root({ basename, rules }: RootProps) {
 	const { language } = useTranslation().i18n
 	const paths = constructLocalizedSitePath(language as 'fr' | 'en')
-	const engine = useMemo(() => new Engine(rules), [rules])
+	const engine = useMemo(() => new Engine(rules, engineOptions), [
+		rules,
+		engineOptions,
+	])
 	return (
 		<Provider
 			basename={basename}

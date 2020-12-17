@@ -28,7 +28,6 @@
 		"@dagrejs/graphlib": "^2.1.4"
 	},
 	"dependencies": {
-		"i18next": "^19.4.4",
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
 		"ramda": "^0.27.0",
