@@ -29,7 +29,7 @@ export default function Value<Names extends string>({
 		throw new TypeError('expression cannot be null')
 	}
 	const e = engine ?? useEngine()
-	const isRule = expression in e.getRules()
+	const isRule = expression in e.getParsedRules()
 	const evaluation = e.evaluate({
 		valeur: expression,
 		...(unit && { unité: unit }),

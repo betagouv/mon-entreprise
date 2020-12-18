@@ -85,7 +85,7 @@ export function getCotisationsBySection(
 }
 
 export default function PaySlip() {
-	const parsedRules = useEngine().getRules()
+	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (

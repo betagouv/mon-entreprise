@@ -14,7 +14,7 @@ export default function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (getCotisationsBySection(
-		useEngine().getRules()
+		useEngine().getParsedRules()
 	).map(([section, cotisations]) => [
 		section,
 		cotisations

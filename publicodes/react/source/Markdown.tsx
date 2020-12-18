@@ -16,7 +16,7 @@ export function LinkRenderer({
 		throw new Error('an engine should be provided in context')
 	}
 
-	if (href && href in engine.getRules()) {
+	if (href && href in engine.getParsedRules()) {
 		return (
 			<RuleLinkWithContext dottedName={href} {...otherProps}>
 				{children}

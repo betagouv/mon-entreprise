@@ -109,7 +109,7 @@ class Logger {
 export const Results = ({ onClickShare, rules }: ResultsProps) => {
 	const logger = useMemo(() => new Logger(), [rules])
 	const engine = useMemo(() => new Engine(rules, logger), [rules, logger])
-	const targets = useMemo(() => Object.keys(engine.getRules()), [engine])
+	const targets = useMemo(() => Object.keys(engine.getParsedRules()), [engine])
 	const documentationPath = '/studio'
 	const pathToRules = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),

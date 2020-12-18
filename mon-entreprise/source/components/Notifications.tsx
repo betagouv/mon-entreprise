@@ -21,7 +21,7 @@ type Notification = {
 }
 
 export function getNotifications(engine: Engine) {
-	return Object.values(engine.getRules())
+	return Object.values(engine.getParsedRules())
 		.filter(
 			(rule) =>
 				rule.rawNode['type'] === 'notification' &&

@@ -138,7 +138,7 @@ export default class Engine<Name extends string = string> {
 		return this.parsedRules[dottedName]
 	}
 
-	getRules(): ParsedRules<Name> {
+	getParsedRules(): ParsedRules<Name> {
 		return this.parsedRules
 	}
 
