@@ -57,7 +57,7 @@ entreprise . chiffre d'affaires:
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
-  identifiant court: entreprise-ca
+  identifiant court: ca
 
 entreprise . chiffre d'affaires minimum:
   identifiant court: entreprise-ca-min
@@ -140,7 +140,7 @@ entreprise . charges:
     - charges d'exploitation
     - charges de fonctionnement
   titre: charges de fonctionnement
-  identifiant court: entreprise-charges
+  identifiant court: charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |

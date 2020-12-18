@@ -34,7 +34,7 @@ rule without:
 	formule: 0
 	`)
 	const engine = new Engine(someRules)
-	const dottedNameParamName = getRulesParamNames(engine.getRules())
+	const dottedNameParamName = getRulesParamNames(engine.getParsedRules())
 
 	describe('getSearchParamsFromSituation', () => {
 		it('builds search params with and without identifiant court', () => {
@@ -101,7 +101,7 @@ rule without:
 	`)
 
 	const dottedNameParamName = getRulesParamNames(
-		new Engine(someRules).getRules()
+		new Engine(someRules).getParsedRules()
 	)
 	let setSearchParams
 

@@ -24,7 +24,7 @@ export default function useSearchParamsSimulationSharing() {
 	const dispatch = useDispatch()
 
 	const dottedNameParamName = useMemo(
-		() => getRulesParamNames(engine.getRules()),
+		() => getRulesParamNames(engine.getParsedRules()),
 		[engine]
 	)
 

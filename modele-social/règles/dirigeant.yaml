@@ -384,7 +384,7 @@ dirigeant . auto-entrepreneur . impôt . revenu abattu:
 
 dirigeant . auto-entrepreneur . net après impôt:
   titre: revenu net après impôt
-  identifiant court: auto-entrepreneur-netapresimpot
+  identifiant court: auto-entrepreneur-net-apres-impot
   résumé: Avant déduction des dépenses liées à l'activité
   unité: €/an
   question: Quel est le revenu net après impôt souhaité ?
