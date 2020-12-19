@@ -4,6 +4,7 @@
 	"description": "Site web de publicodes",
 	"author": "",
 	"license": "MIT",
+	"private": true,
 	"scripts": {
 		"prepare": "echo 1",
 		"test": "echo 1"

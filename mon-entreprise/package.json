@@ -8,6 +8,7 @@
 		"url": "https://github.com/betagouv/mon-entreprise.git",
 		"directory": "mon-entreprise"
 	},
+	"private": true,
 	"engines": {
 		"node": ">=12.16.1"
 	},
