@@ -1,7 +1,7 @@
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 import { DottedName } from 'modele-social'
-import i18n from '../../i18n'
+import i18n from '../../locales/i18n'
 
 export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider

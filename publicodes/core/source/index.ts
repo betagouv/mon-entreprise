@@ -49,7 +49,6 @@ export { Evaluation, Unit } from './AST/types'
 export { formatValue, capitalise0 } from './format'
 export { serializeUnit } from './units'
 export { simplifyNodeUnit } from './nodeUnits'
-export { default as translateRules } from './translateRules'
 export { ASTNode, EvaluatedNode }
 export { parsePublicodes }
 export { mecanismsDoc }
