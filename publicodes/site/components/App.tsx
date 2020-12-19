@@ -1,15 +1,17 @@
-// TODO : load translation only if en
+// TODO: This is need to display the documentation UI, because the translations
+// for UI components are handled in the mon-entreprise site and not in the
+// publicodes-react package. This should be fixed.
+import '../../../mon-entreprise/source/locales/i18n'
 import 'Components/ui/index.css'
-import 'iframe-resizer'
 import { useEffect } from 'react'
 import { hot } from 'react-hot-loader'
 import { Route, Switch } from 'react-router-dom'
-import Provider from './Provider'
 import Communauté from '../pages/Communauté'
 import Documentation from '../pages/Documentation'
-import { Header } from './Header'
 import Landing from '../pages/Landing'
+import { Header } from './Header'
 import LazyStudio from './LazyStudio'
+import Provider from './Provider'
 
 function Router() {
 	return (
