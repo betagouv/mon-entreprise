@@ -2,11 +2,11 @@ import { Action } from 'Actions/actions'
 import { defaultTo, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
+import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import inFranceAppReducer, { Company } from './inFranceAppReducer'
-import storageRootReducer from './storageReducer'
+import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -76,7 +76,7 @@ function getCompanySituation(company: Company | null): Situation {
 	}
 }
 
-function simulation(
+function simulationReducer(
 	state: Simulation | null = null,
 	action: Action,
 	existingCompany: Company
@@ -182,9 +182,16 @@ const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
-		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
-			simulation(a, b, state?.inFranceApp?.existingCompany),
-		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
+		simulation: (
+			simulation: Simulation | null = null,
+			action: Action
+		): Simulation | null =>
+			simulationReducer(
+				simulation,
+				action,
+				state?.inFranceApp?.existingCompany
+			),
+		previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 		activeTargetInput,
 		inFranceApp: inFranceAppReducer,
 	})(state, action)
@@ -192,7 +199,7 @@ const mainReducer = (state: any, action: Action) =>
 export default reduceReducers<RootState>(
 	mainReducer as any,
 	existingCompanyReducer as any,
-	storageRootReducer as any
+	previousSimulationRootReducer as any
 ) as Reducer<RootState>
 
 export type RootState = ReturnType<typeof mainReducer>
