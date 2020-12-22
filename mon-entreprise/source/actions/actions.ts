@@ -3,7 +3,6 @@ import { History } from 'history'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'modele-social'
-import { deletePersistedSimulation } from '../storage/persistSimulation'
 import { CompanyStatusAction } from './companyStatusActions'
 
 export type Action =
@@ -100,13 +99,6 @@ export const setActiveTarget = (targetName: DottedName) =>
 		type: 'SET_ACTIVE_TARGET_INPUT',
 		name: targetName,
 	} as const)
-
-export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
-	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION',
-	})
-	deletePersistedSimulation()
-}
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
