@@ -1,7 +1,7 @@
 import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
+import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
