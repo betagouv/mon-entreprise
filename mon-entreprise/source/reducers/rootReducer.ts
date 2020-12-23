@@ -5,7 +5,10 @@ import { combineReducers, Reducer } from 'redux'
 import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
-import inFranceAppReducer, { Company } from './inFranceAppReducer'
+import inFranceAppReducer, {
+	Company,
+	InFranceAppState,
+} from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 function explainedVariable(
@@ -202,4 +205,10 @@ export default reduceReducers<RootState>(
 	previousSimulationRootReducer as any
 ) as Reducer<RootState>
 
-export type RootState = ReturnType<typeof mainReducer>
+export type RootState = {
+	explainedVariable: DottedName | null
+	simulation: Simulation | null
+	previousSimulation: PreviousSimulation | null
+	activeTargetInput: DottedName | null
+	inFranceApp: InFranceAppState
+}

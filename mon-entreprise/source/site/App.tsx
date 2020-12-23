@@ -99,7 +99,7 @@ export default function Root({ basename, rules }: RootProps) {
 				setupInFranceAppPersistence(store)
 				setupSimulationPersistence(store)
 			}}
-			initialStore={{
+			preloadedState={{
 				inFranceApp: retrievePersistedInFranceApp(),
 			}}
 		>

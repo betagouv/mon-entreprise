@@ -7,7 +7,7 @@ import React, { createContext, useEffect, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import { PreloadedState } from 'redux'
+import { DeepPartial, PreloadedState } from 'redux'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
@@ -50,7 +50,7 @@ export type ProviderProps = {
 	children: React.ReactNode
 	tracker?: Tracker
 	sitePaths?: SitePaths
-	initialStore?: PreloadedState<RootState>
+	preloadedState?: DeepPartial<RootState>
 	onStoreCreated?: (store: Store) => void
 	reduxMiddlewares?: Array<Middleware>
 }
@@ -59,7 +59,7 @@ export default function Provider({
 	tracker = new Tracker(),
 	basename,
 	reduxMiddlewares,
-	initialStore,
+	preloadedState,
 	onStoreCreated,
 	children,
 	sitePaths = {} as SitePaths,
@@ -91,7 +91,7 @@ export default function Provider({
 
 	// Hack: useMemo is used to persist the store across hot reloads.
 	const store = useMemo(() => {
-		return createStore(reducers, initialStore, storeEnhancer)
+		return createStore(reducers, preloadedState as PreloadedState<RootState>, storeEnhancer)
 	}, [])
 	onStoreCreated?.(store)
 

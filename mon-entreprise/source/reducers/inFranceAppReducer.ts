@@ -184,4 +184,10 @@ const inFranceAppReducer = combineReducers({
 })
 export default inFranceAppReducer
 
-export type InFranceAppState = ReturnType<typeof inFranceAppReducer>
+export type InFranceAppState = {
+	companyLegalStatus: LegalStatusRequirements
+	companyStatusChoice: LegalStatus | null
+	companyCreationChecklist: Record<string, boolean>
+	existingCompany: Company | null
+	hiringChecklist: Record<string, boolean>
+}
