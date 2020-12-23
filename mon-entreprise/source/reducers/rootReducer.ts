@@ -1,7 +1,6 @@
-import { Action } from 'Actions/actions'
 import { defaultTo, omit, without } from 'ramda'
 import reduceReducers from 'reduce-reducers'
-import { combineReducers, Reducer } from 'redux'
+import { combineReducers, PreloadedState, Reducer } from 'redux'
 import { PreviousSimulation } from 'Selectors/previousSimulationSelectors'
 import { DottedName } from 'modele-social'
 import { objectifsSelector } from '../selectors/simulationSelectors'
@@ -10,10 +9,11 @@ import inFranceAppReducer, {
 	InFranceAppState,
 } from './inFranceAppReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
+import { EveryAction } from 'actions'
 
 function explainedVariable(
 	state: DottedName | null = null,
-	action: Action
+	action: EveryAction
 ): DottedName | null {
 	switch (action.type) {
 		case 'EXPLAIN_VARIABLE':
@@ -25,7 +25,10 @@ function explainedVariable(
 	}
 }
 
-function activeTargetInput(state: DottedName | null = null, action: Action) {
+function activeTargetInput(
+	state: DottedName | null = null,
+	action: EveryAction
+) {
 	switch (action.type) {
 		case 'SET_ACTIVE_TARGET_INPUT':
 			return action.name
@@ -81,8 +84,8 @@ function getCompanySituation(company: Company | null): Situation {
 
 function simulationReducer(
 	state: Simulation | null = null,
-	action: Action,
-	existingCompany: Company
+	action: EveryAction,
+	existingCompany: Company | null
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
 		const companySituation = action.useCompanyDetails
@@ -166,7 +169,7 @@ function simulationReducer(
 	}
 	return state
 }
-const existingCompanyReducer = (state: RootState, action: Action) => {
+const existingCompanyReducer = (state: RootState, action: EveryAction) => {
 	if (action.type.startsWith('EXISTING_COMPANY::') && state.simulation) {
 		return {
 			...state,
@@ -181,18 +184,21 @@ const existingCompanyReducer = (state: RootState, action: Action) => {
 	}
 	return state
 }
-const mainReducer = (state: any, action: Action) =>
+const mainReducer = (
+	state: RootState | undefined,
+	action: EveryAction
+): RootState => // XXX PreloadedState<RootState>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (
 			simulation: Simulation | null = null,
-			action: Action
+			action
 		): Simulation | null =>
 			simulationReducer(
 				simulation,
 				action,
-				state?.inFranceApp?.existingCompany
+				state?.inFranceApp?.existingCompany || null
 			),
 		previousSimulation: defaultTo(null) as Reducer<PreviousSimulation | null>,
 		activeTargetInput,
@@ -200,10 +206,10 @@ const mainReducer = (state: any, action: Action) =>
 	})(state, action)
 
 export default reduceReducers<RootState>(
-	mainReducer as any,
-	existingCompanyReducer as any,
-	previousSimulationRootReducer as any
-) as Reducer<RootState>
+	mainReducer,
+	existingCompanyReducer,
+	previousSimulationRootReducer
+)
 
 export type RootState = {
 	explainedVariable: DottedName | null

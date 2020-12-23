@@ -1,7 +1,7 @@
 import { Simulation } from 'Reducers/rootReducer'
-import { Action } from 'Actions/actions'
 import { RootState } from './rootReducer'
 import { retrievePersistedSimulation } from '../storage/persistSimulation'
+import { EveryAction} from 'actions'
 
 export const createStateFromPreviousSimulation = (
 	state: RootState
@@ -18,7 +18,7 @@ export const createStateFromPreviousSimulation = (
 		  }
 		: {}
 
-export default (state: RootState, action: Action): RootState => {
+export default (state: RootState, action: EveryAction): RootState => {
 	switch (action.type) {
 		case 'SET_SIMULATION':
 			return {

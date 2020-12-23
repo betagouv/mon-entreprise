@@ -4,6 +4,6 @@
 import { Rule } from 'publicodes'
 import { Names } from './dist/names'
 
-export type DottedName = Names
+export type DottedName = string // XXX
 declare let rules: Record<Names, Rule>
 export default rules

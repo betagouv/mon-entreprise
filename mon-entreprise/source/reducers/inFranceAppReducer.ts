@@ -1,24 +1,16 @@
-import { Action as CreationChecklistAction } from 'Actions/companyCreationChecklistActions'
-import { ActionExistingCompany } from 'Actions/existingCompanyActions'
-import { Action as HiringChecklist } from 'Actions/hiringChecklistAction'
 import { ApiCommuneJson } from 'Components/conversation/select/SelectCommune'
 import { omit } from 'ramda'
 import { combineReducers } from 'redux'
 import { LegalStatus } from 'Selectors/companyStatusSelectors'
 import {
-	Action as CompanyStatusAction,
 	LegalStatusRequirements,
 } from 'Types/companyTypes'
+import { EveryAction} from 'actions'
 
-type Action =
-	| CompanyStatusAction
-	| CreationChecklistAction
-	| HiringChecklist
-	| ActionExistingCompany
 
 function companyLegalStatus(
 	state: LegalStatusRequirements = {},
-	action: Action
+	action: EveryAction
 ): LegalStatusRequirements {
 	switch (action.type) {
 		case 'COMPANY_IS_SOLE_PROPRIETORSHIP':
@@ -40,7 +32,7 @@ function companyLegalStatus(
 
 function hiringChecklist(
 	state: { [key: string]: boolean } = {},
-	action: Action
+	action: EveryAction
 ) {
 	switch (action.type) {
 		case 'CHECK_HIRING_ITEM':
@@ -62,7 +54,7 @@ function hiringChecklist(
 
 function companyCreationChecklist(
 	state: { [key: string]: boolean } = {},
-	action: Action
+	action: EveryAction
 ) {
 	switch (action.type) {
 		case 'CHECK_COMPANY_CREATION_ITEM':
@@ -84,7 +76,7 @@ function companyCreationChecklist(
 	}
 }
 
-function companyStatusChoice(state: LegalStatus | null = null, action: Action) {
+function companyStatusChoice(state: LegalStatus | null = null, action: EveryAction) {
 	if (action.type === 'RESET_COMPANY_STATUS_CHOICE') {
 		return null
 	}
@@ -138,7 +130,7 @@ export type Company = {
 
 function existingCompany(
 	state: Company | null = null,
-	action: Action
+	action: EveryAction
 ): Company | null {
 	if (!action.type.startsWith('EXISTING_COMPANY::')) {
 		return state
