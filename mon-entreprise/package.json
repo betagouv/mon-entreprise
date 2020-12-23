@@ -111,7 +111,7 @@
 		"build:analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
 		"build:dev": "FR_SITE='http://localhost:5000${path}' EN_SITE='http://localhost:5001${path}' yarn run build",
 		"clean": "rimraf dist node_modules source/data",
-		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\"",
+		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.{js,ts}\"",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --include test/componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",
 		"test:bundlesize": "bundlesize",
 		"test:dev-e2e:publicode": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
