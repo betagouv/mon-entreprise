@@ -120,7 +120,7 @@ export default function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2020.json'
+			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2021.json'
 		)
 			.then((response) => {
 				if (!response.ok) {
