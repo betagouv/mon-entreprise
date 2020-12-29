@@ -6668,6 +6668,11 @@ plafond sécurité sociale temps plein:
     contributions.
   description.fr: Le plafond de Sécurité sociale est le montant maximum des
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
+  note.en:
+    '[automatic] The Social Security ceiling has not been increased in 2021
+    compared to 2020.'
+  note.fr: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
+    rapport à 2020.
   titre.en: full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
 protection sociale:

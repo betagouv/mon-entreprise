@@ -18,8 +18,9 @@ plafond sécurité sociale temps plein:
   acronyme: PSS
   formule: 3428 €/mois
   références:
-    Urssaf.fr: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-independant/plafond-de-la-securite-sociale-.html
-    arrêté 2020: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000039440180
+    Urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
+    arrêté 2021: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042748904
+  note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par rapport à 2020.
 
 plafond horaire sécurité sociale:
   acronyme: PHSS
