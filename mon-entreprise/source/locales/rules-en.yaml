@@ -1188,6 +1188,15 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
+? contrat salarié . aides employeur . aide à l'embauche senior professionnalisation
+: description.en: |
+    [automatic] Employers can get €2,000 for the hiring of an
+    jobseekers over 45 years of age on a professionalization contract.
+  description.fr: |
+    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
+    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
+  titre.en: '[automatic] senior professionalization hiring assistance'
+  titre.fr: aide à l'embauche senior professionnalisation
 contrat salarié . aides employeur . emploi franc:
   description.en: >
     [automatic] Deferred assistance paid by Pôle emploi for hiring a job seeker
@@ -3272,6 +3281,11 @@ contrat salarié . rémunération . total:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
   titre.fr: Total chargé
+contrat salarié . salarié de 45 ans et plus:
+  question.en: '[automatic] Is the employee hired 45 years of age or older?'
+  question.fr: Le salarié embauché a-t'il 45 ans ou plus ?
+  titre.en: '[automatic] employee aged 45 and over'
+  titre.fr: salarié de 45 ans et plus
 contrat salarié . salarié majeur:
   question.en: Is the employee over 18 (age of majority)?
   question.fr: Le salarié est-il majeur ?
