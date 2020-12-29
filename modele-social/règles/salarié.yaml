@@ -1914,6 +1914,7 @@ contrat salarié . aides employeur:
       - aide à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche d'apprentis
       - aide exceptionnelle à l'embauche des jeunes
+      - aide à l'embauche senior professionnalisation
       - activité partielle . indemnisation entreprise
       - emploi franc
 
@@ -1976,6 +1977,14 @@ contrat salarié . jeune de moins de 30 ans:
   applicable si: professionnalisation
   par défaut: oui
 
+contrat salarié . salarié de 45 ans et plus:
+  applicable si: 
+    toutes ces conditions:
+      - professionnalisation
+      - jeune de moins de 30 ans = non
+  question: Le salarié embauché a-t'il 45 ans ou plus ?
+  par défaut: non
+
 contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
   non applicable si: aides employeur . emploi franc
   description: >-
@@ -2003,6 +2012,22 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
       facteur: temps de travail . quotité de travail effective
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/le-ministere-en-action/relance-activite/plan-1jeune-1solution/aide-embauche-jeunes
+
+contrat salarié . aides employeur . aide à l'embauche senior professionnalisation:
+  description: |
+    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
+    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
+  applicable si:
+    toutes ces conditions:
+      - professionnalisation
+      - salarié de 45 ans et plus
+  formule:
+    produit:
+      assiette: 2000 €/an
+      facteur: temps de travail . quotité de travail effective
+  références:
+    Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
+    Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 
 contrat salarié . aides employeur . emploi franc:
   description: |
