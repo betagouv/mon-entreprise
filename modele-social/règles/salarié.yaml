@@ -360,7 +360,7 @@ contrat salarié . activité partielle . indemnisation entreprise:
     multiplication:
       assiette: retrait absence
       taux: taux d'indemnisation
-    plancher: 8.03 €/heure * heures chômées
+    plancher: 8.11 €/heure * heures chômées
     plafond:
       recalcul:
         avec:
