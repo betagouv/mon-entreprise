@@ -6636,9 +6636,13 @@ impôt . taux neutre d'impôt sur le revenu:
   titre.en: neutral income tax rate
   titre.fr: taux neutre d'impôt sur le revenu
 ? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
-: titre.en: Guadeloupe Reunion Island Martinique scale
+: note.en: '[automatic] This scale was not upgraded in 2021.'
+  note.fr: Ce barème n'a pas été revalorisé en 2021.
+  titre.en: Guadeloupe Reunion Island Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
+  note.en: '[automatic] This scale was not upgraded in 2021.'
+  note.fr: Ce barème n'a pas été revalorisé en 2021.
   titre.en: Guyana Mayotte scale
   titre.fr: barème Guyane Mayotte
 impôt . taux personnalisé:

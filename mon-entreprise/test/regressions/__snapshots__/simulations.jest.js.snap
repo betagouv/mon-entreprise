@@ -198,7 +198,7 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 2`] =
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] = `"[300000,0,61784,238216,81297,156919]"`;
 
-exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,11461,38539,4747,33792]"`;
+exports[`calculate simulations-professions-libérales: avocat 1`] = `"[50000,0,11821,38179,4705,33474]"`;
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `"[50000,0,11821,38179,4705,33474]"`;
 
@@ -243,15 +243,9 @@ exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
-"[606,0,0,7198,4,13]
-Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[442,0,0,5313,4,10]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `
-"[1249,0,0,14573,4,26]
-Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
-`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `"[917,0,0,10757,4,20]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
 "[1893,0,0,21947,4,40]
@@ -363,18 +357,12 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): éc
 Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `
-"[0,8392,0,6102,4,21]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `"[0,6894,0,5046,4,21]"`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `
-"[0,16871,0,12270,4,24]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
-`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `"[0,13814,0,10116,4,21]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`] = `
-"[0,21650,0,15827,4,31]
+"[0,22331,0,16308,4,32]
 Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
 `;
 
@@ -645,17 +633,17 @@ exports[`calculate simulations-salarié: impôt sur le revenu - quotient familia
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 3`] = `"[4076,0,3000,2353,2353]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 4`] = `"[4076,0,3000,2353,1906]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 4`] = `"[4076,0,3000,2353,1907]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 5`] = `"[4076,0,3000,2353,2217]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12889,0,9000,7156,6034]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 6`] = `"[12889,0,9000,7156,6036]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12889,0,9000,7156,6324]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 7`] = `"[12889,0,9000,7156,6327]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12889,0,9000,7156,6851]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 8`] = `"[12889,0,9000,7156,6852]"`;
 
-exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2169]"`;
+exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 9`] = `"[4076,0,3000,2353,2170]"`;
 
 exports[`calculate simulations-salarié: impôt sur le revenu - quotient familial 10`] = `"[4076,0,3000,2353,2353]"`;
 
