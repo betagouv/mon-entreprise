@@ -6,8 +6,7 @@ const worker = new Worker()
 function SelectComponent({ onChange, onSubmit, options }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = (option) => {
-		option.text = +option['Taux net'].replace(',', '.')
-		onChange(option.text)
+		onChange(option['Taux net'].replace(',', '.') + '%')
 		onSubmit()
 	}
 	const { t } = useTranslation()
@@ -17,7 +16,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 		})
 
 		worker.onmessage = ({ data: results }) => setSearchResults(results)
-	}, [])
+	}, [options])
 	return (
 		<>
 			<input
