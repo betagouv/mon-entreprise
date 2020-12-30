@@ -84,16 +84,21 @@ exports[`calculate simulations-artiste-auteur: salarié 2`] = `"[1603]"`;
 exports[`calculate simulations-artiste-auteur: salarié 3`] = `"[12410]"`;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 1`] = `
-"[20686,57,1667,0,20000]
+"[21394,116,1667,0,20000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `
-"[33228,269,2500,0,30000]
+"[20686,57,1667,0,20000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 3`] = `
+"[33228,269,2500,0,30000]
+Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
+`;
+
+exports[`calculate simulations-auto-entrepreneur: ACRE 4`] = `
 "[45267,439,3333,0,40000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
@@ -243,9 +248,15 @@ exports[`calculate simulations-professions-libérales: sage-femme 6`] = `
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `"[442,0,0,5313,4,10]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 1`] = `
+"[606,0,0,7198,4,13]
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
 
-exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `"[917,0,0,10757,4,20]"`;
+exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 2`] = `
+"[1249,0,0,14573,4,26]
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): ACRE 3`] = `
 "[1893,0,0,21947,4,40]
@@ -295,12 +306,12 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): é
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `"[4758,0,0,52758,4,46]"`;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
-"[0,0,806,2046,2,0]
+"[0,0,779,2046,2,0]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 2`] = `
-"[0,0,1611,4093,3,8]
+"[0,0,1558,4093,3,8]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
@@ -357,9 +368,15 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): éc
 Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé"
 `;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `"[0,6894,0,5046,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `
+"[0,8392,0,6102,4,21]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+`;
 
-exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `"[0,13814,0,10116,4,21]"`;
+exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 2`] = `
+"[0,16871,0,12270,4,24]
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire"
+`;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 3`] = `
 "[0,22331,0,16308,4,32]
