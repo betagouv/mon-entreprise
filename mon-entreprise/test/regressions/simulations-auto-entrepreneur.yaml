@@ -23,6 +23,9 @@ impôt sur le revenu:
 
 ACRE:
   - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
+    entreprise . date de création: 01/01/2021
+    entreprise . ACRE: oui
+  - dirigeant . auto-entrepreneur . net de cotisations: 20000 €/an
     entreprise . date de création: 01/01/2020
     entreprise . ACRE: oui
   - dirigeant . auto-entrepreneur . net de cotisations: 30000 €/an
