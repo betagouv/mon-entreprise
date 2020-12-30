@@ -3754,14 +3754,6 @@ dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
   titre.en: '[automatic] Threshold control of turnover exceeded'
   titre.fr: contrôle seuil de CA dépassé
-dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
-  description.en:
-    '[automatic] The annual turnover threshold for VAT exemption is
-    exceeded. More information](/documentation/enterprise/VAT-exemption)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
-    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-  titre.en: '[automatic] VAT threshold control'
-  titre.fr: contrôle seuil de TVA dépassé
 dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -6165,6 +6157,14 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
+entreprise . contrôle seuil de TVA dépassé:
+  description.en:
+    '[automatic] The annual turnover threshold for VAT exemption is
+    exceeded. More information](/documentation/enterprise/VAT-exemption)'
+  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
+    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+  titre.en: '[automatic] VAT threshold control'
+  titre.fr: contrôle seuil de TVA dépassé
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
