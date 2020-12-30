@@ -90,11 +90,6 @@ dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   formule: base des cotisations > plafond
   description: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
 
-dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
-  type: notification
-  formule: entreprise . chiffre d'affaires > entreprise . franchise de TVA
-  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-
 dirigeant . auto-entrepreneur . plafond:
   description: |
     Le statut de micro-entrepreneur s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise. 

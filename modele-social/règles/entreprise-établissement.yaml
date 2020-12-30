@@ -219,6 +219,11 @@ entreprise . franchise de TVA:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
+entreprise . contrôle seuil de TVA dépassé:
+  type: notification
+  formule: chiffre d'affaires > franchise de TVA
+  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+
 entreprise . effectif:
   unité: employé
   formule:
