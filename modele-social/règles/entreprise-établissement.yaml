@@ -208,7 +208,11 @@ entreprise . franchise de TVA:
             - si: entreprise . catégorie d'activité . service ou vente = 'service'
               alors: 36500 €/an
             - si: entreprise . catégorie d'activité = 'libérale'
-              alors: 36500 €/an
+              alors:
+                variations:
+                  - si: dirigeant . indépendant . PL . métier = 'avocat'
+                    alors: 44500 €/an
+                  - sinon: 36500 €/an
   note: >
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
