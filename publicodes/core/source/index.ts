@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { compose, mapObjIndexed } from 'ramda'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
 import { simplifyNodeUnit } from './nodeUnits'
@@ -104,22 +103,26 @@ export default class Engine<Name extends string = string> {
 		situation: Partial<Record<Name, string | number | object | ASTNode>> = {}
 	) {
 		this.resetCache()
-		this.parsedSituation = mapObjIndexed((value, key) => {
-			if (value && typeof value === 'object' && 'nodeKind' in value) {
-				return value as ASTNode
-			}
-			return compose(
-				inlineReplacements(this.replacements),
-				disambiguateReference(this.parsedRules)
-			)(
-				parse(value, {
-					dottedName: `situation [${key}]`,
-					parsedRules: {},
-					options: this.options,
-				})
-			)
-		}, situation)
+		this.parsedSituation = Object.fromEntries(
+			Object.entries(situation).map(([key, value]) => {
+				const parsedValue =
+					value && typeof value === 'object' && 'nodeKind' in value
+						? (value as ASTNode)
+						: this.parse(value, {
+								dottedName: `situation [${key}]`,
+								parsedRules: {},
+								options: this.options,
+						  })
+				return [key, parsedValue]
+			})
+		)
 		return this
+	}
+
+	private parse(...args: Parameters<typeof parse>) {
+		return inlineReplacements(this.replacements)(
+			disambiguateReference(this.parsedRules)(parse(...args))
+		)
 	}
 
 	evaluate(expression: string | Object): EvaluatedNode {
@@ -134,16 +137,11 @@ export default class Engine<Name extends string = string> {
 			originalWarn(warning)
 		}
 		const result = this.evaluateNode(
-			compose(
-				inlineReplacements(this.replacements),
-				disambiguateReference(this.parsedRules)
-			)(
-				parse(expression, {
-					dottedName: "evaluation'''",
-					parsedRules: {},
-					options: this.options,
-				})
-			)
+			this.parse(expression, {
+				dottedName: "evaluation'''",
+				parsedRules: {},
+				options: this.options,
+			})
 		)
 		console.warn = originalWarn
 		return result

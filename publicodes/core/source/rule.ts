@@ -1,4 +1,3 @@
-import { filter, mapObjIndexed, pick } from 'ramda'
 import { ASTNode, EvaluatedNode } from './AST/types'
 import { bonus, mergeMissing } from './evaluation'
 import { registerEvaluationFunction } from './evaluationFunctions'
@@ -79,7 +78,9 @@ export default function parseRule(
 	}
 
 	const ruleValue = {
-		...pick(mecanismKeys, rawRule),
+		...Object.fromEntries(
+			Object.entries(rawRule).filter(([key]) => mecanismKeys.includes(key))
+		),
 		...('formule' in rawRule && { valeur: rawRule.formule }),
 		'nom dans la situation': dottedName,
 	}
@@ -91,22 +92,24 @@ export default function parseRule(
 		valeur: parse(ruleValue, ruleContext),
 		parent: !!parent && parse(parent, context),
 	}
-	context.parsedRules[dottedName] = filter(Boolean, {
+	context.parsedRules[dottedName] = {
 		dottedName,
 		replacements: [
 			...parseRendNonApplicable(rawRule['rend non applicable'], ruleContext),
 			...parseReplacements(rawRule.remplace, ruleContext),
 		],
 		title: ruleTitle,
-		suggestions: mapObjIndexed(
-			(node) => parse(node, ruleContext),
-			rawRule.suggestions ?? {}
+		suggestions: Object.fromEntries(
+			Object.entries(rawRule.suggestions ?? {}).map(([name, node]) => [
+				name,
+				parse(node, ruleContext),
+			])
 		),
 		nodeKind: 'rule',
 		explanation,
 		rawNode: rawRule,
 		virtualRule: !!context.dottedName,
-	}) as RuleNode
+	} as RuleNode
 
 	// We return the parsedReference
 	return parse(rawRule.nom, context) as ReferenceNode

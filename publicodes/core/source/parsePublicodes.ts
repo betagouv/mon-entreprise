@@ -1,4 +1,3 @@
-import { partial } from 'ramda'
 import yaml from 'yaml'
 import { ParsedRules } from '.'
 import { transformAST, traverseParsedRules } from './AST'

@@ -1194,7 +1194,7 @@ contrat salarié . rémunération . brut de base:
   unité: €/mois
   suggestions:
     salaire médian: 2300 €/mois
-    SMIC: contrat salarié . SMIC contractuel
+    SMIC: SMIC contractuel
   formule:
     inversion numérique:
       question: Quel est le salaire ?
