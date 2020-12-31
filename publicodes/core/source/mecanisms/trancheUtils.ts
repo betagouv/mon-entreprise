@@ -1,4 +1,3 @@
-import { evolve } from 'ramda'
 import { ASTNode, Evaluation } from '../AST/types'
 import { evaluationError, typeWarning } from '../error'
 import { mergeAllMissing } from '../evaluation'
@@ -18,13 +17,14 @@ export const parseTranches = (tranches, context): TrancheNodes => {
 			}
 			return { ...t, plafond: t.plafond ?? Infinity }
 		})
-		.map(
-			evolve({
-				taux: (node) => parse(node, context),
-				montant: (node) => parse(node, context),
-				plafond: (node) => parse(node, context),
-			})
-		)
+		.map((node) => ({
+			...node,
+			...(node.taux !== undefined ? { taux: parse(node.taux, context) } : {}),
+			...(node.montant !== undefined
+				? { montant: parse(node.montant, context) }
+				: {}),
+			plafond: parse(node.plafond, context),
+		}))
 }
 
 export function evaluatePlafondUntilActiveTranche(

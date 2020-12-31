@@ -1,11 +1,5 @@
-import { memoizeWith } from 'ramda'
 import { Evaluation, Unit } from './AST/types'
 import { formatUnit, serializeUnit } from './units'
-
-const NumberFormat = memoizeWith(
-	(...args) => JSON.stringify(args),
-	Intl.NumberFormat
-)
 
 export const numberFormatter = ({
 	style,
@@ -27,7 +21,7 @@ export const numberFormatter = ({
 		!Number.isInteger(value)
 			? 2
 			: minimumFractionDigits
-	return NumberFormat(language, {
+	return Intl.NumberFormat(language, {
 		style,
 		currency: 'EUR',
 		maximumFractionDigits,

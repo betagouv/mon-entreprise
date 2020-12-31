@@ -1,4 +1,3 @@
-import { is } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode, EvaluatedNode, Evaluation } from '../AST/types'
 import { mergeMissing } from '../evaluation'
@@ -57,7 +56,7 @@ const evaluate: EvaluationFunction<'une de ces conditions'> = function (node) {
 }
 
 export const mecanismOneOf = (v, context) => {
-	if (!is(Array, v)) throw new Error('should be array')
+	if (!Array.isArray(v)) throw new Error('should be array')
 	const explanation = v.map((node) => parse(node, context))
 
 	return {

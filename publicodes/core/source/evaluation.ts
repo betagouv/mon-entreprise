@@ -1,13 +1,4 @@
-import {
-	add,
-	evolve,
-	fromPairs,
-	keys,
-	map,
-	mapObjIndexed,
-	mergeWith,
-	reduce,
-} from 'ramda'
+import { add, map, mergeWith } from 'ramda'
 import Engine, { EvaluationFunction } from '.'
 import {
 	ASTNode,
@@ -66,8 +57,8 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 }
 
 export const evaluateArray: <NodeName extends NodeKind>(
-	reducer: Parameters<typeof reduce>[0],
-	start: Parameters<typeof reduce>[1]
+	reducer,
+	start
 ) => EvaluationFunction<NodeName> = (reducer, start) =>
 	function (node: any) {
 		const evaluate = this.evaluateNode.bind(this)
@@ -87,7 +78,7 @@ export const evaluateArray: <NodeName extends NodeKind>(
 			if (values.some((value) => value === null)) {
 				return null
 			}
-			return reduce(reducer, start, values)
+			return values.reduce(reducer, start)
 		}, temporalValues)
 
 		const baseEvaluation = {
@@ -119,27 +110,30 @@ export const defaultNode = (nodeValue: Evaluation) =>
 	} as ConstantNode)
 
 export const parseObject = (objectShape, value, context) => {
-	const recurseOne = (key) => (defaultValue) => {
-		if (value[key] == null && !defaultValue)
-			throw new Error(
-				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
-			)
-		return value[key] != null ? parse(value[key], context) : defaultValue
-	}
-	const transforms = fromPairs(
-		map((k) => [k, recurseOne(k)], keys(objectShape)) as any
+	return Object.fromEntries(
+		Object.entries(objectShape).map(([key, defaultValue]) => {
+			if (value[key] == null && !defaultValue) {
+				throw new Error(
+					`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
+				)
+			}
+
+			const parsedValue =
+				value[key] != null ? parse(value[key], context) : defaultValue
+			return [key, parsedValue]
+		})
 	)
-	return evolve(transforms as any, objectShape)
 }
 
 export function evaluateObject<NodeName extends NodeKind>(
 	effet: (this: Engine, explanations: any) => any
 ) {
 	return function (node) {
-		const evaluate = this.evaluateNode.bind(this)
-		const evaluations: Record<string, EvaluatedNode> = mapObjIndexed(
-			evaluate as any,
-			(node as any).explanation
+		const evaluations = Object.fromEntries(
+			Object.entries((node as any).explanation).map(([key, value]) => [
+				key,
+				this.evaluateNode(value as any),
+			])
 		)
 		const temporalExplanations = mapTemporal(
 			Object.fromEntries,
