@@ -1,3 +1,4 @@
+import { min } from 'ramda'
 import { ASTNode } from '../AST/types'
 import { evaluateArray } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -16,6 +17,6 @@ export const mecanismMin = (v, context) => {
 	} as MinNode
 }
 
-const evaluate = evaluateArray<'minimum'>(Math.min, Infinity)
+const evaluate = evaluateArray<'minimum'>(min, Infinity)
 
 registerEvaluationFunction('minimum', evaluate)

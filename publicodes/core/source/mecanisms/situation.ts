@@ -1,3 +1,4 @@
+import { isEmpty } from 'ramda'
 import { ASTNode, EvaluatedNode } from '../AST/types'
 import { mergeAllMissing } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -49,7 +50,7 @@ registerEvaluationFunction(parseSituation.nom, function evaluate(node) {
 		...node,
 		nodeValue: valeur.nodeValue,
 		missingVariables:
-			Object.keys(missingVariables).length === 0 && valeur.nodeValue === null
+			isEmpty(missingVariables) && valeur.nodeValue === null
 				? { [situationKey]: 1 }
 				: missingVariables,
 		...(unit !== undefined && { unit }),

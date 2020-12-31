@@ -1,3 +1,4 @@
+import { max, min } from 'ramda'
 import { typeWarning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
@@ -47,18 +48,12 @@ const evaluate = evaluateObject<'allègement'>(function ({
 				? 0
 				: null
 			: serializeUnit(abattement.unit) === '%'
-			? Math.max(
+			? max(
 					0,
 					assietteValue -
-						Math.min(
-							plafond.nodeValue,
-							(abattement.nodeValue / 100) * assietteValue
-						)
+						min(plafond.nodeValue, (abattement.nodeValue / 100) * assietteValue)
 			  )
-			: Math.max(
-					0,
-					assietteValue - Math.min(plafond.nodeValue, abattement.nodeValue)
-			  )
+			: max(0, assietteValue - min(plafond.nodeValue, abattement.nodeValue))
 		: assietteValue
 	return {
 		nodeValue,

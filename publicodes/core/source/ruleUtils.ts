@@ -1,9 +1,10 @@
+import { last, pipe, range, take } from 'ramda'
 import { syntaxError } from './error'
 import { RuleNode } from './rule'
 
 const splitName = (str: string) => str.split(' . ')
-const joinName = (strs: Array<string>) => strs.join(' . ')
-export const nameLeaf = (name: string) => splitName(name).slice(-1)?.[0]
+const joinName = (strs) => strs.join(' . ')
+export const nameLeaf = pipe<string, string[], string>(splitName, last)
 export const encodeRuleName = (name) =>
 	name
 		?.replace(/\s\.\s/g, '/')
@@ -14,12 +15,13 @@ export const decodeRuleName = (name) =>
 		.replace(/\//g, ' . ')
 		.replace(/-/g, ' ')
 		.replace(/\u2011/g, '-')
-export function ruleParents(dottedName: string): Array<string> {
+export function ruleParents<Names extends string>(
+	dottedName: Names
+): Array<Names> {
 	const fragments = splitName(dottedName) // dottedName ex. [CDD . événements . rupture]
-	return Array(fragments.length - 1)
-		.fill(0)
-		.map((f, i) => fragments.slice(0, i + 1))
-		.map(joinName)
+	return range(1, fragments.length)
+		.map((nbEl) => take(nbEl, fragments))
+		.map(joinName) //  -> [ [CDD . événements . rupture], [CDD . événements], [CDD
 		.reverse()
 }
 
