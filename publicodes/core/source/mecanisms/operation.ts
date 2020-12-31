@@ -1,4 +1,3 @@
-import { equals, fromPairs } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode } from '../AST/types'
 import { convertToDate } from '../date'
@@ -20,8 +19,8 @@ const knownOperations = {
 	'<=': [(a, b) => a <= b, '≤'],
 	'>': [(a, b) => a > b],
 	'>=': [(a, b) => a >= b, '≥'],
-	'=': [(a, b) => equals(a, b)],
-	'!=': [(a, b) => !equals(a, b), '≠'],
+	'=': [(a, b) => a === b],
+	'!=': [(a, b) => a !== b, '≠'],
 } as const
 
 export type OperationNode = {
@@ -123,7 +122,7 @@ const evaluate: EvaluationFunction<'operation'> = function (node) {
 
 registerEvaluationFunction('operation', evaluate)
 
-const operationDispatch = fromPairs(
+const operationDispatch = Object.fromEntries(
 	Object.entries(knownOperations).map(([k, [f, symbol]]) => [
 		k,
 		parseOperation(k, symbol),

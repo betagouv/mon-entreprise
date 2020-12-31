@@ -31,7 +31,6 @@
 	"dependencies": {
 		"moo": "^0.5.1",
 		"nearley": "^2.19.2",
-		"ramda": "^0.27.0",
 		"yaml": "^1.9.2"
 	},
 	"scripts": {

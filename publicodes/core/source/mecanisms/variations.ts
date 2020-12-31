@@ -1,4 +1,3 @@
-import { or } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
 import { typeWarning } from '../error'
@@ -101,8 +100,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					pureTemporal(evaluatedCondition.nodeValue)
 			)
 			evaluatedCondition.missingVariables = bonus(
-				evaluatedCondition.missingVariables,
-				true
+				evaluatedCondition.missingVariables
 			)
 			const currentConditionAlwaysFalse = !sometime(
 				(x) => x !== false,
@@ -136,6 +134,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 				evaluatedConsequence.temporalValue ??
 					pureTemporal(evaluatedConsequence.nodeValue)
 			)
+			const or = (a, b) => a || b
 			return [
 				liftTemporal2(or, evaluation, currentValue),
 				[

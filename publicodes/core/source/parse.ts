@@ -1,5 +1,4 @@
 import { Grammar, Parser } from 'nearley'
-import { isEmpty } from 'ramda'
 import { ASTNode } from './AST/types'
 import { EngineError, syntaxError } from './error'
 import grammar from './grammar.ne'
@@ -109,7 +108,7 @@ Cela vient probablement d'une erreur dans l'indentation
 	`
 		)
 	}
-	if (isEmpty(rawNode)) {
+	if (keys.length === 0) {
 		return { nodeKind: 'constant', nodeValue: null }
 	}
 

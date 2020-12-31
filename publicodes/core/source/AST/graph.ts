@@ -1,5 +1,4 @@
 import graphlib from '@dagrejs/graphlib'
-import * as R from 'ramda'
 import parsePublicodes from '../parsePublicodes'
 import { RuleNode } from '../rule'
 import { reduceAST } from './index'
@@ -10,9 +9,10 @@ type GraphCyclesWithDependencies = Array<RulesDependencies>
 function buildRulesDependencies(
 	parsedRules: Record<string, RuleNode>
 ): RulesDependencies {
+	const uniq = <T>(arr: Array<T>): Array<T> => [...new Set(arr)]
 	return Object.entries(parsedRules).map(([name, node]) => [
 		name,
-		R.uniq(buildRuleDependancies(node)),
+		uniq(buildRuleDependancies(node)),
 	])
 }
 
@@ -79,7 +79,7 @@ export function cyclicDependencies(
 	const rulesDependencies = buildRulesDependencies(parsedRules)
 	const dependenciesGraph = buildDependenciesGraph(rulesDependencies)
 	const cycles = (graphlib as any).alg.findCycles(dependenciesGraph)
-	const rulesDependenciesObject = R.fromPairs(rulesDependencies)
+	const rulesDependenciesObject = Object.fromEntries(rulesDependencies)
 
 	return cycles.map((cycle) => {
 		const c = cycle.reverse()

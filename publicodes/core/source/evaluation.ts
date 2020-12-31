@@ -1,13 +1,3 @@
-import {
-	add,
-	evolve,
-	fromPairs,
-	keys,
-	map,
-	mapObjIndexed,
-	mergeWith,
-	reduce,
-} from 'ramda'
 import Engine, { EvaluationFunction } from '.'
 import {
 	ASTNode,
@@ -34,12 +24,20 @@ export const collectNodeMissing = (
 ): Record<string, number> =>
 	'missingVariables' in node ? node.missingVariables : {}
 
-export const bonus = (missings, hasCondition = true) =>
-	hasCondition ? map((x) => x + 0.0001, missings || {}) : missings
+export const bonus = (missings: Record<string, number> = {}) =>
+	Object.fromEntries(
+		Object.entries(missings).map(([key, value]) => [key, value + 0.0001])
+	)
 export const mergeMissing = (
-	left: Record<string, number> | undefined,
-	right: Record<string, number> | undefined
-): Record<string, number> => mergeWith(add, left || {}, right || {})
+	left: Record<string, number> | undefined = {},
+	right: Record<string, number> | undefined = {}
+): Record<string, number> =>
+	Object.fromEntries(
+		[...Object.keys(left), ...Object.keys(right)].map((key) => [
+			key,
+			(left[key] ?? 0) + (right[key] ?? 0),
+		])
+	)
 
 export const mergeAllMissing = (missings: Array<EvaluatedNode | ASTNode>) =>
 	missings.map(collectNodeMissing).reduce(mergeMissing, {})
@@ -66,8 +64,8 @@ function convertNodesToSameUnit(nodes, contextRule, mecanismName) {
 }
 
 export const evaluateArray: <NodeName extends NodeKind>(
-	reducer: Parameters<typeof reduce>[0],
-	start: Parameters<typeof reduce>[1]
+	reducer,
+	start
 ) => EvaluationFunction<NodeName> = (reducer, start) =>
 	function (node: any) {
 		const evaluate = this.evaluateNode.bind(this)
@@ -87,7 +85,7 @@ export const evaluateArray: <NodeName extends NodeKind>(
 			if (values.some((value) => value === null)) {
 				return null
 			}
-			return reduce(reducer, start, values)
+			return values.reduce(reducer, start)
 		}, temporalValues)
 
 		const baseEvaluation = {
@@ -119,27 +117,30 @@ export const defaultNode = (nodeValue: Evaluation) =>
 	} as ConstantNode)
 
 export const parseObject = (objectShape, value, context) => {
-	const recurseOne = (key) => (defaultValue) => {
-		if (value[key] == null && !defaultValue)
-			throw new Error(
-				`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
-			)
-		return value[key] != null ? parse(value[key], context) : defaultValue
-	}
-	const transforms = fromPairs(
-		map((k) => [k, recurseOne(k)], keys(objectShape)) as any
+	return Object.fromEntries(
+		Object.entries(objectShape).map(([key, defaultValue]) => {
+			if (value[key] == null && !defaultValue) {
+				throw new Error(
+					`Il manque une clé '${key}' dans ${JSON.stringify(value)} `
+				)
+			}
+
+			const parsedValue =
+				value[key] != null ? parse(value[key], context) : defaultValue
+			return [key, parsedValue]
+		})
 	)
-	return evolve(transforms as any, objectShape)
 }
 
 export function evaluateObject<NodeName extends NodeKind>(
 	effet: (this: Engine, explanations: any) => any
 ) {
 	return function (node) {
-		const evaluate = this.evaluateNode.bind(this)
-		const evaluations: Record<string, EvaluatedNode> = mapObjIndexed(
-			evaluate as any,
-			(node as any).explanation
+		const evaluations = Object.fromEntries(
+			Object.entries((node as any).explanation).map(([key, value]) => [
+				key,
+				this.evaluateNode(value as any),
+			])
 		)
 		const temporalExplanations = mapTemporal(
 			Object.fromEntries,

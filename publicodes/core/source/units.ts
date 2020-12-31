@@ -1,16 +1,3 @@
-import {
-	countBy,
-	equals,
-	flatten,
-	isEmpty,
-	keys,
-	map,
-	pipe,
-	remove,
-	uniq,
-	unnest,
-	without,
-} from 'ramda'
 import { Evaluation, Unit } from './AST/types'
 
 export type getUnitKey = (writtenUnit: string) => string
@@ -53,8 +40,8 @@ export const serializeUnit = (
 	const unit = simplify(rawUnit),
 		{ numerators = [], denominators = [] } = unit
 
-	const n = !isEmpty(numerators)
-	const d = !isEmpty(denominators)
+	const n = numerators.length > 0
+	const d = denominators.length > 0
 	const string =
 		!n && !d
 			? ''
@@ -95,8 +82,8 @@ export const inferUnit = (
 	}
 	if (operator === '*')
 		return simplify({
-			numerators: unnest(units.map((u) => u?.numerators ?? [])),
-			denominators: unnest(units.map((u) => u?.denominators ?? [])),
+			numerators: units.flatMap((u) => u?.numerators ?? []),
+			denominators: units.flatMap((u) => u?.denominators ?? []),
 		})
 
 	if (operator === '-' || operator === '+') {
@@ -106,13 +93,20 @@ export const inferUnit = (
 	return undefined
 }
 
+const equals = <T>(a: T, b: T) => {
+	if (Array.isArray(a) && Array.isArray(b)) {
+		return a.length === b.length && a.every((_, i) => a[i] === b[i])
+	} else {
+		return a === b
+	}
+}
+
 export const removeOnce = <T>(
 	element: T,
 	eqFn: (a: T, b: T) => boolean = equals
 ) => (list: Array<T>): Array<T> => {
 	const index = list.findIndex((e) => eqFn(e, element))
-	if (index > -1) return remove<T>(index, 1)(list)
-	else return list
+	return list.filter((_, i) => i !== index)
 }
 
 const simplify = (
@@ -262,8 +256,8 @@ export function simplifyUnit(unit: Unit): Unit {
 		return { numerators: ['%'], denominators }
 	}
 	return {
-		numerators: without(['%'], numerators),
-		denominators: without(['%'], denominators),
+		numerators: removePercentages(numerators),
+		denominators: removePercentages(denominators),
 	}
 }
 function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
@@ -273,24 +267,31 @@ function simplifyUnitWithValue(unit: Unit, value = 1): [Unit, number] {
 	return [
 		simplify(
 			{
-				numerators: without(['%'], numerators),
-				denominators: without(['%'], denominators),
+				numerators: removePercentages(numerators),
+				denominators: removePercentages(denominators),
 			},
 			areSameClass
 		),
 		value ? round(value * factor) : value,
 	]
 }
+
+const removePercentages = (array: Array<string>) =>
+	array.filter((e) => e !== '%')
+
 export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 	if (a == null || b == null) {
 		return true
 	}
-	const countByUnitClass = countBy((unit: string) => {
-		const classIndex = convertibleUnitClasses.findIndex((unitClass) =>
-			unitClass.has(unit)
-		)
-		return classIndex === -1 ? unit : '' + classIndex
-	})
+
+	const countByUnitClass = (units: Array<string>) =>
+		units.reduce((counters, unit) => {
+			const classIndex = convertibleUnitClasses.findIndex((unitClass) =>
+				unitClass.has(unit)
+			)
+			const key = classIndex === -1 ? unit : '' + classIndex
+			return { ...counters, [key]: 1 + (counters[key] ?? 0) }
+		}, {})
 
 	const [numA, denomA, numB, denomB] = [
 		a.numerators,
@@ -298,12 +299,9 @@ export function areUnitConvertible(a: Unit | undefined, b: Unit | undefined) {
 		b.numerators,
 		b.denominators,
 	].map(countByUnitClass)
-	const unitClasses = pipe(
-		map(keys),
-		flatten,
-		uniq
-	)([numA, denomA, numB, denomB])
-	return unitClasses.every(
+	const uniq = <T>(arr: Array<T>): Array<T> => [...new Set(arr)]
+	const unitClasses = [numA, denomA, numB, denomB].map(Object.keys).flat()
+	return uniq(unitClasses).every(
 		(unitClass) =>
 			(numA[unitClass] || 0) - (denomA[unitClass] || 0) ===
 				(numB[unitClass] || 0) - (denomB[unitClass] || 0) || unitClass === '%'
