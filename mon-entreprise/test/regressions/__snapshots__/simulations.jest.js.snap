@@ -89,7 +89,7 @@ Notifications affichées : dirigeant . auto-entrepreneur . notification calcul A
 `;
 
 exports[`calculate simulations-auto-entrepreneur: ACRE 2`] = `
-"[20686,57,1667,0,20000]
+"[22152,179,1667,0,20000]
 Notifications affichées : dirigeant . auto-entrepreneur . notification calcul ACRE annuel"
 `;
 
