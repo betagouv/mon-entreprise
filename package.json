@@ -6,7 +6,7 @@
 		"url": "https://github.com/betagouv/mon-entreprise.git"
 	},
 	"engines": {
-		"node": ">=12.16.1"
+		"node": ">=14.15.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.9.0",

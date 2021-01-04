@@ -41,8 +41,5 @@
 		"build": "yarn run webpack --config webpack.config.js",
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.test.js --include test/setupIntl.js",
 		"test": "yarn test:file \"./{,!(node_modules)/**/}!(webpack).test.js\""
-	},
-	"engines": {
-		"node": ">=12.16.1"
 	}
 }

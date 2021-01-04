@@ -34,7 +34,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: node:12.16.1-buster
+      - image: node:14.15.3-buster
     steps:
       - install
       - run: |
@@ -43,13 +43,13 @@ jobs:
           yarn lint:prettier
   type-check:
     docker:
-      - image: node:12.16.1-buster
+      - image: node:14.15.3-buster
     steps:
       - install
       - run: yarn test:type
   i18n-check:
     docker:
-      - image: node:12.16.1-buster
+      - image: node:14.15.3-buster
     steps:
       - install
       - run: |
@@ -59,7 +59,7 @@ jobs:
 
   unit-test:
     docker:
-      - image: node:12.16.1-buster
+      - image: node:14.15.3-buster
     steps:
       - install
       - run: git config --global core.quotepath false
@@ -68,7 +68,7 @@ jobs:
 
   end-to-end-test:
     docker:
-      - image: cypress/base:12.16.1
+      - image: cypress/base:14.15.3
         environment:
           TERM: xterm
     steps:
@@ -88,7 +88,7 @@ jobs:
 
   production-end-to-end-test:
     docker:
-      - image: cypress/base:12.16.1
+      - image: cypress/base:14.15.3
         environment:
           TERM: xterm
     parallelism: 3
