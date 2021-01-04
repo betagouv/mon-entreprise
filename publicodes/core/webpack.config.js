@@ -1,20 +1,20 @@
 /* eslint-env node */
-
-const path = require('path')
-const { commonLoaders } = require('../../webpack/common')
+import { fileURLToPath } from 'url'
+import { resolve } from 'path'
+import { commonLoaders } from '../../webpack/common'
 
 const common = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],
 	},
 	mode: process.env.NODE_ENV,
-	entry: path.resolve(__dirname, 'source', 'index.ts'),
+	entry: resolve(fileURLToPath(import.meta.url), 'source', 'index.ts'),
 	module: {
 		rules: commonLoaders({ file: false }),
 	},
 }
 
-module.exports = [
+export default [
 	// Config for UMD export (browser / node)
 	{
 		...common,

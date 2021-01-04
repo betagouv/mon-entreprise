@@ -1,4 +1,6 @@
 // Setup Intl in "en" and "fr" for testing
-global.Intl = require('intl')
-require('intl/locale-data/jsonp/en.js')
-require('intl/locale-data/jsonp/fr.js')
+import intl from 'intl'
+import 'intl/locale-data/jsonp/en.js'
+import 'intl/locale-data/jsonp/fr.js'
+
+global.Intl = intl

@@ -5,6 +5,7 @@
 	"author": "",
 	"license": "MIT",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"prepare": "echo 1",
 		"test": "echo 1"

@@ -1,11 +1,11 @@
 /* eslint-env node */
-const HTMLPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const path = require('path')
-const { EnvironmentPlugin } = require('webpack')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+import HTMLPlugin from 'html-webpack-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
+import path from 'path'
+import Webpack from 'webpack'
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin'
 
-module.exports.default = {
+export default {
 	resolve: {
 		alias: {
 			Actions: path.resolve('source/actions/'),
@@ -29,11 +29,11 @@ module.exports.default = {
 	},
 	plugins: [
 		new MonacoWebpackPlugin(),
-		new EnvironmentPlugin({
+		new Webpack.EnvironmentPlugin({
 			EN_SITE: '/infrance${path}',
 			FR_SITE: '/mon-entreprise${path}',
 		}),
-		new EnvironmentPlugin({
+		new Webpack.EnvironmentPlugin({
 			GITHUB_REF: '',
 			GITHUB_HEAD_REF: '',
 			GITHUB_SHA: '',
@@ -68,7 +68,7 @@ module.exports.default = {
 	],
 }
 
-module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
+export const HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 	new HTMLPlugin({
 		template: 'index.html',
 		inject: false,

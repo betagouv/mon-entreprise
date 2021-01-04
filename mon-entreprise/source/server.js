@@ -1,13 +1,13 @@
-const express = require('express')
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
+import express from 'express'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import config from '../webpack.dev.js'
+import history from 'connect-history-api-fallback'
+import { watchDottedNames } from '../../modele-social/build.js'
+import webpackhotMiddleware from 'webpack-hot-middleware'
 
 const app = express()
-const config = require('../webpack.dev.js')
 const compiler = webpack(config)
-const history = require('connect-history-api-fallback')
-
-const { watchDottedNames } = require('../../modele-social/build')
 watchDottedNames()
 
 const rewrite = (basename) => ({
@@ -37,7 +37,7 @@ app.use(
 	})
 )
 
-app.use(require('webpack-hot-middleware')(compiler))
+app.use(webpackhotMiddleware(compiler))
 
 app.listen(8080, function () {
 	// eslint-disable-next-line no-console

@@ -1,16 +1,15 @@
-var { stringify } = require('yaml')
-var fs = require('fs')
-var prettier = require('prettier')
-
-const {
+import { writeFileSync } from 'fs'
+import { stringify } from 'yaml'
+import prettier from 'prettier'
+import {
 	getRulesMissingTranslations,
 	rulesTranslationPath,
 	fetchTranslation,
-} = require('./utils')
+} from './utils.js'
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
 
-fs.writeFileSync(
+writeFileSync(
 	rulesTranslationPath,
 	stringify(resolved, { sortMapEntries: true })
 )
@@ -34,6 +33,6 @@ fs.writeFileSync(
 				parser: 'yaml',
 			}
 		)
-		fs.writeFileSync(rulesTranslationPath, formattedYaml)
+		writeFileSync(rulesTranslationPath, formattedYaml)
 	})
 })()

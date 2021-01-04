@@ -1,14 +1,14 @@
-const { map } = require('ramda')
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+import { map } from 'ramda'
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin'
 
-const prod = require('./webpack.prod')
-const { commonLoaders, styleLoader } = require('../webpack/common')
+import prod, { entry as _entry } from './webpack.prod'
+import { commonLoaders, styleLoader } from '../webpack/common'
 
-const { EnvironmentPlugin } = require('webpack')
+import { EnvironmentPlugin } from 'webpack'
 
-module.exports = {
+export default {
 	...prod,
-	entry: map((entry) => ['whatwg-fetch', entry], prod.entry),
+	entry: map((entry) => ['whatwg-fetch', entry], _entry),
 	output: {
 		filename: '[name].legacy.bundle.js',
 	},

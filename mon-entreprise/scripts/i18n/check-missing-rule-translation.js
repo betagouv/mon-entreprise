@@ -1,4 +1,4 @@
-const { getRulesMissingTranslations } = require('./utils')
+import { getRulesMissingTranslations } from './utils.js'
 
 const missingTranslations = getRulesMissingTranslations()[0]
 

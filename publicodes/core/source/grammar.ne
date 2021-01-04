@@ -6,12 +6,12 @@
 # @preprocessor esmodule
 
 @{%
-const {
-  string, date, variable, temporalNumericValue, binaryOperation, 
+import {
+  string, date, variable, temporalNumericValue, binaryOperation,
   unaryOperation, boolean, number, numberWithUnit
-} = require('./grammarFunctions')
+} from './grammarFunctions.js'
 
-const moo = require("moo");
+import moo from "moo";
 
 const dateRegexp = `(?:(?:0?[1-9]|[12][0-9]|3[01])\\/)?(?:0?[1-9]|1[012])\\/\\d{4}`
 const letter = '[a-zA-Z\u00C0-\u017F€$%]';

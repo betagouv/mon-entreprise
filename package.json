@@ -79,7 +79,7 @@
 		"mocha-webpack": "^2.0.0-beta.0",
 		"mock-local-storage": "^1.0.5",
 		"nearley-loader": "^2.0.0",
-		"postcss-loader": "^2.1.2",
+		"postcss-loader": "^4.1.0",
 		"prettier": "^2.2.1",
 		"raw-loader": "^0.5.1",
 		"react-hot-loader": "^4.12.15",
@@ -128,5 +128,8 @@
 		"publicodes/site",
 		"modele-social",
 		"mon-entreprise"
-	]
+	],
+	"dependencies": {
+		"yarn": "^1.22.10"
+	}
 }

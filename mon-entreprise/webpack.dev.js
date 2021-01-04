@@ -1,11 +1,10 @@
 /* eslint-env node */
+import { map } from 'ramda'
+import Webpack from 'webpack'
+import { commonLoaders, styleLoader } from '../webpack/common.mjs'
+import { HTMLPlugins, default as common } from './webpack.common.js'
 
-const { map } = require('ramda')
-const webpack = require('webpack')
-const { commonLoaders, styleLoader } = require('../webpack/common')
-const { HTMLPlugins, default: common } = require('./webpack.common')
-
-module.exports = {
+export default {
 	...common,
 	module: {
 		rules: [...commonLoaders(), styleLoader('style-loader')],
@@ -15,7 +14,7 @@ module.exports = {
 	plugins: [
 		...common.plugins,
 		...HTMLPlugins(),
-		new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
-		new webpack.HotModuleReplacementPlugin(),
+		new Webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),
+		new Webpack.HotModuleReplacementPlugin(),
 	],
 }

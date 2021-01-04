@@ -1,27 +1,27 @@
 /* eslint-env node */
 
-const { HTMLPlugins, default: common } = require('./webpack.common')
-const { commonLoaders, styleLoader } = require('../webpack/common')
+import { HTMLPlugins, default as common } from './webpack.common'
+import { commonLoaders, styleLoader } from '../webpack/common'
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
+import PrerenderSPAPlugin, { PuppeteerRenderer } from 'prerender-spa-plugin'
+import { GenerateSW } from 'workbox-webpack-plugin'
 
-const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
-const path = require('path')
-const cheerio = require('cheerio')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
+const Renderer = PuppeteerRenderer
+import { resolve } from 'path'
+import { load } from 'cheerio'
+import MiniCssExtractPlugin, { loader } from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 
 const prerenderConfig = () => ({
-	staticDir: path.resolve('dist'),
+	staticDir: resolve('dist'),
 	renderer: new Renderer({
 		renderAfterTime: 5000,
 		skipThirdPartyRequests: true,
 	}),
 	postProcess: (context) => {
-		const $ = cheerio.load(context.html)
+		const $ = load(context.html)
 		// force https on twitter emoji cdn
 		$('img[src^="http://twemoji.maxcdn.com"]').each((i, el) => {
 			$(el).attr('src', (_, path) => path.replace('http://', 'https://'))
@@ -46,10 +46,10 @@ const prerenderConfig = () => ({
 	},
 })
 
-module.exports = {
+export default {
 	...common,
 	module: {
-		rules: [...commonLoaders(), styleLoader(MiniCssExtractPlugin.loader)],
+		rules: [...commonLoaders(), styleLoader(loader)],
 	},
 	output: {
 		...common.output,
@@ -73,7 +73,7 @@ module.exports = {
 		...common.plugins,
 		...HTMLPlugins({ injectTrackingScript: true }),
 		process.env.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
-		new WorkboxPlugin.GenerateSW({
+		new GenerateSW({
 			clientsClaim: true,
 			skipWaiting: true,
 			cacheId: process.env.HEAD,
@@ -99,14 +99,14 @@ module.exports = {
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
 				...prerenderConfig(),
-				outputDir: path.resolve('dist', 'prerender', 'infrance'),
+				outputDir: resolve('dist', 'prerender', 'infrance'),
 				routes: ['/', '/calculators/salary', '/iframes/simulateur-embauche'],
-				indexPath: path.resolve('dist', 'infrance.html'),
+				indexPath: resolve('dist', 'infrance.html'),
 			}),
 		process.env.ANALYZE_BUNDLE !== '1' &&
 			new PrerenderSPAPlugin({
 				...prerenderConfig(),
-				outputDir: path.resolve('dist', 'prerender', 'mon-entreprise'),
+				outputDir: resolve('dist', 'prerender', 'mon-entreprise'),
 				routes: [
 					'/',
 					'/simulateurs/salaire-brut-net',
@@ -121,7 +121,7 @@ module.exports = {
 					'/iframes/simulateur-chomage-partiel',
 					'/iframes/pamc',
 				],
-				indexPath: path.resolve('dist', 'mon-entreprise.html'),
+				indexPath: resolve('dist', 'mon-entreprise.html'),
 			}),
 	].filter(Boolean),
 }

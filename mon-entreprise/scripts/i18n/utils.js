@@ -1,14 +1,15 @@
-require('dotenv').config()
-require('isomorphic-fetch')
-var fs = require('fs')
-var path = require('path')
-let R = require('ramda')
-var querystring = require('querystring')
-let rules = require('modele-social')
-let { parse } = require('yaml')
+import dotenv from 'dotenv'
+dotenv.config()
+import 'isomorphic-fetch'
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
+import { mergeAll, toPairs, equals, path as _path, pick } from 'ramda'
+import { stringify } from 'querystring'
+import rules from 'modele-social'
+import yaml from 'yaml'
 
-let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
-let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
+let rulesTranslationPath = resolve('source/locales/rules-en.yaml')
+let UiTranslationPath = resolve('source/locales/ui-en.yaml')
 
 let attributesToTranslate = [
 	'titre',
@@ -20,8 +21,8 @@ let attributesToTranslate = [
 ]
 
 function getRulesMissingTranslations() {
-	let currentExternalization = parse(
-		fs.readFileSync(rulesTranslationPath, 'utf-8')
+	let currentExternalization = yaml.parse(
+		readFileSync(rulesTranslationPath, 'utf-8')
 	)
 
 	let missingTranslations = []
@@ -33,11 +34,11 @@ function getRulesMissingTranslations() {
 				: rule,
 		])
 		.map(([dottedName, rule]) => ({
-			[dottedName]: R.mergeAll(
-				R.toPairs(rule)
+			[dottedName]: mergeAll(
+				toPairs(rule)
 					.filter(([, v]) => !!v)
 					.map(([k, v]) => {
-						let attrToTranslate = attributesToTranslate.find(R.equals(k))
+						let attrToTranslate = attributesToTranslate.find(equals(k))
 						if (!attrToTranslate) return {}
 						let enTrad = attrToTranslate + '.en',
 							frTrad = attrToTranslate + '.fr'
@@ -86,30 +87,30 @@ function getRulesMissingTranslations() {
 					})
 			),
 		}))
-	resolved = R.mergeAll(resolved)
+	resolved = mergeAll(resolved)
 	return [missingTranslations, resolved]
 }
 
 const getUiMissingTranslations = () => {
-	const staticKeys = require(path.resolve(
-		'source/locales/static-analysis-fr.json'
-	))
-	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
+	const staticKeys = JSON.parse(
+		readFileSync(resolve('source/locales/static-analysis-fr.json'), 'utf-8')
+	)
+	const translatedKeys = yaml.parse(readFileSync(UiTranslationPath, 'utf-8'))
 
 	const missingTranslations = Object.keys(staticKeys).filter((key) => {
 		if (key.match(/^\{.*\}$/)) {
 			return false
 		}
 		const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-		return !R.path(keys, translatedKeys)
+		return !_path(keys, translatedKeys)
 	}, staticKeys)
-	return R.pick(missingTranslations, staticKeys)
+	return pick(missingTranslations, staticKeys)
 }
 
 const fetchTranslation = async (text) => {
 	console.log(`Fetch translation for:\n\t${text}`)
 	const response = await fetch(
-		`https://api.deepl.com/v2/translate?${querystring.stringify({
+		`https://api.deepl.com/v2/translate?${stringify({
 			text,
 			auth_key: process.env.DEEPL_API_SECRET,
 			tag_handling: 'xml',
@@ -120,7 +121,7 @@ const fetchTranslation = async (text) => {
 	const { translations } = await response.json()
 	return translations[0].text
 }
-module.exports = {
+export {
 	fetchTranslation,
 	getRulesMissingTranslations,
 	getUiMissingTranslations,

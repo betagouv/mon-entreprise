@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { disambiguateRuleReference, ruleParents } from '../source/ruleUtils'
+import { disambiguateRuleReference, ruleParents } from '../source/ruleUtils.js'
 
 describe('ruleParents', function () {
 	it('should procude an array of the parents of a rule', function () {

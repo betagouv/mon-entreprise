@@ -9,6 +9,7 @@
 		"directory": "mon-entreprise"
 	},
 	"private": true,
+	"type": "module",
 	"engines": {
 		"node": ">=14.15.3"
 	},
@@ -46,7 +47,7 @@
 		"cypress-plugin-tab": "^1.0.5",
 		"eslint-plugin-react": "^7.12.4",
 		"html-webpack-plugin": "^3.2.0",
-		"i18next-parser": "^3.3.0",
+		"i18next-parser": "^3.6.0",
 		"intl-locales-supported": "^1.0.0",
 		"mock-local-storage": "^1.0.5",
 		"monaco-editor-webpack-plugin": "^1.9.0",
@@ -119,8 +120,8 @@
 		"test:dev-e2e:mycompanyinfrance": "cypress open --browser chromium --config baseUrl=http://localhost:8080/infrance",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
-		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
-		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
+		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/check-missing-UI-translation",
+		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.cjs && node scripts/i18n/translate-ui.js",
 		"start": "node source/server.js",
 		"serve:dev": "yarn run serve:dev:mon-entreprise & yarn run serve:dev:mycompanyinfrance & yarn run serve:dev:publicodes",
 		"serve:dev:mon-entreprise": "PORT=5000 serve --config serve.mon-entreprise.json --no-clipboard",

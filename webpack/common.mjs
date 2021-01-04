@@ -1,23 +1,25 @@
 /* eslint-env node */
 
-module.exports.styleLoader = (styleLoader) => ({
-	test: /\.css$/,
-	use: [
-		{ loader: styleLoader },
-		{
-			loader: 'css-loader',
-			options: {
-				sourceMap: true,
-				importLoaders: 1,
+export function styleLoader(styleLoader) {
+	return {
+		test: /\.css$/,
+		use: [
+			{ loader: styleLoader },
+			{
+				loader: 'css-loader',
+				options: {
+					sourceMap: true,
+					importLoaders: 1,
+				},
 			},
-		},
-		{
-			loader: 'postcss-loader',
-		},
-	],
-})
+			{
+				loader: 'postcss-loader',
+			},
+		],
+	}
+}
 
-module.exports.commonLoaders = ({ legacy = false, file = true } = {}) => {
+export function commonLoaders({ legacy = false, file = true } = {}) {
 	const babelLoader = {
 		loader: 'babel-loader',
 		options: {

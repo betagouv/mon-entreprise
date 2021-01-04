@@ -1,2 +1,2 @@
-require('./fetch-releases.js')
-require('./fetch-stats.js')
+import './fetch-releases.js'
+import './fetch-stats.js'

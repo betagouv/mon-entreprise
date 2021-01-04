@@ -1,25 +1,34 @@
 /* eslint-env node */
 
-const fs = require('fs')
-const path = require('path')
-const yaml = require('yaml')
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	statSync,
+	readFileSync,
+	writeFileSync,
+	watch,
+} from 'fs'
+import { fileURLToPath } from 'url'
+import { resolve, join } from 'path'
+import yaml from 'yaml'
 
-const publicodesDir = path.resolve(__dirname, './règles')
-const outDir = path.resolve(__dirname, './dist')
+const __dirname = fileURLToPath(import.meta.url)
+const publicodesDir = resolve(__dirname, '../règles')
+const outDir = resolve(__dirname, '../dist')
 
-if (!fs.existsSync(outDir)) {
-	fs.mkdirSync(outDir)
+if (!existsSync(outDir)) {
+	mkdirSync(outDir)
 }
 
 function concatenateFilesInDir(dirPath = publicodesDir) {
-	return fs
-		.readdirSync(dirPath)
+	return readdirSync(dirPath)
 		.map((filename) => {
-			const fullpath = path.join(dirPath, filename)
-			if (fs.statSync(fullpath).isDirectory()) {
+			const fullpath = join(dirPath, filename)
+			if (statSync(fullpath).isDirectory()) {
 				return concatenateFilesInDir(fullpath)
 			} else {
-				return filename.endsWith('.yaml') ? fs.readFileSync(fullpath) : ''
+				return filename.endsWith('.yaml') ? readFileSync(fullpath) : ''
 			}
 		})
 		.reduce((acc, cur) => acc + '\n' + cur, '')
@@ -34,13 +43,15 @@ function readRules() {
 function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(rules)
-	const jsString = `module.exports = ${JSON.stringify(rules, null, 2)}`
-	fs.writeFileSync(path.resolve(outDir, 'index.js'), jsString)
-	fs.writeFileSync(
-		path.resolve(outDir, 'names.ts'),
+	const jsString = `export default ${JSON.stringify(rules, null, 2)}`
+	writeFileSync(resolve(outDir, 'index.js'), jsString)
+	writeFileSync(
+		resolve(outDir, 'names.ts'),
 		`\nexport type Names = ${names.map((name) => `"${name}"`).join('\n  | ')}\n`
 	)
 }
 
 writeJSFile()
-exports.watchDottedNames = () => fs.watch(publicodesDir, writeJSFile)
+export function watchDottedNames() {
+	return watch(publicodesDir, writeJSFile)
+}

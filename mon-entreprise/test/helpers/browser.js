@@ -1,4 +1,4 @@
-var jsdom = require('jsdom')
+import jsdom from 'jsdom'
 const { JSDOM } = jsdom
 
 const { document } = new JSDOM('').window

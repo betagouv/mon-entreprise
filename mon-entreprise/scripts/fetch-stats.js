@@ -6,14 +6,15 @@
 //
 // Matomo API documentation:
 // https://developer.matomo.org/api-reference/reporting-api
-require('dotenv').config()
-require('isomorphic-fetch')
-const querystring = require('querystring')
-const { createDataDir, writeInDataDir } = require('./utils.js')
-const R = require('ramda')
+import dotenv from 'dotenv'
+dotenv.config()
+import 'isomorphic-fetch'
+import { stringify } from 'querystring'
+import { createDataDir, writeInDataDir } from './utils.js'
+import { reduceBy, map } from 'ramda'
 
 const apiURL = (params) => {
-	const query = querystring.stringify({
+	const query = stringify({
 		period: 'month',
 		date: 'last1',
 		method: 'API.get',
@@ -189,7 +190,7 @@ async function fetchSimulators(dt) {
 				: label
 
 		const sumVisits = (acc, { nb_visits }) => acc + nb_visits
-		const results = R.reduceBy(
+		const results = reduceBy(
 			sumVisits,
 			0,
 			groupSimulateursIframesVisits,
@@ -345,7 +346,7 @@ async function fetchChannelType() {
 
 		const data = await response.json()
 
-		const result = R.map(
+		const result = map(
 			(date) =>
 				date
 					.filter((x) =>
