@@ -6174,14 +6174,6 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
-entreprise . seuil de franchise de TVA dépassé :
-  description.en:
-    '[automatic] The annual turnover threshold for VAT exemption is
-    exceeded. More information](/documentation/enterprise/VAT-exemption)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
-    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-  titre.en: '[automatic] VAT threshold control'
-  titre.fr: seuil de franchise de TVA dépassé 
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
@@ -6301,9 +6293,25 @@ entreprise . franchise de TVA:
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
-entreprise . non assujetti à TVA:
+entreprise . non assujettie à TVA:
+  description.en: >
+    [automatic] Some businesses are not subject to VAT. 
+
+    They pay payroll tax in return.
+
+
+    This is the case, for example, with banking, financial or insurance institutions.
+  description.fr: >
+    Certaines entreprises ne sont pas assujetties à la TVA. 
+
+    Elles payent la taxe sur les salaires en contrepartie.
+
+
+    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
+  question.en: '[automatic] Is the company not subject to VAT?'
+  question.fr: L'entreprise est-elle non assujettie à la TVA ?
   titre.en: '[automatic] non-VAT taxable'
-  titre.fr: non assujetti à TVA
+  titre.fr: non assujettie à TVA
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
@@ -6384,6 +6392,14 @@ entreprise . résultat net:
   résumé.fr: Ce qu'il reste après impôt sur les sociétés
   titre.en: net result
   titre.fr: résultat net
+entreprise . seuil de franchise de TVA dépassé:
+  description.en:
+    '[automatic] The annual turnover threshold for VAT exemption is
+    exceeded. More information](/documentation/enterprise/VAT-exemption)'
+  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
+    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+  titre.en: '[automatic] VAT threshold control'
+  titre.fr: seuil de franchise de TVA dépassé
 entreprise . taxe sur les salaires:
   description.en: '[automatic] When the amount of payroll tax is less than
     €1200/year, there is no need to make a declaration and the tax is not
@@ -6404,6 +6420,17 @@ impôt:
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre.en: income tax
   titre.fr: impôts sur le revenu
+impôt . domiciliation étranger non implémentée:
+  description.en: >
+    [automatic] Non-resident withholding tax is not yet implemented. For more
+    information, please refer to the [tax
+    documentation](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en).
+  description.fr: >
+    La retenue à la source pour les non-résident n'est pas encore implémentée.
+    Pour en savoir plus, se référer à la [documentation
+    fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
+  titre.en: '[automatic] foreign domiciliation not implemented'
+  titre.fr: domiciliation étranger non implémentée
 impôt . foyer fiscal:
   titre.en: '[automatic] fiscal family'
   titre.fr: foyer fiscal

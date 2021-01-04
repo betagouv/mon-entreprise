@@ -289,14 +289,14 @@ entreprise . association non lucrative:
   rend non applicable:
     - contrat salarié . taxe d'apprentissage
 
-entreprise . entreprises non assujettis à TVA:
-  question: L'entreprise est-elle non assujetti à la TVA ? 
+entreprise . non assujettie à TVA:
+  question: L'entreprise est-elle non assujettie à la TVA ? 
   par défaut: non
   description: |
-    Certaines entreprises ne sont pas assujeti à la TVA. 
+    Certaines entreprises ne sont pas assujetties à la TVA. 
     Elles payent la taxe sur les salaires en contrepartie.
 
-    C'est le cas par exemple des établissement bancaire, financier ou d'assurance
+    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
   references: 
     Fiche economie.gouv.fr: https://www.economie.gouv.fr/entreprises/taxe-salaires
 
@@ -314,7 +314,7 @@ entreprise . taxe sur les salaires:
   non applicable si: 
     une de ces conditions:
       - association non lucrative
-      - entreprises non assujettis à TVA
+      - entreprise . non assujettie à TVA
   description:
     Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.

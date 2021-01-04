@@ -25,7 +25,7 @@ questions:
     - entreprise . rémunération du dirigeant
     - entreprise . association non lucrative
   non prioritaires:
-    - entreprise . non assujetti à TVA
+    - entreprise . non assujettie à TVA
     - entreprise . effectif
     - établissement . localisation
     - entreprise . ratio alternants
