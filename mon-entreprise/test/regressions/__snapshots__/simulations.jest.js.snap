@@ -48,14 +48,14 @@ exports[`calculate aide-déclaration-indépendant: nature de l'activité 4`] = `
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 5`] = `
 "[50000,3177,11383,101,14661,35339]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 6`] = `"[5000,312,1279,101,1692,3308]"`;
 
 exports[`calculate aide-déclaration-indépendant: nature de l'activité 7`] = `
 "[50000,3177,9471,101,12749,37251]
-Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : dirigeant . indépendant . avertissement base forfaitaire, entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 1`] = `"[500,25,1026,101,1152,0]"`;
@@ -72,12 +72,12 @@ exports[`calculate aide-déclaration-indépendant: échelle de revenus 6`] = `"[
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 7`] = `
 "[100000,6361,20835,101,27297,72703]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate aide-déclaration-indépendant: échelle de revenus 8`] = `
 "[1000000,63664,106148,101,169913,830087]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-artiste-auteur: bnc 1`] = `"[1230]"`;
@@ -136,12 +136,12 @@ exports[`calculate simulations-auto-entrepreneur: échelle de revenus 8`] = `"[8
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 9`] = `
 "[114830,1236,8333,3297,96703]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-auto-entrepreneur: échelle de revenus 10`] = `
 "[1148303,12359,83333,126543,873457]
-Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-indépendant: acre 1`] = `"[73025,23025,50000,51980,8213,41787,0,73025]"`;
@@ -188,12 +188,12 @@ exports[`calculate simulations-indépendant: échelle de revenus 6`] = `"[14460,
 
 exports[`calculate simulations-indépendant: échelle de revenus 7`] = `
 "[139596,39596,100000,103788,24909,75091,0,139596]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-indépendant: échelle de revenus 8`] = `
 "[1239955,239955,1000000,1033666,444476,555524,0,1239955]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: CIPAV 1`] = `"[2759,0,2259,500,0,500]"`;
@@ -210,12 +210,12 @@ exports[`calculate simulations-professions-libérales: CIPAV 6`] = `"[14129,0,41
 
 exports[`calculate simulations-professions-libérales: CIPAV 7`] = `
 "[144865,0,44865,100000,24943,75057]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: CIPAV 8`] = `
 "[1236512,0,236512,1000000,444436,555564]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: auxiliaire médical 1`] = `"[30000,0,7751,22249,945,21304]"`;
@@ -226,19 +226,19 @@ exports[`calculate simulations-professions-libérales: auxiliaire médical 3`] =
 
 exports[`calculate simulations-professions-libérales: avocat 1`] = `
 "[50000,0,11821,38179,4705,33474]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: avocat 2`] = `
 "[50000,0,11821,38179,4705,33474]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 1`] = `"[20000,0,5049,14951,0,14951]"`;
 
 exports[`calculate simulations-professions-libérales: expert-comptable 2`] = `
 "[50000,0,14877,35123,3611,31512]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: médecin 1`] = `"[50000,0,14273,35727,3671,32056]"`;
@@ -251,7 +251,7 @@ exports[`calculate simulations-professions-libérales: médecin 4`] = `"[400000,
 
 exports[`calculate simulations-professions-libérales: médecin 5`] = `
 "[120000,0,34704,85296,17710,67586]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-professions-libérales: sage-femme 1`] = `"[50000,0,12384,37617,4638,32979]"`;
@@ -306,7 +306,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Co
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 5`] = `
 "[14490,0,0,154584,4,46]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): Contrats Madelin 6`] = `"[917,0,0,10757,4,20]"`;
@@ -341,7 +341,7 @@ exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): é
 
 exports[`calculate simulations-rémunération-dirigeant (assimilé salarié): échelle de rémunération 8`] = `
 "[4758,0,0,52758,4,46]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): ACRE 1`] = `
@@ -369,7 +369,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Con
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 5`] = `
 "[0,0,21610,39357,4,56]
-Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé, entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): Contrats Madelin 6`] = `"[0,0,1446,4195,3,8]"`;
@@ -404,7 +404,7 @@ exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): éc
 
 exports[`calculate simulations-rémunération-dirigeant (auto-entrepreneur): échelle de rémunération 8`] = `
 "[0,0,7257,20465,4,40]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): ACRE 1`] = `
@@ -432,7 +432,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 5`] = `
 "[0,226877,0,57936,4,56]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): Contrats Madelin 6`] = `"[0,13814,0,10116,4,21]"`;
@@ -467,7 +467,7 @@ exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle
 
 exports[`calculate simulations-rémunération-dirigeant (indépendant): échelle de rémunération 8`] = `
 "[0,69895,0,36431,4,56]
-Notifications affichées : entreprise . contrôle seuil de TVA dépassé"
+Notifications affichées : entreprise . seuil de franchise de TVA dépassé "
 `;
 
 exports[`calculate simulations-salarié: CCN HCR 1`] = `

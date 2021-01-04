@@ -428,7 +428,12 @@ dirigeant . rémunération totale:
               - entreprise . chiffre d'affaires
               - auto-entrepreneur . net après impôt
       - si: assimilé salarié
-        alors: contrat salarié . rémunération . total
+        alors: 
+          somme: 
+            - contrat salarié . rémunération . total
+            # TODO : ajouter la taxe sur les salaires ici. 
+            # Pour l'instant commenté car elle crée une boucle à cause de la franchise de TVA
+            # - entreprise . taxe sur les salaires
 
 dirigeant . indépendant:
   rend non applicable: contrat salarié
