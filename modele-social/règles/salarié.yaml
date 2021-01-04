@@ -3364,12 +3364,8 @@ contrat salarié . taxe sur les salaires:
   taxe:
     dû par: employeur
   description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
-  applicable si:
-    une de ces conditions:
-      - entreprise . association non lucrative
-      - entreprise . établissement bancaire
+  applicable si: entreprise . taxe sur les salaires
   formule: entreprise . taxe sur les salaires * 1 employé / entreprise . effectif
-
   note: | 
     Nous supposons ici que tous les salariés de l'entreprise ont la même rémunération
     Cette implémentation de la taxe sur les salaires est spécifique aux associations à but non lucratif, elle est donc largement simplifiée. Plein d'autres organisations sont concernées, en fonction de la TVA qu'elles paient. Les associations y sont assujetties automatiquement.

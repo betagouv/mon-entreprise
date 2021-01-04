@@ -219,7 +219,7 @@ entreprise . franchise de TVA:
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
-entreprise . contrôle seuil de TVA dépassé:
+entreprise . seuil de franchise de TVA dépassé :
   type: notification
   formule: chiffre d'affaires > franchise de TVA
   description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
@@ -289,10 +289,16 @@ entreprise . association non lucrative:
   rend non applicable:
     - contrat salarié . taxe d'apprentissage
 
-entreprise . établissement bancaire:
-  description: L'entreprise est un établissement bancaire, financier ou d'assurance. Elle est non assujettie à la TVA.
-  question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
+entreprise . entreprises non assujettis à TVA:
+  question: L'entreprise est-elle non assujetti à la TVA ? 
   par défaut: non
+  description: |
+    Certaines entreprises ne sont pas assujeti à la TVA. 
+    Elles payent la taxe sur les salaires en contrepartie.
+
+    C'est le cas par exemple des établissement bancaire, financier ou d'assurance
+  references: 
+    Fiche economie.gouv.fr: https://www.economie.gouv.fr/entreprises/taxe-salaires
 
 entreprise . taxe sur les salaires . montant avant décote:
   formule:
@@ -305,6 +311,10 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
+  non applicable si: 
+    une de ces conditions:
+      - association non lucrative
+      - entreprises non assujettis à TVA
   description:
     Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.

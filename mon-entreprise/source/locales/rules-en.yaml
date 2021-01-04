@@ -6174,14 +6174,14 @@ entreprise . chiffre d'affaires minimum:
   question.fr: Quel est votre chiffre d'affaires minimum envisagé ?
   titre.en: Minimum turnover
   titre.fr: chiffre d'affaires minimum
-entreprise . contrôle seuil de TVA dépassé:
+entreprise . seuil de franchise de TVA dépassé :
   description.en:
     '[automatic] The annual turnover threshold for VAT exemption is
     exceeded. More information](/documentation/enterprise/VAT-exemption)'
   description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
     est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
   titre.en: '[automatic] VAT threshold control'
-  titre.fr: contrôle seuil de TVA dépassé
+  titre.fr: seuil de franchise de TVA dépassé 
 entreprise . date de création:
   description.en: >
     [automatic] The activity start date (or creation date) is set at the time of
@@ -6301,6 +6301,9 @@ entreprise . franchise de TVA:
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
+entreprise . non assujetti à TVA:
+  titre.en: '[automatic] non-VAT taxable'
+  titre.fr: non assujetti à TVA
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
@@ -6396,16 +6399,6 @@ entreprise . taxe sur les salaires . abattement associations:
 entreprise . taxe sur les salaires . montant avant décote:
   titre.en: '[automatic] pre-discount amount'
   titre.fr: montant avant décote
-entreprise . établissement bancaire:
-  description.en:
-    The company is a banking, financial or insurance institution. It
-    is not subject to VAT.
-  description.fr: L'entreprise est un établissement bancaire, financier ou
-    d'assurance. Elle est non assujettie à la TVA.
-  question.en: Is it a banking, financial or insurance institution?
-  question.fr: S'agit-il d'un établissement bancaire, financier, d'assurance ?
-  titre.en: banking institution
-  titre.fr: établissement bancaire
 impôt:
   description.en: '[automatic] This set of formulas is a simplified income tax model.'
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
