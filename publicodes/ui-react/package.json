@@ -7,6 +7,7 @@
 	"license": "MIT",
 	"readme": "../README.md",
 	"scripts": {
+		"clean": "rimraf dist node_modules",
 		"build": "tsc",
 		"prepare": "yarn run build",
 		"test": "echo \"Error: no test specified\""
