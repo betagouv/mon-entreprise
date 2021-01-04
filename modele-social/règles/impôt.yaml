@@ -533,3 +533,10 @@ impôt . foyer fiscal . CEHR:
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
+
+impôt . domiciliation étranger non implémentée:
+  formule: situation personnelle . domiciliation fiscale à l'étranger
+  type: notification
+  niveau: avertissement
+  description: | 
+    La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
