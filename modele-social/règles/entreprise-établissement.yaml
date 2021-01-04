@@ -257,9 +257,8 @@ entreprise . impôt sur les sociétés . contribution sociale:
     produit:
       taux: 3.3%
       assiette: 
-        allègement:
-          assiette: impôt sur les sociétés
-          abattement: 763000 €/an * prorata temporis
+        valeur: impôt sur les sociétés
+        abattement: 763000 €/an * prorata temporis
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
@@ -469,9 +468,8 @@ entreprise . non assujettie à TVA:
 
 entreprise . taxe sur les salaires . montant avant décote:
   formule:
-    allègement:
-      assiette: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
-      abattement: abattement associations
+    valeur: contrat salarié . taxe sur les salaires . barème / 1 employé * effectif
+    abattement: abattement associations
 
 entreprise . taxe sur les salaires . abattement associations:
   applicable si: entreprise . association non lucrative

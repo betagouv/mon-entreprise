@@ -2,6 +2,7 @@ import { Grammar, Parser } from 'nearley'
 import { ASTNode } from './AST/types'
 import { EngineError, syntaxError } from './error'
 import grammar from './grammar.ne'
+import abattement from './mecanisms/abattement'
 import applicable from './mecanisms/applicable'
 import arrondi from './mecanisms/arrondi'
 import barème from './mecanisms/barème'
@@ -21,7 +22,6 @@ import plafond from './mecanisms/plafond'
 import plancher from './mecanisms/plancher'
 import { mecanismProduct } from './mecanisms/product'
 import { mecanismRecalcul } from './mecanisms/recalcul'
-import { mecanismReduction } from './mecanisms/reduction'
 import situation from './mecanisms/situation'
 import { mecanismSum } from './mecanisms/sum'
 import { mecanismSynchronisation } from './mecanisms/synchronisation'
@@ -155,6 +155,7 @@ const chainableMecanisms = [
 	unité,
 	plancher,
 	plafond,
+	abattement,
 	situation,
 ]
 function parseChainedMecanisms(rawNode, context: Context): ASTNode {
@@ -193,7 +194,6 @@ const parseFunctions = {
 	durée,
 	'le maximum de': mecanismMax,
 	'le minimum de': mecanismMin,
-	allègement: mecanismReduction,
 	variations,
 	synchronisation: mecanismSynchronisation,
 	valeur: parse,

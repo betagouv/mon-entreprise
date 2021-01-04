@@ -1,5 +1,5 @@
 import { ConstantNode, Leaf } from './mecanisms/common'
-import Allègement from './mecanisms/Allègement'
+import Abattement from './mecanisms/Abattement'
 import ApplicableSi from './mecanisms/Applicable'
 import Arrondi from './mecanisms/Arrondi'
 import Barème from './mecanisms/Barème'
@@ -33,7 +33,7 @@ import { EngineContext } from './contexts'
 
 const UIComponents = {
 	constant: ConstantNode,
-	allègement: Allègement,
+	abattement: Abattement,
 	'applicable si': ApplicableSi,
 	arrondi: Arrondi,
 	barème: Barème,

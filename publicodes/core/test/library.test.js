@@ -26,9 +26,8 @@ revenu imposable:
 
 revenu abattu:
   formule:
-    allègement:
-      assiette: revenu imposable
-      abattement: 10%
+		valeur: revenu imposable
+		abattement: 10%
 
 impôt sur le revenu:
   formule:
@@ -47,11 +46,10 @@ impôt sur le revenu:
 
 impôt sur le revenu à payer:
   formule:
-    allègement:
-			assiette: impôt sur le revenu
-			abattement:
-				valeur: 1177 - (75% * impôt sur le revenu)
-				plancher: 0
+		valeur: impôt sur le revenu
+		abattement:
+			valeur: 1177 - (75% * impôt sur le revenu)
+			plancher: 0
 `
 
 		let engine = new Engine(rules)

@@ -69,13 +69,12 @@ impôt . revenu imposable:
   description: |
     C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
   formule:
-    allègement:
-      assiette:
-        somme:
-          - contrat salarié . rémunération . net imposable
-          - dirigeant . indépendant . résultat fiscal
-          - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      abattement: abattement contrat court
+    valeur:
+      somme:
+        - contrat salarié . rémunération . net imposable
+        - dirigeant . indépendant . résultat fiscal
+        - dirigeant . auto-entrepreneur . impôt . revenu imposable
+    abattement: abattement contrat court
 
 impôt . revenu imposable . abattement contrat court:
   description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
@@ -375,21 +374,20 @@ impôt . foyer fiscal . revenu imposable:
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description: Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
   formule:
-    allègement:
-      assiette [ref]:
-        somme:
-          - contrat salarié . rémunération . net imposable
-          - valeur: dirigeant . indépendant . résultat fiscal
-            applicable si: entreprise . imposition . IS
-      abattement: 
-        valeur: 10% * assiette
-        # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
-        # HISTORIQUE 2020: 12627€
-        # 12627€ × (1 + 0,2%)
-        plafond: 12652 €/an
-        # HISTORIQUE 2020: 441€
-        # 441€ × (1 + 0,2%)
-        plancher: 442 €/an
+    valeur [ref assiette]:
+      somme:
+        - contrat salarié . rémunération . net imposable
+        - valeur: dirigeant . indépendant . résultat fiscal
+          applicable si: entreprise . imposition . IS
+    abattement: 
+      valeur: 10% * assiette
+      # A VÉRIFIER: calculé à la main en revalorisant le taux 2020
+      # HISTORIQUE 2020: 12627€
+      # 12627€ × (1 + 0,2%)
+      plafond: 12652 €/an
+      # HISTORIQUE 2020: 441€
+      # 441€ × (1 + 0,2%)
+      plancher: 442 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
 
@@ -418,9 +416,8 @@ impôt . foyer fiscal . impôt à payer:
 impôt . foyer fiscal . impôt sur le revenu:
   unité: €/an
   formule:
-    allègement:
-      assiette: impôt brut
-      abattement: décote
+    valeur: impôt brut
+    abattement: décote
   exemples:
     - nom: Salaire d'un cadre
       situation:

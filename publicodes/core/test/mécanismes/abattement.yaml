@@ -1,0 +1,28 @@
+montant:
+  unité: €
+
+montant abattu:
+  unité: €
+  formule:
+    valeur: montant
+    abattement: 20507
+  exemples:
+    - situation:
+        montant: 10000
+      valeur attendue: 0
+    - situation:
+        montant: 80000
+      valeur attendue: 59493
+
+montant abattu en pourcentage:
+  unité: €
+  formule:
+    valeur: montant
+    abattement: 15%
+  exemples:
+    - situation:
+        montant: 10000
+      valeur attendue: 8500
+    - situation:
+        montant: 80000
+      valeur attendue: 68000

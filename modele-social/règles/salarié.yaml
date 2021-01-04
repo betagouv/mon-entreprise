@@ -299,13 +299,12 @@ contrat salarié . activité partielle . indemnités . complémentaire:
   # La condition suivante assure que cette règle ne crée pas de boucle avec indemnités . conventionnelle . part soumise à cotisation
   non applicable si: rémunération . brut de base > 3.15 * SMIC
   formule:
-    allègement:
-      assiette: rémunération mensuelle minimale
-      abattement:
-        somme:
-          - rémunération . net de cotisations
-          - indemnités . base
-          - indemnités . conventionnelle
+    valeur: rémunération mensuelle minimale
+    abattement:
+      somme:
+        - rémunération . net de cotisations
+        - indemnités . base
+        - indemnités . conventionnelle
 
 contrat salarié . activité partielle . indemnités . conventionnelle:
   applicable si: convention syntec
@@ -432,9 +431,9 @@ contrat salarié . déduction forfaitaire spécifique:
     # pour les journalistes. Nécessite probablement de faire un re-remplacement
     # inverse.
   formule:
-    allègement:
-      assiette: cotisations . assiette
-      abattement: taux
+    valeur: cotisations . assiette
+    abattement:
+      valeur: taux * cotisations . assiette
       plafond: 7600 €/an
     plancher: cotisations . assiette minimale
   références:
@@ -1154,23 +1153,22 @@ contrat salarié . cotisations . assiette:
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   formule:
-    allègement:
-      assiette: rémunération . brut
-      abattement:
-        somme:
-          - frais professionnels . part déductible
-          - stage . gratification minimale
-          # TODO: La prévoyance et la retraite supplémentaire ne sont pour
-          # l'instant pas exposées sur les simulateurs. Je les désactive ici pour
-          # résoudre un problème de cycle avec la déduction forfaitaire
-          # spécifique.
-          #
-          # Il faudra soit supprimer complètement ces règles prévoyance /
-          # retraite supplémentaire (que j'avais ajoutées dans le cadre du POC
-          # Paie), soit les exposer dans un simulateur.
-          #
-          # - prévoyance . part déductible
-          # - retraite supplémentaire . part déductible
+    valeur: rémunération . brut
+    abattement:
+      somme:
+        - frais professionnels . part déductible
+        - stage . gratification minimale
+        # TODO: La prévoyance et la retraite supplémentaire ne sont pour
+        # l'instant pas exposées sur les simulateurs. Je les désactive ici pour
+        # résoudre un problème de cycle avec la déduction forfaitaire
+        # spécifique.
+        #
+        # Il faudra soit supprimer complètement ces règles prévoyance /
+        # retraite supplémentaire (que j'avais ajoutées dans le cadre du POC
+        # Paie), soit les exposer dans un simulateur.
+        #
+        # - prévoyance . part déductible
+        # - retraite supplémentaire . part déductible
 
 contrat salarié . cotisations . assiette . salariale:
   titre: Assiette des cotisations sociales
@@ -1182,9 +1180,8 @@ contrat salarié . cotisations . assiette . salariale:
     variations:
       - si: apprentissage
         alors:
-          allègement:
-            assiette: cotisations . assiette
-            abattement: 79% * SMIC
+          valeur: cotisations . assiette
+          abattement: 79% * SMIC
       - sinon: cotisations . assiette
 
 contrat salarié . cotisations . assiette minimale:
@@ -1383,19 +1380,18 @@ contrat salarié . rémunération . brut:
     # et de retraite complémentaire on ne ré-intègre ici que la part employeur
     # (car la part salarié est déjà comptabilisé dans `rémunération . brut de
     # base` dont elle vient en déduction).
-    allègement:
-      assiette:
-        somme:
-          - rémunération . brut de base
-          - avantages en nature . montant
-          - primes
-          - CDD . indemnités salarié
-          - heures supplémentaires
-          - heures complémentaires
-          - frais professionnels
-          - prévoyance . employeur
-          - retraite supplémentaire . employeur
-      abattement: activité partielle . retrait absence
+    valeur:
+      somme:
+        - rémunération . brut de base
+        - avantages en nature . montant
+        - primes
+        - CDD . indemnités salarié
+        - heures supplémentaires
+        - heures complémentaires
+        - frais professionnels
+        - prévoyance . employeur
+        - retraite supplémentaire . employeur
+    abattement: activité partielle . retrait absence
 
 contrat salarié . rémunération . heures supplémentaires:
   titre: rémunération heures supplémentaires
@@ -2494,9 +2490,8 @@ contrat salarié . retraite supplémentaire:
 
 contrat salarié . retraite supplémentaire . part déductible:
   formule:
-    allègement:
-      assiette: retraite supplémentaire . employeur
-      abattement: plafond d'exonération sociale employeur
+    valeur: retraite supplémentaire . employeur
+    abattement: plafond d'exonération sociale employeur
 
 contrat salarié . retraite supplémentaire . plafond d'exonération sociale employeur:
   formule:
@@ -3071,9 +3066,8 @@ contrat salarié . prévoyance:
 
 contrat salarié . prévoyance . part déductible:
   formule:
-    allègement:
-      assiette: prévoyance . employeur
-      abattement: plafond exonération sociale employeur
+    valeur: prévoyance . employeur
+    abattement: plafond exonération sociale employeur
 
 contrat salarié . prévoyance . plafond exonération sociale employeur:
   formule:
@@ -3141,13 +3135,12 @@ contrat salarié . taxe d'apprentissage . assiette:
     variations:
       - si: apprentissage
         alors:
-          allègement:
-            assiette: cotisations . assiette
-            abattement:
-              variations:
-                - si: établissement . localisation . outre-mer
-                  alors: 20% * SMIC
-                - sinon: 11% * SMIC
+          valeur: cotisations . assiette
+          abattement:
+            variations:
+              - si: établissement . localisation . outre-mer
+                alors: 20% * SMIC
+              - sinon: 11% * SMIC
       - sinon: cotisations . assiette
 
 contrat salarié . taxe d'apprentissage . base:
@@ -3213,9 +3206,8 @@ contrat salarié . taxe sur les salaires . assiette de base:
 
 contrat salarié . taxe sur les salaires . assiette:
   formule:
-    allègement:
-      assiette: assiette de base
-      abattement: prime d'impatriation
+    valeur: assiette de base
+    abattement: prime d'impatriation
   références:
     bofig: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
     impots.gouv.fr: https://www.impots.gouv.fr/portail/international-particulier/le-regime-des-impatries
@@ -3288,9 +3280,8 @@ contrat salarié . profession spécifique . journaliste . abattement fiscal:
   remplace: rémunération . net imposable
   titre: net imposable journaliste
   formule:
-    allègement:
-      assiette: rémunération . net imposable
-      abattement: 7650€/an
+    valeur: rémunération . net imposable
+    abattement: 7650€/an
 
 contrat salarié . profession spécifique . ouvrier du bâtiment:
   icônes: 👷‍♂️
