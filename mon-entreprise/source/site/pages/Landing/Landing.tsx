@@ -2,7 +2,7 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans , useTranslation} from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Emoji from 'Components/utils/Emoji'
@@ -23,9 +23,14 @@ export default function Landing() {
 		<>
 			<Header />
 			<div className="app-content ui__ container">
-					{language === 'en' && <div className="ui__ plain card" style={{textAlign: 'center'}}>
-						<Emoji emoji="🇬🇧"/> <strong>Brexit</strong> : <a href={BrexitPDF} target="_blank">Discover the impact on your social protection </a> 
-					</div>}
+				{language === 'en' && (
+					<div className="ui__ plain card" style={{ textAlign: 'center' }}>
+						<Emoji emoji="🇬🇧" /> <strong>Brexit</strong> :{' '}
+						<a href={BrexitPDF} target="_blank">
+							Discover the impact on your social protection{' '}
+						</a>
+					</div>
+				)}
 				<section className="landing-title">
 					<img
 						alt="logo mon-entreprise.fr"
