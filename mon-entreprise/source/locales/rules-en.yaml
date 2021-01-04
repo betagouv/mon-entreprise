@@ -454,6 +454,9 @@ contrat salarié . ATMP . taux minimum:
     notamment pour le calcul de la réduction générale de cotisations
   titre.en: '[automatic] minimum level'
   titre.fr: taux minimum
+contrat salarié . ATMP . taux moyen:
+  titre.en: '[automatic] mean rate'
+  titre.fr: taux moyen
 contrat salarié . ATMP . taux personnalisé:
   description.en: >
     [automatic] Companies with more than 20 employees have an individualized
