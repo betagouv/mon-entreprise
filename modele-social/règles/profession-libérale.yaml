@@ -540,9 +540,8 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
     règle: cotisations et contributions . allocations familiales
     sauf dans: participation CPAM
   formule:
-    allègement:
-      assiette: cotisations et contributions . allocations familiales
-      abattement: participation CPAM
+    valeur: cotisations et contributions . allocations familiales
+    abattement: participation CPAM
 
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
@@ -728,9 +727,8 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   remplace: cotisations et contributions . retraite de base
   formule:
-    allègement:
-      assiette: PL . retraite CNAVPL
-      abattement: participation CPAM
+    valeur: PL . retraite CNAVPL
+    abattement: participation CPAM
   références:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
@@ -821,15 +819,14 @@ dirigeant . indépendant . PL . CARMF . ASV:
     par les Caisses maladie.
   non applicable si: métier . secteur médecin = 'non conventionné'
   formule:
-    allègement:
-      assiette [ref]:
-        somme:
-          - 5253 €/an
-          - produit:
-              assiette: PAMC . revenus activité conventionnée
-              plafond: 5 * plafond sécurité sociale temps plein
-              taux: 3.80%
-      abattement: participation CPAM
+    valeur [ref assiette]:
+      somme:
+        - 5253 €/an
+        - produit:
+            assiette: PAMC . revenus activité conventionnée
+            plafond: 5 * plafond sécurité sociale temps plein
+            taux: 3.80%
+    abattement: participation CPAM
     arrondi: oui
   références:
     Taux 2020: http://www.carmf.fr/page.php?page=chiffrescles/stats/2020/taux2020.htm
@@ -1031,9 +1028,8 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     (CPAM).
 
   formule:
-    allègement:
-      assiette: 780 €/an
-      abattement [ref participation CPAM]: 520 €/an
+    valeur: 780 €/an
+    abattement [ref participation CPAM]: 520 €/an
   références:
     Site CARCDSF: http://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |

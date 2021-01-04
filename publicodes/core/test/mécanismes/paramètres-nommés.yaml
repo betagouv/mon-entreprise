@@ -32,10 +32,9 @@ paramètre nommés imbriqués:
 
 paramètre nommé utilisé dans la règle:
   formule:
-    allègement:
-      assiette [ref] : 500€
-      abattement: 
-        valeur: assiette * 10%
-        plancher: 100€
+    valeur [ref assiette] : 500€
+    abattement: 
+      valeur: assiette * 10%
+      plancher: 100€
   exemples:
     - valeur attendue: 400

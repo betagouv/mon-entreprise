@@ -161,9 +161,8 @@ contrat salarié . convention collective . sport . cotisations . formation profe
 
 contrat salarié . convention collective . sport . cotisations . assiette franchisée:
   formule:
-    allègement:
-      assiette: cotisations . assiette
-      abattement: franchise
+    valeur: cotisations . assiette
+    abattement: franchise
 
 contrat salarié . convention collective . sport . joueur entraineur:
   question: Le joueur est-il aussi entraineur ?

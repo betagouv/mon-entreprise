@@ -1,3 +1,4 @@
+import { AbattementNode } from '../mecanisms/abattement'
 import { ApplicableSiNode } from '../mecanisms/applicable'
 import { ArrondiNode } from '../mecanisms/arrondi'
 import { OperationNode } from '../mecanisms/operation'
@@ -17,7 +18,6 @@ import { ParDéfautNode } from '../mecanisms/parDéfaut'
 import { PlancherNode } from '../mecanisms/plancher'
 import { ProductNode } from '../mecanisms/product'
 import { RecalculNode } from '../mecanisms/recalcul'
-import { ReductionNode } from '../mecanisms/reduction'
 import { PossibilityNode } from '../mecanisms/one-possibility'
 import { SituationNode } from '../mecanisms/situation'
 import { SommeNode } from '../mecanisms/sum'
@@ -38,6 +38,7 @@ export type ConstantNode = {
 export type ASTNode = (
 	| RuleNode
 	| ReferenceNode
+	| AbattementNode
 	| ApplicableSiNode
 	| ArrondiNode
 	| BarèmeNode
@@ -56,7 +57,6 @@ export type ASTNode = (
 	| PlancherNode
 	| ProductNode
 	| RecalculNode
-	| ReductionNode
 	| SituationNode
 	| SommeNode
 	| SynchronisationNode

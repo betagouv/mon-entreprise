@@ -158,6 +158,5 @@ aide déclaration revenu indépendant 2019 . assiette sociale:
   titre: assiette sociale
   résumé: 'pour information [A - (B + C + D)]'
   formule:
-    allègement:
-      assiette: revenu net fiscal
-      abattement: total charges sociales déductible
+    valeur: revenu net fiscal
+    abattement: total charges sociales déductible

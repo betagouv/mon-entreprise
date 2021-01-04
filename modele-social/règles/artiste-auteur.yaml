@@ -12,13 +12,12 @@ artiste-auteur . revenus . traitements et salaires:
 artiste-auteur . revenus . BNC:
   unité: €/an
   formule:
-    allègement:
-      assiette: recettes
-      abattement:
-        variations:
-          - si: micro-bnc
-            alors: charges forfaitaires
-          - sinon: frais réels
+    valeur: recettes
+    abattement:
+      variations:
+        - si: micro-bnc
+          alors: charges forfaitaires
+        - sinon: frais réels
 
 artiste-auteur . revenus . BNC . micro-bnc:
   non applicable si: contrôle micro-bnc

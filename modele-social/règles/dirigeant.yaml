@@ -378,9 +378,8 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
 dirigeant . auto-entrepreneur . impôt . revenu abattu:
   titre: revenu abattu auto-entrepreneur
   formule:
-    allègement:
-      assiette: base des cotisations
-      abattement: abattement
+    valeur: base des cotisations
+    abattement: abattement
 
 dirigeant . auto-entrepreneur . net après impôt:
   titre: revenu net après impôt
@@ -829,9 +828,8 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
       - invalidité et décès
       - conjoint collaborateur
   formule:
-    allègement:
-      assiette: assiette des cotisations
-      abattement: déduction tabac
+    valeur: assiette des cotisations
+    abattement: déduction tabac
 
 dirigeant . indépendant . contrats madelin:
   titre: Contrats Madelin
@@ -1108,15 +1106,14 @@ dirigeant . indépendant . cotisations et contributions . CSG et CRDS . assiette
     puisque la partie non imposable a déjà été retranchée du revenu net fiscal
     fourni
   formule:
-    allègement:
-      assiette:
-        somme:
-          - revenu professionnel
-          - cotisations
-      abattement:
-        somme:
-          - revenus étrangers . montant
-          - dirigeant . indépendant . IJSS . imposable
+    valeur:
+      somme:
+        - revenu professionnel
+        - cotisations
+    abattement:
+      somme:
+        - revenus étrangers . montant
+        - dirigeant . indépendant . IJSS . imposable
 
 dirigeant . indépendant . cotisations et contributions . formation professionnelle:
   produit:

@@ -128,8 +128,8 @@ const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 			return traverseProductNode(fn, node)
 		case 'recalcul':
 			return traverseRecalculNode(fn, node)
-		case 'allègement':
-			return traverseReductionNode(fn, node)
+		case 'abattement':
+			return traverseAbattementNode(fn, node)
 		case 'nom dans la situation':
 			return traverseSituationNode(fn, node)
 		case 'synchronisation':
@@ -290,12 +290,11 @@ const traverseRecalculNode: TraverseFunction<'recalcul'> = (fn, node) => ({
 	},
 })
 
-const traverseReductionNode: TraverseFunction<'allègement'> = (fn, node) => ({
+const traverseAbattementNode: TraverseFunction<'abattement'> = (fn, node) => ({
 	...node,
 	explanation: {
 		assiette: fn(node.explanation.assiette),
 		abattement: fn(node.explanation.abattement),
-		plafond: fn(node.explanation.plafond),
 	},
 })
 

@@ -152,11 +152,10 @@ Conversion avec composantes:
         assiette annuelle: 20000
       valeur attendue: 180
 
-Conversion dans un allègement:
+Conversion dans un abattement:
   formule:
-    allègement:
-      assiette: 1000€/an
-      abattement: 10€/mois
+    valeur: 1000€/an
+    abattement: 10€/mois
   unité: €/an
   exemples:
     valeur attendue: 880
@@ -164,17 +163,15 @@ Conversion dans un allègement:
 Conversion dans avec un abattement en %:
   unité: €/an
   formule:
-    allègement:
-      assiette: 1000€/an
-      abattement: 10%
+    valeur: 1000€/an
+    abattement: 10%
   exemples:
     - valeur attendue: 900
 
 assiette cotisations:
   formule:
-    allègement:
-      assiette: assiette mensuelle
-      abattement: 1200 €/an
+    valeur: assiette mensuelle
+    abattement: 1200 €/an
 
 prévoyance cadre:
   formule:

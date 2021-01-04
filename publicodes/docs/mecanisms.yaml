@@ -399,7 +399,7 @@ composantes:
         vérification:
           prix = prix . HT + prix . TVA 
 
-allègement:
+abattement:
   description: >-
     Permet de réduire le montant d'une variable.
 
@@ -407,9 +407,8 @@ allègement:
   exemples:
     base: >-
       impôt . revenu abattu:
-        allègement:
-          assiette: base des cotisations
-          abattement: abattement
+        valeur: base des cotisations
+        abattement: abattement
 
 
 plancher:
