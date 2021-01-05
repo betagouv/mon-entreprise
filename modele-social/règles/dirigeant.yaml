@@ -75,6 +75,10 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
 
 dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié
+  remplace: 
+    règle: entreprise . imposition
+    # TODO devrait remplacer par l'option micro-BNC
+    par: "'IR'"
   formule: dirigeant = 'auto-entrepreneur'
   icônes: 🚶
   description: |
