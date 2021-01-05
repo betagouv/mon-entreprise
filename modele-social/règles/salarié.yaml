@@ -1071,6 +1071,17 @@ contrat salarié . professionnalisation:
   références:
     Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
+
+contrat salarié . professionnalisation . jeune de moins de 30 ans:
+  question: Le salarié embauché a-t'il moins de 30 ans ?
+  par défaut: oui
+
+contrat salarié . professionnalisation . salarié de 45 ans et plus:
+  non applicable si: jeune de moins de 30 ans
+  question: Le salarié embauché a-t'il 45 ans ou plus ?
+  par défaut: non
+
+
 contrat salarié . stage:
   description: |
     Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
@@ -1957,9 +1968,7 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
     toutes ces conditions:
       - une de ces conditions:
           - apprentissage
-          - toutes ces conditions:
-              - professionnalisation
-              - jeune de moins de 30 ans
+          - professionnalisation . jeune de moins de 30 ans
       - ancienneté . date d'embauche >= 01/07/2020
       - ancienneté . date d'embauche <= 28/02/2021
       - temps de travail . temps effectif > 0 heures/mois
@@ -1971,24 +1980,6 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche d'apprent
   rend non applicable: aide à l'embauche d'apprentis
   références:
     Plan \#1jeune1solution: https://travail-emploi.gouv.fr/formation-professionnelle/entreprise-et-alternance/aide-exceptionnelle-apprentissage
-
-contrat salarié . jeune de moins de 26 ans:
-  question: Le salarié embauché a-t'il moins de 26 ans ?
-  non applicable si: professionnalisation
-  par défaut: non
-
-contrat salarié . jeune de moins de 30 ans:
-  question: Le salarié embauché a-t'il moins de 30 ans ?
-  applicable si: professionnalisation
-  par défaut: oui
-
-contrat salarié . salarié de 45 ans et plus:
-  applicable si: 
-    toutes ces conditions:
-      - professionnalisation
-      - jeune de moins de 30 ans = non
-  question: Le salarié embauché a-t'il 45 ans ou plus ?
-  par défaut: non
 
 contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeunes:
   non applicable si: aides employeur . emploi franc
@@ -2002,7 +1993,6 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
     contrat de travail.
   applicable si:
     toutes ces conditions:
-      - contrat salarié . jeune de moins de 26 ans
       - ancienneté . date d'embauche >= 01/08/2020
       - ancienneté . date d'embauche <= 31/01/2021
       - rémunération . brut de base <= 2 * SMIC
@@ -2011,6 +2001,9 @@ contrat salarié . aides employeur . aide exceptionnelle à l'embauche des jeune
           - toutes ces conditions:
               - CDD
               - CDD . durée contrat >= 3 mois
+      - nom: jeune de moins de 26 ans
+        question: Le salarié embauché a-t'il moins de 26 ans ?
+        par défaut: non
   formule:
     produit:
       assiette: 4000 €/an
@@ -2022,10 +2015,7 @@ contrat salarié . aides employeur . aide à l'embauche senior professionnalisat
   description: |
     Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
-  applicable si:
-    toutes ces conditions:
-      - professionnalisation
-      - salarié de 45 ans et plus
+  applicable si: professionnalisation . salarié de 45 ans et plus
   formule:
     produit:
       assiette: 2000 €/an

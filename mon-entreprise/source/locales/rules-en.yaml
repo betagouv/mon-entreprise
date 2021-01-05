@@ -2329,16 +2329,6 @@ contrat salarié . intermittents du spectacle . technicien:
 contrat salarié . intermittents du spectacle . technicien . non cadre:
   titre.en: not "cadre"
   titre.fr: non cadre
-contrat salarié . jeune de moins de 26 ans:
-  question.en: '[automatic] Is the employee hired under the age of 26?'
-  question.fr: Le salarié embauché a-t'il moins de 26 ans ?
-  titre.en: '[automatic] under 26 years old'
-  titre.fr: jeune de moins de 26 ans
-contrat salarié . jeune de moins de 30 ans:
-  question.en: '[automatic] Is the employee hired under the age of 30?'
-  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
-  titre.en: '[automatic] under 30 years old'
-  titre.fr: jeune de moins de 30 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas
@@ -2668,6 +2658,16 @@ contrat salarié . professionnalisation:
     prolongée jusqu'à 36 mois.
   titre.en: '[automatic] professionalization'
   titre.fr: professionnalisation
+contrat salarié . professionnalisation . jeune de moins de 30 ans:
+  question.en: '[automatic] Is the employee hired under the age of 30?'
+  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
+  titre.en: '[automatic] under 30 years old'
+  titre.fr: jeune de moins de 30 ans
+contrat salarié . professionnalisation . salarié de 45 ans et plus:
+  question.en: '[automatic] Is the employee hired 45 years of age or older?'
+  question.fr: Le salarié embauché a-t'il 45 ans ou plus ?
+  titre.en: '[automatic] employee aged 45 and over'
+  titre.fr: salarié de 45 ans et plus
 contrat salarié . prévoyance:
   titre.en: '[automatic] foresight'
   titre.fr: prévoyance
@@ -3284,11 +3284,6 @@ contrat salarié . rémunération . total:
   résumé.fr: Dépensé par l'entreprise
   titre.en: Total salary
   titre.fr: Total chargé
-contrat salarié . salarié de 45 ans et plus:
-  question.en: '[automatic] Is the employee hired 45 years of age or older?'
-  question.fr: Le salarié embauché a-t'il 45 ans ou plus ?
-  titre.en: '[automatic] employee aged 45 and over'
-  titre.fr: salarié de 45 ans et plus
 contrat salarié . salarié majeur:
   question.en: Is the employee over 18 (age of majority)?
   question.fr: Le salarié est-il majeur ?
