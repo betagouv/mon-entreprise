@@ -100,7 +100,7 @@ entreprise . imposition . IS:
 
 entreprise . imposition . IS . notification IS non intégré:
   type: notification
-  applicable si:
+  formule:
     une de ces conditions:
       - dirigeant . assimilé salarié
       - dirigeant . indépendant
