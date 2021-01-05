@@ -283,6 +283,7 @@ revenu net après impôt:
 # in the "impôt" namespace to have a better questions ordering
 impôt . foyer fiscal:
   icônes: 👨‍👩‍👧‍👦
+  formule: oui
 
 impôt . foyer fiscal . situation de famille:
   question: Quelle est votre situation familiale ?
