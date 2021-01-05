@@ -98,6 +98,17 @@ entreprise . imposition . IS:
   valeur: imposition = 'IS'
   titre: À l'impôt sur les sociétés
 
+entreprise . imposition . IS . notification IS non intégré:
+  type: notification
+  applicable si:
+    une de ces conditions:
+      - dirigeant . assimilé salarié
+      - dirigeant . indépendant
+  description: |
+    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
+    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
+    le calcul de l'impôt sur le revenu.
+
 entreprise . bénéfice:
   formule: chiffre d'affaires - charges dont rémunération dirigeant
 
