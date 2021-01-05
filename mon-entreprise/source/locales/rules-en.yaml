@@ -6310,6 +6310,20 @@ entreprise . imposition . IR:
 entreprise . imposition . IS:
   titre.en: '[automatic] To corporate tax'
   titre.fr: À l'impôt sur les sociétés
+entreprise . imposition . IS . notification IS non intégré:
+  description.en: >
+    [automatic] This simulator does not include corporate taxes or the taxation
+    of
+
+    dividends. The "Corporate Tax" option is only used in the following cases
+
+    income tax calculation.
+  description.fr: |
+    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
+    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
+    le calcul de l'impôt sur le revenu.
+  titre.en: '[automatic] non-integrated IS notification'
+  titre.fr: notification IS non intégré
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
