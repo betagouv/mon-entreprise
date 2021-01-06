@@ -20,7 +20,7 @@ const useIFrameOffset = () => {
 			setOffset(0)
 			return
 		}
-		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }: PageInfo) => {
+		window.parentIFrame.getPageInfo(({ scrollTop, offsetTop }) => {
 			setOffset(scrollTop - offsetTop)
 			window.parentIFrame.getPageInfo(false)
 		})

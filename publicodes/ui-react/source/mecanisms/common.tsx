@@ -128,20 +128,37 @@ export const InfixMecanism = ({
 	return (
 		<StyledInfixMecanism className="infix-mecanism">
 			{prefixed && children}
-			<div className="value" style={dimValue ? { opacity: 0.5 } : {}}>
+			<div
+				className="value"
+				style={{
+					position: 'relative',
+				}}
+			>
+				{dimValue && <DimOverlay />}
 				<Explanation node={value} />
 			</div>
 			{!prefixed && children}
 		</StyledInfixMecanism>
 	)
 }
+const DimOverlay = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	left: 0;
+	opacity: 0.5;
+	pointer-events: none;
+	z-index: 1;
+`
 
 const StyledInfixMecanism = styled.div`
 	.value > .infix-mecanism {
 		border: none;
 		padding: 0;
 	}
-	.value > :not(.infix-mecanism) {
+	.value > :not(.infix-mecanism):not(${DimOverlay}) {
 		margin-bottom: 1rem;
 	}
 `
