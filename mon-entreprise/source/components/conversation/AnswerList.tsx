@@ -2,13 +2,13 @@ import { goToQuestion, resetSimulation } from 'Actions/actions'
 import Overlay from 'Components/Overlay'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { EvaluatedNode, formatValue } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'modele-social'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import './AnswerList.css'
+import Value from 'Components/EngineValue'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -19,12 +19,12 @@ export default function AnswerList({ onClose }: AnswerListProps) {
 	const engine = useEngine()
 	const answeredQuestions = (Object.keys(
 		useSelector(situationSelector)
-	) as Array<DottedName>).map((dottedName) =>
-		engine.evaluateNode(engine.getParsedRules()[dottedName])
+	) as Array<DottedName>).map(
+		(dottedName) => engine.getParsedRules()[dottedName]
 	)
 
-	const nextSteps = useNextQuestions().map((dottedName) =>
-		engine.evaluateNode(engine.getParsedRules()[dottedName])
+	const nextSteps = useNextQuestions().map(
+		(dottedName) => engine.getParsedRules()[dottedName]
 	)
 
 	return (
@@ -67,11 +67,10 @@ function StepsTable({
 	rules,
 	onClose,
 }: {
-	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
+	rules: Array<{ dottedName: DottedName; title: string }>
 	onClose: () => void
 }) {
 	const dispatch = useDispatch()
-	const language = useTranslation().i18n.language
 	return (
 		<table>
 			<tbody>
@@ -111,7 +110,7 @@ function StepsTable({
 								`}
 							>
 								<span className="answerContent">
-									{formatValue(rule, { language })}
+									<Value expression={rule.dottedName} linkToRule={false} />
 								</span>
 							</span>{' '}
 						</td>
