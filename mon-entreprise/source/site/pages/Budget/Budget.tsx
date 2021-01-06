@@ -57,22 +57,57 @@ export default function Budget() {
 			{selectedYear !== '2019' && (
 				<>
 					<h2>Emploi des ressources</h2>
-					<RessourcesAllocationTable>
-						<thead>
-							<tr>
-								<td>2020</td>
-								{quarters.map((q) => (
-									<td key={q}>{q}</td>
+					<div
+						css={`
+							overflow: auto;
+						`}
+					>
+						<RessourcesAllocationTable>
+							<thead>
+								<tr>
+									<td>2020</td>
+									{quarters.map((q) => (
+										<td key={q}>{q}</td>
+									))}
+									<td>Total</td>
+								</tr>
+							</thead>
+							<tbody>
+								{categories.map((label) => (
+									<tr key={label}>
+										<td>{label}</td>
+										{quarters.map((q) => {
+											const value = budget[2020]?.[q]?.[label]
+											return (
+												<td key={q}>
+													{value
+														? formatValue(value, {
+																displayedUnit: '€',
+																language,
+														  })
+														: '-'}
+												</td>
+											)
+										})}
+										<td>
+											{formatValue(
+												sum(
+													quarters.map((q) => budget[2020]?.[q]?.[label] ?? 0)
+												),
+												{
+													displayedUnit: '€',
+													language,
+												}
+											)}
+										</td>
+									</tr>
 								))}
-								<td>Total</td>
-							</tr>
-						</thead>
-						<tbody>
-							{categories.map((label) => (
-								<tr key={label}>
-									<td>{label}</td>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td>Total</td>
 									{quarters.map((q) => {
-										const value = budget[2020]?.[q]?.[label]
+										const value = sum(Object.values(budget[2020]?.[q] ?? {}))
 										return (
 											<td key={q}>
 												{value
@@ -86,7 +121,11 @@ export default function Budget() {
 									})}
 									<td>
 										{formatValue(
-											sum(quarters.map((q) => budget[2020]?.[q]?.[label] ?? 0)),
+											sum(
+												quarters.map((q) =>
+													sum(Object.values(budget[2020]?.[q] ?? {}))
+												)
+											),
 											{
 												displayedUnit: '€',
 												language,
@@ -94,40 +133,9 @@ export default function Budget() {
 										)}
 									</td>
 								</tr>
-							))}
-						</tbody>
-						<tfoot>
-							<tr>
-								<td>Total</td>
-								{quarters.map((q) => {
-									const value = sum(Object.values(budget[2020]?.[q] ?? {}))
-									return (
-										<td key={q}>
-											{value
-												? formatValue(value, {
-														displayedUnit: '€',
-														language,
-												  })
-												: '-'}
-										</td>
-									)
-								})}
-								<td>
-									{formatValue(
-										sum(
-											quarters.map((q) =>
-												sum(Object.values(budget[2020]?.[q] ?? {}))
-											)
-										),
-										{
-											displayedUnit: '€',
-											language,
-										}
-									)}
-								</td>
-							</tr>
-						</tfoot>
-					</RessourcesAllocationTable>
+							</tfoot>
+						</RessourcesAllocationTable>
+					</div>
 					<Markdown source={ressourcesDescription} />
 				</>
 			)}
@@ -148,7 +156,8 @@ const RessourcesAllocationTable = styled.table`
 		text-align: right;
 	}
 
-	tbody tr:nth-child(2n + 1) {
+	tbody tr:nth-child(odd),
+	tfoot tr:nth-child(odd) {
 		background: var(--lighterColor);
 	}
 
