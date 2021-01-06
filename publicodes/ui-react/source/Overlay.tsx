@@ -84,6 +84,7 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 	right: 0;
 	bottom: 0;
 	background: rgba(255, 255, 255, 0.9);
+	max-height: 100vh;
 	overflow: auto;
 	z-index: 2;
 	.overlayContent {
