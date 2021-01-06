@@ -1610,7 +1610,8 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     D'un commun accord, l'employeur et l'employé peuvent renoncer à la réduction
     du plafond de la sécurité sociale (applicable pour les salariés à temps
     partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
-  par défaut: non
+  formule: non
+  # TODO : ajouter une question non prioritaire
   applicable si: temps de travail . quotité de travail < 100%
   remplace:
     - règle: plafond sécurité sociale
