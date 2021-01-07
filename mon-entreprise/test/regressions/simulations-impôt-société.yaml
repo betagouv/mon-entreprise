@@ -1,0 +1,17 @@
+bénéfices:
+  - entreprise . bénéfice: -2000 €/an
+  - entreprise . bénéfice: 0 €/an
+  - entreprise . bénéfice: 2000 €/an
+  - entreprise . bénéfice: 20000 €/an
+  - entreprise . bénéfice: 200000 €/an
+  - entreprise . bénéfice: 2000000 €/an
+  - entreprise . bénéfice: 20000000 €/an
+
+prorata temporis:
+  - entreprise . bénéfice: 1000000 €/an
+  - entreprise . bénéfice: 1000000 €/an
+    entreprise . exercice . début: 01/01/2020
+    entreprise . exercice . fin: 01/06/2020
+  - entreprise . bénéfice: 1000000 €/an
+    entreprise . exercice . début: 01/01/2020
+    entreprise . exercice . fin: 01/06/2021
