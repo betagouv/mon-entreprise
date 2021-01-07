@@ -2175,10 +2175,10 @@ contrat salarié . frais professionnels . titres-restaurant . montant unitaire:
   description.en:
     '[automatic] There is no maximum or minimum value for restaurant
     vouchers. On the other hand, in order to benefit from the contribution
-    exemption, you must not exceed €11.10 per title in 2020.'
+    exemption, you must not exceed €11.08 per voucher in 2021.'
   description.fr: Il n'y a pas de valeur maximale ou minimale pour les
     titres-restaurant. En revanche, pour bénéficier de l'exonération de
-    cotisation, il ne faut pas dépasser 11,10€ par titre en 2020.
+    cotisation, il ne faut pas dépasser 11,08€ par titre en 2021.
   question.en: '[automatic] What is the unit value of the restaurant voucher?'
   question.fr: Quelle est la valeur unitaire du titre-restaurant ?
   suggestions.faible.en: '[automatic] low'
