@@ -274,6 +274,7 @@ revenu net après impôt:
   unité: €/an
   résumé: Disponible sur votre compte en banque
   question: Quel revenu voulez-vous toucher ?
+  identifiant court: net-apres-impot
   description: |
     Il s'agit du revenu net de charges, cotisations et d'impôts.
     Autrement dit, c'est ce que vous gagnez à la fin sur votre compte en banque.

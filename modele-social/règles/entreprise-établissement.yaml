@@ -57,8 +57,10 @@ entreprise . chiffre d'affaires:
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   formule: dirigeant . rémunération totale + charges
+  identifiant court: ca
 
 entreprise . chiffre d'affaires minimum:
+  identifiant court: entreprise-ca-min
   description: Le montant minimum des ventes (H.T) à réaliser pour atteindre le seuil de rentabilité.
   question: Quel est votre chiffre d'affaires minimum envisagé ?
   unité: €/an
@@ -138,6 +140,7 @@ entreprise . charges:
     - charges d'exploitation
     - charges de fonctionnement
   titre: charges de fonctionnement
+  identifiant court: charges
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
@@ -204,10 +207,10 @@ entreprise . ACRE:
   par défaut: ACRE par défaut
   note: Les auto-entreprises crées entre le 1er janvier et le 31 décembre 2019 bénéficient d'un dispositif plus favorable, actif pendant 3 années.
 
-entreprise . ACRE par défaut: 
+entreprise . ACRE par défaut:
   formule:
     variations:
-      - si: 
+      - si:
           toutes ces conditions:
             - dirigeant . auto-entrepreneur
             - une de ces conditions:

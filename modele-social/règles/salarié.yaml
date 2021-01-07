@@ -1200,6 +1200,7 @@ contrat salarié . cotisations . assiette minimale:
 
 contrat salarié . rémunération . brut de base:
   titre: Salaire brut
+  identifiant court: salaire-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)
   type: salaire
   question: Quel est votre salaire brut ?
@@ -1610,8 +1611,8 @@ contrat salarié . plafond sécurité sociale . renonciation proratisation:
     D'un commun accord, l'employeur et l'employé peuvent renoncer à la réduction
     du plafond de la sécurité sociale (applicable pour les salariés à temps
     partiel), notamment afin d'augmenter le montant des cotisations vieillesse.
-  formule: non
-  # TODO : ajouter une question non prioritaire
+  # TODO : Réactiver la règle (peut être ajouter des références et la déplacer dans l'espace de nom temps de travail)
+  valeur: non
   applicable si: temps de travail . quotité de travail < 100%
   remplace:
     - règle: plafond sécurité sociale
@@ -1755,6 +1756,7 @@ contrat salarié . prime d'impatriation:
 
 contrat salarié . rémunération . net:
   titre: Salaire net
+  identifiant court: salaire-net
   unité: €/mois
   type: salaire
   question: Quel est votre salaire net ?
@@ -1779,6 +1781,7 @@ contrat salarié . rémunération . net:
 
 contrat salarié . rémunération . net après impôt:
   titre: Salaire net après impôt
+  identifiant court: salaire-net-apres-impot
   résumé: Versé sur le compte bancaire
   question: Quel est le revenu net du salarié après impôt ?
   type: salaire
@@ -1798,6 +1801,7 @@ contrat salarié . rémunération . net après impôt:
 
 contrat salarié . prix du travail:
   titre: Coût total
+  identifiant court: cout-embauche
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   description: |

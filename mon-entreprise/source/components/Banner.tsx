@@ -8,16 +8,19 @@ import './Banner.css'
 type BannerProps = {
 	children: React.ReactNode
 	hidden?: boolean
+	hideAfterFirstStep?: boolean
 	icon?: string
 }
 
 export default function Banner({
 	children,
 	hidden: hiddenProp = false,
+	hideAfterFirstStep = true,
 	icon,
 }: BannerProps) {
 	const hiddenState = useSelector(firstStepCompletedSelector)
-	const hidden = hiddenProp || hiddenState
+
+	const hidden = hiddenProp || (hideAfterFirstStep && hiddenState)
 	return !hidden ? (
 		<Animate.fadeIn>
 			<div className="ui__ banner">

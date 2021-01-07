@@ -60,7 +60,7 @@ export type SimulationConfig = {
 	'unité par défaut': string
 }
 
-type Situation = Partial<Record<DottedName, any>>
+export type Situation = Partial<Record<DottedName, any>>
 export type Simulation = {
 	config: SimulationConfig
 	url: string
@@ -91,13 +91,13 @@ function simulation(
 	existingCompany: Company
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
+		if (state && state.config === action.config) {
+			return state
+		}
 		const companySituation = action.useCompanyDetails
 			? getCompanySituation(existingCompany)
 			: {}
 		const { config, url } = action
-		if (state && state.config === config) {
-			return state
-		}
 		return {
 			config,
 			url,

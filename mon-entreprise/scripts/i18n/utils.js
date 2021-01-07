@@ -107,7 +107,6 @@ const getUiMissingTranslations = () => {
 }
 
 const fetchTranslation = async (text) => {
-	console.log(`Fetch translation for:\n\t${text}`)
 	const response = await fetch(
 		`https://api.deepl.com/v2/translate?${querystring.stringify({
 			text,
@@ -117,8 +116,14 @@ const fetchTranslation = async (text) => {
 			target_lang: 'EN',
 		})}`
 	)
-	const { translations } = await response.json()
-	return translations[0].text
+	try {
+		const { translations } = await response.json()
+		console.log(`✅ Deepl translation succeeded for:\n\t${text}\n`)
+		return translations[0].text
+	} catch (e) {
+		console.warn(`❌ Deepl translation failed for:\n\t${text}\n`)
+		return ''
+	}
 }
 module.exports = {
 	fetchTranslation,

@@ -109,20 +109,37 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 		border-left: 0.5rem solid white;
 		bottom: 0;
 		right: 0;
-		color: rgba(0, 0, 0, 0.6);
 		color: var(--lighterTextColor);
 		padding: 0 1rem;
+		text-decoration: none;
 	}
 	.ui__.card[aria-modal='true'] {
 		padding-bottom: 4rem;
 		display: flex;
 		flex-direction: column;
 	}
+	@media (max-width: 600px) {
+		.overlayContent {
+			width: 100%;
+		}
+		.overlayCloseButton {
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			line-height: 1rem;
+			padding: 1.2rem;
+			padding-bottom: 1.5rem;
+			font-size: 3rem;
+			background: var(--lighterColor);
+		}
+	}
 
 	@media (min-width: 600px) {
 		.overlayCloseButton {
+			position: absolute;
 			top: 0;
 			bottom: auto;
+			right: 0;
 			padding: 0 0.5rem;
 			font-size: 2rem;
 		}
