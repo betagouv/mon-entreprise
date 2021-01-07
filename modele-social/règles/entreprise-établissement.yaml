@@ -236,13 +236,14 @@ entreprise . impôt sur les sociétés . prorata temporis:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
     
 entreprise . impôt sur les sociétés . contribution sociale:
-  description: |
-    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
-    sur les sociétés. Son montant n'est pas déductible des résultats.
+  # description: |
+  #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
 
-    L’assiette bénéficie d’un abattement important, et seules les entreprises
-    réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par
-    cette contribution. 
+  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution. 
+  description: |
+    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur les sociétés. Son montant n’est pas déductible des résultats.
+
+    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
   formule:
     produit:
       taux: 3.3%

@@ -93,6 +93,7 @@ Modifier mes réponses: Change my answers
 Mon entreprise: My company
 Mon revenu: My income
 Montant: Amount
+Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant des cotisations: Amount of contributions
 "Nom de l'entreprise ou SIREN ": Company name or SIREN code
 Non: No
@@ -714,6 +715,8 @@ gérer:
       <0>Estimate the amount spent for hiring</0>
 
       <1>Calculate how much your company will have to spend to pay your next employee</1>
+    is: <0>Estimate the amount of corporate income tax</0><1>Calculate the amount of
+      corporation tax based on your gross profit.</1>
     revenus: >
       <0>Calculate my net income</0>
 
@@ -747,6 +750,10 @@ gérer:
   titre: Manage my business
 heure: hour
 heures: hours
+impotSociété:
+  exerciceDates: Exercise from <2></2> to <6></6>
+  warning: "This simulator is aimed at <2>“TPE”</2>: it takes into account the
+    reduced corporate tax rates."
 imprimer: Print
 impôt: tax
 impôt sur le revenu: income tax
@@ -1106,6 +1113,26 @@ pages:
         title: "Independent: Urssaf income simulator"
       shortname: Independent
       title: Income simulator for the self-employed
+    is:
+      meta:
+        title: Corporate Tax Simulator
+      seo: <0>How is corporate tax calculated?</0><1>Corporate income tax applies to
+        the profits made by corporations (SA, SAS, SASU, SARL, etc.) and on an
+        optional basis for certain other kind of companies (EIRL, EURL, SNC,
+        etc.).</1><2>It is calculated on the basis of the profits made in France
+        during the financial year. The duration of a financial year is normally
+        12 months but it may be shorter or longer (in particular at the beginning
+        of activity or on the dissolution of the company). In this case, the tax
+        scale is scaled according to the length of the fiscal year, which is
+        taken into account in the simulator by changing the start and end dates
+        of the fiscal year.</2><3>Reduced rate and specific regimes</3><4>“TPE”
+        with a turnover of less than €7.63 million and 75% of their capital
+        owned by individuals benefit from a reduced corporate tax rate. This
+        rate is taken into account on the simulator and it is currently not
+        possible to simulate ineligibility for the reduced rates.</4><5>Finally,
+        there are specific tax regimes with dedicated rates for certain types of
+        capital gains (transfer of securities, transfer of patents). These
+        regimes are not included in the simulator.</5>
     médecin:
       shortname: Doctor
       title: Income simulator for private practitioners
@@ -1314,8 +1341,7 @@ selectionRégime:
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
 shareSimulation:
-  banner: "You can share your simulation: <2 onClick={onClick}>Share
-    link</2>"
+  banner: "You can share your simulation: <2 onClick={onClick}>Share link</2>"
   modal:
     button: Copy link
     helpText: The link is already selected, you can just hit "copy".
