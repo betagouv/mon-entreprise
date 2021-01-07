@@ -56,15 +56,16 @@ export function evaluatePlafondUntilActiveTranche(
 					plafondValue === Infinity || plafondValue === 0
 						? plafondValue
 						: convertUnit(
-							inferUnit('*', [plafond.unit, multiplicateur.unit]),
-							assiette.unit,
-							plafondValue
-						)
+								inferUnit('*', [plafond.unit, multiplicateur.unit]),
+								assiette.unit,
+								plafondValue
+						  )
 			} catch (e) {
 				warning(
 					this.options.logger,
 					this.cache._meta.ruleStack[0],
-					`L'unité du plafond de la tranche n°${i + 1
+					`L'unité du plafond de la tranche n°${
+						i + 1
 					}  n'est pas compatible avec celle l'assiette`,
 					e
 				)
@@ -103,7 +104,8 @@ export function evaluatePlafondUntilActiveTranche(
 				evaluationError(
 					this.options.logger,
 					this.cache._meta.ruleStack[0],
-					`Le plafond de la tranche n°${i + 1
+					`Le plafond de la tranche n°${
+						i + 1
 					} a une valeur inférieure à celui de la tranche précédente`
 				)
 			}

@@ -17,7 +17,6 @@ Un moteur d'évaluation qui expose les fonctions suivantes :
 
 -   setSituation
 -   evaluate
--   getRules
 -   getRule
 
 ### _method_ `engine.setSituation(situation)`
