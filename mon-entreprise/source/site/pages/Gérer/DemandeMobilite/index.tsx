@@ -83,7 +83,7 @@ export default function FormulaireMobilitéIndépendant() {
 				<strong>
 					<a href="tel:+33806804213">+33(0) 806 804 213</a>
 				</strong>{' '}
-				de 9h00 à 12h00 et de 13h00 à 16h00.
+				de 9h00 à 12h00 et de 13h00 à 16h00 (service gratuit + prix appel).
 			</p>
 			<FormulairePublicodes />
 		</EngineProvider>
