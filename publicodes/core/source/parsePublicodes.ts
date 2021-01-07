@@ -5,12 +5,14 @@ import parse from './parse'
 import { getReplacements, inlineReplacements } from './replacement'
 import { Rule, RuleNode } from './rule'
 import { disambiguateRuleReference } from './ruleUtils'
+import { getUnitKey } from './units'
 
 export type Context = {
 	dottedName: string
-	logger: Logger
 	parsedRules: Record<string, RuleNode>
 	ruleTitle?: string
+	getUnitKey?: getUnitKey
+	logger: Logger
 }
 
 type RawRule = Omit<Rule, 'nom'> | string | undefined | number
@@ -37,6 +39,7 @@ export default function parsePublicodes(
 		dottedName: partialContext.dottedName ?? '',
 		parsedRules: partialContext.parsedRules ?? {},
 		logger: partialContext.logger ?? console,
+		getUnitKey: partialContext.getUnitKey ?? ((x) => x),
 	}
 
 	Object.entries(rules).forEach(([dottedName, rule]) => {

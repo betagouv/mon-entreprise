@@ -2,9 +2,11 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import logoSvg from 'Images/logo.svg'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Emoji from 'Components/utils/Emoji'
+import BrexitPDF from './Brexit_guide.pdf'
 import { RootState } from 'Reducers/rootReducer'
 import Header from '../../layout/Header'
 import Footer from '../../layout/Footer/Footer'
@@ -16,10 +18,19 @@ export default function Landing() {
 	const statutChoisi = useSelector(
 		(state: RootState) => state.inFranceApp.companyStatusChoice
 	)
+	const language = useTranslation().i18n.language
 	return (
 		<>
 			<Header />
 			<div className="app-content ui__ container">
+				{language === 'en' && (
+					<div className="ui__ plain card" style={{ textAlign: 'center' }}>
+						<Emoji emoji="🇬🇧" /> <strong>Brexit</strong> :{' '}
+						<a href={BrexitPDF} target="_blank">
+							Discover the impact on your social protection{' '}
+						</a>
+					</div>
+				)}
 				<section className="landing-title">
 					<img
 						alt="logo mon-entreprise.fr"

@@ -1,5 +1,3 @@
-import { groupBy } from 'ramda'
-import { ContextType } from 'react'
 import { Logger } from '.'
 import { transformAST } from './AST'
 import { ASTNode } from './AST/types'
@@ -91,15 +89,15 @@ export function parseRendNonApplicable(
 export function getReplacements(
 	parsedRules: Record<string, RuleNode>
 ): Record<string, Array<ReplacementRule>> {
-	return groupBy(
-		(r: ReplacementRule) => {
+	return Object.values(parsedRules)
+		.flatMap((rule) => rule.replacements)
+		.reduce((acc, r: ReplacementRule) => {
 			if (!r.replacedReference.dottedName) {
 				throw new InternalError(r)
 			}
-			return r.replacedReference.dottedName
-		},
-		Object.values(parsedRules).flatMap((rule) => rule.replacements)
-	)
+			const key = r.replacedReference.dottedName
+			return { ...acc, [key]: [...(acc[key] ?? []), r] }
+		}, {})
 }
 
 export function inlineReplacements(

@@ -166,7 +166,9 @@ export const mecanismInversion = (v, context: Context) => {
 			ruleToInverse: context.dottedName,
 			inversionCandidates: v.avec.map((node) => parse(node, context)),
 		},
-		...('unité' in v && { unit: parseUnit(v.unité) }),
+		...('unité' in v && {
+			unit: parseUnit(v.unité, context.getUnitKey),
+		}),
 		nodeKind: 'inversion',
 	} as InversionNode
 }

@@ -1,11 +1,5 @@
-import { memoizeWith } from 'ramda'
 import { Evaluation, Unit } from './AST/types'
-import { serializeUnit } from './units'
-
-const NumberFormat = memoizeWith(
-	(...args) => JSON.stringify(args),
-	Intl.NumberFormat
-)
+import { formatUnit, serializeUnit } from './units'
 
 export const numberFormatter = ({
 	style,
@@ -27,7 +21,7 @@ export const numberFormatter = ({
 		!Number.isInteger(value)
 			? 2
 			: minimumFractionDigits
-	return NumberFormat(language, {
+	return Intl.NumberFormat(language, {
 		style,
 		currency: 'EUR',
 		maximumFractionDigits,
@@ -54,6 +48,7 @@ export type formatValueOptions = {
 	minimumFractionDigits?: number
 	language?: string
 	unit?: Unit | string
+	formatUnit?: formatUnit
 	value: number
 }
 
@@ -61,13 +56,16 @@ function formatNumber({
 	maximumFractionDigits,
 	minimumFractionDigits,
 	language,
+	formatUnit,
 	unit,
 	value,
 }: formatValueOptions) {
 	if (typeof value !== 'number') {
 		return value
 	}
-	const serializedUnit = unit ? serializeUnit(unit, value, language) : undefined
+	const serializedUnit = unit
+		? serializeUnit(unit, value, formatUnit)
+		: undefined
 	switch (serializedUnit) {
 		case '€':
 			return numberFormatter({
@@ -110,12 +108,13 @@ type Options = {
 	language?: string
 	displayedUnit?: string
 	precision?: number
+	formatUnit?: formatUnit
 }
 
 export function formatValue(
 	value: number | { nodeValue: Evaluation; unit?: Unit } | undefined,
 
-	{ language = 'fr', displayedUnit, precision = 2 }: Options = {}
+	{ language = 'fr', displayedUnit, formatUnit, precision = 2 }: Options = {}
 ) {
 	const nodeValue =
 		typeof value === 'number' || typeof value === 'undefined'
@@ -147,6 +146,7 @@ export function formatValue(
 				minimumFractionDigits: 0,
 				maximumFractionDigits: precision,
 				language,
+				formatUnit,
 				unit,
 				value: nodeValue,
 		  })
@@ -155,10 +155,10 @@ export function formatValue(
 
 export function serializeValue(
 	{ nodeValue, unit }: { nodeValue: Evaluation; unit?: Unit },
-	{ language = 'fr' }
+	{ format }: { format: formatUnit }
 ) {
 	const serializedUnit = (unit && typeof nodeValue === 'number'
-		? serializeUnit(unit, nodeValue, language)
+		? serializeUnit(unit, nodeValue, format)
 		: ''
 	)?.replace(/\s*\/\s*/g, '/')
 	return `${nodeValue} ${serializedUnit}`.trim()

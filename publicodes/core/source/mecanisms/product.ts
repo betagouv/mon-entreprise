@@ -43,7 +43,7 @@ const productEffect: EvaluationFunction = function ({
 			plafond = convertNodeToUnit(assiette.unit, plafond)
 		} catch (e) {
 			warning(
-				this.logger,
+				this.options.logger,
 				this.cache._meta.ruleStack[0],
 				"Impossible de convertir l'unité du plafond du produit dans celle de l'assiette",
 				e

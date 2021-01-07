@@ -1,4 +1,3 @@
-import { mapObjIndexed } from 'ramda'
 import { InternalError } from '../error'
 import { TrancheNodes } from '../mecanisms/trancheUtils'
 import { ReplacementRule } from '../replacement'
@@ -151,7 +150,9 @@ const traverseASTNode: TraverseFunction<NodeKind> = (fn, node) => {
 const traverseRuleNode: TraverseFunction<'rule'> = (fn, node) => ({
 	...node,
 	replacements: node.replacements.map(fn) as Array<ReplacementRule>,
-	suggestions: mapObjIndexed(fn, node.suggestions),
+	suggestions: Object.fromEntries(
+		Object.entries(node.suggestions).map(([key, value]) => [key, fn(value)])
+	),
 	explanation: {
 		parent: node.explanation.parent && fn(node.explanation.parent),
 		valeur: fn(node.explanation.valeur),

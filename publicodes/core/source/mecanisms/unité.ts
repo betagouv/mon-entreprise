@@ -12,7 +12,7 @@ export type UnitéNode = {
 
 export default function parseUnité(v, context): UnitéNode {
 	const explanation = parse(v.valeur, context)
-	const unit = parseUnit(v.unité)
+	const unit = parseUnit(v.unité, context.getUnitKey)
 
 	return {
 		explanation,
@@ -36,7 +36,7 @@ registerEvaluationFunction(parseUnité.nom, function evaluate(node) {
 			)
 		} catch (e) {
 			warning(
-				this.logger,
+				this.options.logger,
 				this.cache._meta.ruleStack[0],
 				"Erreur lors de la conversion d'unité explicite",
 				e

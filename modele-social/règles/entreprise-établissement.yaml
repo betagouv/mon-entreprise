@@ -16,8 +16,8 @@ entreprise . date de création:
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
   suggestions:
+    Début 2021: 01/01/2021
     Début 2020: 01/01/2020
-    Début 2019: 01/01/2019
     Fin 2017: 31/12/2017
   type: date
 
@@ -75,6 +75,39 @@ entreprise . rémunération du dirigeant:
     C'est la part du chiffre d'affaires après charges qui est allouée à la rémunération du dirigeant. Plus cette part est élevée, plus la rémunération du dirigeant augmente, et plus le bénéfice de l'entreprise diminue.
   question: Quelle part du chiffre d'affaires après charge est allouée à la rémunération du dirigeant ?
   par défaut: 100%
+
+entreprise . imposition:
+  question: À quel régime d'imposition l'entreprise est-elle soumise ?
+  description: |
+    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition des bénéfices de son activité :
+    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
+    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - IR
+        - IS
+  par défaut: "'IR'"
+
+entreprise . imposition . IR:
+  valeur: imposition = 'IR'
+  titre: À l'impôt sur le revenu
+
+entreprise . imposition . IS:
+  valeur: imposition = 'IS'
+  titre: À l'impôt sur les sociétés
+
+entreprise . imposition . IS . notification IS non intégré:
+  type: notification
+  formule:
+    une de ces conditions:
+      - dirigeant . assimilé salarié
+      - dirigeant . indépendant
+  description: |
+    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
+    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
+    le calcul de l'impôt sur le revenu.
 
 entreprise . bénéfice:
   formule: chiffre d'affaires - charges dont rémunération dirigeant
@@ -208,12 +241,21 @@ entreprise . franchise de TVA:
             - si: entreprise . catégorie d'activité . service ou vente = 'service'
               alors: 36500 €/an
             - si: entreprise . catégorie d'activité = 'libérale'
-              alors: 36500 €/an
+              alors:
+                variations:
+                  - si: dirigeant . indépendant . PL . métier = 'avocat'
+                    alors: 44500 €/an
+                  - sinon: 36500 €/an
   note: >
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+
+entreprise . seuil de franchise de TVA dépassé :
+  type: notification
+  formule: chiffre d'affaires > franchise de TVA
+  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 entreprise . effectif:
   unité: employé
@@ -280,10 +322,16 @@ entreprise . association non lucrative:
   rend non applicable:
     - contrat salarié . taxe d'apprentissage
 
-entreprise . établissement bancaire:
-  description: L'entreprise est un établissement bancaire, financier ou d'assurance. Elle est non assujettie à la TVA.
-  question: S'agit-il d'un établissement bancaire, financier, d'assurance ?
+entreprise . non assujettie à TVA:
+  question: L'entreprise est-elle non assujettie à la TVA ? 
   par défaut: non
+  description: |
+    Certaines entreprises ne sont pas assujetties à la TVA. 
+    Elles payent la taxe sur les salaires en contrepartie.
+
+    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
+  references: 
+    Fiche economie.gouv.fr: https://www.economie.gouv.fr/entreprises/taxe-salaires
 
 entreprise . taxe sur les salaires . montant avant décote:
   formule:
@@ -296,6 +344,10 @@ entreprise . taxe sur les salaires . abattement associations:
   formule: 21044 €/an
 
 entreprise . taxe sur les salaires:
+  non applicable si: 
+    une de ces conditions:
+      - association non lucrative
+      - entreprise . non assujettie à TVA
   description:
     Lorsque le montant de la taxe sur les salaires est inférieur à 1200 €/an, il
     n'y a pas besoin de faire de déclaration et la taxe n'est pas recouvré.
@@ -357,7 +409,7 @@ entreprise . catégorie d'activité . artisanale:
     - L'entreprise ne doit pas employer plus de 10 salariés (l'activité devient commerciale au-delà)
     - Les activités artisanales sont répertoriées par un décret
   références:
-    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0<Paste>
+    liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
 entreprise . catégorie d'activité . service ou vente:
   applicable si:

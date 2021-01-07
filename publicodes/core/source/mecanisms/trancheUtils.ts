@@ -1,4 +1,3 @@
-import { evolve } from 'ramda'
 import Engine from '..'
 import { ASTNode, Evaluation } from '../AST/types'
 import { evaluationError, warning } from '../error'
@@ -19,13 +18,14 @@ export const parseTranches = (tranches, context): TrancheNodes => {
 			}
 			return { ...t, plafond: t.plafond ?? Infinity }
 		})
-		.map(
-			evolve({
-				taux: (node) => parse(node, context),
-				montant: (node) => parse(node, context),
-				plafond: (node) => parse(node, context),
-			})
-		)
+		.map((node) => ({
+			...node,
+			...(node.taux !== undefined ? { taux: parse(node.taux, context) } : {}),
+			...(node.montant !== undefined
+				? { montant: parse(node.montant, context) }
+				: {}),
+			plafond: parse(node.plafond, context),
+		}))
 }
 
 export function evaluatePlafondUntilActiveTranche(
@@ -56,16 +56,15 @@ export function evaluatePlafondUntilActiveTranche(
 					plafondValue === Infinity || plafondValue === 0
 						? plafondValue
 						: convertUnit(
-								inferUnit('*', [plafond.unit, multiplicateur.unit]),
-								assiette.unit,
-								plafondValue
-						  )
+							inferUnit('*', [plafond.unit, multiplicateur.unit]),
+							assiette.unit,
+							plafondValue
+						)
 			} catch (e) {
 				warning(
-					this.logger,
+					this.options.logger,
 					this.cache._meta.ruleStack[0],
-					`L'unité du plafond de la tranche n°${
-						i + 1
+					`L'unité du plafond de la tranche n°${i + 1
 					}  n'est pas compatible avec celle l'assiette`,
 					e
 				)
@@ -102,10 +101,9 @@ export function evaluatePlafondUntilActiveTranche(
 				(plafondValue as number) <= plancherValue
 			) {
 				evaluationError(
-					this.logger,
+					this.options.logger,
 					this.cache._meta.ruleStack[0],
-					`Le plafond de la tranche n°${
-						i + 1
+					`Le plafond de la tranche n°${i + 1
 					} a une valeur inférieure à celui de la tranche précédente`
 				)
 			}

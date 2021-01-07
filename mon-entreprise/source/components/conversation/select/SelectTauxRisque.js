@@ -6,8 +6,7 @@ const worker = new Worker()
 function SelectComponent({ onChange, onSubmit, options }) {
 	const [searchResults, setSearchResults] = useState()
 	let submitOnChange = (option) => {
-		option.text = +option['Taux net'].replace(',', '.')
-		onChange(option.text)
+		onChange(option['Taux net'].replace(',', '.') + '%')
 		onSubmit()
 	}
 	const { t } = useTranslation()
@@ -17,7 +16,7 @@ function SelectComponent({ onChange, onSubmit, options }) {
 		})
 
 		worker.onmessage = ({ data: results }) => setSearchResults(results)
-	}, [])
+	}, [options])
 	return (
 		<>
 			<input
@@ -120,7 +119,7 @@ export default function Select(props) {
 	const [options, setOptions] = useState(null)
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2020.json'
+			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2021.json'
 		)
 			.then((response) => {
 				if (!response.ok) {

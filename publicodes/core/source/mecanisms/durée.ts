@@ -52,7 +52,7 @@ export default (v, context) => {
 	const explanation = parseObject(objectShape, v, context)
 	return {
 		explanation,
-		unit: parseUnit('jours'),
+		unit: parseUnit('jour'),
 		nodeKind: 'durée',
 	} as DuréeNode
 }

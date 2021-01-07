@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { compose, mapObjIndexed } from 'ramda'
 import { reduceAST } from './AST'
 import { ASTNode, EvaluatedNode, NodeKind } from './AST/types'
 import { evaluationFunctions } from './evaluationFunctions'
@@ -12,6 +11,7 @@ import {
 } from './replacement'
 import { Rule, RuleNode } from './rule'
 import * as utils from './ruleUtils'
+import { getUnitKey } from './units'
 
 const emptyCache = () => ({
 	_meta: { ruleStack: [] },
@@ -38,16 +38,16 @@ export type EvaluationOptions = Partial<{
 	unit: string
 }>
 
+export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
 export * as cyclesLib from './AST/graph'
 export { reduceAST, transformAST } from './AST/index'
 export { Evaluation, Unit } from './AST/types'
 export { capitalise0, formatValue } from './format'
 export { simplifyNodeUnit } from './nodeUnits'
-export { default as translateRules } from './translateRules'
 export { serializeUnit } from './units'
 export { parsePublicodes, utils }
 export { Rule, RuleNode, ASTNode, EvaluatedNode }
-export { default as mecanismsDoc } from '../../docs/mecanisms.yaml'
+
 type PublicodesExpression = string | Record<string, unknown> | number
 
 export type Logger = {
@@ -56,6 +56,10 @@ export type Logger = {
 	error(message: string): void
 }
 
+type Options = {
+	logger: Logger
+	getUnitKey?: getUnitKey
+}
 export type EvaluationFunction<Kind extends NodeKind = NodeKind> = (
 	this: Engine,
 	node: ASTNode & { nodeKind: Kind }
@@ -69,19 +73,15 @@ export default class Engine<Name extends string = string> {
 	parsedSituation: Record<string, ASTNode> = {}
 	replacements: Record<string, Array<ReplacementRule>> = {}
 	cache: Cache = emptyCache()
-	logger: Logger = console
+	options: Options
 
 	constructor(
 		rules: string | Record<string, Rule> | ParsedRules<Name>,
-		logger?: Logger
+		options: Partial<Options> = {}
 	) {
-		if (logger) {
-			this.logger = logger
-		}
+		this.options = { ...options, logger: options.logger ?? console }
 		if (typeof rules === 'string') {
-			rules = parsePublicodes(rules, {
-				logger: this.logger,
-			}) as ParsedRules<Name>
+			rules = parsePublicodes(rules, this.options) as ParsedRules<Name>
 		}
 		const firstRuleObject = Object.values(rules)[0] as Rule | RuleNode
 		if (
@@ -89,16 +89,17 @@ export default class Engine<Name extends string = string> {
 			firstRuleObject == null ||
 			!('nodeKind' in firstRuleObject)
 		) {
-			rules = parsePublicodes(rules as Record<string, Rule>, {
-				logger: this.logger,
-			}) as ParsedRules<Name>
+			rules = parsePublicodes(
+				rules as Record<string, Rule>,
+				this.options
+			) as ParsedRules<Name>
 		}
 		this.parsedRules = rules as ParsedRules<Name>
 		this.replacements = getReplacements(this.parsedRules)
 	}
 
-	setLogger(logger: Logger) {
-		this.logger = logger
+	setOptions(options: Partial<Options>) {
+		this.options = { ...this.options, ...options }
 	}
 
 	resetCache() {
@@ -109,22 +110,30 @@ export default class Engine<Name extends string = string> {
 		situation: Partial<Record<Name, PublicodesExpression | ASTNode>> = {}
 	) {
 		this.resetCache()
-		this.parsedSituation = mapObjIndexed((value, key) => {
-			if (value && typeof value === 'object' && 'nodeKind' in value) {
-				return value as ASTNode
-			}
-			return compose(
-				inlineReplacements(this.replacements, this.logger),
-				disambiguateReference(this.parsedRules)
-			)(
-				parse(value, {
-					dottedName: `situation [${key}]`,
-					parsedRules: {},
-					logger: this.logger,
-				})
-			)
-		}, situation)
+		this.parsedSituation = Object.fromEntries(
+			Object.entries(situation).map(([key, value]) => {
+				if (value && typeof value === 'object' && 'nodeKind' in value) {
+					return [key, value as ASTNode]
+				}
+				const parsedValue =
+					value && typeof value === 'object' && 'nodeKind' in value
+						? (value as ASTNode)
+						: this.parse(value, {
+								dottedName: `situation [${key}]`,
+								parsedRules: {},
+								...this.options,
+						  })
+				return [key, parsedValue]
+			})
+		)
 		return this
+	}
+
+	private parse(...args: Parameters<typeof parse>) {
+		return inlineReplacements(
+			this.replacements,
+			this.options.logger
+		)(disambiguateReference(this.parsedRules)(parse(...args)))
 	}
 
 	inversionFail(): boolean {
@@ -152,16 +161,11 @@ export default class Engine<Name extends string = string> {
 
 		let parsedNode: ASTNode
 		if (!value || typeof value !== 'object' || !('nodeKind' in value)) {
-			parsedNode = compose(
-				inlineReplacements(this.replacements, this.logger),
-				disambiguateReference(this.parsedRules)
-			)(
-				parse(value, {
-					dottedName: 'evaluation',
-					parsedRules: {},
-					logger: this.logger,
-				})
-			)
+			parsedNode = this.parse(value, {
+				dottedName: 'evaluation',
+				parsedRules: {},
+				...this.options,
+			})
 		} else {
 			parsedNode = value as ASTNode
 		}

@@ -124,7 +124,7 @@
 	},
 	"workspaces": [
 		"publicodes/core",
-		"publicodes/react",
+		"publicodes/ui-react",
 		"publicodes/site",
 		"modele-social",
 		"mon-entreprise"

@@ -454,6 +454,9 @@ contrat salarié . ATMP . taux minimum:
     notamment pour le calcul de la réduction générale de cotisations
   titre.en: '[automatic] minimum level'
   titre.fr: taux minimum
+contrat salarié . ATMP . taux moyen:
+  titre.en: '[automatic] mean rate'
+  titre.fr: taux moyen
 contrat salarié . ATMP . taux personnalisé:
   description.en: >
     [automatic] Companies with more than 20 employees have an individualized
@@ -1188,6 +1191,15 @@ contrat salarié . aides employeur . aide à l'embauche d'apprentis:
     Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
   titre.en: aid to hire apprentices
   titre.fr: aide à l'embauche d'apprentis
+? contrat salarié . aides employeur . aide à l'embauche senior professionnalisation
+: description.en: |
+    [automatic] Employers can get €2,000 for the hiring of an
+    jobseekers over 45 years of age on a professionalization contract.
+  description.fr: |
+    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
+    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
+  titre.en: '[automatic] senior professionalization hiring assistance'
+  titre.fr: aide à l'embauche senior professionnalisation
 contrat salarié . aides employeur . emploi franc:
   description.en: >
     [automatic] Deferred assistance paid by Pôle emploi for hiring a job seeker
@@ -1266,10 +1278,10 @@ contrat salarié . ancienneté:
 contrat salarié . ancienneté . date d'embauche:
   question.en: "[automatic] What is the employee's hiring date?"
   question.fr: Quelle est la date d'embauche du salarié ?
-  suggestions.Début 2019.en: '[automatic] Early 2019'
-  suggestions.Début 2019.fr: Début 2019
   suggestions.Début 2020.en: '[automatic] Early 2020'
   suggestions.Début 2020.fr: Début 2020
+  suggestions.Début 2021.en: '[automatic] Early 2021'
+  suggestions.Début 2021.fr: Début 2021
   suggestions.Fin 2017.en: '[automatic] End 2017'
   suggestions.Fin 2017.fr: Fin 2017
   titre.en: '[automatic] hire date'
@@ -2317,16 +2329,6 @@ contrat salarié . intermittents du spectacle . technicien:
 contrat salarié . intermittents du spectacle . technicien . non cadre:
   titre.en: not "cadre"
   titre.fr: non cadre
-contrat salarié . jeune de moins de 26 ans:
-  question.en: '[automatic] Is the employee hired under the age of 26?'
-  question.fr: Le salarié embauché a-t'il moins de 26 ans ?
-  titre.en: '[automatic] under 26 years old'
-  titre.fr: jeune de moins de 26 ans
-contrat salarié . jeune de moins de 30 ans:
-  question.en: '[automatic] Is the employee hired under the age of 30?'
-  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
-  titre.en: '[automatic] under 30 years old'
-  titre.fr: jeune de moins de 30 ans
 contrat salarié . lodeom:
   description.en: >
     A rather complex set of contribution reductions is available for overseas
@@ -2656,6 +2658,16 @@ contrat salarié . professionnalisation:
     prolongée jusqu'à 36 mois.
   titre.en: '[automatic] professionalization'
   titre.fr: professionnalisation
+contrat salarié . professionnalisation . jeune de moins de 30 ans:
+  question.en: '[automatic] Is the employee hired under the age of 30?'
+  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
+  titre.en: '[automatic] under 30 years old'
+  titre.fr: jeune de moins de 30 ans
+contrat salarié . professionnalisation . salarié de 45 ans et plus:
+  question.en: '[automatic] Is the employee hired 45 years of age or older?'
+  question.fr: Le salarié embauché a-t'il 45 ans ou plus ?
+  titre.en: '[automatic] employee aged 45 and over'
+  titre.fr: salarié de 45 ans et plus
 contrat salarié . prévoyance:
   titre.en: '[automatic] foresight'
   titre.fr: prévoyance
@@ -3754,14 +3766,6 @@ dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
     plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
   titre.en: '[automatic] Threshold control of turnover exceeded'
   titre.fr: contrôle seuil de CA dépassé
-dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
-  description.en:
-    '[automatic] The annual turnover threshold for VAT exemption is
-    exceeded. More information](/documentation/enterprise/VAT-exemption)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
-    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
-  titre.en: '[automatic] VAT threshold control'
-  titre.fr: contrôle seuil de TVA dépassé
 dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: Contributions
   titre.fr: cotisations et contributions
@@ -6192,10 +6196,10 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] What is your start date?'
   question.fr: Quelle est votre date de début d'activité ?
-  suggestions.Début 2019.en: '[automatic] Early 2019'
-  suggestions.Début 2019.fr: Début 2019
   suggestions.Début 2020.en: '[automatic] Early 2020'
   suggestions.Début 2020.fr: Début 2020
+  suggestions.Début 2021.en: '[automatic] Early 2021'
+  suggestions.Début 2021.fr: Début 2021
   suggestions.Fin 2017.en: '[automatic] End 2017'
   suggestions.Fin 2017.fr: Fin 2017
   titre.en: Creation date
@@ -6281,9 +6285,67 @@ entreprise . franchise de TVA:
     "minoré" n'a pas été dépassé en année `n - 2`)
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
+entreprise . imposition:
+  description.en: >
+    [automatic] The entrepreneur can choose one of the two systems for taxing
+    the profits of his activity:
+
+    - income tax, where profits are declared on the personal income tax return and taxed according to a progressive tax scale.
+
+    - corporate income tax, where profits are declared in the name of the company
+  description.fr: >
+    Le créateur d'entreprise peut opter pour l'un des deux régimes d'imposition
+    des bénéfices de son activité :
+
+    - l'impôt sur le revenu, où les bénéfices sont déclarés sur la déclaration de revenus personnelle et imposés au barème progressif
+
+    - l'impôt sur les sociétés, où les bénéfices sont déclarés au nom de la société
+  question.en: '[automatic] What tax regime is the company subject to?'
+  question.fr: À quel régime d'imposition l'entreprise est-elle soumise ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+entreprise . imposition . IR:
+  titre.en: '[automatic] To income tax'
+  titre.fr: À l'impôt sur le revenu
+entreprise . imposition . IS:
+  titre.en: '[automatic] To corporate tax'
+  titre.fr: À l'impôt sur les sociétés
+entreprise . imposition . IS . notification IS non intégré:
+  description.en: >
+    [automatic] This simulator does not include corporate taxes or the taxation
+    of
+
+    dividends. The "Corporate Tax" option is only used in the following cases
+
+    income tax calculation.
+  description.fr: |
+    Ce simulateur n'intègre pas l'impôts sur les sociétés ni la fiscalité des
+    dividendes. L'option "Impôt sur les Sociétés" est uniquement utilisée dans
+    le calcul de l'impôt sur le revenu.
+  titre.en: '[automatic] non-integrated IS notification'
+  titre.fr: notification IS non intégré
 entreprise . impôt sur les sociétés:
   titre.en: corporate income tax
   titre.fr: impôt sur les sociétés
+entreprise . non assujettie à TVA:
+  description.en: >
+    [automatic] Some businesses are not subject to VAT. 
+
+    They pay payroll tax in return.
+
+
+    This is the case, for example, with banking, financial or insurance institutions.
+  description.fr: >
+    Certaines entreprises ne sont pas assujetties à la TVA. 
+
+    Elles payent la taxe sur les salaires en contrepartie.
+
+
+    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance.
+  question.en: '[automatic] Is the company not subject to VAT?'
+  question.fr: L'entreprise est-elle non assujettie à la TVA ?
+  titre.en: '[automatic] non-VAT taxable'
+  titre.fr: non assujettie à TVA
 entreprise . ratio alternants:
   description.en: >
     This fraction determines the additional contribution for learning for the
@@ -6364,6 +6426,14 @@ entreprise . résultat net:
   résumé.fr: Ce qu'il reste après impôt sur les sociétés
   titre.en: net result
   titre.fr: résultat net
+entreprise . seuil de franchise de TVA dépassé:
+  description.en:
+    '[automatic] The annual turnover threshold for VAT exemption is
+    exceeded. More information](/documentation/enterprise/VAT-exemption)'
+  description.fr: Le seuil annuel de chiffre d'affaires pour la franchise de TVA
+    est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
+  titre.en: '[automatic] VAT threshold control'
+  titre.fr: seuil de franchise de TVA dépassé
 entreprise . taxe sur les salaires:
   description.en: '[automatic] When the amount of payroll tax is less than
     €1200/year, there is no need to make a declaration and the tax is not
@@ -6379,21 +6449,22 @@ entreprise . taxe sur les salaires . abattement associations:
 entreprise . taxe sur les salaires . montant avant décote:
   titre.en: '[automatic] pre-discount amount'
   titre.fr: montant avant décote
-entreprise . établissement bancaire:
-  description.en:
-    The company is a banking, financial or insurance institution. It
-    is not subject to VAT.
-  description.fr: L'entreprise est un établissement bancaire, financier ou
-    d'assurance. Elle est non assujettie à la TVA.
-  question.en: Is it a banking, financial or insurance institution?
-  question.fr: S'agit-il d'un établissement bancaire, financier, d'assurance ?
-  titre.en: banking institution
-  titre.fr: établissement bancaire
 impôt:
   description.en: '[automatic] This set of formulas is a simplified income tax model.'
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
   titre.en: income tax
   titre.fr: impôts sur le revenu
+impôt . domiciliation étranger non implémentée:
+  description.en: >
+    [automatic] Non-resident withholding tax is not yet implemented. For more
+    information, please refer to the [tax
+    documentation](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en).
+  description.fr: >
+    La retenue à la source pour les non-résident n'est pas encore implémentée.
+    Pour en savoir plus, se référer à la [documentation
+    fiscale](https://www.impots.gouv.fr/portail/international-particulier/je-suis-non-resident-dois-je-declarer-des-revenus-et-payer-des-impots-en)
+  titre.en: '[automatic] foreign domiciliation not implemented'
+  titre.fr: domiciliation étranger non implémentée
 impôt . foyer fiscal:
   titre.en: '[automatic] fiscal family'
   titre.fr: foyer fiscal
@@ -6636,9 +6707,13 @@ impôt . taux neutre d'impôt sur le revenu:
   titre.en: neutral income tax rate
   titre.fr: taux neutre d'impôt sur le revenu
 ? impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique
-: titre.en: Guadeloupe Reunion Island Martinique scale
+: note.en: '[automatic] This scale was not upgraded in 2021.'
+  note.fr: Ce barème n'a pas été revalorisé en 2021.
+  titre.en: Guadeloupe Reunion Island Martinique scale
   titre.fr: barème Guadeloupe Réunion Martinique
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
+  note.en: '[automatic] This scale was not upgraded in 2021.'
+  note.fr: Ce barème n'a pas été revalorisé en 2021.
   titre.en: Guyana Mayotte scale
   titre.fr: barème Guyane Mayotte
 impôt . taux personnalisé:
@@ -6668,6 +6743,11 @@ plafond sécurité sociale temps plein:
     contributions.
   description.fr: Le plafond de Sécurité sociale est le montant maximum des
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
+  note.en:
+    '[automatic] The Social Security ceiling has not been increased in 2021
+    compared to 2020.'
+  note.fr: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
+    rapport à 2020.
   titre.en: full-time social security ceiling
   titre.fr: plafond sécurité sociale temps plein
 protection sociale:

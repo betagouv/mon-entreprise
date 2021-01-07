@@ -42,11 +42,12 @@ export default function Overlay({
 		}
 	}, [])
 	const offsetTop = useIFrameOffset()
+
 	if (offsetTop === null) {
 		return null
 	}
 	return (
-		<StyledOverlayWrapper offsetTop={offsetTop}>
+		<StyledOverlayWrapper offsetTop={Math.max(0, offsetTop)}>
 			<div className="overlayContent">
 				<FocusTrap
 					focusTrapOptions={{
@@ -83,6 +84,7 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 	right: 0;
 	bottom: 0;
 	background: rgba(255, 255, 255, 0.9);
+	max-height: 100vh;
 	overflow: auto;
 	z-index: 2;
 	.overlayContent {
@@ -98,14 +100,18 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 		position: absolute;
 	}
 	.overlayCloseButton {
-		position: absolute;
-		bottom: 0rem;
+		position: fixed;
+		background-color: white;
+		border-top-left-radius: 100%;
 		text-decoration: none;
-		font-size: 3rem;
+		font-size: 2.5rem;
+		border-top: 0.5rem solid white;
+		border-left: 0.5rem solid white;
+		bottom: 0;
+		right: 0;
 		color: rgba(0, 0, 0, 0.6);
 		color: var(--lighterTextColor);
-		padding: 0 0.5rem;
-		right: 0;
+		padding: 0 1rem;
 	}
 	.ui__.card[aria-modal='true'] {
 		padding-bottom: 4rem;
@@ -117,11 +123,12 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 		.overlayCloseButton {
 			top: 0;
 			bottom: auto;
+			padding: 0 0.5rem;
 			font-size: 2rem;
 		}
 		.overlayContent {
 			transform: translateX(-50%)
-				translateY(calc(${({ offsetTop }) => offsetTop}px + 10rem));
+				translateY(calc(${({ offsetTop }) => offsetTop}px + 5rem));
 			left: 50%;
 			width: 80%;
 			bottom: auto;
@@ -129,8 +136,9 @@ const StyledOverlayWrapper = styled.div<{ offsetTop: number | null }>`
 			max-width: 40em;
 			min-height: 6em;
 		}
-	.ui__.card[aria-modal='true'] {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
+		.ui__.card[aria-modal='true'] {
+			padding-bottom: 2rem;
+			margin-bottom: 2rem;
+		}
 	}
 `

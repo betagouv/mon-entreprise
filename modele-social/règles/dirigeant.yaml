@@ -75,6 +75,10 @@ dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
 
 dirigeant . auto-entrepreneur:
   rend non applicable: contrat salarié
+  remplace: 
+    règle: entreprise . imposition
+    # TODO devrait remplacer par l'option micro-BNC
+    par: "'IR'"
   formule: dirigeant = 'auto-entrepreneur'
   icônes: 🚶
   description: |
@@ -89,11 +93,6 @@ dirigeant . auto-entrepreneur . contrôle seuil de CA dépassé:
   sévérité: avertissement
   formule: base des cotisations > plafond
   description: Le seuil annuel de chiffre d'affaires pour le régime de l'auto-entreprise est dépassé. [En savoir plus](/documentation/dirigeant/auto‑entrepreneur/plafond)
-
-dirigeant . auto-entrepreneur . contrôle seuil de TVA dépassé:
-  type: notification
-  formule: entreprise . chiffre d'affaires > entreprise . franchise de TVA
-  description: Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé. [En savoir plus](/documentation/entreprise/franchise-de-TVA)
 
 dirigeant . auto-entrepreneur . plafond:
   description: |
@@ -433,7 +432,12 @@ dirigeant . rémunération totale:
               - entreprise . chiffre d'affaires
               - auto-entrepreneur . net après impôt
       - si: assimilé salarié
-        alors: contrat salarié . rémunération . total
+        alors: 
+          somme: 
+            - contrat salarié . rémunération . total
+            # TODO : ajouter la taxe sur les salaires ici. 
+            # Pour l'instant commenté car elle crée une boucle à cause de la franchise de TVA
+            # - entreprise . taxe sur les salaires
 
 dirigeant . indépendant:
   rend non applicable: contrat salarié
@@ -444,7 +448,6 @@ dirigeant . indépendant . avertissement base forfaitaire:
   formule:
     toutes ces conditions:
       - entreprise . durée d'activité . en fin d'année < 2 ans
-      - entreprise . date de création != 02/01/2020
   description: >-
     Lorsque vous commencez votre activité, vos revenus professionnels
     n’étant pas connus, les cotisations et contributions des deux premières

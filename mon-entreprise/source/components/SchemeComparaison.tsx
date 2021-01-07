@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import InfoBulle from 'Components/ui/InfoBulle'
 import './SchemeComparaison.css'
-import { useEngine } from './utils/EngineContext'
+import { engineOptions, useEngine } from './utils/EngineContext'
 import { DottedName } from 'modele-social'
 
 type SchemeComparaisonProps = {
@@ -53,7 +53,7 @@ export default function SchemeComparaison({
 		useSelector(situationSelector)['entreprise . charges'] != undefined
 	const assimiléEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
 				...situation,
 				dirigeant: "'assimilé salarié'",
 			}),
@@ -61,7 +61,7 @@ export default function SchemeComparaison({
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
 				...situation,
 				dirigeant: "'auto-entrepreneur'",
 			}),
@@ -69,7 +69,7 @@ export default function SchemeComparaison({
 	)
 	const indépendantEngine = useMemo(
 		() =>
-			new Engine<DottedName>(parsedRules).setSituation({
+			new Engine<DottedName>(parsedRules, engineOptions).setSituation({
 				...situation,
 				dirigeant: "'indépendant'",
 			}),

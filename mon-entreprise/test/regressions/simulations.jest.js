@@ -8,6 +8,7 @@
 /* eslint-disable no-undef */
 import rules from 'modele-social'
 import Engine from 'publicodes'
+import { engineOptions } from '../../source/components/utils/EngineContext'
 import artisteAuteurConfig from '../../source/site/pages/Simulateurs/configs/artiste-auteur.yaml'
 import autoentrepreneurConfig from '../../source/site/pages/Simulateurs/configs/auto-entrepreneur.yaml'
 import independantConfig from '../../source/site/pages/Simulateurs/configs/indépendant.yaml'
@@ -24,7 +25,7 @@ import employeeSituations from './simulations-salarié.yaml'
 import aideDéclarationIndépendantsSituations from './aide-déclaration-indépendants.yaml'
 
 const roundResult = (arr) => arr.map((x) => Math.round(x))
-const engine = new Engine(rules)
+const engine = new Engine(rules, engineOptions)
 const runSimulations = (situations, targets, baseSituation = {}) =>
 	Object.entries(situations).map(([name, situations]) =>
 		situations.forEach((situation) => {

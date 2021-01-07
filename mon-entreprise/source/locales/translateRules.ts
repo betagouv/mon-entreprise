@@ -1,5 +1,5 @@
 import { assoc, mapObjIndexed } from 'ramda'
-import { Rule } from './rule'
+import { Rule } from 'publicodes'
 
 type Translation = Record<string, string>
 type translateAttribute = (

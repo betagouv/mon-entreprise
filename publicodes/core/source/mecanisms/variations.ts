@@ -1,4 +1,3 @@
-import { or } from 'ramda'
 import { EvaluationFunction } from '..'
 import { ASTNode, Unit } from '../AST/types'
 import { warning } from '../error'
@@ -101,8 +100,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					pureTemporal(evaluatedCondition.nodeValue)
 			)
 			evaluatedCondition.missingVariables = bonus(
-				evaluatedCondition.missingVariables,
-				true
+				evaluatedCondition.missingVariables
 			)
 			const currentConditionAlwaysFalse = !sometime(
 				(x) => x !== false,
@@ -122,7 +120,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 					evaluatedConsequence = convertNodeToUnit(unit, evaluatedConsequence)
 				} catch (e) {
 					warning(
-						this.logger,
+						this.options.logger,
 						this.cache._meta.ruleStack[0],
 						`L'unité de la branche n° ${
 							i + 1
@@ -137,6 +135,7 @@ const evaluate: EvaluationFunction<'variations'> = function (node) {
 				evaluatedConsequence.temporalValue ??
 					pureTemporal(evaluatedConsequence.nodeValue)
 			)
+			const or = (a, b) => a || b
 			return [
 				liftTemporal2(or, evaluation, currentValue),
 				[

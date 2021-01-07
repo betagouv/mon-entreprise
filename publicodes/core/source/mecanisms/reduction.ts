@@ -1,10 +1,9 @@
-import { max, min } from 'ramda'
+import { ASTNode } from '../AST/types'
 import { warning } from '../error'
 import { defaultNode, evaluateObject, parseObject } from '../evaluation'
 import { registerEvaluationFunction } from '../evaluationFunctions'
 import { convertNodeToUnit } from '../nodeUnits'
 import { serializeUnit } from '../units'
-import { ASTNode } from '../AST/types'
 
 export type ReductionNode = {
 	explanation: {
@@ -36,7 +35,7 @@ const evaluate = evaluateObject<'allègement'>(function ({
 			}
 		} catch (e) {
 			warning(
-				this.logger,
+				this.options.logger,
 				this.cache._meta.ruleStack[0],
 				"Impossible de convertir les unités de l'allègement entre elles",
 				e
@@ -49,12 +48,18 @@ const evaluate = evaluateObject<'allègement'>(function ({
 				? 0
 				: null
 			: serializeUnit(abattement.unit) === '%'
-			? max(
+			? Math.max(
 					0,
 					assietteValue -
-						min(plafond.nodeValue, (abattement.nodeValue / 100) * assietteValue)
+						Math.min(
+							plafond.nodeValue,
+							(abattement.nodeValue / 100) * assietteValue
+						)
 			  )
-			: max(0, assietteValue - min(plafond.nodeValue, abattement.nodeValue))
+			: Math.max(
+					0,
+					assietteValue - Math.min(plafond.nodeValue, abattement.nodeValue)
+			  )
 		: assietteValue
 	return {
 		nodeValue,

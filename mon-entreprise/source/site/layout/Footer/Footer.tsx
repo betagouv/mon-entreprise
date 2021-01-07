@@ -6,10 +6,9 @@ import { SitePathsContext } from 'Components/utils/SitePathsContext'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Helmet } from 'react-helmet'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import useSimulatorsData from '../../pages/Simulateurs/metadata'
-import i18n, { AvailableLangs } from '../../../i18n'
 import { hrefLangLink } from '../../sitePaths'
 import './Footer.css'
 import Privacy from './Privacy'
@@ -37,8 +36,9 @@ const useShowFeedback = () => {
 export default function Footer() {
 	const sitePaths = useContext(SitePathsContext)
 	const showFeedback = useShowFeedback()
+	const language = useTranslation().i18n.language as 'fr' | 'en'
 	const hrefLink =
-		hrefLangLink[i18n.language as AvailableLangs][
+		hrefLangLink[language][
 			decodeURIComponent(
 				(process.env.NODE_ENV === 'production'
 					? window.location.protocol + '//' + window.location.host
@@ -63,7 +63,7 @@ export default function Footer() {
 					<NewsletterRegister />
 					<hr className="footer__separator" />
 				</div>
-				{i18n.language === 'en' && (
+				{language === 'en' && (
 					<p className="ui__ notice" css="text-align: center">
 						This website is provided by the{' '}
 						<a href="https://www.urssaf.fr">Urssaf</a>, the French social
@@ -74,7 +74,7 @@ export default function Footer() {
 					<LegalNotice />
 					{'  •  '}
 					<Privacy />
-					{i18n.language === 'fr' && (
+					{language === 'fr' && (
 						<>
 							{'  •  '}
 							<Link to={sitePaths.nouveautés}>Nouveautés</Link>

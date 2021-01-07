@@ -25,7 +25,7 @@ const evaluate: EvaluationFunction<'plancher'> = function (node) {
 				plancher = convertNodeToUnit(valeur.unit, evaluatedPlancher)
 			} catch (e) {
 				warning(
-					this.logger,
+					this.options.logger,
 					this.cache._meta.ruleStack[0],
 					"L'unité du plancher n'est pas compatible avec celle de la valeur à encadrer",
 					e

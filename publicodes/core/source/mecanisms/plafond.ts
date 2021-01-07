@@ -27,7 +27,7 @@ const evaluate: EvaluationFunction<'plafond'> = function (node) {
 				plafond = convertNodeToUnit(valeur.unit, evaluatedPlafond)
 			} catch (e) {
 				warning(
-					this.logger,
+					this.options.logger,
 					this.cache._meta.ruleStack[0],
 					"L'unité du plafond n'est pas compatible avec celle de la valeur à encadrer",
 					e

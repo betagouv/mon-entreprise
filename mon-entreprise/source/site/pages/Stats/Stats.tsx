@@ -109,10 +109,10 @@ export default function Stats() {
 				<LineChartVisits periodicity={choice} />
 
 				<Indicators>
-					<Indicator main="1,7 million" subTitle="Visiteurs en 2019" />
+					<Indicator main="3,2 millions" subTitle="Visites en 2020" />
 					<Indicator
-						main="52,9%"
-						subTitle="Convertissent en lançant une simulation"
+						main="41%"
+						subTitle="Taux de rebond (visiteurs qui partent sans faire d'actions)"
 					/>
 				</Indicators>
 			</section>
